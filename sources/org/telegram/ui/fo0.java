@@ -1,24 +1,13 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-public final class fo0 extends ClickableSpan {
-    public final io0 f37379a;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public interface fo0 {
+    void a(TL_account.Password password);
 
-    public fo0(io0 io0Var) {
-        this.f37379a = io0Var;
-    }
+    void b();
 
-    @Override
-    public final void onClick(View view) {
-        io0 io0Var = this.f37379a;
-        io0Var.presentFragment(new bg1(6, io0Var.f38288a0));
-    }
+    boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard);
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(false);
-    }
+    void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo);
 }

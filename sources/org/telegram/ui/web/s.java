@@ -4,30 +4,30 @@ import ci.y7;
 import org.json.JSONObject;
 import org.telegram.messenger.Utilities;
 public final class s implements Utilities.Callback {
-    public final int f43247a;
-    public final b1 f43248b;
-    public final y7 f43249c;
+    public final int f43236a;
+    public final b1 f43237b;
+    public final y7 f43238c;
 
     public s(b1 b1Var, y7 y7Var, int i10) {
-        this.f43247a = i10;
-        this.f43248b = b1Var;
-        this.f43249c = y7Var;
+        this.f43236a = i10;
+        this.f43237b = b1Var;
+        this.f43238c = y7Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f43247a) {
+        switch (this.f43236a) {
             case 0:
-                this.f43248b.x(this.f43249c, "location_requested", (JSONObject) obj);
+                this.f43237b.x(this.f43238c, "location_requested", (JSONObject) obj);
                 return;
             case 1:
-                this.f43248b.x(this.f43249c, "location_requested", (JSONObject) obj);
+                this.f43237b.x(this.f43238c, "location_requested", (JSONObject) obj);
                 return;
             default:
-                b1 b1Var = this.f43248b;
+                b1 b1Var = this.f43237b;
                 b1Var.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                y7 y7Var = this.f43249c;
+                y7 y7Var = this.f43238c;
                 if (booleanValue) {
                     b1Var.x(y7Var, "home_screen_added", null);
                     return;

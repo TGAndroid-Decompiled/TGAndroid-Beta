@@ -26,8 +26,8 @@ import org.telegram.messenger.PushListenerController;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.o10;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.m10;
 import org.telegram.ui.IUpdateLayout;
 import org.telegram.ui.ua0;
 public class ApplicationLoader extends Application {
@@ -361,6 +361,7 @@ public class ApplicationLoader extends Application {
             } catch (Exception e10) {
                 e10.printStackTrace();
             }
+            LiteMode.registerBatteryReceiver();
             try {
                 isScreenOn = ((PowerManager) applicationContext.getSystemService("power")).isScreenOn();
                 if (BuildVars.LOGS_ENABLED) {
@@ -536,7 +537,7 @@ public class ApplicationLoader extends Application {
         NativeLoader.initNativeLibs(applicationContext);
         try {
             ConnectionsManager.native_setJava(false);
-            new o10(this) {
+            new m10(this) {
                 @Override
                 public void onActivityStarted(Activity activity) {
                     boolean isBackground = isBackground();
@@ -673,7 +674,7 @@ public class ApplicationLoader extends Application {
     public void onResume() {
     }
 
-    public void addItemOptions(j80 j80Var) {
+    public void addItemOptions(h80 h80Var) {
     }
 
     public void appCenterLogInternal(Throwable th2) {

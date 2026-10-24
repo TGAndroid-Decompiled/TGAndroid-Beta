@@ -30,22 +30,22 @@ public final class f0 {
             if ((i12 != 2 || (inetAddress instanceof Inet4Address)) && (i12 != 3 || (inetAddress instanceof Inet6Address))) {
                 int i13 = i11 + this.f14102c;
                 c5.c0 c0Var2 = new c5.c0(i13, 12);
-                arrayList.add(new tc.t(obj, (SocketFactory) this.d, new InetSocketAddress(inetAddress, ((tc.a) this.e).f47372b), this.f14100a, c0Var, c0Var2));
+                arrayList.add(new tc.t(obj, (SocketFactory) this.d, new InetSocketAddress(inetAddress, ((tc.a) this.e).f47371b), this.f14100a, c0Var, c0Var2));
                 c0Var = c0Var2;
                 i11 = i13;
             }
         }
-        obj.f47388b = arrayList;
-        obj.f47387a = new CountDownLatch(((ArrayList) obj.f47388b).size());
-        ArrayList arrayList2 = (ArrayList) obj.f47388b;
+        obj.f47387b = arrayList;
+        obj.f47386a = new CountDownLatch(((ArrayList) obj.f47387b).size());
+        ArrayList arrayList2 = (ArrayList) obj.f47387b;
         int size = arrayList2.size();
         while (i10 < size) {
             Object obj2 = arrayList2.get(i10);
             i10++;
             ((tc.t) obj2).start();
         }
-        ((CountDownLatch) obj.f47387a).await();
-        Socket socket = (Socket) obj.f47389c;
+        ((CountDownLatch) obj.f47386a).await();
+        Socket socket = (Socket) obj.f47388c;
         if (socket != null) {
             return socket;
         }

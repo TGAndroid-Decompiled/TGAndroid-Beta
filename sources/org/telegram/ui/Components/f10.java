@@ -1,36 +1,84 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class f10 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f26123a;
-    public final g10 f26124b;
+import android.content.Context;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class f10 extends FrameLayout {
+    public final o6 f26164a;
+    public final o6 f26165b;
 
-    public f10(g10 g10Var, int i10) {
-        this.f26123a = i10;
-        this.f26124b = g10Var;
+    public f10(Context context) {
+        super(context);
+        int i10;
+        int i11;
+        int i12;
+        o6 o6Var = new o6(context, true, true, false);
+        this.f26164a = o6Var;
+        o6Var.setTextSize(AndroidUtilities.dp(15.0f));
+        o6Var.setTypeface(AndroidUtilities.bold());
+        int i13 = org.telegram.ui.ActionBar.k6.L6;
+        org.telegram.ui.ActionBar.r6.a0(o6Var, i13, null);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
+        }
+        o6Var.setGravity(i10);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(o6Var, w7.z5.d(-1, 20.0f, i11 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
+        o6 o6Var2 = new o6(context, true, true, true);
+        this.f26165b = o6Var2;
+        o6Var2.b(0.45f, 250L, zr.h);
+        o6Var2.setTextSize(AndroidUtilities.dp(15.0f));
+        org.telegram.ui.ActionBar.r6.a0(o6Var2, i13, null);
+        if (LocaleController.isRTL) {
+            i12 = 3;
+        } else {
+            i12 = 5;
+        }
+        o6Var2.setGravity(i12);
+        addView(o6Var2, w7.z5.d(-2, 20.0f, (LocaleController.isRTL ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
+        WeakHashMap weakHashMap = r0.i0.f45241a;
+        new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
+    }
+
+    public final void a(String str, Runnable runnable) {
+        o6 o6Var = this.f26165b;
+        o6Var.c(str, !LocaleController.isRTL, true);
+        o6Var.setOnClickListener(new t6(1, runnable));
+    }
+
+    public final void b(String str, boolean z10) {
+        boolean z11;
+        o6 o6Var = this.f26164a;
+        if (z10) {
+            o6Var.a();
+        }
+        if (z10 && !LocaleController.isRTL) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        o6Var.c(str, z11, true);
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f26123a) {
-            case 0:
-                g10 g10Var = this.f26124b;
-                g10Var.getClass();
-                g10Var.f26510y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g10Var.invalidate();
-                return;
-            case 1:
-                g10 g10Var2 = this.f26124b;
-                g10Var2.getClass();
-                g10Var2.v = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                g10Var2.invalidate();
-                return;
-            default:
-                g10 g10Var3 = this.f26124b;
-                g10Var3.getClass();
-                g10Var3.f26505n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                g10Var3.invalidate();
-                return;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.TextView");
+        accessibilityNodeInfo.setText(this.f26164a.getText());
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

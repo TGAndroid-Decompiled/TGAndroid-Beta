@@ -14,31 +14,31 @@ import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.wd0;
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.y5;
+import org.telegram.ui.vd0;
 import w7.z5;
 public final class w2 extends j {
     public String A0;
-    public final v2 f46111q0;
-    public qg.s1 f46112r0;
-    public int f46113s0;
-    public int f46114t0;
-    public int f46115u0;
-    public qg.l0 f46116v0;
-    public int f46117w0;
-    public int f46118x0;
-    public Runnable f46119y0;
-    public boolean f46120z0;
+    public final v2 f46110q0;
+    public qg.s1 f46111r0;
+    public int f46112s0;
+    public int f46113t0;
+    public int f46114u0;
+    public qg.l0 f46115v0;
+    public int f46116w0;
+    public int f46117x0;
+    public Runnable f46118y0;
+    public boolean f46119z0;
 
     public w2(Context context, PointF pointF, int i10, CharSequence charSequence, qg.s1 s1Var, int i11) {
         super(context, pointF);
-        this.f46116v0 = qg.l0.e;
-        this.f46114t0 = i10;
+        this.f46115v0 = qg.l0.e;
+        this.f46113t0 = i10;
         v2 v2Var = new v2(this, context);
-        this.f46111q0 = v2Var;
+        this.f46110q0 = v2Var;
         NotificationCenter.listenEmojiLoading(v2Var);
         v2Var.setGravity(19);
         v2Var.setBackgroundColor(0);
@@ -46,11 +46,11 @@ public final class w2 extends j {
         v2Var.setClickable(false);
         v2Var.setEnabled(false);
         v2Var.setCursorColor(-1);
-        v2Var.setTextSize(0, this.f46114t0);
-        v2Var.setCursorSize(AndroidUtilities.dp(this.f46114t0 * 0.4f));
+        v2Var.setTextSize(0, this.f46113t0);
+        v2Var.setCursorSize(AndroidUtilities.dp(this.f46113t0 * 0.4f));
         v2Var.setText(charSequence);
         s();
-        v2Var.setTextColor(s1Var.f45066a);
+        v2Var.setTextColor(s1Var.f45065a);
         v2Var.setTypeface(null, 1);
         v2Var.setHorizontallyScrolling(false);
         int i12 = Build.VERSION.SDK_INT;
@@ -71,7 +71,7 @@ public final class w2 extends j {
         setSwatch(s1Var);
         setType(i11);
         k();
-        v2Var.addTextChangedListener(new wd0(this));
+        v2Var.addTextChangedListener(new vd0(this));
     }
 
     @Override
@@ -80,31 +80,31 @@ public final class w2 extends j {
     }
 
     public int getAlign() {
-        return this.f46115u0;
+        return this.f46114u0;
     }
 
     public int getBaseFontSize() {
-        return this.f46114t0;
+        return this.f46113t0;
     }
 
     public b getEditText() {
-        return this.f46111q0;
+        return this.f46110q0;
     }
 
     public View getFocusedView() {
-        return this.f46111q0;
+        return this.f46110q0;
     }
 
     public Paint.FontMetricsInt getFontMetricsInt() {
-        return this.f46111q0.getPaint().getFontMetricsInt();
+        return this.f46110q0.getPaint().getFontMetricsInt();
     }
 
     public float getFontSize() {
-        return this.f46111q0.getTextSize();
+        return this.f46110q0.getTextSize();
     }
 
     @Override
-    public il0 getSelectionBounds() {
+    public hl0 getSelectionBounds() {
         ViewGroup viewGroup = (ViewGroup) getParent();
         if (viewGroup == null) {
             return new Object();
@@ -112,15 +112,15 @@ public final class w2 extends j {
         float scaleX = viewGroup.getScaleX();
         float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (getScale() * getMeasuredWidth());
         float dp2 = (AndroidUtilities.dp(52.0f) / scaleX) + (getScale() * getMeasuredHeight());
-        float z10 = sl.z(dp, 2.0f, getPositionX(), scaleX);
+        float z10 = tl.z(dp, 2.0f, getPositionX(), scaleX);
         float positionY = getPositionY();
-        v2 v2Var = this.f46111q0;
-        return new il0(z10, (positionY - (((dp2 - v2Var.getExtendedPaddingTop()) - AndroidUtilities.dpf2(4.0f)) / 2.0f)) * scaleX, ((dp * scaleX) + z10) - z10, (dp2 - v2Var.getExtendedPaddingBottom()) * scaleX);
+        v2 v2Var = this.f46110q0;
+        return new hl0(z10, (positionY - (((dp2 - v2Var.getExtendedPaddingTop()) - AndroidUtilities.dpf2(4.0f)) / 2.0f)) * scaleX, ((dp * scaleX) + z10) - z10, (dp2 - v2Var.getExtendedPaddingBottom()) * scaleX);
     }
 
     @Override
     public float getStickyPaddingBottom() {
-        RectF rectF = this.f46111q0.f45717w;
+        RectF rectF = this.f46110q0.f45716w;
         if (rectF == null) {
             return 0.0f;
         }
@@ -129,7 +129,7 @@ public final class w2 extends j {
 
     @Override
     public float getStickyPaddingLeft() {
-        RectF rectF = this.f46111q0.f45717w;
+        RectF rectF = this.f46110q0.f45716w;
         if (rectF == null) {
             return 0.0f;
         }
@@ -138,7 +138,7 @@ public final class w2 extends j {
 
     @Override
     public float getStickyPaddingRight() {
-        RectF rectF = this.f46111q0.f45717w;
+        RectF rectF = this.f46110q0.f45716w;
         if (rectF == null) {
             return 0.0f;
         }
@@ -147,7 +147,7 @@ public final class w2 extends j {
 
     @Override
     public float getStickyPaddingTop() {
-        RectF rectF = this.f46111q0.f45717w;
+        RectF rectF = this.f46110q0.f45716w;
         if (rectF == null) {
             return 0.0f;
         }
@@ -155,23 +155,23 @@ public final class w2 extends j {
     }
 
     public qg.s1 getSwatch() {
-        return this.f46112r0;
+        return this.f46111r0;
     }
 
     public CharSequence getText() {
-        return this.f46111q0.getText();
+        return this.f46110q0.getText();
     }
 
     public int getTextSize() {
-        return (int) this.f46111q0.getTextSize();
+        return (int) this.f46110q0.getTextSize();
     }
 
     public int getType() {
-        return this.f46113s0;
+        return this.f46112s0;
     }
 
     public qg.l0 getTypeface() {
-        return this.f46116v0;
+        return this.f46115v0;
     }
 
     @Override
@@ -187,7 +187,7 @@ public final class w2 extends j {
     }
 
     public final void q() {
-        v2 v2Var = this.f46111q0;
+        v2 v2Var = this.f46110q0;
         v2Var.setEnabled(true);
         v2Var.setClickable(true);
         v2Var.requestFocus();
@@ -197,14 +197,14 @@ public final class w2 extends j {
 
     public final void r() {
         int i10;
-        v2 v2Var = this.f46111q0;
+        v2 v2Var = this.f46110q0;
         v2Var.setShadowLayer(0.0f, 0.0f, 0.0f, 0);
-        int i11 = this.f46112r0.f45066a;
-        int i12 = this.f46113s0;
+        int i11 = this.f46111r0.f45065a;
+        int i12 = this.f46112s0;
         int i13 = -1;
         if (i12 == 0) {
             v2Var.setFrameColor(i11);
-            i11 = AndroidUtilities.computePerceivedBrightness(this.f46112r0.f45066a) >= 0.721f ? -16777216 : -1;
+            i11 = AndroidUtilities.computePerceivedBrightness(this.f46111r0.f45065a) >= 0.721f ? -16777216 : -1;
         } else if (i12 == 1) {
             if (AndroidUtilities.computePerceivedBrightness(i11) >= 0.25f) {
                 i10 = -1728053248;
@@ -227,7 +227,7 @@ public final class w2 extends j {
     }
 
     public final void s() {
-        v2 v2Var = this.f46111q0;
+        v2 v2Var = this.f46110q0;
         if (v2Var.getText().length() <= 0) {
             v2Var.setHint(LocaleController.getString(R.string.TextPlaceholder));
             v2Var.setHintTextColor(1627389951);
@@ -237,13 +237,13 @@ public final class w2 extends j {
     }
 
     public void setAlign(int i10) {
-        this.f46115u0 = i10;
+        this.f46114u0 = i10;
     }
 
     public void setBaseFontSize(int i10) {
-        this.f46114t0 = i10;
+        this.f46113t0 = i10;
         float f7 = i10;
-        v2 v2Var = this.f46111q0;
+        v2 v2Var = this.f46110q0;
         v2Var.setTextSize(0, f7);
         v2Var.setCursorSize(AndroidUtilities.dp(f7 * 0.4f));
         if (v2Var.getText() != null) {
@@ -253,36 +253,36 @@ public final class w2 extends j {
                 emojiSpanArr[i11].replaceFontMetrics(getFontMetricsInt());
                 emojiSpanArr[i11].scale = 0.85f;
             }
-            for (a6 a6Var : (a6[]) text.getSpans(0, text.length(), a6.class)) {
-                a6Var.replaceFontMetrics(getFontMetricsInt());
+            for (y5 y5Var : (y5[]) text.getSpans(0, text.length(), y5.class)) {
+                y5Var.replaceFontMetrics(getFontMetricsInt());
             }
             v2Var.invalidateForce();
         }
     }
 
     public void setMaxWidth(int i10) {
-        this.f46111q0.setMaxWidth(i10);
+        this.f46110q0.setMaxWidth(i10);
     }
 
     public void setSwatch(qg.s1 s1Var) {
-        this.f46112r0 = new qg.s1(s1Var.f45067b, s1Var.f45068c, s1Var.f45066a);
+        this.f46111r0 = new qg.s1(s1Var.f45066b, s1Var.f45067c, s1Var.f45065a);
         r();
     }
 
     public void setText(CharSequence charSequence) {
-        this.f46111q0.setText(charSequence);
+        this.f46110q0.setText(charSequence);
         s();
     }
 
     public void setType(int i10) {
-        this.f46113s0 = i10;
+        this.f46112s0 = i10;
         r();
     }
 
     public void setTypeface(qg.l0 l0Var) {
-        this.f46116v0 = l0Var;
+        this.f46115v0 = l0Var;
         if (l0Var != null) {
-            this.f46111q0.setTypeface(l0Var.d());
+            this.f46110q0.setTypeface(l0Var.d());
         }
         m();
     }
@@ -294,7 +294,7 @@ public final class w2 extends j {
                 break;
             }
             qg.l0 l0Var = (qg.l0) it.next();
-            if (l0Var.f44978a.equals(str)) {
+            if (l0Var.f44977a.equals(str)) {
                 setTypeface(l0Var);
                 str = null;
                 break;
@@ -305,20 +305,20 @@ public final class w2 extends j {
     }
 
     public w2(Context context, w2 w2Var, PointF pointF) {
-        this(context, pointF, w2Var.f46114t0, w2Var.getText(), w2Var.getSwatch(), w2Var.f46113s0);
+        this(context, pointF, w2Var.f46113t0, w2Var.getText(), w2Var.getSwatch(), w2Var.f46112s0);
         setRotation(w2Var.getRotation());
         setScale(w2Var.getScale());
         setTypeface(w2Var.getTypeface());
         setAlign(w2Var.getAlign());
         int align = getAlign();
         int i10 = 2;
-        this.f46111q0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
+        this.f46110q0.setGravity(align != 1 ? align != 2 ? 19 : 21 : 17);
         int align2 = getAlign();
         if (align2 == 1) {
             i10 = 4;
         } else if (align2 == 2 ? !LocaleController.isRTL : LocaleController.isRTL) {
             i10 = 3;
         }
-        this.f46111q0.setTextAlignment(i10);
+        this.f46110q0.setTextAlignment(i10);
     }
 }

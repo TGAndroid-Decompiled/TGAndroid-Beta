@@ -12,20 +12,20 @@ public final class dy extends FrameLayout {
     public final gw I;
     public final gw J;
     public final ey K;
-    public zx f36750a;
-    public a5.a f36751b;
-    public hw f36752c;
+    public zx f36737a;
+    public a5.a f36738b;
+    public hw f36739c;
     public lw d;
     public s4.y e;
-    public cy f36753f;
+    public cy f36740f;
     public int h;
-    public kw f36754n;
-    public org.telegram.ui.Components.pl0 f36755r;
-    public int f36756s;
+    public kw f36741n;
+    public org.telegram.ui.Components.ol0 f36742r;
+    public int f36743s;
     public int v;
-    public org.telegram.ui.Components.b10 f36757w;
-    public fw f36758x;
-    public org.telegram.ui.Components.rl0 f36759y;
+    public org.telegram.ui.Components.z00 f36744w;
+    public fw f36745x;
+    public org.telegram.ui.Components.ql0 f36746y;
 
     public dy(Context context, ey eyVar) {
         super(context);
@@ -35,7 +35,7 @@ public final class dy extends FrameLayout {
     }
 
     public static void a(dy dyVar, hw hwVar) {
-        dyVar.f36752c = hwVar;
+        dyVar.f36739c = hwVar;
     }
 
     public static s4.y b(dy dyVar) {
@@ -54,32 +54,32 @@ public final class dy extends FrameLayout {
         dyVar.v = i10;
     }
 
-    public static void f(dy dyVar, org.telegram.ui.Components.b10 b10Var) {
-        dyVar.f36757w = b10Var;
+    public static void f(dy dyVar, org.telegram.ui.Components.z00 z00Var) {
+        dyVar.f36744w = z00Var;
     }
 
     public static cy g(dy dyVar) {
-        return dyVar.f36753f;
+        return dyVar.f36740f;
     }
 
     public static void h(dy dyVar, cy cyVar) {
-        dyVar.f36753f = cyVar;
+        dyVar.f36740f = cyVar;
     }
 
     public static void i(dy dyVar, fw fwVar) {
-        dyVar.f36758x = fwVar;
+        dyVar.f36745x = fwVar;
     }
 
-    public static void j(dy dyVar, org.telegram.ui.Components.rl0 rl0Var) {
-        dyVar.f36759y = rl0Var;
+    public static void j(dy dyVar, org.telegram.ui.Components.ql0 ql0Var) {
+        dyVar.f36746y = ql0Var;
     }
 
-    public static void k(dy dyVar, org.telegram.ui.Components.pl0 pl0Var) {
-        dyVar.f36755r = pl0Var;
+    public static void k(dy dyVar, org.telegram.ui.Components.ol0 ol0Var) {
+        dyVar.f36742r = ol0Var;
     }
 
     public static void l(dy dyVar, int i10) {
-        dyVar.f36756s = i10;
+        dyVar.f36743s = i10;
     }
 
     public static hg.m m(dy dyVar) {
@@ -91,17 +91,17 @@ public final class dy extends FrameLayout {
     }
 
     public static void o(dy dyVar, kw kwVar) {
-        dyVar.f36754n = kwVar;
+        dyVar.f36741n = kwVar;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        ((FrameLayout.LayoutParams) this.f36750a.getLayoutParams()).bottomMargin = 0;
+        ((FrameLayout.LayoutParams) this.f36737a.getLayoutParams()).bottomMargin = 0;
         super.onMeasure(i10, i11);
     }
 
     public final boolean p() {
-        int i10 = this.f36756s;
+        int i10 = this.f36743s;
         if (i10 != 0 && i10 != 7 && i10 != 8) {
             return false;
         }
@@ -115,13 +115,13 @@ public final class dy extends FrameLayout {
             gw gwVar = this.J;
             if (z10) {
                 AndroidUtilities.cancelRunOnUIThread(gwVar);
-                this.f36750a.setItemAnimator(this.f36758x);
+                this.f36737a.setItemAnimator(this.f36745x);
                 gwVar.run();
             } else if (this.H) {
             } else {
                 this.H = true;
-                if (!this.f36758x.k()) {
-                    this.f36750a.setItemAnimator(null);
+                if (!this.f36745x.k()) {
+                    this.f36737a.setItemAnimator(null);
                 }
                 AndroidUtilities.runOnUIThread(gwVar, 36L);
             }
@@ -134,8 +134,8 @@ public final class dy extends FrameLayout {
         if (getTranslationX() != f7) {
             super.setTranslationX(f7);
             ey eyVar = this.K;
-            if (eyVar.f37078h3 && (dyVar = eyVar.f37059e0[0]) == this) {
-                eyVar.f37167z0.g(Math.abs(dyVar.getTranslationX()) / eyVar.f37059e0[0].getMeasuredWidth(), eyVar.f37059e0[1].h);
+            if (eyVar.f37053h3 && (dyVar = eyVar.f37034e0[0]) == this) {
+                eyVar.f37142z0.g(Math.abs(dyVar.getTranslationX()) / eyVar.f37034e0[0].getMeasuredWidth(), eyVar.f37034e0[1].h);
             }
             eyVar.i3();
         }

@@ -75,7 +75,7 @@ public class c extends FrameLayout {
     }
 
     public final void a() {
-        int i10 = k6.f21289j5;
+        int i10 = k6.f21290j5;
         TextView textView = this.f16095a;
         g6 g6Var = this.f16100r;
         r6.W(textView, i10, g6Var);

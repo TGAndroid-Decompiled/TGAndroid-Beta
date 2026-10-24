@@ -27,7 +27,7 @@ public class HashtagSearchController {
         final int f17854id;
 
         public MessageCompositeID(TLRPC.Message message) {
-            this(MessageObject.getDialogId(message), message.f20364id);
+            this(MessageObject.getDialogId(message), message.f20365id);
         }
 
         public boolean equals(Object obj) {
@@ -184,8 +184,8 @@ public class HashtagSearchController {
                     searchResult.messages.add(messageObject);
                 }
                 TLRPC.Message message = messageObject.messageOwner;
-                message.realId = message.f20364id;
-                message.f20364id = num.intValue();
+                message.realId = message.f20365id;
+                message.f20365id = num.intValue();
             }
             if (!messages_messages.messages.isEmpty()) {
                 TLRPC.Message message2 = (TLRPC.Message) i2.o1.i(1, messages_messages.messages);
@@ -296,7 +296,7 @@ public class HashtagSearchController {
         SearchResult searchResult = getSearchResult(i12);
         if (i11 >= 0 && i11 < searchResult.messages.size()) {
             searchResult.selectedIndex = i11;
-            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i10), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), Integer.valueOf(searchResult.messages.get(i11).messageOwner.f20364id));
+            NotificationCenter.getInstance(this.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.hashtagSearchUpdated, Integer.valueOf(i10), Integer.valueOf(searchResult.count), Boolean.valueOf(searchResult.endReached), Integer.valueOf(searchResult.getMask()), Integer.valueOf(searchResult.selectedIndex), Integer.valueOf(searchResult.messages.get(i11).messageOwner.f20365id));
         }
     }
 
@@ -367,7 +367,7 @@ public class HashtagSearchController {
                 if (i11 == 1) {
                     TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = new TLRPC.TL_messages_searchGlobal();
                     tL_messages_searchGlobal.limit = 21;
-                    tL_messages_searchGlobal.f20454q = str4;
+                    tL_messages_searchGlobal.f20455q = str4;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.offset_peer = new TLRPC.TL_inputPeerEmpty();
                     tL_channels_searchPosts = tL_messages_searchGlobal;
@@ -381,7 +381,7 @@ public class HashtagSearchController {
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInputPeer(tLObject);
-                    tL_messages_search.f20452q = str3;
+                    tL_messages_search.f20453q = str3;
                     tL_messages_search.limit = 21;
                     int i13 = searchResult.lastOffsetId;
                     if (i13 != 0) {

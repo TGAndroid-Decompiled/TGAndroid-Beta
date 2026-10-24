@@ -1,49 +1,40 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.Utilities;
-public final class qn implements ek {
-    public final Utilities.Callback f29949a;
-    public final mn f29950b;
-    public final org.telegram.ui.ActionBar.o2 f29951c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class qn extends s4.c0 {
+    public final ig.d0 f29964r;
 
-    public qn(Utilities.Callback callback, org.telegram.ui.ActionBar.o2 o2Var, mn mnVar) {
-        this.f29949a = callback;
-        this.f29950b = mnVar;
-        this.f29951c = o2Var;
+    public qn(ig.d0 d0Var, Context context) {
+        super(context);
+        this.f29964r = d0Var;
     }
 
     @Override
-    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
-        if (!arrayList.isEmpty()) {
-            this.f29949a.run(new sh.c((String) arrayList.get(0)));
+    public final int k(int i10, View view) {
+        int i11;
+        co coVar = (co) this.f29964r.V;
+        if (coVar.V0) {
+            i10 = -1;
         }
-        this.f29950b.dismiss(true);
-    }
-
-    @Override
-    public final void m(long j10, ArrayList arrayList, boolean z10, int i10) {
-        if (!arrayList.isEmpty()) {
-            this.f29949a.run(new sh.d((SendMessagesHelper.SendingMediaInfo) arrayList.get(0)));
+        int k10 = super.k(i10, view);
+        if (coVar.V0) {
+            k10 += AndroidUtilities.dp(160.0f);
         }
-        this.f29950b.dismiss(true);
-    }
-
-    @Override
-    public final void y() {
-        try {
-            Intent intent = new Intent("android.intent.action.GET_CONTENT");
-            intent.setType("*/*");
-            this.f29951c.getParentActivity().startActivityForResult(intent, 28);
-        } catch (Exception e) {
-            FileLog.e(e);
+        if (!coVar.V0) {
+            k10 = org.telegram.messenger.v0.z(7.0f, coVar.R0 - AndroidUtilities.statusBarHeight, k10);
         }
+        if (coVar.V0 && k10 == 0 && (i11 = coVar.W0) >= 0) {
+            co.N(coVar, i11);
+            coVar.W0 = -1;
+        }
+        coVar.V0 = false;
+        return k10;
     }
 
     @Override
-    public final void O() {
+    public final int m(int i10) {
+        return super.m(i10) * 2;
     }
 }

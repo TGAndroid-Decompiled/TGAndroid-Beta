@@ -3,14 +3,14 @@ package ei;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gl0;
+import org.telegram.ui.Components.fl0;
 public final class k5 extends AnimatorListenerAdapter {
     public final int f9323a;
-    public final gl0 f9324b;
+    public final fl0 f9324b;
 
-    public k5(gl0 gl0Var, int i10) {
+    public k5(fl0 fl0Var, int i10) {
         this.f9323a = i10;
-        this.f9324b = gl0Var;
+        this.f9324b = fl0Var;
     }
 
     @Override
@@ -25,11 +25,11 @@ public final class k5 extends AnimatorListenerAdapter {
                 return;
             default:
                 super.onAnimationEnd(animator);
-                gl0 gl0Var = this.f9324b;
-                gl0Var.Q = null;
-                gl0Var.f26656n0 = 0.0f;
-                gl0Var.f26654l0 = null;
-                gl0Var.invalidate();
+                fl0 fl0Var = this.f9324b;
+                fl0Var.Q = null;
+                fl0Var.f26374n0 = 0.0f;
+                fl0Var.f26372l0 = null;
+                fl0Var.invalidate();
                 return;
         }
     }

@@ -1,37 +1,95 @@
 package org.telegram.ui;
 
-import android.view.View;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class w61 implements View.OnClickListener {
-    public final i71 f42945a;
-    public final TLRPC.TL_authorization f42946b;
-    public final SessionsActivity f42947c;
-    public final y61 d;
+import org.telegram.ui.Components.Switch;
+public final class w61 extends FrameLayout {
+    public final ImageView f42926a;
+    public final TextView f42927b;
+    public final TextView f42928c;
+    public final Switch d;
+    public boolean e;
 
-    public w61(y61 y61Var, i71 i71Var, TLRPC.TL_authorization tL_authorization, SessionsActivity sessionsActivity) {
-        this.d = y61Var;
-        this.f42945a = i71Var;
-        this.f42946b = tL_authorization;
-        this.f42947c = sessionsActivity;
+    public w61(Activity activity, boolean z10) {
+        super(activity);
+        int i10;
+        int i11;
+        this.e = false;
+        ImageView imageView = new ImageView(activity);
+        this.f42926a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        addView(imageView, w7.z5.d(32, 32.0f, 0, 12.0f, 4.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, w7.z5.d(-1, -2.0f, 0, 64.0f, 4.0f, 0.0f, 4.0f));
+        TextView textView = new TextView(activity);
+        this.f42927b = textView;
+        textView.setTextSize(2, 16.0f);
+        textView.setGravity(3);
+        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.G6, null);
+        if (z10) {
+            i10 = 64;
+        } else {
+            i10 = 0;
+        }
+        linearLayout.addView(textView, w7.z5.t(-1, -2, 0, 0, 0, i10, 0));
+        TextView textView2 = new TextView(activity);
+        this.f42928c = textView2;
+        textView2.setTextSize(2, 13.0f);
+        textView2.setGravity(3);
+        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21572y6, null);
+        if (z10) {
+            i11 = 64;
+        } else {
+            i11 = 0;
+        }
+        linearLayout.addView(textView2, w7.z5.t(-1, -2, 0, 0, 4, i11, 0));
+        setPadding(0, AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f));
+        if (z10) {
+            Switch r22 = new Switch(activity, null);
+            this.d = r22;
+            r22.setDrawIconType(1);
+            addView(r22, w7.z5.d(37, 40.0f, 21, 21.0f, 0.0f, 21.0f, 0.0f));
+        }
     }
 
     @Override
-    public final void onClick(View view) {
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.d.f43739c.getParentActivity());
-        alertDialog$Builder.f20678a.T = LocaleController.getString(R.string.TerminateSessionText);
-        alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.AreYouSureSessionTitle);
-        alertDialog$Builder.k(LocaleController.getString(R.string.Terminate), new e7(this, this.f42945a, this.f42946b, 21));
-        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-        SessionsActivity sessionsActivity = this.f42947c;
-        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
-        sessionsActivity.showDialog(c2Var);
-        TextView textView = (TextView) c2Var.d(-1);
-        if (textView != null) {
-            org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21421q7, null);
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        if (this.e) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f21305k0);
+        }
+    }
+
+    @Override
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        int i10;
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        Switch r02 = this.d;
+        if (r02 != null) {
+            accessibilityNodeInfo.setClassName("android.widget.Switch");
+            accessibilityNodeInfo.setCheckable(true);
+            accessibilityNodeInfo.setChecked(r02.h);
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append((Object) this.f42927b.getText());
+            sb2.append("\n");
+            sb2.append((Object) this.f42928c.getText());
+            sb2.append("\n");
+            if (r02.h) {
+                i10 = R.string.NotificationsOn;
+            } else {
+                i10 = R.string.NotificationsOff;
+            }
+            sb2.append(LocaleController.getString(i10));
+            accessibilityNodeInfo.setText(sb2.toString());
         }
     }
 }

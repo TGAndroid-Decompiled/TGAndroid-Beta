@@ -4,202 +4,109 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
-import android.util.Property;
+import android.graphics.Bitmap;
+import android.graphics.Rect;
 import android.view.View;
-import android.view.WindowManager;
-import java.util.ArrayList;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
 public final class et0 extends AnimatorListenerAdapter {
-    public final int f37023a;
-    public final PhotoViewer f37024b;
+    public final int f36997a;
+    public final PhotoViewer f36998b;
 
     public et0(PhotoViewer photoViewer, int i10) {
-        this.f37024b = photoViewer;
-        this.f37023a = i10;
+        this.f36998b = photoViewer;
+        this.f36997a = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         boolean z10;
         int i10;
-        ku0 ku0Var;
-        int i11;
-        boolean z11;
-        PhotoViewer photoViewer = this.f37024b;
-        int i12 = photoViewer.f33725u4;
-        int i13 = 8;
-        if (i12 == 1) {
-            photoViewer.C1.a();
-            mg.p pVar = photoViewer.C1.f30163b;
-            pVar.d = null;
-            pVar.J = false;
-            photoViewer.U0.setVisibility(8);
-            photoViewer.C1.setVisibility(8);
-            CropAreaView cropAreaView = photoViewer.C1.f30163b.f16980a;
-            cropAreaView.f24344n0 = 0.0f;
-            cropAreaView.f24345o0 = 1.0f;
-            cropAreaView.f24346p0 = 0.0f;
-            cropAreaView.f24347q0 = 0.0f;
-            cropAreaView.invalidate();
-        } else if (i12 == 2) {
-            try {
-                photoViewer.f33580e0.removeView(photoViewer.I1);
-            } catch (Exception e) {
-                FileLog.e(e);
-            }
-            photoViewer.I1 = null;
-        } else if (i12 == 3) {
-            photoViewer.L1.n0(false);
-            try {
-                photoViewer.f33580e0.removeView(photoViewer.L1.getView());
-            } catch (Exception e7) {
-                FileLog.e(e7);
-            }
-            photoViewer.L1 = null;
-        } else if (i12 == 4) {
-            photoViewer.O1 = true;
-            photoViewer.f33580e0.invalidate();
-            photoViewer.f33580e0.post(new bh0(25, this, photoViewer.N1));
-            photoViewer.N1 = null;
-            photoViewer.f33735v5.m(false, true);
-            photoViewer.f33745w5.m(false, true);
-        } else if (i12 == 5) {
-            photoViewer.f33689q5.setVisibility(8);
-            org.telegram.ui.Components.ig0 ig0Var = photoViewer.f33689q5;
-            ig0Var.d = null;
-            ig0Var.f27313a.o(false, null, 0L, 0.0f);
+        PhotoViewer photoViewer = this.f36998b;
+        au0 au0Var = photoViewer.X4;
+        org.telegram.ui.Components.y71 y71Var = null;
+        photoViewer.q6 = null;
+        photoViewer.P0.setVisibility(8);
+        photoViewer.S0.setVisibility(8);
+        photoViewer.f33660n0.setVisibility(8);
+        photoViewer.f33583e1.setVisibility(8);
+        photoViewer.f33592f1.setVisibility(8);
+        photoViewer.f33600g1.setVisibility(8);
+        photoViewer.f33670o1.setVisibility(8);
+        photoViewer.f33670o1.setAlpha(0.0f);
+        photoViewer.f33670o1.setTranslationY(-AndroidUtilities.dp(10.0f));
+        photoViewer.O0.setRotationX(0.0f);
+        photoViewer.f33670o1.setEnabled(false);
+        photoViewer.K = false;
+        if (photoViewer.f33619i2) {
+            photoViewer.Q1.setVisibility(4);
         }
-        photoViewer.f33681p6 = null;
-        int i14 = photoViewer.f33725u4;
-        photoViewer.f33725u4 = this.f37023a;
-        ei.b4 b4Var = photoViewer.g1().L;
-        if (photoViewer.f33725u4 != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+        int i11 = photoViewer.f33566c2;
+        if (i11 == 0 || i11 == 4 || ((i11 == 2 || i11 == 5) && photoViewer.f33606g7.size() > 1)) {
+            photoViewer.N0.setVisibility(8);
+            photoViewer.O0.setVisibility(8);
+            photoViewer.u3();
         }
-        b4Var.b(z10);
-        ei.b4 b4Var2 = photoViewer.K1;
-        if (b4Var2 != null) {
-            if (photoViewer.f33725u4 != 3) {
-                z11 = true;
+        if (photoViewer.f33566c2 == 11) {
+            photoViewer.f33623i6 = photoViewer.Y5;
+            photoViewer.f33614h6 = photoViewer.X5;
+            photoViewer.f33632j6 = photoViewer.f33550a6;
+            photoViewer.f33641k6 = photoViewer.f33560b6;
+            photoViewer.f33597f6 = 0.0f;
+        }
+        Bitmap bitmap = photoViewer.C4.getBitmap();
+        if (bitmap != null || photoViewer.f33696r1) {
+            org.telegram.ui.Components.qf0 qf0Var = photoViewer.C1;
+            int orientation = photoViewer.C4.getOrientation();
+            if (photoViewer.f33566c2 != 1) {
+                z10 = true;
             } else {
-                z11 = false;
+                z10 = false;
             }
-            b4Var2.b(z11);
-        }
-        if (photoViewer.f33725u4 != 3) {
-            photoViewer.Z5 = 0.0f;
-        }
-        if (photoViewer.f33564c2 == 1) {
-            photoViewer.C1.setVisibility(0);
-        }
-        if (photoViewer.f33564c2 == 11 && (i14 == 3 || i14 == 2 || i14 == 1 || i14 == 4)) {
-            photoViewer.f33568c6 = photoViewer.f33612h6;
-            photoViewer.f33577d6 = photoViewer.f33621i6;
-            photoViewer.f33586e6 = photoViewer.f33630j6;
-            photoViewer.f33595f6 = photoViewer.f33639k6;
-        } else {
-            float t22 = photoViewer.t2(false);
-            photoViewer.f33586e6 = t22;
-            photoViewer.f33548a6 = t22;
-            photoViewer.y3(t22);
-            photoViewer.f33568c6 = 0.0f;
-            photoViewer.f33577d6 = 0.0f;
-        }
-        photoViewer.f33673o6 = -1;
-        photoViewer.f33580e0.invalidate();
-        pu0 pu0Var = photoViewer.f33622i7;
-        if (pu0Var != null) {
-            PhotoViewer photoViewer2 = pu0Var.d;
-            photoViewer2.d = pu0Var.f40545c;
-            WindowManager.LayoutParams layoutParams = photoViewer2.f33571d0;
-            layoutParams.flags = -2147286784;
-            layoutParams.softInputMode = 272;
-            photoViewer2.f33597g0.setFocusable(false);
-            photoViewer2.f33580e0.setFocusable(false);
-            photoViewer2.L0.setAlpha(255);
-            photoViewer2.f33580e0.setAlpha(1.0f);
-            ArrayList arrayList = pu0Var.f40544b;
-            int i15 = pu0Var.f40543a;
-            photoViewer2.b2(null, null, null, null, arrayList, null, null, i15, pu0Var.f40545c.E((MessageObject) arrayList.get(i15), null, pu0Var.f40543a, true, false));
-            photoViewer.f33622i7 = null;
-            ut0 ut0Var = new ut0();
-            ut0Var.f42501c = false;
-            photoViewer.m3(false, false, ut0Var);
-            photoViewer.m3(true, true, ut0Var);
-            return;
+            mg.g gVar = photoViewer.D1;
+            if (photoViewer.f33696r1) {
+                y71Var = (org.telegram.ui.Components.y71) photoViewer.B2;
+            }
+            qf0Var.b(bitmap, orientation, z10, false, gVar, y71Var, au0Var.f35839c);
+            photoViewer.C1.a();
+            int bitmapWidth = photoViewer.C4.getBitmapWidth();
+            int bitmapHeight = photoViewer.C4.getBitmapHeight();
+            MediaController.CropState cropState = au0Var.f35839c;
+            if (cropState != null) {
+                int i12 = cropState.transformRotation;
+                if (i12 == 90 || i12 == 270) {
+                    bitmapHeight = bitmapWidth;
+                    bitmapWidth = bitmapHeight;
+                }
+                bitmapWidth = (int) (bitmapWidth * cropState.cropPw);
+                bitmapHeight = (int) (bitmapHeight * cropState.cropPh);
+            }
+            float f7 = bitmapWidth;
+            float f10 = bitmapHeight;
+            float min = Math.min(photoViewer.l1(photoViewer.f33727u4) / f7, photoViewer.j1() / f10);
+            float min2 = Math.min(photoViewer.l1(1) / f7, photoViewer.i1(1, false) / f10);
+            if (photoViewer.f33566c2 == 1) {
+                float min3 = Math.min(photoViewer.l1(1), photoViewer.i1(1, false));
+                min2 = Math.max(min3 / f7, min3 / f10);
+            }
+            photoViewer.f33588e6 = min2 / min;
+            Rect rect = photoViewer.f33707s2;
+            photoViewer.f33570c6 = (rect.left / 2) - (rect.right / 2);
+            int i13 = -AndroidUtilities.dp(56.0f);
+            if (!photoViewer.f33704s) {
+                i10 = AndroidUtilities.statusBarHeight / 2;
+            } else {
+                i10 = 0;
+            }
+            photoViewer.f33579d6 = i13 + i10;
+            photoViewer.f33666n6 = System.currentTimeMillis();
+            photoViewer.R6 = true;
         }
         AnimatorSet animatorSet = new AnimatorSet();
-        ArrayList arrayList2 = new ArrayList();
-        ai.o5 o5Var = photoViewer.P0;
-        Property property = View.TRANSLATION_Y;
-        arrayList2.add(ObjectAnimator.ofFloat(o5Var, property, 0.0f));
-        ai.o5 o5Var2 = photoViewer.P0;
-        Property property2 = View.ALPHA;
-        arrayList2.add(ObjectAnimator.ofFloat(o5Var2, property2, 1.0f));
-        rg.o2 o2Var = photoViewer.p5;
-        if (o2Var != null) {
-            arrayList2.add(ObjectAnimator.ofFloat(o2Var, property2, 1.0f));
-        }
-        ci.h3 h3Var = photoViewer.f33708s5;
-        if (h3Var != null) {
-            arrayList2.add(ObjectAnimator.ofFloat(h3Var, property2, 1.0f));
-        }
-        arrayList2.add(ObjectAnimator.ofFloat(photoViewer.S0, property, 0.0f));
-        if (photoViewer.f33564c2 != 1) {
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.F, property, 0.0f));
-        }
-        if (photoViewer.f33617i2) {
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.Q1, property, 0.0f));
-        }
-        int i16 = photoViewer.f33564c2;
-        if (i16 != 0 && i16 != 4) {
-            if (i16 == 1) {
-                arrayList2.add(ObjectAnimator.ofFloat(photoViewer.C1, property2, 1.0f));
-            }
-        } else {
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.N0, property2, 1.0f));
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.O0, property2, 1.0f));
-        }
-        if (photoViewer.f33581e1.getTag() != null) {
-            org.telegram.ui.ActionBar.j0 j0Var = photoViewer.f33581e1;
-            if (photoViewer.f33573d2) {
-                i11 = 8;
-            } else {
-                i11 = 0;
-            }
-            j0Var.setVisibility(i11);
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.f33581e1, property2, 1.0f));
-        }
-        if (photoViewer.f33590f1.getTag() != null) {
-            org.telegram.ui.Components.aa0 aa0Var = photoViewer.f33590f1;
-            if (!photoViewer.f33573d2 && photoViewer.J4 && ((ku0Var = photoViewer.d) == null || ku0Var.O())) {
-                i10 = 0;
-            } else {
-                i10 = 8;
-            }
-            aa0Var.setVisibility(i10);
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.f33590f1, property2, 1.0f));
-        }
-        if (photoViewer.f33598g1.getTag() != null) {
-            is0 is0Var = photoViewer.f33598g1;
-            if (!photoViewer.f33573d2) {
-                i13 = 0;
-            }
-            is0Var.setVisibility(i13);
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.f33598g1, property2, 1.0f));
-        }
-        View view = photoViewer.f33624j0;
-        if (view != null) {
-            view.setVisibility(0);
-            arrayList2.add(ObjectAnimator.ofFloat(photoViewer.f33624j0, property2, 1.0f));
-        }
-        animatorSet.playTogether(arrayList2);
-        animatorSet.setDuration(200L);
-        animatorSet.addListener(new dt0(this, i14));
-        animatorSet.start();
+        photoViewer.f33683p6 = animatorSet;
+        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.U0, View.TRANSLATION_Y, AndroidUtilities.dp(48.0f), 0.0f), ObjectAnimator.ofFloat(photoViewer, org.telegram.ui.Components.r6.f30077g, 0.0f, 1.0f), ObjectAnimator.ofFloat(photoViewer.C1, View.ALPHA, 0.0f, 1.0f));
+        photoViewer.f33683p6.setDuration(200L);
+        photoViewer.f33683p6.addListener(new v70(this, 9));
+        photoViewer.f33683p6.start();
     }
 }

@@ -2,13 +2,13 @@ package ai;
 
 import android.app.Activity;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.mm0;
-public final class mc extends b71 {
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.lm0;
+public final class mc extends a71 {
     public final nd P;
 
-    public mc(nd ndVar, mm0 mm0Var, Activity activity, int i10, int i11, q qVar, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(mm0Var, activity, i10, i11, true, qVar, g6Var);
+    public mc(nd ndVar, lm0 lm0Var, Activity activity, int i10, int i11, q qVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(lm0Var, activity, i10, i11, true, qVar, g6Var);
         this.P = ndVar;
     }
 

@@ -6,7 +6,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.Shader;
 import android.view.View;
-import org.telegram.ui.Components.z20;
+import org.telegram.ui.Components.x20;
 public final class ge implements ValueAnimator.AnimatorUpdateListener {
     public final int f1371a;
     public final int f1372b;
@@ -43,14 +43,14 @@ public final class ge implements ValueAnimator.AnimatorUpdateListener {
                 jeVar.invalidate();
                 return;
             case 1:
-                z20 z20Var = (z20) view;
-                z20Var.L = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i14, i13);
-                z20Var.M = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
-                z20Var.F.setColorFilter(new PorterDuffColorFilter(z20Var.L, PorterDuff.Mode.MULTIPLY));
-                z20Var.E.setColor(z20Var.L);
-                z20Var.f33123r.setColor(z20Var.M);
-                z20Var.J.d(i0.a.o(z20Var.M, 38));
-                z20Var.invalidate();
+                x20 x20Var = (x20) view;
+                x20Var.L = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i14, i13);
+                x20Var.M = i0.a.f(((Float) valueAnimator.getAnimatedValue()).floatValue(), i12, i11);
+                x20Var.F.setColorFilter(new PorterDuffColorFilter(x20Var.L, PorterDuff.Mode.MULTIPLY));
+                x20Var.E.setColor(x20Var.L);
+                x20Var.f32489r.setColor(x20Var.M);
+                x20Var.J.d(i0.a.o(x20Var.M, 38));
+                x20Var.invalidate();
                 return;
             default:
                 org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) view;

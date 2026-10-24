@@ -31,10 +31,10 @@ public final class r6 extends o6 {
         return false;
     }
 
-    public r6(org.telegram.ui.Components.w9 w9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
+    public r6(org.telegram.ui.Components.u9 u9Var, TL_stars.starGiftAttributeModel stargiftattributemodel) {
         this.f1937a = stargiftattributemodel.name;
         this.f1938b = stargiftattributemodel.getRarityPermille();
         this.f2118c = false;
-        this.d = w9Var.getImageReceiver();
+        this.d = u9Var.getImageReceiver();
     }
 }

@@ -27,7 +27,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.zd;
+import org.telegram.ui.Components.xd;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.kf;
 public final class g0 implements View.OnClickListener {
@@ -90,7 +90,7 @@ public final class g0 implements View.OnClickListener {
             case 10:
                 if (((bd) ((cd) this.f740b).d).f1055f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f21636a = true;
+                    obj.f21637a = true;
                     R.showAsSheet(new nd(), obj);
                     return;
                 }
@@ -163,7 +163,7 @@ public final class g0 implements View.OnClickListener {
                 ((kf) this.f740b).run();
                 return;
             case 26:
-                ChatActivityEnterView.f(((zd) ((gi.n0) this.f740b).d).f33202a, (TL_keyboard.KeyboardButton) view.getTag());
+                ChatActivityEnterView.f(((xd) ((gi.n0) this.f740b).d).f32562a, (TL_keyboard.KeyboardButton) view.getTag());
                 return;
             case 27:
                 ((ai.y0) this.f740b).run();

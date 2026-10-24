@@ -28,9 +28,9 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.messenger.video.MediaCodecVideoConvertor;
 import org.telegram.ui.Components.RLottieNative;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.b6;
-import org.telegram.ui.Components.e6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.y5;
+import org.telegram.ui.Components.z5;
 import qg.l0;
 public class WebmEncoder {
 
@@ -131,7 +131,7 @@ public class WebmEncoder {
                     canvas.drawBitmap(mediaEntity.bitmap, mediaEntity.matrix, this.bitmapPaint);
                     float f7 = mediaEntity.currentFrame + mediaEntity.framesPerDraw;
                     mediaEntity.currentFrame = f7;
-                    if (f7 >= mediaEntity.lottieNative.f24447a[0]) {
+                    if (f7 >= mediaEntity.lottieNative.f24448a[0]) {
                         mediaEntity.currentFrame = 0.0f;
                     }
                 }
@@ -143,9 +143,9 @@ public class WebmEncoder {
                 for (int i13 = (int) f11; i12 != i13; i13--) {
                     mediaEntity.animatedFileDrawable.r(true);
                 }
-                b6 b6Var = mediaEntity.animatedFileDrawable.v;
-                if (b6Var != null) {
-                    bitmap = b6Var.f24959b;
+                z5 z5Var = mediaEntity.animatedFileDrawable.v;
+                if (z5Var != null) {
+                    bitmap = z5Var.f33153b;
                 } else {
                     bitmap = null;
                 }
@@ -198,7 +198,7 @@ public class WebmEncoder {
                     RLottieNative a2 = RLottieNative.a(mediaEntity.text, null, null, null, 0, null);
                     mediaEntity.lottieNative = a2;
                     if (a2 != null) {
-                        f7 = a2.f24447a[1] / this.fps;
+                        f7 = a2.f24448a[1] / this.fps;
                     } else {
                         f7 = 0.0f;
                     }
@@ -208,11 +208,11 @@ public class WebmEncoder {
                 }
             } else if ((b10 & 4) != 0) {
                 mediaEntity.looped = false;
-                e6 e6Var = new e6(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null, 0, true);
-                mediaEntity.animatedFileDrawable = e6Var;
-                mediaEntity.framesPerDraw = e6Var.d[5] / this.fps;
+                c6 c6Var = new c6(new File(mediaEntity.text), true, 0L, 0, null, null, null, 0L, UserConfig.selectedAccount, true, 512, 512, null, 0, true);
+                mediaEntity.animatedFileDrawable = c6Var;
+                mediaEntity.framesPerDraw = c6Var.d[5] / this.fps;
                 mediaEntity.currentFrame = 1.0f;
-                e6Var.r(true);
+                c6Var.r(true);
                 if (mediaEntity.type == 5) {
                     mediaEntity.firstSeek = true;
                 }
@@ -294,7 +294,7 @@ public class WebmEncoder {
                     emojiEntity.entity = mediaEntity2;
                     mediaEntity2.text = emojiEntity.documentAbsolutePath;
                     mediaEntity2.subType = emojiEntity.subType;
-                    a6 a6Var = new a6(0L, 1.0f, bVar.getPaint().getFontMetricsInt()) {
+                    y5 y5Var = new y5(0L, 1.0f, bVar.getPaint().getFontMetricsInt()) {
                         @Override
                         public void draw(Canvas canvas, CharSequence charSequence, int i15, int i16, float f7, int i17, int i18, int i19, Paint paint) {
                             super.draw(canvas, charSequence, i15, i16, f7, i17, i18, i19, paint);
@@ -329,7 +329,7 @@ public class WebmEncoder {
                         }
                     };
                     int i15 = emojiEntity.offset;
-                    spannableString.setSpan(a6Var, i15, emojiEntity.length + i15, 33);
+                    spannableString.setSpan(y5Var, i15, emojiEntity.length + i15, 33);
                 }
                 i13 = i14;
             }
@@ -402,13 +402,13 @@ public class WebmEncoder {
         }
 
         private void setupMatrix(VideoEditedInfo.MediaEntity mediaEntity) {
-            e6 e6Var;
+            c6 c6Var;
             Matrix matrix = new Matrix();
             mediaEntity.matrix = matrix;
             Bitmap bitmap = mediaEntity.bitmap;
-            if (bitmap == null && (e6Var = mediaEntity.animatedFileDrawable) != null) {
-                b6 b6Var = e6Var.v;
-                bitmap = b6Var != null ? b6Var.f24959b : null;
+            if (bitmap == null && (c6Var = mediaEntity.animatedFileDrawable) != null) {
+                z5 z5Var = c6Var.v;
+                bitmap = z5Var != null ? z5Var.f33153b : null;
             }
             if (bitmap != null) {
                 matrix.postScale(1.0f / bitmap.getWidth(), 1.0f / bitmap.getHeight());

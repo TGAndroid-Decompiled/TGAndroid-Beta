@@ -40,9 +40,9 @@ public final class g implements Function {
             case 6:
                 return Long.valueOf(DialogObject.getPeerDialogId(((TLRPC.GroupCallParticipant) obj).peer));
             case 7:
-                return ((lt) obj).f39322a;
+                return ((lt) obj).f39375a;
             default:
-                return ((lt) obj).f39322a;
+                return ((lt) obj).f39375a;
         }
     }
 

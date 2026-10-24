@@ -8,8 +8,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.l61;
 import r0.h1;
 import r0.k1;
 public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Return {
@@ -23,14 +23,14 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
 
     @Override
     public k1 B0(View view, k1 k1Var) {
-        h1 h1Var = k1Var.f45251a;
+        h1 h1Var = k1Var.f45250a;
         i0.b f7 = h1Var.f(527);
         k0 k0Var = this.f12269b;
         k0Var.T = f7;
         k0Var.U = h1Var.f(519);
         k0Var.F.j(AndroidUtilities.dp(56.0f) + k0Var.T.f12316b, k0Var.T.d, false);
         k0Var.H.invalidate();
-        return k1.f45250b;
+        return k1.f45249b;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         int i10 = k0.V;
-        Object obj6 = ((m61) obj).G;
+        Object obj6 = ((l61) obj).G;
         boolean z12 = obj6 instanceof TLRPC.Chat;
         k0 k0Var = this.f12269b;
         boolean z13 = false;
@@ -52,13 +52,13 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
             TLRPC.Chat chat = (TLRPC.Chat) obj6;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, k0Var.f12201f);
-            j10 = -chat.f20343id;
+            j10 = -chat.f20344id;
             z11 = isChannelAndNotMegaGroup;
             z10 = false;
         } else {
             if (obj6 instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj6;
-                long j11 = user.f20490id;
+                long j11 = user.f20491id;
                 boolean isBot = UserObject.isBot(user);
                 canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, k0Var.f12201f);
                 j10 = j11;
@@ -68,7 +68,7 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
             return Boolean.valueOf(z13);
         }
         if (canRemoveBotFromCommunity) {
-            j80 F = j80.F(k0Var.container, null, view);
+            h80 F = h80.F(k0Var.container, null, view);
             F.c(R.drawable.msg_cancel, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), new l(k0Var, z10, z11, j10, 1), true);
             F.W(k0Var.v.d.W0(view, true));
             F.Z();
@@ -81,7 +81,7 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
     public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
         int i10 = this.f12268a;
         k0 k0Var = this.f12269b;
-        m61 m61Var = (m61) obj;
+        l61 l61Var = (l61) obj;
         View view = (View) obj2;
         Integer num = (Integer) obj3;
         switch (i10) {
@@ -89,7 +89,7 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
                 num.getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                k0Var.g0(m61Var);
+                k0Var.g0(l61Var);
                 return;
             case 1:
             default:
@@ -97,20 +97,20 @@ public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Re
                 ((Float) obj4).floatValue();
                 ((Float) obj5).floatValue();
                 int i11 = k0.V;
-                k0Var.d0(m61Var);
+                k0Var.d0(l61Var);
                 return;
             case 2:
                 num.getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
                 int i12 = k0.V;
-                k0Var.g0(m61Var);
+                k0Var.g0(l61Var);
                 return;
             case 3:
                 num.getClass();
                 ((Float) obj4).getClass();
                 ((Float) obj5).getClass();
-                k0.C(k0Var, m61Var, view);
+                k0.C(k0Var, l61Var, view);
                 return;
         }
     }

@@ -11,11 +11,11 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 public final class w5 extends FrameLayout {
-    public final y5 f42926a;
+    public final y5 f42901a;
 
     public w5(y5 y5Var, Activity activity) {
         super(activity);
-        this.f42926a = y5Var;
+        this.f42901a = y5Var;
         setWillNotDraw(false);
         ai.o5 o5Var = new ai.o5(y5Var, getContext());
         ai.o5 o5Var2 = new ai.o5(y5Var, getContext());
@@ -24,20 +24,20 @@ public final class w5 extends FrameLayout {
         o5Var2.c(R.drawable.filled_gift_premium, LocaleController.getString(R.string.GiveawayBtn));
         o5Var3.c(R.drawable.filled_info, LocaleController.getString(R.string.FeaturesBtn));
         o5Var.setOnClickListener(new View.OnClickListener(this) {
-            public final w5 f42169b;
+            public final w5 f42215b;
 
             {
-                this.f42169b = this;
+                this.f42215b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 org.telegram.ui.ActionBar.g6 g6Var;
                 int i10 = r2;
-                w5 w5Var = this.f42169b;
+                w5 w5Var = this.f42215b;
                 switch (i10) {
                     case 0:
-                        y5 y5Var2 = w5Var.f42926a;
+                        y5 y5Var2 = w5Var.f42901a;
                         long j10 = y5Var2.R;
                         ChannelBoostsController.CanApplyBoost canApplyBoost = y5Var2.U;
                         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = y5Var2.T;
@@ -47,13 +47,13 @@ public final class w5 extends FrameLayout {
                             j0Var.K1(canApplyBoost);
                             j0Var.J1(tL_premium_boostsStatus, true);
                             j0Var.L1(j10);
-                            j0Var.f46712g0 = null;
+                            j0Var.f46711g0 = null;
                             y5Var2.showDialog(j0Var);
                             return;
                         }
                         return;
                     case 1:
-                        y5 y5Var3 = w5Var.f42926a;
+                        y5 y5Var3 = w5Var.f42901a;
                         y5Var3.x0(true);
                         long j11 = y5Var3.R;
                         g6Var = ((org.telegram.ui.ActionBar.o2) y5Var3).resourceProvider;
@@ -61,7 +61,7 @@ public final class w5 extends FrameLayout {
                         ug.l.e.setOnHideListener(new v5(w5Var, 0));
                         return;
                     default:
-                        y5 y5Var4 = w5Var.f42926a;
+                        y5 y5Var4 = w5Var.f42901a;
                         sg.j0 j0Var2 = new sg.j0(31, y5Var4.S, w5Var.getContext(), y5Var4, y5Var4.getResourceProvider());
                         j0Var2.J1(y5Var4.T, true);
                         j0Var2.L1(y5Var4.R);
@@ -71,20 +71,20 @@ public final class w5 extends FrameLayout {
             }
         });
         o5Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final w5 f42169b;
+            public final w5 f42215b;
 
             {
-                this.f42169b = this;
+                this.f42215b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 org.telegram.ui.ActionBar.g6 g6Var;
                 int i10 = r2;
-                w5 w5Var = this.f42169b;
+                w5 w5Var = this.f42215b;
                 switch (i10) {
                     case 0:
-                        y5 y5Var2 = w5Var.f42926a;
+                        y5 y5Var2 = w5Var.f42901a;
                         long j10 = y5Var2.R;
                         ChannelBoostsController.CanApplyBoost canApplyBoost = y5Var2.U;
                         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = y5Var2.T;
@@ -94,13 +94,13 @@ public final class w5 extends FrameLayout {
                             j0Var.K1(canApplyBoost);
                             j0Var.J1(tL_premium_boostsStatus, true);
                             j0Var.L1(j10);
-                            j0Var.f46712g0 = null;
+                            j0Var.f46711g0 = null;
                             y5Var2.showDialog(j0Var);
                             return;
                         }
                         return;
                     case 1:
-                        y5 y5Var3 = w5Var.f42926a;
+                        y5 y5Var3 = w5Var.f42901a;
                         y5Var3.x0(true);
                         long j11 = y5Var3.R;
                         g6Var = ((org.telegram.ui.ActionBar.o2) y5Var3).resourceProvider;
@@ -108,7 +108,7 @@ public final class w5 extends FrameLayout {
                         ug.l.e.setOnHideListener(new v5(w5Var, 0));
                         return;
                     default:
-                        y5 y5Var4 = w5Var.f42926a;
+                        y5 y5Var4 = w5Var.f42901a;
                         sg.j0 j0Var2 = new sg.j0(31, y5Var4.S, w5Var.getContext(), y5Var4, y5Var4.getResourceProvider());
                         j0Var2.J1(y5Var4.T, true);
                         j0Var2.L1(y5Var4.R);
@@ -118,20 +118,20 @@ public final class w5 extends FrameLayout {
             }
         });
         o5Var3.setOnClickListener(new View.OnClickListener(this) {
-            public final w5 f42169b;
+            public final w5 f42215b;
 
             {
-                this.f42169b = this;
+                this.f42215b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 org.telegram.ui.ActionBar.g6 g6Var;
                 int i10 = r2;
-                w5 w5Var = this.f42169b;
+                w5 w5Var = this.f42215b;
                 switch (i10) {
                     case 0:
-                        y5 y5Var2 = w5Var.f42926a;
+                        y5 y5Var2 = w5Var.f42901a;
                         long j10 = y5Var2.R;
                         ChannelBoostsController.CanApplyBoost canApplyBoost = y5Var2.U;
                         TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = y5Var2.T;
@@ -141,13 +141,13 @@ public final class w5 extends FrameLayout {
                             j0Var.K1(canApplyBoost);
                             j0Var.J1(tL_premium_boostsStatus, true);
                             j0Var.L1(j10);
-                            j0Var.f46712g0 = null;
+                            j0Var.f46711g0 = null;
                             y5Var2.showDialog(j0Var);
                             return;
                         }
                         return;
                     case 1:
-                        y5 y5Var3 = w5Var.f42926a;
+                        y5 y5Var3 = w5Var.f42901a;
                         y5Var3.x0(true);
                         long j11 = y5Var3.R;
                         g6Var = ((org.telegram.ui.ActionBar.o2) y5Var3).resourceProvider;
@@ -155,7 +155,7 @@ public final class w5 extends FrameLayout {
                         ug.l.e.setOnHideListener(new v5(w5Var, 0));
                         return;
                     default:
-                        y5 y5Var4 = w5Var.f42926a;
+                        y5 y5Var4 = w5Var.f42901a;
                         sg.j0 j0Var2 = new sg.j0(31, y5Var4.S, w5Var.getContext(), y5Var4, y5Var4.getResourceProvider());
                         j0Var2.J1(y5Var4.T, true);
                         j0Var2.L1(y5Var4.R);
@@ -167,7 +167,7 @@ public final class w5 extends FrameLayout {
         LinearLayout linearLayout = new LinearLayout(getContext());
         linearLayout.setOrientation(0);
         linearLayout.addView(o5Var, w7.z5.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
-        if (MessagesController.getInstance(y5Var.S).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(y5Var.f43722i0)) {
+        if (MessagesController.getInstance(y5Var.S).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(y5Var.f43756i0)) {
             linearLayout.addView(o5Var2, w7.z5.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
         }
         linearLayout.addView(o5Var3, w7.z5.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));

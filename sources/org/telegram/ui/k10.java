@@ -9,7 +9,7 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class k10 extends org.telegram.ui.Components.mm0 {
+public final class k10 extends org.telegram.ui.Components.lm0 {
     public final int Y2;
     public final Object Z2;
 
@@ -25,11 +25,11 @@ public final class k10 extends org.telegram.ui.Components.mm0 {
         switch (this.Y2) {
             case 3:
                 i11 = ((SessionsActivity) this.Z2).terminateAllSessionsRow;
-                org.telegram.ui.ActionBar.g6 g6Var = this.f28705n2;
+                org.telegram.ui.ActionBar.g6 g6Var = this.f28396n2;
                 if (i10 == i11) {
-                    return Integer.valueOf(org.telegram.ui.ActionBar.k6.o1(0.1f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21404p7, g6Var)));
+                    return Integer.valueOf(org.telegram.ui.ActionBar.k6.o1(0.1f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21405p7, g6Var)));
                 }
-                return Integer.valueOf(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21272i6, g6Var));
+                return Integer.valueOf(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21273i6, g6Var));
             default:
                 return super.X0(i10);
         }
@@ -44,25 +44,25 @@ public final class k10 extends org.telegram.ui.Components.mm0 {
             case 1:
                 super.dispatchDraw(canvas);
                 d60 d60Var = (d60) this.Z2;
-                if (d60Var.f36520z0 != null && d60Var.A0 >= 1.0f) {
+                if (d60Var.f36486z0 != null && d60Var.A0 >= 1.0f) {
                     canvas.save();
-                    int measuredHeight = d60Var.f36520z0.getMeasuredHeight();
+                    int measuredHeight = d60Var.f36486z0.getMeasuredHeight();
                     kVar = ((org.telegram.ui.ActionBar.o2) d60Var).actionBar;
                     canvas.translate(0.0f, -(measuredHeight - kVar.getMeasuredHeight()));
-                    d60Var.f36520z0.draw(canvas);
+                    d60Var.f36486z0.draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 2:
-                kp0 kp0Var = (kp0) this.Z2;
-                Paint paint = kp0Var.f39037w;
-                RectF rectF = kp0Var.f39036s;
-                RectF rectF2 = kp0Var.f39035r;
-                RectF rectF3 = kp0Var.f39034n;
-                s4.b0 b0Var = kp0Var.f39031b;
-                if (!kp0Var.f39033f.isEmpty()) {
-                    float d = kp0Var.e.d(kp0Var.d, false);
+                jp0 jp0Var = (jp0) this.Z2;
+                Paint paint = jp0Var.f38608w;
+                RectF rectF = jp0Var.f38607s;
+                RectF rectF2 = jp0Var.f38606r;
+                RectF rectF3 = jp0Var.f38605n;
+                s4.b0 b0Var = jp0Var.f38602b;
+                if (!jp0Var.f38604f.isEmpty()) {
+                    float d = jp0Var.e.d(jp0Var.d, false);
                     double d10 = d;
                     int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
                     int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
@@ -80,7 +80,7 @@ public final class k10 extends org.telegram.ui.Components.mm0 {
                         }
                         rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
                         AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(kp0Var.f39038x);
+                        paint.setColor(jp0Var.f38609x);
                         float height = rectF.height() / 2.0f;
                         canvas.drawRoundRect(rectF, height, height, paint);
                         super.dispatchDraw(canvas);
@@ -100,9 +100,9 @@ public final class k10 extends org.telegram.ui.Components.mm0 {
         switch (this.Y2) {
             case 2:
                 super.invalidate();
-                vo0 vo0Var = ((kp0) this.Z2).F;
-                if (vo0Var != null) {
-                    vo0Var.run();
+                uo0 uo0Var = ((jp0) this.Z2).F;
+                if (uo0Var != null) {
+                    uo0Var.run();
                     return;
                 }
                 return;

@@ -245,7 +245,7 @@ public final class y9 implements z9 {
                     ArrayList arrayList2 = this.f2511l;
                     if (i12 < arrayList2.size()) {
                         TL_stars.StarGift starGift3 = ((TL_stars.SavedStarGift) arrayList2.get(i12)).gift;
-                        if (starGift3 != null && starGift3.f20567id == starGift2.f20567id) {
+                        if (starGift3 != null && starGift3.f20568id == starGift2.f20568id) {
                             arrayList2.remove(i12);
                             this.f2513n = Math.max(0, this.f2513n - 1);
                             z10 = true;

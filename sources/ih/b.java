@@ -5,7 +5,7 @@ import java.util.HashSet;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ps;
+import org.telegram.ui.Components.ns;
 public final class b implements Utilities.Callback2 {
     public final int f13145a;
 
@@ -24,7 +24,7 @@ public final class b implements Utilities.Callback2 {
             case 1:
                 TLRPC.Bool bool2 = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                int i10 = ps.H0;
+                int i10 = ns.H0;
                 return;
             default:
                 Boolean bool3 = (Boolean) obj;

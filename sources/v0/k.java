@@ -16,10 +16,10 @@ import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.z1;
 import yh.f4;
 public final class k implements q3.g, d9.k, Continuation, e2.j, r9.d, z1, GenericProvider, Vector.TLDeserializer {
-    public final int f48302a;
+    public final int f48301a;
 
     public k(int i10) {
-        this.f48302a = i10;
+        this.f48301a = i10;
     }
 
     @Override
@@ -53,7 +53,7 @@ public final class k implements q3.g, d9.k, Continuation, e2.j, r9.d, z1, Generi
 
     @Override
     public void g(c2 c2Var, int i10) {
-        switch (this.f48302a) {
+        switch (this.f48301a) {
             case 13:
                 c2Var.dismiss();
                 return;
@@ -66,14 +66,14 @@ public final class k implements q3.g, d9.k, Continuation, e2.j, r9.d, z1, Generi
     @Override
     public Object j2(z5 z5Var) {
         Set y3 = z5Var.y(ya.a.class);
-        ya.c cVar = ya.c.f50562c;
+        ya.c cVar = ya.c.f50561c;
         if (cVar == null) {
             synchronized (ya.c.class) {
                 try {
-                    cVar = ya.c.f50562c;
+                    cVar = ya.c.f50561c;
                     if (cVar == null) {
                         cVar = new ya.c();
-                        ya.c.f50562c = cVar;
+                        ya.c.f50561c = cVar;
                     }
                 } finally {
                 }
@@ -85,7 +85,7 @@ public final class k implements q3.g, d9.k, Continuation, e2.j, r9.d, z1, Generi
     @Override
     public Object provide(Object obj) {
         Integer num = (Integer) obj;
-        int i10 = f4.f50687k0;
+        int i10 = f4.f50686k0;
         return 0;
     }
 
@@ -95,10 +95,10 @@ public final class k implements q3.g, d9.k, Continuation, e2.j, r9.d, z1, Generi
         File file;
         if (task.isSuccessful()) {
             x9.b bVar = (x9.b) task.getResult();
-            u9.b bVar2 = u9.b.f48073a;
-            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f50117b);
+            u9.b bVar2 = u9.b.f48072a;
+            bVar2.b("Crashlytics report successfully enqueued to DataTransport: " + bVar.f50116b);
             z10 = true;
-            if (bVar.f50118c.delete()) {
+            if (bVar.f50117c.delete()) {
                 bVar2.b("Deleted report file: " + file.getPath());
             } else {
                 bVar2.d("Crashlytics could not delete report file: " + file.getPath(), null);
@@ -111,6 +111,6 @@ public final class k implements q3.g, d9.k, Continuation, e2.j, r9.d, z1, Generi
     }
 
     public k(com.google.firebase.messaging.l lVar) {
-        this.f48302a = 10;
+        this.f48301a = 10;
     }
 }

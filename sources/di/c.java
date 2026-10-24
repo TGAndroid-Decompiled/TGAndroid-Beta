@@ -14,17 +14,17 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.pi;
 import org.telegram.ui.Components.ri;
-import org.telegram.ui.Components.ti;
-public final class c implements ri {
-    public final ti f8039a;
+public final class c implements pi {
+    public final ri f8039a;
     public final String f8040b;
     public final v f8041c;
 
-    public c(v vVar, ti tiVar, String str) {
+    public c(v vVar, ri riVar, String str) {
         this.f8041c = vVar;
-        this.f8039a = tiVar;
+        this.f8039a = riVar;
         this.f8040b = str;
     }
 
@@ -34,8 +34,8 @@ public final class c implements ri {
         ub ubVar;
         v vVar = this.f8041c;
         long j12 = vVar.d;
-        ti tiVar = this.f8039a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30742j0;
+        ri riVar = this.f8039a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = riVar.f30158j0;
         if (!chatAttachAlertPhotoLayout.getSelectedPhotos().isEmpty()) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
             chatAttachAlertPhotoLayout.getSelectedPhotosOrder();
@@ -102,7 +102,7 @@ public final class c implements ri {
                             D.d();
                         }
                     }
-                    AndroidUtilities.runOnUIThread(new com.google.firebase.messaging.s(tiVar, 2), 400L);
+                    AndroidUtilities.runOnUIThread(new com.google.firebase.messaging.s(riVar, 2), 400L);
                 }
             }
         }
@@ -114,8 +114,8 @@ public final class c implements ri {
     }
 
     @Override
-    public final void r(gh ghVar) {
-        ghVar.run();
+    public final void r(eh ehVar) {
+        ehVar.run();
     }
 
     @Override

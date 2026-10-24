@@ -3,7 +3,7 @@ package ei;
 import android.view.TextureView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
-import org.telegram.ui.ve1;
+import org.telegram.ui.ue1;
 public final class c0 extends VideoPlayerHolderBase {
     public final int f8813a;
     public final Object f8814b;
@@ -36,7 +36,7 @@ public final class c0 extends VideoPlayerHolderBase {
                 TextureView textureView = a2Var.J;
                 if (textureView != null && !a2Var.F) {
                     textureView.setAlpha(0.0f);
-                    textureView.animate().alpha(1.0f).setListener(new ve1(this, 17)).setDuration(200L);
+                    textureView.animate().alpha(1.0f).setListener(new ue1(this, 17)).setDuration(200L);
                     return;
                 }
                 return;

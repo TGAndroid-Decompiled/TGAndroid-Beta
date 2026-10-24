@@ -23,15 +23,15 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.tgnet.tl.TL_bots;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.sn;
 public final class p6 implements Runnable {
     public final int f9608a;
@@ -97,7 +97,7 @@ public final class p6 implements Runnable {
                 pVar.f8979w.addUpdateListener(new c7(pVar, d7Var.getScaleX(), width, ((d2Var.getWidth() / 2.0f) + d2Var.getX()) - ((d7Var.getWidth() / 2.0f) + d7Var.getX()), ((d2Var.getHeight() / 2.0f) + d2Var.getY()) - ((d7Var.getHeight() / 2.0f) + d7Var.getY()), 0));
                 pVar.f8979w.addListener(new ne(5, pVar, d2Var));
                 pVar.f8979w.setDuration(320L);
-                pVar.f8979w.setInterpolator(bs.h);
+                pVar.f8979w.setInterpolator(zr.h);
                 pVar.v = d2Var;
                 pVar.f8979w.start();
                 return;
@@ -131,7 +131,7 @@ public final class p6 implements Runnable {
                         }
                         if (document != null) {
                             TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                            tL_inputDocument.f20355id = document.f20349id;
+                            tL_inputDocument.f20356id = document.f20350id;
                             tL_inputDocument.access_hash = document.access_hash;
                             tL_inputDocument.file_reference = document.file_reference;
                             a8Var2.V0.add(tL_inputDocument);
@@ -165,7 +165,7 @@ public final class p6 implements Runnable {
                 if (!z10) {
                     f11 = 0.7f;
                 }
-                sl.t(scaleX.scaleY(f11), bs.h, 300L);
+                tl.t(scaleX.scaleY(f11), zr.h, 300L);
                 return;
             case 9:
                 r9 r9Var = (r9) this.f9609b;
@@ -259,8 +259,8 @@ public final class p6 implements Runnable {
                 return;
             case 17:
                 gi.d3 d3Var3 = (gi.d3) this.f9609b;
-                org.telegram.ui.Components.qc Q = new xc(d3Var3.f11176q0, d3Var3.F).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9610c));
-                Q.f29832j = 5000;
+                org.telegram.ui.Components.oc Q = new vc(d3Var3.f11176q0, d3Var3.F).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9610c));
+                Q.f29203j = 5000;
                 Q.k(true);
                 return;
             case 18:
@@ -277,7 +277,7 @@ public final class p6 implements Runnable {
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) this.f9610c;
                 if (!f4Var.T) {
                     if (tL_error2 != null) {
-                        f4Var.f28366b.dismiss();
+                        f4Var.f27704b.dismiss();
                         return;
                     } else {
                         AndroidUtilities.runOnUIThread(f4Var.U, 60000L);
@@ -287,8 +287,8 @@ public final class p6 implements Runnable {
                 return;
             case 21:
                 gi.f4 f4Var2 = (gi.f4) this.f9609b;
-                org.telegram.ui.Components.qc Q2 = new xc(f4Var2.f28366b.getContainer(), f4Var2.f28365a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9610c));
-                Q2.f29832j = 5000;
+                org.telegram.ui.Components.oc Q2 = new vc(f4Var2.f27704b.getContainer(), f4Var2.f27703a).Q(R.raw.contact_check, 36, AndroidUtilities.replaceTags((String) this.f9610c));
+                Q2.f29203j = 5000;
                 Q2.k(true);
                 return;
             case 22:
@@ -401,7 +401,7 @@ public final class p6 implements Runnable {
             default:
                 hi.r rVar = (hi.r) this.f9609b;
                 rVar.getClass();
-                rVar.presentFragment(sn.W9(((ii.f) this.f9610c).f13206b.f20490id));
+                rVar.presentFragment(sn.W9(((ii.f) this.f9610c).f13206b.f20491id));
                 return;
         }
     }

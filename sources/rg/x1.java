@@ -9,7 +9,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.f6;
+import org.telegram.ui.Components.d6;
 public final class x1 extends View {
     public qg.e1 E;
     public float F;
@@ -18,33 +18,33 @@ public final class x1 extends View {
     public Runnable I;
     public boolean J;
     public w1 K;
-    public final Paint f46126a;
-    public final Paint f46127b;
-    public final Path f46128c;
+    public final Paint f46125a;
+    public final Paint f46126b;
+    public final Path f46127c;
     public final le.b d;
     public final RectF e;
-    public boolean f46129f;
+    public boolean f46128f;
     public boolean h;
-    public float f46130n;
-    public float f46131r;
-    public long f46132s;
+    public float f46129n;
+    public float f46130r;
+    public long f46131s;
     public boolean v;
-    public final f6 f46133w;
-    public final f6 f46134x;
-    public final f6 f46135y;
+    public final d6 f46132w;
+    public final d6 f46133x;
+    public final d6 f46134y;
 
     public x1(Context context) {
         super(context);
         Paint paint = new Paint(1);
-        this.f46126a = paint;
+        this.f46125a = paint;
         Paint paint2 = new Paint(1);
-        this.f46127b = paint2;
-        this.f46128c = new Path();
+        this.f46126b = paint2;
+        this.f46127c = new Path();
         this.e = new RectF();
         this.v = true;
-        this.f46133w = new f6(this);
-        this.f46134x = new f6(this);
-        this.f46135y = new f6(this);
+        this.f46132w = new d6(this);
+        this.f46133x = new d6(this);
+        this.f46134y = new d6(this);
         this.H = new qg.s1(1.0f, 0.016773745f, -1);
         this.J = true;
         this.d = new le.b(context, new v1(this));
@@ -58,9 +58,9 @@ public final class x1 extends View {
         if (z10) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set((f7 - f11) - AndroidUtilities.dp(6.0f), (f10 - f11) - AndroidUtilities.dp(6.0f), f7 + f11 + AndroidUtilities.dp(6.0f), f10 + f11 + AndroidUtilities.dp(6.0f));
-            canvas.saveLayerAlpha(rectF, (int) (this.f46131r * 255.0f), 31);
+            canvas.saveLayerAlpha(rectF, (int) (this.f46130r * 255.0f), 31);
         }
-        canvas.drawCircle(f7, f10, f11, this.f46127b);
+        canvas.drawCircle(f7, f10, f11, this.f46126b);
         if (z10) {
             canvas.restore();
         }
@@ -90,13 +90,13 @@ public final class x1 extends View {
         if (motionEvent.getActionMasked() != 1 && motionEvent.getActionMasked() != 3) {
             return onTouchEvent;
         }
-        this.f46129f = false;
+        this.f46128f = false;
         invalidate();
         return onTouchEvent;
     }
 
     public void setBrushWeight(float f7) {
-        this.H.f45068c = f7;
+        this.H.f45067c = f7;
         invalidate();
     }
 

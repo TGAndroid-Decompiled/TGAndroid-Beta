@@ -6,8 +6,8 @@ import org.telegram.messenger.FourierTransform;
 import org.telegram.ui.Components.c81;
 import org.telegram.ui.Components.i81;
 import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.ko0;
-import org.telegram.ui.Components.x71;
+import org.telegram.ui.Components.jo0;
+import org.telegram.ui.Components.w71;
 public final class b1 extends c2.o {
     public final i81 f14695i;
 
@@ -24,12 +24,12 @@ public final class b1 extends c2.o {
         String str = e2.m0.f8259a;
         ByteBuffer order = byteBuffer.asReadOnlyBuffer().order(byteBuffer.order());
         i81 i81Var = this.f14695i;
-        float[] fArr = i81Var.f27239b;
-        ByteBuffer byteBuffer2 = i81Var.f27240c;
-        FourierTransform.FFT fft = i81Var.f27238a;
-        j81 j81Var = i81Var.f27241f;
+        float[] fArr = i81Var.f27366b;
+        ByteBuffer byteBuffer2 = i81Var.f27367c;
+        FourierTransform.FFT fft = i81Var.f27365a;
+        j81 j81Var = i81Var.f27368f;
         c81 c81Var = j81Var.K;
-        Handler handler = j81Var.f27591a0;
+        Handler handler = j81Var.f27626a0;
         if (c81Var != null) {
             if (order != c2.n.f4522a && j81Var.I) {
                 if (c81Var.needUpdate()) {
@@ -95,13 +95,13 @@ public final class b1 extends c2.o {
                             }
                             if (System.currentTimeMillis() - i81Var.e >= 64) {
                                 i81Var.e = System.currentTimeMillis();
-                                handler.postDelayed(new ko0(22, i81Var, fArr2), 130L);
+                                handler.postDelayed(new jo0(22, i81Var, fArr2), 130L);
                             }
                         }
                     }
                 }
             } else {
-                handler.postDelayed(new x71(i81Var, 2), 80L);
+                handler.postDelayed(new w71(i81Var, 2), 80L);
             }
         }
         l(remaining).put(byteBuffer).flip();

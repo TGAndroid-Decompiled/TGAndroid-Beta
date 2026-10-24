@@ -17,9 +17,9 @@ import org.telegram.messenger.DialogObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i11;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.vq;
+import org.telegram.ui.Components.zr;
 public final class le extends View implements org.telegram.ui.ActionBar.b6 {
     public PorterDuffColorFilter f1787a;
     public int f1788b;
@@ -27,7 +27,7 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
     public final ArrayList d;
     public final ArrayList e;
     public final Paint f1790f;
-    public final org.telegram.ui.Components.f6 h;
+    public final org.telegram.ui.Components.d6 h;
     public float f1791n;
     public ke f1792r;
     public Utilities.Callback f1793s;
@@ -40,11 +40,11 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
         this.e = new ArrayList();
         Paint paint = new Paint(1);
         this.f1790f = paint;
-        this.h = new org.telegram.ui.Components.f6(this, 0L, 320L, bs.h);
+        this.h = new org.telegram.ui.Components.d6(this, 0L, 320L, zr.h);
         this.f1789c = z10;
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, meVar.f1840b));
+        paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21255h5, meVar.f1840b));
     }
 
     @Override
@@ -160,7 +160,7 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
 
     public void setSenders(ArrayList<fe> arrayList) {
         ArrayList arrayList2;
-        xq[] xqVarArr;
+        vq[] vqVarArr;
         ArrayList arrayList3;
         ?? r82;
         ke keVar;
@@ -170,7 +170,7 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
         while (true) {
             arrayList2 = this.d;
             int size = arrayList2.size();
-            xqVarArr = null;
+            vqVarArr = null;
             fe feVar = null;
             arrayList3 = this.e;
             r82 = 1;
@@ -206,7 +206,7 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
                     break;
                 }
             }
-            keVar = xqVarArr;
+            keVar = vqVarArr;
             if (keVar == null) {
                 for (int i14 = 0; i14 < arrayList3.size(); i14++) {
                     ke keVar4 = (ke) arrayList3.get(i14);
@@ -233,7 +233,7 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
             keVar.f1645a = (arrayList4.size() - r82) - i12;
             long j10 = feVar3.d;
             Paint paint = keVar.h;
-            keVar.f1656o = new i11(nd.S0(i2.o1.m(j10, ',', new StringBuilder("⭐️")), 0.85f, xqVarArr), 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+            keVar.f1656o = new h11(nd.S0(i2.o1.m(j10, ',', new StringBuilder("⭐️")), 0.85f, vqVarArr), 12.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
             boolean z13 = leVar.f1789c;
             int i15 = meVar.f1841c;
             if (z13) {
@@ -253,7 +253,7 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
             if (this.f1789c) {
                 int i17 = i12 + 1;
                 keVar.v = i17;
-                keVar.f1662u = new i11(i2.o1.k(i17, ""), 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
+                keVar.f1662u = new h11(i2.o1.k(i17, ""), 10.0f, AndroidUtilities.getTypeface("fonts/num.otf"));
                 if (i17 > 0 && keVar.f1660s == null) {
                     Drawable mutate = leVar.getContext().getResources().getDrawable(R.drawable.filled_stream_crown).mutate();
                     keVar.f1660s = mutate;
@@ -262,7 +262,7 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
                     mutate.setColorFilter(new PorterDuffColorFilter(i18, mode));
                     Drawable mutate2 = leVar.getContext().getResources().getDrawable(R.drawable.filled_stream_crown_outline).mutate();
                     keVar.f1661t = mutate2;
-                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, meVar.f1840b), mode));
+                    mutate2.setColorFilter(new PorterDuffColorFilter(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21255h5, meVar.f1840b), mode));
                 }
             }
             if (feVar3.f1328b) {
@@ -276,15 +276,15 @@ public final class le extends View implements org.telegram.ui.ActionBar.b6 {
                     } else {
                         shortName = DialogObject.getShortName(keVar.f1651j);
                     }
-                    xqVarArr = null;
-                    keVar.f1655n = new i11(shortName, 12.0f, null);
+                    vqVarArr = null;
+                    keVar.f1655n = new h11(shortName, 12.0f, null);
                     leVar.invalidate();
                     i12++;
                     arrayList4 = arrayList;
                     r82 = 1;
                 }
             }
-            xqVarArr = null;
+            vqVarArr = null;
             i12++;
             arrayList4 = arrayList;
             r82 = 1;

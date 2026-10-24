@@ -14,17 +14,17 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.e3;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.km0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.za;
 import org.telegram.ui.LaunchActivity;
-public final class a0 extends bb {
+public final class a0 extends za {
     public final TLRPC.TL_payments_checkedGiftCode X;
     public final boolean Y;
     public z Z;
-    public final String f48091a0;
+    public final String f48090a0;
 
     public a0(o2 o2Var, TLRPC.TL_payments_checkedGiftCode tL_payments_checkedGiftCode, String str) {
         super(o2Var, true);
@@ -36,7 +36,7 @@ public final class a0 extends bb {
         }
         this.Y = z10;
         this.X = tL_payments_checkedGiftCode;
-        this.f48091a0 = str;
+        this.f48090a0 = str;
         setApplyTopPadding(false);
         setApplyBottomPadding(false);
         fixNavigationBar();
@@ -46,9 +46,9 @@ public final class a0 extends bb {
         zVar.getClass();
         zVar.d = tL_payments_checkedGiftCode.used_date == 0;
         zVar.e = o2Var;
-        zVar.f48807f = tL_payments_checkedGiftCode;
+        zVar.f48806f = tL_payments_checkedGiftCode;
         zVar.h = str;
-        zVar.f48808n = e3Var;
+        zVar.f48807n = e3Var;
     }
 
     public static boolean S(Intent intent, pf.c cVar) {
@@ -89,7 +89,7 @@ public final class a0 extends bb {
         AtomicBoolean atomicBoolean = new AtomicBoolean(false);
         if (cVar != null) {
             cVar.d();
-            cVar.f44707b = new c(atomicBoolean, 1);
+            cVar.f44706b = new c(atomicBoolean, 1);
         }
         y2 y2Var = new y2(atomicBoolean, o2Var, str, cVar, 16);
         e eVar = new e(atomicBoolean, cVar, 1);
@@ -101,12 +101,12 @@ public final class a0 extends bb {
     }
 
     @Override
-    public final void F(ow0 ow0Var) {
-        qc.a(this.container, new o8(14));
+    public final void F(nw0 nw0Var) {
+        oc.a(this.container, new o8(14));
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
+    public final km0 w(lm0 lm0Var) {
         z zVar = new z(this, this.resourcesProvider);
         this.Z = zVar;
         return zVar;

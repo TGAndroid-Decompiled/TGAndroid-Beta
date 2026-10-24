@@ -13,8 +13,8 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.vq;
+import org.telegram.ui.Components.zr;
 public final class x1 extends View {
     public float E;
     public final int[] F;
@@ -23,9 +23,9 @@ public final class x1 extends View {
     public final RectF f6097b;
     public final Path f6098c;
     public final ee d;
-    public final org.telegram.ui.Components.f6 e;
-    public final org.telegram.ui.Components.f6 f6099f;
-    public final org.telegram.ui.Components.p6 h;
+    public final org.telegram.ui.Components.d6 e;
+    public final org.telegram.ui.Components.d6 f6099f;
+    public final org.telegram.ui.Components.n6 h;
     public final Paint f6100n;
     public final Paint f6101r;
     public final Drawable f6102s;
@@ -38,9 +38,9 @@ public final class x1 extends View {
         super(context);
         this.f6097b = new RectF();
         this.f6098c = new Path();
-        bs bsVar = bs.h;
-        this.e = new org.telegram.ui.Components.f6(this, 320L, bsVar);
-        this.f6099f = new org.telegram.ui.Components.f6(this, 320L, bsVar);
+        zr zrVar = zr.h;
+        this.e = new org.telegram.ui.Components.d6(this, 320L, zrVar);
+        this.f6099f = new org.telegram.ui.Components.d6(this, 320L, zrVar);
         Paint paint = new Paint(1);
         this.f6100n = paint;
         Paint paint2 = new Paint(1);
@@ -53,16 +53,16 @@ public final class x1 extends View {
         bh.j jVar = new bh.j();
         this.v = jVar;
         jVar.a(bVar);
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.h = p6Var;
-        p6Var.u(-9866632);
-        p6Var.w(AndroidUtilities.dp(9.0f));
-        p6Var.setCallback(this);
-        p6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
-        p6Var.J = true;
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true);
+        this.h = n6Var;
+        n6Var.u(-9866632);
+        n6Var.w(AndroidUtilities.dp(9.0f));
+        n6Var.setCallback(this);
+        n6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
+        n6Var.J = true;
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        new xq(R.drawable.star, 0).setScale(1.8f, 1.8f);
+        new vq(R.drawable.star, 0).setScale(1.8f, 1.8f);
         setCount(0);
         this.d = new ee(1, 50);
     }
@@ -106,9 +106,9 @@ public final class x1 extends View {
         invalidate();
         canvas.restore();
         if (e7 > 0.0f) {
-            org.telegram.ui.Components.p6 p6Var = this.h;
-            float max = Math.max(AndroidUtilities.dp(12.0f), p6Var.c() + AndroidUtilities.dp(6.0f));
-            float i10 = p6Var.i() * this.G * e7;
+            org.telegram.ui.Components.n6 n6Var = this.h;
+            float max = Math.max(AndroidUtilities.dp(12.0f), n6Var.c() + AndroidUtilities.dp(6.0f));
+            float i10 = n6Var.i() * this.G * e7;
             canvas.save();
             RectF rectF2 = AndroidUtilities.rectTmp;
             rectF2.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
@@ -117,9 +117,9 @@ public final class x1 extends View {
             canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, this.f6101r);
             rectF2.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
             canvas.drawRoundRect(rectF2, rectF2.height() / 2.0f, rectF2.height() / 2.0f, paint);
-            canvas.translate(((max - p6Var.c()) / 2.0f) + rectF2.left, AndroidUtilities.dp(6.33f));
-            p6Var.u(i0.a.f(e, -9866632, -1));
-            p6Var.draw(canvas);
+            canvas.translate(((max - n6Var.c()) / 2.0f) + rectF2.left, AndroidUtilities.dp(6.33f));
+            n6Var.u(i0.a.f(e, -9866632, -1));
+            n6Var.draw(canvas);
             canvas.restore();
         }
     }
@@ -132,11 +132,11 @@ public final class x1 extends View {
 
     public void setCount(int i10) {
         this.f6103w = i10;
-        org.telegram.ui.Components.p6 p6Var = this.h;
+        org.telegram.ui.Components.n6 n6Var = this.h;
         if (i10 > 50000) {
-            p6Var.t(AndroidUtilities.formatWholeNumber(i10, 0), true, true);
+            n6Var.t(AndroidUtilities.formatWholeNumber(i10, 0), true, true);
         } else {
-            p6Var.t(LocaleController.formatNumber(i10, ','), true, true);
+            n6Var.t(LocaleController.formatNumber(i10, ','), true, true);
         }
         invalidate();
         requestLayout();

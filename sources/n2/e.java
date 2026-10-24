@@ -37,35 +37,35 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Cells.e3;
 import org.telegram.ui.Cells.z1;
+import org.telegram.ui.Components.eu;
+import org.telegram.ui.Components.fp0;
 import org.telegram.ui.Components.g81;
-import org.telegram.ui.Components.gp0;
 import org.telegram.ui.Components.gu;
-import org.telegram.ui.Components.ig0;
-import org.telegram.ui.Components.iu;
+import org.telegram.ui.Components.hg0;
 import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.na;
-import org.telegram.ui.Components.yb0;
-import org.telegram.ui.Components.zy0;
+import org.telegram.ui.Components.la;
+import org.telegram.ui.Components.wb0;
+import org.telegram.ui.Components.yy0;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.SecretMediaViewer;
-import org.telegram.ui.an0;
-import org.telegram.ui.im0;
+import org.telegram.ui.hm0;
 import org.telegram.ui.l7;
+import org.telegram.ui.lv0;
+import org.telegram.ui.m31;
 import org.telegram.ui.m5;
-import org.telegram.ui.mv0;
-import org.telegram.ui.n31;
 import org.telegram.ui.n4;
-import org.telegram.ui.oj0;
-import org.telegram.ui.om0;
+import org.telegram.ui.nj0;
+import org.telegram.ui.nm0;
 import org.telegram.ui.v6;
 import org.telegram.ui.xu;
 import org.telegram.ui.yu;
+import org.telegram.ui.zm0;
 import qg.j0;
 import s4.b1;
 import s4.i1;
 import u2.e1;
 import w7.pa;
-public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com.google.android.gms.common.api.internal.r, SuccessContinuation {
+public final class e implements fp0, eu, zb, l7, nm0, gh.a, g81, p2.u, ne.d, com.google.android.gms.common.api.internal.r, SuccessContinuation {
     public final int f17101a;
     public Object f17102b;
     public Object f17103c;
@@ -92,13 +92,13 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     public void G(sa.a aVar) {
         try {
             JSONObject jSONObject = new JSONObject();
-            jSONObject.put("Fid", aVar.f46579a);
-            jSONObject.put("Status", m1.j.c(aVar.f46580b));
-            jSONObject.put("AuthToken", aVar.f46581c);
+            jSONObject.put("Fid", aVar.f46578a);
+            jSONObject.put("Status", m1.j.c(aVar.f46579b));
+            jSONObject.put("AuthToken", aVar.f46580c);
             jSONObject.put("RefreshToken", aVar.d);
-            jSONObject.put("TokenCreationEpochInSecs", aVar.f46582f);
+            jSONObject.put("TokenCreationEpochInSecs", aVar.f46581f);
             jSONObject.put("ExpiresInSecs", aVar.e);
-            jSONObject.put("FisError", aVar.f46583g);
+            jSONObject.put("FisError", aVar.f46582g);
             l9.h hVar = (l9.h) this.f17103c;
             hVar.a();
             File createTempFile = File.createTempFile("PersistedInstallation", "tmp", hVar.f16030a.getFilesDir());
@@ -126,7 +126,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     public void L(float f7, boolean z10) {
         ((TextView) this.f17102b).setText("Alpha " + m5.e);
         m5.e = f7;
-        ((m5) this.f17103c).f39376b.L();
+        ((m5) this.f17103c).f39442b.L();
     }
 
     public void M(Exception exc, boolean z10) {
@@ -165,22 +165,22 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
         a0.f fVar = (a0.f) this.f17102b;
         int c10 = fVar.c(b1Var);
         if (c10 >= 0 && (i1Var = (i1) fVar.h(c10)) != null) {
-            int i11 = i1Var.f46400a;
+            int i11 = i1Var.f46399a;
             if ((i11 & i10) != 0) {
                 int i12 = i11 & (~i10);
-                i1Var.f46400a = i12;
+                i1Var.f46399a = i12;
                 if (i10 == 4) {
-                    u0Var = i1Var.f46401b;
+                    u0Var = i1Var.f46400b;
                 } else if (i10 == 8) {
-                    u0Var = i1Var.f46402c;
+                    u0Var = i1Var.f46401c;
                 } else {
                     throw new IllegalArgumentException("Must provide flag PRE or POST");
                 }
                 if ((i12 & 12) == 0) {
                     fVar.f(c10);
-                    i1Var.f46400a = 0;
-                    i1Var.f46401b = null;
-                    i1Var.f46402c = null;
+                    i1Var.f46399a = 0;
+                    i1Var.f46400b = null;
+                    i1Var.f46401c = null;
                     i1.d.w(i1Var);
                 }
                 return u0Var;
@@ -201,7 +201,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
         String str = m0.f8259a;
         o10.getClass();
         fVar.getClass();
-        fVar.obtainMessage(1, new a(u2.v.f47898g.getAndIncrement(), true, SystemClock.elapsedRealtime(), o10)).sendToTarget();
+        fVar.obtainMessage(1, new a(u2.v.f47897g.getAndIncrement(), true, SystemClock.elapsedRealtime(), o10)).sendToTarget();
     }
 
     public sa.a Q() {
@@ -259,7 +259,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
         if (i1Var == null) {
             return;
         }
-        i1Var.f46400a &= -2;
+        i1Var.f46399a &= -2;
     }
 
     public void T(b1 b1Var) {
@@ -284,9 +284,9 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
         i1 i1Var = (i1) fVar.get(b1Var);
         if (i1Var != null) {
             fVar.remove(b1Var);
-            i1Var.f46400a = 0;
-            i1Var.f46401b = null;
-            i1Var.f46402c = null;
+            i1Var.f46399a = 0;
+            i1Var.f46400b = null;
+            i1Var.f46401c = null;
             i1.d.w(i1Var);
         }
     }
@@ -319,11 +319,11 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
 
     @Override
     public void a(String str, String str2) {
-        an0 an0Var = ((im0) this.f17103c).f38269a;
+        zm0 zm0Var = ((hm0) this.f17103c).f37903a;
         if ("PHONE_VERIFICATION_NEEDED".equals(str)) {
-            an0Var.N1(true, str2, (oj0) this.f17102b, this, an0Var.B1);
+            zm0Var.N1(true, str2, (nj0) this.f17102b, this, zm0Var.B1);
         } else {
-            an0Var.M1(true, false);
+            zm0Var.M1(true, false);
         }
     }
 
@@ -354,7 +354,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
 
     @Override
     public void h() {
-        ((e3) this.f17103c).b(((iu) this.f17102b).getText());
+        ((e3) this.f17103c).b(((gu) this.f17102b).getText());
     }
 
     public void l(b1 b1Var, u0 u0Var) {
@@ -364,26 +364,26 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
             i1Var = i1.a();
             fVar.put(b1Var, i1Var);
         }
-        i1Var.f46402c = u0Var;
-        i1Var.f46400a |= 8;
+        i1Var.f46401c = u0Var;
+        i1Var.f46399a |= 8;
     }
 
     @Override
     public void o(int i10, float f7, float f10, ne.e eVar) {
         qh.i iVar = (qh.i) this.f17103c;
-        iVar.f45154c.a(f7);
+        iVar.f45153c.a(f7);
         iVar.d.a(f7);
-        iVar.f45153b.a(f7);
+        iVar.f45152b.a(f7);
         ((Runnable) this.f17102b).run();
     }
 
     @Override
     public void onError(j81 j81Var, Exception exc) {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f17103c;
-        int i10 = secretMediaViewer.f34089b0;
+        int i10 = secretMediaViewer.f34091b0;
         if (i10 > 0) {
-            secretMediaViewer.f34089b0 = i10 - 1;
-            AndroidUtilities.runOnUIThread(new mv0(28, this, (File) this.f17102b), 100L);
+            secretMediaViewer.f34091b0 = i10 - 1;
+            AndroidUtilities.runOnUIThread(new lv0(28, this, (File) this.f17102b), 100L);
             return;
         }
         FileLog.e(exc);
@@ -396,27 +396,27 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     @Override
     public void onStateChanged(boolean z10, int i10) {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f17103c;
-        n31 n31Var = secretMediaViewer.f34106i1;
-        if (secretMediaViewer.f34139y != null && secretMediaViewer.f34103h0 != null) {
-            AndroidUtilities.cancelRunOnUIThread(n31Var);
-            AndroidUtilities.runOnUIThread(n31Var);
+        m31 m31Var = secretMediaViewer.f34108i1;
+        if (secretMediaViewer.f34141y != null && secretMediaViewer.f34105h0 != null) {
+            AndroidUtilities.cancelRunOnUIThread(m31Var);
+            AndroidUtilities.runOnUIThread(m31Var);
             if (i10 != 4 && i10 != 1) {
                 try {
-                    secretMediaViewer.f34088b.getWindow().addFlags(128);
+                    secretMediaViewer.f34090b.getWindow().addFlags(128);
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
             } else {
                 try {
-                    secretMediaViewer.f34088b.getWindow().clearFlags(128);
+                    secretMediaViewer.f34090b.getWindow().clearFlags(128);
                 } catch (Exception e7) {
                     FileLog.e(e7);
                 }
             }
-            if (i10 == 3 && secretMediaViewer.f34134w.getVisibility() != 0) {
-                secretMediaViewer.f34134w.setVisibility(0);
+            if (i10 == 3 && secretMediaViewer.f34136w.getVisibility() != 0) {
+                secretMediaViewer.f34136w.setVisibility(0);
             }
-            if (secretMediaViewer.f34139y.y() && i10 != 4) {
+            if (secretMediaViewer.f34141y.y() && i10 != 4) {
                 if (!secretMediaViewer.E) {
                     secretMediaViewer.E = true;
                 }
@@ -425,11 +425,11 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
                 if (i10 == 4) {
                     secretMediaViewer.H = true;
                     if (secretMediaViewer.I) {
-                        secretMediaViewer.e(true, !secretMediaViewer.f34121q1);
+                        secretMediaViewer.e(true, !secretMediaViewer.f34123q1);
                         return;
                     }
-                    secretMediaViewer.f34139y.L(0L, false);
-                    secretMediaViewer.f34139y.C();
+                    secretMediaViewer.f34141y.L(0L, false);
+                    secretMediaViewer.f34141y.C();
                 }
             }
         }
@@ -443,7 +443,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     @Override
     public void onVideoSizeChanged(int i10, int i11, int i12, float f7) {
         float f10;
-        n4 n4Var = ((SecretMediaViewer) this.f17103c).f34134w;
+        n4 n4Var = ((SecretMediaViewer) this.f17103c).f34136w;
         if (n4Var != null) {
             if (i11 == 0) {
                 f10 = 1.0f;
@@ -456,18 +456,18 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
 
     @Override
     public void q(float f7, boolean z10) {
-        yb0 yb0Var = (yb0) this.f17102b;
-        ig0 ig0Var = (ig0) this.f17103c;
-        j81 j81Var = ig0Var.d;
+        wb0 wb0Var = (wb0) this.f17102b;
+        hg0 hg0Var = (hg0) this.f17103c;
+        j81 j81Var = hg0Var.d;
         if (j81Var != null) {
             long p5 = j81Var.p();
             float max = 2.8f / ((float) Math.max(60L, p5));
             long j10 = (((f7 / (1.0f - max)) * max) + f7) * ((float) p5);
-            ig0Var.e = j10;
-            ig0Var.d.L(j10, !z10);
+            hg0Var.e = j10;
+            hg0Var.d.L(j10, !z10);
             if (!z10) {
-                AndroidUtilities.cancelRunOnUIThread(yb0Var);
-                AndroidUtilities.runOnUIThread(yb0Var, 120L);
+                AndroidUtilities.cancelRunOnUIThread(wb0Var);
+                AndroidUtilities.runOnUIThread(wb0Var, 120L);
             }
         }
     }
@@ -497,8 +497,8 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
                     printWriter.println((Object) null);
                     printWriter.print(str2);
                     printWriter.print("mLoader=");
-                    printWriter.println(aVar.f48902l);
-                    a6.d dVar = aVar.f48902l;
+                    printWriter.println(aVar.f48901l);
+                    a6.d dVar = aVar.f48901l;
                     String str3 = str2 + "  ";
                     dVar.getClass();
                     printWriter.print(str3);
@@ -538,11 +538,11 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
                         dVar.h.getClass();
                         printWriter.println(false);
                     }
-                    if (aVar.f48904n != null) {
+                    if (aVar.f48903n != null) {
                         printWriter.print(str2);
                         printWriter.print("mCallbacks=");
-                        printWriter.println(aVar.f48904n);
-                        b2.t tVar = aVar.f48904n;
+                        printWriter.println(aVar.f48903n);
+                        b2.t tVar = aVar.f48903n;
                         tVar.getClass();
                         printWriter.print(str2 + "  ");
                         printWriter.print("mDeliveredData=");
@@ -550,7 +550,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
                     }
                     printWriter.print(str2);
                     printWriter.print("mData=");
-                    a6.d dVar2 = aVar.f48902l;
+                    a6.d dVar2 = aVar.f48901l;
                     Object obj2 = aVar.e;
                     if (obj2 != z.f3386k) {
                         obj = obj2;
@@ -589,46 +589,46 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
         xu xuVar = yuVar.X;
         if (bVar != null) {
             ((bi.c) this.f17102b).i(bVar);
-            yuVar.f43972e0.d();
-            bi.c cVar = yuVar.f43974g0;
-            zy0[] zy0VarArr = yuVar.f43969b0;
-            z1[] z1VarArr = yuVar.f43970c0;
+            yuVar.f43957e0.d();
+            bi.c cVar = yuVar.f43959g0;
+            yy0[] yy0VarArr = yuVar.f43954b0;
+            z1[] z1VarArr = yuVar.f43955c0;
             z1 z1Var = z1VarArr[0];
             if (z1Var != null) {
-                zy0 zy0Var = zy0VarArr[0];
+                yy0 yy0Var = yy0VarArr[0];
                 boolean z11 = cVar.f4442m;
-                zy0Var.f33366c = z11;
+                yy0Var.f33088c = z11;
                 z1Var.c(z11, true);
             }
             z1 z1Var2 = z1VarArr[1];
             if (z1Var2 != null) {
-                zy0 zy0Var2 = zy0VarArr[1];
+                yy0 yy0Var2 = yy0VarArr[1];
                 boolean z12 = cVar.f4443n;
-                zy0Var2.f33366c = z12;
+                yy0Var2.f33088c = z12;
                 z1Var2.c(z12, true);
             }
             z1 z1Var3 = z1VarArr[2];
             if (z1Var3 != null) {
-                zy0 zy0Var3 = zy0VarArr[2];
+                yy0 yy0Var3 = yy0VarArr[2];
                 boolean z13 = cVar.f4444o;
-                zy0Var3.f33366c = z13;
+                yy0Var3.f33088c = z13;
                 z1Var3.c(z13, true);
             }
             z1 z1Var4 = z1VarArr[3];
             if (z1Var4 != null) {
-                zy0 zy0Var4 = zy0VarArr[3];
+                yy0 yy0Var4 = yy0VarArr[3];
                 boolean z14 = cVar.f4445p;
-                zy0Var4.f33366c = z14;
+                yy0Var4.f33088c = z14;
                 z1Var4.c(z14, true);
             }
             z1 z1Var5 = z1VarArr[4];
             if (z1Var5 != null) {
-                zy0 zy0Var5 = zy0VarArr[4];
+                yy0 yy0Var5 = yy0VarArr[4];
                 boolean z15 = cVar.f4446q;
-                zy0Var5.f33366c = z15;
+                yy0Var5.f33088c = z15;
                 z1Var5.c(z15, true);
             }
-            yuVar.f43968a0.a(xuVar.d(), true);
+            yuVar.f43953a0.a(xuVar.d(), true);
             xuVar.c(true);
         }
     }
@@ -643,7 +643,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
                     Log.w("FirebaseCrashlytics", "Received null app settings, cannot send reports at crash time.", null);
                     return Tasks.forResult(null);
                 }
-                return Tasks.whenAll(x9.m.b(mVar), mVar.f50150m.v((Executor) this.f17102b, null));
+                return Tasks.whenAll(x9.m.b(mVar), mVar.f50149m.v((Executor) this.f17102b, null));
             default:
                 return ((x9.m) this.f17103c).e.w(new u4.f(1, this, (Boolean) obj));
         }
@@ -707,7 +707,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     public void y(Canvas canvas, float f7, float f10, float f11, float f12) {
         canvas.save();
         canvas.clipRect(f7, f10, f11, f12);
-        ((PhotoViewer) this.f17103c).V0(canvas, (na) this.f17102b, -14277082, 855638016, false, true, true);
+        ((PhotoViewer) this.f17103c).V0(canvas, (la) this.f17102b, -14277082, 855638016, false, true, true);
         canvas.drawColor(637534208);
         canvas.restore();
     }
@@ -719,10 +719,10 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     @Override
     public void onRenderedFirstFrame() {
         SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f17103c;
-        if (secretMediaViewer.f34092c0) {
+        if (secretMediaViewer.f34094c0) {
             return;
         }
-        secretMediaViewer.f34092c0 = true;
+        secretMediaViewer.f34094c0 = true;
         secretMediaViewer.e.invalidate();
     }
 
@@ -750,7 +750,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     public e(androidx.lifecycle.t tVar, t0 t0Var) {
         this.f17101a = 21;
         this.f17102b = tVar;
-        this.f17103c = (w1.b) new androidx.biometric.e(t0Var, w1.b.f48905f).j(w1.b.class);
+        this.f17103c = (w1.b) new androidx.biometric.e(t0Var, w1.b.f48904f).j(w1.b.class);
     }
 
     public e(j0 j0Var) {
@@ -758,10 +758,10 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
         this.f17102b = j0Var;
     }
 
-    public e(ig0 ig0Var) {
+    public e(hg0 hg0Var) {
         this.f17101a = 7;
-        this.f17103c = ig0Var;
-        this.f17102b = new yb0(this, 10);
+        this.f17103c = hg0Var;
+        this.f17102b = new wb0(this, 10);
     }
 
     public e(l9.h hVar) {
@@ -888,7 +888,7 @@ public final class e implements gp0, gu, zb, l7, om0, gh.a, g81, p2.u, ne.d, com
     public e(PhotoViewer photoViewer) {
         this.f17101a = 10;
         this.f17103c = photoViewer;
-        this.f17102b = new na(photoViewer.f33552b0, photoViewer.f33580e0, 0, false);
+        this.f17102b = new la(photoViewer.f33554b0, photoViewer.f33582e0, 0, false);
     }
 
     @Override

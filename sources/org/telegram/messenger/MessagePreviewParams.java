@@ -15,10 +15,10 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.dc0;
-import org.telegram.ui.Components.lc0;
-import org.telegram.ui.Components.qc0;
-import org.telegram.ui.Components.rc0;
+import org.telegram.ui.Components.bc0;
+import org.telegram.ui.Components.jc0;
+import org.telegram.ui.Components.oc0;
+import org.telegram.ui.Components.pc0;
 import org.telegram.ui.in;
 public class MessagePreviewParams {
     public CharacterStyle currentLink;
@@ -36,7 +36,7 @@ public class MessagePreviewParams {
     public boolean monoforum;
     public boolean multipleUsers;
     public boolean noforwards;
-    private rc0 previewView;
+    private pc0 previewView;
     public in quote;
     public int quoteEnd;
     public int quoteStart;
@@ -253,8 +253,8 @@ public class MessagePreviewParams {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.MessagePreviewParams.toPreviewMessage(org.telegram.messenger.MessageObject, java.lang.Boolean, int):org.telegram.messenger.MessageObject");
     }
 
-    public void attach(rc0 rc0Var) {
-        this.previewView = rc0Var;
+    public void attach(pc0 pc0Var) {
+        this.previewView = pc0Var;
     }
 
     public void checkCurrentLink(MessageObject messageObject) {
@@ -277,7 +277,7 @@ public class MessagePreviewParams {
 
     public void checkEdits(ArrayList<MessageObject> arrayList) {
         boolean z10;
-        rc0 rc0Var;
+        pc0 pc0Var;
         float f7;
         Messages checkEdits;
         Messages checkEdits2;
@@ -299,53 +299,53 @@ public class MessagePreviewParams {
             this.linkMessage = checkEdits;
             z10 = true;
         }
-        if (z10 && (rc0Var = this.previewView) != null) {
-            MessagePreviewParams messagePreviewParams = rc0Var.d;
+        if (z10 && (pc0Var = this.previewView) != null) {
+            MessagePreviewParams messagePreviewParams = pc0Var.d;
             int i10 = 0;
             while (true) {
-                View[] viewArr = rc0Var.f30146f.e;
+                View[] viewArr = pc0Var.f29540f.e;
                 if (i10 < viewArr.length) {
                     View view = viewArr[i10];
-                    if (view instanceof lc0) {
-                        lc0 lc0Var = (lc0) view;
-                        int i11 = lc0Var.f28335a;
-                        dc0 dc0Var = lc0Var.e;
+                    if (view instanceof jc0) {
+                        jc0 jc0Var = (jc0) view;
+                        int i11 = jc0Var.f27669a;
+                        bc0 bc0Var = jc0Var.e;
                         if (i11 == 1) {
-                            lc0Var.f28343r = messagePreviewParams.forwardMessages;
+                            jc0Var.f27677r = messagePreviewParams.forwardMessages;
                         } else if (i11 == 0) {
-                            lc0Var.f28343r = messagePreviewParams.replyMessage;
+                            jc0Var.f27677r = messagePreviewParams.replyMessage;
                         } else if (i11 == 2) {
-                            lc0Var.f28343r = messagePreviewParams.linkMessage;
+                            jc0Var.f27677r = messagePreviewParams.linkMessage;
                         }
-                        lc0Var.i();
+                        jc0Var.i();
                         if (i11 == 0) {
                             MessageObject messageObject = null;
-                            if (rc0Var.f30144b && !messagePreviewParams.isSecret) {
-                                org.telegram.ui.Cells.w9 w9Var = dc0Var.W;
+                            if (pc0Var.f29538b && !messagePreviewParams.isSecret) {
+                                org.telegram.ui.Cells.w9 w9Var = bc0Var.W;
                                 if (w9Var != null) {
                                     messageObject = ((org.telegram.ui.Cells.t1) w9Var).getMessageObject();
                                 }
-                                MessageObject c10 = lc0Var.c(messageObject);
+                                MessageObject c10 = jc0Var.c(messageObject);
                                 if (c10 != null) {
                                     messagePreviewParams.quoteStart = 0;
-                                    int min = Math.min(MessagesController.getInstance(rc0Var.f30150w).quoteLengthMax, in.d(c10));
+                                    int min = Math.min(MessagesController.getInstance(pc0Var.f29544w).quoteLengthMax, in.d(c10));
                                     messagePreviewParams.quoteEnd = min;
                                     messagePreviewParams.quote = in.c(c10, messagePreviewParams.quoteStart, min);
-                                    View d = lc0Var.d();
+                                    View d = jc0Var.d();
                                     if (d instanceof org.telegram.ui.Cells.t1) {
-                                        dc0Var.Z((org.telegram.ui.Cells.t1) d, messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd);
+                                        bc0Var.Z((org.telegram.ui.Cells.t1) d, messagePreviewParams.quoteStart, messagePreviewParams.quoteEnd);
                                     }
                                 }
                             } else {
                                 messagePreviewParams.quote = null;
-                                dc0Var.f(false);
-                                lc0Var.h(false, true);
+                                bc0Var.f(false);
+                                jc0Var.h(false, true);
                             }
-                            lc0Var.l(true);
+                            jc0Var.l(true);
                         }
-                        qc0 qc0Var = lc0Var.G;
-                        if (qc0Var != null) {
-                            ViewPropertyAnimator animate = qc0Var.animate();
+                        oc0 oc0Var = jc0Var.G;
+                        if (oc0Var != null) {
+                            ViewPropertyAnimator animate = oc0Var.animate();
                             if (messagePreviewParams.hasMedia) {
                                 f7 = 1.0f;
                             } else {
@@ -547,10 +547,10 @@ public class MessagePreviewParams {
                 TLRPC.TL_messageReplyHeader tL_messageReplyHeader = new TLRPC.TL_messageReplyHeader();
                 tL_message.reply_to = tL_messageReplyHeader;
                 if (inVar != null) {
-                    tL_messageReplyHeader.quote_text = inVar.f38275i;
+                    tL_messageReplyHeader.quote_text = inVar.f38337i;
                     int i13 = tL_messageReplyHeader.flags;
                     tL_messageReplyHeader.flags = i13 | 64;
-                    ArrayList<TLRPC.MessageEntity> arrayList = inVar.f38276j;
+                    ArrayList<TLRPC.MessageEntity> arrayList = inVar.f38338j;
                     tL_messageReplyHeader.quote_entities = arrayList;
                     if (arrayList != null) {
                         tL_messageReplyHeader.flags = i13 | 192;
@@ -604,20 +604,20 @@ public class MessagePreviewParams {
                 }
             }
         }
-        rc0 rc0Var = this.previewView;
-        if (rc0Var != null) {
-            MessagePreviewParams messagePreviewParams = rc0Var.d;
+        pc0 pc0Var = this.previewView;
+        if (pc0Var != null) {
+            MessagePreviewParams messagePreviewParams = pc0Var.d;
             int i14 = 0;
             while (true) {
-                View[] viewArr = rc0Var.f30146f.e;
+                View[] viewArr = pc0Var.f29540f.e;
                 if (i14 < viewArr.length) {
                     View view = viewArr[i14];
                     if (view != null) {
-                        lc0 lc0Var = (lc0) view;
-                        FrameLayout frameLayout = lc0Var.F;
-                        if (lc0Var.f28335a == 2) {
-                            qc0 qc0Var = lc0Var.H;
-                            qc0 qc0Var2 = lc0Var.G;
+                        jc0 jc0Var = (jc0) view;
+                        FrameLayout frameLayout = jc0Var.F;
+                        if (jc0Var.f27669a == 2) {
+                            oc0 oc0Var = jc0Var.H;
+                            oc0 oc0Var2 = jc0Var.G;
                             if (messagePreviewParams.singleLink && !messagePreviewParams.hasMedia) {
                                 i11 = 8;
                             } else {
@@ -630,11 +630,11 @@ public class MessagePreviewParams {
                             } else {
                                 i12 = 0;
                             }
-                            qc0Var2.setVisibility(i12);
+                            oc0Var2.setVisibility(i12);
                             if (messagePreviewParams.isVideo) {
                                 i15 = 0;
                             }
-                            qc0Var.setVisibility(i15);
+                            oc0Var.setVisibility(i15);
                             ViewPropertyAnimator animate = frameLayout.animate();
                             if (messagePreviewParams.hasMedia) {
                                 f7 = 1.0f;
@@ -642,10 +642,10 @@ public class MessagePreviewParams {
                                 f7 = 0.5f;
                             }
                             animate.alpha(f7).start();
-                            qc0Var2.a(messagePreviewParams.webpageSmall, true);
-                            qc0Var.a(messagePreviewParams.webpageSmall, true);
-                            lc0Var.E.a(!messagePreviewParams.webpageTop, true);
-                            lc0Var.i();
+                            oc0Var2.a(messagePreviewParams.webpageSmall, true);
+                            oc0Var.a(messagePreviewParams.webpageSmall, true);
+                            jc0Var.E.a(!messagePreviewParams.webpageTop, true);
+                            jc0Var.i();
                         }
                     }
                     i14++;
@@ -688,15 +688,15 @@ public class MessagePreviewParams {
         } else {
             MessageObject messageObject3 = messageObject2;
             if (messageObject3 == null) {
-                messageObject3 = inVar2.f38270a;
+                messageObject3 = inVar2.f38332a;
             }
             this.replyMessage = new Messages(this, null, 1, messageObject3, j10);
         }
         if (!this.replyMessage.messages.isEmpty()) {
             this.quote = inVar2;
             if (inVar2 != null) {
-                this.quoteStart = inVar2.f38271b;
-                this.quoteEnd = inVar2.f38272c;
+                this.quoteStart = inVar2.f38333b;
+                this.quoteEnd = inVar2.f38334c;
                 return;
             }
             return;

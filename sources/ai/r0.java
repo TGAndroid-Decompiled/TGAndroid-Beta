@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import j$.util.Objects;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.DispatchQueue2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
@@ -27,12 +27,12 @@ import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.eh0;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.so0;
-import org.telegram.ui.Components.z71;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.dh0;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.y71;
 import org.telegram.ui.ey;
 import org.telegram.ui.nx;
 public final class r0 implements Utilities.Callback {
@@ -52,7 +52,7 @@ public final class r0 implements Utilities.Callback {
         boolean z10;
         int i10;
         float f7;
-        b71 b71Var;
+        a71 a71Var;
         int i11 = 0;
         boolean z11 = false;
         int i12 = 0;
@@ -125,16 +125,16 @@ public final class r0 implements Utilities.Callback {
                     ci.h1.W = h1Var;
                     h1Var.J = NativeInstance.createVideoCapturer(h1Var.H, h1Var.I ? 1 : 0);
                     if (h1Var.E != null) {
-                        DispatchQueue dispatchQueue = Utilities.globalQueue;
+                        DispatchQueue2 dispatchQueue2 = Utilities.globalQueue;
                         NativeInstance nativeInstance = h1Var.E;
                         Objects.requireNonNull(nativeInstance);
-                        dispatchQueue.postRunnable(new org.telegram.messenger.voip.q0(nativeInstance, 3));
+                        dispatchQueue2.postRunnable(new org.telegram.messenger.voip.q0(nativeInstance, 3));
                         h1Var.M.clear();
                         h1Var.E = null;
                     }
                     h1Var.c();
                     h1Var.k();
-                    NotificationCenter.getInstance(h1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1Var.f5382f.f20360id));
+                    NotificationCenter.getInstance(h1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1Var.f5382f.f20361id));
                     return;
                 }
                 return;
@@ -217,7 +217,7 @@ public final class r0 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(new ci.u7(25, s2Var, (Runnable) obj), 80L);
                 return;
             case 15:
-                ((ei.q3) this.f2101b).f9652s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21717w).start();
+                ((ei.q3) this.f2101b).f9652s.animate().translationY(((-((Integer) obj).intValue()) / 2.0f) + AndroidUtilities.dp(80.0f)).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21718w).start();
                 return;
             case 16:
                 ei.l4 l4Var = (ei.l4) this.f2101b;
@@ -226,7 +226,7 @@ public final class r0 implements Utilities.Callback {
                 if (view2 instanceof ei.k4) {
                     g4Var.getClass();
                     int R = RecyclerView.R(view2);
-                    m61 G = g4Var.Z2.G(R);
+                    l61 G = g4Var.Z2.G(R);
                     if (G != null) {
                         ei.k4 k4Var = (ei.k4) view2;
                         k4Var.setPosition(l4Var.b(R));
@@ -266,7 +266,7 @@ public final class r0 implements Utilities.Callback {
                 if (a8Var != null && vbVar.O1 != 1) {
                     boolean isEmpty = TextUtils.isEmpty(a8Var.f8751y);
                     boolean z13 = !isEmpty;
-                    ((eh0) vbVar.f9995j1.f9080c).a(!vbVar.X0.k(), false);
+                    ((dh0) vbVar.f9995j1.f9080c).a(!vbVar.X0.k(), false);
                     vbVar.f9995j1.setVisibility(0);
                     ViewPropertyAnimator animate = vbVar.f9995j1.animate();
                     if (!isEmpty) {
@@ -297,9 +297,9 @@ public final class r0 implements Utilities.Callback {
                 return;
             case 19:
                 ei.z7 z7Var = (ei.z7) obj;
-                z71 z71Var = ((ei.r6) this.f2101b).f9737n;
-                if (z71Var != null) {
-                    z71Var.setHDRInfo(z7Var);
+                y71 y71Var = ((ei.r6) this.f2101b).f9737n;
+                if (y71Var != null) {
+                    y71Var.setHDRInfo(z7Var);
                     return;
                 }
                 return;
@@ -314,7 +314,7 @@ public final class r0 implements Utilities.Callback {
                     return;
                 }
                 j8Var.f9291o0 = n0Var.e;
-                j8Var.f9290n0 = n0Var.f45948f;
+                j8Var.f9290n0 = n0Var.f45947f;
                 return;
             case 22:
                 ((ei.g9) this.f2101b).f9084n.W.H = ((Integer) obj).intValue();
@@ -327,9 +327,9 @@ public final class r0 implements Utilities.Callback {
                 ArrayList arrayList4 = tVar.f11478b;
                 arrayList4.clear();
                 arrayList4.addAll((ArrayList) obj);
-                j71 j71Var = tVar.f11477a;
-                if (j71Var != null && (b71Var = j71Var.Z2) != null) {
-                    b71Var.N(true);
+                i71 i71Var = tVar.f11477a;
+                if (i71Var != null && (a71Var = i71Var.Z2) != null) {
+                    a71Var.N(true);
                     return;
                 }
                 return;
@@ -338,15 +338,15 @@ public final class r0 implements Utilities.Callback {
                 return;
             case 26:
                 TLRPC.User user = (TLRPC.User) obj;
-                so0 so0Var = (so0) ((hg.h0) this.f2101b);
-                nx nxVar = so0Var.K0;
+                ro0 ro0Var = (ro0) ((hg.h0) this.f2101b);
+                nx nxVar = ro0Var.K0;
                 if (user != null) {
                     ey eyVar = nxVar.J0;
                     if (eyVar != null) {
                         eyVar.I3();
                     }
                     MessagesController.getInstance(nxVar.H0).openApp(user, 0);
-                    so0Var.Q(user.f20490id, user);
+                    ro0Var.Q(user.f20491id, user);
                     return;
                 }
                 return;
@@ -358,9 +358,9 @@ public final class r0 implements Utilities.Callback {
                     z11 = true;
                 }
                 fVar.f12175n = arrayList5;
-                j71 j71Var2 = fVar.f12174f;
-                if (j71Var2 != null) {
-                    j71Var2.Z2.N(z11);
+                i71 i71Var2 = fVar.f12174f;
+                if (i71Var2 != null) {
+                    i71Var2.Z2.N(z11);
                     return;
                 }
                 return;
@@ -372,7 +372,7 @@ public final class r0 implements Utilities.Callback {
                 if (mVar.I != z12) {
                     mVar.I = z12;
                     if (!z12) {
-                        mVar.f25907a.x0(0);
+                        mVar.f25615a.x0(0);
                         return;
                     }
                     return;

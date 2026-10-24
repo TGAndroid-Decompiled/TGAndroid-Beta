@@ -54,7 +54,7 @@ public abstract class d extends Drawable implements b6 {
     public int h;
     public int f8024n;
     public int f8025r;
-    public int f8026s = r6.f21817b;
+    public int f8026s = r6.f21818b;
     public final c v;
     public b f8027w;
     public int f8028x;
@@ -460,7 +460,7 @@ public abstract class d extends Drawable implements b6 {
 
     @Override
     public void updateColors() {
-        this.f8026s = r6.f21817b;
+        this.f8026s = r6.f21818b;
         eh.a aVar = this.f8022c;
         if (aVar == null) {
             return;

@@ -3,17 +3,17 @@ package z2;
 import android.media.Spatializer;
 import android.media.Spatializer$OnSpatializerStateChangedListener;
 public final class d implements Spatializer$OnSpatializerStateChangedListener {
-    public final Runnable f51100a;
+    public final Runnable f51099a;
 
     public d(Runnable runnable) {
-        this.f51100a = runnable;
+        this.f51099a = runnable;
     }
 
     public final void onSpatializerAvailableChanged(Spatializer spatializer, boolean z10) {
-        this.f51100a.run();
+        this.f51099a.run();
     }
 
     public final void onSpatializerEnabledChanged(Spatializer spatializer, boolean z10) {
-        this.f51100a.run();
+        this.f51099a.run();
     }
 }

@@ -2,8 +2,8 @@ package ci;
 
 import android.graphics.ColorFilter;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.yq;
-public final class o2 extends yq {
+import org.telegram.ui.Components.wq;
+public final class o2 extends wq {
     public final int f5627y;
 
     public o2(Drawable drawable, Drawable drawable2, int i10) {

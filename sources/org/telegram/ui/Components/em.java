@@ -1,69 +1,80 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.PhotoViewer;
-public final class em extends mm0 {
-    public final int Y2;
-    public final ChatAttachAlertPhotoLayout Z2;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class em extends AnimatorListenerAdapter {
+    public final int f26074a;
+    public final ChatAttachAlertPhotoLayout f26075b;
 
-    public em(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, g6Var);
-        this.Y2 = i10;
-        this.Z2 = chatAttachAlertPhotoLayout;
+    public em(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout, int i10) {
+        this.f26074a = i10;
+        this.f26075b = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.Y2) {
-            case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Z2.f28366b.f30728e2[0] - AndroidUtilities.dp(80.0f)) {
-                    return false;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        switch (this.Y2) {
-            case 1:
-                super.onLayout(z10, i10, i11, i12, i13);
-                PhotoViewer.u1().z0();
-                return;
-            default:
-                super.onLayout(z10, i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.Y2) {
-            case 1:
-                if (motionEvent.getAction() == 0 && motionEvent.getY() < this.Z2.f28366b.f30728e2[0] - AndroidUtilities.dp(80.0f)) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void requestLayout() {
-        switch (this.Y2) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f26074a) {
             case 0:
-                if (!this.Z2.J0) {
-                    super.requestLayout();
+                this.f26075b.m0 = null;
+                return;
+            case 1:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26075b;
+                chatAttachAlertPhotoLayout.f24239f1.unlock();
+                chatAttachAlertPhotoLayout.f24234d0 = false;
+                mm mmVar = chatAttachAlertPhotoLayout.P;
+                if (mmVar != null) {
+                    mmVar.invalidateOutline();
+                    chatAttachAlertPhotoLayout.P.invalidate();
+                }
+                if (chatAttachAlertPhotoLayout.f24230b0) {
+                    chatAttachAlertPhotoLayout.f27704b.f30138c2.J();
+                }
+                mm mmVar2 = chatAttachAlertPhotoLayout.P;
+                if (mmVar2 != null) {
+                    mmVar2.setSystemUiVisibility(1028);
+                }
+                cm cmVar = chatAttachAlertPhotoLayout.E;
+                if (cmVar != null) {
+                    cmVar.invalidate();
                     return;
                 }
                 return;
             default:
-                super.requestLayout();
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout2 = this.f26075b;
+                fa1 fa1Var = chatAttachAlertPhotoLayout2.f24250l0;
+                chatAttachAlertPhotoLayout2.f24239f1.unlock();
+                chatAttachAlertPhotoLayout2.f24245i1 = false;
+                chatAttachAlertPhotoLayout2.f27704b.getWindow().clearFlags(128);
+                chatAttachAlertPhotoLayout2.setCameraOpenProgress(0.0f);
+                chatAttachAlertPhotoLayout2.f24234d0 = false;
+                cm cmVar2 = chatAttachAlertPhotoLayout2.E;
+                if (cmVar2 != null) {
+                    cmVar2.invalidate();
+                }
+                mm mmVar3 = chatAttachAlertPhotoLayout2.P;
+                if (mmVar3 != null) {
+                    mmVar3.invalidateOutline();
+                    chatAttachAlertPhotoLayout2.P.invalidate();
+                }
+                chatAttachAlertPhotoLayout2.f24230b0 = false;
+                ah.x xVar = chatAttachAlertPhotoLayout2.f24246j0;
+                if (xVar != null) {
+                    xVar.setVisibility(8);
+                }
+                if (fa1Var != null) {
+                    fa1Var.setVisibility(8);
+                    fa1Var.setTag(null);
+                }
+                cm cmVar3 = chatAttachAlertPhotoLayout2.f24260r;
+                if (cmVar3 != null) {
+                    cmVar3.setVisibility(8);
+                }
+                mm mmVar4 = chatAttachAlertPhotoLayout2.P;
+                if (mmVar4 != null) {
+                    mmVar4.setFpsLimit(30);
+                    chatAttachAlertPhotoLayout2.P.setSystemUiVisibility(1024);
+                    return;
+                }
                 return;
         }
     }

@@ -13,7 +13,7 @@ public final class a9 implements Runnable {
         switch (this.f8755a) {
             case 0:
                 r9 r9Var = this.f8756b.W;
-                org.telegram.ui.Components.qc.h(r9Var.container);
+                org.telegram.ui.Components.oc.h(r9Var.container);
                 r9.D(r9Var);
                 return;
             case 1:

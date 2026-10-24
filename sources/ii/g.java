@@ -13,36 +13,36 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.u9;
 import s4.o0;
-public final class g extends l61 {
+public final class g extends k61 {
     public static final int f13208a = 0;
 
     static {
-        l61.setup(new l61());
+        k61.setup(new k61());
     }
 
     @Override
-    public final void bindView(View view, m61 m61Var, boolean z10, b71 b71Var, j71 j71Var) {
+    public final void bindView(View view, l61 l61Var, boolean z10, a71 a71Var, i71 i71Var) {
         int i10;
         h hVar = (h) view;
-        f fVar = (f) m61Var.G;
+        f fVar = (f) l61Var.G;
         TLRPC.User user = fVar.f13206b;
         long j10 = fVar.f13205a;
         boolean z11 = fVar.f13207c;
-        boolean z12 = !m61Var.f28557j;
-        w9 w9Var = hVar.f13211c;
+        boolean z12 = !l61Var.f28225j;
+        u9 u9Var = hVar.f13211c;
         TextView textView = hVar.f13213n;
         TextView textView2 = hVar.d;
-        hVar.E = (e) m61Var.H;
+        hVar.E = (e) l61Var.H;
         hVar.F = j10;
-        hVar.G = user.f20490id;
+        hVar.G = user.f20491id;
         int i11 = hVar.f13210b;
         TLRPC.Chat chat = MessagesController.getInstance(i11).getChat(Long.valueOf(-j10));
         TLRPC.User user2 = MessagesController.getInstance(i11).getUser(Long.valueOf(j10));
@@ -74,15 +74,15 @@ public final class g extends l61 {
         }
         hVar.f13217x = z12;
         if (user2 != null) {
-            w9Var.e(user2, new h9(0, user2));
+            u9Var.e(user2, new f9(0, user2));
         } else {
-            w9Var.e(chat, new h9(chat));
+            u9Var.e(chat, new f9(chat));
         }
-        hVar.e.e(user, new h9(0, user));
+        hVar.e.e(user, new f9(0, user));
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, g6 g6Var) {
+    public final View createView(Context context, lm0 lm0Var, int i10, int i11, g6 g6Var) {
         h hVar = new h(context, i10, g6Var);
         hVar.setLayoutParams(new o0(-1, -2));
         hVar.setClickable(false);
@@ -90,9 +90,9 @@ public final class g extends l61 {
     }
 
     @Override
-    public final boolean equals(m61 m61Var, m61 m61Var2) {
-        f fVar = (f) m61Var.G;
-        f fVar2 = (f) m61Var2.G;
+    public final boolean equals(l61 l61Var, l61 l61Var2) {
+        f fVar = (f) l61Var.G;
+        f fVar2 = (f) l61Var2.G;
         if (fVar.f13205a == fVar2.f13205a && DialogObject.getDialogId(fVar.f13206b) == DialogObject.getDialogId(fVar2.f13206b)) {
             return true;
         }

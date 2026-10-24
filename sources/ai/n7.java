@@ -30,19 +30,19 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i11;
+import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.zr;
 public final class n7 {
     public float A;
     public float B;
-    public i11 C;
+    public h11 C;
     public final RectF D;
     public final Path E;
     public final Paint F;
     public final ee G;
-    public final org.telegram.ui.Components.yc H;
-    public final org.telegram.ui.Components.yc I;
-    public final org.telegram.ui.Components.yc J;
+    public final org.telegram.ui.Components.wc H;
+    public final org.telegram.ui.Components.wc I;
+    public final org.telegram.ui.Components.wc J;
     public final RectF K;
     public boolean L;
     public int M;
@@ -59,7 +59,7 @@ public final class n7 {
     public final View f1869b;
     public final org.telegram.ui.ActionBar.g6 f1870c;
     public final ImageReceiver d;
-    public final org.telegram.ui.Components.p5 e;
+    public final org.telegram.ui.Components.n5 e;
     public int f1872g;
     public RadialGradient h;
     public final yh.j1 f1874j;
@@ -68,9 +68,9 @@ public final class n7 {
     public TL_stars.starGiftAttributeModel f1877m;
     public boolean f1880p;
     public float f1881q;
-    public i11 f1882r;
+    public h11 f1882r;
     public float f1883s;
-    public i11 f1884t;
+    public h11 f1884t;
     public float f1885u;
     public float v;
     public float f1887x;
@@ -90,17 +90,17 @@ public final class n7 {
         this.F = new Paint();
         this.G = new ee(1, 25);
         this.K = new RectF();
-        this.T = new ne.e(0, new a1.c(this, 6), bs.h, 320L);
+        this.T = new ne.e(0, new a1.c(this, 6), zr.h, 320L);
         this.f1868a = i10;
         this.f1869b = view;
         this.f1870c = g6Var;
         this.f1874j = new yh.j1(view);
-        this.H = new org.telegram.ui.Components.yc(view);
-        this.I = new org.telegram.ui.Components.yc(view);
-        this.J = new org.telegram.ui.Components.yc(view);
+        this.H = new org.telegram.ui.Components.wc(view);
+        this.I = new org.telegram.ui.Components.wc(view);
+        this.J = new org.telegram.ui.Components.wc(view);
         this.d = new ImageReceiver(view);
-        this.e = new org.telegram.ui.Components.p5(AndroidUtilities.dp(28.0f), view);
-        j0Var.f50777r = view;
+        this.e = new org.telegram.ui.Components.n5(AndroidUtilities.dp(28.0f), view);
+        j0Var.f50776r = view;
         j0Var.d.setParentView(view);
     }
 
@@ -118,12 +118,12 @@ public final class n7 {
         yh.j1 j1Var = this.f1874j;
         if (z10 && j1Var != null) {
             int i10 = this.M;
-            int i11 = org.telegram.ui.ActionBar.r6.f21817b;
+            int i11 = org.telegram.ui.ActionBar.r6.f21818b;
             if (i10 != i11) {
                 this.M = i11;
                 try {
-                    int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21421q7, this.f1870c);
-                    Paint paint = (Paint) j1Var.f24829b;
+                    int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21422q7, this.f1870c);
+                    Paint paint = (Paint) j1Var.f33024b;
                     paint.setShader(null);
                     paint.setColor(w02);
                 } catch (Exception e) {
@@ -163,11 +163,11 @@ public final class n7 {
         canvas.save();
         canvas.translate(f10, AndroidUtilities.dp(65.0f));
         TL_stars.starGiftAttributeBackdrop stargiftattributebackdrop2 = this.f1875k;
-        org.telegram.ui.Components.p5 p5Var = this.e;
+        org.telegram.ui.Components.n5 n5Var = this.e;
         if (stargiftattributebackdrop2 != null) {
-            p5Var.k(Integer.valueOf(stargiftattributebackdrop2.pattern_color | (-16777216)));
+            n5Var.k(Integer.valueOf(stargiftattributebackdrop2.pattern_color | (-16777216)));
         }
-        m1.a(canvas, 1, p5Var, rectF.width(), rectF.height(), 1.0f, 1.1f);
+        m1.a(canvas, 1, n5Var, rectF.width(), rectF.height(), 1.0f, 1.1f);
         canvas.restore();
         ImageReceiver imageReceiver = this.d;
         imageReceiver.setImageCoords(f10 - (AndroidUtilities.dp(110.0f) / 2.0f), AndroidUtilities.dp(10.0f), AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f));
@@ -178,18 +178,18 @@ public final class n7 {
             o12 = stargiftattributebackdrop3.text_color | (-16777216);
         }
         int i12 = o12;
-        this.f1882r.f27174p = eVar.e - AndroidUtilities.dp(12.0f);
-        i11 i11Var = this.f1882r;
-        i11Var.c(f10 - (i11Var.f27164c / 2.0f), this.f1881q, 1.0f, -1, canvas);
-        this.f1884t.f27174p = eVar.e - AndroidUtilities.dp(12.0f);
-        i11 i11Var2 = this.f1884t;
+        this.f1882r.f26853p = eVar.e - AndroidUtilities.dp(12.0f);
+        h11 h11Var = this.f1882r;
+        h11Var.c(f10 - (h11Var.f26843c / 2.0f), this.f1881q, 1.0f, -1, canvas);
+        this.f1884t.f26853p = eVar.e - AndroidUtilities.dp(12.0f);
+        h11 h11Var2 = this.f1884t;
         Canvas canvas2 = canvas;
         int i13 = i12;
-        i11Var2.c(f10 - (i11Var2.f27164c / 2.0f), this.f1883s, 1.0f, i13, canvas2);
+        h11Var2.c(f10 - (h11Var2.f26843c / 2.0f), this.f1883s, 1.0f, i13, canvas2);
         if (this.f1889z) {
             yh.j0 j0Var = this.f1888y;
-            int i14 = j0Var.f50779t;
-            int i15 = j0Var.f50780u;
+            int i14 = j0Var.f50778t;
+            int i15 = j0Var.f50779u;
             int i16 = (int) (f10 - (i14 / 2.0f));
             int i17 = (int) this.f1887x;
             int i18 = i14 + i16;
@@ -211,10 +211,10 @@ public final class n7 {
             while (i19 < size) {
                 int i20 = i19 + 1;
                 m7 m7Var = (m7) arrayList.get(i19);
-                i11 i11Var3 = m7Var.f1815b;
+                h11 h11Var3 = m7Var.f1815b;
                 float f13 = f10 - (dp / 2.0f);
                 float f14 = f12;
-                i11Var3.c((f13 + this.f1885u) - i11Var3.f27164c, m7Var.f1814a, 1.0f, i13, canvas2);
+                h11Var3.c((f13 + this.f1885u) - h11Var3.f26843c, m7Var.f1814a, 1.0f, i13, canvas2);
                 canvas2 = canvas;
                 m7Var.f1816c.c(f13 + this.f1885u + AndroidUtilities.dp(f14), m7Var.f1814a, 1.0f, -1, canvas2);
                 i13 = i13;
@@ -225,10 +225,10 @@ public final class n7 {
         int i21 = i13;
         if (!this.f1880p) {
             float f15 = this.A;
-            float a11 = org.telegram.messenger.v0.a(this.C.f27164c, AndroidUtilities.dp(30.0f), 2.0f, f10);
+            float a11 = org.telegram.messenger.v0.a(this.C.f26843c, AndroidUtilities.dp(30.0f), 2.0f, f10);
             float f16 = this.A + this.B;
             RectF rectF3 = this.D;
-            rectF3.set(f10 - ((this.C.f27164c + AndroidUtilities.dp(30.0f)) / 2.0f), f15, a11, f16);
+            rectF3.set(f10 - ((this.C.f26843c + AndroidUtilities.dp(30.0f)) / 2.0f), f15, a11, f16);
             Path path2 = this.E;
             path2.rewind();
             float f17 = this.B / 2.0f;
@@ -241,7 +241,7 @@ public final class n7 {
             canvas2.drawPath(path2, paint3);
             canvas2.restore();
             j1Var.setBounds(((int) rectF.right) - AndroidUtilities.dp(46.67f), ((int) rectF.top) - AndroidUtilities.dp(1.33f), AndroidUtilities.dp(1.33f) + ((int) rectF.right), AndroidUtilities.dp(46.67f) + ((int) rectF.top));
-            j1Var.f50787x = i21;
+            j1Var.f50786x = i21;
             j1Var.draw(canvas2);
         }
         canvas2.restore();
@@ -310,21 +310,21 @@ public final class n7 {
         float dp2 = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
         int i12 = 0;
         if (this.f1880p) {
-            this.f1882r = new i11(tL_starGiftUnique.title, 14.0f, AndroidUtilities.bold());
+            this.f1882r = new h11(tL_starGiftUnique.title, 14.0f, AndroidUtilities.bold());
         } else if (tL_messageActionStarGiftUnique.peer == null && !UserObject.isService(messageObject.getDialogId())) {
             if (messageObject.getDialogId() == UserConfig.getInstance(i11).getClientUserId()) {
                 if (tL_starGiftUnique.crafted) {
-                    this.f1882r = new i11(LocaleController.getString(R.string.Gift2ActionCraftedTitle), 14.0f, AndroidUtilities.bold());
+                    this.f1882r = new h11(LocaleController.getString(R.string.Gift2ActionCraftedTitle), 14.0f, AndroidUtilities.bold());
                 } else if (tL_messageActionStarGiftUnique.resale_amount != null) {
-                    this.f1882r = new i11(LocaleController.getString(R.string.Gift2ActionPurchasedTitle), 14.0f, AndroidUtilities.bold());
+                    this.f1882r = new h11(LocaleController.getString(R.string.Gift2ActionPurchasedTitle), 14.0f, AndroidUtilities.bold());
                 } else {
-                    this.f1882r = new i11(LocaleController.getString(R.string.Gift2ActionUpgradedTitle), 14.0f, AndroidUtilities.bold());
+                    this.f1882r = new h11(LocaleController.getString(R.string.Gift2ActionUpgradedTitle), 14.0f, AndroidUtilities.bold());
                 }
             } else {
-                this.f1882r = new i11(LocaleController.formatString(R.string.Gift2UniqueTitle, shortName), 14.0f, AndroidUtilities.bold());
+                this.f1882r = new h11(LocaleController.formatString(R.string.Gift2UniqueTitle, shortName), 14.0f, AndroidUtilities.bold());
             }
         } else {
-            this.f1882r = new i11(LocaleController.getString(R.string.Gift2UniqueTitle2), 14.0f, AndroidUtilities.bold());
+            this.f1882r = new h11(LocaleController.getString(R.string.Gift2UniqueTitle2), 14.0f, AndroidUtilities.bold());
         }
         this.f1881q = (this.f1882r.j() / 2.0f) + dp2;
         float j10 = this.f1882r.j() + dp2 + AndroidUtilities.dp(3.0f);
@@ -332,7 +332,7 @@ public final class n7 {
         if (this.f1880p) {
             f7 = 10.0f;
             f10 = 3.0f;
-            this.f1884t = new i11(LocaleController.formatPluralStringComma("Gift2CollectionNumber", tL_starGiftUnique.num), 12.0f, AndroidUtilities.bold());
+            this.f1884t = new h11(LocaleController.formatPluralStringComma("Gift2CollectionNumber", tL_starGiftUnique.num), 12.0f, AndroidUtilities.bold());
             f11 = 2.0f;
         } else {
             f7 = 10.0f;
@@ -341,7 +341,7 @@ public final class n7 {
             sb2.append(tL_starGiftUnique.title);
             sb2.append(" #");
             f11 = 2.0f;
-            this.f1884t = new i11(i2.o1.m(tL_starGiftUnique.num, ',', sb2), 12.0f, null);
+            this.f1884t = new h11(i2.o1.m(tL_starGiftUnique.num, ',', sb2), 12.0f, null);
         }
         this.f1883s = (this.f1884t.j() / f11) + j10;
         float j11 = this.f1884t.j() + j10;
@@ -358,7 +358,7 @@ public final class n7 {
         TLRPC.TL_textWithEntities tL_textWithEntities = tL_messageActionStarGiftUnique.message;
         yh.j0 j0Var = this.f1888y;
         if (tL_textWithEntities != null) {
-            TextPaint textPaint = j0Var.f50765c;
+            TextPaint textPaint = j0Var.f50764c;
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
             Spannable replaceAnimatedEmoji = MessageObject.replaceAnimatedEmoji(Emoji.replaceEmoji(spannableStringBuilder, textPaint.getFontMetricsInt(), false), tL_textWithEntities.entities, textPaint.getFontMetricsInt());
@@ -371,11 +371,11 @@ public final class n7 {
             }
             this.f1889z = true;
             j0Var.c(tLObject);
-            j0Var.f50772m = replaceAnimatedEmoji;
-            j0Var.f50778s = -1;
+            j0Var.f50771m = replaceAnimatedEmoji;
+            j0Var.f50777s = -1;
             j0Var.b(((int) f13) - AndroidUtilities.dp(24.0f));
             if (!this.N) {
-                StaticLayout staticLayout = j0Var.f50773n;
+                StaticLayout staticLayout = j0Var.f50772n;
                 if (staticLayout != null) {
                     i10 = staticLayout.getLineCount();
                 } else {
@@ -383,7 +383,7 @@ public final class n7 {
                 }
                 if (i10 > 3) {
                     this.N = true;
-                    StaticLayout staticLayout2 = j0Var.f50773n;
+                    StaticLayout staticLayout2 = j0Var.f50772n;
                     if (staticLayout2 != null) {
                         i12 = staticLayout2.getLineCount();
                     }
@@ -394,12 +394,12 @@ public final class n7 {
             }
             float dp4 = dp3 + AndroidUtilities.dp(4.0f);
             this.f1887x = dp4;
-            dp3 = dp4 + j0Var.f50780u + AndroidUtilities.dp(f10);
+            dp3 = dp4 + j0Var.f50779u + AndroidUtilities.dp(f10);
         } else {
             this.f1889z = false;
             j0Var.c(null);
-            j0Var.f50772m = null;
-            j0Var.f50778s = -1;
+            j0Var.f50771m = null;
+            j0Var.f50777s = -1;
             if (this.f1877m != null) {
                 if (!arrayList.isEmpty()) {
                     dp3 += AndroidUtilities.dp(6.0f);
@@ -407,12 +407,12 @@ public final class n7 {
                 m7 m7Var = new m7(dp3, LocaleController.getString(R.string.Gift2AttributeModel), this.f1877m.name);
                 arrayList.add(m7Var);
                 float f14 = f13 * 0.5f;
-                i11 i11Var = m7Var.f1815b;
-                i11Var.f27174p = f14;
-                this.f1885u = Math.max(this.f1885u, i11Var.f27164c);
-                i11 i11Var2 = m7Var.f1816c;
-                i11Var2.f27174p = f14;
-                this.v = Math.max(this.v, i11Var2.f27164c);
+                h11 h11Var = m7Var.f1815b;
+                h11Var.f26853p = f14;
+                this.f1885u = Math.max(this.f1885u, h11Var.f26843c);
+                h11 h11Var2 = m7Var.f1816c;
+                h11Var2.f26853p = f14;
+                this.v = Math.max(this.v, h11Var2.f26843c);
                 dp3 += m7Var.a();
             }
             if (this.f1875k != null) {
@@ -422,12 +422,12 @@ public final class n7 {
                 m7 m7Var2 = new m7(dp3, LocaleController.getString(R.string.Gift2AttributeBackdrop), this.f1875k.name);
                 arrayList.add(m7Var2);
                 float f15 = f13 * 0.5f;
-                i11 i11Var3 = m7Var2.f1815b;
-                i11Var3.f27174p = f15;
-                this.f1885u = Math.max(this.f1885u, i11Var3.f27164c);
-                i11 i11Var4 = m7Var2.f1816c;
-                i11Var4.f27174p = f15;
-                this.v = Math.max(this.v, i11Var4.f27164c);
+                h11 h11Var3 = m7Var2.f1815b;
+                h11Var3.f26853p = f15;
+                this.f1885u = Math.max(this.f1885u, h11Var3.f26843c);
+                h11 h11Var4 = m7Var2.f1816c;
+                h11Var4.f26853p = f15;
+                this.v = Math.max(this.v, h11Var4.f26843c);
                 dp3 = m7Var2.a() + dp3;
             }
             if (this.f1876l != null) {
@@ -437,19 +437,19 @@ public final class n7 {
                 m7 m7Var3 = new m7(dp3, LocaleController.getString(R.string.Gift2AttributeSymbol), this.f1876l.name);
                 arrayList.add(m7Var3);
                 float f16 = f13 * 0.5f;
-                i11 i11Var5 = m7Var3.f1815b;
-                i11Var5.f27174p = f16;
-                this.f1885u = Math.max(this.f1885u, i11Var5.f27164c);
-                i11 i11Var6 = m7Var3.f1816c;
-                i11Var6.f27174p = f16;
-                this.v = Math.max(this.v, i11Var6.f27164c);
+                h11 h11Var5 = m7Var3.f1815b;
+                h11Var5.f26853p = f16;
+                this.f1885u = Math.max(this.f1885u, h11Var5.f26843c);
+                h11 h11Var6 = m7Var3.f1816c;
+                h11Var6.f26853p = f16;
+                this.v = Math.max(this.v, h11Var6.f26843c);
                 dp3 += m7Var3.a();
             }
         }
         float dp5 = dp3 + AndroidUtilities.dp(11.66f);
         if (!this.f1880p) {
             this.A = dp5;
-            this.C = new i11(LocaleController.getString(R.string.Gift2UniqueView), 14.0f, AndroidUtilities.bold());
+            this.C = new h11(LocaleController.getString(R.string.Gift2UniqueView), 14.0f, AndroidUtilities.bold());
             float dp6 = AndroidUtilities.dp(30.0f);
             this.B = dp6;
             dp5 += dp6;
@@ -466,24 +466,24 @@ public final class n7 {
         float f7 = this.O;
         float dp = AndroidUtilities.dp(10.0f) + 0.0f + AndroidUtilities.dp(110.0f) + AndroidUtilities.dp(9.33f);
         int i11 = 0;
-        i11 i11Var = new i11(LocaleController.formatString(R.string.Gift2UniqueTitle, DialogObject.getShortName(j10)), 14.0f, AndroidUtilities.bold());
-        this.f1882r = i11Var;
-        this.f1881q = (i11Var.j() / 2.0f) + dp;
+        h11 h11Var = new h11(LocaleController.formatString(R.string.Gift2UniqueTitle, DialogObject.getShortName(j10)), 14.0f, AndroidUtilities.bold());
+        this.f1882r = h11Var;
+        this.f1881q = (h11Var.j() / 2.0f) + dp;
         float j11 = this.f1882r.j() + dp + AndroidUtilities.dp(3.0f);
         StringBuilder sb2 = new StringBuilder();
         sb2.append(tL_starGiftUnique.title);
         sb2.append(" #");
         String m10 = i2.o1.m(tL_starGiftUnique.num, ',', sb2);
         TLObject tLObject = null;
-        i11 i11Var2 = new i11(m10, 12.0f, null);
-        this.f1884t = i11Var2;
-        this.f1883s = (i11Var2.j() / 2.0f) + j11;
+        h11 h11Var2 = new h11(m10, 12.0f, null);
+        this.f1884t = h11Var2;
+        this.f1883s = (h11Var2.j() / 2.0f) + j11;
         float j12 = this.f1884t.j() + j11 + AndroidUtilities.dp(11.0f);
         this.f1886w.clear();
         this.f1885u = 0.0f;
         this.v = 0.0f;
         yh.j0 j0Var = this.f1888y;
-        TextPaint textPaint = j0Var.f50765c;
+        TextPaint textPaint = j0Var.f50764c;
         if (tL_textWithEntities != null && !TextUtils.isEmpty(tL_textWithEntities.text)) {
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(tL_textWithEntities.text);
             MessageObject.addEntitiesToText(spannableStringBuilder, tL_textWithEntities.entities, false, false, false, false);
@@ -498,11 +498,11 @@ public final class n7 {
         }
         this.f1889z = true;
         j0Var.c(tLObject);
-        j0Var.f50772m = spanned;
-        j0Var.f50778s = -1;
+        j0Var.f50771m = spanned;
+        j0Var.f50777s = -1;
         j0Var.b(((int) f7) - AndroidUtilities.dp(24.0f));
         if (!this.N) {
-            StaticLayout staticLayout = j0Var.f50773n;
+            StaticLayout staticLayout = j0Var.f50772n;
             if (staticLayout != null) {
                 i10 = staticLayout.getLineCount();
             } else {
@@ -510,7 +510,7 @@ public final class n7 {
             }
             if (i10 > 3) {
                 this.N = true;
-                StaticLayout staticLayout2 = j0Var.f50773n;
+                StaticLayout staticLayout2 = j0Var.f50772n;
                 if (staticLayout2 != null) {
                     i11 = staticLayout2.getLineCount();
                 }
@@ -521,9 +521,9 @@ public final class n7 {
         }
         float dp2 = j12 + AndroidUtilities.dp(4.0f);
         this.f1887x = dp2;
-        float dp3 = dp2 + j0Var.f50780u + AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(11.66f);
+        float dp3 = dp2 + j0Var.f50779u + AndroidUtilities.dp(3.0f) + AndroidUtilities.dp(11.66f);
         this.A = dp3;
-        this.C = new i11(str, 14.0f, AndroidUtilities.bold());
+        this.C = new h11(str, 14.0f, AndroidUtilities.bold());
         float dp4 = AndroidUtilities.dp(30.0f);
         this.B = dp4;
         this.P = (int) (dp3 + dp4 + AndroidUtilities.dp(11.0f));

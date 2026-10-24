@@ -47,15 +47,15 @@ import org.telegram.ui.ActionBar.p3;
 import org.telegram.ui.ActionBar.q3;
 import org.telegram.ui.Cells.la;
 import org.telegram.ui.Cells.na;
-import org.telegram.ui.Components.ew0;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.ff;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.k8;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.df;
+import org.telegram.ui.Components.dw0;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.i8;
+import org.telegram.ui.Components.jg;
 import org.telegram.ui.Components.lg;
-import org.telegram.ui.Components.ng;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.vp0;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.up0;
 import org.telegram.ui.sn;
 public final class d2 implements Runnable {
     public final int f12894a;
@@ -93,7 +93,7 @@ public final class d2 implements Runnable {
                 return;
             case 1:
                 String str = e2.m0.f8259a;
-                j2.e eVar = ((i2.b0) ((k2.v) ((qf.b) this.f12895b).f44865c)).f12353a.f12442s;
+                j2.e eVar = ((i2.b0) ((k2.v) ((qf.b) this.f12895b).f44864c)).f12353a.f12442s;
                 j2.a p5 = eVar.p();
                 eVar.q(p5, 1009, new j2.d(p5, (b2.w) this.f12896c, (i2.f) this.d, 8));
                 return;
@@ -142,9 +142,9 @@ public final class d2 implements Runnable {
                 }
             case 3:
                 w3 w3Var = (w3) this.f12895b;
-                j80 j80Var = (j80) this.f12896c;
+                h80 h80Var = (h80) this.f12896c;
                 o5 o5Var = (o5) this.d;
-                if (w3Var.f15661k4 == j80Var) {
+                if (w3Var.f15661k4 == h80Var) {
                     w3Var.f15661k4 = null;
                     if (w3Var.D3 && w3Var.f15659j4 == o5Var && !o5Var.H.isEmpty()) {
                         w3Var.S2();
@@ -261,10 +261,10 @@ public final class d2 implements Runnable {
                 this.f12896c.c(kVar2.f17120a, kVar2.f17121b, (oa.d) this.d);
                 return;
             case 14:
-                ((VideoAds) this.f12895b).lambda$show$3((qc) this.f12896c, (TLRPC.TL_sponsoredMessage) this.d);
+                ((VideoAds) this.f12895b).lambda$show$3((oc) this.f12896c, (TLRPC.TL_sponsoredMessage) this.d);
                 return;
             case 15:
-                ((VideoAds) this.f12895b).lambda$show$5((qc) this.f12896c, (boolean[]) this.d);
+                ((VideoAds) this.f12895b).lambda$show$5((oc) this.f12896c, (boolean[]) this.d);
                 return;
             case 16:
                 ((VideoPlayerHolderBase) this.f12895b).lambda$release$3((TLRPC.Document) this.f12896c, (Runnable) this.d);
@@ -283,14 +283,14 @@ public final class d2 implements Runnable {
                 if (actionBarPopupWindow$ActionBarPopupWindowLayout != null && (viewGroup = (ViewGroup) actionBarPopupWindow$ActionBarPopupWindowLayout.getParent()) != null) {
                     viewGroup.removeView(actionBarLayout.J);
                 }
-                if (!actionBarLayout.h && !actionBarLayout.f20614a0) {
+                if (!actionBarLayout.h && !actionBarLayout.f20615a0) {
                     actionBarLayout.v.setTranslationX(0.0f);
                 } else {
                     actionBarLayout.v.setScaleX(1.0f);
                     actionBarLayout.v.setScaleY(1.0f);
                     actionBarLayout.h = false;
                     actionBarLayout.J = null;
-                    actionBarLayout.f20614a0 = false;
+                    actionBarLayout.f20615a0 = false;
                 }
                 actionBarLayout.m(o2Var);
                 o2Var.setRemovingFromStack(false);
@@ -300,7 +300,7 @@ public final class d2 implements Runnable {
                 return;
             case 20:
                 ((o2) this.f12896c).presentFragment((sn) this.d);
-                ((q3) this.f12895b).f21789c = false;
+                ((q3) this.f12895b).f21790c = false;
                 return;
             case 21:
                 q3 q3Var = (q3) this.f12895b;
@@ -308,7 +308,7 @@ public final class d2 implements Runnable {
                 p3 p3Var = (p3) this.d;
                 q3Var.getClass();
                 while (i10 < arrayList5.size()) {
-                    if (((n3) arrayList5.get(i10)).f21650a == p3Var) {
+                    if (((n3) arrayList5.get(i10)).f21651a == p3Var) {
                         arrayList5.remove(i10);
                         i10--;
                     }
@@ -322,7 +322,7 @@ public final class d2 implements Runnable {
                 j6 j6Var2 = (j6) this.d;
                 if (tLObject2 instanceof TLRPC.TL_wallPaper) {
                     TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) tLObject2;
-                    j6Var.f21029g0 = FileLoader.getAttachFileName(tL_wallPaper.document);
+                    j6Var.f21030g0 = FileLoader.getAttachFileName(tL_wallPaper.document);
                     NotificationCenter.getInstance(j6Var.E).addObserver(j6Var, NotificationCenter.fileLoaded);
                     NotificationCenter.getInstance(j6Var.E).addObserver(j6Var, NotificationCenter.fileLoadFailed);
                     FileLoader.getInstance(j6Var2.E).loadFile(tL_wallPaper.document, tL_wallPaper, 1, 1);
@@ -332,36 +332,36 @@ public final class d2 implements Runnable {
                 return;
             case 23:
                 org.telegram.ui.Cells.v0 v0Var2 = (org.telegram.ui.Cells.v0) this.f12895b;
-                org.telegram.ui.Wallet.o5.B0(v0Var2.getContext(), v0Var2.H, (TL_wallet.walletTransaction) this.f12896c, null, null, null, (org.telegram.ui.Cells.o0) this.d, v0Var2.f23774g1);
+                org.telegram.ui.Wallet.o5.B0(v0Var2.getContext(), v0Var2.H, (TL_wallet.walletTransaction) this.f12896c, null, null, null, (org.telegram.ui.Cells.o0) this.d, v0Var2.f23775g1);
                 return;
             case 24:
                 org.telegram.ui.Cells.v0 v0Var3 = (org.telegram.ui.Cells.v0) this.f12895b;
-                v0Var3.f23771f1.C1(v0Var3, (TLRPC.TL_premiumGiftOption) this.f12896c, (String) this.d);
+                v0Var3.f23772f1.C1(v0Var3, (TLRPC.TL_premiumGiftOption) this.f12896c, (String) this.d);
                 return;
             case 25:
                 j6 j6Var3 = (j6) this.f12896c;
-                j6Var3.f21027f = true ^ j6Var3.d((File) this.d, j6Var3.f21023c);
+                j6Var3.f21028f = true ^ j6Var3.d((File) this.d, j6Var3.f21024c);
                 AndroidUtilities.runOnUIThread(new la(8, (na) this.f12895b, j6Var3));
                 return;
             case 26:
                 org.telegram.ui.Components.e0 e0Var = (org.telegram.ui.Components.e0) this.f12895b;
-                f5.M((Context) this.f12896c, e0Var.f25775l0, new k2.w0(e0Var, 10), (g6) this.d);
+                d5.L((Context) this.f12896c, e0Var.f25887l0, new k2.w0(e0Var, 10), (g6) this.d);
                 return;
             case 27:
-                k8.r((k8) this.f12895b, (org.telegram.ui.ActionBar.c2) this.d, (TLObject) this.f12896c);
+                i8.r((i8) this.f12895b, (org.telegram.ui.ActionBar.c2) this.d, (TLObject) this.f12896c);
                 return;
             case 28:
-                ff ffVar = (ff) this.f12895b;
-                ffVar.getClass();
-                ((ew0) this.f12896c).getViewTreeObserver().removeOnDrawListener(ffVar);
-                ((vp0) this.d).f32038a.setHideAvatar(true);
+                df dfVar = (df) this.f12895b;
+                dfVar.getClass();
+                ((dw0) this.f12896c).getViewTreeObserver().removeOnDrawListener(dfVar);
+                ((up0) this.d).f31194a.setHideAvatar(true);
                 return;
             default:
-                ng ngVar = (ng) this.f12895b;
+                lg lgVar = (lg) this.f12895b;
                 Uri uri = (Uri) this.f12896c;
                 File file = (File) this.d;
                 try {
-                    InputStream openInputStream = ngVar.getContext().getContentResolver().openInputStream(uri);
+                    InputStream openInputStream = lgVar.getContext().getContentResolver().openInputStream(uri);
                     FileOutputStream fileOutputStream = new FileOutputStream(file);
                     byte[] bArr = new byte[1024];
                     while (true) {
@@ -375,7 +375,7 @@ public final class d2 implements Runnable {
                             MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, -1, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L);
                             ArrayList arrayList6 = new ArrayList();
                             arrayList6.add(photoEntry);
-                            AndroidUtilities.runOnUIThread(new lg(ngVar, arrayList6, file, 0));
+                            AndroidUtilities.runOnUIThread(new jg(lgVar, arrayList6, file, 0));
                             return;
                         }
                     }
@@ -386,9 +386,9 @@ public final class d2 implements Runnable {
         }
     }
 
-    public d2(k8 k8Var, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject) {
+    public d2(i8 i8Var, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject) {
         this.f12894a = 27;
-        this.f12895b = k8Var;
+        this.f12895b = i8Var;
         this.d = c2Var;
         this.f12896c = tLObject;
     }

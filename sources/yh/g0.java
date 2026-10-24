@@ -10,17 +10,17 @@ import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.og;
-import org.telegram.ui.Components.q6;
+import org.telegram.ui.Components.mg;
+import org.telegram.ui.Components.o6;
 import org.telegram.ui.in;
-import org.telegram.ui.ve1;
-public final class g0 implements og {
-    public final TL_stars.TL_starGiftUnique f50700a;
-    public final i0 f50701b;
+import org.telegram.ui.ue1;
+public final class g0 implements mg {
+    public final TL_stars.TL_starGiftUnique f50699a;
+    public final i0 f50700b;
 
     public g0(i0 i0Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        this.f50701b = i0Var;
-        this.f50700a = tL_starGiftUnique;
+        this.f50700b = i0Var;
+        this.f50699a = tL_starGiftUnique;
     }
 
     @Override
@@ -44,11 +44,11 @@ public final class g0 implements og {
         boolean z10;
         g6 g6Var;
         g6 g6Var2;
-        i0 i0Var = this.f50701b;
-        q6 q6Var = i0Var.f50755w;
-        y4 y4Var = i0Var.f50749b;
+        i0 i0Var = this.f50700b;
+        o6 o6Var = i0Var.f50754w;
+        y4 y4Var = i0Var.f50748b;
         i10 = ((org.telegram.ui.ActionBar.h3) i0Var).currentAccount;
-        y4Var.a(this.f50700a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50752n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
+        y4Var.a(this.f50699a, UserConfig.getInstance(i10).getClientUserId(), i0Var.f50751n.getTextWithEntities(), LocaleController.getString(R.string.GiftMessageSendNow), true);
         int codePointCount = Character.codePointCount(charSequence, 0, charSequence.length());
         i0Var.F = codePointCount;
         int i12 = i0Var.E;
@@ -57,32 +57,32 @@ public final class g0 implements og {
                 i11 = -9999;
             }
             String formatNumber = LocaleController.formatNumber(i11, ',');
-            if (q6Var.getVisibility() == 0) {
+            if (o6Var.getVisibility() == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            q6Var.c(formatNumber, z10, true);
-            if (q6Var.getVisibility() != 0) {
-                q6Var.setVisibility(0);
-                q6Var.setAlpha(0.0f);
-                q6Var.setScaleX(0.5f);
-                q6Var.setScaleY(0.5f);
+            o6Var.c(formatNumber, z10, true);
+            if (o6Var.getVisibility() != 0) {
+                o6Var.setVisibility(0);
+                o6Var.setAlpha(0.0f);
+                o6Var.setScaleX(0.5f);
+                o6Var.setScaleY(0.5f);
             }
-            q6Var.animate().setListener(null).cancel();
-            q6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
+            o6Var.animate().setListener(null).cancel();
+            o6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(100L).start();
             if (i11 < 0) {
-                int i13 = k6.f21404p7;
+                int i13 = k6.f21405p7;
                 g6Var2 = ((org.telegram.ui.ActionBar.h3) i0Var).resourcesProvider;
-                r6.a0(q6Var, i13, g6Var2);
+                r6.a0(o6Var, i13, g6Var2);
                 return;
             }
-            int i14 = k6.f21571y6;
+            int i14 = k6.f21572y6;
             g6Var = ((org.telegram.ui.ActionBar.h3) i0Var).resourcesProvider;
-            r6.a0(q6Var, i14, g6Var);
+            r6.a0(o6Var, i14, g6Var);
             return;
         }
-        q6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ve1(this, 23));
+        o6Var.animate().alpha(0.0f).scaleX(0.5f).scaleY(0.5f).setDuration(100L).setListener(new ue1(this, 23));
     }
 
     @Override

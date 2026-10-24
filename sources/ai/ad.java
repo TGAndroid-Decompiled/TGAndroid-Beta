@@ -7,9 +7,9 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.e00;
-public final class ad extends org.telegram.ui.Components.q6 {
+public final class ad extends org.telegram.ui.Components.o6 {
     public final int f988s = 0;
     public final Object v;
     public final ViewGroup f989w;
@@ -28,14 +28,14 @@ public final class ad extends org.telegram.ui.Components.q6 {
                 Drawable drawable = (Drawable) this.v;
                 if (!((bd) this.f989w).d) {
                     int measuredWidth = (int) ((getMeasuredWidth() - getDrawable().c()) - AndroidUtilities.dp(20.0f));
-                    drawable.setBounds(measuredWidth, sl.A(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
+                    drawable.setBounds(measuredWidth, tl.A(17.0f, getMeasuredHeight(), 2), AndroidUtilities.dp(17.0f) + measuredWidth, (AndroidUtilities.dp(17.0f) + getMeasuredHeight()) / 2);
                     drawable.draw(canvas);
                 }
                 super.dispatchDraw(canvas);
                 return;
             default:
                 e00 e00Var = (e00) this.f989w;
-                int a2 = e00Var.f36772w.a(e00Var.v, false);
+                int a2 = e00Var.f36760w.a(e00Var.v, false);
                 setTextColor(a2);
                 Paint paint = (Paint) this.v;
                 if (org.telegram.ui.ActionBar.k6.I.q()) {

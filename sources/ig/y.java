@@ -10,8 +10,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.rd;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.pd;
+import org.telegram.ui.Components.vc;
 public final class y {
     public static volatile y[] e = new y[4];
     public static final Object[] f13123f = new Object[4];
@@ -59,11 +59,11 @@ public final class y {
             int indexOf = arrayList.indexOf(c10);
             arrayList.remove(c10);
             NotificationCenter.getInstance(this.f13124a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.businessLinksUpdated, new Object[0]);
-            xc.a0(vVar).U(LocaleController.getString(R.string.BusinessLinkDeleted), true, new ah.o(this, indexOf, c10, 18), new ei.z1(this, str, c10, 26)).j();
+            vc.a0(vVar).U(LocaleController.getString(R.string.BusinessLinkDeleted), true, new ah.o(this, indexOf, c10, 18), new ei.z1(this, str, c10, 26)).j();
         }
     }
 
-    public final void b(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, rd rdVar) {
+    public final void b(TL_account.TL_businessChatLink tL_businessChatLink, TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink, pd pdVar) {
         TL_account.editBusinessChatLink editbusinesschatlink = new TL_account.editBusinessChatLink();
         editbusinesschatlink.slug = tL_businessChatLink.link;
         if (!tL_inputBusinessChatLink.entities.isEmpty()) {
@@ -73,7 +73,7 @@ public final class y {
             tL_inputBusinessChatLink.flags |= 2;
         }
         editbusinesschatlink.link = tL_inputBusinessChatLink;
-        ConnectionsManager.getInstance(this.f13124a).sendRequest(editbusinesschatlink, new j2(this, tL_businessChatLink, rdVar, 9));
+        ConnectionsManager.getInstance(this.f13124a).sendRequest(editbusinesschatlink, new j2(this, tL_businessChatLink, pdVar, 9));
     }
 
     public final TL_account.TL_businessChatLink c(String str) {

@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.uy;
-public final class o implements uy {
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.sy;
+public final class o implements sy {
     public final q f15469a;
 
     public o(q qVar) {
@@ -103,7 +103,7 @@ public final class o implements uy {
 
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.a6 a6Var;
+        org.telegram.ui.Components.y5 y5Var;
         q qVar = this.f15469a;
         h1 P = q.P(qVar);
         if (P != null) {
@@ -114,12 +114,12 @@ public final class o implements uy {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    a6Var = new org.telegram.ui.Components.a6(document, P.getPaint().getFontMetricsInt());
+                    y5Var = new org.telegram.ui.Components.y5(document, P.getPaint().getFontMetricsInt());
                 } else {
-                    a6Var = new org.telegram.ui.Components.a6(j10, P.getPaint().getFontMetricsInt());
+                    y5Var = new org.telegram.ui.Components.y5(j10, P.getPaint().getFontMetricsInt());
                 }
-                a6Var.cacheType = org.telegram.ui.Components.r5.g();
-                spannableString.setSpan(a6Var, 0, spannableString.length(), 33);
+                y5Var.cacheType = org.telegram.ui.Components.p5.g();
+                spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
                 P.setText(P.getText().insert(Q, spannableString));
                 int length = Q + spannableString.length();
                 P.setSelection(length, length);
@@ -141,7 +141,7 @@ public final class o implements uy {
     }
 
     @Override
-    public final void o(i61 i61Var) {
+    public final void o(h61 h61Var) {
     }
 
     @Override

@@ -1,7 +1,7 @@
 package e2;
 
 import java.util.concurrent.ThreadFactory;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.xj0;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class l0 implements ThreadFactory {
     public final int f8258a;
@@ -20,9 +20,9 @@ public final class l0 implements ThreadFactory {
                 thread.setDaemon(true);
                 return thread;
             case 2:
-                return new Thread(runnable, "Lottie-" + yj0.P0.getAndIncrement());
+                return new Thread(runnable, "Lottie-" + xj0.P0.getAndIncrement());
             case 3:
-                return new Thread(runnable, "LottieLow-" + yj0.Q0.getAndIncrement());
+                return new Thread(runnable, "LottieLow-" + xj0.Q0.getAndIncrement());
             case 4:
                 return new Thread(runnable, "GramWalletStorage");
             case 5:

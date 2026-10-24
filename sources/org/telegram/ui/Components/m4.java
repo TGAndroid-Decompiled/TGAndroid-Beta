@@ -1,70 +1,37 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.StickersActivity;
-public final class m4 extends q61 {
-    public final int e;
-    public Object f28499f;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class m4 extends od0 {
+    public final int[] f28508y0;
 
-    public m4(Object obj, int i10) {
-        super("@stickers", (q11) null);
-        this.e = i10;
-        this.f28499f = obj;
+    public m4(Context context, org.telegram.ui.ActionBar.g6 g6Var, int[] iArr) {
+        super(context, g6Var);
+        this.f28508y0 = iArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
-        int i12;
-        switch (this.e) {
-            case 0:
-                ((org.telegram.ui.ActionBar.o2) this.f28499f).dismissCurrentDialog();
-                super.onClick(view);
-                return;
-            case 1:
-                ty0 ty0Var = (ty0) this.f28499f;
-                i10 = ((org.telegram.ui.ActionBar.h3) ty0Var).currentAccount;
-                MessagesController.getInstance(i10).openByUserName(getURL(), ty0Var.L, 1);
-                ty0Var.dismiss();
-                return;
-            case 2:
-                AndroidUtilities.addToClipboard(getURL());
-                xc.a0((ig.v) this.f28499f).k(false).j();
-                return;
-            case 3:
-                org.telegram.ui.e70 e70Var = ((org.telegram.ui.c70) this.f28499f).d;
-                i11 = ((org.telegram.ui.ActionBar.o2) e70Var).currentAccount;
-                MessagesController.getInstance(i11).openByUserName("stickers", e70Var, 1);
-                return;
-            case 4:
-                ((org.telegram.ui.im0) this.f28499f).f38269a.dismissCurrentDialog();
-                super.onClick(view);
-                return;
-            default:
-                StickersActivity stickersActivity = (StickersActivity) this.f28499f;
-                i12 = ((org.telegram.ui.ActionBar.o2) stickersActivity).currentAccount;
-                MessagesController.getInstance(i12).openByUserName("stickers", stickersActivity, 3);
-                return;
+    public final CharSequence d(int i10) {
+        int i11 = this.f28508y0[i10];
+        if (i11 == 0) {
+            return LocaleController.getString(R.string.MuteNever);
         }
-    }
-
-    public m4(String str, int i10, Object obj) {
-        super(str, (q11) null);
-        this.e = i10;
-        this.f28499f = obj;
-    }
-
-    public m4(String str, q11 q11Var) {
-        super(str, q11Var);
-        this.e = 2;
-    }
-
-    public m4(org.telegram.ui.ActionBar.o2 o2Var, String str) {
-        super(str, (q11) null);
-        this.e = 0;
-        this.f28499f = o2Var;
+        if (i11 < 60) {
+            return LocaleController.formatPluralString("Minutes", i11, new Object[0]);
+        }
+        if (i11 < 1440) {
+            return LocaleController.formatPluralString("Hours", i11 / 60, new Object[0]);
+        }
+        if (i11 < 10080) {
+            return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
+        }
+        if (i11 < 44640) {
+            return LocaleController.formatPluralString("Weeks", i11 / 10080, new Object[0]);
+        }
+        if (i11 < 525600) {
+            return LocaleController.formatPluralString("Months", i11 / 44640, new Object[0]);
+        }
+        return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
     }
 }

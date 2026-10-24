@@ -59,8 +59,8 @@ public final class be extends AnimatorListenerAdapter {
                 runnable.run();
             }
         }
-        LaunchActivity launchActivity = LaunchActivity.J1;
-        if (launchActivity != null && (pa0Var = launchActivity.f33501x0) != null) {
+        LaunchActivity launchActivity = LaunchActivity.I1;
+        if (launchActivity != null && (pa0Var = launchActivity.f33503x0) != null) {
             pa0Var.c(true);
         }
     }

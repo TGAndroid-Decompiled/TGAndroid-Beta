@@ -20,26 +20,26 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.NumberTextView;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.e71;
-import org.telegram.ui.Components.kv;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.wx0;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.iv;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.vx0;
 import w7.z5;
-public final class p extends e71 {
+public final class p extends d71 {
     public j e;
-    public final Runnable f43220f;
+    public final Runnable f43209f;
     public final org.telegram.ui.q h;
-    public org.telegram.ui.ActionBar.u0 f43221n;
-    public org.telegram.ui.ActionBar.u0 f43222r;
-    public String f43223s;
+    public org.telegram.ui.ActionBar.u0 f43210n;
+    public org.telegram.ui.ActionBar.u0 f43211r;
+    public String f43212s;
     public NumberTextView v;
     public final j d = new j(null, this.currentAccount, new m(this, 0));
-    public final HashSet f43224w = new HashSet();
-    public final HashSet f43225x = new HashSet();
+    public final HashSet f43213w = new HashSet();
+    public final HashSet f43214x = new HashSet();
 
     public p(org.telegram.ui.a0 a0Var, org.telegram.ui.q qVar) {
-        this.f43220f = a0Var;
+        this.f43209f = a0Var;
         this.h = qVar;
     }
 
@@ -50,9 +50,9 @@ public final class p extends e71 {
         if (jVar != null) {
             jVar.b(new ArrayList(hashSet));
         }
-        pVar.f43224w.clear();
+        pVar.f43213w.clear();
         pVar.actionBar.r();
-        pVar.f25907a.Z2.N(true);
+        pVar.f25615a.Z2.N(true);
     }
 
     public static boolean f0(String str, String str2) {
@@ -72,18 +72,18 @@ public final class p extends e71 {
     }
 
     @Override
-    public final void U(ArrayList arrayList, b71 b71Var) {
+    public final void U(ArrayList arrayList, a71 a71Var) {
         CharSequence charSequence;
         TLRPC.WebPage webPage;
         String str;
         String str2;
         TLRPC.MessageMedia messageMedia;
-        HashSet hashSet = this.f43225x;
+        HashSet hashSet = this.f43214x;
         hashSet.clear();
-        boolean isEmpty = TextUtils.isEmpty(this.f43223s);
+        boolean isEmpty = TextUtils.isEmpty(this.f43212s);
         j jVar = this.d;
         if (isEmpty) {
-            ArrayList arrayList2 = jVar.f43154a;
+            ArrayList arrayList2 = jVar.f43143a;
             int size = arrayList2.size();
             int i10 = 0;
             while (i10 < size) {
@@ -93,24 +93,24 @@ public final class p extends e71 {
                 String a2 = l.a(messageObject);
                 if (!TextUtils.isEmpty(a2) && !a2.startsWith("#") && !a2.startsWith("$") && !a2.startsWith("@")) {
                     hashSet.add(a2);
-                    int i11 = h.f43131a;
-                    m61 J = m61.J(h.class);
-                    J.f28572z = 3;
-                    J.f28564q = false;
+                    int i11 = h.f43120a;
+                    l61 J = l61.J(h.class);
+                    J.f28240z = 3;
+                    J.f28232q = false;
                     J.H = messageObject;
                     J.K(e0(messageObject));
                     arrayList.add(J);
                 }
             }
             charSequence = null;
-            if (!jVar.f43157f) {
-                arrayList.add(m61.o(arrayList.size(), 32));
-                arrayList.add(m61.o(arrayList.size(), 32));
-                arrayList.add(m61.o(arrayList.size(), 32));
+            if (!jVar.f43146f) {
+                arrayList.add(l61.o(arrayList.size(), 32));
+                arrayList.add(l61.o(arrayList.size(), 32));
+                arrayList.add(l61.o(arrayList.size(), 32));
             }
         } else {
             charSequence = null;
-            ArrayList arrayList3 = jVar.f43154a;
+            ArrayList arrayList3 = jVar.f43143a;
             int size2 = arrayList3.size();
             int i12 = 0;
             while (i12 < size2) {
@@ -140,20 +140,20 @@ public final class p extends e71 {
                     } else {
                         str2 = null;
                     }
-                    if (f0(hostAuthority, this.f43223s) || f0(str, this.f43223s) || f0(str2, this.f43223s)) {
-                        String str3 = this.f43223s;
-                        int i13 = h.f43131a;
-                        m61 J2 = m61.J(h.class);
-                        J2.f28572z = 3;
-                        J2.f28564q = false;
+                    if (f0(hostAuthority, this.f43212s) || f0(str, this.f43212s) || f0(str2, this.f43212s)) {
+                        String str3 = this.f43212s;
+                        int i13 = h.f43120a;
+                        l61 J2 = l61.J(h.class);
+                        J2.f28240z = 3;
+                        J2.f28232q = false;
                         J2.H = messageObject2;
-                        J2.f28560m = str3;
+                        J2.f28228m = str3;
                         J2.K(e0(messageObject2));
                         arrayList.add(J2);
                     }
                 }
             }
-            ArrayList arrayList4 = this.e.f43154a;
+            ArrayList arrayList4 = this.e.f43143a;
             int size3 = arrayList4.size();
             int i14 = 0;
             while (i14 < size3) {
@@ -163,25 +163,25 @@ public final class p extends e71 {
                 String a12 = l.a(messageObject3);
                 if (!TextUtils.isEmpty(a12) && !a12.startsWith("#") && !a12.startsWith("$") && !a12.startsWith("@")) {
                     hashSet.add(a12);
-                    String str4 = this.f43223s;
-                    int i15 = h.f43131a;
-                    m61 J3 = m61.J(h.class);
-                    J3.f28572z = 3;
-                    J3.f28564q = false;
+                    String str4 = this.f43212s;
+                    int i15 = h.f43120a;
+                    l61 J3 = l61.J(h.class);
+                    J3.f28240z = 3;
+                    J3.f28232q = false;
                     J3.H = messageObject3;
-                    J3.f28560m = str4;
+                    J3.f28228m = str4;
                     J3.K(e0(messageObject3));
                     arrayList.add(J3);
                 }
             }
-            if (!this.e.f43157f) {
-                arrayList.add(m61.o(arrayList.size(), 32));
-                arrayList.add(m61.o(arrayList.size(), 32));
-                arrayList.add(m61.o(arrayList.size(), 32));
+            if (!this.e.f43146f) {
+                arrayList.add(l61.o(arrayList.size(), 32));
+                arrayList.add(l61.o(arrayList.size(), 32));
+                arrayList.add(l61.o(arrayList.size(), 32));
             }
         }
         if (!arrayList.isEmpty()) {
-            arrayList.add(m61.B(charSequence));
+            arrayList.add(l61.B(charSequence));
         }
     }
 
@@ -191,31 +191,31 @@ public final class p extends e71 {
     }
 
     @Override
-    public final void W(m61 m61Var, View view) {
-        if (m61Var.G(h.class)) {
+    public final void W(l61 l61Var, View view) {
+        if (l61Var.G(h.class)) {
             if (this.actionBar.s()) {
-                c0(m61Var, view);
+                c0(l61Var, view);
                 return;
             }
             finishFragment();
-            this.h.run(l.a((MessageObject) m61Var.H));
+            this.h.run(l.a((MessageObject) l61Var.H));
         }
     }
 
     @Override
-    public final boolean X(m61 m61Var, View view) {
-        if (m61Var.G(h.class)) {
-            c0(m61Var, view);
+    public final boolean X(l61 l61Var, View view) {
+        if (l61Var.G(h.class)) {
+            c0(l61Var, view);
             return true;
         }
         return false;
     }
 
-    public final void c0(m61 m61Var, View view) {
+    public final void c0(l61 l61Var, View view) {
         i iVar = (i) view;
-        MessageObject messageObject = (MessageObject) m61Var.H;
+        MessageObject messageObject = (MessageObject) l61Var.H;
         boolean e02 = e0(messageObject);
-        HashSet hashSet = this.f43224w;
+        HashSet hashSet = this.f43213w;
         boolean z10 = false;
         if (e02) {
             if (messageObject != null) {
@@ -234,7 +234,7 @@ public final class p extends e71 {
         } else {
             this.actionBar.N(null, null);
         }
-        org.telegram.ui.ActionBar.u0 u0Var = this.f43222r;
+        org.telegram.ui.ActionBar.u0 u0Var = this.f43211r;
         if (hashSet.size() == 1) {
             z10 = true;
         }
@@ -245,14 +245,14 @@ public final class p extends e71 {
     public final View createView(Context context) {
         this.fragmentView = super.createView(context);
         org.telegram.ui.ActionBar.k kVar = this.actionBar;
-        int i10 = k6.f21183d6;
+        int i10 = k6.f21184d6;
         r6.i(i10, kVar, getResourceProvider());
         this.actionBar.setActionModeColor(k6.x0(null, i10, false));
         this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i11 = k6.G6;
         r6.m(kVar2, 5, i11, getResourceProvider());
-        r6.m(this.actionBar, 3, k6.f21590z8, getResourceProvider());
+        r6.m(this.actionBar, 3, k6.f21591z8, getResourceProvider());
         r6.m(this.actionBar, 1, i11, getResourceProvider());
         r6.b(this.actionBar, i11, getResourceProvider(), true);
         this.actionBar.setCastShadows(true);
@@ -262,41 +262,41 @@ public final class p extends e71 {
         this.v = numberTextView;
         numberTextView.setTextSize(18);
         this.v.setTypeface(AndroidUtilities.bold());
-        this.v.setTextColor(getThemedColor(k6.f21573y8));
+        this.v.setTextColor(getThemedColor(k6.f21574y8));
         this.v.setOnTouchListener(new di.d(2));
         i12.addView(this.v, z5.m(1.0f, 0, -1, 65, 0, 0));
-        this.f43222r = i12.h(R.id.menu_link, R.drawable.msg_message, LocaleController.getString(R.string.AccDescrGoToMessage), AndroidUtilities.dp(54.0f));
+        this.f43211r = i12.h(R.id.menu_link, R.drawable.msg_message, LocaleController.getString(R.string.AccDescrGoToMessage), AndroidUtilities.dp(54.0f));
         i12.h(R.id.menu_delete, R.drawable.msg_delete, LocaleController.getString(R.string.Delete), AndroidUtilities.dp(54.0f));
         org.telegram.ui.ActionBar.u0 c10 = this.actionBar.m().c(0, R.drawable.outline_header_search, getResourceProvider());
         c10.F();
         c10.H = new o(this);
-        this.f43221n = c10;
+        this.f43210n = c10;
         c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f43221n.setContentDescription(LocaleController.getString(R.string.Search));
-        EditTextBoldCursor searchField = this.f43221n.getSearchField();
+        this.f43210n.setContentDescription(LocaleController.getString(R.string.Search));
+        EditTextBoldCursor searchField = this.f43210n.getSearchField();
         r6.W(searchField, i11, getResourceProvider());
         r6.F(searchField, k6.Si, getResourceProvider());
         r6.x(searchField, i11, getResourceProvider());
-        this.f25907a.j(new kv(this, 17));
-        wx0 wx0Var = new wx0(context, null, 1, null);
-        wx0Var.d.setText(LocaleController.getString(R.string.WebNoBookmarks));
-        wx0Var.e.setVisibility(8);
-        wx0Var.e(false, false);
-        wx0Var.setAnimateLayoutChange(true);
-        ((FrameLayout) this.fragmentView).addView(wx0Var, z5.c(-1.0f, -1));
-        this.f25907a.setEmptyView(wx0Var);
+        this.f25615a.j(new iv(this, 17));
+        vx0 vx0Var = new vx0(context, null, 1, null);
+        vx0Var.d.setText(LocaleController.getString(R.string.WebNoBookmarks));
+        vx0Var.e.setVisibility(8);
+        vx0Var.e(false, false);
+        vx0Var.setAnimateLayoutChange(true);
+        ((FrameLayout) this.fragmentView).addView(vx0Var, z5.c(-1.0f, -1));
+        this.f25615a.setEmptyView(vx0Var);
         return this.fragmentView;
     }
 
     public final void d0() {
-        HashSet hashSet = this.f43224w;
+        HashSet hashSet = this.f43213w;
         if (hashSet.size() != 1) {
             return;
         }
         long clientUserId = UserConfig.getInstance(this.currentAccount).getClientUserId();
         int intValue = ((Integer) hashSet.iterator().next()).intValue();
         finishFragment();
-        Runnable runnable = this.f43220f;
+        Runnable runnable = this.f43209f;
         if (runnable != null) {
             runnable.run();
         }
@@ -305,7 +305,7 @@ public final class p extends e71 {
 
     public final boolean e0(MessageObject messageObject) {
         if (messageObject != null) {
-            if (this.f43224w.contains(Integer.valueOf(messageObject.getId()))) {
+            if (this.f43213w.contains(Integer.valueOf(messageObject.getId()))) {
                 return true;
             }
             return false;
@@ -318,9 +318,9 @@ public final class p extends e71 {
         int i11 = -1;
         int i12 = 0;
         while (true) {
-            if (i12 < this.f25907a.getChildCount()) {
-                View childAt = this.f25907a.getChildAt(i12);
-                this.f25907a.getClass();
+            if (i12 < this.f25615a.getChildCount()) {
+                View childAt = this.f25615a.getChildAt(i12);
+                this.f25615a.getClass();
                 int R = RecyclerView.R(childAt);
                 if (R < 0) {
                     i12++;
@@ -335,17 +335,17 @@ public final class p extends e71 {
                 break;
             }
         }
-        this.f25907a.Z2.N(true);
+        this.f25615a.Z2.N(true);
         if (i11 >= 0) {
-            this.f25907a.Y2.h1(i11, i10);
+            this.f25615a.Y2.h1(i11, i10);
         } else {
-            this.f25907a.Y2.h1(0, 0);
+            this.f25615a.Y2.h1(0, 0);
         }
     }
 
     @Override
     public final boolean isLightStatusBar() {
-        if (AndroidUtilities.computePerceivedBrightness(getThemedColor(k6.f21183d6)) > 0.721f) {
+        if (AndroidUtilities.computePerceivedBrightness(getThemedColor(k6.f21184d6)) > 0.721f) {
             return true;
         }
         return false;
@@ -369,15 +369,15 @@ public final class p extends e71 {
             super.onThemeColorsChanged();
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {
-                kVar.setActionModeColor(k6.x0(null, k6.f21183d6, false));
+                kVar.setActionModeColor(k6.x0(null, k6.f21184d6, false));
             }
             NumberTextView numberTextView = this.v;
             if (numberTextView != null) {
-                numberTextView.setTextColor(getThemedColor(k6.f21573y8));
+                numberTextView.setTextColor(getThemedColor(k6.f21574y8));
             }
-            org.telegram.ui.ActionBar.u0 u0Var = this.f43221n;
+            org.telegram.ui.ActionBar.u0 u0Var = this.f43210n;
             if (u0Var != null && u0Var.getSearchField() != null) {
-                this.f43221n.getSearchField().setCursorColor(getThemedColor(k6.G6));
+                this.f43210n.getSearchField().setCursorColor(getThemedColor(k6.G6));
             }
         } catch (Exception e) {
             FileLog.e(e);

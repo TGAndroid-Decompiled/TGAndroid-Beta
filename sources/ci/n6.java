@@ -40,7 +40,7 @@ public final class n6 implements Runnable {
                         TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject;
                         for (int i10 = 0; i10 < tL_stories_stories.stories.size(); i10++) {
                             for (int i11 = 0; i11 < peerStories.stories.size(); i11++) {
-                                if (peerStories.stories.get(i11).f20577id == tL_stories_stories.stories.get(i10).f20577id) {
+                                if (peerStories.stories.get(i11).f20578id == tL_stories_stories.stories.get(i10).f20578id) {
                                     peerStories.stories.set(i11, tL_stories_stories.stories.get(i10));
                                     h7Var.W(j10, tL_stories_stories.stories.get(i10));
                                 }

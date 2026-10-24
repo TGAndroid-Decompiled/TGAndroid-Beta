@@ -241,7 +241,7 @@ public final class g7 implements NotificationCenter.NotificationCenterDelegate {
         this.f5370s = E;
         if (E) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
-            tL_message.f20364id = 1;
+            tL_message.f20365id = 1;
             String absolutePath = ei.a8.x(this.M.f5399a, true).getAbsolutePath();
             tL_message.attachPath = absolutePath;
             this.e = absolutePath;

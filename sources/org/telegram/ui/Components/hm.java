@@ -1,74 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.R;
-import org.telegram.messenger.camera.CameraView;
-public final class hm implements CameraView.CameraViewDelegate {
-    public final ChatAttachAlertPhotoLayout f26984a;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.ui.pc1;
+public final class hm extends org.telegram.ui.ActionBar.u0 {
+    public final int f27078x0;
+    public final Object f27079y0;
 
-    public hm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
-        this.f26984a = chatAttachAlertPhotoLayout;
+    public hm(ji jiVar, Context context, org.telegram.ui.ActionBar.y yVar, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
+        super(context, yVar, 0, 0, false, g6Var);
+        this.f27078x0 = i10;
+        this.f27079y0 = jiVar;
     }
 
     @Override
-    public final void onCameraInit() {
-        int i10;
-        float f7;
-        int i11;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f26984a;
-        ImageView imageView = chatAttachAlertPhotoLayout.f24260r0;
-        ImageView[] imageViewArr = chatAttachAlertPhotoLayout.S;
-        String currentFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode();
-        String nextFlashMode = chatAttachAlertPhotoLayout.P.getCameraSession().getNextFlashMode();
-        if (currentFlashMode != null && nextFlashMode != null) {
-            int i12 = 4;
-            if (currentFlashMode.equals(nextFlashMode)) {
-                for (int i13 = 0; i13 < 2; i13++) {
-                    imageViewArr[i13].setVisibility(4);
-                    imageViewArr[i13].setAlpha(0.0f);
-                    imageViewArr[i13].setTranslationY(0.0f);
-                }
-            } else {
-                ChatAttachAlertPhotoLayout.o0(imageViewArr[0], chatAttachAlertPhotoLayout.P.getCameraSession().getCurrentFlashMode());
-                for (int i14 = 0; i14 < 2; i14++) {
-                    ImageView imageView2 = imageViewArr[i14];
-                    if (i14 == 0) {
-                        i10 = 0;
-                    } else {
-                        i10 = 4;
-                    }
-                    imageView2.setVisibility(i10);
-                    ImageView imageView3 = imageViewArr[i14];
-                    if (i14 == 0 && chatAttachAlertPhotoLayout.f24229b0) {
-                        f7 = 1.0f;
-                    } else {
-                        f7 = 0.0f;
-                    }
-                    imageView3.setAlpha(f7);
-                    imageViewArr[i14].setTranslationY(0.0f);
-                }
-            }
-            if (chatAttachAlertPhotoLayout.P.isFrontface()) {
-                i11 = R.drawable.camera_revert1;
-            } else {
-                i11 = R.drawable.camera_revert2;
-            }
-            imageView.setImageResource(i11);
-            if (chatAttachAlertPhotoLayout.P.hasFrontFaceCamera()) {
-                i12 = 0;
-            }
-            imageView.setVisibility(i12);
-            if (!chatAttachAlertPhotoLayout.f24229b0) {
-                AnimatorSet animatorSet = new AnimatorSet();
-                chatAttachAlertPhotoLayout.O = animatorSet;
-                animatorSet.playTogether(ObjectAnimator.ofFloat(chatAttachAlertPhotoLayout.P, View.ALPHA, 0.0f, 1.0f));
-                chatAttachAlertPhotoLayout.O.setDuration(180L);
-                chatAttachAlertPhotoLayout.O.addListener(new org.telegram.ui.pq(this, 14));
-                chatAttachAlertPhotoLayout.O.start();
-            }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f27078x0) {
+            case 0:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.f27079y0).f24269x.getText());
+                return;
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((zm) this.f27079y0).f33295x.getText());
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((pc1) this.f27079y0).h.getText());
+                return;
         }
+    }
+
+    public hm(pc1 pc1Var, Context context, org.telegram.ui.ActionBar.y yVar) {
+        super(context, yVar, 0, 0);
+        this.f27078x0 = 2;
+        this.f27079y0 = pc1Var;
     }
 }

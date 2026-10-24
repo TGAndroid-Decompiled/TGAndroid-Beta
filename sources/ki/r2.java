@@ -9,7 +9,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.mq0;
+import org.telegram.ui.lq0;
 public final class r2 implements Runnable {
     public final int f15544a;
     public final int f15545b;
@@ -64,9 +64,9 @@ public final class r2 implements Runnable {
         this.f15546c = z10;
     }
 
-    public r2(mq0 mq0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
+    public r2(lq0 lq0Var, String str, int i10, TLObject tLObject, boolean z10, TLRPC.User user) {
         this.f15544a = 5;
-        this.d = mq0Var;
+        this.d = lq0Var;
         this.f15547f = str;
         this.f15545b = i10;
         this.e = tLObject;

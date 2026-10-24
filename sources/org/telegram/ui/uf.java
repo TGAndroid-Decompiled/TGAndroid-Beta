@@ -6,26 +6,26 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class uf implements org.telegram.ui.Components.pk0 {
-    public final int f42415a;
-    public final sn f42416b;
-    public final boolean f42417c;
+public final class uf implements org.telegram.ui.Components.ok0 {
+    public final int f42411a;
+    public final sn f42412b;
+    public final boolean f42413c;
     public final MessageObject d;
 
     public uf(sn snVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f42415a = i10;
-        this.f42416b = snVar;
-        this.f42417c = z10;
+        this.f42411a = i10;
+        this.f42412b = snVar;
+        this.f42413c = z10;
         this.d = messageObject;
     }
 
     @Override
     public final void e(long j10, TLRPC.MessagePeerReaction messagePeerReaction) {
-        switch (this.f42415a) {
+        switch (this.f42411a) {
             case 0:
                 if (messagePeerReaction != null && messagePeerReaction.reaction != null) {
-                    final sn snVar = this.f42416b;
-                    if (j10 != snVar.getUserConfig().getClientUserId() && this.f42417c) {
+                    final sn snVar = this.f42412b;
+                    if (j10 != snVar.getUserConfig().getClientUserId() && this.f42413c) {
                         final ArrayList arrayList = new ArrayList(1);
                         arrayList.add(this.d);
                         TLObject userOrChat = snVar.getMessagesController().getUserOrChat(j10);
@@ -51,9 +51,9 @@ public final class uf implements org.telegram.ui.Components.pk0 {
                                         } else {
                                             snVar2.getClass();
                                         }
-                                        int i10 = snVar2.f41492d4;
+                                        int i10 = snVar2.f41489d4;
                                         ah.j jVar = new ah.j(22);
-                                        new org.telegram.ui.Components.ps(snVar2, snVar2.e, arrayList, arrayList2, channelParticipantArr2, snVar2.X6, (int) snVar2.d(), i10, true, jVar).show();
+                                        new org.telegram.ui.Components.ns(snVar2, snVar2.e, arrayList, arrayList2, channelParticipantArr2, snVar2.X6, (int) snVar2.d(), i10, true, jVar).show();
                                         return;
                                     default:
                                         sn snVar3 = snVar;
@@ -65,9 +65,9 @@ public final class uf implements org.telegram.ui.Components.pk0 {
                                         } else {
                                             snVar3.getClass();
                                         }
-                                        int i11 = snVar3.f41492d4;
+                                        int i11 = snVar3.f41489d4;
                                         ah.j jVar2 = new ah.j(22);
-                                        new org.telegram.ui.Components.ps(snVar3, snVar3.e, arrayList, arrayList2, channelParticipantArr3, snVar3.X6, (int) snVar3.d(), i11, true, jVar2).show();
+                                        new org.telegram.ui.Components.ns(snVar3, snVar3.e, arrayList, arrayList2, channelParticipantArr3, snVar3.X6, (int) snVar3.d(), i11, true, jVar2).show();
                                         return;
                                 }
                             }
@@ -79,9 +79,9 @@ public final class uf implements org.telegram.ui.Components.pk0 {
                 }
                 return;
             default:
-                final sn snVar2 = this.f42416b;
+                final sn snVar2 = this.f42412b;
                 snVar2.getClass();
-                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != snVar2.getUserConfig().getClientUserId() && this.f42417c) {
+                if (messagePeerReaction != null && messagePeerReaction.reaction != null && j10 != snVar2.getUserConfig().getClientUserId() && this.f42413c) {
                     final ArrayList arrayList3 = new ArrayList(1);
                     arrayList3.add(this.d);
                     TLObject userOrChat2 = snVar2.getMessagesController().getUserOrChat(j10);
@@ -107,9 +107,9 @@ public final class uf implements org.telegram.ui.Components.pk0 {
                                     } else {
                                         snVar22.getClass();
                                     }
-                                    int i10 = snVar22.f41492d4;
+                                    int i10 = snVar22.f41489d4;
                                     ah.j jVar = new ah.j(22);
-                                    new org.telegram.ui.Components.ps(snVar22, snVar22.e, arrayList3, arrayList4, channelParticipantArr22, snVar22.X6, (int) snVar22.d(), i10, true, jVar).show();
+                                    new org.telegram.ui.Components.ns(snVar22, snVar22.e, arrayList3, arrayList4, channelParticipantArr22, snVar22.X6, (int) snVar22.d(), i10, true, jVar).show();
                                     return;
                                 default:
                                     sn snVar3 = snVar2;
@@ -121,9 +121,9 @@ public final class uf implements org.telegram.ui.Components.pk0 {
                                     } else {
                                         snVar3.getClass();
                                     }
-                                    int i11 = snVar3.f41492d4;
+                                    int i11 = snVar3.f41489d4;
                                     ah.j jVar2 = new ah.j(22);
-                                    new org.telegram.ui.Components.ps(snVar3, snVar3.e, arrayList3, arrayList4, channelParticipantArr3, snVar3.X6, (int) snVar3.d(), i11, true, jVar2).show();
+                                    new org.telegram.ui.Components.ns(snVar3, snVar3.e, arrayList3, arrayList4, channelParticipantArr3, snVar3.X6, (int) snVar3.d(), i11, true, jVar2).show();
                                     return;
                             }
                         }

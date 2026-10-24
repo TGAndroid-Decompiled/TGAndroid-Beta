@@ -17,41 +17,42 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.km0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.va;
+import org.telegram.ui.Components.za;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.m6;
 import org.telegram.ui.gk;
 import org.telegram.ui.sn;
 import s4.k;
 import w7.z5;
-public final class f extends bb implements NotificationCenter.NotificationCenterDelegate {
+public final class f extends za implements NotificationCenter.NotificationCenterDelegate {
     public final ag.a X;
     public final vc Y;
     public final FrameLayout Z;
     public Runnable f10623a0;
     public int f10624b0;
-    public b71 f10625c0;
+    public a71 f10625c0;
 
     public f(Context context, g6 g6Var, ag.a aVar, boolean z10, Runnable runnable) {
         super(context, null, false, false, g6Var);
         this.v = 0.2f;
         this.f10623a0 = runnable;
         fixNavigationBar();
-        mm0 mm0Var = this.d;
+        lm0 lm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i10, 0, i10, 0);
+        lm0Var.setPadding(i10, 0, i10, 0);
         this.d.setOnItemClickListener(new xa(this, 11));
         k kVar = new k();
-        kVar.f46377m = false;
+        kVar.f46376m = false;
         kVar.C = false;
-        kVar.o(bs.h);
+        kVar.o(zr.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        setBackgroundColor(k6.w0(k6.f21254h5, g6Var));
+        setBackgroundColor(k6.w0(k6.f21255h5, g6Var));
         this.X = aVar;
         vc vcVar = new vc(context, 2, g6Var);
         this.Y = vcVar;
@@ -107,9 +108,9 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
                 }
             });
         }
-        b71 b71Var = this.f10625c0;
-        if (b71Var != null) {
-            b71Var.N(false);
+        a71 a71Var = this.f10625c0;
+        if (a71Var != null) {
+            a71Var.N(false);
         }
     }
 
@@ -117,17 +118,17 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            b71 b71Var = this.f10625c0;
-            if (b71Var != null) {
-                b71Var.N(true);
+            a71 a71Var = this.f10625c0;
+            if (a71Var != null) {
+                a71Var.N(true);
             }
             ag.a s10 = ha.y(this.currentAccount, true).s();
             int i12 = R.string.TonNeededTitle;
             ag.a aVar = this.X;
             ((TextView) this.Y.f2336c).setText(LocaleController.formatString(i12, ag.a.i(aVar.f632b - s10.f632b, ag.b.f634b).d()));
-            org.telegram.ui.Components.xa xaVar = this.e;
-            if (xaVar != null) {
-                xaVar.setTitle(z());
+            va vaVar = this.e;
+            if (vaVar != null) {
+                vaVar.setTitle(z());
             }
             if (s10.f632b >= aVar.f632b && (runnable = this.f10623a0) != null) {
                 runnable.run();
@@ -157,7 +158,7 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            int w02 = k6.w0(k6.f21254h5, this.resourcesProvider);
+            int w02 = k6.w0(k6.f21255h5, this.resourcesProvider);
             if (w02 != this.f10624b0) {
                 this.f10624b0 = w02;
                 setBackgroundColor(w02);
@@ -192,10 +193,10 @@ public final class f extends bb implements NotificationCenter.NotificationCenter
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
-        b71 b71Var = new b71(this.d, getContext(), this.currentAccount, 0, true, new q(this, 22), this.resourcesProvider);
-        this.f10625c0 = b71Var;
-        return b71Var;
+    public final km0 w(lm0 lm0Var) {
+        a71 a71Var = new a71(this.d, getContext(), this.currentAccount, 0, true, new q(this, 22), this.resourcesProvider);
+        this.f10625c0 = a71Var;
+        return a71Var;
     }
 
     @Override

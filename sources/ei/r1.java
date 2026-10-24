@@ -4,8 +4,8 @@ import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.qy;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.oy;
 import org.telegram.ui.ft;
 public final class r1 implements ft {
     @Override
@@ -114,7 +114,7 @@ public final class r1 implements ft {
     }
 
     @Override
-    public final j80 u(ah.v vVar) {
+    public final h80 u(ah.v vVar) {
         return null;
     }
 
@@ -192,7 +192,7 @@ public final class r1 implements ft {
     }
 
     @Override
-    public final void t(CharSequence charSequence, String str, qy qyVar) {
+    public final void t(CharSequence charSequence, String str, oy oyVar) {
     }
 
     @Override

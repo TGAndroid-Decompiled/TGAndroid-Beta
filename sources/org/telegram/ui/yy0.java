@@ -1,43 +1,48 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Stories.ProfileStoriesView;
-public final class yy0 extends ProfileStoriesView {
-    public final Context f44010t0;
-    public final ProfileActivity f44011u0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.ImageReceiver;
+public final class yy0 extends AnimatorListenerAdapter {
+    public final ProfileActivity f43976a;
 
-    public yy0(ProfileActivity profileActivity, Context context, int i10, long j10, boolean z10, l0 l0Var, vy0 vy0Var, org.telegram.ui.ActionBar.g6 g6Var, Context context2) {
-        super(context, i10, j10, z10, l0Var, vy0Var, g6Var);
-        this.f44011u0 = profileActivity;
-        this.f44010t0 = context2;
+    public yy0(ProfileActivity profileActivity) {
+        this.f43976a = profileActivity;
     }
 
     @Override
-    public final void e(a4.l lVar) {
-        TL_stories.PeerStories peerStories;
-        TL_stories.PeerStories peerStories2;
-        ProfileActivity profileActivity = this.f44011u0;
-        long a2 = profileActivity.a();
-        ci.h7 storiesController = profileActivity.getMessagesController().getStoriesController();
-        boolean I = storiesController.I(a2);
-        Context context = this.f44010t0;
-        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
-            TLRPC.UserFull userFull = profileActivity.f34040w2;
-            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33921f1 != profileActivity.getUserConfig().clientUserId) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34040w2.stories, lVar);
-                return;
-            }
-            TLRPC.ChatFull chatFull = profileActivity.f34032v2;
-            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
-                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34032v2.stories, lVar);
-                return;
-            } else {
-                profileActivity.M3();
-                return;
-            }
+    public final void onAnimationEnd(Animator animator) {
+        org.telegram.ui.ActionBar.k kVar;
+        int w02;
+        ProfileActivity profileActivity = this.f43976a;
+        kVar = ((org.telegram.ui.ActionBar.o2) profileActivity).actionBar;
+        if (profileActivity.f33998q2) {
+            w02 = 1090519039;
+        } else if (profileActivity.S5 != null) {
+            w02 = 553648127;
+        } else {
+            w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21221f8, profileActivity.A0);
         }
-        profileActivity.getOrCreateStoryViewer().D(context, a2, lVar);
+        kVar.A(w02, false);
+        uy0 uy0Var = profileActivity.f33922f0;
+        ImageReceiver imageReceiver = uy0Var.U;
+        org.telegram.ui.Components.c6 animation = imageReceiver.getAnimation();
+        if (animation != null) {
+            animation.w(uy0Var);
+        }
+        imageReceiver.clearImage();
+        ImageReceiver.BitmapHolder bitmapHolder = uy0Var.W;
+        if (bitmapHolder != null) {
+            bitmapHolder.release();
+            uy0Var.W = null;
+        }
+        uy0Var.V = 0.0f;
+        uy0Var.invalidate();
+        profileActivity.I0 = false;
+        profileActivity.p5(false);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
     }
 }

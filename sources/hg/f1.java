@@ -2,7 +2,7 @@ package hg;
 
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.tz;
+import org.telegram.ui.Components.rz;
 public final class f1 {
     public final int f11886a;
     public final long f11887b;
@@ -28,8 +28,8 @@ public final class f1 {
                 N = ((j1) this.h).N();
                 break;
             default:
-                tz tzVar = (tz) this.h;
-                if (tzVar.f31019t1 != null && tzVar.getVisibility() == 0 && tzVar.K0) {
+                rz rzVar = (rz) this.h;
+                if (rzVar.f30363t1 != null && rzVar.getVisibility() == 0 && rzVar.K0) {
                     N = true;
                     break;
                 } else {

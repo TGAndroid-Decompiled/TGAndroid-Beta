@@ -8,19 +8,19 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class tr implements org.telegram.ui.Components.fw0, org.telegram.ui.Components.gw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.md0, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.od0 {
-    public final int f42065a;
+public final class tr implements org.telegram.ui.Components.ew0, org.telegram.ui.Components.fw0, LanguageDetector.ExceptionCallback, org.telegram.ui.Components.kd0, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.md0 {
+    public final int f42108a;
 
     public tr(int i10) {
-        this.f42065a = i10;
+        this.f42108a = i10;
     }
 
     @Override
     public void b(Object obj, float f7) {
         vr vrVar = (vr) obj;
-        switch (this.f42065a) {
+        switch (this.f42108a) {
             case 1:
-                vrVar.f42819b = f7;
+                vrVar.f42799b = f7;
                 if (vrVar.getParent() != null) {
                     ((View) vrVar.getParent()).invalidate();
                     return;
@@ -36,7 +36,7 @@ public final class tr implements org.telegram.ui.Components.fw0, org.telegram.ui
                 }
                 return;
             case 3:
-                vrVar.f42820c = f7;
+                vrVar.f42800c = f7;
                 if (vrVar.getParent() != null) {
                     ((View) vrVar.getParent()).invalidate();
                     return;
@@ -54,7 +54,7 @@ public final class tr implements org.telegram.ui.Components.fw0, org.telegram.ui
 
     @Override
     public String e(int i10) {
-        switch (this.f42065a) {
+        switch (this.f42108a) {
             case 10:
                 return i2.o1.k(i10, "");
             case 11:
@@ -159,7 +159,7 @@ public final class tr implements org.telegram.ui.Components.fw0, org.telegram.ui
 
     @Override
     public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f42065a) {
+        switch (this.f42108a) {
             case 13:
                 c2Var.dismiss();
                 return;
@@ -172,28 +172,28 @@ public final class tr implements org.telegram.ui.Components.fw0, org.telegram.ui
     @Override
     public float get(Object obj) {
         vr vrVar = (vr) obj;
-        switch (this.f42065a) {
+        switch (this.f42108a) {
             case 0:
-                return vrVar.f42819b;
+                return vrVar.f42799b;
             case 1:
             case 3:
             default:
                 return vrVar.e;
             case 2:
-                return vrVar.f42820c;
+                return vrVar.f42800c;
             case 4:
                 return vrVar.d;
         }
     }
 
     @Override
-    public void n(org.telegram.ui.Components.qd0 qd0Var, int i10) {
-        Pattern pattern = org.telegram.ui.Components.f5.f26167a;
+    public void n(org.telegram.ui.Components.od0 od0Var, int i10) {
+        Pattern pattern = org.telegram.ui.Components.d5.f25562a;
     }
 
     @Override
     public void run(Exception exc) {
-        switch (this.f42065a) {
+        switch (this.f42108a) {
             case 8:
                 FileLog.e(exc);
                 return;

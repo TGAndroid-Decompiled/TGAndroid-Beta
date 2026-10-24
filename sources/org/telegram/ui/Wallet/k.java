@@ -5,15 +5,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.y90;
+import org.telegram.ui.Components.w90;
 import org.telegram.ui.r80;
 public final class k implements Utilities.Callback {
-    public final int f34685a;
-    public final Object f34686b;
+    public final int f34687a;
+    public final Object f34688b;
 
     public k(Object obj, int i10) {
-        this.f34685a = i10;
-        this.f34686b = obj;
+        this.f34687a = i10;
+        this.f34688b = obj;
     }
 
     @Override
@@ -21,9 +21,9 @@ public final class k implements Utilities.Callback {
         String str;
         int i10;
         CharSequence formatSpannable;
-        int i11 = this.f34685a;
+        int i11 = this.f34687a;
         boolean z10 = false;
-        Object obj2 = this.f34686b;
+        Object obj2 = this.f34688b;
         switch (i11) {
             case 0:
                 ai.y8 y8Var = (ai.y8) obj2;
@@ -63,17 +63,17 @@ public final class k implements Utilities.Callback {
                 } else {
                     i10 = 24;
                 }
-                if (w7Var.f35350a != i10) {
-                    w7Var.f35350a = i10;
+                if (w7Var.f35352a != i10) {
+                    w7Var.f35352a = i10;
                     w7Var.W(w7Var.getParentActivity());
                     w7Var.Y();
-                    y90 y90Var = w7Var.h;
-                    if (w7Var.f35356s != null) {
+                    w90 w90Var = w7Var.h;
+                    if (w7Var.f35358s != null) {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
                     } else {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));
                     }
-                    y90Var.setText(formatSpannable);
+                    w90Var.setText(formatSpannable);
                     return;
                 }
                 return;

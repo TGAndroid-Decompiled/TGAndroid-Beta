@@ -19,31 +19,31 @@ public final class a9 extends FragmentContextView {
         switch (this.X0) {
             case 0:
                 m9 m9Var = (m9) this.Y0;
-                org.telegram.ui.Components.us usVar = m9Var.M;
+                org.telegram.ui.Components.ss ssVar = m9Var.M;
                 FrameLayout frameLayout = m9Var.N;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                usVar.i(frameLayout, z10, true);
+                ssVar.i(frameLayout, z10, true);
                 return;
             default:
-                ye1 ye1Var = (ye1) this.Y0;
-                org.telegram.ui.Components.us usVar2 = ye1Var.U0;
-                FrameLayout frameLayout2 = ye1Var.F0;
+                xe1 xe1Var = (xe1) this.Y0;
+                org.telegram.ui.Components.ss ssVar2 = xe1Var.U0;
+                FrameLayout frameLayout2 = xe1Var.F0;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                usVar2.i(frameLayout2, z11, true);
+                ssVar2.i(frameLayout2, z11, true);
                 return;
         }
     }
 
-    public a9(ye1 ye1Var, Context context, ye1 ye1Var2) {
-        super(context, ye1Var2, null, false, null);
-        this.Y0 = ye1Var;
+    public a9(xe1 xe1Var, Context context, xe1 xe1Var2) {
+        super(context, xe1Var2, null, false, null);
+        this.Y0 = xe1Var;
     }
 }

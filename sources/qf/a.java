@@ -7,31 +7,31 @@ import com.google.android.gms.cast.MediaInfo;
 import e6.h;
 import n6.l;
 public final class a extends e6.g {
-    public final h f44858a;
-    public final d6.g f44859b;
-    public final d6.c f44860c;
+    public final h f44857a;
+    public final d6.g f44858b;
+    public final d6.c f44859c;
     public g d;
     public int e;
-    public int f44861f;
-    public int f44862g;
+    public int f44860f;
+    public int f44861g;
     public int h;
 
     public a(d6.c cVar, d6.g gVar, h hVar) {
-        this.f44860c = cVar;
-        this.f44859b = gVar;
-        this.f44858a = hVar;
+        this.f44859c = cVar;
+        this.f44858b = gVar;
+        this.f44857a = hVar;
     }
 
     @Override
     public final void a() {
-        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f44860c.a());
+        Log.d("CAST_CLIENT", "onAdBreakStatusUpdated " + this.f44859c.a());
     }
 
     @Override
     public final void b(MediaError mediaError) {
         int i10;
         StringBuilder sb2 = new StringBuilder("onMediaError ");
-        sb2.append(this.f44860c.a());
+        sb2.append(this.f44859c.a());
         sb2.append(" ");
         Integer num = mediaError.f6322c;
         sb2.append(num);
@@ -48,33 +48,33 @@ public final class a extends e6.g {
 
     @Override
     public final void c() {
-        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f44860c.a());
+        Log.d("CAST_CLIENT", "onMetadataUpdated " + this.f44859c.a());
     }
 
     @Override
     public final void d() {
-        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f44860c.a());
+        Log.d("CAST_CLIENT", "onPreloadStatusUpdated " + this.f44859c.a());
     }
 
     @Override
     public final void e() {
-        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f44860c.a());
+        Log.d("CAST_CLIENT", "onQueueStatusUpdated " + this.f44859c.a());
     }
 
     @Override
     public final void f() {
-        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f44860c.a());
+        Log.d("CAST_CLIENT", "onSendingRemoteMediaRequest " + this.f44859c.a());
     }
 
     @Override
     public final void g() {
-        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f44860c.a());
-        int b10 = this.f44858a.b();
-        if (b10 != this.f44861f) {
+        Log.d("CAST_CLIENT", "onStatusUpdated " + this.f44859c.a());
+        int b10 = this.f44857a.b();
+        if (b10 != this.f44860f) {
             Log.d("CAST_CLIENT", "idleReason " + b10);
-            this.f44861f = b10;
+            this.f44860f = b10;
             if (b10 == 2) {
-                this.f44859b.b(true);
+                this.f44858b.b(true);
             } else if (b10 == 4) {
                 int i10 = this.e;
                 if (i10 == 104) {
@@ -94,17 +94,17 @@ public final class a extends e6.g {
             return;
         }
         String i10 = d.i();
-        if (this.f44862g < this.d.f44885a.size()) {
-            fVar = this.d.a(this.f44862g);
+        if (this.f44861g < this.d.f44884a.size()) {
+            fVar = this.d.a(this.f44861g);
         } else {
-            fVar = d.f44869l;
+            fVar = d.f44868l;
         }
-        MediaInfo mediaInfo = new MediaInfo(d.j(i10, fVar.d) + ("?index=" + this.f44862g + "&attempt=" + this.h), 1, fVar.f44881a, fVar.f44882b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
+        MediaInfo mediaInfo = new MediaInfo(d.j(i10, fVar.d) + ("?index=" + this.f44861g + "&attempt=" + this.h), 1, fVar.f44880a, fVar.f44881b, -1L, null, null, null, null, null, null, null, -1L, null, null, null, null);
         Boolean bool = Boolean.TRUE;
         if (Double.compare(1.0d, 2.0d) <= 0 && Double.compare(1.0d, 0.5d) >= 0) {
             k kVar = new k(mediaInfo, null, bool, -1L, 1.0d, null, null, null, null, null, null, 0L);
             l.e("Must be called from the main thread.");
-            h hVar = this.f44858a;
+            h hVar = this.f44857a;
             if (!hVar.w()) {
                 h.t();
                 return;
@@ -118,16 +118,16 @@ public final class a extends e6.g {
 
     public final void q(boolean z10) {
         if (z10) {
-            this.f44862g++;
+            this.f44861g++;
         } else {
             int i10 = this.h + 1;
             this.h = i10;
             if (i10 > 3) {
                 this.h = 0;
-                this.f44862g++;
+                this.f44861g++;
             }
         }
-        Log.e("CAST_CLIENT", "next attempt " + this.e + " " + this.f44862g + " " + this.h);
+        Log.e("CAST_CLIENT", "next attempt " + this.e + " " + this.f44861g + " " + this.h);
         p();
     }
 }

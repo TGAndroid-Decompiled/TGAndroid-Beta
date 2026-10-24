@@ -22,7 +22,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.v8;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.oc;
 import org.telegram.ui.dr;
 import org.telegram.ui.fr;
 import org.telegram.ui.im;
@@ -392,7 +392,7 @@ public final class u implements Runnable {
                 ((c5.a0) this.f14404b).accept(this.f14405c);
                 return;
             case 22:
-                sn snVar = ((im) this.f14405c).f38268c;
+                sn snVar = ((im) this.f14405c).f38328c;
                 if (this == snVar.V5) {
                     snVar.cb((CharSequence) this.f14404b, false);
                     snVar.V5 = null;
@@ -419,13 +419,13 @@ public final class u implements Runnable {
                 tL_chatBannedRights.embed_links = z22;
                 tL_chatBannedRights.send_polls = z22;
                 tL_chatBannedRights.send_reactions = z22;
-                AndroidUtilities.updateVisibleRows(jrVar.f38634c);
+                AndroidUtilities.updateVisibleRows(jrVar.f38622c);
                 dr w02 = jrVar.w0();
                 jrVar.B0();
                 jrVar.A0(w02);
                 return;
             case 24:
-                ((qc) this.f14404b).j();
+                ((oc) this.f14404b).j();
                 ((qy) this.f14405c).E = null;
                 return;
             case 25:
@@ -433,9 +433,9 @@ public final class u implements Runnable {
                 while (!((Set) this.f14405c).isEmpty()) {
                     try {
                         rb.l lVar = (rb.l) referenceQueue.remove();
-                        if (lVar.f45621a.remove(lVar)) {
+                        if (lVar.f45620a.remove(lVar)) {
                             lVar.clear();
-                            lVar.f45622b.getClass();
+                            lVar.f45621b.getClass();
                         }
                     } catch (InterruptedException unused) {
                     }
@@ -457,17 +457,17 @@ public final class u implements Runnable {
             case 27:
                 rb.i iVar5 = (rb.i) this.f14404b;
                 TaskCompletionSource taskCompletionSource2 = (TaskCompletionSource) this.f14405c;
-                int decrementAndGet = iVar5.f45614b.decrementAndGet();
+                int decrementAndGet = iVar5.f45613b.decrementAndGet();
                 if (decrementAndGet < 0) {
                     z19 = false;
                 }
                 n6.l.k(z19);
                 if (decrementAndGet == 0) {
                     iVar5.c();
-                    iVar5.f45615c.set(false);
+                    iVar5.f45614c.set(false);
                 }
-                t7.n.f47336a.clear();
-                t7.t.f47343a.clear();
+                t7.n.f47335a.clear();
+                t7.t.f47342a.clear();
                 taskCompletionSource2.setResult(null);
                 return;
             case 28:
@@ -501,10 +501,10 @@ public final class u implements Runnable {
                         ArrayList arrayList2 = yVar3.F;
                         int size2 = arrayList2.size();
                         for (int i16 = 0; i16 < size2; i16++) {
-                            if (((s4.u) arrayList2.get(i16)).f46470w) {
+                            if (((s4.u) arrayList2.get(i16)).f46469w) {
                             }
                         }
-                        yVar3.f46497x.q(b1Var);
+                        yVar3.f46496x.q(b1Var);
                         return;
                     }
                     yVar3.H.post(this);
@@ -519,9 +519,9 @@ public final class u implements Runnable {
             case 0:
                 androidx.biometric.e eVar = new androidx.biometric.e(u.class.getSimpleName(), 11);
                 qf.b bVar = new qf.b(12);
-                ((qf.b) eVar.d).f44865c = bVar;
+                ((qf.b) eVar.d).f44864c = bVar;
                 eVar.d = bVar;
-                bVar.f44864b = (t) this.f14405c;
+                bVar.f44863b = (t) this.f14405c;
                 return eVar.toString();
             default:
                 return super.toString();

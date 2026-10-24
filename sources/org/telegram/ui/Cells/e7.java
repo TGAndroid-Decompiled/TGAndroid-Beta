@@ -1,7 +1,7 @@
 package org.telegram.ui.Cells;
 
 import android.widget.FrameLayout;
-public final class e7 extends org.telegram.ui.Components.h9 {
+public final class e7 extends org.telegram.ui.Components.f9 {
     public final int M;
     public final FrameLayout N;
 
@@ -16,11 +16,11 @@ public final class e7 extends org.telegram.ui.Components.h9 {
         switch (this.M) {
             case 0:
                 super.invalidateSelf();
-                ((g7) this.N).f22415a.invalidate();
+                ((g7) this.N).f22416a.invalidate();
                 return;
             default:
                 super.invalidateSelf();
-                ((h7) this.N).f22472a.invalidate();
+                ((h7) this.N).f22473a.invalidate();
                 return;
         }
     }

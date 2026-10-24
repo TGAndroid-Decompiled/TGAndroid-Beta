@@ -14,29 +14,29 @@ import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.f5;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.iq0;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.hq0;
 import s4.b1;
 import sg.k1;
-public final class f extends lm0 {
-    public final k f50291c;
+public final class f extends km0 {
+    public final k f50290c;
 
     public f(k kVar) {
-        this.f50291c = kVar;
+        this.f50290c = kVar;
     }
 
     @Override
     public final boolean D(b1 b1Var) {
-        if (b1Var.f46346f == 0) {
+        if (b1Var.f46345f == 0) {
             return true;
         }
         return false;
     }
 
     public final void E(List list) {
-        k kVar = this.f50291c;
-        ArrayList arrayList = kVar.f50309c;
+        k kVar = this.f50290c;
+        ArrayList arrayList = kVar.f50308c;
         boolean isEmpty = arrayList.isEmpty();
         int i10 = 0;
         while (i10 < list.size()) {
@@ -66,18 +66,18 @@ public final class f extends lm0 {
 
     @Override
     public final int h() {
-        k kVar = this.f50291c;
+        k kVar = this.f50290c;
         int i10 = 1;
-        return ((kVar.f50309c.isEmpty() || !kVar.f50326x) ? 0 : 0) + kVar.f50309c.size() + (!kVar.B ? 1 : 0);
+        return ((kVar.f50308c.isEmpty() || !kVar.f50325x) ? 0 : 0) + kVar.f50308c.size() + (!kVar.B ? 1 : 0);
     }
 
     @Override
     public final int j(int i10) {
-        k kVar = this.f50291c;
+        k kVar = this.f50290c;
         if (i10 == 0 && !kVar.B) {
             return 2;
         }
-        if (i10 == h() - 1 && !kVar.f50309c.isEmpty() && kVar.f50326x) {
+        if (i10 == h() - 1 && !kVar.f50308c.isEmpty() && kVar.f50325x) {
             return 4;
         }
         return 0;
@@ -86,29 +86,29 @@ public final class f extends lm0 {
     @Override
     public final void v(b1 b1Var, int i10) {
         boolean z10;
-        k kVar = this.f50291c;
-        ArrayList arrayList = kVar.f50309c;
-        int i11 = b1Var.f46346f;
-        View view = b1Var.f46343a;
+        k kVar = this.f50290c;
+        ArrayList arrayList = kVar.f50308c;
+        int i11 = b1Var.f46345f;
+        View view = b1Var.f46342a;
         if (i11 == 0) {
             f5 f5Var = (f5) view;
             int i12 = i10 - (!kVar.B ? 1 : 0);
             LongSparseArray longSparseArray = kVar.d;
             TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i12);
-            if (i12 == arrayList.size() - 1 && !kVar.f50326x) {
+            if (i12 == arrayList.size() - 1 && !kVar.f50325x) {
                 z10 = false;
             } else {
                 z10 = true;
             }
             n5 n5Var = f5Var.d;
             f5Var.e = tL_chatInviteImporter;
-            f5Var.f22370f = z10;
+            f5Var.f22371f = z10;
             f5Var.setWillNotDraw(!z10);
             TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-            h9 h9Var = f5Var.f22367a;
-            h9Var.r(user);
-            f5Var.f22368b.e(user, h9Var);
-            f5Var.f22369c.l(UserObject.getUserName(user), false);
+            f9 f9Var = f5Var.f22368a;
+            f9Var.r(user);
+            f5Var.f22369b.e(user, f9Var);
+            f5Var.f22370c.l(UserObject.getUserName(user), false);
             String formatDateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
             if (tL_chatInviteImporter.via_chatlist) {
                 n5Var.l(LocaleController.getString(R.string.JoinedViaFolder), false);
@@ -133,26 +133,26 @@ public final class f extends lm0 {
     @Override
     public final b1 x(ViewGroup viewGroup, int i10) {
         f5 f5Var;
-        k kVar = this.f50291c;
-        boolean z10 = kVar.f50307a;
+        k kVar = this.f50290c;
+        boolean z10 = kVar.f50306a;
         if (i10 != 1) {
             if (i10 != 2) {
                 if (i10 != 3) {
                     if (i10 != 4) {
                         f5Var = new f5(viewGroup.getContext(), kVar, z10);
                     } else {
-                        o2 o2Var = kVar.f50311g;
-                        iq0 iq0Var = new iq0(o2Var.getParentActivity(), 1, o2Var.getResourceProvider());
+                        o2 o2Var = kVar.f50310g;
+                        hq0 hq0Var = new hq0(o2Var.getParentActivity(), 1, o2Var.getResourceProvider());
                         if (kVar.B) {
-                            r6.i(k6.f21183d6, iq0Var, o2Var.getResourceProvider());
+                            r6.i(k6.f21184d6, hq0Var, o2Var.getResourceProvider());
                         }
-                        iq0Var.e(k6.f21183d6, k6.f21125a7, -1);
-                        iq0Var.setViewType(15);
-                        iq0Var.setMemberRequestButton(z10);
-                        iq0Var.setIsSingleCell(true);
-                        iq0Var.setItemsCount(1);
-                        iq0Var.setTag(-33024);
-                        f5Var = iq0Var;
+                        hq0Var.e(k6.f21184d6, k6.f21126a7, -1);
+                        hq0Var.setViewType(15);
+                        hq0Var.setMemberRequestButton(z10);
+                        hq0Var.setIsSingleCell(true);
+                        hq0Var.setItemsCount(1);
+                        hq0Var.setTag(-33024);
+                        f5Var = hq0Var;
                     }
                 } else {
                     f5Var = new View(viewGroup.getContext());

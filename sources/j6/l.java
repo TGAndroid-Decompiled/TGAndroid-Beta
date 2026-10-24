@@ -25,7 +25,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeoutException;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.o2;
-import org.telegram.ui.Components.p6;
+import org.telegram.ui.Components.n6;
 import org.telegram.ui.kg;
 import v7.u6;
 import w7.j6;
@@ -262,12 +262,12 @@ public final class l implements OnSuccessListener, ne.k {
     public l(int i10) {
         switch (i10) {
             case 5:
-                p6 p6Var = new p6(true, true, true);
-                this.d = p6Var;
+                n6 n6Var = new n6(true, true, true);
+                this.d = n6Var;
                 Paint paint = new Paint(1);
-                p6Var.w(AndroidUtilities.dp(13.0f));
-                p6Var.u(-1);
-                p6Var.x(AndroidUtilities.bold());
+                n6Var.w(AndroidUtilities.dp(13.0f));
+                n6Var.u(-1);
+                n6Var.x(AndroidUtilities.bold());
                 paint.setColor(i0.a.o(-16777216, 58));
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                 this.f14334b = spannableStringBuilder;

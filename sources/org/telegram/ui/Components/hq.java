@@ -1,29 +1,18 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public abstract class hq extends z4.h {
-    public gq f27018w0;
+import android.widget.LinearLayout;
+public final class hq extends LinearLayout {
+    public final kq f27103a;
 
-    public hq(Context context) {
+    public hq(kq kqVar, Context context) {
         super(context);
-        b(new fq((oi0) this));
+        this.f27103a = kqVar;
     }
 
     @Override
-    @Deprecated
-    public void setAdapter(z4.a aVar) {
-        if (aVar instanceof gq) {
-            setAdapter((gq) aVar);
-            return;
-        }
-        throw new IllegalArgumentException();
-    }
-
-    public void setAdapter(gq gqVar) {
-        this.f27018w0 = gqVar;
-        super.setAdapter((z4.a) gqVar);
-        if (gqVar != null) {
-            x(gqVar.j(), false);
-        }
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        kq.m(this.f27103a);
     }
 }

@@ -7,8 +7,8 @@ import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.zr;
 public final class u3 extends org.telegram.ui.ActionBar.h3 {
     public final t3 f9901b;
     public ValueAnimator f9902c;
@@ -25,10 +25,10 @@ public final class u3 extends org.telegram.ui.ActionBar.h3 {
         t3Var.setMultipleOnClick(false);
         t3Var.setOnBackClickListener(new r3(this, 0));
         t3Var.setOnSelectListener(new ai.q(this, 15));
-        ow0 ow0Var = new ow0(context, null);
-        this.containerView = ow0Var;
+        nw0 nw0Var = new nw0(context, null);
+        this.containerView = nw0Var;
         int i10 = this.backgroundPaddingLeft;
-        ow0Var.setPadding(i10, 0, i10, 0);
+        nw0Var.setPadding(i10, 0, i10, 0);
         this.containerView.addView(t3Var);
     }
 
@@ -76,7 +76,7 @@ public final class u3 extends org.telegram.ui.ActionBar.h3 {
         ofFloat.addUpdateListener(new ah.c0(this, 26));
         this.f9902c.addListener(new ne(4, this, r3Var));
         this.f9902c.setDuration(450L);
-        this.f9902c.setInterpolator(bs.h);
+        this.f9902c.setInterpolator(zr.h);
         this.f9902c.start();
     }
 

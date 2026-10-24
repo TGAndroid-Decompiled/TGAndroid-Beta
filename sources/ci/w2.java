@@ -6,8 +6,8 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.jb0;
-public final class w2 extends jb0 {
+import org.telegram.ui.Components.hb0;
+public final class w2 extends hb0 {
     public final p4 V;
 
     public w2(p4 p4Var, Context context, long j10, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.g6 g6Var) {

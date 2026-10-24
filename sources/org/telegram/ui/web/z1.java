@@ -20,42 +20,42 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import w7.z5;
 public final class z1 implements Utilities.Callback {
-    public final int f43348a;
-    public final Timer.Task f43349b;
-    public final boolean[] f43350c;
+    public final int f43337a;
+    public final Timer.Task f43338b;
+    public final boolean[] f43339c;
     public final Timer d;
     public final i2 e;
-    public final Utilities.Callback f43351f;
+    public final Utilities.Callback f43340f;
 
     public z1(Timer.Task task, boolean[] zArr, Timer timer, i2 i2Var, Utilities.Callback callback, int i10) {
-        this.f43348a = i10;
-        this.f43349b = task;
-        this.f43350c = zArr;
+        this.f43337a = i10;
+        this.f43338b = task;
+        this.f43339c = zArr;
         this.d = timer;
         this.e = i2Var;
-        this.f43351f = callback;
+        this.f43340f = callback;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f43348a) {
+        switch (this.f43337a) {
             case 0:
-                Timer.Task task = this.f43349b;
-                boolean[] zArr = this.f43350c;
+                Timer.Task task = this.f43338b;
+                boolean[] zArr = this.f43339c;
                 Timer timer = this.d;
                 i2 i2Var = this.e;
-                Utilities.Callback callback = this.f43351f;
+                Utilities.Callback callback = this.f43340f;
                 InputStream inputStream = (InputStream) obj;
                 Timer.done(task);
                 if (!zArr[0]) {
                     Timer.Task start = Timer.start(timer, "readHTML");
-                    String str = i2Var.f43151a;
+                    String str = i2Var.f43140a;
                     final z1 z1Var = new z1(start, zArr, timer, i2Var, callback, 1);
                     if (inputStream == null) {
                         z1Var.run(null);
                         return;
                     }
-                    Context context = LaunchActivity.J1;
+                    Context context = LaunchActivity.I1;
                     if (context == null) {
                         context = ApplicationLoader.applicationContext;
                     }
@@ -97,24 +97,24 @@ public final class z1 implements Utilities.Callback {
                 }
                 return;
             default:
-                Timer.Task task2 = this.f43349b;
-                boolean[] zArr3 = this.f43350c;
+                Timer.Task task2 = this.f43338b;
+                boolean[] zArr3 = this.f43339c;
                 Timer timer2 = this.d;
                 i2 i2Var2 = this.e;
-                Utilities.Callback callback2 = this.f43351f;
+                Utilities.Callback callback2 = this.f43340f;
                 JSONObject jSONObject = (JSONObject) obj;
                 Timer.done(task2);
                 if (!zArr3[0]) {
                     Timer.Task start2 = Timer.start(timer2, "parseJSON");
                     try {
-                        i2Var2.f43153c = i2Var2.i(i2Var2.f43151a, jSONObject);
+                        i2Var2.f43142c = i2Var2.i(i2Var2.f43140a, jSONObject);
                     } catch (Exception e) {
                         Timer.log(timer2, "error: " + e);
                         FileLog.e(e);
                     }
                     Timer.done(start2);
                     callback2.run(i2Var2);
-                    TLRPC.TL_webPage tL_webPage = i2Var2.f43153c;
+                    TLRPC.TL_webPage tL_webPage = i2Var2.f43142c;
                     if (tL_webPage != null) {
                         i2.e.put(tL_webPage, i2Var2);
                     }

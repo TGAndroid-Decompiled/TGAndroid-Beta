@@ -26,7 +26,7 @@ public class b implements a {
     }
 
     public final void a() {
-        if (this.f8661n != r6.f21817b) {
+        if (this.f8661n != r6.f21818b) {
             c();
         }
     }
@@ -45,7 +45,7 @@ public class b implements a {
     }
 
     public final void c() {
-        this.f8661n = r6.f21817b;
+        this.f8661n = r6.f21818b;
         this.d = k6.o1(this.f8659c, k6.w0(this.f8658b, this.f8657a));
         if (b()) {
             this.f8660f = 687865855;
@@ -71,7 +71,7 @@ public class b implements a {
     }
 
     public b(g6 g6Var, int i10, float f7) {
-        this.f8661n = r6.f21817b;
+        this.f8661n = r6.f21818b;
         this.f8657a = g6Var;
         this.f8658b = i10;
         this.f8659c = f7;

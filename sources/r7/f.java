@@ -6,30 +6,30 @@ import com.google.android.gms.common.api.Status;
 import com.google.android.gms.tasks.TaskCompletionSource;
 import v7.h5;
 public final class f extends b8.b {
-    public final int f45458b;
-    public final TaskCompletionSource f45459c;
+    public final int f45457b;
+    public final TaskCompletionSource f45458c;
 
     public f(int i10, TaskCompletionSource taskCompletionSource) {
         super("com.google.android.gms.location.internal.ILocationStatusCallback", 9);
-        this.f45458b = i10;
+        this.f45457b = i10;
         switch (i10) {
             case 1:
-                this.f45459c = taskCompletionSource;
+                this.f45458c = taskCompletionSource;
                 super("com.google.android.gms.location.internal.ISettingsCallbacks", 9);
                 return;
             default:
-                this.f45459c = taskCompletionSource;
+                this.f45458c = taskCompletionSource;
                 return;
         }
     }
 
     @Override
     public final boolean J0(Parcel parcel, int i10) {
-        switch (this.f45458b) {
+        switch (this.f45457b) {
             case 0:
                 if (i10 == 1) {
                     d.b(parcel);
-                    h5.a((Status) d.a(parcel, Status.CREATOR), (Location) d.a(parcel, Location.CREATOR), this.f45459c);
+                    h5.a((Status) d.a(parcel, Status.CREATOR), (Location) d.a(parcel, Location.CREATOR), this.f45458c);
                     return true;
                 }
                 return false;
@@ -40,7 +40,7 @@ public final class f extends b8.b {
                     Status status = gVar.f10947a;
                     ?? obj = new Object();
                     obj.f1069a = gVar;
-                    h5.a(status, obj, this.f45459c);
+                    h5.a(status, obj, this.f45458c);
                     return true;
                 }
                 return false;

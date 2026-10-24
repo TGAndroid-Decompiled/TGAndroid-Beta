@@ -16,7 +16,7 @@ import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.gl0;
+import org.telegram.ui.Components.fl0;
 public final class s0 extends FrameLayout implements b6 {
     public final Drawable f858a;
     public final Rect f859b;
@@ -72,11 +72,11 @@ public final class s0 extends FrameLayout implements b6 {
     public final void invalidate() {
         super.invalidate();
         t0 t0Var = this.f865w;
-        gl0 gl0Var = t0Var.f879n;
-        if (t0Var.f889y != 1 && (gl0Var == null || gl0Var.getDelegate() == null || !gl0Var.getDelegate().w())) {
+        fl0 fl0Var = t0Var.f879n;
+        if (t0Var.f889y != 1 && (fl0Var == null || fl0Var.getDelegate() == null || !fl0Var.getDelegate().w())) {
             return;
         }
-        t0Var.f878m.f35901f0.invalidate();
+        t0Var.f878m.f35618f0.invalidate();
     }
 
     @Override

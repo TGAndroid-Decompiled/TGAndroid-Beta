@@ -6,7 +6,7 @@ import s3.c;
 import si.o0;
 import w7.m;
 public final class a {
-    public static final a f46304a = new Object();
+    public static final a f46303a = new Object();
 
     public final m a(w wVar) {
         String str = wVar.f4135s;

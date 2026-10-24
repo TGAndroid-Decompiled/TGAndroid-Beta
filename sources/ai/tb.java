@@ -12,7 +12,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.oh0;
+import org.telegram.ui.Components.nh0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.f60;
 import org.telegram.ui.f80;
@@ -66,7 +66,7 @@ public final class tb implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new hg.d1(tL_error, tLObject, (ArrayList) obj4, this.d, (AtomicInteger) obj2, (ArrayList) obj, (lq) obj3));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new wb((oh0) obj4, (Integer[]) obj2, this.d, tLObject, (ArrayList) obj, (TLRPC.PollAnswerVoters) obj3));
+                AndroidUtilities.runOnUIThread(new wb((nh0) obj4, (Integer[]) obj2, this.d, tLObject, (ArrayList) obj, (TLRPC.PollAnswerVoters) obj3));
                 return;
             case 8:
                 AndroidUtilities.runOnUIThread(new hg.d1((org.telegram.ui.ActionBar.c2) obj4, tLObject, this.d, (TLRPC.Document) obj2, tL_error, this.e, (TLRPC.TL_stickers_addStickerToSet) obj3));
@@ -78,15 +78,15 @@ public final class tb implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new hg.d1((org.telegram.ui.ActionBar.c2) obj4, (pf.c) obj2, tLObject, this.d, (Context) obj, (TLRPC.TL_inputGroupCallSlug) obj3, tL_error));
                 return;
             case 11:
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 AndroidUtilities.runOnUIThread(new hg.d1((LaunchActivity) obj4, tLObject, (pf.c) obj2, tL_error, (MessagesController) obj, this.d, (String) obj3));
                 return;
             case 12:
-                Pattern pattern2 = LaunchActivity.E1;
+                Pattern pattern2 = LaunchActivity.D1;
                 AndroidUtilities.runOnUIThread(new hg.d1((LaunchActivity) obj4, tL_error, tLObject, (TLRPC.TL_inputInvoiceSlug) obj2, (f80) obj, this.d, (String) obj3));
                 return;
             case 13:
-                Pattern pattern3 = LaunchActivity.E1;
+                Pattern pattern3 = LaunchActivity.D1;
                 AndroidUtilities.runOnUIThread(new hg.d1((LaunchActivity) obj4, tL_error, tLObject, this.d, (org.telegram.ui.ActionBar.c2) obj2, (f80) obj, (String) obj3));
                 return;
             case 14:

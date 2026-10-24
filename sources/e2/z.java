@@ -16,7 +16,7 @@ import b2.y0;
 import b2.z0;
 import java.util.List;
 import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.m60;
+import org.telegram.ui.Components.k60;
 import si.u0;
 public final class z implements d1 {
     public final int f8304a;
@@ -77,9 +77,9 @@ public final class z implements d1 {
                 return;
             case 2:
                 ri.o oVar = (ri.o) this.f8305b;
-                ri.f fVar = oVar.f46260f;
+                ri.f fVar = oVar.f46259f;
                 ri.d dVar = oVar.F;
-                Handler handler = oVar.f46262i;
+                Handler handler = oVar.f46261i;
                 if (oVar.v != z10) {
                     oVar.v = z10;
                     handler.removeCallbacks(dVar);
@@ -141,15 +141,15 @@ public final class z implements d1 {
                 return;
             case 2:
                 ri.o oVar = (ri.o) this.f8305b;
-                if (i10 == 4 && oVar.f46267n == ri.m.e && (h0Var = oVar.B) != null) {
-                    h0Var.Z0(5, oVar.f46272s);
+                if (i10 == 4 && oVar.f46266n == ri.m.e && (h0Var = oVar.B) != null) {
+                    h0Var.Z0(5, oVar.f46271s);
                     oVar.B.e();
                     return;
                 }
                 return;
             default:
                 u0 u0Var = (u0) this.f8305b;
-                si.n nVar = u0Var.f47258m;
+                si.n nVar = u0Var.f47257m;
                 nVar.b("preview playback state=" + i10);
                 if (u0Var.W == 5 && i10 == 4 && (h0Var2 = u0Var.S) != null) {
                     h0Var2.Z0(5, u0Var.G);
@@ -176,7 +176,7 @@ public final class z implements d1 {
                 return;
             default:
                 u0 u0Var = (u0) this.f8305b;
-                si.n nVar = u0Var.f47258m;
+                si.n nVar = u0Var.f47257m;
                 nVar.b("preview player error: code=" + y0Var.f4154a);
                 u0Var.h(y0Var);
                 return;
@@ -230,7 +230,7 @@ public final class z implements d1 {
             default:
                 u0 u0Var = (u0) this.f8305b;
                 if (u0Var.W == 5) {
-                    m60.m((m60) u0Var.d.f15906b);
+                    k60.m((k60) u0Var.d.f15906b);
                     return;
                 }
                 return;

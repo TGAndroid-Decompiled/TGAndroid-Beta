@@ -9,17 +9,17 @@ import java.util.concurrent.Callable;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicReference;
 public final class k implements Callable {
-    public final long f50135a;
-    public final Throwable f50136b;
-    public final Thread f50137c;
+    public final long f50134a;
+    public final Throwable f50135b;
+    public final Thread f50136c;
     public final ea.b d;
     public final m e;
 
     public k(m mVar, long j10, Throwable th2, Thread thread, ea.b bVar) {
         this.e = mVar;
-        this.f50135a = j10;
-        this.f50136b = th2;
-        this.f50137c = thread;
+        this.f50134a = j10;
+        this.f50135b = th2;
+        this.f50136c = thread;
         this.d = bVar;
     }
 
@@ -27,7 +27,7 @@ public final class k implements Callable {
     public final Object call() {
         ca.c cVar;
         String str;
-        long j10 = this.f50135a;
+        long j10 = this.f50134a;
         long j11 = j10 / 1000;
         m mVar = this.e;
         String e = mVar.e();
@@ -35,16 +35,16 @@ public final class k implements Callable {
             Log.e("FirebaseCrashlytics", "Tried to write a fatal exception while no session was open.", null);
             return Tasks.forResult(null);
         }
-        mVar.f50143c.C();
-        com.google.firebase.messaging.l lVar = mVar.f50150m;
+        mVar.f50142c.C();
+        com.google.firebase.messaging.l lVar = mVar.f50149m;
         lVar.getClass();
         String concat = "Persisting fatal event for session ".concat(e);
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
             Log.v("FirebaseCrashlytics", concat, null);
         }
-        lVar.t(this.f50136b, this.f50137c, e, "crash", j11, true);
+        lVar.t(this.f50135b, this.f50136c, e, "crash", j11, true);
         try {
-            cVar = mVar.f50145g;
+            cVar = mVar.f50144g;
             str = ".ae" + j10;
             cVar.getClass();
         } catch (IOException e7) {
@@ -55,9 +55,9 @@ public final class k implements Callable {
         }
         ea.b bVar = this.d;
         mVar.c(false, bVar);
-        new f(mVar.f50144f);
-        m.a(mVar, f.f50125b, Boolean.FALSE);
-        if (!mVar.f50142b.a()) {
+        new f(mVar.f50143f);
+        m.a(mVar, f.f50124b, Boolean.FALSE);
+        if (!mVar.f50141b.a()) {
             return Tasks.forResult(null);
         }
         Executor executor = (Executor) mVar.e.f7672b;

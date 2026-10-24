@@ -4,26 +4,26 @@ import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class x4 extends View {
-    public final int f35390a;
-    public final o5 f35391b;
+    public final int f35392a;
+    public final o5 f35393b;
 
     public x4(o5 o5Var, Context context, int i10) {
         super(context);
-        this.f35390a = i10;
-        this.f35391b = o5Var;
+        this.f35392a = i10;
+        this.f35393b = o5Var;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        switch (this.f35390a) {
+        switch (this.f35392a) {
             case 0:
                 int size = View.MeasureSpec.getSize(i10);
-                o5 o5Var = this.f35391b;
+                o5 o5Var = this.f35393b;
                 o5Var.Y.measure(View.MeasureSpec.makeMeasureSpec(Math.max(0, size - AndroidUtilities.dp(24.0f)), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
                 setMeasuredDimension(size, AndroidUtilities.dp(36.0f) + o5Var.Y.getMeasuredHeight());
                 return;
             default:
-                o5 o5Var2 = this.f35391b;
+                o5 o5Var2 = this.f35393b;
                 o5Var2.d.measure(i10, View.MeasureSpec.makeMeasureSpec(0, 0));
                 setMeasuredDimension(View.MeasureSpec.getSize(i10), o5Var2.d.getMeasuredHeight());
                 return;

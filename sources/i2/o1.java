@@ -15,8 +15,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.h2;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.vc;
 import v7.u6;
 public abstract class o1 {
     public static Object A(int i10, ArrayList arrayList) {
@@ -24,7 +24,7 @@ public abstract class o1 {
     }
 
     public static void B(int i10, ArrayList arrayList) {
-        arrayList.add(m61.B(LocaleController.getString(i10)));
+        arrayList.add(l61.B(LocaleController.getString(i10)));
     }
 
     public static int C(int i10, int i11, int i12, int i13) {
@@ -448,7 +448,7 @@ public abstract class o1 {
     }
 
     public static void q(int i10, ArrayList arrayList) {
-        arrayList.add(m61.t(LocaleController.getString(i10)));
+        arrayList.add(l61.t(LocaleController.getString(i10)));
     }
 
     public static void r(int i10, HashMap hashMap, String str, int i11, String str2) {
@@ -461,8 +461,8 @@ public abstract class o1 {
         alertDialog$Builder.p();
     }
 
-    public static void t(int i10, Object[] objArr, xc xcVar, int i11, int i12) {
-        xcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
+    public static void t(int i10, Object[] objArr, vc vcVar, int i11, int i12) {
+        vcVar.Q(i11, i12, LocaleController.formatString(i10, objArr)).j();
     }
 
     public static void u(MediaMetadataRetriever mediaMetadataRetriever) {

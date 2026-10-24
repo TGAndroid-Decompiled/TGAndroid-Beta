@@ -1,72 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
-import java.io.File;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class a21 implements r91 {
-    public final ThemeEditorView f24609a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class a21 extends AnimatorListenerAdapter {
+    public final int f24609a;
+    public final ThemeEditorView f24610b;
 
-    public a21(ThemeEditorView themeEditorView) {
-        this.f24609a = themeEditorView;
+    public a21(ThemeEditorView themeEditorView, int i10) {
+        this.f24609a = i10;
+        this.f24610b = themeEditorView;
     }
 
     @Override
-    public final void a() {
-        int i10 = 0;
-        while (true) {
-            ThemeEditorView themeEditorView = this.f24609a;
-            if (i10 < themeEditorView.e.size()) {
-                org.telegram.ui.ActionBar.t6 t6Var = (org.telegram.ui.ActionBar.t6) themeEditorView.e.get(i10);
-                int x02 = org.telegram.ui.ActionBar.k6.x0(t6Var.f21863i, t6Var.e, false);
-                t6Var.h = x02;
-                if (i10 == 0) {
-                    themeEditorView.f24543n.f24545b.c(x02);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24609a) {
+            case 0:
+                ThemeEditorView themeEditorView = this.f24610b;
+                y11 y11Var = themeEditorView.f24536c;
+                if (y11Var != null) {
+                    y11Var.setBackground(null);
+                    themeEditorView.f24540j.removeView(themeEditorView.f24536c);
+                    return;
                 }
-                i10++;
-            } else {
-                ThemeEditorView.EditorAlert editorAlert = themeEditorView.f24543n;
-                int i11 = ThemeEditorView.EditorAlert.M;
-                editorAlert.L(true);
                 return;
-            }
+            default:
+                ThemeEditorView themeEditorView2 = this.f24610b;
+                org.telegram.ui.ActionBar.k6.u1(themeEditorView2.f24545o, true, false, false);
+                themeEditorView2.b();
+                return;
         }
-    }
-
-    @Override
-    public final void b(File file, Bitmap bitmap, boolean z10) {
-        org.telegram.ui.ActionBar.j6 j6Var = this.f24609a.f24544o;
-        org.telegram.ui.ActionBar.k6.ul.delete(org.telegram.ui.ActionBar.k6.Nd);
-        org.telegram.ui.ActionBar.k6.ul.delete(org.telegram.ui.ActionBar.k6.Od);
-        org.telegram.ui.ActionBar.k6.ul.delete(org.telegram.ui.ActionBar.k6.Pd);
-        org.telegram.ui.ActionBar.k6.ul.delete(org.telegram.ui.ActionBar.k6.Qd);
-        org.telegram.ui.ActionBar.k6.ul.delete(org.telegram.ui.ActionBar.k6.Rd);
-        org.telegram.ui.ActionBar.k6.f21249h0 = null;
-        j6Var.v(null);
-        if (bitmap != null) {
-            org.telegram.ui.ActionBar.k6.f21213f0 = new BitmapDrawable(bitmap);
-            org.telegram.ui.ActionBar.k6.u1(j6Var, false, false, false);
-            int[] calcDrawableColor = AndroidUtilities.calcDrawableColor(org.telegram.ui.ActionBar.k6.f21213f0);
-            int i10 = calcDrawableColor[0];
-            org.telegram.ui.ActionBar.k6.f21158c0 = i10;
-            org.telegram.ui.ActionBar.k6.X = i10;
-            int i11 = calcDrawableColor[1];
-            org.telegram.ui.ActionBar.k6.f21177d0 = i11;
-            org.telegram.ui.ActionBar.k6.f21138b0 = i11;
-            Drawable drawable = org.telegram.ui.ActionBar.k6.f21194e0;
-            if (drawable != null) {
-                org.telegram.ui.ActionBar.k6.i(drawable);
-            }
-            org.telegram.ui.ActionBar.k6.h(org.telegram.ui.ActionBar.k6.f21194e0);
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
-            return;
-        }
-        org.telegram.ui.ActionBar.k6.f21213f0 = null;
-        org.telegram.ui.ActionBar.k6.f21194e0 = null;
-        org.telegram.ui.ActionBar.k6.u1(j6Var, false, false, false);
-        org.telegram.ui.ActionBar.k6.r1(true);
     }
 }

@@ -14,15 +14,15 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.cn0;
-import org.telegram.ui.Components.d50;
+import org.telegram.ui.Components.b50;
+import org.telegram.ui.Components.bn0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ey;
-import org.telegram.ui.mu0;
-import org.telegram.ui.nz0;
+import org.telegram.ui.lu0;
+import org.telegram.ui.mz0;
 import org.telegram.ui.sn;
 import org.telegram.ui.u50;
-public final class y3 implements org.telegram.ui.ActionBar.z1, ei.y7, org.telegram.ui.Components.d5, t5.b, s9.g, d50 {
+public final class y3 implements org.telegram.ui.ActionBar.z1, ei.y7, org.telegram.ui.Components.b5, t5.b, s9.g, b50 {
     public final int f2483a;
     public final long f2484b;
     public final Object f2485c;
@@ -39,7 +39,7 @@ public final class y3 implements org.telegram.ui.ActionBar.z1, ei.y7, org.telegr
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        sn.Z0((sn) this.f2485c, (ArrayList) this.d, this.f2484b, (cn0) this.e, z10, i10);
+        sn.Z0((sn) this.f2485c, (ArrayList) this.d, this.f2484b, (bn0) this.e, z10, i10);
     }
 
     @Override
@@ -75,14 +75,14 @@ public final class y3 implements org.telegram.ui.ActionBar.z1, ei.y7, org.telegr
         switch (this.f2483a) {
             case 6:
                 s9.f fVar = (s9.f) this.f2485c;
-                return fVar.f46567b.schedule(new s9.d(fVar, (Runnable) this.d, bVar, 1), this.f2484b, (TimeUnit) this.e);
+                return fVar.f46566b.schedule(new s9.d(fVar, (Runnable) this.d, bVar, 1), this.f2484b, (TimeUnit) this.e);
             default:
                 final s9.f fVar2 = (s9.f) this.f2485c;
                 final Callable callable = (Callable) this.d;
-                return fVar2.f46567b.schedule(new Callable() {
+                return fVar2.f46566b.schedule(new Callable() {
                     @Override
                     public final Object call() {
-                        return f.this.f46566a.submit(new p2.b(18, callable, bVar));
+                        return f.this.f46565a.submit(new p2.b(18, callable, bVar));
                     }
                 }, this.f2484b, (TimeUnit) this.e);
         }
@@ -114,7 +114,7 @@ public final class y3 implements org.telegram.ui.ActionBar.z1, ei.y7, org.telegr
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) this.e;
-                ProfileActivity profileActivity = ((nz0) this.f2485c).f40016b;
+                ProfileActivity profileActivity = ((mz0) this.f2485c).f39679b;
                 profileActivity.O1 = true;
                 Bundle h = a1.g.h("scrollToTopOnResume", true);
                 long j10 = -this.f2484b;
@@ -134,7 +134,7 @@ public final class y3 implements org.telegram.ui.ActionBar.z1, ei.y7, org.telegr
     }
 
     @Override
-    public mu0 getCloseIntoObject() {
+    public lu0 getCloseIntoObject() {
         return null;
     }
 

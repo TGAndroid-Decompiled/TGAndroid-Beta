@@ -4,7 +4,7 @@ import ai.l7;
 import android.content.Context;
 import android.view.View;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 public final class k2 extends l7 {
     public final int B1;
     public final Object C1;
@@ -26,14 +26,14 @@ public final class k2 extends l7 {
     }
 
     @Override
-    public xc getBulletinFactory() {
+    public vc getBulletinFactory() {
         switch (this.B1) {
             case 0:
-                return xc.a0(((l2) this.C1).f50825a.f50924a);
+                return vc.a0(((l2) this.C1).f50824a.f50923a);
             case 1:
-                return xc.a0(((l2) this.C1).f50825a.f50924a);
+                return vc.a0(((l2) this.C1).f50824a.f50923a);
             case 2:
-                return xc.a0(((l2) this.C1).f50825a.f50924a);
+                return vc.a0(((l2) this.C1).f50824a.f50923a);
             default:
                 return super.getBulletinFactory();
         }

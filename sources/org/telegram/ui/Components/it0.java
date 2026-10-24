@@ -1,36 +1,26 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class it0 extends org.telegram.ui.Cells.j7 {
-    public final xv0 f27448l0;
+import android.widget.FrameLayout;
+public final class it0 extends FragmentContextView {
+    public final wv0 X0;
 
-    public it0(xv0 xv0Var, Context context) {
-        super(context);
-        this.f27448l0 = xv0Var;
+    public it0(wv0 wv0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, wv0 wv0Var2, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, o2Var, wv0Var2, false, g6Var);
+        this.X0 = wv0Var;
     }
 
     @Override
-    public final boolean d(MessageObject messageObject) {
-        ArrayList<MessageObject> arrayList;
-        boolean isVoice = messageObject.isVoice();
-        xv0 xv0Var = this.f27448l0;
-        if (!isVoice && !messageObject.isRoundVideo()) {
-            if (!messageObject.isMusic()) {
-                return false;
-            }
-            return MediaController.getInstance().setPlaylist(xv0Var.f32707t1[4].f28757a, messageObject, xv0Var.f32667c1);
-        }
-        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
-        MediaController mediaController = MediaController.getInstance();
-        if (playMessage) {
-            arrayList = xv0Var.f32707t1[4].f28757a;
+    public final void setVisibility(int i10) {
+        boolean z10;
+        wv0 wv0Var = this.X0;
+        ss ssVar = wv0Var.P0;
+        FrameLayout frameLayout = wv0Var.Q0;
+        if (i10 == 0) {
+            z10 = true;
         } else {
-            arrayList = null;
+            z10 = false;
         }
-        mediaController.setVoiceMessagesPlaylist(arrayList, false);
-        return playMessage;
+        ssVar.i(frameLayout, z10, true);
     }
 }

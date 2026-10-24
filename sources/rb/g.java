@@ -7,21 +7,21 @@ import java.util.concurrent.Executor;
 import k2.w0;
 import org.telegram.ui.web.d0;
 public final class g {
-    public static final Object f45608b = new Object();
-    public static g f45609c;
-    public r9.g f45610a;
+    public static final Object f45607b = new Object();
+    public static g f45608c;
+    public r9.g f45609a;
 
     public static g c() {
         boolean z10;
         g gVar;
-        synchronized (f45608b) {
-            if (f45609c != null) {
+        synchronized (f45607b) {
+            if (f45608c != null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             n6.l.j("MlKitContext has not been initialized", z10);
-            gVar = f45609c;
+            gVar = f45608c;
             n6.l.h(gVar);
         }
         return gVar;
@@ -30,15 +30,15 @@ public final class g {
     public static g d(Context context, Executor executor) {
         boolean z10;
         g gVar;
-        synchronized (f45608b) {
-            if (f45609c == null) {
+        synchronized (f45607b) {
+            if (f45608c == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             n6.l.j("MlKitContext is already initialized", z10);
             ?? obj = new Object();
-            f45609c = obj;
+            f45608c = obj;
             Context applicationContext = context.getApplicationContext();
             if (applicationContext != null) {
                 context = applicationContext;
@@ -51,23 +51,23 @@ public final class g {
             arrayList2.add(r9.a.c(context, Context.class, new Class[0]));
             arrayList2.add(r9.a.c(obj, g.class, new Class[0]));
             r9.g gVar2 = new r9.g(executor, arrayList, arrayList2, d0Var);
-            obj.f45610a = gVar2;
+            obj.f45609a = gVar2;
             gVar2.h(true);
-            gVar = f45609c;
+            gVar = f45608c;
         }
         return gVar;
     }
 
     public final Object a(Class cls) {
         boolean z10;
-        if (f45609c == this) {
+        if (f45608c == this) {
             z10 = true;
         } else {
             z10 = false;
         }
         n6.l.j("MlKitContext has been deleted", z10);
-        n6.l.h(this.f45610a);
-        return this.f45610a.a(cls);
+        n6.l.h(this.f45609a);
+        return this.f45609a.a(cls);
     }
 
     public final Context b() {

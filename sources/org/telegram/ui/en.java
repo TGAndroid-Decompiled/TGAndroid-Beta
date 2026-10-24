@@ -4,13 +4,13 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class en extends w7.a6 {
-    public MessageObject f36995a;
-    public int f36996b = 0;
-    public boolean f36997c = true;
+    public MessageObject f36953a;
+    public int f36954b = 0;
+    public boolean f36955c = true;
     public int d = 0;
     public int e;
-    public boolean f36998f;
-    public int f36999g;
+    public boolean f36956f;
+    public int f36957g;
     public final sn h;
 
     public en(sn snVar) {
@@ -19,19 +19,19 @@ public final class en extends w7.a6 {
 
     @Override
     public final void a() {
-        MessageObject messageObject = this.f36995a;
+        MessageObject messageObject = this.f36953a;
         sn snVar = this.h;
         if (messageObject != null) {
             snVar.A0.T();
-            int indexOf = snVar.G6.indexOf(this.f36995a) + snVar.A0.J;
+            int indexOf = snVar.G6.indexOf(this.f36953a) + snVar.A0.J;
             if (indexOf >= 0) {
-                snVar.f41762z0.i1(indexOf, (int) ((this.e + this.f36999g) - snVar.E9), this.f36998f);
+                snVar.f41759z0.i1(indexOf, (int) ((this.e + this.f36957g) - snVar.E9), this.f36956f);
             }
         } else {
             snVar.A0.T();
-            snVar.f41762z0.i1(this.f36996b, this.d, this.f36997c);
+            snVar.f41759z0.i1(this.f36954b, this.d, this.f36955c);
         }
-        this.f36995a = null;
+        this.f36953a = null;
         snVar.y3 = true;
         snVar.dd(false);
         AndroidUtilities.runOnUIThread(new ti(this, 9));
@@ -40,9 +40,9 @@ public final class en extends w7.a6 {
     @Override
     public final void c() {
         sn snVar = this.h;
-        snVar.U9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.U9, sn.f41445bd);
+        snVar.U9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.U9, sn.f41442bd);
         pk pkVar = snVar.Ia;
-        if (pkVar.f43985n) {
+        if (pkVar.f43687n) {
             pkVar.d();
         }
     }

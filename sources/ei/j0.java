@@ -9,11 +9,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public abstract class j0 extends FrameLayout {
     public final r6 f9230a;
-    public final org.telegram.ui.Components.f6 f9231b;
-    public final org.telegram.ui.Components.f6 f9232c;
+    public final org.telegram.ui.Components.d6 f9231b;
+    public final org.telegram.ui.Components.d6 f9232c;
     public final i0 d;
     public final FrameLayout e;
     public final g0 f9233f;
@@ -35,9 +35,9 @@ public abstract class j0 extends FrameLayout {
         this.f9230a = r6Var;
         i0 i0Var = new i0(this, context);
         this.d = i0Var;
-        bs bsVar = bs.h;
-        this.f9231b = new org.telegram.ui.Components.f6(i0Var, 0L, 320L, bsVar);
-        this.f9232c = new org.telegram.ui.Components.f6(this, 0L, 360L, bsVar);
+        zr zrVar = zr.h;
+        this.f9231b = new org.telegram.ui.Components.d6(i0Var, 0L, 320L, zrVar);
+        this.f9232c = new org.telegram.ui.Components.d6(this, 0L, 360L, zrVar);
         g0 g0Var = new g0(this, context, 0);
         this.f9233f = g0Var;
         g0Var.setListener(new a6.i(this, 18));
@@ -262,7 +262,7 @@ public abstract class j0 extends FrameLayout {
         float rotation = g0Var.getRotation();
         mg.f fVar = this.h;
         fVar.setRotation(rotation);
-        org.telegram.ui.Components.f6 f6Var = this.f9231b;
+        org.telegram.ui.Components.d6 d6Var = this.f9231b;
         if (cropState != null) {
             fVar.b(cropState.cropRotate);
             if (cropState.transformRotation != 0) {
@@ -272,13 +272,13 @@ public abstract class j0 extends FrameLayout {
             }
             fVar.setRotated(z10);
             fVar.setMirrored(cropState.mirrored);
-            f6Var.f(cropState.mirrored, false);
+            d6Var.f(cropState.mirrored, false);
         } else {
             fVar.b(0.0f);
             fVar.setRotated(false);
             fVar.setMirrored(false);
-            f6Var.getClass();
-            f6Var.d(0.0f, false);
+            d6Var.getClass();
+            d6Var.d(0.0f, false);
         }
         g0Var.r(false);
         this.f9232c.d(gVar.f16945i, true);

@@ -4,21 +4,21 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.DispatchQueue2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class m60 implements Runnable {
-    public final int f39381a;
-    public final n60 f39382b;
-    public final String f39383c;
+    public final int f39447a;
+    public final n60 f39448b;
+    public final String f39449c;
 
     public m60(n60 n60Var, String str, int i10) {
-        this.f39381a = i10;
-        this.f39382b = n60Var;
-        this.f39383c = str;
+        this.f39447a = i10;
+        this.f39448b = n60Var;
+        this.f39449c = str;
     }
 
     @Override
@@ -31,17 +31,17 @@ public final class m60 implements Runnable {
         boolean z11;
         int i11;
         Object obj;
-        switch (this.f39381a) {
+        switch (this.f39447a) {
             case 0:
-                n60 n60Var = this.f39382b;
-                String str2 = this.f39383c;
+                n60 n60Var = this.f39448b;
+                String str2 = this.f39449c;
                 n60Var.getClass();
                 AndroidUtilities.runOnUIThread(new m60(n60Var, str2, 1));
                 return;
             case 1:
-                n60 n60Var2 = this.f39382b;
-                String str3 = this.f39383c;
-                hg.a2 a2Var = n60Var2.f39788f;
+                n60 n60Var2 = this.f39448b;
+                String str3 = this.f39449c;
+                hg.a2 a2Var = n60Var2.f39738f;
                 p60 p60Var = n60Var2.I;
                 if (!p60Var.O && !p60Var.P) {
                     z10 = false;
@@ -49,15 +49,15 @@ public final class m60 implements Runnable {
                     z10 = true;
                 }
                 a2Var.g(str3, true, z10, true, false, 0L, false, 0, 0);
-                DispatchQueue dispatchQueue = Utilities.searchQueue;
+                DispatchQueue2 dispatchQueue2 = Utilities.searchQueue;
                 m60 m60Var = new m60(n60Var2, str3, 2);
                 n60Var2.h = m60Var;
-                dispatchQueue.postRunnable(m60Var);
+                dispatchQueue2.postRunnable(m60Var);
                 return;
             default:
-                n60 n60Var3 = this.f39382b;
-                String str4 = this.f39383c;
-                ArrayList arrayList2 = n60Var3.f39790r;
+                n60 n60Var3 = this.f39448b;
+                String str4 = this.f39449c;
+                ArrayList arrayList2 = n60Var3.f39740r;
                 String lowerCase = str4.trim().toLowerCase();
                 if (lowerCase.isEmpty()) {
                     AndroidUtilities.runOnUIThread(new lq(n60Var3, new ArrayList(), new ArrayList(), 10));

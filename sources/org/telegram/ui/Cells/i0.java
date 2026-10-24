@@ -2,9 +2,9 @@ package org.telegram.ui.Cells;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.hp0;
-import org.telegram.ui.qb1;
-public final class i0 extends hp0 {
+import org.telegram.ui.Components.gp0;
+import org.telegram.ui.pb1;
+public final class i0 extends gp0 {
     public final int m0;
 
     public i0(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
@@ -43,8 +43,8 @@ public final class i0 extends hp0 {
         this.m0 = 1;
     }
 
-    public i0(Context context, qb1 qb1Var) {
-        super(context, qb1Var, false);
+    public i0(Context context, pb1 pb1Var) {
+        super(context, pb1Var, false);
         this.m0 = 3;
     }
 }

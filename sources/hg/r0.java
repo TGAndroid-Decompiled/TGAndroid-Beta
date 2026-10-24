@@ -27,16 +27,16 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Cells.r3;
-import org.telegram.ui.Components.c41;
-import org.telegram.ui.Components.nq;
-import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y90;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.lq;
+import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.w90;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.hh1;
+import org.telegram.ui.gh1;
 import org.telegram.ui.kg;
-import org.telegram.ui.qi0;
+import org.telegram.ui.pi0;
 import rg.u2;
 public final class r0 implements View.OnClickListener {
     public final int f12057a;
@@ -63,10 +63,10 @@ public final class r0 implements View.OnClickListener {
                 LongSparseArray longSparseArray = e2Var.f11878n;
                 r3 r3Var = (r3) view.getParent();
                 TLRPC.StickerSetCovered stickerSet = r3Var.getStickerSet();
-                if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f20370id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20370id) < 0) {
-                    if (r3Var.f23094r) {
-                        longSparseArray.put(stickerSet.set.f20370id, stickerSet);
-                        e2Var.e.f32163a.h(r3Var.getStickerSet());
+                if (stickerSet != null && e2Var.h.indexOfKey(stickerSet.set.f20371id) < 0 && longSparseArray.indexOfKey(stickerSet.set.f20371id) < 0) {
+                    if (r3Var.f23095r) {
+                        longSparseArray.put(stickerSet.set.f20371id, stickerSet);
+                        e2Var.e.f31332a.h(r3Var.getStickerSet());
                         return;
                     }
                     e2Var.F(stickerSet, r3Var);
@@ -77,7 +77,7 @@ public final class r0 implements View.OnClickListener {
                 hi.o oVar = (hi.o) this.f12058b;
                 TLRPC.Chat chat = oVar.I;
                 if (chat != null && !chat.title.equals(((ai.t) oVar.f12227r.f900b).getText().toString())) {
-                    oVar.getMessagesController().changeChatTitle(oVar.I.f20343id, ((ai.t) oVar.f12227r.f900b).getText().toString(), new hi.h(oVar, 1));
+                    oVar.getMessagesController().changeChatTitle(oVar.I.f20344id, ((ai.t) oVar.f12227r.f900b).getText().toString(), new hi.h(oVar, 1));
                 }
                 TLRPC.Chat chat2 = oVar.I;
                 if (chat2 != null && oVar.f12226n != oVar.h) {
@@ -97,24 +97,24 @@ public final class r0 implements View.OnClickListener {
                 return;
             case 5:
                 ig.e eVar = (ig.e) this.f12058b;
-                q6 q6Var = eVar.f12900f;
+                o6 o6Var = eVar.f12900f;
                 int i12 = eVar.f12897a;
                 boolean z10 = eVar.f12902r;
                 eVar.f12902r = !z10;
-                nq nqVar = eVar.h;
+                lq lqVar = eVar.h;
                 if (!z10) {
                     i10 = R.string.BizBotStart;
                 } else {
                     i10 = R.string.BizBotStop;
                 }
-                nqVar.c(LocaleController.getString(i10), true, true);
-                q6Var.a();
+                lqVar.c(LocaleController.getString(i10), true, true);
+                o6Var.a();
                 if (eVar.f12902r) {
                     i11 = R.string.BizBotStatusStopped;
                 } else {
                     i11 = R.string.BizBotStatusManages;
                 }
-                q6Var.c(LocaleController.getString(i11), true, true);
+                o6Var.c(LocaleController.getString(i11), true, true);
                 if (eVar.f12902r) {
                     eVar.f12904w |= 1;
                 } else {
@@ -130,7 +130,7 @@ public final class r0 implements View.OnClickListener {
                 TL_account.TL_businessChatLink tL_businessChatLink = ((ig.t) this.f12058b).f13074f;
                 if (tL_businessChatLink != null) {
                     AndroidUtilities.addToClipboard(tL_businessChatLink.link);
-                    xc.a0(LaunchActivity.R()).k(false).j();
+                    vc.a0(LaunchActivity.R()).k(false).j();
                     return;
                 }
                 return;
@@ -140,9 +140,9 @@ public final class r0 implements View.OnClickListener {
             case 8:
                 ki.q qVar = (ki.q) this.f12058b;
                 qVar.K(0, true, 0, false, 0L);
-                qi0 qi0Var = qVar.O;
-                if (qi0Var != null) {
-                    qi0Var.g(true);
+                pi0 pi0Var = qVar.O;
+                if (pi0Var != null) {
+                    pi0Var.g(true);
                     qVar.O = null;
                     return;
                 }
@@ -188,8 +188,8 @@ public final class r0 implements View.OnClickListener {
                 return;
             case 12:
                 org.telegram.ui.Components.voip.v0 v0Var = (org.telegram.ui.Components.voip.v0) this.f12058b;
-                if (!v0Var.f31965a) {
-                    if (v0Var.f31973x == 0 && v0Var.f31974y) {
+                if (!v0Var.f31935a) {
+                    if (v0Var.f31943x == 0 && v0Var.f31944y) {
                         ((Activity) v0Var.getContext()).startActivityForResult(((MediaProjectionManager) v0Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
@@ -199,13 +199,13 @@ public final class r0 implements View.OnClickListener {
                 }
                 return;
             case 13:
-                hh1 hh1Var = (hh1) this.f12058b;
-                if (!hh1Var.f31532a) {
-                    if (hh1Var.f31539w == 0) {
-                        ((Activity) hh1Var.getContext()).startActivityForResult(((MediaProjectionManager) hh1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
+                gh1 gh1Var = (gh1) this.f12058b;
+                if (!gh1Var.f31502a) {
+                    if (gh1Var.f31509w == 0) {
+                        ((Activity) gh1Var.getContext()).startActivityForResult(((MediaProjectionManager) gh1Var.getContext().getSystemService("media_projection")).createScreenCaptureIntent(), 520);
                         return;
                     } else {
-                        hh1Var.a(false, true);
+                        gh1Var.a(false, true);
                         return;
                     }
                 }
@@ -226,8 +226,8 @@ public final class r0 implements View.OnClickListener {
             case 15:
                 org.telegram.ui.web.l lVar = (org.telegram.ui.web.l) this.f12058b;
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(lVar.getContext());
-                alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.WebRecentClearTitle);
-                alertDialog$Builder.f20678a.T = LocaleController.getString(R.string.WebRecentClearText);
+                alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.WebRecentClearTitle);
+                alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.WebRecentClearText);
                 alertDialog$Builder.k(LocaleController.getString(R.string.OK), new org.telegram.ui.web.a(lVar));
                 i2.o1.s(R.string.Cancel, alertDialog$Builder, null);
                 return;
@@ -235,7 +235,7 @@ public final class r0 implements View.OnClickListener {
                 ((qg.y) this.f12058b).dismiss();
                 return;
             case 17:
-                ((c41) this.f12058b).run();
+                ((b41) this.f12058b).run();
                 return;
             case 18:
                 ((u2) this.f12058b).onBackPressed();
@@ -244,16 +244,16 @@ public final class r0 implements View.OnClickListener {
                 ((kg) this.f12058b).run();
                 return;
             case 20:
-                ((y90) this.f12058b).performClick();
+                ((w90) this.f12058b).performClick();
                 return;
             case 21:
                 PremiumPreviewFragment.p0();
-                PremiumPreviewFragment.k0(((sg.m1) this.f12058b).f46773t0, null, "profile", null);
+                PremiumPreviewFragment.k0(((sg.m1) this.f12058b).f46772t0, null, "profile", null);
                 return;
             case 22:
                 final ug.e0 e0Var = (ug.e0) this.f12058b;
                 wg.a aVar3 = e0Var.Q0;
-                if (!aVar3.f49389a.Q) {
+                if (!aVar3.f49388a.Q) {
                     aVar3.b(true);
                     String str = e0Var.R0;
                     Utilities.Callback callback = new Utilities.Callback() {
@@ -301,7 +301,7 @@ public final class r0 implements View.OnClickListener {
                 ((ug.h0) this.f12058b).dismiss();
                 return;
             case 24:
-                ((ug.z) ((vg.e) this.f12058b)).f48266r.dismiss();
+                ((ug.z) ((vg.e) this.f12058b)).f48265r.dismiss();
                 return;
             case 25:
                 Runnable runnable = ((yg.c) this.f12058b).e;
@@ -317,15 +317,15 @@ public final class r0 implements View.OnClickListener {
                 ((yh.c0) this.f12058b).dismiss();
                 return;
             case 28:
-                if (((yh.o1) this.f12058b).f50894f0.f1055f > 0 && (R = LaunchActivity.R()) != 0) {
+                if (((yh.o1) this.f12058b).f50893f0.f1055f > 0 && (R = LaunchActivity.R()) != 0) {
                     ?? obj = new Object();
-                    obj.f21636a = true;
+                    obj.f21637a = true;
                     R.showAsSheet(new nd(), obj);
                     return;
                 }
                 return;
             default:
-                ((zh.n) this.f12058b).f52502c.f52550b.f52489a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
+                ((zh.n) this.f12058b).f52501c.f52549b.f52488a.presentFragment(new PremiumPreviewFragment(0, "qr_emoji"));
                 return;
         }
     }

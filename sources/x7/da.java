@@ -8,38 +8,38 @@ import z7.hb;
 import z7.mg;
 import z7.wf;
 public final class da implements Runnable {
-    public final int f49799a = 0;
-    public final long f49800b;
-    public final Object f49801c;
+    public final int f49798a = 0;
+    public final long f49799b;
+    public final Object f49800c;
     public final Object d;
 
     public da(fa faVar, r0 r0Var, long j10) {
-        this.f49801c = faVar;
+        this.f49800c = faVar;
         this.d = r0Var;
-        this.f49800b = j10;
+        this.f49799b = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f49799a) {
+        switch (this.f49798a) {
             case 0:
-                fa faVar = (fa) this.f49801c;
+                fa faVar = (fa) this.f49800c;
                 r0 r0Var = (r0) this.d;
-                HashMap hashMap = faVar.f49836j;
+                HashMap hashMap = faVar.f49835j;
                 o7 o7Var = o7.AGGREGATED_ON_DEVICE_IMAGE_LABEL_DETECTION;
                 if (!hashMap.containsKey(o7Var)) {
                     j jVar = new j();
                     ?? obj = new Object();
                     if (jVar.isEmpty()) {
-                        obj.f49816c = jVar;
+                        obj.f49815c = jVar;
                         hashMap.put(o7Var, obj);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
                 f fVar = (f) hashMap.get(o7Var);
-                Long valueOf = Long.valueOf(this.f49800b);
-                j jVar2 = fVar.f49816c;
+                Long valueOf = Long.valueOf(this.f49799b);
+                j jVar2 = fVar.f49815c;
                 Collection collection = (Collection) jVar2.get(r0Var);
                 if (collection == null) {
                     ArrayList arrayList = new ArrayList(3);
@@ -54,28 +54,28 @@ public final class da implements Runnable {
                 }
                 long elapsedRealtime = SystemClock.elapsedRealtime();
                 if (faVar.c(o7Var, elapsedRealtime)) {
-                    faVar.f49835i.put(o7Var, Long.valueOf(elapsedRealtime));
-                    rb.m.f45623a.execute(new org.telegram.ui.Wallet.m4(faVar, 13));
+                    faVar.f49834i.put(o7Var, Long.valueOf(elapsedRealtime));
+                    rb.m.f45622a.execute(new org.telegram.ui.Wallet.m4(faVar, 13));
                     return;
                 }
                 return;
             default:
-                wf wfVar = (wf) this.f49801c;
+                wf wfVar = (wf) this.f49800c;
                 hb hbVar = hb.AGGREGATED_ON_DEVICE_SUBJECT_SEGMENTATION_INFERENCE;
                 z7.i1 i1Var = (z7.i1) this.d;
-                HashMap hashMap2 = wfVar.f51708j;
+                HashMap hashMap2 = wfVar.f51707j;
                 if (!hashMap2.containsKey(hbVar)) {
                     z7.d dVar = new z7.d();
                     ?? obj2 = new Object();
                     if (dVar.isEmpty()) {
-                        obj2.f51577c = dVar;
+                        obj2.f51576c = dVar;
                         hashMap2.put(hbVar, obj2);
                     } else {
                         throw new IllegalArgumentException();
                     }
                 }
-                Long valueOf2 = Long.valueOf(this.f49800b);
-                z7.d dVar2 = ((mg) hashMap2.get(hbVar)).f51577c;
+                Long valueOf2 = Long.valueOf(this.f49799b);
+                z7.d dVar2 = ((mg) hashMap2.get(hbVar)).f51576c;
                 Collection collection2 = (Collection) dVar2.get(i1Var);
                 if (collection2 == null) {
                     ArrayList arrayList2 = new ArrayList(3);
@@ -89,8 +89,8 @@ public final class da implements Runnable {
                 }
                 long elapsedRealtime2 = SystemClock.elapsedRealtime();
                 if (wfVar.d(hbVar, elapsedRealtime2)) {
-                    wfVar.f51707i.put(hbVar, Long.valueOf(elapsedRealtime2));
-                    rb.m.f45623a.execute(new org.telegram.ui.Wallet.m4(wfVar));
+                    wfVar.f51706i.put(hbVar, Long.valueOf(elapsedRealtime2));
+                    rb.m.f45622a.execute(new org.telegram.ui.Wallet.m4(wfVar));
                     return;
                 }
                 return;
@@ -99,8 +99,8 @@ public final class da implements Runnable {
 
     public da(wf wfVar, z7.i1 i1Var, long j10) {
         hb hbVar = hb.UNKNOWN_EVENT;
-        this.f49801c = wfVar;
+        this.f49800c = wfVar;
         this.d = i1Var;
-        this.f49800b = j10;
+        this.f49799b = j10;
     }
 }

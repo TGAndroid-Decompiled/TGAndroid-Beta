@@ -16,7 +16,7 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.TelegramMediaSession;
 import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.ih;
+import org.telegram.messenger.jh;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
@@ -130,22 +130,22 @@ public final class yb implements Runnable {
                 return;
             case 16:
                 tc.u uVar = (tc.u) obj;
-                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f35427c;
+                org.telegram.ui.Wallet.z0 z0Var = ((org.telegram.ui.Wallet.y0) obj2).f35429c;
                 if (!z0Var.c(uVar, i11)) {
                     z0Var.d("closing stale connected websocket; attempt=" + i11);
                     uVar.c();
                     return;
                 }
                 z0Var.d("websocket connected after " + (SystemClock.elapsedRealtime() - j10) + " ms");
-                org.telegram.ui.Wallet.w0 w0Var = z0Var.f35480o;
+                org.telegram.ui.Wallet.w0 w0Var = z0Var.f35482o;
                 try {
-                    JSONArray put = new JSONArray().put(z0Var.f35470b);
+                    JSONArray put = new JSONArray().put(z0Var.f35472b);
                     StringBuilder sb2 = new StringBuilder("wallet-");
-                    int i12 = z0Var.f35473g + 1;
-                    z0Var.f35473g = i12;
+                    int i12 = z0Var.f35475g + 1;
+                    z0Var.f35475g = i12;
                     sb2.append(i12);
-                    z0Var.f35472f = sb2.toString();
-                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f35472f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
+                    z0Var.f35474f = sb2.toString();
+                    JSONObject put2 = new JSONObject().put("operation", "subscribe").put("id", z0Var.f35474f).put("types", new JSONArray().put("transactions").put("account_state_change")).put("include_address_book", true).put("addresses", put).put("min_finality", "pending");
                     AndroidUtilities.cancelRunOnUIThread(w0Var);
                     AndroidUtilities.runOnUIThread(w0Var, 30000L);
                     z0Var.g(put2.toString());
@@ -156,17 +156,17 @@ public final class yb implements Runnable {
                 }
             case 17:
                 org.telegram.ui.Wallet.e2 e2Var = (org.telegram.ui.Wallet.e2) obj2;
-                ih ihVar = (ih) obj;
+                jh jhVar = (jh) obj;
                 e2Var.getClass();
                 TL_wallet.tonConnectGetPending tonconnectgetpending = new TL_wallet.tonConnectGetPending();
                 long j11 = this.f2521b;
                 tonconnectgetpending.session_id = Long.valueOf(j11);
-                e2Var.f34432f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.s1(e2Var, ihVar, j11, this.f2522c, 0));
+                e2Var.f34434f.sendRequestTyped(tonconnectgetpending, new Object(), new org.telegram.ui.Wallet.s1(e2Var, jhVar, j11, this.f2522c, 0));
                 return;
             default:
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder((Context) obj2, 0, (org.telegram.ui.ActionBar.g6) obj);
                 String string = LocaleController.getString(R.string.WalletNetworkFee);
-                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
                 c2Var.R = string;
                 c2Var.T = AndroidUtilities.replaceTags(LocaleController.formatSpannable(R.string.WalletNetworkFeeInfo, org.telegram.ui.Wallet.l0.w(i11).l(j10, true)));
                 org.telegram.messenger.v0.o(R.string.WalletOK, alertDialog$Builder, null);

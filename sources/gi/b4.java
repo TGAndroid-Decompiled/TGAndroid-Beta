@@ -3,13 +3,13 @@ package gi;
 import ai.c5;
 import android.view.ViewGroup;
 import java.util.LinkedList;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.lg;
-import org.telegram.ui.Components.pe0;
-import org.telegram.ui.Components.pg;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.ub;
-import org.telegram.ui.Components.yc0;
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.jg;
+import org.telegram.ui.Components.ne0;
+import org.telegram.ui.Components.ng;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.sb;
+import org.telegram.ui.Components.wc0;
 public final class b4 implements o1.f {
     public final int f11116a;
     public final Object f11117b;
@@ -50,38 +50,38 @@ public final class b4 implements o1.f {
                 }
                 return;
             case 1:
-                pg pgVar = (pg) this.f11118c;
-                ((ub) this.f11117b).setInOutOffset(0.0f);
+                ng ngVar = (ng) this.f11118c;
+                ((sb) this.f11117b).setInOutOffset(0.0f);
                 if (!z10) {
-                    pgVar.run();
+                    ngVar.run();
                     return;
                 }
                 return;
             case 2:
-                ti.s((ti) this.f11117b, (lg) this.f11118c);
+                ri.s((ri) this.f11117b, (jg) this.f11118c);
                 return;
             case 3:
-                ti tiVar = (ti) ((c5) this.f11117b).d;
-                tiVar.C0.setTranslationY(0.0f);
-                tiVar.C0.l(tiVar.f30758o2);
-                viewGroup = ((org.telegram.ui.ActionBar.h3) tiVar).containerView;
+                ri riVar = (ri) ((c5) this.f11117b).d;
+                riVar.C0.setTranslationY(0.0f);
+                riVar.C0.l(riVar.f30174o2);
+                viewGroup = ((org.telegram.ui.ActionBar.h3) riVar).containerView;
                 viewGroup.invalidate();
-                ((gh) this.f11118c).run();
-                tiVar.i2(0);
+                ((eh) this.f11118c).run();
+                riVar.i2(0);
                 return;
             default:
-                pe0 pe0Var = (pe0) this.f11117b;
-                yc0 yc0Var = (yc0) this.f11118c;
-                LinkedList linkedList = pe0Var.U;
-                pe0Var.T = null;
-                yc0Var.D = null;
-                yc0Var.y();
+                ne0 ne0Var = (ne0) this.f11117b;
+                wc0 wc0Var = (wc0) this.f11118c;
+                LinkedList linkedList = ne0Var.U;
+                ne0Var.T = null;
+                wc0Var.D = null;
+                wc0Var.y();
                 if (!z10) {
-                    yc0Var.h = 1.0f;
-                    yc0Var.y();
+                    wc0Var.h = 1.0f;
+                    wc0Var.y();
                     if (!linkedList.isEmpty()) {
                         ((Runnable) linkedList.poll()).run();
-                        pe0Var.V.poll();
+                        ne0Var.V.poll();
                         return;
                     }
                     return;

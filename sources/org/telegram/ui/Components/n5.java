@@ -1,153 +1,488 @@
 package org.telegram.ui.Components;
 
-import android.os.Looper;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class n5 {
-    public HashMap f28831a;
-    public HashMap f28832b;
-    public HashSet f28833c;
-    public pg d;
-    public final int e;
+public class n5 extends Drawable implements v5 {
+    public ai.ee E;
+    public Integer F;
+    public int G;
+    public PorterDuffColorFilter H;
+    public int I;
+    public int J;
+    public final Rect K;
+    public final ng L;
+    public boolean f28779a;
+    public final int f28780b;
+    public final OvershootInterpolator f28781c;
+    public final d6 d;
+    public final d6 e;
+    public final Drawable[] f28782f;
+    public View h;
+    public org.telegram.ui.a61 f28783n;
+    public final boolean f28784r;
+    public final int f28785s;
+    public int v;
+    public boolean f28786w;
+    public Integer f28787x;
+    public boolean f28788y;
 
-    public n5(int i10) {
-        this.e = i10;
+    public n5(int i10, View view) {
+        this(i10, 7, view, false);
     }
 
-    public static boolean a() {
-        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
-            if (BuildVars.DEBUG_VERSION) {
-                FileLog.e("EmojiDocumentFetcher", new IllegalStateException("Wrong thread"));
-                return false;
+    public final void a() {
+        if (!this.f28786w) {
+            this.f28786w = true;
+            Drawable[] drawableArr = this.f28782f;
+            Drawable drawable = drawableArr[0];
+            if (drawable instanceof p5) {
+                ((p5) drawable).b(this);
             }
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 instanceof p5) {
+                ((p5) drawable2).b(this);
+            }
+        }
+    }
+
+    public final void b() {
+        if (this.f28786w) {
+            this.f28786w = false;
+            Drawable[] drawableArr = this.f28782f;
+            Drawable drawable = drawableArr[0];
+            if (drawable instanceof p5) {
+                ((p5) drawable).p(this);
+            }
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 instanceof p5) {
+                ((p5) drawable2).p(this);
+            }
+        }
+    }
+
+    public final Drawable c() {
+        return this.f28782f[0];
+    }
+
+    public final boolean d() {
+        if (this.f28782f[0] != null) {
             return false;
         }
         return true;
     }
 
-    public final void b(long j10, o5 o5Var) {
-        TLRPC.Document document;
-        if (j10 != 0) {
-            synchronized (this) {
-                try {
-                    HashMap hashMap = this.f28831a;
-                    if (hashMap != null && (document = (TLRPC.Document) hashMap.get(Long.valueOf(j10))) != null) {
-                        if (o5Var != null) {
-                            o5Var.a(document);
-                        }
-                    } else if (a()) {
-                        if (this.f28832b == null) {
-                            this.f28832b = new HashMap();
-                        }
-                        ArrayList arrayList = (ArrayList) this.f28832b.get(Long.valueOf(j10));
-                        if (arrayList != null) {
-                            arrayList.add(o5Var);
-                            return;
-                        }
-                        ArrayList arrayList2 = new ArrayList(1);
-                        arrayList2.add(o5Var);
-                        this.f28832b.put(Long.valueOf(j10), arrayList2);
-                        if (this.f28833c == null) {
-                            this.f28833c = new HashSet();
-                        }
-                        this.f28833c.add(Long.valueOf(j10));
-                        if (this.d != null) {
-                            return;
-                        }
-                        pg pgVar = new pg(this, 6);
-                        this.d = pgVar;
-                        AndroidUtilities.runOnUIThread(pgVar);
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
+    @Override
+    public final void draw(Canvas canvas) {
+        int intrinsicWidth;
+        int intrinsicWidth2;
+        int intrinsicHeight;
+        int intValue;
+        float d = this.d.d(1.0f, false);
+        Rect bounds = getBounds();
+        Rect rect = this.K;
+        rect.set(bounds);
+        rect.offset(this.I, this.J);
+        float e = this.e.e(this.f28788y);
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        ng ngVar = this.L;
+        if (i10 > 0) {
+            ai.ee eeVar = this.E;
+            eeVar.f1235c.set(rect);
+            eeVar.e();
+            this.E.d();
+            ai.ee eeVar2 = this.E;
+            Integer num = this.F;
+            if (num == null) {
+                intValue = -1;
+            } else {
+                intValue = num.intValue();
             }
+            eeVar2.a(canvas, org.telegram.ui.ActionBar.k6.o1(e, intValue));
+            zf.h.d().a(15, ngVar);
+        } else {
+            zf.h.d().f(ngVar);
+        }
+        Drawable[] drawableArr = this.f28782f;
+        Drawable drawable = drawableArr[1];
+        int i11 = this.f28785s;
+        if (drawable != null && d < 1.0f) {
+            drawable.setAlpha((int) ((1.0f - d) * this.v));
+            if (drawableArr[1].getIntrinsicWidth() < 0) {
+                intrinsicWidth2 = i11;
+            } else {
+                intrinsicWidth2 = drawableArr[1].getIntrinsicWidth();
+            }
+            if (drawableArr[1].getIntrinsicHeight() < 0) {
+                intrinsicHeight = i11;
+            } else {
+                intrinsicHeight = drawableArr[1].getIntrinsicHeight();
+            }
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 instanceof p5) {
+                drawable2.setBounds(rect);
+            } else if (this.f28779a) {
+                int i12 = intrinsicWidth2 / 2;
+                int i13 = intrinsicHeight / 2;
+                drawable2.setBounds(rect.centerX() - i12, rect.centerY() - i13, rect.centerX() + i12, rect.centerY() + i13);
+            } else {
+                int i14 = intrinsicHeight / 2;
+                drawable2.setBounds(rect.left, rect.centerY() - i14, rect.left + intrinsicWidth2, rect.centerY() + i14);
+            }
+            drawableArr[1].setColorFilter(this.H);
+            drawableArr[1].draw(canvas);
+            drawableArr[1].setColorFilter(null);
+        }
+        if (drawableArr[0] != null) {
+            canvas.save();
+            if (drawableArr[0].getIntrinsicWidth() < 0) {
+                intrinsicWidth = i11;
+            } else {
+                intrinsicWidth = drawableArr[0].getIntrinsicWidth();
+            }
+            if (drawableArr[0].getIntrinsicHeight() >= 0) {
+                i11 = drawableArr[0].getIntrinsicHeight();
+            }
+            Drawable drawable3 = drawableArr[0];
+            boolean z10 = drawable3 instanceof p5;
+            OvershootInterpolator overshootInterpolator = this.f28781c;
+            if (z10) {
+                ci.f3 f3Var = ((p5) drawable3).f29484k;
+                if (f3Var != null) {
+                    f3Var.setRoundRadius(AndroidUtilities.dp(4.0f));
+                }
+                if (d < 1.0f) {
+                    float interpolation = overshootInterpolator.getInterpolation(d);
+                    canvas.scale(interpolation, interpolation, rect.centerX(), rect.centerY());
+                }
+                drawableArr[0].setBounds(rect);
+            } else if (this.f28779a) {
+                if (d < 1.0f) {
+                    float interpolation2 = overshootInterpolator.getInterpolation(d);
+                    canvas.scale(interpolation2, interpolation2, rect.centerX(), rect.centerY());
+                }
+                int i15 = intrinsicWidth / 2;
+                int i16 = i11 / 2;
+                drawableArr[0].setBounds(rect.centerX() - i15, rect.centerY() - i16, rect.centerX() + i15, rect.centerY() + i16);
+            } else {
+                if (d < 1.0f) {
+                    float interpolation3 = overshootInterpolator.getInterpolation(d);
+                    canvas.scale(interpolation3, interpolation3, (intrinsicWidth / 2.0f) + rect.left, rect.centerY());
+                }
+                int i17 = i11 / 2;
+                drawableArr[0].setBounds(rect.left, rect.centerY() - i17, rect.left + intrinsicWidth, rect.centerY() + i17);
+            }
+            drawableArr[0].setAlpha(this.v);
+            drawableArr[0].setColorFilter(this.H);
+            drawableArr[0].draw(canvas);
+            drawableArr[0].setColorFilter(null);
+            canvas.restore();
         }
     }
 
-    public final TLRPC.InputStickerSet c(long j10) {
-        synchronized (this) {
-            try {
-                HashMap hashMap = this.f28831a;
-                if (hashMap == null) {
-                    return null;
-                }
-                TLRPC.Document document = (TLRPC.Document) hashMap.get(Long.valueOf(j10));
-                if (document == null) {
-                    return null;
-                }
-                return MessageObject.getInputStickerSet(document);
-            } catch (Throwable th2) {
-                throw th2;
-            }
+    public final float e() {
+        float f7;
+        Drawable[] drawableArr = this.f28782f;
+        Drawable drawable = drawableArr[1];
+        float f10 = 0.0f;
+        d6 d6Var = this.d;
+        if (drawable != null) {
+            f7 = 1.0f - d6Var.f25568c;
+        } else {
+            f7 = 0.0f;
+        }
+        if (drawableArr[0] != null) {
+            f10 = d6Var.f25568c;
+        }
+        return f7 + f10;
+    }
+
+    public final void f() {
+        p5 p5Var;
+        ci.f3 f3Var;
+        Drawable drawable = this.f28782f[0];
+        if ((drawable instanceof p5) && (f3Var = (p5Var = (p5) drawable).f29484k) != null) {
+            p5Var.w(f3Var);
+            f3Var.startAnimation();
         }
     }
 
-    public final void d(ArrayList arrayList) {
-        ArrayList arrayList2;
-        if (a()) {
-            r5.x();
-            for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                if (arrayList.get(i10) instanceof TLRPC.Document) {
-                    TLRPC.Document document = (TLRPC.Document) arrayList.get(i10);
-                    e(document);
-                    HashMap hashMap = this.f28832b;
-                    if (hashMap != null && (arrayList2 = (ArrayList) hashMap.remove(Long.valueOf(document.f20349id))) != null) {
-                        for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                            o5 o5Var = (o5) arrayList2.get(i11);
-                            if (o5Var != null) {
-                                o5Var.a(document);
-                            }
-                        }
-                        arrayList2.clear();
-                    }
-                }
-            }
-        }
-    }
-
-    public final void e(TLRPC.Document document) {
-        if (document == null) {
+    public final void g(Drawable drawable, boolean z10) {
+        Drawable[] drawableArr = this.f28782f;
+        if (drawableArr[0] == drawable) {
             return;
         }
-        synchronized (this) {
-            try {
-                if (this.f28831a == null) {
-                    this.f28831a = new HashMap();
+        d6 d6Var = this.d;
+        if (z10) {
+            d6Var.d(0.0f, true);
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 != null) {
+                if (this.f28786w && (drawable2 instanceof p5)) {
+                    ((p5) drawable2).p(this);
                 }
-                this.f28831a.put(Long.valueOf(document.f20349id), document);
-            } catch (Throwable th2) {
-                throw th2;
+                drawableArr[1] = null;
+            }
+            drawableArr[1] = drawableArr[0];
+            drawableArr[0] = drawable;
+        } else {
+            d6Var.d(1.0f, true);
+            boolean z11 = this.f28786w;
+            if (z11) {
+                b();
+            }
+            drawableArr[0] = drawable;
+            if (z11) {
+                a();
+            }
+        }
+        this.F = null;
+        this.H = null;
+        this.G = 0;
+        f();
+        invalidate();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f28785s;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f28785s;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public final void h(TLRPC.Document document, int i10, boolean z10) {
+        int i11;
+        int i12;
+        Drawable[] drawableArr = this.f28782f;
+        Drawable drawable = drawableArr[0];
+        if ((drawable instanceof p5) && document != null && ((p5) drawable).i() == document.f20350id) {
+            return;
+        }
+        d6 d6Var = this.d;
+        if (z10) {
+            d6Var.d(0.0f, true);
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 != null) {
+                if (drawable2 instanceof p5) {
+                    ((p5) drawable2).p(this);
+                }
+                drawableArr[1] = null;
+            }
+            drawableArr[1] = drawableArr[0];
+            if (document != null) {
+                Integer num = this.f28787x;
+                if (num != null) {
+                    i12 = num.intValue();
+                } else {
+                    i12 = UserConfig.selectedAccount;
+                }
+                p5 m10 = p5.m(i12, i10, document);
+                drawableArr[0] = m10;
+                if (this.f28786w) {
+                    m10.b(this);
+                }
+            } else {
+                drawableArr[0] = null;
+            }
+        } else {
+            d6Var.d(1.0f, true);
+            boolean z11 = this.f28786w;
+            if (z11) {
+                b();
+            }
+            if (document != null) {
+                Integer num2 = this.f28787x;
+                if (num2 != null) {
+                    i11 = num2.intValue();
+                } else {
+                    i11 = UserConfig.selectedAccount;
+                }
+                drawableArr[0] = p5.m(i11, i10, document);
+            } else {
+                drawableArr[0] = null;
+            }
+            if (z11) {
+                a();
+            }
+        }
+        this.F = null;
+        this.H = null;
+        this.G = 0;
+        f();
+        invalidate();
+    }
+
+    public final void i(TLRPC.Document document, boolean z10) {
+        h(document, this.f28780b, z10);
+    }
+
+    @Override
+    public void invalidate() {
+        View view = this.h;
+        if (view != null) {
+            if (this.f28784r && (view.getParent() instanceof View)) {
+                ((View) this.h.getParent()).invalidate();
+            } else {
+                this.h.invalidate();
+            }
+        }
+        org.telegram.ui.a61 a61Var = this.f28783n;
+        if (a61Var != null) {
+            a61Var.invalidate();
+        }
+        invalidateSelf();
+    }
+
+    public final boolean j(long j10, boolean z10) {
+        int i10;
+        int i11;
+        Drawable[] drawableArr = this.f28782f;
+        Drawable drawable = drawableArr[0];
+        if ((drawable instanceof p5) && ((p5) drawable).i() == j10) {
+            return false;
+        }
+        int i12 = this.f28780b;
+        d6 d6Var = this.d;
+        if (z10) {
+            d6Var.d(0.0f, true);
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 != null) {
+                if (this.f28786w && (drawable2 instanceof p5)) {
+                    ((p5) drawable2).p(this);
+                }
+                drawableArr[1] = null;
+            }
+            drawableArr[1] = drawableArr[0];
+            Integer num = this.f28787x;
+            if (num != null) {
+                i11 = num.intValue();
+            } else {
+                i11 = UserConfig.selectedAccount;
+            }
+            p5 n10 = p5.n(i11, j10, null, i12);
+            drawableArr[0] = n10;
+            if (this.f28786w) {
+                n10.b(this);
+            }
+        } else {
+            d6Var.d(1.0f, true);
+            boolean z11 = this.f28786w;
+            if (z11) {
+                b();
+            }
+            Integer num2 = this.f28787x;
+            if (num2 != null) {
+                i10 = num2.intValue();
+            } else {
+                i10 = UserConfig.selectedAccount;
+            }
+            drawableArr[0] = p5.n(i10, j10, null, i12);
+            if (z11) {
+                a();
+            }
+        }
+        this.F = null;
+        this.H = null;
+        this.G = 0;
+        f();
+        invalidate();
+        return true;
+    }
+
+    public final void k(Integer num) {
+        PorterDuffColorFilter porterDuffColorFilter;
+        Integer num2 = this.F;
+        if (num2 != null || num != null) {
+            if (num2 == null || !num2.equals(num)) {
+                this.F = num;
+                if (num != null && this.G == num.intValue()) {
+                    return;
+                }
+                if (num != null) {
+                    int intValue = num.intValue();
+                    this.G = intValue;
+                    porterDuffColorFilter = new PorterDuffColorFilter(intValue, PorterDuff.Mode.SRC_IN);
+                } else {
+                    porterDuffColorFilter = null;
+                }
+                this.H = porterDuffColorFilter;
             }
         }
     }
 
-    public final void f(ArrayList arrayList) {
-        if (arrayList == null) {
+    public final void l(View view) {
+        this.d.f25566a = view;
+        this.e.f25566a = view;
+        this.h = view;
+    }
+
+    public final void m(boolean z10, boolean z11) {
+        if (this.f28788y == z10) {
             return;
         }
-        synchronized (this) {
-            try {
-                if (this.f28831a == null) {
-                    this.f28831a = new HashMap();
-                }
-                int size = arrayList.size();
-                int i10 = 0;
-                while (i10 < size) {
-                    Object obj = arrayList.get(i10);
-                    i10++;
-                    TLRPC.Document document = (TLRPC.Document) obj;
-                    this.f28831a.put(Long.valueOf(document.f20349id), document);
-                }
-            } catch (Throwable th2) {
-                throw th2;
+        if (z11) {
+            if (this.E == null) {
+                this.E = new ai.ee(1, 8);
             }
+            this.f28788y = z10;
+            invalidate();
+            return;
         }
+        this.f28788y = z10;
+        if (z10 && this.E == null) {
+            this.E = new ai.ee(1, 8);
+        } else if (!z10 && this.E != null) {
+            this.E = null;
+        }
+        this.e.f(z10, true);
+        invalidate();
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.v = i10;
+    }
+
+    public n5(View view, int i10, boolean z10) {
+        this(i10, 7, view, z10);
+    }
+
+    public n5(int i10, int i11, View view, boolean z10) {
+        this.f28779a = false;
+        this.f28781c = new OvershootInterpolator(2.0f);
+        zr zrVar = zr.f33338g;
+        d6 d6Var = new d6((View) null, 300L, zrVar);
+        this.d = d6Var;
+        d6 d6Var2 = new d6((View) null, 300L, zrVar);
+        this.e = d6Var2;
+        this.f28782f = new Drawable[2];
+        this.v = 255;
+        this.K = new Rect();
+        this.L = new ng(this, 7);
+        d6Var.f25566a = view;
+        this.h = view;
+        d6Var2.f25566a = view;
+        this.f28785s = i10;
+        this.f28780b = i11;
+        this.f28784r = z10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

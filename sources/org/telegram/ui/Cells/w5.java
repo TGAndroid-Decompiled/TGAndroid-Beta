@@ -9,26 +9,26 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 public final class w5 extends FrameLayout {
-    public final org.telegram.ui.Components.w9 f23909a;
-    public final TextView f23910b;
-    public final TextView f23911c;
+    public final org.telegram.ui.Components.u9 f23910a;
+    public final TextView f23911b;
+    public final TextView f23912c;
     public final View d;
     public final y5 e;
 
     public w5(y5 y5Var, Context context) {
         super(context);
         this.e = y5Var;
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f23909a = w9Var;
-        addView(w9Var, w7.z5.c(-1.0f, -1));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.f23910a = u9Var;
+        addView(u9Var, w7.z5.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(0);
         linearLayout.setBackgroundResource(R.drawable.album_shadow);
         addView(linearLayout, w7.z5.e(-1, 60, 83));
         TextView textView = new TextView(context);
-        this.f23910b = textView;
+        this.f23911b = textView;
         textView.setTextSize(1, 13.0f);
         textView.setTextColor(-1);
         textView.setSingleLine(true);
@@ -36,8 +36,8 @@ public final class w5 extends FrameLayout {
         textView.setEllipsize(truncateAt);
         textView.setMaxLines(1);
         textView.setGravity(80);
-        TextView f7 = sl.f(linearLayout, textView, w7.z5.m(1.0f, 0, -1, 8, 0, 5), context);
-        this.f23911c = f7;
+        TextView f7 = tl.f(linearLayout, textView, w7.z5.m(1.0f, 0, -1, 8, 0, 5), context);
+        this.f23912c = f7;
         f7.setTextSize(1, 13.0f);
         f7.setTextColor(-1);
         f7.setSingleLine(true);
@@ -53,13 +53,13 @@ public final class w5 extends FrameLayout {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        org.telegram.ui.Components.w9 w9Var = this.f23909a;
-        if (w9Var.getImageReceiver().hasNotThumb() && w9Var.getImageReceiver().getCurrentAlpha() == 1.0f) {
+        org.telegram.ui.Components.u9 u9Var = this.f23910a;
+        if (u9Var.getImageReceiver().hasNotThumb() && u9Var.getImageReceiver().getCurrentAlpha() == 1.0f) {
             return;
         }
         y5 y5Var = this.e;
         y5Var.e.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.X9, false));
-        canvas.drawRect(0.0f, 0.0f, w9Var.getMeasuredWidth(), w9Var.getMeasuredHeight(), y5Var.e);
+        canvas.drawRect(0.0f, 0.0f, u9Var.getMeasuredWidth(), u9Var.getMeasuredHeight(), y5Var.e);
     }
 
     @Override

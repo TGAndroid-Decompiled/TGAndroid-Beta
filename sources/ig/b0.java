@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.vz;
+import org.telegram.ui.Components.tz;
 public final class b0 implements TextWatcher {
     public final h0 f12859a;
 
@@ -20,16 +20,16 @@ public final class b0 implements TextWatcher {
         int currentTop;
         h0 h0Var = this.f12859a;
         ai.u1 u1Var = h0Var.f12943s;
-        vz vzVar = h0Var.E;
+        tz tzVar = h0Var.E;
         e0 e0Var = h0Var.f12945x;
         String obj = editable.toString();
         if (!obj.isEmpty()) {
-            if (vzVar != null) {
-                vzVar.setText(LocaleController.getString(R.string.NoResult));
+            if (tzVar != null) {
+                tzVar.setText(LocaleController.getString(R.string.NoResult));
             }
         } else if (u1Var.getAdapter() != e0Var) {
             currentTop = h0Var.getCurrentTop();
-            vzVar.c();
+            tzVar.c();
             u1Var.setAdapter(e0Var);
             e0Var.l();
             if (currentTop > 0) {

@@ -1,32 +1,34 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class pk implements Runnable {
-    public final int f19327a;
-    public final TopicsController f19328b;
-    public final long f19329c;
-    public final ArrayList d;
-    public final boolean e;
-    public final long f19330f;
+import android.icu.text.Collator;
+import java.util.Comparator;
+import java.util.HashMap;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.TranslateController;
+public final class pk implements Comparator {
+    public final int f19303a;
+    public final Object f19304b;
 
-    public pk(TopicsController topicsController, long j10, ArrayList arrayList, boolean z10, long j11, int i10) {
-        this.f19327a = i10;
-        this.f19328b = topicsController;
-        this.f19329c = j10;
-        this.d = arrayList;
-        this.e = z10;
-        this.f19330f = j11;
+    public pk(Object obj, int i10) {
+        this.f19303a = i10;
+        this.f19304b = obj;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19327a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$getMusicDialogsSortedByVisibleOrder$1;
+        int lambda$getLocales$3;
+        int lambda$getLanguages$1;
+        switch (this.f19303a) {
             case 0:
-                TopicsController.x(this.f19328b, this.f19329c, this.d, this.e, this.f19330f);
-                return;
+                lambda$getMusicDialogsSortedByVisibleOrder$1 = TelegramMediaSession.lambda$getMusicDialogsSortedByVisibleOrder$1((HashMap) this.f19304b, (Long) obj, (Long) obj2);
+                return lambda$getMusicDialogsSortedByVisibleOrder$1;
+            case 1:
+                lambda$getLocales$3 = TranslateController.lambda$getLocales$3((LocaleController.LocaleInfo) this.f19304b, (LocaleController.LocaleInfo) obj, (LocaleController.LocaleInfo) obj2);
+                return lambda$getLocales$3;
             default:
-                TopicsController.s(this.f19328b, this.f19329c, this.d, this.e, this.f19330f);
-                return;
+                lambda$getLanguages$1 = TranslateController.lambda$getLanguages$1((Collator) this.f19304b, (TranslateController.Language) obj, (TranslateController.Language) obj2);
+                return lambda$getLanguages$1;
         }
     }
 }

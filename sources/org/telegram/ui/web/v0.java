@@ -29,25 +29,25 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.iu;
-import org.telegram.ui.Components.ry;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.gu;
+import org.telegram.ui.Components.py;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.e8;
 import org.telegram.ui.k4;
 import org.telegram.ui.n3;
 import w7.z5;
 public final class v0 extends WebChromeClient {
-    public org.telegram.ui.ActionBar.c2 f43306a;
-    public final Context f43307b;
-    public final boolean f43308c;
+    public org.telegram.ui.ActionBar.c2 f43295a;
+    public final Context f43296b;
+    public final boolean f43297c;
     public final long d;
     public final y0 e;
 
     public v0(y0 y0Var, Context context, boolean z10, long j10) {
         this.e = y0Var;
-        this.f43307b = context;
-        this.f43308c = z10;
+        this.f43296b = context;
+        this.f43297c = z10;
         this.d = j10;
     }
 
@@ -62,7 +62,7 @@ public final class v0 extends WebChromeClient {
         y0 y0Var = this.e;
         y0Var.c("onCloseWindow " + webView);
         b1 b1Var = y0Var.Q;
-        if (b1Var != null && (h0Var = b1Var.f43047c) != null) {
+        if (b1Var != null && (h0Var = b1Var.f43036c) != null) {
             h0Var.z();
         } else {
             Runnable runnable = y0Var.U;
@@ -89,31 +89,31 @@ public final class v0 extends WebChromeClient {
                 U = ((ActionBarLayout) U.getParentLayout()).getSheetFragment();
             }
             k4 createArticleViewer = U.createArticleViewer(true);
-            if (createArticleViewer.f38805u0 != null) {
+            if (createArticleViewer.f38774u0 != null) {
                 int i10 = 0;
                 while (true) {
-                    n3[] n3VarArr = createArticleViewer.f38805u0;
+                    n3[] n3VarArr = createArticleViewer.f38774u0;
                     if (i10 >= n3VarArr.length) {
                         break;
                     }
                     n3 n3Var = n3VarArr[i10];
                     if (n3Var != null) {
-                        n3Var.f39754f.setOpener(y0Var);
+                        n3Var.f39704f.setOpener(y0Var);
                     }
                     i10++;
                 }
             }
             y0 y0Var2 = null;
             createArticleViewer.N(null, null, null, null);
-            n3 n3Var2 = createArticleViewer.f38805u0[0];
+            n3 n3Var2 = createArticleViewer.f38774u0[0];
             if (n3Var2 != null && n3Var2.f()) {
-                if (createArticleViewer.f38805u0[0].getWebView() == null) {
-                    createArticleViewer.f38805u0[0].f39754f.c();
+                if (createArticleViewer.f38774u0[0].getWebView() == null) {
+                    createArticleViewer.f38774u0[0].f39704f.c();
                 }
-                y0Var2 = createArticleViewer.f38805u0[0].getWebView();
+                y0Var2 = createArticleViewer.f38774u0[0].getWebView();
             }
             if (!TextUtils.isEmpty(url)) {
-                y0Var2.f43337y = url;
+                y0Var2.f43326y = url;
             }
             y0Var.c("onCreateWindow: newWebView=" + y0Var2);
             if (y0Var2 != null) {
@@ -133,12 +133,12 @@ public final class v0 extends WebChromeClient {
 
     @Override
     public final void onGeolocationPermissionsHidePrompt() {
-        org.telegram.ui.ActionBar.c2 c2Var = this.f43306a;
+        org.telegram.ui.ActionBar.c2 c2Var = this.f43295a;
         y0 y0Var = this.e;
         if (c2Var != null) {
             y0Var.c("onGeolocationPermissionsHidePrompt: dialog.dismiss");
-            this.f43306a.dismiss();
-            this.f43306a = null;
+            this.f43295a.dismiss();
+            this.f43295a = null;
             return;
         }
         y0Var.c("onGeolocationPermissionsHidePrompt: no dialog");
@@ -153,7 +153,7 @@ public final class v0 extends WebChromeClient {
         b1 b1Var = y0Var.Q;
         if (b1Var != null && b1Var.W != null) {
             y0Var.c("onGeolocationPermissionsShowPrompt " + str);
-            boolean z10 = this.f43308c;
+            boolean z10 = this.f43297c;
             if (z10) {
                 hostAuthority = UserObject.getUserName(y0Var.Q.U);
             } else {
@@ -175,9 +175,9 @@ public final class v0 extends WebChromeClient {
             } else {
                 i11 = R.string.WebViewRequestGeolocationPermissionWithHint;
             }
-            org.telegram.ui.ActionBar.c2 Z = f5.Z(activity, g6Var, strArr, i12, formatString, LocaleController.formatString(i11, hostAuthority), new q0(this, callback, str, 0));
-            this.f43306a = Z;
-            Z.show();
+            org.telegram.ui.ActionBar.c2 Y = d5.Y(activity, g6Var, strArr, i12, formatString, LocaleController.formatString(i11, hostAuthority), new q0(this, callback, str, 0));
+            this.f43295a = Y;
+            Y.show();
             return;
         }
         y0Var.c("onGeolocationPermissionsShowPrompt: no container");
@@ -195,13 +195,13 @@ public final class v0 extends WebChromeClient {
         } else {
             g6Var = b1Var.e;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f43307b, 0, g6Var);
-        if (this.f43308c) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f43296b, 0, g6Var);
+        if (this.f43297c) {
             formatString = DialogObject.getName(this.d);
         } else {
             formatString = LocaleController.formatString(R.string.WebsiteSays, str);
         }
-        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
         c2Var.R = formatString;
         c2Var.T = str2;
         alertDialog$Builder.k(LocaleController.getString(R.string.OK), new r0(zArr, jsResult, 2));
@@ -221,13 +221,13 @@ public final class v0 extends WebChromeClient {
         } else {
             g6Var = b1Var.e;
         }
-        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f43307b, 0, g6Var);
-        if (this.f43308c) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f43296b, 0, g6Var);
+        if (this.f43297c) {
             formatString = DialogObject.getName(this.d);
         } else {
             formatString = LocaleController.formatString(R.string.WebsiteSays, str);
         }
-        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
         c2Var.R = formatString;
         c2Var.T = str2;
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new r0(zArr, jsResult, 0));
@@ -248,40 +248,40 @@ public final class v0 extends WebChromeClient {
             g6Var = b1Var.e;
         }
         boolean[] zArr = {false};
-        Context context = this.f43307b;
+        Context context = this.f43296b;
         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, g6Var);
-        if (this.f43308c) {
+        if (this.f43297c) {
             formatString = DialogObject.getName(this.d);
         } else {
             formatString = LocaleController.formatString(R.string.WebsiteSays, str);
         }
-        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
         c2Var.R = formatString;
         c2Var.T = str2;
-        iu iuVar = new iu(context, g6Var);
-        iuVar.lineYFix = true;
-        iuVar.setTextSize(1, 18.0f);
-        r6.W(iuVar, k6.f21289j5, g6Var);
-        r6.m(iuVar, 34, k6.Xh, g6Var);
-        iuVar.setFocusable(true);
-        iuVar.setInputType(147457);
-        r6.H(iuVar, k6.f21310k6, k6.f21327l6, k6.f21404p7, g6Var);
-        iuVar.setImeOptions(6);
-        iuVar.setBackgroundDrawable(null);
-        iuVar.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
-        iuVar.setText(str3);
+        gu guVar = new gu(context, g6Var);
+        guVar.lineYFix = true;
+        guVar.setTextSize(1, 18.0f);
+        r6.W(guVar, k6.f21290j5, g6Var);
+        r6.m(guVar, 34, k6.Xh, g6Var);
+        guVar.setFocusable(true);
+        guVar.setInputType(147457);
+        r6.H(guVar, k6.f21311k6, k6.f21328l6, k6.f21405p7, g6Var);
+        guVar.setImeOptions(6);
+        guVar.setBackgroundDrawable(null);
+        guVar.setPadding(0, AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f));
+        guVar.setText(str3);
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        linearLayout.addView(iuVar, z5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
+        linearLayout.addView(guVar, z5.k(24.0f, 0.0f, 24.0f, 10.0f, -1, -2));
         alertDialog$Builder.c();
         alertDialog$Builder.o(linearLayout);
-        c2Var.f20742a = AndroidUtilities.dp(292.0f);
+        c2Var.f20743a = AndroidUtilities.dp(292.0f);
         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new e8(4, zArr, jsPromptResult));
-        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new ry(zArr, jsPromptResult, iuVar, 6));
+        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new py(zArr, jsPromptResult, guVar, 6));
         alertDialog$Builder.j(new z3(17, zArr, jsPromptResult));
-        c2Var.O = new ig.k0(iuVar, 8);
-        iuVar.setOnEditorActionListener(new t0(zArr, jsPromptResult, iuVar, alertDialog$Builder.p()));
-        AndroidUtilities.runOnUIThread(new ki.u(iuVar, 24));
+        c2Var.O = new ig.k0(guVar, 8);
+        guVar.setOnEditorActionListener(new t0(zArr, jsPromptResult, guVar, alertDialog$Builder.p()));
+        AndroidUtilities.runOnUIThread(new ki.u(guVar, 24));
         return true;
     }
 
@@ -294,10 +294,10 @@ public final class v0 extends WebChromeClient {
         int i13;
         int i14;
         int i15;
-        org.telegram.ui.ActionBar.c2 c2Var = this.f43306a;
+        org.telegram.ui.ActionBar.c2 c2Var = this.f43295a;
         if (c2Var != null) {
             c2Var.dismiss();
-            this.f43306a = null;
+            this.f43295a = null;
         }
         y0 y0Var = this.e;
         if (y0Var.Q == null) {
@@ -306,7 +306,7 @@ public final class v0 extends WebChromeClient {
             return;
         }
         y0Var.c("onPermissionRequest " + permissionRequest);
-        boolean z10 = this.f43308c;
+        boolean z10 = this.f43297c;
         if (z10) {
             hostAuthority = UserObject.getUserName(y0Var.Q.U);
         } else {
@@ -340,9 +340,9 @@ public final class v0 extends WebChromeClient {
                         } else {
                             i15 = R.string.WebViewRequestMicrophonePermissionWithHint;
                         }
-                        org.telegram.ui.ActionBar.c2 Z = f5.Z(activity, g6Var, strArr, i16, formatString, LocaleController.formatString(i15, hostAuthority), new o0(this, permissionRequest, str, 0));
-                        this.f43306a = Z;
-                        Z.show();
+                        org.telegram.ui.ActionBar.c2 Y = d5.Y(activity, g6Var, strArr, i16, formatString, LocaleController.formatString(i15, hostAuthority), new o0(this, permissionRequest, str, 0));
+                        this.f43295a = Y;
+                        Y.show();
                         return;
                     }
                     return;
@@ -363,9 +363,9 @@ public final class v0 extends WebChromeClient {
                 } else {
                     i13 = R.string.WebViewRequestCameraPermissionWithHint;
                 }
-                org.telegram.ui.ActionBar.c2 Z2 = f5.Z(activity2, g6Var2, strArr2, i17, formatString2, LocaleController.formatString(i13, hostAuthority), new o0(this, permissionRequest, str, 1));
-                this.f43306a = Z2;
-                Z2.show();
+                org.telegram.ui.ActionBar.c2 Y2 = d5.Y(activity2, g6Var2, strArr2, i17, formatString2, LocaleController.formatString(i13, hostAuthority), new o0(this, permissionRequest, str, 1));
+                this.f43295a = Y2;
+                Y2.show();
             }
         } else if (resources.length == 2) {
             if ("android.webkit.resource.AUDIO_CAPTURE".equals(resources[0]) || "android.webkit.resource.VIDEO_CAPTURE".equals(resources[0])) {
@@ -386,9 +386,9 @@ public final class v0 extends WebChromeClient {
                     } else {
                         i11 = R.string.WebViewRequestCameraMicPermissionWithHint;
                     }
-                    org.telegram.ui.ActionBar.c2 Z3 = f5.Z(activity3, g6Var3, strArr3, i18, formatString3, LocaleController.formatString(i11, hostAuthority), new p0(this, permissionRequest, resources, 0));
-                    this.f43306a = Z3;
-                    Z3.show();
+                    org.telegram.ui.ActionBar.c2 Y3 = d5.Y(activity3, g6Var3, strArr3, i18, formatString3, LocaleController.formatString(i11, hostAuthority), new p0(this, permissionRequest, resources, 0));
+                    this.f43295a = Y3;
+                    Y3.show();
                 }
             }
         }
@@ -396,12 +396,12 @@ public final class v0 extends WebChromeClient {
 
     @Override
     public final void onPermissionRequestCanceled(PermissionRequest permissionRequest) {
-        org.telegram.ui.ActionBar.c2 c2Var = this.f43306a;
+        org.telegram.ui.ActionBar.c2 c2Var = this.f43295a;
         y0 y0Var = this.e;
         if (c2Var != null) {
             y0Var.c("onPermissionRequestCanceled: dialog.dismiss");
-            this.f43306a.dismiss();
-            this.f43306a = null;
+            this.f43295a.dismiss();
+            this.f43295a = null;
             return;
         }
         y0Var.c("onPermissionRequestCanceled: no dialog");
@@ -411,9 +411,9 @@ public final class v0 extends WebChromeClient {
     public final void onProgressChanged(WebView webView, int i10) {
         y0 y0Var = this.e;
         b1 b1Var = y0Var.Q;
-        if (b1Var != null && b1Var.f43071w != null) {
+        if (b1Var != null && b1Var.f43060w != null) {
             y0Var.c("onProgressChanged " + i10 + "%");
-            y0Var.Q.f43071w.accept(Float.valueOf(((float) i10) / 100.0f));
+            y0Var.Q.f43060w.accept(Float.valueOf(((float) i10) / 100.0f));
             return;
         }
         y0Var.c("onProgressChanged " + i10 + "%: no container");
@@ -480,11 +480,11 @@ public final class v0 extends WebChromeClient {
             y0Var.c("onShowFileChooser: no container, false");
             return false;
         }
-        ValueCallback valueCallback2 = b1Var.f43073x;
+        ValueCallback valueCallback2 = b1Var.f43062x;
         if (valueCallback2 != null) {
             valueCallback2.onReceiveValue(null);
         }
-        y0Var.Q.f43073x = valueCallback;
+        y0Var.Q.f43062x = valueCallback;
         if (fileChooserParams.getMode() == 1) {
             z10 = true;
         }

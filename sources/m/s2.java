@@ -25,7 +25,7 @@ public final class s2 implements View.OnFocusChangeListener {
                 return;
             case 1:
                 org.telegram.ui.Cells.e3 e3Var = (org.telegram.ui.Cells.e3) this.f16396b;
-                e3Var.f22318n = z10;
+                e3Var.f22319n = z10;
                 if (e3Var.h) {
                     e3Var.c();
                     return;
@@ -33,8 +33,8 @@ public final class s2 implements View.OnFocusChangeListener {
                 return;
             default:
                 org.telegram.ui.Cells.h3 h3Var = (org.telegram.ui.Cells.h3) this.f16396b;
-                h3Var.f22456s = z10;
-                if (h3Var.f22454n) {
+                h3Var.f22457s = z10;
+                if (h3Var.f22455n) {
                     h3Var.c();
                 }
                 h3Var.a(z10);

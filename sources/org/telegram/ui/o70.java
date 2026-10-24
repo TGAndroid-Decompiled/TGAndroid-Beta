@@ -12,10 +12,10 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class o70 implements Comparator {
-    public final int f40088a;
+    public final int f40094a;
 
     public o70(int i10) {
-        this.f40088a = i10;
+        this.f40094a = i10;
     }
 
     @Override
@@ -23,7 +23,7 @@ public final class o70 implements Comparator {
         int i10;
         int i11;
         e9.v1 a2;
-        switch (this.f40088a) {
+        switch (this.f40094a) {
             case 0:
                 int i12 = ((ContactsController.Contact) obj).imported;
                 int i13 = ((ContactsController.Contact) obj2).imported;
@@ -60,15 +60,15 @@ public final class o70 implements Comparator {
             case 5:
                 return (int) (((View) obj).getY() - ((View) obj2).getY());
             case 6:
-                if (obj instanceof p01) {
-                    i10 = ((p01) obj).f40327g;
+                if (obj instanceof o01) {
+                    i10 = ((o01) obj).f40054g;
                 } else if (obj instanceof MessagesController.FaqSearchResult) {
                     i10 = ((MessagesController.FaqSearchResult) obj).num;
                 } else {
                     i10 = 0;
                 }
-                if (obj2 instanceof p01) {
-                    i11 = ((p01) obj2).f40327g;
+                if (obj2 instanceof o01) {
+                    i11 = ((o01) obj2).f40054g;
                 } else if (obj2 instanceof MessagesController.FaqSearchResult) {
                     i11 = ((MessagesController.FaqSearchResult) obj2).num;
                 } else {
@@ -102,7 +102,7 @@ public final class o70 implements Comparator {
                 }
                 return 0;
             case 10:
-                return Integer.compare(((org.telegram.ui.Wallet.h0) obj2).f34559b, ((org.telegram.ui.Wallet.h0) obj).f34559b);
+                return Integer.compare(((org.telegram.ui.Wallet.h0) obj2).f34561b, ((org.telegram.ui.Wallet.h0) obj).f34561b);
             case 11:
                 return Integer.compare(((TL_wallet.walletTransaction) obj2).date, ((TL_wallet.walletTransaction) obj).date);
             case 12:
@@ -115,13 +115,13 @@ public final class o70 implements Comparator {
                 }
                 return 0;
             case 13:
-                return (int) (((org.telegram.ui.web.k) obj2).f43167c - ((org.telegram.ui.web.k) obj).f43167c);
+                return (int) (((org.telegram.ui.web.k) obj2).f43156c - ((org.telegram.ui.web.k) obj).f43156c);
             case 14:
-                return (int) (((org.telegram.ui.web.k) obj2).f43167c - ((org.telegram.ui.web.k) obj).f43167c);
+                return (int) (((org.telegram.ui.web.k) obj2).f43156c - ((org.telegram.ui.web.k) obj).f43156c);
             case 15:
-                return ((p2.f) obj).f44367a.compareTo(((p2.f) obj2).f44367a);
+                return ((p2.f) obj).f44366a.compareTo(((p2.f) obj2).f44366a);
             case 16:
-                return (int) ((((sg.p1) obj).f46810a * 100.0f) - (((sg.p1) obj2).f46810a * 100.0f));
+                return (int) ((((sg.p1) obj).f46809a * 100.0f) - (((sg.p1) obj2).f46809a * 100.0f));
             case 17:
                 return ((String) obj).compareTo((String) obj2);
             case 18:
@@ -140,7 +140,7 @@ public final class o70 implements Comparator {
                     return num.intValue() - num2.intValue();
                 }
             case 20:
-                return Integer.compare(((x2.f) ((List) obj).get(0)).f49591f, ((x2.f) ((List) obj2).get(0)).f49591f);
+                return Integer.compare(((x2.f) ((List) obj).get(0)).f49590f, ((x2.f) ((List) obj2).get(0)).f49590f);
             case 21:
                 List list = (List) obj;
                 List list2 = (List) obj2;
@@ -155,30 +155,30 @@ public final class o70 implements Comparator {
                 x2.m mVar = (x2.m) obj;
                 x2.m mVar2 = (x2.m) obj2;
                 boolean z10 = mVar.e;
-                int i19 = mVar.f49611s;
-                if (z10 && mVar.f49609n) {
-                    a2 = x2.n.f49615l;
+                int i19 = mVar.f49610s;
+                if (z10 && mVar.f49608n) {
+                    a2 = x2.n.f49614l;
                 } else {
-                    a2 = x2.n.f49615l.a();
+                    a2 = x2.n.f49614l.a();
                 }
-                boolean z11 = mVar.f49608f.F;
+                boolean z11 = mVar.f49607f.F;
                 e9.b0 b0Var = e9.b0.f8422a;
                 if (z11) {
-                    b0Var = b0Var.b(Integer.valueOf(i19), Integer.valueOf(mVar2.f49611s), x2.n.f49615l.a());
+                    b0Var = b0Var.b(Integer.valueOf(i19), Integer.valueOf(mVar2.f49610s), x2.n.f49614l.a());
                 }
                 e9.b0 b10 = b0Var.c(mVar.O, mVar2.O).b(Integer.valueOf(mVar.v), Integer.valueOf(mVar2.v), a2);
                 if (mVar.K && mVar.M) {
                     b10 = b10.a(mVar.N, mVar2.N);
                 }
-                return b10.c(mVar.L, mVar2.L).b(Integer.valueOf(i19), Integer.valueOf(mVar2.f49611s), a2).e();
+                return b10.c(mVar.L, mVar2.L).b(Integer.valueOf(i19), Integer.valueOf(mVar2.f49610s), a2).e();
             case 26:
                 return Long.compare(((File) obj2).lastModified(), ((File) obj).lastModified());
             case 27:
-                return ((z9.d0) ((z9.h1) obj)).f51812a.compareTo(((z9.d0) ((z9.h1) obj2)).f51812a);
+                return ((z9.d0) ((z9.h1) obj)).f51811a.compareTo(((z9.d0) ((z9.h1) obj2)).f51811a);
             case 28:
-                return ((y2.p) obj).f50382a - ((y2.p) obj2).f50382a;
+                return ((y2.p) obj).f50381a - ((y2.p) obj2).f50381a;
             default:
-                return Float.compare(((y2.p) obj).f50384c, ((y2.p) obj2).f50384c);
+                return Float.compare(((y2.p) obj).f50383c, ((y2.p) obj2).f50383c);
         }
     }
 }

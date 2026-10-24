@@ -6,8 +6,8 @@ import android.view.View;
 public final class jb extends r6 {
     public final vb C0;
 
-    public jb(vb vbVar, Activity activity, org.telegram.ui.Components.ja jaVar, q6 q6Var) {
-        super(activity, jaVar, q6Var);
+    public jb(vb vbVar, Activity activity, org.telegram.ui.Components.ha haVar, q6 q6Var) {
+        super(activity, haVar, q6Var);
         this.C0 = vbVar;
     }
 

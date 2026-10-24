@@ -1,24 +1,143 @@
 package org.telegram.ui;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaController;
-public final class jt0 extends rg.m0 {
-    public final PhotoViewer f38700o2;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class jt0 extends wt0 {
+    public final int f38686p0;
+    public final NotificationCenter.NotificationCenterDelegate f38687q0;
 
-    public jt0(PhotoViewer photoViewer, Context context, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, MediaController.CropState cropState, tq0 tq0Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, activity, i10, bitmap, bitmap2, i11, arrayList, cropState, tq0Var, g6Var);
-        this.f38700o2 = photoViewer;
+    public jt0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, zt0 zt0Var, FrameLayout frameLayout, int i10) {
+        super(context, zt0Var, frameLayout);
+        this.f38686p0 = i10;
+        this.f38687q0 = notificationCenterDelegate;
     }
 
     @Override
-    public final int getPKeyboardHeight() {
-        ei.b4 b4Var = this.f38700o2.K1;
-        if (b4Var != null) {
-            return b4Var.f8793l;
+    public boolean C() {
+        switch (this.f38686p0) {
+            case 0:
+                return !((PhotoViewer) this.f38687q0).f33704s;
+            default:
+                return super.C();
         }
-        return 0;
+    }
+
+    @Override
+    public void E() {
+        switch (this.f38686p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f38687q0;
+                if (secretMediaViewer.J && getScrollY() <= 0) {
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f34126r1, 3000L);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void F() {
+        switch (this.f38686p0) {
+            case 1:
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f38687q0).f34126r1);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void G() {
+        boolean z10;
+        switch (this.f38686p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f38687q0;
+                if (secretMediaViewer.K0 == null) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f34111k0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    secretMediaViewer.k(z10, true);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate() {
+        boolean z10;
+        boolean z11;
+        int i10;
+        boolean z12;
+        switch (this.f38686p0) {
+            case 0:
+                super.invalidate();
+                PhotoViewer photoViewer = (PhotoViewer) this.f38687q0;
+                hu0[] hu0VarArr = photoViewer.W0;
+                ImageView[] imageViewArr = photoViewer.y3;
+                if (photoViewer.J) {
+                    int scrollY = getScrollY();
+                    float translationY = photoViewer.Q1.getTranslationY();
+                    float f7 = 0.0f;
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    if (!z10) {
+                        int b10 = hu0VarArr[0].b() + hu0VarArr[0].f38017j;
+                        if (C()) {
+                            i10 = AndroidUtilities.statusBarHeight;
+                        } else {
+                            i10 = 0;
+                        }
+                        int top = (((photoViewer.Z1.getTop() + ((int) translationY)) - scrollY) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10)) - AndroidUtilities.dp(12.0f);
+                        if (top > AndroidUtilities.dp(32.0f) + ((int) imageViewArr[0].getY())) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        if (top > b10) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        z11 = z12;
+                    }
+                    if (photoViewer.f33773z3) {
+                        if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z11) {
+                            imageViewArr[0].setTag(2);
+                            imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new v70(this, 11)).start();
+                        } else if (imageViewArr[0].getTag() == null && !z11) {
+                            imageViewArr[0].setTag(3);
+                            imageViewArr[0].animate().alpha(0.0f).setListener(null).setDuration(150L).start();
+                        }
+                    }
+                    hu0 hu0Var = hu0VarArr[0];
+                    if (z10) {
+                        f7 = 1.0f;
+                    }
+                    hu0Var.e(2, f7, true);
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
+        }
     }
 }

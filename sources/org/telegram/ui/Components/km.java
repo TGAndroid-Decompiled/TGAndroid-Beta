@@ -1,27 +1,43 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.View;
-public final class km extends s4.c0 {
-    public final di.k f28062r;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class km extends TextView {
+    public float f28035a;
+    public boolean f28036b;
+    public final Paint f28037c;
 
-    public km(di.k kVar, Context context) {
+    public km(Context context, Paint paint) {
         super(context);
-        this.f28062r = kVar;
+        this.f28037c = paint;
+        this.f28035a = 0.0f;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int topScrollOffset;
-        int k10 = super.k(i10, view);
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.f28062r.R;
-        int paddingTop = chatAttachAlertPhotoLayout.E.getPaddingTop();
-        topScrollOffset = chatAttachAlertPhotoLayout.getTopScrollOffset();
-        return k10 - (paddingTop - topScrollOffset);
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final void onDraw(Canvas canvas) {
+        int i10 = (int) ((this.f28035a * 130.0f) + 125.0f);
+        Paint paint = this.f28037c;
+        paint.setAlpha(i10);
+        if (!this.f28036b) {
+            float f7 = this.f28035a - 0.026666667f;
+            this.f28035a = f7;
+            if (f7 <= 0.0f) {
+                this.f28035a = 0.0f;
+                this.f28036b = true;
+            }
+        } else {
+            float f10 = this.f28035a + 0.026666667f;
+            this.f28035a = f10;
+            if (f10 >= 1.0f) {
+                this.f28035a = 1.0f;
+                this.f28036b = false;
+            }
+        }
+        super.onDraw(canvas);
+        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
+        invalidate();
     }
 }

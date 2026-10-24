@@ -5,8 +5,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.v31;
 public final class c4 implements org.telegram.ui.ActionBar.z1, MessagesController.IsInChatCheckedCallback {
     public final long f1075a;
     public final Object f1076b;
@@ -31,13 +31,13 @@ public final class c4 implements org.telegram.ui.ActionBar.z1, MessagesControlle
 
     @Override
     public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new j((w31) this.f1076b, z10, (org.telegram.ui.ActionBar.e1) this.f1077c, (j80) this.d, this.f1075a, (TLRPC.User) this.e, (TLRPC.Chat) this.f1078f));
+        AndroidUtilities.runOnUIThread(new j((v31) this.f1076b, z10, (org.telegram.ui.ActionBar.e1) this.f1077c, (h80) this.d, this.f1075a, (TLRPC.User) this.e, (TLRPC.Chat) this.f1078f));
     }
 
-    public c4(w31 w31Var, org.telegram.ui.ActionBar.e1 e1Var, j80 j80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
-        this.f1076b = w31Var;
+    public c4(v31 v31Var, org.telegram.ui.ActionBar.e1 e1Var, h80 h80Var, long j10, TLRPC.User user, TLRPC.Chat chat) {
+        this.f1076b = v31Var;
         this.f1077c = e1Var;
-        this.d = j80Var;
+        this.d = h80Var;
         this.f1075a = j10;
         this.e = user;
         this.f1078f = chat;

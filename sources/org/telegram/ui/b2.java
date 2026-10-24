@@ -11,19 +11,19 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 public final class b2 extends HorizontalScrollView implements org.telegram.ui.ActionBar.b6, f3 {
-    public final f70 f35821a;
-    public final FrameLayout f35822b;
-    public final ImageView f35823c;
+    public final f70 f35889a;
+    public final FrameLayout f35890b;
+    public final ImageView f35891c;
     public int d;
 
     public b2(Context context, f70 f70Var) {
         super(context);
-        this.f35821a = f70Var;
+        this.f35889a = f70Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f35822b = frameLayout;
+        this.f35890b = frameLayout;
         addView(frameLayout, w7.z5.c(-2.0f, -2));
         ImageView imageView = new ImageView(context);
-        this.f35823c = imageView;
+        this.f35891c = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         frameLayout.addView(imageView, w7.z5.c(-2.0f, -2));
         updateColors();
@@ -62,7 +62,7 @@ public final class b2 extends HorizontalScrollView implements org.telegram.ui.Ac
             super.onLayout(z10, i10, i11, i12, i13);
             return;
         }
-        FrameLayout frameLayout = this.f35822b;
+        FrameLayout frameLayout = this.f35890b;
         frameLayout.layout((i14 - i15) / 2, 0, (i14 + i15) / 2, frameLayout.getMeasuredHeight());
     }
 
@@ -73,9 +73,9 @@ public final class b2 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     public void setBlock(TL_iv.pageBlockMath pageblockmath) {
         ki.r a2;
-        ImageView imageView = this.f35823c;
+        ImageView imageView = this.f35891c;
         imageView.setImageBitmap(null);
-        f70 f70Var = this.f35821a;
+        f70 f70Var = this.f35889a;
         f70Var.getClass();
         float f7 = 18;
         int dp = AndroidUtilities.dp(f7);
@@ -97,7 +97,7 @@ public final class b2 extends HorizontalScrollView implements org.telegram.ui.Ac
 
     @Override
     public final void updateColors() {
-        this.f35823c.setColorFilter(new PorterDuffColorFilter(this.f35821a.b(), PorterDuff.Mode.SRC_IN));
+        this.f35891c.setColorFilter(new PorterDuffColorFilter(this.f35889a.b(), PorterDuff.Mode.SRC_IN));
     }
 
     @Override

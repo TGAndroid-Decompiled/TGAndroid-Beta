@@ -8,14 +8,14 @@ import java.util.Iterator;
 import java.util.concurrent.Semaphore;
 import w7.h7;
 public final class b implements Iterable {
-    public final boolean f45654a;
-    public final ArrayList f45655b;
-    public final ArrayList f45656c;
+    public final boolean f45653a;
+    public final ArrayList f45654b;
+    public final ArrayList f45655c;
     public final ArrayList d;
     public boolean e;
-    public final Semaphore f45657f;
+    public final Semaphore f45656f;
     public b h;
-    public a f45658n;
+    public a f45657n;
 
     public b() {
         this(false, true);
@@ -23,7 +23,7 @@ public final class b implements Iterable {
 
     public final boolean add(Object obj) {
         Object obj2;
-        synchronized (this.f45655b) {
+        synchronized (this.f45654b) {
             try {
                 boolean z10 = false;
                 if (indexOf(obj) != -1) {
@@ -49,10 +49,10 @@ public final class b implements Iterable {
                         arrayList.add(new WeakReference(obj));
                         z10 = true;
                     }
-                    h7.a(this.f45656c, obj);
+                    h7.a(this.f45655c, obj);
                     return z10;
                 }
-                this.f45655b.add(new WeakReference(obj));
+                this.f45654b.add(new WeakReference(obj));
                 return true;
             } catch (Throwable th2) {
                 throw th2;
@@ -61,23 +61,23 @@ public final class b implements Iterable {
     }
 
     public final void clear() {
-        synchronized (this.f45655b) {
+        synchronized (this.f45654b) {
             try {
                 if (this.e) {
-                    ArrayList arrayList = this.f45655b;
+                    ArrayList arrayList = this.f45654b;
                     int size = arrayList.size();
                     int i10 = 0;
                     while (i10 < size) {
                         Object obj = arrayList.get(i10);
                         i10++;
                         Reference reference = (Reference) obj;
-                        if (!this.f45656c.contains(reference)) {
-                            this.f45656c.add(reference);
+                        if (!this.f45655c.contains(reference)) {
+                            this.f45655c.add(reference);
                         }
                         h7.a(this.d, reference.get());
                     }
                 } else {
-                    this.f45655b.clear();
+                    this.f45654b.clear();
                 }
             } catch (Throwable th2) {
                 throw th2;
@@ -87,7 +87,7 @@ public final class b implements Iterable {
 
     public final int indexOf(Object obj) {
         if (obj != null) {
-            ArrayList arrayList = this.f45655b;
+            ArrayList arrayList = this.f45654b;
             for (int size = arrayList.size() - 1; size >= 0; size--) {
                 if (((Reference) arrayList.get(size)).get() == obj) {
                     return size;
@@ -100,17 +100,17 @@ public final class b implements Iterable {
 
     public final boolean isEmpty() {
         boolean z10;
-        synchronized (this.f45655b) {
+        synchronized (this.f45654b) {
             try {
                 if (this.e) {
-                    if (this.f45655b.isEmpty() && this.d.isEmpty()) {
+                    if (this.f45654b.isEmpty() && this.d.isEmpty()) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
                     return z10;
                 }
-                ArrayList arrayList = this.f45655b;
+                ArrayList arrayList = this.f45654b;
                 if (arrayList != null) {
                     for (int size = arrayList.size() - 2; size >= 0; size--) {
                         if (((Reference) arrayList.get(size)).get() == null) {
@@ -118,7 +118,7 @@ public final class b implements Iterable {
                         }
                     }
                 }
-                return this.f45655b.isEmpty();
+                return this.f45654b.isEmpty();
             } finally {
             }
         }
@@ -126,26 +126,26 @@ public final class b implements Iterable {
 
     @Override
     public final Iterator iterator() {
-        Semaphore semaphore = this.f45657f;
+        Semaphore semaphore = this.f45656f;
         if (semaphore != null) {
             semaphore.acquireUninterruptibly();
         }
-        synchronized (this.f45655b) {
+        synchronized (this.f45654b) {
             try {
-                if (this.f45654a) {
+                if (this.f45653a) {
                     if (!this.e) {
                         this.e = true;
-                        a aVar = this.f45658n;
+                        a aVar = this.f45657n;
                         if (aVar == null) {
-                            this.f45658n = new a(this);
+                            this.f45657n = new a(this);
                         } else {
-                            aVar.f45651a = this.f45655b.size();
-                            this.f45658n.f45652b = null;
+                            aVar.f45650a = this.f45654b.size();
+                            this.f45657n.f45651b = null;
                         }
-                        return this.f45658n;
+                        return this.f45657n;
                     }
                     throw new IllegalStateException();
-                } else if (this.f45655b.isEmpty()) {
+                } else if (this.f45654b.isEmpty()) {
                     return Collections.emptyIterator();
                 } else {
                     return new a(this);
@@ -157,20 +157,20 @@ public final class b implements Iterable {
     }
 
     public final boolean remove(Object obj) {
-        synchronized (this.f45655b) {
+        synchronized (this.f45654b) {
             try {
                 int indexOf = indexOf(obj);
                 if (indexOf == -1) {
                     return false;
                 }
                 if (this.e) {
-                    Reference reference = (Reference) this.f45655b.get(indexOf);
-                    if (!this.f45656c.contains(reference)) {
-                        this.f45656c.add(reference);
+                    Reference reference = (Reference) this.f45654b.get(indexOf);
+                    if (!this.f45655c.contains(reference)) {
+                        this.f45655c.add(reference);
                     }
                     h7.a(this.d, reference.get());
                 } else {
-                    this.f45655b.remove(indexOf);
+                    this.f45654b.remove(indexOf);
                 }
                 return true;
             } catch (Throwable th2) {
@@ -180,10 +180,10 @@ public final class b implements Iterable {
     }
 
     public b(boolean z10, boolean z11) {
-        this.f45656c = new ArrayList();
+        this.f45655c = new ArrayList();
         this.d = new ArrayList();
-        this.f45657f = z10 ? new Semaphore(1) : null;
-        this.f45654a = z11;
-        this.f45655b = new ArrayList();
+        this.f45656f = z10 ? new Semaphore(1) : null;
+        this.f45653a = z11;
+        this.f45654b = new ArrayList();
     }
 }

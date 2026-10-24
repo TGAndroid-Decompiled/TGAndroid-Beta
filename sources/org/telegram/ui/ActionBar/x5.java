@@ -8,15 +8,15 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 public final class x5 extends Drawable {
-    public final RectF f21960a = new RectF();
-    public final View f21961b;
-    public final View f21962c;
+    public final RectF f21961a = new RectF();
+    public final View f21962b;
+    public final View f21963c;
     public final int d;
     public final Paint e;
 
     public x5(View view, View view2, int i10, Paint paint) {
-        this.f21961b = view;
-        this.f21962c = view2;
+        this.f21962b = view;
+        this.f21963c = view2;
         this.d = i10;
         this.e = paint;
     }
@@ -24,9 +24,9 @@ public final class x5 extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f21960a;
+        RectF rectF = this.f21961a;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        k6.s(this.f21961b, this.f21962c, null);
+        k6.s(this.f21962b, this.f21963c, null);
         float f7 = this.d;
         Paint paint = this.e;
         if (paint == null) {

@@ -22,7 +22,7 @@ import org.telegram.ui.ta0;
 import org.telegram.ui.v90;
 public abstract class r2 {
     public static void a(final int i10, final Utilities.CallbackReturn callbackReturn, final Utilities.Callback2 callback2, final TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, final TwoStepVerificationActivity twoStepVerificationActivity, final Utilities.Callback3 callback3, final boolean z10, final boolean z11, final ta0 ta0Var) {
-        if (!ta0Var.f41937b) {
+        if (!ta0Var.f41981b) {
             final org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
             if (U != null && U.getContext() != null) {
                 final Activity parentActivity = U.getParentActivity();
@@ -37,7 +37,7 @@ public abstract class r2 {
                         public final void run(Object obj) {
                             TLMethod tLMethod = (TLMethod) obj;
                             final ta0 ta0Var2 = ta0Var;
-                            boolean z12 = ta0Var2.f41937b;
+                            boolean z12 = ta0Var2.f41981b;
                             final org.telegram.ui.ActionBar.c2 c2Var2 = c2Var;
                             if (!z12 && tLMethod != null) {
                                 final int i11 = i10;
@@ -59,7 +59,7 @@ public abstract class r2 {
                                         final TLRPC.TL_error tL_error = (TLRPC.TL_error) obj4;
                                         c2Var2.dismiss();
                                         final ta0 ta0Var3 = ta0Var2;
-                                        if (ta0Var3.f41937b) {
+                                        if (ta0Var3.f41981b) {
                                             return;
                                         }
                                         final TwoStepVerificationActivity twoStepVerificationActivity3 = twoStepVerificationActivity2;
@@ -84,7 +84,7 @@ public abstract class r2 {
                                                             TL_account.Password password = (TL_account.Password) obj5;
                                                             TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj6;
                                                             ta0 ta0Var4 = ta0.this;
-                                                            if (ta0Var4.f41937b) {
+                                                            if (ta0Var4.f41981b) {
                                                                 return;
                                                             }
                                                             if (tL_error2 == null) {
@@ -103,7 +103,7 @@ public abstract class r2 {
                                                                     i13 = i14;
                                                                     m2 m2Var = new m2(i13, callbackReturn4, callback24, q2Var2, callback34, z17, z18, ta0Var4, 1);
                                                                     q2Var2.Z = 1;
-                                                                    q2Var2.f34240b0 = m2Var;
+                                                                    q2Var2.f34242b0 = m2Var;
                                                                     q2Var2.s0(new v90(ta0Var4, z17, q2Var2, 12));
                                                                     q2Var = q2Var2;
                                                                 } else {
@@ -122,7 +122,7 @@ public abstract class r2 {
                                                     }, 8);
                                                     return;
                                                 }
-                                                ta0Var3.f41938c = true;
+                                                ta0Var3.f41982c = true;
                                                 if (twoStepVerificationActivity3 != null) {
                                                     try {
                                                         twoStepVerificationActivity3.o0();
@@ -157,7 +157,7 @@ public abstract class r2 {
                                                     TL_account.Password password = (TL_account.Password) obj6;
                                                     TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj7;
                                                     ta0 ta0Var4 = ta0.this;
-                                                    if (ta0Var4.f41937b) {
+                                                    if (ta0Var4.f41981b) {
                                                         return;
                                                     }
                                                     if (tL_error2 == null) {
@@ -170,14 +170,14 @@ public abstract class r2 {
                                                         boolean z17 = z15;
                                                         m2 m2Var = new m2(i20, callbackReturn4, callback24, q2Var, callback34, z17, z16, ta0Var4, 0);
                                                         q2Var.Z = 1;
-                                                        q2Var.f34240b0 = m2Var;
+                                                        q2Var.f34242b0 = m2Var;
                                                         q2Var.I = password;
                                                         q2Var.J = false;
                                                         org.telegram.ui.ActionBar.o2 U2 = LaunchActivity.U();
                                                         if (U2 != 0 && U2.getContext() != null) {
                                                             if (z17) {
                                                                 ?? obj8 = new Object();
-                                                                obj8.f21636a = true;
+                                                                obj8.f21637a = true;
                                                                 U2.showAsSheet(q2Var, obj8);
                                                                 return;
                                                             }
@@ -190,13 +190,13 @@ public abstract class r2 {
                                                     ta0Var4.b();
                                                     Activity activity3 = activity2;
                                                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity3);
-                                                    alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
+                                                    alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
                                                     LinearLayout linearLayout = new LinearLayout(activity3);
                                                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                                                     linearLayout.setOrientation(1);
                                                     alertDialog$Builder.o(linearLayout);
                                                     TextView textView = new TextView(activity3);
-                                                    int i21 = org.telegram.ui.ActionBar.k6.f21289j5;
+                                                    int i21 = org.telegram.ui.ActionBar.k6.f21290j5;
                                                     org.telegram.ui.ActionBar.r6.W(textView, i21, null);
                                                     textView.setTextSize(1, 16.0f);
                                                     if (LocaleController.isRTL) {
@@ -300,15 +300,15 @@ public abstract class r2 {
                                                     }
                                                     TwoStepVerificationActivity twoStepVerificationActivity4 = twoStepVerificationActivity3;
                                                     if (twoStepVerificationActivity4 != null) {
-                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f20678a);
+                                                        twoStepVerificationActivity4.showDialog(alertDialog$Builder.f20679a);
                                                     } else {
-                                                        o2Var3.showDialog(alertDialog$Builder.f20678a);
+                                                        o2Var3.showDialog(alertDialog$Builder.f20679a);
                                                     }
                                                 }
                                             }, 8);
                                             return;
                                         }
-                                        ta0Var3.f41938c = true;
+                                        ta0Var3.f41982c = true;
                                         if (twoStepVerificationActivity3 != null) {
                                             try {
                                                 twoStepVerificationActivity3.o0();

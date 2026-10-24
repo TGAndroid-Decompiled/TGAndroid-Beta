@@ -1,45 +1,19 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class p71 implements View.OnClickListener {
-    public final int f40390a;
-    public final c81 f40391b;
+import org.telegram.tgnet.RequestDelegate;
+public final class p71 implements RequestDelegate {
+    public final int f40383a;
+    public final Object f40384b;
+    public final Object f40385c;
 
-    public p71(c81 c81Var, int i10) {
-        this.f40390a = i10;
-        this.f40391b = c81Var;
+    public p71(int i10, Object obj, Object obj2) {
+        this.f40383a = i10;
+        this.f40384b = obj;
+        this.f40385c = obj2;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40390a) {
-            case 0:
-                c81 c81Var = this.f40391b;
-                pf.d.r(c81Var.getParentActivity(), c81Var.getMessagesController().premiumManageSubscriptionUrl);
-                c81Var.getMessagesController().removeSuggestion(0L, "PREMIUM_GRACE");
-                return;
-            case 1:
-                c81 c81Var2 = this.f40391b;
-                c81Var2.getClass();
-                c81Var2.presentFragment(new g(3));
-                return;
-            case 2:
-                this.f40391b.getMessagesController().removeSuggestion(0L, "VALIDATE_PHONE_NUMBER");
-                return;
-            case 3:
-                c81 c81Var3 = this.f40391b;
-                c81Var3.getClass();
-                c81Var3.presentFragment(new bg1(8, null));
-                return;
-            case 4:
-                this.f40391b.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                return;
-            case 5:
-                c81.V(this.f40391b);
-                return;
-            default:
-                c81.Z(this.f40391b);
-                return;
-        }
+    public final void run(org.telegram.tgnet.TLObject r9, org.telegram.tgnet.TLRPC.TL_error r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p71.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
     }
 }

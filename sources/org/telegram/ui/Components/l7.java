@@ -1,51 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.view.ViewGroup;
-public final class l7 implements o1.g {
-    public final int f28234a;
-    public final Object f28235b;
+import android.view.View;
+public final class l7 implements zl0 {
+    public final int f28241a;
 
-    public l7(Object obj, int i10) {
-        this.f28234a = i10;
-        this.f28235b = obj;
+    public l7(int i10) {
+        this.f28241a = i10;
     }
 
     @Override
-    public final void a(o1.h hVar, float f7, float f10) {
-        ViewGroup viewGroup;
-        switch (this.f28234a) {
+    public final void d(int i10, View view) {
+        switch (this.f28241a) {
             case 0:
-                ((k8) this.f28235b).S.setBufferedProgress(f7 / 1000.0f);
-                return;
-            case 1:
-                qc qcVar = (qc) this.f28235b;
-                qcVar.f29837o = (int) f7;
-                qcVar.l();
-                return;
-            case 2:
-                if (Math.abs(f7) > ((ub) this.f28235b).getWidth()) {
-                    hVar.c();
+                if (view instanceof org.telegram.ui.Cells.w) {
+                    ((org.telegram.ui.Cells.w) view).a();
                     return;
                 }
                 return;
-            case 3:
-                ti tiVar = (ti) ((ai.c5) this.f28235b).d;
-                li liVar = tiVar.C0;
-                if (liVar == tiVar.m0 || liVar == tiVar.f30753n0 || (tiVar.F && tiVar.f30784w1 != null)) {
-                    tiVar.i2(1);
+            case 1:
+                boolean z10 = ChatAttachAlertPhotoLayout.f24223q1;
+                if (view instanceof org.telegram.ui.Cells.s5) {
+                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+                    s5Var.f23255w.b(s5Var);
+                    return;
                 }
-                tiVar.C0.l(tiVar.f30758o2);
-                viewGroup = ((org.telegram.ui.ActionBar.h3) tiVar).containerView;
-                viewGroup.invalidate();
                 return;
-            case 4:
-                al alVar = (al) this.f28235b;
-                alVar.m0 = f7;
-                alVar.k0();
+            case 2:
+                return;
+            case 3:
+                int i11 = yh.c.f50626a0;
                 return;
             default:
-                ((yc0) this.f28235b).y();
+                int i12 = yh.m.A0;
                 return;
         }
+    }
+
+    private final void a(int i10, View view) {
     }
 }

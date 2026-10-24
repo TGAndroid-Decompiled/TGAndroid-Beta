@@ -3,29 +3,29 @@ package org.telegram.ui;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.TLRPC;
 public final class py {
-    public float f40558a;
-    public float f40559b;
-    public boolean f40560c;
+    public float f40647a;
+    public float f40648b;
+    public boolean f40649c;
     public float d;
     public float e;
-    public float f40561f;
-    public float f40562g;
+    public float f40650f;
+    public float f40651g;
     public boolean h;
-    public boolean f40563i;
-    public ah.e f40564j;
-    public long f40565k;
-    public boolean f40566l;
-    public boolean f40567m;
-    public boolean f40568n;
-    public float f40569o;
-    public int f40570p;
-    public TLRPC.Document f40571q;
-    public final ImageReceiver f40572r;
-    public String f40573s;
+    public boolean f40652i;
+    public ah.e f40653j;
+    public long f40654k;
+    public boolean f40655l;
+    public boolean f40656m;
+    public boolean f40657n;
+    public float f40658o;
+    public int f40659p;
+    public TLRPC.Document f40660q;
+    public final ImageReceiver f40661r;
+    public String f40662s;
 
     public py() {
         ImageReceiver imageReceiver = new ImageReceiver();
-        this.f40572r = imageReceiver;
+        this.f40661r = imageReceiver;
         imageReceiver.setAllowLoadingOnAttachedOnly(true);
         imageReceiver.setAllowDrawWhileCacheGenerating(true);
     }

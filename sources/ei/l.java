@@ -12,14 +12,14 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class l extends Drawable {
     public final Paint f9354a;
     public final Paint f9355b;
     public final k f9356c;
     public final k d;
     public boolean e;
-    public final org.telegram.ui.Components.f6 f9357f;
+    public final org.telegram.ui.Components.d6 f9357f;
     public final Path f9358g;
     public final int h;
     public float f9359i;
@@ -40,22 +40,22 @@ public final class l extends Drawable {
         this.d = kVar2;
         this.e = false;
         com.google.firebase.messaging.s sVar = new com.google.firebase.messaging.s(this, 6);
-        bs bsVar = bs.h;
-        this.f9357f = new org.telegram.ui.Components.f6(sVar, 350L, bsVar, 0);
+        zr zrVar = zr.h;
+        this.f9357f = new org.telegram.ui.Components.d6(sVar, 350L, zrVar, 0);
         this.f9358g = new Path();
         this.f9359i = 21.0f;
         this.h = i10;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
         paint.setStrokeCap(Paint.Cap.ROUND);
-        kVar.n(0.3f, 250L, bsVar);
+        kVar.n(0.3f, 250L, zrVar);
         kVar.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar.w(AndroidUtilities.dpf2(12.0f));
-        kVar.f29437b = 17;
-        kVar2.n(0.3f, 250L, bsVar);
+        kVar.f28797b = 17;
+        kVar2.n(0.3f, 250L, zrVar);
         kVar2.x(AndroidUtilities.getTypeface("fonts/num.otf"));
         kVar2.w(AndroidUtilities.dpf2(12.0f));
-        kVar2.f29437b = 17;
+        kVar2.f28797b = 17;
         e(-1, -15033089, -1);
     }
 
@@ -120,7 +120,7 @@ public final class l extends Drawable {
                 porterDuffXfermode = null;
             }
             this.f9354a.setXfermode(porterDuffXfermode);
-            TextPaint textPaint = this.f9356c.f29435a;
+            TextPaint textPaint = this.f9356c.f28795a;
             if (z10) {
                 porterDuffXfermode2 = new PorterDuffXfermode(PorterDuff.Mode.CLEAR);
             }

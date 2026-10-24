@@ -3,23 +3,23 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.sn;
 public final class s8 implements Runnable {
-    public final int f35179a;
-    public final j9 f35180b;
+    public final int f35181a;
+    public final j9 f35182b;
 
     public s8(j9 j9Var, int i10) {
-        this.f35179a = i10;
-        this.f35180b = j9Var;
+        this.f35181a = i10;
+        this.f35182b = j9Var;
     }
 
     @Override
     public final void run() {
         EditTextBoldCursor editTextBoldCursor;
-        switch (this.f35179a) {
+        switch (this.f35181a) {
             case 0:
-                j9 j9Var = this.f35180b;
+                j9 j9Var = this.f35182b;
                 if (j9Var.H && (editTextBoldCursor = j9Var.G) != null && editTextBoldCursor.isAttachedToWindow() && j9Var.G.hasWindowFocus()) {
                     j9Var.G.requestFocus();
                     if (AndroidUtilities.showKeyboard(j9Var.G)) {
@@ -30,8 +30,8 @@ public final class s8 implements Runnable {
                 }
                 return;
             case 1:
-                j9 j9Var2 = this.f35180b;
-                float f7 = j9Var2.f34657a0;
+                j9 j9Var2 = this.f35182b;
+                float f7 = j9Var2.f34659a0;
                 if (f7 < 1.0f && j9Var2.Z == null) {
                     o1.k kVar = new o1.k(new o1.j(f7));
                     j9Var2.Z = kVar;
@@ -47,20 +47,20 @@ public final class s8 implements Runnable {
                 }
                 return;
             case 2:
-                this.f35180b.f34659c0.setLoading(false);
+                this.f35182b.f34661c0.setLoading(false);
                 return;
             case 3:
-                this.f35180b.f34659c0.setLoading(false);
+                this.f35182b.f34661c0.setLoading(false);
                 return;
             case 4:
-                this.f35180b.r0();
+                this.f35182b.r0();
                 return;
             case 5:
-                j9 j9Var3 = this.f35180b;
-                j9Var3.presentFragment(sn.W9(j9Var3.e.f20490id));
+                j9 j9Var3 = this.f35182b;
+                j9Var3.presentFragment(sn.W9(j9Var3.e.f20491id));
                 return;
             default:
-                org.telegram.messenger.v0.p(R.string.WalletAddressCopiedBulletin, xc.a0(this.f35180b), R.raw.copy, 36);
+                org.telegram.messenger.v0.p(R.string.WalletAddressCopiedBulletin, vc.a0(this.f35182b), R.raw.copy, 36);
                 return;
         }
     }

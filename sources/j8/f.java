@@ -16,7 +16,7 @@ public final class f {
         try {
             i iVar = (i) this.f14353a;
             Parcel N0 = iVar.N0();
-            s7.b.c(N0, (x6.a) bVar.f51096a);
+            s7.b.c(N0, (x6.a) bVar.f51095a);
             iVar.R0(N0, 18);
         } catch (RemoteException e) {
             throw new RuntimeException(e);

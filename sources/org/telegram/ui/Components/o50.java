@@ -1,42 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class o50 extends AnimatorListenerAdapter {
-    public final int f29096a;
-    public final n60 f29097b;
+import android.content.Context;
+public final class o50 extends x50 {
+    public final l60 d;
 
-    public o50(n60 n60Var, int i10) {
-        this.f29096a = i10;
-        this.f29097b = n60Var;
+    public o50(l60 l60Var, Context context) {
+        super(l60Var, context);
+        this.d = l60Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29096a) {
-            case 0:
-                n60 n60Var = this.f29097b;
-                if (animator.equals(n60Var.L)) {
-                    n60Var.L = null;
-                    return;
-                }
-                return;
-            case 1:
-                n60 n60Var2 = this.f29097b;
-                if (n60Var2.l1 != null) {
-                    n60Var2.l1 = null;
-                    return;
-                }
-                return;
-            default:
-                n60 n60Var3 = this.f29097b;
-                if (animator.equals(n60Var3.f28852e0)) {
-                    n60Var3.c(true);
-                    n60Var3.f28858g1 = false;
-                    n60Var3.setVisibility(4);
-                    return;
-                }
-                return;
-        }
+    public final void setAlpha(float f7) {
+        super.setAlpha(f7);
+        this.d.invalidate();
+    }
+
+    @Override
+    public final void setRotationY(float f7) {
+        super.setRotationY(f7);
+        this.d.invalidate();
     }
 }

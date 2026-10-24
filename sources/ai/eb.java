@@ -25,10 +25,10 @@ import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.a71;
 import org.telegram.ui.Components.at;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.ct;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.ys;
 import org.telegram.ui.ru;
 import org.telegram.ui.su;
 import org.telegram.ui.uu;
@@ -54,7 +54,7 @@ public final class eb implements Runnable {
         String str;
         TLRPC.Document document;
         Activity activity;
-        yj0 yj0Var;
+        xj0 xj0Var;
         float f7;
         RectF rectF;
         int i10 = this.f1227a;
@@ -96,7 +96,7 @@ public final class eb implements Runnable {
                                 long longValue = tL_stickerPack.documents.get(0).longValue();
                                 for (int i13 = 0; i13 < stickerSetByName.documents.size(); i13++) {
                                     document = stickerSetByName.documents.get(i13);
-                                    if (document == null || document.f20349id != longValue) {
+                                    if (document == null || document.f20350id != longValue) {
                                     }
                                 }
                             } else {
@@ -114,7 +114,7 @@ public final class eb implements Runnable {
                 if (document != null) {
                     imageReceiver.setAllowStartLottieAnimation(true);
                     imageReceiver.setDelegate(new oc(zArr));
-                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.k6.f21125a7, 0.3f);
+                    SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.k6.f21126a7, 0.3f);
                     TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 160, true, null, true);
                     imageReceiver.setAutoRepeat(0);
                     imageReceiver.setImage(ImageLocation.getForDocument(document), "160_160_nr", ImageLocation.getForDocument(closestPhotoSizeWithSize, document), "160_160", svgThumb, document.size, "tgs", stickerSetByName, 1);
@@ -167,13 +167,13 @@ public final class eb implements Runnable {
                 ((MessagesController) obj3).lambda$startShortPoll$332((TLRPC.Chat) obj2, z11, i11, (q0.a) obj);
                 return;
             case 3:
-                at atVar = (at) obj3;
+                ys ysVar = (ys) obj3;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) obj2;
                 TLObject tLObject = (TLObject) obj;
-                ArrayList arrayList = atVar.V;
-                int i14 = atVar.P;
-                if (i11 == atVar.f24843f0 && TextUtils.equals(tL_messages_searchGlobal.f20454q, atVar.f24844g0)) {
-                    atVar.f24839b0 = false;
+                ArrayList arrayList = ysVar.V;
+                int i14 = ysVar.P;
+                if (i11 == ysVar.f33036f0 && TextUtils.equals(tL_messages_searchGlobal.f20455q, ysVar.f33037g0)) {
+                    ysVar.f33032b0 = false;
                     if (!z11) {
                         arrayList.clear();
                     }
@@ -189,25 +189,25 @@ public final class eb implements Runnable {
                             TLRPC.Message message = arrayList2.get(i15);
                             i15++;
                             MessageObject messageObject = new MessageObject(i14, message, false, true);
-                            messageObject.setQuery(atVar.f24844g0);
+                            messageObject.setQuery(ysVar.f33037g0);
                             arrayList.add(messageObject);
                         }
-                        atVar.f24841d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
+                        ysVar.f33034d0 = messages_messages instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList.size(), messages_messages.count);
-                        atVar.f24842e0 = messages_messages.next_rate;
+                        ysVar.f33035e0 = messages_messages.next_rate;
                     }
-                    atVar.N(true);
+                    ysVar.N(true);
                     return;
                 }
                 return;
             case 4:
-                ct ctVar = (ct) obj3;
+                at atVar = (at) obj3;
                 TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal2 = (TLRPC.TL_messages_searchGlobal) obj2;
                 TLObject tLObject2 = (TLObject) obj;
-                ArrayList arrayList3 = ctVar.R;
-                int i16 = ctVar.P;
-                if (i11 == ctVar.f25420c0 && TextUtils.equals(tL_messages_searchGlobal2.f20454q, ctVar.f25421d0)) {
-                    ctVar.Y = false;
+                ArrayList arrayList3 = atVar.R;
+                int i16 = atVar.P;
+                if (i11 == atVar.f24799c0 && TextUtils.equals(tL_messages_searchGlobal2.f20455q, atVar.f24800d0)) {
+                    atVar.Y = false;
                     if (!z11) {
                         arrayList3.clear();
                     }
@@ -223,14 +223,14 @@ public final class eb implements Runnable {
                             TLRPC.Message message2 = arrayList4.get(i17);
                             i17++;
                             MessageObject messageObject2 = new MessageObject(i16, message2, false, true);
-                            messageObject2.setQuery(ctVar.f25421d0);
+                            messageObject2.setQuery(atVar.f24800d0);
                             arrayList3.add(messageObject2);
                         }
-                        ctVar.f25418a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
+                        atVar.f24797a0 = messages_messages2 instanceof TLRPC.TL_messages_messagesSlice;
                         Math.max(arrayList3.size(), messages_messages2.count);
-                        ctVar.f25419b0 = messages_messages2.next_rate;
+                        atVar.f24798b0 = messages_messages2.next_rate;
                     }
-                    ctVar.N(true);
+                    atVar.N(true);
                     return;
                 }
                 return;
@@ -238,14 +238,14 @@ public final class eb implements Runnable {
                 su suVar = (su) obj3;
                 Context context = (Context) obj2;
                 org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) obj;
-                uu uuVar = suVar.f41807c;
+                uu uuVar = suVar.f41803c;
                 uuVar.a();
                 org.telegram.ui.Cells.r8 r8Var = uuVar.e;
                 uuVar.c();
                 int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.q6, false);
-                yj0 yj0Var2 = uuVar.d;
-                yj0Var2.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-                int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21125a7, false);
+                xj0 xj0Var2 = uuVar.d;
+                xj0Var2.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+                int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21126a7, false);
                 if (context instanceof Activity) {
                     activity = (Activity) context;
                 } else {
@@ -261,7 +261,7 @@ public final class eb implements Runnable {
                     }
                     ValueAnimator valueAnimator2 = uuVar.h;
                     if (valueAnimator2 != null && valueAnimator2.isRunning()) {
-                        i11 = uuVar.f42506n;
+                        i11 = uuVar.f42491n;
                     }
                     int i18 = i11;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
@@ -272,20 +272,20 @@ public final class eb implements Runnable {
                         f7 = 200.0f;
                     }
                     float f10 = f7;
-                    yj0Var = yj0Var2;
+                    xj0Var = xj0Var2;
                     ofFloat.addUpdateListener(new ru(suVar, f10, i18, x03, activity));
                     uuVar.h.addListener(new org.telegram.ui.v0(activity, x03, 1));
                     uuVar.h.setDuration(350L);
                     uuVar.h.start();
                 } else {
-                    yj0Var = yj0Var2;
+                    xj0Var = xj0Var2;
                 }
                 if (org.telegram.ui.ActionBar.k6.i1()) {
-                    r8Var.p(LocaleController.getString(R.string.SettingsSwitchToNightMode), yj0Var, true);
-                    r8Var.f23115w += 2;
+                    r8Var.p(LocaleController.getString(R.string.SettingsSwitchToNightMode), xj0Var, true);
+                    r8Var.f23116w += 2;
                 } else {
-                    r8Var.p(LocaleController.getString(R.string.SettingsSwitchToDayMode), yj0Var, true);
-                    r8Var.f23115w += 2;
+                    r8Var.p(LocaleController.getString(R.string.SettingsSwitchToDayMode), xj0Var, true);
+                    r8Var.f23116w += 2;
                 }
                 org.telegram.ui.ActionBar.k6.J1(o2Var);
                 return;
@@ -328,9 +328,9 @@ public final class eb implements Runnable {
         this.f1230f = aVar;
     }
 
-    public eb(b71 b71Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i11) {
+    public eb(a71 a71Var, int i10, TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal, boolean z10, TLObject tLObject, int i11) {
         this.f1227a = i11;
-        this.d = b71Var;
+        this.d = a71Var;
         this.f1228b = i10;
         this.e = tL_messages_searchGlobal;
         this.f1229c = z10;

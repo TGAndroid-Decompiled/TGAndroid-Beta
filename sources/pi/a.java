@@ -8,11 +8,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 public final class a {
-    public SparseArray f44739a;
+    public SparseArray f44738a;
 
     public final void a(HashMap hashMap) {
-        if (this.f44739a == null) {
-            this.f44739a = new SparseArray(hashMap.size());
+        if (this.f44738a == null) {
+            this.f44738a = new SparseArray(hashMap.size());
             ArrayList arrayList = new ArrayList(hashMap.entrySet());
             Collections.sort(arrayList, Comparator$CC.comparingInt(new v8(19)));
             int size = arrayList.size();
@@ -21,12 +21,12 @@ public final class a {
                 Object obj = arrayList.get(i10);
                 i10++;
                 Map.Entry entry = (Map.Entry) obj;
-                this.f44739a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
+                this.f44738a.append(((String) entry.getKey()).hashCode(), (String) entry.getValue());
             }
             return;
         }
         for (Map.Entry entry2 : hashMap.entrySet()) {
-            this.f44739a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
+            this.f44738a.put(((String) entry2.getKey()).hashCode(), (String) entry2.getValue());
         }
     }
 }

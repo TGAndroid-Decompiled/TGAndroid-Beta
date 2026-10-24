@@ -2,28 +2,28 @@ package org.telegram.messenger;
 
 import com.android.billingclient.api.Purchase;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.xl0;
-public final class c implements xl0, c5.k {
-    public final Object f18060a;
-    public final Object f18061b;
-    public final Object f18062c;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.wl0;
+public final class c implements wl0, c5.k {
+    public final Object f18050a;
+    public final Object f18051b;
+    public final Object f18052c;
 
     public c(Object obj, Object obj2, Object obj3) {
-        this.f18060a = obj;
-        this.f18061b = obj2;
-        this.f18062c = obj3;
+        this.f18050a = obj;
+        this.f18051b = obj2;
+        this.f18052c = obj3;
     }
 
     @Override
     public void a(c5.i iVar, String str) {
-        BillingController.lambda$consumeGiftPurchase$12((TLRPC.InputStorePaymentPurpose) this.f18060a, (Purchase) this.f18061b, (Runnable) this.f18062c, iVar, str);
+        BillingController.lambda$consumeGiftPurchase$12((TLRPC.InputStorePaymentPurpose) this.f18050a, (Purchase) this.f18051b, (Runnable) this.f18052c, iVar, str);
     }
 
     @Override
     public int run() {
         int lambda$scrollToFragmentRow$24;
-        lambda$scrollToFragmentRow$24 = AndroidUtilities.lambda$scrollToFragmentRow$24((org.telegram.ui.ActionBar.o2) this.f18060a, (String) this.f18061b, (mm0) this.f18062c);
+        lambda$scrollToFragmentRow$24 = AndroidUtilities.lambda$scrollToFragmentRow$24((org.telegram.ui.ActionBar.o2) this.f18050a, (String) this.f18051b, (lm0) this.f18052c);
         return lambda$scrollToFragmentRow$24;
     }
 }

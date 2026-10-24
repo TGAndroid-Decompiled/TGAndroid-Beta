@@ -11,7 +11,7 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.nk;
+import org.telegram.ui.Components.lk;
 public final class x2 implements Utilities.Callback {
     public final int f6106a;
     public final boolean f6107b;
@@ -40,12 +40,12 @@ public final class x2 implements Utilities.Callback {
                 p4 p4Var = ((z2) this.d).f6182a;
                 TLRPC.User user = p4Var.f5662d3.getAdapter().f11974w0;
                 if (user != null) {
-                    j10 = user.f20490id;
+                    j10 = user.f20491id;
                 } else {
                     j10 = 0;
                 }
                 HashMap hashMap = new HashMap();
-                hashMap.put("id", botInlineResult.f20341id);
+                hashMap.put("id", botInlineResult.f20342id);
                 hashMap.put("query_id", "" + botInlineResult.query_id);
                 hashMap.put("bot", "" + j10);
                 TLRPC.User user2 = p4Var.f5662d3.getAdapter().f11974w0;
@@ -85,7 +85,7 @@ public final class x2 implements Utilities.Callback {
                 AndroidUtilities.runOnUIThread(w6Var);
                 return;
             default:
-                ((nk) this.d).Q.m(((Long) obj).longValue(), (ArrayList) this.e, this.f6107b, this.f6108c);
+                ((lk) this.d).Q.m(((Long) obj).longValue(), (ArrayList) this.e, this.f6107b, this.f6108c);
                 return;
         }
     }

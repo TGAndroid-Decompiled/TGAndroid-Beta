@@ -3,13 +3,13 @@ package r0;
 import android.os.Build;
 import android.view.animation.Interpolator;
 public final class v0 {
-    public u0 f45275a;
+    public u0 f45274a;
 
     public v0(int i10, long j10, Interpolator interpolator) {
         if (Build.VERSION.SDK_INT >= 30) {
-            this.f45275a = new t0(r0.b(i10, j10, interpolator));
+            this.f45274a = new t0(r0.b(i10, j10, interpolator));
         } else {
-            this.f45275a = new u0(i10, j10, interpolator);
+            this.f45274a = new u0(i10, j10, interpolator);
         }
     }
 }

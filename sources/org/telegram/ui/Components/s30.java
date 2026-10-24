@@ -1,68 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.accessibility.AccessibilityEvent;
-import android.widget.ImageView;
-public final class s30 extends ImageView {
-    public final int f30366a;
-    public final int f30367b;
-    public final Object f30368c;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+public abstract class s30 extends org.telegram.ui.ActionBar.h3 {
+    public z4.h f30429b;
+    public p30 f30430c;
+    public LinearLayout d;
+    public TextView[] e;
+    public float f30431f;
+    public int h;
 
-    public s30(Object obj, Context context, int i10, int i11) {
-        super(context);
-        this.f30366a = i11;
-        this.f30368c = obj;
-        this.f30367b = i10;
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f30366a) {
-            case 1:
-                super.onDraw(canvas);
-                org.telegram.ui.l10 l10Var = (org.telegram.ui.l10) this.f30368c;
-                ca0 ca0Var = l10Var.f39113s;
-                if (l10Var.f39112r) {
-                    int i10 = this.f30367b / 2;
-                    ca0Var.setBounds(i10, i10, getWidth() - i10, getHeight() - i10);
-                    ca0Var.draw(canvas);
-                    return;
-                }
-                return;
-            default:
-                super.onDraw(canvas);
-                return;
+    public static void m(org.telegram.ui.s40 s40Var) {
+        TextView textView;
+        TextView[] textViewArr = s40Var.e;
+        int i10 = s40Var.h;
+        TextView textView2 = textViewArr[i10];
+        if (i10 < textViewArr.length - 1) {
+            textView = textViewArr[i10 + 1];
+        } else {
+            textView = null;
         }
-    }
-
-    @Override
-    public void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        switch (this.f30366a) {
-            case 0:
-                super.onInitializeAccessibilityEvent(accessibilityEvent);
-                if (accessibilityEvent.getEventType() == 32768) {
-                    ((t30) this.f30368c).f30630c.f31069b.x(this.f30367b, true);
-                    return;
-                }
-                return;
-            default:
-                super.onInitializeAccessibilityEvent(accessibilityEvent);
-                return;
+        s40Var.containerView.getMeasuredWidth();
+        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
+        float measuredWidth2 = (s40Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
+        if (textView != null) {
+            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * s40Var.f30431f;
         }
-    }
-
-    @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        switch (this.f30366a) {
-            case 1:
-                if (drawable != ((org.telegram.ui.l10) this.f30368c).f39113s && !super.verifyDrawable(drawable)) {
-                    return false;
+        for (int i11 = 0; i11 < textViewArr.length; i11++) {
+            int i12 = s40Var.h;
+            float f7 = 0.9f;
+            float f10 = 0.7f;
+            if (i11 >= i12 && i11 <= i12 + 1) {
+                if (i11 == i12) {
+                    float f11 = s40Var.f30431f;
+                    f10 = 1.0f - (0.3f * f11);
+                    f7 = 1.0f - (f11 * 0.1f);
+                } else {
+                    float f12 = s40Var.f30431f;
+                    f10 = 0.7f + (0.3f * f12);
+                    f7 = 0.9f + (f12 * 0.1f);
                 }
-                return true;
-            default:
-                return super.verifyDrawable(drawable);
+            }
+            textViewArr[i11].setAlpha(f10);
+            textViewArr[i11].setScaleX(f7);
+            textViewArr[i11].setScaleY(f7);
         }
+        s40Var.d.setTranslationX(measuredWidth2);
+        s40Var.f30430c.invalidate();
     }
 }

@@ -1,33 +1,30 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
-public final class fc implements Runnable {
-    public final int f18423a = 0;
-    public final MessagesController f18424b;
-    public final TLObject f18425c;
+import org.telegram.tgnet.TLRPC;
+public final class fc implements RequestDelegate {
+    public final int f18412a;
+    public final MessagesController f18413b;
+    public final long f18414c;
     public final long d;
 
-    public fc(MessagesController messagesController, long j10, TLObject tLObject) {
-        this.f18424b = messagesController;
-        this.d = j10;
-        this.f18425c = tLObject;
+    public fc(int i10, long j10, long j11, MessagesController messagesController) {
+        this.f18412a = i10;
+        this.f18413b = messagesController;
+        this.f18414c = j10;
+        this.d = j11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18423a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f18412a) {
             case 0:
-                this.f18424b.lambda$loadPeerSettings$78(this.d, this.f18425c);
+                this.f18413b.lambda$loadUnknownDialog$207(this.f18414c, this.d, tLObject, tL_error);
                 return;
             default:
-                this.f18424b.lambda$deleteUserPhoto$113(this.f18425c, this.d);
+                this.f18413b.lambda$deleteMessages$123(this.f18414c, this.d, tLObject, tL_error);
                 return;
         }
-    }
-
-    public fc(MessagesController messagesController, TLObject tLObject, long j10) {
-        this.f18424b = messagesController;
-        this.f18425c = tLObject;
-        this.d = j10;
     }
 }

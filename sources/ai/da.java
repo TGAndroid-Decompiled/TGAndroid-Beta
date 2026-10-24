@@ -24,7 +24,7 @@ public final class da implements Runnable {
                 faVar.a();
                 return;
             default:
-                org.telegram.ui.Components.qc qcVar = faVar.d;
+                org.telegram.ui.Components.oc ocVar = faVar.d;
                 ha haVar = faVar.f1321q;
                 da daVar = faVar.f1320p;
                 MessageObject messageObject = faVar.f1309b;
@@ -40,13 +40,13 @@ public final class da implements Runnable {
                 }
                 if (!faVar.f1317m) {
                     faVar.f1317m = true;
-                    faVar.f1311f.f27663b = 5000L;
+                    faVar.f1311f.f27003b = 5000L;
                     AndroidUtilities.cancelRunOnUIThread(daVar);
                     AndroidUtilities.runOnUIThread(daVar, 5000L);
-                    qcVar.k(true);
-                    qcVar.v = daVar;
+                    ocVar.k(true);
+                    ocVar.v = daVar;
                 }
-                faVar.e.f28002b.setText(faVar.d());
+                faVar.e.f27395b.setText(faVar.d());
                 return;
         }
     }

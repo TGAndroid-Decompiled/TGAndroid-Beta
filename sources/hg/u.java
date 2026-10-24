@@ -13,12 +13,12 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.Vector;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.n40;
-import org.telegram.ui.Components.nr0;
+import org.telegram.ui.Components.l40;
+import org.telegram.ui.Components.mr0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.f9;
 import org.telegram.ui.fa;
-import org.telegram.ui.ux0;
+import org.telegram.ui.tx0;
 public final class u implements RequestDelegate {
     public final int f12093a;
     public final int f12094b;
@@ -56,13 +56,13 @@ public final class u implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new db((o2) this.d, tLObject, this.f12094b, (Utilities.Callback) this.f12095c, 21));
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new db((n40) this.d, this.f12094b, tLObject, (String) this.f12095c, 23));
+                AndroidUtilities.runOnUIThread(new db((l40) this.d, this.f12094b, tLObject, (String) this.f12095c, 23));
                 return;
             case 7:
-                AndroidUtilities.runOnUIThread(new db((nr0) this.d, this.f12094b, tLObject, (String) this.f12095c, 25));
+                AndroidUtilities.runOnUIThread(new db((mr0) this.d, this.f12094b, tLObject, (String) this.f12095c, 25));
                 return;
             case 8:
-                AndroidUtilities.runOnUIThread(new ux0((ProfileActivity) this.d, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.f12095c, 0), this.f12094b);
+                AndroidUtilities.runOnUIThread(new tx0((ProfileActivity) this.d, tL_error, tLObject, (TLRPC.TL_channels_getParticipants) this.f12095c, 0), this.f12094b);
                 return;
             default:
                 TLRPC.Chat chat = (TLRPC.Chat) this.d;

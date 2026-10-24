@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class c6 extends LinearLayout {
     public final TextView f8833a;
     public final ah.v f8834b;
@@ -24,7 +24,7 @@ public final class c6 extends LinearLayout {
         super(context);
         this.f8838r = f6Var;
         setOrientation(0);
-        int i10 = org.telegram.ui.ActionBar.k6.f21272i6;
+        int i10 = org.telegram.ui.ActionBar.k6.f21273i6;
         t5 t5Var = f6Var.G1;
         setBackground(org.telegram.ui.ActionBar.k6.g0(org.telegram.ui.ActionBar.k6.w0(i10, t5Var), 2, -1));
         ah.v vVar = new ah.v(this, context);
@@ -54,7 +54,7 @@ public final class c6 extends LinearLayout {
         this.f8837n = imageView4;
         imageView4.setImageResource(R.drawable.msg_text_check);
         imageView4.setScaleType(scaleType);
-        org.telegram.ui.ActionBar.r6.t(imageView4, org.telegram.ui.ActionBar.k6.f21256h7, t5Var, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.r6.t(imageView4, org.telegram.ui.ActionBar.k6.f21257h7, t5Var, PorterDuff.Mode.MULTIPLY);
         imageView4.setVisibility(8);
         addView(imageView4, w7.z5.n(50, -1));
     }
@@ -76,7 +76,7 @@ public final class c6 extends LinearLayout {
             this.h = ofFloat;
             ofFloat.addUpdateListener(new ah.k0(2, this, z10));
             this.h.addListener(new ah.b(this, 20));
-            this.h.setInterpolator(bs.h);
+            this.h.setInterpolator(zr.h);
             this.h.setDuration(420L);
             this.h.start();
             return;

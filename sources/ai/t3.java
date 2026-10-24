@@ -12,10 +12,10 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.EditTextBoldCursor;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.ls;
-import org.telegram.ui.Components.x70;
+import org.telegram.ui.Components.js;
+import org.telegram.ui.Components.v70;
 import org.telegram.ui.ey;
-import org.telegram.ui.io0;
+import org.telegram.ui.ho0;
 import org.telegram.ui.ko;
 public final class t3 implements View.OnClickListener {
     public final int f2188a;
@@ -55,12 +55,12 @@ public final class t3 implements View.OnClickListener {
                             int i10;
                             TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = (TL_stories.TL_premium_boostsStatus) obj;
                             ko koVar2 = ko.this;
-                            TLRPC.Chat chat = koVar2.f39012w0;
+                            TLRPC.Chat chat = koVar2.f38980w0;
                             int i11 = chat.level;
                             int i12 = tL_premium_boostsStatus.level;
                             if (i11 != i12) {
                                 chat.level = i12;
-                                koVar2.getMessagesController().putChat(koVar2.f39012w0, false);
+                                koVar2.getMessagesController().putChat(koVar2.f38980w0, false);
                             }
                             Switch checkBox = koVar2.M.getCheckBox();
                             if (tL_premium_boostsStatus.level < koVar2.getMessagesController().channelAutotranslationLevelMin) {
@@ -82,7 +82,7 @@ public final class t3 implements View.OnClickListener {
                             }
                             TLRPC.TL_channels_toggleAutotranslation tL_channels_toggleAutotranslation = new TLRPC.TL_channels_toggleAutotranslation();
                             koVar2.getMessagesController();
-                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(koVar2.f39012w0);
+                            tL_channels_toggleAutotranslation.channel = MessagesController.getInputChannel(koVar2.f38980w0);
                             tL_channels_toggleAutotranslation.enabled = z11;
                             koVar2.M.setChecked(z11);
                             zArr2[0] = false;
@@ -95,14 +95,14 @@ public final class t3 implements View.OnClickListener {
                 return;
             case 2:
                 ((org.telegram.ui.ActionBar.c2[]) this.f2190c)[0].dismiss();
-                ((ls) this.d).run(-this.f2189b);
+                ((js) this.d).run(-this.f2189b);
                 return;
             case 3:
                 ((org.telegram.ui.ActionBar.c2[]) this.f2190c)[0].dismiss();
-                ((ls) this.d).run(-this.f2189b);
+                ((js) this.d).run(-this.f2189b);
                 return;
             case 4:
-                x70.N((x70) this.f2190c, (Context) this.d, this.f2189b);
+                v70.N((v70) this.f2190c, (Context) this.d, this.f2189b);
                 return;
             case 5:
                 ey eyVar = (ey) this.f2190c;
@@ -116,20 +116,20 @@ public final class t3 implements View.OnClickListener {
                 eyVar.finishPreviewFragment();
                 return;
             default:
-                io0 io0Var = (io0) this.f2190c;
-                io0Var.getClass();
+                ho0 ho0Var = (ho0) this.f2190c;
+                ho0Var.getClass();
                 long longValue = ((Long) ((TextView) this.d).getTag()).longValue();
-                Long l4 = io0Var.H0;
+                Long l4 = ho0Var.H0;
                 if (l4 != null && longValue == l4.longValue()) {
-                    io0Var.m0 = true;
-                    io0Var.f38300f[0].setText("");
-                    io0Var.m0 = false;
-                    io0Var.H0 = 0L;
-                    io0Var.L0();
+                    ho0Var.m0 = true;
+                    ho0Var.f37927f[0].setText("");
+                    ho0Var.m0 = false;
+                    ho0Var.H0 = 0L;
+                    ho0Var.L0();
                 } else {
-                    io0Var.f38300f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f2189b, false, true, true, io0Var.C0.invoice.currency));
+                    ho0Var.f37927f[0].setText(LocaleController.getInstance().formatCurrencyString(this.f2189b, false, true, true, ho0Var.C0.invoice.currency));
                 }
-                EditTextBoldCursor editTextBoldCursor = io0Var.f38300f[0];
+                EditTextBoldCursor editTextBoldCursor = ho0Var.f37927f[0];
                 editTextBoldCursor.setSelection(editTextBoldCursor.length());
                 return;
         }

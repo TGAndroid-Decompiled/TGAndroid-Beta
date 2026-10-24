@@ -13,8 +13,8 @@ import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.r6;
 import w7.z5;
 public final class h extends FrameLayout {
-    public final n5 f49423a;
-    public long f49424b;
+    public final n5 f49422a;
+    public long f49423b;
 
     public h(Context context, g6 g6Var) {
         super(context);
@@ -27,7 +27,7 @@ public final class h extends FrameLayout {
         float f12;
         n5 n5Var = new n5(context);
         n5Var.setTextSize(16);
-        r6.Z(n5Var, k6.f21289j5, g6Var);
+        r6.Z(n5Var, k6.f21290j5, g6Var);
         if (LocaleController.isRTL) {
             i10 = 5;
         } else {
@@ -36,7 +36,7 @@ public final class h extends FrameLayout {
         n5Var.setGravity(i10);
         addView(n5Var);
         n5 n5Var2 = new n5(context);
-        this.f49423a = n5Var2;
+        this.f49422a = n5Var2;
         n5Var2.setTextSize(16);
         r6.Z(n5Var2, k6.L6, g6Var);
         if (LocaleController.isRTL) {
@@ -78,11 +78,11 @@ public final class h extends FrameLayout {
             f12 = 21.0f;
         }
         n5Var2.setLayoutParams(z5.d(-1, -2.0f, i14, f11, 0.0f, f12, 0.0f));
-        r6.i(k6.f21254h5, this, g6Var);
+        r6.i(k6.f21255h5, this, g6Var);
     }
 
     public long getSelectedTime() {
-        return this.f49424b;
+        return this.f49423b;
     }
 
     @Override
@@ -91,8 +91,8 @@ public final class h extends FrameLayout {
     }
 
     public void setDate(long j10) {
-        this.f49424b = j10;
+        this.f49423b = j10;
         Date date = new Date(j10);
-        this.f49423a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
+        this.f49422a.l(LocaleController.formatString("formatDateAtTime", R.string.formatDateAtTime, LocaleController.getInstance().getFormatterDayMonth().format(date), LocaleController.getInstance().getFormatterDay().format(date)), false);
     }
 }

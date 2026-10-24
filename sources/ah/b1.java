@@ -2,11 +2,11 @@ package ah;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.w9;
-public final class b1 extends w9 {
+import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.u9;
+public final class b1 extends u9 {
     public boolean G;
-    public r5 H;
+    public p5 H;
     public e I;
     public boolean J;
     public final d1 K;
@@ -21,9 +21,9 @@ public final class b1 extends w9 {
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
         this.J = true;
-        r5 r5Var = this.H;
-        if (r5Var != null) {
-            r5Var.a(this);
+        p5 p5Var = this.H;
+        if (p5Var != null) {
+            p5Var.a(this);
         }
         e eVar = this.I;
         if (eVar != null) {
@@ -35,9 +35,9 @@ public final class b1 extends w9 {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         this.J = false;
-        r5 r5Var = this.H;
-        if (r5Var != null) {
-            r5Var.o(this);
+        p5 p5Var = this.H;
+        if (p5Var != null) {
+            p5Var.o(this);
         }
         e eVar = this.I;
         if (eVar != null) {
@@ -47,9 +47,9 @@ public final class b1 extends w9 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        r5 r5Var = this.H;
-        if (r5Var != null) {
-            r5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+        p5 p5Var = this.H;
+        if (p5Var != null) {
+            p5Var.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
             this.H.setAlpha(255);
             this.H.draw(canvas);
             this.G = true;
@@ -62,10 +62,10 @@ public final class b1 extends w9 {
             this.G = true;
             return;
         }
-        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f32946k0) {
+        if (getImageReceiver().getLottieAnimation() != null && getImageReceiver().getLottieAnimation().f32607k0) {
             this.G = true;
         }
-        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f32946k0) {
+        if (!this.G && getImageReceiver().getLottieAnimation() != null && !getImageReceiver().getLottieAnimation().f32607k0) {
             d1 d1Var = this.K;
             if (d1Var.f688a == 2 && !d1Var.f709z) {
                 getImageReceiver().getLottieAnimation().N(getImageReceiver().getLottieAnimation().e[0] - 1, false, false);

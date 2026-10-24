@@ -20,7 +20,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.qy;
 public abstract class d9 extends FrameLayout implements View.OnClickListener {
     public final Path E;
@@ -38,8 +38,8 @@ public abstract class d9 extends FrameLayout implements View.OnClickListener {
     public final Rect f5267s;
     public final RectF v;
     public final Paint f5268w;
-    public final org.telegram.ui.Components.f6 f5269x;
-    public final org.telegram.ui.Components.f6 f5270y;
+    public final org.telegram.ui.Components.d6 f5269x;
+    public final org.telegram.ui.Components.d6 f5270y;
 
     public d9(Context context, View view, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
@@ -58,8 +58,8 @@ public abstract class d9 extends FrameLayout implements View.OnClickListener {
         this.G = false;
         this.h = view;
         this.f5265n = g6Var;
-        this.f5269x = new org.telegram.ui.Components.f6(view, 0L, 120L, new LinearInterpolator());
-        this.f5270y = new org.telegram.ui.Components.f6(view, 0L, 360L, bs.h);
+        this.f5269x = new org.telegram.ui.Components.d6(view, 0L, 120L, new LinearInterpolator());
+        this.f5270y = new org.telegram.ui.Components.d6(view, 0L, 360L, zr.h);
         setClipChildren(false);
         FrameLayout frameLayout = new FrameLayout(context);
         this.d = frameLayout;
@@ -142,7 +142,7 @@ public abstract class d9 extends FrameLayout implements View.OnClickListener {
                     }
                     g9Var.setOnClickListener(this);
                     addView(g9Var);
-                    double d = mediaArea.coordinates.f20573w;
+                    double d = mediaArea.coordinates.f20574w;
                 }
             }
             frameLayout.bringToFront();
@@ -195,14 +195,14 @@ public abstract class d9 extends FrameLayout implements View.OnClickListener {
                 for (int i11 = 0; i11 < getChildCount(); i11++) {
                     View childAt = getChildAt(i11);
                     if (childAt != frameLayout) {
-                        org.telegram.ui.Components.f6 f6Var = ((b9) childAt).f5193a;
+                        org.telegram.ui.Components.d6 d6Var = ((b9) childAt).f5193a;
                         b9 b9Var4 = this.f5262b;
                         if (childAt == b9Var4 && b9Var4.f5199s) {
                             z12 = true;
                         } else {
                             z12 = false;
                         }
-                        float e10 = f6Var.e(z12);
+                        float e10 = d6Var.e(z12);
                         if (e10 > 0.0f) {
                             canvas2.save();
                             rectF.set(childAt.getX(), childAt.getY(), childAt.getX() + childAt.getMeasuredWidth(), childAt.getY() + childAt.getMeasuredHeight());
@@ -329,8 +329,8 @@ public abstract class d9 extends FrameLayout implements View.OnClickListener {
                 int measuredWidth = b9Var.getMeasuredWidth();
                 int measuredHeight = b9Var.getMeasuredHeight();
                 b9Var.layout((-measuredWidth) / 2, (-measuredHeight) / 2, measuredWidth / 2, measuredHeight / 2);
-                b9Var.setTranslationX((float) ((mediaArea.coordinates.f20574x / 100.0d) * getMeasuredWidth()));
-                b9Var.setTranslationY((float) ((mediaArea.coordinates.f20575y / 100.0d) * getMeasuredHeight()));
+                b9Var.setTranslationX((float) ((mediaArea.coordinates.f20575x / 100.0d) * getMeasuredWidth()));
+                b9Var.setTranslationY((float) ((mediaArea.coordinates.f20576y / 100.0d) * getMeasuredHeight()));
                 b9Var.setRotation((float) mediaArea.coordinates.rotation);
             } else if (childAt instanceof c9) {
                 c9 c9Var = (c9) childAt;
@@ -338,8 +338,8 @@ public abstract class d9 extends FrameLayout implements View.OnClickListener {
                 int measuredWidth2 = c9Var.getMeasuredWidth();
                 int measuredHeight2 = c9Var.getMeasuredHeight();
                 c9Var.layout((-measuredWidth2) / 2, (-measuredHeight2) / 2, measuredWidth2 / 2, measuredHeight2 / 2);
-                c9Var.setTranslationX((float) ((mediaArea2.coordinates.f20574x / 100.0d) * getMeasuredWidth()));
-                c9Var.setTranslationY((float) ((mediaArea2.coordinates.f20575y / 100.0d) * getMeasuredHeight()));
+                c9Var.setTranslationX((float) ((mediaArea2.coordinates.f20575x / 100.0d) * getMeasuredWidth()));
+                c9Var.setTranslationY((float) ((mediaArea2.coordinates.f20576y / 100.0d) * getMeasuredHeight()));
                 c9Var.setRotation((float) mediaArea2.coordinates.rotation);
             }
         }
@@ -356,10 +356,10 @@ public abstract class d9 extends FrameLayout implements View.OnClickListener {
                 frameLayout.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
             } else if (childAt instanceof b9) {
                 b9 b9Var = (b9) getChildAt(i12);
-                b9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f5194b.coordinates.f20573w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f5194b.coordinates.h / 100.0d) * size2), 1073741824));
+                b9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f5194b.coordinates.f20574w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((b9Var.f5194b.coordinates.h / 100.0d) * size2), 1073741824));
             } else if (childAt instanceof c9) {
                 c9 c9Var = (c9) getChildAt(i12);
-                c9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((c9Var.f5242a.coordinates.f20573w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((c9Var.f5242a.coordinates.h / 100.0d) * size2), 1073741824));
+                c9Var.measure(View.MeasureSpec.makeMeasureSpec((int) Math.ceil((c9Var.f5242a.coordinates.f20574w / 100.0d) * size), 1073741824), View.MeasureSpec.makeMeasureSpec((int) Math.ceil((c9Var.f5242a.coordinates.h / 100.0d) * size2), 1073741824));
             }
         }
         setMeasuredDimension(size, size2);

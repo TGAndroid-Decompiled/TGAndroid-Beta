@@ -17,17 +17,17 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.zr;
 public final class e9 extends View {
     public int f5298a;
     public int f5299b;
     public final Matrix f5300c;
     public final Paint[] d;
-    public final org.telegram.ui.Components.f6 e;
+    public final org.telegram.ui.Components.d6 e;
     public boolean f5301f;
     public int h;
     public final Drawable[] f5302n;
@@ -35,19 +35,19 @@ public final class e9 extends View {
     public boolean f5304s;
     public final Paint v;
     public final Path f5305w;
-    public final yc f5306x;
+    public final wc f5306x;
 
     public e9(Context context) {
         super(context);
         this.f5300c = new Matrix();
         this.d = r0;
-        this.e = new org.telegram.ui.Components.f6(this, 0L, 260L, bs.h);
+        this.e = new org.telegram.ui.Components.d6(this, 0L, 260L, zr.h);
         this.f5302n = new Drawable[2];
         this.f5303r = new float[2];
         Paint paint = new Paint(1);
         this.v = paint;
         this.f5305w = new Path();
-        this.f5306x = new yc(this, 0.6f, 5.0f);
+        this.f5306x = new wc(this, 0.6f, 5.0f);
         Paint[] paintArr = {new Paint(1), new Paint(1)};
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -62,23 +62,23 @@ public final class e9 extends View {
         int i10 = 0;
         if (g7Var != null && (p9Var = g7Var.f5366c.E0) != null) {
             int i11 = p9Var.f9615a;
-            org.telegram.ui.Components.f6 f6Var = this.e;
+            org.telegram.ui.Components.d6 d6Var = this.e;
             if (i11 == 1) {
                 c(15.0f, R.drawable.msg_stories_closefriends);
                 d(-7808710, -13781445);
-                f6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else if (i11 == 2) {
                 c(17.33f, R.drawable.msg_folders_private);
                 d(-3905294, -6923014);
-                f6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else if (i11 == 3) {
                 c(17.33f, R.drawable.msg_folders_groups);
                 d(-18621, -618956);
-                f6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else if (z10) {
                 c(17.33f, R.drawable.msg_folders_channels);
                 d(-15292942, -15630089);
-                f6Var.f(z11, !z11);
+                d6Var.f(z11, !z11);
             } else {
                 this.f5301f = false;
             }
@@ -101,27 +101,27 @@ public final class e9 extends View {
             this.f5301f = false;
         } else {
             boolean z12 = storyItem.close_friends;
-            org.telegram.ui.Components.f6 f6Var = this.e;
+            org.telegram.ui.Components.d6 d6Var = this.e;
             if (z12) {
                 c(15.0f, R.drawable.msg_stories_closefriends);
                 d(-7808710, -13781445);
-                f6Var.f(z11, true);
+                d6Var.f(z11, true);
             } else if (storyItem.contacts) {
                 c(17.33f, R.drawable.msg_folders_private);
                 d(-3905294, -6923014);
-                f6Var.f(z11, true);
+                d6Var.f(z11, true);
             } else if (!storyItem.selected_contacts && (!z10 || ((arrayList = storyItem.privacy) != null && !arrayList.isEmpty()))) {
                 if (z10) {
                     c(17.33f, R.drawable.msg_folders_channels);
                     d(-15292942, -15630089);
-                    f6Var.f(z11, true);
+                    d6Var.f(z11, true);
                 } else {
                     this.f5301f = false;
                 }
             } else {
                 c(17.33f, R.drawable.msg_folders_groups);
                 d(-18621, -618956);
-                f6Var.f(z11, true);
+                d6Var.f(z11, true);
             }
         }
         if (!this.f5301f) {
@@ -239,7 +239,7 @@ public final class e9 extends View {
             f7 = 0.5f;
             c10 = 0;
             f10 = 12.0f;
-            drawableArr[1].setBounds((int) sl.x(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a1.g.d(fArr[1], 2.0f, abs, rectF.centerY()));
+            drawableArr[1].setBounds((int) tl.x(fArr[1], 2.0f, abs, centerX2), (int) (centerY - f11), (int) (f11 + centerX2), (int) a1.g.d(fArr[1], 2.0f, abs, rectF.centerY()));
             drawableArr[1].draw(canvas);
         } else {
             f7 = 0.5f;
@@ -254,7 +254,7 @@ public final class e9 extends View {
             }
             float centerY2 = rectF.centerY();
             float f12 = (fArr[c10] / 2.0f) * abs;
-            drawableArr[c10].setBounds((int) sl.x(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a1.g.d(fArr[c10], 2.0f, abs, rectF.centerY()));
+            drawableArr[c10].setBounds((int) tl.x(fArr[c10], 2.0f, abs, centerX), (int) (centerY2 - f12), (int) (f12 + centerX), (int) a1.g.d(fArr[c10], 2.0f, abs, rectF.centerY()));
             drawableArr[c10].draw(canvas);
         }
         if (this.f5304s) {

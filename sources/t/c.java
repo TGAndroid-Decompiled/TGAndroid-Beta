@@ -12,29 +12,29 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 public final class c {
-    public static final c f47303b;
-    public final HashSet f47304a;
+    public static final c f47302b;
+    public final HashSet f47303a;
 
     static {
         new c(Collections.EMPTY_LIST);
         new c(Arrays.asList(CarIconSpan.class, ClickableSpan.class, DistanceSpan.class, DurationSpan.class, ForegroundCarColorSpan.class));
         new c(Arrays.asList(ClickableSpan.class, DistanceSpan.class, DurationSpan.class));
         new c(Arrays.asList(ForegroundCarColorSpan.class));
-        f47303b = new c(Arrays.asList(DistanceSpan.class, DurationSpan.class));
+        f47302b = new c(Arrays.asList(DistanceSpan.class, DurationSpan.class));
         new c(Arrays.asList(DistanceSpan.class, DurationSpan.class, CarIconSpan.class));
         new c(Arrays.asList(DistanceSpan.class, DurationSpan.class, ForegroundCarColorSpan.class));
         new c(Arrays.asList(DistanceSpan.class, DurationSpan.class, ForegroundCarColorSpan.class, CarIconSpan.class));
     }
 
     public c(List list) {
-        this.f47304a = new HashSet(list);
+        this.f47303a = new HashSet(list);
     }
 
     public final void a(List list) {
         Iterator it = list.iterator();
         while (it.hasNext()) {
             Class<?> cls = ((CarText.SpanWrapper) it.next()).getCarSpan().getClass();
-            if (!this.f47304a.contains(cls)) {
+            if (!this.f47303a.contains(cls)) {
                 throw new IllegalArgumentException("CarSpan type is not allowed: ".concat(cls.getSimpleName()));
             }
         }

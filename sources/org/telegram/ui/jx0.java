@@ -1,113 +1,835 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class jx0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f38721a;
-    public final PrivacySettingsActivity f38722b;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.Switch;
+public final class jx0 extends org.telegram.ui.Components.km0 {
+    public final Context f38700c;
+    public final PrivacySettingsActivity d;
 
-    public jx0(PrivacySettingsActivity privacySettingsActivity, int i10) {
-        this.f38721a = i10;
-        this.f38722b = privacySettingsActivity;
-    }
-
-    public void a() {
-        int i10;
-        switch (this.f38721a) {
-            case 2:
-                PrivacySettingsActivity privacySettingsActivity = this.f38722b;
-                kx0 kx0Var = privacySettingsActivity.f33869a;
-                if (kx0Var != null && (i10 = privacySettingsActivity.f33878s) >= 0) {
-                    kx0Var.m(i10);
-                    return;
-                }
-                return;
-            default:
-                PrivacySettingsActivity.U(this.f38722b);
-                return;
-        }
+    public jx0(PrivacySettingsActivity privacySettingsActivity, Context context) {
+        this.d = privacySettingsActivity;
+        this.f38700c = context;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        String string;
-        switch (this.f38721a) {
-            case 0:
-                PrivacySettingsActivity privacySettingsActivity = this.f38722b;
-                try {
-                    Dialog dialog = privacySettingsActivity.visibleDialog;
-                    if (dialog != null) {
-                        dialog.dismiss();
+    public final boolean D(s4.b1 b1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        int i21;
+        int i22;
+        int i23;
+        int i24;
+        int i25;
+        int i26;
+        int i27;
+        int i28;
+        int i29;
+        int i30;
+        int i31;
+        int i32;
+        int i33;
+        int i34;
+        int i35;
+        int b10 = b1Var.b();
+        PrivacySettingsActivity privacySettingsActivity = this.d;
+        i10 = privacySettingsActivity.passcodeRow;
+        if (b10 != i10) {
+            i11 = privacySettingsActivity.passwordRow;
+            if (b10 != i11) {
+                i12 = privacySettingsActivity.passkeysRow;
+                if (b10 != i12) {
+                    i13 = privacySettingsActivity.blockedRow;
+                    if (b10 != i13 && b10 != privacySettingsActivity.f33880s) {
+                        i14 = privacySettingsActivity.secretWebpageRow;
+                        if (b10 != i14) {
+                            i15 = privacySettingsActivity.webSessionsRow;
+                            if (b10 != i15 && (b10 != privacySettingsActivity.f33878n || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(1))) {
+                                i16 = privacySettingsActivity.lastSeenRow;
+                                if (b10 != i16 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(0)) {
+                                    i17 = privacySettingsActivity.callsRow;
+                                    if (b10 != i17 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(2)) {
+                                        i18 = privacySettingsActivity.profilePhotoRow;
+                                        if (b10 != i18 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(4)) {
+                                            i19 = privacySettingsActivity.bioRow;
+                                            if (b10 != i19 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(9)) {
+                                                i20 = privacySettingsActivity.musicRow;
+                                                if (b10 != i20 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(14)) {
+                                                    i21 = privacySettingsActivity.birthdayRow;
+                                                    if (b10 != i21 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(11)) {
+                                                        i22 = privacySettingsActivity.giftsRow;
+                                                        if (b10 != i22 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(12)) {
+                                                            i23 = privacySettingsActivity.forwardsRow;
+                                                            if (b10 != i23 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(5)) {
+                                                                i24 = privacySettingsActivity.phoneNumberRow;
+                                                                if (b10 != i24 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(6)) {
+                                                                    i25 = privacySettingsActivity.voicesRow;
+                                                                    if (b10 != i25 || privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(8)) {
+                                                                        i26 = privacySettingsActivity.noncontactsRow;
+                                                                        if (b10 != i26) {
+                                                                            i27 = privacySettingsActivity.deleteAccountRow;
+                                                                            if (b10 != i27 || privacySettingsActivity.getContactsController().getLoadingDeleteInfo()) {
+                                                                                i28 = privacySettingsActivity.newChatsRow;
+                                                                                if (b10 != i28 || privacySettingsActivity.getContactsController().getLoadingGlobalSettings()) {
+                                                                                    i29 = privacySettingsActivity.emailLoginRow;
+                                                                                    if (b10 != i29) {
+                                                                                        i30 = privacySettingsActivity.paymentsClearRow;
+                                                                                        if (b10 != i30) {
+                                                                                            i31 = privacySettingsActivity.secretMapRow;
+                                                                                            if (b10 != i31) {
+                                                                                                i32 = privacySettingsActivity.contactsSyncRow;
+                                                                                                if (b10 != i32 && b10 != privacySettingsActivity.G) {
+                                                                                                    i33 = privacySettingsActivity.contactsDeleteRow;
+                                                                                                    if (b10 != i33) {
+                                                                                                        i34 = privacySettingsActivity.contactsSuggestRow;
+                                                                                                        if (b10 != i34) {
+                                                                                                            i35 = privacySettingsActivity.autoDeleteMesages;
+                                                                                                            if (b10 != i35 && b10 != privacySettingsActivity.H) {
+                                                                                                                return false;
+                                                                                                            }
+                                                                                                        }
+                                                                                                    }
+                                                                                                }
+                                                                                            }
+                                                                                        }
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                } catch (Exception e) {
-                    FileLog.e(e);
                 }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(privacySettingsActivity.getParentActivity());
-                alertDialog$Builder.f20678a.R = LocaleController.getString("PrivacyPaymentsClearAlertTitle", R.string.PrivacyPaymentsClearAlertTitle);
-                alertDialog$Builder.f20678a.T = LocaleController.getString("PrivacyPaymentsClearAlert", R.string.PrivacyPaymentsClearAlert);
-                alertDialog$Builder.k(LocaleController.getString("ClearButton", R.string.ClearButton), new jx0(privacySettingsActivity, 1));
-                alertDialog$Builder.h(LocaleController.getString("Cancel", R.string.Cancel), null);
-                privacySettingsActivity.showDialog(alertDialog$Builder.f20678a);
-                org.telegram.ui.ActionBar.c2 c2Var2 = alertDialog$Builder.f20678a;
-                privacySettingsActivity.showDialog(c2Var2);
-                TextView textView = (TextView) c2Var2.d(-1);
-                if (textView != null) {
-                    org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21421q7, null);
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.O;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        int i21;
+        int i22;
+        int i23;
+        int i24;
+        int i25;
+        int i26;
+        int i27;
+        PrivacySettingsActivity privacySettingsActivity = this.d;
+        if (i10 != privacySettingsActivity.G) {
+            i11 = privacySettingsActivity.lastSeenRow;
+            if (i10 != i11) {
+                i12 = privacySettingsActivity.phoneNumberRow;
+                if (i10 != i12) {
+                    i13 = privacySettingsActivity.deleteAccountRow;
+                    if (i10 != i13) {
+                        i14 = privacySettingsActivity.webSessionsRow;
+                        if (i10 != i14 && i10 != privacySettingsActivity.f33878n) {
+                            i15 = privacySettingsActivity.paymentsClearRow;
+                            if (i10 != i15) {
+                                i16 = privacySettingsActivity.secretMapRow;
+                                if (i10 != i16) {
+                                    i17 = privacySettingsActivity.contactsDeleteRow;
+                                    if (i10 != i17 && i10 != privacySettingsActivity.H) {
+                                        if (i10 != privacySettingsActivity.h && i10 != privacySettingsActivity.E && i10 != privacySettingsActivity.f33879r && i10 != privacySettingsActivity.v && i10 != privacySettingsActivity.N && i10 != privacySettingsActivity.I && i10 != privacySettingsActivity.L && i10 != privacySettingsActivity.f33882x) {
+                                            if (i10 != 0 && i10 != privacySettingsActivity.f33883y && i10 != privacySettingsActivity.f33877f && i10 != privacySettingsActivity.M && i10 != privacySettingsActivity.F && i10 != privacySettingsActivity.K && i10 != privacySettingsActivity.f33881w) {
+                                                i18 = privacySettingsActivity.secretWebpageRow;
+                                                if (i10 != i18) {
+                                                    i19 = privacySettingsActivity.contactsSyncRow;
+                                                    if (i10 != i19) {
+                                                        i20 = privacySettingsActivity.contactsSuggestRow;
+                                                        if (i10 != i20) {
+                                                            i21 = privacySettingsActivity.newChatsRow;
+                                                            if (i10 != i21) {
+                                                                if (i10 != privacySettingsActivity.J) {
+                                                                    i22 = privacySettingsActivity.autoDeleteMesages;
+                                                                    if (i10 != i22 && i10 != privacySettingsActivity.f33880s) {
+                                                                        i23 = privacySettingsActivity.emailLoginRow;
+                                                                        if (i10 != i23) {
+                                                                            i24 = privacySettingsActivity.passwordRow;
+                                                                            if (i10 != i24) {
+                                                                                i25 = privacySettingsActivity.passkeysRow;
+                                                                                if (i10 != i25) {
+                                                                                    i26 = privacySettingsActivity.passcodeRow;
+                                                                                    if (i10 != i26) {
+                                                                                        i27 = privacySettingsActivity.blockedRow;
+                                                                                        if (i10 == i27) {
+                                                                                            return 5;
+                                                                                        }
+                                                                                        return 0;
+                                                                                    }
+                                                                                    return 5;
+                                                                                }
+                                                                                return 5;
+                                                                            }
+                                                                            return 5;
+                                                                        }
+                                                                        return 5;
+                                                                    }
+                                                                    return 5;
+                                                                }
+                                                                return 4;
+                                                            }
+                                                            return 3;
+                                                        }
+                                                        return 3;
+                                                    }
+                                                    return 3;
+                                                }
+                                                return 3;
+                                            }
+                                            return 2;
+                                        }
+                                        return 1;
+                                    }
+                                    return 0;
+                                }
+                                return 0;
+                            }
+                            return 0;
+                        }
+                        return 0;
+                    }
+                    return 0;
+                }
+                return 0;
+            }
+            return 0;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        boolean z10;
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        int i19;
+        int i20;
+        int i21;
+        int i22;
+        int i23;
+        int i24;
+        int i25;
+        int i26;
+        String string;
+        boolean z11;
+        int i27;
+        CharSequence u02;
+        int i28;
+        boolean z12;
+        CharSequence x02;
+        boolean z13;
+        int i29;
+        boolean z14;
+        float f7;
+        int i30;
+        int i31;
+        int i32;
+        int i33;
+        boolean z15;
+        int i34;
+        int i35;
+        int i36;
+        int i37;
+        int i38;
+        int i39;
+        String str;
+        String string2;
+        int i40;
+        String str2;
+        String str3;
+        int i41;
+        String str4;
+        boolean z16;
+        String str5;
+        String str6;
+        String string3;
+        String str7;
+        int i42 = b1Var.f46345f;
+        View view = b1Var.f46342a;
+        int i43 = 16;
+        String str8 = null;
+        boolean z17 = false;
+        boolean z18 = true;
+        PrivacySettingsActivity privacySettingsActivity = this.d;
+        if (i42 != 0) {
+            if (i42 != 1) {
+                if (i42 != 2) {
+                    if (i42 != 3) {
+                        if (i42 == 5) {
+                            org.telegram.ui.Cells.r8 r8Var = (org.telegram.ui.Cells.r8) view;
+                            if (view.getTag() != null && ((Integer) view.getTag()).intValue() == i10) {
+                                z15 = true;
+                            } else {
+                                z15 = false;
+                            }
+                            view.setTag(Integer.valueOf(i10));
+                            r8Var.setPrioritizeTitleOverValue(false);
+                            org.telegram.ui.Components.o6 o6Var = r8Var.f23111c;
+                            i34 = privacySettingsActivity.autoDeleteMesages;
+                            if (i10 == i34) {
+                                int globalTTl = privacySettingsActivity.getUserConfig().getGlobalTTl();
+                                if (globalTTl == -1) {
+                                    str7 = null;
+                                    z17 = true;
+                                } else {
+                                    if (globalTTl > 0) {
+                                        string3 = LocaleController.formatTTLString(globalTTl * 60);
+                                    } else {
+                                        string3 = LocaleController.getString("PasswordOff", R.string.PasswordOff);
+                                    }
+                                    str7 = string3;
+                                }
+                                r8Var.u(LocaleController.getString("AutoDeleteMessages", R.string.AutoDeleteMessages), str7, true, R.drawable.msg2_autodelete, true);
+                            } else {
+                                String str9 = "";
+                                if (i10 != privacySettingsActivity.f33880s) {
+                                    i35 = privacySettingsActivity.emailLoginRow;
+                                    if (i10 != i35) {
+                                        i36 = privacySettingsActivity.passwordRow;
+                                        if (i10 != i36) {
+                                            i37 = privacySettingsActivity.passkeysRow;
+                                            if (i10 != i37) {
+                                                i38 = privacySettingsActivity.passcodeRow;
+                                                if (i10 != i38) {
+                                                    i39 = privacySettingsActivity.blockedRow;
+                                                    if (i10 == i39) {
+                                                        int i44 = privacySettingsActivity.getMessagesController().totalBlockedCount;
+                                                        if (i44 == 0) {
+                                                            str = LocaleController.getString("BlockedEmpty", R.string.BlockedEmpty);
+                                                        } else if (i44 > 0) {
+                                                            str = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(i44));
+                                                        } else {
+                                                            z17 = true;
+                                                            str = str9;
+                                                        }
+                                                        r8Var.u(LocaleController.getString("BlockedUsers", R.string.BlockedUsers), str, true, R.drawable.msg2_block2, true);
+                                                    }
+                                                } else {
+                                                    if (SharedConfig.passcodeHash.length() != 0) {
+                                                        string2 = LocaleController.getString(R.string.PasswordOn);
+                                                        i40 = R.drawable.msg2_secret;
+                                                    } else {
+                                                        string2 = LocaleController.getString(R.string.PasswordOff);
+                                                        i40 = R.drawable.msg2_secret;
+                                                    }
+                                                    r8Var.u(LocaleController.getString(R.string.Passcode), string2, true, i40, true);
+                                                }
+                                            } else {
+                                                ArrayList arrayList = privacySettingsActivity.e;
+                                                if (arrayList == null) {
+                                                    z17 = true;
+                                                    str2 = str9;
+                                                } else if (arrayList.size() == 1 && o6Var.getPaint().measureText(((TL_account.Passkey) privacySettingsActivity.e.get(0)).name) < AndroidUtilities.displaySize.x / 3.0f) {
+                                                    str2 = ((TL_account.Passkey) privacySettingsActivity.e.get(0)).name;
+                                                } else if (privacySettingsActivity.e.size() > 0) {
+                                                    str2 = privacySettingsActivity.e.size() + "";
+                                                } else {
+                                                    str2 = LocaleController.getString(R.string.PasswordOff);
+                                                }
+                                                r8Var.u(LocaleController.getString(R.string.Passkey), str2, true, R.drawable.msg2_permissions, true);
+                                            }
+                                        } else {
+                                            int i45 = R.drawable.menu_2sv;
+                                            TL_account.Password password = privacySettingsActivity.d;
+                                            if (password == null) {
+                                                i41 = i45;
+                                                z17 = true;
+                                                str4 = str9;
+                                            } else {
+                                                if (password.has_password) {
+                                                    i45 = R.drawable.menu_2sv_on;
+                                                    str3 = LocaleController.getString(R.string.PasswordOn);
+                                                } else {
+                                                    str3 = LocaleController.getString(R.string.PasswordOff);
+                                                }
+                                                i41 = i45;
+                                                str4 = str3;
+                                            }
+                                            r8Var.u(LocaleController.getString(R.string.TwoStepVerification), str4, true, i41, true);
+                                        }
+                                    } else {
+                                        TL_account.Password password2 = privacySettingsActivity.d;
+                                        if (password2 == null) {
+                                            z16 = true;
+                                            str5 = str9;
+                                        } else {
+                                            SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(password2.login_email_pattern);
+                                            int indexOf = privacySettingsActivity.d.login_email_pattern.indexOf(42);
+                                            int lastIndexOf = privacySettingsActivity.d.login_email_pattern.lastIndexOf(42);
+                                            if (indexOf != lastIndexOf && indexOf != -1 && lastIndexOf != -1) {
+                                                ?? obj = new Object();
+                                                obj.f29448a |= 256;
+                                                obj.f29449b = indexOf;
+                                                int i46 = lastIndexOf + 1;
+                                                obj.f29450c = i46;
+                                                valueOf.setSpan(new org.telegram.ui.Components.q11(obj, 0), indexOf, i46, 0);
+                                            }
+                                            z16 = false;
+                                            str5 = valueOf;
+                                        }
+                                        r8Var.setPrioritizeTitleOverValue(true);
+                                        String string4 = LocaleController.getString(R.string.EmailLogin);
+                                        int i47 = R.drawable.msg2_email;
+                                        r8Var.f23116w = r8Var.getDefaultImageLeft();
+                                        r8Var.f23115s = r8Var.c(false);
+                                        org.telegram.ui.ActionBar.n5 n5Var = r8Var.f23109a;
+                                        n5Var.l(string4, false);
+                                        n5Var.i(null);
+                                        org.telegram.ui.ActionBar.n5 n5Var2 = r8Var.d;
+                                        n5Var2.setVisibility(0);
+                                        n5Var2.l(str5, false);
+                                        o6Var.setVisibility(8);
+                                        r8Var.h.setVisibility(8);
+                                        org.telegram.ui.Components.ak0 ak0Var = r8Var.e;
+                                        ak0Var.setVisibility(0);
+                                        ak0Var.setTranslationX(0.0f);
+                                        ak0Var.setTranslationY(0.0f);
+                                        ak0Var.setPadding(0, AndroidUtilities.dp(7.0f), 0, 0);
+                                        ak0Var.setImageResource(i47);
+                                        r8Var.f23114r = true;
+                                        r8Var.setWillNotDraw(false);
+                                        Switch r02 = r8Var.f23112f;
+                                        if (r02 != null) {
+                                            r02.setVisibility(8);
+                                        }
+                                        org.telegram.ui.Components.n5 n5Var3 = r8Var.K;
+                                        if (n5Var3 != null) {
+                                            n5Var3.g(null, false);
+                                        }
+                                        z17 = z16;
+                                    }
+                                } else {
+                                    if (privacySettingsActivity.f33872a0.j0() == 0) {
+                                        if (privacySettingsActivity.getMessagesController().lastKnownSessionsCount == 0) {
+                                            z17 = true;
+                                            str6 = str9;
+                                        } else {
+                                            str6 = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(privacySettingsActivity.getMessagesController().lastKnownSessionsCount));
+                                        }
+                                    } else {
+                                        str6 = String.format(LocaleController.getInstance().getCurrentLocale(), "%d", Integer.valueOf(privacySettingsActivity.f33872a0.j0()));
+                                    }
+                                    String str10 = str6;
+                                    privacySettingsActivity.getMessagesController().lastKnownSessionsCount = privacySettingsActivity.f33872a0.j0();
+                                    r8Var.u(LocaleController.getString(R.string.SessionsTitle), str10, true, R.drawable.msg2_devices, false);
+                                }
+                            }
+                            r8Var.h(16, z17, z15);
+                            return;
+                        }
+                        return;
+                    }
+                    org.telegram.ui.Cells.w8 w8Var = (org.telegram.ui.Cells.w8) view;
+                    i30 = privacySettingsActivity.secretWebpageRow;
+                    if (i10 != i30) {
+                        i31 = privacySettingsActivity.contactsSyncRow;
+                        if (i10 != i31) {
+                            i32 = privacySettingsActivity.contactsSuggestRow;
+                            if (i10 != i32) {
+                                i33 = privacySettingsActivity.newChatsRow;
+                                if (i10 == i33) {
+                                    w8Var.f(LocaleController.getString("ArchiveAndMute", R.string.ArchiveAndMute), privacySettingsActivity.W, false);
+                                    return;
+                                }
+                                return;
+                            }
+                            w8Var.f(LocaleController.getString("SuggestContacts", R.string.SuggestContacts), privacySettingsActivity.V, false);
+                            return;
+                        }
+                        w8Var.f(LocaleController.getString("SyncContacts", R.string.SyncContacts), privacySettingsActivity.T, true);
+                        return;
+                    }
+                    String string5 = LocaleController.getString("SecretWebPage", R.string.SecretWebPage);
+                    if (privacySettingsActivity.getMessagesController().secretWebpagePreview != 1) {
+                        z18 = false;
+                    }
+                    w8Var.f(string5, z18, false);
                     return;
                 }
-                return;
-            case 1:
-                TLRPC.TL_payments_clearSavedInfo tL_payments_clearSavedInfo = new TLRPC.TL_payments_clearSavedInfo();
-                PrivacySettingsActivity privacySettingsActivity2 = this.f38722b;
-                boolean[] zArr = privacySettingsActivity2.Z;
-                tL_payments_clearSavedInfo.credentials = zArr[1];
-                tL_payments_clearSavedInfo.info = zArr[0];
-                privacySettingsActivity2.getUserConfig().tmpPassword = null;
-                privacySettingsActivity2.getUserConfig().saveConfig(false);
-                privacySettingsActivity2.getConnectionsManager().sendRequest(tL_payments_clearSavedInfo, new ci.d6(8));
-                boolean z10 = zArr[0];
-                if (z10 && zArr[1]) {
-                    string = LocaleController.getString("PrivacyPaymentsPaymentShippingCleared", R.string.PrivacyPaymentsPaymentShippingCleared);
-                } else if (z10) {
-                    string = LocaleController.getString("PrivacyPaymentsShippingInfoCleared", R.string.PrivacyPaymentsShippingInfoCleared);
-                } else if (zArr[1]) {
-                    string = LocaleController.getString("PrivacyPaymentsPaymentInfoCleared", R.string.PrivacyPaymentsPaymentInfoCleared);
+                org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
+                if (i10 == privacySettingsActivity.f33877f) {
+                    l4Var.setText(LocaleController.getString("PrivacyTitle", R.string.PrivacyTitle));
+                    return;
+                } else if (i10 == 0) {
+                    l4Var.setText(LocaleController.getString("SecurityTitle", R.string.SecurityTitle));
+                    return;
+                } else if (i10 == privacySettingsActivity.f33883y) {
+                    l4Var.setText(LocaleController.getString("DeleteMyAccount", R.string.DeleteMyAccount));
+                    return;
+                } else if (i10 == privacySettingsActivity.M) {
+                    l4Var.setText(LocaleController.getString("SecretChat", R.string.SecretChat));
+                    return;
+                } else if (i10 == privacySettingsActivity.F) {
+                    l4Var.setText(LocaleController.getString("PrivacyBots", R.string.PrivacyBots));
+                    return;
+                } else if (i10 == privacySettingsActivity.K) {
+                    l4Var.setText(LocaleController.getString("Contacts", R.string.Contacts));
+                    return;
+                } else if (i10 == privacySettingsActivity.f33881w) {
+                    l4Var.setText(LocaleController.getString("NewChatsFromNonContacts", R.string.NewChatsFromNonContacts));
+                    return;
                 } else {
                     return;
                 }
-                org.telegram.ui.Components.xc.a0(privacySettingsActivity2).Q(R.raw.chats_infotip, 36, string).j();
+            }
+            org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+            if (i10 == privacySettingsActivity.E) {
+                e9Var.setText(LocaleController.getString("DeleteAccountHelp", R.string.DeleteAccountHelp));
                 return;
-            case 2:
-            case 3:
-            default:
-                PrivacySettingsActivity privacySettingsActivity3 = this.f38722b;
-                org.telegram.ui.ActionBar.c2 p5 = new AlertDialog$Builder(privacySettingsActivity3.getParentActivity(), 3, null).p();
-                privacySettingsActivity3.f33873c = p5;
-                p5.f20762i0 = false;
-                if (privacySettingsActivity3.S != privacySettingsActivity3.T) {
-                    UserConfig userConfig = privacySettingsActivity3.getUserConfig();
-                    boolean z11 = privacySettingsActivity3.T;
-                    userConfig.syncContacts = z11;
-                    privacySettingsActivity3.S = z11;
-                    privacySettingsActivity3.getUserConfig().saveConfig(false);
-                }
-                privacySettingsActivity3.getContactsController().deleteAllContacts(new ix0(privacySettingsActivity3, 1));
+            } else if (i10 == privacySettingsActivity.f33879r) {
+                e9Var.setText(LocaleController.getString("GroupsAndChannelsHelp", R.string.GroupsAndChannelsHelp));
                 return;
-            case 4:
-                ig0 ig0Var = new ig0();
-                PrivacySettingsActivity privacySettingsActivity4 = this.f38722b;
-                ix0 ix0Var = new ix0(privacySettingsActivity4, 2);
-                ig0Var.F = 3;
-                ig0Var.f38192a = 12;
-                ig0Var.f38198d0 = ix0Var;
-                privacySettingsActivity4.presentFragment(ig0Var);
+            } else if (i10 == privacySettingsActivity.v) {
+                e9Var.setText(LocaleController.getString("SessionsSettingsInfo", R.string.SessionsSettingsInfo));
                 return;
+            } else if (i10 == privacySettingsActivity.N) {
+                e9Var.setText(LocaleController.getString("SecretWebPageInfo", R.string.SecretWebPageInfo));
+                return;
+            } else if (i10 == privacySettingsActivity.I) {
+                e9Var.setText(LocaleController.getString("PrivacyBotsInfo", R.string.PrivacyBotsInfo));
+                return;
+            } else if (i10 == privacySettingsActivity.h) {
+                e9Var.setText(LocaleController.getString(R.string.PrivacyInvitesInfo));
+                return;
+            } else if (i10 == privacySettingsActivity.L) {
+                e9Var.setText(LocaleController.getString("SuggestContactsInfo", R.string.SuggestContactsInfo));
+                return;
+            } else if (i10 == privacySettingsActivity.f33882x) {
+                e9Var.setText(LocaleController.getString("ArchiveAndMuteInfo", R.string.ArchiveAndMuteInfo));
+                return;
+            } else {
+                return;
+            }
         }
+        if (view.getTag() != null && ((Integer) view.getTag()).intValue() == i10) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        view.setTag(Integer.valueOf(i10));
+        org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) view;
+        caVar.setBetterLayout(true);
+        i11 = privacySettingsActivity.webSessionsRow;
+        if (i10 != i11) {
+            i12 = privacySettingsActivity.phoneNumberRow;
+            if (i10 != i12) {
+                i13 = privacySettingsActivity.lastSeenRow;
+                if (i10 == i13) {
+                    if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(0)) {
+                        z11 = true;
+                        i43 = 30;
+                    } else {
+                        str8 = PrivacySettingsActivity.x0(0, privacySettingsActivity.getAccountInstance());
+                        z11 = false;
+                    }
+                    caVar.c(LocaleController.getString("PrivacyLastSeen", R.string.PrivacyLastSeen), str8, false, true);
+                } else if (i10 != privacySettingsActivity.f33878n) {
+                    i14 = privacySettingsActivity.callsRow;
+                    if (i10 != i14) {
+                        i15 = privacySettingsActivity.profilePhotoRow;
+                        if (i10 != i15) {
+                            i16 = privacySettingsActivity.bioRow;
+                            if (i10 != i16) {
+                                i17 = privacySettingsActivity.musicRow;
+                                if (i10 != i17) {
+                                    i18 = privacySettingsActivity.birthdayRow;
+                                    if (i10 != i18) {
+                                        i19 = privacySettingsActivity.giftsRow;
+                                        if (i10 != i19) {
+                                            i20 = privacySettingsActivity.forwardsRow;
+                                            if (i10 != i20) {
+                                                i21 = privacySettingsActivity.voicesRow;
+                                                if (i10 != i21) {
+                                                    i22 = privacySettingsActivity.noncontactsRow;
+                                                    if (i10 == i22) {
+                                                        if (privacySettingsActivity.Y) {
+                                                            i27 = R.string.ContactsAndFee;
+                                                        } else if (privacySettingsActivity.X) {
+                                                            i27 = R.string.ContactsAndPremium;
+                                                        } else {
+                                                            i27 = R.string.P2PEverybody;
+                                                        }
+                                                        String string6 = LocaleController.getString(i27);
+                                                        if (privacySettingsActivity.getMessagesController().newNoncontactPeersRequirePremiumWithoutOwnpremium && !privacySettingsActivity.getMessagesController().starsPaidMessagesAvailable) {
+                                                            u02 = LocaleController.getString(R.string.PrivacyMessages);
+                                                        } else {
+                                                            u02 = PrivacySettingsActivity.u0(privacySettingsActivity, LocaleController.getString(R.string.PrivacyMessages));
+                                                        }
+                                                        i28 = privacySettingsActivity.musicRow;
+                                                        if (i28 != -1) {
+                                                            z12 = true;
+                                                        } else {
+                                                            z12 = false;
+                                                        }
+                                                        caVar.c(u02, string6, false, z12);
+                                                    } else if (i10 != privacySettingsActivity.G) {
+                                                        i23 = privacySettingsActivity.deleteAccountRow;
+                                                        if (i10 != i23) {
+                                                            i24 = privacySettingsActivity.paymentsClearRow;
+                                                            if (i10 == i24) {
+                                                                caVar.b(LocaleController.getString("PrivacyPaymentsClear", R.string.PrivacyPaymentsClear), true);
+                                                            } else if (i10 != privacySettingsActivity.H) {
+                                                                i25 = privacySettingsActivity.secretMapRow;
+                                                                if (i10 != i25) {
+                                                                    i26 = privacySettingsActivity.contactsDeleteRow;
+                                                                    if (i10 == i26) {
+                                                                        caVar.b(LocaleController.getString("SyncContactsDelete", R.string.SyncContactsDelete), true);
+                                                                    }
+                                                                } else {
+                                                                    int i48 = SharedConfig.mapPreviewType;
+                                                                    if (i48 != 0) {
+                                                                        if (i48 != 1) {
+                                                                            if (i48 != 2) {
+                                                                                string = LocaleController.getString("MapPreviewProviderYandex", R.string.MapPreviewProviderYandex);
+                                                                            } else {
+                                                                                string = LocaleController.getString("MapPreviewProviderNobody", R.string.MapPreviewProviderNobody);
+                                                                            }
+                                                                        } else {
+                                                                            string = LocaleController.getString("MapPreviewProviderGoogle", R.string.MapPreviewProviderGoogle);
+                                                                        }
+                                                                    } else {
+                                                                        string = LocaleController.getString("MapPreviewProviderTelegram", R.string.MapPreviewProviderTelegram);
+                                                                    }
+                                                                    caVar.c(LocaleController.getString("MapPreviewProvider", R.string.MapPreviewProvider), string, privacySettingsActivity.R, true);
+                                                                    privacySettingsActivity.R = false;
+                                                                }
+                                                            } else {
+                                                                caVar.b(LocaleController.getString(R.string.PrivacyBiometryBotsButton), true);
+                                                            }
+                                                        } else {
+                                                            if (privacySettingsActivity.getContactsController().getLoadingDeleteInfo()) {
+                                                                z11 = true;
+                                                            } else {
+                                                                int deleteAccountTTL = privacySettingsActivity.getContactsController().getDeleteAccountTTL();
+                                                                if (deleteAccountTTL <= 182) {
+                                                                    str8 = LocaleController.formatPluralString("Months", deleteAccountTTL / 30, new Object[0]);
+                                                                } else if (deleteAccountTTL == 365) {
+                                                                    str8 = LocaleController.formatPluralString("Months", 12, new Object[0]);
+                                                                } else if (deleteAccountTTL == 548) {
+                                                                    str8 = LocaleController.formatPluralString("Months", 18, new Object[0]);
+                                                                } else if (deleteAccountTTL == 730) {
+                                                                    str8 = LocaleController.formatPluralString("Months", 24, new Object[0]);
+                                                                } else if (deleteAccountTTL > 30) {
+                                                                    str8 = LocaleController.formatPluralString("Months", (int) Math.round(deleteAccountTTL / 30.0d), new Object[0]);
+                                                                } else {
+                                                                    str8 = LocaleController.formatPluralString("Days", deleteAccountTTL, new Object[0]);
+                                                                }
+                                                                z11 = false;
+                                                            }
+                                                            caVar.c(LocaleController.getString("DeleteAccountIfAwayFor3", R.string.DeleteAccountIfAwayFor3), str8, privacySettingsActivity.Q, false);
+                                                            privacySettingsActivity.Q = false;
+                                                        }
+                                                    } else {
+                                                        caVar.b(LocaleController.getString("TelegramPassport", R.string.TelegramPassport), true);
+                                                    }
+                                                } else {
+                                                    if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(8)) {
+                                                        x02 = null;
+                                                        z13 = true;
+                                                        i43 = 30;
+                                                    } else {
+                                                        if (!privacySettingsActivity.getUserConfig().isPremium()) {
+                                                            x02 = LocaleController.getString(R.string.P2PEverybody);
+                                                        } else {
+                                                            x02 = PrivacySettingsActivity.x0(8, privacySettingsActivity.getAccountInstance());
+                                                        }
+                                                        z13 = false;
+                                                    }
+                                                    SpannableStringBuilder u03 = PrivacySettingsActivity.u0(privacySettingsActivity, LocaleController.getString(R.string.PrivacyVoiceMessages));
+                                                    i29 = privacySettingsActivity.noncontactsRow;
+                                                    if (i29 != -1) {
+                                                        z14 = true;
+                                                    } else {
+                                                        z14 = false;
+                                                    }
+                                                    caVar.c(u03, x02, false, z14);
+                                                    org.telegram.ui.ActionBar.r6.t(caVar.getValueImageView(), org.telegram.ui.ActionBar.k6.f21347m6, null, PorterDuff.Mode.MULTIPLY);
+                                                    z17 = z13;
+                                                }
+                                            } else {
+                                                if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(5)) {
+                                                    z11 = true;
+                                                    i43 = 30;
+                                                } else {
+                                                    str8 = PrivacySettingsActivity.x0(5, privacySettingsActivity.getAccountInstance());
+                                                    z11 = false;
+                                                }
+                                                caVar.c(LocaleController.getString("PrivacyForwards", R.string.PrivacyForwards), str8, false, true);
+                                            }
+                                        } else {
+                                            if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(12)) {
+                                                z11 = true;
+                                                i43 = 30;
+                                            } else {
+                                                str8 = PrivacySettingsActivity.x0(12, privacySettingsActivity.getAccountInstance());
+                                                z11 = false;
+                                            }
+                                            caVar.c(LocaleController.getString(R.string.PrivacyGifts), str8, false, true);
+                                        }
+                                    } else {
+                                        if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(11)) {
+                                            z11 = true;
+                                            i43 = 30;
+                                        } else {
+                                            str8 = PrivacySettingsActivity.x0(11, privacySettingsActivity.getAccountInstance());
+                                            z11 = false;
+                                        }
+                                        caVar.c(LocaleController.getString(R.string.PrivacyBirthday), str8, false, true);
+                                    }
+                                } else {
+                                    if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(14)) {
+                                        z11 = true;
+                                        i43 = 30;
+                                    } else {
+                                        str8 = PrivacySettingsActivity.x0(14, privacySettingsActivity.getAccountInstance());
+                                        z11 = false;
+                                    }
+                                    caVar.c(LocaleController.getString(R.string.PrivacyMusic), str8, false, true);
+                                }
+                            } else {
+                                if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(9)) {
+                                    z11 = true;
+                                    i43 = 30;
+                                } else {
+                                    str8 = PrivacySettingsActivity.x0(9, privacySettingsActivity.getAccountInstance());
+                                    z11 = false;
+                                }
+                                caVar.c(LocaleController.getString("PrivacyBio", R.string.PrivacyBio), str8, false, true);
+                            }
+                        } else {
+                            if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(4)) {
+                                z11 = true;
+                                i43 = 30;
+                            } else {
+                                str8 = PrivacySettingsActivity.x0(4, privacySettingsActivity.getAccountInstance());
+                                z11 = false;
+                            }
+                            caVar.c(LocaleController.getString("PrivacyProfilePhoto", R.string.PrivacyProfilePhoto), str8, false, true);
+                        }
+                    } else {
+                        if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(2)) {
+                            z11 = true;
+                            i43 = 30;
+                        } else {
+                            str8 = PrivacySettingsActivity.x0(2, privacySettingsActivity.getAccountInstance());
+                            z11 = false;
+                        }
+                        caVar.c(LocaleController.getString("Calls", R.string.Calls), str8, false, true);
+                    }
+                } else {
+                    if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(1)) {
+                        z11 = true;
+                        i43 = 30;
+                    } else {
+                        str8 = PrivacySettingsActivity.x0(1, privacySettingsActivity.getAccountInstance());
+                        z11 = false;
+                    }
+                    caVar.c(LocaleController.getString(R.string.PrivacyInvites), str8, false, false);
+                }
+            } else {
+                if (privacySettingsActivity.getContactsController().getLoadingPrivacyInfo(6)) {
+                    z11 = true;
+                    i43 = 30;
+                } else {
+                    str8 = PrivacySettingsActivity.x0(6, privacySettingsActivity.getAccountInstance());
+                    z11 = false;
+                }
+                caVar.c(LocaleController.getString("PrivacyPhone", R.string.PrivacyPhone), str8, false, true);
+            }
+            z17 = z11;
+        } else {
+            caVar.b(LocaleController.getString("WebSessionsTitle", R.string.WebSessionsTitle), false);
+        }
+        caVar.f22226r = z17;
+        caVar.f22230y = i43;
+        if (!z10) {
+            if (z17) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            caVar.f22229x = f7;
+        } else {
+            caVar.E = true;
+        }
+        caVar.invalidate();
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View caVar;
+        Context context = this.f38700c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    if (i10 != 4) {
+                        if (i10 != 5) {
+                            caVar = new org.telegram.ui.Cells.w8(context);
+                        } else {
+                            caVar = new org.telegram.ui.Cells.r8(context);
+                        }
+                    } else {
+                        caVar = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.b1) null);
+                    }
+                } else {
+                    caVar = new org.telegram.ui.Cells.l4(context);
+                }
+            } else {
+                caVar = new org.telegram.ui.Cells.e9(context);
+            }
+        } else {
+            caVar = new org.telegram.ui.Cells.ca(context);
+        }
+        return new s4.b1(caVar);
     }
 }

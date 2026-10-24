@@ -9,8 +9,8 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import ei.bc;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.f6;
+import org.telegram.ui.Components.d6;
+import org.telegram.ui.Components.zr;
 public final class f0 extends Drawable {
     public final Paint f11215a = new Paint(1);
     public final RectF f11216b = new RectF();
@@ -18,16 +18,16 @@ public final class f0 extends Drawable {
     public final Path d;
     public boolean e;
     public int f11218f;
-    public final f6 f11219g;
-    public final f6 h;
+    public final d6 f11219g;
+    public final d6 h;
 
     public f0(int i10) {
         Path path = new Path();
         this.d = path;
         bc bcVar = new bc(this, 2);
-        bs bsVar = bs.h;
-        this.f11219g = new f6(bcVar, 320L, bsVar, 0);
-        this.h = new f6(new bc(this, 2), 320L, bsVar, 0);
+        zr zrVar = zr.h;
+        this.f11219g = new d6(bcVar, 320L, zrVar, 0);
+        this.h = new d6(new bc(this, 2), 320L, zrVar, 0);
         this.f11217c = i10;
         path.moveTo(-AndroidUtilities.dp(6.5f), 0.0f);
         path.lineTo(AndroidUtilities.dp(6.5f), 0.0f);

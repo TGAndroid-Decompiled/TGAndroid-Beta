@@ -1,119 +1,183 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public interface ku0 {
-    boolean A();
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.view.KeyEvent;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.CheckBox;
+import org.telegram.ui.Components.UndoView;
+public final class ku0 extends FrameLayout {
+    public final PhotoViewer f39052a;
 
-    void B(int i10);
+    public ku0(PhotoViewer photoViewer, Activity activity) {
+        super(activity);
+        this.f39052a = photoViewer;
+    }
 
-    CharSequence C(int i10);
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        sn snVar = this.f39052a.l4;
+        if (snVar != null) {
+            snVar.T7();
+            UndoView undoView = snVar.K3;
+            if (undoView != null && undoView.getVisibility() == 0) {
+                canvas.save();
+                View view = (View) undoView.getParent();
+                canvas.clipRect(view.getX(), view.getY(), view.getX() + view.getWidth(), view.getY() + view.getHeight());
+                canvas.translate(undoView.getX(), undoView.getY());
+                undoView.draw(canvas);
+                canvas.restore();
+                invalidate();
+            }
+        }
+    }
 
-    void D();
+    @Override
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        keyEvent.getKeyCode();
+        PhotoViewer photoViewer = this.f39052a;
+        if (!photoViewer.f33694r && photoViewer.f33566c2 != 1 && photoViewer.f33696r1 && photoViewer.F2 != null && keyEvent.getRepeatCount() == 0 && keyEvent.getAction() == 0 && (keyEvent.getKeyCode() == 24 || keyEvent.getKeyCode() == 25)) {
+            photoViewer.F2.W(1.0f);
+        }
+        return super.dispatchKeyEvent(keyEvent);
+    }
 
-    mu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11);
+    @Override
+    public final boolean dispatchKeyEventPreIme(KeyEvent keyEvent) {
+        if (keyEvent != null && keyEvent.getKeyCode() == 4 && keyEvent.getAction() == 1) {
+            PhotoViewer photoViewer = this.f39052a;
+            if (photoViewer.Q.x()) {
+                photoViewer.Q.f(false);
+            }
+            if (photoViewer.J1()) {
+                photoViewer.F0(true);
+                return false;
+            } else if (ht.o().E) {
+                ht.o().m();
+                return false;
+            } else {
+                PhotoViewer.u1().H0(true, false);
+                return true;
+            }
+        }
+        return super.dispatchKeyEventPreIme(keyEvent);
+    }
 
-    void F(boolean z10);
+    @Override
+    public final boolean dispatchTouchEvent(android.view.MotionEvent r4) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ku0.dispatchTouchEvent(android.view.MotionEvent):boolean");
+    }
 
-    void G();
+    @Override
+    public final void draw(Canvas canvas) {
+        if (this.f39052a.S8) {
+            return;
+        }
+        super.draw(canvas);
+    }
 
-    int H();
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        try {
+            return super.drawChild(canvas, view, j10);
+        } catch (Throwable unused) {
+            return false;
+        }
+    }
 
-    boolean I();
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        PhotoViewer photoViewer = this.f39052a;
+        photoViewer.C4.onAttachedToWindow();
+        photoViewer.B4.onAttachedToWindow();
+        photoViewer.D4.onAttachedToWindow();
+        photoViewer.S5 = true;
+    }
 
-    void J();
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        PhotoViewer photoViewer = this.f39052a;
+        photoViewer.C4.onDetachedFromWindow();
+        photoViewer.B4.onDetachedFromWindow();
+        photoViewer.D4.onDetachedFromWindow();
+        photoViewer.S5 = false;
+        photoViewer.T5 = false;
+    }
 
-    boolean K();
+    @Override
+    public final void onDraw(android.graphics.Canvas r15) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ku0.onDraw(android.graphics.Canvas):void");
+    }
 
-    boolean L();
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f39052a.e && super.onInterceptTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
 
-    void M(VideoEditedInfo videoEditedInfo);
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        PhotoViewer photoViewer = this.f39052a;
+        photoViewer.f33608h0.layout(getPaddingLeft(), 0, photoViewer.f33608h0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f33608h0.getMeasuredHeight());
+        photoViewer.f33582e0.layout(getPaddingLeft(), 0, photoViewer.f33582e0.getMeasuredWidth() + getPaddingLeft(), photoViewer.f33582e0.getMeasuredHeight());
+        photoViewer.f33626j0.layout(getPaddingLeft(), photoViewer.f33582e0.getMeasuredHeight(), photoViewer.f33626j0.getMeasuredWidth(), photoViewer.f33626j0.getMeasuredHeight() + photoViewer.f33582e0.getMeasuredHeight());
+        photoViewer.T5 = true;
+        if (z10) {
+            if (!photoViewer.U5) {
+                float t22 = photoViewer.t2(true);
+                photoViewer.f33550a6 = t22;
+                photoViewer.X5 = 0.0f;
+                photoViewer.Y5 = 0.0f;
+                photoViewer.y3(t22);
+            }
+            CheckBox checkBox = photoViewer.N0;
+            if (checkBox != null) {
+                checkBox.post(new ut0(this, 1));
+            }
+        }
+        if (photoViewer.U5) {
+            photoViewer.P2();
+            photoViewer.U5 = false;
+        }
+    }
 
-    boolean N();
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = View.MeasureSpec.getSize(i10);
+        int size2 = View.MeasureSpec.getSize(i11);
+        PhotoViewer photoViewer = this.f39052a;
+        if (!photoViewer.f33704s && AndroidUtilities.incorrectDisplaySizeFix) {
+            int i12 = AndroidUtilities.displaySize.y;
+            if (size2 > i12) {
+                size2 = i12;
+            }
+            size2 += AndroidUtilities.statusBarHeight;
+        }
+        setMeasuredDimension(size, size2);
+        int i13 = size2 - photoViewer.f33707s2.bottom;
+        int paddingRight = size - (getPaddingRight() + getPaddingLeft());
+        int paddingBottom = i13 - getPaddingBottom();
+        ViewGroup.LayoutParams layoutParams = photoViewer.f33608h0.getLayoutParams();
+        photoViewer.f33608h0.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(layoutParams.height, Integer.MIN_VALUE));
+        photoViewer.f33582e0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(paddingBottom, 1073741824));
+        photoViewer.f33626j0.measure(View.MeasureSpec.makeMeasureSpec(paddingRight, 1073741824), View.MeasureSpec.makeMeasureSpec(photoViewer.f33635k0, 1073741824));
+    }
 
-    boolean O();
-
-    boolean P();
-
-    boolean Q();
-
-    int R(Object obj);
-
-    int S(int i10);
-
-    boolean T();
-
-    boolean U();
-
-    MessageObject V();
-
-    void W();
-
-    void X(int i10);
-
-    void Y(int i10);
-
-    boolean Z();
-
-    long a();
-
-    void a0(int i10);
-
-    boolean b();
-
-    String b0();
-
-    ArrayList c();
-
-    CharSequence c0(int i10);
-
-    void d();
-
-    void e(CharSequence charSequence);
-
-    void f(String str, String str2, boolean z10);
-
-    boolean g();
-
-    boolean h();
-
-    void i();
-
-    ImageReceiver.BitmapHolder j(int i10);
-
-    int k(int i10, VideoEditedInfo videoEditedInfo);
-
-    boolean l();
-
-    void m();
-
-    void n();
-
-    void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11);
-
-    boolean p();
-
-    boolean q();
-
-    boolean r();
-
-    void s();
-
-    boolean t();
-
-    boolean u();
-
-    HashMap v();
-
-    boolean w();
-
-    boolean x(int i10);
-
-    int y();
-
-    boolean z();
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        PhotoViewer photoViewer = this.f39052a;
+        if (photoViewer.e && PhotoViewer.k(photoViewer, motionEvent)) {
+            return true;
+        }
+        return false;
+    }
 }

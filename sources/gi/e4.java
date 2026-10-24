@@ -15,10 +15,10 @@ import ei.bc;
 import ei.ea;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.GenericProvider;
-import org.telegram.ui.Components.hw0;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.gw0;
+import org.telegram.ui.Components.oc;
 public abstract class e4 extends FrameLayout {
-    public static final hw0 f11202b0 = new hw0(new fh.b(13), new fh.b(14));
+    public static final gw0 f11202b0 = new gw0(new fh.b(13), new fh.b(14));
     public Runnable E;
     public d4 F;
     public o1.k G;
@@ -107,9 +107,9 @@ public abstract class e4 extends FrameLayout {
         if (runnable != null) {
             runnable.run();
         }
-        qc qcVar = qc.f29825w;
-        if (qcVar != null) {
-            qcVar.l();
+        oc ocVar = oc.f29196w;
+        if (ocVar != null) {
+            ocVar.l();
         }
     }
 

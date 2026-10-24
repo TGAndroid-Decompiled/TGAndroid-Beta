@@ -1,37 +1,42 @@
 package org.telegram.ui.Components;
-public final class uw0 implements Runnable {
-    public final int f31228a;
-    public final ww0 f31229b;
 
-    public uw0(ww0 ww0Var, int i10) {
-        this.f31228a = i10;
-        this.f31229b = ww0Var;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class uw0 implements Runnable {
+    public final int f31231a;
+    public final TLRPC.Document f31232b;
+    public final int f31233c;
+    public final MessageObject d;
+    public final org.telegram.ui.Cells.t1 e;
+    public final TLRPC.TL_messages_stickerSet f31234f;
+
+    public uw0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.t1 t1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
+        this.f31231a = i11;
+        this.f31232b = document;
+        this.f31233c = i10;
+        this.d = messageObject;
+        this.e = t1Var;
+        this.f31234f = tL_messages_stickerSet;
     }
 
     @Override
     public final void run() {
-        switch (this.f31228a) {
+        switch (this.f31231a) {
             case 0:
-                ww0 ww0Var = this.f31229b;
-                ww0Var.V0 = false;
-                if (!ww0Var.Y0 && ww0Var.W0) {
-                    ww0Var.C(true);
-                    return;
-                }
-                return;
-            case 1:
-                this.f31229b.V0 = false;
-                return;
-            case 2:
-                ww0 ww0Var2 = this.f31229b;
-                ww0Var2.Y0 = false;
-                if (!ww0Var2.V0 && ww0Var2.W0) {
-                    ww0Var2.C(true);
-                    return;
-                }
+                TLRPC.Document document = this.f31232b;
+                String attachFileName = FileLoader.getAttachFileName(document);
+                int i10 = this.f31233c;
+                DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.e);
+                FileLoader.getInstance(i10).loadFile(document, this.f31234f, 1, 1);
                 return;
             default:
-                this.f31229b.Y0 = false;
+                TLRPC.Document document2 = this.f31232b;
+                String attachFileName2 = FileLoader.getAttachFileName(document2);
+                int i11 = this.f31233c;
+                DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.e);
+                FileLoader.getInstance(i11).loadFile(document2, this.f31234f, 1, 1);
                 return;
         }
     }

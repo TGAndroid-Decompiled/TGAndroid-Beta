@@ -1,187 +1,55 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public abstract class li extends FrameLayout {
-    public final org.telegram.ui.ActionBar.g6 f28365a;
-    public final ti f28366b;
-    public mm0 f28367c;
-    public mm0 d;
-    public int e;
-    public boolean f28368f;
-    public boolean h;
+public final class li extends mi {
+    public int f28343b;
+    public final ri f28344c;
 
-    public li(Context context, org.telegram.ui.ActionBar.g6 g6Var, ti tiVar) {
+    public li(ri riVar, Context context) {
         super(context);
-        this.f28365a = g6Var;
-        this.f28366b = tiVar;
+        org.telegram.ui.ActionBar.g6 g6Var;
+        this.f28344c = riVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        g6Var = ((org.telegram.ui.ActionBar.h3) riVar).resourcesProvider;
+        ph.b bVar = new ph.b(context);
+        bVar.d = g6Var;
+        bVar.Q = true;
+        TextView textView = bVar.f44725a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        bVar.b(false);
+        bVar.f44726b.setLayoutParams(w7.z5.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f44732w = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.cl, g6Var);
+        bVar.f44731s = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.al, g6Var);
+        bVar.v = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.bl, g6Var);
+        bVar.a();
+        this.f28603a = bVar;
+        addView(bVar, w7.z5.c(-1.0f, -1));
     }
 
-    public abstract void B(int i10, int i11);
+    public final void a(int i10, String str, ph.a aVar) {
+        this.f28603a.setText(str);
+        this.f28603a.setTabAnimation(aVar);
+        this.f28343b = i10;
+    }
 
-    public boolean E(int i10) {
+    @Override
+    public final boolean hasOverlappingRendering() {
         return false;
     }
 
-    public boolean K(int i10, boolean z10, int i11, boolean z11, long j10) {
-        return false;
-    }
-
-    public boolean L() {
-        return !(this instanceof gi.f4);
-    }
-
-    public boolean M() {
-        return true;
-    }
-
-    public boolean b() {
-        return true;
-    }
-
-    public boolean c() {
-        return true;
-    }
-
-    public boolean e() {
-        return this instanceof al;
-    }
-
-    public boolean f() {
-        return false;
-    }
-
-    public boolean g() {
-        return this instanceof al;
-    }
-
-    public int getButtonsHideOffset() {
-        float f7;
-        if (i() != 0) {
-            f7 = 12.0f;
+    @Override
+    public final void onAttachedToWindow() {
+        boolean z10;
+        super.onAttachedToWindow();
+        if (this.f28343b == this.f28344c.Z0) {
+            z10 = true;
         } else {
-            f7 = 17.0f;
+            z10 = false;
         }
-        return AndroidUtilities.dp(f7);
-    }
-
-    public int getCurrentItemTop() {
-        return 0;
-    }
-
-    public int getCustomActionBarBackground() {
-        return 0;
-    }
-
-    public int getCustomBackground() {
-        return 0;
-    }
-
-    public int getFirstOffset() {
-        return 0;
-    }
-
-    public ch.a getIBlur3Capture() {
-        return null;
-    }
-
-    public int getListTopPadding() {
-        return 0;
-    }
-
-    public int getSelectedItemsCount() {
-        return 0;
-    }
-
-    public ArrayList<org.telegram.ui.ActionBar.t6> getThemeDescriptions() {
-        return null;
-    }
-
-    public boolean h() {
-        return false;
-    }
-
-    public int i() {
-        return 0;
-    }
-
-    public boolean j() {
-        return false;
-    }
-
-    public void m(float f7, float f10) {
-        l(f7);
-    }
-
-    public boolean n(MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean q() {
-        return false;
-    }
-
-    public boolean s() {
-        return true;
-    }
-
-    public void A() {
-    }
-
-    public void C() {
-    }
-
-    public void D(int i10) {
-    }
-
-    public void F(li liVar) {
-    }
-
-    public void I() {
-    }
-
-    public void J() {
-    }
-
-    public void a(CharSequence charSequence) {
-    }
-
-    public void d() {
-    }
-
-    public void k() {
-    }
-
-    public void l(float f7) {
-    }
-
-    public void p() {
-    }
-
-    public void r(int i10) {
-    }
-
-    public void t() {
-    }
-
-    public void u() {
-    }
-
-    public void v(float f7) {
-    }
-
-    public void w(int i10) {
-    }
-
-    public void x() {
-    }
-
-    public void y() {
-    }
-
-    public void z(int i10, boolean z10) {
+        this.f28603a.f(z10, false);
     }
 }

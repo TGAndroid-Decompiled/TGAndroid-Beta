@@ -1,22 +1,22 @@
 package org.telegram.ui.Wallet;
 public final class r7 {
-    public float f35109a;
-    public float f35110b;
-    public float f35111c;
+    public float f35111a;
+    public float f35112b;
+    public float f35113c;
     public float d;
     public float e;
 
     public r7(float f7, float f10, float f11) {
-        this.f35110b = f7;
-        this.f35109a = f7;
+        this.f35112b = f7;
+        this.f35111a = f7;
         this.d = f10;
         this.e = f11;
     }
 
     public final void a(float f7) {
-        this.f35110b = f7;
-        this.f35109a = f7;
-        this.f35111c = 0.0f;
+        this.f35112b = f7;
+        this.f35111a = f7;
+        this.f35113c = 0.0f;
     }
 
     public final boolean b(float f7) {
@@ -24,20 +24,20 @@ public final class r7 {
         float sqrt = this.e * 2.0f * ((float) Math.sqrt(this.d));
         while (f7 > 0.0f) {
             float min = Math.min(f7, 0.0020833334f);
-            float f10 = this.f35111c;
-            float f11 = this.f35109a;
-            float f12 = ((((f11 - this.f35110b) * (-this.d)) - (sqrt * f10)) * min) + f10;
-            this.f35111c = f12;
-            this.f35109a = (f12 * min) + f11;
+            float f10 = this.f35113c;
+            float f11 = this.f35111a;
+            float f12 = ((((f11 - this.f35112b) * (-this.d)) - (sqrt * f10)) * min) + f10;
+            this.f35113c = f12;
+            this.f35111a = (f12 * min) + f11;
             f7 -= min;
         }
-        if (Math.abs(this.f35109a - this.f35110b) <= 0.002f && Math.abs(this.f35111c) <= 0.02f) {
+        if (Math.abs(this.f35111a - this.f35112b) <= 0.002f && Math.abs(this.f35113c) <= 0.02f) {
             z10 = false;
         } else {
             z10 = true;
         }
         if (!z10) {
-            a(this.f35110b);
+            a(this.f35112b);
         }
         return z10;
     }

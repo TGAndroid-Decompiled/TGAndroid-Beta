@@ -2,64 +2,42 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.view.View;
-import android.widget.ImageView;
+import android.text.method.LinkMovementMethod;
 import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class kc extends nb {
-    public final bk0 f28001a;
-    public final q6 f28002b;
-    public final q6 f28003c;
-    public final int d;
+import android.widget.TextView;
+public class kc extends lb {
+    public final u9 f28000a;
+    public final TextView f28001b;
+    public final TextView f28002c;
 
     public kc(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context, g6Var);
         int i10 = org.telegram.ui.ActionBar.k6.Hi;
-        this.d = getThemedColor(i10);
-        setBackground(getThemedColor(org.telegram.ui.ActionBar.k6.Fi));
-        ?? imageView = new ImageView(context);
-        this.f28001a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        addView((View) imageView, w7.z5.h(56.0f, 48.0f, 8388627));
         getThemedColor(i10);
-        getThemedColor(org.telegram.ui.ActionBar.k6.Gi);
+        u9 u9Var = new u9(context);
+        this.f28000a = u9Var;
+        addView(u9Var, w7.z5.i(29.0f, 29.0f, 8388627, 12.0f, 12.0f, 12.0f, 12.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
-        addView(linearLayout, w7.z5.i(-1.0f, -2.0f, 8388627, 52.0f, 8.0f, 8.0f, 8.0f));
-        q6 q6Var = new q6(context, true, true, true);
-        this.f28002b = q6Var;
-        q6Var.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        org.telegram.ui.ActionBar.r6.a0(q6Var, i10, g6Var);
-        q6Var.setTextSize(AndroidUtilities.dp(14.0f));
-        q6Var.setTypeface(AndroidUtilities.bold());
-        q6Var.setEllipsizeByGradient(true);
-        linearLayout.addView(q6Var, w7.z5.n(-1, 20));
-        q6 q6Var2 = new q6(context, true, true, true);
-        this.f28003c = q6Var2;
-        q6Var2.setPadding(AndroidUtilities.dp(4.0f), 0, AndroidUtilities.dp(4.0f), 0);
-        org.telegram.ui.ActionBar.r6.a0(q6Var2, i10, g6Var);
-        q6Var2.setTypeface(Typeface.SANS_SERIF);
-        q6Var2.setTextSize(AndroidUtilities.dp(13.0f));
-        q6Var2.setEllipsizeByGradient(true);
-        linearLayout.addView(q6Var2, w7.z5.n(-1, 18));
-    }
-
-    public final void c(int i10, String... strArr) {
-        bk0 bk0Var = this.f28001a;
-        bk0Var.f(i10, 32, 32, null);
-        for (String str : strArr) {
-            bk0Var.h(this.d, str);
-        }
+        addView(linearLayout, w7.z5.i(-2.0f, -2.0f, 8388627, 54.0f, 8.0f, 12.0f, 8.0f));
+        TextView textView = new TextView(context);
+        this.f28001b = textView;
+        textView.setSingleLine();
+        org.telegram.messenger.v0.q(textView, i10, g6Var, 1, 14.0f);
+        linearLayout.addView(textView);
+        TextView textView2 = new TextView(context);
+        this.f28002c = textView2;
+        textView2.setMaxLines(2);
+        org.telegram.ui.ActionBar.r6.W(textView2, i10, g6Var);
+        org.telegram.ui.ActionBar.r6.I(textView2, org.telegram.ui.ActionBar.k6.Gi, g6Var);
+        textView2.setMovementMethod(new LinkMovementMethod());
+        textView2.setTypeface(Typeface.SANS_SERIF);
+        textView2.setTextSize(1, 13.0f);
+        linearLayout.addView(textView2);
     }
 
     @Override
     public CharSequence getAccessibilityText() {
-        return ((Object) this.f28002b.getText()) + ".\n" + ((Object) this.f28003c.getText());
-    }
-
-    @Override
-    public final void onShow() {
-        super.onShow();
-        this.f28001a.d();
+        return ((Object) this.f28001b.getText()) + ".\n" + ((Object) this.f28002c.getText());
     }
 }

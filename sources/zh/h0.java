@@ -1,13 +1,13 @@
 package zh;
 public final class h0 implements Runnable {
-    public final int f52484a;
-    public final Object f52485b;
-    public final Object f52486c;
+    public final int f52483a;
+    public final Object f52484b;
+    public final Object f52485c;
 
     public h0(int i10, Object obj, Object obj2) {
-        this.f52484a = i10;
-        this.f52485b = obj;
-        this.f52486c = obj2;
+        this.f52483a = i10;
+        this.f52484b = obj;
+        this.f52485c = obj2;
     }
 
     @Override

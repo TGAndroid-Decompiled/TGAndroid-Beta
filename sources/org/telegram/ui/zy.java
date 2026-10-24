@@ -13,7 +13,7 @@ public final class zy implements ViewTreeObserver.OnGlobalLayoutListener {
     public final void onGlobalLayout() {
         ExternalActionActivity externalActionActivity = this.f44243a;
         externalActionActivity.f();
-        ActionBarLayout actionBarLayout = externalActionActivity.f33436c;
+        ActionBarLayout actionBarLayout = externalActionActivity.f33438c;
         if (actionBarLayout != null) {
             actionBarLayout.getView().getViewTreeObserver().removeOnGlobalLayoutListener(this);
         }

@@ -1,36 +1,85 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class j61 extends View {
-    public final Paint f38469a;
-    public int f38470b;
-    public LinearGradient f38471c;
-    public final l61 d;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class j61 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f38475a;
+    public final TLRPC.Chat f38476b;
+    public TLRPC.ChannelParticipantsFilter f38477c;
+    public boolean f38478f;
+    public boolean h;
+    public boolean f38480r;
+    public boolean f38481s;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public int f38479n = -1;
 
-    public j61(l61 l61Var, Context context) {
-        super(context);
-        this.d = l61Var;
-        this.f38469a = new Paint(1);
-        this.f38470b = l61Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21254h5);
-        this.f38471c = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(68.0f), new int[]{org.telegram.ui.ActionBar.k6.o1(0.0f, this.f38470b), this.f38470b}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public j61(int i10, long j10, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
+        this.f38475a = i10;
+        this.f38476b = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j10);
+        this.f38477c = channelParticipantsFilter;
+        if (chatFull == null) {
+            if (!this.f38481s) {
+                this.f38481s = true;
+                NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
+            }
+            MessagesController.getInstance(i10).loadFullChat(j10, 0, false);
+        }
+    }
+
+    public final void a() {
+        if (this.f38481s) {
+            return;
+        }
+        this.f38481s = false;
+        int i10 = this.f38475a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
+        if (this.f38479n >= 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f38479n, true);
+            this.f38479n = -1;
+        }
+        this.f38478f = false;
+    }
+
+    public final void b() {
+        int size;
+        if (!this.f38478f && !this.h) {
+            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f38477c;
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f20343q)) {
+                this.f38478f = true;
+                TLRPC.Chat chat = this.f38476b;
+                if (ChatObject.isChannel(chat)) {
+                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                    tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
+                    tL_channels_getParticipants.filter = this.f38477c;
+                    tL_channels_getParticipants.limit = 30;
+                    if (this.f38480r) {
+                        size = 0;
+                    } else {
+                        size = this.d.size();
+                    }
+                    tL_channels_getParticipants.offset = size;
+                    ConnectionsManager.getInstance(this.f38475a).sendRequestTyped(tL_channels_getParticipants, new Object(), new f5(this, 24));
+                }
+            }
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.f21254h5);
-        if (themedColor != this.f38470b) {
-            this.f38470b = themedColor;
-            this.f38471c = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(68.0f), new int[]{org.telegram.ui.ActionBar.k6.o1(0.0f, themedColor), themedColor}, new float[]{0.0f, 0.2f}, Shader.TileMode.CLAMP);
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.chatInfoDidLoad) {
+            long j10 = ((TLRPC.ChatFull) objArr[0]).f20345id;
+            TLRPC.Chat chat = this.f38476b;
+            if (j10 == chat.f20344id && !ChatObject.isChannel(chat) && this.f38478f) {
+                this.f38478f = false;
+                b();
+            }
         }
-        LinearGradient linearGradient = this.f38471c;
-        Paint paint = this.f38469a;
-        paint.setShader(linearGradient);
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), paint);
     }
 }

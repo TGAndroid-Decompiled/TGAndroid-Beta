@@ -1,51 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class mo0 extends wx0 {
-    public final int K;
-    public final org.telegram.ui.nx L;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mo0 extends ys {
+    public final org.telegram.ui.nx f28664k0;
 
-    public mo0(org.telegram.ui.nx nxVar, Context context, b10 b10Var, int i10) {
-        super(context, b10Var, 1, null);
-        this.K = i10;
-        this.L = nxVar;
+    public mo0(org.telegram.ui.nx nxVar, lm0 lm0Var, Context context, int i10, int i11) {
+        super(lm0Var, context, i10, i11, false, null);
+        this.f28664k0 = nxVar;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        switch (this.K) {
-            case 0:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 1:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            case 2:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
-            default:
-                if (this.L.M0.getTag() != null) {
-                    super.setVisibility(8);
-                    return;
-                } else {
-                    super.setVisibility(i10);
-                    return;
-                }
+    public final void N(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        super.N(z10);
+        lo0 lo0Var = this.f28664k0.f33313l0;
+        if (!this.f33032b0 && !this.f33033c0 && (arrayList = this.V) != null && arrayList.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
+        lo0Var.e(z11, z10);
+        lo0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        lo0Var.e.setVisibility(8);
     }
 }

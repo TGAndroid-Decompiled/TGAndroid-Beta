@@ -23,33 +23,33 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i11;
-import org.telegram.ui.Components.xp;
+import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.vp;
+import org.telegram.ui.Components.zr;
 public class g7 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final org.telegram.ui.Components.f6 E;
+    public final org.telegram.ui.Components.d6 E;
     public boolean F;
-    public final org.telegram.ui.Components.f6 G;
+    public final org.telegram.ui.Components.d6 G;
     public long H;
     public sg.a1 I;
     public Drawable J;
     public final Paint K;
     public long L;
-    public i11 M;
-    public final org.telegram.ui.Components.w9 f22415a;
-    public final wd f22416b;
-    public final org.telegram.ui.ActionBar.n5 f22417c;
-    public final xp d;
+    public h11 M;
+    public final org.telegram.ui.Components.u9 f22416a;
+    public final wd f22417b;
+    public final org.telegram.ui.ActionBar.n5 f22418c;
+    public final vp d;
     public final e7 e;
-    public f7 f22418f;
+    public f7 f22419f;
     public TLRPC.User h;
-    public final int f22419n;
-    public float f22420r;
-    public long f22421s;
+    public final int f22420n;
+    public float f22421r;
+    public long f22422s;
     public long v;
-    public boolean f22422w;
-    public final int f22423x;
-    public final org.telegram.ui.ActionBar.g6 f22424y;
+    public boolean f22423w;
+    public final int f22424x;
+    public final org.telegram.ui.ActionBar.g6 f22425y;
 
     public g7(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
@@ -57,30 +57,30 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         float f7;
         float f10;
         float f11;
-        this.f22423x = UserConfig.selectedAccount;
-        bs bsVar = bs.h;
-        this.E = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
-        this.G = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
+        this.f22424x = UserConfig.selectedAccount;
+        zr zrVar = zr.h;
+        this.E = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
+        this.G = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
         this.K = new Paint();
-        this.f22424y = g6Var;
+        this.f22425y = g6Var;
         this.e = new e7(this, g6Var, 0);
         setWillNotDraw(false);
-        this.f22419n = i10;
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f22415a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
+        this.f22420n = i10;
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.f22416a = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
         if (i10 == 2) {
-            addView(w9Var, w7.z5.d(48, 48.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
+            addView(u9Var, w7.z5.d(48, 48.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         } else {
-            addView(w9Var, w7.z5.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
+            addView(u9Var, w7.z5.d(56, 56.0f, 49, 0.0f, 7.0f, 0.0f, 0.0f));
         }
         wd wdVar = new wd(context, 8);
-        this.f22416b = wdVar;
+        this.f22417b = wdVar;
         NotificationCenter.listenEmojiLoading(wdVar);
         if (this.F) {
             i11 = org.telegram.ui.ActionBar.k6.C6;
         } else {
-            i11 = org.telegram.ui.ActionBar.k6.f21289j5;
+            i11 = org.telegram.ui.ActionBar.k6.f21290j5;
         }
         org.telegram.ui.ActionBar.r6.W(wdVar, i11, g6Var);
         wdVar.setTextSize(1, 12.0f);
@@ -95,8 +95,8 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         }
         addView(wdVar, w7.z5.d(-1, -2.0f, 51, 6.0f, f7, 6.0f, 0.0f));
         org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(context);
-        this.f22417c = n5Var;
-        org.telegram.ui.ActionBar.r6.Z(n5Var, org.telegram.ui.ActionBar.k6.f21289j5, g6Var);
+        this.f22418c = n5Var;
+        org.telegram.ui.ActionBar.r6.Z(n5Var, org.telegram.ui.ActionBar.k6.f21290j5, g6Var);
         n5Var.setTextSize(12);
         n5Var.setMaxLines(2);
         n5Var.setGravity(49);
@@ -107,19 +107,19 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
             f10 = 66.0f;
         }
         addView(n5Var, w7.z5.d(-1, -2.0f, 51, 6.0f, f10, 6.0f, 0.0f));
-        xp xpVar = new xp(context, 21, g6Var);
-        this.d = xpVar;
-        xpVar.b(org.telegram.ui.ActionBar.k6.B5, org.telegram.ui.ActionBar.k6.f21254h5, org.telegram.ui.ActionBar.k6.C5);
-        xpVar.setDrawUnchecked(false);
-        xpVar.setDrawBackgroundAsArc(4);
-        xpVar.setProgressDelegate(new ja(this, 5));
+        vp vpVar = new vp(context, 21, g6Var);
+        this.d = vpVar;
+        vpVar.b(org.telegram.ui.ActionBar.k6.B5, org.telegram.ui.ActionBar.k6.f21255h5, org.telegram.ui.ActionBar.k6.C5);
+        vpVar.setDrawUnchecked(false);
+        vpVar.setDrawBackgroundAsArc(4);
+        vpVar.setProgressDelegate(new ja(this, 5));
         if (i10 == 2) {
             f11 = -40.0f;
         } else {
             f11 = 42.0f;
         }
-        addView(xpVar, w7.z5.d(24, 24.0f, 49, 19.0f, f11, 0.0f, 0.0f));
-        int i12 = org.telegram.ui.ActionBar.k6.f21272i6;
+        addView(vpVar, w7.z5.d(24, 24.0f, 49, 19.0f, f11, 0.0f, 0.0f));
+        int i12 = org.telegram.ui.ActionBar.k6.f21273i6;
         Drawable Z = org.telegram.ui.ActionBar.k6.Z(org.telegram.ui.ActionBar.k6.w0(i12, g6Var), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
         org.telegram.ui.ActionBar.n6 O = org.telegram.ui.ActionBar.r6.O(i12);
         setBackground(Z);
@@ -142,22 +142,22 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         int i10;
         boolean z11;
         e7 e7Var = this.e;
-        e7Var.f26849p = 1.0f;
+        e7Var.f26245p = 1.0f;
         int i11 = (j10 > Long.MAX_VALUE ? 1 : (j10 == Long.MAX_VALUE ? 0 : -1));
-        org.telegram.ui.ActionBar.g6 g6Var = this.f22424y;
-        org.telegram.ui.Components.w9 w9Var = this.f22415a;
-        wd wdVar = this.f22416b;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f22425y;
+        org.telegram.ui.Components.u9 u9Var = this.f22416a;
+        wd wdVar = this.f22417b;
         if (i11 == 0) {
             wdVar.setText(a());
-            if (this.f22418f == null) {
-                this.f22418f = new f7(getContext(), w9Var, true, g6Var);
+            if (this.f22419f == null) {
+                this.f22419f = new f7(getContext(), u9Var, true, g6Var);
             }
-            w9Var.h(null, null, this.f22418f, null);
+            u9Var.h(null, null, this.f22419f, null);
         } else {
             boolean isUserDialog = DialogObject.isUserDialog(j10);
-            org.telegram.ui.Components.f6 f6Var = this.G;
-            org.telegram.ui.Components.f6 f6Var2 = this.E;
-            int i12 = this.f22423x;
+            org.telegram.ui.Components.d6 d6Var = this.G;
+            org.telegram.ui.Components.d6 d6Var2 = this.E;
+            int i12 = this.f22424x;
             if (isUserDialog) {
                 this.h = MessagesController.getInstance(i12).getUser(Long.valueOf(j10));
                 TL_account.RequirementToContact isUserContactBlocked = MessagesController.getInstance(i12).isUserContactBlocked(j10);
@@ -166,27 +166,27 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
                 if (this.F) {
                     i10 = org.telegram.ui.ActionBar.k6.C6;
                 } else {
-                    i10 = org.telegram.ui.ActionBar.k6.f21289j5;
+                    i10 = org.telegram.ui.ActionBar.k6.f21290j5;
                 }
                 org.telegram.ui.ActionBar.r6.W(wdVar, i10, g6Var);
-                f6Var2.a(this.F);
+                d6Var2.a(this.F);
                 if (this.H > 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                f6Var.a(z11);
+                d6Var.a(z11);
                 invalidate();
                 e7Var.m(i12, this.h);
-                int i13 = this.f22419n;
+                int i13 = this.f22420n;
                 if (i13 != 2 && UserObject.isReplyUser(this.h)) {
                     wdVar.setText(LocaleController.getString(R.string.RepliesTitle));
                     e7Var.g(12);
-                    w9Var.h(null, null, e7Var, this.h);
+                    u9Var.h(null, null, e7Var, this.h);
                 } else if (i13 != 2 && UserObject.isUserSelf(this.h)) {
                     wdVar.setText(LocaleController.getString(R.string.SavedMessages));
                     e7Var.g(1);
-                    w9Var.h(null, null, e7Var, this.h);
+                    u9Var.h(null, null, e7Var, this.h);
                 } else {
                     if (charSequence != null) {
                         wdVar.setText(charSequence);
@@ -198,16 +198,16 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
                             wdVar.setText("");
                         }
                     }
-                    w9Var.e(this.h, e7Var);
+                    u9Var.e(this.h, e7Var);
                 }
-                w9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
+                u9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
             } else {
                 this.h = null;
                 this.F = false;
-                f6Var2.d(0.0f, true);
+                d6Var2.d(0.0f, true);
                 this.H = MessagesController.getInstance(i12).getSendPaidMessagesStars(j10);
-                f6Var.getClass();
-                f6Var.d(0.0f, true);
+                d6Var.getClass();
+                d6Var.d(0.0f, true);
                 TLRPC.Chat chat = MessagesController.getInstance(i12).getChat(Long.valueOf(-j10));
                 if (charSequence != null) {
                     wdVar.setText(charSequence);
@@ -221,17 +221,17 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
                     wdVar.setText("");
                 }
                 if (ChatObject.isMonoForum(chat)) {
-                    og.d.o(i12, chat, e7Var, w9Var);
+                    og.d.o(i12, chat, e7Var, u9Var);
                 } else {
                     e7Var.k(i12, chat);
-                    w9Var.e(chat, e7Var);
+                    u9Var.e(chat, e7Var);
                 }
                 if (chat != null && (chat.forum || chat.monoforum)) {
                     dp = AndroidUtilities.dp(16.0f);
                 } else {
                     dp = AndroidUtilities.dp(28.0f);
                 }
-                w9Var.setRoundRadius(dp);
+                u9Var.setRoundRadius(dp);
             }
         }
         this.v = j10;
@@ -241,7 +241,7 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
     public final void d(TLRPC.TL_forumTopic tL_forumTopic, boolean z10, boolean z11) {
         boolean z12;
         float f7;
-        boolean z13 = this.f22422w;
+        boolean z13 = this.f22423w;
         if (tL_forumTopic != null) {
             z12 = true;
         } else {
@@ -251,14 +251,14 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
             return;
         }
         int i10 = R.id.spring_tag;
-        org.telegram.ui.ActionBar.n5 n5Var = this.f22417c;
+        org.telegram.ui.ActionBar.n5 n5Var = this.f22418c;
         o1.k kVar = (o1.k) n5Var.getTag(i10);
         if (kVar != null) {
             kVar.c();
         }
         if (z12) {
             if (z10) {
-                n5Var.l(MessagesController.getInstance(this.f22423x).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id)), false);
+                n5Var.l(MessagesController.getInstance(this.f22424x).getPeerName(DialogObject.getPeerDialogId(tL_forumTopic.from_id)), false);
             } else {
                 n5Var.l(og.d.j(tL_forumTopic, n5Var.getTextPaint(), null), false);
             }
@@ -284,9 +284,9 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
                 public final void a(o1.h hVar, float f11, float f12) {
                     float f13 = f11 / 1000.0f;
                     g7 g7Var = g7.this;
-                    org.telegram.ui.ActionBar.n5 n5Var2 = g7Var.f22417c;
+                    org.telegram.ui.ActionBar.n5 n5Var2 = g7Var.f22418c;
                     n5Var2.setAlpha(f13);
-                    wd wdVar = g7Var.f22416b;
+                    wd wdVar = g7Var.f22417b;
                     float f14 = 1.0f - f13;
                     wdVar.setAlpha(f14);
                     n5Var2.setTranslationX(f14 * (-AndroidUtilities.dp(10.0f)));
@@ -296,13 +296,13 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
             kVar2.a(new o1.f() {
                 @Override
                 public final void a(o1.h hVar, boolean z14, float f11, float f12) {
-                    g7.this.f22417c.setTag(R.id.spring_tag, null);
+                    g7.this.f22418c.setTag(R.id.spring_tag, null);
                 }
             });
             n5Var.setTag(R.id.spring_tag, kVar2);
             kVar2.h();
         } else {
-            wd wdVar = this.f22416b;
+            wd wdVar = this.f22417b;
             if (z12) {
                 n5Var.setAlpha(1.0f);
                 wdVar.setAlpha(0.0f);
@@ -315,7 +315,7 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
                 wdVar.setTranslationX(0.0f);
             }
         }
-        this.f22422w = z12;
+        this.f22423w = z12;
     }
 
     @Override
@@ -325,9 +325,9 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         int i12;
         if (i10 == NotificationCenter.userIsPremiumBlockedUpadted) {
             TLRPC.User user = this.h;
-            int i13 = this.f22423x;
+            int i13 = this.f22424x;
             if (user != null) {
-                requirementToContact = MessagesController.getInstance(i13).isUserContactBlocked(this.h.f20490id);
+                requirementToContact = MessagesController.getInstance(i13).isUserContactBlocked(this.h.f20491id);
             } else {
                 requirementToContact = null;
             }
@@ -343,9 +343,9 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
                 if (isPremiumBlocked) {
                     i12 = org.telegram.ui.ActionBar.k6.C6;
                 } else {
-                    i12 = org.telegram.ui.ActionBar.k6.f21289j5;
+                    i12 = org.telegram.ui.ActionBar.k6.f21290j5;
                 }
-                org.telegram.ui.ActionBar.r6.W(this.f22416b, i12, this.f22424y);
+                org.telegram.ui.ActionBar.r6.W(this.f22417b, i12, this.f22425y);
                 invalidate();
             }
         }
@@ -360,8 +360,8 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         return this.v;
     }
 
-    public org.telegram.ui.Components.w9 getImageView() {
-        return this.f22415a;
+    public org.telegram.ui.Components.u9 getImageView() {
+        return this.f22416a;
     }
 
     public long getStarsPrice() {
@@ -371,24 +371,24 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f22423x).addObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
+        NotificationCenter.getInstance(this.f22424x).addObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f22423x).removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
+        NotificationCenter.getInstance(this.f22424x).removeObserver(this, NotificationCenter.userIsPremiumBlockedUpadted);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        org.telegram.ui.Components.w9 w9Var = this.f22415a;
-        int measuredWidth = (w9Var.getMeasuredWidth() / 2) + w9Var.getLeft();
-        int measuredHeight = (w9Var.getMeasuredHeight() / 2) + w9Var.getTop();
-        org.telegram.ui.ActionBar.k6.f21380o0.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.B5, this.f22424y));
-        org.telegram.ui.ActionBar.k6.f21380o0.setAlpha((int) (this.d.getProgress() * 255.0f));
-        if (this.f22419n == 2) {
+        org.telegram.ui.Components.u9 u9Var = this.f22416a;
+        int measuredWidth = (u9Var.getMeasuredWidth() / 2) + u9Var.getLeft();
+        int measuredHeight = (u9Var.getMeasuredHeight() / 2) + u9Var.getTop();
+        org.telegram.ui.ActionBar.k6.f21381o0.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.B5, this.f22425y));
+        org.telegram.ui.ActionBar.k6.f21381o0.setAlpha((int) (this.d.getProgress() * 255.0f));
+        if (this.f22420n == 2) {
             f7 = 24.0f;
         } else {
             f7 = 28.0f;
@@ -396,14 +396,14 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
         int dp = AndroidUtilities.dp(f7);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(measuredWidth - dp, measuredHeight - dp, measuredWidth + dp, measuredHeight + dp);
-        canvas.drawRoundRect(rectF, w9Var.getRoundRadius()[0], w9Var.getRoundRadius()[0], org.telegram.ui.ActionBar.k6.f21380o0);
+        canvas.drawRoundRect(rectF, u9Var.getRoundRadius()[0], u9Var.getRoundRadius()[0], org.telegram.ui.ActionBar.k6.f21381o0);
         super.onDraw(canvas);
     }
 
     @Override
     public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        if (this.d.f32618a.f24296q) {
+        if (this.d.f32005a.f24297q) {
             accessibilityNodeInfo.setSelected(true);
         }
     }
@@ -411,7 +411,7 @@ public class g7 extends FrameLayout implements NotificationCenter.NotificationCe
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        if (this.f22419n == 2) {
+        if (this.f22420n == 2) {
             f7 = 95.0f;
         } else {
             f7 = 103.0f;

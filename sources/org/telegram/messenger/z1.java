@@ -4,15 +4,15 @@ import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SvgHelper;
 public final class z1 implements Runnable {
-    public final int f20273a;
+    public final int f20259a;
 
     public z1(int i10) {
-        this.f20273a = i10;
+        this.f20259a = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f20273a) {
+        switch (this.f20259a) {
             case 0:
                 ContactsController.MyContentObserver.lambda$new$0();
                 return;
@@ -50,36 +50,42 @@ public final class z1 implements Runnable {
                 KeepAliveJob.a();
                 return;
             case 12:
-                LocaleController.lambda$applyLanguage$9();
+                LiteMode.getValue(false);
                 return;
             case 13:
-                LocationController.lambda$setLastKnownLocation$10();
+                LiteMode.queryBatteryLevel();
                 return;
             case 14:
-                LocationSharingService.lambda$onCreate$0();
+                LocaleController.lambda$applyLanguage$9();
                 return;
             case 15:
-                MediaDataController.lambda$cleanup$1();
+                LocationController.lambda$setLastKnownLocation$10();
                 return;
             case 16:
-                org.telegram.ui.ActionBar.k6.E(false);
+                LocationSharingService.lambda$onCreate$0();
                 return;
             case 17:
-                NotificationCenter.lambda$listen$3();
+                MediaDataController.lambda$cleanup$1();
                 return;
             case 18:
-                NotificationsController.lambda$dismissNotification$38();
+                org.telegram.ui.ActionBar.k6.E(false);
                 return;
             case 19:
-                SharedConfig.saveConfig();
+                NotificationCenter.lambda$listen$3();
                 return;
             case 20:
-                SharedConfig.lambda$checkSdCard$0();
+                NotificationsController.lambda$dismissNotification$38();
                 return;
             case 21:
-                SharedConfig.lambda$checkSdCard$2();
+                SharedConfig.saveConfig();
                 return;
             case 22:
+                SharedConfig.lambda$checkSdCard$0();
+                return;
+            case 23:
+                SharedConfig.lambda$checkSdCard$2();
+                return;
+            case 24:
                 SharedConfig.lambda$checkSaveToGalleryFiles$5();
                 return;
             default:

@@ -26,37 +26,37 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.Components.zr;
 public final class z6 extends View implements r2 {
     public boolean A0;
-    public final org.telegram.ui.Components.f6 B0;
-    public final org.telegram.ui.Components.f6 C0;
-    public final org.telegram.ui.Components.f6 D0;
+    public final org.telegram.ui.Components.d6 B0;
+    public final org.telegram.ui.Components.d6 C0;
+    public final org.telegram.ui.Components.d6 D0;
     public final Paint E;
-    public final org.telegram.ui.Components.f6 E0;
+    public final org.telegram.ui.Components.d6 E0;
     public final Paint F;
-    public final org.telegram.ui.Components.f6 F0;
+    public final org.telegram.ui.Components.d6 F0;
     public final Paint G;
-    public final org.telegram.ui.Components.f6 G0;
+    public final org.telegram.ui.Components.d6 G0;
     public final Matrix H;
     public float H0;
     public final RadialGradient I;
-    public final org.telegram.ui.Components.f6 I0;
-    public final yc J;
-    public final org.telegram.ui.Components.f6 J0;
-    public final yc K;
-    public final org.telegram.ui.Components.f6 K0;
-    public final yc L;
+    public final org.telegram.ui.Components.d6 I0;
+    public final wc J;
+    public final org.telegram.ui.Components.d6 J0;
+    public final wc K;
+    public final org.telegram.ui.Components.d6 K0;
+    public final wc L;
     public final w6 L0;
     public float M;
     public final w6 M0;
-    public final org.telegram.ui.Components.f6 N;
+    public final org.telegram.ui.Components.d6 N;
     public final Path N0;
     public boolean O;
     public final Path O0;
-    public final org.telegram.ui.Components.f6 P;
+    public final org.telegram.ui.Components.d6 P;
     public final PointF P0;
     public long Q;
     public final PointF Q0;
@@ -77,7 +77,7 @@ public final class z6 extends View implements r2 {
     public boolean f10223a0;
     public final ImageReceiver f10224b;
     public boolean f10225b0;
-    public final yq f10226c;
+    public final wq f10226c;
     public boolean f10227c0;
     public final Drawable d;
     public boolean f10228d0;
@@ -87,22 +87,22 @@ public final class z6 extends View implements r2 {
     public boolean f10231f0;
     public float f10232g0;
     public final Drawable h;
-    public final org.telegram.ui.Components.f6 f10233h0;
+    public final org.telegram.ui.Components.d6 f10233h0;
     public float f10234i0;
     public float f10235j0;
     public float f10236k0;
     public float f10237l0;
-    public final org.telegram.ui.Components.f6 m0;
+    public final org.telegram.ui.Components.d6 m0;
     public final Drawable f10238n;
     public float f10239n0;
     public boolean f10240o0;
-    public final org.telegram.ui.Components.f6 f10241p0;
-    public final org.telegram.ui.Components.f6 f10242q0;
+    public final org.telegram.ui.Components.d6 f10241p0;
+    public final org.telegram.ui.Components.d6 f10242q0;
     public final Paint f10243r;
     public boolean f10244r0;
     public final Paint f10245s;
     public final float[] f10246s0;
-    public final org.telegram.ui.Components.f6 f10247t0;
+    public final org.telegram.ui.Components.d6 f10247t0;
     public boolean f10248u0;
     public final Paint v;
     public long f10249v0;
@@ -137,33 +137,33 @@ public final class z6 extends View implements r2 {
         this.G = paint8;
         Matrix matrix = new Matrix();
         this.H = matrix;
-        this.J = new yc(this);
-        this.K = new yc(this);
-        this.L = new yc(this);
-        bs bsVar = bs.h;
-        this.N = new org.telegram.ui.Components.f6(this, 0L, 310L, bsVar);
-        this.P = new org.telegram.ui.Components.f6(this, 0L, 330L, bsVar);
+        this.J = new wc(this);
+        this.K = new wc(this);
+        this.L = new wc(this);
+        zr zrVar = zr.h;
+        this.N = new org.telegram.ui.Components.d6(this, 0L, 310L, zrVar);
+        this.P = new org.telegram.ui.Components.d6(this, 0L, 330L, zrVar);
         this.S = new Path();
         this.T = new PointF(-AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(2.3333333f));
         this.U = new PointF(-AndroidUtilities.dpf2(2.8333333f), AndroidUtilities.dpf2(8.666667f));
         this.V = new PointF(AndroidUtilities.dpf2(9.666667f), AndroidUtilities.dpf2(-3.6666667f));
-        this.f10233h0 = new org.telegram.ui.Components.f6(this, 0L, 200L, bs.f25133f);
-        this.m0 = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
+        this.f10233h0 = new org.telegram.ui.Components.d6(this, 0L, 200L, zr.f33337f);
+        this.m0 = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
         this.f10239n0 = -1.0f;
         this.f10240o0 = true;
-        this.f10241p0 = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
-        this.f10242q0 = new org.telegram.ui.Components.f6(this, 0L, 850L, bsVar);
+        this.f10241p0 = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
+        this.f10242q0 = new org.telegram.ui.Components.d6(this, 0L, 850L, zrVar);
         this.f10246s0 = new float[2];
-        this.f10247t0 = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
-        this.B0 = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
-        this.C0 = new org.telegram.ui.Components.f6(this, 0L, 650L, bsVar);
-        this.D0 = new org.telegram.ui.Components.f6(this, 0L, 160L, bs.f25135i);
-        this.E0 = new org.telegram.ui.Components.f6(this, 0L, 750L, bsVar);
-        this.F0 = new org.telegram.ui.Components.f6(this, 0L, 650L, bsVar);
-        this.G0 = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
-        this.I0 = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
-        this.J0 = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
-        this.K0 = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
+        this.f10247t0 = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
+        this.B0 = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
+        this.C0 = new org.telegram.ui.Components.d6(this, 0L, 650L, zrVar);
+        this.D0 = new org.telegram.ui.Components.d6(this, 0L, 160L, zr.f33339i);
+        this.E0 = new org.telegram.ui.Components.d6(this, 0L, 750L, zrVar);
+        this.F0 = new org.telegram.ui.Components.d6(this, 0L, 650L, zrVar);
+        this.G0 = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
+        this.I0 = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
+        this.J0 = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
+        this.K0 = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
         this.L0 = new w6(this, 2);
         this.M0 = new w6(this, 3);
         this.N0 = new Path();
@@ -214,13 +214,13 @@ public final class z6 extends View implements r2 {
         Drawable mutate = activity.getResources().getDrawable(R.drawable.msg_media_gallery).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(1308622847, mode));
-        yq yqVar = new yq(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
-        this.f10226c = yqVar;
-        yqVar.f33019w = false;
+        wq wqVar = new wq(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(6.0f), -13750737), mutate);
+        this.f10226c = wqVar;
+        wqVar.f32329w = false;
         int dp = AndroidUtilities.dp(24.0f);
         int dp2 = AndroidUtilities.dp(24.0f);
-        yqVar.e = dp;
-        yqVar.f33015f = dp2;
+        wqVar.e = dp;
+        wqVar.f32325f = dp2;
         Drawable mutate2 = activity.getResources().getDrawable(R.drawable.msg_photo_switch2).mutate();
         this.d = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
@@ -277,7 +277,7 @@ public final class z6 extends View implements r2 {
         } else {
             j10 = 310;
         }
-        this.N.f26182g = j10;
+        this.N.f25570g = j10;
         this.M += f7;
         invalidate();
     }
@@ -312,9 +312,9 @@ public final class z6 extends View implements r2 {
     public final void g(boolean z10) {
         this.f10248u0 = false;
         if (!z10) {
-            org.telegram.ui.Components.f6 f6Var = this.f10247t0;
-            f6Var.getClass();
-            f6Var.d(0.0f, true);
+            org.telegram.ui.Components.d6 d6Var = this.f10247t0;
+            d6Var.getClass();
+            d6Var.d(0.0f, true);
         }
         invalidate();
     }
@@ -414,35 +414,35 @@ public final class z6 extends View implements r2 {
         float y3 = motionEvent.getY() + 0.0f;
         boolean c10 = c(clamp, y3, this.f10237l0, this.f10235j0, AndroidUtilities.dp(7.0f), true);
         boolean z12 = this.f10248u0;
-        yc ycVar = this.L;
-        yc ycVar2 = this.J;
-        yc ycVar3 = this.K;
+        wc wcVar = this.L;
+        wc wcVar2 = this.J;
+        wc wcVar3 = this.K;
         boolean z13 = true;
         boolean z14 = false;
         if (z12) {
-            ycVar2.c(false);
-            ycVar3.c(false);
-            ycVar.c(false);
+            wcVar2.c(false);
+            wcVar3.c(false);
+            wcVar.c(false);
         } else if (action == 0 || this.f10251w0) {
-            ycVar2.c(c(clamp, y3, this.f10234i0, this.f10235j0, AndroidUtilities.dp(60.0f), false));
+            wcVar2.c(c(clamp, y3, this.f10234i0, this.f10235j0, AndroidUtilities.dp(60.0f), false));
             if (c(clamp, y3, this.f10237l0, this.f10235j0, AndroidUtilities.dp(30.0f), true) && !b()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ycVar3.c(z10);
+            wcVar3.c(z10);
             if (c(clamp, y3, this.f10236k0, this.f10235j0, AndroidUtilities.dp(30.0f), false) && !b()) {
                 z11 = true;
             } else {
                 z11 = false;
             }
-            ycVar.c(z11);
+            wcVar.c(z11);
         }
         w6 w6Var = this.M0;
         w6 w6Var2 = this.L0;
         if (action == 0) {
             this.f10251w0 = true;
-            if (ycVar2.f32872i || ycVar3.f32872i) {
+            if (wcVar2.f32185i || wcVar3.f32185i) {
                 z14 = true;
             }
             this.f10253x0 = z14;
@@ -451,7 +451,7 @@ public final class z6 extends View implements r2 {
             if (Math.abs(clamp - this.f10234i0) < AndroidUtilities.dp(50.0f)) {
                 AndroidUtilities.runOnUIThread(w6Var2, ViewConfiguration.getLongPressTimeout());
             }
-            if (ycVar3.f32872i) {
+            if (wcVar3.f32185i) {
                 AndroidUtilities.runOnUIThread(w6Var, ViewConfiguration.getLongPressTimeout());
             }
         } else if (action == 2) {
@@ -479,10 +479,10 @@ public final class z6 extends View implements r2 {
                 AndroidUtilities.cancelRunOnUIThread(w6Var2);
                 AndroidUtilities.cancelRunOnUIThread(w6Var);
                 boolean z15 = this.f10244r0;
-                if (!z15 && ycVar.f32872i) {
+                if (!z15 && wcVar.f32185i) {
                     ((qa) this.f10222a).c();
                 } else if (z15 && this.f10256z0) {
-                    if (ycVar.f32872i) {
+                    if (wcVar.f32185i) {
                         this.f10256z0 = false;
                         this.G0.d(1.0f, true);
                         v3 v3Var = ((qa) this.f10222a).f9678a.T0;
@@ -494,7 +494,7 @@ public final class z6 extends View implements r2 {
                         this.f10248u0 = true;
                         ((qa) this.f10222a).e(false);
                     }
-                } else if (ycVar2.f32872i) {
+                } else if (wcVar2.f32185i) {
                     if (b()) {
                         ((qa) this.f10222a).a();
                     } else if (!this.f10240o0 && !this.f10244r0 && !this.f10256z0) {
@@ -514,13 +514,13 @@ public final class z6 extends View implements r2 {
                     }
                 }
                 this.f10256z0 = false;
-                if (ycVar3.f32872i) {
+                if (wcVar3.f32185i) {
                     d(180.0f);
                     ((qa) this.f10222a).b();
                 }
-                ycVar2.c(false);
-                ycVar3.c(false);
-                ycVar.c(false);
+                wcVar2.c(false);
+                wcVar3.c(false);
+                wcVar.c(false);
                 invalidate();
             }
             return false;

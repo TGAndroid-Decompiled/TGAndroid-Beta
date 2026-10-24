@@ -36,7 +36,7 @@ import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.o6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.bg1;
+import org.telegram.ui.ag1;
 import r9.d;
 import v7.b8;
 public final class a implements d, z1, o6, p6, k, n {
@@ -281,7 +281,7 @@ public final class a implements d, z1, o6, p6, k, n {
                 int i11 = l7.A1;
                 return;
             default:
-                l7.D2(new bg1(6, null));
+                l7.D2(new ag1(6, null));
                 return;
         }
     }

@@ -1,77 +1,41 @@
 package org.telegram.ui.Components;
-
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
 public final class a00 implements Runnable {
-    public final int f24579a;
-    public final e00 f24580b;
-    public final int f24581c;
-    public final int d;
+    public final int f24580a;
+    public final boolean f24581b;
+    public final boolean f24582c;
+    public final boolean d;
+    public final Object e;
 
-    public a00(e00 e00Var, int i10, int i11, int i12) {
-        this.f24579a = i12;
-        this.f24580b = e00Var;
-        this.f24581c = i10;
-        this.d = i11;
+    public a00(Object obj, boolean z10, boolean z11, boolean z12, int i10) {
+        this.f24580a = i10;
+        this.e = obj;
+        this.f24581b = z10;
+        this.f24582c = z11;
+        this.d = z12;
     }
 
     @Override
     public final void run() {
-        int i10;
-        switch (this.f24579a) {
+        switch (this.f24580a) {
             case 0:
-                e00 e00Var = this.f24580b;
-                int i11 = this.f24581c;
-                int i12 = this.d;
-                if (e00Var.W != i11 || e00Var.X != i12) {
-                    e00Var.W = i11;
-                    e00Var.X = i12;
-                    int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
-                    int i13 = 1920;
-                    if (devicePerformanceClass != 1) {
-                        if (devicePerformanceClass != 2) {
-                            i13 = 720;
-                        } else {
-                            Point point = AndroidUtilities.displaySize;
-                            i13 = Math.min(1920, Math.max(point.x, point.y));
-                        }
-                    }
-                    if (SharedConfig.getDevicePerformanceClass() == 0 && ((i10 = e00Var.W) > 1280 || e00Var.X > 1280)) {
-                        e00Var.W = i10 / 2;
-                        e00Var.X /= 2;
-                    }
-                    int i14 = e00Var.W;
-                    if (i14 > i13 || e00Var.X > i13) {
-                        int i15 = e00Var.X;
-                        if (i14 > i15) {
-                            e00Var.X = (int) (i15 / (i13 / i14));
-                            e00Var.W = i13;
-                        } else {
-                            e00Var.W = (int) (i14 / (i13 / i15));
-                            e00Var.X = i13;
-                        }
-                    }
-                    e00Var.Z = false;
-                    e00Var.g();
-                    e00Var.f25795d0.run();
+                c00 c00Var = (c00) this.e;
+                if (this.f24581b) {
+                    g00 g00Var = c00Var.J;
+                    g00Var.f26458a = true;
+                    g00Var.f26461b = true;
+                }
+                if (this.f24582c) {
+                    c00Var.f25146x = true;
+                }
+                long currentTimeMillis = System.currentTimeMillis();
+                if (this.d || Math.abs(c00Var.f25135a0 - currentTimeMillis) > 30) {
+                    c00Var.f25135a0 = currentTimeMillis;
+                    c00Var.f25140d0.run();
                     return;
                 }
                 return;
-            case 1:
-                e00 e00Var2 = this.f24580b;
-                int i16 = this.f24581c;
-                int i17 = this.d;
-                e00Var2.f25797n = i16;
-                e00Var2.f25798r = i17;
-                return;
             default:
-                e00 e00Var3 = this.f24580b;
-                int i18 = this.f24581c;
-                int i19 = this.d;
-                pa paVar = e00Var3.I;
-                paVar.f29486l = i18;
-                paVar.f29487m = i19;
+                ((org.telegram.ui.hg0) this.e).A1(this.f24581b, this.f24582c, this.d);
                 return;
         }
     }

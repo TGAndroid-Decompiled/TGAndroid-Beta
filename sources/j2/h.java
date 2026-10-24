@@ -99,7 +99,7 @@ public final class h implements b {
 
     @Override
     public final void b(d0 d0Var) {
-        this.M = d0Var.f47727a;
+        this.M = d0Var.f47726a;
     }
 
     @Override
@@ -125,13 +125,13 @@ public final class h implements b {
     public final void e(a aVar, d0 d0Var) {
         h0 h0Var = aVar.d;
         if (h0Var != null) {
-            w wVar = d0Var.f47729c;
+            w wVar = d0Var.f47728c;
             wVar.getClass();
             int i10 = d0Var.d;
             o1 o1Var = aVar.f13974b;
             h0Var.getClass();
             a5.a aVar2 = new a5.a(wVar, i10, this.f14003c.d(o1Var, h0Var), 9);
-            int i11 = d0Var.f47728b;
+            int i11 = d0Var.f47727b;
             if (i11 != 0) {
                 if (i11 != 1) {
                     if (i11 != 2) {
@@ -255,7 +255,7 @@ public final class h implements b {
     public final void r(o1 o1Var, h0 h0Var) {
         int b10;
         PlaybackMetrics.Builder builder = this.v;
-        if (h0Var == null || (b10 = o1Var.b(h0Var.f47767a)) == -1) {
+        if (h0Var == null || (b10 = o1Var.b(h0Var.f47766a)) == -1) {
             return;
         }
         l1 l1Var = this.h;

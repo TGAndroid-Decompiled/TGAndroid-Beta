@@ -8,26 +8,26 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class po implements View.OnClickListener {
-    public final int f40512a;
-    public final yo f40513b;
+    public final int f40602a;
+    public final yo f40603b;
 
     public po(yo yoVar, int i10) {
-        this.f40512a = i10;
-        this.f40513b = yoVar;
+        this.f40602a = i10;
+        this.f40603b = yoVar;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10 = this.f40512a;
-        yo yoVar = this.f40513b;
+        int i10 = this.f40602a;
+        yo yoVar = this.f40603b;
         switch (i10) {
             case 0:
                 TLRPC.Chat currentChannel = ((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel();
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(yoVar.getParentActivity());
                 String string = LocaleController.getString(R.string.AppName);
-                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
                 c2Var.R = string;
-                if (yoVar.f43915b0) {
+                if (yoVar.f43902b0) {
                     c2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlertChannel", R.string.RevokeLinkAlertChannel, yoVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
                 } else {
                     c2Var.T = AndroidUtilities.replaceTags(LocaleController.formatString("RevokeLinkAlert", R.string.RevokeLinkAlert, yoVar.getMessagesController().linkPrefix + "/" + ChatObject.getPublicUsername(currentChannel), currentChannel.title));
@@ -45,7 +45,7 @@ public final class po implements View.OnClickListener {
                 return;
             case 2:
                 if (yoVar.W) {
-                    if (!yoVar.f43918d0) {
+                    if (!yoVar.f43905d0) {
                         yoVar.a0();
                         return;
                     }
@@ -55,13 +55,13 @@ public final class po implements View.OnClickListener {
                 }
                 return;
             case 3:
-                mh0 mh0Var = new mh0(yoVar.f43913a0, 0L, 0);
-                mh0Var.h0(yoVar.Z, yoVar.m0);
-                yoVar.presentFragment(mh0Var);
+                lh0 lh0Var = new lh0(yoVar.f43900a0, 0L, 0);
+                lh0Var.h0(yoVar.Z, yoVar.m0);
+                yoVar.presentFragment(lh0Var);
                 return;
             default:
-                boolean z10 = !yoVar.f43917c0;
-                yoVar.f43917c0 = z10;
+                boolean z10 = !yoVar.f43904c0;
+                yoVar.f43904c0 = z10;
                 ((org.telegram.ui.Cells.w8) view).setChecked(z10);
                 return;
         }

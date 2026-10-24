@@ -18,7 +18,7 @@ import android.view.WindowManager;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.LaunchActivity;
 public final class s2 {
     public final Context f9782a;
@@ -111,7 +111,7 @@ public final class s2 {
         ofFloat.addUpdateListener(new ah.c0(this, 25));
         this.f9787i.addListener(new ai.p7(this, f7, runnable, 2));
         this.f9787i.setDuration(j10);
-        this.f9787i.setInterpolator(bs.f25135i);
+        this.f9787i.setInterpolator(zr.f33339i);
         this.f9787i.start();
     }
 
@@ -161,7 +161,7 @@ public final class s2 {
         }
         Activity findActivity = AndroidUtilities.findActivity(this.f9782a);
         if (findActivity == null) {
-            findActivity = LaunchActivity.J1;
+            findActivity = LaunchActivity.I1;
         }
         if (findActivity != null && !findActivity.isFinishing() && (window = findActivity.getWindow()) != null) {
             WindowManager.LayoutParams attributes = window.getAttributes();

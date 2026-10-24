@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.xj0;
 public final class ba extends aa {
     public final f9 f5203a;
     public final TL_stories.TL_mediaAreaSuggestedReaction f5204b;
@@ -35,14 +35,14 @@ public final class ba extends aa {
         ImageReceiver imageReceiver;
         int i10;
         ah.y0 y0Var = this.f5205c;
-        org.telegram.ui.Components.r5 r5Var = y0Var.f909b;
-        if (r5Var != null) {
-            imageReceiver = r5Var.f30098k;
+        org.telegram.ui.Components.p5 p5Var = y0Var.f909b;
+        if (p5Var != null) {
+            imageReceiver = p5Var.f29484k;
         } else {
             imageReceiver = y0Var.f908a;
         }
         if (imageReceiver != null && imageReceiver.hasImageSet() && imageReceiver.hasImageLoaded()) {
-            yj0 lottieAnimation = imageReceiver.getLottieAnimation();
+            xj0 lottieAnimation = imageReceiver.getLottieAnimation();
             if (lottieAnimation != null && lottieAnimation.y()) {
                 return;
             }
@@ -50,11 +50,11 @@ public final class ba extends aa {
             double d = eaVar.d;
             TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction = this.f5204b;
             TL_stories.MediaAreaCoordinates mediaAreaCoordinates = tL_mediaAreaSuggestedReaction.coordinates;
-            float f10 = (float) (((mediaAreaCoordinates.f20574x * d) / 100.0d) + eaVar.f5308b);
+            float f10 = (float) (((mediaAreaCoordinates.f20575x * d) / 100.0d) + eaVar.f5308b);
             double d10 = eaVar.f5309c;
             double d11 = eaVar.e;
-            float f11 = (float) (((mediaAreaCoordinates.f20575y * d11) / 100.0d) + d10);
-            float f12 = ((float) ((d * mediaAreaCoordinates.f20573w) / 100.0d)) / 2.0f;
+            float f11 = (float) (((mediaAreaCoordinates.f20576y * d11) / 100.0d) + d10);
+            float f12 = ((float) ((d * mediaAreaCoordinates.f20574w) / 100.0d)) / 2.0f;
             float f13 = ((float) ((d11 * mediaAreaCoordinates.h) / 100.0d)) / 2.0f;
             f9 f9Var = this.f5203a;
             f9Var.setBounds((int) (f10 - f12), (int) (f11 - f13), (int) (f12 + f10), (int) (f13 + f11));

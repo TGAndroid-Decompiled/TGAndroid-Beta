@@ -19,10 +19,10 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ey;
-import org.telegram.ui.rf0;
+import org.telegram.ui.qf0;
 import org.telegram.ui.sn;
+import org.telegram.ui.xe1;
 import org.telegram.ui.xx;
-import org.telegram.ui.ye1;
 public final class e1 implements View.OnClickListener {
     public final int f1177a = 0;
     public final int f1178b;
@@ -149,7 +149,7 @@ public final class e1 implements View.OnClickListener {
                         }
 
                         @Override
-                        public final boolean w(ey eyVar, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i13, int i14, ye1 ye1Var) {
+                        public final boolean w(ey eyVar, ArrayList arrayList2, CharSequence charSequence, boolean z11, boolean z12, int i13, int i14, xe1 xe1Var) {
                             String str;
                             TLRPC.TL_forumTopic findTopic;
                             TLRPC.Message message;
@@ -182,7 +182,7 @@ public final class e1 implements View.OnClickListener {
                                     TLRPC.TL_messages_preparedInlineMessage tL_messages_preparedInlineMessage4 = tL_messages_preparedInlineMessage3;
                                     sb2.append(tL_messages_preparedInlineMessage4.query_id);
                                     hashMap.put("query_id", sb2.toString());
-                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f20341id);
+                                    hashMap.put("id", "" + tL_messages_preparedInlineMessage4.result.f20342id);
                                     hashMap.put("bot", "" + j11);
                                     long j14 = j12;
                                     SendMessagesHelper.prepareSendingBotContextResult(U, AccountInstance.getInstance(i17), tL_messages_preparedInlineMessage4.result, hashMap, j14, messageObject2, messageObject2, null, null, z12, i13, 0, null, 0L, 0L);
@@ -203,8 +203,8 @@ public final class e1 implements View.OnClickListener {
                                 }
                                 s0Var.run(str, arrayList3);
                             }
-                            if (ye1Var != null) {
-                                ye1Var.finishFragment();
+                            if (xe1Var != null) {
+                                xe1Var.finishFragment();
                                 eyVar.removeSelfFromStack();
                                 return true;
                             }
@@ -219,11 +219,11 @@ public final class e1 implements View.OnClickListener {
                 }
                 return;
             default:
-                rf0 rf0Var = (rf0) this.d;
+                qf0 qf0Var = (qf0) this.d;
                 String str = (String) this.e;
                 String str2 = (String) this.f1180f;
                 String str3 = (String) this.h;
-                ei.d dVar = rf0Var.f41121b;
+                ei.d dVar = qf0Var.f40808b;
                 if (!dVar.Q) {
                     dVar.setLoading(true);
                     TLRPC.TL_inputStorePaymentAuthCode tL_inputStorePaymentAuthCode = new TLRPC.TL_inputStorePaymentAuthCode();
@@ -246,7 +246,7 @@ public final class e1 implements View.OnClickListener {
                         tL_dataJSON.data = q6.toString();
                         tL_payments_getPaymentForm.flags |= 1;
                     }
-                    rf0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.ca(rf0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
+                    qf0Var.v.getConnectionsManager().sendRequest(tL_payments_getPaymentForm, new org.telegram.ui.ca(qf0Var, tL_inputInvoicePremiumAuthCode, tL_inputStorePaymentAuthCode, 23), 74);
                     return;
                 }
                 return;
@@ -262,8 +262,8 @@ public final class e1 implements View.OnClickListener {
         this.h = tVar;
     }
 
-    public e1(rf0 rf0Var, String str, long j10, String str2, String str3, int i10) {
-        this.d = rf0Var;
+    public e1(qf0 qf0Var, String str, long j10, String str2, String str3, int i10) {
+        this.d = qf0Var;
         this.e = str;
         this.f1179c = j10;
         this.f1180f = str2;

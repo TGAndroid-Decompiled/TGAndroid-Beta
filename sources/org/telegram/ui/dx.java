@@ -5,22 +5,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class dx implements v60 {
-    public final org.telegram.ui.ActionBar.c2 f36746a;
-    public final ey f36747b;
+    public final org.telegram.ui.ActionBar.c2 f36733a;
+    public final ey f36734b;
 
     public dx(ey eyVar, org.telegram.ui.ActionBar.c2 c2Var) {
-        this.f36747b = eyVar;
-        this.f36746a = c2Var;
+        this.f36734b = eyVar;
+        this.f36733a = c2Var;
     }
 
     @Override
     public final void a(w60 w60Var, final long j10) {
         final org.telegram.ui.ActionBar.o2[] o2VarArr = {w60Var, null};
         Utilities.Callback callback = new Utilities.Callback(this) {
-            public final dx f36191b;
+            public final dx f36156b;
 
             {
-                this.f36191b = this;
+                this.f36156b = this;
             }
 
             @Override
@@ -28,7 +28,7 @@ public final class dx implements v60 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        ey eyVar = this.f36191b.f36747b;
+                        ey eyVar = this.f36156b.f36734b;
                         Boolean bool = eyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -36,7 +36,7 @@ public final class dx implements v60 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", eyVar.G.has_username.booleanValue());
                             md mdVar = new md(bundle);
-                            mdVar.f39500u0 = new f5(runnable, 12);
+                            mdVar.f39560u0 = new f5(runnable, 12);
                             eyVar.presentFragment(mdVar);
                             o2VarArr[1] = mdVar;
                             return;
@@ -44,18 +44,18 @@ public final class dx implements v60 {
                         runnable.run();
                         return;
                     default:
-                        dx dxVar = this.f36191b;
-                        ey eyVar2 = dxVar.f36747b;
+                        dx dxVar = this.f36156b;
+                        ey eyVar2 = dxVar.f36734b;
                         eyVar2.O4(eyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new ot(10, dxVar, o2VarArr));
                         return;
                 }
             }
         };
         Utilities.Callback callback2 = new Utilities.Callback(this) {
-            public final dx f36191b;
+            public final dx f36156b;
 
             {
-                this.f36191b = this;
+                this.f36156b = this;
             }
 
             @Override
@@ -63,7 +63,7 @@ public final class dx implements v60 {
                 Runnable runnable = (Runnable) obj;
                 switch (r5) {
                     case 0:
-                        ey eyVar = this.f36191b.f36747b;
+                        ey eyVar = this.f36156b.f36734b;
                         Boolean bool = eyVar.G.has_username;
                         if (bool != null && bool.booleanValue()) {
                             Bundle bundle = new Bundle();
@@ -71,7 +71,7 @@ public final class dx implements v60 {
                             bundle.putLong("chat_id", j10);
                             bundle.putBoolean("forcePublic", eyVar.G.has_username.booleanValue());
                             md mdVar = new md(bundle);
-                            mdVar.f39500u0 = new f5(runnable, 12);
+                            mdVar.f39560u0 = new f5(runnable, 12);
                             eyVar.presentFragment(mdVar);
                             o2VarArr[1] = mdVar;
                             return;
@@ -79,19 +79,19 @@ public final class dx implements v60 {
                         runnable.run();
                         return;
                     default:
-                        dx dxVar = this.f36191b;
-                        ey eyVar2 = dxVar.f36747b;
+                        dx dxVar = this.f36156b;
+                        ey eyVar2 = dxVar.f36734b;
                         eyVar2.O4(eyVar2.getMessagesController().getChat(Long.valueOf(j10)), runnable, new ot(10, dxVar, o2VarArr));
                         return;
                 }
             }
         };
-        org.telegram.ui.ActionBar.c2 c2Var = this.f36746a;
+        org.telegram.ui.ActionBar.c2 c2Var = this.f36733a;
         Utilities.doCallbacks(callback, callback2, new ai.f2(this, c2Var, j10, 2), new Utilities.Callback(this) {
-            public final dx f36444b;
+            public final dx f36417b;
 
             {
-                this.f36444b = this;
+                this.f36417b = this;
             }
 
             @Override
@@ -100,7 +100,7 @@ public final class dx implements v60 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        ey eyVar = this.f36444b.f36747b;
+                        ey eyVar = this.f36417b.f36734b;
                         if (eyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = eyVar.getMessagesController().getUser(Long.valueOf(eyVar.H));
                             MessagesController messagesController = eyVar.getMessagesController();
@@ -120,7 +120,7 @@ public final class dx implements v60 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        ey eyVar2 = this.f36444b.f36747b;
+                        ey eyVar2 = this.f36417b.f36734b;
                         if (eyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = eyVar2.getMessagesController();
                             long j11 = j10;
@@ -132,10 +132,10 @@ public final class dx implements v60 {
                 }
             }
         }, new Utilities.Callback(this) {
-            public final dx f36444b;
+            public final dx f36417b;
 
             {
-                this.f36444b = this;
+                this.f36417b = this;
             }
 
             @Override
@@ -144,7 +144,7 @@ public final class dx implements v60 {
                 switch (r4) {
                     case 0:
                         Runnable runnable = (Runnable) obj;
-                        ey eyVar = this.f36444b.f36747b;
+                        ey eyVar = this.f36417b.f36734b;
                         if (eyVar.G.bot_admin_rights != null) {
                             TLRPC.User user = eyVar.getMessagesController().getUser(Long.valueOf(eyVar.H));
                             MessagesController messagesController = eyVar.getMessagesController();
@@ -164,7 +164,7 @@ public final class dx implements v60 {
                         return;
                     default:
                         Runnable runnable2 = (Runnable) obj;
-                        ey eyVar2 = this.f36444b.f36747b;
+                        ey eyVar2 = this.f36417b.f36734b;
                         if (eyVar2.G.user_admin_rights != null) {
                             MessagesController messagesController2 = eyVar2.getMessagesController();
                             long j11 = j10;

@@ -2,143 +2,52 @@ package org.telegram.ui.Components;
 
 import android.graphics.PointF;
 import java.nio.ByteBuffer;
-import org.telegram.messenger.MediaController;
-public final class f00 implements h00 {
-    public final MediaController.SavedFilterState f26117a;
+public interface f00 {
+    ByteBuffer a();
 
-    public f00(MediaController.SavedFilterState savedFilterState) {
-        this.f26117a = savedFilterState;
-    }
+    boolean b();
 
-    @Override
-    public final ByteBuffer a() {
-        MediaController.SavedFilterState savedFilterState = this.f26117a;
-        savedFilterState.curvesToolValue.a();
-        return savedFilterState.curvesToolValue.e;
-    }
+    boolean c();
 
-    @Override
-    public final boolean b() {
-        return false;
-    }
+    float getBlurAngle();
 
-    @Override
-    public final boolean c() {
-        return !this.f26117a.curvesToolValue.b();
-    }
+    float getBlurExcludeBlurSize();
 
-    @Override
-    public final float getBlurAngle() {
-        return this.f26117a.blurAngle;
-    }
+    PointF getBlurExcludePoint();
 
-    @Override
-    public final float getBlurExcludeBlurSize() {
-        return this.f26117a.blurExcludeBlurSize;
-    }
+    float getBlurExcludeSize();
 
-    @Override
-    public final PointF getBlurExcludePoint() {
-        return this.f26117a.blurExcludePoint;
-    }
+    int getBlurType();
 
-    @Override
-    public final float getBlurExcludeSize() {
-        return this.f26117a.blurExcludeSize;
-    }
+    float getContrastValue();
 
-    @Override
-    public final int getBlurType() {
-        return this.f26117a.blurType;
-    }
+    float getEnhanceValue();
 
-    @Override
-    public final float getContrastValue() {
-        return a1.g.d(this.f26117a.contrastValue, 100.0f, 0.3f, 1.0f);
-    }
+    float getExposureValue();
 
-    @Override
-    public final float getEnhanceValue() {
-        return this.f26117a.enhanceValue / 100.0f;
-    }
+    float getFadeValue();
 
-    @Override
-    public final float getExposureValue() {
-        return this.f26117a.exposureValue / 100.0f;
-    }
+    float getGrainValue();
 
-    @Override
-    public final float getFadeValue() {
-        return this.f26117a.fadeValue / 100.0f;
-    }
+    float getHighlightsValue();
 
-    @Override
-    public final float getGrainValue() {
-        return (this.f26117a.grainValue / 100.0f) * 0.04f;
-    }
+    float getSaturationValue();
 
-    @Override
-    public final float getHighlightsValue() {
-        return com.google.android.gms.internal.play_billing.k3.w(this.f26117a.highlightsValue, 0.75f, 100.0f, 100.0f);
-    }
+    float getShadowsValue();
 
-    @Override
-    public final float getSaturationValue() {
-        float f7 = this.f26117a.saturationValue / 100.0f;
-        if (f7 > 0.0f) {
-            f7 *= 1.05f;
-        }
-        return f7 + 1.0f;
-    }
+    float getSharpenValue();
 
-    @Override
-    public final float getShadowsValue() {
-        return com.google.android.gms.internal.play_billing.k3.w(this.f26117a.shadowsValue, 0.55f, 100.0f, 100.0f);
-    }
+    float getSoftenSkinValue();
 
-    @Override
-    public final float getSharpenValue() {
-        return a1.g.d(this.f26117a.sharpenValue, 100.0f, 0.6f, 0.11f);
-    }
+    int getTintHighlightsColor();
 
-    @Override
-    public final float getSoftenSkinValue() {
-        return this.f26117a.softenSkinValue / 100.0f;
-    }
+    float getTintHighlightsIntensityValue();
 
-    @Override
-    public final int getTintHighlightsColor() {
-        return this.f26117a.tintHighlightsColor;
-    }
+    int getTintShadowsColor();
 
-    @Override
-    public final float getTintHighlightsIntensityValue() {
-        if (this.f26117a.tintHighlightsColor == 0) {
-            return 0.0f;
-        }
-        return 0.5f;
-    }
+    float getTintShadowsIntensityValue();
 
-    @Override
-    public final int getTintShadowsColor() {
-        return this.f26117a.tintShadowsColor;
-    }
+    float getVignetteValue();
 
-    @Override
-    public final float getTintShadowsIntensityValue() {
-        if (this.f26117a.tintShadowsColor == 0) {
-            return 0.0f;
-        }
-        return 0.5f;
-    }
-
-    @Override
-    public final float getVignetteValue() {
-        return this.f26117a.vignetteValue / 100.0f;
-    }
-
-    @Override
-    public final float getWarmthValue() {
-        return this.f26117a.warmthValue / 100.0f;
-    }
+    float getWarmthValue();
 }

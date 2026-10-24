@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.b90;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.z80;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.ey;
@@ -36,7 +36,7 @@ public final class a2 implements View.OnClickListener {
                 p4Var.J0.H(new ProfileActivity(bundle, null));
                 return;
             case 1:
-                b90.r((b90) this.f5142c, this.f5141b);
+                z80.r((z80) this.f5142c, this.f5141b);
                 return;
             case 2:
                 ey eyVar = (ey) this.f5142c;
@@ -48,11 +48,11 @@ public final class a2 implements View.OnClickListener {
                 } else {
                     eyVar.getNotificationsController().setDialogNotificationsSettings(j11, 0L, 4);
                 }
-                xc.A(eyVar, !isDialogMuted, null).j();
+                vc.A(eyVar, !isDialogMuted, null).j();
                 eyVar.finishPreviewFragment();
                 return;
             case 3:
-                Utilities.Callback callback = ((rh.p) this.f5142c).f46214f;
+                Utilities.Callback callback = ((rh.p) this.f5142c).f46213f;
                 if (callback != null) {
                     callback.run(Long.valueOf(this.f5141b));
                     return;

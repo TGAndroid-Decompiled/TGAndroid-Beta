@@ -3,8 +3,8 @@ package ci;
 import android.animation.ValueAnimator;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ae0;
-import org.telegram.ui.Components.fi0;
+import org.telegram.ui.Components.ei0;
+import org.telegram.ui.Components.yd0;
 public final class w5 implements z4.f {
     public final int f6061a;
     public final Object f6062b;
@@ -22,13 +22,13 @@ public final class w5 implements z4.f {
             case 1:
                 return;
             case 2:
-                ae0 ae0Var = (ae0) this.f6062b;
-                z4.f fVar = ae0Var.f24702c;
+                yd0 yd0Var = (yd0) this.f6062b;
+                z4.f fVar = yd0Var.f32891c;
                 if (fVar != null) {
                     fVar.a(i10);
                 }
-                for (int i11 = 0; i11 < ae0Var.d.getChildCount(); i11++) {
-                    View childAt = ae0Var.d.getChildAt(i11);
+                for (int i11 = 0; i11 < yd0Var.d.getChildCount(); i11++) {
+                    View childAt = yd0Var.d.getChildAt(i11);
                     if (i11 == i10) {
                         z10 = true;
                     } else {
@@ -83,13 +83,13 @@ public final class w5 implements z4.f {
                 ((ni.e) this.f6062b).f17548f++;
                 return;
             case 2:
-                ae0 ae0Var = (ae0) this.f6062b;
-                ae0Var.h = i10;
-                ae0Var.f24704n = f7;
-                if (ae0Var.d.getChildAt(i10) != null) {
-                    ae0.a(ae0Var, i10, (int) (ae0Var.d.getChildAt(i10).getWidth() * f7));
-                    ae0Var.invalidate();
-                    z4.f fVar = ae0Var.f24702c;
+                yd0 yd0Var = (yd0) this.f6062b;
+                yd0Var.h = i10;
+                yd0Var.f32893n = f7;
+                if (yd0Var.d.getChildAt(i10) != null) {
+                    yd0.a(yd0Var, i10, (int) (yd0Var.d.getChildAt(i10).getWidth() * f7));
+                    yd0Var.invalidate();
+                    z4.f fVar = yd0Var.f32891c;
                     if (fVar != null) {
                         fVar.b(f7, i10, i11);
                         return;
@@ -98,23 +98,23 @@ public final class w5 implements z4.f {
                 }
                 return;
             default:
-                fi0 fi0Var = (fi0) this.f6062b;
-                if (!fi0Var.f26333a && Math.abs(i10 - fi0Var.f26340w) == 1) {
-                    int i15 = fi0Var.f26340w;
+                ei0 ei0Var = (ei0) this.f6062b;
+                if (!ei0Var.f26051a && Math.abs(i10 - ei0Var.f26058w) == 1) {
+                    int i15 = ei0Var.f26058w;
                     if (i10 > i15) {
-                        fi0.a(fi0Var, 0, 1, 1);
+                        ei0.a(ei0Var, 0, 1, 1);
                     } else if (i10 < i15) {
-                        fi0.a(fi0Var, 1, 0, 0);
-                        fi0.a(fi0Var, 2, 0, -1);
+                        ei0.a(ei0Var, 1, 0, 0);
+                        ei0.a(ei0Var, 2, 0, -1);
                     }
                 }
-                int i16 = fi0Var.f26340w;
-                int i17 = fi0Var.f26341x;
-                fi0Var.f26340w = i10;
-                fi0Var.f26341x = i11;
+                int i16 = ei0Var.f26058w;
+                int i17 = ei0Var.f26059x;
+                ei0Var.f26058w = i10;
+                ei0Var.f26059x = i11;
                 if (i16 != i10 || i17 != i11) {
-                    fi0Var.H = true;
-                    fi0Var.postInvalidateOnAnimation();
+                    ei0Var.H = true;
+                    ei0Var.postInvalidateOnAnimation();
                     return;
                 }
                 return;
@@ -134,11 +134,11 @@ public final class w5 implements z4.f {
             case 1:
                 return;
             case 2:
-                ae0 ae0Var = (ae0) this.f6062b;
+                yd0 yd0Var = (yd0) this.f6062b;
                 if (i10 == 0) {
-                    ae0.a(ae0Var, ae0Var.e.getCurrentItem(), 0);
+                    yd0.a(yd0Var, yd0Var.e.getCurrentItem(), 0);
                 }
-                z4.f fVar = ae0Var.f24702c;
+                z4.f fVar = yd0Var.f32891c;
                 if (fVar != null) {
                     fVar.c(i10);
                     return;

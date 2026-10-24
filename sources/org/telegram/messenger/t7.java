@@ -1,30 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class t7 implements Utilities.Callback2 {
-    public final int f19651a;
-    public final MediaDataController f19652b;
-    public final String f19653c;
-    public final Utilities.Callback d;
+public final class t7 implements RequestDelegate {
+    public final int f19637a;
+    public final MediaDataController f19638b;
+    public final int f19639c;
 
-    public t7(MediaDataController mediaDataController, String str, Utilities.Callback callback, int i10) {
-        this.f19651a = i10;
-        this.f19652b = mediaDataController;
-        this.f19653c = str;
-        this.d = callback;
+    public t7(MediaDataController mediaDataController, int i10, int i11) {
+        this.f19637a = i11;
+        this.f19638b = mediaDataController;
+        this.f19639c = i10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj2;
-        switch (this.f19651a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19637a) {
             case 0:
-                this.f19652b.lambda$getStickerSet$32(this.f19653c, this.d, bool, tL_messages_stickerSet);
+                this.f19638b.lambda$loadArchivedStickersCount$72(this.f19639c, tLObject, tL_error);
+                return;
+            case 1:
+                this.f19638b.lambda$fetchEmojiStatuses$234(this.f19639c, tLObject, tL_error);
+                return;
+            case 2:
+                this.f19638b.lambda$loadRecents$50(this.f19639c, tLObject, tL_error);
                 return;
             default:
-                this.f19652b.lambda$getStickerSet$35(this.f19653c, this.d, bool, tL_messages_stickerSet);
+                this.f19638b.lambda$loadRecents$51(this.f19639c, tLObject, tL_error);
                 return;
         }
     }

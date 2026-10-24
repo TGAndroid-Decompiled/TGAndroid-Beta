@@ -4,9 +4,9 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cs;
-import org.telegram.ui.Components.fs;
-import org.telegram.ui.Components.th0;
+import org.telegram.ui.Components.as;
+import org.telegram.ui.Components.ds;
+import org.telegram.ui.Components.sh0;
 public final class c4 extends GestureDetector.SimpleOnGestureListener {
     public final int f11135a;
     public final int f11136b;
@@ -22,14 +22,14 @@ public final class c4 extends GestureDetector.SimpleOnGestureListener {
     public boolean onDown(MotionEvent motionEvent) {
         switch (this.f11135a) {
             case 1:
-                fs fsVar = (fs) this.f11137c;
-                cs csVar = fsVar.f26449r;
-                if (fsVar.f26448n) {
-                    fsVar.removeCallbacks(csVar);
+                ds dsVar = (ds) this.f11137c;
+                as asVar = dsVar.f25826r;
+                if (dsVar.f25825n) {
+                    dsVar.removeCallbacks(asVar);
                 }
-                fsVar.f26448n = true;
-                fsVar.postDelayed(csVar, 200L);
-                fsVar.h.run();
+                dsVar.f25825n = true;
+                dsVar.postDelayed(asVar, 200L);
+                dsVar.h.run();
                 return true;
             case 2:
                 return true;
@@ -85,11 +85,11 @@ public final class c4 extends GestureDetector.SimpleOnGestureListener {
             default:
                 return super.onFling(motionEvent, motionEvent2, f7, f10);
             case 2:
-                th0 th0Var = (th0) this.f11137c;
-                if (!th0Var.f30706f && !th0Var.h && f7 >= 600.0f) {
-                    th0Var.e = false;
-                    th0Var.h = false;
-                    th0Var.a(0.0f, f7 / 6000.0f);
+                sh0 sh0Var = (sh0) this.f11137c;
+                if (!sh0Var.f30510f && !sh0Var.h && f7 >= 600.0f) {
+                    sh0Var.e = false;
+                    sh0Var.h = false;
+                    sh0Var.a(0.0f, f7 / 6000.0f);
                 }
                 return false;
         }

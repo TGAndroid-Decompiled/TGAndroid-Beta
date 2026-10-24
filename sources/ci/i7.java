@@ -1,7 +1,7 @@
 package ci;
 
-import org.telegram.ui.Components.x20;
-public final class i7 extends x20 {
+import org.telegram.ui.Components.v20;
+public final class i7 extends v20 {
     public int f5453n;
     public int f5454o;
 

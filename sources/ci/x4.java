@@ -1,7 +1,7 @@
 package ci;
 
-import org.telegram.ui.Components.am0;
-public final class x4 implements am0 {
+import org.telegram.ui.Components.zl0;
+public final class x4 implements zl0 {
     public final int f6112a;
     public final Object f6113b;
     public final Object f6114c;

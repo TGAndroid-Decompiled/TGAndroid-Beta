@@ -12,14 +12,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i80;
-import org.telegram.ui.Components.xq;
-public final class q0 extends FrameLayout implements i80 {
+import org.telegram.ui.Components.g80;
+import org.telegram.ui.Components.vq;
+import org.telegram.ui.Components.zr;
+public final class q0 extends FrameLayout implements g80 {
     public final TextView E;
     public final TextView F;
-    public final xq[] G;
-    public final xq[] H;
+    public final vq[] G;
+    public final vq[] H;
     public int I;
     public ValueAnimator J;
     public v0 K;
@@ -35,8 +35,8 @@ public final class q0 extends FrameLayout implements i80 {
     public final wh.n f5770r;
     public final wh.n f5771s;
     public CharSequence v;
-    public final org.telegram.ui.Components.w9 f5772w;
-    public final org.telegram.ui.Components.h9 f5773x;
+    public final org.telegram.ui.Components.u9 f5772w;
+    public final org.telegram.ui.Components.f9 f5773x;
     public final wh.n f5774y;
 
     public q0(int i10, Context context, boolean z10) {
@@ -44,8 +44,8 @@ public final class q0 extends FrameLayout implements i80 {
         this.f5765a = false;
         this.f5766b = true;
         this.f5768f = 0.5f;
-        this.G = new xq[1];
-        this.H = new xq[1];
+        this.G = new vq[1];
+        this.H = new vq[1];
         this.L = new Paint(1);
         this.f5767c = i10;
         this.d = z10;
@@ -53,11 +53,11 @@ public final class q0 extends FrameLayout implements i80 {
         this.h = vcVar;
         vcVar.setOrientation(0);
         addView(vcVar, w7.z5.d(-2, -2.0f, 51, 0.0f, 0.5f, 0.0f, 0.5f));
-        this.f5773x = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f5772w = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
-        vcVar.addView(w9Var, w7.z5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
+        this.f5773x = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.f5772w = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(11.0f));
+        vcVar.addView(u9Var, w7.z5.p(22, 22, 0.0f, 51, 3, 2, 3, 2));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         vcVar.addView(linearLayout, w7.z5.p(-2, -2, 1.0f, 51, 4, 3, 7, 3));
@@ -126,7 +126,7 @@ public final class q0 extends FrameLayout implements i80 {
             ofFloat.addUpdateListener(new ah.c0(this, 12));
             this.J.addListener(new ah.b(this, 7));
             this.J.setDuration(350L);
-            this.J.setInterpolator(bs.h);
+            this.J.setInterpolator(zr.h);
             this.J.start();
         }
     }
@@ -158,9 +158,9 @@ public final class q0 extends FrameLayout implements i80 {
 
     public void setDrawStar(boolean z10) {
         this.f5766b = z10;
-        xq xqVar = this.G[0];
-        if (xqVar != null && xqVar.draw != z10) {
-            xqVar.draw = z10;
+        vq vqVar = this.G[0];
+        if (vqVar != null && vqVar.draw != z10) {
+            vqVar.draw = z10;
             this.E.invalidate();
         }
     }

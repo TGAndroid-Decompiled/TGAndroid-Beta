@@ -1,46 +1,23 @@
 package org.telegram.ui;
+public final class np0 extends org.telegram.ui.ActionBar.j {
+    public final up0 f39950a;
 
-import android.text.Editable;
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class np0 implements lq0 {
-    public final HashMap f39962a;
-    public final ArrayList f39963b;
-    public final vp0 f39964c;
-
-    public np0(vp0 vp0Var, HashMap hashMap, ArrayList arrayList) {
-        this.f39964c = vp0Var;
-        this.f39962a = hashMap;
-        this.f39963b = arrayList;
+    public np0(up0 up0Var) {
+        this.f39950a = up0Var;
     }
 
     @Override
-    public final void b(Editable editable) {
-        vp0 vp0Var = this.f39964c;
-        org.telegram.ui.Components.qu quVar = vp0Var.M;
-        vp0Var.f42804a = editable;
-        quVar.setText(editable);
-    }
-
-    @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void h(int i10, boolean z10, boolean z11) {
-        vp0 vp0Var = this.f39964c;
-        vp0Var.removeSelfFromStack();
-        if (!z10) {
-            vp0Var.V(this.f39962a, this.f39963b, z11, i10);
+    public final void b(int i10) {
+        up0 up0Var = this.f39950a;
+        if (i10 == -1) {
+            up0Var.finishFragment();
+        } else if (i10 == 1) {
+            if (up0Var.V != null) {
+                up0Var.finishFragment(false);
+                up0Var.V.b();
+            }
+        } else if (i10 == 2) {
+            up0.U(up0Var, null);
         }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void g() {
     }
 }

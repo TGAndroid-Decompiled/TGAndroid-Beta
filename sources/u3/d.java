@@ -8,16 +8,16 @@ import c3.j;
 import java.util.Arrays;
 import java.util.List;
 public final class d implements e0 {
-    public final j f47961a;
-    public final SparseArray f47962b;
-    public final long f47963c;
+    public final j f47960a;
+    public final SparseArray f47961b;
+    public final long f47962c;
     public final int d;
 
     public d(SparseArray sparseArray, long j10, int i10, long j11, long j12) {
         j jVar;
         int i11;
-        this.f47962b = sparseArray;
-        this.f47963c = j10;
+        this.f47961b = sparseArray;
+        this.f47962c = j10;
         this.d = i10;
         List list = (List) sparseArray.get(i10);
         if (list != null && !list.isEmpty()) {
@@ -29,8 +29,8 @@ public final class d implements e0 {
             int i12 = 0;
             for (int i13 = 0; i13 < size; i13++) {
                 c cVar = (c) list.get(i13);
-                jArr3[i13] = cVar.f47958a;
-                jArr[i13] = cVar.f47959b;
+                jArr3[i13] = cVar.f47957a;
+                jArr[i13] = cVar.f47958b;
             }
             while (true) {
                 i11 = size - 1;
@@ -60,12 +60,12 @@ public final class d implements e0 {
         } else {
             jVar = null;
         }
-        this.f47961a = jVar;
+        this.f47960a = jVar;
     }
 
     @Override
     public final boolean d() {
-        List list = (List) this.f47962b.get(this.d);
+        List list = (List) this.f47961b.get(this.d);
         if (list != null && !list.isEmpty()) {
             return true;
         }
@@ -79,7 +79,7 @@ public final class d implements e0 {
 
     @Override
     public final d0 f(long j10) {
-        j jVar = this.f47961a;
+        j jVar = this.f47960a;
         if (jVar != null) {
             return jVar.f(j10);
         }
@@ -89,6 +89,6 @@ public final class d implements e0 {
 
     @Override
     public final long h() {
-        return this.f47963c;
+        return this.f47962c;
     }
 }

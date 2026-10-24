@@ -74,10 +74,10 @@ public final class i {
     }
 
     public static h f(p2.n nVar, long j10, int i10) {
-        long j11 = nVar.f44425k;
-        n0 n0Var = nVar.f44433s;
+        long j11 = nVar.f44424k;
+        n0 n0Var = nVar.f44432s;
         int i11 = (int) (j10 - j11);
-        n0 n0Var2 = nVar.f44432r;
+        n0 n0Var2 = nVar.f44431r;
         if (i11 == n0Var2.size()) {
             if (i10 == -1) {
                 i10 = 0;
@@ -91,8 +91,8 @@ public final class i {
         if (i10 == -1) {
             return new h(kVar, j10, -1);
         }
-        if (i10 < kVar.f44410x.size()) {
-            return new h((p2.l) kVar.f44410x.get(i10), j10, i10);
+        if (i10 < kVar.f44409x.size()) {
+            return new h((p2.l) kVar.f44409x.get(i10), j10, i10);
         }
         int i12 = i11 + 1;
         if (i12 < n0Var2.size()) {
@@ -110,12 +110,12 @@ public final class i {
         p2.e eVar = this.f17651g;
         p2.d dVar = (p2.d) eVar.d.get(uri);
         if (dVar != null) {
-            xVar = dVar.f44354a;
+            xVar = dVar.f44353a;
         } else {
             xVar = null;
         }
         xVar.getClass();
-        HashMap hashMap = xVar.f44496b;
+        HashMap hashMap = xVar.f44495b;
         int size = hashMap.size();
         m2 it = y0.u(hashMap.values()).iterator();
         int i10 = 0;
@@ -123,9 +123,9 @@ public final class i {
             Uri uri2 = (Uri) it.next();
             p2.d dVar2 = (p2.d) eVar.d.get(uri2);
             if (dVar2 != null) {
-                p2.c cVar = (p2.c) o1.j(dVar2.f44355b, uri2, uri2);
+                p2.c cVar = (p2.c) o1.j(dVar2.f44354b, uri2, uri2);
                 cVar.getClass();
-                if (elapsedRealtime <= cVar.f44350r) {
+                if (elapsedRealtime <= cVar.f44349r) {
                     i10++;
                 }
             }
@@ -166,9 +166,9 @@ public final class i {
                 Pair e = iVar.e(jVar2, z10, b10, j11, j10);
                 long longValue = ((Long) e.first).longValue();
                 int intValue = ((Integer) e.second).intValue();
-                long j12 = b10.f44425k;
-                n0 n0Var = b10.f44433s;
-                n0 n0Var2 = b10.f44432r;
+                long j12 = b10.f44424k;
+                n0 n0Var = b10.f44432s;
+                n0 n0Var2 = b10.f44431r;
                 int i11 = (int) (longValue - j12);
                 if (i11 >= 0 && n0Var2.size() >= i11) {
                     ArrayList arrayList = new ArrayList();
@@ -177,8 +177,8 @@ public final class i {
                             p2.k kVar = (p2.k) n0Var2.get(i11);
                             if (intValue == 0) {
                                 arrayList.add(kVar);
-                            } else if (intValue < kVar.f44410x.size()) {
-                                n0 n0Var3 = kVar.f44410x;
+                            } else if (intValue < kVar.f44409x.size()) {
+                                n0 n0Var3 = kVar.f44409x;
                                 arrayList.addAll(n0Var3.subList(intValue, n0Var3.size()));
                             }
                             i11++;
@@ -186,7 +186,7 @@ public final class i {
                         arrayList.addAll(n0Var2.subList(i11, n0Var2.size()));
                         intValue = 0;
                     }
-                    if (b10.f44428n != -9223372036854775807L) {
+                    if (b10.f44427n != -9223372036854775807L) {
                         if (intValue == -1) {
                             intValue = 0;
                         }
@@ -215,20 +215,20 @@ public final class i {
         if (i10 != -1) {
             p2.n b10 = this.f17651g.b(jVar.f17667x, false);
             b10.getClass();
-            n0 n0Var2 = b10.f44432r;
-            int i11 = (int) (jVar.f48355s - b10.f44425k);
+            n0 n0Var2 = b10.f44431r;
+            int i11 = (int) (jVar.f48354s - b10.f44424k);
             if (i11 >= 0) {
                 if (i11 < n0Var2.size()) {
-                    n0Var = ((p2.k) n0Var2.get(i11)).f44410x;
+                    n0Var = ((p2.k) n0Var2.get(i11)).f44409x;
                 } else {
-                    n0Var = b10.f44433s;
+                    n0Var = b10.f44432s;
                 }
                 if (i10 < n0Var.size()) {
                     p2.i iVar = (p2.i) n0Var.get(i10);
-                    if (iVar.f44405x) {
+                    if (iVar.f44404x) {
                         return 0;
                     }
-                    if (Objects.equals(Uri.parse(e2.e.f(b10.f44454a, iVar.f44411a)), jVar.f48334b.f10810a)) {
+                    if (Objects.equals(Uri.parse(e2.e.f(b10.f44453a, iVar.f44410a)), jVar.f48333b.f10810a)) {
                         return 1;
                     }
                     return 2;

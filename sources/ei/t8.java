@@ -13,14 +13,14 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.am0;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.zl0;
 public final class t8 extends org.telegram.ui.ActionBar.h3 implements NotificationCenter.NotificationCenterDelegate {
     public final int f9873b;
     public ArrayList f9874c;
     public final TLRPC.InputPeer d;
     public final Utilities.Callback e;
-    public final mm0 f9875f;
+    public final lm0 f9875f;
     public final s8 h;
     public final TextView f9876n;
 
@@ -34,16 +34,16 @@ public final class t8 extends org.telegram.ui.ActionBar.h3 implements Notificati
         this.d = inputPeer;
         this.e = callback;
         this.containerView = new q8(this, context, g6Var);
-        mm0 mm0Var = new mm0(context, g6Var);
-        this.f9875f = mm0Var;
+        lm0 lm0Var = new lm0(context, g6Var);
+        this.f9875f = lm0Var;
         int i12 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i12, 0, i12, 0);
+        lm0Var.setPadding(i12, 0, i12, 0);
         s8 s8Var = new s8(this);
         this.h = s8Var;
-        mm0Var.setAdapter(s8Var);
-        mm0Var.setLayoutManager(new s4.b0());
-        this.containerView.addView(mm0Var, w7.z5.e(-1, -1, 119));
-        mm0Var.setOnItemClickListener(new am0() {
+        lm0Var.setAdapter(s8Var);
+        lm0Var.setLayoutManager(new s4.b0());
+        this.containerView.addView(lm0Var, w7.z5.e(-1, -1, 119));
+        lm0Var.setOnItemClickListener(new zl0() {
             @Override
             public final void d(int i13, View view) {
                 if (i13 <= 1) {
@@ -66,13 +66,13 @@ public final class t8 extends org.telegram.ui.ActionBar.h3 implements Notificati
                 t8Var.dismiss();
             }
         });
-        mm0Var.setOnScrollListener(new r8(this));
+        lm0Var.setOnScrollListener(new r8(this));
         TextView textView = new TextView(getContext());
         this.f9876n = textView;
         org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.G6, g6Var);
         textView.setTextSize(1, 20.0f);
         textView.setPadding(AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(2.0f), AndroidUtilities.dp(22.0f) + this.backgroundPaddingLeft, AndroidUtilities.dp(14.0f));
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21254h5, textView, g6Var);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21255h5, textView, g6Var);
         textView.setTypeface(AndroidUtilities.bold());
         if (z10) {
             i11 = R.string.StoryPrivacyPublishLiveAs;
@@ -116,9 +116,9 @@ public final class t8 extends org.telegram.ui.ActionBar.h3 implements Notificati
         float measuredHeight = this.containerView.getMeasuredHeight();
         int i10 = 0;
         while (true) {
-            mm0 mm0Var = this.f9875f;
-            if (i10 < mm0Var.getChildCount()) {
-                View childAt = mm0Var.getChildAt(i10);
+            lm0 lm0Var = this.f9875f;
+            if (i10 < lm0Var.getChildCount()) {
+                View childAt = lm0Var.getChildAt(i10);
                 if (childAt != null && (R = RecyclerView.R(childAt)) != -1 && R > 0) {
                     measuredHeight = Math.min(AndroidUtilities.lerp(measuredHeight, childAt.getY(), childAt.getAlpha()), measuredHeight);
                 }

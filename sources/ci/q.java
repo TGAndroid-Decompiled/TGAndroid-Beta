@@ -16,9 +16,9 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.ck0;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.bk0;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.vw;
 public final class q extends FrameLayout {
     public long E;
@@ -34,14 +34,14 @@ public final class q extends FrameLayout {
     public final x7 O;
     public float P;
     public float Q;
-    public ck0 R;
+    public bk0 R;
     public h S;
     public final float T;
     public boolean U;
     public boolean V;
     public boolean W;
     public boolean f5753a;
-    public final org.telegram.ui.Components.f6 f5754a0;
+    public final org.telegram.ui.Components.d6 f5754a0;
     public int f5755b;
     public final vw f5756b0;
     public boolean f5757c;
@@ -49,10 +49,10 @@ public final class q extends FrameLayout {
     public y7 e;
     public TLRPC.User f5758f;
     public TLRPC.Chat h;
-    public final org.telegram.ui.Components.h9 f5759n;
+    public final org.telegram.ui.Components.f9 f5759n;
     public final ImageReceiver f5760r;
     public final ImageReceiver f5761s;
-    public final org.telegram.ui.Components.h9 v;
+    public final org.telegram.ui.Components.f9 v;
     public boolean f5762w;
     public final FrameLayout f5763x;
     public org.telegram.ui.ActionBar.n5 f5764y;
@@ -61,19 +61,19 @@ public final class q extends FrameLayout {
         super(context);
         boolean z10;
         this.f5756b0 = vwVar;
-        this.f5759n = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
+        this.f5759n = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f5760r = imageReceiver;
         ImageReceiver imageReceiver2 = new ImageReceiver(this);
         this.f5761s = imageReceiver2;
-        this.v = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
+        this.v = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
         this.f5762w = true;
         x7 x7Var = new x7(null, true);
         this.O = x7Var;
         this.P = 1.0f;
         this.Q = 1.0f;
         this.T = 1.0f;
-        this.f5754a0 = new org.telegram.ui.Components.f6(this, 0L, 350L, bs.h);
+        this.f5754a0 = new org.telegram.ui.Components.d6(this, 0L, 350L, zr.h);
         if (vwVar.f5813b == 1) {
             z10 = true;
         } else {
@@ -131,14 +131,14 @@ public final class q extends FrameLayout {
             float dp2 = f10 + AndroidUtilities.dp(16.0f);
             paint.setColor(org.telegram.ui.ActionBar.k6.o1(f11, vwVar.f(org.telegram.ui.ActionBar.k6.hl)));
             if (i11 == 0) {
-                paint2.setColor(org.telegram.ui.ActionBar.k6.o1(f11, vwVar.f(org.telegram.ui.ActionBar.k6.f21462s8)));
+                paint2.setColor(org.telegram.ui.ActionBar.k6.o1(f11, vwVar.f(org.telegram.ui.ActionBar.k6.f21463s8)));
             } else {
                 paint2.setColor(org.telegram.ui.ActionBar.k6.o1(f11, vwVar.f(org.telegram.ui.ActionBar.k6.M8)));
             }
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(11.0f), paint2);
             canvas.drawCircle(dp, dp2, AndroidUtilities.dp(9.0f), paint);
             if (i11 == 0) {
-                i10 = org.telegram.ui.ActionBar.k6.f21462s8;
+                i10 = org.telegram.ui.ActionBar.k6.f21463s8;
             } else {
                 i10 = org.telegram.ui.ActionBar.k6.M8;
             }
@@ -264,9 +264,9 @@ public final class q extends FrameLayout {
                     user = chat;
                 }
                 if (user != null) {
-                    org.telegram.ui.Components.h9 h9Var = this.v;
-                    h9Var.j(i10, user);
-                    imageReceiver.setForUserOrChat(user, h9Var);
+                    org.telegram.ui.Components.f9 f9Var = this.v;
+                    f9Var.j(i10, user);
+                    imageReceiver.setForUserOrChat(user, f9Var);
                     return;
                 }
                 return;
@@ -284,11 +284,11 @@ public final class q extends FrameLayout {
         super.setPressed(z10);
         x7 x7Var = this.O;
         if (z10 && x7Var.H == null) {
-            x7Var.H = new yc(this, 1.5f, 5.0f);
+            x7Var.H = new wc(this, 1.5f, 5.0f);
         }
-        yc ycVar = x7Var.H;
-        if (ycVar != null) {
-            ycVar.c(z10);
+        wc wcVar = x7Var.H;
+        if (wcVar != null) {
+            wcVar.c(z10);
         }
     }
 

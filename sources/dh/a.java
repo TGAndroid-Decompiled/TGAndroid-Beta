@@ -140,6 +140,6 @@ public final class a implements hh.f, l60 {
             }
         }
         privacyControlActivity.E0();
-        privacyControlActivity.f33834a.l();
+        privacyControlActivity.f33836a.l();
     }
 }

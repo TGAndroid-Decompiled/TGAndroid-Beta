@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.ui.Components.ng;
+import org.telegram.ui.Components.lg;
 import si.o0;
 import w7.la;
 import y8.k0;
@@ -106,7 +106,7 @@ public final class w implements Runnable {
                 cVar.b((x9.b) this.f4795b, (TaskCompletionSource) this.f4796c);
                 ((AtomicInteger) cVar.f7929i.f17103c).set(0);
                 double min = Math.min(3600000.0d, Math.pow(cVar.f7925b, cVar.a()) * (60000.0d / cVar.f7924a));
-                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f50117b;
+                String str2 = "Delay for: " + String.format(Locale.US, "%.2f", Double.valueOf(min / 1000.0d)) + " s for report: " + bVar.f50116b;
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", str2, null);
                 }
@@ -127,7 +127,7 @@ public final class w implements Runnable {
                 ((Handler) this.d).post(new j9.u(21, (a0) this.f4796c, obj));
                 return;
             case 8:
-                ((ng) this.d).n((File) this.f4796c, (ArrayList) this.f4795b);
+                ((lg) this.d).n((File) this.f4796c, (ArrayList) this.f4795b);
                 return;
             case 9:
                 u4.e eVar = (u4.e) this.d;
@@ -138,7 +138,7 @@ public final class w implements Runnable {
                         mVar.get();
                         return;
                     } catch (Exception e) {
-                        eVar.f48039c.l(e);
+                        eVar.f48038c.l(e);
                         return;
                     }
                 }
@@ -180,7 +180,7 @@ public final class w implements Runnable {
             default:
                 k0 k0Var = (k0) this.f4796c;
                 y8.e0 e0Var = (y8.e0) this.d;
-                Task<byte[]> onRequest = ((x8.m) this.f4795b).f50103c.onRequest(k0Var.d, k0Var.f50462b, k0Var.f50463c);
+                Task<byte[]> onRequest = ((x8.m) this.f4795b).f50102c.onRequest(k0Var.d, k0Var.f50461b, k0Var.f50462c);
                 if (onRequest == null) {
                     x8.m.L0(e0Var, false, null);
                     return;

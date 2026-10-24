@@ -47,13 +47,13 @@ public final class v8 implements ToIntFunction {
             case 11:
                 return -((TLRPC.TL_forumTopic) obj).top_message;
             case 12:
-                return ((TLRPC.Message) obj).f20364id;
+                return ((TLRPC.Message) obj).f20365id;
             case 13:
-                return ((TLRPC.Message) obj).f20364id;
+                return ((TLRPC.Message) obj).f20365id;
             case 14:
-                return ((org.telegram.ui.Components.g6) obj).d;
+                return ((org.telegram.ui.Components.e6) obj).d;
             case 15:
-                return ((org.telegram.ui.Components.g6) obj).e;
+                return ((org.telegram.ui.Components.e6) obj).e;
             case 16:
                 cd.c cVar = (cd.c) obj;
                 return cVar.d - cVar.f5107b;
@@ -74,7 +74,7 @@ public final class v8 implements ToIntFunction {
             case 19:
                 return ((String) ((Map.Entry) obj).getKey()).hashCode();
             default:
-                return ((zf.d) obj).f52001a;
+                return ((zf.d) obj).f52000a;
         }
     }
 }

@@ -13,16 +13,16 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.zr;
 public final class t0 extends View {
     public boolean E;
-    public final org.telegram.ui.Components.f6 F;
+    public final org.telegram.ui.Components.d6 F;
     public boolean G;
     public float H;
-    public final org.telegram.ui.Components.f6 I;
-    public final org.telegram.ui.Components.f6 J;
+    public final org.telegram.ui.Components.d6 I;
+    public final org.telegram.ui.Components.d6 J;
     public final RectF K;
     public final RectF L;
     public final RectF M;
@@ -36,8 +36,8 @@ public final class t0 extends View {
     public final Paint d;
     public final Paint e;
     public final Paint f9848f;
-    public final yc h;
-    public yj0 f9849n;
+    public final wc h;
+    public xj0 f9849n;
     public final StaticLayout f9850r;
     public final float f9851s;
     public final float v;
@@ -61,14 +61,14 @@ public final class t0 extends View {
 
     public final void b(int i10, int i11, CharSequence charSequence) {
         float f7;
-        yj0 yj0Var = this.f9849n;
-        if (yj0Var != null) {
-            yj0Var.setCallback(null);
+        xj0 xj0Var = this.f9849n;
+        if (xj0Var != null) {
+            xj0Var.setCallback(null);
             this.f9849n.C(true);
         }
-        yj0 yj0Var2 = new yj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
-        this.f9849n = yj0Var2;
-        yj0Var2.setCallback(this);
+        xj0 xj0Var2 = new xj0(i10, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(36.0f));
+        this.f9849n = xj0Var2;
+        xj0Var2.setCallback(this);
         this.f9849n.start();
         StaticLayout staticLayout = new StaticLayout(charSequence, this.f9847c, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         this.f9852w = staticLayout;
@@ -185,9 +185,9 @@ public final class t0 extends View {
         }
         if (d10 > 0.0f) {
             float f15 = d10 * d;
-            yj0 yj0Var = this.f9849n;
-            if (yj0Var != null) {
-                yj0Var.setAlpha((int) (f15 * f12));
+            xj0 xj0Var = this.f9849n;
+            if (xj0Var != null) {
+                xj0Var.setAlpha((int) (f15 * f12));
                 this.f9849n.setBounds((int) (rectF.left + AndroidUtilities.dp(9.0f)), (int) (rectF.top + AndroidUtilities.dp(6.0f)), (int) (rectF.left + AndroidUtilities.dp(45.0f)), (int) (rectF.top + AndroidUtilities.dp(f11)));
                 this.f9849n.draw(canvas2);
             }
@@ -210,13 +210,13 @@ public final class t0 extends View {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean contains = this.M.contains(motionEvent.getX(), motionEvent.getY());
         int action = motionEvent.getAction();
-        yc ycVar = this.h;
+        wc wcVar = this.h;
         if (action == 0 && (this.G || contains)) {
-            ycVar.c(contains);
+            wcVar.c(contains);
             return true;
         }
         if (motionEvent.getAction() == 1) {
-            if (ycVar.f32872i) {
+            if (wcVar.f32185i) {
                 if (contains) {
                     if (this.G) {
                         Runnable runnable = this.Q;
@@ -227,11 +227,11 @@ public final class t0 extends View {
                         a();
                     }
                 }
-                ycVar.c(false);
+                wcVar.c(false);
                 return true;
             }
         } else if (motionEvent.getAction() == 3) {
-            ycVar.c(false);
+            wcVar.c(false);
             return true;
         }
         return super.onTouchEvent(motionEvent);
@@ -268,13 +268,13 @@ public final class t0 extends View {
         this.e = paint3;
         Paint paint4 = new Paint(1);
         this.f9848f = paint4;
-        this.h = new yc(this);
+        this.h = new wc(this);
         this.E = false;
-        this.F = new org.telegram.ui.Components.f6(0.0f, this, 0L, 350L, bs.h);
+        this.F = new org.telegram.ui.Components.d6(0.0f, this, 0L, 350L, zr.h);
         this.G = true;
         this.H = 0.0f;
-        this.I = new org.telegram.ui.Components.f6(this);
-        this.J = new org.telegram.ui.Components.f6(this);
+        this.I = new org.telegram.ui.Components.d6(this);
+        this.J = new org.telegram.ui.Components.d6(this);
         this.K = new RectF();
         this.L = new RectF();
         this.M = new RectF();

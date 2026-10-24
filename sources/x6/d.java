@@ -4,17 +4,17 @@ import android.os.RemoteException;
 import h8.j;
 import i8.g;
 public final class d implements e {
-    public final int f49760a;
-    public final j f49761b;
+    public final int f49759a;
+    public final j f49760b;
 
     public d(j jVar, int i10) {
-        this.f49760a = i10;
-        this.f49761b = jVar;
+        this.f49759a = i10;
+        this.f49760b = jVar;
     }
 
     @Override
     public final int a() {
-        switch (this.f49760a) {
+        switch (this.f49759a) {
             case 0:
                 return 4;
             default:
@@ -24,9 +24,9 @@ public final class d implements e {
 
     @Override
     public final void b() {
-        switch (this.f49760a) {
+        switch (this.f49759a) {
             case 0:
-                androidx.biometric.e eVar = this.f49761b.f11719a;
+                androidx.biometric.e eVar = this.f49760b.f11719a;
                 eVar.getClass();
                 try {
                     g gVar = (g) eVar.f2823c;
@@ -36,7 +36,7 @@ public final class d implements e {
                     throw new RuntimeException(e);
                 }
             default:
-                androidx.biometric.e eVar2 = this.f49761b.f11719a;
+                androidx.biometric.e eVar2 = this.f49760b.f11719a;
                 eVar2.getClass();
                 try {
                     g gVar2 = (g) eVar2.f2823c;

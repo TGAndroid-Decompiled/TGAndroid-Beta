@@ -7,8 +7,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.Wallet.WalletEngine2;
 import org.telegram.ui.ey;
-import org.telegram.ui.l21;
-import org.telegram.ui.s21;
+import org.telegram.ui.k21;
+import org.telegram.ui.r21;
 public final class q4 implements Runnable {
     public final int f2052a = 0;
     public final Object f2053b;
@@ -44,12 +44,12 @@ public final class q4 implements Runnable {
                 Context context = (Context) this.f2055f;
                 ci.k0 k0Var = (ci.k0) this.h;
                 byte[] bArr = (byte[]) this.f2053b;
-                org.telegram.ui.Components.xc xcVar = (org.telegram.ui.Components.xc) this.e;
+                org.telegram.ui.Components.vc vcVar = (org.telegram.ui.Components.vc) this.e;
                 org.telegram.messenger.video.d dVar = (org.telegram.messenger.video.d) this.f2057r;
-                s21 s21Var = new s21(context, k0Var, this.d, bArr);
-                s21Var.R((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f2054c));
-                s21Var.v = new l21((org.telegram.messenger.video.a) this.f2056n, xcVar, context, k0Var, dVar);
-                s21Var.show();
+                r21 r21Var = new r21(context, k0Var, this.d, bArr);
+                r21Var.R((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.f2054c));
+                r21Var.v = new k21((org.telegram.messenger.video.a) this.f2056n, vcVar, context, k0Var, dVar);
+                r21Var.show();
                 return;
             default:
                 ((WalletEngine2) this.f2055f).lambda$prepareSend$50((byte[]) this.h, (String) this.f2053b, this.d, (byte[]) this.f2054c, (byte[]) this.f2056n, (String) this.e, (Utilities.Callback3) this.f2057r);
@@ -57,14 +57,14 @@ public final class q4 implements Runnable {
         }
     }
 
-    public q4(TLObject tLObject, Context context, ci.k0 k0Var, long j10, byte[] bArr, org.telegram.messenger.video.a aVar, org.telegram.ui.Components.xc xcVar, org.telegram.messenger.video.d dVar) {
+    public q4(TLObject tLObject, Context context, ci.k0 k0Var, long j10, byte[] bArr, org.telegram.messenger.video.a aVar, org.telegram.ui.Components.vc vcVar, org.telegram.messenger.video.d dVar) {
         this.f2054c = tLObject;
         this.f2055f = context;
         this.h = k0Var;
         this.d = j10;
         this.f2053b = bArr;
         this.f2056n = aVar;
-        this.e = xcVar;
+        this.e = vcVar;
         this.f2057r = dVar;
     }
 

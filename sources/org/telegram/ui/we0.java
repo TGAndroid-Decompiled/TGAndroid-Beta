@@ -1,31 +1,30 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class we0 implements Runnable {
-    public final int f43016a;
-    public final ye0 f43017b;
+import android.content.Intent;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class we0 implements NotificationCenter.NotificationCenterDelegate {
+    public final xe0 f43011a;
 
-    public we0(ye0 ye0Var, int i10) {
-        this.f43016a = i10;
-        this.f43017b = ye0Var;
+    public we0(xe0 xe0Var) {
+        this.f43011a = xe0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43016a) {
-            case 0:
-                ye0 ye0Var = this.f43017b;
-                org.telegram.ui.Components.bk0 bk0Var = ye0Var.h;
-                bk0Var.getAnimatedDrawable().N(0, false, false);
-                bk0Var.d();
-                EditTextBoldCursor editTextBoldCursor = ye0Var.f43782b;
-                editTextBoldCursor.requestFocus();
-                AndroidUtilities.showKeyboard(editTextBoldCursor);
-                return;
-            default:
-                this.f43017b.f43782b.requestFocus();
-                return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        xe0 xe0Var = this.f43011a;
+        int intValue = ((Integer) objArr[0]).intValue();
+        ((Integer) objArr[1]).getClass();
+        Intent intent = (Intent) objArr[2];
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
+        if (intValue == 200) {
+            try {
+                xe0Var.f43543y = (GoogleSignInAccount) w7.b9.b(intent).getResult(com.google.android.gms.common.api.f.class);
+                xe0Var.h(null);
+            } catch (com.google.android.gms.common.api.f e) {
+                FileLog.e(e);
+            }
         }
     }
 }

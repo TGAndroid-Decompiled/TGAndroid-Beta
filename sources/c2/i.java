@@ -109,7 +109,7 @@ public abstract class i {
         builder.setShortcutId(str);
     }
 
-    public static void m(Notification.Builder builder) {
-        builder.setTimeoutAfter(0L);
+    public static void m(Notification.Builder builder, long j10) {
+        builder.setTimeoutAfter(j10);
     }
 }

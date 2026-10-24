@@ -29,7 +29,7 @@ public final class n1 extends FrameLayout {
         TextView b10 = d6.b(context, 16.0f, k6.G6, true, null);
         b10.setText(o1Var.f11393c);
         addView(b10, z5.t(-1, -2, 7, 62, 9, 8, 0));
-        TextView b11 = d6.b(context, 14.0f, k6.f21571y6, false, null);
+        TextView b11 = d6.b(context, 14.0f, k6.f21572y6, false, null);
         b11.setText(LocaleController.formatString(R.string.BotRestoreStorageCreatedAt, LocaleController.formatString(R.string.formatDateAtTime, LocaleController.formatSmallDateChat(o1Var.d / 1000), LocaleController.getInstance().getFormatterDay().format(new Date(o1Var.d / 1000)))));
         addView(b11, z5.t(-1, -2, 7, 62, 32, 8, 0));
         this.f11382c = z10;
@@ -39,7 +39,7 @@ public final class n1 extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         if (this.f11382c) {
-            canvas.drawLine(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, k6.f21304k0);
+            canvas.drawLine(AndroidUtilities.dp(62.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, k6.f21305k0);
         }
     }
 }

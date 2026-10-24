@@ -1,5 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class li0 extends View {
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.ImageReceiver;
+public final class li0 implements ImageReceiver.ImageReceiverDelegate {
+    public final mi0 f28345a;
+
+    public li0(mi0 mi0Var) {
+        this.f28345a = mi0Var;
+    }
+
+    @Override
+    public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
+        org.telegram.messenger.n5.a(this, i10, str, drawable);
+    }
+
+    @Override
+    public final void onAnimationReady(ImageReceiver imageReceiver) {
+        ii0 ii0Var = this.f28345a.h.G0;
+        if (ii0Var != null) {
+            ii0Var.d();
+        }
+    }
+
+    @Override
+    public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
+    }
 }

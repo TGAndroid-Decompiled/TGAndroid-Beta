@@ -28,8 +28,8 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.s6;
 import org.telegram.ui.ActionBar.t6;
-import org.telegram.ui.Components.mm0;
-public final class q0 extends mm0 implements b6 {
+import org.telegram.ui.Components.lm0;
+public final class q0 extends lm0 implements b6 {
     public static final o0[] f12042d3 = {new o0(R.drawable.search_media_filled, R.string.SharedMediaTab2, new TLRPC.TL_inputMessagesFilterPhotoVideo(), 0), new o0(R.drawable.search_links_filled, R.string.SharedLinksTab2, new TLRPC.TL_inputMessagesFilterUrl(), 2), new o0(R.drawable.search_files_filled, R.string.SharedFilesTab2, new TLRPC.TL_inputMessagesFilterDocument(), 1), new o0(R.drawable.search_music_filled, R.string.SharedMusicTab2, new TLRPC.TL_inputMessagesFilterMusic(), 3), new o0(R.drawable.search_voice_filled, R.string.SharedVoiceTab2, new TLRPC.TL_inputMessagesFilterRoundVoice(), 5)};
     public static final Pattern f12043e3 = Pattern.compile("20[0-9]{1,2}");
     public static final Pattern f12044f3 = Pattern.compile("(\\w{3,}) ([0-9]{0,4})");
@@ -59,7 +59,7 @@ public final class q0 extends mm0 implements b6 {
         setWillNotDraw(false);
         setHideIfEmpty(false);
         setSelectorRadius(AndroidUtilities.dp(28.0f));
-        r6.m(this, 20, k6.f21272i6, g6Var);
+        r6.m(this, 20, k6.f21273i6, g6Var);
     }
 
     public static void C1(int i10, int i11, ArrayList arrayList) {
@@ -312,7 +312,7 @@ public final class q0 extends mm0 implements b6 {
                 Object obj = arrayList.get(i10);
                 if (obj instanceof TLRPC.User) {
                     TLRPC.User user = (TLRPC.User) obj;
-                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20490id == user.f20490id) {
+                    if (UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser().f20491id == user.f20491id) {
                         formatName = LocaleController.getString(R.string.SavedMessages);
                     } else {
                         formatName = ContactsController.formatName(user.first_name, user.last_name, 10);
@@ -363,7 +363,7 @@ public final class q0 extends mm0 implements b6 {
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (this.f12050b3) {
-            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), k6.f21304k0);
+            canvas.drawRect(0.0f, getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight(), k6.f21305k0);
         }
     }
 

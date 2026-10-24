@@ -17,7 +17,7 @@ import hg.a0;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.voip.GroupCallMessagesController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.LaunchActivity;
 public final class h extends RecyclerView {
     public final e S0;
@@ -45,9 +45,9 @@ public final class h extends RecyclerView {
         this.S0 = eVar;
         setAdapter(eVar);
         f fVar = new f(this);
-        fVar.f46377m = false;
+        fVar.f46376m = false;
         fVar.C = false;
-        fVar.o(bs.h);
+        fVar.o(zr.h);
         fVar.n(320L);
         setItemAnimator(fVar);
     }
@@ -68,14 +68,14 @@ public final class h extends RecyclerView {
         int i11;
         e eVar = this.S0;
         if (eVar.d && (i11 = eVar.e) != -1 && eVar.f17001f != null) {
-            GroupCallMessagesController.getInstance(i11).unsubscribeFromCallMessages(eVar.f17001f.f20360id, eVar);
+            GroupCallMessagesController.getInstance(i11).unsubscribeFromCallMessages(eVar.f17001f.f20361id, eVar);
         }
         eVar.e = i10;
         eVar.f17001f = inputGroupCall;
         if (eVar.d) {
-            eVar.f17000c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f17001f.f20360id);
+            eVar.f17000c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f17001f.f20361id);
             eVar.l();
-            GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(eVar.f17001f.f20360id, eVar);
+            GroupCallMessagesController.getInstance(i10).subscribeToCallMessages(eVar.f17001f.f20361id, eVar);
         }
     }
 
@@ -176,9 +176,9 @@ public final class h extends RecyclerView {
         eVar.d = true;
         int i10 = eVar.e;
         if (i10 != -1 && eVar.f17001f != null) {
-            eVar.f17000c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f17001f.f20360id);
+            eVar.f17000c = GroupCallMessagesController.getInstance(i10).getCallMessages(eVar.f17001f.f20361id);
             eVar.l();
-            GroupCallMessagesController.getInstance(eVar.e).subscribeToCallMessages(eVar.f17001f.f20360id, eVar);
+            GroupCallMessagesController.getInstance(eVar.e).subscribeToCallMessages(eVar.f17001f.f20361id, eVar);
         }
     }
 
@@ -189,7 +189,7 @@ public final class h extends RecyclerView {
         eVar.d = false;
         int i10 = eVar.e;
         if (i10 != -1 && eVar.f17001f != null) {
-            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f17001f.f20360id, eVar);
+            GroupCallMessagesController.getInstance(i10).unsubscribeFromCallMessages(eVar.f17001f.f20361id, eVar);
         }
     }
 

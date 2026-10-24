@@ -7,19 +7,19 @@ import android.graphics.drawable.GradientDrawable;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class e9 extends EditTextBoldCursor {
-    public final org.telegram.ui.Components.f6 f34463b;
-    public final org.telegram.ui.Components.f6 f34464c;
+    public final org.telegram.ui.Components.d6 f34465b;
+    public final org.telegram.ui.Components.d6 f34466c;
     public float d;
     public float e;
-    public final i9 f34465f;
+    public final i9 f34467f;
 
     public e9(i9 i9Var, Context context) {
         super(context);
-        this.f34465f = i9Var;
-        this.f34463b = new org.telegram.ui.Components.f6(this, 180L, bs.h);
-        this.f34464c = new org.telegram.ui.Components.f6(this, 320L, i9.S);
+        this.f34467f = i9Var;
+        this.f34465b = new org.telegram.ui.Components.d6(this, 180L, zr.h);
+        this.f34466c = new org.telegram.ui.Components.d6(this, 320L, i9.S);
         this.d = 1.0f;
     }
 
@@ -50,7 +50,7 @@ public final class e9 extends EditTextBoldCursor {
     public final void onSelectionChanged(int i10, int i11) {
         super.onSelectionChanged(i10, i11);
         if (i10 != i11) {
-            this.f34465f.b();
+            this.f34467f.b();
         }
     }
 
@@ -58,13 +58,13 @@ public final class e9 extends EditTextBoldCursor {
     public final boolean onTouchEvent(MotionEvent motionEvent) {
         boolean z10;
         if (motionEvent.getActionMasked() == 0) {
-            this.f34465f.b();
+            this.f34467f.b();
             if (length() == 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            this.f34464c.a(z10);
+            this.f34466c.a(z10);
         }
         return super.onTouchEvent(motionEvent);
     }

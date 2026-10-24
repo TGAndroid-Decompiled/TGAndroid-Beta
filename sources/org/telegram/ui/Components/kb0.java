@@ -1,144 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-public final class kb0 implements Menu {
-    public final j80 f27998a;
-    public final y2 f27999b;
-    public final Runnable f28000c;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import org.telegram.tgnet.TLRPC;
+public final class kb0 extends y5 {
+    public final nb0 f27999a;
 
-    public kb0(j80 j80Var, y2 y2Var, Runnable runnable) {
-        this.f27998a = j80Var;
-        this.f27999b = y2Var;
-        this.f28000c = runnable;
+    public kb0(nb0 nb0Var, TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        super(document, fontMetricsInt);
+        this.f27999a = nb0Var;
     }
 
     @Override
-    public final MenuItem add(int i10) {
-        return null;
-    }
-
-    @Override
-    public final int addIntentOptions(int i10, int i11, int i12, ComponentName componentName, Intent[] intentArr, Intent intent, int i13, MenuItem[] menuItemArr) {
-        return 0;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(int i10) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem findItem(int i10) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem getItem(int i10) {
-        return null;
-    }
-
-    @Override
-    public final boolean hasVisibleItems() {
-        return false;
-    }
-
-    @Override
-    public final boolean isShortcutKey(int i10, KeyEvent keyEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean performIdentifierAction(int i10, int i11) {
-        return false;
-    }
-
-    @Override
-    public final boolean performShortcut(int i10, KeyEvent keyEvent, int i11) {
-        return false;
-    }
-
-    @Override
-    public final int size() {
-        return 0;
-    }
-
-    @Override
-    public final MenuItem add(CharSequence charSequence) {
-        return null;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(int i10, int i11, int i12, int i13) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem add(int i10, int i11, int i12, CharSequence charSequence) {
-        Runnable runnable = this.f28000c;
-        if (runnable == null || !org.telegram.ui.ActionBar.a5.f20690r.contains(Integer.valueOf(i11)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            d2 d2Var = new d2(this, i11, 8);
-            j80 j80Var = this.f27998a;
-            j80Var.c(0, charSequence, d2Var, false);
-            if (runnable != null && org.telegram.ui.ActionBar.a5.f20690r.contains(Integer.valueOf(i11))) {
-                j80Var.M(runnable);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(int i10, int i11, int i12, CharSequence charSequence) {
-        return null;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(CharSequence charSequence) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem add(int i10, int i11, int i12, int i13) {
-        add(i10, i11, i12, LocaleController.getString(i13));
-        return null;
-    }
-
-    @Override
-    public final void clear() {
-    }
-
-    @Override
-    public final void close() {
-    }
-
-    @Override
-    public final void removeGroup(int i10) {
-    }
-
-    @Override
-    public final void removeItem(int i10) {
-    }
-
-    @Override
-    public final void setQwertyMode(boolean z10) {
-    }
-
-    @Override
-    public final void setGroupEnabled(int i10, boolean z10) {
-    }
-
-    @Override
-    public final void setGroupVisible(int i10, boolean z10) {
-    }
-
-    @Override
-    public final void setGroupCheckable(int i10, boolean z10, boolean z11) {
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = i14 + i12;
+        int i16 = this.measuredSize;
+        this.f27999a.f28856c.set((int) f7, (i15 - i16) / 2, (int) (f7 + i16), (i15 + i16) / 2);
     }
 }

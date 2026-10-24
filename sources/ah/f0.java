@@ -13,7 +13,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.ak;
 import org.telegram.ui.nj;
 import org.telegram.ui.sn;
@@ -43,7 +43,7 @@ public final class f0 extends FrameLayout {
         this.f724a = snVar;
         setClipToPadding(false);
         setClipChildren(false);
-        snVar.f41737x0.j(new d0(this, 0));
+        snVar.f41734x0.j(new d0(this, 0));
     }
 
     public final void a(boolean z10) {
@@ -106,7 +106,7 @@ public final class f0 extends FrameLayout {
                 AndroidUtilities.runOnUIThread(new b0(this, 0));
             }
             sn snVar = this.f724a;
-            nj njVar = snVar.f41737x0;
+            nj njVar = snVar.f41734x0;
             int[] iArr = this.f733y;
             njVar.getLocationInWindow(iArr);
             boolean z13 = true;
@@ -155,7 +155,7 @@ public final class f0 extends FrameLayout {
                         float y3 = (t1Var.getY() + f12) - AndroidUtilities.dp(74.0f);
                         float dp4 = AndroidUtilities.dp(14.0f);
                         float dp5 = height - AndroidUtilities.dp(218.0f);
-                        ak akVar = snVar.f41562j2;
+                        ak akVar = snVar.f41559j2;
                         if (akVar != null && akVar.getVisibility() == 0) {
                             dp4 += akVar.getHeight();
                         }
@@ -177,7 +177,7 @@ public final class f0 extends FrameLayout {
                         if (!z10) {
                             this.f728n = this.f729r;
                         }
-                        float interpolation = (bs.f25133f.getInterpolation(this.f728n) * this.f730s) + y3;
+                        float interpolation = (zr.f33337f.getInterpolation(this.f728n) * this.f730s) + y3;
                         e0 e0Var3 = this.f725b;
                         if (e0Var3 != null) {
                             if (z11 != e0Var3.N) {
@@ -191,7 +191,7 @@ public final class f0 extends FrameLayout {
                                     this.f725b.setVisibility(0);
                                     if (!this.f732x) {
                                         this.f732x = true;
-                                        this.f725b.p(this.e, snVar.f41592l8, true);
+                                        this.f725b.p(this.e, snVar.f41589l8, true);
                                     }
                                 }
                             }

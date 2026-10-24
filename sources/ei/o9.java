@@ -19,8 +19,8 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.v30;
+import org.telegram.ui.Components.t30;
+import org.telegram.ui.Components.zr;
 public abstract class o9 extends ScrollView implements org.telegram.ui.ActionBar.b6 {
     public final LinearGradient E;
     public final Paint F;
@@ -35,29 +35,29 @@ public abstract class o9 extends ScrollView implements org.telegram.ui.ActionBar
     public final int f9574c;
     public final n9 d;
     public final ArrayList e;
-    public v30 f9575f;
+    public t30 f9575f;
     public final a9 h;
     public boolean f9576n;
     public Utilities.Callback f9577r;
-    public final org.telegram.ui.Components.f6 f9578s;
+    public final org.telegram.ui.Components.d6 f9578s;
     public final LinearGradient v;
     public final Paint f9579w;
     public final Matrix f9580x;
-    public final org.telegram.ui.Components.f6 f9581y;
+    public final org.telegram.ui.Components.d6 f9581y;
 
     public o9(Context context, org.telegram.ui.ActionBar.g6 g6Var, a9 a9Var) {
         super(context);
         int i10;
         this.e = new ArrayList();
-        bs bsVar = bs.h;
-        this.f9578s = new org.telegram.ui.Components.f6(this, 0L, 300L, bsVar);
+        zr zrVar = zr.h;
+        this.f9578s = new org.telegram.ui.Components.d6(this, 0L, 300L, zrVar);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{-16777216, 0}, new float[]{0.0f, 1.0f}, tileMode);
         this.v = linearGradient;
         Paint paint = new Paint(1);
         this.f9579w = paint;
         this.f9580x = new Matrix();
-        this.f9581y = new org.telegram.ui.Components.f6(this, 0L, 300L, bsVar);
+        this.f9581y = new org.telegram.ui.Components.d6(this, 0L, 300L, zrVar);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(8.0f), new int[]{0, -16777216}, new float[]{0.0f, 1.0f}, tileMode);
         this.E = linearGradient2;
         Paint paint2 = new Paint(1);
@@ -71,7 +71,7 @@ public abstract class o9 extends ScrollView implements org.telegram.ui.ActionBar
         this.f9572a = g6Var;
         this.h = a9Var;
         setVerticalScrollBarEnabled(false);
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21183d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21184d6, false));
         n9 n9Var = new n9(this, context);
         this.d = n9Var;
         addView(n9Var, w7.z5.c(-2.0f, -1));
@@ -184,7 +184,7 @@ public abstract class o9 extends ScrollView implements org.telegram.ui.ActionBar
                 return;
             }
         }
-        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21183d6, false));
+        AndroidUtilities.setScrollViewEdgeEffectColor(this, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21184d6, false));
     }
 
     @Override

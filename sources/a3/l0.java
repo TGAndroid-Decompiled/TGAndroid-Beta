@@ -61,10 +61,10 @@ import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import ug.l1;
@@ -86,8 +86,8 @@ public final class l0 implements Runnable {
 
     @Override
     public final void run() {
-        xc X;
-        qc J;
+        vc X;
+        oc J;
         boolean z10;
         boolean z11;
         boolean z12;
@@ -101,7 +101,7 @@ public final class l0 implements Runnable {
         ah.e eVar;
         TLRPC.TL_availableReaction tL_availableReaction;
         TLRPC.TL_availableReaction tL_availableReaction2;
-        r5 r5Var;
+        p5 p5Var;
         TL_stories.StoryItem storyItem;
         TLRPC.MessageMedia messageMedia;
         TLRPC.Document document;
@@ -175,9 +175,9 @@ public final class l0 implements Runnable {
                 CharSequence charSequence = (CharSequence) this.d;
                 o2 U = LaunchActivity.U();
                 if (U != null) {
-                    X = xc.a0(U);
+                    X = vc.a0(U);
                 } else {
-                    X = xc.X();
+                    X = vc.X();
                 }
                 if (runnable == null) {
                     if (document3 != null) {
@@ -190,7 +190,7 @@ public final class l0 implements Runnable {
                 } else {
                     J = X.J(R.raw.contact_check, charSequence, LocaleController.getString(R.string.Gift2UniqueView), runnable);
                 }
-                J.f29842t = true;
+                J.f29213t = true;
                 J.j();
                 return;
             case 9:
@@ -433,9 +433,9 @@ public final class l0 implements Runnable {
                 p4Var.E0 = m7Var2;
                 m7Var2.setPadding(dp, dp, dp, dp);
                 p4Var.D0.addView(p4Var.E0, z5.e(40, 40, 3));
-                r5 r5Var2 = p4Var.f5695o3;
-                if (r5Var2 != null) {
-                    r5Var2.o(p4Var);
+                p5 p5Var2 = p4Var.f5695o3;
+                if (p5Var2 != null) {
+                    p5Var2.o(p4Var);
                     eVar = null;
                     p4Var.f5695o3 = null;
                 } else {
@@ -449,9 +449,9 @@ public final class l0 implements Runnable {
                 p4Var.f5698p3 = false;
                 if (i1Var.f785g != 0) {
                     p4Var.f5698p3 = true;
-                    r5 r5Var3 = new r5(2, p4Var.C2, i1Var.f785g);
-                    p4Var.f5695o3 = r5Var3;
-                    r5Var3.a(p4Var);
+                    p5 p5Var3 = new p5(2, p4Var.C2, i1Var.f785g);
+                    p4Var.f5695o3 = p5Var3;
+                    p5Var3.a(p4Var);
                 } else if (i1Var.f784f != null && (tL_availableReaction = MediaDataController.getInstance(p4Var.C2).getReactionsMap().get(i1Var.f784f)) != null) {
                     p4Var.f5692n3.setImage(null, null, ImageLocation.getForDocument(tL_availableReaction.select_animation), "60_60", null, null, null, 0L, null, null, 0);
                     imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), d1.a(), null, null, null, 0);
@@ -473,8 +473,8 @@ public final class l0 implements Runnable {
                         p4Var.j1(true);
                     }
                 }
-                if (i1Var.f785g != 0 && (r5Var = p4Var.E0.f5559f) != null) {
-                    ah.e a10 = ah.e.a(r5Var, false, true);
+                if (i1Var.f785g != 0 && (p5Var = p4Var.E0.f5559f) != null) {
+                    ah.e a10 = ah.e.a(p5Var, false, true);
                     p4Var.f5689m3 = a10;
                     a10.f(p4Var);
                 }
@@ -506,7 +506,7 @@ public final class l0 implements Runnable {
                 g4 g4Var = (g4) this.f143b;
                 g6 g6Var = (g6) this.f144c;
                 p4 p4Var2 = g4Var.f5359l;
-                f5.S(p4Var2.getContext(), null, g6Var, new u2(g4Var, (TL_stories.StoryItem) this.d, g6Var, 3));
+                d5.R(p4Var2.getContext(), null, g6Var, new u2(g4Var, (TL_stories.StoryItem) this.d, g6Var, 3));
                 g4 g4Var2 = p4Var2.f5708t1;
                 if (g4Var2 != null) {
                     g4Var2.a();
@@ -519,7 +519,7 @@ public final class l0 implements Runnable {
                 Utilities.Callback callback2 = (Utilities.Callback) this.d;
                 while (i10 < s6Var.f6193i.size()) {
                     MessageObject messageObject2 = (MessageObject) s6Var.f6193i.get(i10);
-                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20349id == document.f20349id) {
+                    if (messageObject2 != null && (storyItem = messageObject2.storyItem) != null && (messageMedia = storyItem.media) != null && (document = storyItem5.media.document) != null && (document2 = messageMedia.document) != null && document2.f20350id == document.f20350id) {
                         callback2.run(document2);
                         return;
                     }
@@ -558,13 +558,13 @@ public final class l0 implements Runnable {
                             TLRPC.Document document5 = messageMedia2.document;
                             if (document5 == null) {
                                 continue;
-                            } else if (document5.f20349id == document4.f20349id) {
+                            } else if (document5.f20350id == document4.f20350id) {
                                 k2Var.run((r6) storyItem2);
                                 return;
                             }
                         }
                         TLRPC.Photo photo2 = messageMedia3.photo;
-                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20367id == photo2.f20367id) {
+                        if (photo2 != null && (photo = messageMedia2.photo) != null && photo.f20368id == photo2.f20368id) {
                             k2Var.run((r6) storyItem2);
                             return;
                         }
@@ -634,8 +634,8 @@ public final class l0 implements Runnable {
                     } else {
                         id2 = messageObject.getId();
                     }
-                    message.f20364id = id2;
-                    storyItem6.f20577id = id2;
+                    message.f20365id = id2;
+                    storyItem6.f20578id = id2;
                     messageObject4.parentStoriesList = s6Var2;
                     messageObject4.generateThumbs(false);
                     if (arrayList6.isEmpty()) {
@@ -666,7 +666,7 @@ public final class l0 implements Runnable {
                 if (tLObject7 != null) {
                     TL_stories.TL_stories_storyViews tL_stories_storyViews = (TL_stories.TL_stories_storyViews) tLObject7;
                     MessagesController.getInstance(i19).putUsers(tL_stories_storyViews.users, false);
-                    if (!iaVar.d(tL_stories_getStoriesViews.f20585id, tL_stories_storyViews)) {
+                    if (!iaVar.d(tL_stories_getStoriesViews.f20586id, tL_stories_storyViews)) {
                         iaVar.d = 0;
                         iaVar.e = false;
                         return;

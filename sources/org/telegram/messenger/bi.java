@@ -1,27 +1,29 @@
 package org.telegram.messenger;
-
-import android.content.Context;
 public final class bi implements Runnable {
-    public final int f18041a;
-    public final SecretChatHelper f18042b;
-    public final Context f18043c;
-    public final org.telegram.ui.ActionBar.c2 d;
+    public final int f18030a;
+    public final SecretChatHelper f18031b;
+    public final long f18032c;
 
-    public bi(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        this.f18041a = i10;
-        this.f18042b = secretChatHelper;
-        this.f18043c = context;
-        this.d = c2Var;
+    public bi(SecretChatHelper secretChatHelper, long j10, int i10) {
+        this.f18030a = i10;
+        this.f18031b = secretChatHelper;
+        this.f18032c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18041a) {
+        switch (this.f18030a) {
             case 0:
-                this.f18042b.lambda$startSecretChat$27(this.f18043c, this.d);
+                SecretChatHelper.y(this.f18031b, this.f18032c);
+                return;
+            case 1:
+                SecretChatHelper.u(this.f18031b, this.f18032c);
+                return;
+            case 2:
+                SecretChatHelper.j(this.f18031b, this.f18032c);
                 return;
             default:
-                this.f18042b.lambda$startSecretChat$29(this.f18043c, this.d);
+                SecretChatHelper.x(this.f18031b, this.f18032c);
                 return;
         }
     }

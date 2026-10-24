@@ -44,11 +44,11 @@ public final class k8 implements o1.g {
                 rg.m0 m0Var = (rg.m0) this.f5504b;
                 float f13 = f7 / 1000.0f;
                 m0Var.D1 = f13;
-                rg.u1 u1Var2 = m0Var.f45916v1;
+                rg.u1 u1Var2 = m0Var.f45915v1;
                 u1Var2.setAlpha(f13);
                 u1Var2.invalidate();
-                m0Var.f45888d1.invalidate();
-                m0Var.f45915u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
+                m0Var.f45887d1.invalidate();
+                m0Var.f45914u1.getTypefaceCell().setAlpha(1.0f - m0Var.D1);
                 return;
         }
     }

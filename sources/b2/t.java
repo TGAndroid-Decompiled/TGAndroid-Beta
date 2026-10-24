@@ -53,7 +53,7 @@ public final class t implements s4.d0, androidx.lifecycle.a0, y9.i {
         qb.c cVar = (qb.c) this.f4013c;
         cVar.getClass();
         Void r32 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) cVar.f44852b;
+        SignInHubActivity signInHubActivity = (SignInHubActivity) cVar.f44851b;
         signInHubActivity.setResult(signInHubActivity.R, signInHubActivity.S);
         signInHubActivity.finish();
     }
@@ -132,7 +132,7 @@ public final class t implements s4.d0, androidx.lifecycle.a0, y9.i {
             boolean z10 = true;
             for (int i11 = 0; i11 < i10 && z10; i11++) {
                 byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                t tVar = p0.f.f44335a;
+                t tVar = p0.f.f44334a;
                 if (directionality != 0) {
                     if (directionality != 1 && directionality != 2) {
                         switch (directionality) {

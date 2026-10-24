@@ -1,30 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class k00 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f27794a;
-    public final q00 f27795b;
+import android.content.Context;
+public final class k00 extends s4.c0 {
+    public final hg.i0 f27821r;
 
-    public k00(q00 q00Var, int i10) {
-        this.f27794a = i10;
-        this.f27795b = q00Var;
+    public k00(hg.i0 i0Var, Context context) {
+        super(context);
+        this.f27821r = i0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f27794a) {
-            case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q00 q00Var = this.f27795b;
-                q00Var.f29738x = floatValue;
-                q00Var.invalidate();
-                return;
-            default:
-                q00 q00Var2 = this.f27795b;
-                q00Var2.getClass();
-                q00Var2.f29739y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q00Var2.invalidate();
-                return;
-        }
+    public final void g(android.view.View r6, s4.w0 r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.k00.g(android.view.View, s4.w0):void");
     }
 }

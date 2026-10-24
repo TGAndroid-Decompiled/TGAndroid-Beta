@@ -1,76 +1,48 @@
 package org.telegram.ui;
 
-import java.math.BigInteger;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.charset.StandardCharsets;
-import java.security.MessageDigest;
-import java.security.SecureRandom;
-import java.util.Arrays;
-import javax.crypto.Cipher;
-import javax.crypto.spec.GCMParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-public abstract class gi1 {
-    public static final BigInteger f37611a = new BigInteger("FFFFFFFFFFFFFFFFC90FDAA22168C234C4C6628B80DC1CD129024E088A67CC74020BBEA63B139B22514A08798E3404DDEF9519B3CD3A431B302B0A6DF25F14374FE1356D6D51C245E485B576625E7EC6F44C42E9A637ED6B0BFF5CB6F406B7EDEE386BFB5A899FA5AE9F24117C4B1FE649286651ECE45B3DC2007CB8A163BF0598DA48361C55D39A69163FA8FD24CF5F83655D23DCA3AD961C62F356208552BB9ED529077096966D670C354E4ABC9804F1746C08CA18217C32905E462E36CE3BE39E772C180E86039B2783A2EC07A28FB5C55DF06F4C52C9DE2BCBF6955817183995497CEA956AE515D2261898FA051015728E5A8AACAA68FFFFFFFFFFFFFFFF", 16);
-    public static final BigInteger f37612b = BigInteger.valueOf(2);
-    public static org.telegram.ui.ActionBar.h3 f37613c;
-    public static com.google.android.gms.internal.cast.z5 d;
+import android.content.Context;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class gi1 {
+    public org.telegram.ui.Cells.z1 f37588a;
+    public org.telegram.ui.ActionBar.c2 f37589b;
+    public TextView f37590c;
 
-    public static byte[] a(BigInteger bigInteger) {
-        byte[] byteArray = bigInteger.toByteArray();
-        if (byteArray.length == 256) {
-            return byteArray;
-        }
-        if (byteArray.length == 257 && byteArray[0] == 0) {
-            return Arrays.copyOfRange(byteArray, 1, byteArray.length);
-        }
-        if (byteArray.length < 256) {
-            byte[] bArr = new byte[256];
-            System.arraycopy(byteArray, 0, bArr, 256 - byteArray.length, byteArray.length);
-            return bArr;
-        }
-        throw new IllegalStateException("unexpected DH value size " + byteArray.length);
-    }
-
-    public static byte[] b(byte[][] bArr) {
-        try {
-            MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
-            for (byte[] bArr2 : bArr) {
-                messageDigest.update(bArr2);
-            }
-            return messageDigest.digest();
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static byte[] c(com.google.android.gms.internal.cast.z5 z5Var, String str, int i10, boolean z10) {
-        byte[] bytes = str.getBytes(StandardCharsets.UTF_8);
-        ByteBuffer allocate = ByteBuffer.allocate(bytes.length + 9);
-        allocate.order(ByteOrder.BIG_ENDIAN);
-        allocate.putInt(bytes.length);
-        allocate.put(bytes);
-        allocate.putInt(i10);
-        allocate.put(z10 ? (byte) 1 : (byte) 0);
-        byte[] array = allocate.array();
-        byte[] bArr = new byte[12];
-        new SecureRandom().nextBytes(bArr);
-        Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
-        cipher.init(1, new SecretKeySpec((byte[]) z5Var.d, "AES"), new GCMParameterSpec(128, bArr));
-        byte[] doFinal = cipher.doFinal(array);
-        byte[] bArr2 = new byte[doFinal.length + 28];
-        System.arraycopy((byte[]) z5Var.f6893b, 0, bArr2, 0, 16);
-        System.arraycopy(bArr, 0, bArr2, 16, 12);
-        System.arraycopy(doFinal, 0, bArr2, 28, doFinal.length);
-        return bArr2;
-    }
-
-    public static String d(byte[] bArr) {
-        StringBuilder sb2 = new StringBuilder(bArr.length * 2);
-        int length = bArr.length;
-        for (int i10 = 0; i10 < length; i10++) {
-            sb2.append(String.format("%02x", Byte.valueOf(bArr[i10])));
-        }
-        return sb2.toString();
+    public static void a(Context context, Utilities.Callback callback, Runnable runnable) {
+        ?? obj = new Object();
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context);
+        alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.TermsOfUse);
+        LinearLayout e = org.telegram.messenger.tl.e(context, 1);
+        TextView textView = new TextView(context);
+        textView.setLetterSpacing(0.025f);
+        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21290j5, null);
+        textView.setTextSize(1, 14.0f);
+        e.addView(textView, w7.z5.t(-1, -2, 0, 24, 0, 24, 0));
+        org.telegram.ui.Cells.z1 z1Var = new org.telegram.ui.Cells.z1(context, 1, null);
+        obj.f37588a = z1Var;
+        z1Var.getTextView().getLayoutParams().width = -1;
+        obj.f37588a.getTextView().setTextSize(1, 14.0f);
+        e.addView(obj.f37588a, w7.z5.t(-1, 48, 3, 8, 0, 8, 0));
+        boolean[] zArr = new boolean[1];
+        org.telegram.messenger.v0.m(R.string.BotWebAppDisclaimerSubtitle, textView);
+        obj.f37588a.e(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.BotWebAppDisclaimerCheck), new dv(context, 8)), "", false, false, false);
+        alertDialog$Builder.o(e);
+        alertDialog$Builder.k(LocaleController.getString(R.string.Continue), new org.telegram.ui.Components.a3(1, callback, zArr));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new wv(28));
+        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
+        obj.f37589b = c2Var;
+        c2Var.show();
+        TextView textView2 = (TextView) obj.f37589b.d(-1);
+        obj.f37590c = textView2;
+        textView2.setEnabled(false);
+        obj.f37590c.setAlpha(0.5f);
+        obj.f37588a.setOnClickListener(new f31(obj, 8));
+        obj.f37588a.setBackground(org.telegram.ui.ActionBar.k6.g0(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21273i6, false), 7, -1));
+        obj.f37589b.setOnDismissListener(new org.telegram.ui.Components.m2(zArr, runnable));
     }
 }

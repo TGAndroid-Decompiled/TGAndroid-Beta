@@ -7,14 +7,14 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.l6;
 import org.telegram.ui.ActionBar.m6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.i71;
 import w7.z5;
 public final class j0 extends h0 {
     public final k0 h;
@@ -35,12 +35,12 @@ public final class j0 extends h0 {
         s sVar = new s(k0Var, 5);
         u uVar = new u(k0Var, 5);
         g6Var = ((h3) k0Var).resourcesProvider;
-        j71 j71Var = new j71(context, i10, 0, false, sVar, uVar, null, g6Var);
-        this.d = j71Var;
-        j71Var.t1();
-        j71 j71Var2 = this.d;
-        j71Var2.Z2.f24972r = false;
-        j71Var2.setClipToPadding(false);
+        i71 i71Var = new i71(context, i10, 0, false, sVar, uVar, null, g6Var);
+        this.d = i71Var;
+        i71Var.t1();
+        i71 i71Var2 = this.d;
+        i71Var2.Z2.f24646r = false;
+        i71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.d.j(new ah.d0(this, 12));
         this.f12186c.addView(this.d, 0, z5.c(-1.0f, -1));
@@ -53,24 +53,24 @@ public final class j0 extends h0 {
         g6Var3 = ((h3) k0Var).resourcesProvider;
         r6.m(kVar2, 5, i11, g6Var3);
         org.telegram.ui.ActionBar.k kVar3 = this.f12184a;
-        int i12 = k6.f21590z8;
+        int i12 = k6.f21591z8;
         g6Var4 = ((h3) k0Var).resourcesProvider;
         r6.m(kVar3, 3, i12, g6Var4);
         this.f12184a.setBackButtonImage(R.drawable.ic_ab_back);
         org.telegram.ui.ActionBar.k kVar4 = this.f12184a;
-        int i13 = k6.f21573y8;
+        int i13 = k6.f21574y8;
         g6Var5 = ((h3) k0Var).resourcesProvider;
         r6.m(kVar4, 1, i13, g6Var5);
         this.f12184a.setTitle(LocaleController.getString(R.string.CommunityPendingRequestsTitle));
         this.f12184a.getTitleTextView().setTranslationX(-AndroidUtilities.dp(18.0f));
         this.f12184a.setActionBarMenuOnItemClick(new ah.s(this, 10));
         this.f12186c.addView(this.f12184a, z5.e(-1, 56, 48));
-        LinearLayout e = sl.e(context, 0);
+        LinearLayout e = tl.e(context, 0);
         e.setPadding(AndroidUtilities.dp(7.0f), 0, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(12.0f));
         g6Var6 = ((h3) k0Var).resourcesProvider;
         ei.d dVar = new ei.d(context, g6Var6, true);
         dVar.e();
-        int i14 = k6.f21183d6;
+        int i14 = k6.f21184d6;
         dVar.setColor(i0.a.f(0.125f, k0Var.getThemedColor(i14), k0Var.getThemedColor(i11)));
         dVar.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
         dVar.f();
@@ -81,12 +81,12 @@ public final class j0 extends h0 {
             m6 p5 = r6.p(dVar, true);
             p5.d = background;
             p5.e = null;
-            p5.f21645f = null;
+            p5.f21646f = null;
             if (background != null) {
                 l6 l6Var = new l6();
                 p5.e = l6Var;
                 l6Var.c(i14, i11, 3, 0.125f, g6Var8);
-                l6Var.f21613g = r6.v(background);
+                l6Var.f21614g = r6.v(background);
             }
         }
         dVar.setOnClickListener(new View.OnClickListener(this) {

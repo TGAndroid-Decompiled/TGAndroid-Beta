@@ -43,11 +43,11 @@ public final class k2 implements RequestDelegate {
                 }
                 return;
             case 5:
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 AndroidUtilities.runOnUIThread(new p5(i11, tLObject, 2));
                 return;
             default:
-                Pattern pattern2 = LaunchActivity.E1;
+                Pattern pattern2 = LaunchActivity.D1;
                 AndroidUtilities.runOnUIThread(new p5(i11, tLObject, 1));
                 return;
         }

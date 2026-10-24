@@ -9,19 +9,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.n5;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.lm0;
 public final class j0 extends CountDownTimer {
-    public final q0 f48136a;
+    public final q0 f48135a;
 
     public j0(q0 q0Var) {
         super(Long.MAX_VALUE, 1000L);
-        this.f48136a = q0Var;
+        this.f48135a = q0Var;
     }
 
     @Override
     public final void onTick(long j10) {
-        q0 q0Var = this.f48136a;
-        mm0 mm0Var = q0Var.d;
+        q0 q0Var = this.f48135a;
+        lm0 lm0Var = q0Var.d;
         ArrayList arrayList = q0Var.Y;
         ArrayList arrayList2 = new ArrayList(arrayList.size());
         int size = arrayList.size();
@@ -38,8 +38,8 @@ public final class j0 extends CountDownTimer {
             }
         }
         if (!arrayList2.isEmpty()) {
-            for (int i11 = 0; i11 < mm0Var.getChildCount(); i11++) {
-                View childAt = mm0Var.getChildAt(i11);
+            for (int i11 = 0; i11 < lm0Var.getChildCount(); i11++) {
+                View childAt = lm0Var.getChildAt(i11);
                 if (childAt instanceof yg.k) {
                     yg.k kVar = (yg.k) childAt;
                     if (arrayList2.contains(kVar.getBoost())) {

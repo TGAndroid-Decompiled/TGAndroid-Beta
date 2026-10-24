@@ -12,8 +12,8 @@ import android.graphics.drawable.shapes.RoundRectShape;
 import android.util.StateSet;
 import org.telegram.messenger.AndroidUtilities;
 public abstract class a6 {
-    public static final int f20703a = k6.f21183d6;
-    public static float[] f20704b;
+    public static final int f20704a = k6.f21184d6;
+    public static float[] f20705b;
 
     public static float[] a(float... fArr) {
         if (fArr.length == 0) {
@@ -26,11 +26,11 @@ public abstract class a6 {
         float f7;
         float f10;
         float f11;
-        if (f20704b == null) {
-            f20704b = new float[3];
+        if (f20705b == null) {
+            f20705b = new float[3];
         }
-        Color.colorToHSV(i10, f20704b);
-        float[] fArr = f20704b;
+        Color.colorToHSV(i10, f20705b);
+        float[] fArr = f20705b;
         float f12 = fArr[1];
         if (f12 > 0.01f) {
             if (k6.I.q()) {
@@ -39,7 +39,7 @@ public abstract class a6 {
                 f10 = -0.25f;
             }
             fArr[1] = Math.min(1.0f, Math.max(0.0f, f12 + f10));
-            float[] fArr2 = f20704b;
+            float[] fArr2 = f20705b;
             float f13 = fArr2[2];
             if (k6.I.q()) {
                 f11 = 0.05f;
@@ -56,19 +56,19 @@ public abstract class a6 {
             }
             fArr[2] = Math.min(1.0f, Math.max(0.0f, f14 + f7));
         }
-        return Color.HSVToColor(127, f20704b);
+        return Color.HSVToColor(127, f20705b);
     }
 
     public static org.telegram.ui.Cells.y c(z5 z5Var, int i10) {
         ColorStateList colorStateList = new ColorStateList(new int[][]{StateSet.WILD_CARD}, new int[]{i10});
         ?? drawable = new Drawable();
-        drawable.f22044b = -1.0f;
-        if (z5.f22042c == null) {
+        drawable.f22045b = -1.0f;
+        if (z5.f22043c == null) {
             Paint paint = new Paint(1);
-            z5.f22042c = paint;
+            z5.f22043c = paint;
             paint.setColor(-1);
         }
-        drawable.f22043a = z5.f22042c;
+        drawable.f22044a = z5.f22043c;
         return new RippleDrawable(colorStateList, z5Var, drawable);
     }
 

@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.mk;
+import org.telegram.ui.Components.kk;
 public final class j3 implements Runnable {
     public final int f11301a = 0;
     public final int f11302b;
@@ -43,8 +43,8 @@ public final class j3 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: gi.j3.run():void");
     }
 
-    public j3(mk mkVar, int i10, TLRPC.TL_error tL_error, TLObject tLObject, AccountInstance accountInstance, boolean z10, String str, ArrayList arrayList, long j10, long j11, ArrayList arrayList2, ArrayList arrayList3) {
-        this.f11305n = mkVar;
+    public j3(kk kkVar, int i10, TLRPC.TL_error tL_error, TLObject tLObject, AccountInstance accountInstance, boolean z10, String str, ArrayList arrayList, long j10, long j11, ArrayList arrayList2, ArrayList arrayList3) {
+        this.f11305n = kkVar;
         this.f11302b = i10;
         this.f11303c = tL_error;
         this.d = tLObject;

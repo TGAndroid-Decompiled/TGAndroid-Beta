@@ -1,34 +1,34 @@
 package org.telegram.ui;
 
-import android.app.Activity;
+import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessageObject;
-public final class k21 implements o21 {
-    public final sn f38754a;
-    public final Activity f38755b;
-    public final org.telegram.ui.ActionBar.g6 f38756c;
-    public final MessageObject d;
+public final class k21 implements n21 {
+    public final org.telegram.messenger.video.a f38725a;
+    public final org.telegram.ui.Components.vc f38726b;
+    public final Context f38727c;
+    public final ci.k0 d;
+    public final org.telegram.messenger.video.d e;
 
-    public k21(sn snVar, Activity activity, org.telegram.ui.ActionBar.g6 g6Var, MessageObject messageObject) {
-        this.f38754a = snVar;
-        this.f38755b = activity;
-        this.f38756c = g6Var;
-        this.d = messageObject;
+    public k21(org.telegram.messenger.video.a aVar, org.telegram.ui.Components.vc vcVar, Context context, ci.k0 k0Var, org.telegram.messenger.video.d dVar) {
+        this.f38725a = aVar;
+        this.f38726b = vcVar;
+        this.f38727c = context;
+        this.d = k0Var;
+        this.e = dVar;
     }
 
     @Override
     public final void a() {
-        AndroidUtilities.runOnUIThread(new e21(this.f38754a, this.f38755b, this.f38756c, this.d, 2), 200L);
+        AndroidUtilities.runOnUIThread(new g21(this.f38725a, this.f38726b, this.f38727c, this.d, 2), 200L);
     }
 
     @Override
     public final void b() {
-        AndroidUtilities.runOnUIThread(new se(this.f38754a, this.d, 8), 200L);
+        AndroidUtilities.runOnUIThread(new lv0(25, this.f38725a, this.f38726b), 200L);
     }
 
     @Override
     public final void c() {
-        sn snVar = this.f38754a;
-        snVar.showDialog(new sg.y0((org.telegram.ui.ActionBar.o2) snVar, 3, true));
+        this.e.run();
     }
 }

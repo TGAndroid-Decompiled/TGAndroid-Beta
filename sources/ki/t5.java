@@ -12,7 +12,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.CheckBoxBase;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.h80;
 public final class t5 implements View.OnClickListener {
     public final int f15591a;
     public final c6 f15592b;
@@ -60,8 +60,8 @@ public final class t5 implements View.OnClickListener {
                         ArrayList arrayList = new ArrayList(set);
                         Collections.sort(arrayList);
                         TL_iv.pageBlockPreformatted pageblockpreformatted = (TL_iv.pageBlockPreformatted) aVar3.f15141b;
-                        j80 M = w3Var2.f15656i3.M(view);
-                        M.W(k6.c0(AndroidUtilities.dp(3.0f), k6.w0(k6.f21183d6, w3Var2.f15654h3)));
+                        h80 M = w3Var2.f15656i3.M(view);
+                        M.W(k6.c0(AndroidUtilities.dp(3.0f), k6.w0(k6.f21184d6, w3Var2.f15654h3)));
                         M.Z = true;
                         M.X = AndroidUtilities.dp(350.0f);
                         M.i(new o2(w3Var2, aVar3, 25), LocaleController.getString(R.string.ArticleNone), TextUtils.isEmpty(pageblockpreformatted.language));

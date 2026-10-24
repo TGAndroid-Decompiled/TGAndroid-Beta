@@ -1,34 +1,87 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.text.TextUtils;
 import java.util.ArrayList;
-public final class ys implements Runnable {
-    public final int f33033a;
-    public final zs f33034b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.R;
+public class ys extends a71 {
+    public final int P;
+    public final int Q;
+    public final boolean R;
+    public final xs S;
+    public final ArrayList T;
+    public final ArrayList U;
+    public final ArrayList V;
+    public boolean W;
+    public boolean X;
+    public final CharSequence Y;
+    public int Z;
+    public int f33031a0;
+    public boolean f33032b0;
+    public boolean f33033c0;
+    public boolean f33034d0;
+    public int f33035e0;
+    public int f33036f0;
+    public String f33037g0;
+    public final us f33038h0;
+    public boolean f33039i0;
+    public final x2 f33040j0;
 
-    public ys(zs zsVar, int i10) {
-        this.f33033a = i10;
-        this.f33034b = zsVar;
+    public ys(lm0 lm0Var, Context context, int i10, int i11, boolean z10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(lm0Var, context, i10, 0, true, null, g6Var);
+        this.T = new ArrayList();
+        this.U = new ArrayList();
+        this.V = new ArrayList();
+        this.f33038h0 = new us(this, 0);
+        this.f33039i0 = true;
+        this.f33040j0 = new x2(this, 3);
+        this.v = new d(this, 8);
+        this.P = i10;
+        this.Q = i11;
+        this.R = z10;
+        this.S = new xs(i10, new us(this, 1));
+        this.Y = AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.AppsTabInfo), new ai.b(this, g6Var, context)), true);
+        N(false);
+        MediaDataController.getInstance(i10).loadHints(true);
     }
 
-    @Override
-    public final void run() {
-        switch (this.f33033a) {
-            case 0:
-                zs zsVar = this.f33034b;
-                zsVar.f33330c = false;
-                zsVar.f33329b.run();
-                ArrayList arrayList = zsVar.h;
-                if (arrayList.isEmpty() || System.currentTimeMillis() - zsVar.f33331f > 3600000) {
-                    arrayList.clear();
-                    zsVar.e = false;
-                    zsVar.f33332g = null;
-                    zsVar.a();
-                    return;
+    public final void V() {
+        boolean isEmpty = TextUtils.isEmpty(this.f33037g0);
+        lm0 lm0Var = this.d;
+        if (!isEmpty) {
+            if (this.f33034d0 && !this.f33032b0 && lm0Var != null) {
+                int i10 = 0;
+                while (true) {
+                    if (i10 >= lm0Var.getChildCount()) {
+                        break;
+                    } else if (lm0Var.getChildAt(i10) instanceof z00) {
+                        if (this.f33034d0 && !this.f33032b0 && !TextUtils.isEmpty(this.f33037g0)) {
+                            W(true);
+                        }
+                    } else {
+                        i10++;
+                    }
                 }
-                return;
-            default:
-                this.f33034b.f33333i = false;
-                return;
+            }
+        } else {
+            if (!this.f33039i0) {
+                if (lm0Var != null) {
+                    for (int i11 = 0; i11 < lm0Var.getChildCount(); i11++) {
+                        if (!(lm0Var.getChildAt(i11) instanceof z00)) {
+                        }
+                    }
+                }
+            }
+            this.S.a();
+            break;
         }
+        this.f33039i0 = false;
+    }
+
+    public final void W(boolean r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ys.W(boolean):void");
     }
 }

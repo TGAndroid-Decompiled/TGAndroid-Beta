@@ -1,7 +1,7 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.MessageObject;
-public final class zl extends org.telegram.ui.Components.s6 {
+public final class zl extends org.telegram.ui.Components.q6 {
     @Override
     public final void c(Object obj, float f7) {
         ((MessageObject.SendAnimationData) obj).currentScale = f7;

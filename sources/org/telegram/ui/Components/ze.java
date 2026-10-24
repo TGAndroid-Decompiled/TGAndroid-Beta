@@ -1,55 +1,88 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.view.MotionEvent;
 import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
 public final class ze extends ImageView {
-    public float f33204a;
-    public final ChatActivityEnterView f33205b;
+    public final int f33250a;
+    public final ChatActivityEnterView f33251b;
 
-    public ze(ChatActivityEnterView chatActivityEnterView, Context context) {
+    public ze(ChatActivityEnterView chatActivityEnterView, Context context, int i10) {
         super(context);
-        this.f33205b = chatActivityEnterView;
+        this.f33250a = i10;
+        this.f33251b = chatActivityEnterView;
     }
 
     @Override
-    public final float getTranslationX() {
-        return this.f33204a;
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f33250a) {
+            case 0:
+                super.onLayout(z10, i10, i11, i12, i13);
+                post(new ge(this.f33251b, 5));
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
     }
 
     @Override
-    public final void setTranslationX(float f7) {
-        float f10;
-        float alpha;
-        this.f33204a = f7;
-        float f11 = -44.0f;
-        float dp = AndroidUtilities.dp(-44.0f) + this.f33204a;
-        ChatActivityEnterView chatActivityEnterView = this.f33205b;
-        float f12 = dp + chatActivityEnterView.f24192y + chatActivityEnterView.f24186x;
-        bf bfVar = chatActivityEnterView.K1;
-        float f13 = 0.0f;
-        if (bfVar != null && bfVar.getVisibility() == 0) {
-            f10 = -44.0f;
-        } else {
-            f10 = 0.0f;
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f33250a) {
+            case 2:
+                if (getAlpha() <= 0.0f) {
+                    return false;
+                }
+                return super.onTouchEvent(motionEvent);
+            default:
+                return super.onTouchEvent(motionEvent);
         }
-        float dp2 = AndroidUtilities.dp(f10);
-        bf bfVar2 = chatActivityEnterView.K1;
-        if (bfVar2 == null) {
-            alpha = 0.0f;
-        } else {
-            alpha = bfVar2.getAlpha();
+    }
+
+    @Override
+    public final void setAlpha(float f7) {
+        switch (this.f33250a) {
+            case 0:
+                super.setAlpha(f7);
+                xe xeVar = this.f33251b.J1;
+                if (xeVar != null) {
+                    xeVar.setTranslationX(xeVar.f32564a);
+                    return;
+                }
+                return;
+            case 1:
+                super.setAlpha(f7);
+                xe xeVar2 = this.f33251b.J1;
+                if (xeVar2 != null) {
+                    xeVar2.setTranslationX(xeVar2.f32564a);
+                    return;
+                }
+                return;
+            default:
+                super.setAlpha(f7);
+                se seVar = this.f33251b.Z0;
+                if (seVar != null) {
+                    seVar.invalidate();
+                    return;
+                }
+                return;
         }
-        float f14 = (dp2 * alpha) + f12;
-        bf bfVar3 = chatActivityEnterView.f24188x1;
-        if (bfVar3 == null || bfVar3.getVisibility() != 0) {
-            f11 = 0.0f;
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f33250a) {
+            case 2:
+                super.setVisibility(i10);
+                se seVar = this.f33251b.Z0;
+                if (seVar != null) {
+                    seVar.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
         }
-        float dp3 = AndroidUtilities.dp(f11);
-        bf bfVar4 = chatActivityEnterView.f24188x1;
-        if (bfVar4 != null) {
-            f13 = bfVar4.getAlpha();
-        }
-        super.setTranslationX((dp3 * f13) + f14);
     }
 }

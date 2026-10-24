@@ -20,15 +20,15 @@ public final class f6 extends View {
         v6 v6Var = new v6(this, tL_starGiftUnique, 60, 0.27f);
         this.f1261a = v6Var;
         v6Var.K = 3;
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-        h9Var.p(tLObject);
+        org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+        f9Var.p(tLObject);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f1262b = imageReceiver;
         imageReceiver.setRoundRadius(AndroidUtilities.dp(30.0f));
-        imageReceiver.setForUserOrChat(tLObject, h9Var);
+        imageReceiver.setForUserOrChat(tLObject, f9Var);
         Drawable mutate = context.getDrawable(R.drawable.chats_undo).mutate();
         this.f1263c = mutate;
-        org.telegram.ui.ActionBar.r6.z(this, mutate, org.telegram.ui.ActionBar.k6.f21588z6, null, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.r6.z(this, mutate, org.telegram.ui.ActionBar.k6.f21589z6, null, PorterDuff.Mode.MULTIPLY);
         mutate.setBounds(AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(-12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
     }
 

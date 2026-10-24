@@ -6,24 +6,24 @@ import android.widget.ImageView;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class jy implements org.telegram.ui.Components.dm0 {
-    public final Rect f38723a = new Rect();
-    public final ny f38724b;
+public final class jy implements org.telegram.ui.Components.cm0 {
+    public final Rect f38701a = new Rect();
+    public final ny f38702b;
 
     public jy(ny nyVar) {
-        this.f38724b = nyVar;
+        this.f38702b = nyVar;
     }
 
     @Override
     public final boolean mo17c(float f7, float f10, int i10, View view) {
-        ny nyVar = this.f38724b;
+        ny nyVar = this.f38702b;
         if (nyVar.getParentActivity() != null && (view instanceof org.telegram.ui.Cells.f4)) {
-            Rect rect = this.f38723a;
+            Rect rect = this.f38701a;
             ((ImageView) view.getTag(R.id.object_tag)).getHitRect(rect);
             if (!rect.contains((int) f7, (int) f10)) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(nyVar.getParentActivity());
                 alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.Delete)}, new iy(this, i10, 0));
-                nyVar.showDialog(alertDialog$Builder.f20678a);
+                nyVar.showDialog(alertDialog$Builder.f20679a);
                 return true;
             }
         }

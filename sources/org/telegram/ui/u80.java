@@ -12,22 +12,22 @@ import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 public final class u80 implements xx {
-    public final int f42299a = 0;
-    public final LaunchActivity f42300b;
-    public final TLRPC.User f42301c;
+    public final int f42346a = 0;
+    public final LaunchActivity f42347b;
+    public final TLRPC.User f42348c;
     public final String d;
     public final int e;
 
     public u80(LaunchActivity launchActivity, String str, int i10, TLRPC.User user) {
-        this.f42300b = launchActivity;
+        this.f42347b = launchActivity;
         this.d = str;
         this.e = i10;
-        this.f42301c = user;
+        this.f42348c = user;
     }
 
     @Override
     public final boolean D() {
-        switch (this.f42299a) {
+        switch (this.f42346a) {
             case 0:
                 return false;
             default:
@@ -37,7 +37,7 @@ public final class u80 implements xx {
 
     @Override
     public final boolean J(ey eyVar) {
-        switch (this.f42299a) {
+        switch (this.f42346a) {
             case 0:
                 return false;
             default:
@@ -46,19 +46,19 @@ public final class u80 implements xx {
     }
 
     @Override
-    public final boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
-        int i12 = this.f42299a;
+    public final boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, xe1 xe1Var) {
+        int i12 = this.f42346a;
         int i13 = this.e;
         String str = this.d;
-        TLRPC.User user = this.f42301c;
-        LaunchActivity launchActivity = this.f42300b;
+        TLRPC.User user = this.f42348c;
+        LaunchActivity launchActivity = this.f42347b;
         switch (i12) {
             case 0:
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 TLRPC.TL_inputMediaGame tL_inputMediaGame = new TLRPC.TL_inputMediaGame();
                 TLRPC.TL_inputGameShortName tL_inputGameShortName = new TLRPC.TL_inputGameShortName();
-                tL_inputMediaGame.f20405id = tL_inputGameShortName;
+                tL_inputMediaGame.f20406id = tL_inputGameShortName;
                 tL_inputGameShortName.short_name = str;
                 tL_inputGameShortName.bot_id = MessagesController.getInstance(i13).getInputUser(user);
                 SendMessagesHelper.getInstance(i13).sendGame(MessagesController.getInstance(i13).getInputPeer(j10), tL_inputMediaGame, 0L, 0L);
@@ -76,7 +76,7 @@ public final class u80 implements xx {
                 }
                 return true;
             default:
-                Pattern pattern2 = LaunchActivity.E1;
+                Pattern pattern2 = LaunchActivity.D1;
                 long j11 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle h10 = a1.g.h("scrollToTopOnResume", true);
                 if (DialogObject.isEncryptedDialog(j11)) {
@@ -99,8 +99,8 @@ public final class u80 implements xx {
     }
 
     public u80(LaunchActivity launchActivity, TLRPC.User user, String str, int i10) {
-        this.f42300b = launchActivity;
-        this.f42301c = user;
+        this.f42347b = launchActivity;
+        this.f42348c = user;
         this.d = str;
         this.e = i10;
     }

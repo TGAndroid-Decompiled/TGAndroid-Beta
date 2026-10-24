@@ -1,116 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.util.StateSet;
-import android.view.MotionEvent;
-public final class nq extends q6 {
-    public final Rect f28997s;
-    public Drawable v;
-    public boolean f28998w;
+import android.view.animation.DecelerateInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class nq extends Drawable {
+    public final Paint f28992a;
+    public long f28993b;
+    public final RectF f28994c;
+    public float d;
+    public boolean e;
+    public int f28995f;
+    public int f28996g;
 
-    public nq(Context context) {
-        super(context, false, false, false);
-        this.f28997s = new Rect();
+    public nq() {
+        this(2.0f);
     }
 
-    public Rect getClickBounds() {
-        return this.f28997s;
+    public abstract int a();
+
+    @Override
+    public final void draw(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.nq.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.v != null) {
-            Rect bounds = getDrawable().getBounds();
-            Rect rect = this.f28997s;
-            rect.set(bounds);
-            int ceil = (int) Math.ceil(getDrawable().c());
-            if (getDrawable().f29437b == 3) {
-                rect.right = rect.left + ceil;
-            } else if (getDrawable().f29437b == 5) {
-                rect.left = rect.right - ceil;
-            } else if (getDrawable().f29437b == 17) {
-                int i10 = (rect.left + rect.right) / 2;
-                int i11 = ceil / 2;
-                rect.left = i10 - i11;
-                rect.right = i10 + i11;
-            }
-            rect.left -= getPaddingLeft();
-            rect.top -= getPaddingTop();
-            rect.right = getPaddingRight() + rect.right;
-            rect.bottom = getPaddingBottom() + rect.bottom;
-            this.v.setBounds(rect);
-            this.v.draw(canvas);
-        }
-        super.onDraw(canvas);
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
-        if (motionEvent.getAction() == 0 && contains) {
-            this.f28998w = true;
-            Drawable drawable = this.v;
-            if (drawable != null) {
-                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
-                this.v.setState(new int[]{16842919, 16842910});
-            }
-            invalidate();
-            return contains;
-        }
-        if (motionEvent.getAction() == 1) {
-            if (this.f28998w && contains) {
-                callOnClick();
-            }
-            this.f28998w = false;
-            Drawable drawable2 = this.v;
-            if (drawable2 != null) {
-                drawable2.setState(StateSet.NOTHING);
-                return contains;
-            }
-        } else if (motionEvent.getAction() == 3) {
-            this.f28998w = false;
-            Drawable drawable3 = this.v;
-            if (drawable3 != null) {
-                drawable3.setState(StateSet.NOTHING);
-            }
-        }
-        return contains;
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(24.0f);
     }
 
     @Override
-    public void setBackground(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public nq(float f7) {
+        Paint paint = new Paint(1);
+        this.f28992a = paint;
+        new DecelerateInterpolator();
+        this.f28994c = new RectF();
+        this.f28996g = 255;
+        paint.setColor(-1);
+        paint.setStrokeWidth(AndroidUtilities.dp(f7));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStyle(Paint.Style.STROKE);
+        this.f28995f = AndroidUtilities.dp(8.0f);
     }
 
     @Override
-    public void setBackgroundDrawable(Drawable drawable) {
-        Drawable drawable2 = this.v;
-        if (drawable2 != null) {
-            drawable2.setCallback(null);
-        }
-        this.v = drawable;
-        if (drawable != null) {
-            drawable.setCallback(this);
-        }
-        invalidate();
+    public final void setAlpha(int i10) {
     }
 
     @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.v && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

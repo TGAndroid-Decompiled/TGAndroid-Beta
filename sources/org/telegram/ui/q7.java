@@ -11,6 +11,6 @@ public final class q7 extends org.telegram.ui.Cells.s7 {
 
     @Override
     public final void h() {
-        this.G0.v.f42629w.s0(null, (bi.b) getTag(), true);
+        this.G0.v.f42597w.s0(null, (bi.b) getTag(), true);
     }
 }

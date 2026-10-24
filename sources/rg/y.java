@@ -5,32 +5,32 @@ import java.util.HashMap;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MediaController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.pi;
 import org.telegram.ui.Components.ri;
-import org.telegram.ui.Components.ti;
-public final class y implements ri {
-    public final ti f46141a;
-    public final m0 f46142b;
+public final class y implements pi {
+    public final ri f46140a;
+    public final m0 f46141b;
 
-    public y(m0 m0Var, ti tiVar) {
-        this.f46142b = m0Var;
-        this.f46141a = tiVar;
+    public y(m0 m0Var, ri riVar) {
+        this.f46141b = m0Var;
+        this.f46140a = riVar;
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar = this.f46141a;
+        ri riVar = this.f46140a;
         try {
-            HashMap<Object, Object> selectedPhotos = tiVar.f30742j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = riVar.f30158j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
                 if (str == null) {
                     str = photoEntry.path;
                 }
-                m0 m0Var = this.f46142b;
+                m0 m0Var = this.f46141b;
                 m0Var.e0(m0Var.g0(str, true));
-                tiVar.dismiss();
+                riVar.dismiss();
             }
         } catch (Throwable th2) {
             FileLog.e(th2);
@@ -44,8 +44,8 @@ public final class y implements ri {
     }
 
     @Override
-    public final void r(gh ghVar) {
-        ghVar.run();
+    public final void r(eh ehVar) {
+        ehVar.run();
     }
 
     @Override

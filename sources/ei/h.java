@@ -25,7 +25,7 @@ public final class h implements TextWatcher {
         boolean z10;
         m mVar = this.f9151c;
         e eVar = mVar.f9407c0;
-        org.telegram.ui.Components.q6 q6Var = mVar.v;
+        org.telegram.ui.Components.o6 o6Var = mVar.v;
         mVar.f9430w = Character.codePointCount(editable, 0, editable.length());
         int captionLimit = mVar.getCaptionLimit();
         if (mVar.f9430w + 25 > captionLimit) {
@@ -33,18 +33,18 @@ public final class h implements TextWatcher {
         } else {
             str = null;
         }
-        q6Var.a();
-        q6Var.setText(str);
+        o6Var.a();
+        o6Var.setText(str);
         if (mVar.f9430w >= captionLimit) {
             i10 = -1280137;
         } else {
             i10 = -1;
         }
-        q6Var.setTextColor(i10);
+        o6Var.setTextColor(i10);
         if (mVar.f9430w > captionLimit && !UserConfig.getInstance(mVar.U).isPremium() && mVar.f9430w < mVar.getCaptionPremiumLimit() && mVar.f9430w > this.f9149a && (mVar.e() || MessagesController.getInstance(mVar.U).premiumFeaturesBlocked())) {
             int i11 = -mVar.N;
             mVar.N = i11;
-            AndroidUtilities.shakeViewSpring(q6Var, i11);
+            AndroidUtilities.shakeViewSpring(o6Var, i11);
             BotWebViewVibrationEffect.APP_ERROR.vibrate();
         }
         int i12 = mVar.f9430w;
@@ -85,7 +85,7 @@ public final class h implements TextWatcher {
             if (mVar.M == null) {
                 i iVar = new i(mVar, mVar.getContext(), mVar.f9432x, LaunchActivity.R(), new ci.b(), 0);
                 mVar.M = iVar;
-                mVar.T = new org.telegram.ui.Components.na(mVar.O, iVar, 0, false);
+                mVar.T = new org.telegram.ui.Components.la(mVar.O, iVar, 0, false);
                 mVar.M.p(new ya.c(mVar, 15));
                 bh.b bVar = mVar.f9413h0;
                 if (bVar != null) {

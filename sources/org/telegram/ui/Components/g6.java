@@ -1,48 +1,110 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class g6 implements ne.h, qe.a {
-    public final View f26547a;
-    public boolean f26548b;
-    public boolean f26549c;
-    public int d;
-    public int e;
+import android.animation.ObjectAnimator;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import java.util.ArrayList;
+import java.util.Locale;
+public final class g6 {
+    public static final org.telegram.ui.Cells.t8 h = new org.telegram.ui.Cells.t8("progress", 3);
+    public final TextPaint f26566c;
+    public ObjectAnimator d;
+    public final org.telegram.ui.Cells.t1 f26568g;
+    public final ArrayList f26564a = new ArrayList();
+    public final ArrayList f26565b = new ArrayList();
+    public float e = 0.0f;
+    public int f26567f = 1;
 
-    public g6(View view) {
-        this.f26547a = view;
+    public g6(org.telegram.ui.Cells.t1 t1Var, TextPaint textPaint) {
+        this.f26566c = textPaint;
+        this.f26568g = t1Var;
     }
 
-    @Override
-    public final void a() {
-        if (!this.f26548b) {
-            this.f26547a.setVisibility(8);
+    public final int a() {
+        ArrayList arrayList = this.f26564a;
+        int size = arrayList.size();
+        float f7 = 0.0f;
+        for (int i10 = 0; i10 < size; i10++) {
+            f7 += ((StaticLayout) arrayList.get(i10)).getLineWidth(0);
         }
-        this.f26549c = false;
+        return (int) Math.ceil(f7);
     }
 
-    @Override
-    public final int b(boolean z10) {
-        return 0;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof g6) {
-            return this.f26547a.equals(((g6) obj).f26547a);
+    public final void b(int i10, boolean z10) {
+        boolean z11;
+        float f7;
+        String str;
+        TextPaint textPaint;
+        float f10;
+        ArrayList arrayList;
+        int i11 = this.f26567f;
+        ArrayList arrayList2 = this.f26564a;
+        if (i11 == i10 && !arrayList2.isEmpty()) {
+            return;
         }
-        return false;
-    }
-
-    @Override
-    public final int getHeight() {
-        return this.f26547a.getMeasuredHeight();
-    }
-
-    @Override
-    public final int getWidth() {
-        return this.f26547a.getMeasuredWidth();
-    }
-
-    public final int hashCode() {
-        return this.f26547a.hashCode();
+        ObjectAnimator objectAnimator = this.d;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.d = null;
+        }
+        ArrayList arrayList3 = this.f26565b;
+        arrayList3.clear();
+        arrayList3.addAll(arrayList2);
+        arrayList2.clear();
+        Locale locale = Locale.US;
+        int i12 = this.f26567f;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(i12);
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        sb4.append(i10);
+        String sb5 = sb4.toString();
+        if (i10 > this.f26567f) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f26567f = i10;
+        float f11 = 0.0f;
+        this.e = 0.0f;
+        int i13 = 0;
+        while (i13 < sb5.length()) {
+            int i14 = i13 + 1;
+            String substring = sb5.substring(i13, i14);
+            if (!arrayList3.isEmpty() && i13 < sb3.length()) {
+                str = sb3.substring(i13, i14);
+            } else {
+                str = null;
+            }
+            if (str != null && str.equals(substring)) {
+                arrayList2.add((StaticLayout) arrayList3.get(i13));
+                arrayList3.set(i13, null);
+                f10 = f11;
+                arrayList = arrayList3;
+            } else {
+                f10 = f11;
+                arrayList = arrayList3;
+                arrayList2.add(new StaticLayout(substring, this.f26566c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+            }
+            f11 = f10;
+            i13 = i14;
+            arrayList3 = arrayList;
+        }
+        float f12 = f11;
+        ArrayList arrayList4 = arrayList3;
+        if (z10 && !arrayList4.isEmpty()) {
+            if (z11) {
+                f7 = -1.0f;
+            } else {
+                f7 = 1.0f;
+            }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f7, f12);
+            this.d = ofFloat;
+            ofFloat.setDuration(150L);
+            this.d.addListener(new org.telegram.ui.pq(this, 1));
+            this.d.start();
+        }
+        this.f26568g.invalidate();
     }
 }

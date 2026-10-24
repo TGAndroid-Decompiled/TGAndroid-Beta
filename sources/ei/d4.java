@@ -21,10 +21,10 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.messenger.voip.VideoCapturerDevice;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import org.webrtc.RendererCommon;
 import org.webrtc.SurfaceViewRenderer;
 import org.webrtc.TextureViewRenderer;
@@ -34,7 +34,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
     public final c4 f8896b;
     public final SurfaceViewRenderer f8897c;
     public final TextureViewRenderer d;
-    public final org.telegram.ui.Components.w9 e;
+    public final org.telegram.ui.Components.u9 e;
     public final TextureView f8898f;
     public View h;
     public Runnable f8899n;
@@ -48,10 +48,10 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
     public d4(Context context, int i10) {
         super(context);
         this.f8895a = i10;
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.e = w9Var;
-        w9Var.setAlpha(0.75f);
-        addView(w9Var, w7.z5.e(-1, -1, 119));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.e = u9Var;
+        u9Var.setAlpha(0.75f);
+        addView(u9Var, w7.z5.e(-1, -1, 119));
         TextureView textureView = new TextureView(context);
         this.f8898f = textureView;
         addView(textureView, w7.z5.e(-1, -1, 119));
@@ -113,7 +113,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         } else {
             f7 = 0.0f;
         }
-        animate.alpha(f7).setInterpolator(bs.h).setDuration(320L).withEndAction(new ah.t(6, this, z10)).start();
+        animate.alpha(f7).setInterpolator(zr.h).setDuration(320L).withEndAction(new ah.t(6, this, z10)).start();
         dVar.setVisibility((!z10 || runnable == null) ? 8 : 8);
         if (runnable == null) {
             a7Var = null;
@@ -163,29 +163,29 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
         boolean z10 = true;
         if (this.f8901s != j10) {
             int i10 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-            org.telegram.ui.Components.w9 w9Var = this.e;
+            org.telegram.ui.Components.u9 u9Var = this.e;
             if (i10 == 0) {
-                w9Var.b();
+                u9Var.b();
             } else {
                 String absolutePath = new File(FileLoader.getDirectory(4), org.telegram.ui.Cells.b1.k(j10, "live", ".jpg")).getAbsolutePath();
                 if (i10 > 0) {
                     TLRPC.User user = MessagesController.getInstance(this.f8895a).getUser(Long.valueOf(j10));
                     ImageLocation forUser = ImageLocation.getForUser(this.f8895a, user, 1);
                     if (user != null) {
-                        f10 = org.telegram.ui.Components.h9.d(user.f20490id);
+                        f10 = org.telegram.ui.Components.f9.d(user.f20491id);
                     } else {
                         f10 = i0.a.f(0.2f, -16777216, -1);
                     }
-                    w9Var.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_nocache", forUser, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f10, -16777216), i0.a.f(0.4f, f10, -16777216)}), 0L, null, user, 0);
+                    u9Var.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_nocache", forUser, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f10, -16777216), i0.a.f(0.4f, f10, -16777216)}), 0L, null, user, 0);
                 } else {
                     TLRPC.Chat chat = MessagesController.getInstance(this.f8895a).getChat(Long.valueOf(-j10));
                     ImageLocation forChat = ImageLocation.getForChat(this.f8895a, chat, 1);
                     if (chat != null) {
-                        f7 = org.telegram.ui.Components.h9.d(chat.f20343id);
+                        f7 = org.telegram.ui.Components.f9.d(chat.f20344id);
                     } else {
                         f7 = i0.a.f(0.2f, -16777216, -1);
                     }
-                    w9Var.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_nocache", forChat, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f7, -16777216), i0.a.f(0.4f, f7, -16777216)}), 0L, null, chat, 0);
+                    u9Var.getImageReceiver().setImage(ImageLocation.getForPath(absolutePath), "500_500_nocache", forChat, "50_50_b2", null, null, new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f7, -16777216), i0.a.f(0.4f, f7, -16777216)}), 0L, null, chat, 0);
                 }
             }
         }
@@ -291,7 +291,7 @@ public final class d4 extends FrameLayout implements RendererCommon.RendererEven
             if (z10) {
                 f7 = 1.0f;
             }
-            sl.t(animate.alpha(f7), bs.h, 320L);
+            tl.t(animate.alpha(f7), zr.h, 320L);
             return;
         }
         getTextureView().animate().cancel();

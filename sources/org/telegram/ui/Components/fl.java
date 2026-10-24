@@ -1,31 +1,24 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.location.Location;
 import org.telegram.messenger.IMapsProvider;
-public final class fl implements Runnable {
-    public final int f26372a;
-    public final rl f26373b;
-    public final IMapsProvider.IMapView f26374c;
+public final class fl implements q0.a {
+    public final int f26344a;
+    public final pl f26345b;
 
-    public fl(rl rlVar, IMapsProvider.IMapView iMapView, int i10) {
-        this.f26372a = i10;
-        this.f26373b = rlVar;
-        this.f26374c = iMapView;
+    public fl(pl plVar, int i10) {
+        this.f26344a = i10;
+        this.f26345b = plVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26372a) {
+    public final void accept(Object obj) {
+        switch (this.f26344a) {
             case 0:
-                rl.U(this.f26373b, this.f26374c);
+                pl.N(this.f26345b, (IMapsProvider.IMap) obj);
                 return;
             default:
-                IMapsProvider.IMapView iMapView = this.f26374c;
-                try {
-                    iMapView.onCreate(null);
-                } catch (Exception unused) {
-                }
-                AndroidUtilities.runOnUIThread(new fl(this.f26373b, iMapView, 0));
+                pl.T(this.f26345b, (Location) obj);
                 return;
         }
     }

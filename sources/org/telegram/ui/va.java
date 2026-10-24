@@ -3,27 +3,27 @@ package org.telegram.ui;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 public final class va implements MessagesStorage.IntCallback {
-    public final int f42672a;
-    public final Object f42673b;
+    public final int f42640a;
+    public final Object f42641b;
 
     public va(Object obj, int i10) {
-        this.f42672a = i10;
-        this.f42673b = obj;
+        this.f42640a = i10;
+        this.f42641b = obj;
     }
 
     @Override
     public final void run(int i10) {
-        eu0 eu0Var;
-        int i11 = this.f42672a;
-        Object obj = this.f42673b;
+        du0 du0Var;
+        int i11 = this.f42640a;
+        Object obj = this.f42641b;
         switch (i11) {
             case 0:
                 ((vb) obj).U0(true);
                 return;
             case 1:
-                sn snVar = ((dn) obj).f36660a;
+                sn snVar = ((dn) obj).f36651a;
                 if (i10 > 0 && snVar.getParentActivity() != null && snVar.fragmentView != null) {
-                    org.telegram.ui.Components.xc.a0(snVar).m(org.telegram.ui.Components.wc.I, i10, 0, 0, snVar.f41654qa).j();
+                    org.telegram.ui.Components.vc.a0(snVar).m(org.telegram.ui.Components.uc.I, i10, 0, 0, snVar.f41651qa).j();
                     return;
                 }
                 return;
@@ -32,8 +32,8 @@ public final class va implements MessagesStorage.IntCallback {
                 return;
             case 3:
                 PhotoViewer photoViewer = (PhotoViewer) obj;
-                if (photoViewer.f33759y != null && (eu0Var = photoViewer.f33580e0) != null && i10 > 0) {
-                    org.telegram.ui.Components.xc.F(eu0Var, true).j();
+                if (photoViewer.f33761y != null && (du0Var = photoViewer.f33582e0) != null && i10 > 0) {
+                    org.telegram.ui.Components.vc.F(du0Var, true).j();
                     return;
                 }
                 return;
@@ -48,15 +48,15 @@ public final class va implements MessagesStorage.IntCallback {
                     profileActivity.finishFragment();
                     return;
                 }
-                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33921f1));
+                profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(profileActivity.f33923f1));
                 return;
             default:
-                ye1 ye1Var = ((ce1) obj).f36346a;
+                xe1 xe1Var = ((be1) obj).f36058a;
                 if (i10 == 0) {
-                    ye1Var.N0(false);
+                    xe1Var.N0(false);
                     return;
                 } else {
-                    ye1Var.finishFragment();
+                    xe1Var.finishFragment();
                     return;
                 }
         }

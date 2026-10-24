@@ -1,9 +1,22 @@
 package org.telegram.messenger;
 
-import android.graphics.ImageDecoder;
-public final class zg implements ImageDecoder.OnHeaderDecodedListener {
+import android.media.SoundPool;
+public final class zg implements SoundPool.OnLoadCompleteListener {
+    public final int f20320a;
+
+    public zg(int i10) {
+        this.f20320a = i10;
+    }
+
     @Override
-    public final void onHeaderDecoded(ImageDecoder imageDecoder, ImageDecoder.ImageInfo imageInfo, ImageDecoder.Source source) {
-        NotificationsController.lambda$loadRoundAvatar$48(imageDecoder, imageInfo, source);
+    public final void onLoadComplete(SoundPool soundPool, int i10, int i11) {
+        switch (this.f20320a) {
+            case 0:
+                NotificationsController.lambda$playInChatSound$40(soundPool, i10, i11);
+                return;
+            default:
+                NotificationsController.lambda$playOutChatSound$49(soundPool, i10, i11);
+                return;
+        }
     }
 }

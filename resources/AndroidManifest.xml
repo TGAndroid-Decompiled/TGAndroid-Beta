@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="72509" android:versionName="13.1.2" android:installLocation="auto" android:compileSdkVersion="36" android:compileSdkVersionCodename="16" package="org.telegram.messenger.beta" platformBuildVersionCode="36" platformBuildVersionName="16">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" android:versionCode="72539" android:versionName="13.1.2" android:installLocation="auto" android:compileSdkVersion="36" android:compileSdkVersionCodename="16" package="org.telegram.messenger.beta" platformBuildVersionCode="36" platformBuildVersionName="16">
     <uses-sdk android:minSdkVersion="23" android:targetSdkVersion="36"/>
     <uses-feature android:name="android.hardware.location.gps" android:required="false"/>
     <uses-feature android:name="android.hardware.location.network" android:required="false"/>
@@ -83,7 +83,6 @@
     <uses-permission android:name="me.everything.badger.permission.BADGE_COUNT_WRITE"/>
     <uses-permission android:name="com.android.vending.BILLING"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
     <queries>
         <package android:name="com.google.android.apps.maps"/>
         <intent>
@@ -353,7 +352,7 @@
         <service android:name="org.telegram.messenger.VideoEncodingService" android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync"/>
         <service android:name="org.telegram.ui.Stories.recorder.StoryUploadingService" android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync"/>
         <service android:name="org.telegram.messenger.ImportingService" android:enabled="true" android:exported="true" android:foregroundServiceType="dataSync"/>
-        <service android:name="org.telegram.messenger.LocationSharingService" android:enabled="true" android:exported="true" android:foregroundServiceType="location|dataSync"/>
+        <service android:name="org.telegram.messenger.LocationSharingService" android:enabled="true" android:exported="true" android:foregroundServiceType="location"/>
         <service android:name="org.telegram.messenger.voip.VoIPService" android:enabled="true" android:exported="false" android:foregroundServiceType="microphone|camera|mediaProjection|mediaPlayback"/>
         <service android:name="org.telegram.messenger.MusicPlayerService" android:enabled="true" android:exported="true" android:foregroundServiceType="mediaPlayback"/>
         <service android:name="org.telegram.messenger.MusicBrowserService" android:exported="true" android:foregroundServiceType="mediaPlayback">

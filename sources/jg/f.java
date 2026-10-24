@@ -31,7 +31,7 @@ public final class f {
 
     public final Bitmap a(int i10, int i11) {
         Canvas canvas;
-        int w02 = k6.w0(k6.f21183d6, this.e);
+        int w02 = k6.w0(k6.f21184d6, this.e);
         int i12 = (i10 + i11) << 10;
         int i13 = this.f14473f;
         Paint paint = this.d;

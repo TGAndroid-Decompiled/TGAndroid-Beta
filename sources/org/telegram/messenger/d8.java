@@ -1,30 +1,26 @@
 package org.telegram.messenger;
 
-import android.net.Uri;
-import java.util.ArrayList;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.Utilities;
-public final class d8 implements MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback {
-    public final BaseController f18241a;
-    public final Object f18242b;
-    public final Object f18243c;
-    public final Object d;
+import org.telegram.tgnet.TLRPC;
+public final class d8 implements Runnable {
+    public final int f18211a;
+    public final MediaDataController f18212b;
+    public final TLRPC.Document f18213c;
 
-    public d8(BaseController baseController, Object obj, Object obj2, Object obj3) {
-        this.f18241a = baseController;
-        this.f18242b = obj;
-        this.f18243c = obj2;
-        this.d = obj3;
+    public d8(int i10, MediaDataController mediaDataController, TLRPC.Document document) {
+        this.f18211a = i10;
+        this.f18212b = mediaDataController;
+        this.f18213c = document;
     }
 
     @Override
-    public void run(long j10) {
-        ((SendMessagesHelper) this.f18241a).lambda$prepareImportHistory$108((Uri) this.f18242b, (ArrayList) this.f18243c, (MessagesStorage.LongCallback) this.d, j10);
-    }
-
-    @Override
-    public void run(ArrayList arrayList, String str) {
-        ((MediaDataController) this.f18241a).lambda$searchStickers$249((MediaDataController.SearchStickersKey) this.f18242b, (MediaDataController.SearchStickersResult) this.f18243c, (Utilities.Callback) this.d, arrayList, str);
+    public final void run() {
+        switch (this.f18211a) {
+            case 0:
+                this.f18212b.lambda$removeRecentGif$25(this.f18213c);
+                return;
+            default:
+                this.f18212b.lambda$addRecentGif$26(this.f18213c);
+                return;
+        }
     }
 }

@@ -12,32 +12,32 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.zr;
 import zf.p;
 public final class e extends rh.e implements Drawable.Callback, ne.d {
-    public final String f46977b;
+    public final String f46976b;
     public final Drawable d;
-    public final eq f46979f;
+    public final cq f46978f;
     public rh.d h;
-    public TLRPC.WebPage f46980n;
-    public final ne.b f46981r;
-    public final ne.b f46982s;
-    public final a5.a f46978c = new a5.a((char) 0, 15);
+    public TLRPC.WebPage f46979n;
+    public final ne.b f46980r;
+    public final ne.b f46981s;
+    public final a5.a f46977c = new a5.a((char) 0, 15);
     public final Paint e = new Paint(1);
 
     public e(String str) {
-        eq eqVar = new eq(-1);
-        this.f46979f = eqVar;
-        bs bsVar = bs.h;
-        this.f46981r = new ne.b(0, this, bsVar, 320L, false);
-        this.f46982s = new ne.b(0, this, bsVar, 320L, false);
-        this.f46977b = str;
-        this.f46180a.setRoundRadius(AndroidUtilities.dp(7.0f));
+        cq cqVar = new cq(-1);
+        this.f46978f = cqVar;
+        zr zrVar = zr.h;
+        this.f46980r = new ne.b(0, this, zrVar, 320L, false);
+        this.f46981s = new ne.b(0, this, zrVar, 320L, false);
+        this.f46976b = str;
+        this.f46179a.setRoundRadius(AndroidUtilities.dp(7.0f));
         this.d = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
-        eqVar.setCallback(this);
-        eqVar.b(k6.x0(null, k6.f21387o7, false));
-        eqVar.f26024a = AndroidUtilities.dp(15.0f);
+        cqVar.setCallback(this);
+        cqVar.b(k6.x0(null, k6.f21388o7, false));
+        cqVar.f25430a = AndroidUtilities.dp(15.0f);
     }
 
     @Override
@@ -56,20 +56,20 @@ public final class e extends rh.e implements Drawable.Callback, ne.d {
     public final void c(Canvas canvas, int i10, int i11) {
         float f7 = i10;
         float f10 = i11;
-        ImageReceiver imageReceiver = this.f46180a;
+        ImageReceiver imageReceiver = this.f46179a;
         imageReceiver.setImageCoords(0.0f, 0.0f, f7, f10);
         imageReceiver.draw(canvas);
-        eq eqVar = this.f46979f;
-        eqVar.setBounds(0, 0, i10, i11);
-        int x02 = k6.x0(null, k6.f21125a7, false);
-        ne.b bVar = this.f46982s;
+        cq cqVar = this.f46978f;
+        cqVar.setBounds(0, 0, i10, i11);
+        int x02 = k6.x0(null, k6.f21126a7, false);
+        ne.b bVar = this.f46981s;
         int f11 = i0.a.f(bVar.e, x02, 1073741824);
         Paint paint = this.e;
         paint.setColor(f11);
         canvas.drawRoundRect(0.0f, 0.0f, f7, f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
-        int f12 = i0.a.f(bVar.e, k6.x0(null, k6.f21387o7, false), -1);
+        int f12 = i0.a.f(bVar.e, k6.x0(null, k6.f21388o7, false), -1);
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        a5.a aVar = this.f46978c;
+        a5.a aVar = this.f46977c;
         aVar.getClass();
         if (((PorterDuffColorFilter) aVar.f282c) == null || aVar.f281b != f12 || ((PorterDuff.Mode) aVar.d) != mode) {
             aVar.f282c = new PorterDuffColorFilter(f12, mode);
@@ -79,9 +79,9 @@ public final class e extends rh.e implements Drawable.Callback, ne.d {
         Drawable drawable = this.d;
         drawable.setColorFilter((PorterDuffColorFilter) aVar.f282c);
         p.e(this.d, f7 / 2.0f, f10 / 2.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
-        ne.b bVar2 = this.f46981r;
+        ne.b bVar2 = this.f46980r;
         p.b(canvas, drawable, 1.0f - bVar2.e);
-        p.b(canvas, eqVar, bVar2.e);
+        p.b(canvas, cqVar, bVar2.e);
     }
 
     @Override

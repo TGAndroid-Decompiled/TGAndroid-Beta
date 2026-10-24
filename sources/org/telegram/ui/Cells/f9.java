@@ -8,10 +8,10 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 public final class f9 extends FrameLayout {
-    public final TextView f22382a;
-    public final TextView f22383b;
+    public final TextView f22383a;
+    public final TextView f22384b;
 
     public f9(Context context) {
         super(context);
@@ -20,8 +20,8 @@ public final class f9 extends FrameLayout {
         int i12;
         setWillNotDraw(false);
         TextView textView = new TextView(context);
-        this.f22382a = textView;
-        sl.u(textView, 1, 16.0f, 1, 1);
+        this.f22383a = textView;
+        tl.u(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
@@ -38,7 +38,7 @@ public final class f9 extends FrameLayout {
         }
         addView(textView, w7.z5.d(-2, -1.0f, i11 | 48, 21.0f, 0.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f22383b = textView2;
+        this.f22384b = textView2;
         textView2.setTextSize(1, 16.0f);
         textView2.setTypeface(AndroidUtilities.bold());
         textView2.setLines(1);
@@ -55,9 +55,9 @@ public final class f9 extends FrameLayout {
     }
 
     public final void a(String str, String str2, boolean z10) {
-        TextView textView = this.f22382a;
+        TextView textView = this.f22383a;
         textView.setText(str);
-        TextView textView2 = this.f22383b;
+        TextView textView2 = this.f22384b;
         if (str2 != null) {
             textView2.setText(str2);
             textView2.setVisibility(0);
@@ -72,7 +72,7 @@ public final class f9 extends FrameLayout {
             textView.setTypeface(AndroidUtilities.bold());
             textView2.setTypeface(AndroidUtilities.bold());
         } else {
-            int i11 = org.telegram.ui.ActionBar.k6.f21588z6;
+            int i11 = org.telegram.ui.ActionBar.k6.f21589z6;
             setTag(Integer.valueOf(i11));
             org.telegram.ui.ActionBar.r6.W(textView, i11, null);
             org.telegram.ui.ActionBar.r6.W(textView2, i11, null);
@@ -89,16 +89,16 @@ public final class f9 extends FrameLayout {
         int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(measuredWidth / 2, Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824);
-        TextView textView = this.f22383b;
+        TextView textView = this.f22384b;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f22382a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
+        this.f22383a.measure(View.MeasureSpec.makeMeasureSpec((measuredWidth - textView.getMeasuredWidth()) - AndroidUtilities.dp(8.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
     }
 
     public void setTextColor(int i10) {
-        this.f22382a.setTextColor(i10);
+        this.f22383a.setTextColor(i10);
     }
 
     public void setTextValueColor(int i10) {
-        this.f22383b.setTextColor(i10);
+        this.f22384b.setTextColor(i10);
     }
 }

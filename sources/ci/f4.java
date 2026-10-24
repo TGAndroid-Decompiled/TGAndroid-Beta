@@ -1,7 +1,7 @@
 package ci;
 
-import org.telegram.ui.yi0;
-public final class f4 extends yi0 {
+import org.telegram.ui.xi0;
+public final class f4 extends xi0 {
     @Override
     public final org.telegram.ui.ActionBar.g6 getResourceProvider() {
         return new b();

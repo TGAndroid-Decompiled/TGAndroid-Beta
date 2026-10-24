@@ -7,11 +7,11 @@ import android.widget.Button;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.ir0;
-import org.telegram.ui.Components.vg;
+import org.telegram.ui.Components.hr0;
+import org.telegram.ui.Components.tg;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.ey;
-public final class y1 extends vg {
+public final class y1 extends tg {
     public final int f15719n0;
     public final Object f15720o0;
 
@@ -41,12 +41,12 @@ public final class y1 extends vg {
     public final boolean f() {
         switch (this.f15719n0) {
             case 0:
-                if (!((d2) this.f15720o0).L0 && this.f31464r <= 0) {
+                if (!((d2) this.f15720o0).L0 && this.f30828r <= 0) {
                     return false;
                 }
                 return true;
             case 1:
-                if (!((b4) this.f15720o0).W && this.f31464r <= 0) {
+                if (!((b4) this.f15720o0).W && this.f30828r <= 0) {
                     return false;
                 }
                 return true;
@@ -65,12 +65,12 @@ public final class y1 extends vg {
         Object obj = this.f15720o0;
         switch (i10) {
             case 2:
-                return ((ir0) obj).getThemedColor(k6.S5);
+                return ((hr0) obj).getThemedColor(k6.S5);
             case 3:
             default:
                 return super.getFillColor();
             case 4:
-                int i11 = k6.f21596zf;
+                int i11 = k6.f21597zf;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 return ((PhotoViewer) obj).A1(i11);
         }

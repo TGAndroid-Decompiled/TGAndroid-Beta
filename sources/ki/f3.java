@@ -28,7 +28,7 @@ public final class f3 implements z4 {
         tVar.f15568a = 2;
         TL_iv.PageBlock pageBlock = this.f15319b.f15141b;
         if (pageBlock instanceof TL_iv.pageBlockDocument) {
-            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20349id;
+            ((TL_iv.pageBlockDocument) pageBlock).document_id = document.f20350id;
         }
         w3Var.f15646a4.remove(tVar);
         w3Var.Z2.N(false);

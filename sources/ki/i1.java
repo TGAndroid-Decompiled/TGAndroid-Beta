@@ -1,6 +1,6 @@
 package ki;
 
-import org.telegram.ui.qi0;
+import org.telegram.ui.pi0;
 public final class i1 implements Runnable {
     public final int f15387a;
     public final d2 f15388b;
@@ -43,9 +43,9 @@ public final class i1 implements Runnable {
             case 5:
                 d2 d2Var4 = this.f15388b;
                 d2Var4.s0(2147483646, 0, true);
-                qi0 qi0Var = d2Var4.O0;
-                if (qi0Var != null) {
-                    qi0Var.g(false);
+                pi0 pi0Var = d2Var4.O0;
+                if (pi0Var != null) {
+                    pi0Var.g(false);
                     d2Var4.O0 = null;
                     return;
                 }
@@ -53,9 +53,9 @@ public final class i1 implements Runnable {
             default:
                 d2 d2Var5 = this.f15388b;
                 d2Var5.s0(0, 0, false);
-                qi0 qi0Var2 = d2Var5.O0;
-                if (qi0Var2 != null) {
-                    qi0Var2.g(true);
+                pi0 pi0Var2 = d2Var5.O0;
+                if (pi0Var2 != null) {
+                    pi0Var2.g(true);
                     d2Var5.O0 = null;
                     return;
                 }

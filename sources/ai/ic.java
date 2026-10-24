@@ -3,20 +3,20 @@ package ai;
 import android.text.TextWatcher;
 import android.widget.TextView;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.vd0;
+import org.telegram.ui.Components.td0;
 public final class ic implements TextWatcher {
     public boolean f1498a;
     public int f1499b = 2;
     public final EditTextBoldCursor f1500c;
-    public final vd0 d;
+    public final td0 d;
     public final long e;
     public final boolean f1501f;
     public final ei.d h;
     public final TextView f1502n;
 
-    public ic(EditTextBoldCursor editTextBoldCursor, vd0 vd0Var, long j10, boolean z10, ei.d dVar, TextView textView) {
+    public ic(EditTextBoldCursor editTextBoldCursor, td0 td0Var, long j10, boolean z10, ei.d dVar, TextView textView) {
         this.f1500c = editTextBoldCursor;
-        this.d = vd0Var;
+        this.d = td0Var;
         this.e = j10;
         this.f1501f = z10;
         this.h = dVar;

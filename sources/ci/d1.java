@@ -26,19 +26,19 @@ import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
 import org.telegram.ui.Components.FragmentContextView;
 import org.telegram.ui.Components.e81;
 import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.mf;
-import org.telegram.ui.Components.so0;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.w31;
+import org.telegram.ui.Components.ji;
+import org.telegram.ui.Components.kf;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.v31;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ey;
-import org.telegram.ui.he1;
+import org.telegram.ui.ge1;
 import org.telegram.ui.k60;
-import org.telegram.ui.nc0;
+import org.telegram.ui.mc0;
 import org.telegram.ui.px;
 import org.telegram.ui.sn;
-public final class d1 implements RequestDelegateTimestamp, MessagesStorage.StringCallback, m4.g1, ImageReceiver.ImageReceiverDelegate, org.telegram.ui.Components.d5, nc0, MessagesStorage.BooleanCallback, g2.g, org.telegram.ui.ActionBar.z1, k60, s5.e {
+public final class d1 implements RequestDelegateTimestamp, MessagesStorage.StringCallback, m4.g1, ImageReceiver.ImageReceiverDelegate, org.telegram.ui.Components.b5, mc0, MessagesStorage.BooleanCallback, g2.g, org.telegram.ui.ActionBar.z1, k60, s5.e {
     public final int f5248a;
     public final long f5249b;
     public final Object f5250c;
@@ -52,23 +52,23 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
     @Override
     public void C(int i10, int i11, boolean z10) {
         boolean N1;
-        ti tiVar = (ti) this.f5250c;
-        li liVar = tiVar.B0;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30742j0;
+        ri riVar = (ri) this.f5250c;
+        ji jiVar = riVar.B0;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = riVar.f30158j0;
         long j10 = this.f5249b;
-        if (liVar != chatAttachAlertPhotoLayout && liVar != tiVar.f30762q0) {
-            if (!liVar.K(i10, z10, i11, tiVar.x1(), j10)) {
-                tiVar.G2 = true;
-                tiVar.dismiss();
+        if (jiVar != chatAttachAlertPhotoLayout && jiVar != riVar.f30178q0) {
+            if (!jiVar.K(i10, z10, i11, riVar.x1(), j10)) {
+                riVar.G2 = true;
+                riVar.dismiss();
             }
             N1 = false;
         } else {
-            N1 = tiVar.N1(i10, z10, i11, tiVar.x1(), j10);
+            N1 = riVar.N1(i10, z10, i11, riVar.x1(), j10);
         }
-        mf mfVar = tiVar.f30736h0;
-        if (mfVar != null) {
-            mfVar.g(!N1);
-            tiVar.f30736h0 = null;
+        kf kfVar = riVar.f30152h0;
+        if (kfVar != null) {
+            kfVar.g(!N1);
+            riVar.f30152h0 = null;
         }
     }
 
@@ -103,7 +103,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
                 SendMessagesHelper.getInstance(((LocationController.SharingLocationInfo) obj).messageObject.currentAccount).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f5249b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
                 return;
             default:
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 SendMessagesHelper.getInstance(((int[]) obj)[0]).sendMessage(SendMessagesHelper.SendMessageParams.of(messageMedia, this.f5249b, (MessageObject) null, (MessageObject) null, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, true, 0, 0));
                 return;
         }
@@ -132,37 +132,37 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.m5.a(this, i10, str, drawable);
+        org.telegram.messenger.n5.a(this, i10, str, drawable);
     }
 
     @Override
     public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
         switch (this.f5248a) {
             case 8:
-                so0 so0Var = ((ey) this.f5250c).C0.f24799b0;
-                a0.h hVar = so0Var.f11928x0;
+                ro0 ro0Var = ((ey) this.f5250c).C0.f33303b0;
+                a0.h hVar = ro0Var.f11928x0;
                 long j10 = this.f5249b;
                 hg.g0 g0Var = (hg.g0) hVar.f(j10);
                 if (g0Var != null) {
-                    so0Var.f11928x0.l(j10);
-                    so0Var.f11922t0.remove(g0Var);
-                    so0Var.f11924v0.remove(g0Var);
-                    so0Var.f11923u0.remove(g0Var);
-                    so0Var.l();
-                    MessagesStorage.getInstance(so0Var.f11921s0).getStorageQueue().postRunnable(new ai.v3(so0Var, j10, 10));
+                    ro0Var.f11928x0.l(j10);
+                    ro0Var.f11922t0.remove(g0Var);
+                    ro0Var.f11924v0.remove(g0Var);
+                    ro0Var.f11923u0.remove(g0Var);
+                    ro0Var.l();
+                    MessagesStorage.getInstance(ro0Var.f11921s0).getStorageQueue().postRunnable(new ai.v3(ro0Var, j10, 10));
                     return;
                 }
                 return;
             default:
-                ((px) this.f5250c).f40554a.getMediaDataController().removePeer(this.f5249b);
+                ((px) this.f5250c).f40644a.getMediaDataController().removePeer(this.f5249b);
                 return;
         }
     }
 
     @Override
     public void i(int i10, ArrayList arrayList) {
-        he1 he1Var = (he1) this.f5250c;
-        org.telegram.ui.ActionBar.o2 o2Var = he1Var.f37836b;
+        ge1 ge1Var = (ge1) this.f5250c;
+        org.telegram.ui.ActionBar.o2 o2Var = ge1Var.f37552b;
         int size = arrayList.size();
         int[] iArr = new int[1];
         TLRPC.TL_messages_invitedUsers tL_messages_invitedUsers = new TLRPC.TL_messages_invitedUsers();
@@ -172,7 +172,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
             MessagesController messagesController = o2Var.getMessagesController();
             ah.j jVar = new ah.j(23);
             long j10 = this.f5249b;
-            messagesController.addUserToChat(j10, (TLRPC.User) arrayList.get(i11), i10, null, o2Var, false, jVar, null, new gi.i3(he1Var, tL_messages_invitedUsers, iArr, size, arrayList, j10));
+            messagesController.addUserToChat(j10, (TLRPC.User) arrayList.get(i11), i10, null, o2Var, false, jVar, null, new gi.i3(ge1Var, tL_messages_invitedUsers, iArr, size, arrayList, j10));
             i11++;
             size = size;
             iArr = iArr;
@@ -182,7 +182,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.m5.b(this, imageReceiver);
+        org.telegram.messenger.n5.b(this, imageReceiver);
     }
 
     @Override
@@ -243,7 +243,7 @@ public final class d1 implements RequestDelegateTimestamp, MessagesStorage.Strin
 
     @Override
     public void run(boolean z10) {
-        sn snVar = ((w31) this.f5250c).h;
+        sn snVar = ((v31) this.f5250c).h;
         if (com.google.android.gms.internal.play_billing.k3.s(snVar)) {
             snVar.va(this.f5249b, false);
         }

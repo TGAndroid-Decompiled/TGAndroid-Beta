@@ -5,20 +5,20 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class b1 implements Utilities.Callback2 {
-    public final int f34319a = 1;
-    public final e2 f34320b;
-    public final TL_wallet.tonConnectSession f34321c;
+    public final int f34321a = 1;
+    public final e2 f34322b;
+    public final TL_wallet.tonConnectSession f34323c;
     public final String d;
     public final byte[] e;
-    public final Object f34322f;
-    public final Object f34323g;
+    public final Object f34324f;
+    public final Object f34325g;
     public final Object h;
 
     public b1(e2 e2Var, w wVar, i0 i0Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, z1 z1Var) {
-        this.f34320b = e2Var;
-        this.f34322f = wVar;
-        this.f34323g = i0Var;
-        this.f34321c = tonconnectsession;
+        this.f34322b = e2Var;
+        this.f34324f = wVar;
+        this.f34325g = i0Var;
+        this.f34323c = tonconnectsession;
         this.d = str;
         this.e = bArr;
         this.h = z1Var;
@@ -26,13 +26,13 @@ public final class b1 implements Utilities.Callback2 {
 
     @Override
     public final void run(Object obj, Object obj2) {
-        int i10 = this.f34319a;
-        e2 e2Var = this.f34320b;
+        int i10 = this.f34321a;
+        e2 e2Var = this.f34322b;
         switch (i10) {
             case 0:
-                w wVar = (w) this.f34322f;
-                i0 i0Var = (i0) this.f34323g;
-                TL_wallet.tonConnectSession tonconnectsession = this.f34321c;
+                w wVar = (w) this.f34324f;
+                i0 i0Var = (i0) this.f34325g;
+                TL_wallet.tonConnectSession tonconnectsession = this.f34323c;
                 String str = this.d;
                 byte[] bArr = this.e;
                 z1 z1Var = (z1) this.h;
@@ -47,11 +47,11 @@ public final class b1 implements Utilities.Callback2 {
                     return;
                 }
             default:
-                r1 r1Var = (r1) this.f34322f;
-                TL_wallet.tonConnectSession tonconnectsession2 = this.f34321c;
+                r1 r1Var = (r1) this.f34324f;
+                TL_wallet.tonConnectSession tonconnectsession2 = this.f34323c;
                 String str2 = this.d;
                 byte[] bArr2 = this.e;
-                JSONArray jSONArray = (JSONArray) this.f34323g;
+                JSONArray jSONArray = (JSONArray) this.f34325g;
                 TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest = (TLRPC.TL_urlAuthResultRequest) this.h;
                 i0 i0Var2 = (i0) obj;
                 String str3 = (String) obj2;
@@ -70,12 +70,12 @@ public final class b1 implements Utilities.Callback2 {
     }
 
     public b1(e2 e2Var, r1 r1Var, TL_wallet.tonConnectSession tonconnectsession, String str, byte[] bArr, JSONArray jSONArray, TLRPC.TL_urlAuthResultRequest tL_urlAuthResultRequest) {
-        this.f34320b = e2Var;
-        this.f34322f = r1Var;
-        this.f34321c = tonconnectsession;
+        this.f34322b = e2Var;
+        this.f34324f = r1Var;
+        this.f34323c = tonconnectsession;
         this.d = str;
         this.e = bArr;
-        this.f34323g = jSONArray;
+        this.f34325g = jSONArray;
         this.h = tL_urlAuthResultRequest;
     }
 }

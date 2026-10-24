@@ -15,17 +15,17 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.ca0;
+import org.telegram.ui.Components.aa0;
 import w7.z5;
 public final class i1 extends LinearLayout implements b6 {
     public final g6 f12960a;
-    public final ca0 f12961b;
+    public final aa0 f12961b;
     public final ImageReceiver f12962c;
     public final TextView d;
     public boolean e;
@@ -41,13 +41,13 @@ public final class i1 extends LinearLayout implements b6 {
         this.f12962c = imageReceiver;
         this.f12960a = g6Var;
         setOrientation(1);
-        ca0 ca0Var = new ca0();
-        this.f12961b = ca0Var;
+        aa0 aa0Var = new aa0();
+        this.f12961b = aa0Var;
         int i15 = k6.G6;
         int w02 = k6.w0(i15, g6Var);
-        ca0Var.g(k6.o1(0.05f, w02), k6.o1(0.15f, w02), k6.o1(0.1f, w02), k6.o1(0.3f, w02));
-        ca0Var.k(4.0f);
-        ca0Var.f25297x.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        aa0Var.g(k6.o1(0.05f, w02), k6.o1(0.15f, w02), k6.o1(0.1f, w02), k6.o1(0.3f, w02));
+        aa0Var.k(4.0f);
+        aa0Var.f24703x.setStrokeWidth(AndroidUtilities.dp(1.0f));
         imageReceiver.setRoundRadius(AndroidUtilities.dp(4.0f));
         TextView textView = new TextView(context);
         this.d = textView;
@@ -73,8 +73,8 @@ public final class i1 extends LinearLayout implements b6 {
         addView(textView, z5.t(-1, -2, 55, i11, 10, i12, 4));
         TextView textView2 = new TextView(context);
         textView2.setGravity(LocaleController.isRTL ? 5 : 3);
-        r6.W(textView2, k6.f21588z6, g6Var);
-        sl.n(R.string.BusinessProfileLocation, textView2, 1, 13.0f);
+        r6.W(textView2, k6.f21589z6, g6Var);
+        tl.n(R.string.BusinessProfileLocation, textView2, 1, 13.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
             i13 = 70;
@@ -121,7 +121,7 @@ public final class i1 extends LinearLayout implements b6 {
         if (this.e) {
             Paint V0 = k6.V0("paintDivider", this.f12960a);
             if (V0 == null) {
-                V0 = k6.f21304k0;
+                V0 = k6.f21305k0;
             }
             Paint paint = V0;
             float f11 = 21.33f;
@@ -147,11 +147,11 @@ public final class i1 extends LinearLayout implements b6 {
 
     @Override
     public final void updateColors() {
-        ca0 ca0Var = this.f12961b;
-        if (ca0Var != null) {
+        aa0 aa0Var = this.f12961b;
+        if (aa0Var != null) {
             try {
                 int w02 = k6.w0(k6.G6, this.f12960a);
-                ca0Var.g(k6.o1(0.05f, w02), k6.o1(0.15f, w02), k6.o1(0.1f, w02), k6.o1(0.3f, w02));
+                aa0Var.g(k6.o1(0.05f, w02), k6.o1(0.15f, w02), k6.o1(0.1f, w02), k6.o1(0.3f, w02));
                 invalidate();
             } catch (Exception e) {
                 FileLog.e(e);

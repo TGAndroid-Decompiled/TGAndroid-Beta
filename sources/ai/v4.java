@@ -19,8 +19,8 @@ public final class v4 implements Runnable {
                 this.f2299b.dismiss();
                 org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
                 if (U != null) {
-                    org.telegram.ui.Components.qc Q = org.telegram.ui.Components.xc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
-                    Q.f29842t = true;
+                    org.telegram.ui.Components.oc Q = org.telegram.ui.Components.vc.a0(U).Q(R.raw.error, 36, LocaleController.getString(R.string.MessageNotFound));
+                    Q.f29213t = true;
                     Q.j();
                     return;
                 }

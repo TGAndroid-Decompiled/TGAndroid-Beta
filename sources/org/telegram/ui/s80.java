@@ -6,34 +6,34 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_stories;
 public final class s80 implements Utilities.Callback {
-    public final int f41321a;
-    public final LaunchActivity f41322b;
-    public final f80 f41323c;
+    public final int f41315a;
+    public final LaunchActivity f41316b;
+    public final f80 f41317c;
     public final Long d;
 
     public s80(LaunchActivity launchActivity, f80 f80Var, Long l4, int i10) {
-        this.f41321a = i10;
-        this.f41322b = launchActivity;
-        this.f41323c = f80Var;
+        this.f41315a = i10;
+        this.f41316b = launchActivity;
+        this.f41317c = f80Var;
         this.d = l4;
     }
 
     @Override
     public final void run(Object obj) {
-        org.telegram.ui.Components.xc X;
+        org.telegram.ui.Components.vc X;
         int i10;
         int i11;
-        org.telegram.ui.Components.xc X2;
+        org.telegram.ui.Components.vc X2;
         int i12;
         int i13;
-        int i14 = this.f41321a;
+        int i14 = this.f41315a;
         Long l4 = this.d;
-        f80 f80Var = this.f41323c;
-        LaunchActivity launchActivity = this.f41322b;
+        f80 f80Var = this.f41317c;
+        LaunchActivity launchActivity = this.f41316b;
         TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
         switch (i14) {
             case 0:
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 try {
                     f80Var.run();
                 } catch (Exception e) {
@@ -41,7 +41,7 @@ public final class s80 implements Utilities.Callback {
                 }
                 org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (storyItem == null) {
-                    X = org.telegram.ui.Components.xc.X();
+                    X = org.telegram.ui.Components.vc.X();
                     if (X != null) {
                         i10 = R.raw.story_bomb2;
                         i11 = R.string.StoryNotFound;
@@ -49,7 +49,7 @@ public final class s80 implements Utilities.Callback {
                         return;
                     }
                 } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    X = org.telegram.ui.Components.xc.X();
+                    X = org.telegram.ui.Components.vc.X();
                     if (X != null) {
                         i10 = R.raw.story_bomb1;
                         i11 = R.string.StoryNotFound;
@@ -68,7 +68,7 @@ public final class s80 implements Utilities.Callback {
                 org.telegram.messenger.v0.p(i11, X, i10, 36);
                 return;
             default:
-                Pattern pattern2 = LaunchActivity.E1;
+                Pattern pattern2 = LaunchActivity.D1;
                 try {
                     f80Var.run();
                 } catch (Exception e7) {
@@ -76,7 +76,7 @@ public final class s80 implements Utilities.Callback {
                 }
                 org.telegram.ui.ActionBar.o2 R2 = LaunchActivity.R();
                 if (storyItem == null) {
-                    X2 = org.telegram.ui.Components.xc.X();
+                    X2 = org.telegram.ui.Components.vc.X();
                     if (X2 != null) {
                         i12 = R.raw.story_bomb2;
                         i13 = R.string.StoryNotFound;
@@ -84,7 +84,7 @@ public final class s80 implements Utilities.Callback {
                         return;
                     }
                 } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
-                    X2 = org.telegram.ui.Components.xc.X();
+                    X2 = org.telegram.ui.Components.vc.X();
                     if (X2 != null) {
                         i12 = R.raw.story_bomb1;
                         i13 = R.string.StoryNotFound;

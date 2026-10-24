@@ -5,10 +5,10 @@ import android.graphics.Path;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class u8 extends FrameLayout {
     public final int f9925a = 0;
-    public final org.telegram.ui.Components.f6 f9926b;
+    public final org.telegram.ui.Components.d6 f9926b;
     public float f9927c;
     public final Path d;
     public final org.telegram.ui.ActionBar.h3 e;
@@ -16,7 +16,7 @@ public final class u8 extends FrameLayout {
     public u8(hi.k0 k0Var, Context context) {
         super(context);
         this.e = k0Var;
-        this.f9926b = new org.telegram.ui.Components.f6(this, 250L, bs.h);
+        this.f9926b = new org.telegram.ui.Components.d6(this, 250L, zr.h);
         this.d = new Path();
     }
 
@@ -58,7 +58,7 @@ public final class u8 extends FrameLayout {
     public u8(r9 r9Var, Context context) {
         super(context);
         this.e = r9Var;
-        this.f9926b = new org.telegram.ui.Components.f6(this, 250L, bs.h);
+        this.f9926b = new org.telegram.ui.Components.d6(this, 250L, zr.h);
         this.d = new Path();
     }
 }

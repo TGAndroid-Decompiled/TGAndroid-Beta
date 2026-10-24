@@ -6,14 +6,14 @@ import ci.s6;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.d91;
-import org.telegram.ui.Components.ms0;
-import org.telegram.ui.Components.y41;
+import org.telegram.ui.Components.ls0;
+import org.telegram.ui.Components.x41;
 public final class b extends d91 {
     public final Context f8037a;
-    public final ms0 f8038b;
+    public final ls0 f8038b;
 
-    public b(ms0 ms0Var, Context context) {
-        this.f8038b = ms0Var;
+    public b(ls0 ls0Var, Context context) {
+        this.f8038b = ls0Var;
         this.f8037a = context;
     }
 
@@ -21,15 +21,15 @@ public final class b extends d91 {
     public final void b(View view, int i10, int i11) {
         s6 s6Var;
         r rVar = (r) view;
-        ms0 ms0Var = this.f8038b;
+        ls0 ls0Var = this.f8038b;
         if (i10 == 0) {
-            s6Var = ms0Var.e;
+            s6Var = ls0Var.e;
         } else {
-            s6Var = (s6) ms0Var.f8078f.get(i10 - 1);
+            s6Var = (s6) ls0Var.f8078f.get(i10 - 1);
         }
         s6Var.H(null);
         rVar.setList(s6Var);
-        rVar.setVisibleHeight(ms0Var.v);
+        rVar.setVisibleHeight(ls0Var.v);
     }
 
     @Override
@@ -55,7 +55,7 @@ public final class b extends d91 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.ProfileBotLanguageGeneral);
         }
-        String N = y41.N(((s6) this.f8038b.f8078f.get(i10 - 1)).E, null, null);
+        String N = x41.N(((s6) this.f8038b.f8078f.get(i10 - 1)).E, null, null);
         if (N == null) {
             return null;
         }

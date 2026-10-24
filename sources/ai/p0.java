@@ -2,7 +2,7 @@ package ai;
 
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_payments;
-import org.telegram.ui.Components.iu;
+import org.telegram.ui.Components.gu;
 public final class p0 implements org.telegram.ui.ActionBar.z1 {
     public final int f1971a;
     public final int f1972b;
@@ -24,8 +24,8 @@ public final class p0 implements org.telegram.ui.ActionBar.z1 {
         ConnectionsManager.getInstance(i11).sendRequestTyped(tL_resolveStarGiftOffer, new u0(i11, (org.telegram.ui.ActionBar.o2) this.f1973c, h, c2Var));
     }
 
-    public p0(iu iuVar, int i10, int i11) {
-        this.f1973c = iuVar;
+    public p0(gu guVar, int i10, int i11) {
+        this.f1973c = guVar;
         this.f1971a = i10;
         this.f1972b = i11;
     }

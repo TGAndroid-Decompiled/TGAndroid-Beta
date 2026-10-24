@@ -4,22 +4,22 @@ import android.util.SparseIntArray;
 import java.util.ArrayList;
 import org.telegram.tgnet.TLObject;
 public final class dr extends s4.o {
-    public int f36713b;
+    public int f36706b;
     public int e;
-    public int f36715f;
-    public int f36716g;
+    public int f36708f;
+    public int f36709g;
     public int h;
-    public int f36717i;
-    public int f36718j;
-    public final jr f36722n;
-    public final SparseIntArray f36714c = new SparseIntArray();
+    public int f36710i;
+    public int f36711j;
+    public final jr f36715n;
+    public final SparseIntArray f36707c = new SparseIntArray();
     public final SparseIntArray d = new SparseIntArray();
-    public final ArrayList f36719k = new ArrayList();
-    public final ArrayList f36720l = new ArrayList();
-    public final ArrayList f36721m = new ArrayList();
+    public final ArrayList f36712k = new ArrayList();
+    public final ArrayList f36713l = new ArrayList();
+    public final ArrayList f36714m = new ArrayList();
 
     public dr(jr jrVar) {
-        this.f36722n = jrVar;
+        this.f36715n = jrVar;
     }
 
     public static void g(int i10, int i11, SparseIntArray sparseIntArray) {
@@ -30,7 +30,7 @@ public final class dr extends s4.o {
 
     @Override
     public final boolean a(int i10, int i11) {
-        if (!b(i10, i11) || this.f36722n.D0 == i11) {
+        if (!b(i10, i11) || this.f36715n.D0 == i11) {
             return false;
         }
         return true;
@@ -38,20 +38,20 @@ public final class dr extends s4.o {
 
     @Override
     public final boolean b(int i10, int i11) {
-        int i12 = this.f36717i;
-        jr jrVar = this.f36722n;
-        if (i10 >= i12 && i10 < this.f36718j && i11 >= jrVar.X0 && i11 < jrVar.Y0) {
-            return ((TLObject) this.f36720l.get(i10 - i12)).equals(jrVar.G.get(i11 - jrVar.X0));
+        int i12 = this.f36710i;
+        jr jrVar = this.f36715n;
+        if (i10 >= i12 && i10 < this.f36711j && i11 >= jrVar.X0 && i11 < jrVar.Y0) {
+            return ((TLObject) this.f36713l.get(i10 - i12)).equals(jrVar.G.get(i11 - jrVar.X0));
         }
-        int i13 = this.f36716g;
+        int i13 = this.f36709g;
         if (i10 >= i13 && i10 < this.h && i11 >= jrVar.U0 && i11 < jrVar.V0) {
-            return ((TLObject) this.f36721m.get(i10 - i13)).equals(jrVar.H.get(i11 - jrVar.U0));
+            return ((TLObject) this.f36714m.get(i10 - i13)).equals(jrVar.H.get(i11 - jrVar.U0));
         }
         int i14 = this.e;
-        if (i10 >= i14 && i10 < this.f36715f && i11 >= jrVar.E0 && i11 < jrVar.F0) {
-            return ((TLObject) this.f36719k.get(i10 - i14)).equals(jrVar.F.get(i11 - jrVar.E0));
+        if (i10 >= i14 && i10 < this.f36708f && i11 >= jrVar.E0 && i11 < jrVar.F0) {
+            return ((TLObject) this.f36712k.get(i10 - i14)).equals(jrVar.F.get(i11 - jrVar.E0));
         }
-        if (this.f36714c.get(i10) == this.d.get(i11)) {
+        if (this.f36707c.get(i10) == this.d.get(i11)) {
             return true;
         }
         return false;
@@ -59,46 +59,46 @@ public final class dr extends s4.o {
 
     @Override
     public final int d() {
-        return this.f36722n.f38638d1;
+        return this.f36715n.f38626d1;
     }
 
     @Override
     public final int e() {
-        return this.f36713b;
+        return this.f36706b;
     }
 
     public final void f(SparseIntArray sparseIntArray) {
         sparseIntArray.clear();
-        jr jrVar = this.f36722n;
-        g(1, jrVar.f38675v0, sparseIntArray);
-        g(2, jrVar.f38686z0, sparseIntArray);
+        jr jrVar = this.f36715n;
+        g(1, jrVar.f38663v0, sparseIntArray);
+        g(2, jrVar.f38674z0, sparseIntArray);
         g(3, jrVar.A0, sparseIntArray);
         g(4, jrVar.C0, sparseIntArray);
         g(5, jrVar.D0, sparseIntArray);
         g(6, jrVar.G0, sparseIntArray);
         g(7, jrVar.H0, sparseIntArray);
-        g(8, jrVar.f38669s0, sparseIntArray);
-        g(9, jrVar.f38671t0, sparseIntArray);
-        g(10, jrVar.f38673u0, sparseIntArray);
-        g(11, jrVar.f38633b1, sparseIntArray);
-        g(12, jrVar.f38636c1, sparseIntArray);
+        g(8, jrVar.f38657s0, sparseIntArray);
+        g(9, jrVar.f38659t0, sparseIntArray);
+        g(10, jrVar.f38661u0, sparseIntArray);
+        g(11, jrVar.f38621b1, sparseIntArray);
+        g(12, jrVar.f38624c1, sparseIntArray);
         g(13, jrVar.S, sparseIntArray);
         g(14, jrVar.T, sparseIntArray);
         g(15, jrVar.U, sparseIntArray);
-        g(16, jrVar.f38639e0, sparseIntArray);
-        g(17, jrVar.f38637d0, sparseIntArray);
-        g(18, jrVar.f38642f0, sparseIntArray);
-        g(19, jrVar.f38646h0, sparseIntArray);
+        g(16, jrVar.f38627e0, sparseIntArray);
+        g(17, jrVar.f38625d0, sparseIntArray);
+        g(18, jrVar.f38630f0, sparseIntArray);
+        g(19, jrVar.f38634h0, sparseIntArray);
         g(20, jrVar.m0, sparseIntArray);
-        g(21, jrVar.f38648i0, sparseIntArray);
-        g(22, jrVar.f38650j0, sparseIntArray);
+        g(21, jrVar.f38636i0, sparseIntArray);
+        g(22, jrVar.f38638j0, sparseIntArray);
         int i10 = 23;
-        g(23, jrVar.f38652k0, sparseIntArray);
-        if (jrVar.f38680x) {
+        g(23, jrVar.f38640k0, sparseIntArray);
+        if (jrVar.f38668x) {
             i10 = 24;
-            g(24, jrVar.f38654l0, sparseIntArray);
+            g(24, jrVar.f38642l0, sparseIntArray);
         }
-        g(i10 + 1, jrVar.f38644g0, sparseIntArray);
+        g(i10 + 1, jrVar.f38632g0, sparseIntArray);
         g(i10 + 2, jrVar.B0, sparseIntArray);
         g(i10 + 3, jrVar.T0, sparseIntArray);
         g(i10 + 4, jrVar.W0, sparseIntArray);
@@ -109,16 +109,16 @@ public final class dr extends s4.o {
         g(i10 + 9, jrVar.Q0, sparseIntArray);
         g(i10 + 10, jrVar.S0, sparseIntArray);
         g(i10 + 11, jrVar.R0, sparseIntArray);
-        g(i10 + 12, jrVar.f38630a1, sparseIntArray);
-        g(i10 + 13, jrVar.f38643f1, sparseIntArray);
-        g(i10 + 14, jrVar.f38645g1, sparseIntArray);
-        g(i10 + 15, jrVar.f38647h1, sparseIntArray);
-        g(i10 + 16, jrVar.f38649i1, sparseIntArray);
-        g(i10 + 17, jrVar.f38651j1, sparseIntArray);
-        g(i10 + 18, jrVar.f38657n0, sparseIntArray);
-        g(i10 + 19, jrVar.f38659o0, sparseIntArray);
-        g(i10 + 20, jrVar.f38661p0, sparseIntArray);
-        g(i10 + 21, jrVar.f38663q0, sparseIntArray);
-        g(i10 + 22, jrVar.f38666r0, sparseIntArray);
+        g(i10 + 12, jrVar.f38618a1, sparseIntArray);
+        g(i10 + 13, jrVar.f38631f1, sparseIntArray);
+        g(i10 + 14, jrVar.f38633g1, sparseIntArray);
+        g(i10 + 15, jrVar.f38635h1, sparseIntArray);
+        g(i10 + 16, jrVar.f38637i1, sparseIntArray);
+        g(i10 + 17, jrVar.f38639j1, sparseIntArray);
+        g(i10 + 18, jrVar.f38645n0, sparseIntArray);
+        g(i10 + 19, jrVar.f38647o0, sparseIntArray);
+        g(i10 + 20, jrVar.f38649p0, sparseIntArray);
+        g(i10 + 21, jrVar.f38651q0, sparseIntArray);
+        g(i10 + 22, jrVar.f38654r0, sparseIntArray);
     }
 }

@@ -18,7 +18,7 @@ public final class b6 extends pg.b {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f46346f;
+        int i10 = b1Var.f46345f;
         if (i10 == 1 || i10 == 2 || i10 == 4) {
             return true;
         }
@@ -27,22 +27,22 @@ public final class b6 extends pg.b {
 
     @Override
     public final int h() {
-        return this.d.f36519c.size();
+        return this.d.f36485c.size();
     }
 
     @Override
     public final int j(int i10) {
-        return ((c6) this.d.f36519c.get(i10)).f44713a;
+        return ((c6) this.d.f36485c.get(i10)).f44712a;
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         String str;
         d6 d6Var = this.d;
-        ArrayList arrayList = d6Var.f36519c;
-        if (((c6) arrayList.get(i10)).f44713a == 2) {
-            org.telegram.ui.Cells.wa waVar = (org.telegram.ui.Cells.wa) b1Var.f46343a;
-            CacheByChatsController.KeepMediaException keepMediaException = ((c6) arrayList.get(i10)).f36248c;
+        ArrayList arrayList = d6Var.f36485c;
+        if (((c6) arrayList.get(i10)).f44712a == 2) {
+            org.telegram.ui.Cells.wa waVar = (org.telegram.ui.Cells.wa) b1Var.f46342a;
+            CacheByChatsController.KeepMediaException keepMediaException = ((c6) arrayList.get(i10)).f36228c;
             TLObject userOrChat = d6Var.getMessagesController().getUserOrChat(keepMediaException.dialogId);
             if (userOrChat instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) userOrChat;
@@ -59,7 +59,7 @@ public final class b6 extends pg.b {
             boolean z10 = true;
             waVar.setSelfAsSavedMessages(true);
             String keepMediaString = CacheByChatsController.getKeepMediaString(keepMediaException.keepMedia);
-            if (i10 != arrayList.size() - 1 && ((c6) arrayList.get(i10 + 1)).f44713a != 2) {
+            if (i10 != arrayList.size() - 1 && ((c6) arrayList.get(i10 + 1)).f44712a != 2) {
                 z10 = false;
             }
             waVar.d(userOrChat, str, keepMediaString, z10);
@@ -76,8 +76,8 @@ public final class b6 extends pg.b {
                     if (i10 == 4) {
                         org.telegram.ui.Cells.r8 r8Var2 = new org.telegram.ui.Cells.r8(viewGroup.getContext());
                         r8Var2.k(LocaleController.getString(R.string.NotificationsDeleteAllException), false);
-                        r8Var2.g(-1, org.telegram.ui.ActionBar.k6.f21404p7);
-                        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, r8Var2, null);
+                        r8Var2.g(-1, org.telegram.ui.ActionBar.k6.f21405p7);
+                        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, r8Var2, null);
                         r8Var = r8Var2;
                     }
                 } else {
@@ -85,15 +85,15 @@ public final class b6 extends pg.b {
                 }
             } else {
                 View waVar = new org.telegram.ui.Cells.wa(4, 0, viewGroup.getContext(), null, false, false);
-                org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, waVar, null);
+                org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, waVar, null);
                 view = waVar;
             }
             return com.google.android.gms.internal.play_billing.k3.l(view, view, -1, -2);
         }
         org.telegram.ui.Cells.r8 r8Var3 = new org.telegram.ui.Cells.r8(viewGroup.getContext());
         r8Var3.o(R.drawable.msg_contact_add, LocaleController.getString(R.string.NotificationsAddAnException), true);
-        r8Var3.g(org.telegram.ui.ActionBar.k6.f21516v6, org.telegram.ui.ActionBar.k6.f21499u6);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, r8Var3, null);
+        r8Var3.g(org.telegram.ui.ActionBar.k6.f21517v6, org.telegram.ui.ActionBar.k6.f21500u6);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, r8Var3, null);
         r8Var = r8Var3;
         view = r8Var;
         return com.google.android.gms.internal.play_billing.k3.l(view, view, -1, -2);

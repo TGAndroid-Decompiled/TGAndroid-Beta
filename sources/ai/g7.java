@@ -5,8 +5,8 @@ import android.graphics.Paint;
 import android.graphics.Path;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ar;
-public final class g7 extends ar {
+import org.telegram.ui.Components.yq;
+public final class g7 extends yq {
     public final View f1353c;
     public final Paint d;
     public final Path e;
@@ -22,7 +22,7 @@ public final class g7 extends ar {
         this.f1354f = System.currentTimeMillis();
         this.h = 1.0f;
         this.f1353c = dVar;
-        ((Paint) this.f24829b).setColor(-1);
+        ((Paint) this.f33024b).setColor(-1);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeCap(Paint.Cap.ROUND);
@@ -36,7 +36,7 @@ public final class g7 extends ar {
     @Override
     public final void draw(Canvas canvas) {
         float f7;
-        Paint paint = (Paint) this.f24829b;
+        Paint paint = (Paint) this.f33024b;
         paint.setAlpha((int) (this.h * 255.0f));
         canvas.drawCircle(getBounds().centerX(), getBounds().centerY(), getBounds().width() / 2.0f, paint);
         float currentTimeMillis = ((float) ((System.currentTimeMillis() - this.f1354f) % 400)) / 400.0f;

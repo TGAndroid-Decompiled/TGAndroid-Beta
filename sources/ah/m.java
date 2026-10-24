@@ -7,7 +7,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Cells.w8;
-import org.telegram.ui.Components.a6;
+import org.telegram.ui.Components.y5;
 public final class m implements Utilities.Callback {
     public final int f827a;
     public final a0 f828b;
@@ -19,7 +19,7 @@ public final class m implements Utilities.Callback {
 
     @Override
     public final void run(Object obj) {
-        a6[] a6VarArr;
+        y5[] y5VarArr;
         w8 w8Var;
         long j10;
         switch (this.f827a) {
@@ -38,12 +38,12 @@ public final class m implements Utilities.Callback {
                 if (!a0Var2.a0()) {
                     int editTextSelectionEnd = a0Var2.f643n.getEditTextSelectionEnd();
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(a0Var2.f643n.getText());
-                    for (a6 a6Var : (a6[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), a6.class)) {
-                        if (spannableStringBuilder.getSpanEnd(a6Var) == editTextSelectionEnd) {
-                            a0Var2.E.remove(Long.valueOf(a6Var.documentId));
-                            a0Var2.F.remove(Long.valueOf(a6Var.documentId));
-                            a0Var2.f640b.A(Long.valueOf(a6Var.documentId));
-                            if (a6Var.documentId == -1 && (w8Var = a0Var2.f645s) != null) {
+                    for (y5 y5Var : (y5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), y5.class)) {
+                        if (spannableStringBuilder.getSpanEnd(y5Var) == editTextSelectionEnd) {
+                            a0Var2.E.remove(Long.valueOf(y5Var.documentId));
+                            a0Var2.F.remove(Long.valueOf(y5Var.documentId));
+                            a0Var2.f640b.A(Long.valueOf(y5Var.documentId));
+                            if (y5Var.documentId == -1 && (w8Var = a0Var2.f645s) != null) {
                                 w8Var.setChecked(false);
                                 a0Var2.f643n.setMaxLength(a0Var2.J);
                             }
@@ -53,8 +53,8 @@ public final class m implements Utilities.Callback {
                                 AndroidUtilities.runOnUIThread(lVar, 350L);
                                 return;
                             }
-                            a6Var.setRemoved(new o(a0Var2, a6Var, editTextSelectionEnd, 0));
-                            a0Var2.W(a6Var);
+                            y5Var.setRemoved(new o(a0Var2, y5Var, editTextSelectionEnd, 0));
+                            a0Var2.W(y5Var);
                             a0Var2.Y(false);
                             return;
                         }

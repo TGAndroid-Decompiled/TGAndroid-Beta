@@ -1,90 +1,79 @@
 package org.telegram.ui.Components;
+public final class x6 implements org.telegram.ui.ActionBar.s6 {
+    public final int f32527a;
+    public final Object f32528b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class x6 extends View {
-    public final ImageReceiver f32439a;
-    public final Drawable f32440b;
-    public final Paint f32441c;
-    public final Paint d;
-
-    public x6(Context context) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f32441c = paint;
-        this.d = new Paint(1);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f32439a = imageReceiver;
-        imageReceiver.setAlpha(0.0f);
-        imageReceiver.setDelegate(new s(this, 12));
-        this.f32440b = context.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
+    public x6(Object obj, int i10) {
+        this.f32527a = i10;
+        this.f32528b = obj;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f32439a.onAttachedToWindow();
+    public final void a(float f7) {
+        int i10 = this.f32527a;
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f32439a.onDetachedFromWindow();
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(10.0f) + getHeight());
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.d);
-        ImageReceiver imageReceiver = this.f32439a;
-        imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
-        imageReceiver.draw(canvas);
-        Paint paint = this.f32441c;
-        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
-        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), paint);
-        int dp = AndroidUtilities.dp(24.0f) + (getWidth() / 2);
-        int height = (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2);
-        int dp2 = AndroidUtilities.dp(66.0f) + (getWidth() / 2);
-        int dp3 = (AndroidUtilities.dp(42.0f) / 2) + (getHeight() / 2);
-        Drawable drawable = this.f32440b;
-        drawable.setBounds(dp, height, dp2, dp3);
-        drawable.draw(canvas);
-    }
-
-    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
-        TLRPC.TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
-        if (staticAttachMenuBotIcon != null) {
-            this.f32439a.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, org.telegram.ui.ActionBar.k6.f21420q5, 1.0f), "svg", tL_attachMenuBot, 0);
+    public final void b() {
+        switch (this.f32527a) {
+            case 0:
+                ((i8) this.f32528b).v0();
+                return;
+            case 1:
+                ((pl) this.f32528b).Y();
+                return;
+            case 2:
+                uq uqVar = (uq) this.f32528b;
+                org.telegram.ui.ActionBar.u0 u0Var = uqVar.I;
+                u0Var.setIconColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G6, uqVar.f31204d0));
+                org.telegram.ui.ActionBar.k6.z1(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.I5, uqVar.f31204d0), u0Var.getBackground());
+                u0Var.G(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.E8, uqVar.f31204d0), false);
+                u0Var.G(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.F8, uqVar.f31204d0), true);
+                u0Var.B(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.G8, uqVar.f31204d0));
+                return;
+            case 3:
+                ((nh0) this.f32528b).U();
+                return;
+            case 4:
+                vo0 vo0Var = ((zo0) this.f32528b).f33324x0;
+                if (vo0Var != null) {
+                    vo0Var.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21574y8, false));
+                    return;
+                }
+                return;
+            case 5:
+                ((Runnable) this.f32528b).run();
+                return;
+            case 6:
+                ((sy0) this.f32528b).B0(false);
+                return;
+            default:
+                ((h61) this.f32528b).d();
+                return;
         }
     }
 
-    @Override
-    public void setBackgroundColor(int i10) {
-        this.d.setColor(i10);
+    private final void c(float f7) {
     }
 
-    public void setColor(int i10) {
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        this.f32440b.setColorFilter(i10, mode);
-        this.f32441c.setColor(i10);
-        this.f32439a.setColorFilter(new PorterDuffColorFilter(i10, mode));
+    private final void d(float f7) {
+    }
+
+    private final void e(float f7) {
+    }
+
+    private final void f(float f7) {
+    }
+
+    private final void g(float f7) {
+    }
+
+    private final void h(float f7) {
+    }
+
+    private final void i(float f7) {
+    }
+
+    private final void j(float f7) {
     }
 }

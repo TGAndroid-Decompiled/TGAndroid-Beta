@@ -4,7 +4,7 @@ import android.view.ViewGroup;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class l implements Runnable {
     public final int f822a;
     public final a0 f823b;
@@ -37,7 +37,7 @@ public final class l implements Runnable {
                     x xVar = a0Var.f641c;
                     xVar.setTranslationY(xVar.getMeasuredHeight());
                     a0Var.f641c.animate().setListener(null).cancel();
-                    a0Var.f641c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(bs.f25133f).setUpdateListener(new n(a0Var, 0)).setListener(new z(0)).start();
+                    a0Var.f641c.animate().translationY(0.0f).withLayer().setDuration(350L).setInterpolator(zr.f33337f).setUpdateListener(new n(a0Var, 0)).setListener(new z(0)).start();
                     return;
                 }
                 return;

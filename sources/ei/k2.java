@@ -14,7 +14,7 @@ public final class k2 extends i2 {
     public ah.y0 f9305i;
     public ah.y0 f9306j;
     public int f9307k;
-    public final org.telegram.ui.Components.f6 f9308l;
+    public final org.telegram.ui.Components.d6 f9308l;
     public Timer f9309m;
     public final ci.f9 f9310n;
     public final ArrayList f9311o;
@@ -26,7 +26,7 @@ public final class k2 extends i2 {
         this.f9312p = l2Var;
         this.f9305i = new ah.y0(l2Var);
         this.f9306j = new ah.y0(l2Var);
-        this.f9308l = new org.telegram.ui.Components.f6(l2Var);
+        this.f9308l = new org.telegram.ui.Components.d6(l2Var);
         this.f9310n = new ci.f9(l2Var);
         this.f9311o = new ArrayList();
         this.f9196a = 3;

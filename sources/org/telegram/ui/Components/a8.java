@@ -1,30 +1,20 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.os.SystemClock;
 import android.view.MotionEvent;
-public final class a8 extends f8 {
-    public long d;
-    public final k8 e;
+public final class a8 extends gp0 {
+    public final i8 m0;
 
-    public a8(k8 k8Var, Context context) {
-        super(context);
-        this.e = k8Var;
+    public a8(i8 i8Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var, false);
+        this.m0 = i8Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        int action = motionEvent.getAction();
-        k8 k8Var = this.e;
-        if (action == 0) {
-            if (this.f26225a[this.f26226b].getImageReceiver().hasBitmapImage()) {
-                k8Var.H0(true, true);
-                this.d = SystemClock.elapsedRealtime();
-                return true;
-            }
-        } else if (action != 2 && SystemClock.elapsedRealtime() - this.d >= 400) {
-            k8Var.H0(false, true);
+    public final boolean d(MotionEvent motionEvent) {
+        if (this.m0.G0 != 0) {
+            return false;
         }
-        return true;
+        return super.d(motionEvent);
     }
 }

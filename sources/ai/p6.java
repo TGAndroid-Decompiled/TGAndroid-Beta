@@ -2,7 +2,7 @@ package ai;
 
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class p6 {
     public final Runnable f1991a;
     public o6 f1992b;
@@ -16,7 +16,7 @@ public final class p6 {
     public final float f1997j;
     public final int f1998k;
     public int f1999l;
-    public final org.telegram.ui.Components.f6 f2000m;
+    public final org.telegram.ui.Components.d6 f2000m;
     public int f2001n = -1;
 
     public p6(Runnable runnable, ArrayList arrayList, o6 o6Var, o6 o6Var2, float f7, int i10) {
@@ -27,9 +27,9 @@ public final class p6 {
         this.f1996i = o6Var2;
         this.f1997j = f7;
         this.f1998k = i10;
-        org.telegram.ui.Components.f6 f6Var = new org.telegram.ui.Components.f6(runnable, 300L, bs.h);
-        this.f2000m = f6Var;
-        f6Var.a(true);
+        org.telegram.ui.Components.d6 d6Var = new org.telegram.ui.Components.d6(runnable, 300L, zr.h);
+        this.f2000m = d6Var;
+        d6Var.a(true);
         this.f1994f = -0.5f;
         this.e = 1;
         this.f1999l = i10;
@@ -130,14 +130,14 @@ public final class p6 {
             }
             j10 = i10;
         }
-        org.telegram.ui.Components.f6 f6Var = this.f2000m;
-        f6Var.f26182g = j10;
+        org.telegram.ui.Components.d6 d6Var = this.f2000m;
+        d6Var.f25570g = j10;
         if (i11 >= i12) {
             z11 = true;
         } else {
             z11 = false;
         }
-        float e = f6Var.e(z11);
+        float e = d6Var.e(z11);
         if (i12 == 3) {
             f10 = 0.75f;
         } else {

@@ -4,7 +4,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.d5;
 import org.telegram.ui.sn;
 public final class l implements Runnable {
     public final int f12208a;
@@ -35,7 +35,7 @@ public final class l implements Runnable {
                 } else {
                     i10 = R.string.CommunityMenuRemoveGroupFromCommunityConfirm;
                 }
-                f5.v0(oVar, string, LocaleController.getString(i10), LocaleController.getString(R.string.Remove), true, new g(oVar, this.d, 0));
+                d5.u0(oVar, string, LocaleController.getString(i10), LocaleController.getString(R.string.Remove), true, new g(oVar, this.d, 0));
                 return;
             case 1:
                 k0.r((k0) this.e, this.f12209b, this.f12210c, this.d);

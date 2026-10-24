@@ -270,7 +270,7 @@ public class TelegramMediaSession {
                     TLRPC.User user = arrayList4.get(i12);
                     i12++;
                     TLRPC.User user2 = user;
-                    hVar.k(user2, user2.f20490id);
+                    hVar.k(user2, user2.f20491id);
                 }
             }
             if (!arrayList3.isEmpty()) {
@@ -281,7 +281,7 @@ public class TelegramMediaSession {
                     TLRPC.Chat chat = arrayList5.get(i11);
                     i11++;
                     TLRPC.Chat chat2 = chat;
-                    hVar2.k(chat2, chat2.f20343id);
+                    hVar2.k(chat2, chat2.f20344id);
                 }
             }
         } catch (Exception e) {
@@ -322,7 +322,7 @@ public class TelegramMediaSession {
                     TLdeserialize.readAttachPath(byteBufferValue, UserConfig.getInstance(i10).clientUserId);
                     byteBufferValue.reuse();
                     if (MessageObject.isMusicMessage(TLdeserialize)) {
-                        TLdeserialize.f20364id = queryFinalized.intValue(1);
+                        TLdeserialize.f20365id = queryFinalized.intValue(1);
                         TLdeserialize.dialog_id = j10;
                         i11 = i10;
                         try {
@@ -350,7 +350,7 @@ public class TelegramMediaSession {
 
     public void lambda$new$0(int i10, int i11, Object[] objArr) {
         if (i10 == NotificationCenter.activeAccountChanged) {
-            AndroidUtilities.runOnUIThread(new fh(this, 13));
+            AndroidUtilities.runOnUIThread(new gh(this, 13));
         }
     }
 
@@ -361,7 +361,7 @@ public class TelegramMediaSession {
         this.loadingChats = true;
         int i10 = this.currentAccount;
         MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-        messagesStorage.getStorageQueue().postRunnable(new v4(this, messagesStorage, i10, 22));
+        messagesStorage.getStorageQueue().postRunnable(new w4(this, messagesStorage, i10, 22));
     }
 
     private java.util.List<android.media.browse.MediaBrowser.MediaItem> loadChildrenSync(java.lang.String r9) {
@@ -424,7 +424,7 @@ public class TelegramMediaSession {
             }
             return;
         }
-        loadBrowseChildren("__ROOT__", new m4(runnable));
+        loadBrowseChildren("__ROOT__", new n4(runnable));
     }
 
     public long getAvailableActions() {
@@ -465,10 +465,10 @@ public class TelegramMediaSession {
         for (int i10 = 0; i10 < allDialogs.size(); i10++) {
             TLRPC.Dialog dialog = allDialogs.get(i10);
             if (dialog != null) {
-                hashMap.put(Long.valueOf(dialog.f20347id), Integer.valueOf(i10));
+                hashMap.put(Long.valueOf(dialog.f20348id), Integer.valueOf(i10));
             }
         }
-        Collections.sort(arrayList, new ok(hashMap, 0));
+        Collections.sort(arrayList, new pk(hashMap, 0));
         return arrayList;
     }
 
@@ -519,7 +519,7 @@ public class TelegramMediaSession {
         }
         long dialogIdFromMediaId = getDialogIdFromMediaId(str);
         if (dialogIdFromMediaId != 0 && this.musicObjects.f(dialogIdFromMediaId) == null) {
-            loadMusicForDialog(dialogIdFromMediaId, new n8(this, browseChildrenCallback, str, 28));
+            loadMusicForDialog(dialogIdFromMediaId, new o8(this, browseChildrenCallback, str, 28));
         } else {
             browseChildrenCallback.onResult(loadChildrenSync(str));
         }

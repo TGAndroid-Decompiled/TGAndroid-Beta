@@ -1,37 +1,28 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class df0 implements RequestDelegate {
-    public final int f36613a;
-    public final mf0 f36614b;
-    public final Bundle f36615c;
+public final class df0 implements Runnable {
+    public final int f36616a;
+    public final lf0 f36617b;
+    public final int f36618c;
 
-    public df0(mf0 mf0Var, Bundle bundle, int i10) {
-        this.f36613a = i10;
-        this.f36614b = mf0Var;
-        this.f36615c = bundle;
+    public df0(lf0 lf0Var, int i10, int i11) {
+        this.f36616a = i11;
+        this.f36617b = lf0Var;
+        this.f36618c = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f36613a) {
+    public final void run() {
+        switch (this.f36616a) {
             case 0:
-                mf0 mf0Var = this.f36614b;
-                if (tLObject != null) {
-                    AndroidUtilities.runOnUIThread(new re0(mf0Var, this.f36615c, tLObject, 3));
-                    return;
-                } else if (tL_error != null && tL_error.text != null) {
-                    AndroidUtilities.runOnUIThread(new f80(23, mf0Var, tL_error));
-                    return;
-                } else {
-                    return;
-                }
+                AndroidUtilities.runOnUIThread(new df0(this.f36617b, this.f36618c, 1));
+                return;
+            case 1:
+                this.f36617b.z(this.f36618c);
+                return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.j90(this.f36614b, tL_error, this.f36615c, tLObject));
+                this.f36617b.f39237f.f41792f[this.f36618c].l(1.0f);
                 return;
         }
     }

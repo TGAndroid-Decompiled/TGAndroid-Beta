@@ -4,8 +4,8 @@ import ai.qa;
 import android.content.Context;
 import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.yn0;
-public final class d5 extends yn0 {
+import org.telegram.ui.Components.xn0;
+public final class d5 extends xn0 {
     public qa f5256f;
     public final t5 h;
 

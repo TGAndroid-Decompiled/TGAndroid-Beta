@@ -11,7 +11,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.bg1;
+import org.telegram.ui.ag1;
 import org.telegram.ui.sn;
 public final class n0 implements RequestDelegate {
     public final int f13005a;
@@ -46,7 +46,7 @@ public final class n0 implements RequestDelegate {
                 ((SendMessagesHelper) this.d).lambda$sendEditRichMessageRequest$29(this.f13007c, (MessageObject) this.e, (TLRPC.TL_messages_editMessage) this.f13006b, (o2) this.f13008f, tLObject, tL_error);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new q0((bg1) this.d, tL_error, this.f13007c, tLObject, (byte[]) this.e, (String) this.f13006b, (TL_account.passwordInputSettings) this.f13008f));
+                AndroidUtilities.runOnUIThread(new q0((ag1) this.d, tL_error, this.f13007c, tLObject, (byte[]) this.e, (String) this.f13006b, (TL_account.passwordInputSettings) this.f13008f));
                 return;
             default:
                 xh.k kVar = (xh.k) this.d;
@@ -54,7 +54,7 @@ public final class n0 implements RequestDelegate {
                 TLRPC.User user = (TLRPC.User) this.f13008f;
                 TLRPC.TL_messages_hideChatJoinRequest tL_messages_hideChatJoinRequest = (TLRPC.TL_messages_hideChatJoinRequest) this.f13006b;
                 if (tL_error == null) {
-                    MessagesController.getInstance(kVar.f50314k).lambda$processUpdates$377((TLRPC.TL_updates) tLObject, false);
+                    MessagesController.getInstance(kVar.f50313k).lambda$processUpdates$377((TLRPC.TL_updates) tLObject, false);
                 }
                 AndroidUtilities.runOnUIThread(new q0(kVar, tL_error, tLObject, tL_chatInviteImporter, this.f13007c, user, tL_messages_hideChatJoinRequest));
                 return;

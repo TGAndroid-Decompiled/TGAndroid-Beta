@@ -13,7 +13,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.e21;
+import org.telegram.ui.d21;
 import org.telegram.ui.qh;
 import org.telegram.ui.sn;
 import org.telegram.ui.u50;
@@ -54,7 +54,7 @@ public final class z0 implements RequestDelegate {
                 u50.w((u50) obj5, this.f11602b, (HashSet) obj3, (AtomicInteger) obj4, this.f11603c, (ChatObject.Call) obj2, (String) obj, tLObject, tL_error);
                 return;
             case 2:
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 AndroidUtilities.runOnUIThread(new b1((LaunchActivity) obj5, tLObject, this.f11603c, (String) obj3, (String) obj4, (TLRPC.User) obj2, (String) obj, this.f11602b));
                 return;
             default:
@@ -68,7 +68,7 @@ public final class z0 implements RequestDelegate {
                         AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e(tLObject, activity, g6Var, this.f11602b, bArr, snVar, messageObject));
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultReported) {
-                        AndroidUtilities.runOnUIThread(new e21(snVar, activity, g6Var, messageObject, 0), 200L);
+                        AndroidUtilities.runOnUIThread(new d21(snVar, activity, g6Var, messageObject, 0), 200L);
                         return;
                     } else if (tLObject instanceof TLRPC.TL_channels_sponsoredMessageReportResultAdsHidden) {
                         AndroidUtilities.runOnUIThread(new qh(snVar, this.f11603c, messageObject), 200L);
@@ -77,7 +77,7 @@ public final class z0 implements RequestDelegate {
                         return;
                     }
                 } else if (tL_error != null && "AD_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new e21(snVar, activity, g6Var, messageObject, 1), 200L);
+                    AndroidUtilities.runOnUIThread(new d21(snVar, activity, g6Var, messageObject, 1), 200L);
                     return;
                 } else {
                     return;

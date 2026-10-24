@@ -6,30 +6,30 @@ import android.text.TextUtils;
 import android.widget.FrameLayout;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public abstract class m extends FrameLayout implements ne.k {
-    public final g6 f21621a;
-    public final c2.b f21622b;
-    public final ne.l f21623c;
+    public final g6 f21622a;
+    public final c2.b f21623b;
+    public final ne.l f21624c;
 
     public m(Context context, g6 g6Var, c2.b bVar) {
         super(context);
-        this.f21623c = new ne.l(this, bs.h, 350L);
-        this.f21621a = g6Var;
-        this.f21622b = bVar;
+        this.f21624c = new ne.l(this, zr.h, 350L);
+        this.f21622a = g6Var;
+        this.f21623b = bVar;
     }
 
     public final void b(CharSequence charSequence, boolean z10) {
         boolean z11;
         SpannableString spannableString;
         boolean isEmpty = TextUtils.isEmpty(charSequence);
-        ne.l lVar = this.f21623c;
+        ne.l lVar = this.f21624c;
         if (isEmpty) {
             lVar.f17469a.q(null, true);
             return;
         }
         int indexOf = TextUtils.indexOf(charSequence, "...");
-        c2.b bVar = this.f21622b;
+        c2.b bVar = this.f21623b;
         if (indexOf >= 0) {
             SpannableString valueOf = SpannableString.valueOf(charSequence);
             bVar.A(valueOf, indexOf);
@@ -41,7 +41,7 @@ public abstract class m extends FrameLayout implements ne.k {
         }
         l lVar2 = new l(this, getContext());
         int i10 = k6.gl;
-        g6 g6Var = this.f21621a;
+        g6 g6Var = this.f21622a;
         r6.W(lVar2, i10, g6Var);
         r6.I(lVar2, i10, g6Var);
         lVar2.setTextSize(1, 14.0f);
@@ -55,11 +55,11 @@ public abstract class m extends FrameLayout implements ne.k {
     }
 
     public final void c() {
-        Iterator it = this.f21623c.iterator();
+        Iterator it = this.f21624c.iterator();
         while (it.hasNext()) {
             ne.g gVar = (ne.g) it.next();
             int i10 = k6.gl;
-            g6 g6Var = this.f21621a;
+            g6 g6Var = this.f21622a;
             ((l) gVar.f17456a).setTextColor(k6.w0(i10, g6Var));
             ((l) gVar.f17456a).setLinkTextColor(k6.w0(i10, g6Var));
         }
@@ -67,7 +67,7 @@ public abstract class m extends FrameLayout implements ne.k {
 
     public void e(ne.l lVar) {
         float f7;
-        Iterator it = this.f21623c.iterator();
+        Iterator it = this.f21624c.iterator();
         while (it.hasNext()) {
             ne.g gVar = (ne.g) it.next();
             float c10 = gVar.c();
@@ -87,7 +87,7 @@ public abstract class m extends FrameLayout implements ne.k {
     }
 
     public float getTotalVisibility() {
-        return this.f21623c.f17469a.d.f17462c.f17470a;
+        return this.f21624c.f17469a.d.f17462c.f17470a;
     }
 
     @Override

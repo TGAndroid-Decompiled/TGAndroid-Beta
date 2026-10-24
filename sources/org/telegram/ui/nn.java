@@ -1,8 +1,8 @@
 package org.telegram.ui;
 public final class nn {
-    public final qn f39931a;
+    public final qn f39923a;
 
     public nn(qn qnVar) {
-        this.f39931a = qnVar;
+        this.f39923a = qnVar;
     }
 }

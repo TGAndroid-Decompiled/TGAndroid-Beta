@@ -1,40 +1,25 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class ne1 extends FrameLayout {
-    public TextView f39858a;
-    public float f39859b;
-    public boolean f39860c;
+import org.telegram.tgnet.TLRPC;
+public final class ne1 extends pg.a {
+    public final TLRPC.TL_forumTopic f39813c;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 1;
-        if (this.f39860c) {
-            float f7 = this.f39859b + 0.013333334f;
-            this.f39859b = f7;
-            if (f7 > 1.0f) {
-                this.f39860c = false;
-                this.f39859b = 1.0f;
-            }
-        } else {
-            float f10 = this.f39859b - 0.013333334f;
-            this.f39859b = f10;
-            if (f10 < 0.0f) {
-                this.f39860c = true;
-                this.f39859b = 0.0f;
+    public ne1(int i10, TLRPC.TL_forumTopic tL_forumTopic) {
+        super(i10, true);
+        this.f39813c = tL_forumTopic;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && ne1.class == obj.getClass()) {
+            ne1 ne1Var = (ne1) obj;
+            int i10 = this.f44712a;
+            if (i10 == ne1Var.f44712a && i10 == 0 && this.f39813c.f20396id == ne1Var.f39813c.f20396id) {
+                return true;
             }
         }
-        TextView textView = this.f39858a;
-        float interpolation = org.telegram.ui.Components.bs.f25133f.getInterpolation(this.f39859b) * AndroidUtilities.dp(8.0f);
-        if (LocaleController.isRTL) {
-            i10 = -1;
-        }
-        textView.setTranslationX(interpolation * i10);
-        invalidate();
+        return false;
     }
 }

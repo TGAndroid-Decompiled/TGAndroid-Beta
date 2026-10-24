@@ -5,25 +5,25 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.a60;
 import org.telegram.ui.u50;
 public abstract class l extends FrameLayout {
-    public int f31694a;
-    public a60 f31695b;
-    public t f31696c;
+    public int f31664a;
+    public a60 f31665b;
+    public t f31666c;
     public ChatObject.VideoParticipant d;
     public boolean e;
-    public final boolean f31697f;
+    public final boolean f31667f;
 
     public l(Context context, boolean z10) {
         super(context);
-        this.f31697f = z10;
+        this.f31667f = z10;
     }
 
     public float getItemHeight() {
         int measuredHeight;
-        a60 a60Var = this.f31695b;
+        a60 a60Var = this.f31665b;
         if (a60Var != null) {
             measuredHeight = a60Var.F();
         } else {
@@ -37,7 +37,7 @@ public abstract class l extends FrameLayout {
     }
 
     public t getRenderer() {
-        return this.f31696c;
+        return this.f31666c;
     }
 
     @Override
@@ -57,9 +57,9 @@ public abstract class l extends FrameLayout {
         float f7;
         int i12;
         float f10;
-        if (this.f31697f) {
+        if (this.f31667f) {
             ((View) getParent()).getMeasuredWidth();
-            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f31695b.F(), 1073741824));
+            super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(this.f31665b.F(), 1073741824));
             return;
         }
         if (u50.F3) {
@@ -67,7 +67,7 @@ public abstract class l extends FrameLayout {
         } else {
             f7 = 2.0f;
         }
-        int B = sl.B(14.0f, 2, AndroidUtilities.displaySize.x);
+        int B = tl.B(14.0f, 2, AndroidUtilities.displaySize.x);
         if (u50.F3) {
             i12 = -AndroidUtilities.dp(90.0f);
         } else {
@@ -83,6 +83,6 @@ public abstract class l extends FrameLayout {
     }
 
     public void setRenderer(t tVar) {
-        this.f31696c = tVar;
+        this.f31666c = tVar;
     }
 }

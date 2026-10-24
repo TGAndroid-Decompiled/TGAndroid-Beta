@@ -29,8 +29,8 @@ public final class s0 implements Utilities.Callback2 {
 
     @Override
     public final void run(Object obj, Object obj2) {
-        org.telegram.ui.Components.ad adVar;
-        org.telegram.ui.Components.ad adVar2;
+        org.telegram.ui.Components.yc ycVar;
+        org.telegram.ui.Components.yc ycVar2;
         switch (this.f2141a) {
             case 0:
                 b1.R((b1) this.f2142b, (pf.c) this.f2143c, (org.telegram.ui.ActionBar.c2) this.d, (TLRPC.Updates) obj, (TLRPC.TL_error) obj2);
@@ -48,15 +48,15 @@ public final class s0 implements Utilities.Callback2 {
                 CharSequence replaceTags = AndroidUtilities.replaceTags(charSequence);
                 float x10 = ((View) ((View) view.getParent()).getParent()).getX() + ((View) view.getParent()).getX() + view.getX();
                 float y3 = ((View) ((View) view.getParent()).getParent()).getY() + ((View) view.getParent()).getY() + view.getY();
-                if (view instanceof org.telegram.ui.Components.zc) {
-                    Layout layout = ((org.telegram.ui.Components.zc) view).getLayout();
+                if (view instanceof org.telegram.ui.Components.xc) {
+                    Layout layout = ((org.telegram.ui.Components.xc) view).getLayout();
                     CharSequence text = layout.getText();
                     if (text instanceof Spanned) {
                         Spanned spanned = (Spanned) text;
-                        org.telegram.ui.Components.ad[] adVarArr = (org.telegram.ui.Components.ad[]) spanned.getSpans(0, text.length(), org.telegram.ui.Components.ad.class);
-                        if (adVarArr.length > 0 && (adVar = adVarArr[0]) != null) {
-                            int spanStart = spanned.getSpanStart(adVar);
-                            x10 += layout.getPrimaryHorizontal(spanStart) + (adVarArr[0].a() / 2);
+                        org.telegram.ui.Components.yc[] ycVarArr = (org.telegram.ui.Components.yc[]) spanned.getSpans(0, text.length(), org.telegram.ui.Components.yc.class);
+                        if (ycVarArr.length > 0 && (ycVar = ycVarArr[0]) != null) {
+                            int spanStart = spanned.getSpanStart(ycVar);
+                            x10 += layout.getPrimaryHorizontal(spanStart) + (ycVarArr[0].a() / 2);
                             y3 += layout.getLineTop(layout.getLineForOffset(spanStart));
                         }
                     }
@@ -100,7 +100,7 @@ public final class s0 implements Utilities.Callback2 {
                 ArrayList arrayList = (ArrayList) obj2;
                 if (TextUtils.isEmpty(str)) {
                     b1Var.x(y7Var, "prepared_message_sent", null);
-                    org.telegram.ui.web.h0 h0Var = b1Var.f43047c;
+                    org.telegram.ui.web.h0 h0Var = b1Var.f43036c;
                     if (h0Var != null) {
                         h0Var.c();
                     }
@@ -122,15 +122,15 @@ public final class s0 implements Utilities.Callback2 {
                 CharSequence replaceTags2 = AndroidUtilities.replaceTags(charSequence2);
                 float x11 = ((View) ((View) view2.getParent()).getParent()).getX() + ((View) view2.getParent()).getX() + view2.getX();
                 float y10 = ((View) ((View) view2.getParent()).getParent()).getY() + ((View) view2.getParent()).getY() + view2.getY();
-                if (view2 instanceof org.telegram.ui.Components.zc) {
-                    Layout layout2 = ((org.telegram.ui.Components.zc) view2).getLayout();
+                if (view2 instanceof org.telegram.ui.Components.xc) {
+                    Layout layout2 = ((org.telegram.ui.Components.xc) view2).getLayout();
                     CharSequence text2 = layout2.getText();
                     if (text2 instanceof Spanned) {
                         Spanned spanned2 = (Spanned) text2;
-                        org.telegram.ui.Components.ad[] adVarArr2 = (org.telegram.ui.Components.ad[]) spanned2.getSpans(0, text2.length(), org.telegram.ui.Components.ad.class);
-                        if (adVarArr2.length > 0 && (adVar2 = adVarArr2[0]) != null) {
-                            int spanStart2 = spanned2.getSpanStart(adVar2);
-                            x11 += layout2.getPrimaryHorizontal(spanStart2) + (adVarArr2[0].a() / 2);
+                        org.telegram.ui.Components.yc[] ycVarArr2 = (org.telegram.ui.Components.yc[]) spanned2.getSpans(0, text2.length(), org.telegram.ui.Components.yc.class);
+                        if (ycVarArr2.length > 0 && (ycVar2 = ycVarArr2[0]) != null) {
+                            int spanStart2 = spanned2.getSpanStart(ycVar2);
+                            x11 += layout2.getPrimaryHorizontal(spanStart2) + (ycVarArr2[0].a() / 2);
                             y10 += layout2.getLineTop(layout2.getLineForOffset(spanStart2));
                         }
                     }
@@ -155,7 +155,7 @@ public final class s0 implements Utilities.Callback2 {
                 String str2 = (String) obj2;
                 ((pf.c) this.f2143c).b();
                 if (((Boolean) obj).booleanValue()) {
-                    s2 s2Var = f4Var.f50693f0;
+                    s2 s2Var = f4Var.f50692f0;
                     if (s2Var != null) {
                         s2Var.run(tL_starGiftUnique);
                     }

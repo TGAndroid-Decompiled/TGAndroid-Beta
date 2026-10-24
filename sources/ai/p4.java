@@ -35,7 +35,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.tz;
+import org.telegram.ui.Components.rz;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.sn;
 import org.telegram.ui.tt;
@@ -115,14 +115,14 @@ public final class p4 implements Runnable {
                 if (tL_error != null) {
                     if (!"PASSWORD_MISSING".equals(tL_error.text) && !tL_error.text.startsWith("PASSWORD_TOO_FRESH_") && !tL_error.text.startsWith("SESSION_TOO_FRESH_")) {
                         if ("SRP_ID_INVALID".equals(tL_error.text)) {
-                            ConnectionsManager.getInstance(ieVar.f38178y0).sendRequest(new TL_account.getPassword(), new w9(ieVar, twoStepVerificationActivity, z10, 3), 8);
+                            ConnectionsManager.getInstance(ieVar.f38263y0).sendRequest(new TL_account.getPassword(), new w9(ieVar, twoStepVerificationActivity, z10, 3), 8);
                             return;
                         }
                         if (twoStepVerificationActivity != null) {
                             twoStepVerificationActivity.o0();
                             twoStepVerificationActivity.finishFragment();
                         }
-                        org.telegram.ui.Components.xc.d0(tL_error);
+                        org.telegram.ui.Components.vc.d0(tL_error);
                         return;
                     }
                     if (twoStepVerificationActivity != null) {
@@ -130,14 +130,14 @@ public final class p4 implements Runnable {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(activity);
                     String string = LocaleController.getString(R.string.EditAdminTransferAlertTitle);
-                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
                     c2Var.R = string;
                     LinearLayout linearLayout = new LinearLayout(activity);
                     linearLayout.setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(24.0f), 0);
                     linearLayout.setOrientation(1);
                     alertDialog$Builder.o(linearLayout);
                     TextView textView = new TextView(activity);
-                    int i19 = org.telegram.ui.ActionBar.k6.f21289j5;
+                    int i19 = org.telegram.ui.ActionBar.k6.f21290j5;
                     org.telegram.ui.ActionBar.r6.W(textView, i19, null);
                     textView.setTextSize(1, 16.0f);
                     if (LocaleController.isRTL) {
@@ -241,7 +241,7 @@ public final class p4 implements Runnable {
                         twoStepVerificationActivity.showDialog(c2Var);
                         return;
                     } else {
-                        ieVar.f38175w0.showDialog(c2Var);
+                        ieVar.f38260w0.showDialog(c2Var);
                         return;
                     }
                 }
@@ -273,7 +273,7 @@ public final class p4 implements Runnable {
                         return;
                     }
                     try {
-                        AndroidUtilities.openForView(messageObject, snVar.getParentActivity(), snVar.f41654qa, false);
+                        AndroidUtilities.openForView(messageObject, snVar.getParentActivity(), snVar.f41651qa, false);
                         return;
                     } catch (Exception e) {
                         FileLog.e(e);
@@ -286,8 +286,8 @@ public final class p4 implements Runnable {
                 vo voVar = (vo) obj5;
                 TLRPC.TL_username tL_username = (TLRPC.TL_username) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj;
-                xo xoVar = voVar.f42799a;
-                yo yoVar = xoVar.f43628b3;
+                xo xoVar = voVar.f42781a;
+                yo yoVar = xoVar.f43653b3;
                 yoVar.Q.remove(((TLRPC.TL_channels_toggleUsername) obj4).username);
                 if (((TLObject) obj2) instanceof TLRPC.TL_boolTrue) {
                     xoVar.C1(tL_username, !z10, false);
@@ -300,7 +300,7 @@ public final class p4 implements Runnable {
                 yoVar.getMessagesController().updateUsernameActiveness(yoVar.Y, tL_username.username, tL_username.active);
                 return;
             case 11:
-                ((tz) obj5).J((oh.b) obj, (TLObject) obj2, (TLRPC.StickerSet) obj4, (TLRPC.Document) obj3, this.f1986b, true);
+                ((rz) obj5).J((oh.b) obj, (TLObject) obj2, (TLRPC.StickerSet) obj4, (TLRPC.Document) obj3, this.f1986b, true);
                 return;
             case 12:
                 tt.Q((tt) obj5, (TLObject) obj2, (ei.d) obj4, this.f1986b, (HashSet) obj3, (TLRPC.TL_error) obj);
@@ -311,7 +311,7 @@ public final class p4 implements Runnable {
                 int[] iArr2 = (int[]) obj4;
                 int[] iArr3 = (int[]) obj3;
                 int[] iArr4 = (int[]) obj2;
-                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.x9.f35423a;
+                DispatchQueue dispatchQueue = org.telegram.ui.Wallet.x9.f35425a;
                 int i20 = 0;
                 while (true) {
                     int i21 = 287;
@@ -361,7 +361,7 @@ public final class p4 implements Runnable {
                                         }
                                     }
                                 }
-                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.x9.f35424b[i31];
+                                iArr3[(i30 * 288) + i28] = org.telegram.ui.Wallet.x9.f35426b[i31];
                                 i30++;
                                 i18 = 0;
                                 i21 = 287;
@@ -494,9 +494,9 @@ public final class p4 implements Runnable {
         this.d = tL_error;
     }
 
-    public p4(tz tzVar, oh.b bVar, TLObject tLObject, TLRPC.StickerSet stickerSet, TLRPC.Document document, boolean z10) {
+    public p4(rz rzVar, oh.b bVar, TLObject tLObject, TLRPC.StickerSet stickerSet, TLRPC.Document document, boolean z10) {
         this.f1985a = 11;
-        this.f1987c = tzVar;
+        this.f1987c = rzVar;
         this.d = bVar;
         this.h = tLObject;
         this.e = stickerSet;

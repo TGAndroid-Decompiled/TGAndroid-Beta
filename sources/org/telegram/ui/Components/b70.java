@@ -1,31 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ProfileActivity;
-public final class b70 extends ClickableSpan {
-    public final org.telegram.ui.ActionBar.h3[] f24968a;
-    public final TLRPC.TL_chatInviteImporter f24969b;
+import android.content.Context;
+import android.text.SpannableStringBuilder;
+public final class b70 extends p90 {
+    public final f70 M;
 
-    public b70(org.telegram.ui.ActionBar.h3[] h3VarArr, TLRPC.TL_chatInviteImporter tL_chatInviteImporter) {
-        this.f24968a = h3VarArr;
-        this.f24969b = tL_chatInviteImporter;
+    public b70(f70 f70Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.h3 h3Var, boolean z10) {
+        super(context, o2Var, h3Var, false, z10);
+        this.M = f70Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        this.f24968a[0].dismiss();
-        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-        if (U != null) {
-            U.presentFragment(ProfileActivity.o4(this.f24969b.user_id));
-        }
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        textPaint.setUnderlineText(false);
+    public final void e(int i10, SpannableStringBuilder spannableStringBuilder) {
+        org.telegram.ui.ActionBar.g6 g6Var;
+        k70 k70Var = this.M.f26217c;
+        org.telegram.ui.ActionBar.e3 e3Var = k70Var.container;
+        g6Var = ((org.telegram.ui.ActionBar.h3) k70Var).resourcesProvider;
+        oc Q = new vc(e3Var, g6Var).Q(i10, 36, spannableStringBuilder);
+        Q.f29211r = false;
+        Q.k(true);
     }
 }

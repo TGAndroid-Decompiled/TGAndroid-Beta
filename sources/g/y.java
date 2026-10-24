@@ -36,7 +36,7 @@ public final class y extends n0 {
                 }
                 ActionBarOverlayLayout actionBarOverlayLayout = a0Var.f10640c;
                 if (actionBarOverlayLayout != null) {
-                    WeakHashMap weakHashMap = i0.f45242a;
+                    WeakHashMap weakHashMap = i0.f45241a;
                     r0.y.c(actionBarOverlayLayout);
                     return;
                 }

@@ -6,22 +6,22 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-import org.telegram.ui.Components.gh;
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.pi;
 import org.telegram.ui.Components.ri;
-import org.telegram.ui.Components.ti;
-public final class r1 implements ri {
-    public final ti f15542a;
+public final class r1 implements pi {
+    public final ri f15542a;
     public final d2 f15543b;
 
-    public r1(d2 d2Var, ti tiVar) {
+    public r1(d2 d2Var, ri riVar) {
         this.f15543b = d2Var;
-        this.f15542a = tiVar;
+        this.f15542a = riVar;
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar = this.f15542a;
-        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30742j0;
+        ri riVar = this.f15542a;
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = riVar.f30158j0;
         d2 d2Var = this.f15543b;
         if (i10 == 7 || i10 == 8) {
             HashMap<Object, Object> selectedPhotos = chatAttachAlertPhotoLayout.getSelectedPhotos();
@@ -47,7 +47,7 @@ public final class r1 implements ri {
             }
         }
         d2Var.P.f15648c4 = null;
-        tiVar.dismiss(true);
+        riVar.dismiss(true);
     }
 
     @Override
@@ -56,8 +56,8 @@ public final class r1 implements ri {
     }
 
     @Override
-    public final void r(gh ghVar) {
-        NotificationCenter.getInstance(this.f15543b.getCurrentAccount()).doOnIdle(ghVar);
+    public final void r(eh ehVar) {
+        NotificationCenter.getInstance(this.f15543b.getCurrentAccount()).doOnIdle(ehVar);
     }
 
     @Override

@@ -4,35 +4,35 @@ import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.cj;
-import org.telegram.ui.Components.ml;
-import org.telegram.ui.Components.ti;
-public final class e implements ml, cj {
+import org.telegram.ui.Components.aj;
+import org.telegram.ui.Components.kl;
+import org.telegram.ui.Components.ri;
+public final class e implements kl, aj {
     public final q f15297a;
-    public final ti f15298b;
+    public final ri f15298b;
 
-    public e(q qVar, ti tiVar) {
+    public e(q qVar, ri riVar) {
         this.f15297a = qVar;
-        this.f15298b = tiVar;
+        this.f15298b = riVar;
     }
 
     @Override
     public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
         q qVar = this.f15297a;
         qVar.getClass();
-        ti tiVar = this.f15298b;
+        ri riVar = this.f15298b;
         if (messageMedia != null && messageMedia.geo != null) {
             TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
             pageblockmap.geo = messageMedia.geo;
             pageblockmap.zoom = 15;
-            pageblockmap.f20563w = 600;
+            pageblockmap.f20564w = 600;
             pageblockmap.h = 400;
             qVar.f15508r.X1(pageblockmap);
             qVar.Y(true);
-            tiVar.dismiss(true);
+            riVar.dismiss(true);
             return;
         }
-        tiVar.dismiss(true);
+        riVar.dismiss(true);
     }
 
     @Override

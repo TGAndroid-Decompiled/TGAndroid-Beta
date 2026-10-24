@@ -31,25 +31,25 @@ import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.j6;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.d50;
-import org.telegram.ui.Components.e50;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.b50;
+import org.telegram.ui.Components.c50;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.jr;
-import org.telegram.ui.mu0;
+import org.telegram.ui.lu0;
 import org.telegram.ui.sn;
 import w7.b6;
 import w7.z5;
-public final class o extends o2 implements d50, NotificationCenter.NotificationCenterDelegate, ne.d {
-    public h9 E;
-    public e50 F;
+public final class o extends o2 implements b50, NotificationCenter.NotificationCenterDelegate, ne.d {
+    public f9 E;
+    public c50 F;
     public TLRPC.FileLocation G;
     public di.n H;
     public TLRPC.Chat I;
@@ -60,35 +60,35 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
     public final ne.b f12223b;
     public long f12224c;
     public w1 d;
-    public j71 e;
+    public i71 e;
     public String f12225f;
     public boolean h;
     public boolean f12226n;
     public ah.x f12227r;
     public n f12228s;
     public g6 v;
-    public w9 f12229w;
+    public u9 f12229w;
     public AnimatorSet f12230x;
     public RadialProgressView f12231y;
 
     public o(Bundle bundle) {
         super(bundle);
-        this.f12223b = new ne.b(0, this, bs.h, 320L, false);
+        this.f12223b = new ne.b(0, this, zr.h, 320L, false);
         this.K = new c2[1];
         this.L = new m(this);
     }
 
-    public static boolean U(o oVar, m61 m61Var, View view) {
+    public static boolean U(o oVar, l61 l61Var, View view) {
         long j10;
         boolean canRemoveBotFromCommunity;
         boolean z10;
         boolean z11;
         boolean z12;
         int i10;
-        Object obj = m61Var.G;
+        Object obj = l61Var.G;
         if (obj instanceof TLRPC.Chat) {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
-            j10 = -chat.f20343id;
+            j10 = -chat.f20344id;
             boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
             canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, oVar.I);
             z11 = isChannelAndNotMegaGroup;
@@ -96,7 +96,7 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         } else {
             if (obj instanceof TLRPC.User) {
                 TLRPC.User user = (TLRPC.User) obj;
-                j10 = user.f20490id;
+                j10 = user.f20491id;
                 boolean isBot = UserObject.isBot(user);
                 canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, oVar.I);
                 z10 = isBot;
@@ -113,7 +113,7 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
             z12 = true;
         }
         if (z13 || z12) {
-            j80 F = j80.F(oVar.d, null, view);
+            h80 F = h80.F(oVar.d, null, view);
             int i11 = R.drawable.msg_viewintopic;
             if (z10) {
                 i10 = R.string.CommunityMenuViewBot;
@@ -131,10 +131,10 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         return false;
     }
 
-    public static void V(o oVar, m61 m61Var) {
+    public static void V(o oVar, l61 l61Var) {
         TLRPC.Chat chat;
         TLRPC.ChatPhoto chatPhoto;
-        int i10 = m61Var.d;
+        int i10 = l61Var.d;
         if (i10 == 140) {
             if (!oVar.F.g() && (chatPhoto = (chat = oVar.getMessagesController().getChat(Long.valueOf(oVar.f12224c))).photo) != null && chatPhoto.photo_big != null) {
                 ImageLocation imageLocation = null;
@@ -158,11 +158,11 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         }
         boolean z10 = true;
         if (i10 == 141) {
-            e50 e50Var = oVar.F;
+            c50 c50Var = oVar.F;
             if (oVar.G == null) {
                 z10 = false;
             }
-            e50Var.n(z10, new h(oVar, 0), new e1(6), 0);
+            c50Var.n(z10, new h(oVar, 0), new e1(6), 0);
         } else if (i10 == 142) {
             Bundle bundle = new Bundle();
             bundle.putLong("chat_id", oVar.f12224c);
@@ -186,15 +186,15 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         } else if (i10 == 151) {
             oVar.Z(false);
         } else if (i10 == 145) {
-            f5.s(oVar, false, oVar.I, null, false, true, true, false, new j(oVar));
+            d5.r(oVar, false, oVar.I, null, false, true, true, false, new j(oVar));
         } else if (i10 == 146) {
             t0.e(oVar.K, oVar, oVar.currentAccount, oVar.I);
         } else {
-            Object obj = m61Var.G;
+            Object obj = l61Var.G;
             if (obj instanceof TLRPC.Chat) {
-                oVar.presentFragment(sn.W9(-((TLRPC.Chat) obj).f20343id));
+                oVar.presentFragment(sn.W9(-((TLRPC.Chat) obj).f20344id));
             } else if (obj instanceof TLRPC.User) {
-                oVar.presentFragment(sn.W9(((TLRPC.User) obj).f20490id));
+                oVar.presentFragment(sn.W9(((TLRPC.User) obj).f20491id));
             }
         }
     }
@@ -306,13 +306,13 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 6));
         gh.c cVar = new gh.c();
         this.f12222a = cVar;
-        cVar.a(getThemedColor(k6.f21183d6));
+        cVar.a(getThemedColor(k6.f21184d6));
         this.actionBar.L(new bh.b(cVar), fh.c.o(this.resourceProvider), false);
         this.actionBar.P0 = true;
         w1 w1Var = new w1(this, context);
         this.d = w1Var;
-        r6.i(k6.f21125a7, w1Var, null);
-        this.E = new h9(this.I);
+        r6.i(k6.f21126a7, w1Var, null);
+        this.E = new f9(this.I);
         n nVar = new n(context);
         this.f12228s = nVar;
         nVar.f12218a.e(this.I, this.E);
@@ -324,7 +324,7 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         ai.t tVar = new ai.t(context, 1);
         xVar.f900b = tVar;
         r6.W(tVar, k6.G6, g6Var);
-        r6.I(tVar, k6.f21242gc, g6Var);
+        r6.I(tVar, k6.f21243gc, g6Var);
         r6.F(tVar, k6.H6, g6Var);
         tVar.setTextSize(1, 16.0f);
         tVar.setMaxLines(Integer.MAX_VALUE);
@@ -365,20 +365,20 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         this.f12231y.setNoProgress(false);
         this.f12228s.addView(this.f12231y, z5.d(64, 64.0f, 81, 0.0f, 0.0f, 0.0f, 32.0f));
         a0(false, false);
-        j71 j71Var = new j71(this, new i(this, 1), new j(this), new j(this));
-        this.e = j71Var;
-        j71Var.setClipToPadding(false);
-        j71 j71Var2 = this.e;
-        b71 b71Var = j71Var2.Z2;
-        b71Var.f24972r = false;
-        b71Var.f24973s = true;
-        j71Var2.t1();
+        i71 i71Var = new i71(this, new i(this, 1), new j(this), new j(this));
+        this.e = i71Var;
+        i71Var.setClipToPadding(false);
+        i71 i71Var2 = this.e;
+        a71 a71Var = i71Var2.Z2;
+        a71Var.f24646r = false;
+        a71Var.f24647s = true;
+        i71Var2.t1();
         this.actionBar.setBackground(null);
         this.d.addView(this.e, z5.c(-1.0f, -1));
         this.d.addView(this.actionBar, z5.e(-1, -2, 48));
         w1 w1Var2 = this.d;
         j jVar = new j(this);
-        WeakHashMap weakHashMap = r0.i0.f45242a;
+        WeakHashMap weakHashMap = r0.i0.f45241a;
         r0.a0.i(w1Var2, jVar);
         w1 w1Var3 = this.d;
         this.fragmentView = w1Var3;
@@ -389,7 +389,7 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         if (i10 == NotificationCenter.chatInfoDidLoad) {
             TLRPC.ChatFull chatFull = (TLRPC.ChatFull) objArr[0];
-            if (chatFull.f20344id == this.f12224c) {
+            if (chatFull.f20345id == this.f12224c) {
                 this.J = chatFull;
                 this.e.Z2.N(true);
             }
@@ -406,7 +406,7 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
 
     @Override
     public final boolean dismissDialogOnPause(Dialog dialog) {
-        if (dialog != this.F.f25854c && super.dismissDialogOnPause(dialog)) {
+        if (dialog != this.F.f25187c && super.dismissDialogOnPause(dialog)) {
             return true;
         }
         return false;
@@ -423,7 +423,7 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
     }
 
     @Override
-    public final mu0 getCloseIntoObject() {
+    public final lu0 getCloseIntoObject() {
         return null;
     }
 
@@ -472,10 +472,10 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         this.h = z10;
         this.f12226n = z10;
         this.J = getMessagesController().getChatFull(this.f12224c);
-        e50 e50Var = new e50(3, true, true);
-        this.F = e50Var;
-        e50Var.f25852a = this;
-        e50Var.f25853b = this;
+        c50 c50Var = new c50(3, true, true);
+        this.F = c50Var;
+        c50Var.f25185a = this;
+        c50Var.f25186b = this;
         getNotificationCenter().addObserver(this, NotificationCenter.chatInfoDidLoad);
         return super.onFragmentCreate();
     }
@@ -484,9 +484,9 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
         getNotificationCenter().removeObserver(this, NotificationCenter.chatInfoDidLoad);
-        e50 e50Var = this.F;
-        if (e50Var != null) {
-            e50Var.d();
+        c50 c50Var = this.F;
+        if (c50Var != null) {
+            c50Var.d();
         }
     }
 
@@ -513,7 +513,7 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
         try {
             gh.c cVar = this.f12222a;
             if (cVar != null) {
-                cVar.a(getThemedColor(k6.f21183d6));
+                cVar.a(getThemedColor(k6.f21184d6));
             }
             org.telegram.ui.ActionBar.k kVar = this.actionBar;
             if (kVar != null) {
@@ -526,17 +526,17 @@ public final class o extends o2 implements d50, NotificationCenter.NotificationC
 
     @Override
     public final void restoreSelfArgs(Bundle bundle) {
-        e50 e50Var = this.F;
-        if (e50Var != null) {
-            e50Var.f25855f = bundle.getString("path");
+        c50 c50Var = this.F;
+        if (c50Var != null) {
+            c50Var.f25188f = bundle.getString("path");
         }
     }
 
     @Override
     public final void saveSelfArgs(Bundle bundle) {
         String str;
-        e50 e50Var = this.F;
-        if (e50Var != null && (str = e50Var.f25855f) != null) {
+        c50 c50Var = this.F;
+        if (c50Var != null && (str = c50Var.f25188f) != null) {
             bundle.putString("path", str);
         }
         ah.x xVar = this.f12227r;

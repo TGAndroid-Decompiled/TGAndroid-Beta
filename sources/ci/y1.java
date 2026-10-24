@@ -107,7 +107,7 @@ public final class y1 implements org.telegram.ui.ActionBar.z1, kh.a {
                                 int i15 = i12;
                                 while (true) {
                                     if (i15 < peerStories.stories.size()) {
-                                        if (peerStories.stories.get(i15).f20577id == storyItem2.f20577id) {
+                                        if (peerStories.stories.get(i15).f20578id == storyItem2.f20578id) {
                                             peerStories.stories.remove(i15);
                                             if (peerStories.stories.size() == 0) {
                                                 if (!h7Var.K(j11)) {
@@ -150,10 +150,10 @@ public final class y1 implements org.telegram.ui.ActionBar.z1, kh.a {
                         }
                         TL_stories.TL_stories_deleteStories tL_stories_deleteStories = new TL_stories.TL_stories_deleteStories();
                         tL_stories_deleteStories.peer = MessagesController.getInstance(i13).getInputPeer(j11);
-                        tL_stories_deleteStories.f20580id.add(Integer.valueOf(storyItem2.f20577id));
+                        tL_stories_deleteStories.f20581id.add(Integer.valueOf(storyItem2.f20578id));
                         ConnectionsManager.getInstance(i13).sendRequest(tL_stories_deleteStories, new g6(h7Var, 5));
                         v7 v7Var = h7Var.f5406k;
-                        v7Var.f6031b.getStorageQueue().postRunnable(new r7(v7Var, j11, storyItem2.f20577id, 1));
+                        v7Var.f6031b.getStorageQueue().postRunnable(new r7(v7Var, j11, storyItem2.f20578id, 1));
                         NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.storiesUpdated, new Object[0]);
                         MessagesController.getInstance(i13).checkArchiveFolder();
                         h7Var.k0(j11, Arrays.asList(storyItem2));

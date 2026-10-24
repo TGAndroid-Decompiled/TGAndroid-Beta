@@ -77,17 +77,17 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Cells.r8;
+import org.telegram.ui.Components.am0;
 import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.cm0;
-import org.telegram.ui.Components.gu;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.eu;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.b51;
-import org.telegram.ui.nc0;
-import org.telegram.ui.of1;
-public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCompleteListener, Continuation, r9.d, bm0, cm0, Utilities.Callback3Return, nc0, e2.p, e2.o, ki.o0, gu, i4, m4.o0, e2.j {
+import org.telegram.ui.a51;
+import org.telegram.ui.mc0;
+import org.telegram.ui.nf1;
+public final class h0 implements a51, nf1, z1, ih.i, OnFailureListener, v8, OnCompleteListener, Continuation, r9.d, am0, bm0, Utilities.Callback3Return, mc0, e2.p, e2.o, ki.o0, eu, i4, m4.o0, e2.j {
     public final int f772a;
     public final Object f773b;
     public final Object f774c;
@@ -185,7 +185,7 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
         r9 r9Var = k9Var.W;
         if (i10 >= 0 && i10 < arrayList2.size()) {
             y8 y8Var = (y8) arrayList2.get(i10);
-            int i21 = y8Var.f44713a;
+            int i21 = y8Var.f44712a;
             int i22 = 0;
             if (i21 == 3) {
                 if (y8Var.f10160n && r9Var.F) {
@@ -235,7 +235,7 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
                     } else {
                         TLRPC.Chat chat = y8Var.h;
                         if (chat != null) {
-                            long j10 = chat.f20343id;
+                            long j10 = chat.f20344id;
                             if (r9.e1(r9Var, chat) > 200) {
                                 try {
                                     k9Var.performHapticFeedback(3, 1);
@@ -244,8 +244,8 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
                                 Context context2 = k9Var.getContext();
                                 g6Var7 = ((h3) r9Var).resourcesProvider;
                                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context2, 0, g6Var7);
-                                alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.GroupTooLarge);
-                                alertDialog$Builder.f20678a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
+                                alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.GroupTooLarge);
+                                alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.GroupTooLargeMessage);
                                 org.telegram.messenger.v0.o(R.string.OK, alertDialog$Builder, null);
                             } else if (!hashMap.containsKey(Long.valueOf(j10))) {
                                 i17 = ((h3) r9Var).currentAccount;
@@ -294,7 +294,7 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
                                 if (k9Var.f9336a == 0) {
                                     r9Var.N = 0;
                                 }
-                                long j11 = user.f20490id;
+                                long j11 = user.f20491id;
                                 HashSet hashSet = new HashSet(arrayList3);
                                 if (arrayList3.contains(Long.valueOf(j11))) {
                                     Iterator it = hashMap.entrySet().iterator();
@@ -351,29 +351,29 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
                         if (d) {
                             e3 e3Var = r9Var.container;
                             g6Var6 = ((h3) r9Var).resourcesProvider;
-                            xc xcVar = new xc(e3Var, g6Var6);
+                            vc vcVar = new vc(e3Var, g6Var6);
                             int i25 = R.raw.ic_save_to_gallery;
                             if (z10) {
                                 i16 = R.string.StoryEnabledScreenshotsShare;
                             } else {
                                 i16 = R.string.StoryEnabledScreenshots;
                             }
-                            qc G = xcVar.G(i25, 4, LocaleController.getString(i16));
-                            G.f29832j = 5000;
+                            oc G = vcVar.G(i25, 4, LocaleController.getString(i16));
+                            G.f29203j = 5000;
                             G.k(true);
                             return;
                         }
                         e3 e3Var2 = r9Var.container;
                         g6Var5 = ((h3) r9Var).resourcesProvider;
-                        xc xcVar2 = new xc(e3Var2, g6Var5);
+                        vc vcVar2 = new vc(e3Var2, g6Var5);
                         int i26 = R.raw.passcode_lock_close;
                         if (z10) {
                             i15 = R.string.StoryDisabledScreenshotsShare;
                         } else {
                             i15 = R.string.StoryDisabledScreenshots;
                         }
-                        qc G2 = xcVar2.G(i26, 4, LocaleController.getString(i15));
-                        G2.f29832j = 5000;
+                        oc G2 = vcVar2.G(i26, 4, LocaleController.getString(i15));
+                        G2.f29203j = 5000;
                         G2.k(true);
                     } else if (i24 == 1) {
                         boolean d10 = r8Var.d();
@@ -382,28 +382,28 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
                         if (d10) {
                             e3 e3Var3 = r9Var.container;
                             g6Var4 = ((h3) r9Var).resourcesProvider;
-                            xc xcVar3 = new xc(e3Var3, g6Var4);
+                            vc vcVar3 = new vc(e3Var3, g6Var4);
                             int i27 = R.raw.msg_story_keep;
                             if (z12) {
                                 i14 = R.string.StoryChannelEnableKeep;
                             } else {
                                 i14 = R.string.StoryEnableKeep;
                             }
-                            qc G3 = xcVar3.G(i27, 4, LocaleController.getString(i14));
-                            G3.f29832j = 5000;
+                            oc G3 = vcVar3.G(i27, 4, LocaleController.getString(i14));
+                            G3.f29203j = 5000;
                             G3.k(true);
                         } else {
                             e3 e3Var4 = r9Var.container;
                             g6Var3 = ((h3) r9Var).resourcesProvider;
-                            xc xcVar4 = new xc(e3Var4, g6Var3);
+                            vc vcVar4 = new vc(e3Var4, g6Var3);
                             int i28 = R.raw.fire_on;
                             if (z12) {
                                 i13 = R.string.StoryChannelDisableKeep;
                             } else {
                                 i13 = R.string.StoryDisableKeep;
                             }
-                            qc G4 = xcVar4.G(i28, 4, LocaleController.getString(i13));
-                            G4.f29832j = 5000;
+                            oc G4 = vcVar4.G(i28, 4, LocaleController.getString(i13));
+                            G4.f29203j = 5000;
                             G4.k(true);
                         }
                         k9Var.g(true);
@@ -428,10 +428,10 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
                         clientUserId = DialogObject.getPeerDialogId(inputPeer2);
                     }
                     g6Var2 = ((h3) r9Var).resourcesProvider;
-                    j80 F = j80.F(k9Var, g6Var2, view);
+                    h80 F = h80.F(k9Var, g6Var2, view);
                     F.c(R.drawable.msg_addfolder, LocaleController.getString(R.string.StoriesAlbumNewAlbum), new v3(k9Var, clientUserId, 7), false);
                     F.k();
-                    j80.f(F, r9Var.j1().B(clientUserId, true), r9Var.v, false, null, new o2(11, k9Var, F));
+                    h80.f(F, r9Var.j1().B(clientUserId, true), r9Var.v, false, null, new o2(11, k9Var, F));
                     F.Z();
                 } else if (i29 == 5) {
                     Context context4 = k9Var.getContext();
@@ -469,7 +469,7 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
                 TL_stories.StoryItem storyItem = (TL_stories.StoryItem) this.f774c;
                 TL_stories.TL_stories_editStory tL_stories_editStory = new TL_stories.TL_stories_editStory();
                 tL_stories_editStory.peer = MessagesController.getInstance(p4Var.C2).getInputPeer(storyItem.dialogId);
-                tL_stories_editStory.f20581id = storyItem.f20577id;
+                tL_stories_editStory.f20582id = storyItem.f20578id;
                 tL_stories_editStory.flags |= 4;
                 tL_stories_editStory.privacy_rules = p9Var.f9616b;
                 ConnectionsManager.getInstance(p4Var.C2).sendRequest(tL_stories_editStory, new k2(p4Var, p6Var, storyItem, p9Var, 5));
@@ -597,11 +597,11 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
     }
 
     @Override
-    public j80 i(ki.h1 h1Var) {
+    public h80 i(ki.h1 h1Var) {
         ki.q qVar = (ki.q) ((n4.s) this.f773b).f17189c;
-        j80 j80Var = new j80(qVar, (g6) this.f774c, h1Var, false, false, true);
-        qVar.H = j80Var;
-        return j80Var;
+        h80 h80Var = new h80(qVar, (g6) this.f774c, h1Var, false, false, true);
+        qVar.H = h80Var;
+        return h80Var;
     }
 
     @Override
@@ -631,7 +631,7 @@ public final class h0 implements b51, of1, z1, ih.i, OnFailureListener, v8, OnCo
         r9.a aVar = (r9.a) this.f774c;
         try {
             Trace.beginSection(str);
-            return aVar.f45545f.j2(z5Var);
+            return aVar.f45544f.j2(z5Var);
         } finally {
             Trace.endSection();
         }

@@ -3,14 +3,14 @@ package ei;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.ImageView;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.wc;
 public final class j extends ImageView {
     public final float f9228a;
-    public final yc f9229b;
+    public final wc f9229b;
 
     public j(Context context) {
         super(context);
-        this.f9229b = new yc(this);
+        this.f9229b = new wc(this);
         this.f9228a = 0.2f;
     }
 

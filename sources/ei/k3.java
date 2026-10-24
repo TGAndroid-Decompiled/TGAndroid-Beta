@@ -2,8 +2,8 @@ package ei;
 
 import android.content.Context;
 import android.view.ViewGroup;
-import org.telegram.ui.Components.xp;
-public final class k3 extends xp {
+import org.telegram.ui.Components.vp;
+public final class k3 extends vp {
     public final int d;
     public final ViewGroup e;
 

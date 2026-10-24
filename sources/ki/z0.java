@@ -69,7 +69,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
         this.J = AndroidUtilities.dp(16.0f);
         this.K = AndroidUtilities.dp(16.0f);
         this.V = -1;
-        this.f15736a0 = r6.f21817b;
+        this.f15736a0 = r6.f21818b;
         this.f15737n = i10;
         this.f15738r = g6Var;
         setWillNotDraw(false);
@@ -97,7 +97,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f21507uf));
+        hashSet.add(Integer.valueOf(k6.f21508uf));
     }
 
     @Override
@@ -115,7 +115,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
     public final void draw(Canvas canvas) {
         int i10;
         int i11 = this.f15736a0;
-        int i12 = r6.f21817b;
+        int i12 = r6.f21818b;
         if (i11 != i12) {
             this.f15736a0 = i12;
             try {
@@ -125,7 +125,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
                     radialProgress2.d = k6.w0(i10, g6Var);
                 }
                 if (this.W && (getBackground() instanceof a2)) {
-                    ((a2) getBackground()).a(k6.w0(k6.f21183d6, g6Var));
+                    ((a2) getBackground()).a(k6.w0(k6.f21184d6, g6Var));
                 }
             } catch (Exception e) {
                 FileLog.e(e);
@@ -396,7 +396,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
                 this.Q.draw(canvas);
                 canvas.restore();
             }
-            this.f15741x.setColor(k6.w0(k6.f21373nd, g6Var));
+            this.f15741x.setColor(k6.w0(k6.f21374nd, g6Var));
             StaticLayout staticLayout = this.Q;
             int i12 = 0;
             if (staticLayout == null) {
@@ -414,7 +414,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
             if (this.S != null && (getParent() instanceof RecyclerView) && (textSelectionHelper = this.S.f15548a.getTextSelectionHelper()) != null && textSelectionHelper.x()) {
                 ((RecyclerView) getParent()).getClass();
                 int R = RecyclerView.R(this);
-                if (R > textSelectionHelper.f22861p0 && R <= textSelectionHelper.f22864s0) {
+                if (R > textSelectionHelper.f22862p0 && R <= textSelectionHelper.f22865s0) {
                     if (this.M) {
                         i11 = 0;
                     } else {
@@ -515,7 +515,7 @@ public final class z0 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
 
     @Override
     public final void updateColors() {
-        this.f15739s.setColor(k6.w0(k6.f21507uf, this.f15738r));
+        this.f15739s.setColor(k6.w0(k6.f21508uf, this.f15738r));
         k0 k0Var = this.F;
         if (k0Var != null) {
             k0Var.a();

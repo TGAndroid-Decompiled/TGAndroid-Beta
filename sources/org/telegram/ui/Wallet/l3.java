@@ -5,7 +5,7 @@ import android.graphics.SurfaceTexture;
 import android.widget.ImageView;
 public final class l3 extends tg.t {
     public final Object E;
-    public final int f34772y = 1;
+    public final int f34774y = 1;
 
     public l3(j8 j8Var, Context context, m mVar) {
         super(context, mVar, 0);
@@ -14,29 +14,29 @@ public final class l3 extends tg.t {
 
     @Override
     public final void a() {
-        switch (this.f34772y) {
+        switch (this.f34774y) {
             case 0:
                 m3 m3Var = (m3) this.E;
-                m3Var.f34828o = true;
+                m3Var.f34830o = true;
                 setPaused(true);
                 setVisibility(8);
-                m3Var.f34804a.invalidate();
+                m3Var.f34806a.invalidate();
                 return;
             default:
                 setPaused(true);
                 setVisibility(8);
-                ((j8) this.E).f34649a.setVisibility(0);
+                ((j8) this.E).f34651a.setVisibility(0);
                 return;
         }
     }
 
     @Override
     public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
-        switch (this.f34772y) {
+        switch (this.f34774y) {
             case 1:
-                ImageView imageView = ((j8) this.E).f34649a;
+                ImageView imageView = ((j8) this.E).f34651a;
                 super.onSurfaceTextureUpdated(surfaceTexture);
-                if (this.f47627n && imageView.getVisibility() == 0) {
+                if (this.f47626n && imageView.getVisibility() == 0) {
                     imageView.setVisibility(4);
                     return;
                 }

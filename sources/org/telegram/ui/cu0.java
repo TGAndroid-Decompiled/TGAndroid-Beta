@@ -1,266 +1,70 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public class cu0 implements ku0 {
-    @Override
-    public boolean A() {
-        return false;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.widget.ImageView;
+public final class cu0 extends ImageView {
+    public int f36400a;
+    public boolean f36401b;
+    public boolean f36402c;
+    public boolean d;
+    public org.telegram.ui.Components.j81 e;
+    public final org.telegram.ui.Components.zr f36403f;
+    public ValueAnimator h;
+    public final PhotoViewer f36404n;
+
+    public cu0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f36404n = photoViewer;
+        this.f36400a = 0;
+        this.f36401b = false;
+        this.f36402c = false;
+        this.d = false;
+        this.f36403f = org.telegram.ui.Components.zr.f33339i;
+        setAlpha(0.0f);
     }
 
-    @Override
-    public CharSequence C(int i10) {
-        return null;
-    }
-
-    @Override
-    public mu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return null;
-    }
-
-    @Override
-    public int H() {
-        return 0;
-    }
-
-    @Override
-    public boolean I() {
-        return true;
-    }
-
-    @Override
-    public boolean K() {
-        return false;
-    }
-
-    @Override
-    public boolean L() {
-        return false;
-    }
-
-    @Override
-    public boolean N() {
-        return true;
-    }
-
-    @Override
-    public boolean O() {
-        return false;
-    }
-
-    @Override
-    public boolean P() {
-        return false;
-    }
-
-    @Override
-    public boolean Q() {
-        return false;
-    }
-
-    @Override
-    public int R(Object obj) {
-        return -1;
-    }
-
-    @Override
-    public int S(int i10) {
-        return -1;
-    }
-
-    @Override
-    public boolean T() {
-        return !(this instanceof ml);
-    }
-
-    @Override
-    public boolean U() {
-        return !(this instanceof ol);
-    }
-
-    @Override
-    public MessageObject V() {
-        return null;
-    }
-
-    @Override
-    public boolean Z() {
-        return false;
-    }
-
-    @Override
-    public long a() {
-        return 0L;
-    }
-
-    @Override
-    public boolean b() {
-        return false;
-    }
-
-    @Override
-    public String b0() {
-        return null;
-    }
-
-    @Override
-    public ArrayList c() {
-        return null;
-    }
-
-    @Override
-    public CharSequence c0(int i10) {
-        return null;
-    }
-
-    @Override
-    public boolean g() {
-        return !(this instanceof ml);
-    }
-
-    @Override
-    public boolean h() {
-        return false;
-    }
-
-    @Override
-    public ImageReceiver.BitmapHolder j(int i10) {
-        return null;
-    }
-
-    @Override
-    public int k(int i10, VideoEditedInfo videoEditedInfo) {
-        return -1;
-    }
-
-    @Override
-    public boolean l() {
-        return false;
-    }
-
-    @Override
-    public boolean p() {
-        return false;
-    }
-
-    @Override
-    public boolean q() {
-        return false;
-    }
-
-    @Override
-    public boolean r() {
-        return false;
-    }
-
-    @Override
-    public boolean t() {
-        return true;
-    }
-
-    @Override
-    public boolean u() {
-        return !(this instanceof org.telegram.ui.Components.im);
-    }
-
-    @Override
-    public HashMap v() {
-        return null;
-    }
-
-    @Override
-    public boolean w() {
-        return false;
-    }
-
-    @Override
-    public boolean x(int i10) {
-        return false;
-    }
-
-    @Override
-    public int y() {
-        return -1;
-    }
-
-    @Override
-    public boolean z() {
-        return !(this instanceof org.telegram.ui.Components.vh);
-    }
-
-    @Override
-    public void B(int i10) {
-    }
-
-    @Override
-    public void D() {
-    }
-
-    @Override
-    public void F(boolean z10) {
-    }
-
-    @Override
-    public void G() {
-    }
-
-    @Override
-    public void J() {
-    }
-
-    @Override
-    public void M(VideoEditedInfo videoEditedInfo) {
-    }
-
-    @Override
-    public void W() {
-    }
-
-    @Override
-    public void X(int i10) {
-    }
-
-    @Override
-    public void Y(int i10) {
-    }
-
-    @Override
-    public void a0(int i10) {
-    }
-
-    @Override
-    public void d() {
-    }
-
-    @Override
-    public void e(CharSequence charSequence) {
-    }
-
-    @Override
-    public void i() {
-    }
-
-    @Override
-    public void m() {
-    }
-
-    @Override
-    public void n() {
-    }
-
-    @Override
-    public void s() {
-    }
-
-    @Override
-    public void f(String str, String str2, boolean z10) {
-    }
-
-    @Override
-    public void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+    public static void a(cu0 cu0Var) {
+        PhotoViewer photoViewer = cu0Var.f36404n;
+        org.telegram.ui.Components.j81 j81Var = photoViewer.F2;
+        if (j81Var != null && j81Var.p() != -9223372036854775807L) {
+            long max = Math.max(0L, photoViewer.F2.p() - photoViewer.F2.n());
+            float max2 = 1.0f - Math.max(Math.min(((float) max) / 250.0f, 1.0f), 0.0f);
+            if (max2 <= 0.0f) {
+                ValueAnimator valueAnimator = cu0Var.h;
+                if (valueAnimator != null) {
+                    valueAnimator.cancel();
+                    cu0Var.h = null;
+                }
+                cu0Var.setAlpha(0.0f);
+                return;
+            } else if (photoViewer.F2.y()) {
+                if (cu0Var.h == null) {
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(max2, 1.0f);
+                    cu0Var.h = ofFloat;
+                    ofFloat.addUpdateListener(new d3(cu0Var, 24));
+                    cu0Var.h.setDuration(max);
+                    cu0Var.h.setInterpolator(cu0Var.f36403f);
+                    cu0Var.h.start();
+                    cu0Var.setAlpha(max2);
+                    return;
+                }
+                return;
+            } else {
+                ValueAnimator valueAnimator2 = cu0Var.h;
+                if (valueAnimator2 != null) {
+                    valueAnimator2.cancel();
+                    cu0Var.h = null;
+                }
+                cu0Var.setAlpha(max2);
+                return;
+            }
+        }
+        ValueAnimator valueAnimator3 = cu0Var.h;
+        if (valueAnimator3 != null) {
+            valueAnimator3.cancel();
+            cu0Var.h = null;
+        }
+        cu0Var.setAlpha(0.0f);
     }
 }

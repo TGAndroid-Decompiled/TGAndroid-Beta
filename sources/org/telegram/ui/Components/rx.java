@@ -1,23 +1,22 @@
 package org.telegram.ui.Components;
+public final class rx extends w7.a6 {
+    public final rz f30289a;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.FileLog;
-public final class rx extends s4.s {
-    public final tz Q;
-
-    public rx(tz tzVar) {
-        super(8);
-        this.Q = tzVar;
+    public rx(rz rzVar) {
+        this.f30289a = rzVar;
     }
 
     @Override
-    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        try {
-            ei.l1 l1Var = new ei.l1(this, recyclerView.getContext(), 2);
-            l1Var.f46484a = i10;
-            w0(l1Var);
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
+    public final void a() {
+        rz rzVar = this.f30289a;
+        rzVar.f30319f0 = false;
+        rzVar.P.E1();
+    }
+
+    @Override
+    public final void b() {
+        rz rzVar = this.f30289a;
+        rzVar.P.E1();
+        rzVar.f30319f0 = true;
     }
 }

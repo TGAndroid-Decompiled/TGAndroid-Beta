@@ -20,15 +20,15 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.xr;
+import org.telegram.ui.Components.am0;
+import org.telegram.ui.Components.vr;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.ey;
-import org.telegram.ui.nz0;
-import org.telegram.ui.of1;
+import org.telegram.ui.mz0;
+import org.telegram.ui.nf1;
 import org.telegram.ui.u50;
-public final class f implements of1, org.telegram.ui.ActionBar.z1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, bm0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, qa.a {
+public final class f implements nf1, org.telegram.ui.ActionBar.z1, ChatObject.Call.OnParticipantsLoad, ImageReceiver.ImageReceiverDelegate, am0, MessagesController.IsInChatCheckedCallback, t5.b, s5.e, qa.a {
     public final int f1245a;
     public final long f1246b;
     public final Object f1247c;
@@ -109,7 +109,7 @@ public final class f implements of1, org.telegram.ui.ActionBar.z1, ChatObject.Ca
 
     @Override
     public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.m5.a(this, i10, str, drawable);
+        org.telegram.messenger.n5.a(this, i10, str, drawable);
     }
 
     @Override
@@ -139,10 +139,10 @@ public final class f implements of1, org.telegram.ui.ActionBar.z1, ChatObject.Ca
             case 4:
             default:
                 u50 u50Var = (u50) this.f1247c;
-                u50Var.d.getMessagesController().addUserToChat(u50Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.o2) u50Var.f42204i0.O().getFragmentStack().get(u50Var.f42204i0.O().getFragmentStack().size() - 1), new v3(u50Var, this.f1246b, 28));
+                u50Var.d.getMessagesController().addUserToChat(u50Var.i1(), (TLRPC.User) this.d, 0, null, (org.telegram.ui.ActionBar.o2) u50Var.f42250i0.O().getFragmentStack().get(u50Var.f42250i0.O().getFragmentStack().size() - 1), new v3(u50Var, this.f1246b, 28));
                 return;
             case 5:
-                xr.Q((xr) this.f1247c, (ei.d) this.d, this.f1246b);
+                vr.Q((vr) this.f1247c, (ei.d) this.d, this.f1246b);
                 return;
         }
     }
@@ -169,7 +169,7 @@ public final class f implements of1, org.telegram.ui.ActionBar.z1, ChatObject.Ca
 
     @Override
     public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.m5.b(this, imageReceiver);
+        org.telegram.messenger.n5.b(this, imageReceiver);
     }
 
     @Override
@@ -179,7 +179,7 @@ public final class f implements of1, org.telegram.ui.ActionBar.z1, ChatObject.Ca
 
     @Override
     public void run(boolean z10, TLRPC.TL_chatAdminRights tL_chatAdminRights, String str) {
-        AndroidUtilities.runOnUIThread(new m((nz0) this.f1247c, this.f1246b, tL_chatAdminRights, str, z10, (ey) this.d));
+        AndroidUtilities.runOnUIThread(new m((mz0) this.f1247c, this.f1246b, tL_chatAdminRights, str, z10, (ey) this.d));
     }
 
     public f(Object obj, Object obj2, long j10, int i10) {

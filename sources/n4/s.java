@@ -77,8 +77,8 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.ri;
 import p4.t0;
 import r0.l0;
 import si.o0;
@@ -167,7 +167,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     public ef.a E(qf.b bVar) {
         int i10;
         List list = (List) this.f17189c;
-        List list2 = (List) bVar.f44864b;
+        List list2 = (List) bVar.f44863b;
         if (list2 != null) {
             i10 = list2.size();
         } else {
@@ -292,11 +292,11 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     }
 
     @Override
-    public j80 M(View view) {
+    public h80 M(View view) {
         ki.q qVar = (ki.q) this.f17189c;
-        j80 j80Var = new j80(qVar, (g6) this.f17188b, view, false, false, true);
-        qVar.H = j80Var;
-        return j80Var;
+        h80 h80Var = new h80(qVar, (g6) this.f17188b, view, false, false, true);
+        qVar.H = h80Var;
+        return h80Var;
     }
 
     public void N(g3 g3Var, long j10, boolean z10) {
@@ -427,11 +427,11 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     @Override
     public void V(v3 v3Var, View view) {
         ki.q qVar = (ki.q) this.f17189c;
-        j80 j80Var = new j80(qVar, (g6) this.f17188b, view, false, false, true);
-        j80Var.Q = true;
-        o2 o2Var = qVar.f28366b.f30730f0;
+        h80 h80Var = new h80(qVar, (g6) this.f17188b, view, false, false, true);
+        h80Var.Q = true;
+        o2 o2Var = qVar.f27704b.f30146f0;
         qVar.getContext();
-        qVar.H = j4.b(j80Var, o2Var, v3Var, true);
+        qVar.H = j4.b(h80Var, o2Var, v3Var, true);
     }
 
     @Override
@@ -588,16 +588,16 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     @Override
     public void i(ki.a aVar) {
         ki.q qVar = (ki.q) this.f17189c;
-        ti tiVar = qVar.f28366b;
-        o2 o2Var = tiVar.f30730f0;
+        ri riVar = qVar.f27704b;
+        o2 o2Var = riVar.f30146f0;
         if (o2Var != null && aVar != null && (aVar.f15141b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(o2Var)) {
-            ti tiVar2 = new ti(qVar.getContext(), tiVar.f30730f0, false, false, false, null);
-            tiVar2.f30722c2 = new t7.u(11);
-            tiVar2.P = true;
-            tiVar2.A1.setVisibility(8);
-            tiVar2.f30796z2 = new u2(qVar, aVar, tiVar2, 11);
-            tiVar2.w1();
-            tiVar2.show();
+            ri riVar2 = new ri(qVar.getContext(), riVar.f30146f0, false, false, false, null);
+            riVar2.f30138c2 = new t7.u(11);
+            riVar2.P = true;
+            riVar2.A1.setVisibility(8);
+            riVar2.f30212z2 = new u2(qVar, aVar, riVar2, 11);
+            riVar2.w1();
+            riVar2.show();
         }
     }
 
@@ -624,14 +624,14 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     @Override
     public void n(t3 t3Var, View view) {
         ki.q qVar = (ki.q) this.f17189c;
-        j80 j80Var = new j80(qVar, (g6) this.f17188b, view, false, false, true);
-        j80Var.Q = true;
-        qVar.H = j4.c(j80Var, qVar.f28366b.f30730f0, qVar.getContext(), (g6) this.f17188b, t3Var, true);
+        h80 h80Var = new h80(qVar, (g6) this.f17188b, view, false, false, true);
+        h80Var.Q = true;
+        qVar.H = j4.c(h80Var, qVar.f27704b.f30146f0, qVar.getContext(), (g6) this.f17188b, t3Var, true);
     }
 
     @Override
     public void o(h1 h1Var, boolean z10) {
-        ((ki.q) this.f17189c).f28366b.z1(h1Var, z10);
+        ((ki.q) this.f17189c).f27704b.z1(h1Var, z10);
     }
 
     @Override
@@ -714,7 +714,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
                 Object[] objArr = {Integer.valueOf(mVar.f10872i)};
                 g6.b bVar = mVar.f10891a;
                 Log.w(bVar.f10861a, bVar.d("Possibility of local queue out of sync with receiver queue. Refetching sequence number. Current Local Sequence Number = %d", objArr));
-                Iterator it = ((e6.h) mVar.h.f50564b).f8381i.iterator();
+                Iterator it = ((e6.h) mVar.h.f50563b).f8381i.iterator();
                 while (it.hasNext()) {
                     ((e6.g) it.next()).o();
                 }
@@ -760,7 +760,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
 
     public void w(k.a aVar) {
         qi.e eVar = (qi.e) this.f17188b;
-        ((ActionMode.Callback) eVar.f45176a).onDestroyActionMode(eVar.n(aVar));
+        ((ActionMode.Callback) eVar.f45175a).onDestroyActionMode(eVar.n(aVar));
         g.r rVar = (g.r) this.f17189c;
         if (rVar.E != null) {
             rVar.f10727f.getDecorView().removeCallbacks(rVar.F);
@@ -777,22 +777,22 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
         }
         rVar.f10742x = null;
         ViewGroup viewGroup = rVar.J;
-        WeakHashMap weakHashMap = r0.i0.f45242a;
+        WeakHashMap weakHashMap = r0.i0.f45241a;
         r0.y.c(viewGroup);
         rVar.y();
     }
 
     public boolean x(k.a aVar, Menu menu) {
         ViewGroup viewGroup = ((g.r) this.f17189c).J;
-        WeakHashMap weakHashMap = r0.i0.f45242a;
+        WeakHashMap weakHashMap = r0.i0.f45241a;
         r0.y.c(viewGroup);
         qi.e eVar = (qi.e) this.f17188b;
-        ActionMode.Callback callback = (ActionMode.Callback) eVar.f45176a;
+        ActionMode.Callback callback = (ActionMode.Callback) eVar.f45175a;
         k.e n10 = eVar.n(aVar);
         a0.l lVar = (a0.l) eVar.d;
         Menu menu2 = (Menu) lVar.get(menu);
         if (menu2 == null) {
-            menu2 = new l.a0((Context) eVar.f45177b, (l.k) menu);
+            menu2 = new l.a0((Context) eVar.f45176b, (l.k) menu);
             lVar.put(menu, menu2);
         }
         return callback.onPrepareActionMode(n10, menu2);
@@ -802,7 +802,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     public void y() {
         ki.q qVar = (ki.q) this.f17189c;
         if (qVar.getCurrentItemTop() != qVar.I) {
-            qVar.f28366b.f2(qVar, 0);
+            qVar.f27704b.f2(qVar, 0);
         }
         qVar.d0();
         ki.q.N(qVar);
@@ -811,7 +811,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
     @Override
     public void z(int i10) {
         ki.q qVar = (ki.q) this.f17189c;
-        qVar.f28366b.f2(qVar, i10);
+        qVar.f27704b.f2(qVar, i10);
         qVar.d0();
         ki.q.N(qVar);
     }
@@ -928,7 +928,7 @@ public final class s implements ee.b, g0, com.google.android.gms.common.api.inte
         this.f17187a = 0;
         if (!TextUtils.isEmpty(str)) {
             if (componentName == null) {
-                int i10 = t0.f44623b;
+                int i10 = t0.f44622b;
                 Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
                 intent.setPackage(context.getPackageName());
                 List<ResolveInfo> queryBroadcastReceivers = context.getPackageManager().queryBroadcastReceivers(intent, 0);

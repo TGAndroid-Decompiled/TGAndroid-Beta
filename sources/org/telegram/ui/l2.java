@@ -8,16 +8,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class l2 extends View implements org.telegram.ui.ActionBar.b6 {
-    public final f70 f39118a;
-    public final org.telegram.ui.Components.yq f39119b;
+    public final f70 f39104a;
+    public final org.telegram.ui.Components.wq f39105b;
 
     public l2(Context context, f70 f70Var) {
         super(context);
-        this.f39118a = f70Var;
-        org.telegram.ui.Components.yq yqVar = new org.telegram.ui.Components.yq(new ColorDrawable(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Qk, false)), org.telegram.ui.ActionBar.k6.W0(context, R.drawable.greydivider_bottom, -16777216));
-        this.f39119b = yqVar;
-        yqVar.f33019w = true;
-        setBackgroundDrawable(yqVar);
+        this.f39104a = f70Var;
+        org.telegram.ui.Components.wq wqVar = new org.telegram.ui.Components.wq(new ColorDrawable(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Qk, false)), org.telegram.ui.ActionBar.k6.W0(context, R.drawable.greydivider_bottom, -16777216));
+        this.f39105b = wqVar;
+        wqVar.f32329w = true;
+        setBackgroundDrawable(wqVar);
         setImportantForAccessibility(2);
     }
 
@@ -30,19 +30,19 @@ public final class l2 extends View implements org.telegram.ui.ActionBar.b6 {
     public final void onMeasure(int i10, int i11) {
         setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(12.0f));
         int i12 = org.telegram.ui.ActionBar.k6.Qk;
-        ((k4) this.f39118a).getClass();
-        org.telegram.ui.ActionBar.k6.y1(this.f39119b, org.telegram.ui.ActionBar.k6.x0(null, i12, false), false);
+        ((k4) this.f39104a).getClass();
+        org.telegram.ui.ActionBar.k6.y1(this.f39105b, org.telegram.ui.ActionBar.k6.x0(null, i12, false), false);
     }
 
     @Override
     public final void updateColors() {
         f70 f70Var;
         try {
-            org.telegram.ui.Components.yq yqVar = this.f39119b;
-            if (yqVar != null && (f70Var = this.f39118a) != null) {
+            org.telegram.ui.Components.wq wqVar = this.f39105b;
+            if (wqVar != null && (f70Var = this.f39104a) != null) {
                 int i10 = org.telegram.ui.ActionBar.k6.Qk;
                 ((k4) f70Var).getClass();
-                org.telegram.ui.ActionBar.k6.y1(yqVar, org.telegram.ui.ActionBar.k6.x0(null, i10, false), false);
+                org.telegram.ui.ActionBar.k6.y1(wqVar, org.telegram.ui.ActionBar.k6.x0(null, i10, false), false);
                 invalidate();
             }
         } catch (Exception e) {

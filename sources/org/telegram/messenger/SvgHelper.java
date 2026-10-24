@@ -406,7 +406,7 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        z1 z1Var = new z1(23);
+                        z1 z1Var = new z1(25);
                         shiftRunnable = z1Var;
                         AndroidUtilities.runOnUIThread(z1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }

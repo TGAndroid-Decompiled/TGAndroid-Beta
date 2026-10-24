@@ -13,9 +13,9 @@ public final class d implements y2.g {
     public void a() {
         long j10;
         h hVar = this.f15896a;
-        synchronized (z2.c.f51098b) {
+        synchronized (z2.c.f51097b) {
             try {
-                if (z2.c.f51099c) {
+                if (z2.c.f51098c) {
                     j10 = z2.c.d;
                 } else {
                     j10 = -9223372036854775807L;
@@ -33,10 +33,10 @@ public final class d implements y2.g {
         y2.o oVar = (y2.o) iVar;
         h hVar = this.f15896a;
         a5.a aVar = hVar.f15916q;
-        long j12 = oVar.f50378a;
-        g2.m mVar = oVar.f50379b;
+        long j12 = oVar.f50377a;
+        g2.m mVar = oVar.f50378b;
         b0 b0Var = oVar.d;
-        aVar.t(new v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b), oVar.f50380c, iOException, true);
+        aVar.t(new v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b), oVar.f50379c, iOException, true);
         hVar.f15912m.getClass();
         hVar.y(iOException);
         return y2.l.e;
@@ -46,13 +46,13 @@ public final class d implements y2.g {
     public void k(y2.i iVar, long j10, long j11) {
         y2.o oVar = (y2.o) iVar;
         h hVar = this.f15896a;
-        long j12 = oVar.f50378a;
-        g2.m mVar = oVar.f50379b;
+        long j12 = oVar.f50377a;
+        g2.m mVar = oVar.f50378b;
         b0 b0Var = oVar.d;
         v vVar = new v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
         hVar.f15912m.getClass();
-        hVar.f15916q.r(vVar, oVar.f50380c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        hVar.K = ((Long) oVar.f50381f).longValue() - j10;
+        hVar.f15916q.r(vVar, oVar.f50379c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        hVar.K = ((Long) oVar.f50380f).longValue() - j10;
         hVar.z(true);
     }
 

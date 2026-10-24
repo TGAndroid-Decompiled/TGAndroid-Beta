@@ -12,15 +12,15 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.b90;
-import org.telegram.ui.Components.x80;
+import org.telegram.ui.Components.v80;
+import org.telegram.ui.Components.z80;
 import org.telegram.ui.gk;
-import org.telegram.ui.og1;
+import org.telegram.ui.ng1;
 import org.telegram.ui.q00;
 import org.telegram.ui.sn;
 import org.telegram.ui.u50;
 import org.telegram.ui.w40;
-public final class f implements p7, og1, m4.g1, e2.j, org.telegram.ui.ActionBar.z1, zf.m, MessagesController.ErrorDelegate, wh.k {
+public final class f implements p7, ng1, m4.g1, e2.j, org.telegram.ui.ActionBar.z1, zf.m, MessagesController.ErrorDelegate, wh.k {
     public final int f5310a;
     public final boolean f5311b;
     public final Object f5312c;
@@ -126,7 +126,7 @@ public final class f implements p7, og1, m4.g1, e2.j, org.telegram.ui.ActionBar.
             default:
                 q00 q00Var = (q00) this.f5312c;
                 LongSparseIntArray longSparseIntArray = q00Var.H;
-                q00Var.f40594y = i10;
+                q00Var.f40680y = i10;
                 if (this.f5311b) {
                     q00Var.o0(q00Var.F, arrayList, true);
                     q00Var.F = arrayList;
@@ -171,8 +171,8 @@ public final class f implements p7, og1, m4.g1, e2.j, org.telegram.ui.ActionBar.
                 return;
             case 6:
             default:
-                u50 u50Var = ((w40) this.f5312c).f42922b;
-                u50Var.f42171a1.toggleRecord(null, 0);
+                u50 u50Var = ((w40) this.f5312c).f42898b;
+                u50Var.f42217a1.toggleRecord(null, 0);
                 UndoView k12 = u50Var.k1();
                 if (this.f5311b) {
                     i11 = 101;
@@ -219,27 +219,27 @@ public final class f implements p7, og1, m4.g1, e2.j, org.telegram.ui.ActionBar.
 
     @Override
     public void i(long j10) {
-        org.telegram.ui.Components.p6 p6Var = ((org.telegram.ui.Cells.t1) this.f5312c).f23626w4;
-        if (p6Var != null) {
-            p6Var.t(LocaleController.formatPollEndTime((int) j10, this.f5311b), true, true);
+        org.telegram.ui.Components.n6 n6Var = ((org.telegram.ui.Cells.t1) this.f5312c).f23627w4;
+        if (n6Var != null) {
+            n6Var.t(LocaleController.formatPollEndTime((int) j10, this.f5311b), true, true);
         }
     }
 
     @Override
     public void l(wh.g gVar, float f7, float f10) {
         wh.n nVar = (wh.n) this.f5312c;
-        if (!nVar.d && !nVar.e && !nVar.f49549f && this.f5311b) {
+        if (!nVar.d && !nVar.e && !nVar.f49548f && this.f5311b) {
             nVar.c(f7, f10);
         }
     }
 
     @Override
     public boolean run(TLRPC.TL_error tL_error) {
-        b90 b90Var = (b90) this.f5312c;
+        z80 z80Var = (z80) this.f5312c;
         if (tL_error != null && "INVITE_REQUEST_SENT".equals(tL_error.text)) {
-            b90Var.setOnDismissListener(new x80(0, b90Var, this.f5311b));
+            z80Var.setOnDismissListener(new v80(0, z80Var, this.f5311b));
         }
-        b90Var.dismiss();
+        z80Var.dismiss();
         return false;
     }
 }

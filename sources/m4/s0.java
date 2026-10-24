@@ -3,10 +3,10 @@ package m4;
 import android.view.Surface;
 import android.view.View;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.hu;
-import org.telegram.ui.Components.iu;
-public final class s0 implements e2.j, hu, bm0 {
+import org.telegram.ui.Components.am0;
+import org.telegram.ui.Components.fu;
+import org.telegram.ui.Components.gu;
+public final class s0 implements e2.j, fu, am0 {
     public final int f16786a;
     public final int f16787b;
     public final Object f16788c;
@@ -48,11 +48,11 @@ public final class s0 implements e2.j, hu, bm0 {
 
     @Override
     public void run(String str) {
-        iu.k((iu) this.f16788c, this.f16786a, this.f16787b, (Runnable) this.d, str);
+        gu.k((gu) this.f16788c, this.f16786a, this.f16787b, (Runnable) this.d, str);
     }
 
-    public s0(iu iuVar, int i10, int i11, Runnable runnable) {
-        this.f16788c = iuVar;
+    public s0(gu guVar, int i10, int i11, Runnable runnable) {
+        this.f16788c = guVar;
         this.f16786a = i10;
         this.f16787b = i11;
         this.d = runnable;

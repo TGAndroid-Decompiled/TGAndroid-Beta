@@ -1,67 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
+import android.graphics.Color;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class wh extends FrameLayout {
-    public final int f32242a;
-    public final ti f32243b;
+public final class wh extends View {
+    public final int f32236a;
+    public final ri f32237b;
 
-    public wh(ti tiVar, Context context, int i10) {
+    public wh(ri riVar, Context context, int i10) {
         super(context);
-        this.f32242a = i10;
-        this.f32243b = tiVar;
+        this.f32236a = i10;
+        this.f32237b = riVar;
     }
 
     @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f32242a) {
-            case 2:
-                canvas.save();
-                canvas.clipRect(0.0f, this.f32243b.Y1, getMeasuredWidth(), getMeasuredHeight());
-                super.dispatchDraw(canvas);
-                canvas.restore();
+    public void draw(Canvas canvas) {
+        switch (this.f32236a) {
+            case 0:
+                super.draw(canvas);
+                this.f32237b.f30132b0.draw(canvas);
                 return;
             default:
-                super.dispatchDraw(canvas);
+                super.draw(canvas);
                 return;
         }
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        switch (this.f32242a) {
-            case 2:
-                ti tiVar = this.f32243b;
-                wh whVar = tiVar.G0;
-                if (tiVar.F0.getAlpha() > 0.0f) {
-                    float f7 = tiVar.Z1;
-                    if (f7 != 0.0f && f7 != whVar.getTop() + tiVar.Z1) {
-                        ValueAnimator valueAnimator = tiVar.a2;
-                        if (valueAnimator != null) {
-                            valueAnimator.cancel();
-                        }
-                        float top = tiVar.Z1 - (whVar.getTop() + tiVar.Y1);
-                        tiVar.Y1 = top;
-                        ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
-                        tiVar.a2 = ofFloat;
-                        ofFloat.addUpdateListener(new l6(this, 10));
-                        tiVar.a2.setInterpolator(bs.f25133f);
-                        tiVar.a2.setDuration(200L);
-                        tiVar.a2.start();
-                        tiVar.Z1 = 0.0f;
-                        return;
-                    }
-                    return;
-                }
+        switch (this.f32236a) {
+            case 1:
+                ri riVar = this.f32237b;
+                String format = String.format("%d", Integer.valueOf(Math.max(1, riVar.B0.getSelectedItemsCount())));
+                int ceil = (int) Math.ceil(riVar.M0.measureText(format));
+                int max = Math.max(AndroidUtilities.dp(16.0f) + ceil, AndroidUtilities.dp(24.0f));
+                int measuredWidth = getMeasuredWidth() / 2;
+                int themedColor = riVar.getThemedColor(org.telegram.ui.ActionBar.k6.C5);
+                riVar.M0.setColor(i0.a.o(themedColor, (int) (((riVar.Y0 * 0.42d) + 0.58d) * Color.alpha(themedColor))));
+                riVar.O0.setColor(riVar.getThemedColor(org.telegram.ui.ActionBar.k6.f21255h5));
+                int i10 = max / 2;
+                int i11 = measuredWidth - i10;
+                int i12 = i10 + measuredWidth;
+                riVar.N0.set(i11, 0.0f, i12, getMeasuredHeight());
+                canvas.drawRoundRect(riVar.N0, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), riVar.O0);
+                riVar.O0.setColor(riVar.getThemedColor(org.telegram.ui.ActionBar.k6.W9));
+                riVar.N0.set(AndroidUtilities.dp(2.0f) + i11, AndroidUtilities.dp(2.0f), i12 - AndroidUtilities.dp(2.0f), getMeasuredHeight() - AndroidUtilities.dp(2.0f));
+                canvas.drawRoundRect(riVar.N0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), riVar.O0);
+                canvas.drawText(format, measuredWidth - (ceil / 2), AndroidUtilities.dp(16.2f), riVar.M0);
                 return;
             default:
                 super.onDraw(canvas);
@@ -70,110 +57,14 @@ public final class wh extends FrameLayout {
     }
 
     @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f32242a) {
-            case 3:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                ti tiVar = this.f32243b;
-                li liVar = tiVar.B0;
-                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = tiVar.f30742j0;
-                if (liVar == chatAttachAlertPhotoLayout) {
-                    accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendPhotos", chatAttachAlertPhotoLayout.getSelectedItemsCount(), new Object[0]));
-                } else {
-                    nk nkVar = tiVar.f30759p0;
-                    if (liVar == nkVar) {
-                        accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendFiles", nkVar.getSelectedItemsCount(), new Object[0]));
-                    } else {
-                        fj fjVar = tiVar.f30748l0;
-                        if (liVar == fjVar) {
-                            accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrSendAudio", fjVar.getSelectedItemsCount(), new Object[0]));
-                        }
-                    }
-                }
-                accessibilityNodeInfo.setClassName(Button.class.getName());
-                accessibilityNodeInfo.setLongClickable(true);
-                accessibilityNodeInfo.setClickable(true);
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32242a) {
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        switch (this.f32236a) {
             case 0:
-                if (this.f32243b.l1.getVisibility() != 0) {
-                    return false;
-                }
-                return super.onInterceptTouchEvent(motionEvent);
-            default:
-                return super.onInterceptTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.f32242a) {
-            case 1:
-                ti tiVar = this.f32243b;
-                if (tiVar.H && tiVar.I != 0) {
-                    super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(36.0f) + (AndroidUtilities.dp(80.0f) * Integer.bitCount(tiVar.I))), 1073741824), i11);
-                    return;
-                }
-                super.onMeasure(i10, i11);
+                super.onSizeChanged(i10, i11, i12, i13);
+                this.f32237b.f30132b0.setBounds(0, (i11 - AndroidUtilities.navigationBarHeight) - AndroidUtilities.dp(48.0f), i10, i11);
                 return;
             default:
-                super.onMeasure(i10, i11);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f32242a) {
-            case 0:
-                if (this.f32243b.l1.getVisibility() != 0) {
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public void setAlpha(float f7) {
-        ViewGroup viewGroup;
-        switch (this.f32242a) {
-            case 0:
-                super.setAlpha(f7);
-                ti tiVar = this.f32243b;
-                tiVar.i2(0);
-                viewGroup = ((org.telegram.ui.ActionBar.h3) tiVar).containerView;
-                viewGroup.invalidate();
-                return;
-            case 1:
-            default:
-                super.setAlpha(f7);
-                return;
-            case 2:
-                super.setAlpha(f7);
-                invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void setTranslationY(float f7) {
-        switch (this.f32242a) {
-            case 1:
-                super.setTranslationY(f7);
-                this.f32243b.B0.k();
-                return;
-            default:
-                super.setTranslationY(f7);
+                super.onSizeChanged(i10, i11, i12, i13);
                 return;
         }
     }

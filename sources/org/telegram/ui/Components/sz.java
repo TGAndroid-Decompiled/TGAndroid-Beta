@@ -1,174 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import androidx.recyclerview.widget.RecyclerView;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-public class sz extends s4.r0 {
-    public final int f30575a;
-    public boolean f30576b;
-    public final tz f30577c;
+public final class sz extends ReplacementSpan {
+    public final int f30664a;
 
-    public sz(tz tzVar, int i10) {
-        this.f30577c = tzVar;
-        this.f30575a = i10;
+    public sz(int i10) {
+        this.f30664a = i10;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        ObjectAnimator objectAnimator;
-        gz gzVar;
-        float f7;
-        int i11;
-        tz tzVar = this.f30577c;
-        ObjectAnimator[] objectAnimatorArr = tzVar.R0;
-        s4.x0 x0Var = recyclerView.getLayoutManager().e;
-        boolean z10 = true;
-        if (x0Var != null && x0Var.e) {
-            this.f30576b = true;
-            return;
-        }
-        int i12 = this.f30575a;
-        if (i10 == 0) {
-            if (!this.f30576b) {
-                int[] iArr = tzVar.Q0;
-                uy uyVar = tzVar.f31019t1;
-                if ((uyVar == null || !uyVar.z()) && i12 != 0) {
-                    float f10 = 48.0f;
-                    if (i12 == 1) {
-                        f7 = 36.0f;
-                    } else {
-                        f7 = 48.0f;
-                    }
-                    float dpf2 = AndroidUtilities.dpf2(f7);
-                    float f11 = iArr[i12] / (-dpf2);
-                    if (f11 > 0.0f && f11 < 1.0f) {
-                        HorizontalScrollView z11 = tzVar.z(i12);
-                        int i13 = (f11 > 0.5f ? 1 : (f11 == 0.5f ? 0 : -1));
-                        if (i13 > 0) {
-                            i11 = (int) (-Math.ceil(dpf2));
-                        } else {
-                            i11 = 0;
-                        }
-                        if (i13 > 0) {
-                            tzVar.i(i12, i11, false);
-                        }
-                        if (i12 == 1) {
-                            tzVar.m(i11);
-                        }
-                        ObjectAnimator objectAnimator2 = objectAnimatorArr[i12];
-                        if (objectAnimator2 == null) {
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(z11, View.TRANSLATION_Y, z11.getTranslationY(), i11);
-                            objectAnimatorArr[i12] = ofFloat;
-                            ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.r2(tzVar, i12, 3));
-                            objectAnimatorArr[i12].setDuration(200L);
-                        } else {
-                            objectAnimator2.setFloatValues(z11.getTranslationY(), i11);
-                        }
-                        objectAnimatorArr[i12].start();
-                    } else {
-                        mm0 y3 = tzVar.y(i12);
-                        if (i12 == 1) {
-                            f10 = 38.0f;
-                        }
-                        int dp = AndroidUtilities.dp(f10);
-                        s4.b1 K = y3.K(0);
-                        if (K != null) {
-                            int bottom = K.f46343a.getBottom();
-                            int i14 = iArr[i12];
-                            float f12 = (bottom - (dp + i14)) / tzVar.f30962b1;
-                            if (f12 > 0.0f || f12 < 1.0f) {
-                                if (f12 <= 0.5f) {
-                                    z10 = false;
-                                }
-                                tzVar.i(i12, i14, z10);
-                            }
-                        }
-                    }
-                }
-            }
-            if (tzVar.J0) {
-                tzVar.J0 = false;
-            }
-            this.f30576b = false;
-            return;
-        }
-        if (i10 == 1) {
-            if (tzVar.J0) {
-                tzVar.J0 = false;
-            }
-            if (i12 != 0) {
-                if (i12 != 1) {
-                    if (i12 == 2) {
-                        gzVar = tzVar.f31001o0;
-                    } else {
-                        throw new IllegalArgumentException(i2.o1.k(i12, "Unexpected argument: "));
-                    }
-                } else {
-                    gzVar = tzVar.V;
-                }
-            } else {
-                gzVar = tzVar.G0;
-            }
-            if (gzVar != null) {
-                gzVar.b();
-            }
-            this.f30576b = false;
-        }
-        if (!this.f30576b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
-            objectAnimatorArr[i12].cancel();
-        }
-        if (i12 == 0) {
-            if (tzVar.T0 == null) {
-                hg.f1 f1Var = new hg.f1(tzVar, tzVar.f30966c1, tzVar.f31019t1.a(), tzVar.f31019t1.f(), 1);
-                tzVar.T0 = f1Var;
-                f1Var.a();
-            }
-            tzVar.T0.b();
-        }
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f30664a;
     }
 
     @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        int dp;
-        tz tzVar = this.f30577c;
-        int i12 = this.f30575a;
-        tzVar.q(i12);
-        tz.e(tzVar, i12, i11);
-        if (i12 != 0) {
-            if (i12 != 1) {
-                if (i12 == 2) {
-                    tz.f(tzVar, false);
-                }
-            } else {
-                tzVar.l(false);
-            }
-        } else {
-            tzVar.r(false);
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f30664a) {
+            case 0:
+                return (int) paint.measureText(charSequence, i10, i11);
+            case 1:
+                return AndroidUtilities.dp(16.0f);
+            case 2:
+                return AndroidUtilities.dp(12.0f);
+            case 3:
+                return AndroidUtilities.dp(12.0f);
+            default:
+                return AndroidUtilities.dp(16.0f);
         }
-        if (!this.f30576b) {
-            float f7 = i11;
-            FrameLayout frameLayout = tzVar.f30997n;
-            if (SystemClock.elapsedRealtime() - tzVar.F2 >= ViewConfiguration.getTapTimeout()) {
-                tzVar.H += f7;
-                if (tzVar.h.getCurrentItem() == 0) {
-                    dp = AndroidUtilities.dp(38.0f);
-                } else {
-                    dp = AndroidUtilities.dp(48.0f);
-                }
-                float f10 = tzVar.H;
-                if (f10 >= dp) {
-                    tzVar.M(false);
-                } else if (f10 <= (-dp)) {
-                    tzVar.M(true);
-                } else if ((frameLayout.getTag() == null && tzVar.H < 0.0f) || (frameLayout.getTag() != null && tzVar.H > 0.0f)) {
-                    tzVar.H = 0.0f;
-                }
-            }
-        }
+    }
+
+    public sz(boolean z10) {
+        this.f30664a = 0;
+    }
+
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void d(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+    }
+
+    private final void e(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

@@ -21,10 +21,10 @@ public class DataChannel {
         public int maxRetransmitTimeMs = -1;
         public int maxRetransmits = -1;
         public String protocol = "";
-        public int f44287id = -1;
+        public int f44286id = -1;
 
         public int getId() {
-            return this.f44287id;
+            return this.f44286id;
         }
 
         public int getMaxRetransmitTimeMs() {

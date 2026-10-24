@@ -78,7 +78,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.b6, n9 {
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(k6.G6));
-        hashSet.add(Integer.valueOf(k6.f21183d6));
+        hashSet.add(Integer.valueOf(k6.f21184d6));
     }
 
     @Override
@@ -742,7 +742,7 @@ public final class o5 extends a0 implements org.telegram.ui.ActionBar.b6, n9 {
         q5Var.b();
         try {
             if (getBackground() instanceof a2) {
-                ((a2) getBackground()).a(k6.w0(k6.f21183d6, g6Var));
+                ((a2) getBackground()).a(k6.w0(k6.f21184d6, g6Var));
             }
         } catch (Exception e) {
             FileLog.e(e);

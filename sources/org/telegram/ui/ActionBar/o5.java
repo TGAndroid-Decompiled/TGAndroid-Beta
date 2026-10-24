@@ -4,24 +4,24 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.zr;
 public abstract class o5 extends TextView {
-    public boolean f21742a;
-    public final org.telegram.ui.Components.f6 f21743b;
-    public final eq f21744c;
+    public boolean f21743a;
+    public final org.telegram.ui.Components.d6 f21744b;
+    public final cq f21745c;
 
     public o5(Context context) {
         super(context);
-        this.f21742a = false;
-        this.f21743b = new org.telegram.ui.Components.f6(this, 320L, bs.h);
-        this.f21744c = new eq(-1);
+        this.f21743a = false;
+        this.f21744b = new org.telegram.ui.Components.d6(this, 320L, zr.h);
+        this.f21745c = new cq(-1);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
         Canvas canvas2;
-        float e = this.f21743b.e(this.f21742a);
+        float e = this.f21744b.e(this.f21743a);
         if (e < 1.0f) {
             if (e <= 0.0f) {
                 canvas.save();
@@ -39,10 +39,10 @@ public abstract class o5 extends TextView {
         if (e > 0.0f) {
             int height = getHeight() / 2;
             int width = (getWidth() / 2) - ((int) ((1.0f - e) * AndroidUtilities.dp(6.0f)));
-            eq eqVar = this.f21744c;
-            eqVar.setAlpha((int) (e * 255.0f));
-            eqVar.setBounds(width - (eqVar.getIntrinsicWidth() / 2), height - (eqVar.getIntrinsicWidth() / 2), (eqVar.getIntrinsicWidth() / 2) + width, (eqVar.getIntrinsicHeight() / 2) + height);
-            eqVar.draw(canvas2);
+            cq cqVar = this.f21745c;
+            cqVar.setAlpha((int) (e * 255.0f));
+            cqVar.setBounds(width - (cqVar.getIntrinsicWidth() / 2), height - (cqVar.getIntrinsicWidth() / 2), (cqVar.getIntrinsicWidth() / 2) + width, (cqVar.getIntrinsicHeight() / 2) + height);
+            cqVar.draw(canvas2);
             invalidate();
         }
     }
@@ -50,6 +50,6 @@ public abstract class o5 extends TextView {
     @Override
     public void setTextColor(int i10) {
         super.setTextColor(i10);
-        this.f21744c.b(i10);
+        this.f21745c.b(i10);
     }
 }

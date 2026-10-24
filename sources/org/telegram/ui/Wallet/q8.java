@@ -13,23 +13,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 public final class q8 extends org.telegram.ui.ActionBar.o2 {
-    public final ArrayList f35079a;
-    public ScrollView f35080b;
-    public ImageView f35081c;
+    public final ArrayList f35081a;
+    public ScrollView f35082b;
+    public ImageView f35083c;
     public LinearLayout d;
     public ei.d e;
-    public Runnable f35082f;
+    public Runnable f35084f;
     public boolean h;
 
     public q8() {
         super(null);
-        this.f35079a = new ArrayList();
+        this.f35081a = new ArrayList();
     }
 
     public static void U(q8 q8Var) {
-        ArrayList arrayList = q8Var.f35079a;
+        ArrayList arrayList = q8Var.f35081a;
         if (arrayList.size() != 12 && arrayList.size() != 24) {
             return;
         }
@@ -43,7 +43,7 @@ public final class q8 extends org.telegram.ui.ActionBar.o2 {
         if (linearLayout != null) {
             linearLayout.removeAllViews();
             Context context = this.d.getContext();
-            ArrayList arrayList = this.f35079a;
+            ArrayList arrayList = this.f35081a;
             boolean z10 = true;
             int size = (arrayList.size() + 1) / 2;
             this.d.addView(i8.e0(0, size, context, arrayList, this.resourceProvider), w7.z5.o(0, -2, 1.0f, 48));
@@ -66,56 +66,56 @@ public final class q8 extends org.telegram.ui.ActionBar.o2 {
         this.actionBar.setAddToContainer(false);
         this.actionBar.setOccupyStatusBar(false);
         FrameLayout frameLayout = new FrameLayout(context);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, frameLayout, this.resourceProvider);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, frameLayout, this.resourceProvider);
         this.fragmentView = frameLayout;
         ScrollView scrollView = new ScrollView(context);
-        this.f35080b = scrollView;
+        this.f35082b = scrollView;
         scrollView.setFillViewport(true);
-        this.f35080b.setVerticalScrollBarEnabled(false);
-        this.f35080b.setClipToPadding(false);
-        this.f35080b.setPadding(0, AndroidUtilities.dp(96.0f), 0, 0);
-        frameLayout.addView(this.f35080b, w7.z5.c(-1.0f, -1));
+        this.f35082b.setVerticalScrollBarEnabled(false);
+        this.f35082b.setClipToPadding(false);
+        this.f35082b.setPadding(0, AndroidUtilities.dp(96.0f), 0, 0);
+        frameLayout.addView(this.f35082b, w7.z5.c(-1.0f, -1));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setPadding(AndroidUtilities.dp(36.0f), 0, AndroidUtilities.dp(36.0f), AndroidUtilities.dp(24.0f));
         linearLayout.setClipToPadding(false);
-        this.f35080b.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
+        this.f35082b.addView(linearLayout, new FrameLayout.LayoutParams(-1, -2));
         ImageView imageView = new ImageView(context);
-        this.f35081c = imageView;
+        this.f35083c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        ImageView imageView2 = this.f35081c;
+        ImageView imageView2 = this.f35083c;
         int i12 = org.telegram.ui.ActionBar.k6.G6;
         org.telegram.ui.ActionBar.r6.t(imageView2, i12, this.resourceProvider, PorterDuff.Mode.SRC_IN);
-        this.f35081c.setImageResource(R.drawable.ic_ab_close);
-        ImageView imageView3 = this.f35081c;
-        int i13 = org.telegram.ui.ActionBar.k6.f21272i6;
+        this.f35083c.setImageResource(R.drawable.ic_ab_close);
+        ImageView imageView3 = this.f35083c;
+        int i13 = org.telegram.ui.ActionBar.k6.f21273i6;
         org.telegram.ui.ActionBar.r6.S(imageView3, org.telegram.ui.ActionBar.k6.g0(org.telegram.ui.ActionBar.k6.w0(i13, this.resourceProvider), 3, -1), null, org.telegram.ui.ActionBar.r6.O(i13), this.resourceProvider);
-        this.f35081c.setOnClickListener(new View.OnClickListener(this) {
-            public final q8 f35050b;
+        this.f35083c.setOnClickListener(new View.OnClickListener(this) {
+            public final q8 f35052b;
 
             {
-                this.f35050b = this;
+                this.f35052b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f35050b.finishFragment();
+                        this.f35052b.finishFragment();
                         return;
                     default:
-                        q8.U(this.f35050b);
+                        q8.U(this.f35052b);
                         return;
                 }
             }
         });
-        frameLayout.addView(this.f35081c, w7.z5.d(48, 48.0f, 51, 4.0f, 12.0f, 0.0f, 0.0f));
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        w9Var.setAspectFit(true);
-        w9Var.getImageReceiver().setCurrentAccount(AndroidUtilities.getAccountInProduction());
-        MediaDataController.getInstance(AndroidUtilities.getAccountInProduction()).setPlaceholderImage(w9Var, "RestrictedEmoji", "📝", "100_100");
-        w9Var.getImageReceiver().setAutoRepeatCount(1);
-        linearLayout.addView(w9Var, w7.z5.t(100, 100, 1, 0, 0, 0, 12));
+        frameLayout.addView(this.f35083c, w7.z5.d(48, 48.0f, 51, 4.0f, 12.0f, 0.0f, 0.0f));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        u9Var.setAspectFit(true);
+        u9Var.getImageReceiver().setCurrentAccount(AndroidUtilities.getAccountInProduction());
+        MediaDataController.getInstance(AndroidUtilities.getAccountInProduction()).setPlaceholderImage(u9Var, "RestrictedEmoji", "📝", "100_100");
+        u9Var.getImageReceiver().setAutoRepeatCount(1);
+        linearLayout.addView(u9Var, w7.z5.t(100, 100, 1, 0, 0, 0, 12));
         TextView textView = new TextView(context);
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -127,10 +127,10 @@ public final class q8 extends org.telegram.ui.ActionBar.o2 {
             i10 = R.string.WalletNewSecretPhrase;
         }
         textView.setText(LocaleController.getString(i10));
-        TextView f7 = sl.f(linearLayout, textView, w7.z5.t(-1, -2, 1, 32, 0, 32, 10), context);
+        TextView f7 = tl.f(linearLayout, textView, w7.z5.t(-1, -2, 1, 32, 0, 32, 10), context);
         f7.setTextSize(1, 14.0f);
         f7.setGravity(1);
-        org.telegram.ui.ActionBar.r6.W(f7, org.telegram.ui.ActionBar.k6.f21588z6, this.resourceProvider);
+        org.telegram.ui.ActionBar.r6.W(f7, org.telegram.ui.ActionBar.k6.f21589z6, this.resourceProvider);
         if (this.h) {
             i11 = R.string.WalletCurrentSecretPhraseInfo;
         } else {
@@ -149,20 +149,20 @@ public final class q8 extends org.telegram.ui.ActionBar.o2 {
         dVar.f();
         this.e.setText(LocaleController.getString(R.string.WalletContinue));
         this.e.setOnClickListener(new View.OnClickListener(this) {
-            public final q8 f35050b;
+            public final q8 f35052b;
 
             {
-                this.f35050b = this;
+                this.f35052b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f35050b.finishFragment();
+                        this.f35052b.finishFragment();
                         return;
                     default:
-                        q8.U(this.f35050b);
+                        q8.U(this.f35052b);
                         return;
                 }
             }
@@ -179,16 +179,16 @@ public final class q8 extends org.telegram.ui.ActionBar.o2 {
 
     @Override
     public final void onInsets(int i10, int i11, int i12, int i13) {
-        ScrollView scrollView = this.f35080b;
+        ScrollView scrollView = this.f35082b;
         if (scrollView != null) {
             scrollView.setPadding(i10, AndroidUtilities.dp(96.0f) + i11, i12, i13);
         }
-        ImageView imageView = this.f35081c;
+        ImageView imageView = this.f35083c;
         if (imageView != null) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) imageView.getLayoutParams();
             layoutParams.leftMargin = AndroidUtilities.dp(4.0f) + i10;
             layoutParams.topMargin = AndroidUtilities.dp(12.0f) + i11;
-            this.f35081c.setLayoutParams(layoutParams);
+            this.f35083c.setLayoutParams(layoutParams);
         }
     }
 }

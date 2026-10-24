@@ -5,7 +5,7 @@ import android.graphics.RectF;
 import android.view.View;
 import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class pk extends yu0 {
+public final class pk extends xu0 {
     public pk(ViewGroup viewGroup, ViewGroup viewGroup2) {
         super(viewGroup, viewGroup2);
     }

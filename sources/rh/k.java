@@ -3,19 +3,19 @@ package rh;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.j71;
-public final class k extends j71 {
-    public final int f46205g3;
+import org.telegram.ui.Components.i71;
+public final class k extends i71 {
+    public final int f46204g3;
 
     public k(o2 o2Var, j jVar, int i10) {
         super(o2Var, jVar, null, null);
-        this.f46205g3 = i10;
+        this.f46204g3 = i10;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         int min = Math.min(AndroidUtilities.dp(220.0f), View.MeasureSpec.getSize(i10));
         View.MeasureSpec.getSize(i11);
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(w7.r.b(this.f46205g3, 1, 5) * 48), 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(min, 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(w7.r.b(this.f46204g3, 1, 5) * 48), 1073741824));
     }
 }

@@ -9,7 +9,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.ActionBar.k6;
 public final class b2 extends Drawable {
     public final Context f15185a;
@@ -22,7 +22,7 @@ public final class b2 extends Drawable {
 
     public b2(Context context, int i10) {
         Drawable mutate = context.getResources().getDrawable(i10).mutate();
-        this.d = k6.f21183d6;
+        this.d = k6.f21184d6;
         this.f15189g = true;
         this.f15185a = context;
         this.f15186b = mutate;
@@ -42,7 +42,7 @@ public final class b2 extends Drawable {
         int centerX = bounds.centerX();
         int centerY = bounds.centerY();
         Drawable drawable = this.f15186b;
-        drawable.setBounds(org.telegram.ui.Cells.b1.f(2, centerX, drawable), sl.d(2, centerY, drawable), org.telegram.ui.Cells.b1.y(2, centerX, drawable), org.telegram.ui.Cells.b1.u(2, centerY, drawable));
+        drawable.setBounds(org.telegram.ui.Cells.b1.f(2, centerX, drawable), tl.d(2, centerY, drawable), org.telegram.ui.Cells.b1.y(2, centerX, drawable), org.telegram.ui.Cells.b1.u(2, centerY, drawable));
         drawable.draw(canvas);
         if (this.f15189g) {
             int dp = AndroidUtilities.dp(9.0f) + centerX;

@@ -36,13 +36,13 @@ public final class r3 implements Utilities.Callback {
                 final byte[] bArr = (byte[]) obj;
                 if (!e2Var.i(a2Var) && e2Var.y(a2Var)) {
                     TL_wallet.tonConnectClaimRequest tonconnectclaimrequest = new TL_wallet.tonConnectClaimRequest();
-                    tonconnectclaimrequest.session_id = a2Var.f34272a.f20601id;
-                    tonconnectclaimrequest.msg_id = a2Var.f34273b;
+                    tonconnectclaimrequest.session_id = a2Var.f34274a.f20602id;
+                    tonconnectclaimrequest.msg_id = a2Var.f34275b;
                     tonconnectclaimrequest.app_request_id = a2Var.d;
                     final boolean z10 = this.f2108b;
                     tonconnectclaimrequest.declined = z10;
                     tonconnectclaimrequest.challenge_answer = bArr;
-                    e2Var.f34432f.sendRequestTyped(tonconnectclaimrequest, new Object(), new Utilities.Callback2() {
+                    e2Var.f34434f.sendRequestTyped(tonconnectclaimrequest, new Object(), new Utilities.Callback2() {
                         @Override
                         public final void run(Object obj2, Object obj3) {
                             int i10;
@@ -59,8 +59,8 @@ public final class r3 implements Utilities.Callback {
                                 Arrays.fill(bArr2, (byte) 0);
                             }
                             if (tL_error == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                                a2Var2.f34283o = true;
-                                if (!z11 && a2Var2.f34280l < 0) {
+                                a2Var2.f34285o = true;
+                                if (!z11 && a2Var2.f34282l < 0) {
                                     if ("disconnect".equals(a2Var2.e)) {
                                         e2Var2.w(a2Var2, i0Var2, new JSONObject(), -1, null, wVar2);
                                         return;
@@ -73,10 +73,10 @@ public final class r3 implements Utilities.Callback {
                                             return;
                                         }
                                     } else if ("signMessage".equals(a2Var2.e)) {
-                                        WalletEngine2 walletEngine2 = e2Var2.f34430b.f34742b;
+                                        WalletEngine2 walletEngine2 = e2Var2.f34432b.f34744b;
                                         if (walletEngine2 != null && e2Var2.y(a2Var2) && !e2Var2.i(a2Var2)) {
-                                            d2 d2Var = a2Var2.f34275f;
-                                            walletEngine2.signMessage(i0Var2, d2Var, "ton-connect:" + a2Var2.f34272a.f20601id + ":" + a2Var2.f34273b, new p(e2Var2, a2Var2, i0Var2, wVar2, 8));
+                                            d2 d2Var = a2Var2.f34277f;
+                                            walletEngine2.signMessage(i0Var2, d2Var, "ton-connect:" + a2Var2.f34274a.f20602id + ":" + a2Var2.f34275b, new p(e2Var2, a2Var2, i0Var2, wVar2, 8));
                                             return;
                                         }
                                         e2Var2.w(a2Var2, i0Var2, null, 0, "Wallet unavailable or request expired", wVar2);
@@ -89,19 +89,19 @@ public final class r3 implements Utilities.Callback {
                                 if (z11) {
                                     i10 = 300;
                                 } else {
-                                    i10 = a2Var2.f34280l;
+                                    i10 = a2Var2.f34282l;
                                 }
                                 int i11 = i10;
                                 if (z11) {
                                     str = "User declined the request";
                                 } else {
-                                    str = a2Var2.f34278j;
+                                    str = a2Var2.f34280j;
                                 }
                                 e2Var2.w(a2Var2, i0Var2, null, i11, str, wVar2);
                                 return;
                             }
                             if (tL_error != null && ("TONCONNECT_REQUEST_ALREADY_CLAIMED".equals(tL_error.text) || "TONCONNECT_REQUEST_EXPIRED".equals(tL_error.text) || "TONCONNECT_REQUEST_NOT_FOUND".equals(tL_error.text))) {
-                                a2Var2.f34282n = true;
+                                a2Var2.f34284n = true;
                             }
                             wVar2.run(e2.x(tL_error, "claimRequest"));
                         }

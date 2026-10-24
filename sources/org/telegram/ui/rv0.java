@@ -1,145 +1,80 @@
 package org.telegram.ui;
 
-import android.graphics.Point;
-import android.view.View;
-import java.util.HashSet;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class rv0 implements r0.n, org.telegram.ui.Components.k81, org.telegram.ui.Components.xq0, org.telegram.ui.Components.gp0, org.telegram.ui.Components.vo0 {
-    public final int f41254a;
-    public final Object f41255b;
+public final class rv0 extends org.telegram.ui.Cells.t1 {
+    public final Path Ge;
+    public final Paint He;
+    public final byte[] Ie;
+    public final int Je;
+    public final int Ke;
+    public final tv0 Le;
 
-    public rv0(Object obj, int i10) {
-        this.f41254a = i10;
-        this.f41255b = obj;
+    public rv0(tv0 tv0Var, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, byte[] bArr, int i11, int i12) {
+        super(context, i10, false, null, g6Var);
+        this.Le = tv0Var;
+        this.Ie = bArr;
+        this.Je = i11;
+        this.Ke = i12;
+        this.Ge = new Path();
+        this.He = new Paint(1);
     }
 
     @Override
-    public r0.k1 B0(View view, r0.k1 k1Var) {
-        switch (this.f41254a) {
-            case 0:
-                uv0 uv0Var = (uv0) this.f41255b;
-                i0.b g10 = k1Var.f45251a.g(519);
-                uv0Var.f42526r = g10;
-                uv0Var.d.setPadding(g10.f12315a, g10.f12316b, g10.f12317c, g10.d);
-                uv0Var.f42518c.requestLayout();
-                return r0.k1.f45250b;
-            default:
-                ed1 ed1Var = (ed1) this.f41255b;
-                i0.b g11 = k1Var.f45251a.g(519);
-                ed1Var.f36935n = g11;
-                ed1Var.f36930c.setPadding(g11.f12315a, g11.f12316b, g11.f12317c, g11.d);
-                ed1Var.f36928b.requestLayout();
-                return r0.k1.f45250b;
+    public final void X1(Canvas canvas) {
+        this.f23427i6 = 0;
+        this.f23441j6 = this.Y5.size() - 1;
+        this.f23456k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f42139y;
+        super.X1(canvas);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float f7;
+        canvas.save();
+        int H2 = H2(this.Ie);
+        float G2 = G2(H2);
+        float F2 = F2(H2);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getPollButtonsLeft(), G2, getPollButtonsRight(), F2);
+        float f10 = rectF.top;
+        float dp = AndroidUtilities.dp(3.0f);
+        tv0 tv0Var = this.Le;
+        if (tv0Var.V) {
+            f7 = -AndroidUtilities.dp(3.0f);
+        } else {
+            f7 = 0.0f;
         }
-    }
-
-    @Override
-    public void H() {
-        ((StickersActivity) this.f41255b).j0();
-    }
-
-    @Override
-    public void L(float f7, boolean z10) {
-        switch (this.f41254a) {
-            case 3:
-                pa1 pa1Var = (pa1) this.f41255b;
-                ThemeActivity.Y(pa1Var.e, Math.round((pa1Var.f40441b * f7) + 0), false);
-                return;
-            default:
-                ab1 ab1Var = (ab1) this.f41255b;
-                ThemeActivity themeActivity = ab1Var.f35642n;
-                int i10 = ab1Var.f35640c;
-                ThemeActivity.k0(themeActivity, Math.round(((ab1Var.d - i10) * f7) + i10));
-                return;
+        rectF.top = AndroidUtilities.lerp(dp, f7, tv0Var.f42139y) + f10;
+        float f11 = rectF.bottom;
+        boolean z10 = tv0Var.V;
+        float dp2 = AndroidUtilities.dp(3.0f);
+        if (!z10) {
+            dp2 = AndroidUtilities.lerp(dp2, 0.0f, tv0Var.f42139y);
         }
+        rectF.bottom = f11 + dp2;
+        Path path = this.Ge;
+        path.rewind();
+        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+        Paint paint = this.He;
+        paint.setColor(0);
+        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.k6.o1(tv0Var.f42139y * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        canvas.clipPath(path);
+        R1(canvas);
+        canvas.restore();
     }
 
     @Override
-    public int Y() {
-        switch (this.f41254a) {
-            case 3:
-                return ((pa1) this.f41255b).f40441b;
-            default:
-                ab1 ab1Var = (ab1) this.f41255b;
-                return ab1Var.d - ab1Var.f35640c;
-        }
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(this.Je, this.Ke);
     }
 
     @Override
-    public void a(float f7) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f41255b;
-        t31 t31Var = secretMediaViewer.f34139y;
-        if (t31Var != null) {
-            long p5 = t31Var.p();
-            if (p5 != -9223372036854775807L) {
-                secretMediaViewer.f34139y.L(f7 * ((float) p5), false);
-            }
-            secretMediaViewer.f34139y.C();
-        }
-    }
-
-    @Override
-    public void b(float f7) {
-        SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f41255b;
-        t31 t31Var = secretMediaViewer.f34139y;
-        if (t31Var != null) {
-            t31Var.B();
-            long p5 = secretMediaViewer.f34139y.p();
-            if (p5 != -9223372036854775807L) {
-                secretMediaViewer.f34139y.L(f7 * ((float) p5), false);
-            }
-        }
-    }
-
-    @Override
-    public void d(float f7) {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((te1) this.f41255b).f41992t0.movePreviewFragment(f7);
-        }
-    }
-
-    @Override
-    public void e(org.telegram.ui.Cells.q2 q2Var) {
-        ye1 ye1Var = ((te1) this.f41255b).f41992t0;
-        HashSet hashSet = ye1.f43791q1;
-        ye1Var.L0(q2Var);
-    }
-
-    @Override
-    public void finish() {
-        Point point = AndroidUtilities.displaySize;
-        if (point.x > point.y) {
-            ((te1) this.f41255b).f41992t0.finishPreviewFragment();
-        }
-    }
-
-    @Override
-    public void g0() {
-        ((StickersActivity) this.f41255b).j0();
-    }
-
-    @Override
-    public CharSequence getContentDescription() {
-        switch (this.f41254a) {
-            case 3:
-                pa1 pa1Var = (pa1) this.f41255b;
-                return String.valueOf(Math.round((pa1Var.f40440a.getProgress() * pa1Var.f40441b) + 0));
-            default:
-                ab1 ab1Var = (ab1) this.f41255b;
-                int i10 = ab1Var.f35640c;
-                return String.valueOf(Math.round((ab1Var.f35639b.getProgress() * (ab1Var.d - i10)) + i10));
-        }
-    }
-
-    @Override
-    public void v() {
-        int i10 = this.f41254a;
-    }
-
-    private final void c() {
-    }
-
-    private final void f() {
+    public final void setPressed(boolean z10) {
     }
 }

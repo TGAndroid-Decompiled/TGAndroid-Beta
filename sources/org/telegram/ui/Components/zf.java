@@ -1,92 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class zf extends AnimatorListenerAdapter {
-    public final boolean f33209a;
-    public final float f33210b;
-    public final float f33211c;
-    public final float d;
-    public final float e;
-    public final ChatActivityEnterView f33212f;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.LaunchActivity;
+public final class zf implements Runnable {
+    public final MessageObject f33253a;
+    public final long f33254b;
+    public final TL_keyboard.KeyboardButtonProto f33255c;
+    public final MessageObject d;
+    public final TLRPC.User e;
+    public final ChatActivityEnterView f33256f;
 
-    public zf(ChatActivityEnterView chatActivityEnterView, boolean z10, float f7, float f10, float f11, float f12) {
-        this.f33212f = chatActivityEnterView;
-        this.f33209a = z10;
-        this.f33210b = f7;
-        this.f33211c = f10;
-        this.d = f11;
-        this.e = f12;
+    public zf(ChatActivityEnterView chatActivityEnterView, MessageObject messageObject, long j10, TL_keyboard.KeyboardButtonProto keyboardButtonProto, MessageObject messageObject2, TLRPC.User user) {
+        this.f33256f = chatActivityEnterView;
+        this.f33253a = messageObject;
+        this.f33254b = j10;
+        this.f33255c = keyboardButtonProto;
+        this.d = messageObject2;
+        this.e = user;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        float f7;
+    public final void run() {
         int i10;
-        ChatActivityEnterView chatActivityEnterView = this.f33212f;
-        boolean z10 = this.f33209a;
-        if (z10) {
-            int i11 = ChatActivityEnterView.f24050r5;
-            chatActivityEnterView.Y();
-        }
-        xp0 xp0Var = chatActivityEnterView.f24142p0;
-        if (xp0Var != null) {
-            if (z10) {
-                i10 = 0;
-            } else {
-                i10 = 8;
+        long S8;
+        String restrictionReason;
+        ChatActivityEnterView chatActivityEnterView = this.f33256f;
+        org.telegram.ui.sn snVar = chatActivityEnterView.P2;
+        if (chatActivityEnterView.f24125m1.Q() <= AndroidUtilities.dp(20.0f) && !chatActivityEnterView.q0()) {
+            if (snVar != null) {
+                int i11 = chatActivityEnterView.Q;
+                long j10 = this.f33253a.messageOwner.dialog_id;
+                TL_keyboard.KeyboardButtonProto keyboardButtonProto = this.f33255c;
+                String text = keyboardButtonProto.getText();
+                String url = keyboardButtonProto.getUrl();
+                boolean c10 = ag.c.c(keyboardButtonProto, TL_keyboard.TL_buttonTypeSimpleWebView.class);
+                MessageObject messageObject = this.d;
+                if (messageObject != null) {
+                    i10 = messageObject.messageOwner.f20365id;
+                } else {
+                    i10 = 0;
+                }
+                if (snVar == null) {
+                    S8 = 0;
+                } else {
+                    S8 = snVar.S8();
+                }
+                gi.t4 b10 = gi.t4.b(i11, j10, this.f33254b, text, url, c10 ? 1 : 0, i10, S8, null, false, null, null, 0, false, false);
+                LaunchActivity launchActivity = LaunchActivity.I1;
+                if (launchActivity != null && launchActivity.P() != null && LaunchActivity.I1.P().k(b10) != null) {
+                    gi.b0 b0Var = chatActivityEnterView.f24121l0;
+                    if (b0Var != null) {
+                        b0Var.setOpened(false);
+                        return;
+                    }
+                    return;
+                }
+                TLRPC.User user = this.e;
+                if (user == null) {
+                    restrictionReason = null;
+                } else {
+                    restrictionReason = MessagesController.getInstance(chatActivityEnterView.Q).getRestrictionReason(user.restriction_reason);
+                }
+                if (!TextUtils.isEmpty(restrictionReason)) {
+                    MessagesController.getInstance(chatActivityEnterView.Q);
+                    MessagesController.showCantOpenAlert(snVar, restrictionReason);
+                    return;
+                }
+                gi.d3 d3Var = new gi.d3(chatActivityEnterView.getContext(), chatActivityEnterView.W3);
+                d3Var.f11171l0 = chatActivityEnterView.O2;
+                d3Var.t(snVar, b10);
+                d3Var.show();
+                return;
             }
-            xp0Var.setVisibility(i10);
-            chatActivityEnterView.f24142p0.setAlpha(this.d);
-            chatActivityEnterView.f24142p0.setTranslationX(this.e);
-            f7 = chatActivityEnterView.f24142p0.getTranslationX();
-        } else {
-            f7 = 0.0f;
+            return;
         }
-        chatActivityEnterView.Q0.setTranslationX(f7);
-        chatActivityEnterView.G = f7;
-        chatActivityEnterView.G1();
-        chatActivityEnterView.requestLayout();
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        if (!this.f33209a) {
-            ChatActivityEnterView chatActivityEnterView = this.f33212f;
-            xp0 xp0Var = chatActivityEnterView.f24142p0;
-            if (xp0Var != null) {
-                xp0Var.setVisibility(8);
-            }
-            chatActivityEnterView.Q0.setTranslationX(0.0f);
-            chatActivityEnterView.G = 0.0f;
-            chatActivityEnterView.G1();
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        float f7;
-        boolean z10 = this.f33209a;
-        ChatActivityEnterView chatActivityEnterView = this.f33212f;
-        if (z10) {
-            int i10 = ChatActivityEnterView.f24050r5;
-            chatActivityEnterView.Y();
-            chatActivityEnterView.f24142p0.setVisibility(0);
-        }
-        xp0 xp0Var = chatActivityEnterView.f24142p0;
-        if (xp0Var != null) {
-            xp0Var.setAlpha(this.f33210b);
-            chatActivityEnterView.f24142p0.setTranslationX(this.f33211c);
-            f7 = chatActivityEnterView.f24142p0.getTranslationX();
-        } else {
-            f7 = 0.0f;
-        }
-        chatActivityEnterView.Q0.setTranslationX(f7);
-        chatActivityEnterView.G = f7;
-        chatActivityEnterView.G1();
-        gi.b0 b0Var = chatActivityEnterView.f24120l0;
-        if (b0Var != null && b0Var.getTag() == null) {
-            chatActivityEnterView.B0.clear();
-        }
+        chatActivityEnterView.j0(false);
+        AndroidUtilities.hideKeyboard(chatActivityEnterView);
+        AndroidUtilities.runOnUIThread(this, 150L);
     }
 }

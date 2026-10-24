@@ -22,12 +22,12 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.j9;
-import org.telegram.ui.Components.m10;
+import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.k10;
 import w7.z5;
 public final class m1 extends FrameLayout {
     public final g6 f12008a;
-    public final j9 f12009b;
+    public final h9 f12009b;
     public final TextView[] f12010c;
     public final TextView[] d;
     public float e;
@@ -40,13 +40,13 @@ public final class m1 extends FrameLayout {
         this.d = new TextView[2];
         this.f12008a = g6Var;
         setWillNotDraw(false);
-        j9 j9Var = new j9(this, false);
-        this.f12009b = j9Var;
-        j9Var.f27617l = true;
-        j9Var.f27621p = AndroidUtilities.dp(75.0f);
-        j9Var.f27620o = AndroidUtilities.dp(48.0f);
-        j9Var.f27628x = true;
-        j9Var.f27624s = AndroidUtilities.dp(22.0f);
+        h9 h9Var = new h9(this, false);
+        this.f12009b = h9Var;
+        h9Var.f26954l = true;
+        h9Var.f26958p = AndroidUtilities.dp(75.0f);
+        h9Var.f26957o = AndroidUtilities.dp(48.0f);
+        h9Var.f26965x = true;
+        h9Var.f26961s = AndroidUtilities.dp(22.0f);
         for (int i11 = 0; i11 < 2; i11++) {
             this.f12010c[i11] = new TextView(context);
             r6.W(this.f12010c[i11], k6.G6, g6Var);
@@ -62,7 +62,7 @@ public final class m1 extends FrameLayout {
             textView.setVisibility(i10);
             addView(this.f12010c[i11], z5.d(-1, -2.0f, 48, 76.0f, 7.0f, 40.0f, 0.0f));
             this.d[i11] = new TextView(context);
-            r6.W(this.d[i11], k6.f21588z6, g6Var);
+            r6.W(this.d[i11], k6.f21589z6, g6Var);
             this.d[i11].setTextSize(1, 12.0f);
             TextView textView2 = this.d[i11];
             if (i11 == 0) {
@@ -79,26 +79,26 @@ public final class m1 extends FrameLayout {
 
     public final boolean a(t6 t6Var) {
         String str;
-        j9 j9Var;
+        h9 h9Var;
         int i10 = 0;
         int i11 = 0;
         while (true) {
             ArrayList arrayList = t6Var.f6193i;
             str = t6Var.D;
             int size = arrayList.size();
-            j9Var = this.f12009b;
+            h9Var = this.f12009b;
             if (i10 >= size || i11 >= 3) {
                 break;
             }
             MessageObject messageObject = (MessageObject) t6Var.f6193i.get(i10);
             long j10 = messageObject.storyItem.dialogId;
             TextUtils.isEmpty(str);
-            j9Var.l(i11, messageObject.storyItem, t6Var.f6190c);
+            h9Var.l(i11, messageObject.storyItem, t6Var.f6190c);
             i11++;
             i10++;
         }
-        j9Var.k(i11);
-        j9Var.b(false, true);
+        h9Var.k(i11);
+        h9Var.b(false, true);
         boolean isEmpty = TextUtils.isEmpty(str);
         TextView[] textViewArr = this.f12010c;
         if (!isEmpty) {
@@ -134,7 +134,7 @@ public final class m1 extends FrameLayout {
                 int spanStart = replaceSingleLinkKey.getSpanStart(characterStyleArr[i11]);
                 int spanEnd = replaceSingleLinkKey.getSpanEnd(characterStyleArr[i11]);
                 replaceSingleLinkKey.removeSpan(characterStyleArr[i11]);
-                replaceSingleLinkKey.setSpan(new m10(k6.Oh, g6Var), spanStart, spanEnd, 0);
+                replaceSingleLinkKey.setSpan(new k10(k6.Oh, g6Var), spanStart, spanEnd, 0);
             }
             return replaceSingleLinkKey;
         } catch (Exception e) {
@@ -156,7 +156,7 @@ public final class m1 extends FrameLayout {
         super.onDraw(canvas);
         Paint V0 = k6.V0("paintDivider", this.f12008a);
         if (V0 == null) {
-            V0 = k6.f21304k0;
+            V0 = k6.f21305k0;
         }
         canvas.drawRect(0.0f, getHeight() - 1, getWidth(), getHeight(), V0);
     }

@@ -15,7 +15,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.tl.TL_wallet;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 public final class c implements Utilities.Callback2 {
     public final int f15217a = 0;
     public final boolean[] f15218b;
@@ -64,7 +64,7 @@ public final class c implements Utilities.Callback2 {
                 Boolean bool = (Boolean) obj2;
                 if (TextUtils.equals((String) obj6, ((String[]) obj5)[0])) {
                     if (bool.booleanValue()) {
-                        r6.t(imageView, k6.f21421q7, g6Var, PorterDuff.Mode.SRC_IN);
+                        r6.t(imageView, k6.f21422q7, g6Var, PorterDuff.Mode.SRC_IN);
                         if (!z10) {
                             int i12 = -iArr[0];
                             iArr[0] = i12;
@@ -95,8 +95,8 @@ public final class c implements Utilities.Callback2 {
                 org.telegram.ui.Wallet.i2 i2Var = (org.telegram.ui.Wallet.i2) callback;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str = (String) obj2;
-                if (!zArr[0] && !a2Var.f34281m && !a2Var.f34282n) {
-                    boolean z11 = a2Var.f34284p;
+                if (!zArr[0] && !a2Var.f34283m && !a2Var.f34284n) {
+                    boolean z11 = a2Var.f34286p;
                     zArr2[0] = z11;
                     dVar.setEnabled(z11);
                     boolean z12 = zArr2[0];
@@ -119,7 +119,7 @@ public final class c implements Utilities.Callback2 {
                         if (str == null) {
                             org.telegram.ui.Wallet.e2.k("preview", string);
                         }
-                        xc.c0(string, i2Var.topBulletinContainer, g6Var);
+                        vc.c0(string, i2Var.topBulletinContainer, g6Var);
                         return;
                     } else {
                         return;

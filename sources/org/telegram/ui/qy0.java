@@ -1,37 +1,21 @@
 package org.telegram.ui;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.SharedConfig;
-public final class qy0 implements DialogInterface.OnClickListener {
-    public final int f40944a;
-    public final int f40945b;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class qy0 extends org.telegram.ui.Components.hr0 {
+    public final ry0 f40960e1;
 
-    public qy0(int i10, int i11) {
-        this.f40944a = i11;
-        this.f40945b = i10;
+    public qy0(ry0 ry0Var, Activity activity, String str) {
+        super(activity, null, str, false, null, false, null);
+        this.f40960e1 = ry0Var;
     }
 
     @Override
-    public final void onClick(DialogInterface dialogInterface, int i10) {
-        switch (this.f40944a) {
-            case 0:
-                int i11 = 2 - i10;
-                if (i11 == this.f40945b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i11);
-                    return;
-                }
-            default:
-                int i12 = 2 - i10;
-                if (i12 == this.f40945b) {
-                    SharedConfig.overrideDevicePerformanceClass(-1);
-                    return;
-                } else {
-                    SharedConfig.overrideDevicePerformanceClass(i12);
-                    return;
-                }
+    public final void W0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new lv0(this, hVar, i10, 15), 250L);
     }
 }

@@ -1,5 +1,5 @@
 package ai;
-public final class ga extends org.telegram.ui.Components.jc {
+public final class ga extends org.telegram.ui.Components.hc {
     public int f1360x;
 
     @Override

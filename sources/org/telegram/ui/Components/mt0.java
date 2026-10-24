@@ -1,28 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class mt0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28752a;
-    public final qu0 f28753b;
-    public final xv0 f28754c;
+import android.content.Context;
+public final class mt0 extends iv0 {
+    public final wv0 f28696t0;
 
-    public mt0(xv0 xv0Var, qu0 qu0Var, int i10) {
-        this.f28752a = i10;
-        this.f28754c = xv0Var;
-        this.f28753b = qu0Var;
+    public mt0(wv0 wv0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(wv0Var, context, g6Var);
+        this.f28696t0 = wv0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28752a) {
-            case 0:
-                this.f28754c.f32693n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f28753b.h.invalidate();
-                return;
-            default:
-                this.f28754c.f32693n1 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                this.f28753b.h.invalidate();
-                return;
-        }
+    public final int e(int i10) {
+        return this.f28696t0.Y0(i10);
     }
 }

@@ -3,22 +3,22 @@ package org.telegram.ui;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 public final class uh extends AnimatorListenerAdapter {
-    public final rn f42438a;
-    public final boolean f42439b;
-    public final org.telegram.ui.ActionBar.n5 f42440c;
+    public final rn f42430a;
+    public final boolean f42431b;
+    public final org.telegram.ui.ActionBar.n5 f42432c;
     public final boolean d;
     public final hn e;
-    public final boolean f42441f;
+    public final boolean f42433f;
     public final sn h;
 
     public uh(sn snVar, rn rnVar, boolean z10, org.telegram.ui.ActionBar.n5 n5Var, boolean z11, hn hnVar, boolean z12) {
         this.h = snVar;
-        this.f42438a = rnVar;
-        this.f42439b = z10;
-        this.f42440c = n5Var;
+        this.f42430a = rnVar;
+        this.f42431b = z10;
+        this.f42432c = n5Var;
         this.d = z11;
         this.e = hnVar;
-        this.f42441f = z12;
+        this.f42433f = z12;
     }
 
     @Override
@@ -35,13 +35,13 @@ public final class uh extends AnimatorListenerAdapter {
         snVar.P2[0].setTranslationX(0.0f);
         snVar.P2[1].setTranslationX(0.0f);
         snVar.R2.setTranslationX(snVar.S2 + 0.0f);
-        rn rnVar = this.f42438a;
+        rn rnVar = this.f42430a;
         rnVar.setTranslationY(0.0f);
-        boolean z10 = this.f42439b;
+        boolean z10 = this.f42431b;
         if (!z10) {
             rnVar.setTranslationY(0.0f);
         }
-        org.telegram.ui.ActionBar.n5 n5Var = this.f42440c;
+        org.telegram.ui.ActionBar.n5 n5Var = this.f42432c;
         if (!z10) {
             n5Var.setTranslationY(0.0f);
         }
@@ -75,16 +75,16 @@ public final class uh extends AnimatorListenerAdapter {
             rnVarArr[0] = rnVar;
             rnVar2.setVisibility(4);
         }
-        if (this.f42441f) {
+        if (this.f42433f) {
             snVar.N2[1].setImageBitmap(null);
             snVar.N2[1].setVisibility(4);
         }
-        org.telegram.ui.Components.w9[] w9VarArr = snVar.N2;
-        org.telegram.ui.Components.w9 w9Var = w9VarArr[1];
-        org.telegram.ui.Components.w9 w9Var2 = w9VarArr[0];
-        w9VarArr[1] = w9Var2;
-        w9VarArr[0] = w9Var;
-        w9Var2.setAlpha(1.0f);
+        org.telegram.ui.Components.u9[] u9VarArr = snVar.N2;
+        org.telegram.ui.Components.u9 u9Var = u9VarArr[1];
+        org.telegram.ui.Components.u9 u9Var2 = u9VarArr[0];
+        u9VarArr[1] = u9Var2;
+        u9VarArr[0] = u9Var;
+        u9Var2.setAlpha(1.0f);
         snVar.N2[1].setScaleX(1.0f);
         snVar.N2[1].setScaleY(1.0f);
         snVar.N2[1].setVisibility(4);

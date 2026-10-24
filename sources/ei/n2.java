@@ -39,7 +39,7 @@ public class n2 extends org.telegram.ui.ActionBar.h3 implements NotificationCent
         this.f9514r = z10;
         this.f9515s = z11;
         this.useSmoothKeyboard = true;
-        fixNavigationBar(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, g6Var));
+        fixNavigationBar(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21255h5, g6Var));
         this.f9516w = this.navBarColor;
         this.occupyNavigationBar = true;
         setUseLightStatusBar(false);
@@ -51,7 +51,7 @@ public class n2 extends org.telegram.ui.ActionBar.h3 implements NotificationCent
         } else {
             i10 = H;
         }
-        h1Var.f28307b = i10;
+        h1Var.f28281b = i10;
         h1Var.setAdapter(new i1(this, z10, context));
         this.containerView.addView(h1Var, w7.z5.e(-1, -1, 87));
         new b4(this.containerView, false, new d1(this, 0));
@@ -59,7 +59,7 @@ public class n2 extends org.telegram.ui.ActionBar.h3 implements NotificationCent
             m2 m2Var = new m2(context);
             this.h = m2Var;
             m2Var.G = new d1(this, 1);
-            m2Var.F = h1Var.f28307b;
+            m2Var.F = h1Var.f28281b;
             m2Var.invalidate();
             this.containerView.addView(m2Var, w7.z5.e(-1, -2, 87));
         }
@@ -121,7 +121,7 @@ public class n2 extends org.telegram.ui.ActionBar.h3 implements NotificationCent
                 int i11 = n2Var.keyboardHeight;
                 f7 = Math.min(0.0f, Math.max(((i10 - i11) * 0.3f) - n2Var.f9518y, (-i11) / 3.0f));
             }
-            n2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21717w).start();
+            n2Var.container.animate().translationY(f7).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21718w).start();
         }
     }
 
@@ -181,7 +181,7 @@ public class n2 extends org.telegram.ui.ActionBar.h3 implements NotificationCent
         int w02;
         super.onThemeColorsChanged();
         try {
-            if (this.navBarColorKey < 0 && this.navBarColor == this.f9516w && (w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, this.resourcesProvider)) != this.navBarColor) {
+            if (this.navBarColorKey < 0 && this.navBarColor == this.f9516w && (w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21255h5, this.resourcesProvider)) != this.navBarColor) {
                 this.navBarColor = w02;
                 this.f9516w = w02;
                 setOverlayNavBarColor(w02);
@@ -199,7 +199,7 @@ public class n2 extends org.telegram.ui.ActionBar.h3 implements NotificationCent
         View[] viewPages;
         h2 h2Var;
         this.keyboardVisible = false;
-        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21717w).start();
+        this.container.animate().translationY(0.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21718w).start();
         for (View view : this.f9512f.getViewPages()) {
             if (view instanceof b2) {
                 h2 h2Var2 = ((b2) view).f8780f;

@@ -1,58 +1,68 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import androidx.mediarouter.app.MediaRouteButton;
-import java.lang.reflect.Field;
-public abstract class ld extends MediaRouteButton {
-    public boolean f28348a;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.Space;
+import android.widget.TextView;
+public abstract class ld extends LinearLayout {
+    public ImageView f28320a;
+    public TextView f28321b;
+    public Space f28322c;
+    public boolean d;
 
-    public final void a() {
-        boolean b10 = b();
-        if (this.f28348a != b10) {
-            this.f28348a = b10;
-            c(b10);
+    public final void a(ImageView imageView, LinearLayout.LayoutParams layoutParams) {
+        if (this.f28320a == null) {
+            this.f28320a = imageView;
+            addView(imageView, layoutParams);
         }
     }
 
-    public final boolean b() {
-        Field declaredField;
-        try {
-            declaredField = MediaRouteButton.class.getDeclaredField("mConnectionState");
-            declaredField.setAccessible(true);
-        } catch (Exception unused) {
+    public final void b(Space space, LinearLayout.LayoutParams layoutParams) {
+        if (this.f28322c == null) {
+            this.f28322c = space;
+            addView(space, layoutParams);
         }
-        if (((Integer) declaredField.get(this)).intValue() <= 0) {
-            return false;
+    }
+
+    public final void c(TextView textView, LinearLayout.LayoutParams layoutParams) {
+        if (this.f28321b == null) {
+            this.f28321b = textView;
+            addView(textView, layoutParams);
         }
-        return true;
     }
 
-    public abstract void c(boolean z10);
+    public abstract void d();
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        a();
+    public ImageView getImageView() {
+        return this.f28320a;
     }
 
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        a();
+    public TextView getTextView() {
+        return this.f28321b;
     }
 
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
+    public void setEditButton(boolean z10) {
+        this.d = z10;
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        a();
-    }
-
-    @Override
-    public void setBackground(Drawable drawable) {
+    public void setOnlyIconMode(boolean z10) {
+        int i10;
+        TextView textView = this.f28321b;
+        int i11 = 0;
+        if (textView != null) {
+            if (z10) {
+                i10 = 8;
+            } else {
+                i10 = 0;
+            }
+            textView.setVisibility(i10);
+        }
+        Space space = this.f28322c;
+        if (space != null) {
+            if (z10) {
+                i11 = 8;
+            }
+            space.setVisibility(i11);
+        }
     }
 }

@@ -1,41 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class n7 implements am0 {
-    public final int f28888a;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class n7 implements fp0 {
+    public final i8 f28820a;
 
-    public n7(int i10) {
-        this.f28888a = i10;
+    public n7(i8 i8Var) {
+        this.f28820a = i8Var;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        switch (this.f28888a) {
-            case 0:
-                if (view instanceof org.telegram.ui.Cells.w) {
-                    ((org.telegram.ui.Cells.w) view).a();
-                    return;
-                }
-                return;
-            case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f24222q1;
-                if (view instanceof org.telegram.ui.Cells.s5) {
-                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-                    s5Var.f23254w.b(s5Var);
-                    return;
-                }
-                return;
-            case 2:
-                return;
-            case 3:
-                int i11 = yh.c.f50627a0;
-                return;
-            default:
-                int i12 = yh.m.A0;
-                return;
+    public final void L(float f7, boolean z10) {
+        if (z10) {
+            MediaController.getInstance().seekToProgress(MediaController.getInstance().getPlayingMessageObject(), f7);
+        }
+        MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+        if (playingMessageObject != null && playingMessageObject.isMusic()) {
+            this.f28820a.M0(playingMessageObject, false);
         }
     }
 
-    private final void a(int i10, View view) {
+    @Override
+    public final int Y() {
+        return 0;
+    }
+
+    @Override
+    public final CharSequence getContentDescription() {
+        StringBuilder sb2 = new StringBuilder();
+        i8 i8Var = this.f28820a;
+        sb2.append(LocaleController.formatPluralString("Minutes", i8Var.C0 / 60, new Object[0]));
+        sb2.append(' ');
+        sb2.append(LocaleController.formatPluralString("Seconds", i8Var.C0 % 60, new Object[0]));
+        String sb3 = sb2.toString();
+        return LocaleController.formatString("AccDescrPlayerDuration", R.string.AccDescrPlayerDuration, sb3, LocaleController.formatPluralString("Minutes", i8Var.D0 / 60, new Object[0]) + ' ' + LocaleController.formatPluralString("Seconds", i8Var.D0 % 60, new Object[0]));
+    }
+
+    @Override
+    public final void v() {
     }
 }

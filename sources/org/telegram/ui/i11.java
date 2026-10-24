@@ -1,474 +1,306 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Rect;
-import android.view.MotionEvent;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.widget.TextView;
-import j$.util.Objects;
+import java.util.ArrayList;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public abstract class i11 extends org.telegram.ui.Components.ga implements NotificationCenter.NotificationCenterDelegate {
-    public boolean E;
-    public final Rect F;
-    public final my0 G;
-    public final di.a h;
-    public final org.telegram.ui.Components.k91 f38037n;
-    public final ci.v6 f38038r;
-    public final h11 f38039s;
-    public int v;
-    public boolean f38040w;
-    public ValueAnimator f38041x;
-    public float f38042y;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class i11 implements org.telegram.ui.Components.zl0 {
+    public final int f38120a;
+    public final Object f38121b;
 
-    public i11(Context context, org.telegram.ui.Components.ow0 ow0Var, ci.v6 v6Var, final org.telegram.ui.Components.rs0 rs0Var) {
-        super(context, ow0Var);
-        this.F = new Rect();
-        this.f38038r = v6Var;
-        Objects.requireNonNull(v6Var);
-        this.G = new my0(v6Var, 8);
-        final org.telegram.ui.Components.ss0 ss0Var = (org.telegram.ui.Components.ss0) this;
-        di.a aVar = new di.a(ss0Var, context, rs0Var);
-        this.h = aVar;
-        aVar.setAllowDisallowInterceptTouch(true);
-        h11 h11Var = new h11(ss0Var);
-        this.f38039s = h11Var;
-        h11Var.f37708a = v6Var.a();
-        aVar.setAdapter(h11Var);
-        aVar.setTranslationY(AndroidUtilities.dp(42.0f));
-        org.telegram.ui.Components.k91 n10 = aVar.n(10, true);
-        this.f38037n = n10;
-        n10.g(org.telegram.ui.ActionBar.k6.Gh, org.telegram.ui.ActionBar.k6.G6, org.telegram.ui.ActionBar.k6.Eh, org.telegram.ui.ActionBar.k6.Hh, org.telegram.ui.ActionBar.k6.f21462s8);
-        n10.f27981r = 12;
-        n10.setPreTabClick(new Utilities.Callback2Return() {
-            @Override
-            public final Object run(Object obj, Object obj2) {
-                ci.h7 storiesController;
-                Integer num = (Integer) obj;
-                switch (r3) {
-                    case 0:
-                        Integer num2 = (Integer) obj2;
-                        if (ss0Var.f38040w) {
-                            return Boolean.TRUE;
-                        }
-                        if (num.intValue() == -1) {
-                            org.telegram.ui.Components.rs0 rs0Var2 = rs0Var;
-                            org.telegram.ui.Components.f5.S(rs0Var2.f30259a, rs0Var2.f30260b, rs0Var2.f30261c, new org.telegram.ui.Components.tv(rs0Var2, 20));
-                            return Boolean.TRUE;
-                        }
-                        return Boolean.FALSE;
-                    default:
-                        View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !ss0Var.f38040w) {
-                            final int intValue = num.intValue();
-                            final org.telegram.ui.Components.rs0 rs0Var3 = rs0Var;
-                            org.telegram.ui.Components.xv0 xv0Var = rs0Var3.d;
-                            org.telegram.ui.ActionBar.o2 o2Var = xv0Var.f32711v1;
-                            storiesController = xv0Var.getStoriesController();
-                            if (storiesController.i(xv0Var.f32686j1)) {
-                                org.telegram.ui.Components.j80 H = org.telegram.ui.Components.j80.H(o2Var, view);
-                                H.W(new org.telegram.ui.Components.qs0(rs0Var3));
-                                H.c(R.drawable.menu_add_stories, LocaleController.getString(R.string.StoriesAlbumMenuAddStories), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, false);
-                                xv0Var.x(H, o2Var, xv0Var.f32686j1, intValue);
-                                H.c(R.drawable.msg_edit, LocaleController.getString(R.string.StoriesAlbumMenuEditName), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, false);
-                                H.c(R.drawable.tabs_reorder, LocaleController.getString(R.string.StoriesAlbumMenuReorder), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, false);
-                                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoriesAlbumMenuDeleteAlbum), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, true);
-                                H.Z();
-                            }
-                            return Boolean.TRUE;
-                        }
-                        return Boolean.FALSE;
-                }
-            }
-        });
-        n10.setOnTabLongClick(new Utilities.Callback2Return() {
-            @Override
-            public final Object run(Object obj, Object obj2) {
-                ci.h7 storiesController;
-                Integer num = (Integer) obj;
-                switch (r3) {
-                    case 0:
-                        Integer num2 = (Integer) obj2;
-                        if (ss0Var.f38040w) {
-                            return Boolean.TRUE;
-                        }
-                        if (num.intValue() == -1) {
-                            org.telegram.ui.Components.rs0 rs0Var2 = rs0Var;
-                            org.telegram.ui.Components.f5.S(rs0Var2.f30259a, rs0Var2.f30260b, rs0Var2.f30261c, new org.telegram.ui.Components.tv(rs0Var2, 20));
-                            return Boolean.TRUE;
-                        }
-                        return Boolean.FALSE;
-                    default:
-                        View view = (View) obj2;
-                        if (num.intValue() != -1 && num.intValue() != 0 && !ss0Var.f38040w) {
-                            final int intValue = num.intValue();
-                            final org.telegram.ui.Components.rs0 rs0Var3 = rs0Var;
-                            org.telegram.ui.Components.xv0 xv0Var = rs0Var3.d;
-                            org.telegram.ui.ActionBar.o2 o2Var = xv0Var.f32711v1;
-                            storiesController = xv0Var.getStoriesController();
-                            if (storiesController.i(xv0Var.f32686j1)) {
-                                org.telegram.ui.Components.j80 H = org.telegram.ui.Components.j80.H(o2Var, view);
-                                H.W(new org.telegram.ui.Components.qs0(rs0Var3));
-                                H.c(R.drawable.menu_add_stories, LocaleController.getString(R.string.StoriesAlbumMenuAddStories), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, false);
-                                xv0Var.x(H, o2Var, xv0Var.f32686j1, intValue);
-                                H.c(R.drawable.msg_edit, LocaleController.getString(R.string.StoriesAlbumMenuEditName), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, false);
-                                H.c(R.drawable.tabs_reorder, LocaleController.getString(R.string.StoriesAlbumMenuReorder), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, false);
-                                H.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoriesAlbumMenuDeleteAlbum), new Runnable() {
-                                    @Override
-                                    public final void run() {
-                                        switch (r3) {
-                                            case 0:
-                                                xv0 xv0Var2 = rs0Var3.d;
-                                                xv0Var2.R0(xv0Var2.f32711v1, xv0Var2.f32686j1, intValue);
-                                                return;
-                                            case 1:
-                                                xv0 xv0Var3 = rs0Var3.d;
-                                                xv0Var3.T0(xv0Var3.f32711v1, xv0Var3.f32686j1, intValue);
-                                                return;
-                                            case 2:
-                                                rs0Var3.d.g1(intValue);
-                                                return;
-                                            default:
-                                                xv0 xv0Var4 = rs0Var3.d;
-                                                xv0Var4.S0(xv0Var4.f32711v1, xv0Var4.f32686j1, intValue);
-                                                return;
-                                        }
-                                    }
-                                }, true);
-                                H.Z();
-                            }
-                            return Boolean.TRUE;
-                        }
-                        return Boolean.FALSE;
-                }
-            }
-        });
-        addView(n10, w7.z5.e(-1, 42, 48));
-        c(!v6Var.h.isEmpty(), false, true);
-    }
-
-    public final void a() {
-        int i10;
-        org.telegram.ui.Components.k91 k91Var = this.f38037n;
-        if (k91Var != null) {
-            i10 = k91Var.getCurrentTabId();
-        } else {
-            i10 = 0;
-        }
-        ci.v6 v6Var = this.f38038r;
-        boolean a2 = v6Var.a();
-        h11 h11Var = this.f38039s;
-        h11Var.f37708a = a2;
-        this.h.o(true);
-        c(!v6Var.h.isEmpty(), true, false);
-        int i11 = this.v;
-        if (i11 > 0) {
-            if (h11Var.i(i11) != -1) {
-                AndroidUtilities.runOnUIThread(new e11(this, this.v, 1), 500L);
-                this.v = 0;
-            }
-        } else if (k91Var != null && i10 > 0 && v6Var.b(i10) == null) {
-            k91Var.d(0, 0);
-        }
-    }
-
-    public abstract void b();
-
-    public final void c(boolean z10, boolean z11, boolean z12) {
-        if (this.E == z10 && !z12) {
-            return;
-        }
-        this.E = z10;
-        setEnabled(z10);
-        ValueAnimator valueAnimator = this.f38041x;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f38041x = null;
-        }
-        float f7 = 0.0f;
-        if (!z11) {
-            if (z10) {
-                f7 = 1.0f;
-            }
-            this.f38042y = f7;
-            b();
-            return;
-        }
-        float f10 = this.f38042y;
-        if (z10) {
-            f7 = 1.0f;
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-        this.f38041x = ofFloat;
-        ofFloat.setDuration(480L);
-        this.f38041x.setInterpolator(org.telegram.ui.Components.bs.h);
-        this.f38041x.addUpdateListener(new g11(this, 0));
-        this.f38041x.start();
+    public i11(Object obj, int i10) {
+        this.f38120a = i10;
+        this.f38121b = obj;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.storyAlbumsCollectionsUpdate && ((Long) objArr[0]).longValue() == this.f38038r.f6024b) {
-            a();
-        }
-    }
-
-    @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.E && super.dispatchTouchEvent(motionEvent)) {
-            return true;
-        }
-        return false;
-    }
-
-    public int getCurrentAlbumId() {
-        return this.f38039s.f(this.f38037n.getCurrentPosition());
-    }
-
-    public float getVisibilityFactor() {
-        return this.f38042y;
-    }
-
-    public float getVisualHeight() {
-        return getMeasuredHeight() * this.f38042y;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        ci.v6 v6Var = this.f38038r;
-        NotificationCenter.getInstance(v6Var.f6023a).addObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
-        if (this.E != v6Var.h.isEmpty() && this.f38039s.f37708a == v6Var.a()) {
-            return;
-        }
-        a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f38038r.f6023a).removeObserver(this, NotificationCenter.storyAlbumsCollectionsUpdate);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        Rect rect = this.F;
-        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
-        setClipBounds(rect);
-    }
-
-    public void setInitialTabId(int i10) {
-        if (this.f38039s.i(i10) != -1) {
-            AndroidUtilities.runOnUIThread(new e11(this, i10, 0), 500L);
-        } else {
-            this.v = i10;
-        }
-    }
-
-    public void setReorderingAlbums(boolean z10) {
+    public final void d(int i10, View view) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
         float f7;
-        float f10;
-        if (this.f38040w != z10) {
-            this.f38040w = z10;
-            org.telegram.ui.Components.k91 k91Var = this.f38037n;
-            k91Var.setReordering(z10);
-            boolean z11 = this.f38040w;
-            org.telegram.ui.Components.ss0 ss0Var = (org.telegram.ui.Components.ss0) this;
-            org.telegram.ui.Components.xv0 xv0Var = ss0Var.H;
-            TextView textView = xv0Var.f32698q0;
-            textView.setVisibility(0);
-            ViewPropertyAnimator animate = textView.animate();
-            float f11 = 1.0f;
-            if (z11) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            ViewPropertyAnimator alpha = animate.alpha(f7);
-            if (z11) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.4f;
-            }
-            ViewPropertyAnimator scaleX = alpha.scaleX(f10);
-            if (!z11) {
-                f11 = 0.4f;
-            }
-            scaleX.scaleY(f11).withEndAction(new org.telegram.ui.Components.b60(5, ss0Var, z11)).start();
-            xv0Var.u1(true);
-            if (z10) {
-                org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-                if (U instanceof ProfileActivity) {
-                    ProfileActivity profileActivity = (ProfileActivity) U;
-                    profileActivity.I4(false);
-                    AndroidUtilities.runOnUIThread(new ib0(profileActivity, 27));
+        org.telegram.ui.Components.lm0 lm0Var;
+        org.telegram.ui.Components.lm0 lm0Var2;
+        s4.b1 K;
+        int i11 = 0;
+        switch (this.f38120a) {
+            case 0:
+                ProxyListActivity.U((ProxyListActivity) this.f38121b, view, i10);
+                return;
+            case 1:
+                c21.U((c21) this.f38121b, view);
+                return;
+            case 2:
+                u21.U((u21) this.f38121b, view, i10);
+                return;
+            case 3:
+                d31 d31Var = (d31) this.f38121b;
+                ti.a aVar = ti.e.d;
+                if (i10 == 1) {
+                    aVar.a();
+                    boolean z13 = !aVar.d;
+                    synchronized (aVar) {
+                        aVar.d = z13;
+                        aVar.f47650c = true;
+                        aVar.f47649b = true;
+                        ti.d.f47656a.edit().putBoolean("round_video_camera2_enabled", z13).apply();
+                    }
+                    d31Var.f36462b.l();
+                    return;
                 }
-            }
-            if (!z10) {
-                AndroidUtilities.cancelRunOnUIThread(this.G);
-                ci.v6 v6Var = this.f38038r;
-                v6Var.e();
-                v6Var.f(false);
-                int currentPosition = k91Var.getCurrentPosition();
-                h11 h11Var = this.f38039s;
-                int f12 = h11Var.f(currentPosition);
-                this.h.o(true);
-                int i10 = h11Var.i(f12);
-                k91Var.e(0.0f, i10, i10);
-            }
+                aVar.a();
+                if (aVar.d) {
+                    if (i10 == 2) {
+                        d31Var.V(R.string.RoundVideoOutputResolution, new CharSequence[]{"480p", "360p"}, new wv(19));
+                        return;
+                    } else if (i10 == 3) {
+                        d31Var.V(R.string.RoundVideoCameraResolution, new CharSequence[]{LocaleController.getString(R.string.RoundVideoCameraResolutionHigh), LocaleController.getString(R.string.RoundVideoCameraResolutionMedium), LocaleController.getString(R.string.RoundVideoCameraResolutionLow)}, new wv(20));
+                        return;
+                    } else if (i10 == 4) {
+                        d31Var.V(R.string.RoundVideoFrameRate, new CharSequence[]{"30 FPS", "60 FPS"}, new wv(21));
+                        return;
+                    } else if (i10 == 5) {
+                        CharSequence[] charSequenceArr = new CharSequence[4];
+                        while (true) {
+                            int[] iArr = d31.f36460c;
+                            if (i11 < 3) {
+                                charSequenceArr[i11] = d31.U(iArr[i11]);
+                                i11++;
+                            } else {
+                                d31Var.V(R.string.RoundVideoBitrate, charSequenceArr, new wv(22));
+                                return;
+                            }
+                        }
+                    } else if (i10 == 8) {
+                        ti.a aVar2 = ti.e.f47662i;
+                        aVar2.a();
+                        aVar2.b(!aVar2.d);
+                        d31Var.f36462b.m(i10);
+                        return;
+                    } else {
+                        return;
+                    }
+                } else {
+                    return;
+                }
+            case 4:
+                k61 k61Var = (k61) this.f38121b;
+                org.telegram.ui.Components.l61 G = k61Var.f38808i0.G(i10 - 1);
+                if (G != null) {
+                    Object obj = G.G;
+                    if ((obj instanceof TLRPC.User) || (obj instanceof TLRPC.Chat)) {
+                        ((org.telegram.ui.Cells.i6) view).s(true, true);
+                        k61Var.f38800a0 = (TLObject) G.G;
+                        k61Var.U(true);
+                        k61Var.f38808i0.N(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 5:
+                ((n61) this.f38121b).Q(i10, view);
+                return;
+            case 6:
+                SessionsActivity.U((SessionsActivity) this.f38121b, i10);
+                return;
+            case 7:
+                t91 t91Var = (t91) this.f38121b;
+                ArrayList arrayList = t91Var.N;
+                ArrayList arrayList2 = t91Var.O;
+                y81 y81Var = t91Var.X;
+                int i12 = y81Var.I;
+                if (i10 >= i12 && i10 <= y81Var.J) {
+                    q91 q91Var = (q91) t91Var.f41968v0.get(i10 - i12);
+                    xi0 xi0Var = new xi0(q91Var.f40751b, true, t91Var.f41943b);
+                    xi0Var.f43621e0 = q91Var;
+                    t91Var.presentFragment(xi0Var);
+                    return;
+                }
+                int i13 = y81Var.U;
+                if (i10 >= i13 && i10 <= y81Var.V) {
+                    ((m91) t91Var.Q.get(i10 - i13)).b(t91Var);
+                    return;
+                }
+                int i14 = y81Var.R;
+                if (i10 >= i14 && i10 <= y81Var.S) {
+                    ((m91) arrayList2.get(i10 - i14)).b(t91Var);
+                    return;
+                }
+                int i15 = y81Var.X;
+                if (i10 >= i15 && i10 <= y81Var.Y) {
+                    ((m91) t91Var.P.get(i10 - i15)).b(t91Var);
+                    return;
+                } else if (i10 == y81Var.Z) {
+                    int size = arrayList.size() - arrayList2.size();
+                    int i16 = t91Var.X.Z;
+                    arrayList2.clear();
+                    arrayList2.addAll(arrayList);
+                    y81 y81Var2 = t91Var.X;
+                    if (y81Var2 != null) {
+                        y81Var2.E();
+                        t91Var.S.setItemAnimator(t91Var.Y);
+                        t91Var.X.s(i16 + 1, size);
+                        t91Var.X.u(i16);
+                        return;
+                    }
+                    return;
+                } else {
+                    return;
+                }
+            case 8:
+                pc1 pc1Var = (pc1) this.f38121b;
+                if (pc1Var.X0 != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                pc1Var.Z0(i10);
+                if (pc1Var.X0 == null) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                if (z10 == z11) {
+                    pc1Var.L0();
+                    pc1Var.l1();
+                }
+                pc1Var.n1();
+                org.telegram.ui.Components.m91 m91Var = pc1Var.K0[1];
+                if (pc1Var.X0 != null) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                m91Var.a(z12, true);
+                pc1Var.Q0.g1();
+                int left = view.getLeft();
+                int right = view.getRight();
+                int dp = AndroidUtilities.dp(52.0f);
+                int i17 = left - dp;
+                if (i17 < 0) {
+                    pc1Var.Q0.v0(i17, 0, null);
+                    return;
+                }
+                int i18 = right + dp;
+                if (i18 > pc1Var.Q0.getMeasuredWidth()) {
+                    wa1 wa1Var = pc1Var.Q0;
+                    wa1Var.v0(i18 - wa1Var.getMeasuredWidth(), 0, null);
+                    return;
+                }
+                return;
+            case 9:
+                ld1 ld1Var = (ld1) this.f38121b;
+                int i19 = ld1Var.H;
+                HashSet hashSet = ld1Var.f39209w;
+                if (view instanceof org.telegram.ui.Cells.f4) {
+                    org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) view;
+                    TLRPC.Chat chat = (TLRPC.Chat) f4Var.getObject();
+                    if (hashSet.contains(Long.valueOf(chat.f20344id))) {
+                        hashSet.remove(Long.valueOf(chat.f20344id));
+                        f4Var.c(false, true);
+                    } else {
+                        hashSet.add(Long.valueOf(chat.f20344id));
+                        f4Var.c(true, true);
+                    }
+                    if (hashSet.isEmpty() && ld1Var.v != -1 && ld1Var.f39206n.getVisibility() == 0) {
+                        ld1Var.v = -1;
+                        ld1Var.f39206n.animate().setListener(null).cancel();
+                        ld1Var.f39206n.animate().translationY(i19).setDuration(200L).setListener(new hd1(ld1Var, 0)).start();
+                        if (ld1Var.f39208s.getVisibility() == 0) {
+                            lm0Var2 = ld1Var.f39203b;
+                        } else {
+                            lm0Var2 = ld1Var.f39202a;
+                        }
+                        lm0Var2.e1(false);
+                        int N0 = ((s4.b0) lm0Var2.getLayoutManager()).N0();
+                        f7 = 12.0f;
+                        if ((N0 == lm0Var2.getAdapter().h() - 1 || (N0 == lm0Var2.getAdapter().h() - 2 && lm0Var2 == ld1Var.f39202a)) && (K = lm0Var2.K(N0)) != null) {
+                            int bottom = K.f46342a.getBottom();
+                            if (N0 == ld1Var.d.f38233c - 2) {
+                                bottom += AndroidUtilities.dp(12.0f);
+                            }
+                            if (lm0Var2.getMeasuredHeight() - bottom <= i19) {
+                                lm0Var2.setTranslationY(-(lm0Var2.getMeasuredHeight() - bottom));
+                                lm0Var2.animate().translationY(0.0f).setDuration(200L).start();
+                            }
+                        }
+                        ld1Var.f39202a.setPadding(0, 0, 0, 0);
+                        ld1Var.f39203b.setPadding(0, 0, 0, 0);
+                    } else {
+                        f7 = 12.0f;
+                    }
+                    if (!hashSet.isEmpty() && ld1Var.f39206n.getVisibility() == 8 && ld1Var.v != 1) {
+                        ld1Var.v = 1;
+                        ld1Var.f39206n.setVisibility(0);
+                        ld1Var.f39206n.setTranslationY(i19);
+                        ld1Var.f39206n.animate().setListener(null).cancel();
+                        ld1Var.f39206n.animate().translationY(0.0f).setDuration(200L).setListener(new hd1(ld1Var, 1)).start();
+                        ld1Var.f39202a.setPadding(0, 0, 0, i19 - AndroidUtilities.dp(f7));
+                        ld1Var.f39203b.setPadding(0, 0, 0, i19);
+                    }
+                    if (!hashSet.isEmpty()) {
+                        ld1Var.f39204c.setText(LocaleController.formatString("LeaveChats", R.string.LeaveChats, LocaleController.formatPluralString("Chats", hashSet.size(), new Object[0])));
+                    }
+                    if (!hashSet.isEmpty()) {
+                        if (ld1Var.f39208s.getVisibility() == 0) {
+                            lm0Var = ld1Var.f39203b;
+                        } else {
+                            lm0Var = ld1Var.f39202a;
+                        }
+                        int height = lm0Var.getHeight() - view.getBottom();
+                        if (height < i19) {
+                            lm0Var.v0(0, i19 - height, null);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 10:
+                xe1.V((xe1) this.f38121b, view);
+                return;
+            case 11:
+                xe1 xe1Var = ((se1) this.f38121b).f41384t0;
+                if (view instanceof org.telegram.ui.Cells.qa) {
+                    og.d.m(xe1Var, xe1Var.f43545a, ((org.telegram.ui.Cells.qa) view).getTopic(), 0);
+                    return;
+                } else if (view instanceof te1) {
+                    te1 te1Var = (te1) view;
+                    og.d.m(xe1Var, xe1Var.f43545a, te1Var.N, te1Var.getMessageId());
+                    return;
+                } else {
+                    return;
+                }
+            case 12:
+                TwoStepVerificationActivity.c0((TwoStepVerificationActivity) this.f38121b, i10);
+                return;
+            case 13:
+                WallpapersListActivity.V((WallpapersListActivity) this.f38121b, i10);
+                return;
+            default:
+                bi1 bi1Var = (bi1) this.f38121b;
+                bi1Var.getClass();
+                String string = LocaleController.getString(R.string.BackgroundSearchColor);
+                StringBuilder i20 = si.o0.i(string, " ");
+                String[] strArr = WallpapersListActivity.f35519n0;
+                i20.append(LocaleController.getString(strArr[i10], WallpapersListActivity.f35520o0[i10]));
+                SpannableString spannableString = new SpannableString(i20.toString());
+                spannableString.setSpan(new ForegroundColorSpan(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.B8, false)), string.length(), spannableString.length(), 33);
+                WallpapersListActivity wallpapersListActivity = bi1Var.E;
+                wallpapersListActivity.L.setSearchFieldCaption(spannableString);
+                wallpapersListActivity.L.setSearchFieldHint(null);
+                wallpapersListActivity.L.H("", true);
+                bi1Var.f36081n = strArr[i10];
+                bi1Var.E("", true);
+                return;
         }
     }
 }

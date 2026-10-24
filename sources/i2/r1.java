@@ -7,12 +7,12 @@ public final class r1 {
 
     static {
         qb.c cVar = new qb.c(27);
-        cVar.f44852b = e9.y0.t(2, 1, 5);
+        cVar.f44851b = e9.y0.t(2, 1, 5);
         f12608b = new r1(cVar);
     }
 
     public r1(qb.c cVar) {
-        this.f12609a = (e9.y0) cVar.f44852b;
+        this.f12609a = (e9.y0) cVar.f44851b;
     }
 
     public final boolean equals(Object obj) {

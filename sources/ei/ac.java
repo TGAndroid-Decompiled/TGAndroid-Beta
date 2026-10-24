@@ -3,7 +3,7 @@ package ei;
 import android.graphics.RectF;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class ac {
     public int f8762a;
     public boolean f8763b;
@@ -15,12 +15,12 @@ public final class ac {
     public float h;
     public float f8767i;
     public final RectF f8768j = new RectF();
-    public final org.telegram.ui.Components.f6 f8769k;
+    public final org.telegram.ui.Components.d6 f8769k;
     public final gc f8770l;
 
     public ac(gc gcVar) {
         this.f8770l = gcVar;
-        this.f8769k = new org.telegram.ui.Components.f6(gcVar, 360L, bs.h);
+        this.f8769k = new org.telegram.ui.Components.d6(gcVar, 360L, zr.h);
     }
 
     public static void a(ac acVar, boolean z10) {

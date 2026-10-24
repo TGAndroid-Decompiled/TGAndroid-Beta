@@ -1,4 +1,4 @@
 package v7;
 public abstract class s7 {
-    public static i8.a f48582a;
+    public static i8.a f48581a;
 }

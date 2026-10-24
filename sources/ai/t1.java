@@ -2,20 +2,20 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.mm0;
-public final class t1 extends b71 {
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.lm0;
+public final class t1 extends a71 {
     public final a2 P;
 
-    public t1(a2 a2Var, mm0 mm0Var, Context context, int i10, q qVar, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(mm0Var, context, i10, 0, true, qVar, g6Var);
+    public t1(a2 a2Var, lm0 lm0Var, Context context, int i10, q qVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(lm0Var, context, i10, 0, true, qVar, g6Var);
         this.P = a2Var;
     }
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         super.v(b1Var, i10);
-        View view = b1Var.f46343a;
+        View view = b1Var.f46342a;
         if (!(view instanceof y1)) {
             return;
         }

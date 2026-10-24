@@ -9,41 +9,41 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.nw0;
 import w7.z5;
 public final class s4 extends org.telegram.ui.ActionBar.o2 implements NotificationCenter.NotificationCenterDelegate {
     public final long f11474a;
     public org.telegram.ui.ActionBar.h2 f11475b;
-    public j71 f11476c;
+    public i71 f11476c;
 
     public s4(long j10) {
         super(null);
         this.f11474a = j10;
     }
 
-    public final void U(ArrayList arrayList, b71 b71Var) {
+    public final void U(ArrayList arrayList, a71 a71Var) {
         ai.i0 e = ai.k0.g(this.currentAccount).e(this.f11474a);
         ArrayList arrayList2 = e.e;
         for (int i10 = 0; i10 < arrayList2.size(); i10++) {
             Object obj = arrayList2.get(i10);
             int i11 = q3.f11424a;
-            m61 J = m61.J(q3.class);
+            l61 J = l61.J(q3.class);
             J.G = obj;
-            J.f28565r = false;
+            J.f28233r = false;
             arrayList.add(J);
         }
         if (e.h) {
-            arrayList.add(m61.n(29));
-            arrayList.add(m61.n(29));
-            arrayList.add(m61.n(29));
+            arrayList.add(l61.n(29));
+            arrayList.add(l61.n(29));
+            arrayList.add(l61.n(29));
         }
     }
 
-    public final void V(m61 m61Var) {
-        Object obj = m61Var.G;
+    public final void V(l61 l61Var) {
+        Object obj = l61Var.G;
         if (obj instanceof TL_payments.starRefProgram) {
             u3.H0(getParentActivity(), this.currentAccount, (TL_payments.starRefProgram) obj, this.f11474a, this.resourceProvider, false);
         }
@@ -55,38 +55,38 @@ public final class s4 extends org.telegram.ui.ActionBar.o2 implements Notificati
         org.telegram.ui.ActionBar.h2 h2Var = new org.telegram.ui.ActionBar.h2(false);
         this.f11475b = h2Var;
         kVar.setBackButtonDrawable(h2Var);
-        this.f11475b.f20938k = 240.0f;
+        this.f11475b.f20939k = 240.0f;
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 4));
-        r6.i(k6.f21183d6, this.actionBar, null);
+        r6.i(k6.f21184d6, this.actionBar, null);
         org.telegram.ui.ActionBar.k kVar2 = this.actionBar;
         int i10 = k6.G6;
         r6.m(kVar2, 1, i10, null);
         r6.b(this.actionBar, i10, null, true);
-        r6.m(this.actionBar, 3, k6.f21590z8, null);
+        r6.m(this.actionBar, 3, k6.f21591z8, null);
         r6.m(this.actionBar, 5, i10, null);
         this.actionBar.setTitle(LocaleController.getString(R.string.ChannelAffiliatePrograms));
-        ow0 ow0Var = new ow0(context, null);
-        j71 j71Var = new j71(this, new ai.q(this, 29), new e1.c(this, 12), null);
-        this.f11476c = j71Var;
-        ow0Var.addView(j71Var, z5.e(-1, -1, 119));
-        this.fragmentView = ow0Var;
-        return ow0Var;
+        nw0 nw0Var = new nw0(context, null);
+        i71 i71Var = new i71(this, new ai.q(this, 29), new e1.c(this, 12), null);
+        this.f11476c = i71Var;
+        nw0Var.addView(i71Var, z5.e(-1, -1, 119));
+        this.fragmentView = nw0Var;
+        return nw0Var;
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        j71 j71Var;
-        if (i10 == NotificationCenter.channelSuggestedBotsUpdate && ((Long) objArr[0]).longValue() == this.f11474a && (j71Var = this.f11476c) != null && (j71Var.getAdapter() instanceof b71)) {
-            ((b71) this.f11476c.getAdapter()).N(true);
+        i71 i71Var;
+        if (i10 == NotificationCenter.channelSuggestedBotsUpdate && ((Long) objArr[0]).longValue() == this.f11474a && (i71Var = this.f11476c) != null && (i71Var.getAdapter() instanceof a71)) {
+            ((a71) this.f11476c.getAdapter()).N(true);
         }
     }
 
     @Override
     public final boolean isLightStatusBar() {
         if (getLastStoryViewer() == null || getLastStoryViewer().H0) {
-            int x02 = k6.x0(null, k6.f21183d6, false);
+            int x02 = k6.x0(null, k6.f21184d6, false);
             if (this.actionBar.s()) {
-                x02 = k6.x0(null, k6.f21537w8, false);
+                x02 = k6.x0(null, k6.f21538w8, false);
             }
             if (i0.a.h(x02) > 0.699999988079071d) {
                 return true;

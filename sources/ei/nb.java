@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.h80;
-import org.telegram.ui.Components.hg0;
+import org.telegram.ui.Components.f80;
+import org.telegram.ui.Components.gg0;
 public final class nb extends FrameLayout {
     public float f9540a;
     public float f9541b;
@@ -110,9 +110,9 @@ public final class nb extends FrameLayout {
             iVar.layout(0, 0, vbVar.S, vbVar.T);
             vbVar.f9973c1.y();
         }
-        hg0 hg0Var = vbVar.B1;
-        if (hg0Var != null) {
-            hg0Var.layout(0, 0, hg0Var.getMeasuredWidth(), vbVar.B1.getMeasuredHeight());
+        gg0 gg0Var = vbVar.B1;
+        if (gg0Var != null) {
+            gg0Var.layout(0, 0, gg0Var.getMeasuredWidth(), vbVar.B1.getMeasuredHeight());
         }
         xa xaVar = vbVar.f10032v1;
         if (xaVar != null) {
@@ -120,7 +120,7 @@ public final class nb extends FrameLayout {
         }
         for (int i16 = 0; i16 < getChildCount(); i16++) {
             View childAt = getChildAt(i16);
-            if (childAt instanceof h80) {
+            if (childAt instanceof f80) {
                 childAt.layout(0, 0, measuredWidth, measuredHeight);
             }
         }
@@ -148,9 +148,9 @@ public final class nb extends FrameLayout {
         if (iVar != null) {
             a(iVar, vbVar.S, vbVar.T);
         }
-        hg0 hg0Var = vbVar.B1;
-        if (hg0Var != null) {
-            a(hg0Var, size, size2);
+        gg0 gg0Var = vbVar.B1;
+        if (gg0Var != null) {
+            a(gg0Var, size, size2);
         }
         xa xaVar = vbVar.f10032v1;
         if (xaVar != null) {
@@ -158,7 +158,7 @@ public final class nb extends FrameLayout {
         }
         for (int i12 = 0; i12 < getChildCount(); i12++) {
             View childAt = getChildAt(i12);
-            if (childAt instanceof h80) {
+            if (childAt instanceof f80) {
                 a(childAt, size, size2);
             }
         }

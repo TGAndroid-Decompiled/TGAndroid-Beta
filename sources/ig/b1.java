@@ -8,7 +8,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.h9;
+import org.telegram.ui.Components.f9;
 public final class b1 extends View {
     public final Drawable f12860a;
     public final ImageReceiver f12861b;
@@ -16,11 +16,11 @@ public final class b1 extends View {
     public b1(c1 c1Var, Context context) {
         super(context);
         this.f12860a = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
-        h9 h9Var = new h9((g6) null);
+        f9 f9Var = new f9((g6) null);
         ImageReceiver imageReceiver = new ImageReceiver(this);
         this.f12861b = imageReceiver;
-        h9Var.r(c1Var.getUserConfig().getCurrentUser());
-        imageReceiver.setForUserOrChat(c1Var.getUserConfig().getCurrentUser(), h9Var);
+        f9Var.r(c1Var.getUserConfig().getCurrentUser());
+        imageReceiver.setForUserOrChat(c1Var.getUserConfig().getCurrentUser(), f9Var);
     }
 
     @Override

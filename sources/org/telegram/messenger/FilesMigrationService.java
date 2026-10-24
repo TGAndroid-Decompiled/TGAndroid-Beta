@@ -23,7 +23,7 @@ import java.nio.file.LinkOption;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.function.Consumer;
-import org.telegram.ui.Components.xx0;
+import org.telegram.ui.Components.wx0;
 public class FilesMigrationService extends Service {
     public static FilesMigrationBottomSheet filesMigrationBottomSheet = null;
     public static boolean hasOldFolder = false;
@@ -123,7 +123,7 @@ public class FilesMigrationService extends Service {
     }
 
     public void lambda$updateProgress$1(int i10) {
-        Notification.Builder contentTitle = c9.b.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles));
+        Notification.Builder contentTitle = a4.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles));
         int i11 = this.totalFilesCount;
         ((NotificationManager) getSystemService("notification")).notify(301, contentTitle.setContentText(i10 + "/" + i11).setSmallIcon(R.drawable.notification).setAutoCancel(false).setProgress(this.totalFilesCount, i10, false).build());
     }
@@ -165,7 +165,7 @@ public class FilesMigrationService extends Service {
         if (System.currentTimeMillis() - this.lastUpdateTime <= 20 && this.movedFilesCount < this.totalFilesCount - 1) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new v6(this, this.movedFilesCount, 6));
+        AndroidUtilities.runOnUIThread(new w6(this, this.movedFilesCount, 6));
     }
 
     public void migrateOldFolder() {
@@ -205,7 +205,7 @@ public class FilesMigrationService extends Service {
     @Override
     public int onStartCommand(Intent intent, int i10, int i11) {
         NotificationsController.checkOtherNotificationsChannel();
-        Notification build = c9.b.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
+        Notification build = a4.a(this, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL).setContentTitle(LocaleController.getString(R.string.MigratingFiles)).setAutoCancel(false).setSmallIcon(R.drawable.notification).build();
         isRunning = true;
         new AnonymousClass1().start();
         startForeground(301, build);
@@ -221,13 +221,13 @@ public class FilesMigrationService extends Service {
             setCanceledOnTouchOutside(false);
             Activity parentActivity = o2Var.getParentActivity();
             LinearLayout f7 = v0.f(parentActivity, 1);
-            xx0 xx0Var = new xx0(parentActivity, this.currentAccount);
-            xx0Var.setStickerNum(7);
-            xx0Var.getImageReceiver().setAutoRepeat(1);
-            f7.addView(xx0Var, w7.z5.t(144, 144, 1, 0, 16, 0, 0));
+            wx0 wx0Var = new wx0(parentActivity, this.currentAccount);
+            wx0Var.setStickerNum(7);
+            wx0Var.getImageReceiver().setAutoRepeat(1);
+            f7.addView(wx0Var, w7.z5.t(144, 144, 1, 0, 16, 0, 0));
             TextView textView = new TextView(parentActivity);
             textView.setGravity(8388611);
-            int i10 = org.telegram.ui.ActionBar.k6.f21289j5;
+            int i10 = org.telegram.ui.ActionBar.k6.f21290j5;
             v0.q(textView, i10, null, 1, 20.0f);
             textView.setText(LocaleController.getString(R.string.MigrateOldFolderTitle));
             f7.addView(textView, w7.z5.d(-1, -2.0f, 0, 21.0f, 30.0f, 21.0f, 0.0f));
@@ -246,7 +246,7 @@ public class FilesMigrationService extends Service {
             org.telegram.ui.ActionBar.r6.W(textView3, org.telegram.ui.ActionBar.k6.Sh, null);
             textView3.setBackground(org.telegram.ui.ActionBar.a6.f(new float[]{6.0f}, org.telegram.ui.ActionBar.k6.Oh));
             f7.addView(textView3, w7.z5.d(-1, 48.0f, 0, 16.0f, 15.0f, 16.0f, 16.0f));
-            textView3.setOnClickListener(new b4(this, 0));
+            textView3.setOnClickListener(new c4(this, 0));
             ScrollView scrollView = new ScrollView(parentActivity);
             scrollView.addView(f7);
             setCustomView(scrollView);

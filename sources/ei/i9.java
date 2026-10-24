@@ -5,21 +5,21 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.widget.LinearLayout;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class i9 extends LinearLayout {
     public float f9216a;
     public float f9217b;
     public ValueAnimator f9218c;
     public ValueAnimator d;
     public final Paint e;
-    public final org.telegram.ui.Components.f6 f9219f;
+    public final org.telegram.ui.Components.d6 f9219f;
     public final k9 h;
 
     public i9(k9 k9Var, Context context) {
         super(context);
         this.h = k9Var;
         this.e = new Paint(1);
-        this.f9219f = new org.telegram.ui.Components.f6(this);
+        this.f9219f = new org.telegram.ui.Components.d6(this);
     }
 
     public static void a(i9 i9Var, ValueAnimator valueAnimator) {
@@ -46,7 +46,7 @@ public final class i9 extends LinearLayout {
             ofFloat.addUpdateListener(new h9(this, 0));
             this.f9218c.addListener(new ah.p0(13, this, z10));
             this.f9218c.setDuration(320L);
-            this.f9218c.setInterpolator(bs.h);
+            this.f9218c.setInterpolator(zr.h);
             this.f9218c.start();
             return;
         }
@@ -66,7 +66,7 @@ public final class i9 extends LinearLayout {
         org.telegram.ui.ActionBar.g6 g6Var;
         float f7;
         super.dispatchDraw(canvas);
-        int i10 = org.telegram.ui.ActionBar.k6.f21125a7;
+        int i10 = org.telegram.ui.ActionBar.k6.f21126a7;
         k9 k9Var = this.h;
         g6Var = ((org.telegram.ui.ActionBar.h3) k9Var.W).resourcesProvider;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i10, g6Var);

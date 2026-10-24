@@ -18,21 +18,21 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.am0;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.ms0;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.ya0;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.ls0;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.wa0;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.dy;
 import org.telegram.ui.ey;
-import org.telegram.ui.jt0;
+import org.telegram.ui.it0;
 import org.telegram.ui.lw;
 import org.telegram.ui.px;
 import org.telegram.ui.sn;
 import org.telegram.ui.vw;
-public final class xa implements am0 {
+public final class xa implements zl0 {
     public final int f2457a;
     public final Object f2458b;
 
@@ -49,10 +49,10 @@ public final class xa implements am0 {
         TLRPC.Document document2;
         long longValue;
         int i12;
-        org.telegram.ui.Components.r5 r5Var;
+        org.telegram.ui.Components.p5 p5Var;
         org.telegram.ui.ActionBar.k kVar;
         Object O;
-        m61 G;
+        l61 G;
         TLRPC.Document document3;
         zh.k0 k0Var;
         switch (this.f2457a) {
@@ -73,16 +73,16 @@ public final class xa implements am0 {
                 return;
             case 5:
                 di.r rVar = (di.r) this.f2458b;
-                ms0 ms0Var = rVar.W;
-                org.telegram.ui.ActionBar.o2 o2Var = ms0Var.f8075a;
+                ls0 ls0Var = rVar.W;
+                org.telegram.ui.ActionBar.o2 o2Var = ls0Var.f8075a;
                 if (view instanceof org.telegram.ui.Cells.s7) {
                     MessageObject messageObject = ((org.telegram.ui.Cells.s7) view).getMessageObject();
-                    if (ms0Var.G.C1) {
-                        if (ms0Var.c(messageObject)) {
-                            ms0Var.g(messageObject);
+                    if (ls0Var.G.C1) {
+                        if (ls0Var.c(messageObject)) {
+                            ls0Var.g(messageObject);
                             return;
                         } else {
-                            ms0Var.e(messageObject);
+                            ls0Var.e(messageObject);
                             return;
                         }
                     }
@@ -91,7 +91,7 @@ public final class xa implements am0 {
                     int id2 = messageObject.getId();
                     ci.s6 s6Var = rVar.f8061a;
                     ci.q7 a2 = ci.q7.a(rVar.f8064f);
-                    if ((o2Var instanceof ProfileActivity) && ((ProfileActivity) o2Var).f34017t1) {
+                    if ((o2Var instanceof ProfileActivity) && ((ProfileActivity) o2Var).f34019t1) {
                         i11 = AndroidUtilities.dp(68.0f);
                     } else {
                         i11 = 0;
@@ -133,7 +133,7 @@ public final class xa implements am0 {
                 ei.a2 a2Var = b2Var.f8779c;
                 if (i10 >= 0) {
                     b2Var.d.getClass();
-                    if (RecyclerView.U(view).f46346f != 4) {
+                    if (RecyclerView.U(view).f46345f != 4) {
                         ArrayList arrayList = a2Var.f8690s;
                         ArrayList arrayList2 = a2Var.v;
                         if (i10 >= arrayList.size()) {
@@ -154,17 +154,17 @@ public final class xa implements am0 {
                         } else {
                             longValue = ((Long) arrayList2.get(i10)).longValue();
                         }
-                        if (document2 == null && (view instanceof ei.n1) && (r5Var = ((ei.n1) view).d) != null) {
-                            document2 = r5Var.e;
+                        if (document2 == null && (view instanceof ei.n1) && (p5Var = ((ei.n1) view).d) != null) {
+                            document2 = p5Var.e;
                         }
                         if (document2 == null && longValue != 0) {
                             i12 = ((org.telegram.ui.ActionBar.h3) n2Var2).currentAccount;
-                            document2 = org.telegram.ui.Components.r5.f(i12, longValue);
+                            document2 = org.telegram.ui.Components.p5.f(i12, longValue);
                         }
                         if (document2 != null) {
                             Utilities.Callback3Return callback3Return2 = n2Var2.E;
                             if (callback3Return2 != null) {
-                                callback3Return2.run(a2Var.f8687f.get(Long.valueOf(document2.f20349id)), document2, Boolean.FALSE);
+                                callback3Return2.run(a2Var.f8687f.get(Long.valueOf(document2.f20350id)), document2, Boolean.FALSE);
                             }
                             n2Var2.dismiss();
                             return;
@@ -177,11 +177,11 @@ public final class xa implements am0 {
             case 9:
                 ei.xa xaVar = (ei.xa) this.f2458b;
                 qg.l0 l0Var = (qg.l0) qg.l0.c().get(i10);
-                xaVar.l1.setTypeface(l0Var.f44978a);
+                xaVar.l1.setTypeface(l0Var.f44977a);
                 qg.u0 e = qg.u0.e(xaVar.F1);
-                String str = l0Var.f44978a;
-                e.f45097j = str;
-                e.f45091a.edit().putString("typeface", str).apply();
+                String str = l0Var.f44977a;
+                e.f45096j = str;
+                e.f45090a.edit().putString("typeface", str).apply();
                 rg.j jVar = xaVar.J0;
                 if (jVar instanceof rg.w2) {
                     ((rg.w2) jVar).setTypeface(l0Var);
@@ -192,9 +192,9 @@ public final class xa implements am0 {
                 fi.g.y0((fi.g) this.f2458b, i10);
                 return;
             case 11:
-                b71 b71Var = ((fi.f) this.f2458b).f10625c0;
-                if (b71Var != null) {
-                    b71Var.G(i10 - 1);
+                a71 a71Var = ((fi.f) this.f2458b).f10625c0;
+                if (a71Var != null) {
+                    a71Var.G(i10 - 1);
                     return;
                 }
                 return;
@@ -208,7 +208,7 @@ public final class xa implements am0 {
                     if (m4Var.E) {
                         px pxVar = h0Var.U;
                         if (pxVar != null) {
-                            pxVar.f40554a.L4(m4Var.getDialogId(), view);
+                            pxVar.f40644a.L4(m4Var.getDialogId(), view);
                             return;
                         }
                         return;
@@ -216,9 +216,9 @@ public final class xa implements am0 {
                 }
                 px pxVar2 = h0Var.U;
                 if (pxVar2 != null) {
-                    ey eyVar = pxVar2.f40554a;
+                    ey eyVar = pxVar2.f40644a;
                     long longValue2 = ((Long) view.getTag()).longValue();
-                    if (eyVar.f37096l2) {
+                    if (eyVar.f37071l2) {
                         if (eyVar.h5(longValue2)) {
                             if (!eyVar.I2.isEmpty()) {
                                 eyVar.N3(longValue2, eyVar.e3(longValue2, null));
@@ -239,13 +239,13 @@ public final class xa implements am0 {
                         bundle.putLong("chat_id", -longValue2);
                     }
                     eyVar.H3();
-                    if (AndroidUtilities.isTablet() && eyVar.f37059e0 != null) {
+                    if (AndroidUtilities.isTablet() && eyVar.f37034e0 != null) {
                         int i13 = 0;
                         while (true) {
-                            dy[] dyVarArr = eyVar.f37059e0;
+                            dy[] dyVarArr = eyVar.f37034e0;
                             if (i13 < dyVarArr.length) {
                                 lw lwVar = dyVarArr[i13].d;
-                                eyVar.f37115p2.dialogId = longValue2;
+                                eyVar.f37090p2.dialogId = longValue2;
                                 lwVar.f12001s = longValue2;
                                 i13++;
                             } else {
@@ -253,7 +253,7 @@ public final class xa implements am0 {
                             }
                         }
                     }
-                    if (eyVar.f37105n2 != null) {
+                    if (eyVar.f37080n2 != null) {
                         if (eyVar.getMessagesController().checkCanOpenChat(bundle, eyVar)) {
                             eyVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
                             eyVar.presentFragment(new sn(bundle));
@@ -271,7 +271,7 @@ public final class xa implements am0 {
             case 14:
                 ig.h0 h0Var2 = (ig.h0) this.f2458b;
                 ig.e0 e0Var = h0Var2.f12945x;
-                ti tiVar = h0Var2.f28366b;
+                ri riVar = h0Var2.f27704b;
                 s4.g0 adapter = h0Var2.f12943s.getAdapter();
                 ig.f0 f0Var = h0Var2.f12946y;
                 if (adapter == f0Var) {
@@ -292,21 +292,21 @@ public final class xa implements am0 {
                     }
                 }
                 if (O instanceof ig.y1) {
-                    if (!UserConfig.getInstance(tiVar.M1).isPremium()) {
-                        if (tiVar.f30730f0 != null) {
-                            new sg.y0(tiVar.f30730f0, h0Var2.getContext(), tiVar.M1, true, 31, false, null).show();
+                    if (!UserConfig.getInstance(riVar.M1).isPremium()) {
+                        if (riVar.f30146f0 != null) {
+                            new sg.y0(riVar.f30146f0, h0Var2.getContext(), riVar.M1, true, 31, false, null).show();
                             return;
                         }
                         return;
                     }
                     ig.y1 y1Var = (ig.y1) O;
-                    org.telegram.ui.Components.f5.a0(tiVar.M1, y1Var.a(), tiVar.s1(), new o2(23, h0Var2, y1Var));
+                    org.telegram.ui.Components.d5.Z(riVar.M1, y1Var.a(), riVar.s1(), new o2(23, h0Var2, y1Var));
                     return;
                 }
                 return;
             case 15:
                 ig.j0 j0Var = (ig.j0) this.f2458b;
-                m61 G2 = j0Var.f12972e0.G(i10 - 1);
+                l61 G2 = j0Var.f12972e0.G(i10 - 1);
                 if (G2 != null) {
                     ig.a0 a0Var = j0Var.Z;
                     if (!a0Var.h(G2)) {
@@ -354,24 +354,24 @@ public final class xa implements am0 {
                 }
                 return;
             case 18:
-                jt0 jt0Var = (jt0) this.f2458b;
+                it0 it0Var = (it0) this.f2458b;
                 qg.l0 l0Var2 = (qg.l0) qg.l0.c().get(i10);
-                jt0Var.f45915u1.setTypeface(l0Var2.f44978a);
-                qg.u0 e7 = qg.u0.e(jt0Var.P1);
-                String str2 = l0Var2.f44978a;
-                e7.f45097j = str2;
-                e7.f45091a.edit().putString("typeface", str2).apply();
-                rg.j jVar2 = jt0Var.S0;
+                it0Var.f45914u1.setTypeface(l0Var2.f44977a);
+                qg.u0 e7 = qg.u0.e(it0Var.P1);
+                String str2 = l0Var2.f44977a;
+                e7.f45096j = str2;
+                e7.f45090a.edit().putString("typeface", str2).apply();
+                rg.j jVar2 = it0Var.S0;
                 if (jVar2 instanceof rg.w2) {
                     ((rg.w2) jVar2).setTypeface(l0Var2);
                 }
-                jt0Var.z0(false);
+                it0Var.z0(false);
                 return;
             case 19:
                 rg.j1 j1Var = (rg.j1) this.f2458b;
-                j1Var.f45837c3.accept(Integer.valueOf(j1Var.f45836b3.b(i10)));
-                qg.u0 u0Var = j1Var.f45836b3;
-                u0Var.f45093c.put(Integer.valueOf(u0Var.f45094f), Integer.valueOf(u0Var.b(i10)));
+                j1Var.f45836c3.accept(Integer.valueOf(j1Var.f45835b3.b(i10)));
+                qg.u0 u0Var = j1Var.f45835b3;
+                u0Var.f45092c.put(Integer.valueOf(u0Var.f45093f), Integer.valueOf(u0Var.b(i10)));
                 u0Var.e = true;
                 return;
             case 20:
@@ -381,23 +381,23 @@ public final class xa implements am0 {
                 sg.s0 s0Var = (sg.s0) this.f2458b;
                 if (view != null) {
                     s0Var.C1(view, true);
-                    s0Var.f46826e3 = false;
+                    s0Var.f46825e3 = false;
                     s0Var.v0(0, view.getTop() - ((s0Var.getMeasuredHeight() - view.getMeasuredHeight()) / 2), AndroidUtilities.overshootInterpolator);
                     return;
                 }
                 return;
             case 22:
-                ((ya0) this.f2458b).h(view);
+                ((wa0) this.f2458b).h(view);
                 return;
             case 23:
                 ((xh.k) this.f2458b).h(view);
                 return;
             case 24:
                 yh.k4 k4Var = (yh.k4) this.f2458b;
-                ei.d dVar = k4Var.f50805c0;
+                ei.d dVar = k4Var.f50804c0;
                 HashSet hashSet = k4Var.Z;
-                b71 b71Var2 = k4Var.f50809g0;
-                if (b71Var2 != null && (G = b71Var2.G(i10 - 1)) != null) {
+                a71 a71Var2 = k4Var.f50808g0;
+                if (a71Var2 != null && (G = a71Var2.G(i10 - 1)) != null) {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
@@ -426,9 +426,9 @@ public final class xa implements am0 {
             default:
                 zh.j0 j0Var2 = (zh.j0) this.f2458b;
                 if ((view instanceof zh.l) && (document3 = ((zh.l) view).e) != null) {
-                    long j11 = document3.f20349id;
+                    long j11 = document3.f20350id;
                     if (j11 != 0) {
-                        zh.n0 n0Var = j0Var2.f52489a;
+                        zh.n0 n0Var = j0Var2.f52488a;
                         if (n0Var.d != null) {
                             if (!n0Var.getUserConfig().isPremium() && ((k0Var = n0Var.h) == null || !k0Var.H.contains(Long.valueOf(j11)))) {
                                 zh.c1 c1Var = n0Var.d;
@@ -438,11 +438,11 @@ public final class xa implements am0 {
                                 return;
                             }
                             zh.c1 c1Var2 = n0Var.d;
-                            int i20 = c1Var2.f52180b;
+                            int i20 = c1Var2.f52179b;
                             String o10 = a1.g.o(j11, "c:");
                             HashMap hashMap = c1Var2.J;
                             if (!hashMap.containsKey(o10)) {
-                                org.telegram.ui.Components.r5 m10 = org.telegram.ui.Components.r5.m(i20, 2, document3);
+                                org.telegram.ui.Components.p5 m10 = org.telegram.ui.Components.p5.m(i20, 2, document3);
                                 m10.a(c1Var2);
                                 hashMap.put(o10, m10);
                             }
@@ -476,7 +476,7 @@ public final class xa implements am0 {
                                     }
                                     sb2.append(a10.get(i21));
                                 }
-                                MessagesController.getMainSettings(k0Var2.f52549a).edit().putString("qrAppliedEmoji", sb2.toString()).apply();
+                                MessagesController.getMainSettings(k0Var2.f52548a).edit().putString("qrAppliedEmoji", sb2.toString()).apply();
                                 k0Var2.J = true;
                                 return;
                             }

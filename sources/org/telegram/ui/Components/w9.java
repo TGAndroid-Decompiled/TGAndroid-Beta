@@ -1,345 +1,136 @@
 package org.telegram.ui.Components;
 
 import android.animation.ValueAnimator;
-import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Path;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
+import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLObject;
-public class w9 extends View {
-    public Path E;
-    public ColorMatrixColorFilter F;
-    public ImageReceiver f32195a;
-    public ImageReceiver f32196b;
-    public int f32197c;
-    public int d;
-    public r5 e;
-    public ColorFilter f32198f;
-    public h9 h;
-    public boolean f32199n;
-    public boolean f32200r;
-    public boolean f32201s;
-    public boolean v;
-    public boolean f32202w;
-    public ValueAnimator f32203x;
-    public i11 f32204y;
+public final class w9 extends Drawable {
+    public TextPaint f32155a;
+    public final Paint f32156b;
+    public final Paint f32157c;
+    public final Paint d;
+    public final float e;
+    public float f32158f;
+    public float f32159g;
+    public final RectF h;
+    public ValueAnimator f32160i;
 
-    public w9(Context context) {
-        super(context);
-        this.f32197c = -1;
-        this.d = -1;
-        this.f32202w = true;
-        ImageReceiver c10 = c();
-        this.f32195a = c10;
-        c10.setCrossfadeByScale(0.0f);
-        this.f32195a.setAllowLoadingOnAttachedOnly(true);
-        this.f32195a.setDelegate(new s(this, 14));
+    public w9() {
+        Paint paint = new Paint(1);
+        this.f32156b = paint;
+        this.f32157c = new Paint(1);
+        this.d = new Paint(1);
+        this.e = 1.0f;
+        this.f32158f = 0.0f;
+        this.f32159g = 1.0f;
+        this.h = new RectF();
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    public final void a() {
-        Bitmap bitmap;
-        if (this.f32200r && this.f32196b.getBitmap() == null && this.f32195a.getBitmap() != null && (bitmap = this.f32195a.getBitmap()) != null && !bitmap.isRecycled()) {
-            this.f32196b.setImageBitmap(Utilities.stackBlurBitmapMax(bitmap));
-            invalidate();
+    public final void a(float f7, boolean z10) {
+        float max = Math.max(Math.min(f7, 1.0f), 0.0f);
+        ValueAnimator valueAnimator = this.f32160i;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.f32160i = null;
         }
-    }
-
-    public final void b() {
-        this.f32195a.clearImage();
-    }
-
-    public ImageReceiver c() {
-        return new ImageReceiver(this);
-    }
-
-    public final void d() {
-        if (this.f32200r) {
-            if (this.f32196b.getBitmap() != null && !this.f32196b.getBitmap().isRecycled()) {
-                this.f32196b.getBitmap().recycle();
-            }
-            this.f32196b.setImageBitmap((Bitmap) null);
-            a();
-        }
-    }
-
-    public final void e(TLObject tLObject, h9 h9Var) {
-        this.f32195a.setForUserOrChat(tLObject, h9Var);
-        d();
-    }
-
-    public final void g(String str, String str2, Drawable drawable) {
-        m(ImageLocation.getForPath(str), str2, null, null, drawable, null, 0, null);
-    }
-
-    public r5 getAnimatedEmojiDrawable() {
-        return this.e;
-    }
-
-    public h9 getAvatarDrawable() {
-        if (this.h == null) {
-            this.h = new h9((org.telegram.ui.ActionBar.g6) null);
-        }
-        return this.h;
-    }
-
-    public ImageReceiver getImageReceiver() {
-        return this.f32195a;
-    }
-
-    public int[] getRoundRadius() {
-        return this.f32195a.getRoundRadius();
-    }
-
-    public final void h(ImageLocation imageLocation, String str, Drawable drawable, Object obj) {
-        m(imageLocation, str, null, null, drawable, null, 0, obj);
-    }
-
-    public final void i(ImageLocation imageLocation, String str, String str2, Drawable drawable, Object obj) {
-        m(imageLocation, str, null, null, drawable, str2, 0, obj);
-    }
-
-    public final void j(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, int i10, Object obj) {
-        m(imageLocation, str, imageLocation2, str2, null, null, i10, obj);
-    }
-
-    public final void k(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, long j10, String str3, Object obj, int i10) {
-        this.f32195a.setImage(imageLocation, str, imageLocation2, str2, null, j10, str3, obj, i10);
-        d();
-    }
-
-    public final void l(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, Object obj) {
-        this.f32195a.setImage(imageLocation, str, imageLocation2, str2, null, null, drawable, 0L, null, obj, 1);
-        d();
-    }
-
-    public final void m(ImageLocation imageLocation, String str, ImageLocation imageLocation2, String str2, Drawable drawable, String str3, int i10, Object obj) {
-        this.f32195a.setImage(imageLocation, str, imageLocation2, str2, drawable, i10, str3, obj, 0);
-        d();
-    }
-
-    public final void n(ImageLocation imageLocation, String str, Drawable drawable, Object obj) {
-        m(imageLocation, str, null, null, drawable, null, 0, obj);
-    }
-
-    public final void o(u71 u71Var, ImageLocation imageLocation, String str, ImageLocation imageLocation2, ImageLocation imageLocation3, String str2, int i10, String str3) {
-        if (u71Var != null) {
-            this.f32195a.setImageBitmap(u71Var);
-        } else {
-            this.f32195a.setImage(imageLocation, str, imageLocation2, null, imageLocation3, str2, null, i10, null, str3, 1);
-        }
-        d();
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f32199n = true;
-        if (this.f32202w) {
-            this.f32195a.onAttachedToWindow();
-        }
-        if (this.f32201s) {
-            this.f32196b.onAttachedToWindow();
-        }
-        r5 r5Var = this.e;
-        if (r5Var != null) {
-            r5Var.a(this);
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f32199n = false;
-        if (this.f32202w) {
-            this.f32195a.onDetachedFromWindow();
-        }
-        if (this.f32201s) {
-            this.f32196b.onDetachedFromWindow();
-        }
-        r5 r5Var = this.e;
-        if (r5Var != null) {
-            r5Var.o(this);
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        int i10;
-        ColorFilter colorFilter;
-        r5 r5Var = this.e;
-        if (r5Var != null) {
-            imageReceiver = r5Var.f30098k;
-        } else {
-            imageReceiver = this.f32195a;
-        }
-        if (imageReceiver != null) {
-            if (r5Var != null && (colorFilter = this.f32198f) != null) {
-                r5Var.setColorFilter(colorFilter);
-            }
-            int i11 = this.f32197c;
-            if (i11 != -1 && (i10 = this.d) != -1) {
-                if (this.v) {
-                    imageReceiver.setImageCoords(0.0f, 0.0f, i11, i10);
-                    if (this.f32201s) {
-                        this.f32196b.setImageCoords(0.0f, 0.0f, this.f32197c, this.d);
-                    }
-                } else {
-                    int height = getHeight();
-                    int i12 = this.d;
-                    imageReceiver.setImageCoords((getWidth() - this.f32197c) / 2, (height - i12) / 2, this.f32197c, i12);
-                    if (this.f32201s) {
-                        int height2 = getHeight();
-                        int i13 = this.d;
-                        this.f32196b.setImageCoords((getWidth() - this.f32197c) / 2, (height2 - i13) / 2, this.f32197c, i13);
-                    }
-                }
-            } else {
-                imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                if (this.f32201s) {
-                    this.f32196b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                }
-            }
-            imageReceiver.draw(canvas);
-            if (this.f32201s) {
-                this.f32196b.draw(canvas);
-            }
-        }
-    }
-
-    public final void p(int i10, int i11, boolean z10) {
-        this.f32195a.setOrientation(i10, i11, true);
-    }
-
-    public final void q(int i10, boolean z10) {
-        this.f32195a.setOrientation(0, true);
-    }
-
-    public final void r(int i10, int i11, int i12, int i13) {
-        this.f32195a.setRoundRadius(i10, i11, i12, i13);
-        if (this.f32201s) {
-            this.f32196b.setRoundRadius(i10, i11, i12, i13);
-        }
-        invalidate();
-    }
-
-    public final void s(int i10, int i11) {
-        this.f32197c = i10;
-        this.d = i11;
-        invalidate();
-    }
-
-    public void setAnimatedEmojiDrawable(r5 r5Var) {
-        r5 r5Var2 = this.e;
-        if (r5Var2 == r5Var) {
-            return;
-        }
-        if (this.f32199n && r5Var2 != null) {
-            r5Var2.o(this);
-        }
-        this.e = r5Var;
-        if (this.f32199n && r5Var != null) {
-            r5Var.a(this);
-        }
-        invalidate();
-    }
-
-    public void setAspectFit(boolean z10) {
-        this.f32195a.setAspectFit(z10);
-    }
-
-    public void setBlurAllowed(boolean z10) {
-        if (!this.f32199n) {
-            this.f32201s = z10;
-            if (z10) {
-                this.f32196b = new ImageReceiver();
-                return;
-            }
-            return;
-        }
-        throw new IllegalStateException("You should call setBlurAllowed(...) only when detached!");
-    }
-
-    public void setBlurredText(CharSequence charSequence) {
-        if (TextUtils.isEmpty(charSequence)) {
-            this.f32204y = null;
-            return;
-        }
-        this.f32204y = new i11(charSequence, 16.5f, AndroidUtilities.bold());
-        if (this.F == null) {
-            ColorMatrix colorMatrix = new ColorMatrix();
-            colorMatrix.setSaturation(1.2f);
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.2f);
-            this.F = new ColorMatrixColorFilter(colorMatrix);
-        }
-    }
-
-    public void setColorFilter(ColorFilter colorFilter) {
-        this.f32195a.setColorFilter(colorFilter);
-    }
-
-    public void setEmojiColorFilter(ColorFilter colorFilter) {
-        this.f32198f = colorFilter;
-        invalidate();
-    }
-
-    public void setHasBlur(boolean z10) {
-        if (z10 && !this.f32201s) {
-            throw new IllegalStateException("You should call setBlurAllowed(...) before calling setHasBlur(true)!");
-        }
-        this.f32200r = z10;
         if (!z10) {
-            if (this.f32196b.getBitmap() != null && !this.f32196b.getBitmap().isRecycled()) {
-                this.f32196b.getBitmap().recycle();
-            }
-            this.f32196b.setImageBitmap((Bitmap) null);
+            this.f32159g = max;
+            invalidateSelf();
+            return;
         }
-        a();
-    }
-
-    public void setImageBitmap(Bitmap bitmap) {
-        this.f32195a.setImageBitmap(bitmap);
-        d();
-    }
-
-    public void setImageDrawable(Drawable drawable) {
-        this.f32195a.setImageBitmap(drawable);
-        d();
-    }
-
-    public void setImageResource(int i10) {
-        this.f32195a.setImageBitmap(getResources().getDrawable(i10));
-        invalidate();
-        d();
-    }
-
-    public void setLayerNum(int i10) {
-        this.f32195a.setLayerNum(i10);
-    }
-
-    public void setRoundRadius(int i10) {
-        this.f32195a.setRoundRadius(i10);
-        if (this.f32201s) {
-            this.f32196b.setRoundRadius(i10);
-        }
-        invalidate();
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f32159g, max);
+        this.f32160i = ofFloat;
+        ofFloat.addUpdateListener(new j6(this, 5));
+        this.f32160i.addListener(new org.telegram.ui.ActionBar.y0(this, max, 4));
+        this.f32160i.setInterpolator(zr.h);
+        this.f32160i.setDuration(200L);
+        this.f32160i.start();
     }
 
     @Override
-    public boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.f32195a.getDrawable() && drawable != this.f32195a.getImageDrawable() && !super.verifyDrawable(drawable)) {
-            return false;
+    public final void draw(Canvas canvas) {
+        if (getBounds() != null) {
+            int i10 = getBounds().left;
+            int i11 = getBounds().top + ((int) this.f32158f);
+            int width = getBounds().width();
+            int height = getBounds().height();
+            int centerX = getBounds().centerX();
+            int centerY = getBounds().centerY() + ((int) this.f32158f);
+            TextPaint textPaint = this.f32155a;
+            Paint paint = this.d;
+            Paint paint2 = this.f32157c;
+            Paint paint3 = this.f32156b;
+            if (textPaint != null) {
+                int color = textPaint.getColor();
+                paint3.setColor(color);
+                paint2.setColor(color);
+                paint.setColor(color);
+            }
+            if (this.e != 1.0f) {
+                canvas.save();
+                float f7 = this.e;
+                canvas.scale(f7, f7, centerX, centerY);
+            }
+            paint3.setStrokeWidth(AndroidUtilities.dpf2(1.1f));
+            float f10 = i10;
+            float f11 = width;
+            float f12 = i11;
+            float f13 = height;
+            RectF rectF = this.h;
+            rectF.set((((f11 - AndroidUtilities.dpf2(16.33f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((f13 - AndroidUtilities.dpf2(10.33f)) / 2.0f) + f12, (((AndroidUtilities.dpf2(16.33f) + f11) / 2.0f) + f10) - AndroidUtilities.dpf2(1.33f), ((AndroidUtilities.dpf2(10.33f) + f13) / 2.0f) + f12);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(2.33f), AndroidUtilities.dpf2(2.33f), paint3);
+            rectF.set((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f), ((f13 - AndroidUtilities.dpf2(7.33f)) / 2.0f) + f12, Math.max(AndroidUtilities.dpf2(1.1f), this.f32159g * AndroidUtilities.dpf2(13.0f)) + ((((f11 - AndroidUtilities.dpf2(13.0f)) / 2.0f) + f10) - AndroidUtilities.dpf2(1.66f)), ((AndroidUtilities.dpf2(7.33f) + f13) / 2.0f) + f12);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(0.83f), AndroidUtilities.dpf2(0.83f), paint);
+            float f14 = centerY;
+            rectF.set((((AndroidUtilities.dpf2(17.5f) + f11) - AndroidUtilities.dpf2(4.66f)) / 2.0f) + f10, f14 - AndroidUtilities.dpf2(2.65f), ((AndroidUtilities.dpf2(4.66f) + (AndroidUtilities.dpf2(17.5f) + f11)) / 2.0f) + f10, AndroidUtilities.dpf2(2.65f) + f14);
+            canvas.drawArc(rectF, -90.0f, 180.0f, false, paint2);
+            if (this.e != 1.0f) {
+                canvas.restore();
+            }
         }
-        return true;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return AndroidUtilities.dp(this.e * 24.0f);
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return AndroidUtilities.dp(this.e * 24.0f);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f32156b.setAlpha(i10);
+        this.f32157c.setAlpha(i10);
+        this.d.setAlpha(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f32156b.setColorFilter(colorFilter);
+        this.f32157c.setColorFilter(colorFilter);
+        this.d.setColorFilter(colorFilter);
+    }
+
+    public w9(float f7, int i10) {
+        this();
+        a(f7, false);
+        this.f32156b.setColor(-1);
+        this.f32157c.setColor(-1);
+        this.d.setColor(i10);
+        this.e = 1.3f;
+        invalidateSelf();
     }
 }

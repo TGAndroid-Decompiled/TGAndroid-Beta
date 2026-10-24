@@ -1,138 +1,16 @@
 package org.telegram.ui.Components;
+public final class pn extends s4.k {
+    public final co F;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class pn implements uy {
-    public final Utilities.Callback f29600a;
-    public final mn f29601b;
-
-    public pn(Utilities.Callback callback, mn mnVar) {
-        this.f29600a = callback;
-        this.f29601b = mnVar;
+    public pn(co coVar) {
+        this.F = coVar;
     }
 
     @Override
-    public final boolean A() {
-        return false;
-    }
-
-    @Override
-    public final long a() {
-        return 0L;
-    }
-
-    @Override
-    public final boolean b() {
-        return false;
-    }
-
-    @Override
-    public final boolean c() {
-        return false;
-    }
-
-    @Override
-    public final int f() {
-        return 0;
-    }
-
-    @Override
-    public final boolean g() {
-        return false;
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k() {
-        return false;
-    }
-
-    @Override
-    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
-        this.f29600a.run(new sh.h(document, obj));
-        this.f29601b.dismiss(true);
-    }
-
-    @Override
-    public final float p() {
-        return 0.0f;
-    }
-
-    @Override
-    public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
-        this.f29600a.run(new sh.h(document, null));
-        this.f29601b.dismiss(true);
-    }
-
-    @Override
-    public final boolean z() {
-        return false;
-    }
-
-    @Override
-    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void i(int i10) {
-    }
-
-    @Override
-    public final void l(String str) {
-    }
-
-    @Override
-    public final void n() {
-    }
-
-    @Override
-    public final void o(i61 i61Var) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
-    }
-
-    @Override
-    public final void s(int i10) {
-    }
-
-    @Override
-    public final void t(ArrayList arrayList) {
-    }
-
-    @Override
-    public final void u() {
-    }
-
-    @Override
-    public final void w() {
-    }
-
-    @Override
-    public final void y(long j10) {
-    }
-
-    @Override
-    public final void e(Object obj, Object obj2) {
-    }
-
-    @Override
-    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-    }
-
-    @Override
-    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
+    public final void P(s4.b1 b1Var) {
+        if (b1Var.b() == 0) {
+            co coVar = this.F;
+            coVar.f27704b.f2(coVar, 0);
+        }
     }
 }

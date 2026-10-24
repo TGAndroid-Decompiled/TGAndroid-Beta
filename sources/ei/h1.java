@@ -6,15 +6,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.l91;
-import org.telegram.ui.ed1;
-import org.telegram.ui.fp0;
-import org.telegram.ui.lp0;
+import org.telegram.ui.dd1;
+import org.telegram.ui.ep0;
+import org.telegram.ui.kp0;
+import org.telegram.ui.p21;
 import org.telegram.ui.q21;
 import org.telegram.ui.r21;
-import org.telegram.ui.s21;
 import org.telegram.ui.sn;
-import org.telegram.ui.u91;
-import org.telegram.ui.uv0;
+import org.telegram.ui.t91;
+import org.telegram.ui.tv0;
 public final class h1 extends l91 {
     public final int T;
     public final Object U;
@@ -70,7 +70,7 @@ public final class h1 extends l91 {
         switch (this.T) {
             case 7:
                 super.onLayout(z10, i10, i11, i12, i13);
-                u91.Y((u91) this.U);
+                t91.Y((t91) this.U);
                 return;
             default:
                 super.onLayout(z10, i10, i11, i12, i13);
@@ -113,10 +113,10 @@ public final class h1 extends l91 {
                 }
                 return;
             case 7:
-                u91 u91Var = (u91) this.U;
-                u91Var.m0(u91Var.f42322i0.getCurrentPosition(), true);
-                u91Var.n0(0.0f, false);
-                u91.W(u91Var);
+                t91 t91Var = (t91) this.U;
+                t91Var.m0(t91Var.f41953i0.getCurrentPosition(), true);
+                t91Var.n0(0.0f, false);
+                t91.W(t91Var);
                 return;
             default:
                 return;
@@ -125,11 +125,11 @@ public final class h1 extends l91 {
 
     @Override
     public void v() {
-        q21 q21Var;
+        p21 p21Var;
         switch (this.T) {
             case 6:
-                if ((getCurrentView() instanceof r21) && (q21Var = ((r21) getCurrentView()).f40983n) != null) {
-                    AndroidUtilities.hideKeyboard(q21Var);
+                if ((getCurrentView() instanceof q21) && (p21Var = ((q21) getCurrentView()).f40697n) != null) {
+                    AndroidUtilities.hideKeyboard(p21Var);
                     return;
                 }
                 return;
@@ -161,45 +161,45 @@ public final class h1 extends l91 {
                 return;
             case 3:
                 sn snVar = (sn) this.U;
-                snVar.f41561j1.getClass();
-                snVar.f41561j1.getClass();
+                snVar.f41558j1.getClass();
+                snVar.f41558j1.getClass();
                 snVar.o7();
                 snVar.v9(1);
                 return;
             case 4:
-                lp0 lp0Var = (lp0) this.U;
-                float positionAnimated = lp0Var.I.getPositionAnimated();
-                lp0Var.M.setSelected(positionAnimated);
-                lp0Var.e.setProgressToGradient(1.0f - w7.r.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
-                lp0Var.G0();
-                fp0 C0 = lp0Var.C0();
-                d dVar = lp0Var.Q;
-                if (dVar != null && C0 != null && C0 != lp0Var.R) {
-                    lp0Var.R = C0;
+                kp0 kp0Var = (kp0) this.U;
+                float positionAnimated = kp0Var.I.getPositionAnimated();
+                kp0Var.M.setSelected(positionAnimated);
+                kp0Var.e.setProgressToGradient(1.0f - w7.r.a((positionAnimated - 0.333333f) / 0.333333f, 0.0f, 1.0f));
+                kp0Var.G0();
+                ep0 C0 = kp0Var.C0();
+                d dVar = kp0Var.Q;
+                if (dVar != null && C0 != null && C0 != kp0Var.R) {
+                    kp0Var.R = C0;
                     mi.q qVar = C0.e;
                     dVar.i((CharSequence) qVar.f17036b, true, true);
-                    lp0Var.Q.g((SpannableStringBuilder) qVar.f17037c, true);
+                    kp0Var.Q.g((SpannableStringBuilder) qVar.f17037c, true);
                 }
-                lp0Var.D0(1);
+                kp0Var.D0(1);
                 return;
             case 5:
-                ((uv0) this.U).e();
+                ((tv0) this.U).e();
                 return;
             case 6:
-                s21.p((s21) this.U).invalidate();
+                r21.p((r21) this.U).invalidate();
                 return;
             case 7:
-                u91 u91Var = (u91) this.U;
-                float positionAnimated2 = u91Var.f42322i0.getPositionAnimated();
-                u91Var.n0(positionAnimated2, !z10);
+                t91 t91Var = (t91) this.U;
+                float positionAnimated2 = t91Var.f41953i0.getPositionAnimated();
+                t91Var.n0(positionAnimated2, !z10);
                 if (!z10) {
-                    u91Var.m0(Math.round(positionAnimated2), true);
+                    t91Var.m0(Math.round(positionAnimated2), true);
                 }
-                u91.W(u91Var);
-                u91.Y(u91Var);
+                t91.W(t91Var);
+                t91.Y(t91Var);
                 return;
             case 8:
-                ((ed1) this.U).e();
+                ((dd1) this.U).e();
                 return;
             case 9:
                 org.telegram.ui.Wallet.i2.m((org.telegram.ui.Wallet.i2) this.U).invalidate();
@@ -207,8 +207,8 @@ public final class h1 extends l91 {
             default:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
                 o5Var.U0();
-                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34942i0;
-                if (t7Var != null && t7Var.f35237h1) {
+                org.telegram.ui.Wallet.t7 t7Var = o5Var.f34944i0;
+                if (t7Var != null && t7Var.f35239h1) {
                     t7Var.f0();
                     return;
                 }
@@ -222,12 +222,12 @@ public final class h1 extends l91 {
         switch (this.T) {
             case 10:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) this.U;
-                o5Var.f34936d0 = i10;
-                if (i10 != 1 && (o8Var = o5Var.f34941h0) != null) {
+                o5Var.f34938d0 = i10;
+                if (i10 != 1 && (o8Var = o5Var.f34943h0) != null) {
                     o8Var.b(false);
                 }
                 if (i10 == 1) {
-                    o5Var.f34948o0.post(new org.telegram.ui.Wallet.o3(o5Var, 13));
+                    o5Var.f34950o0.post(new org.telegram.ui.Wallet.o3(o5Var, 13));
                     return;
                 }
                 return;

@@ -35,12 +35,12 @@ public abstract class b {
         SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
         a a2 = a.a(serializedData, serializedData.readInt32(true));
         serializedData.cleanup();
-        if (a2.f51990c != null) {
+        if (a2.f51989c != null) {
             FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
-            return a2.f51990c;
+            return a2.f51989c;
         }
         SerializedData serializedData2 = new SerializedData(8);
-        serializedData2.writeInt64(a2.f51989b);
+        serializedData2.writeInt64(a2.f51988b);
         String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
         serializedData2.cleanup();
         FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
@@ -50,7 +50,7 @@ public abstract class b {
             SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
             a a10 = a.a(serializedData3, serializedData3.readInt32(true));
             serializedData3.cleanup();
-            return a10.f51990c;
+            return a10.f51989c;
         }
         FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
         throw new RuntimeException(a1.g.p("no purpose under ", bytesToHex, " found :("));

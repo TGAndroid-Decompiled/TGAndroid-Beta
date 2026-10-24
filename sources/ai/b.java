@@ -8,8 +8,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.at;
-import org.telegram.ui.Components.vs;
+import org.telegram.ui.Components.ts;
+import org.telegram.ui.Components.ys;
 public final class b implements Runnable {
     public final int f991a;
     public final org.telegram.ui.ActionBar.g6 f992b;
@@ -30,9 +30,9 @@ public final class b implements Runnable {
             case 1:
                 org.telegram.ui.ActionBar.c2[] c2VarArr = new org.telegram.ui.ActionBar.c2[1];
                 String string = LocaleController.getString(R.string.AppsTabInfoText);
-                vs vsVar = new vs(c2VarArr, 0);
+                ts tsVar = new ts(c2VarArr, 0);
                 org.telegram.ui.ActionBar.g6 g6Var = this.f992b;
-                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, g6Var, vsVar));
+                SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(AndroidUtilities.replaceLinks(string, g6Var, tsVar));
                 Matcher matcher = Pattern.compile("@([a-zA-Z0-9_-]+)").matcher(replaceTags);
                 while (true) {
                     boolean find = matcher.find();
@@ -42,7 +42,7 @@ public final class b implements Runnable {
                     } else {
                         AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, g6Var);
                         String string2 = LocaleController.getString(R.string.AppsTabInfoTitle);
-                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
                         c2Var.R = string2;
                         c2Var.T = replaceTags;
                         alertDialog$Builder.k(LocaleController.getString(R.string.AppsTabInfoButton), null);
@@ -56,7 +56,7 @@ public final class b implements Runnable {
         }
     }
 
-    public b(at atVar, org.telegram.ui.ActionBar.g6 g6Var, Context context) {
+    public b(ys ysVar, org.telegram.ui.ActionBar.g6 g6Var, Context context) {
         this.f991a = 1;
         this.f992b = g6Var;
         this.f993c = context;

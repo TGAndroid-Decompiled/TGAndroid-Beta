@@ -9,18 +9,18 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-public final class q40 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.q80 {
-    public final w40 f40621a;
+public final class q40 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.o80 {
+    public final w40 f40708a;
 
     public q40(w40 w40Var) {
-        this.f40621a = w40Var;
+        this.f40708a = w40Var;
     }
 
     @Override
     public void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12) {
         TLObject chat;
-        u50 u50Var = this.f40621a.f42922b;
-        ChatObject.Call call = u50Var.f42171a1;
+        u50 u50Var = this.f40708a.f42898b;
+        ChatObject.Call call = u50Var.f42217a1;
         AccountInstance accountInstance = u50Var.d;
         if (call != null) {
             boolean z13 = inputPeer instanceof TLRPC.TL_inputPeerUser;
@@ -32,7 +32,7 @@ public final class q40 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.
                 chat = accountInstance.getMessagesController().getChat(Long.valueOf(inputPeer.channel_id));
             }
             TLObject tLObject = chat;
-            if (u50Var.f42171a1.isScheduled()) {
+            if (u50Var.f42217a1.isScheduled()) {
                 u50Var.k1().k(0L, 37, tLObject, u50Var.Z0, null, null);
                 if (inputPeer instanceof TLRPC.TL_inputPeerChannel) {
                     TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
@@ -63,7 +63,7 @@ public final class q40 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.
                 accountInstance.getConnectionsManager().sendRequest(savedefaultgroupcalljoinas, new ci.d6(8));
                 u50Var.J1();
             } else if (VoIPService.getSharedInstance() != null && z10) {
-                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) u50Var.f42171a1.participants.f(MessageObject.getPeerId(u50Var.A0));
+                TLRPC.GroupCallParticipant groupCallParticipant = (TLRPC.GroupCallParticipant) u50Var.f42217a1.participants.f(MessageObject.getPeerId(u50Var.A0));
                 VoIPService.getSharedInstance().setGroupCallPeer(inputPeer);
                 u50Var.B0 = tLObject;
             }
@@ -72,19 +72,19 @@ public final class q40 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.
 
     @Override
     public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        w40 w40Var = this.f40621a;
-        u50 u50Var = w40Var.f42922b;
-        ChatObject.Call call = u50Var.f42171a1;
+        w40 w40Var = this.f40708a;
+        u50 u50Var = w40Var.f42898b;
+        ChatObject.Call call = u50Var.f42217a1;
         AccountInstance accountInstance = u50Var.d;
         if (call.isScheduled()) {
             TLRPC.ChatFull chatFull = accountInstance.getMessagesController().getChatFull(u50Var.i1());
             if (chatFull != null) {
                 chatFull.flags &= -2097153;
                 chatFull.call = null;
-                accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(u50Var.i1()), Long.valueOf(u50Var.f42171a1.call.f20353id), Boolean.FALSE);
+                accountInstance.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.groupCallUpdated, Long.valueOf(u50Var.i1()), Long.valueOf(u50Var.f42217a1.call.f20354id), Boolean.FALSE);
             }
             TL_phone.discardGroupCall discardgroupcall = new TL_phone.discardGroupCall();
-            discardgroupcall.call = u50Var.f42171a1.getInputGroupCall();
+            discardgroupcall.call = u50Var.f42217a1.getInputGroupCall();
             accountInstance.getConnectionsManager().sendRequest(discardgroupcall, new l(w40Var, 9));
         } else if (VoIPService.getSharedInstance() != null) {
             VoIPService.getSharedInstance().hangUp(1);

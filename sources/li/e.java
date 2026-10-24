@@ -3,7 +3,7 @@ package li;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.to;
+import org.telegram.ui.Components.ro;
 public final class e extends AnimatorListenerAdapter {
     public final t1 f16165a;
     public final float f16166b;
@@ -26,9 +26,9 @@ public final class e extends AnimatorListenerAdapter {
         t1 t1Var = this.f16165a;
         t1Var.getTransitionParams().j();
         t1Var.getPhotoImage().setImageCoords(this.f16166b, this.f16167c, this.d, this.e);
-        to toVar = this.f16168f.P;
-        if (toVar != null) {
-            toVar.h.setAlpha(1.0f);
+        ro roVar = this.f16168f.P;
+        if (roVar != null) {
+            roVar.h.setAlpha(1.0f);
         }
         t1Var.invalidate();
     }

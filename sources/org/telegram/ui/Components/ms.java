@@ -1,50 +1,186 @@
 package org.telegram.ui.Components;
 
-import j$.util.function.Predicate$CC;
-import java.util.function.Predicate;
-import org.telegram.messenger.MessageObject;
+import java.util.ArrayList;
+import java.util.Arrays;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class ms implements Predicate {
-    public final int f28748a;
-    public final TLObject f28749b;
+public final class ms {
+    public final int f28687a;
+    public String f28688b;
+    public final ArrayList f28689c;
+    public final boolean[] d;
+    public boolean[] e;
+    public boolean f28690f;
+    public final int f28691g;
+    public int h;
+    public int f28692i;
+    public final ns f28693j;
 
-    public ms(int i10, TLObject tLObject) {
-        this.f28748a = i10;
-        this.f28749b = tLObject;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f28748a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f28748a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
+    public ms(ns nsVar, int i10, ArrayList arrayList) {
+        this.f28693j = nsVar;
+        this.f28687a = i10;
+        int size = arrayList.size();
+        this.f28691g = size;
+        this.f28692i = 0;
+        if (size > 0) {
+            this.f28689c = arrayList;
+            this.d = new boolean[size];
+            this.f28690f = true;
+            g();
         }
     }
 
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f28748a;
-        return Predicate$CC.$default$or(this, predicate);
+    public final boolean a() {
+        boolean[] zArr;
+        for (int i10 = 0; i10 < this.f28691g; i10++) {
+            if (!this.d[i10] || ((zArr = this.e) != null && !zArr[i10])) {
+                return false;
+            }
+        }
+        return true;
     }
 
-    @Override
-    public final boolean test(Object obj) {
-        switch (this.f28748a) {
-            case 0:
-                return MessageObject.peersEqual((TLRPC.InputPeer) this.f28749b, ((MessageObject) obj).messageOwner.from_id);
-            default:
-                MessageObject messageObject = (MessageObject) obj;
-                TLObject tLObject = this.f28749b;
-                if (!(tLObject instanceof TLRPC.User) ? !(!(tLObject instanceof TLRPC.Chat) || messageObject.messageOwner.from_id.user_id != ((TLRPC.Chat) tLObject).f20343id) : messageObject.messageOwner.from_id.user_id == ((TLRPC.User) tLObject).f20490id) {
-                    return true;
+    public final boolean b() {
+        int i10;
+        if (this.e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f28691g;
+        }
+        if (i10 > 1) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean c() {
+        int i10;
+        if (this.e != null) {
+            i10 = this.h;
+        } else {
+            i10 = this.f28691g;
+        }
+        if (i10 > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        boolean[] zArr;
+        boolean[] zArr2;
+        boolean z10 = false;
+        int i10 = 0;
+        while (true) {
+            int i11 = this.f28691g;
+            zArr = this.d;
+            if (i10 >= i11) {
+                break;
+            } else if (!zArr[i10] || ((zArr2 = this.e) != null && !zArr2[i10])) {
+                i10++;
+            }
+        }
+        z10 = true;
+        Arrays.fill(zArr, !z10);
+        f();
+        this.f28693j.X.N(true);
+    }
+
+    public final void e(int i10) {
+        boolean[] zArr = this.e;
+        if (zArr != null && !zArr[i10]) {
+            return;
+        }
+        boolean[] zArr2 = this.d;
+        boolean z10 = zArr2[i10];
+        zArr2[i10] = !z10;
+        if (!z10) {
+            this.f28692i++;
+        } else {
+            this.f28692i--;
+        }
+        this.f28693j.X.N(true);
+    }
+
+    public final void f() {
+        this.f28692i = 0;
+        this.h = 0;
+        for (int i10 = 0; i10 < this.f28691g; i10++) {
+            boolean[] zArr = this.e;
+            boolean[] zArr2 = this.d;
+            if (zArr == null) {
+                if (zArr2[i10]) {
+                    this.f28692i++;
                 }
-                return false;
+            } else if (zArr[i10]) {
+                this.h++;
+                if (zArr2[i10]) {
+                    this.f28692i++;
+                }
+            }
+        }
+    }
+
+    public final void g() {
+        TLObject tLObject;
+        String formatName;
+        String formatString;
+        String formatString2;
+        String formatString3;
+        String formatString4;
+        int i10 = this.f28691g;
+        if (i10 != 0) {
+            for (int i11 = 0; i11 < i10; i11++) {
+                boolean[] zArr = this.e;
+                if (zArr == null || zArr[i11]) {
+                    tLObject = (TLObject) this.f28689c.get(i11);
+                    break;
+                }
+            }
+            tLObject = null;
+            if (tLObject instanceof TLRPC.User) {
+                formatName = UserObject.getForcedFirstName((TLRPC.User) tLObject);
+            } else {
+                formatName = ContactsController.formatName(tLObject);
+            }
+            int i12 = this.f28687a;
+            if (i12 == 0) {
+                this.f28688b = LocaleController.getString(R.string.DeleteReportSpam);
+            } else if (i12 == 1) {
+                if (b()) {
+                    formatString4 = LocaleController.getString(R.string.DeleteAllMessagesFromUsers);
+                } else {
+                    formatString4 = LocaleController.formatString(R.string.DeleteAllFrom, formatName);
+                }
+                this.f28688b = formatString4;
+            } else if (i12 == 3) {
+                if (b()) {
+                    formatString3 = LocaleController.getString(R.string.DeleteAllReactionsFromUsers);
+                } else {
+                    formatString3 = LocaleController.formatString(R.string.DeleteAllReactionsFrom, formatName);
+                }
+                this.f28688b = formatString3;
+            } else if (i12 == 2) {
+                if (this.f28693j.f29010g0) {
+                    if (b()) {
+                        formatString2 = LocaleController.getString(R.string.DeleteRestrictUsers);
+                    } else {
+                        formatString2 = LocaleController.formatString(R.string.DeleteRestrict, formatName);
+                    }
+                    this.f28688b = formatString2;
+                    return;
+                }
+                if (b()) {
+                    formatString = LocaleController.getString(R.string.DeleteBanUsers);
+                } else {
+                    formatString = LocaleController.formatString(R.string.DeleteBan, formatName);
+                }
+                this.f28688b = formatString;
+            }
         }
     }
 }

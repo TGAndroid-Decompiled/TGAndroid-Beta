@@ -1,35 +1,23 @@
 package org.telegram.ui.Components;
+public final class zt extends n6 {
+    public final int f33353d0;
+    public final EditTextBoldCursor f33354e0;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class zt implements Utilities.Callback0Return {
-    public final int f33335a;
-    public final Object f33336b;
-
-    public zt(Object obj, int i10) {
-        this.f33335a = i10;
-        this.f33336b = obj;
+    public zt(EditTextBoldCursor editTextBoldCursor, int i10) {
+        super(false, false, false);
+        this.f33353d0 = i10;
+        this.f33354e0 = editTextBoldCursor;
     }
 
     @Override
-    public final Object run() {
-        boolean z10;
-        Editable text;
-        sj0[] sj0VarArr;
-        int i10 = this.f33335a;
-        Object obj = this.f33336b;
-        switch (i10) {
+    public final void invalidateSelf() {
+        switch (this.f33353d0) {
             case 0:
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) obj;
-                int i11 = EditTextBoldCursor.f24356a;
-                if (editTextBoldCursor.hasSelection() && editTextBoldCursor.getSelectionStart() >= 0 && editTextBoldCursor.getSelectionEnd() >= 0 && editTextBoldCursor.getSelectionStart() != editTextBoldCursor.getSelectionEnd() && (text = editTextBoldCursor.getText()) != null && ((sj0VarArr = (sj0[]) text.getSpans(editTextBoldCursor.getSelectionStart(), editTextBoldCursor.getSelectionEnd(), sj0.class)) == null || sj0VarArr.length == 0)) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                return Boolean.valueOf(z10);
+                this.f33354e0.invalidate();
+                return;
             default:
-                return ((d50) obj).getCloseIntoObject();
+                this.f33354e0.invalidate();
+                return;
         }
     }
 }

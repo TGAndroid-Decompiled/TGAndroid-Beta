@@ -10,11 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 public class d9 extends FrameLayout {
-    public final TextView f22290a;
-    public final TextView f22291b;
-    public final ImageView f22292c;
+    public final TextView f22291a;
+    public final TextView f22292b;
+    public final ImageView f22293c;
     public boolean d;
     public boolean e;
 
@@ -25,9 +25,9 @@ public class d9 extends FrameLayout {
         int i12;
         int i13;
         TextView textView = new TextView(context);
-        this.f22290a = textView;
+        this.f22291a = textView;
         org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.G6, null);
-        sl.u(textView, 1, 16.0f, 1, 1);
+        tl.u(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         textView.setEllipsize(TextUtils.TruncateAt.END);
         if (LocaleController.isRTL) {
@@ -43,8 +43,8 @@ public class d9 extends FrameLayout {
         }
         addView(textView, w7.z5.d(-2, -2.0f, i11 | 48, 21.0f, 10.0f, 21.0f, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f22291b = textView2;
-        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21588z6, null);
+        this.f22292b = textView2;
+        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21589z6, null);
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i12 = 5;
@@ -63,18 +63,18 @@ public class d9 extends FrameLayout {
         }
         addView(textView2, w7.z5.d(-2, -2.0f, i13 | 48, 21.0f, 35.0f, 21.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f22292c = imageView;
+        this.f22293c = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
-        org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.f21346m6, null, PorterDuff.Mode.MULTIPLY);
+        org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.f21347m6, null, PorterDuff.Mode.MULTIPLY);
         imageView.setVisibility(8);
         addView(imageView, w7.z5.d(52, 52.0f, (LocaleController.isRTL ? 5 : 3) | 48, 8.0f, 6.0f, 8.0f, 0.0f));
     }
 
     public final void a(String str, String str2, boolean z10) {
-        this.f22290a.setText(str);
-        this.f22291b.setText(str2);
+        this.f22291a.setText(str);
+        this.f22292b.setText(str2);
         this.d = z10;
-        this.f22292c.setVisibility(8);
+        this.f22293c.setVisibility(8);
         setWillNotDraw(!z10);
     }
 
@@ -84,11 +84,11 @@ public class d9 extends FrameLayout {
         int dp2;
         int i12;
         int i13;
-        TextView textView = this.f22290a;
+        TextView textView = this.f22291a;
         textView.setText(str);
-        TextView textView2 = this.f22291b;
+        TextView textView2 = this.f22292b;
         textView2.setText(str2);
-        ImageView imageView = this.f22292c;
+        ImageView imageView = this.f22293c;
         imageView.setImageResource(i10);
         imageView.setVisibility(0);
         if (LocaleController.isRTL) {
@@ -123,17 +123,17 @@ public class d9 extends FrameLayout {
     }
 
     public TextView getTextView() {
-        return this.f22290a;
+        return this.f22291a;
     }
 
     public TextView getValueTextView() {
-        return this.f22291b;
+        return this.f22292b;
     }
 
     @Override
     public final void invalidate() {
         super.invalidate();
-        this.f22290a.invalidate();
+        this.f22291a.invalidate();
     }
 
     @Override
@@ -141,10 +141,10 @@ public class d9 extends FrameLayout {
         float f7;
         float dp;
         int i10;
-        if (this.d && org.telegram.ui.ActionBar.k6.f21304k0 != null) {
+        if (this.d && org.telegram.ui.ActionBar.k6.f21305k0 != null) {
             boolean z10 = LocaleController.isRTL;
             float f10 = 20.0f;
-            ImageView imageView = this.f22292c;
+            ImageView imageView = this.f22293c;
             if (z10) {
                 dp = 0.0f;
             } else {
@@ -166,7 +166,7 @@ public class d9 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f11, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
+            canvas.drawLine(f11, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21305k0);
         }
     }
 
@@ -181,7 +181,7 @@ public class d9 extends FrameLayout {
 
     public void setMultilineDetail(boolean z10) {
         this.e = z10;
-        TextView textView = this.f22291b;
+        TextView textView = this.f22292b;
         if (z10) {
             textView.setLines(0);
             textView.setMaxLines(0);
@@ -196,6 +196,6 @@ public class d9 extends FrameLayout {
     }
 
     public void setValue(CharSequence charSequence) {
-        this.f22291b.setText(charSequence);
+        this.f22292b.setText(charSequence);
     }
 }

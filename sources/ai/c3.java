@@ -17,11 +17,11 @@ import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.a40;
+import org.telegram.ui.Components.y30;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.bh0;
+import org.telegram.ui.ah0;
 import org.telegram.ui.ja0;
 import org.telegram.ui.ka0;
 import org.telegram.ui.u50;
@@ -44,13 +44,13 @@ public final class c3 implements Runnable {
         u50 u50Var = (u50) this.f1073b;
         org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) this.d;
         TLRPC.User user = (TLRPC.User) this.e;
-        ChatObject.Call call = u50Var.f42171a1;
-        if (call != null && !u50Var.f42245s0) {
+        ChatObject.Call call = u50Var.f42217a1;
+        if (call != null && !u50Var.f42291s0) {
             call.addInvitedUser(this.f1074c);
             u50Var.O0(true);
-            a40 a40Var = u50Var.E1;
-            if (a40Var != null) {
-                a40Var.dismiss();
+            y30 y30Var = u50Var.E1;
+            if (y30Var != null) {
+                y30Var.dismiss();
             }
             try {
                 c2VarArr[0].dismiss();
@@ -63,7 +63,7 @@ public final class c3 implements Runnable {
 
     private final void b() {
         ka0 ka0Var = (ka0) this.f1073b;
-        LaunchActivity launchActivity = ka0Var.f38917g;
+        LaunchActivity launchActivity = ka0Var.f38886g;
         String str = (String) this.d;
         org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.e;
         if (str != null) {
@@ -82,7 +82,7 @@ public final class c3 implements Runnable {
             if (chatFull != null) {
                 if (chatFull.call == null) {
                     if (o2Var.getParentActivity() != null) {
-                        org.telegram.messenger.v0.p(R.string.InviteExpired, org.telegram.ui.Components.xc.a0(o2Var), R.raw.linkbroken, 36);
+                        org.telegram.messenger.v0.p(R.string.InviteExpired, org.telegram.ui.Components.vc.a0(o2Var), R.raw.linkbroken, 36);
                         return;
                     }
                     return;
@@ -101,7 +101,7 @@ public final class c3 implements Runnable {
         x2 x2Var = new x2(photoViewer, str, photoEntry, j10, 6);
         if (photoViewer.D2) {
             Bitmap createBitmap = Bitmap.createBitmap(photoViewer.C2.getWidth(), photoViewer.C2.getHeight(), Bitmap.Config.ARGB_8888);
-            AndroidUtilities.getBitmapFromSurface(photoViewer.C2, createBitmap, new bh0(20, x2Var, createBitmap));
+            AndroidUtilities.getBitmapFromSurface(photoViewer.C2, createBitmap, new ah0(20, x2Var, createBitmap));
             return;
         }
         TextureView textureView = photoViewer.B2;

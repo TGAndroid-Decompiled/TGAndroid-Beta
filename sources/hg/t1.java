@@ -13,10 +13,10 @@ import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.u3;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.un;
-public abstract class t1 extends lm0 {
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.sn;
+import org.telegram.ui.Components.z00;
+public abstract class t1 extends km0 {
     public int E;
     public int F;
     public ArrayList G;
@@ -38,7 +38,7 @@ public abstract class t1 extends lm0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f46346f;
+        int i10 = b1Var.f46345f;
         if (i10 != 0 && i10 != 2 && i10 != 3) {
             return false;
         }
@@ -153,17 +153,17 @@ public abstract class t1 extends lm0 {
                         if (i10 != 5) {
                             u3Var = new r8(16, context, false);
                         } else {
-                            b10 b10Var = new b10(context, null);
-                            b10Var.setIsSingleCell(true);
-                            b10Var.setViewType(29);
-                            r6.i(k6.f21183d6, b10Var, null);
-                            u3Var = b10Var;
+                            z00 z00Var = new z00(context, null);
+                            z00Var.setIsSingleCell(true);
+                            z00Var.setViewType(29);
+                            r6.i(k6.f21184d6, z00Var, null);
+                            u3Var = z00Var;
                         }
                     } else {
-                        View unVar = new un(context, 7);
-                        unVar.setId(9);
-                        unVar.setTag(-33024);
-                        u3Var = unVar;
+                        View snVar = new sn(context, 7);
+                        snVar.setId(9);
+                        snVar.setTag(-33024);
+                        u3Var = snVar;
                     }
                 } else {
                     i6 i6Var = new i6(context, null);

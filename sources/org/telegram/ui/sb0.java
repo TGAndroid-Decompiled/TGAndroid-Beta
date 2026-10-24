@@ -6,7 +6,7 @@ import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.LiteMode;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class sb0 extends org.telegram.ui.Components.t60 {
+public final class sb0 extends org.telegram.ui.Components.r60 {
     public final ub0 d;
 
     public sb0(ub0 ub0Var) {
@@ -38,7 +38,7 @@ public final class sb0 extends org.telegram.ui.Components.t60 {
     public final void k(int i10) {
         ub0 ub0Var = this.d;
         float f7 = i10 / 100.0f;
-        ub0Var.h.f27016x.L(f7, true);
+        ub0Var.h.f26761x.L(f7, true);
         ub0Var.h.setProgress(f7);
     }
 

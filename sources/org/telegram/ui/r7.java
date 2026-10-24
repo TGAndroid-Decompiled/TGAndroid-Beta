@@ -9,22 +9,22 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MediaController;
 public final class r7 extends j7 {
-    public org.telegram.ui.Cells.r7 f41035n;
-    public final ArrayList f41036r;
-    public org.telegram.ui.Components.yq f41037s;
+    public org.telegram.ui.Cells.r7 f41045n;
+    public final ArrayList f41046r;
+    public org.telegram.ui.Components.wq f41047s;
     public final v7 v;
 
     public r7(v7 v7Var) {
         super(v7Var, 1);
         this.v = v7Var;
-        this.f41036r = new ArrayList();
+        this.f41046r = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z10;
         super.F();
-        ArrayList arrayList = this.f41036r;
+        ArrayList arrayList = this.f41046r;
         arrayList.clear();
         int i10 = 0;
         while (true) {
@@ -47,15 +47,15 @@ public final class r7 extends j7 {
     @Override
     public final void v(s4.b1 b1Var, int i10) {
         boolean z10;
-        if (this.f41037s == null) {
-            org.telegram.ui.Components.yq yqVar = new org.telegram.ui.Components.yq(new ColorDrawable(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.X9, false)), org.telegram.ui.ActionBar.k6.R4);
-            this.f41037s = yqVar;
-            yqVar.f33019w = true;
+        if (this.f41047s == null) {
+            org.telegram.ui.Components.wq wqVar = new org.telegram.ui.Components.wq(new ColorDrawable(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.X9, false)), org.telegram.ui.ActionBar.k6.R4);
+            this.f41047s = wqVar;
+            wqVar.f32329w = true;
         }
-        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) b1Var.f46343a;
+        org.telegram.ui.Cells.s7 s7Var = (org.telegram.ui.Cells.s7) b1Var.f46342a;
         bi.b bVar = ((p7) this.e.get(i10)).d;
         Object tag = s7Var.getTag();
-        ImageReceiver imageReceiver = s7Var.f23263c;
+        ImageReceiver imageReceiver = s7Var.f23264c;
         if (bVar == tag) {
             z10 = true;
         } else {
@@ -66,10 +66,10 @@ public final class r7 extends j7 {
         int i11 = bVar.d;
         File file = bVar.f4428a;
         if (i11 == 1) {
-            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f41037s, null, null, 0);
+            imageReceiver.setImage(ImageLocation.getForPath("vthumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f41047s, null, null, 0);
             s7Var.m(AndroidUtilities.formatFileSize(bVar.f4430c), true);
         } else {
-            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f41037s, null, null, 0);
+            imageReceiver.setImage(ImageLocation.getForPath("thumb://0:" + file.getAbsolutePath()), a1.g.k(max, max, "_"), this.f41047s, null, null, 0);
             s7Var.m(AndroidUtilities.formatFileSize(bVar.f4430c), false);
         }
         s7Var.i(this.v.h.f4439j.contains(bVar), z10);
@@ -77,10 +77,10 @@ public final class r7 extends j7 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        if (this.f41035n == null) {
-            this.f41035n = new org.telegram.ui.Cells.r7(viewGroup.getContext(), null);
+        if (this.f41045n == null) {
+            this.f41045n = new org.telegram.ui.Cells.r7(viewGroup.getContext(), null);
         }
-        q7 q7Var = new q7(this, viewGroup.getContext(), this.f41035n, this.v.e.getCurrentAccount());
+        q7 q7Var = new q7(this, viewGroup.getContext(), this.f41045n, this.v.e.getCurrentAccount());
         q7Var.setStyle(1);
         return new s4.b1(q7Var);
     }

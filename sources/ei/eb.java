@@ -3,8 +3,8 @@ package ei;
 import android.animation.ValueAnimator;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.bd;
-import org.telegram.ui.lp0;
-import org.telegram.ui.qc1;
+import org.telegram.ui.kp0;
+import org.telegram.ui.pc1;
 public final class eb implements ValueAnimator.AnimatorUpdateListener {
     public final int f8988a;
     public boolean f8989b = false;
@@ -32,27 +32,27 @@ public final class eb implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 1:
                 bd bdVar = (bd) this.f8990c;
-                bdVar.f36034n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bdVar.f36032n0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 bdVar.m0.invalidate();
-                if (!this.f8989b && bdVar.f36034n0 > 0.5f) {
+                if (!this.f8989b && bdVar.f36032n0 > 0.5f) {
                     this.f8989b = true;
                     return;
                 }
                 return;
             case 2:
-                lp0 lp0Var = (lp0) this.f8990c;
-                lp0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                lp0Var.X.invalidate();
-                if (!this.f8989b && lp0Var.Y > 0.5f) {
+                kp0 kp0Var = (kp0) this.f8990c;
+                kp0Var.Y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                kp0Var.X.invalidate();
+                if (!this.f8989b && kp0Var.Y > 0.5f) {
                     this.f8989b = true;
                     return;
                 }
                 return;
             default:
-                qc1 qc1Var = (qc1) this.f8990c;
-                qc1Var.f40745j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                qc1Var.f40742i2.invalidate();
-                if (!this.f8989b && qc1Var.f40745j2 > 0.5f) {
+                pc1 pc1Var = (pc1) this.f8990c;
+                pc1Var.f40474j2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                pc1Var.f40471i2.invalidate();
+                if (!this.f8989b && pc1Var.f40474j2 > 0.5f) {
                     this.f8989b = true;
                     return;
                 }

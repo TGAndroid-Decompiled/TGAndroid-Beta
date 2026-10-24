@@ -244,7 +244,7 @@ public final class f {
             q qVar = new q(context, "cast_media_notification");
             qVar.j(bitmap);
             e6.f fVar = this.f10486c;
-            qVar.E.icon = fVar.e;
+            qVar.F.icon = fVar.e;
             qVar.e = q.d((String) this.f10491k.f560f);
             int i10 = 0;
             qVar.f8151f = q.d(this.f10490j.getString(fVar.I, (String) this.f10491k.f561g));
@@ -355,7 +355,7 @@ public final class f {
             }
             MediaSessionCompat$Token mediaSessionCompat$Token = (MediaSessionCompat$Token) this.f10491k.e;
             if (mediaSessionCompat$Token != null) {
-                yVar.f51093f = mediaSessionCompat$Token;
+                yVar.f51092f = mediaSessionCompat$Token;
             }
             qVar.n(yVar);
             notificationManager.notify("castMediaNotification", 1, qVar.b());

@@ -15,11 +15,12 @@ import androidx.core.graphics.drawable.IconCompat;
 import java.util.ArrayList;
 public final class q {
     public f0.f A;
-    public int B;
-    public final boolean C;
-    public o D;
-    public final Notification E;
-    public final ArrayList F;
+    public long B;
+    public int C;
+    public final boolean D;
+    public o E;
+    public final Notification F;
+    public final ArrayList G;
     public final Context f8148a;
     public final ArrayList f8149b;
     public final ArrayList f8150c;
@@ -55,16 +56,16 @@ public final class q {
         this.f8164t = false;
         this.f8166w = 0;
         this.f8167x = 0;
-        this.B = 0;
+        this.C = 0;
         Notification notification = new Notification();
-        this.E = notification;
+        this.F = notification;
         this.f8148a = context;
         this.f8168y = str;
         notification.when = System.currentTimeMillis();
         notification.audioStreamType = -1;
         this.f8154j = 0;
-        this.F = new ArrayList();
-        this.C = true;
+        this.G = new ArrayList();
+        this.D = true;
     }
 
     public static CharSequence d(CharSequence charSequence) {
@@ -221,7 +222,7 @@ public final class q {
     }
 
     public final void h(int i10, boolean z10) {
-        Notification notification = this.E;
+        Notification notification = this.F;
         if (z10) {
             notification.flags = i10 | notification.flags;
             return;
@@ -230,7 +231,7 @@ public final class q {
     }
 
     public final void i() {
-        this.B = 1;
+        this.C = 1;
     }
 
     public final void j(Bitmap bitmap) {
@@ -261,7 +262,7 @@ public final class q {
     }
 
     public final void m(Uri uri) {
-        Notification notification = this.E;
+        Notification notification = this.F;
         notification.sound = uri;
         notification.audioStreamType = 5;
         notification.audioAttributes = p.a(p.d(p.c(p.b(), 4), 5));
@@ -282,7 +283,7 @@ public final class q {
     }
 
     public final void p(String str) {
-        this.E.tickerText = d(str);
+        this.F.tickerText = d(str);
     }
 
     public q(Context context) {

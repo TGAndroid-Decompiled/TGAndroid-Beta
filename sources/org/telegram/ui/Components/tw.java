@@ -1,28 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class tw extends FrameLayout {
-    public final tz f30916a;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class tw extends s4.m0 {
+    public final rz f30906a;
 
-    public tw(tz tzVar, Context context) {
-        super(context);
-        this.f30916a = tzVar;
+    public tw(rz rzVar) {
+        this.f30906a = rzVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        tz tzVar = this.f30916a;
-        xw xwVar = tzVar.f31001o0;
-        if (view == tzVar.f30981h0) {
-            canvas.save();
-            canvas.clipRect(0.0f, xwVar.getY() + xwVar.getMeasuredHeight(), getMeasuredWidth(), getMeasuredHeight());
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            canvas.restore();
-            return drawChild;
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        recyclerView.getClass();
+        int R = RecyclerView.R(view);
+        rz rzVar = this.f30906a;
+        s4.g0 adapter = rzVar.f30325h0.getAdapter();
+        wy wyVar = rzVar.f30342n0;
+        int i10 = 0;
+        if (adapter == wyVar && R == wyVar.I) {
+            rect.set(0, 0, 0, 0);
+            return;
         }
-        return super.drawChild(canvas, view, j10);
+        if (R == 0) {
+            wyVar.getClass();
+        }
+        rect.left = 0;
+        rect.bottom = 0;
+        rect.top = AndroidUtilities.dp(2.0f);
+        xy xyVar = rzVar.f30328i0;
+        wyVar.getClass();
+        if (!xyVar.E1(R)) {
+            i10 = AndroidUtilities.dp(2.0f);
+        }
+        rect.right = i10;
     }
 }

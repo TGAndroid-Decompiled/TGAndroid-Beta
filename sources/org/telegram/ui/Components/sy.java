@@ -1,36 +1,61 @@
 package org.telegram.ui.Components;
 
+import android.view.View;
 import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.UserConfig;
-public final class sy implements hz {
-    public final ty f30571a;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public interface sy {
+    boolean A();
 
-    public sy(ty tyVar) {
-        this.f30571a = tyVar;
-    }
+    long a();
 
-    @Override
-    public final void e() {
-        ty tyVar = this.f30571a;
-        if (tyVar.F.V.F) {
-            return;
-        }
-        ArrayList arrayList = new ArrayList();
-        tyVar.F.V.e(true);
-        ty.E(tyVar, new yt(6, this, arrayList), arrayList, true);
-    }
+    boolean b();
 
-    @Override
-    public final void run() {
-        LinkedHashSet linkedHashSet = new LinkedHashSet();
-        String str = this.f30571a.v;
-        yt ytVar = new yt(5, this, str);
-        if (Emoji.fullyConsistsOfEmojis(str)) {
-            ux0.f31230z3.fetch(UserConfig.selectedAccount, str, new org.telegram.ui.ActionBar.m3(28, linkedHashSet, ytVar));
-        } else {
-            ytVar.run();
-        }
-    }
+    boolean c();
+
+    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10);
+
+    void e(Object obj, Object obj2);
+
+    int f();
+
+    boolean g();
+
+    void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    void i(int i10);
+
+    boolean j();
+
+    boolean k();
+
+    void l(String str);
+
+    void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10);
+
+    void n();
+
+    void o(h61 h61Var);
+
+    float p();
+
+    void q();
+
+    void r(TLRPC.StickerSetCovered stickerSetCovered);
+
+    void s(int i10);
+
+    void t(ArrayList arrayList);
+
+    void u();
+
+    void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11);
+
+    void w();
+
+    void x(long j10, TLRPC.Document document, String str, boolean z10);
+
+    void y(long j10);
+
+    boolean z();
 }

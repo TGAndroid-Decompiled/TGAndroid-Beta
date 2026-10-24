@@ -10,18 +10,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 public final class qp extends s4.g0 {
-    public final Context f40902c;
+    public final Context f40912c;
     public final rp d;
 
     public qp(rp rpVar, Context context) {
         this.d = rpVar;
-        this.f40902c = context;
+        this.f40912c = context;
     }
 
     @Override
     public final int h() {
         rp rpVar = this.d;
-        ArrayList arrayList = rpVar.f41211r;
+        ArrayList arrayList = rpVar.f41200r;
         int i10 = 0;
         if (rpVar.G) {
             if (!rpVar.d.isEmpty()) {
@@ -62,7 +62,7 @@ public final class qp extends s4.g0 {
     public final void v(s4.b1 b1Var, int i10) {
         String string;
         int i11;
-        View view = b1Var.f46343a;
+        View view = b1Var.f46342a;
         int j10 = j(i10);
         int i12 = 2;
         rp rpVar = this.d;
@@ -70,7 +70,7 @@ public final class qp extends s4.g0 {
             if (j10 != 1) {
                 if (j10 == 2) {
                     org.telegram.ui.Cells.x xVar = (org.telegram.ui.Cells.x) view;
-                    ArrayList arrayList = rpVar.f41211r;
+                    ArrayList arrayList = rpVar.f41200r;
                     if (!rpVar.G) {
                         i12 = 3;
                     }
@@ -84,13 +84,13 @@ public final class qp extends s4.g0 {
             }
             org.telegram.ui.Cells.l4 l4Var = (org.telegram.ui.Cells.l4) view;
             l4Var.setText(LocaleController.getString(R.string.OnlyAllowThisReactions));
-            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, l4Var, null);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, l4Var, null);
             return;
         }
         org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
         org.telegram.ui.ActionBar.r6.W(e9Var.getTextView(), org.telegram.ui.ActionBar.k6.B6, null);
         if (rpVar.G) {
-            if (ChatObject.isChannelAndNotMegaGroup(rpVar.f41206a)) {
+            if (ChatObject.isChannelAndNotMegaGroup(rpVar.f41195a)) {
                 string = LocaleController.getString(R.string.EnableReactionsChannelInfo);
             } else {
                 string = LocaleController.getString(R.string.EnableReactionsGroupInfo);
@@ -110,7 +110,7 @@ public final class qp extends s4.g0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        Context context = this.f40902c;
+        Context context = this.f40912c;
         if (i10 != 0) {
             if (i10 != 1) {
                 if (i10 != 3) {
@@ -118,10 +118,10 @@ public final class qp extends s4.g0 {
                 }
                 FrameLayout frameLayout = new FrameLayout(context);
                 rp rpVar = this.d;
-                if (rpVar.f41212s.getParent() != null) {
-                    ((ViewGroup) rpVar.f41212s.getParent()).removeView(rpVar.f41212s);
+                if (rpVar.f41201s.getParent() != null) {
+                    ((ViewGroup) rpVar.f41201s.getParent()).removeView(rpVar.f41201s);
                 }
-                frameLayout.addView(rpVar.f41212s);
+                frameLayout.addView(rpVar.f41201s);
                 frameLayout.setLayoutParams(new s4.o0(-1, -2));
                 return new s4.b1(frameLayout);
             }

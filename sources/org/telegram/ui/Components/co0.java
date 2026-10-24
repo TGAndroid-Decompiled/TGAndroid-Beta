@@ -1,40 +1,69 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class co0 extends s4.k {
-    @Override
-    public final boolean r(s4.b1 b1Var, b2.u0 u0Var, int i10, int i11, int i12, int i13) {
-        io0 io0Var;
-        ho0 ho0Var;
-        View view = b1Var.f46343a;
-        if ((view instanceof io0) && (ho0Var = (io0Var = (io0) view).f27376a) != null) {
-            ho0Var.f753i = ho0Var.N;
-            ho0Var.f751g = ho0Var.O;
-            ho0Var.h = ho0Var.P;
-            io0Var.f27377b.d(0.0f, true);
-            io0Var.invalidate();
-        }
-        int translationX = i10 + ((int) view.getTranslationX());
-        int translationY = i11 + ((int) view.getTranslationY());
-        R(b1Var);
-        int i14 = i12 - translationX;
-        int i15 = i13 - translationY;
-        if (i14 == 0 && i15 == 0) {
-            v(b1Var);
-            return false;
-        }
-        if (i14 != 0) {
-            view.setTranslationX(-i14);
-        }
-        if (i15 != 0) {
-            view.setTranslationY(-i15);
-        }
-        this.f46409r.add(new s4.j(b1Var, translationX, translationY, i12, i13));
-        return true;
+import org.telegram.messenger.AndroidUtilities;
+public final class co0 extends EditTextBoldCursor {
+    public final g5 f25404b;
+    public int f25405c;
+    public final n6 d;
+    public final org.telegram.ui.ActionBar.g6 e;
+
+    public co0(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context);
+        this.e = g6Var;
+        this.f25404b = new g5(this);
+        n6 n6Var = new n6(false, true, true);
+        this.d = n6Var;
+        n6Var.n(0.2f, 160L, zr.h);
+        n6Var.w(AndroidUtilities.dp(15.33f));
+        n6Var.setCallback(this);
+        n6Var.f28797b = 5;
     }
 
     @Override
-    public final boolean t(s4.b1 b1Var) {
+    public final void dispatchDraw(Canvas canvas) {
+        int i10;
+        super.dispatchDraw(canvas);
+        if (this.f25405c < 0) {
+            i10 = org.telegram.ui.ActionBar.k6.f21405p7;
+        } else {
+            i10 = org.telegram.ui.ActionBar.k6.P5;
+        }
+        int a2 = this.f25404b.a(org.telegram.ui.ActionBar.k6.w0(i10, this.e), false);
+        n6 n6Var = this.d;
+        n6Var.u(a2);
+        n6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        n6Var.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.onTextChanged(charSequence, i10, i11, i12);
+        n6 n6Var = this.d;
+        if (n6Var != null) {
+            this.f25405c = 12 - charSequence.length();
+            n6Var.a();
+            String str = "";
+            if (this.f25405c <= 4) {
+                str = "" + this.f25405c;
+            }
+            n6Var.t(str, true, true);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.d && !super.verifyDrawable(drawable)) {
+            return false;
+        }
         return true;
     }
 }

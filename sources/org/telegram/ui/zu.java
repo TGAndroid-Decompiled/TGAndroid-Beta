@@ -27,7 +27,7 @@ public final class zu implements xx, ts {
     }
 
     @Override
-    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, xe1 xe1Var) {
         if (!arrayList.isEmpty()) {
             long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
             if (DialogObject.isUserDialog(j10)) {

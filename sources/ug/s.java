@@ -4,19 +4,19 @@ import android.view.View;
 import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.q6;
-import org.telegram.ui.Components.rw0;
-public final class s implements d5, rw0, wg.f, wg.k {
-    public final y f48200a;
+import org.telegram.ui.Components.b5;
+import org.telegram.ui.Components.o6;
+import org.telegram.ui.Components.qw0;
+public final class s implements b5, qw0, wg.f, wg.k {
+    public final y f48199a;
 
     public s(y yVar) {
-        this.f48200a = yVar;
+        this.f48199a = yVar;
     }
 
     @Override
     public void C(int i10, int i11, boolean z10) {
-        y yVar = this.f48200a;
+        y yVar = this.f48199a;
         yVar.m0 = i10 * 1000;
         yVar.a0(false, true);
     }
@@ -28,39 +28,39 @@ public final class s implements d5, rw0, wg.f, wg.k {
         String string;
         String str2;
         String formatPluralString;
-        y yVar = this.f48200a;
-        int i12 = yVar.f48247h0;
+        y yVar = this.f48199a;
+        int i12 = yVar.f48246h0;
         int i13 = wg.d.v;
         if (i12 == 2) {
-            yVar.f48252n0 = i10;
+            yVar.f48251n0 = i10;
         } else {
-            yVar.f48253o0 = i10;
+            yVar.f48252o0 = i10;
         }
-        yVar.f48255q0.f49389a.b(yVar.V(), true);
-        if (yVar.f48247h0 == 3) {
+        yVar.f48254q0.f49388a.b(yVar.V(), true);
+        if (yVar.f48246h0 == 3) {
             yVar.a0(true, true);
         } else {
             yVar.a0(false, false);
         }
-        vg.b bVar = yVar.f48246g0;
+        vg.b bVar = yVar.f48245g0;
         int V = yVar.V();
-        for (int i14 = 0; i14 < bVar.f48796f.getChildCount(); i14++) {
-            View childAt = bVar.f48796f.getChildAt(i14);
+        for (int i14 = 0; i14 < bVar.f48795f.getChildCount(); i14++) {
+            View childAt = bVar.f48795f.getChildAt(i14);
             if (childAt instanceof wg.x) {
-                q6 q6Var = ((wg.x) childAt).f49460r;
+                o6 o6Var = ((wg.x) childAt).f49459r;
                 if (V <= 0) {
                     formatPluralString = "";
                 } else {
                     formatPluralString = LocaleController.formatPluralString("BoostingBoostsCountTitle", V, Integer.valueOf(V));
                 }
-                q6Var.a();
-                q6Var.c(formatPluralString, true, true);
+                o6Var.a();
+                o6Var.c(formatPluralString, true, true);
             }
             if (childAt instanceof wg.g) {
                 wg.g gVar = (wg.g) childAt;
                 int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49420w);
-                if (gVar.f49421x) {
+                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49419w);
+                if (gVar.f49420x) {
                     if (F >= 1) {
                         if (isChannelAndNotMegaGroup) {
                             str2 = "Subscribers";

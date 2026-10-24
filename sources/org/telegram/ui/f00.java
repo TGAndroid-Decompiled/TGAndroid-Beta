@@ -4,13 +4,13 @@ import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 public final class f00 extends org.telegram.ui.Cells.l4 {
-    public final org.telegram.ui.Cells.t3 f37184r;
+    public final org.telegram.ui.Cells.t3 f37157r;
 
     public f00(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         int i10;
         org.telegram.ui.Cells.t3 t3Var = new org.telegram.ui.Cells.t3(context, true, true, true, 3);
-        this.f37184r = t3Var;
+        this.f37157r = t3Var;
         if (LocaleController.isRTL) {
             i10 = 3;
         } else {

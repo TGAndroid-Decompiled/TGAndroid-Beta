@@ -6,23 +6,23 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 public final class s4 extends ArrayAdapter {
-    public final y4 f21841a;
+    public final y4 f21842a;
 
     public s4(y4 y4Var, Context context) {
         super(context, 0);
-        this.f21841a = y4Var;
+        this.f21842a = y4Var;
     }
 
     @Override
     public final View getView(int i10, View view, ViewGroup viewGroup) {
-        y4 y4Var = this.f21841a;
-        com.google.firebase.messaging.n nVar = y4Var.f22004q;
+        y4 y4Var = this.f21842a;
+        com.google.firebase.messaging.n nVar = y4Var.f22005q;
         MenuItem menuItem = (MenuItem) getItem(i10);
         int width = y4Var.I.getWidth();
         boolean z10 = false;
         if (view != null) {
             int i11 = nVar.f7664a;
-            if (((y4) nVar.e).Q.f20697j != null) {
+            if (((y4) nVar.e).Q.f20698j != null) {
                 z10 = true;
             }
             a5.e(view, menuItem, z10);

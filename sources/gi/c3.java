@@ -17,11 +17,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.pe0;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.ne0;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.oc;
 import org.telegram.ui.LaunchActivity;
-public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
+public final class c3 extends nw0 implements org.telegram.ui.ActionBar.x3 {
     public final d3 A0;
     public final Paint f11131w0;
     public boolean f11132x0;
@@ -41,10 +41,10 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f21183d6));
-        hashSet.add(Integer.valueOf(k6.f21125a7));
+        hashSet.add(Integer.valueOf(k6.f21184d6));
+        hashSet.add(Integer.valueOf(k6.f21126a7));
         hashSet.add(Integer.valueOf(k6.G6));
-        hashSet.add(Integer.valueOf(k6.f21501u8));
+        hashSet.add(Integer.valueOf(k6.f21502u8));
         hashSet.add(Integer.valueOf(k6.G8));
         hashSet.add(Integer.valueOf(k6.E8));
         hashSet.add(Integer.valueOf(k6.F8));
@@ -57,11 +57,11 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
         Paint paint;
         float f7;
         d3 d3Var = this.A0;
-        pe0 pe0Var = d3Var.f11181t0;
+        ne0 ne0Var = d3Var.f11181t0;
         Rect rect = d3Var.f11172n;
         Rect rect2 = d3Var.h;
         if (!this.f11132x0) {
-            int visibility = pe0Var.getVisibility();
+            int visibility = ne0Var.getVisibility();
             Paint paint2 = this.f11131w0;
             if (visibility != 0) {
                 float f10 = d3Var.f11166g0;
@@ -98,7 +98,7 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
             if (z10) {
                 canvas.restore();
             }
-            if (pe0Var.getVisibility() != 0) {
+            if (ne0Var.getVisibility() != 0) {
                 paint2.setColor(k6.o1(d3Var.R0, d3Var.S));
                 int i11 = rect2.left;
                 if (i11 > 0) {
@@ -133,7 +133,7 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
         org.telegram.ui.ActionBar.q3 q3Var;
         d3 d3Var = this.A0;
         Rect rect = d3Var.f11172n;
-        LaunchActivity launchActivity = LaunchActivity.J1;
+        LaunchActivity launchActivity = LaunchActivity.I1;
         if (launchActivity != null) {
             q3Var = launchActivity.P();
         } else {
@@ -214,13 +214,13 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        qc.a(this, new o8(3));
+        oc.a(this, new o8(3));
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        qc.h(this);
+        oc.h(this);
     }
 
     @Override
@@ -247,7 +247,7 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
                     canvas2 = canvas;
                 }
                 if (!d3Var.W) {
-                    int w02 = k6.w0(k6.f21183d6, d3Var.F);
+                    int w02 = k6.w0(k6.f21184d6, d3Var.F);
                     paint2.setColor(w02);
                     d3Var.f11188y.setFlickerViewColor(w02);
                     org.telegram.ui.e3 e3Var = d3Var.Y0;
@@ -303,7 +303,7 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
             invalidate();
             d3 d3Var = this.A0;
             d3Var.H();
-            LaunchActivity launchActivity = LaunchActivity.J1;
+            LaunchActivity launchActivity = LaunchActivity.I1;
             if (launchActivity != null && d3Var.f11163e0) {
                 launchActivity.E0(d3Var.S);
             }
@@ -324,7 +324,7 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
                     if (!d3Var.V) {
                         int i10 = d3Var.f11183v0;
                         if (i10 < 0) {
-                            i10 = k6.f21183d6;
+                            i10 = k6.f21184d6;
                         }
                         int w03 = k6.w0(i10, g6Var);
                         int i11 = d3Var.R;
@@ -335,7 +335,7 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
                             }
                         }
                     }
-                    if (d3Var.I0 && d3Var.m0 != null && (w02 = k6.w0(k6.f21125a7, g6Var)) != d3Var.S) {
+                    if (d3Var.I0 && d3Var.m0 != null && (w02 = k6.w0(k6.f21126a7, g6Var)) != d3Var.S) {
                         d3Var.z(w02, false);
                         d3Var.I0 = true;
                     }
@@ -346,7 +346,7 @@ public final class c3 extends ow0 implements org.telegram.ui.ActionBar.x3 {
                     }
                     int color = paint.getColor();
                     if (!d3Var.V) {
-                        color = (((((((((((color * 31) + k6.w0(k6.G6, g6Var)) * 31) + k6.w0(k6.f21501u8, g6Var)) * 31) + k6.w0(k6.G8, g6Var)) * 31) + k6.w0(k6.E8, g6Var)) * 31) + k6.w0(k6.F8, g6Var)) * 31) + k6.w0(k6.I5, g6Var);
+                        color = (((((((((((color * 31) + k6.w0(k6.G6, g6Var)) * 31) + k6.w0(k6.f21502u8, g6Var)) * 31) + k6.w0(k6.G8, g6Var)) * 31) + k6.w0(k6.E8, g6Var)) * 31) + k6.w0(k6.F8, g6Var)) * 31) + k6.w0(k6.I5, g6Var);
                     }
                     if (!d3Var.J0 || color != d3Var.K0) {
                         d3Var.J0 = true;

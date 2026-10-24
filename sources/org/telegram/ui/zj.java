@@ -5,10 +5,10 @@ import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class zj implements ft {
-    public final sn f44164a;
+    public final sn f44116a;
 
     public zj(sn snVar) {
-        this.f44164a = snVar;
+        this.f44116a = snVar;
     }
 
     @Override
@@ -49,15 +49,15 @@ public final class zj implements ft {
     @Override
     public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
         if (inputStickerSet != null) {
-            sn snVar = this.f44164a;
+            sn snVar = this.f44116a;
             if (snVar.getParentActivity() != null) {
                 TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
                 tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f20363id = inputStickerSet.f20363id;
-                org.telegram.ui.Components.ty0 ty0Var = new org.telegram.ui.Components.ty0(snVar.getParentActivity(), snVar, tL_inputStickerSetID, null, snVar.Y, snVar.f41654qa);
-                ty0Var.setCalcMandatoryInsets(snVar.C9());
-                ty0Var.f30938i0 = z10;
-                snVar.showDialog(ty0Var);
+                tL_inputStickerSetID.f20364id = inputStickerSet.f20364id;
+                org.telegram.ui.Components.sy0 sy0Var = new org.telegram.ui.Components.sy0(snVar.getParentActivity(), snVar, tL_inputStickerSetID, null, snVar.Y, snVar.f41651qa);
+                sy0Var.setCalcMandatoryInsets(snVar.C9());
+                sy0Var.f30645i0 = z10;
+                snVar.showDialog(sy0Var);
             }
         }
     }
@@ -79,17 +79,17 @@ public final class zj implements ft {
 
     @Override
     public final long a() {
-        return this.f44164a.f41519f6;
+        return this.f44116a.f41516f6;
     }
 
     @Override
     public final boolean b() {
-        return this.f44164a.G6();
+        return this.f44116a.G6();
     }
 
     @Override
     public final boolean c() {
-        if (this.f44164a.f41492d4 == 1) {
+        if (this.f44116a.f41489d4 == 1) {
             return true;
         }
         return false;
@@ -132,7 +132,7 @@ public final class zj implements ft {
 
     @Override
     public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f44164a.Y.a(document, str, obj, null, true, z10, i10, i11);
+        this.f44116a.Y.a(document, str, obj, null, true, z10, i10, i11);
     }
 
     @Override
@@ -141,7 +141,7 @@ public final class zj implements ft {
     }
 
     @Override
-    public final org.telegram.ui.Components.j80 u(ah.v vVar) {
+    public final org.telegram.ui.Components.h80 u(ah.v vVar) {
         return null;
     }
 
@@ -215,7 +215,7 @@ public final class zj implements ft {
     }
 
     @Override
-    public final void t(CharSequence charSequence, String str, org.telegram.ui.Components.qy qyVar) {
+    public final void t(CharSequence charSequence, String str, org.telegram.ui.Components.oy oyVar) {
     }
 
     @Override

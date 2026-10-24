@@ -35,9 +35,9 @@ public final class a implements d {
             case 1:
                 if (!c.c(UserConfig.selectedAccount, this.f10612b)) {
                     if (z10) {
-                        i10 = k6.f21462s8;
+                        i10 = k6.f21463s8;
                     } else {
-                        i10 = k6.f21172ce;
+                        i10 = k6.f21173ce;
                     }
                     return i0.a.o(k6.w0(i10, g6Var), 255);
                 }
@@ -46,13 +46,13 @@ public final class a implements d {
                 } else {
                     f10 = 0.76f;
                 }
-                return k6.o1(f10, k6.w0(k6.f21172ce, g6Var));
+                return k6.o1(f10, k6.w0(k6.f21173ce, g6Var));
             default:
                 if (!c.c(UserConfig.selectedAccount, this.f10612b)) {
                     if (z10) {
-                        i11 = k6.f21462s8;
+                        i11 = k6.f21463s8;
                     } else {
-                        i11 = k6.f21172ce;
+                        i11 = k6.f21173ce;
                     }
                     return i0.a.o(k6.w0(i11, g6Var), 255);
                 }
@@ -61,7 +61,7 @@ public final class a implements d {
                 } else {
                     f11 = 0.76f;
                 }
-                return k6.o1(f11, k6.w0(k6.f21172ce, g6Var));
+                return k6.o1(f11, k6.w0(k6.f21173ce, g6Var));
         }
     }
 }

@@ -2,7 +2,7 @@ package ei;
 
 import java.io.File;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.cm;
+import org.telegram.ui.Components.am;
 public final class oc implements Utilities.Callback {
     public final int f9585a;
     public final boolean f9586b;
@@ -21,9 +21,9 @@ public final class oc implements Utilities.Callback {
         throw new UnsupportedOperationException("Method not decompiled: ei.oc.run(java.lang.Object):void");
     }
 
-    public oc(cm cmVar, File file, boolean z10) {
+    public oc(am amVar, File file, boolean z10) {
         this.f9585a = 1;
-        this.f9587c = cmVar;
+        this.f9587c = amVar;
         this.d = file;
         this.f9586b = z10;
     }

@@ -9,10 +9,10 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.c41;
-import org.telegram.ui.Components.iv0;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.hv0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ci1;
+import org.telegram.ui.bi1;
 import org.telegram.ui.di;
 public final class n2 implements RequestDelegate {
     public final int f1857a;
@@ -60,30 +60,30 @@ public final class n2 implements RequestDelegate {
                 ((VoIPService) obj).lambda$startScreenCapture$60(i11, tLObject, tL_error);
                 return;
             case 6:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.h4((iv0) obj, tLObject, i11, 22));
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.h4((hv0) obj, tLObject, i11, 22));
                 return;
             case 7:
                 LaunchActivity launchActivity = (LaunchActivity) obj;
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 SharedConfig.lastUpdateCheckTime = System.currentTimeMillis();
                 SharedConfig.saveConfig();
                 if (tLObject instanceof TLRPC.TL_help_appUpdate) {
-                    AndroidUtilities.runOnUIThread(new c41(launchActivity, (TLRPC.TL_help_appUpdate) tLObject, i11, 4));
+                    AndroidUtilities.runOnUIThread(new b41(launchActivity, (TLRPC.TL_help_appUpdate) tLObject, i11, 4));
                     return;
                 } else if (tLObject instanceof TLRPC.TL_help_noAppUpdate) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(25));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.pc(25));
                     return;
                 } else if (tL_error != null) {
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.rc(tL_error, 26));
+                    AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.pc(tL_error, 26));
                     return;
                 } else {
                     return;
                 }
             case 8:
-                AndroidUtilities.runOnUIThread(new c41((di) obj, tLObject, i11, 5));
+                AndroidUtilities.runOnUIThread(new b41((di) obj, tLObject, i11, 5));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new c41((ci1) obj, i11, tLObject, 22));
+                AndroidUtilities.runOnUIThread(new b41((bi1) obj, i11, tLObject, 22));
                 return;
         }
     }

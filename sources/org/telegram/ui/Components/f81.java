@@ -14,9 +14,9 @@ public final class f81 {
     public f81(h81 h81Var) {
         ArrayList arrayList = new ArrayList();
         this.d = arrayList;
-        this.f26230a = h81Var.f26828b;
-        this.f26231b = h81Var.f26832i;
-        this.f26232c = h81Var.f26833j;
+        this.f26230a = h81Var.f26937b;
+        this.f26231b = h81Var.f26941i;
+        this.f26232c = h81Var.f26942j;
         arrayList.add(h81Var);
     }
 
@@ -39,8 +39,8 @@ public final class f81 {
         long j10 = Long.MAX_VALUE;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
             h81 h81Var3 = (h81) arrayList.get(i11);
-            if (h81Var3.f26834k < j10 && j81.Y(h81Var3.f26836m)) {
-                j10 = h81Var3.f26834k;
+            if (h81Var3.f26943k < j10 && j81.Y(h81Var3.f26945m)) {
+                j10 = h81Var3.f26943k;
                 h81Var = h81Var3;
             }
         }
@@ -97,10 +97,10 @@ public final class f81 {
             sb2.append(str);
             sb2.append("\n");
             ArrayList arrayList = this.d;
-            sb2.append(AndroidUtilities.formatFileSize((long) ((h81) arrayList.get(0)).f26835l).replace(" ", ""));
+            sb2.append(AndroidUtilities.formatFileSize((long) ((h81) arrayList.get(0)).f26944l).replace(" ", ""));
             sb2.append("/s");
-            if (((h81) arrayList.get(0)).f26836m != null) {
-                str2 = ", " + ((h81) arrayList.get(0)).f26836m;
+            if (((h81) arrayList.get(0)).f26945m != null) {
+                str2 = ", " + ((h81) arrayList.get(0)).f26945m;
             }
             sb2.append(str2);
             return sb2.toString();

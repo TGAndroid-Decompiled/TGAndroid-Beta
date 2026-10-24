@@ -1,93 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
+import android.animation.ValueAnimator;
+import android.graphics.Canvas;
 import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
 public final class yr extends Drawable {
-    public final Drawable f33021a;
-    public final RectF f33022b = new RectF();
-    public final Paint f33023c;
-    public final Paint d;
-    public int e;
-    public final int f33024f;
-    public float f33025g;
-    public boolean h;
-    public float f33026i;
-    public float f33027j;
-    public float f33028k;
+    public final Drawable f33025a;
+    public final Drawable f33026b;
+    public float f33027c;
+    public float d = 255.0f;
+    public ValueAnimator e;
 
-    public yr(Context context, int i10, int i11) {
-        Paint paint = new Paint(1);
-        this.f33023c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f33021a = context.getDrawable(i10);
-        this.f33024f = i11;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+    public yr(Drawable drawable, Drawable drawable2) {
+        this.f33025a = drawable;
+        this.f33026b = drawable2;
+        if (drawable != null) {
+            drawable.setCallback(new xr(this, 0));
+        }
+        if (drawable2 != null) {
+            drawable2.setCallback(new xr(this, 1));
+        }
     }
 
-    public final void a(boolean z10, boolean z11) {
-        if (this.h != z10) {
-            this.h = z10;
-            float f7 = 0.0f;
-            if (!z11) {
-                if (z10) {
-                    f7 = 1.0f;
-                }
-                this.f33025g = f7;
-            } else {
-                if (!z10) {
-                    f7 = 1.0f;
-                }
-                this.f33025g = f7;
-            }
-            invalidateSelf();
+    public final void a(float f7) {
+        ValueAnimator valueAnimator = this.e;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f33027c, f7);
+        this.e = ofFloat;
+        ofFloat.addUpdateListener(new j6(this, 16));
+        this.e.setDuration(Math.abs(this.f33027c - f7) * 200.0f);
+        this.e.setInterpolator(zr.f33337f);
+        this.e.start();
+    }
+
+    public final void b(float f7) {
+        this.f33027c = f7;
+        invalidateSelf();
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i10 = (int) ((1.0f - this.f33027c) * this.d);
+        Drawable drawable = this.f33025a;
+        drawable.setAlpha(i10);
+        int i11 = (int) (this.d * this.f33027c);
+        Drawable drawable2 = this.f33026b;
+        drawable2.setAlpha(i11);
+        if (i10 > 0) {
+            drawable.draw(canvas);
+        }
+        if (i11 > 0) {
+            drawable2.draw(canvas);
         }
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yr.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
     public final int getIntrinsicHeight() {
-        return this.f33021a.getIntrinsicHeight();
+        return this.f33025a.getIntrinsicHeight();
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f33021a.getIntrinsicWidth();
+        return this.f33025a.getIntrinsicWidth();
     }
 
     @Override
     public final int getOpacity() {
-        return -2;
+        return -3;
     }
 
     @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        this.f33021a.setBounds(i10, i11, i12, i13);
+    public final void onBoundsChange(Rect rect) {
+        this.f33025a.setBounds(rect);
+        this.f33026b.setBounds(rect);
     }
 
     @Override
     public final void setAlpha(int i10) {
+        this.d = i10;
     }
 
     @Override
     public final void setColorFilter(ColorFilter colorFilter) {
+        this.f33025a.setColorFilter(colorFilter);
     }
 }

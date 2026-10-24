@@ -1,9 +1,9 @@
 package ci;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ob;
-import org.telegram.ui.Components.qc;
-public final class m9 implements ob {
+import org.telegram.ui.Components.mb;
+import org.telegram.ui.Components.oc;
+public final class m9 implements mb {
     public final float[] f5584a = new float[2];
     public final n9 f5585b;
 
@@ -47,7 +47,7 @@ public final class m9 implements ob {
     }
 
     @Override
-    public final void b(qc qcVar) {
+    public final void b(oc ocVar) {
     }
 
     @Override
@@ -55,6 +55,6 @@ public final class m9 implements ob {
     }
 
     @Override
-    public final void d(qc qcVar) {
+    public final void d(oc ocVar) {
     }
 }

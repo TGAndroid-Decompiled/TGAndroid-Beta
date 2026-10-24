@@ -34,12 +34,12 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Cells.s7;
-import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.k91;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.ms0;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.ls0;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.vq;
+import org.telegram.ui.Components.zr;
 import w7.z5;
 public abstract class v extends FrameLayout implements b6, NotificationCenter.NotificationCenterDelegate {
     public static LongSparseArray E;
@@ -72,7 +72,7 @@ public abstract class v extends FrameLayout implements b6, NotificationCenter.No
         g6 resourceProvider = o2Var.getResourceProvider();
         this.f8077c = resourceProvider;
         this.d = j10;
-        setBackgroundColor(k6.v(k6.w0(k6.f21183d6, resourceProvider), k6.o1(0.04f, k6.w0(k6.G6, resourceProvider))));
+        setBackgroundColor(k6.v(k6.w0(k6.f21184d6, resourceProvider), k6.o1(0.04f, k6.w0(k6.G6, resourceProvider))));
         if (F == null) {
             F = new LongSparseArray();
         }
@@ -91,16 +91,16 @@ public abstract class v extends FrameLayout implements b6, NotificationCenter.No
             s6Var = s6Var2;
         }
         this.e = s6Var;
-        ms0 ms0Var = (ms0) this;
-        a aVar = new a(ms0Var, context);
+        ls0 ls0Var = (ls0) this;
+        a aVar = new a(ls0Var, context);
         this.f8079n = aVar;
         aVar.setAllowDisallowInterceptTouch(true);
-        aVar.setAdapter(new b(ms0Var, context));
+        aVar.setAdapter(new b(ls0Var, context));
         addView(aVar, z5.e(-1, -1, 119));
         k91 n10 = aVar.n(9, true);
         this.f8080r = n10;
-        n10.f27981r = 12;
-        n10.setPreTabClick(new a1.c(ms0Var, 28));
+        n10.f27984r = 12;
+        n10.setPreTabClick(new a1.c(ls0Var, 28));
         addView(n10, z5.e(-1, 42, 48));
         i(false);
     }
@@ -108,15 +108,15 @@ public abstract class v extends FrameLayout implements b6, NotificationCenter.No
     public final void a(String str) {
         o2 o2Var = this.f8075a;
         if (o2Var != null && o2Var.getParentActivity() != null) {
-            ti tiVar = new ti(o2Var.getParentActivity(), this.f8075a, false, false, false, this.f8077c);
-            tiVar.R1(1, false);
-            tiVar.W0 = true;
-            tiVar.V0 = false;
-            tiVar.f30750m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
-            tiVar.f30742j0.f0();
-            tiVar.f30722c2 = new c(this, tiVar, str);
-            tiVar.w1();
-            tiVar.show();
+            ri riVar = new ri(o2Var.getParentActivity(), this.f8075a, false, false, false, this.f8077c);
+            riVar.R1(1, false);
+            riVar.W0 = true;
+            riVar.V0 = false;
+            riVar.f30166m1.setText(LocaleController.getString(R.string.ChoosePhotoOrVideo));
+            riVar.f30158j0.f0();
+            riVar.f30138c2 = new c(this, riVar, str);
+            riVar.w1();
+            riVar.show();
         }
     }
 
@@ -307,7 +307,7 @@ public abstract class v extends FrameLayout implements b6, NotificationCenter.No
         return null;
     }
 
-    public mm0 getCurrentListView() {
+    public lm0 getCurrentListView() {
         View currentView = this.f8079n.getCurrentView();
         if (currentView instanceof r) {
             return ((r) currentView).f8064f;
@@ -405,13 +405,13 @@ public abstract class v extends FrameLayout implements b6, NotificationCenter.No
         a aVar = this.f8079n;
         aVar.o(true);
         SpannableString spannableString = new SpannableString(v0.h(R.string.ProfileBotLanguageAdd, new StringBuilder("+ ")));
-        xq xqVar = new xq(R.drawable.msg_filled_plus, 0);
-        xqVar.setScale(0.9f, 0.9f);
-        xqVar.spaceScaleX = 0.85f;
-        spannableString.setSpan(xqVar, 0, 1, 33);
+        vq vqVar = new vq(R.drawable.msg_filled_plus, 0);
+        vqVar.setScale(0.9f, 0.9f);
+        vqVar.spaceScaleX = 0.85f;
+        spannableString.setSpan(vqVar, 0, 1, 33);
         k91 k91Var = this.f8080r;
         k91Var.a(-1, spannableString);
-        k91Var.f27985x.l();
+        k91Var.f27988x.l();
         if (arrayList3.size() + 1 > 1) {
             z11 = true;
         } else {
@@ -454,7 +454,7 @@ public abstract class v extends FrameLayout implements b6, NotificationCenter.No
         ofFloat.addUpdateListener(new c0(this, 22));
         this.f8083x.addListener(new p0(5, this, z11));
         this.f8083x.setDuration(320L);
-        this.f8083x.setInterpolator(bs.h);
+        this.f8083x.setInterpolator(zr.h);
         this.f8083x.start();
     }
 
@@ -524,7 +524,7 @@ public abstract class v extends FrameLayout implements b6, NotificationCenter.No
     public final void updateColors() {
         g6 g6Var = this.f8077c;
         try {
-            setBackgroundColor(k6.v(k6.w0(k6.f21183d6, g6Var), k6.o1(0.04f, k6.w0(k6.G6, g6Var))));
+            setBackgroundColor(k6.v(k6.w0(k6.f21184d6, g6Var), k6.o1(0.04f, k6.w0(k6.G6, g6Var))));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

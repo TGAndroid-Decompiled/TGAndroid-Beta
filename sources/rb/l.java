@@ -4,12 +4,12 @@ import java.lang.ref.PhantomReference;
 import java.lang.ref.ReferenceQueue;
 import java.util.Set;
 public final class l extends PhantomReference {
-    public final Set f45621a;
-    public final androidx.emoji2.text.n f45622b;
+    public final Set f45620a;
+    public final androidx.emoji2.text.n f45621b;
 
     public l(a aVar, ReferenceQueue referenceQueue, Set set, androidx.emoji2.text.n nVar) {
         super(aVar, referenceQueue);
-        this.f45621a = set;
-        this.f45622b = nVar;
+        this.f45620a = set;
+        this.f45621b = nVar;
     }
 }

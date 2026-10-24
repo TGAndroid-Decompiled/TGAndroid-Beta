@@ -16,11 +16,11 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.y90;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.w90;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.va1;
+import org.telegram.ui.ua1;
 import sg.m1;
 import w7.z5;
 public final class h0 extends m1 {
@@ -39,11 +39,11 @@ public final class h0 extends m1 {
         aVar.setOnClickListener(new hg.r0(this, 23));
         aVar.setCloseStyle(true);
         this.containerView.addView(aVar, z5.d(-1, 64.0f, 80, 0.0f, 0.0f, 0.0f, 0.0f));
-        mm0 mm0Var = this.d;
+        lm0 lm0Var = this.d;
         int i11 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
+        lm0Var.setPadding(i11, 0, i11, AndroidUtilities.dp(64.0f));
         Context context = getContext();
-        int i12 = g0.f48122f;
+        int i12 = g0.f48121f;
         FrameLayout frameLayout = new FrameLayout(context);
         frameLayout.setClipChildren(false);
         FrameLayout frameLayout2 = new FrameLayout(context);
@@ -53,9 +53,9 @@ public final class h0 extends m1 {
             g0 g0Var = new g0(context, 47.0f);
             g0Var.d = false;
             TLRPC.User user = (TLRPC.User) arrayList2.get(0);
-            h9 h9Var = g0Var.e;
-            h9Var.r(user);
-            g0Var.f48123a.e(user, h9Var);
+            f9 f9Var = g0Var.e;
+            f9Var.r(user);
+            g0Var.f48122a.e(user, f9Var);
             frameLayout2.addView(g0Var, 0, z5.e(94, 94, 17));
         } else {
             frameLayout.addView(frameLayout2, z5.d(-1, 83.0f, 0, 0.0f, 0.0f, 0.0f, 0.0f));
@@ -63,15 +63,15 @@ public final class h0 extends m1 {
             for (int i14 = 0; i14 < arrayList2.size(); i14++) {
                 TLRPC.User user2 = (TLRPC.User) arrayList2.get(i14);
                 g0 g0Var2 = new g0(context, 41.5f);
-                h9 h9Var2 = g0Var2.e;
-                h9Var2.r(user2);
-                g0Var2.f48123a.e(user2, h9Var2);
+                f9 f9Var2 = g0Var2.e;
+                f9Var2.r(user2);
+                g0Var2.f48122a.e(user2, f9Var2);
                 frameLayout2.addView(g0Var2, 0, z5.e(83, 83, 17));
                 g0Var2.setTranslationX(AndroidUtilities.dp(29.0f) * (-i14));
                 if (i14 == 0 && arrayList2.size() > 3) {
-                    f0 f0Var = g0Var2.f48124b;
+                    f0 f0Var = g0Var2.f48123b;
                     f0Var.setAlpha(1.0f);
-                    f0Var.f48121b = arrayList2.size() - 3;
+                    f0Var.f48120b = arrayList2.size() - 3;
                 }
                 i13++;
                 if (i14 == 2) {
@@ -100,13 +100,13 @@ public final class h0 extends m1 {
         if (i10 == 0) {
             view.setOutlineProvider(new n1(21));
             view.setClipToOutline(true);
-            r6.i(k6.f21125a7, view, this.resourcesProvider);
+            r6.i(k6.f21126a7, view, this.resourcesProvider);
             ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).topMargin = -AndroidUtilities.dp(6.0f);
         }
     }
 
     @Override
-    public final void b0(va1 va1Var) {
+    public final void b0(ua1 ua1Var) {
         int i10;
         float f7;
         float f10;
@@ -129,7 +129,7 @@ public final class h0 extends m1 {
         } else {
             f10 = 14.0f;
         }
-        va1Var.addView(view, z5.k(0.0f, f11, 0.0f, f10, -1, i11));
+        ua1Var.addView(view, z5.k(0.0f, f11, 0.0f, f10, -1, i11));
     }
 
     @Override
@@ -138,9 +138,9 @@ public final class h0 extends m1 {
         this.O0[0].setTextSize(1, 20.0f);
         this.P0.setPadding(AndroidUtilities.dp(30.0f), 0, AndroidUtilities.dp(30.0f), 0);
         this.P0.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        y90 y90Var = this.O0[0];
+        w90 w90Var = this.O0[0];
         ArrayList arrayList = this.Q0;
-        y90Var.setText(LocaleController.getPluralString("GiftPremiumGiftsSent", arrayList.size()));
+        w90Var.setText(LocaleController.getPluralString("GiftPremiumGiftsSent", arrayList.size()));
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).bottomMargin = AndroidUtilities.dp(16.0f);
         ((ViewGroup.MarginLayoutParams) this.P0.getLayoutParams()).topMargin = AndroidUtilities.dp(4.0f);
         int size = arrayList.size();
@@ -169,13 +169,13 @@ public final class h0 extends m1 {
 
     @Override
     public final void h0() {
-        this.f46760f0 = 1;
-        this.f46761g0 = 0;
-        this.f46764j0 = 1;
+        this.f46759f0 = 1;
+        this.f46760g0 = 0;
+        this.f46763j0 = 1;
         int size = this.X.size();
         int i10 = 1 + size;
-        this.f46765k0 = i10;
-        this.f46760f0 = size + 2;
-        this.f46767n0 = i10;
+        this.f46764k0 = i10;
+        this.f46759f0 = size + 2;
+        this.f46766n0 = i10;
     }
 }

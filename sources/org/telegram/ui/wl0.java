@@ -1,61 +1,79 @@
 package org.telegram.ui;
 
-import android.text.TextWatcher;
-import java.util.regex.Pattern;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class wl0 implements TextWatcher {
-    public final int f43390a;
-    public final Object f43391b;
-    public String f43392c;
-    public final Object d;
+import android.text.TextUtils;
+import java.util.Locale;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MrzRecognizer;
+import org.telegram.messenger.R;
+public final class wl0 implements v9 {
+    public final zm0 f43371a;
 
-    public wl0(an0 an0Var, EditTextBoldCursor editTextBoldCursor, String str, int i10) {
-        this.f43390a = i10;
-        this.d = an0Var;
-        this.f43391b = editTextBoldCursor;
-        this.f43392c = str;
+    public wl0(zm0 zm0Var) {
+        this.f43371a = zm0Var;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r7) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.wl0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f43390a) {
-            case 0:
-            case 1:
-                return;
-            default:
-                this.f43392c = charSequence.toString();
-                return;
+    public final void F0(MrzRecognizer.Result result) {
+        boolean isEmpty = TextUtils.isEmpty(result.firstName);
+        zm0 zm0Var = this.f43371a;
+        if (!isEmpty) {
+            zm0Var.Y[0].setText(result.firstName);
+        }
+        if (!TextUtils.isEmpty(result.middleName)) {
+            zm0Var.Y[1].setText(result.middleName);
+        }
+        if (!TextUtils.isEmpty(result.lastName)) {
+            zm0Var.Y[2].setText(result.lastName);
+        }
+        int i10 = result.gender;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 == 2) {
+                    zm0Var.f44173w = "female";
+                    zm0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
+                }
+            } else {
+                zm0Var.f44173w = "male";
+                zm0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
+            }
+        }
+        if (!TextUtils.isEmpty(result.nationality)) {
+            String str = result.nationality;
+            zm0Var.f44164s = str;
+            String str2 = (String) zm0Var.Y0.get(str);
+            if (str2 != null) {
+                zm0Var.Y[5].setText(str2);
+            }
+        }
+        if (!TextUtils.isEmpty(result.issuingCountry)) {
+            String str3 = result.issuingCountry;
+            zm0Var.v = str3;
+            String str4 = (String) zm0Var.Y0.get(str3);
+            if (str4 != null) {
+                zm0Var.Y[6].setText(str4);
+            }
+        }
+        int i11 = result.birthDay;
+        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
+            zm0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
         }
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f43390a;
+    public final boolean U0(String str, n9 n9Var) {
+        return false;
     }
 
-    public wl0(qg.x xVar) {
-        this.f43390a = 2;
-        this.d = xVar;
-        this.f43391b = Pattern.compile("^[0-9a-fA-F]*$");
+    @Override
+    public final String p0() {
+        return null;
     }
 
-    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    @Override
+    public final void E(String str) {
     }
 
-    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    @Override
+    public final void onDismiss() {
     }
 }

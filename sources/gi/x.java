@@ -7,9 +7,9 @@ import android.view.View;
 import android.view.animation.OvershootInterpolator;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.nf;
+import org.telegram.ui.Components.lf;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.zr;
 public abstract class x extends FrameLayout {
     public ObjectAnimator f11559a;
     public b2.u0 f11560b;
@@ -49,9 +49,9 @@ public abstract class x extends FrameLayout {
             this.f11559a = ofFloat;
             ofFloat.addListener(new ah.b(this, 25));
             this.f11559a.setDuration(150L);
-            this.f11559a.setInterpolator(bs.f25133f);
+            this.f11559a.setInterpolator(zr.f33337f);
             this.f11559a.start();
-            b0 b0Var = ((nf) this).v.f24120l0;
+            b0 b0Var = ((lf) this).v.f24121l0;
             if (b0Var != null) {
                 b0Var.setOpened(false);
             }
@@ -70,7 +70,7 @@ public abstract class x extends FrameLayout {
             this.f11559a.setInterpolator(new OvershootInterpolator(0.8f));
         } else {
             ofFloat.setDuration(150L);
-            this.f11559a.setInterpolator(bs.f25133f);
+            this.f11559a.setInterpolator(zr.f33337f);
         }
         this.f11559a.start();
     }
@@ -83,7 +83,7 @@ public abstract class x extends FrameLayout {
         return super.dispatchTouchEvent(motionEvent);
     }
 
-    public mm0 getListView() {
+    public lm0 getListView() {
         return this.f11561c;
     }
 

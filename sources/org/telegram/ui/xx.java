@@ -6,5 +6,5 @@ public interface xx {
 
     boolean J(ey eyVar);
 
-    boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var);
+    boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, xe1 xe1Var);
 }

@@ -27,9 +27,9 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.af0;
+import org.telegram.ui.Components.ze0;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.mv0;
+import org.telegram.ui.lv0;
 public final class u0 {
     public static final HashMap f11519g = new HashMap();
     public final Context f11520a;
@@ -152,7 +152,7 @@ public final class u0 {
     }
 
     public final Activity f() {
-        Activity activity = LaunchActivity.J1;
+        Activity activity = LaunchActivity.I1;
         if (activity == null) {
             activity = AndroidUtilities.findActivity(this.f11520a);
         }
@@ -186,14 +186,14 @@ public final class u0 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f11522c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f10, 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
             c2Var.T = replaceTags;
             t0 t0Var = new t0(this.f11520a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int i11 = k6.L5;
             int x02 = k6.x0(null, i11, false);
-            c2Var.f20746b0 = t0Var;
-            c2Var.f20749c0 = x02;
-            c2Var.f20751d0 = -1;
+            c2Var.f20747b0 = t0Var;
+            c2Var.f20750c0 = x02;
+            c2Var.f20752d0 = -1;
             alertDialog$Builder.n(i11, null);
             if (!a() && (f7 = f()) != null && (!f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") || !f7.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
                 alertDialog$Builder.k(LocaleController.getString(R.string.BotLocationPermissionSettings), new ai.u2(f10, zArr, rVar, 8));
@@ -215,7 +215,7 @@ public final class u0 {
                                 boolean a2 = u0Var.a();
                                 org.telegram.ui.web.r rVar2 = rVar;
                                 if (!a2) {
-                                    af0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(15, u0Var, rVar2));
+                                    ze0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(15, u0Var, rVar2));
                                     return;
                                 }
                                 u0Var.d = true;
@@ -266,7 +266,7 @@ public final class u0 {
                             boolean a2 = u0Var.a();
                             org.telegram.ui.web.r rVar2 = rVar;
                             if (!a2) {
-                                af0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(15, u0Var, rVar2));
+                                ze0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(15, u0Var, rVar2));
                                 return;
                             }
                             u0Var.d = true;
@@ -317,7 +317,7 @@ public final class u0 {
                 }
             }
             if (location == null && !locationManager.isProviderEnabled("gps")) {
-                Context context = LaunchActivity.J1;
+                Context context = LaunchActivity.I1;
                 if (context == null) {
                     context = ApplicationLoader.applicationContext;
                 }
@@ -328,7 +328,7 @@ public final class u0 {
                         int i11 = k6.L5;
                         alertDialog$Builder.m(i10, 72, k6.x0(null, i11, false), null);
                         alertDialog$Builder.n(i11, null);
-                        alertDialog$Builder.f20678a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
+                        alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.GpsDisabledAlertText);
                         alertDialog$Builder.k(LocaleController.getString(R.string.Enable), new rc(context, 1));
                         alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
                         alertDialog$Builder.p();
@@ -371,7 +371,7 @@ public final class u0 {
         edit.apply();
     }
 
-    public final void l(boolean z10, final mv0 mv0Var) {
+    public final void l(boolean z10, final lv0 lv0Var) {
         this.d = true;
         if (z10 && !a()) {
             Activity f7 = f();
@@ -382,14 +382,14 @@ public final class u0 {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(this.f11522c));
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(f(), 0, null);
             SpannableStringBuilder replaceTags = AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BotLocationPermissionRequest, UserObject.getUserName(user), UserObject.getUserName(user)));
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
             c2Var.T = replaceTags;
             t0 t0Var = new t0(this.f11520a, UserConfig.getInstance(i10).getCurrentUser(), user);
             int i11 = k6.L5;
             int x02 = k6.x0(null, i11, false);
-            c2Var.f20746b0 = t0Var;
-            c2Var.f20749c0 = x02;
-            c2Var.f20751d0 = -1;
+            c2Var.f20747b0 = t0Var;
+            c2Var.f20750c0 = x02;
+            c2Var.f20752d0 = -1;
             alertDialog$Builder.n(i11, null);
             Activity f10 = f();
             if (f10 == null || (f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_COARSE_LOCATION") && f10.shouldShowRequestPermissionRationale("android.permission.ACCESS_FINE_LOCATION"))) {
@@ -406,7 +406,7 @@ public final class u0 {
                             case 0:
                                 u0 u0Var = this.f11401b;
                                 if (!u0Var.a()) {
-                                    af0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(16, u0Var, mv0Var));
+                                    ze0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(16, u0Var, lv0Var));
                                     return;
                                 }
                                 u0Var.d = true;
@@ -426,7 +426,7 @@ public final class u0 {
                                 while (it2.hasNext()) {
                                     ((Runnable) it2.next()).run();
                                 }
-                                Runnable runnable = mv0Var;
+                                Runnable runnable = lv0Var;
                                 if (runnable != null) {
                                     runnable.run();
                                     return;
@@ -451,7 +451,7 @@ public final class u0 {
                         case 0:
                             u0 u0Var = this.f11401b;
                             if (!u0Var.a()) {
-                                af0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(16, u0Var, mv0Var));
+                                ze0.e(new String[]{"android.permission.ACCESS_COARSE_LOCATION", "android.permission.ACCESS_FINE_LOCATION"}, new ai.o2(16, u0Var, lv0Var));
                                 return;
                             }
                             u0Var.d = true;
@@ -471,7 +471,7 @@ public final class u0 {
                             while (it2.hasNext()) {
                                 ((Runnable) it2.next()).run();
                             }
-                            Runnable runnable = mv0Var;
+                            Runnable runnable = lv0Var;
                             if (runnable != null) {
                                 runnable.run();
                                 return;
@@ -487,8 +487,8 @@ public final class u0 {
             while (it.hasNext()) {
                 ((Runnable) it.next()).run();
             }
-            if (mv0Var != null) {
-                mv0Var.run();
+            if (lv0Var != null) {
+                lv0Var.run();
             }
         }
         k();

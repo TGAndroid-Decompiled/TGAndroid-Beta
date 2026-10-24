@@ -1,34 +1,27 @@
 package org.telegram.ui.Components;
-public final class yg {
-    public static final yg f32911a;
-    public static final yg f32912b;
-    public static final yg f32913c;
-    public static final yg d;
-    public static final yg e;
-    public static final yg f32914f;
-    public static final yg[] h;
 
-    static {
-        ?? r02 = new Enum("VOICE", 0);
-        f32911a = r02;
-        ?? r12 = new Enum("VIDEO", 1);
-        f32912b = r12;
-        ?? r32 = new Enum("STICKER", 2);
-        f32913c = r32;
-        ?? r52 = new Enum("KEYBOARD", 3);
-        d = r52;
-        ?? r72 = new Enum("SMILE", 4);
-        e = r72;
-        ?? r92 = new Enum("GIF", 5);
-        f32914f = r92;
-        h = new yg[]{r02, r12, r32, r52, r72, r92};
+import android.content.Context;
+public class yg extends ak0 {
+    public wg f32908r;
+    public xg f32909s;
+    public final int v;
+    public final ad.g f32910w;
+
+    public yg(Context context) {
+        this(context, 32);
     }
 
-    public static yg valueOf(String str) {
-        return (yg) Enum.valueOf(yg.class, str);
+    public wg getCurrentState() {
+        return this.f32908r;
     }
 
-    public static yg[] values() {
-        return (yg[]) h.clone();
+    public final void j(org.telegram.ui.Components.wg r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.yg.j(org.telegram.ui.Components.wg, boolean):void");
+    }
+
+    public yg(Context context, int i10) {
+        super(context);
+        this.f32910w = new ad.g(this, 1);
+        this.v = i10;
     }
 }

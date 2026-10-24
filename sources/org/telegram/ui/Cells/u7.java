@@ -12,26 +12,26 @@ import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.LocationController;
-import org.telegram.ui.Components.rl;
+import org.telegram.ui.Components.pl;
 public final class u7 implements Runnable {
-    public final int f23739a;
-    public final FrameLayout f23740b;
-    public final double f23741c;
+    public final int f23740a;
+    public final FrameLayout f23741b;
+    public final double f23742c;
     public final double d;
 
     public u7(FrameLayout frameLayout, double d, double d10, int i10) {
-        this.f23739a = i10;
-        this.f23740b = frameLayout;
-        this.f23741c = d;
+        this.f23740a = i10;
+        this.f23741b = frameLayout;
+        this.f23742c = d;
         this.d = d10;
     }
 
     @Override
     public final void run() {
-        switch (this.f23739a) {
+        switch (this.f23740a) {
             case 0:
-                v7 v7Var = (v7) this.f23740b;
-                double d = this.f23741c;
+                v7 v7Var = (v7) this.f23741b;
+                double d = this.f23742c;
                 double d10 = this.d;
                 try {
                     List<Address> fromLocation = new Geocoder(ApplicationLoader.applicationContext, LocaleController.getInstance().getCurrentLocale()).getFromLocation(d, d10, 1);
@@ -72,8 +72,8 @@ public final class u7 implements Runnable {
                 AndroidUtilities.runOnUIThread(new u7(v7Var, d, d10, 1));
                 return;
             case 1:
-                v7 v7Var2 = (v7) this.f23740b;
-                double d11 = this.f23741c;
+                v7 v7Var2 = (v7) this.f23741b;
+                double d11 = this.f23742c;
                 double d12 = this.d;
                 v7Var2.H = d11;
                 v7Var2.I = d12;
@@ -85,7 +85,7 @@ public final class u7 implements Runnable {
                 n5Var.l(replaceEmoji, false);
                 return;
             default:
-                ((rl) this.f23740b).f0(this.f23741c, this.d);
+                ((pl) this.f23741b).e0(this.f23742c, this.d);
                 return;
         }
     }

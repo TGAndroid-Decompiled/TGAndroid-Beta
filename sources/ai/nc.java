@@ -5,7 +5,7 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-public final class nc extends org.telegram.ui.Components.w9 {
+public final class nc extends org.telegram.ui.Components.u9 {
     public wh.f G;
     public Path H;
     public RectF I;

@@ -1,66 +1,57 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLRPC;
-public abstract class ct extends b71 {
-    public final int P;
-    public final int Q;
-    public final ArrayList R;
-    public final ArrayList S;
-    public final ArrayList T;
-    public final ArrayList U;
-    public boolean V;
-    public boolean W;
-    public final ArrayList X;
-    public boolean Y;
-    public boolean Z;
-    public boolean f25418a0;
-    public int f25419b0;
-    public int f25420c0;
-    public String f25421d0;
-    public final zp f25422e0;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class ct extends AnimatorListenerAdapter {
+    public final int f25466a;
+    public final s4.b1 f25467b;
+    public final org.telegram.ui.Cells.q2 f25468c;
+    public final ht d;
 
-    public ct(mm0 mm0Var, Context context, int i10, int i11) {
-        super(mm0Var, context, i10, 0, false, null, null);
-        this.R = new ArrayList();
-        this.S = new ArrayList();
-        this.T = new ArrayList();
-        this.U = new ArrayList();
-        this.X = new ArrayList();
-        uo0 uo0Var = (uo0) this;
-        this.f25422e0 = new zp(uo0Var, 7);
-        this.v = new d(uo0Var, 9);
-        this.P = i10;
-        this.Q = i11;
-        N(false);
+    public ct(ht htVar, s4.b1 b1Var, org.telegram.ui.Cells.q2 q2Var, int i10) {
+        this.f25466a = i10;
+        this.d = htVar;
+        this.f25467b = b1Var;
+        this.f25468c = q2Var;
     }
 
-    public final void V(boolean r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ct.V(boolean):void");
-    }
-
-    public final void W() {
-        ArrayList arrayList = new ArrayList();
-        int i10 = this.P;
-        ArrayList<TLRPC.Dialog> allDialogs = MessagesController.getInstance(i10).getAllDialogs();
-        int size = allDialogs.size();
-        int i11 = 0;
-        while (i11 < size) {
-            TLRPC.Dialog dialog = allDialogs.get(i11);
-            i11++;
-            TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-dialog.f20347id));
-            if (chat != null && ChatObject.isChannelAndNotMegaGroup(chat) && ChatObject.isPublic(chat) && !ChatObject.isNotInChat(chat)) {
-                arrayList.add(chat);
-                if (arrayList.size() >= 100) {
-                    break;
-                }
-            }
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f25466a) {
+            case 0:
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.q2 q2Var = this.f25468c;
+                q2Var.setClipProgress(0.0f);
+                q2Var.setElevation(0.0f);
+                ht htVar = this.d;
+                s4.b1 b1Var = this.f25467b;
+                htVar.d(b1Var);
+                htVar.f27168x.remove(b1Var);
+                htVar.A();
+                return;
+            default:
+                animator.removeAllListeners();
+                org.telegram.ui.Cells.q2 q2Var2 = this.f25468c;
+                q2Var2.setClipProgress(0.0f);
+                q2Var2.setElevation(0.0f);
+                ht htVar2 = this.d;
+                s4.b1 b1Var2 = this.f25467b;
+                htVar2.d(b1Var2);
+                htVar2.f27168x.remove(b1Var2);
+                htVar2.A();
+                return;
         }
-        ArrayList arrayList2 = this.X;
-        arrayList2.clear();
-        arrayList2.addAll(arrayList);
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f25466a) {
+            case 0:
+                this.d.y();
+                return;
+            default:
+                this.d.y();
+                return;
+        }
     }
 }

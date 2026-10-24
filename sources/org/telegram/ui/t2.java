@@ -38,7 +38,7 @@ public final class t2 extends View implements org.telegram.ui.Cells.n9, f3 {
         if (c3Var == null) {
             return -1;
         }
-        int a2 = c3Var.a() + c3Var.f36233s;
+        int a2 = c3Var.a() + c3Var.f36208s;
         this.f41857a.getClass();
         return a2 - AndroidUtilities.dp(18);
     }
@@ -49,7 +49,7 @@ public final class t2 extends View implements org.telegram.ui.Cells.n9, f3 {
         if (c3Var == null) {
             return -1;
         }
-        int b10 = c3Var.b() + c3Var.f36233s;
+        int b10 = c3Var.b() + c3Var.f36208s;
         this.f41857a.getClass();
         return AndroidUtilities.dp(18) + b10;
     }
@@ -60,13 +60,13 @@ public final class t2 extends View implements org.telegram.ui.Cells.n9, f3 {
         if (c3Var == null) {
             return -1;
         }
-        int c10 = c3Var.c() + c3Var.f36233s;
+        int c10 = c3Var.c() + c3Var.f36208s;
         this.f41857a.getClass();
         return AndroidUtilities.dp(18) + c10;
     }
 
     public int getMinWidth() {
-        return org.telegram.messenger.sl.a(this);
+        return org.telegram.messenger.tl.a(this);
     }
 
     @Override
@@ -128,7 +128,7 @@ public final class t2 extends View implements org.telegram.ui.Cells.n9, f3 {
             TL_iv.pageBlockSubtitle pageblocksubtitle2 = this.f41860f;
             i4 i4Var = this.f41858b;
             if (i4Var != null && i4Var.G) {
-                alignment = org.telegram.ui.Components.ix0.a();
+                alignment = org.telegram.ui.Components.hx0.a();
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
@@ -138,7 +138,7 @@ public final class t2 extends View implements org.telegram.ui.Cells.n9, f3 {
                 f70Var.getClass();
                 i12 = this.f41859c.d.getHeight() + AndroidUtilities.dp(16);
                 c3 c3Var = this.f41859c;
-                c3Var.f36233s = this.d;
+                c3Var.f36208s = this.d;
                 c3Var.v = this.e;
             } else {
                 i12 = 0;

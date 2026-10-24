@@ -7,10 +7,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.Emoji;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i61;
-import org.telegram.ui.Components.uy;
+import org.telegram.ui.Components.h61;
+import org.telegram.ui.Components.sy;
 import org.telegram.ui.StickersActivity;
-public final class u1 implements uy {
+public final class u1 implements sy {
     public final d2 f15596a;
 
     public u1(d2 d2Var) {
@@ -114,7 +114,7 @@ public final class u1 implements uy {
 
     @Override
     public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
-        org.telegram.ui.Components.a6 a6Var;
+        org.telegram.ui.Components.y5 y5Var;
         d2 d2Var = this.f15596a;
         h1 a02 = d2.a0(d2Var);
         if (a02 != null) {
@@ -125,12 +125,12 @@ public final class u1 implements uy {
                 }
                 SpannableString spannableString = new SpannableString(str);
                 if (document != null) {
-                    a6Var = new org.telegram.ui.Components.a6(document, a02.getPaint().getFontMetricsInt());
+                    y5Var = new org.telegram.ui.Components.y5(document, a02.getPaint().getFontMetricsInt());
                 } else {
-                    a6Var = new org.telegram.ui.Components.a6(j10, a02.getPaint().getFontMetricsInt());
+                    y5Var = new org.telegram.ui.Components.y5(j10, a02.getPaint().getFontMetricsInt());
                 }
-                a6Var.cacheType = org.telegram.ui.Components.r5.g();
-                spannableString.setSpan(a6Var, 0, spannableString.length(), 33);
+                y5Var.cacheType = org.telegram.ui.Components.p5.g();
+                spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
                 a02.setText(a02.getText().insert(b02, spannableString));
                 int length = b02 + spannableString.length();
                 a02.setSelection(length, length);
@@ -152,7 +152,7 @@ public final class u1 implements uy {
     }
 
     @Override
-    public final void o(i61 i61Var) {
+    public final void o(h61 h61Var) {
     }
 
     @Override

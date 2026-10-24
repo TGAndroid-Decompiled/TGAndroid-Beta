@@ -7,16 +7,16 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class j3 extends View implements b6 {
-    public final l3 f20991a;
+    public final l3 f20992a;
 
     public j3(l3 l3Var, Context context) {
         super(context);
-        this.f20991a = l3Var;
+        this.f20992a = l3Var;
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f20991a.d);
+        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f20992a.d);
     }
 
     @Override
@@ -27,12 +27,12 @@ public final class j3 extends View implements b6 {
 
     @Override
     public final void updateColors() {
-        l3 l3Var = this.f20991a;
+        l3 l3Var = this.f20992a;
         try {
-            w3 w3Var = l3Var.f21603a;
+            w3 w3Var = l3Var.f21604a;
             if (w3Var != null) {
                 boolean z10 = false;
-                int navigationBarColor = w3Var.getNavigationBarColor(k6.x0(null, k6.f21125a7, false));
+                int navigationBarColor = w3Var.getNavigationBarColor(k6.x0(null, k6.f21126a7, false));
                 if (l3Var.d.getColor() != navigationBarColor) {
                     l3Var.d.setColor(navigationBarColor);
                     invalidate();

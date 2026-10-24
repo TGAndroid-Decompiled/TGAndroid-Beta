@@ -8,25 +8,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i5;
-import org.telegram.ui.Components.p6;
+import org.telegram.ui.Components.g5;
+import org.telegram.ui.Components.n6;
+import org.telegram.ui.Components.zr;
 public final class s extends EditTextBoldCursor {
-    public final i5 f13038b;
+    public final g5 f13038b;
     public int f13039c;
-    public final p6 d;
+    public final n6 d;
     public final g6 e;
 
     public s(Context context, g6 g6Var) {
         super(context);
         this.e = g6Var;
-        this.f13038b = new i5(this);
-        p6 p6Var = new p6(false, true, true);
-        this.d = p6Var;
-        p6Var.n(0.2f, 160L, bs.h);
-        p6Var.w(AndroidUtilities.dp(15.33f));
-        p6Var.setCallback(this);
-        p6Var.f29437b = 5;
+        this.f13038b = new g5(this);
+        n6 n6Var = new n6(false, true, true);
+        this.d = n6Var;
+        n6Var.n(0.2f, 160L, zr.h);
+        n6Var.w(AndroidUtilities.dp(15.33f));
+        n6Var.setCallback(this);
+        n6Var.f28797b = 5;
     }
 
     @Override
@@ -34,15 +34,15 @@ public final class s extends EditTextBoldCursor {
         int i10;
         super.dispatchDraw(canvas);
         if (this.f13039c < 0) {
-            i10 = k6.f21404p7;
+            i10 = k6.f21405p7;
         } else {
             i10 = k6.P5;
         }
         int a2 = this.f13038b.a(k6.w0(i10, this.e), false);
-        p6 p6Var = this.d;
-        p6Var.u(a2);
-        p6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        p6Var.draw(canvas);
+        n6 n6Var = this.d;
+        n6Var.u(a2);
+        n6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
+        n6Var.draw(canvas);
     }
 
     @Override
@@ -53,15 +53,15 @@ public final class s extends EditTextBoldCursor {
     @Override
     public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
         super.onTextChanged(charSequence, i10, i11, i12);
-        p6 p6Var = this.d;
-        if (p6Var != null) {
+        n6 n6Var = this.d;
+        if (n6Var != null) {
             this.f13039c = 32 - charSequence.length();
-            p6Var.a();
+            n6Var.a();
             String str = "";
             if (this.f13039c <= 4) {
                 str = "" + this.f13039c;
             }
-            p6Var.t(str, true, true);
+            n6Var.t(str, true, true);
         }
     }
 

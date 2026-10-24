@@ -1,7 +1,7 @@
 package yh;
 
-import org.telegram.ui.Components.j71;
-public final class n2 extends j71 {
+import org.telegram.ui.Components.i71;
+public final class n2 extends i71 {
     @Override
     public final Integer X0(int i10) {
         return 0;

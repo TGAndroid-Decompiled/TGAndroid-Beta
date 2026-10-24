@@ -1,16 +1,98 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.tl.TL_account;
-public final class mf1 extends bg1 {
-    public final TwoStepVerificationActivity f39566k0;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class mf1 extends org.telegram.ui.Components.km0 {
+    public final Context f39584c;
+    public final TwoStepVerificationActivity d;
 
-    public mf1(TwoStepVerificationActivity twoStepVerificationActivity, int i10, TL_account.Password password) {
-        super(i10, 4, password);
-        this.f39566k0 = twoStepVerificationActivity;
+    public mf1(TwoStepVerificationActivity twoStepVerificationActivity, Context context) {
+        this.d = twoStepVerificationActivity;
+        this.f39584c = context;
     }
 
     @Override
-    public final void B0() {
-        this.f39566k0.N = true;
+    public final boolean D(s4.b1 b1Var) {
+        if (b1Var.f46345f == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+        if (!twoStepVerificationActivity.G && twoStepVerificationActivity.I != null) {
+            return twoStepVerificationActivity.T;
+        }
+        return 0;
+    }
+
+    @Override
+    public final int j(int i10) {
+        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+        if (i10 != twoStepVerificationActivity.P && i10 != twoStepVerificationActivity.S) {
+            return 0;
+        }
+        return 1;
+    }
+
+    @Override
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        int i12;
+        int i13 = b1Var.f46345f;
+        View view = b1Var.f46342a;
+        TwoStepVerificationActivity twoStepVerificationActivity = this.d;
+        if (i13 != 0) {
+            if (i13 == 1) {
+                org.telegram.ui.Cells.e9 e9Var = (org.telegram.ui.Cells.e9) view;
+                if (i10 == twoStepVerificationActivity.P) {
+                    e9Var.setText(LocaleController.getString(R.string.SetAdditionalPasswordInfo));
+                    return;
+                } else if (i10 == twoStepVerificationActivity.S) {
+                    e9Var.setText(LocaleController.getString(R.string.EnabledPasswordText));
+                    return;
+                } else {
+                    return;
+                }
+            }
+            return;
+        }
+        org.telegram.ui.Cells.ca caVar = (org.telegram.ui.Cells.ca) view;
+        int i14 = org.telegram.ui.ActionBar.k6.G6;
+        caVar.setTag(Integer.valueOf(i14));
+        org.telegram.ui.ActionBar.r6.W(caVar.getTextView(), i14, null);
+        i11 = twoStepVerificationActivity.changePasswordRow;
+        if (i10 == i11) {
+            caVar.b(LocaleController.getString(R.string.ChangePassword), true);
+        } else if (i10 != twoStepVerificationActivity.O) {
+            i12 = twoStepVerificationActivity.turnPasswordOffRow;
+            if (i10 == i12) {
+                caVar.b(LocaleController.getString(R.string.TurnPasswordOff), true);
+            } else if (i10 == twoStepVerificationActivity.R) {
+                caVar.b(LocaleController.getString(R.string.ChangeRecoveryEmail), false);
+            } else if (i10 == twoStepVerificationActivity.Q) {
+                caVar.b(LocaleController.getString(R.string.SetRecoveryEmail), false);
+            }
+        } else {
+            caVar.b(LocaleController.getString(R.string.SetAdditionalPassword), true);
+        }
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        View caVar;
+        Context context = this.f39584c;
+        if (i10 != 0) {
+            caVar = new org.telegram.ui.Cells.e9(context);
+        } else {
+            caVar = new org.telegram.ui.Cells.ca(context);
+            org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, caVar, null);
+        }
+        return new s4.b1(caVar);
     }
 }

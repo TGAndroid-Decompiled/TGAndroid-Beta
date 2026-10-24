@@ -2,7 +2,7 @@ package ai;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.if0;
+import org.telegram.ui.hf0;
 public final class x8 implements Runnable {
     public final int f2451a;
     public final boolean[] f2452b;
@@ -34,7 +34,7 @@ public final class x8 implements Runnable {
                     zArr2[0] = true;
                     callback2.run(Boolean.TRUE);
                 }
-                AndroidUtilities.runOnUIThread(new if0(4), 220L);
+                AndroidUtilities.runOnUIThread(new hf0(4), 220L);
                 return;
             default:
                 boolean[] zArr3 = this.f2452b;

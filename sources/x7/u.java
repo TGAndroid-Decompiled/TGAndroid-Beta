@@ -3,12 +3,12 @@ package x7;
 import java.util.Iterator;
 import java.util.Map;
 public final class u extends p {
-    public final transient com.google.android.gms.internal.cast.j0 f50001c;
+    public final transient com.google.android.gms.internal.cast.j0 f50000c;
     public final transient Object[] d;
     public final transient int e = 1;
 
     public u(com.google.android.gms.internal.cast.j0 j0Var, Object[] objArr) {
-        this.f50001c = j0Var;
+        this.f50000c = j0Var;
         this.d = objArr;
     }
 
@@ -18,7 +18,7 @@ public final class u extends p {
             Map.Entry entry = (Map.Entry) obj;
             Object key = entry.getKey();
             Object value = entry.getValue();
-            if (value != null && value.equals(this.f50001c.get(key))) {
+            if (value != null && value.equals(this.f50000c.get(key))) {
                 return true;
             }
         }
@@ -27,20 +27,20 @@ public final class u extends p {
 
     @Override
     public final int h(Object[] objArr) {
-        o oVar = this.f49955b;
+        o oVar = this.f49954b;
         if (oVar == null) {
             oVar = new t(this);
-            this.f49955b = oVar;
+            this.f49954b = oVar;
         }
         return oVar.h(objArr);
     }
 
     @Override
     public final Iterator iterator() {
-        o oVar = this.f49955b;
+        o oVar = this.f49954b;
         if (oVar == null) {
             oVar = new t(this);
-            this.f49955b = oVar;
+            this.f49954b = oVar;
         }
         return oVar.listIterator(0);
     }

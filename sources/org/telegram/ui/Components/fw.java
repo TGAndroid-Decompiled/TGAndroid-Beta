@@ -1,18 +1,18 @@
 package org.telegram.ui.Components;
-public final class fw extends sg.c1 {
-    @Override
-    public final void invalidate() {
-        if (ah.x0.b(this)) {
-            return;
-        }
-        super.invalidate();
+
+import android.content.Context;
+import android.view.MotionEvent;
+public final class fw extends ew {
+    public final gw O;
+
+    public fw(gw gwVar, Context context, int i10) {
+        super(gwVar.f26803s, context, i10);
+        this.O = gwVar;
     }
 
     @Override
-    public final void invalidate(int i10, int i11, int i12, int i13) {
-        if (ah.x0.b(this)) {
-            return;
-        }
-        super.invalidate(i10, i11, i12, i13);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        this.O.d(motionEvent);
+        return super.onTouchEvent(motionEvent);
     }
 }

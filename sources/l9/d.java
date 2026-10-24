@@ -54,31 +54,31 @@ public final class d implements qa.b {
                     } catch (PackageManager.NameNotFoundException unused) {
                     }
                 }
-                obj.f48768a = z11;
+                obj.f48767a = z11;
                 return obj;
             case 1:
                 return new oa.g((Context) this.f16022b, (String) this.f16023c);
             default:
                 r9.g gVar = (r9.g) this.f16023c;
                 r9.a aVar2 = (r9.a) this.f16022b;
-                r9.d dVar = aVar2.f45545f;
+                r9.d dVar = aVar2.f45544f;
                 ?? obj2 = new Object();
                 HashSet hashSet = new HashSet();
                 HashSet hashSet2 = new HashSet();
                 HashSet hashSet3 = new HashSet();
                 HashSet hashSet4 = new HashSet();
                 HashSet hashSet5 = new HashSet();
-                Set<r9.j> set = aVar2.f45544c;
-                Set set2 = aVar2.f45546g;
+                Set<r9.j> set = aVar2.f45543c;
+                Set set2 = aVar2.f45545g;
                 for (r9.j jVar : set) {
-                    int i11 = jVar.f45562c;
-                    int i12 = jVar.f45561b;
+                    int i11 = jVar.f45561c;
+                    int i12 = jVar.f45560b;
                     if (i11 == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    r rVar = jVar.f45560a;
+                    r rVar = jVar.f45559a;
                     if (z10) {
                         if (i12 == 2) {
                             hashSet4.add(rVar);

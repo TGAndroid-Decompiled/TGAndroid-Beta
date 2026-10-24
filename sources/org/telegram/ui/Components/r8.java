@@ -1,91 +1,34 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-public final class r8 implements org.telegram.ui.ActionBar.z1, vq {
-    public final int f30114a;
-    public final e9 f30115b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class r8 extends AnimatorListenerAdapter {
+    public final int f30097a;
+    public final c9 f30098b;
 
-    public r8(e9 e9Var, int i10) {
-        this.f30114a = i10;
-        this.f30115b = e9Var;
+    public r8(c9 c9Var, int i10) {
+        this.f30097a = i10;
+        this.f30098b = c9Var;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f30114a) {
+    public final void onAnimationEnd(Animator animator) {
+        float f7;
+        switch (this.f30097a) {
             case 0:
-                this.f30115b.finishFragment();
+                super.onAnimationEnd(animator);
+                this.f30098b.f25261f = false;
                 return;
             default:
-                this.f30115b.finishFragment();
+                c9 c9Var = this.f30098b;
+                if (c9Var.F) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                c9Var.i0(f7, false);
+                c9Var.F = false;
                 return;
         }
-    }
-
-    @Override
-    public void j0(int i10, int i11, boolean z10) {
-        e9 e9Var = this.f30115b;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 != 2) {
-                    if (i11 == 3) {
-                        a9 a9Var = e9Var.Y;
-                        int i12 = a9Var.f24664f;
-                        if (i12 != i10 && (i12 == 0 || i10 == 0)) {
-                            a9 a2 = a9Var.a();
-                            e9Var.Y = a2;
-                            e9Var.f25925a.b(a2, true);
-                            e9Var.n0();
-                        }
-                        e9Var.Y.f24664f = i10;
-                    }
-                } else {
-                    a9 a9Var2 = e9Var.Y;
-                    int i13 = a9Var2.e;
-                    if (i13 != i10 && (i13 == 0 || i10 == 0)) {
-                        a9 a10 = a9Var2.a();
-                        e9Var.Y = a10;
-                        e9Var.f25925a.b(a10, true);
-                        e9Var.n0();
-                    }
-                    e9Var.Y.e = i10;
-                }
-            } else {
-                a9 a9Var3 = e9Var.Y;
-                int i14 = a9Var3.d;
-                if (i14 != i10 && (i14 == 0 || i10 == 0)) {
-                    a9 a11 = a9Var3.a();
-                    e9Var.Y = a11;
-                    e9Var.f25925a.b(a11, true);
-                    e9Var.n0();
-                }
-                e9Var.Y.d = i10;
-            }
-        } else {
-            a9 a9Var4 = e9Var.Y;
-            int i15 = a9Var4.f24663c;
-            if (i15 != i10 && (i15 == 0 || i10 == 0)) {
-                a9 a12 = a9Var4.a();
-                e9Var.Y = a12;
-                e9Var.f25925a.b(a12, true);
-                e9Var.n0();
-            }
-            e9Var.Y.f24663c = i10;
-        }
-        NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needCheckSystemBarColors, new Object[0]);
-        e9Var.f25925a.invalidate();
-    }
-
-    @Override
-    public int r0(int i10) {
-        return 0;
-    }
-
-    @Override
-    public void k(boolean z10) {
-    }
-
-    @Override
-    public void u() {
     }
 }

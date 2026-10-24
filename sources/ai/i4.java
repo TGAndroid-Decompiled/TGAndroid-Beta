@@ -8,7 +8,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bz;
+import org.telegram.ui.Components.zy;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.sn;
 import org.telegram.ui.tt;
@@ -47,7 +47,7 @@ public final class i4 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new p4((vo) this.f1476c, (TLRPC.TL_channels_toggleUsername) this.d, tLObject, (TLRPC.TL_username) this.e, this.f1475b, tL_error));
                 return;
             case 5:
-                AndroidUtilities.runOnUIThread(new ei.s1((bz) this.f1476c, (String) this.d, this.f1475b, (String) this.e, tLObject));
+                AndroidUtilities.runOnUIThread(new ei.s1((zy) this.f1476c, (String) this.d, this.f1475b, (String) this.e, tLObject));
                 return;
             default:
                 AndroidUtilities.runOnUIThread(new p4((tt) this.f1476c, tLObject, (ei.d) this.d, this.f1475b, (HashSet) this.e, tL_error));

@@ -33,9 +33,9 @@ import org.telegram.messenger.support.LongSparseIntArray;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.v90;
-import org.telegram.ui.Components.yc;
-import org.telegram.ui.Components.z90;
+import org.telegram.ui.Components.t90;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.x90;
 public final class u7 implements Runnable {
     public final int f5988a;
     public final Object f5989b;
@@ -86,9 +86,9 @@ public final class u7 implements Runnable {
                     view.performHapticFeedback(0);
                 } catch (Exception unused) {
                 }
-                yc ycVar = x7Var.H;
-                if (ycVar != null) {
-                    ycVar.c(false);
+                wc wcVar = x7Var.H;
+                if (wcVar != null) {
+                    wcVar.c(false);
                 }
                 ViewParent parent = view.getParent();
                 if (parent instanceof ViewGroup) {
@@ -99,15 +99,15 @@ public final class u7 implements Runnable {
                 return;
             case 5:
                 p8 p8Var = (p8) this.f5989b;
-                z90 z90Var = (z90) this.f5990c;
-                z90 z90Var2 = p8Var.f5735a;
-                if (z90Var == z90Var2 && z90Var2 != null) {
-                    CharacterStyle characterStyle = z90Var2.f33177i;
+                x90 x90Var = (x90) this.f5990c;
+                x90 x90Var2 = p8Var.f5735a;
+                if (x90Var == x90Var2 && x90Var2 != null) {
+                    CharacterStyle characterStyle = x90Var2.f32544i;
                     if (characterStyle instanceof URLSpan) {
                         q8 q8Var = p8Var.v;
-                        v90 v90Var = p8Var.f5737c;
-                        Objects.requireNonNull(v90Var);
-                        q8Var.J.H((URLSpan) characterStyle, q8Var, new androidx.fragment.app.d(v90Var, 22));
+                        t90 t90Var = p8Var.f5737c;
+                        Objects.requireNonNull(t90Var);
+                        q8Var.J.H((URLSpan) characterStyle, q8Var, new androidx.fragment.app.d(t90Var, 22));
                         p8Var.f5735a = null;
                         return;
                     }
@@ -319,7 +319,7 @@ public final class u7 implements Runnable {
                 qf.b bVar3 = (qf.b) this.f5989b;
                 AtomicBoolean atomicBoolean2 = (AtomicBoolean) this.f5990c;
                 synchronized (bVar3) {
-                    if (atomicBoolean2.get() && (wakeLock = (PowerManager.WakeLock) bVar3.f44865c) != null) {
+                    if (atomicBoolean2.get() && (wakeLock = (PowerManager.WakeLock) bVar3.f44864c) != null) {
                         wakeLock.release();
                     }
                 }

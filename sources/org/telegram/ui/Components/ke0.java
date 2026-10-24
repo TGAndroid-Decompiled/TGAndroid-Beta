@@ -1,44 +1,92 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class ke0 extends AnimatorListenerAdapter {
-    public final int f28025a;
-    public final ei.x8 f28026b;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class ke0 extends FrameLayout {
+    public final ImageView f28008a;
+    public final TextView f28009b;
+    public final TextView f28010c;
 
-    public ke0(ei.x8 x8Var, int i10) {
-        this.f28025a = i10;
-        this.f28026b = x8Var;
+    public ke0(Context context) {
+        super(context);
+        ImageView imageView = new ImageView(context);
+        this.f28008a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.fingerprint);
+        addView(imageView, w7.z5.e(-1, -1, 119));
+        TextView textView = new TextView(context);
+        this.f28009b = textView;
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 26.0f);
+        textView.setGravity(17);
+        addView(textView, w7.z5.d(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
+        TextView textView2 = new TextView(context);
+        this.f28010c = textView2;
+        textView2.setTypeface(AndroidUtilities.bold());
+        textView2.setTextSize(1, 10.0f);
+        textView2.setTextColor(Integer.MAX_VALUE);
+        textView2.setGravity(17);
+        addView(textView2, w7.z5.d(-1, -2.0f, 17, 0.0f, 14.0f, 0.0f, 0.0f));
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f28025a) {
-            case 0:
-                ei.x8 x8Var = this.f28026b;
-                AnimatorSet animatorSet = (AnimatorSet) x8Var.e;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    x8Var.e = null;
-                    return;
-                }
-                return;
-            case 1:
-                ei.x8 x8Var2 = this.f28026b;
-                AnimatorSet animatorSet2 = (AnimatorSet) x8Var2.e;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    x8Var2.e = null;
-                    return;
-                }
-                return;
-            default:
-                ei.x8 x8Var3 = this.f28026b;
-                AnimatorSet animatorSet3 = (AnimatorSet) x8Var3.e;
-                if (animatorSet3 != null && animatorSet3.equals(animator)) {
-                    x8Var3.e = null;
-                    return;
-                }
-                return;
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.setClassName("android.widget.Button");
+    }
+
+    public void setImage(int i10) {
+        ImageView imageView = this.f28008a;
+        imageView.setVisibility(0);
+        this.f28009b.setVisibility(8);
+        this.f28010c.setVisibility(8);
+        imageView.setImageResource(i10);
+    }
+
+    public void setNum(int i10) {
+        this.f28008a.setVisibility(8);
+        TextView textView = this.f28009b;
+        textView.setVisibility(0);
+        TextView textView2 = this.f28010c;
+        textView2.setVisibility(0);
+        String str = "";
+        textView.setText("" + i10);
+        if (i10 != 0) {
+            switch (i10) {
+                case 2:
+                    str = "ABC";
+                    break;
+                case 3:
+                    str = "DEF";
+                    break;
+                case 4:
+                    str = "GHI";
+                    break;
+                case 5:
+                    str = "JKL";
+                    break;
+                case 6:
+                    str = "MNO";
+                    break;
+                case 7:
+                    str = "PQRS";
+                    break;
+                case 8:
+                    str = "TUV";
+                    break;
+                case 9:
+                    str = "WXYZ";
+                    break;
+            }
+        } else {
+            str = "+";
         }
+        textView2.setText(str);
     }
 }

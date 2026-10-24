@@ -1,90 +1,54 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class as extends Drawable {
-    public final Drawable f24832a;
-    public final Drawable f24833b;
-    public float f24834c;
-    public float d = 255.0f;
-    public ValueAnimator e;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.EditText;
+public final class as implements Runnable {
+    public final int f24793a;
+    public final ds f24794b;
 
-    public as(Drawable drawable, Drawable drawable2) {
-        this.f24832a = drawable;
-        this.f24833b = drawable2;
-        if (drawable != null) {
-            drawable.setCallback(new zr(this, 0));
+    public as(ds dsVar, int i10) {
+        this.f24793a = i10;
+        this.f24794b = dsVar;
+    }
+
+    @Override
+    public final void run() {
+        View view;
+        switch (this.f24793a) {
+            case 0:
+                ds dsVar = this.f24794b;
+                if (dsVar.f25822b == null && (view = dsVar.d) != null) {
+                    View findFocus = view.findFocus();
+                    if (findFocus instanceof EditText) {
+                        dsVar.f25822b = (EditText) findFocus;
+                    }
+                }
+                EditText editText = dsVar.f25822b;
+                if (editText != null) {
+                    if (editText.length() != 0 || dsVar.e) {
+                        try {
+                            dsVar.performHapticFeedback(3, 2);
+                            dsVar.playSoundEffect(0);
+                        } catch (Exception unused) {
+                        }
+                        dsVar.f25822b.dispatchKeyEvent(new KeyEvent(0, 67));
+                        dsVar.f25822b.dispatchKeyEvent(new KeyEvent(1, 67));
+                        if (dsVar.f25824f) {
+                            dsVar.postDelayed(dsVar.h, 50L);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                ds dsVar2 = this.f24794b;
+                dsVar2.f25825n = false;
+                dsVar2.f25824f = true;
+                dsVar2.h.run();
+                return;
         }
-        if (drawable2 != null) {
-            drawable2.setCallback(new zr(this, 1));
-        }
-    }
-
-    public final void a(float f7) {
-        ValueAnimator valueAnimator = this.e;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-        }
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f24834c, f7);
-        this.e = ofFloat;
-        ofFloat.addUpdateListener(new l6(this, 16));
-        this.e.setDuration(Math.abs(this.f24834c - f7) * 200.0f);
-        this.e.setInterpolator(bs.f25133f);
-        this.e.start();
-    }
-
-    public final void b(float f7) {
-        this.f24834c = f7;
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int i10 = (int) ((1.0f - this.f24834c) * this.d);
-        Drawable drawable = this.f24832a;
-        drawable.setAlpha(i10);
-        int i11 = (int) (this.d * this.f24834c);
-        Drawable drawable2 = this.f24833b;
-        drawable2.setAlpha(i11);
-        if (i10 > 0) {
-            drawable.draw(canvas);
-        }
-        if (i11 > 0) {
-            drawable2.draw(canvas);
-        }
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f24832a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f24832a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -3;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f24832a.setBounds(rect);
-        this.f24833b.setBounds(rect);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.d = i10;
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f24832a.setColorFilter(colorFilter);
     }
 }

@@ -1,24 +1,26 @@
 package org.telegram.ui.Components;
+public final class a5 {
+    public final int f24623a;
+    public final int f24624b;
+    public final int f24625c;
+    public final int d;
+    public final int e;
+    public final int f24626f;
+    public final int f24627g;
+    public final int h;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class a5 extends FrameLayout {
-    public final org.telegram.ui.Cells.z1[] f24646a;
-
-    public a5(Context context, org.telegram.ui.Cells.z1[] z1VarArr) {
-        super(context);
-        this.f24646a = z1VarArr;
+    public a5(org.telegram.ui.ActionBar.g6 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a5.<init>(org.telegram.ui.ActionBar.g6):void");
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        org.telegram.ui.Cells.z1[] z1VarArr = this.f24646a;
-        if (z1VarArr[0] != null) {
-            int measuredWidth = getMeasuredWidth();
-            int measuredHeight = getMeasuredHeight();
-            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + z1VarArr[0].getMeasuredHeight() + measuredHeight);
-        }
+    public a5(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
+        this.f24623a = i10;
+        this.f24624b = i11;
+        this.f24625c = i12;
+        this.d = i13;
+        this.e = i14;
+        this.f24626f = i15;
+        this.f24627g = i16;
+        this.h = i17;
     }
 }

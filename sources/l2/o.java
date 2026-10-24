@@ -8,7 +8,7 @@ import c3.k0;
 import c3.l0;
 import e2.m0;
 import e2.x;
-import org.telegram.ui.Components.jp0;
+import org.telegram.ui.Components.ip0;
 import u2.e1;
 public final class o implements l0 {
     public final e1 f15947a;
@@ -68,16 +68,16 @@ public final class o implements l0 {
             }
         }
         e1 e1Var = this.f15947a;
-        jp0 jp0Var = e1Var.f47737a;
+        ip0 ip0Var = e1Var.f47736a;
         synchronized (e1Var) {
-            int i13 = e1Var.f47752s;
+            int i13 = e1Var.f47751s;
             if (i13 == 0) {
                 j11 = -1;
             } else {
                 j11 = e1Var.j(i13);
             }
         }
-        jp0Var.b(j11);
+        ip0Var.b(j11);
     }
 
     @Override

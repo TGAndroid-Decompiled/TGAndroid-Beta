@@ -77,9 +77,9 @@ public interface ft {
 
     void s();
 
-    void t(CharSequence charSequence, String str, org.telegram.ui.Components.qy qyVar);
+    void t(CharSequence charSequence, String str, org.telegram.ui.Components.oy oyVar);
 
-    org.telegram.ui.Components.j80 u(ah.v vVar);
+    org.telegram.ui.Components.h80 u(ah.v vVar);
 
     void v(TLRPC.Document document);
 

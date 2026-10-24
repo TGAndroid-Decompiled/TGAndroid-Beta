@@ -1,43 +1,63 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
+import android.graphics.Typeface;
+import android.text.TextUtils;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class x10 implements Runnable {
-    public final FragmentContextView f32396a;
+public final class x10 extends c8 {
+    public final Context E;
+    public final FragmentContextView F;
+    public final int f32477y;
 
-    public x10(FragmentContextView fragmentContextView) {
-        this.f32396a = fragmentContextView;
+    public x10(FragmentContextView fragmentContextView, Context context, Context context2, int i10) {
+        super(context);
+        this.f32477y = i10;
+        this.F = fragmentContextView;
+        this.E = context2;
     }
 
     @Override
-    public final void run() {
-        String formatFullDuration;
-        FragmentContextView fragmentContextView = this.f32396a;
-        org.telegram.ui.ActionBar.o2 o2Var = fragmentContextView.h;
-        if (fragmentContextView.f24367g0 != null && (o2Var instanceof org.telegram.ui.sn)) {
-            ChatObject.Call groupCall = fragmentContextView.f24373n.getGroupCall();
-            if (groupCall != null && groupCall.isScheduled()) {
-                int currentTime = groupCall.call.schedule_date - o2Var.getConnectionsManager().getCurrentTime();
-                if (currentTime >= 86400) {
-                    formatFullDuration = LocaleController.formatPluralString("Days", Math.round(currentTime / 86400.0f), new Object[0]);
+    public final TextView a() {
+        switch (this.f32477y) {
+            case 0:
+                TextView textView = new TextView(this.E);
+                textView.setMaxLines(1);
+                textView.setLines(1);
+                textView.setSingleLine(true);
+                textView.setEllipsize(TextUtils.TruncateAt.END);
+                textView.setTextSize(1, 15.0f);
+                textView.setGravity(19);
+                FragmentContextView fragmentContextView = this.F;
+                int i10 = fragmentContextView.U;
+                if (i10 != 0 && i10 != 2) {
+                    if (i10 == 4) {
+                        textView.setGravity(51);
+                        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21481t7, fragmentContextView.f24378q0);
+                        textView.setTypeface(AndroidUtilities.bold());
+                        textView.setTextSize(1, 15.0f);
+                    } else if (i10 == 1 || i10 == 3) {
+                        textView.setGravity(19);
+                        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.A7, fragmentContextView.f24378q0);
+                        textView.setTypeface(AndroidUtilities.bold());
+                        textView.setTextSize(1, 14.0f);
+                    }
                 } else {
-                    formatFullDuration = AndroidUtilities.formatFullDuration(currentTime);
+                    textView.setGravity(19);
+                    textView.setTypeface(Typeface.DEFAULT);
+                    textView.setTextSize(1, 15.0f);
                 }
-                p6 p6Var = fragmentContextView.f24370j0;
-                if (!fragmentContextView.f24369i0) {
-                    formatFullDuration = LocaleController.getString(R.string.VoipChatNotify);
-                }
-                p6Var.t(formatFullDuration, true, true);
-                AndroidUtilities.runOnUIThread(fragmentContextView.m0, 1000L);
-                fragmentContextView.f24380s.invalidate();
-                return;
-            }
-            fragmentContextView.f24368h0 = false;
-            fragmentContextView.f24372l0 = false;
-            return;
+                return textView;
+            default:
+                TextView textView2 = new TextView(this.E);
+                textView2.setMaxLines(1);
+                textView2.setLines(1);
+                textView2.setSingleLine(true);
+                textView2.setEllipsize(TextUtils.TruncateAt.END);
+                textView2.setGravity(3);
+                textView2.setTextSize(1, 13.0f);
+                org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21555x7, this.F.f24378q0);
+                return textView2;
         }
-        fragmentContextView.f24372l0 = false;
     }
 }

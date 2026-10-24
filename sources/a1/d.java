@@ -35,7 +35,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.c2;
@@ -45,42 +45,42 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.ai;
+import org.telegram.ui.Components.b5;
+import org.telegram.ui.Components.co;
 import org.telegram.ui.Components.d5;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.fo;
-import org.telegram.ui.Components.k8;
-import org.telegram.ui.Components.l01;
-import org.telegram.ui.Components.o01;
+import org.telegram.ui.Components.i8;
+import org.telegram.ui.Components.k01;
+import org.telegram.ui.Components.md0;
+import org.telegram.ui.Components.n01;
 import org.telegram.ui.Components.od0;
-import org.telegram.ui.Components.qd0;
-import org.telegram.ui.Components.td0;
-import org.telegram.ui.Components.ti;
-import org.telegram.ui.Components.wd0;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.rd0;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.ud0;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.yh;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.NotificationsCustomSettingsActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.Wallet.r1;
-import org.telegram.ui.b61;
+import org.telegram.ui.a61;
 import org.telegram.ui.ey;
 import org.telegram.ui.ft;
-import org.telegram.ui.h71;
-import org.telegram.ui.ig0;
+import org.telegram.ui.g71;
+import org.telegram.ui.hg0;
 import org.telegram.ui.k4;
-import org.telegram.ui.l61;
-import org.telegram.ui.rj0;
+import org.telegram.ui.k61;
+import org.telegram.ui.qj0;
 import org.telegram.ui.sn;
 import org.telegram.ui.u50;
-import org.telegram.ui.vd1;
+import org.telegram.ui.ud1;
 import org.telegram.ui.x30;
+import org.telegram.ui.xe1;
 import org.telegram.ui.xx;
 import org.telegram.ui.y30;
-import org.telegram.ui.ye1;
 import v0.i;
 import w7.z5;
 import x2.k;
-public final class d implements OnFailureListener, BillingController.ProductDetailsResponseListenerLegacy, xx, z1, d5, od0, MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback, Utilities.Callback2Return, k {
+public final class d implements OnFailureListener, BillingController.ProductDetailsResponseListenerLegacy, xx, z1, b5, md0, MediaDataController.KeywordResultCallback, MessagesStorage.LongCallback, Utilities.Callback2Return, k {
     public final int f36a;
     public final Object f37b;
     public final Object f38c;
@@ -103,9 +103,9 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 sn.Z((sn) this.f37b, (TLRPC.TL_document) this.f38c, (String) this.d, this.e, z10, i10);
                 return;
             case 10:
-                fo foVar = (fo) this.f37b;
-                foVar.f26403j0.c((TLRPC.TL_messageMediaPoll) this.f38c, foVar.O, foVar.f26408m1, (ArrayList) this.d, z10, i10, ((Long) this.e).longValue());
-                foVar.f28366b.dismiss(true);
+                co coVar = (co) this.f37b;
+                coVar.f25375j0.c((TLRPC.TL_messageMediaPoll) this.f38c, coVar.O, coVar.f25380m1, (ArrayList) this.d, z10, i10, ((Long) this.e).longValue());
+                coVar.f27704b.dismiss(true);
                 return;
             case 11:
                 ft ftVar = (ft) this.f37b;
@@ -170,9 +170,9 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 return;
             case 14:
                 String str2 = (String) obj;
-                Pattern pattern = LaunchActivity.E1;
-                rj0 rj0Var = new rj0((LaunchActivity) obj4, (o2) obj3);
-                rj0Var.x((String) obj2, false);
+                Pattern pattern = LaunchActivity.D1;
+                qj0 qj0Var = new qj0((LaunchActivity) obj4, (o2) obj3);
+                qj0Var.x((String) obj2, false);
                 if (str2 != null) {
                     String[] split = str2.split(" ", 2);
                     String str3 = split[0];
@@ -181,23 +181,23 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     } else {
                         str = null;
                     }
-                    td0 td0Var = rj0Var.f41162c;
-                    if (td0Var != null) {
-                        td0Var.getEditText().setText(str3);
+                    rd0 rd0Var = qj0Var.f40850c;
+                    if (rd0Var != null) {
+                        rd0Var.getEditText().setText(str3);
                     } else {
-                        rj0Var.J = str3;
+                        qj0Var.J = str3;
                     }
-                    td0 td0Var2 = rj0Var.d;
-                    if (td0Var2 != null) {
-                        td0Var2.getEditText().setText(str);
+                    rd0 rd0Var2 = qj0Var.d;
+                    if (rd0Var2 != null) {
+                        rd0Var2.getEditText().setText(str);
                     } else {
-                        rj0Var.K = str;
+                        qj0Var.K = str;
                     }
                 }
-                rj0Var.show();
+                qj0Var.show();
                 return;
             case 15:
-                ig0.W((ig0) obj4, (String) obj3, (String) obj2, (String) obj);
+                hg0.W((hg0) obj4, (String) obj3, (String) obj2, (String) obj);
                 return;
             case 16:
                 NotificationsCustomSettingsActivity notificationsCustomSettingsActivity = (NotificationsCustomSettingsActivity) obj4;
@@ -206,33 +206,33 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 edit.putBoolean((String) obj2, ((boolean[]) obj)[0]);
                 edit.apply();
                 notificationsCustomSettingsActivity.l0(true);
-                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33513s);
+                notificationsCustomSettingsActivity.getNotificationsController().updateServerNotificationsSettings(notificationsCustomSettingsActivity.f33515s);
                 return;
             default:
-                ye1 ye1Var = (ye1) obj4;
+                xe1 xe1Var = (xe1) obj4;
                 HashSet hashSet = (HashSet) obj3;
                 HashSet hashSet2 = new HashSet();
-                ye1Var.A0 = hashSet2;
+                xe1Var.A0 = hashSet2;
                 hashSet2.addAll(hashSet);
-                ye1Var.U0(true, false);
-                xc.a0(ye1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new vd1(ye1Var, 4), new h71(ye1Var, (ArrayList) obj2, (Runnable) obj, 6)).j();
-                ye1Var.B0();
+                xe1Var.U0(true, false);
+                vc.a0(xe1Var).U(LocaleController.getPluralString("TopicsDeleted", hashSet.size()), false, new ud1(xe1Var, 4), new g71(xe1Var, (ArrayList) obj2, (Runnable) obj, 6)).j();
+                xe1Var.B0();
                 c2Var.dismiss();
                 return;
         }
     }
 
     @Override
-    public void n(qd0 qd0Var, int i10) {
+    public void n(od0 od0Var, int i10) {
         u50 u50Var = (u50) this.f37b;
-        qd0 qd0Var2 = (qd0) this.f38c;
+        od0 od0Var2 = (od0) this.f38c;
         x30 x30Var = (x30) this.d;
         y30 y30Var = (y30) this.e;
         try {
             u50Var.container.performHapticFeedback(3, 2);
         } catch (Exception unused) {
         }
-        f5.g(u50Var.T, u50Var.S, 0L, 604800L, 2, qd0Var2, x30Var, y30Var);
+        d5.g(u50Var.T, u50Var.S, 0L, 604800L, 2, od0Var2, x30Var, y30Var);
     }
 
     @Override
@@ -267,16 +267,16 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
 
     @Override
     public void run(long j10) {
-        l61.P((l61) this.f37b, (TLRPC.User) this.f38c, (TLRPC.InputCheckPasswordSRP) this.d, (TwoStepVerificationActivity) this.e, j10);
+        k61.P((k61) this.f37b, (TLRPC.User) this.f38c, (TLRPC.InputCheckPasswordSRP) this.d, (TwoStepVerificationActivity) this.e, j10);
     }
 
     @Override
-    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, xe1 xe1Var) {
         switch (this.f36a) {
             case 4:
                 TLRPC.User user = (TLRPC.User) this.f38c;
                 String str = (String) this.d;
-                wd0 wd0Var = (wd0) this.e;
+                ud0 ud0Var = (ud0) this.e;
                 d3 d3Var = ((y2) this.f37b).d;
                 long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle h = g.h("scrollToTopOnResume", true);
@@ -292,7 +292,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 if (activity instanceof LaunchActivity) {
                     o2 lastFragment = ((LaunchActivity) activity).O().getLastFragment();
                     if (MessagesController.getInstance(d3Var.H).checkCanOpenChat(h, lastFragment)) {
-                        wd0Var.dismiss();
+                        ud0Var.dismiss();
                         d3Var.f11162d0 = true;
                         AndroidUtilities.cancelRunOnUIThread(d3Var.f11182u0);
                         d3Var.f11188y.h();
@@ -303,19 +303,19 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                             d3Var.Q0 = true;
                         }
                         e5 e5Var = new e5(new sn(h));
-                        e5Var.f20870b = true;
+                        e5Var.f20871b = true;
                         lastFragment.presentFragment(e5Var);
                     }
                 }
                 return true;
             case 8:
-                k8.s((k8) this.f37b, (ArrayList) this.f38c, (TLRPC.TL_document) this.d, (MessageObject) this.e, eyVar, arrayList, charSequence, z11, i10);
+                i8.s((i8) this.f37b, (ArrayList) this.f38c, (TLRPC.TL_document) this.d, (MessageObject) this.e, eyVar, arrayList, charSequence, z11, i10);
                 return true;
             default:
                 TLRPC.User user2 = (TLRPC.User) this.f38c;
                 String str2 = (String) this.d;
-                wd0 wd0Var2 = (wd0) this.e;
-                ti tiVar = ((ai) this.f37b).e;
+                ud0 ud0Var2 = (ud0) this.e;
+                ri riVar = ((yh) this.f37b).e;
                 long j11 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
                 Bundle h10 = g.h("scrollToTopOnResume", true);
                 if (DialogObject.isEncryptedDialog(j11)) {
@@ -326,12 +326,12 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                     h10.putLong("chat_id", -j11);
                 }
                 h10.putString("start_text", "@" + UserObject.getPublicUsername(user2) + " " + str2);
-                o2 o2Var = tiVar.f30730f0;
-                if (MessagesController.getInstance(tiVar.M1).checkCanOpenChat(h10, o2Var)) {
-                    wd0Var2.dismiss();
-                    tiVar.dismiss(true);
+                o2 o2Var = riVar.f30146f0;
+                if (MessagesController.getInstance(riVar.M1).checkCanOpenChat(h10, o2Var)) {
+                    ud0Var2.dismiss();
+                    riVar.dismiss(true);
                     e5 e5Var2 = new e5(new sn(h10));
-                    e5Var2.f20870b = true;
+                    e5Var2.f20871b = true;
                     o2Var.presentFragment(e5Var2);
                 }
                 return true;
@@ -351,10 +351,10 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         Context context = (Context) this.f37b;
         int[] iArr = (int[]) this.f38c;
         g6 g6Var = (g6) this.d;
-        o01 o01Var = (o01) this.e;
+        n01 n01Var = (n01) this.e;
         Integer num = (Integer) obj;
         Float f7 = (Float) obj2;
-        LinearLayout e = sl.e(context, 1);
+        LinearLayout e = tl.e(context, 1);
         LinearLayout linearLayout = new LinearLayout(context);
         e.addView(linearLayout, z5.t(-2, -2, 1, 0, 0, 0, 0));
         ImageView imageView = new ImageView(context);
@@ -371,7 +371,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         }
         TextView textView = new TextView(context);
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/num.otf"));
-        r6.W(textView, k6.f21289j5, g6Var);
+        r6.W(textView, k6.f21290j5, g6Var);
         StringBuilder sb2 = new StringBuilder("x");
         int i11 = (f7.floatValue() > 0.0f ? 1 : (f7.floatValue() == 0.0f ? 0 : -1));
         Object obj3 = f7;
@@ -383,7 +383,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
         textView.setTextSize(1, 13.0f);
         textView.setGravity(17);
         e.addView(textView, z5.k(0.0f, 3.0f, 0.0f, 0.0f, -1, -2));
-        return new l01(o01Var, e, false);
+        return new k01(n01Var, e, false);
     }
 
     @Override
@@ -393,7 +393,7 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                 ArrayList arrayList2 = (ArrayList) this.f38c;
                 ArrayList arrayList3 = (ArrayList) this.d;
                 Runnable runnable = (Runnable) this.e;
-                TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(((b61) this.f37b).V).getAvailableEffects();
+                TLRPC.messages_AvailableEffects availableEffects = MessagesController.getInstance(((a61) this.f37b).V).getAvailableEffects();
                 HashSet hashSet = new HashSet();
                 if (availableEffects != null) {
                     for (int i10 = 0; i10 < arrayList.size(); i10++) {
@@ -402,9 +402,9 @@ public final class d implements OnFailureListener, BillingController.ProductDeta
                                 String fixEmoji = Emoji.fixEmoji(((MediaDataController.KeywordResult) arrayList.get(i10)).emoji);
                                 for (int i11 = 0; i11 < availableEffects.effects.size(); i11++) {
                                     TLRPC.TL_availableEffect tL_availableEffect = availableEffects.effects.get(i11);
-                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20374id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
+                                    if (!hashSet.contains(Long.valueOf(tL_availableEffect.f20375id)) && (tL_availableEffect.emoticon.contains(fixEmoji) || fixEmoji.contains(tL_availableEffect.emoticon))) {
                                         (tL_availableEffect.effect_animation_id == 0 ? arrayList2 : arrayList3).add(i1.e(tL_availableEffect));
-                                        hashSet.add(Long.valueOf(tL_availableEffect.f20374id));
+                                        hashSet.add(Long.valueOf(tL_availableEffect.f20375id));
                                     }
                                 }
                             }

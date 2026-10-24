@@ -12,7 +12,7 @@ import org.telegram.messenger.AndroidUtilities;
 public abstract class o0 {
     public static z3.b a(z3.m mVar, byte[] bArr, int i10) {
         e9.k0 t10 = e9.n0.t();
-        mVar.f(bArr, 0, i10, z3.l.f51123c, new yh.q0(t10, 2));
+        mVar.f(bArr, 0, i10, z3.l.f51122c, new yh.q0(t10, 2));
         return new z3.b(t10.f());
     }
 

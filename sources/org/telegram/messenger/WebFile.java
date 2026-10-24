@@ -67,7 +67,7 @@ public class WebFile extends TLObject {
         tL_inputGeoPoint.lat = d;
         tL_inputGeoPoint._long = d10;
         webFile.f17887w = i10;
-        tL_inputWebFileGeoPointLocation.f20417w = i10;
+        tL_inputWebFileGeoPointLocation.f20418w = i10;
         webFile.h = i11;
         tL_inputWebFileGeoPointLocation.h = i11;
         webFile.zoom = i12;

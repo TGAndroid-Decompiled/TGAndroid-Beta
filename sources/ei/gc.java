@@ -24,10 +24,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i11;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.pn0;
+import org.telegram.ui.Components.h11;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.on0;
+import org.telegram.ui.Components.zr;
 public final class gc extends View {
     public final Paint A0;
     public final Paint B0;
@@ -70,7 +70,7 @@ public final class gc extends View {
     public float V;
     public final Paint V0;
     public boolean W;
-    public final pn0 W0;
+    public final on0 W0;
     public boolean X0;
     public final ai.t0 Y0;
     public long Z0;
@@ -79,42 +79,42 @@ public final class gc extends View {
     public long f9091a1;
     public Runnable f9092b;
     public int f9093b0;
-    public final org.telegram.ui.Components.f6 f9094b1;
+    public final org.telegram.ui.Components.d6 f9094b1;
     public int f9095c;
-    public final org.telegram.ui.Components.f6 f9096c0;
+    public final org.telegram.ui.Components.d6 f9096c0;
     public long f9097c1;
     public Runnable d;
-    public final org.telegram.ui.Components.f6 f9098d0;
+    public final org.telegram.ui.Components.d6 f9098d0;
     public ai.v3 f9099d1;
     public long e;
-    public final org.telegram.ui.Components.f6 f9100e0;
+    public final org.telegram.ui.Components.d6 f9100e0;
     public long f9101e1;
     public long f9102f;
-    public final org.telegram.ui.Components.f6 f9103f0;
+    public final org.telegram.ui.Components.d6 f9103f0;
     public long f9104f1;
-    public final org.telegram.ui.Components.f6 f9105g0;
+    public final org.telegram.ui.Components.d6 f9105g0;
     public float f9106g1;
     public ac h;
-    public final org.telegram.ui.Components.f6 f9107h0;
+    public final org.telegram.ui.Components.d6 f9107h0;
     public int f9108h1;
-    public final org.telegram.ui.Components.f6 f9109i0;
+    public final org.telegram.ui.Components.d6 f9109i0;
     public int f9110i1;
     public boolean f9111j0;
     public int f9112j1;
-    public final org.telegram.ui.Components.ja f9113k0;
+    public final org.telegram.ui.Components.ha f9113k0;
     public int f9114k1;
-    public final org.telegram.ui.Components.na f9115l0;
+    public final org.telegram.ui.Components.la f9115l0;
     public boolean l1;
-    public final org.telegram.ui.Components.na m0;
+    public final org.telegram.ui.Components.la m0;
     public boolean f9116m1;
     public int f9117n;
-    public final org.telegram.ui.Components.na f9118n0;
+    public final org.telegram.ui.Components.la f9118n0;
     public float f9119n1;
     public final RectF f9120o0;
     public boolean f9121o1;
     public final Path f9122p0;
     public VelocityTracker f9123p1;
-    public final i11 f9124q0;
+    public final h11 f9124q0;
     public boolean f9125q1;
     public final ArrayList f9126r;
     public final Drawable f9127r0;
@@ -141,7 +141,7 @@ public final class gc extends View {
     public final Paint f9147z0;
     public int f9148z1;
 
-    public gc(Context context, ViewGroup viewGroup, hb hbVar, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.ja jaVar) {
+    public gc(Context context, ViewGroup viewGroup, hb hbVar, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.ha haVar) {
         super(context);
         this.f9117n = 0;
         this.f9126r = new ArrayList();
@@ -150,14 +150,14 @@ public final class gc extends View {
         this.f9141x = new Path();
         this.f9144y = new Path();
         this.f9093b0 = 1;
-        bs bsVar = bs.h;
-        this.f9096c0 = new org.telegram.ui.Components.f6(this, 0L, 360L, bsVar);
-        this.f9098d0 = new org.telegram.ui.Components.f6(this, 360L, bsVar);
-        this.f9100e0 = new org.telegram.ui.Components.f6(this, 0L, 360L, bsVar);
-        this.f9103f0 = new org.telegram.ui.Components.f6(this, 360L, bsVar);
-        this.f9105g0 = new org.telegram.ui.Components.f6(this, 0L, 360L, bsVar);
-        this.f9107h0 = new org.telegram.ui.Components.f6(this, 0L, 360L, bsVar);
-        this.f9109i0 = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
+        zr zrVar = zr.h;
+        this.f9096c0 = new org.telegram.ui.Components.d6(this, 0L, 360L, zrVar);
+        this.f9098d0 = new org.telegram.ui.Components.d6(this, 360L, zrVar);
+        this.f9100e0 = new org.telegram.ui.Components.d6(this, 0L, 360L, zrVar);
+        this.f9103f0 = new org.telegram.ui.Components.d6(this, 360L, zrVar);
+        this.f9105g0 = new org.telegram.ui.Components.d6(this, 0L, 360L, zrVar);
+        this.f9107h0 = new org.telegram.ui.Components.d6(this, 0L, 360L, zrVar);
+        this.f9109i0 = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
         this.f9111j0 = true;
         this.f9120o0 = new RectF();
         this.f9122p0 = new Path();
@@ -196,10 +196,10 @@ public final class gc extends View {
         this.U0 = new Matrix();
         Paint paint8 = new Paint(1);
         this.V0 = paint8;
-        this.W0 = new pn0(getContext(), null);
+        this.W0 = new on0(getContext(), null);
         this.Z0 = -1L;
         this.f9091a1 = -1L;
-        this.f9094b1 = new org.telegram.ui.Components.f6(0.0f, this, 0L, 340L, bsVar);
+        this.f9094b1 = new org.telegram.ui.Components.d6(0.0f, this, 0L, 340L, zrVar);
         this.f9097c1 = -1L;
         this.f9108h1 = -1;
         this.f9110i1 = -1;
@@ -228,7 +228,7 @@ public final class gc extends View {
         paint3.setColor(-16777216);
         paint5.setColor(-1);
         paint4.setColor(637534208);
-        this.f9124q0 = new i11(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
+        this.f9124q0 = new h11(LocaleController.getString(R.string.StoryTimeline), 12.0f, AndroidUtilities.bold());
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.timeline).mutate();
         this.f9127r0 = mutate;
         PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
@@ -236,14 +236,14 @@ public final class gc extends View {
         Drawable mutate2 = getContext().getResources().getDrawable(R.drawable.filled_widget_music).mutate();
         this.K0 = mutate2;
         mutate2.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        this.f9113k0 = jaVar;
-        this.f9115l0 = new org.telegram.ui.Components.na(jaVar, this, 0, false);
-        this.m0 = new org.telegram.ui.Components.na(jaVar, this, 3, false);
-        this.f9118n0 = new org.telegram.ui.Components.na(jaVar, this, 4, false);
-        this.Y0 = new ai.t0(this, viewGroup, g6Var, jaVar, hbVar, 13);
+        this.f9113k0 = haVar;
+        this.f9115l0 = new org.telegram.ui.Components.la(haVar, this, 0, false);
+        this.m0 = new org.telegram.ui.Components.la(haVar, this, 3, false);
+        this.f9118n0 = new org.telegram.ui.Components.la(haVar, this, 4, false);
+        this.Y0 = new ai.t0(this, viewGroup, g6Var, haVar, hbVar, 13);
     }
 
-    public static void a(final gc gcVar, ViewGroup viewGroup, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.ja jaVar, View view) {
+    public static void a(final gc gcVar, ViewGroup viewGroup, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.ha haVar, View view) {
         int i10;
         ArrayList arrayList = gcVar.f9129s;
         int i11 = gcVar.f9112j1;
@@ -300,8 +300,8 @@ public final class gc extends View {
                 int i12 = gcVar.f9137v1;
                 int i13 = gcVar.f9146y1;
                 int i14 = gcVar.f9143x1;
-                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(gcVar.T, 1.0f, gcVar.f9103f0.f26180c) * ((float) gcVar.R)) + ((float) (gcVar.Q - gcVar.f9102f))) / ((float) min)) * gcVar.f9135u1) + i13 + i14);
-                j80 F = j80.F(viewGroup, g6Var, gcVar);
+                float min2 = Math.min((i12 - i13) - i14, ((((AndroidUtilities.lerp(gcVar.T, 1.0f, gcVar.f9103f0.f25568c) * ((float) gcVar.R)) + ((float) (gcVar.Q - gcVar.f9102f))) / ((float) min)) * gcVar.f9135u1) + i13 + i14);
+                h80 F = h80.F(viewGroup, g6Var, gcVar);
                 F.q(u7Var);
                 F.o();
                 F.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryAudioRemove), new wb(gcVar, 1), false);
@@ -309,7 +309,7 @@ public final class gc extends View {
                 F.U = true;
                 F.a0((-(gcVar.f9137v1 - min2)) + AndroidUtilities.dp(18.0f), gcVar.F0.top);
                 F.Z();
-                F.R(jaVar, -view.getX(), -view.getY());
+                F.R(haVar, -view.getX(), -view.getY());
                 gcVar.performHapticFeedback(0, 1);
             } else if (i11 == 1 && gcVar.E) {
                 u7 u7Var2 = new u7(gcVar.getContext(), 0);
@@ -363,8 +363,8 @@ public final class gc extends View {
                 int i15 = gcVar.f9137v1;
                 int i16 = gcVar.f9146y1;
                 int i17 = gcVar.f9143x1;
-                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(gcVar.K, 1.0f, gcVar.f9098d0.f26180c) * ((float) gcVar.H)) + ((float) (gcVar.I - gcVar.f9102f))) / ((float) min3)) * gcVar.f9135u1) + i16 + i17);
-                j80 F2 = j80.F(viewGroup, g6Var, gcVar);
+                float min4 = Math.min((i15 - i16) - i17, ((((AndroidUtilities.lerp(gcVar.K, 1.0f, gcVar.f9098d0.f25568c) * ((float) gcVar.H)) + ((float) (gcVar.I - gcVar.f9102f))) / ((float) min3)) * gcVar.f9135u1) + i16 + i17);
+                h80 F2 = h80.F(viewGroup, g6Var, gcVar);
                 F2.q(u7Var2);
                 F2.o();
                 F2.c(R.drawable.msg_delete, LocaleController.getString(R.string.StoryRoundRemove), new wb(gcVar, 2), false);
@@ -372,7 +372,7 @@ public final class gc extends View {
                 F2.U = true;
                 F2.a0((-(gcVar.f9137v1 - min4)) + AndroidUtilities.dp(18.0f), gcVar.f9142x0.top);
                 F2.Z();
-                F2.R(jaVar, -view.getX(), -view.getY());
+                F2.R(haVar, -view.getX(), -view.getY());
                 gcVar.performHapticFeedback(0, 1);
             } else if (i11 == 0 && gcVar.h != null) {
                 u7 u7Var3 = new u7(gcVar.getContext(), 0);
@@ -422,13 +422,13 @@ public final class gc extends View {
                         }
                     }
                 };
-                j80 F3 = j80.F(viewGroup, g6Var, gcVar);
+                h80 F3 = h80.F(viewGroup, g6Var, gcVar);
                 F3.q(u7Var3);
                 F3.V(5);
                 F3.U = true;
                 F3.a0(AndroidUtilities.dp(18.0f), gcVar.f9132t0.top);
                 F3.Z();
-                F3.R(jaVar, -view.getX(), -view.getY());
+                F3.R(haVar, -view.getX(), -view.getY());
                 gcVar.performHapticFeedback(0, 1);
             } else if (i11 == 3 && (i10 = gcVar.f9114k1) >= 0 && i10 < arrayList.size()) {
                 ac acVar = (ac) arrayList.get(gcVar.f9114k1);
@@ -437,13 +437,13 @@ public final class gc extends View {
                 u7Var4.f9917c = 1.5f;
                 u7Var4.d(acVar.f8767i);
                 u7Var4.h = new ai.o2(14, gcVar, acVar);
-                j80 F4 = j80.F(viewGroup, g6Var, gcVar);
+                h80 F4 = h80.F(viewGroup, g6Var, gcVar);
                 F4.q(u7Var4);
                 F4.V(5);
                 F4.U = true;
                 F4.a0(AndroidUtilities.dp(18.0f), acVar.f8768j.top);
                 F4.Z();
-                F4.R(jaVar, -view.getX(), -view.getY());
+                F4.R(haVar, -view.getX(), -view.getY());
                 gcVar.performHapticFeedback(0, 1);
             }
         } catch (Exception unused) {
@@ -479,7 +479,7 @@ public final class gc extends View {
             if (f7 > 0.0f) {
                 f7 += AndroidUtilities.dp(4.0f);
             }
-            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((ac) arrayList.get(i10)).f8769k.f26180c);
+            f7 += AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), ((ac) arrayList.get(i10)).f8769k.f25568c);
         }
         return f7;
     }
@@ -496,7 +496,7 @@ public final class gc extends View {
         if (acVar == null) {
             return 0.0f;
         }
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), acVar.f8769k.f26180c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f), AndroidUtilities.dp(38.0f), acVar.f8769k.f25568c);
     }
 
     public final int c(android.view.MotionEvent r21) {
@@ -505,14 +505,14 @@ public final class gc extends View {
 
     @Override
     public final void computeScroll() {
-        pn0 pn0Var = this.W0;
-        if (pn0Var.b()) {
-            int i10 = pn0Var.f29612j;
+        on0 on0Var = this.W0;
+        if (on0Var.b()) {
+            int i10 = on0Var.f29339j;
             long min = Math.min(getBaseDuration(), getMaxScrollDuration());
             if (this.f9125q1) {
                 this.f9102f = Math.max(0.0f, (((i10 - this.f9146y1) - this.f9143x1) / this.f9135u1) * ((float) min));
             } else if (!this.P) {
-                pn0Var.a();
+                on0Var.a();
                 return;
             } else {
                 int i11 = this.f9146y1;
@@ -705,7 +705,7 @@ public final class gc extends View {
     }
 
     public int getTimelineHeight() {
-        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f9148z1 + this.f9148z1, getContentHeight(), this.f9109i0.f26180c);
+        return AndroidUtilities.lerp(AndroidUtilities.dp(28.0f) + this.f9148z1 + this.f9148z1, getContentHeight(), this.f9109i0.f25568c);
     }
 
     public final void h(float f7) {

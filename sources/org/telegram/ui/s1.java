@@ -17,10 +17,10 @@ public final class s1 implements Runnable {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.s1.run():void");
     }
 
-    public s1(sn snVar, org.telegram.ui.Components.j80 j80Var, String str) {
+    public s1(sn snVar, org.telegram.ui.Components.h80 h80Var, String str) {
         this.f41283a = 18;
         this.d = snVar;
-        this.f41285c = j80Var;
+        this.f41285c = h80Var;
         this.f41284b = str;
     }
 }

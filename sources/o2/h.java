@@ -10,7 +10,7 @@ public final class h {
         this.f17644a = lVar;
         this.f17645b = j10;
         this.f17646c = i10;
-        if ((lVar instanceof p2.i) && ((p2.i) lVar).f44405x) {
+        if ((lVar instanceof p2.i) && ((p2.i) lVar).f44404x) {
             z10 = true;
         } else {
             z10 = false;

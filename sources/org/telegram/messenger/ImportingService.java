@@ -74,8 +74,8 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             NotificationsController.checkOtherNotificationsChannel();
             e0.q qVar = new e0.q(ApplicationLoader.applicationContext, null);
             this.builder = qVar;
-            qVar.E.icon = 17301640;
-            qVar.E.when = System.currentTimeMillis();
+            qVar.F.icon = 17301640;
+            qVar.F.when = System.currentTimeMillis();
             e0.q qVar2 = this.builder;
             qVar2.f8168y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             qVar2.g(LocaleController.getString(R.string.AppName));

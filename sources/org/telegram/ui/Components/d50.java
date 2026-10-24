@@ -1,20 +1,32 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public interface d50 {
-    void E(float f7);
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class d50 extends FrameLayout {
+    public View f25563a;
+    public TextView f25564b;
+    public ak0 f25565c;
+    public LinearLayout d;
 
-    void K(boolean z10, boolean z11);
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
 
-    void P();
+    public void setGravity(int i10) {
+        this.f25564b.setGravity(i10);
+    }
 
-    void Q(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize);
+    public void setText(CharSequence charSequence) {
+        this.f25564b.setText(charSequence);
+    }
 
-    boolean e();
-
-    org.telegram.ui.mu0 getCloseIntoObject();
-
-    String getInitialSearchString();
-
-    boolean v();
+    public void setTextColor(int i10) {
+        TextView textView = this.f25564b;
+        org.telegram.ui.ActionBar.r6.r(textView);
+        textView.setTextColor(i10);
+    }
 }

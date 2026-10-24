@@ -3,7 +3,7 @@ package ai;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.xj0;
 public final class oc implements ImageReceiver.ImageReceiverDelegate {
     public final boolean[] f1962a;
 
@@ -13,7 +13,7 @@ public final class oc implements ImageReceiver.ImageReceiverDelegate {
 
     @Override
     public final void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        yj0 lottieAnimation;
+        xj0 lottieAnimation;
         if (z10 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
             boolean[] zArr = this.f1962a;
             if (!zArr[0]) {
@@ -26,11 +26,11 @@ public final class oc implements ImageReceiver.ImageReceiverDelegate {
 
     @Override
     public final void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.m5.a(this, i10, str, drawable);
+        org.telegram.messenger.n5.a(this, i10, str, drawable);
     }
 
     @Override
     public final void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.m5.b(this, imageReceiver);
+        org.telegram.messenger.n5.b(this, imageReceiver);
     }
 }

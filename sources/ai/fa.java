@@ -23,8 +23,8 @@ public final class fa {
     public final aa f1308a;
     public final MessageObject f1309b;
     public final sn f1310c;
-    public final org.telegram.ui.Components.qc d;
-    public final org.telegram.ui.Components.kc e;
+    public final org.telegram.ui.Components.oc d;
+    public final org.telegram.ui.Components.ic e;
     public final ga f1311f;
     public final boolean f1312g;
     public long h;
@@ -46,34 +46,34 @@ public final class fa {
         this.f1309b = messageObject;
         this.f1310c = snVar;
         Context t10 = ha.t(snVar);
-        org.telegram.ui.Components.kc kcVar = new org.telegram.ui.Components.kc(t10, snVar.f41654qa);
-        this.e = kcVar;
-        kcVar.c(R.raw.stars_topup, new String[0]);
-        kcVar.f28002b.setText(d());
-        org.telegram.ui.Components.oc ocVar = new org.telegram.ui.Components.oc(t10, snVar.f41654qa, true, false);
-        ocVar.e(LocaleController.getString(R.string.StarsSentUndo));
-        ocVar.f29152b = new da(this, 1);
-        ?? jcVar = new org.telegram.ui.Components.jc(t10, snVar.f41654qa);
-        this.f1311f = jcVar;
-        jcVar.f27663b = 5000L;
+        org.telegram.ui.Components.ic icVar = new org.telegram.ui.Components.ic(t10, snVar.f41651qa);
+        this.e = icVar;
+        icVar.c(R.raw.stars_topup, new String[0]);
+        icVar.f27395b.setText(d());
+        org.telegram.ui.Components.mc mcVar = new org.telegram.ui.Components.mc(t10, snVar.f41651qa, true, false);
+        mcVar.e(LocaleController.getString(R.string.StarsSentUndo));
+        mcVar.f28574b = new da(this, 1);
+        ?? hcVar = new org.telegram.ui.Components.hc(t10, snVar.f41651qa);
+        this.f1311f = hcVar;
+        hcVar.f27003b = 5000L;
         int i10 = org.telegram.ui.ActionBar.k6.Gi;
-        qn qnVar = snVar.f41654qa;
+        qn qnVar = snVar.f41651qa;
         aa.a aVar = new aa.a(15);
         aa.a aVar2 = new aa.a(16);
         int R = org.telegram.ui.ActionBar.r6.R(i10, -1, 0, 0.0f, qnVar);
-        aVar2.d(R, jcVar);
-        org.telegram.ui.ActionBar.l6 y3 = org.telegram.ui.ActionBar.r6.y(101, jcVar);
+        aVar2.d(R, hcVar);
+        org.telegram.ui.ActionBar.l6 y3 = org.telegram.ui.ActionBar.r6.y(101, hcVar);
         y3.c(i10, -1, 0, 0.0f, qnVar);
-        y3.f21619n = aVar;
-        y3.f21620o = aVar2;
-        y3.f21618m = false;
-        y3.f21613g = R;
-        ocVar.addView((View) jcVar, w7.z5.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
-        ocVar.e.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
-        kcVar.setButton(ocVar);
-        org.telegram.ui.Components.qc b10 = org.telegram.ui.Components.xc.a0(snVar).b(kcVar, -1);
+        y3.f21620n = aVar;
+        y3.f21621o = aVar2;
+        y3.f21619m = false;
+        y3.f21614g = R;
+        mcVar.addView((View) hcVar, w7.z5.d(20, 20.0f, 21, 0.0f, 0.0f, 12.0f, 0.0f));
+        mcVar.e.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(30.0f), AndroidUtilities.dp(8.0f));
+        icVar.setButton(mcVar);
+        org.telegram.ui.Components.oc b10 = org.telegram.ui.Components.vc.a0(snVar).b(icVar, -1);
         this.d = b10;
-        b10.f29840r = false;
+        b10.f29211r = false;
         if (z10) {
             b10.k(true);
             this.f1317m = true;
@@ -136,7 +136,7 @@ public final class fa {
                     String str2 = str;
                     Context parentActivity = this.f1310c.getParentActivity();
                     if (parentActivity == null) {
-                        parentActivity = LaunchActivity.J1;
+                        parentActivity = LaunchActivity.I1;
                     }
                     if (parentActivity == null) {
                         parentActivity = ApplicationLoader.applicationContext;

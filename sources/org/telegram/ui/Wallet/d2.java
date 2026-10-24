@@ -7,14 +7,14 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 public final class d2 {
-    public final long f34398a;
-    public final List f34399b;
-    public final long f34400c;
+    public final long f34400a;
+    public final List f34401b;
+    public final long f34402c;
 
     public d2(JSONObject jSONObject) {
         boolean z10;
         long optLong = jSONObject.optLong("valid_until", 0L);
-        this.f34398a = optLong;
+        this.f34400a = optLong;
         JSONArray jSONArray = jSONObject.getJSONArray("messages");
         if (jSONArray.length() != 0 && jSONArray.length() <= 255 && optLong >= 0) {
             ArrayList arrayList = new ArrayList();
@@ -37,8 +37,8 @@ public final class d2 {
                     throw new ArithmeticException();
                 }
             }
-            this.f34400c = j10;
-            this.f34399b = DesugarCollections.unmodifiableList(arrayList);
+            this.f34402c = j10;
+            this.f34401b = DesugarCollections.unmodifiableList(arrayList);
             return;
         }
         throw new JSONException("Invalid transaction");
@@ -46,17 +46,17 @@ public final class d2 {
 
     public final String[] a() {
         String str;
-        List list = this.f34399b;
+        List list = this.f34401b;
         String[] strArr = new String[list.size() * 5];
         for (int i10 = 0; i10 < list.size(); i10++) {
             c2 c2Var = (c2) list.get(i10);
             int i11 = i10 * 5;
-            strArr[i11] = c2Var.f34356a;
+            strArr[i11] = c2Var.f34358a;
             strArr[i11 + 1] = Long.toString(c2Var.e);
-            strArr[i11 + 2] = c2Var.f34357b;
-            strArr[i11 + 3] = c2Var.f34358c;
+            strArr[i11 + 2] = c2Var.f34359b;
+            strArr[i11 + 3] = c2Var.f34360c;
             int i12 = i11 + 4;
-            if (c2Var.f34359f) {
+            if (c2Var.f34361f) {
                 str = "1";
             } else {
                 str = "0";

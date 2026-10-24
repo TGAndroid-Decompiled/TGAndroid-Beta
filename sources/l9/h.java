@@ -53,7 +53,7 @@ public final class h {
         ArrayList H = new q(18, context, new w0(ComponentDiscoveryService.class, 19)).H();
         Trace.endSection();
         Trace.beginSection("Runtime");
-        k kVar = k.f46576a;
+        k kVar = k.f46575a;
         ArrayList arrayList = new ArrayList();
         ArrayList arrayList2 = new ArrayList();
         arrayList.addAll(H);
@@ -223,7 +223,7 @@ public final class h {
         a();
         va.a aVar = (va.a) this.f16034g.get();
         synchronized (aVar) {
-            z10 = aVar.f48768a;
+            z10 = aVar.f48767a;
         }
         return z10;
     }

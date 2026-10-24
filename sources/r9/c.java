@@ -5,19 +5,19 @@ import com.google.firebase.components.ComponentRegistrar;
 import java.lang.reflect.InvocationTargetException;
 import si.o0;
 public final class c implements qa.b {
-    public final int f45547a;
-    public final Object f45548b;
+    public final int f45546a;
+    public final Object f45547b;
 
     public c(Object obj, int i10) {
-        this.f45547a = i10;
-        this.f45548b = obj;
+        this.f45546a = i10;
+        this.f45547b = obj;
     }
 
     @Override
     public final Object get() {
-        switch (this.f45547a) {
+        switch (this.f45546a) {
             case 0:
-                String str = (String) this.f45548b;
+                String str = (String) this.f45547b;
                 try {
                     Class<?> cls = Class.forName(str);
                     if (ComponentRegistrar.class.isAssignableFrom(cls)) {
@@ -37,9 +37,9 @@ public final class c implements qa.b {
                     throw new RuntimeException(o0.h("Could not instantiate ", str), e11);
                 }
             case 1:
-                return (ComponentRegistrar) this.f45548b;
+                return (ComponentRegistrar) this.f45547b;
             default:
-                return new sa.b((l9.h) this.f45548b);
+                return new sa.b((l9.h) this.f45547b);
         }
     }
 }

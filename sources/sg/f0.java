@@ -15,12 +15,12 @@ import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.r6;
 import w7.z5;
 public final class f0 extends FrameLayout {
-    public final ImageView f46680a;
-    public final n5 f46681b;
-    public final o5 f46682c;
+    public final ImageView f46679a;
+    public final n5 f46680b;
+    public final o5 f46681c;
     public final n5 d;
     public e0 e;
-    public d0 f46683f;
+    public d0 f46682f;
 
     public f0(j0 j0Var, Context context, g6 g6Var) {
         super(context);
@@ -33,7 +33,7 @@ public final class f0 extends FrameLayout {
         i11 = ((h3) j0Var).backgroundPaddingLeft;
         setPadding(i10, 0, i11, 0);
         ImageView imageView = new ImageView(context);
-        this.f46680a = imageView;
+        this.f46679a = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         r6.t(imageView, k6.Lj, g6Var, PorterDuff.Mode.SRC_IN);
         if (LocaleController.isRTL) {
@@ -43,9 +43,9 @@ public final class f0 extends FrameLayout {
         }
         addView(imageView, z5.d(24, 24.0f, i12 | 16, 24.0f, 0.0f, 24.0f, 0.0f));
         n5 n5Var = new n5(context);
-        this.f46681b = n5Var;
+        this.f46680b = n5Var;
         n5Var.setWidthWrapContent(true);
-        r6.Z(n5Var, k6.f21289j5, g6Var);
+        r6.Z(n5Var, k6.f21290j5, g6Var);
         n5Var.setTextSize(14);
         boolean z10 = LocaleController.isRTL;
         int i13 = (z10 ? 5 : 3) | 16;
@@ -67,7 +67,7 @@ public final class f0 extends FrameLayout {
         n5Var2.setTypeface(AndroidUtilities.bold());
         n5Var2.setTextSize(14);
         o5 o5Var = new o5(this, context, g6Var);
-        this.f46682c = o5Var;
+        this.f46681c = o5Var;
         o5Var.setWillNotDraw(false);
         o5Var.addView(n5Var2, z5.e(-2, -2, 17));
         addView(o5Var, z5.c(-1.0f, -1));
@@ -76,7 +76,7 @@ public final class f0 extends FrameLayout {
     @Override
     public final void onMeasure(int i10, int i11) {
         float f7;
-        if (this.f46683f != null) {
+        if (this.f46682f != null) {
             f7 = 49.0f;
         } else {
             f7 = 36.0f;

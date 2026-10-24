@@ -4,7 +4,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.oc;
 public final class b0 implements Runnable {
     public final int f5164a;
     public final m2 f5165b;
@@ -31,9 +31,9 @@ public final class b0 implements Runnable {
             case 1:
                 m2 m2Var2 = this.f5165b;
                 AndroidUtilities.cancelRunOnUIThread(m2Var2.f6085d0);
-                qc qcVar = m2Var2.W;
-                if (qcVar != null) {
-                    qcVar.b();
+                oc ocVar = m2Var2.W;
+                if (ocVar != null) {
+                    ocVar.b();
                     m2Var2.W = null;
                 }
                 long j10 = m2Var2.R;

@@ -1,35 +1,57 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
+import org.telegram.ui.Components.ChatActivityEnterView;
 public final class tf implements Runnable {
-    public final int f19684a = 0;
-    public final int f19685b;
-    public final MessagesStorage f19686c;
-    public final long d;
+    public final int f19677a = 0;
+    public final boolean f19678b;
+    public final int f19679c;
+    public final int d;
     public final long e;
-    public final int f19687f;
+    public final Object f19680f;
     public final Object h;
 
-    public tf(int i10, int i11, long j10, long j11, MessagesStorage messagesStorage, TLRPC.InputChannel inputChannel) {
-        this.f19686c = messagesStorage;
-        this.d = j10;
-        this.f19685b = i10;
-        this.h = inputChannel;
-        this.f19687f = i11;
-        this.e = j11;
+    public tf(MessagesStorage messagesStorage, long j10, ArrayList arrayList, boolean z10, int i10, int i11) {
+        this.f19680f = messagesStorage;
+        this.e = j10;
+        this.h = arrayList;
+        this.f19678b = z10;
+        this.f19679c = i10;
+        this.d = i11;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.tf.run():void");
+        switch (this.f19677a) {
+            case 0:
+                int i10 = this.f19679c;
+                int i11 = this.d;
+                ((MessagesStorage) this.f19680f).lambda$markMessagesAsDeleted$229(this.e, (ArrayList) this.h, this.f19678b, i10, i11);
+                return;
+            default:
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f19680f;
+                CharSequence charSequence = (CharSequence) this.h;
+                chatActivityEnterView.f24085f0 = null;
+                chatActivityEnterView.n0(true);
+                org.telegram.ui.Components.nf nfVar = chatActivityEnterView.E0;
+                if (nfVar != null) {
+                    nfVar.setText("");
+                }
+                org.telegram.ui.Components.mg mgVar = chatActivityEnterView.Z2;
+                if (mgVar != null) {
+                    mgVar.L(charSequence, this.f19678b, this.f19679c, this.d, this.e);
+                    return;
+                }
+                return;
+        }
     }
 
-    public tf(org.telegram.ui.Cells.g6 g6Var, int i10, MessagesStorage messagesStorage, long j10, long j11, int i11) {
-        this.h = g6Var;
-        this.f19685b = i10;
-        this.f19686c = messagesStorage;
-        this.d = j10;
-        this.e = j11;
-        this.f19687f = i11;
+    public tf(ChatActivityEnterView chatActivityEnterView, CharSequence charSequence, boolean z10, int i10, int i11, long j10) {
+        this.f19680f = chatActivityEnterView;
+        this.h = charSequence;
+        this.f19678b = z10;
+        this.f19679c = i10;
+        this.d = i11;
+        this.e = j10;
     }
 }

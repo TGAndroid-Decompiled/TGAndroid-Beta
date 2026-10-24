@@ -28,7 +28,7 @@ import ei.x3;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Stories.ProfileStoriesView;
-import org.telegram.ui.sz0;
+import org.telegram.ui.rz0;
 public final class c0 implements ValueAnimator.AnimatorUpdateListener {
     public final int f666a;
     public final Object f667b;
@@ -159,11 +159,11 @@ public final class c0 implements ValueAnimator.AnimatorUpdateListener {
                 return;
             case 17:
                 ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f667b;
-                sz0 sz0Var = profileStoriesView.h;
+                rz0 rz0Var = profileStoriesView.h;
                 float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 profileStoriesView.G = floatValue8;
-                sz0Var.R = floatValue8;
-                sz0Var.invalidate();
+                rz0Var.R = floatValue8;
+                rz0Var.invalidate();
                 profileStoriesView.invalidate();
                 return;
             case 18:

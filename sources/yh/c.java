@@ -13,19 +13,19 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.l7;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.n7;
+import org.telegram.ui.Components.za;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ProfileActivity;
 import w7.z5;
-public final class c extends bb {
-    public static final int f50627a0 = 0;
+public final class c extends za {
+    public static final int f50626a0 = 0;
     public final List X;
     public final GiftAuctionController.Auction Y;
-    public b71 Z;
+    public a71 Z;
 
     public c(Context context, g6 g6Var, GiftAuctionController.Auction auction, List list) {
         super(context, null, false, false, 2, g6Var);
@@ -37,7 +37,7 @@ public final class c extends bb {
         this.e.setTitle(z());
         fixNavigationBar();
         this.d.setPadding(this.backgroundPaddingLeft, AndroidUtilities.dp(9.0f), this.backgroundPaddingLeft, AndroidUtilities.dp(64.0f));
-        this.d.setOnItemClickListener(new n7(3));
+        this.d.setOnItemClickListener(new l7(3));
         this.d.setOverScrollMode(2);
         ei.d dVar = new ei.d(context, g6Var, true);
         dVar.setOnClickListener(new hg.r0(this, 26));
@@ -71,11 +71,11 @@ public final class c extends bb {
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
-        b71 b71Var = new b71(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 22), this.resourcesProvider);
-        this.Z = b71Var;
-        b71Var.f24972r = false;
-        return b71Var;
+    public final km0 w(lm0 lm0Var) {
+        a71 a71Var = new a71(this.d, getContext(), this.currentAccount, 0, true, new hg.o(this, 22), this.resourcesProvider);
+        this.Z = a71Var;
+        a71Var.f24646r = false;
+        return a71Var;
     }
 
     @Override

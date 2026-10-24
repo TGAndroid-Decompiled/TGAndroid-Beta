@@ -1,27 +1,31 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
+import android.app.Activity;
 import android.view.View;
-public final class dy0 implements bh.k {
-    public final int f36760a;
-    public final Object f36761b;
+public final class dy0 implements View.OnClickListener {
+    public final int f36747a;
+    public final ProfileActivity f36748b;
+    public final String f36749c;
 
-    public dy0(Object obj, int i10) {
-        this.f36760a = i10;
-        this.f36761b = obj;
+    public dy0(ProfileActivity profileActivity, String str, int i10) {
+        this.f36747a = i10;
+        this.f36748b = profileActivity;
+        this.f36749c = str;
     }
 
     @Override
-    public final boolean a(Canvas canvas, View view, long j10) {
-        switch (this.f36760a) {
+    public final void onClick(View view) {
+        switch (this.f36747a) {
             case 0:
-                ProfileActivity profileActivity = (ProfileActivity) this.f36761b;
-                if (view == profileActivity.O) {
-                    return true;
-                }
-                return profileActivity.f33882a.drawChild(canvas, view, j10);
+                ProfileActivity profileActivity = this.f36748b;
+                Activity parentActivity = profileActivity.getParentActivity();
+                pf.d.r(parentActivity, "https://" + profileActivity.getMessagesController().linkPrefix + "/nft/" + this.f36749c);
+                return;
             default:
-                return ((we1) this.f36761b).drawChild(canvas, view, j10);
+                ProfileActivity profileActivity2 = this.f36748b;
+                Activity parentActivity2 = profileActivity2.getParentActivity();
+                pf.d.r(parentActivity2, "https://" + profileActivity2.getMessagesController().linkPrefix + "/nft/" + this.f36749c);
+                return;
         }
     }
 }

@@ -42,10 +42,10 @@ public final class o8 implements Runnable {
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.xc X;
+        org.telegram.ui.Components.vc X;
         pa0 pa0Var;
         String str;
-        org.telegram.ui.Components.xc X2;
+        org.telegram.ui.Components.vc X2;
         pa0 pa0Var2;
         String str2 = "FAILED_SEND_STARS";
         switch (this.f1941a) {
@@ -63,9 +63,9 @@ public final class o8 implements Runnable {
                 long j11 = this.f1947s;
                 org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (R != null && R.visibleDialog == null) {
-                    X = org.telegram.ui.Components.xc.a0(R);
+                    X = org.telegram.ui.Components.vc.a0(R);
                 } else {
-                    X = org.telegram.ui.Components.xc.X();
+                    X = org.telegram.ui.Components.vc.X();
                 }
                 if (!(tLObject instanceof TLRPC.TL_payments_paymentResult)) {
                     if (tL_error != null && "BALANCE_TOO_LOW".equals(tL_error.text)) {
@@ -110,8 +110,8 @@ public final class o8 implements Runnable {
                 SharedPreferences.Editor edit2 = MessagesController.getInstance(haVar.f1413a).getMainSettings().edit();
                 SharedPreferences.Editor putBoolean = edit2.putBoolean("show_gift_for_" + j11, true);
                 putBoolean.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j11, true).apply();
-                LaunchActivity launchActivity = LaunchActivity.J1;
-                if (launchActivity != null && (pa0Var = launchActivity.f33501x0) != null) {
+                LaunchActivity launchActivity = LaunchActivity.I1;
+                if (launchActivity != null && (pa0Var = launchActivity.f33503x0) != null) {
                     pa0Var.c(true);
                     return;
                 }
@@ -130,9 +130,9 @@ public final class o8 implements Runnable {
                 TLRPC.TL_textWithEntities tL_textWithEntities = (TLRPC.TL_textWithEntities) this.f1948w;
                 org.telegram.ui.ActionBar.o2 R2 = LaunchActivity.R();
                 if (R2 != null && R2.visibleDialog == null) {
-                    X2 = org.telegram.ui.Components.xc.a0(R2);
+                    X2 = org.telegram.ui.Components.vc.a0(R2);
                 } else {
-                    X2 = org.telegram.ui.Components.xc.X();
+                    X2 = org.telegram.ui.Components.vc.X();
                 }
                 if (!(tLObject2 instanceof TLRPC.TL_payments_paymentResult)) {
                     if (tL_error2 != null && "BALANCE_TOO_LOW".equals(tL_error2.text)) {
@@ -170,8 +170,8 @@ public final class o8 implements Runnable {
                 SharedPreferences.Editor edit4 = MessagesController.getInstance(haVar2.f1413a).getMainSettings().edit();
                 SharedPreferences.Editor putBoolean2 = edit4.putBoolean("show_gift_for_" + j13, true);
                 putBoolean2.putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j13, true).apply();
-                LaunchActivity launchActivity2 = LaunchActivity.J1;
-                if (launchActivity2 != null && (pa0Var2 = launchActivity2.f33501x0) != null) {
+                LaunchActivity launchActivity2 = LaunchActivity.I1;
+                if (launchActivity2 != null && (pa0Var2 = launchActivity2.f33503x0) != null) {
                     pa0Var2.c(true);
                     return;
                 }

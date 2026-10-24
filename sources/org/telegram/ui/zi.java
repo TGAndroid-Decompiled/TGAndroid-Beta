@@ -8,11 +8,11 @@ import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
-public final class zi implements org.telegram.ui.Components.bm0 {
-    public final sn f44161a;
+public final class zi implements org.telegram.ui.Components.am0 {
+    public final sn f44113a;
 
     public zi(sn snVar) {
-        this.f44161a = snVar;
+        this.f44113a = snVar;
     }
 
     @Override
@@ -23,14 +23,14 @@ public final class zi implements org.telegram.ui.Components.bm0 {
         MessageObject messageObject;
         org.telegram.ui.ActionBar.k kVar;
         TLRPC.ChatFull chatFull;
-        sn snVar = this.f44161a;
+        sn snVar = this.f44113a;
         if (!snVar.E9() && ((tL_availableReaction = snVar.getMediaDataController().getReactionsMap().get((doubleTapReaction = snVar.getMediaDataController().getDoubleTapReaction()))) != null || (doubleTapReaction != null && doubleTapReaction.startsWith("animated_")))) {
-            if (snVar.f41519f6 >= 0) {
+            if (snVar.f41516f6 >= 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (!z10 && (chatFull = snVar.f41592l8) != null) {
+            if (!z10 && (chatFull = snVar.f41589l8) != null) {
                 if (tL_availableReaction != null) {
                     doubleTapReaction = tL_availableReaction.reaction;
                 }
@@ -58,7 +58,7 @@ public final class zi implements org.telegram.ui.Components.bm0 {
         MessageObject messageObject;
         TLRPC.ChatFull chatFull;
         TLRPC.ChatFull chatFull2;
-        sn snVar = this.f44161a;
+        sn snVar = this.f44113a;
         if (snVar.getParentActivity() != null && !snVar.x() && !snVar.c() && !snVar.isInPreviewMode() && !snVar.E9()) {
             if (view instanceof org.telegram.ui.Cells.t1) {
                 messageObject = ((org.telegram.ui.Cells.t1) view).getPrimaryMessageObject();
@@ -78,10 +78,10 @@ public final class zi implements org.telegram.ui.Components.bm0 {
                     ah.d1.b(false);
                     String doubleTapReaction = snVar.getMediaDataController().getDoubleTapReaction();
                     if (doubleTapReaction.startsWith("animated_")) {
-                        if (snVar.f41519f6 >= 0) {
+                        if (snVar.f41516f6 >= 0) {
                             z10 = true;
                         }
-                        if (!z10 && (chatFull2 = snVar.f41592l8) != null) {
+                        if (!z10 && (chatFull2 = snVar.f41589l8) != null) {
                             z10 = ChatObject.reactionIsAvailable(chatFull2, doubleTapReaction);
                         }
                         if (z10) {
@@ -92,10 +92,10 @@ public final class zi implements org.telegram.ui.Components.bm0 {
                     }
                     TLRPC.TL_availableReaction tL_availableReaction = snVar.getMediaDataController().getReactionsMap().get(doubleTapReaction);
                     if (tL_availableReaction != null && !messageObject2.isSponsored()) {
-                        if (snVar.f41519f6 >= 0) {
+                        if (snVar.f41516f6 >= 0) {
                             z10 = true;
                         }
-                        if (!z10 && (chatFull = snVar.f41592l8) != null) {
+                        if (!z10 && (chatFull = snVar.f41589l8) != null) {
                             z10 = ChatObject.reactionIsAvailable(chatFull, tL_availableReaction.reaction);
                         }
                         if (z10) {
@@ -116,7 +116,7 @@ public final class zi implements org.telegram.ui.Components.bm0 {
         MessageObject messageObject2;
         int i11;
         org.telegram.ui.ActionBar.g6 g6Var;
-        sn snVar = this.f44161a;
+        sn snVar = this.f44113a;
         z10 = ((org.telegram.ui.ActionBar.o2) snVar).inPreviewMode;
         if (!z10) {
             snVar.P4 = true;
@@ -141,10 +141,10 @@ public final class zi implements org.telegram.ui.Components.bm0 {
             if (z11) {
                 org.telegram.ui.Cells.v0 v0Var = (org.telegram.ui.Cells.v0) view;
                 if (v0Var.getMessageObject().isDateObject) {
-                    if (!snVar.f41472bb) {
+                    if (!snVar.f41469bb) {
                         Bundle bundle = new Bundle();
                         int i12 = v0Var.getMessageObject().messageOwner.date;
-                        bundle.putLong("dialog_id", snVar.f41519f6);
+                        bundle.putLong("dialog_id", snVar.f41516f6);
                         bundle.putLong("topic_id", snVar.d());
                         bundle.putInt("type", 0);
                         k8 k8Var = new k8(0, i12, bundle);
@@ -158,7 +158,7 @@ public final class zi implements org.telegram.ui.Components.bm0 {
             if (z11) {
                 org.telegram.ui.Cells.v0 v0Var2 = (org.telegram.ui.Cells.v0) view;
                 if (v0Var2.getMessageObject() != null && (v0Var2.getMessageObject().messageOwner.action instanceof TLRPC.TL_messageActionBoostApply)) {
-                    snVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(snVar.f41519f6));
+                    snVar.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.openBoostForUsersDialog, Long.valueOf(snVar.f41516f6));
                     return;
                 }
             }
@@ -187,7 +187,7 @@ public final class zi implements org.telegram.ui.Components.bm0 {
             }
             if (view instanceof org.telegram.ui.Cells.t1) {
                 org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) view;
-                if (snVar.f41632o9.z(t1Var2.getMessageObject())) {
+                if (snVar.f41629o9.z(t1Var2.getMessageObject())) {
                     return;
                 }
                 z12 = !t1Var2.h3(f7);

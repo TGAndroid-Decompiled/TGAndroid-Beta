@@ -17,7 +17,7 @@ import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.UUID;
 public abstract class p {
-    public static final int[] f48995a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
+    public static final int[] f48994a = {1769172845, 1769172786, 1769172787, 1769172788, 1769172789, 1769172790, 1769172793, 1635148593, 1752589105, 1751479857, 1635135537, 1836069937, 1836069938, 862401121, 862401122, 862417462, 862417718, 862414134, 862414646, 1295275552, 1295270176, 1714714144, 1801741417, 1295275600, 1903435808, 1297305174, 1684175153, 1769172332, 1885955686};
 
     public static byte[] a(UUID uuid, UUID[] uuidArr, byte[] bArr) {
         int i10;
@@ -66,7 +66,7 @@ public abstract class p {
         while (i10 < size) {
             Object obj = arrayList.get(i10);
             i10++;
-            String str2 = ((t) obj).f49022a.f49000g.f4135s;
+            String str2 = ((t) obj).f49021a.f48999g.f4135s;
             if (v0.m(str2)) {
                 return "video/mp4";
             }
@@ -97,7 +97,7 @@ public abstract class p {
             return true;
         }
         for (int i11 = 0; i11 < 29; i11++) {
-            if (f48995a[i11] == i10) {
+            if (f48994a[i11] == i10) {
                 return true;
             }
         }
@@ -120,7 +120,7 @@ public abstract class p {
         int m10 = xVar.m();
         if (xVar.m() == 1684108385) {
             int m11 = xVar.m();
-            byte[] bArr = c.f48917a;
+            byte[] bArr = c.f48916a;
             int i10 = m11 & 16777215;
             if (i10 == 13) {
                 str = "image/jpeg";
@@ -447,13 +447,13 @@ public abstract class p {
         i0Var = null;
         i10 = i17;
         if (!z12) {
-            return m.f48989a;
+            return m.f48988a;
         }
         if (z10 != i10) {
             if (i10 != 0) {
-                return i.f48957b;
+                return i.f48956b;
             }
-            return i.f48958c;
+            return i.f48957c;
         }
         return i0Var;
     }

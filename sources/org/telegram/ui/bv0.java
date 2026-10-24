@@ -1,31 +1,204 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class bv0 extends AnimatorListenerAdapter {
-    public final int f36176a;
-    public final iv0 f36177b;
+import android.app.Activity;
+import android.text.SpannableString;
+import android.view.KeyEvent;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class bv0 implements org.telegram.ui.Components.sy {
+    public final hv0 f36146a;
 
-    public bv0(iv0 iv0Var, int i10) {
-        this.f36176a = i10;
-        this.f36177b = iv0Var;
+    public bv0(hv0 hv0Var) {
+        this.f36146a = hv0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36176a) {
-            case 0:
-                this.f36177b.R.setTranslationY(0.0f);
-                return;
-            case 1:
-                this.f36177b.R.setTranslationY(0.0f);
-                return;
-            default:
-                iv0 iv0Var = this.f36177b;
-                iv0Var.getClass();
-                iv0Var.R.setTranslationY(0.0f);
-                iv0Var.l0();
-                return;
+    public final boolean A() {
+        return false;
+    }
+
+    @Override
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final void i(int i10) {
+        boolean z10;
+        if (i10 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
+        hv0 hv0Var = this.f36146a;
+        hv0Var.B0 = z10;
+        hv0Var.e.requestLayout();
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        EditTextBoldCursor editField = this.f36146a.f38033b0.getEditField();
+        if (editField == null) {
+            return false;
+        }
+        editField.dispatchKeyEvent(new KeyEvent(0, 67));
+        return true;
+    }
+
+    @Override
+    public final void l(String str) {
+        EditTextBoldCursor editField = this.f36146a.f38033b0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            CharSequence replaceEmoji = Emoji.replaceEmoji(str, editField.getPaint().getFontMetricsInt(), false);
+            editField.setText(editField.getText().insert(selectionEnd, replaceEmoji));
+            int length = selectionEnd + replaceEmoji.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void n() {
+        org.telegram.ui.ActionBar.g6 g6Var;
+        hv0 hv0Var = this.f36146a;
+        Activity parentActivity = hv0Var.getParentActivity();
+        g6Var = ((org.telegram.ui.ActionBar.o2) hv0Var).resourceProvider;
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(parentActivity, 0, g6Var);
+        alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.ClearRecentEmojiTitle);
+        alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.ClearRecentEmojiText);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new rp0(this, 4));
+        i2.o1.s(R.string.Cancel, alertDialog$Builder, null);
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
+        org.telegram.ui.Components.y5 y5Var;
+        hv0 hv0Var = this.f36146a;
+        EditTextBoldCursor editField = hv0Var.f38033b0.getEditField();
+        if (editField == null) {
+            return;
+        }
+        int selectionEnd = editField.getSelectionEnd();
+        if (selectionEnd < 0) {
+            selectionEnd = 0;
+        }
+        try {
+            SpannableString spannableString = new SpannableString(str);
+            if (document != null) {
+                y5Var = new org.telegram.ui.Components.y5(document, editField.getPaint().getFontMetricsInt());
+            } else {
+                y5Var = new org.telegram.ui.Components.y5(j10, editField.getPaint().getFontMetricsInt());
+            }
+            y5Var.cacheType = hv0Var.R.f30308c;
+            spannableString.setSpan(y5Var, 0, spannableString.length(), 33);
+            editField.setText(editField.getText().insert(selectionEnd, spannableString));
+            int length = selectionEnd + spannableString.length();
+            editField.setSelection(length, length);
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final boolean z() {
+        return this.f36146a.B0;
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void o(org.telegram.ui.Components.h61 h61Var) {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i10) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void y(long j10) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
     }
 }

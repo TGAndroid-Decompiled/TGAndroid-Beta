@@ -35,15 +35,15 @@ public final class g3 extends FrameLayout {
                     canvas.save();
                     float f7 = 0.0f;
                     canvas.translate((getMeasuredWidth() - p4Var2.R0.c()) - AndroidUtilities.dp(6.0f), 0.0f);
-                    org.telegram.ui.Components.f6 f6Var = p4Var2.T0;
+                    org.telegram.ui.Components.d6 d6Var = p4Var2.T0;
                     if (p4Var2.V0) {
                         f7 = 1.0f;
                     }
-                    float d = f6Var.d(f7, false);
+                    float d = d6Var.d(f7, false);
                     canvas.scale(d, d, p4Var2.R0.c() / 2.0f, AndroidUtilities.dp(20.0f));
-                    org.telegram.ui.Components.p6 p6Var = p4Var2.R0;
-                    p6Var.B = 255;
-                    p6Var.draw(canvas);
+                    org.telegram.ui.Components.n6 n6Var = p4Var2.R0;
+                    n6Var.B = 255;
+                    n6Var.draw(canvas);
                     canvas.restore();
                     return;
                 }
@@ -55,15 +55,15 @@ public final class g3 extends FrameLayout {
                     canvas.save();
                     float f10 = 0.0f;
                     canvas.translate((getMeasuredWidth() - p4Var3.Q0.c()) - AndroidUtilities.dp(6.0f), 0.0f);
-                    org.telegram.ui.Components.f6 f6Var2 = p4Var3.S0;
+                    org.telegram.ui.Components.d6 d6Var2 = p4Var3.S0;
                     if (p4Var3.U0) {
                         f10 = 1.0f;
                     }
-                    float d10 = f6Var2.d(f10, false);
+                    float d10 = d6Var2.d(f10, false);
                     canvas.scale(d10, d10, p4Var3.Q0.c() / 2.0f, AndroidUtilities.dp(20.0f));
-                    org.telegram.ui.Components.p6 p6Var2 = p4Var3.Q0;
-                    p6Var2.B = 255;
-                    p6Var2.draw(canvas);
+                    org.telegram.ui.Components.n6 n6Var2 = p4Var3.Q0;
+                    n6Var2.B = 255;
+                    n6Var2.draw(canvas);
                     canvas.restore();
                     return;
                 }

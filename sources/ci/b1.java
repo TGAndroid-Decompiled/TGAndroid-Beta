@@ -1,12 +1,12 @@
 package ci;
 
 import j$.util.Objects;
-import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.DispatchQueue2;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.Components.af0;
+import org.telegram.ui.Components.ze0;
 public final class b1 implements Runnable {
     public final int f5166a;
     public final h1 f5167b;
@@ -30,7 +30,7 @@ public final class b1 implements Runnable {
                 return;
             case 3:
                 h1 h1Var = this.f5167b;
-                NotificationCenter.getInstance(h1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1Var.v.f20353id));
+                NotificationCenter.getInstance(h1Var.e).lambda$postNotificationNameOnUIThread$1(NotificationCenter.liveStoryUpdated, Long.valueOf(h1Var.v.f20354id));
                 h1Var.u(true);
                 return;
             case 4:
@@ -42,10 +42,10 @@ public final class b1 implements Runnable {
             case 6:
                 h1 h1Var2 = this.f5167b;
                 if (h1Var2.E != null) {
-                    DispatchQueue dispatchQueue = Utilities.globalQueue;
+                    DispatchQueue2 dispatchQueue2 = Utilities.globalQueue;
                     NativeInstance nativeInstance = h1Var2.E;
                     Objects.requireNonNull(nativeInstance);
-                    dispatchQueue.postRunnable(new org.telegram.messenger.voip.q0(nativeInstance, 3));
+                    dispatchQueue2.postRunnable(new org.telegram.messenger.voip.q0(nativeInstance, 3));
                     h1Var2.M.clear();
                     h1Var2.E = null;
                 }
@@ -60,10 +60,10 @@ public final class b1 implements Runnable {
             case 9:
                 h1 h1Var3 = this.f5167b;
                 if (h1Var3.E != null) {
-                    DispatchQueue dispatchQueue2 = Utilities.globalQueue;
+                    DispatchQueue2 dispatchQueue22 = Utilities.globalQueue;
                     NativeInstance nativeInstance2 = h1Var3.E;
                     Objects.requireNonNull(nativeInstance2);
-                    dispatchQueue2.postRunnable(new org.telegram.messenger.voip.q0(nativeInstance2, 3));
+                    dispatchQueue22.postRunnable(new org.telegram.messenger.voip.q0(nativeInstance2, 3));
                     h1Var3.M.clear();
                     h1Var3.E = null;
                 }
@@ -78,7 +78,7 @@ public final class b1 implements Runnable {
             default:
                 h1 h1Var4 = this.f5167b;
                 if (!h1Var4.f5383n) {
-                    af0.b(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new ai.r0(h1Var4, 6));
+                    ze0.b(R.raw.permission_request_camera, R.string.PermissionNoCameraMicVideo, new String[]{"android.permission.CAMERA", "android.permission.RECORD_AUDIO"}, new ai.r0(h1Var4, 6));
                     return;
                 }
                 return;

@@ -32,15 +32,15 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.b1;
 import org.telegram.ui.Cells.y;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.wq;
 import org.telegram.ui.LaunchActivity;
 import w7.r;
 public final class i extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public ArrayList E;
     public int F;
     public v f17527a;
-    public yq f17528b;
+    public wq f17528b;
     public k f17529c;
     public k d;
     public SharedPreferences e;
@@ -52,7 +52,7 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
     public int v;
     public LinearLayout f17534w;
     public TextView f17535x;
-    public mm0 f17536y;
+    public lm0 f17536y;
 
     public static float a(DisplayMetrics displayMetrics, float f7) {
         return r.a(f7, AndroidUtilities.dp(16.0f), displayMetrics.widthPixels - AndroidUtilities.dp(72.0f));
@@ -102,11 +102,11 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
                 if (O instanceof b) {
                     arrayList.addAll(((b) O).B());
                 }
-                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33491s0;
+                ActionBarLayout actionBarLayout = ((LaunchActivity) getContext()).f33493s0;
                 if (actionBarLayout != null) {
                     arrayList.addAll(actionBarLayout.B());
                 }
-                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33489r0;
+                ActionBarLayout actionBarLayout2 = ((LaunchActivity) getContext()).f33491r0;
                 if (actionBarLayout2 != null) {
                     arrayList.addAll(actionBarLayout2.B());
                 }
@@ -180,16 +180,16 @@ public final class i extends FrameLayout implements NotificationCenter.Notificat
         Drawable mutate = getResources().getDrawable(R.drawable.floating_shadow).mutate();
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         mutate.setColorFilter(new PorterDuffColorFilter(-16777216, mode));
-        yq yqVar = new yq(mutate, i02, 0, 0);
+        wq wqVar = new wq(mutate, i02, 0, 0);
         int dp = AndroidUtilities.dp(56.0f);
         int dp2 = AndroidUtilities.dp(56.0f);
-        yqVar.e = dp;
-        yqVar.f33015f = dp2;
-        this.f17528b = yqVar;
+        wqVar.e = dp;
+        wqVar.f32325f = dp2;
+        this.f17528b = wqVar;
         Drawable drawable = getResources().getDrawable(R.drawable.popup_fixed_alert3);
-        r6.z(this, drawable, k6.f21254h5, null, mode);
+        r6.z(this, drawable, k6.f21255h5, null, mode);
         this.f17534w.setBackground(drawable);
-        r6.W(this.f17535x, k6.f21289j5, null);
+        r6.W(this.f17535x, k6.f21290j5, null);
         invalidate();
     }
 

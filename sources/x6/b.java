@@ -6,11 +6,11 @@ import i2.o1;
 import java.lang.reflect.Field;
 import n6.l;
 public final class b extends b8.b implements a {
-    public final Object f49757b;
+    public final Object f49756b;
 
     public b(Object obj) {
         super("com.google.android.gms.dynamic.IObjectWrapper", 7);
-        this.f49757b = obj;
+        this.f49756b = obj;
     }
 
     public static a K0(IBinder iBinder) {
@@ -26,7 +26,7 @@ public final class b extends b8.b implements a {
 
     public static Object L0(a aVar) {
         if (aVar instanceof b) {
-            return ((b) aVar).f49757b;
+            return ((b) aVar).f49756b;
         }
         IBinder asBinder = aVar.asBinder();
         Field[] declaredFields = asBinder.getClass().getDeclaredFields();

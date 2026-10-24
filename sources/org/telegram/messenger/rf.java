@@ -1,96 +1,41 @@
 package org.telegram.messenger;
-
-import android.graphics.Bitmap;
-import android.os.Build;
-import java.io.IOException;
-import java.io.RandomAccessFile;
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.atomic.AtomicBoolean;
 public final class rf implements Runnable {
-    public final int f19513a = 0;
-    public final int f19514b;
-    public final int f19515c;
-    public final ArrayList d;
-    public final Object e;
-    public final Serializable f19516f;
-    public final Object h;
-    public final Cloneable f19517n;
-    public final Object f19518r;
-    public final Object f19519s;
+    public final int f19473a;
+    public final MessagesStorage f19474b;
+    public final int f19475c;
+    public final long d;
 
-    public rf(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11, a0.h hVar, a0.h hVar2, ArrayList arrayList2, ArrayList arrayList3, CountDownLatch countDownLatch) {
-        this.e = messagesStorage;
-        this.f19514b = i10;
-        this.d = arrayList;
-        this.f19515c = i11;
-        this.f19517n = hVar;
-        this.f19518r = hVar2;
-        this.f19516f = arrayList2;
-        this.h = arrayList3;
-        this.f19519s = countDownLatch;
+    public rf(MessagesStorage messagesStorage, int i10, long j10, int i11) {
+        this.f19473a = i11;
+        this.f19474b = messagesStorage;
+        this.f19475c = i10;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19513a) {
+        switch (this.f19473a) {
             case 0:
-                ((MessagesStorage) this.e).lambda$getWidgetDialogs$169(this.f19514b, this.d, this.f19515c, (a0.h) this.f19517n, (a0.h) this.f19518r, (ArrayList) this.f19516f, (ArrayList) this.h, (CountDownLatch) this.f19519s);
+                this.f19474b.lambda$saveChannelPts$34(this.f19475c, this.d);
+                return;
+            case 1:
+                this.f19474b.lambda$markMessageAsMention$113(this.f19475c, this.d);
+                return;
+            case 2:
+                this.f19474b.lambda$setDialogPinned$251(this.f19475c, this.d);
+                return;
+            case 3:
+                this.f19474b.lambda$setDialogTtl$60(this.f19475c, this.d);
+                return;
+            case 4:
+                this.f19474b.lambda$deleteDialog$90(this.f19475c, this.d);
+                return;
+            case 5:
+                this.f19474b.lambda$updateChatOnlineCount$135(this.f19475c, this.d);
                 return;
             default:
-                zf.e eVar = (zf.e) this.e;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.f19516f;
-                Bitmap[] bitmapArr = (Bitmap[]) this.h;
-                int i10 = this.f19514b;
-                zf.z[] zVarArr = (zf.z[]) this.f19517n;
-                int i11 = this.f19515c;
-                RandomAccessFile randomAccessFile = (RandomAccessFile) this.f19518r;
-                ArrayList arrayList = this.d;
-                CountDownLatch[] countDownLatchArr = (CountDownLatch[]) this.f19519s;
-                if (!eVar.f52019o.get() && !atomicBoolean.get()) {
-                    Bitmap.CompressFormat compressFormat = Bitmap.CompressFormat.WEBP;
-                    if (Build.VERSION.SDK_INT <= 28) {
-                        compressFormat = Bitmap.CompressFormat.PNG;
-                    }
-                    bitmapArr[i10].compress(compressFormat, eVar.f52016l, zVarArr[i10]);
-                    int i12 = zVarArr[i10].f52088b;
-                    try {
-                        synchronized (eVar.h) {
-                            zf.d dVar = new zf.d(i11);
-                            dVar.f52003c = (int) randomAccessFile.length();
-                            arrayList.add(dVar);
-                            randomAccessFile.write(zVarArr[i10].f52087a, 0, i12);
-                            dVar.f52002b = i12;
-                            zVarArr[i10].b();
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        try {
-                            randomAccessFile.close();
-                        } catch (Exception unused) {
-                        } catch (Throwable th2) {
-                            atomicBoolean.set(true);
-                            throw th2;
-                        }
-                        atomicBoolean.set(true);
-                    }
-                    countDownLatchArr[i10].countDown();
-                    return;
-                }
+                this.f19474b.lambda$saveChatLinksCount$133(this.f19475c, this.d);
                 return;
         }
-    }
-
-    public rf(zf.e eVar, AtomicBoolean atomicBoolean, Bitmap[] bitmapArr, int i10, zf.z[] zVarArr, int i11, RandomAccessFile randomAccessFile, ArrayList arrayList, CountDownLatch[] countDownLatchArr) {
-        this.e = eVar;
-        this.f19516f = atomicBoolean;
-        this.h = bitmapArr;
-        this.f19514b = i10;
-        this.f19517n = zVarArr;
-        this.f19515c = i11;
-        this.f19518r = randomAccessFile;
-        this.d = arrayList;
-        this.f19519s = countDownLatchArr;
     }
 }

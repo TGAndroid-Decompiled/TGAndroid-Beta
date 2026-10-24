@@ -43,7 +43,7 @@ public class FileLog {
     private OutputStreamWriter streamWriter = null;
     private FastDateFormat dateFormat = null;
     private FastDateFormat fileDateFormat = null;
-    private DispatchQueue logQueue = null;
+    private DispatchQueue2 logQueue = null;
     private File currentFile = null;
     private File networkFile = null;
     private File tonlibFile = null;
@@ -107,7 +107,7 @@ public class FileLog {
                                 if (obj != null) {
                                     Class<?> cls = obj.getClass();
                                     if (!cls.isInstance(DispatchQueue.class)) {
-                                        if (!cls.isInstance(org.telegram.ui.Components.e6.class)) {
+                                        if (!cls.isInstance(org.telegram.ui.Components.c6.class)) {
                                             if (!cls.isInstance(ColorStateList.class)) {
                                                 if (cls.isInstance(Context.class)) {
                                                 }
@@ -160,7 +160,7 @@ public class FileLog {
             exclusionStrategy = new eb.a() {
                 @Override
                 public boolean shouldSkipClass(Class<?> cls) {
-                    if (!NativeByteBuffer.class.isAssignableFrom(cls) && !cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.e6.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
+                    if (!NativeByteBuffer.class.isAssignableFrom(cls) && !cls.isInstance(DispatchQueue.class) && !cls.isInstance(org.telegram.ui.Components.c6.class) && !cls.isInstance(ColorStateList.class) && !cls.isInstance(Context.class)) {
                         return false;
                     }
                     return true;
@@ -297,7 +297,7 @@ public class FileLog {
 
     public static void dumpUnparsedMessage(TLObject tLObject, long j10, int i10) {
         if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED && tLObject != null) {
-            postProtocolDump(new a5(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
+            postProtocolDump(new b5(tLObject, gsonDisabled, System.currentTimeMillis(), j10, i10));
         }
     }
 
@@ -388,7 +388,7 @@ public class FileLog {
             this.currentFile = new File(logsDir, format + ".txt");
             this.tlRequestsFile = new File(logsDir, format + "_mtproto.txt");
             try {
-                this.logQueue = new DispatchQueue("logQueue");
+                this.logQueue = new DispatchQueue2("logQueue");
                 this.currentFile.createNewFile();
                 OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(this.currentFile));
                 this.streamWriter = outputStreamWriter;
@@ -595,11 +595,11 @@ public class FileLog {
             return;
         }
         try {
-            DispatchQueue dispatchQueue = getInstance().logQueue;
-            if (dispatchQueue == null) {
+            DispatchQueue2 dispatchQueue2 = getInstance().logQueue;
+            if (dispatchQueue2 == null) {
                 atomicInteger.decrementAndGet();
             } else {
-                dispatchQueue.postRunnable(new j3(0, runnable));
+                dispatchQueue2.postRunnable(new j3(0, runnable));
             }
         } catch (Throwable th2) {
             pendingProtocolDumps.decrementAndGet();

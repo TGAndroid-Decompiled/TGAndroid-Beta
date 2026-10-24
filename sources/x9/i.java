@@ -6,12 +6,12 @@ import org.telegram.ui.o70;
 public final class i {
     public static final ca.a d = new ca.a(2);
     public static final o70 e = new o70(26);
-    public final ca.c f50130a;
-    public String f50131b = null;
-    public String f50132c = null;
+    public final ca.c f50129a;
+    public String f50130b = null;
+    public String f50131c = null;
 
     public i(ca.c cVar) {
-        this.f50130a = cVar;
+        this.f50129a = cVar;
     }
 
     public static void a(ca.c cVar, String str, String str2) {

@@ -1,32 +1,55 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.messenger.AndroidUtilities;
-public final class e1 implements DialogInterface.OnShowListener {
-    public final int f25804a;
-    public final e5 f25805b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class e1 implements kd0 {
+    public final int f25909a;
+    public final int[] f25910b;
 
-    public e1(int i10, e5 e5Var) {
-        this.f25804a = i10;
-        this.f25805b = e5Var;
+    public e1(int i10, int[] iArr) {
+        this.f25909a = i10;
+        this.f25910b = iArr;
     }
 
     @Override
-    public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f25804a) {
+    public final String e(int i10) {
+        switch (this.f25909a) {
             case 0:
-                e5 e5Var = this.f25805b;
-                e5Var.requestFocus();
-                AndroidUtilities.showKeyboard(e5Var);
-                return;
-            case 1:
-                e5 e5Var2 = this.f25805b;
-                e5Var2.requestFocus();
-                AndroidUtilities.showKeyboard(e5Var2);
-                return;
+                int i11 = this.f25910b[i10];
+                if (i11 == 0) {
+                    return LocaleController.getString(R.string.MuteNever);
+                }
+                if (i11 < 60) {
+                    return LocaleController.formatPluralString("Minutes", i11, new Object[0]);
+                }
+                if (i11 < 1440) {
+                    return LocaleController.formatPluralString("Hours", i11 / 60, new Object[0]);
+                }
+                if (i11 < 10080) {
+                    return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
+                }
+                if (i11 < 44640) {
+                    return LocaleController.formatPluralString("Weeks", i11 / 10080, new Object[0]);
+                }
+                if (i11 < 525600) {
+                    return LocaleController.formatPluralString("Months", i11 / 44640, new Object[0]);
+                }
+                return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
             default:
-                AndroidUtilities.runOnUIThread(new pg(this.f25805b, 4));
-                return;
+                int i12 = this.f25910b[i10];
+                if (i12 == 0) {
+                    return LocaleController.getString(R.string.AutoDeleteNever);
+                }
+                if (i12 < 10080) {
+                    return LocaleController.formatPluralString("Days", i12 / 1440, new Object[0]);
+                }
+                if (i12 < 44640) {
+                    return LocaleController.formatPluralString("Weeks", i12 / 10080, new Object[0]);
+                }
+                if (i12 < 525600) {
+                    return LocaleController.formatPluralString("Months", i12 / 44640, new Object[0]);
+                }
+                return LocaleController.formatPluralString("Years", i12 / 525600, new Object[0]);
         }
     }
 }

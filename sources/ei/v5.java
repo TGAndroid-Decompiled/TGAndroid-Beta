@@ -5,14 +5,14 @@ import android.graphics.Bitmap;
 public final class v5 extends qg.e1 {
     public final xa E;
 
-    public v5(xa xaVar, Context context, qg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2, org.telegram.ui.Components.ja jaVar) {
-        super(context, s0Var, bitmap, bitmap2, jaVar);
+    public v5(xa xaVar, Context context, qg.s0 s0Var, Bitmap bitmap, Bitmap bitmap2, org.telegram.ui.Components.ha haVar) {
+        super(context, s0Var, bitmap, bitmap2, haVar);
         this.E = xaVar;
     }
 
     @Override
     public final void g(qg.m mVar) {
-        int indexOf = qg.m.f44984a.indexOf(mVar);
+        int indexOf = qg.m.f44983a.indexOf(mVar);
         int i10 = indexOf + 1;
         if (i10 <= 1) {
             indexOf = i10;

@@ -14,8 +14,8 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.ba0;
+import org.telegram.ui.Components.vq;
 public final class bd extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     public long f1052a;
     public final int f1053b;
@@ -23,15 +23,15 @@ public final class bd extends LinearLayout implements NotificationCenter.Notific
     public boolean d;
     public SpannableString e;
     public long f1055f;
-    public final xq[] h;
-    public final xq[] f1056n;
+    public final vq[] h;
+    public final vq[] f1056n;
     public ValueAnimator f1057r;
 
     public bd(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
         this.f1055f = -1L;
-        this.h = new xq[1];
-        this.f1056n = new xq[1];
+        this.h = new vq[1];
+        this.f1056n = new vq[1];
         this.f1053b = i10;
         this.f1052a = UserConfig.getInstance(i10).getClientUserId();
         setOrientation(1);
@@ -46,7 +46,7 @@ public final class bd extends LinearLayout implements NotificationCenter.Notific
         addView(textView, w7.z5.q(-2, -2, 5));
         ad adVar = new ad(this, context, context.getResources().getDrawable(R.drawable.star_small_inner).mutate());
         this.f1054c = adVar;
-        adVar.f29776n = true;
+        adVar.f29157n = true;
         adVar.getDrawable().r(false, true);
         adVar.setTypeface(AndroidUtilities.bold());
         org.telegram.ui.ActionBar.r6.a0(adVar, i11, g6Var);
@@ -111,7 +111,7 @@ public final class bd extends LinearLayout implements NotificationCenter.Notific
             if (this.e == null) {
                 SpannableString spannableString = new SpannableString("x");
                 this.e = spannableString;
-                spannableString.setSpan(new da0(AndroidUtilities.dp(48.0f), adVar), 0, this.e.length(), 33);
+                spannableString.setSpan(new ba0(AndroidUtilities.dp(48.0f), adVar), 0, this.e.length(), 33);
             }
             adVar.c(this.e, z10, true);
             this.f1055f = -1L;
@@ -121,11 +121,11 @@ public final class bd extends LinearLayout implements NotificationCenter.Notific
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
             if (!i11.k()) {
                 String str = "⭐️" + i11.d();
-                xq[] xqVarArr = this.f1056n;
-                spannableStringBuilder.append((CharSequence) nd.Y0(true, str, 0.62f, xqVarArr));
-                xq xqVar = xqVarArr[0];
-                if (xqVar != null) {
-                    xqVar.setColorKey(org.telegram.ui.ActionBar.k6.il);
+                vq[] vqVarArr = this.f1056n;
+                spannableStringBuilder.append((CharSequence) nd.Y0(true, str, 0.62f, vqVarArr));
+                vq vqVar = vqVarArr[0];
+                if (vqVar != null) {
+                    vqVar.setColorKey(org.telegram.ui.ActionBar.k6.il);
                 }
                 spannableStringBuilder.append((CharSequence) "  ");
             }

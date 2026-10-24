@@ -1,48 +1,116 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class lq extends FrameLayout {
-    public final View f28408a;
-    public final TextView f28409b;
+import android.util.StateSet;
+import android.view.MotionEvent;
+public final class lq extends o6 {
+    public final Rect f28429s;
+    public Drawable v;
+    public boolean f28430w;
 
     public lq(Context context) {
-        super(context);
-        View view = new View(context);
-        this.f28408a = view;
-        int dp = AndroidUtilities.dp(4.0f);
-        int i10 = org.telegram.ui.ActionBar.k6.Oh;
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
-        int i11 = org.telegram.ui.ActionBar.k6.Qh;
-        int x03 = org.telegram.ui.ActionBar.k6.x0(null, i11, false);
-        Drawable j02 = org.telegram.ui.ActionBar.k6.j0(dp, dp, dp, dp, x02, x03, x03);
-        org.telegram.ui.ActionBar.n6 O = org.telegram.ui.ActionBar.r6.O(i10);
-        org.telegram.ui.ActionBar.n6 O2 = org.telegram.ui.ActionBar.r6.O(i11);
-        view.setBackground(j02);
-        org.telegram.ui.ActionBar.r6.k(view, j02, O, O2, null);
-        addView(view, w7.z5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-        TextView textView = new TextView(context);
-        this.f28409b = textView;
-        textView.setLines(1);
-        textView.setSingleLine(true);
-        textView.setGravity(1);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(17);
-        org.telegram.messenger.v0.q(textView, org.telegram.ui.ActionBar.k6.Sh, null, 1, 14.0f);
-        addView(textView, w7.z5.e(-2, -2, 17));
+        super(context, false, false, false);
+        this.f28429s = new Rect();
+    }
+
+    public Rect getClickBounds() {
+        return this.f28429s;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    public final void onDraw(Canvas canvas) {
+        if (this.v != null) {
+            Rect bounds = getDrawable().getBounds();
+            Rect rect = this.f28429s;
+            rect.set(bounds);
+            int ceil = (int) Math.ceil(getDrawable().c());
+            if (getDrawable().f28797b == 3) {
+                rect.right = rect.left + ceil;
+            } else if (getDrawable().f28797b == 5) {
+                rect.left = rect.right - ceil;
+            } else if (getDrawable().f28797b == 17) {
+                int i10 = (rect.left + rect.right) / 2;
+                int i11 = ceil / 2;
+                rect.left = i10 - i11;
+                rect.right = i10 + i11;
+            }
+            rect.left -= getPaddingLeft();
+            rect.top -= getPaddingTop();
+            rect.right = getPaddingRight() + rect.right;
+            rect.bottom = getPaddingBottom() + rect.bottom;
+            this.v.setBounds(rect);
+            this.v.draw(canvas);
+        }
+        super.onDraw(canvas);
     }
 
-    public void setText(CharSequence charSequence) {
-        this.f28409b.setText(charSequence);
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        boolean contains = getClickBounds().contains((int) motionEvent.getX(), (int) motionEvent.getY());
+        if (motionEvent.getAction() == 0 && contains) {
+            this.f28430w = true;
+            Drawable drawable = this.v;
+            if (drawable != null) {
+                drawable.setHotspot(motionEvent.getX(), motionEvent.getY());
+                this.v.setState(new int[]{16842919, 16842910});
+            }
+            invalidate();
+            return contains;
+        }
+        if (motionEvent.getAction() == 1) {
+            if (this.f28430w && contains) {
+                callOnClick();
+            }
+            this.f28430w = false;
+            Drawable drawable2 = this.v;
+            if (drawable2 != null) {
+                drawable2.setState(StateSet.NOTHING);
+                return contains;
+            }
+        } else if (motionEvent.getAction() == 3) {
+            this.f28430w = false;
+            Drawable drawable3 = this.v;
+            if (drawable3 != null) {
+                drawable3.setState(StateSet.NOTHING);
+            }
+        }
+        return contains;
+    }
+
+    @Override
+    public void setBackground(Drawable drawable) {
+        Drawable drawable2 = this.v;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.v = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        Drawable drawable2 = this.v;
+        if (drawable2 != null) {
+            drawable2.setCallback(null);
+        }
+        this.v = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+        invalidate();
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (drawable != this.v && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

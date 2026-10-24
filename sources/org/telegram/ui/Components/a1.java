@@ -1,68 +1,46 @@
 package org.telegram.ui.Components;
+public final class a1 implements org.telegram.ui.ActionBar.z1 {
+    public final int f24599a;
+    public final Runnable f24600b;
 
-import android.content.DialogInterface;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class a1 implements DialogInterface.OnDismissListener {
-    public final int f24582a;
-    public final Object f24583b;
-
-    public a1(Object obj, int i10) {
-        this.f24582a = i10;
-        this.f24583b = obj;
+    public a1(int i10, Runnable runnable) {
+        this.f24599a = i10;
+        this.f24600b = runnable;
     }
 
     @Override
-    public final void onDismiss(DialogInterface dialogInterface) {
-        int i10 = this.f24582a;
-        Object obj = this.f24583b;
-        switch (i10) {
+    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f24599a) {
             case 0:
-                ((org.telegram.ui.kg) obj).run();
+                Runnable runnable = this.f24600b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
             case 1:
-                AndroidUtilities.hideKeyboard((e5) obj);
+                this.f24600b.run();
                 return;
             case 2:
-                AndroidUtilities.hideKeyboard((f4) obj);
+                this.f24600b.run();
                 return;
             case 3:
-                ((ChatActivityEnterView) obj).L0 = null;
+                this.f24600b.run();
+                c2Var.dismiss();
                 return;
             case 4:
-                ((ti) obj).F2 = false;
-                return;
-            case 5:
-                al alVar = (al) obj;
-                alVar.T0 = null;
-                alVar.S.post(new uk(alVar, 2));
-                return;
-            case 6:
-                iu.i((iu) obj);
-                return;
-            case 7:
-                float[] fArr = FragmentContextView.W0;
-                ((FragmentContextView) obj).c(false);
-                return;
-            case 8:
-                jo0.H = null;
-                ((View) obj).requestFocus();
-                return;
-            case 9:
-                AndroidUtilities.hideKeyboard((do0) obj);
+                Runnable runnable2 = this.f24600b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
                 return;
             default:
-                ThemeEditorView themeEditorView = ((z11) obj).d;
-                themeEditorView.f24543n = null;
-                if (themeEditorView.d != null) {
-                    AndroidUtilities.setPreferredMaxRefreshRate(themeEditorView.f24539j, themeEditorView.f24535c, themeEditorView.f24538i);
-                    try {
-                        themeEditorView.f24539j.addView(themeEditorView.f24535c, themeEditorView.f24538i);
-                        themeEditorView.e();
-                        return;
-                    } catch (Exception unused) {
-                        return;
-                    }
+                c2Var.dismiss();
+                Runnable runnable3 = this.f24600b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
                 }
                 return;
         }

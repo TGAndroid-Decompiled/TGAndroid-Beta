@@ -4,9 +4,9 @@ import android.graphics.Canvas;
 import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.Components.wq;
 import org.telegram.ui.vw;
-public final class h extends yq {
+public final class h extends wq {
     public final Drawable E;
     public final Drawable F;
     public final vw G;
@@ -26,7 +26,7 @@ public final class h extends yq {
         vw vwVar = this.G;
         int i12 = vwVar.f5813b;
         if (i12 == 0) {
-            i10 = org.telegram.ui.ActionBar.k6.f21462s8;
+            i10 = org.telegram.ui.ActionBar.k6.f21463s8;
         } else {
             i10 = org.telegram.ui.ActionBar.k6.M8;
         }

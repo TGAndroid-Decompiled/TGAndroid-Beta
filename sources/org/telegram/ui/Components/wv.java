@@ -1,30 +1,48 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public final class wv implements Runnable {
-    public final int f32353a;
-    public final xv f32354b;
-
-    public wv(xv xvVar, int i10) {
-        this.f32353a = i10;
-        this.f32354b = xvVar;
-    }
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class wv extends LinkMovementMethod {
+    public final int f32354a;
 
     @Override
-    public final void run() {
-        switch (this.f32353a) {
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        switch (this.f32354a) {
             case 0:
-                this.f32354b.f32655f.dismiss();
-                return;
-            default:
-                aw awVar = this.f32354b.f32655f;
-                awVar.dismiss();
-                org.telegram.ui.ActionBar.o2 o2Var = awVar.f24855c;
-                if (o2Var != null && o2Var.getParentActivity() != null) {
-                    org.telegram.messenger.sl.q(R.string.AddEmojiNotFound, xc.a0(o2Var), null);
-                    return;
+                try {
+                    boolean onTouchEvent = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return false;
                 }
-                return;
+            case 1:
+                try {
+                    return super.onTouchEvent(textView, spannable, motionEvent);
+                } catch (Exception e7) {
+                    FileLog.e(e7);
+                    return false;
+                }
+            default:
+                try {
+                    boolean onTouchEvent2 = super.onTouchEvent(textView, spannable, motionEvent);
+                    if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
+                        return onTouchEvent2;
+                    }
+                    Selection.removeSelection(spannable);
+                    return onTouchEvent2;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return false;
+                }
         }
     }
 }

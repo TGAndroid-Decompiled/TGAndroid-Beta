@@ -11,11 +11,11 @@ import org.telegram.messenger.BotWebViewVibrationEffect;
 import org.telegram.messenger.CacheByChatsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.bm0 {
-    public final c7 f36826a;
+public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.am0 {
+    public final c7 f36811a;
 
     public e6(c7 c7Var) {
-        this.f36826a = c7Var;
+        this.f36811a = c7Var;
     }
 
     @Override
@@ -25,18 +25,18 @@ public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram
 
     @Override
     public void a(int i10) {
-        AndroidUtilities.updateVisibleRows(this.f36826a.f36257b);
+        AndroidUtilities.updateVisibleRows(this.f36811a.f36235b);
     }
 
     @Override
     public void c(float f7, float f10, int i10, View view) {
-        c7 c7Var = this.f36826a;
-        ArrayList arrayList = c7Var.f36256a0;
+        c7 c7Var = this.f36811a;
+        ArrayList arrayList = c7Var.f36234a0;
         if (c7Var.getParentActivity() != null && i10 >= 0 && i10 < arrayList.size()) {
             x6 x6Var = (x6) arrayList.get(i10);
             int i11 = 0;
-            if (x6Var.f44713a == 11 && (view instanceof org.telegram.ui.Cells.z1)) {
-                int i12 = x6Var.f43510f;
+            if (x6Var.f44712a == 11 && (view instanceof org.telegram.ui.Cells.z1)) {
+                int i12 = x6Var.f43477f;
                 if (i12 < 0) {
                     c7Var.M = !c7Var.M;
                     c7Var.x0(true);
@@ -61,20 +61,20 @@ public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram
                         return;
                     }
                 }
-                int i15 = x6Var.f43510f;
+                int i15 = x6Var.f43477f;
                 boolean z10 = !zArr[i15];
                 zArr[i15] = z10;
                 ((org.telegram.ui.Cells.z1) view).c(z10, true);
-                if (x6Var.f43512i) {
+                if (x6Var.f43479i) {
                     while (true) {
-                        if (i11 >= c7Var.f36257b.getChildCount()) {
+                        if (i11 >= c7Var.f36235b.getChildCount()) {
                             break;
                         }
-                        View childAt = c7Var.f36257b.getChildAt(i11);
+                        View childAt = c7Var.f36235b.getChildAt(i11);
                         if (childAt instanceof org.telegram.ui.Cells.z1) {
-                            c7Var.f36257b.getClass();
+                            c7Var.f36235b.getClass();
                             int R = RecyclerView.R(childAt);
-                            if (R >= 0 && R < arrayList.size() && ((x6) arrayList.get(R)).f43510f < 0) {
+                            if (R >= 0 && R < arrayList.size() && ((x6) arrayList.get(R)).f43477f < 0) {
                                 ((org.telegram.ui.Cells.z1) childAt).c(c7Var.s0(), true);
                                 break;
                             }
@@ -83,57 +83,57 @@ public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram
                     }
                 }
                 c7Var.w0();
-            } else if (x6Var.f43509c >= 0) {
+            } else if (x6Var.f43476c >= 0) {
                 c80 c80Var = new c80(view.getContext(), c7Var);
-                org.telegram.ui.ActionBar.m1 Q = org.telegram.ui.Components.f5.Q(c7Var, c80Var, view, f7, f10);
-                int i16 = ((x6) arrayList.get(i10)).f43509c;
-                c80Var.f36284c0 = i16;
-                FrameLayout frameLayout = c80Var.f36289h0;
+                org.telegram.ui.ActionBar.m1 P = org.telegram.ui.Components.d5.P(c7Var, c80Var, view, f7, f10);
+                int i16 = ((x6) arrayList.get(i10)).f43476c;
+                c80Var.f36262c0 = i16;
+                FrameLayout frameLayout = c80Var.f36267h0;
                 org.telegram.ui.ActionBar.e1 e1Var = c80Var.V;
                 org.telegram.ui.ActionBar.e1 e1Var2 = c80Var.W;
-                org.telegram.ui.Components.y90 y90Var = c80Var.T;
-                b80 b80Var = c80Var.f36283b0;
+                org.telegram.ui.Components.w90 w90Var = c80Var.T;
+                b80 b80Var = c80Var.f36261b0;
                 if (i16 == 3) {
                     e1Var2.setVisibility(0);
                     e1Var.setVisibility(8);
                     frameLayout.setVisibility(8);
                     b80Var.setVisibility(8);
-                    y90Var.setVisibility(8);
+                    w90Var.setVisibility(8);
                 } else {
                     e1Var2.setVisibility(8);
                     e1Var.setVisibility(0);
                     frameLayout.setVisibility(0);
                     b80Var.setVisibility(0);
-                    y90Var.setVisibility(0);
+                    w90Var.setVisibility(0);
                 }
-                ArrayList<CacheByChatsController.KeepMediaException> keepMediaExceptions = c80Var.f36285d0.getKeepMediaExceptions(i16);
-                c80Var.f36287f0 = keepMediaExceptions;
+                ArrayList<CacheByChatsController.KeepMediaException> keepMediaExceptions = c80Var.f36263d0.getKeepMediaExceptions(i16);
+                c80Var.f36265f0 = keepMediaExceptions;
                 boolean isEmpty = keepMediaExceptions.isEmpty();
-                org.telegram.ui.ActionBar.o2 o2Var = c80Var.f36288g0;
+                org.telegram.ui.ActionBar.o2 o2Var = c80Var.f36266g0;
                 if (isEmpty) {
-                    org.telegram.ui.ActionBar.n5 n5Var = b80Var.f35960a;
-                    org.telegram.ui.Components.k9 k9Var = b80Var.f35961b;
+                    org.telegram.ui.ActionBar.n5 n5Var = b80Var.f35949a;
+                    org.telegram.ui.Components.i9 i9Var = b80Var.f35950b;
                     n5Var.l(LocaleController.getString(R.string.AddAnException), false);
-                    b80Var.f35960a.setRightPadding(AndroidUtilities.dp(8.0f));
-                    k9Var.b(0, null, o2Var.getCurrentAccount());
-                    k9Var.b(1, null, o2Var.getCurrentAccount());
-                    k9Var.b(2, null, o2Var.getCurrentAccount());
-                    k9Var.a(false);
+                    b80Var.f35949a.setRightPadding(AndroidUtilities.dp(8.0f));
+                    i9Var.b(0, null, o2Var.getCurrentAccount());
+                    i9Var.b(1, null, o2Var.getCurrentAccount());
+                    i9Var.b(2, null, o2Var.getCurrentAccount());
+                    i9Var.a(false);
                 } else {
-                    int min = Math.min(3, c80Var.f36287f0.size());
-                    org.telegram.ui.ActionBar.n5 n5Var2 = b80Var.f35960a;
-                    org.telegram.ui.Components.k9 k9Var2 = b80Var.f35961b;
+                    int min = Math.min(3, c80Var.f36265f0.size());
+                    org.telegram.ui.ActionBar.n5 n5Var2 = b80Var.f35949a;
+                    org.telegram.ui.Components.i9 i9Var2 = b80Var.f35950b;
                     n5Var2.setRightPadding(AndroidUtilities.dp((Math.max(0, min - 1) * 12) + 64));
-                    b80Var.f35960a.l(LocaleController.formatPluralString("ExceptionShort", c80Var.f36287f0.size(), Integer.valueOf(c80Var.f36287f0.size())), false);
+                    b80Var.f35949a.l(LocaleController.formatPluralString("ExceptionShort", c80Var.f36265f0.size(), Integer.valueOf(c80Var.f36265f0.size())), false);
                     for (int i17 = 0; i17 < min; i17++) {
-                        k9Var2.b(i17, o2Var.getMessagesController().getUserOrChat(((CacheByChatsController.KeepMediaException) c80Var.f36287f0.get(i17)).dialogId), o2Var.getCurrentAccount());
+                        i9Var2.b(i17, o2Var.getMessagesController().getUserOrChat(((CacheByChatsController.KeepMediaException) c80Var.f36265f0.get(i17)).dialogId), o2Var.getCurrentAccount());
                     }
-                    k9Var2.a(false);
+                    i9Var2.a(false);
                 }
                 c80Var.U.setVisibility(8);
-                y90Var.setVisibility(8);
+                w90Var.setVisibility(8);
                 c80Var.f();
-                c80Var.setParentWindow(Q);
+                c80Var.setParentWindow(P);
                 c80Var.setCallback(new e6(c7Var));
             }
         }
@@ -141,7 +141,7 @@ public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram
 
     @Override
     public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        c7 c7Var = this.f36826a;
+        c7 c7Var = this.f36811a;
         bi.c cVar = c7Var.Y;
         LongSparseArray longSparseArray = cVar.f4435c;
         v6 v6Var = new v6(0L);
@@ -152,7 +152,7 @@ public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram
             v6 v6Var2 = (v6) longSparseArray.get(bVar.f4429b);
             if (v6Var2 != null) {
                 v6Var2.b(bVar);
-                if (v6Var2.f42618c <= 0) {
+                if (v6Var2.f42586c <= 0) {
                     longSparseArray.remove(bVar.f4429b);
                     cVar.f4434b.remove(v6Var2);
                 }
@@ -162,7 +162,7 @@ public final class e6 implements z70, org.telegram.ui.ActionBar.z1, org.telegram
                 }
             }
         }
-        if (v6Var.f42618c > 0) {
+        if (v6Var.f42586c > 0) {
             c7Var.m0(v6Var, null, null);
         }
         c7Var.Y.d();

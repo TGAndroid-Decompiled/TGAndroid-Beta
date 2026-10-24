@@ -1,39 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import org.telegram.ui.qc1;
-public final class jm extends org.telegram.ui.ActionBar.u0 {
-    public final int f27709x0;
-    public final Object f27710y0;
+import android.view.View;
+import org.telegram.messenger.MediaController;
+public final class jm implements mm0 {
+    public final ChatAttachAlertPhotoLayout f27724a;
 
-    public jm(li liVar, Context context, org.telegram.ui.ActionBar.y yVar, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, yVar, 0, 0, false, g6Var);
-        this.f27709x0 = i10;
-        this.f27710y0 = liVar;
+    public jm(ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout) {
+        this.f27724a = chatAttachAlertPhotoLayout;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        switch (this.f27709x0) {
-            case 0:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.f27710y0).f24268x.getText());
-                return;
-            case 1:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((bn) this.f27710y0).f25105x.getText());
-                return;
-            default:
-                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-                accessibilityNodeInfo.setText(((qc1) this.f27710y0).h.getText());
-                return;
+    public final void a(boolean z10) {
+        ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = this.f27724a;
+        chatAttachAlertPhotoLayout.L = z10 ? 1 : 0;
+        chatAttachAlertPhotoLayout.E.e1(true);
+    }
+
+    @Override
+    public final boolean b(int i10) {
+        if (this.f27724a.G.j(i10) == 0) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(View view, boolean z10) {
+        if (z10 == this.f27724a.K && (view instanceof org.telegram.ui.Cells.s5)) {
+            org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
+            s5Var.f23255w.b(s5Var);
         }
     }
 
-    public jm(qc1 qc1Var, Context context, org.telegram.ui.ActionBar.y yVar) {
-        super(context, yVar, 0, 0);
-        this.f27709x0 = 2;
-        this.f27710y0 = qc1Var;
+    @Override
+    public final boolean d(int i10) {
+        MediaController.PhotoEntry M = this.f27724a.G.M(i10);
+        if (M != null && ChatAttachAlertPhotoLayout.f24225s1.containsKey(Integer.valueOf(M.imageId))) {
+            return true;
+        }
+        return false;
     }
 }

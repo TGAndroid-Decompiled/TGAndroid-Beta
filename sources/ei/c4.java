@@ -8,21 +8,21 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.yj0;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.xj0;
 public final class c4 extends FrameLayout {
     public static final int d = 0;
-    public final org.telegram.ui.Components.w9 f8828a;
+    public final org.telegram.ui.Components.u9 f8828a;
     public final d f8829b;
     public boolean f8830c;
 
     public c4(Context context) {
         super(context);
-        LinearLayout e = sl.e(context, 1);
+        LinearLayout e = tl.e(context, 1);
         addView(e, w7.z5.e(-2, -2, 17));
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f8828a = w9Var;
-        e.addView(w9Var, w7.z5.q(130, 130, 1));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.f8828a = u9Var;
+        e.addView(u9Var, w7.z5.q(130, 130, 1));
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
         textView.setText(LocaleController.getString(R.string.LiveStoryDisconnected));
@@ -41,7 +41,7 @@ public final class c4 extends FrameLayout {
     public final void setVisibility(int i10) {
         super.setVisibility(i10);
         if (i10 == 0 && !this.f8830c) {
-            this.f8828a.setImageDrawable(new yj0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+            this.f8828a.setImageDrawable(new xj0(R.raw.utyan_empty2, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
             this.f8830c = true;
         }
     }

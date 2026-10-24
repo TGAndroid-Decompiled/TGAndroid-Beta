@@ -2,7 +2,7 @@ package ai;
 
 import android.text.style.ClickableSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.z90;
+import org.telegram.ui.Components.x90;
 public final class y2 implements Runnable {
     public final int f2481a;
     public final ei.x3 f2482b;
@@ -30,7 +30,7 @@ public final class y2 implements Runnable {
         }
     }
 
-    public y2(ei.x3 x3Var, z90 z90Var, ClickableSpan clickableSpan) {
+    public y2(ei.x3 x3Var, x90 x90Var, ClickableSpan clickableSpan) {
         this.f2481a = 2;
         this.f2482b = x3Var;
     }

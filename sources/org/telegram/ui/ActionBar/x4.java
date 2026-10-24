@@ -13,25 +13,25 @@ import android.view.animation.PathInterpolator;
 import android.widget.ListView;
 import org.telegram.messenger.AndroidUtilities;
 public final class x4 extends ListView {
-    public final y4 f21957a;
-    public final LinearGradient f21958b;
-    public final Paint f21959c;
+    public final y4 f21958a;
+    public final LinearGradient f21959b;
+    public final Paint f21960c;
     public final Paint d;
     public final Matrix e;
 
     public x4(y4 y4Var) {
-        super(y4Var.f21991a);
+        super(y4Var.f21992a);
         int[] iArr = new int[8];
-        PathInterpolator pathInterpolator = zf.y.f52081i;
+        PathInterpolator pathInterpolator = zf.y.f52080i;
         zf.y.a(pathInterpolator, -16777216, iArr);
         Shader.TileMode tileMode = Shader.TileMode.CLAMP;
         LinearGradient linearGradient = new LinearGradient(0.0f, AndroidUtilities.dp(16.0f), 0.0f, 0.0f, iArr, (float[]) null, tileMode);
         int[] iArr2 = new int[8];
         zf.y.a(pathInterpolator, -16777216, iArr2);
         LinearGradient linearGradient2 = new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(16.0f), iArr2, (float[]) null, tileMode);
-        this.f21958b = linearGradient2;
+        this.f21959b = linearGradient2;
         Paint paint = new Paint(1);
-        this.f21959c = paint;
+        this.f21960c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
         this.e = new Matrix();
@@ -40,7 +40,7 @@ public final class x4 extends ListView {
         paint.setXfermode(new PorterDuffXfermode(mode));
         paint2.setShader(linearGradient2);
         paint2.setXfermode(new PorterDuffXfermode(mode));
-        this.f21957a = y4Var;
+        this.f21958a = y4Var;
         setVerticalScrollBarEnabled(false);
     }
 
@@ -51,7 +51,7 @@ public final class x4 extends ListView {
 
     @Override
     public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (y4.b(this.f21957a)) {
+        if (y4.b(this.f21958a)) {
             return true;
         }
         return super.dispatchTouchEvent(motionEvent);
@@ -79,7 +79,7 @@ public final class x4 extends ListView {
         canvas.saveLayer(0.0f, y3, getWidth(), height, null);
         boolean drawChild = super.drawChild(canvas, view, j10);
         if (z10) {
-            canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(16.0f), this.f21959c);
+            canvas.drawRect(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(16.0f), this.f21960c);
         }
         if (z11) {
             canvas.drawRect(0.0f, getHeight() - AndroidUtilities.dp(16.0f), getWidth(), getHeight(), this.d);
@@ -90,7 +90,7 @@ public final class x4 extends ListView {
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        y4 y4Var = this.f21957a;
+        y4 y4Var = this.f21958a;
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(y4Var.I.getHeight() - y4Var.H.getHeight(), 1073741824));
     }
 
@@ -99,6 +99,6 @@ public final class x4 extends ListView {
         Matrix matrix = this.e;
         matrix.reset();
         matrix.postTranslate(0.0f, i11 - AndroidUtilities.dp(16.0f));
-        this.f21958b.setLocalMatrix(matrix);
+        this.f21959b.setLocalMatrix(matrix);
     }
 }

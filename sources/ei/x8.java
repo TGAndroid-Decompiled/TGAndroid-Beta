@@ -14,10 +14,10 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.hf;
-import org.telegram.ui.Components.ke0;
-import org.telegram.ui.Components.pe0;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.ff;
+import org.telegram.ui.Components.ie0;
+import org.telegram.ui.Components.ne0;
 public final class x8 extends FrameLayout {
     public final int f10122a = 0;
     public final Object f10123b;
@@ -27,9 +27,9 @@ public final class x8 extends FrameLayout {
     public Object f10125f;
     public Object h;
 
-    public x8(pe0 pe0Var, Context context) {
+    public x8(ne0 ne0Var, Context context) {
         super(context);
-        this.h = pe0Var;
+        this.h = ne0Var;
         this.f10123b = new ArrayList(4);
         this.f10124c = new ArrayList(4);
         this.d = new StringBuilder(4);
@@ -65,9 +65,9 @@ public final class x8 extends FrameLayout {
         if (sb2.length() == 0) {
             return;
         }
-        hf hfVar = (hf) x8Var.f10125f;
-        if (hfVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(hfVar);
+        ff ffVar = (ff) x8Var.f10125f;
+        if (ffVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(ffVar);
             x8Var.f10125f = null;
         }
         AnimatorSet animatorSet = (AnimatorSet) x8Var.e;
@@ -100,7 +100,7 @@ public final class x8 extends FrameLayout {
             x8Var.e = animatorSet2;
             animatorSet2.setDuration(150L);
             ((AnimatorSet) x8Var.e).playTogether(arrayList3);
-            ((AnimatorSet) x8Var.e).addListener(new ke0(x8Var, 2));
+            ((AnimatorSet) x8Var.e).addListener(new ie0(x8Var, 2));
             ((AnimatorSet) x8Var.e).start();
         } else {
             for (int i12 = 0; i12 < 4; i12++) {
@@ -108,7 +108,7 @@ public final class x8 extends FrameLayout {
                 ((TextView) arrayList.get(i12)).setAlpha(0.0f);
             }
         }
-        pe0.a((pe0) x8Var.h);
+        ne0.a((ne0) x8Var.h);
     }
 
     public void b(String str) {
@@ -157,13 +157,13 @@ public final class x8 extends FrameLayout {
                 arrayList3.add(ObjectAnimator.ofFloat(textView4, property3, 0.0f));
             }
         }
-        hf hfVar = (hf) this.f10125f;
-        if (hfVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(hfVar);
+        ff ffVar = (ff) this.f10125f;
+        if (ffVar != null) {
+            AndroidUtilities.cancelRunOnUIThread(ffVar);
         }
-        hf hfVar2 = new hf(this, length, 2);
-        this.f10125f = hfVar2;
-        AndroidUtilities.runOnUIThread(hfVar2, 1500L);
+        ff ffVar2 = new ff(this, length, 2);
+        this.f10125f = ffVar2;
+        AndroidUtilities.runOnUIThread(ffVar2, 1500L);
         for (int i11 = 0; i11 < length; i11++) {
             TextView textView5 = (TextView) arrayList2.get(i11);
             Property property5 = View.TRANSLATION_X;
@@ -187,9 +187,9 @@ public final class x8 extends FrameLayout {
         this.e = animatorSet2;
         animatorSet2.setDuration(150L);
         ((AnimatorSet) this.e).playTogether(arrayList3);
-        ((AnimatorSet) this.e).addListener(new ke0(this, 0));
+        ((AnimatorSet) this.e).addListener(new ie0(this, 0));
         ((AnimatorSet) this.e).start();
-        pe0.a((pe0) this.h);
+        ne0.a((ne0) this.h);
     }
 
     public int c(int i10) {
@@ -228,7 +228,7 @@ public final class x8 extends FrameLayout {
             case 0:
                 super.dispatchDraw(canvas);
                 Paint paint = (Paint) this.f10125f;
-                paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21184d7, (org.telegram.ui.ActionBar.g6) this.f10123b));
+                paint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21185d7, (org.telegram.ui.ActionBar.g6) this.f10123b));
                 canvas.drawRect(0.0f, getHeight() - AndroidUtilities.getShadowHeight(), getWidth(), getHeight(), paint);
                 return;
             default:
@@ -247,9 +247,9 @@ public final class x8 extends FrameLayout {
             case 1:
                 ArrayList arrayList = (ArrayList) this.f10124c;
                 ArrayList arrayList2 = (ArrayList) this.f10123b;
-                hf hfVar = (hf) this.f10125f;
-                if (hfVar != null) {
-                    AndroidUtilities.cancelRunOnUIThread(hfVar);
+                ff ffVar = (ff) this.f10125f;
+                if (ffVar != null) {
+                    AndroidUtilities.cancelRunOnUIThread(ffVar);
                     this.f10125f = null;
                 }
                 AnimatorSet animatorSet = (AnimatorSet) this.e;
@@ -302,9 +302,9 @@ public final class x8 extends FrameLayout {
         this.f10123b = g6Var;
         TextView textView = new TextView(context);
         this.d = textView;
-        sl.k(20.0f, 1, textView);
+        tl.k(20.0f, 1, textView);
         textView.setGravity(LocaleController.isRTL ? 5 : 3);
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21289j5, g6Var);
+        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21290j5, g6Var);
         boolean z10 = LocaleController.isRTL;
         addView(textView, w7.z5.d(-1, -2.0f, 23, z10 ? 16.0f : 53.0f, 0.0f, z10 ? 53.0f : 16.0f, 0.0f));
         ImageView imageView = new ImageView(context);
@@ -314,7 +314,7 @@ public final class x8 extends FrameLayout {
         imageView.setImageDrawable(h2Var);
         h2Var.a(-1);
         h2Var.b(-1);
-        h2Var.f20938k = 220.0f;
+        h2Var.f20939k = 220.0f;
         addView(imageView, w7.z5.d(24, 24.0f, (LocaleController.isRTL ? 5 : 3) | 16, 16.0f, 0.0f, 16.0f, 0.0f));
         imageView.setOnClickListener(new ah.g0(this, 23));
     }

@@ -190,8 +190,8 @@ public final class fc extends Path {
             return;
         }
         int i10 = ybVar.f10169b;
-        org.telegram.ui.Components.f6 f6Var = ybVar.f10168a;
-        float d = f6Var.d(ybVar.f10170c, false);
+        org.telegram.ui.Components.d6 d6Var = ybVar.f10168a;
+        float d = d6Var.d(ybVar.f10170c, false);
         if (0 == j10 && Math.abs(this.e - f13) <= 1.0f && Math.abs(this.f9066f - f14) <= 0.01f && Math.abs(this.f9067g - f12) <= 0.1f && Math.abs(this.h - f15) <= 1.0f && Math.abs(this.f9068i - f19) <= 1.0f && Math.abs(this.f9069j - f20) <= 1.0f && Math.abs(this.f9070k - f21) <= 1.0f && (arrayList = this.f9065c) != null && arrayList.size() == 1) {
             ArrayList arrayList2 = this.d;
             if (arrayList2 != null && !arrayList2.isEmpty()) {
@@ -224,7 +224,7 @@ public final class fc extends Path {
         this.f9066f = f14;
         this.e = f13;
         this.h = f15;
-        float d10 = f6Var.d(ybVar.f10170c, false);
+        float d10 = d6Var.d(ybVar.f10170c, false);
         rewind();
         float round = Math.round(AndroidUtilities.dpf2(3.3333f));
         int max = Math.max(0, (int) (((f20 - this.f9063a) - f19) / round));

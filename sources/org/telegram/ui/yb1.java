@@ -1,50 +1,18 @@
 package org.telegram.ui;
+public final class yb1 extends pc1 {
+    public final sn f43818l2;
+    public final boolean f43819m2;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class yb1 extends w7.w5 {
-    public final int f43766a;
-    public final NotificationCenter.NotificationCenterDelegate f43767b;
-
-    public yb1(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f43766a = i10;
-        this.f43767b = notificationCenterDelegate;
+    public yb1(Object obj, sn snVar, boolean z10) {
+        super(obj, null, true);
+        this.f43818l2 = snVar;
+        this.f43819m2 = z10;
     }
 
     @Override
-    public void a() {
-        switch (this.f43766a) {
-            case 1:
-                ((oh1) this.f43767b).v.invalidate();
-                return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public void b(int i10, int i11) {
-        boolean z10;
-        switch (this.f43766a) {
-            case 0:
-                Point point = AndroidUtilities.displaySize;
-                boolean z11 = false;
-                if (point.x <= point.y) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i10 <= i11) {
-                    z11 = true;
-                }
-                if (z10 == z11) {
-                    ((qc1) this.f43767b).f40779y0.invalidate();
-                    return;
-                }
-                return;
-            default:
-                return;
-        }
+    public final void onFragmentClosed() {
+        super.onFragmentClosed();
+        qn qnVar = this.f43818l2.f41651qa;
+        qnVar.q(qnVar.f40882f, qnVar.f40883g, false, Boolean.valueOf(this.f43819m2), false);
     }
 }

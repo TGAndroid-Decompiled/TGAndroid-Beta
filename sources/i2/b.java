@@ -94,13 +94,13 @@ public abstract class b implements k1 {
             return g10;
         }
         if (g10 == -5) {
-            b2.w wVar = (b2.w) bVar.f44865c;
+            b2.w wVar = (b2.w) bVar.f44864c;
             wVar.getClass();
             long j11 = wVar.f4139x;
             if (j11 != Long.MAX_VALUE) {
                 b2.v a2 = wVar.a();
                 a2.f4086w = j11 + this.v;
-                bVar.f44865c = new b2.w(a2);
+                bVar.f44864c = new b2.w(a2);
             }
         }
         return g10;

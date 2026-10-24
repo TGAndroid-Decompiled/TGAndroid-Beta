@@ -1,37 +1,31 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.NotificationCenter;
-public final class fc0 implements Runnable {
-    public final int f26281a;
-    public final gc0 f26282b;
+import android.view.View;
+public final class fc0 implements zl0 {
+    public final jc0 f26287a;
 
-    public fc0(gc0 gc0Var, int i10) {
-        this.f26281a = i10;
-        this.f26282b = gc0Var;
+    public fc0(jc0 jc0Var) {
+        this.f26287a = jc0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26281a) {
-            case 0:
-                gc0 gc0Var = this.f26282b;
-                if (gc0Var.W != -1) {
-                    NotificationCenter.getInstance(gc0Var.Y.f28340c0.f30150w).onAnimationFinish(gc0Var.W);
-                    gc0Var.W = -1;
-                    return;
+    public final void d(int i10, View view) {
+        jc0 jc0Var = this.f26287a;
+        if (jc0Var.f27669a == 1 && jc0Var.f27677r.previewMessages.size() > 1) {
+            int id2 = jc0Var.f27677r.previewMessages.get(i10).getId();
+            boolean z10 = jc0Var.f27677r.selectedIds.get(id2, false);
+            boolean z11 = !z10;
+            if (jc0Var.f27677r.selectedIds.size() != 1 || !z10) {
+                if (z10) {
+                    jc0Var.f27677r.selectedIds.delete(id2);
+                } else {
+                    jc0Var.f27677r.selectedIds.put(id2, z11);
                 }
-                return;
-            case 1:
-                this.f26282b.Y.i();
-                return;
-            default:
-                gc0 gc0Var2 = this.f26282b;
-                if (gc0Var2.W != -1) {
-                    NotificationCenter.getInstance(gc0Var2.Y.f28340c0.f30150w).onAnimationFinish(gc0Var2.W);
-                    gc0Var2.W = -1;
-                    return;
+                if (view instanceof org.telegram.ui.Cells.t1) {
+                    ((org.telegram.ui.Cells.t1) view).K3(z11, z11, true);
                 }
-                return;
+                jc0Var.l(true);
+            }
         }
     }
 }

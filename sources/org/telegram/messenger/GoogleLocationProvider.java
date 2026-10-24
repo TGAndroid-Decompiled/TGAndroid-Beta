@@ -10,6 +10,7 @@ import com.google.android.gms.location.LocationResult;
 import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -19,6 +20,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.telegram.messenger.ILocationServiceProvider;
 import org.telegram.messenger.PushListenerController;
 public class GoogleLocationProvider implements ILocationServiceProvider {
+    private final HashMap<ILocationServiceProvider.ILocationListener, g8.c> callbacks = new HashMap<>();
     private g8.a locationProviderClient;
     private g8.i settingsClient;
 
@@ -157,7 +159,7 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         com.google.android.gms.common.api.internal.u b10 = com.google.android.gms.common.api.internal.v.b();
         b10.f6509c = new k2.w0(eVar, 18);
         b10.f6507a = 2426;
-        cVar.e(0, b10.a()).addOnCompleteListener(new l4(aVar, 1));
+        cVar.e(0, b10.a()).addOnCompleteListener(new m4(aVar, 1));
     }
 
     @Override
@@ -170,16 +172,16 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
         r7.c cVar = (r7.c) this.locationProviderClient;
         cVar.getClass();
         com.google.android.gms.common.api.internal.u b10 = com.google.android.gms.common.api.internal.v.b();
-        b10.f6509c = r7.a.f45453c;
+        b10.f6509c = r7.a.f45452c;
         b10.f6507a = 2414;
-        cVar.e(0, b10.a()).addOnCompleteListener(new l4(aVar, 0));
+        cVar.e(0, b10.a()).addOnCompleteListener(new m4(aVar, 0));
     }
 
     @Override
     public void init(Context context) {
         com.google.android.gms.common.api.e eVar = g8.d.f10943a;
         com.google.android.gms.common.api.i iVar = com.google.android.gms.common.api.i.f6368c;
-        com.google.android.gms.common.api.e eVar2 = r7.c.f45455k;
+        com.google.android.gms.common.api.e eVar2 = r7.c.f45454k;
         com.google.android.gms.common.api.a aVar = com.google.android.gms.common.api.b.f6359p;
         this.locationProviderClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
         this.settingsClient = new com.google.android.gms.common.api.j(context, eVar2, aVar, iVar);
@@ -322,76 +324,51 @@ public class GoogleLocationProvider implements ILocationServiceProvider {
     }
 
     @Override
-    public void removeLocationUpdates(final ILocationServiceProvider.ILocationListener iLocationListener) {
-        g8.a aVar = this.locationProviderClient;
-        g8.c cVar = new g8.c() {
-            {
-                GoogleLocationProvider.this = this;
-            }
-
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                Location location;
-                ILocationServiceProvider.ILocationListener iLocationListener2 = iLocationListener;
-                List list = locationResult.f7430a;
-                int size = list.size();
-                if (size == 0) {
-                    location = null;
-                } else {
-                    location = (Location) list.get(size - 1);
-                }
-                iLocationListener2.onLocationChanged(location);
-            }
-        };
-        r7.c cVar2 = (r7.c) aVar;
-        cVar2.getClass();
-        String simpleName = g8.c.class.getSimpleName();
-        n6.l.g(simpleName, "Listener type must not be empty");
-        cVar2.c(new com.google.android.gms.common.api.internal.n(cVar, simpleName), 2418).continueWith(r7.b.f45454a, r7.a.f45452b);
+    public synchronized void removeLocationUpdates(ILocationServiceProvider.ILocationListener iLocationListener) {
+        g8.c remove = this.callbacks.remove(iLocationListener);
+        if (remove != null) {
+            r7.c cVar = (r7.c) this.locationProviderClient;
+            cVar.getClass();
+            String simpleName = g8.c.class.getSimpleName();
+            n6.l.g(simpleName, "Listener type must not be empty");
+            cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(r7.b.f45453a, r7.a.f45451b);
+        }
     }
 
     @Override
-    public void requestLocationUpdates(ILocationServiceProvider.ILocationRequest iLocationRequest, final ILocationServiceProvider.ILocationListener iLocationListener) {
-        g8.a aVar = this.locationProviderClient;
-        LocationRequest locationRequest = ((GoogleLocationRequest) iLocationRequest).request;
-        g8.c cVar = new g8.c() {
-            {
-                GoogleLocationProvider.this = this;
+    public synchronized void requestLocationUpdates(ILocationServiceProvider.ILocationRequest iLocationRequest, final ILocationServiceProvider.ILocationListener iLocationListener) {
+        try {
+            g8.c remove = this.callbacks.remove(iLocationListener);
+            if (remove != null) {
+                r7.c cVar = (r7.c) this.locationProviderClient;
+                cVar.getClass();
+                String simpleName = g8.c.class.getSimpleName();
+                n6.l.g(simpleName, "Listener type must not be empty");
+                cVar.c(new com.google.android.gms.common.api.internal.n(remove, simpleName), 2418).continueWith(r7.b.f45453a, r7.a.f45451b);
             }
-
-            @Override
-            public void onLocationResult(LocationResult locationResult) {
-                Location location;
-                ILocationServiceProvider.ILocationListener iLocationListener2 = iLocationListener;
-                List list = locationResult.f7430a;
-                int size = list.size();
-                if (size == 0) {
-                    location = null;
-                } else {
-                    location = (Location) list.get(size - 1);
+            g8.c cVar2 = new g8.c() {
+                {
+                    GoogleLocationProvider.this = this;
                 }
-                iLocationListener2.onLocationChanged(location);
-            }
-        };
-        Looper mainLooper = Looper.getMainLooper();
-        r7.c cVar2 = (r7.c) aVar;
-        cVar2.getClass();
-        if (mainLooper == null) {
-            mainLooper = Looper.myLooper();
-            n6.l.i(mainLooper, "invalid null looper");
+
+                @Override
+                public void onLocationResult(LocationResult locationResult) {
+                    Location location;
+                    ILocationServiceProvider.ILocationListener iLocationListener2 = iLocationListener;
+                    List list = locationResult.f7430a;
+                    int size = list.size();
+                    if (size == 0) {
+                        location = null;
+                    } else {
+                        location = (Location) list.get(size - 1);
+                    }
+                    iLocationListener2.onLocationChanged(location);
+                }
+            };
+            this.callbacks.put(iLocationListener, cVar2);
+            ((r7.c) this.locationProviderClient).f(((GoogleLocationRequest) iLocationRequest).request, cVar2, Looper.getMainLooper());
+        } catch (Throwable th2) {
+            throw th2;
         }
-        com.google.android.gms.common.api.internal.p d = qb.c.d(mainLooper, cVar, g8.c.class.getSimpleName());
-        ?? obj = new Object();
-        obj.f2676c = cVar2;
-        obj.f2674a = true;
-        obj.f2675b = d;
-        n2.e eVar = new n2.e(15, (Object) obj, locationRequest);
-        ?? obj2 = new Object();
-        obj2.f919a = true;
-        obj2.f921c = eVar;
-        obj2.d = obj;
-        obj2.e = d;
-        obj2.f920b = 2436;
-        cVar2.b(obj2.a());
     }
 }

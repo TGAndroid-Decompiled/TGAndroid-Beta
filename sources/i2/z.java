@@ -10,14 +10,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Cells.q2;
 import org.telegram.ui.Components.UndoView;
-import org.telegram.ui.Components.c41;
+import org.telegram.ui.Components.b41;
 import org.telegram.ui.cy;
 import org.telegram.ui.dn;
 import org.telegram.ui.dy;
@@ -67,7 +67,7 @@ public final class z implements Runnable {
                 vl vlVar = (vl) this.d;
                 vlVar.getClass();
                 MessageObject messageObject = ((org.telegram.ui.Cells.v0) this.e).getMessageObject();
-                em emVar = vlVar.f42787a;
+                em emVar = vlVar.f42759a;
                 sn snVar = emVar.Q;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == emVar.Q.X6) {
@@ -79,10 +79,10 @@ public final class z implements Runnable {
                 return;
             case 4:
                 org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) this.e;
-                sn snVar2 = ((dn) this.d).f36660a;
+                sn snVar2 = ((dn) this.d).f36651a;
                 if (snVar2.M1 != null) {
                     t1Var.getLocationInWindow(new int[2]);
-                    snVar2.M1.setTranslationY(sl.D(520.0f, iArr[1] - x3Var.getTop(), this.f12672b));
+                    snVar2.M1.setTranslationY(tl.D(520.0f, iArr[1] - x3Var.getTop(), this.f12672b));
                     snVar2.M1.m(0.0f, (-AndroidUtilities.dp(16.0f)) + iArr[0] + this.f12673c);
                     snVar2.M1.u();
                     return;
@@ -91,27 +91,27 @@ public final class z implements Runnable {
             default:
                 final cy cyVar = (cy) this.d;
                 TLRPC.Dialog dialog = (TLRPC.Dialog) this.e;
-                dy dyVar = cyVar.f36449g;
+                dy dyVar = cyVar.f36422g;
                 ey eyVar = cyVar.h;
                 ArrayList arrayList = eyVar.R1;
                 if (arrayList != null) {
                     arrayList.remove(dialog);
                     int i13 = dialog.pinnedNum;
                     eyVar.W0 = null;
-                    dyVar.f36750a.invalidate();
-                    int N0 = dyVar.f36752c.N0();
+                    dyVar.f36737a.invalidate();
+                    int N0 = dyVar.f36739c.N0();
                     if (N0 == this.f12672b - 1) {
-                        dyVar.f36752c.m(N0).requestLayout();
+                        dyVar.f36739c.m(N0).requestLayout();
                     }
                     boolean z10 = false;
-                    if (eyVar.getMessagesController().isPromoDialog(dialog.f20347id, false)) {
+                    if (eyVar.getMessagesController().isPromoDialog(dialog.f20348id, false)) {
                         eyVar.getMessagesController().hidePromoDialog();
-                        dyVar.f36758x.D();
+                        dyVar.f36745x.D();
                         dyVar.q(true);
                         return;
                     }
                     MessagesController messagesController = eyVar.getMessagesController();
-                    long j10 = dialog.f20347id;
+                    long j10 = dialog.f20348id;
                     if (eyVar.W2 == 0) {
                         i11 = 1;
                     } else {
@@ -121,7 +121,7 @@ public final class z implements Runnable {
                     int i14 = this.f12673c;
                     int i15 = 2;
                     if (addDialogToFolder != 2 || i14 != 0) {
-                        dyVar.f36758x.D();
+                        dyVar.f36745x.D();
                         dyVar.q(true);
                     }
                     if (eyVar.W2 == 0) {
@@ -129,16 +129,16 @@ public final class z implements Runnable {
                             if (SharedConfig.archiveHidden) {
                                 SharedConfig.toggleArchiveHidden();
                             }
-                            dyVar.f36758x.D();
+                            dyVar.f36745x.D();
                             if (i14 == 0) {
                                 eyVar.y4(true, true);
                                 dyVar.q(true);
                                 eyVar.m3();
                             } else {
                                 dyVar.q(true);
-                                if (!SharedConfig.archiveHidden && dyVar.f36752c.L0() == 0) {
-                                    eyVar.f37061e2 = true;
-                                    zx zxVar = dyVar.f36750a;
+                                if (!SharedConfig.archiveHidden && dyVar.f36739c.L0() == 0) {
+                                    eyVar.f37036e2 = true;
+                                    zx zxVar = dyVar.f36737a;
                                     if (SharedConfig.useThreeLinesLayout) {
                                         f7 = 76.0f;
                                     } else {
@@ -148,7 +148,7 @@ public final class z implements Runnable {
                                 }
                             }
                             i12 = ((o2) eyVar).currentAccount;
-                            eyVar.R1.add(0, (TLRPC.Dialog) eyVar.P3(i12, dyVar.f36756s, eyVar.W2, false).get(0));
+                            eyVar.R1.add(0, (TLRPC.Dialog) eyVar.P3(i12, dyVar.f36743s, eyVar.W2, false).get(0));
                             dyVar.q(true);
                             AndroidUtilities.runOnUIThread(new Runnable() {
                                 @Override
@@ -164,16 +164,16 @@ public final class z implements Runnable {
                                 }
                             }, 300L);
                         } else if (addDialogToFolder == 1) {
-                            s4.b1 K = dyVar.f36750a.K(0);
+                            s4.b1 K = dyVar.f36737a.K(0);
                             if (K != null) {
-                                View view = K.f46343a;
+                                View view = K.f46342a;
                                 if (view instanceof q2) {
                                     q2 q2Var = (q2) view;
-                                    if (q2Var.a2.f26847n == 2) {
-                                        q2Var.f22924b2 = true;
-                                        q2Var.f22929c2 = 0.0f;
-                                        k6.f21494u1.T(0.0f, true);
-                                        k6.f21494u1.start();
+                                    if (q2Var.a2.f26243n == 2) {
+                                        q2Var.f22925b2 = true;
+                                        q2Var.f22930c2 = 0.0f;
+                                        k6.f21495u1.T(0.0f, true);
+                                        k6.f21495u1.start();
                                         q2Var.invalidate();
                                     }
                                 }
@@ -201,16 +201,16 @@ public final class z implements Runnable {
                         }
                         UndoView W3 = eyVar.W3();
                         if (W3 != null) {
-                            long j11 = dialog.f20347id;
+                            long j11 = dialog.f20348id;
                             if (!z10) {
                                 i15 = 3;
                             }
-                            W3.l(j11, i15, null, new c41(cyVar, dialog, i13, 2));
+                            W3.l(j11, i15, null, new b41(cyVar, dialog, i13, 2));
                         }
                     }
                     if (eyVar.W2 != 0 && eyVar.R1.isEmpty()) {
-                        dyVar.f36750a.setEmptyView(null);
-                        dyVar.f36757w.setVisibility(4);
+                        dyVar.f36737a.setEmptyView(null);
+                        dyVar.f36744w.setVisibility(4);
                         return;
                     }
                     return;

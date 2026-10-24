@@ -11,7 +11,7 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class d6 extends Drawable {
     public Drawable f1138g;
     public int h;
@@ -19,7 +19,7 @@ public final class d6 extends Drawable {
     public final Paint f1135b = new Paint(1);
     public final Shader[] f1136c = new Shader[2];
     public final Matrix d = new Matrix();
-    public final org.telegram.ui.Components.f6 e = new org.telegram.ui.Components.f6(1.0f, new a3.d(this, 18), 0, 420, bs.h);
+    public final org.telegram.ui.Components.d6 e = new org.telegram.ui.Components.d6(1.0f, new a3.d(this, 18), 0, 420, zr.h);
     public final RectF f1137f = new RectF();
     public final int f1134a = 1;
 

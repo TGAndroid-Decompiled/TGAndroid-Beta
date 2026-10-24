@@ -6,8 +6,8 @@ public final class ma extends l4 {
     public final Path N;
     public final vb O;
 
-    public ma(vb vbVar, Activity activity, ci.b bVar, org.telegram.ui.Components.ja jaVar) {
-        super(activity, bVar, jaVar);
+    public ma(vb vbVar, Activity activity, ci.b bVar, org.telegram.ui.Components.ha haVar) {
+        super(activity, bVar, haVar);
         this.O = vbVar;
         this.N = new Path();
     }

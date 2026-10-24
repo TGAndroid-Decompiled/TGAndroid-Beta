@@ -22,15 +22,15 @@ import java.util.regex.Pattern;
 import org.telegram.tgnet.ConnectionsManager;
 public class Utilities {
     private static final String RANDOM_STRING_CHARS = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    public static volatile DispatchQueue cacheClearQueue;
-    public static volatile DispatchQueue externalNetworkQueue;
+    public static volatile DispatchQueue2 cacheClearQueue;
+    public static volatile DispatchQueue2 externalNetworkQueue;
     public static Random fastRandom;
-    public static volatile DispatchQueue globalQueue;
+    public static volatile DispatchQueue2 globalQueue;
     protected static final char[] hexArray;
-    public static volatile DispatchQueue phoneBookQueue;
-    public static volatile DispatchQueue searchQueue;
-    public static volatile DispatchQueue stageQueue;
-    public static volatile DispatchQueue themeQueue;
+    public static volatile DispatchQueue2 phoneBookQueue;
+    public static volatile DispatchQueue2 searchQueue;
+    public static volatile DispatchQueue2 stageQueue;
+    public static volatile DispatchQueue2 themeQueue;
     public static volatile DispatchQueue videoPlayerQueue;
     public static Pattern pattern = Pattern.compile("[\\-0-9]+");
     public static SecureRandom random = new SecureRandom();
@@ -107,13 +107,13 @@ public class Utilities {
             random2.f7837b = v7.r6.a(a11);
         }
         fastRandom = random2;
-        stageQueue = new DispatchQueue("stageQueue");
-        globalQueue = new DispatchQueue("globalQueue");
-        cacheClearQueue = new DispatchQueue("cacheClearQueue");
-        searchQueue = new DispatchQueue("searchQueue");
-        phoneBookQueue = new DispatchQueue("phoneBookQueue");
-        themeQueue = new DispatchQueue("themeQueue");
-        externalNetworkQueue = new DispatchQueue("externalNetworkQueue");
+        stageQueue = new DispatchQueue2("stageQueue");
+        globalQueue = new DispatchQueue2("globalQueue");
+        cacheClearQueue = new DispatchQueue2("cacheClearQueue");
+        searchQueue = new DispatchQueue2("searchQueue");
+        phoneBookQueue = new DispatchQueue2("phoneBookQueue");
+        themeQueue = new DispatchQueue2("themeQueue");
+        externalNetworkQueue = new DispatchQueue2("externalNetworkQueue");
         hexArray = "0123456789ABCDEF".toCharArray();
         try {
             FileInputStream fileInputStream = new FileInputStream(new File("/dev/urandom"));
@@ -478,9 +478,9 @@ public class Utilities {
 
     public static void raceCallbacks(Runnable runnable, Callback<Runnable>... callbackArr) {
         if (callbackArr != 0 && callbackArr.length != 0) {
-            tl tlVar = new tl(new int[]{0}, callbackArr, runnable, 0);
+            ul ulVar = new ul(new int[]{0}, callbackArr, runnable, 0);
             for (ai.hb hbVar : callbackArr) {
-                hbVar.run(tlVar);
+                hbVar.run(ulVar);
             }
         } else if (runnable != null) {
             runnable.run();
@@ -553,7 +553,7 @@ public class Utilities {
         if (callbackArr == null || callbackArr.length <= i10) {
             return;
         }
-        callbackArr[i10].run(new v6(i10, callbackArr, 11));
+        callbackArr[i10].run(new w6(i10, callbackArr, 11));
     }
 
     public static String generateRandomString(int i10) {

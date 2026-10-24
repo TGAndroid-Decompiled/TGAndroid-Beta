@@ -14,10 +14,10 @@ import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Wallet.e8;
 public final class n extends org.telegram.ui.ActionBar.j {
-    public final p f43202a;
+    public final p f43191a;
 
     public n(p pVar) {
-        this.f43202a = pVar;
+        this.f43191a = pVar;
     }
 
     @Override
@@ -25,15 +25,15 @@ public final class n extends org.telegram.ui.ActionBar.j {
         String str;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        p pVar = this.f43202a;
-        HashSet hashSet = pVar.f43224w;
+        p pVar = this.f43191a;
+        HashSet hashSet = pVar.f43213w;
         if (i10 == -1) {
             kVar = ((o2) pVar).actionBar;
             if (kVar.s()) {
                 kVar2 = ((o2) pVar).actionBar;
                 kVar2.r();
                 hashSet.clear();
-                AndroidUtilities.forEachViews((RecyclerView) pVar.f25907a, (Utilities.Callback<View>) new ci.e(22));
+                AndroidUtilities.forEachViews((RecyclerView) pVar.f25615a, (Utilities.Callback<View>) new ci.e(22));
                 return;
             }
             pVar.finishFragment();
@@ -49,7 +49,7 @@ public final class n extends org.telegram.ui.ActionBar.j {
                     break;
                 }
                 int intValue = ((Integer) it.next()).intValue();
-                ArrayList arrayList2 = pVar.d.f43154a;
+                ArrayList arrayList2 = pVar.d.f43143a;
                 int size = arrayList2.size();
                 int i12 = 0;
                 while (true) {
@@ -66,7 +66,7 @@ public final class n extends org.telegram.ui.ActionBar.j {
                 }
                 j jVar = pVar.e;
                 if (jVar != null && messageObject == null) {
-                    ArrayList arrayList3 = jVar.f43154a;
+                    ArrayList arrayList3 = jVar.f43143a;
                     int size2 = arrayList3.size();
                     while (true) {
                         if (i11 >= size2) {
@@ -88,13 +88,13 @@ public final class n extends org.telegram.ui.ActionBar.j {
                 }
             }
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(pVar.getParentActivity(), 0, pVar.getResourceProvider());
-            alertDialog$Builder.f20678a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
+            alertDialog$Builder.f20679a.R = LocaleController.formatPluralString("DeleteOptionsTitle", hashSet3.size(), new Object[0]);
             if (hashSet3.size() == 1) {
                 str = "AreYouSureUnsaveSingleMessage";
             } else {
                 str = "AreYouSureUnsaveFewMessages";
             }
-            alertDialog$Builder.f20678a.T = LocaleController.getString(str);
+            alertDialog$Builder.f20679a.T = LocaleController.getString(str);
             alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new e8(2, pVar, hashSet3));
             alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
             alertDialog$Builder.d(-1);

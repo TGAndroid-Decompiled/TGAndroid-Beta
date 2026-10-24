@@ -24,11 +24,11 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.kv;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.o5;
-import org.telegram.ui.Components.pl0;
-import org.telegram.ui.Components.r5;
+import org.telegram.ui.Components.iv;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.m5;
+import org.telegram.ui.Components.ol0;
+import org.telegram.ui.Components.p5;
 import w7.z5;
 public abstract class r extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
     public static final long[] K = {5449505950283078474L, 5420315771991497307L, 5373141891321699086L, 5373026167722876724L, 5435957248314579621L, 5440354006335495210L, 5436040291507247633L, 5445284980978621387L, 5442983582882601962L, 5409008750893734809L, 5371017798065592581L, 5472030678633684592L, 5467583879948803288L, 5471952986970267163L, 5415696465945173620L, 5397915559037785261L, 5283020991981693429L, 5283051451889756068L, 5282816560128336499L, 5465449362807070392L, 5470012829983580233L};
@@ -39,52 +39,52 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     public final HashSet H;
     public ArrayList I;
     public boolean J;
-    public final int f52549a;
-    public final j0 f52550b;
-    public final m f52551c;
+    public final int f52548a;
+    public final j0 f52549b;
+    public final m f52550c;
     public final s4.s d;
     public final k e;
-    public final pl0 f52552f;
+    public final ol0 f52551f;
     public final q h;
-    public final ArrayList f52553n;
-    public int f52554r;
-    public int f52555s;
+    public final ArrayList f52552n;
+    public int f52553r;
+    public int f52554s;
     public boolean v;
-    public final boolean f52556w;
-    public int f52557x;
-    public TLRPC.TL_messages_stickerSet f52558y;
+    public final boolean f52555w;
+    public int f52556x;
+    public TLRPC.TL_messages_stickerSet f52557y;
 
     public r(Context context, int i10, j0 j0Var) {
         super(context);
         k0 k0Var = (k0) this;
         k kVar = new k(k0Var);
         this.e = kVar;
-        this.f52553n = new ArrayList();
-        this.f52554r = 7;
-        this.f52557x = -1711276033;
+        this.f52552n = new ArrayList();
+        this.f52553r = 7;
+        this.f52556x = -1711276033;
         this.G = new HashSet();
         this.H = new HashSet();
-        this.f52549a = i10;
-        this.f52550b = j0Var;
-        this.f52556w = UserConfig.getInstance(i10).isPremium();
-        ?? mm0Var = new mm0(context, null);
-        this.f52551c = mm0Var;
-        s4.s sVar = new s4.s(this.f52554r);
+        this.f52548a = i10;
+        this.f52549b = j0Var;
+        this.f52555w = UserConfig.getInstance(i10).isPremium();
+        ?? lm0Var = new lm0(context, null);
+        this.f52550c = lm0Var;
+        s4.s sVar = new s4.s(this.f52553r);
         this.d = sVar;
         sVar.O = new q1(k0Var, 9);
-        mm0Var.setLayoutManager(sVar);
-        pl0 pl0Var = new pl0(mm0Var, sVar);
-        this.f52552f = pl0Var;
-        pl0Var.f29593i = new k1(k0Var, 2);
-        mm0Var.setAdapter(kVar);
-        mm0Var.setSelectorDrawableColor(0);
-        mm0Var.setOnItemClickListener(new xa(j0Var, 25));
-        mm0Var.setItemAnimator(null);
-        mm0Var.setOverScrollMode(2);
-        mm0Var.setVerticalScrollBarEnabled(false);
-        mm0Var.setClipToPadding(false);
-        mm0Var.j(new kv(k0Var, 26));
-        addView((View) mm0Var, z5.c(-1.0f, -1));
+        lm0Var.setLayoutManager(sVar);
+        ol0 ol0Var = new ol0(lm0Var, sVar);
+        this.f52551f = ol0Var;
+        ol0Var.f29321i = new k1(k0Var, 2);
+        lm0Var.setAdapter(kVar);
+        lm0Var.setSelectorDrawableColor(0);
+        lm0Var.setOnItemClickListener(new xa(j0Var, 25));
+        lm0Var.setItemAnimator(null);
+        lm0Var.setOverScrollMode(2);
+        lm0Var.setVerticalScrollBarEnabled(false);
+        lm0Var.setClipToPadding(false);
+        lm0Var.j(new iv(k0Var, 26));
+        addView((View) lm0Var, z5.c(-1.0f, -1));
         q qVar = new q(k0Var, context);
         this.h = qVar;
         addView(qVar, z5.e(-1, 36, 48));
@@ -103,7 +103,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public static boolean d(Drawable drawable) {
-        if ((drawable instanceof r5) && MessageObject.isTextColorEmoji(((r5) drawable).e)) {
+        if ((drawable instanceof p5) && MessageObject.isTextColorEmoji(((p5) drawable).e)) {
             return true;
         }
         return false;
@@ -113,7 +113,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         String[] split;
         if (this.I == null) {
             this.I = new ArrayList();
-            for (String str : MessagesController.getMainSettings(this.f52549a).getString("qrAppliedEmoji", "").split(",")) {
+            for (String str : MessagesController.getMainSettings(this.f52548a).getString("qrAppliedEmoji", "").split(",")) {
                 try {
                     if (!str.isEmpty()) {
                         this.I.add(Long.valueOf(Long.parseLong(str)));
@@ -127,7 +127,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
 
     public final int c() {
         int R;
-        m mVar = this.f52551c;
+        m mVar = this.f52550c;
         int paddingTop = mVar.getPaddingTop();
         int i10 = Integer.MAX_VALUE;
         int i11 = -1;
@@ -174,9 +174,9 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         int i12;
         TLRPC.Document document;
         ArrayList<TLRPC.Document> arrayList5;
-        int i13 = this.f52549a;
+        int i13 = this.f52548a;
         MediaDataController mediaDataController = MediaDataController.getInstance(i13);
-        ArrayList<o> arrayList6 = this.f52553n;
+        ArrayList<o> arrayList6 = this.f52552n;
         arrayList6.clear();
         ArrayList arrayList7 = new ArrayList();
         ArrayList<TLRPC.TL_messages_stickerSet> stickerSets = mediaDataController.getStickerSets(5);
@@ -209,26 +209,26 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
                 }
             }
         }
-        if (this.f52558y == null && !this.E) {
+        if (this.f52557y == null && !this.E) {
             this.E = true;
             TLRPC.TL_inputStickerSetShortName tL_inputStickerSetShortName = new TLRPC.TL_inputStickerSetShortName();
             tL_inputStickerSetShortName.short_name = "RestrictedEmoji";
             TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(i13).getStickerSet(tL_inputStickerSetShortName, null, false, true, new g(this, 0));
             if (stickerSet != null && (arrayList5 = stickerSet.documents) != null && !arrayList5.isEmpty()) {
-                this.f52558y = stickerSet;
+                this.f52557y = stickerSet;
             }
         }
         ArrayList arrayList10 = new ArrayList(21);
         HashSet hashSet = this.H;
         hashSet.clear();
-        if (this.f52558y == null && !this.F) {
+        if (this.f52557y == null && !this.F) {
             for (int i17 = 0; i17 < 21; i17++) {
                 arrayList10.add(new TLRPC.TL_documentEmpty());
             }
             str2 = "application/x-tgsticker";
         } else {
             HashMap hashMap = new HashMap();
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = this.f52558y;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet3 = this.f52557y;
             if (tL_messages_stickerSet3 != null && (arrayList3 = tL_messages_stickerSet3.documents) != null) {
                 int size3 = arrayList3.size();
                 int i18 = 0;
@@ -238,13 +238,13 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
                     TLRPC.Document document5 = document4;
                     String str4 = str;
                     if (document5 != null) {
-                        hashMap.put(Long.valueOf(document5.f20349id), document5);
+                        hashMap.put(Long.valueOf(document5.f20350id), document5);
                     }
                     str = str4;
                 }
             }
             str2 = str;
-            TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = this.f52558y;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet4 = this.f52557y;
             if (tL_messages_stickerSet4 != null && (arrayList = tL_messages_stickerSet4.packs) != null) {
                 int size4 = arrayList.size();
                 int i19 = 0;
@@ -269,13 +269,13 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
                 }
                 TLRPC.Document document6 = (TLRPC.Document) hashMap.get(Long.valueOf(j12));
                 if (document6 == null) {
-                    document6 = r5.f(i13, j12);
+                    document6 = p5.f(i13, j12);
                 }
                 if (document6 != null) {
                     arrayList10.add(document6);
-                    hashSet.add(Long.valueOf(document6.f20349id));
+                    hashSet.add(Long.valueOf(document6.f20350id));
                 } else if (this.G.add(Long.valueOf(j12))) {
-                    r5.h(i13).b(j12, new o5() {
+                    p5.h(i13).b(j12, new m5() {
                         @Override
                         public final void a(TLRPC.Document document7) {
                             AndroidUtilities.runOnUIThread(new u2.k0(22, r.this, document7));
@@ -289,7 +289,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
         }
         ArrayList arrayList11 = new ArrayList();
         HashSet hashSet2 = new HashSet();
-        int i21 = this.f52554r * 3;
+        int i21 = this.f52553r * 3;
         ArrayList a2 = a();
         int i22 = 0;
         while (i22 < a2.size() && arrayList11.size() < i21) {
@@ -303,7 +303,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
                     document = (TLRPC.Document) obj;
                     arrayList4 = a2;
                     i12 = i22;
-                    if (document.f20349id == longValue) {
+                    if (document.f20350id == longValue) {
                         break;
                     }
                     a2 = arrayList4;
@@ -316,9 +316,9 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
                 }
             }
             if (document == null) {
-                document = r5.f(i13, longValue);
+                document = p5.f(i13, longValue);
             }
-            if (document != null && str2.equals(document.mime_type) && hashSet2.add(Long.valueOf(document.f20349id))) {
+            if (document != null && str2.equals(document.mime_type) && hashSet2.add(Long.valueOf(document.f20350id))) {
                 arrayList11.add(document);
             }
             i22 = i12 + 1;
@@ -334,13 +334,13 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
             String str5 = arrayList12.get(i24);
             if (str5 != null && str5.startsWith("animated_")) {
                 try {
-                    TLRPC.Document f7 = r5.f(i13, Long.parseLong(str5.substring(9)));
+                    TLRPC.Document f7 = p5.f(i13, Long.parseLong(str5.substring(9)));
                     if (f7 != null && str2.equals(f7.mime_type)) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    if (z10 && hashSet2.add(Long.valueOf(f7.f20349id))) {
+                    if (z10 && hashSet2.add(Long.valueOf(f7.f20350id))) {
                         arrayList11.add(f7);
                     }
                 } catch (NumberFormatException unused) {
@@ -363,14 +363,14 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
             i26++;
             o oVar2 = oVar;
             oVar2.d = i25;
-            if (oVar2.f52531b != null) {
+            if (oVar2.f52530b != null) {
                 i11 = i10;
             } else {
                 i11 = 0;
             }
-            i25 += oVar2.f52532c.size() + i11;
+            i25 += oVar2.f52531c.size() + i11;
         }
-        this.f52555s = i25;
+        this.f52554s = i25;
         this.e.l();
         q qVar = this.h;
         qVar.setSections(arrayList6);
@@ -378,7 +378,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public final int f(int i10) {
-        ArrayList arrayList = this.f52553n;
+        ArrayList arrayList = this.f52552n;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
             if (((o) arrayList.get(size)).d <= i10) {
                 return size;
@@ -388,7 +388,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     }
 
     public m getGrid() {
-        return this.f52551c;
+        return this.f52550c;
     }
 
     public q getTabs() {
@@ -398,7 +398,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        int i10 = this.f52549a;
+        int i10 = this.f52548a;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.stickersDidLoad);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.groupStickersDidLoad);
         e();
@@ -407,7 +407,7 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        int i10 = this.f52549a;
+        int i10 = this.f52548a;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.stickersDidLoad);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.groupStickersDidLoad);
     }
@@ -415,25 +415,25 @@ public abstract class r extends FrameLayout implements NotificationCenter.Notifi
     @Override
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
-        m mVar = this.f52551c;
+        m mVar = this.f52550c;
         int max = Math.max(5, ((i10 - mVar.getPaddingLeft()) - mVar.getPaddingRight()) / AndroidUtilities.dp(46.0f));
-        if (max != this.f52554r) {
-            this.f52554r = max;
+        if (max != this.f52553r) {
+            this.f52553r = max;
             this.d.y1(max);
             post(new tg.p(this, 22));
         }
     }
 
     public void setHeaderColor(int i10) {
-        if (this.f52557x != i10) {
-            this.f52557x = i10;
+        if (this.f52556x != i10) {
+            this.f52556x = i10;
             int i11 = 0;
             while (true) {
-                m mVar = this.f52551c;
+                m mVar = this.f52550c;
                 if (i11 < mVar.getChildCount()) {
                     View childAt = mVar.getChildAt(i11);
                     if (childAt instanceof n) {
-                        ((n) childAt).f52500a.setTextColor(i10);
+                        ((n) childAt).f52499a.setTextColor(i10);
                     }
                     i11++;
                 } else {

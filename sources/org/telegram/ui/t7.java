@@ -8,11 +8,11 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class t7 extends j7 {
-    public final v7 f41885n;
+    public final v7 f41894n;
 
     public t7(v7 v7Var) {
         super(v7Var, 3);
-        this.f41885n = v7Var;
+        this.f41894n = v7Var;
     }
 
     @Override
@@ -20,8 +20,8 @@ public final class t7 extends j7 {
         boolean z10;
         boolean z11;
         float f7;
-        n7 n7Var = (n7) b1Var.f46343a;
-        org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) n7Var.f39797b.getChildAt(0);
+        n7 n7Var = (n7) b1Var.f46342a;
+        org.telegram.ui.Cells.j7 j7Var = (org.telegram.ui.Cells.j7) n7Var.f39750b.getChildAt(0);
         bi.b bVar = ((p7) this.e.get(i10)).d;
         if (bVar == n7Var.getTag()) {
             z10 = true;
@@ -34,11 +34,11 @@ public final class t7 extends j7 {
             z11 = false;
         }
         n7Var.setTag(bVar);
-        v7 v7Var = this.f41885n;
+        v7 v7Var = this.f41894n;
         if (bVar.f4431f == null) {
             TLRPC.TL_message tL_message = new TLRPC.TL_message();
             tL_message.out = true;
-            tL_message.f20364id = i10;
+            tL_message.f20365id = i10;
             tL_message.peer_id = new TLRPC.TL_peerUser();
             TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
             tL_message.from_id = tL_peerUser;
@@ -57,7 +57,7 @@ public final class t7 extends j7 {
             tL_message.dialog_id = bVar.f4429b;
             String fileExtension = FileLoader.getFileExtension(bVar.f4428a);
             TLRPC.Document document = tL_message.media.document;
-            document.f20349id = 0L;
+            document.f20350id = 0L;
             document.access_hash = 0L;
             document.file_reference = new byte[0];
             document.date = tL_message.date;
@@ -93,15 +93,15 @@ public final class t7 extends j7 {
             } else {
                 f7 = 0.0f;
             }
-            j7Var.f22601g0 = f7;
+            j7Var.f22602g0 = f7;
         }
-        if (j7Var.f22600f0 != z13) {
-            j7Var.f22600f0 = z13;
+        if (j7Var.f22601f0 != z13) {
+            j7Var.f22601f0 = z13;
             j7Var.invalidate();
         }
         n7Var.d = z11;
-        n7Var.f39798c.setText(AndroidUtilities.formatFileSize(bVar.f4430c));
-        n7Var.f39796a.a(this.f41885n.h.f4439j.contains(bVar), z10);
+        n7Var.f39751c.setText(AndroidUtilities.formatFileSize(bVar.f4430c));
+        n7Var.f39749a.a(this.f41894n.h.f4439j.contains(bVar), z10);
     }
 
     @Override
@@ -110,7 +110,7 @@ public final class t7 extends j7 {
         n7Var.e = 3;
         s7 s7Var = new s7(this, viewGroup.getContext(), n7Var);
         s7Var.setCheckForButtonPress(true);
-        n7Var.f39797b.addView(s7Var);
+        n7Var.f39750b.addView(s7Var);
         return new s4.b1(n7Var);
     }
 }

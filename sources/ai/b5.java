@@ -8,27 +8,27 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ir0;
-public final class b5 extends ir0 {
+import org.telegram.ui.Components.hr0;
+public final class b5 extends hr0 {
     public final l7 f1031e1;
 
     public b5(l7 l7Var, Context context, String str, String str2, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context, null, null, str, null, false, str2, null, false, false, true, null, g6Var);
         this.f1031e1 = l7Var;
-        this.f27409b0 = true;
+        this.f27121b0 = true;
     }
 
     @Override
     public final void W0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        org.telegram.ui.Components.xc bulletinFactory;
+        org.telegram.ui.Components.vc bulletinFactory;
         String str;
         if (z10 && (bulletinFactory = getBulletinFactory()) != null) {
             if (hVar.m() == 1) {
                 long j10 = hVar.j(0);
                 if (j10 == UserConfig.getInstance(this.currentAccount).clientUserId) {
-                    org.telegram.ui.Components.qc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
-                    G.f29840r = false;
-                    G.f29842t = true;
+                    org.telegram.ui.Components.oc G = bulletinFactory.G(R.raw.saved_messages, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedToSavedMessages, new Object[0])));
+                    G.f29211r = false;
+                    G.f29213t = true;
                     G.j();
                 } else if (j10 < 0) {
                     TLRPC.Chat chat = MessagesController.getInstance(this.currentAccount).getChat(Long.valueOf(-j10));
@@ -39,20 +39,20 @@ public final class b5 extends ir0 {
                     } else {
                         str = chat.title;
                     }
-                    org.telegram.ui.Components.qc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
-                    G2.f29840r = false;
-                    G2.f29842t = true;
+                    org.telegram.ui.Components.oc G2 = bulletinFactory.G(i11, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(i12, str)));
+                    G2.f29211r = false;
+                    G2.f29213t = true;
                     G2.j();
                 } else {
-                    org.telegram.ui.Components.qc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
-                    G3.f29840r = false;
-                    G3.f29842t = true;
+                    org.telegram.ui.Components.oc G3 = bulletinFactory.G(R.raw.forward, 5000, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LinkSharedTo, MessagesController.getInstance(this.currentAccount).getUser(Long.valueOf(j10)).first_name)));
+                    G3.f29211r = false;
+                    G3.f29213t = true;
                     G3.j();
                 }
             } else {
-                org.telegram.ui.Components.qc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
-                Q.f29840r = false;
-                Q.f29842t = true;
+                org.telegram.ui.Components.oc Q = bulletinFactory.Q(R.raw.forward, 36, AndroidUtilities.replaceTags(LocaleController.formatPluralString("LinkSharedToManyChats", hVar.m(), Integer.valueOf(hVar.m()))));
+                Q.f29211r = false;
+                Q.f29213t = true;
                 Q.j();
             }
             try {

@@ -138,7 +138,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } else if (i10 == NotificationCenter.fileUploaded || i10 == NotificationCenter.fileUploadFailed) {
             String str4 = (String) objArr[0];
             if (i11 == this.currentAccount && (str = this.currentPath) != null && str.equals(str4)) {
-                AndroidUtilities.runOnUIThread(new ul(this, 0));
+                AndroidUtilities.runOnUIThread(new vl(this, 0));
             }
         }
     }
@@ -177,8 +177,8 @@ public class VideoEncodingService extends Service implements NotificationCenter.
             NotificationsController.checkOtherNotificationsChannel();
             e0.q qVar = new e0.q(ApplicationLoader.applicationContext, NotificationsController.OTHER_NOTIFICATIONS_CHANNEL);
             this.builder = qVar;
-            qVar.E.icon = 17301640;
-            qVar.E.when = System.currentTimeMillis();
+            qVar.F.icon = 17301640;
+            qVar.F.when = System.currentTimeMillis();
             e0.q qVar2 = this.builder;
             qVar2.f8168y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             qVar2.g(LocaleController.getString(R.string.AppName));
@@ -189,7 +189,7 @@ public class VideoEncodingService extends Service implements NotificationCenter.
         } catch (Throwable th2) {
             FileLog.e(th2);
         }
-        AndroidUtilities.runOnUIThread(new ul(this, 1));
+        AndroidUtilities.runOnUIThread(new vl(this, 1));
         return 2;
     }
 }

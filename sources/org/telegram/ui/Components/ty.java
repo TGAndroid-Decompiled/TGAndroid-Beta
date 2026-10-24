@@ -1,196 +1,62 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class ty extends lm0 {
-    public boolean E;
-    public final tz F;
-    public final my f30918c;
-    public long d;
-    public TLRPC.StickerSet e;
-    public ArrayList f30919f;
-    public final ArrayList h = new ArrayList();
-    public final ArrayList f30920n = new ArrayList();
-    public final ArrayList f30921r = new ArrayList();
-    public final ArrayList f30922s = new ArrayList();
-    public String v;
-    public String f30923w;
-    public sy f30924x;
-    public boolean f30925y;
+public final class ty extends k61 {
+    public static final int f30935a = 0;
 
-    public ty(tz tzVar, Context context) {
-        this.F = tzVar;
-        ?? aVar = new oh.a(context, tzVar.f30966c1, new d(this, 11), new tv(this, 1), tzVar.Z1);
-        this.f30918c = aVar;
-        aVar.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(5.0f));
-        aVar.setClipToPadding(false);
-        aVar.Z2.f24972r = false;
-        aVar.setNestedScrollingEnabled(false);
-        aVar.setDrawSelection(false);
-        aVar.setOnTouchListener(new m.d2(this, 1));
+    static {
+        k61.setup(new k61());
     }
 
-    public static void E(ty tyVar, Runnable runnable, ArrayList arrayList, boolean z10) {
-        String str;
-        tz tzVar = tyVar.F;
-        String[] strArr = tzVar.W0;
-        if (strArr != null && strArr.length != 0) {
-            str = strArr[0];
-        } else {
-            str = "";
-        }
-        String str2 = str;
-        String str3 = tyVar.v;
-        if (str3 == null) {
-            return;
-        }
-        MediaDataController.getInstance(tzVar.f30966c1).searchStickers(true, str2, str3, new ci.y2((Object) tyVar, str3, arrayList, (Object) runnable, 9), z10);
+    public static l61 a(TLRPC.StickerSetCovered stickerSetCovered, iy iyVar, boolean z10) {
+        l61 J = l61.J(ty.class);
+        long j10 = stickerSetCovered.set.f20371id;
+        long j11 = 1 + j10;
+        J.d = (int) (j11 ^ (j11 >>> 32));
+        J.B = j10;
+        J.G = stickerSetCovered;
+        J.H = iyVar;
+        J.e = z10;
+        return J;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f46346f;
-        if (i10 != 0 && i10 != 4) {
-            return false;
+    public final void bindView(View view, l61 l61Var, boolean z10, a71 a71Var, i71 i71Var) {
+        oh.c cVar = (oh.c) view;
+        Object obj = l61Var.G;
+        if (obj instanceof TLRPC.TL_messages_stickerSet) {
+            cVar.setPack((TLRPC.TL_messages_stickerSet) obj);
+        } else if (obj instanceof TLRPC.StickerSetCovered) {
+            TLRPC.Document document = ((iy) l61Var.H).e;
+            cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
+            cVar.f17811c.d(document, null, null, null, false, false);
         }
-        return true;
-    }
-
-    public final void F(String str, boolean z10) {
-        tz tzVar = this.F;
-        ey eyVar = tzVar.P;
-        long j10 = 0;
-        if (TextUtils.isEmpty(str)) {
-            this.v = null;
-            s4.g0 adapter = eyVar.getAdapter();
-            ay ayVar = tzVar.R;
-            if (adapter != ayVar) {
-                eyVar.setAdapter(ayVar);
-                this.f30925y = false;
-            }
-            this.d = 0L;
-            tzVar.f30960b.a(false, true);
-            l();
-        } else {
-            this.v = str.toLowerCase();
-        }
-        sy syVar = this.f30924x;
-        if (syVar != null) {
-            AndroidUtilities.cancelRunOnUIThread(syVar);
-        }
-        if (!TextUtils.isEmpty(this.v)) {
-            this.f30920n.clear();
-            this.E = false;
-            tzVar.V.e(true);
-            sy syVar2 = new sy(this);
-            this.f30924x = syVar2;
-            if (z10) {
-                j10 = 300;
-            }
-            AndroidUtilities.runOnUIThread(syVar2, j10);
-        }
+        cVar.a(l61Var.e, false);
     }
 
     @Override
-    public final int h() {
-        if (this.d != 0) {
-            return this.f30919f.size() + 4;
+    public final boolean contentsEquals(l61 l61Var, l61 l61Var2) {
+        if (l61Var.B == l61Var2.B && l61Var.e == l61Var2.e) {
+            return true;
         }
-        ArrayList arrayList = this.h;
-        boolean isEmpty = arrayList.isEmpty();
-        ArrayList arrayList2 = this.f30922s;
-        ArrayList arrayList3 = this.f30921r;
-        if (isEmpty && arrayList3.isEmpty() && arrayList2.isEmpty() && !this.f30925y) {
-            return this.F.getRecentEmoji().size() + 1;
-        }
-        int i10 = 2;
-        if (arrayList.isEmpty() && arrayList3.isEmpty() && arrayList2.isEmpty()) {
-            return 2;
-        }
-        if (!arrayList2.isEmpty()) {
-            i10 = 3;
-        } else if (arrayList.isEmpty()) {
-            i10 = 1;
-        }
-        int size = arrayList.size() + i10;
-        if (!arrayList3.isEmpty()) {
-            return arrayList3.size() + size + 1;
-        }
-        return size;
+        return false;
     }
 
     @Override
-    public final int j(int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ty.j(int):int");
+    public final View createView(Context context, lm0 lm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
+        oh.c cVar = new oh.c(context, g6Var);
+        cVar.setLayoutParams(new s4.o0(AndroidUtilities.dp(64.0f), -1));
+        return cVar;
     }
 
     @Override
-    public final void l() {
-        this.f30918c.Z2.N(false);
-        super.l();
-    }
-
-    @Override
-    public final void v(s4.b1 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ty.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        ah.x xVar;
-        tz tzVar = this.F;
-        org.telegram.ui.ActionBar.g6 g6Var = tzVar.Z1;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            ah.x xVar2 = new ah.x(this, tzVar.getContext(), 16);
-                            TextView textView = new TextView(tzVar.getContext());
-                            org.telegram.messenger.sl.n(R.string.NoEmojiFound, textView, 1, 16.0f);
-                            int i11 = org.telegram.ui.ActionBar.k6.Le;
-                            org.telegram.ui.ActionBar.r6.W(textView, i11, g6Var);
-                            xVar2.addView(textView, w7.z5.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
-                            ImageView imageView = new ImageView(tzVar.getContext());
-                            imageView.setScaleType(ImageView.ScaleType.CENTER);
-                            imageView.setImageResource(R.drawable.msg_emoji_question);
-                            org.telegram.ui.ActionBar.r6.t(imageView, i11, g6Var, PorterDuff.Mode.MULTIPLY);
-                            xVar2.addView(imageView, w7.z5.e(48, 48, 85));
-                            imageView.setOnClickListener(new oy(this));
-                            xVar2.setLayoutParams(new s4.o0(-1, -2));
-                            xVar = xVar2;
-                        } else {
-                            View view = new View(tzVar.getContext());
-                            view.setLayoutParams(new s4.o0(-1, AndroidUtilities.dp(68.0f)));
-                            xVar = view;
-                        }
-                    } else {
-                        ViewGroup.LayoutParams o0Var = new s4.o0(-1, AndroidUtilities.dp(79.0f));
-                        View view2 = this.f30918c;
-                        view2.setLayoutParams(o0Var);
-                        xVar = view2;
-                    }
-                } else {
-                    xVar = new org.telegram.ui.Cells.o8(tzVar.getContext(), true, false, tzVar.Z1, tzVar.f30986i2);
-                }
-            } else {
-                View view3 = new View(tzVar.getContext());
-                view3.setLayoutParams(new s4.o0(-1, tzVar.f30962b1));
-                xVar = view3;
-            }
-        } else {
-            xVar = new cz(tzVar.getContext());
+    public final boolean equals(l61 l61Var, l61 l61Var2) {
+        if (l61Var.B == l61Var2.B) {
+            return true;
         }
-        return new s4.b1(xVar);
+        return false;
     }
 }

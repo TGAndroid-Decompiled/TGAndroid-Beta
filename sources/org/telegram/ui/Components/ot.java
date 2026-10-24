@@ -2,72 +2,218 @@ package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Paint;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class ot implements Runnable {
-    public final int f29311a;
-    public final qt f29312b;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
+public abstract class ot implements NotificationCenter.NotificationCenterDelegate {
+    public static nt L;
+    public boolean E;
+    public boolean G;
+    public boolean I;
+    public int J;
+    public final int K;
+    public boolean f29370a;
+    public Bitmap f29371b;
+    public Canvas f29372c;
+    public Bitmap d;
+    public Canvas e;
+    public boolean f29373f;
+    public int f29374n;
+    public boolean f29375r;
+    public int v;
+    public int f29377w;
+    public int f29378x;
+    public final DispatchQueue f29379y;
+    public int h = 1;
+    public final Paint f29376s = new Paint(1);
+    public final mt F = new mt(this, 0);
+    public final mt H = new mt(this, 1);
 
-    public ot(qt qtVar, int i10) {
-        this.f29311a = i10;
-        this.f29312b = qtVar;
+    public ot() {
+        if (L == null) {
+            ?? obj = new Object();
+            obj.f29033b = new DispatchQueue[2];
+            L = obj;
+        }
+        nt ntVar = L;
+        int i10 = ntVar.f29032a + 1;
+        ntVar.f29032a = i10;
+        if (i10 > 1) {
+            ntVar.f29032a = 0;
+        }
+        DispatchQueue[] dispatchQueueArr = (DispatchQueue[]) ntVar.f29033b;
+        int i11 = ntVar.f29032a;
+        DispatchQueue dispatchQueue = dispatchQueueArr[i11];
+        if (dispatchQueue == null) {
+            dispatchQueue = new DispatchQueue("draw_background_queue_" + ntVar.f29032a);
+            dispatchQueueArr[i11] = dispatchQueue;
+        }
+        this.f29379y = dispatchQueue;
+        this.K = L.f29032a;
     }
 
+    public void a(Canvas canvas, long j10, int i10, int i11, float f7) {
+        if (this.E) {
+            if (BuildVars.DEBUG_PRIVATE_VERSION) {
+                canvas.drawRect(0.0f, 0.0f, i10, i11, org.telegram.ui.ActionBar.k6.Nl);
+                return;
+            }
+            return;
+        }
+        this.f29377w = i11;
+        this.f29378x = i10;
+        if (this.G) {
+            this.G = false;
+            Bitmap bitmap = this.d;
+            Canvas canvas2 = this.e;
+            this.d = this.f29371b;
+            this.e = this.f29372c;
+            this.f29371b = bitmap;
+            this.f29372c = canvas2;
+        }
+        Bitmap bitmap2 = this.d;
+        if (bitmap2 == null || this.I) {
+            this.I = false;
+            if (bitmap2 != null) {
+                ArrayList arrayList = new ArrayList();
+                arrayList.add(this.d);
+                AndroidUtilities.recycleBitmaps(arrayList);
+                this.d = null;
+            }
+            int i12 = this.f29377w + 0;
+            Bitmap bitmap3 = this.d;
+            if (bitmap3 != null && bitmap3.getHeight() == i12 && this.d.getWidth() == this.f29378x) {
+                this.d.eraseColor(0);
+            } else {
+                this.d = Bitmap.createBitmap(this.f29378x, i12, Bitmap.Config.ARGB_8888);
+                this.e = new Canvas(this.d);
+            }
+            this.e.save();
+            this.e.translate(0.0f, 0);
+            d(this.e, f7);
+            this.e.restore();
+        }
+        if (!this.f29373f && !this.f29375r) {
+            this.f29373f = true;
+            i(j10);
+            this.J = this.v;
+            this.f29379y.postRunnable(this.F);
+        }
+        Bitmap bitmap4 = this.d;
+        if (bitmap4 != null) {
+            Paint paint = this.f29376s;
+            paint.setAlpha((int) (f7 * 255.0f));
+            canvas.save();
+            canvas.translate(0.0f, -0);
+            b(canvas, bitmap4, paint);
+            canvas.restore();
+        }
+    }
+
+    public void b(Canvas canvas, Bitmap bitmap, Paint paint) {
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+    }
+
+    public abstract void c(Canvas canvas);
+
+    public abstract void d(Canvas canvas, float f7);
+
     @Override
-    public final void run() {
-        int i10;
-        Bitmap bitmap;
-        switch (this.f29311a) {
-            case 0:
-                qt qtVar = this.f29312b;
-                try {
-                    i10 = qtVar.f29984w + 0;
-                    bitmap = qtVar.f29978b;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    qtVar.E = true;
-                }
-                if (bitmap != null) {
-                    if (bitmap.getWidth() == qtVar.f29985x) {
-                        if (qtVar.f29978b.getHeight() != i10) {
-                        }
-                        qtVar.f29978b.eraseColor(0);
-                        qtVar.f29979c.save();
-                        qtVar.f29979c.translate(0.0f, 0);
-                        qtVar.c(qtVar.f29979c);
-                        qtVar.f29979c.restore();
-                        qtVar.f29978b.prepareToDraw();
-                        AndroidUtilities.runOnUIThread(qtVar.H);
-                        return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12;
+        if (i10 == NotificationCenter.stopAllHeavyOperations) {
+            Integer num = (Integer) objArr[0];
+            if (this.h < num.intValue()) {
+                if (num.intValue() != 512 || SharedConfig.getDevicePerformanceClass() < 2) {
+                    int intValue = num.intValue() | this.f29374n;
+                    this.f29374n = intValue;
+                    if (intValue != 0 && !this.f29375r) {
+                        this.f29375r = true;
                     }
                 }
-                Bitmap bitmap2 = qtVar.f29978b;
-                if (bitmap2 != null) {
-                    bitmap2.recycle();
+            }
+        } else if (i10 == NotificationCenter.startAllHeavyOperations) {
+            Integer num2 = (Integer) objArr[0];
+            if (this.h < num2.intValue() && (i12 = this.f29374n) != 0) {
+                int i13 = (~num2.intValue()) & i12;
+                this.f29374n = i13;
+                if (i13 == 0 && this.f29375r) {
+                    this.f29375r = false;
                 }
-                qtVar.f29978b = Bitmap.createBitmap(qtVar.f29985x, i10, Bitmap.Config.ARGB_8888);
-                qtVar.f29979c = new Canvas(qtVar.f29978b);
-                qtVar.f29978b.eraseColor(0);
-                qtVar.f29979c.save();
-                qtVar.f29979c.translate(0.0f, 0);
-                qtVar.c(qtVar.f29979c);
-                qtVar.f29979c.restore();
-                qtVar.f29978b.prepareToDraw();
-                AndroidUtilities.runOnUIThread(qtVar.H);
-                return;
-            default:
-                qt qtVar2 = this.f29312b;
-                qtVar2.f29980f = false;
-                qtVar2.g();
-                if (!qtVar2.f29977a) {
-                    qtVar2.j();
-                    return;
-                } else if (qtVar2.v == qtVar2.J) {
-                    qtVar2.G = true;
-                    return;
-                } else {
-                    return;
-                }
+            }
         }
+    }
+
+    public final void e() {
+        if (this.f29370a) {
+            return;
+        }
+        this.f29370a = true;
+        this.E = false;
+        int currentHeavyOperationFlags = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
+        this.f29374n = currentHeavyOperationFlags;
+        if (currentHeavyOperationFlags == 0 && this.f29375r) {
+            this.f29375r = false;
+        }
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.stopAllHeavyOperations);
+        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.startAllHeavyOperations);
+    }
+
+    public final void f() {
+        if (!this.f29370a) {
+            return;
+        }
+        if (!this.f29373f) {
+            j();
+        }
+        this.f29370a = false;
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.stopAllHeavyOperations);
+        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.startAllHeavyOperations);
+    }
+
+    public abstract void g();
+
+    public abstract void i(long j10);
+
+    public final void j() {
+        ArrayList arrayList = new ArrayList();
+        Bitmap bitmap = this.d;
+        if (bitmap != null) {
+            arrayList.add(bitmap);
+        }
+        Bitmap bitmap2 = this.f29371b;
+        if (bitmap2 != null) {
+            arrayList.add(bitmap2);
+        }
+        this.d = null;
+        this.f29371b = null;
+        this.f29372c = null;
+        this.e = null;
+        AndroidUtilities.recycleBitmaps(arrayList);
+    }
+
+    public final void k() {
+        this.I = true;
+        this.v++;
+        if (this.d != null) {
+            ArrayList arrayList = new ArrayList();
+            arrayList.add(this.d);
+            this.d = null;
+            AndroidUtilities.recycleBitmaps(arrayList);
+        }
+    }
+
+    public final void l(int i10) {
+        this.h = 7;
+        if (this.f29370a) {
+            this.f29374n = NotificationCenter.getGlobalInstance().getCurrentHeavyOperationFlags() & (~this.h);
+        }
+    }
+
+    public void h() {
     }
 }

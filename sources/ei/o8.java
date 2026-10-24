@@ -1,7 +1,7 @@
 package ei;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class o8 implements org.telegram.ui.Components.ob {
+public final class o8 implements org.telegram.ui.Components.mb {
     public final int f9571a;
 
     public o8(int i10) {
@@ -49,7 +49,7 @@ public final class o8 implements org.telegram.ui.Components.ob {
     }
 
     @Override
-    public final void b(org.telegram.ui.Components.qc qcVar) {
+    public final void b(org.telegram.ui.Components.oc ocVar) {
         int i10 = this.f9571a;
     }
 
@@ -59,7 +59,7 @@ public final class o8 implements org.telegram.ui.Components.ob {
     }
 
     @Override
-    public final void d(org.telegram.ui.Components.qc qcVar) {
+    public final void d(org.telegram.ui.Components.oc ocVar) {
         int i10 = this.f9571a;
     }
 
@@ -230,103 +230,103 @@ public final class o8 implements org.telegram.ui.Components.ob {
         }
     }
 
-    private final void A(org.telegram.ui.Components.qc qcVar) {
+    private final void A(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void B(org.telegram.ui.Components.qc qcVar) {
+    private final void B(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void C(org.telegram.ui.Components.qc qcVar) {
+    private final void C(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void D(org.telegram.ui.Components.qc qcVar) {
+    private final void D(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void E(org.telegram.ui.Components.qc qcVar) {
+    private final void E(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void F(org.telegram.ui.Components.qc qcVar) {
+    private final void F(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void G(org.telegram.ui.Components.qc qcVar) {
+    private final void G(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void H(org.telegram.ui.Components.qc qcVar) {
+    private final void H(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void I(org.telegram.ui.Components.qc qcVar) {
+    private final void I(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void J(org.telegram.ui.Components.qc qcVar) {
+    private final void J(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void K(org.telegram.ui.Components.qc qcVar) {
+    private final void K(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void L(org.telegram.ui.Components.qc qcVar) {
+    private final void L(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void M(org.telegram.ui.Components.qc qcVar) {
+    private final void M(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void N(org.telegram.ui.Components.qc qcVar) {
+    private final void N(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void O(org.telegram.ui.Components.qc qcVar) {
+    private final void O(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void P(org.telegram.ui.Components.qc qcVar) {
+    private final void P(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void Q(org.telegram.ui.Components.qc qcVar) {
+    private final void Q(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void R(org.telegram.ui.Components.qc qcVar) {
+    private final void R(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void S(org.telegram.ui.Components.qc qcVar) {
+    private final void S(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void T(org.telegram.ui.Components.qc qcVar) {
+    private final void T(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void U(org.telegram.ui.Components.qc qcVar) {
+    private final void U(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void V(org.telegram.ui.Components.qc qcVar) {
+    private final void V(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void W(org.telegram.ui.Components.qc qcVar) {
+    private final void W(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void X(org.telegram.ui.Components.qc qcVar) {
+    private final void X(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void Y(org.telegram.ui.Components.qc qcVar) {
+    private final void Y(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void Z(org.telegram.ui.Components.qc qcVar) {
+    private final void Z(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void a0(org.telegram.ui.Components.qc qcVar) {
+    private final void a0(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void b0(org.telegram.ui.Components.qc qcVar) {
+    private final void b0(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void c0(org.telegram.ui.Components.qc qcVar) {
+    private final void c0(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void d0(org.telegram.ui.Components.qc qcVar) {
+    private final void d0(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void e0(org.telegram.ui.Components.qc qcVar) {
+    private final void e0(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void f0(org.telegram.ui.Components.qc qcVar) {
+    private final void f0(org.telegram.ui.Components.oc ocVar) {
     }
 
-    private final void g0(org.telegram.ui.Components.qc qcVar) {
+    private final void g0(org.telegram.ui.Components.oc ocVar) {
     }
 
     private final void i(float f7) {
@@ -380,6 +380,6 @@ public final class o8 implements org.telegram.ui.Components.ob {
     private final void y(float f7) {
     }
 
-    private final void z(org.telegram.ui.Components.qc qcVar) {
+    private final void z(org.telegram.ui.Components.oc ocVar) {
     }
 }

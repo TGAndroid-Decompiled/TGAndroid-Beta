@@ -9,7 +9,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PrivacyControlActivity;
-import org.telegram.ui.bw0;
+import org.telegram.ui.aw0;
 import org.telegram.ui.jr;
 import org.telegram.ui.sn;
 public final class ra implements Runnable {
@@ -37,7 +37,7 @@ public final class ra implements Runnable {
                     int i10 = this.f2133b;
                     long j11 = -j10;
                     if (ChatObject.isChannelAndNotMegaGroup(MessagesController.getInstance(i10).getChat(Long.valueOf(j11)))) {
-                        U.presentFragment(new bw0(j11));
+                        U.presentFragment(new aw0(j11));
                         return;
                     }
                     Bundle bundle = new Bundle();

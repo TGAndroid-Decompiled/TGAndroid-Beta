@@ -46,22 +46,22 @@ import org.telegram.ui.Cells.p9;
 import org.telegram.ui.Cells.q2;
 import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a11;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.dm0;
-import org.telegram.ui.Components.gp0;
-import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.cm0;
+import org.telegram.ui.Components.fp0;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.y5;
+import org.telegram.ui.Components.z01;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.Wallet.o5;
 import org.telegram.ui.cw;
 import org.telegram.ui.dy;
 import org.telegram.ui.ey;
 import org.telegram.ui.m5;
-import org.telegram.ui.yu0;
+import org.telegram.ui.xu0;
 import s4.g1;
 import s4.h1;
 import sg.a1;
-public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessContinuation {
+public final class q implements ne.f, fp0, k1, cm0, gh.a, n5.b, y2.n, SuccessContinuation {
     public final int f17035a;
     public Object f17036b;
     public Object f17037c;
@@ -155,18 +155,18 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
             View t10 = h1Var.t(i10);
             int d = h1Var.d(t10);
             int y3 = h1Var.y(t10);
-            g1Var.f46391b = m10;
-            g1Var.f46392c = o10;
+            g1Var.f46390b = m10;
+            g1Var.f46391c = o10;
             g1Var.d = d;
             g1Var.e = y3;
             if (i12 != 0) {
-                g1Var.f46390a = i12;
+                g1Var.f46389a = i12;
                 if (g1Var.a()) {
                     return t10;
                 }
             }
             if (i13 != 0) {
-                g1Var.f46390a = i13;
+                g1Var.f46389a = i13;
                 if (g1Var.a()) {
                     view = t10;
                 }
@@ -178,7 +178,7 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
 
     @Override
     public boolean J0(long j10) {
-        return ((a11) this.f17037c).v;
+        return ((z01) this.f17037c).v;
     }
 
     @Override
@@ -188,11 +188,11 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
 
     @Override
     public void L(float f7, boolean z10) {
-        m5.f39375c = f7;
+        m5.f39441c = f7;
         ((TextView) this.f17036b).setText("Saturation " + (f7 * 5.0f));
-        ow0 ow0Var = ((m5) this.f17037c).f39376b;
-        ow0Var.M();
-        ow0Var.L();
+        nw0 nw0Var = ((m5) this.f17037c).f39442b;
+        nw0Var.M();
+        nw0Var.L();
     }
 
     @Override
@@ -219,7 +219,7 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
     }
 
     @Override
-    public yu0 P1() {
+    public xu0 P1() {
         return null;
     }
 
@@ -230,7 +230,7 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
 
     @Override
     public boolean Q1(long j10) {
-        return ((a11) this.f17037c).f24600s;
+        return ((z01) this.f17037c).f33113s;
     }
 
     @Override
@@ -280,11 +280,11 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
         int o10 = h1Var.o();
         int d = h1Var.d(view);
         int y3 = h1Var.y(view);
-        g1Var.f46391b = m10;
-        g1Var.f46392c = o10;
+        g1Var.f46390b = m10;
+        g1Var.f46391c = o10;
         g1Var.d = d;
         g1Var.e = y3;
-        g1Var.f46390a = 24579;
+        g1Var.f46389a = 24579;
         return g1Var.a();
     }
 
@@ -351,13 +351,13 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
         ey eyVar = (ey) this.f17037c;
         if (view instanceof q2) {
             q2 q2Var = (q2) view;
-            if (q2Var.f22983n2) {
+            if (q2Var.f22984n2) {
                 eyVar.L4(q2Var.getDialogId(), view);
                 return true;
             }
         }
-        cw cwVar = eyVar.f37167z0;
-        if (cwVar != null && cwVar.getVisibility() == 0 && eyVar.f37167z0.f30320n) {
+        cw cwVar = eyVar.f37142z0;
+        if (cwVar != null && cwVar.getVisibility() == 0 && eyVar.f37142z0.f29721n) {
             return false;
         }
         return eyVar.m4(view, i10, f7, ((dy) this.f17036b).d);
@@ -414,7 +414,7 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
         pb.a aVar = new pb.a(24);
         Object mo27get = ((hd.a) this.f17036b).mo27get();
         hd.a aVar2 = (hd.a) this.f17037c;
-        return new s5.g(bVar, aVar, s5.a.f46519f, (s5.i) mo27get, aVar2);
+        return new s5.g(bVar, aVar, s5.a.f46518f, (s5.i) mo27get, aVar2);
     }
 
     @Override
@@ -454,7 +454,7 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
     }
 
     @Override
-    public boolean o0(a6 a6Var) {
+    public boolean o0(y5 y5Var) {
         return false;
     }
 
@@ -476,10 +476,10 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
             Log.w("FirebaseCrashlytics", "Received null app settings at app startup. Cannot send cached reports", null);
             return Tasks.forResult(null);
         }
-        n2.e eVar = (n2.e) fVar.f48042c;
-        x9.m.b((x9.m) ((n2.e) fVar.f48042c).f17103c);
-        ((x9.m) eVar.f17103c).f50150m.v((Executor) this.f17036b, null);
-        ((x9.m) eVar.f17103c).f50154q.trySetResult(null);
+        n2.e eVar = (n2.e) fVar.f48041c;
+        x9.m.b((x9.m) ((n2.e) fVar.f48041c).f17103c);
+        ((x9.m) eVar.f17103c).f50149m.v((Executor) this.f17036b, null);
+        ((x9.m) eVar.f17103c).f50153q.trySetResult(null);
         return Tasks.forResult(null);
     }
 
@@ -522,7 +522,7 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
         if (trim.length() > 16) {
             trim = trim.substring(0, 16);
         }
-        if (!((a11) this.f17037c).f24600s && TextUtils.isEmpty(trim)) {
+        if (!((z01) this.f17037c).f33113s && TextUtils.isEmpty(trim)) {
             return null;
         }
         return trim;
@@ -538,13 +538,13 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
         Paint paint = (Paint) this.f17036b;
         PremiumPreviewFragment premiumPreviewFragment = (PremiumPreviewFragment) this.f17037c;
         a1 a1Var = premiumPreviewFragment.m0;
-        if (premiumPreviewFragment.f33810h0) {
-            paint.setColor(premiumPreviewFragment.getThemedColor(k6.f21125a7));
+        if (premiumPreviewFragment.f33812h0) {
+            paint.setColor(premiumPreviewFragment.getThemedColor(k6.f21126a7));
             canvas.drawRect(f7, f10, f11, f12, paint);
             return;
         }
-        a1Var.d(0, (-premiumPreviewFragment.f33805d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33802b0, 0, premiumPreviewFragment.f33805d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f33805d0.getMeasuredHeight());
-        canvas.drawRect(f7, f10, f11, f12, a1Var.f46619f);
+        a1Var.d(0, (-premiumPreviewFragment.f33807d0.getMeasuredWidth()) * 0.1f * premiumPreviewFragment.f33804b0, 0, premiumPreviewFragment.f33807d0.getMeasuredWidth(), 0.0f, premiumPreviewFragment.f33807d0.getMeasuredHeight());
+        canvas.drawRect(f7, f10, f11, f12, a1Var.f46618f);
     }
 
     public void z(Object obj, String str) {
@@ -605,7 +605,7 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
         this.f17035a = 19;
         this.f17036b = h1Var;
         ?? obj = new Object();
-        obj.f46390a = 0;
+        obj.f46389a = 0;
         this.f17037c = obj;
     }
 
@@ -623,22 +623,22 @@ public final class q implements ne.f, gp0, k1, dm0, gh.a, n5.b, y2.n, SuccessCon
         q1.i iVar = new q1.i(editText);
         this.f17037c = iVar;
         editText.addTextChangedListener(iVar);
-        if (q1.a.f44746b == null) {
-            synchronized (q1.a.f44745a) {
+        if (q1.a.f44745b == null) {
+            synchronized (q1.a.f44744a) {
                 try {
-                    if (q1.a.f44746b == null) {
+                    if (q1.a.f44745b == null) {
                         ?? factory = new Editable.Factory();
                         try {
-                            q1.a.f44747c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
+                            q1.a.f44746c = Class.forName("android.text.DynamicLayout$ChangeWatcher", false, q1.a.class.getClassLoader());
                         } catch (Throwable unused) {
                         }
-                        q1.a.f44746b = factory;
+                        q1.a.f44745b = factory;
                     }
                 } finally {
                 }
             }
         }
-        editText.setEditableFactory(q1.a.f44746b);
+        editText.setEditableFactory(q1.a.f44745b);
     }
 
     public q(PremiumPreviewFragment premiumPreviewFragment) {

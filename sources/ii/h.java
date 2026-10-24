@@ -20,14 +20,14 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.vq;
 import w7.z5;
 import zf.g0;
 public final class h extends FrameLayout implements b6 {
@@ -37,14 +37,14 @@ public final class h extends FrameLayout implements b6 {
     public long G;
     public final g6 f13209a;
     public final int f13210b;
-    public final w9 f13211c;
+    public final u9 f13211c;
     public final TextView d;
-    public final w9 e;
+    public final u9 e;
     public final TextView f13212f;
     public final TextView h;
     public final TextView f13213n;
     public final ei.d f13214r;
-    public final xq f13215s;
+    public final vq f13215s;
     public final gh.d v;
     public final dh.d f13216w;
     public boolean f13217x;
@@ -53,7 +53,7 @@ public final class h extends FrameLayout implements b6 {
     public h(Context context, int i10, g6 g6Var) {
         super(context);
         bh.b bVar;
-        this.f13218y = r6.f21817b;
+        this.f13218y = r6.f21818b;
         this.f13209a = g6Var;
         this.f13210b = i10;
         if (Build.VERSION.SDK_INT >= 31) {
@@ -69,13 +69,13 @@ public final class h extends FrameLayout implements b6 {
             bVar = new bh.b(cVar);
         }
         FrameLayout frameLayout = new FrameLayout(context);
-        w9 w9Var = new w9(context);
-        this.f13211c = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(52.0f) / 2);
-        addView(w9Var, z5.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
-        xq xqVar = new xq(R.drawable.mini_user_channels_10, 0);
-        this.f13215s = xqVar;
-        xqVar.setTranslateX(AndroidUtilities.dp(2.0f));
+        u9 u9Var = new u9(context);
+        this.f13211c = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(52.0f) / 2);
+        addView(u9Var, z5.d(52, 52.0f, 51, 11.0f, 9.0f, 0.0f, 0.0f));
+        vq vqVar = new vq(R.drawable.mini_user_channels_10, 0);
+        this.f13215s = vqVar;
+        vqVar.setTranslateX(AndroidUtilities.dp(2.0f));
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setTypeface(AndroidUtilities.bold());
@@ -113,10 +113,10 @@ public final class h extends FrameLayout implements b6 {
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView2.setEllipsize(truncateAt);
         linearLayout.addView(textView2, z5.k(0.0f, 10.0f, 0.0f, 1.33f, -1, -2));
-        w9 w9Var2 = new w9(context);
-        this.e = w9Var2;
-        w9Var2.setRoundRadius(AndroidUtilities.dp(8.0f));
-        w9Var2.setOnClickListener(new View.OnClickListener(this) {
+        u9 u9Var2 = new u9(context);
+        this.e = u9Var2;
+        u9Var2.setRoundRadius(AndroidUtilities.dp(8.0f));
+        u9Var2.setOnClickListener(new View.OnClickListener(this) {
             public final h f13204b;
 
             {
@@ -171,7 +171,7 @@ public final class h extends FrameLayout implements b6 {
                 }
             }
         });
-        addView(w9Var2, z5.d(16, 16.0f, 51, 75.0f, 35.0f, 0.0f, 0.0f));
+        addView(u9Var2, z5.d(16, 16.0f, 51, 75.0f, 35.0f, 0.0f, 0.0f));
         TextView textView3 = new TextView(context);
         this.h = textView3;
         textView3.setTextSize(1, 13.0f);
@@ -232,7 +232,7 @@ public final class h extends FrameLayout implements b6 {
                 }
             }
         });
-        TextView f7 = sl.f(linearLayout, textView3, z5.k(20.0f, 0.0f, 0.0f, 1.33f, -1, -2), context);
+        TextView f7 = tl.f(linearLayout, textView3, z5.k(20.0f, 0.0f, 0.0f, 1.33f, -1, -2), context);
         this.f13213n = f7;
         f7.setTextSize(1, 13.0f);
         int dp = AndroidUtilities.dp(12.0f);
@@ -245,7 +245,7 @@ public final class h extends FrameLayout implements b6 {
         f7.setSingleLine(true);
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
         spannableStringBuilder.append((CharSequence) "* ");
-        spannableStringBuilder.setSpan(new xq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
+        spannableStringBuilder.setSpan(new vq(R.drawable.mini_ephemeral_hidden_14, 0), 0, 1, 33);
         spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.CommunityPendingRequestOnlyVisibleToMembers));
         f7.setText(spannableStringBuilder);
         f7.setVisibility(8);
@@ -259,7 +259,7 @@ public final class h extends FrameLayout implements b6 {
         dVar2.setPadding(AndroidUtilities.dp(15.0f), 0, AndroidUtilities.dp(15.0f), 0);
         dVar2.f();
         dVar2.e();
-        int i12 = k6.f21588z6;
+        int i12 = k6.f21589z6;
         dVar2.setColor(k6.o1(0.14f, k6.w0(i12, g6Var)));
         dVar2.setTextColor(k6.x0(null, k6.G6, false));
         if (dVar2.getBackground() != null) {
@@ -400,7 +400,7 @@ public final class h extends FrameLayout implements b6 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int i10 = this.f13218y;
-        int i11 = r6.f21817b;
+        int i11 = r6.f21818b;
         if (i10 != i11) {
             this.f13218y = i11;
             try {
@@ -414,7 +414,7 @@ public final class h extends FrameLayout implements b6 {
         }
         if (this.f13217x) {
             canvas2 = canvas;
-            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, k6.f21304k0);
+            canvas2.drawLine(AndroidUtilities.dp(76.0f), getHeight() - 1, getMeasuredWidth(), getHeight() - 1, k6.f21305k0);
         } else {
             canvas2 = canvas;
         }
@@ -424,15 +424,15 @@ public final class h extends FrameLayout implements b6 {
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         gh.d dVar;
-        w9 w9Var;
-        if (Build.VERSION.SDK_INT >= 31 && (dVar = this.v) != null && view == (w9Var = this.f13211c)) {
+        u9 u9Var;
+        if (Build.VERSION.SDK_INT >= 31 && (dVar = this.v) != null && view == (u9Var = this.f13211c)) {
             int dp = AndroidUtilities.dp(9.0f);
-            int left = w9Var.getLeft() - dp;
-            int top = w9Var.getTop() - dp;
+            int left = u9Var.getLeft() - dp;
+            int top = u9Var.getTop() - dp;
             int dp2 = (dp * 2) + AndroidUtilities.dp(52.0f);
             RecordingCanvas a2 = dVar.a(dp2, dp2);
             a2.translate(-left, -top);
-            a2.drawColor(k6.w0(k6.f21183d6, this.f13209a));
+            a2.drawColor(k6.w0(k6.f21184d6, this.f13209a));
             a2.save();
             float f7 = dp2 / 2.0f;
             a2.scale(1.125f, 1.125f, f7, f7);
@@ -456,7 +456,7 @@ public final class h extends FrameLayout implements b6 {
         int i10 = k6.G6;
         g6 g6Var = this.f13209a;
         this.f13212f.setTextColor(k6.w0(i10, g6Var));
-        int i11 = k6.f21588z6;
+        int i11 = k6.f21589z6;
         this.h.setTextColor(k6.w0(i11, g6Var));
         this.f13213n.setTextColor(k6.w0(i11, g6Var));
     }

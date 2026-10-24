@@ -12,10 +12,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import rg.o2;
 public final class d0 implements org.telegram.ui.ActionBar.z1, q3.g, g2.g, qg.j0, androidx.car.app.utils.b, r9.e, qa.a, r9.d, OnFailureListener {
-    public final int f43091a;
+    public final int f43080a;
 
     public d0(int i10) {
-        this.f43091a = i10;
+        this.f43080a = i10;
     }
 
     public static AudioRecordingConfiguration c(Object obj) {
@@ -28,7 +28,7 @@ public final class d0 implements org.telegram.ui.ActionBar.z1, q3.g, g2.g, qg.j0
 
     @Override
     public Typeface a() {
-        switch (this.f43091a) {
+        switch (this.f43080a) {
             case 7:
                 return AndroidUtilities.getTypeface("fonts/rmedium.ttf");
             case 8:
@@ -73,7 +73,7 @@ public final class d0 implements org.telegram.ui.ActionBar.z1, q3.g, g2.g, qg.j0
 
     @Override
     public void onFailure(Exception exc) {
-        int i10 = o2.f45985r0;
+        int i10 = o2.f45984r0;
     }
 
     @Override

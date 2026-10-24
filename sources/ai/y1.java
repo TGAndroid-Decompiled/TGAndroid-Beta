@@ -13,12 +13,12 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class y1 extends FrameLayout implements ne.d, org.telegram.ui.ActionBar.b6 {
     public final org.telegram.ui.ActionBar.g6 f2474a;
     public final FrameLayout f2475b;
     public final yh.d1 f2476c;
-    public final org.telegram.ui.Components.w9 d;
+    public final org.telegram.ui.Components.u9 d;
     public final TextView e;
     public final TextView f2477f;
     public Integer h;
@@ -29,19 +29,19 @@ public final class y1 extends FrameLayout implements ne.d, org.telegram.ui.Actio
 
     public y1(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
-        this.f2479r = new ne.b(0, this, bs.h, 320L, false);
+        this.f2479r = new ne.b(0, this, zr.h, 320L, false);
         this.f2474a = g6Var;
         FrameLayout frameLayout = new FrameLayout(context);
         this.f2475b = frameLayout;
         yh.d1 d1Var = new yh.d1(frameLayout, g6Var, true);
         this.f2476c = d1Var;
         frameLayout.setBackground(d1Var);
-        d1Var.f50662w = 1;
+        d1Var.f50661w = 1;
         addView(frameLayout, w7.z5.e(-1, -1, 119));
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.d = w9Var;
-        w9Var.getImageReceiver().setAutoRepeat(0);
-        addView(w9Var, w7.z5.d(80, 80.0f, 49, 0.0f, 17.0f, 0.0f, 0.0f));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.d = u9Var;
+        u9Var.getImageReceiver().setAutoRepeat(0);
+        addView(u9Var, w7.z5.d(80, 80.0f, 49, 0.0f, 17.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setTypeface(AndroidUtilities.bold());
@@ -62,15 +62,15 @@ public final class y1 extends FrameLayout implements ne.d, org.telegram.ui.Actio
 
     public static void a(y1 y1Var, TLRPC.Document document, int i10, Object obj, boolean z10) {
         String str;
-        org.telegram.ui.Components.w9 w9Var = y1Var.d;
+        org.telegram.ui.Components.u9 u9Var = y1Var.d;
         if (document == null) {
-            w9Var.b();
+            u9Var.b();
             y1Var.f2478n = null;
         } else if (y1Var.f2478n == document) {
         } else {
             y1Var.f2478n = document;
             TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(document.thumbs, AndroidUtilities.dp(100.0f));
-            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.k6.f21125a7, 0.3f);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, org.telegram.ui.ActionBar.k6.f21126a7, 0.3f);
             StringBuilder sb2 = new StringBuilder();
             sb2.append(i10);
             sb2.append("_");
@@ -83,25 +83,25 @@ public final class y1 extends FrameLayout implements ne.d, org.telegram.ui.Actio
             sb2.append(str);
             String sb3 = sb2.toString();
             int i11 = (80 - i10) / 2;
-            w9Var.setLayoutParams(w7.z5.d(i10, i10, 49, 0.0f, i11 + 17, 0.0f, i11));
-            w9Var.l(ImageLocation.getForDocument(document), sb3, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), sb3, svgThumb, obj);
+            u9Var.setLayoutParams(w7.z5.d(i10, i10, 49, 0.0f, i11 + 17, 0.0f, i11));
+            u9Var.l(ImageLocation.getForDocument(document), sb3, ImageLocation.getForDocument(closestPhotoSizeWithSize, document), sb3, svgThumb, obj);
         }
     }
 
     public final void b() {
         int f7;
         yh.d1 d1Var = this.f2476c;
-        d1Var.f50665z = null;
+        d1Var.f50664z = null;
         Integer num = this.h;
         ne.b bVar = this.f2479r;
         TextView textView = this.f2477f;
         if (num != null) {
-            f7 = org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21183d6, false), org.telegram.ui.ActionBar.k6.o1(AndroidUtilities.lerp(0.15f, 1.0f, bVar.e), this.h.intValue()));
-            d1Var.f50665z = this.h;
+            f7 = org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21184d6, false), org.telegram.ui.ActionBar.k6.o1(AndroidUtilities.lerp(0.15f, 1.0f, bVar.e), this.h.intValue()));
+            d1Var.f50664z = this.h;
             this.f2475b.invalidate();
             textView.setTextColor(i0.a.f(bVar.e, this.h.intValue(), -1));
         } else if (this.f2480s) {
-            int i10 = org.telegram.ui.ActionBar.k6.f21183d6;
+            int i10 = org.telegram.ui.ActionBar.k6.f21184d6;
             int x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
             int i11 = org.telegram.ui.ActionBar.k6.G6;
             int f10 = i0.a.f(bVar.e, i0.a.f(0.05f, x02, org.telegram.ui.ActionBar.k6.x0(null, i11, false)), org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Oh, false));

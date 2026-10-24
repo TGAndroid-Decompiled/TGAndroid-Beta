@@ -21,7 +21,7 @@ public final class o1 implements ToDoubleFunction {
             case 2:
                 return a2.Q((TL_stars.starGiftAttributeModel) obj);
             case 3:
-                return ((p81) obj).f29470a;
+                return ((p81) obj).f29510a;
             case 4:
                 return ((TLRPC.TL_topPeer) obj).rating;
             case 5:

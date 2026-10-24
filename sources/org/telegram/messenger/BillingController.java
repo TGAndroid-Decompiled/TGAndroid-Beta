@@ -27,7 +27,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.ig0;
+import org.telegram.ui.hg0;
 public class BillingController implements r, c5.d {
     public static final c5.s PREMIUM_PRODUCT;
     public static c5.p PREMIUM_PRODUCT_DETAILS = null;
@@ -233,7 +233,7 @@ public class BillingController implements r, c5.d {
                 SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str2));
                 zf.a a2 = zf.a.a(serializedData, serializedData.readInt32(true));
                 SerializedData serializedData2 = new SerializedData(8);
-                serializedData2.writeInt64(a2.f51989b);
+                serializedData2.writeInt64(a2.f51988b);
                 String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
                 serializedData2.cleanup();
                 FileLog.d("BillingUtilities.clearPurpose: id_hex = " + bytesToHex);
@@ -284,15 +284,15 @@ public class BillingController implements r, c5.d {
     }
 
     public static void lambda$onPurchasesUpdatedInternal$7(AccountInstance accountInstance, TLRPC.TL_payments_assignPlayMarketTransaction tL_payments_assignPlayMarketTransaction, TL_update.TL_updateSentPhoneCode tL_updateSentPhoneCode) {
-        ig0 ig0Var = (ig0) LaunchActivity.N();
-        if (ig0Var == null) {
-            ig0Var = new ig0(accountInstance.getCurrentAccount());
+        hg0 hg0Var = (hg0) LaunchActivity.N();
+        if (hg0Var == null) {
+            hg0Var = new hg0(accountInstance.getCurrentAccount());
             org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
             if (U != null) {
-                U.presentFragment(ig0Var);
+                U.presentFragment(hg0Var);
             }
         }
-        ig0Var.u1(((TLRPC.TL_inputStorePaymentAuthCode) tL_payments_assignPlayMarketTransaction.purpose).phone_number, tL_updateSentPhoneCode.sent_code);
+        hg0Var.u1(((TLRPC.TL_inputStorePaymentAuthCode) tL_payments_assignPlayMarketTransaction.purpose).phone_number, tL_updateSentPhoneCode.sent_code);
     }
 
     public static void lambda$onPurchasesUpdatedInternal$8(AtomicInteger atomicInteger, AtomicInteger atomicInteger2, Runnable runnable) {
@@ -471,7 +471,7 @@ public class BillingController implements r, c5.d {
                 }
                 if (hashSet.size() <= 1) {
                     com.google.android.gms.internal.play_billing.r t10 = com.google.android.gms.internal.play_billing.r.t(list);
-                    cVar.f50564b = t10;
+                    cVar.f50563b = t10;
                     if (t10 != null) {
                         bVar.c(new a6.i(cVar), new d0(productDetailsResponseListenerLegacy, 0));
                         return;
@@ -570,17 +570,17 @@ public class BillingController implements r, c5.d {
         serializedData.cleanup();
         FileLog.d("BillingUtilities.savePurpose id_hex=" + bytesToHex + " paymentPurpose=" + inputStorePaymentPurpose);
         ?? tLObject = new TLObject();
-        tLObject.f51989b = nextLong;
-        tLObject.f51988a = 1;
-        tLObject.f51990c = inputStorePaymentPurpose;
+        tLObject.f51988b = nextLong;
+        tLObject.f51987a = 1;
+        tLObject.f51989c = inputStorePaymentPurpose;
         SerializedData serializedData2 = new SerializedData(tLObject.getObjectSize());
         tLObject.serializeToStream(serializedData2);
         String bytesToHex2 = Utilities.bytesToHex(serializedData2.toByteArray());
         serializedData2.cleanup();
         if (tLObject.getObjectSize() > 28) {
             FileLog.d("BillingUtilities.savePurpose: sending short version, original size is " + tLObject.getObjectSize() + " bytes");
-            tLObject.f51988a = 0;
-            tLObject.f51990c = null;
+            tLObject.f51987a = 0;
+            tLObject.f51989c = null;
         }
         SerializedData serializedData3 = new SerializedData(tLObject.getObjectSize());
         tLObject.serializeToStream(serializedData3);

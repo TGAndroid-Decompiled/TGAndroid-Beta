@@ -42,7 +42,7 @@ public final class g0 {
         long j12;
         b2.w wVar;
         final qf.b bVar = this.f107a;
-        f fVar = (f) bVar.f44865c;
+        f fVar = (f) bVar.f44864c;
         while (true) {
             e2.s sVar = this.f110f;
             int i10 = sVar.f8287c;
@@ -82,10 +82,10 @@ public final class g0 {
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ((f) bVar.f44865c).h.onFirstFrameRendered();
+                                        ((f) bVar.f44864c).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) bVar.f44865c).h.U();
+                                        ((f) bVar.f44864c).h.U();
                                         return;
                                 }
                             }
@@ -114,7 +114,7 @@ public final class g0 {
                         vVar.f4088y = a2Var.f3700a;
                         vVar.f4089z = a2Var.f3701b;
                         vVar.f4082r = v0.n("video/raw");
-                        bVar.f44864b = new b2.w(vVar);
+                        bVar.f44863b = new b2.w(vVar);
                         fVar.f84i.execute(new a1.f(2, bVar, a2Var));
                     }
                     if (z10) {
@@ -135,16 +135,16 @@ public final class g0 {
                             public final void run() {
                                 switch (r2) {
                                     case 0:
-                                        ((f) bVar.f44865c).h.onFirstFrameRendered();
+                                        ((f) bVar.f44864c).h.onFirstFrameRendered();
                                         return;
                                     default:
-                                        ((f) bVar.f44865c).h.U();
+                                        ((f) bVar.f44864c).h.U();
                                         return;
                                 }
                             }
                         });
                     }
-                    b2.w wVar2 = (b2.w) bVar.f44864b;
+                    b2.w wVar2 = (b2.w) bVar.f44863b;
                     if (wVar2 == null) {
                         wVar = new b2.w(new b2.v());
                     } else {

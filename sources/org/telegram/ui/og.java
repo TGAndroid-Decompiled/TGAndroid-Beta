@@ -11,17 +11,17 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class og implements hv0, xx {
-    public final boolean f40152a;
-    public final int f40153b;
-    public final Object f40154c;
+public final class og implements gv0, xx {
+    public final boolean f40179a;
+    public final int f40180b;
+    public final Object f40181c;
     public final Object d;
 
     public og(sn snVar, boolean z10, MessageObject messageObject, int i10) {
-        this.f40154c = snVar;
-        this.f40152a = z10;
+        this.f40181c = snVar;
+        this.f40179a = z10;
         this.d = messageObject;
-        this.f40153b = i10;
+        this.f40180b = i10;
     }
 
     @Override
@@ -37,9 +37,9 @@ public final class og implements hv0, xx {
     @Override
     public void a(TLRPC.MessageMedia messageMedia) {
         int i10;
-        sn snVar = (sn) this.f40154c;
+        sn snVar = (sn) this.f40181c;
         MessageObject messageObject = (MessageObject) this.d;
-        if (this.f40152a) {
+        if (this.f40179a) {
             TLRPC.TL_messages_appendTodoList tL_messages_appendTodoList = new TLRPC.TL_messages_appendTodoList();
             tL_messages_appendTodoList.peer = snVar.getMessagesController().getInputPeer(messageObject.getDialogId());
             tL_messages_appendTodoList.msg_id = messageObject.getId();
@@ -48,20 +48,20 @@ public final class og implements hv0, xx {
                 int i11 = 0;
                 int i12 = 0;
                 while (true) {
-                    i10 = this.f40153b;
+                    i10 = this.f40180b;
                     if (i11 >= i10) {
                         break;
                     }
-                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20488id);
+                    i12 = Math.max(i12, tL_messageMediaToDo.todo.list.get(i11).f20489id);
                     i11++;
                 }
                 while (i10 < tL_messageMediaToDo.todo.list.size()) {
                     TLRPC.TodoItem todoItem = tL_messageMediaToDo.todo.list.get(i10);
-                    if (todoItem.f20488id <= i12) {
-                        todoItem.f20488id = i12 + 1;
+                    if (todoItem.f20489id <= i12) {
+                        todoItem.f20489id = i12 + 1;
                     }
                     tL_messages_appendTodoList.list.add(todoItem);
-                    i12 = Math.max(i12, todoItem.f20488id);
+                    i12 = Math.max(i12, todoItem.f20489id);
                     i10++;
                 }
                 TLRPC.MessageMedia messageMedia2 = messageObject.messageOwner.media;
@@ -84,14 +84,14 @@ public final class og implements hv0, xx {
     }
 
     @Override
-    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
-        LaunchActivity launchActivity = (LaunchActivity) this.f40154c;
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, xe1 xe1Var) {
+        LaunchActivity launchActivity = (LaunchActivity) this.f40181c;
         String str = (String) this.d;
-        Pattern pattern = LaunchActivity.E1;
+        Pattern pattern = LaunchActivity.D1;
         long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         Bundle bundle = new Bundle();
         bundle.putBoolean("scrollToTopOnResume", true);
-        bundle.putBoolean("hasUrl", this.f40152a);
+        bundle.putBoolean("hasUrl", this.f40179a);
         if (DialogObject.isEncryptedDialog(j10)) {
             bundle.putInt("enc_id", DialogObject.getEncryptedChatId(j10));
         } else if (DialogObject.isUserDialog(j10)) {
@@ -99,7 +99,7 @@ public final class og implements hv0, xx {
         } else {
             bundle.putLong("chat_id", -j10);
         }
-        int i12 = this.f40153b;
+        int i12 = this.f40180b;
         if (MessagesController.getInstance(i12).checkCanOpenChat(bundle, eyVar)) {
             NotificationCenter.getInstance(i12).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
             MediaDataController.getInstance(i12).saveDraft(j10, 0, str, null, null, false, 0L);
@@ -109,9 +109,9 @@ public final class og implements hv0, xx {
     }
 
     public og(LaunchActivity launchActivity, boolean z10, int i10, String str) {
-        this.f40154c = launchActivity;
-        this.f40152a = z10;
-        this.f40153b = i10;
+        this.f40181c = launchActivity;
+        this.f40179a = z10;
+        this.f40180b = i10;
         this.d = str;
     }
 }

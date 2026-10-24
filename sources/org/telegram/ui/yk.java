@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-public final class yk implements org.telegram.ui.Components.fl0 {
-    public final sn f43889a;
+public final class yk implements org.telegram.ui.Components.el0 {
+    public final sn f43880a;
 
     public yk(sn snVar) {
-        this.f43889a = snVar;
+        this.f43880a = snVar;
     }
 
     @Override

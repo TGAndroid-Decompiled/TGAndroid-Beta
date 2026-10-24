@@ -7,7 +7,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
 public final class d5 implements Utilities.Callback {
@@ -50,7 +50,7 @@ public final class d5 implements Utilities.Callback {
                 MessagesController messagesController = (MessagesController) obj3;
                 pf.c cVar = (pf.c) obj2;
                 Long l4 = (Long) obj;
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 if (l4 != null && l4.longValue() > 0 && l4.longValue() != Long.MAX_VALUE) {
                     user = messagesController.getUser(l4);
                 } else {
@@ -65,12 +65,12 @@ public final class d5 implements Utilities.Callback {
                     cVar.b();
                 }
                 if (user != null) {
-                    launchActivity.n0(i11, user.f20490id, null);
+                    launchActivity.n0(i11, user.f20491id, null);
                     return;
                 }
                 org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
                 if (R != null) {
-                    sl.q(R.string.NoUsernameFound, org.telegram.ui.Components.xc.a0(R), null);
+                    tl.q(R.string.NoUsernameFound, org.telegram.ui.Components.vc.a0(R), null);
                     return;
                 }
                 return;

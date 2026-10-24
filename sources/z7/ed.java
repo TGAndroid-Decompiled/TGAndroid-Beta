@@ -4,14 +4,14 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map;
 public final class ed extends e9.j2 {
-    public final Map f51257b;
-    public final mg f51258c;
+    public final Map f51256b;
+    public final mg f51257c;
 
     public ed(mg mgVar, Map map) {
         super(2);
-        this.f51258c = mgVar;
+        this.f51257c = mgVar;
         map.getClass();
-        this.f51257b = map;
+        this.f51256b = map;
     }
 
     @Override
@@ -30,17 +30,17 @@ public final class ed extends e9.j2 {
 
     @Override
     public final boolean contains(Object obj) {
-        return this.f51257b.containsKey(obj);
+        return this.f51256b.containsKey(obj);
     }
 
     @Override
     public final boolean containsAll(Collection collection) {
-        return this.f51257b.keySet().containsAll(collection);
+        return this.f51256b.keySet().containsAll(collection);
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (this != obj && !this.f51257b.keySet().equals(obj)) {
+        if (this != obj && !this.f51256b.keySet().equals(obj)) {
             return false;
         }
         return true;
@@ -48,26 +48,26 @@ public final class ed extends e9.j2 {
 
     @Override
     public final int hashCode() {
-        return this.f51257b.keySet().hashCode();
+        return this.f51256b.keySet().hashCode();
     }
 
     @Override
     public final boolean isEmpty() {
-        return this.f51257b.isEmpty();
+        return this.f51256b.isEmpty();
     }
 
     @Override
     public final Iterator iterator() {
-        return new e9.d(this, this.f51257b.entrySet().iterator(), 7);
+        return new e9.d(this, this.f51256b.entrySet().iterator(), 7);
     }
 
     @Override
     public final boolean remove(Object obj) {
-        Collection collection = (Collection) this.f51257b.remove(obj);
+        Collection collection = (Collection) this.f51256b.remove(obj);
         if (collection != null) {
             int size = collection.size();
             collection.clear();
-            this.f51258c.getClass();
+            this.f51257c.getClass();
             if (size > 0) {
                 return true;
             }
@@ -78,6 +78,6 @@ public final class ed extends e9.j2 {
 
     @Override
     public final int size() {
-        return this.f51257b.size();
+        return this.f51256b.size();
     }
 }

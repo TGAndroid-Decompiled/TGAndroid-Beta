@@ -8,21 +8,21 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class w2 extends FrameLayout {
-    public final y2 f35343a;
+    public final y2 f35345a;
 
     public w2(y2 y2Var, Context context) {
         super(context);
-        this.f35343a = y2Var;
+        this.f35345a = y2Var;
     }
 
     @Override
     public final boolean drawChild(Canvas canvas, View view, long j10) {
         x5 x5Var;
-        y2 y2Var = this.f35343a;
-        if (view == y2Var.f35436r && y2Var.J > 0.0f) {
-            y2Var.N.set(0.0f, 0.0f, x5Var.getWidth(), y2Var.f35436r.getHeight());
-            y2Var.f35436r.getMatrix().mapRect(y2Var.N);
-            y2Var.N.offset(y2Var.f35436r.getLeft(), y2Var.f35436r.getTop());
+        y2 y2Var = this.f35345a;
+        if (view == y2Var.f35438r && y2Var.J > 0.0f) {
+            y2Var.N.set(0.0f, 0.0f, x5Var.getWidth(), y2Var.f35438r.getHeight());
+            y2Var.f35438r.getMatrix().mapRect(y2Var.N);
+            y2Var.N.offset(y2Var.f35438r.getLeft(), y2Var.f35438r.getTop());
             y2Var.N.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
             float dp = AndroidUtilities.dp(28.0f);
             RectF rectF = y2Var.N;
@@ -52,10 +52,10 @@ public final class w2 extends FrameLayout {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         int i15;
-        y2 y2Var = this.f35343a;
-        TextView textView = y2Var.f35438w;
+        y2 y2Var = this.f35345a;
+        TextView textView = y2Var.f35440w;
         ci.h4 h4Var = y2Var.v;
-        x5 x5Var = y2Var.f35436r;
+        x5 x5Var = y2Var.f35438r;
         getLocationOnScreen(y2Var.V);
         int i16 = y2Var.H.f12315a;
         int width = getWidth();
@@ -82,8 +82,8 @@ public final class w2 extends FrameLayout {
         int max = Math.max(i18, Math.min(Math.max(i18, (i17 - AndroidUtilities.dp(24.0f)) - x5Var.getMeasuredHeight()), (getHeight() - x5Var.getMeasuredHeight()) / 2));
         int measuredWidth = C - (x5Var.getMeasuredWidth() / 2);
         x5Var.layout(measuredWidth, max, x5Var.getMeasuredWidth() + measuredWidth, x5Var.getMeasuredHeight() + max);
-        y2Var.f35437s.layout(0, 0, getWidth(), getHeight());
-        y2Var.f35435n.layout(0, 0, getWidth(), getHeight());
+        y2Var.f35439s.layout(0, 0, getWidth(), getHeight());
+        y2Var.f35437n.layout(0, 0, getWidth(), getHeight());
         hh.d.c(y2Var.E, this);
         y2Var.e();
     }
@@ -94,12 +94,12 @@ public final class w2 extends FrameLayout {
         int size = View.MeasureSpec.getSize(i10);
         int size2 = View.MeasureSpec.getSize(i11);
         setMeasuredDimension(size, size2);
-        y2 y2Var = this.f35343a;
-        x5 x5Var = y2Var.f35436r;
+        y2 y2Var = this.f35345a;
+        x5 x5Var = y2Var.f35438r;
         i0.b bVar = y2Var.H;
         int max = Math.max(1, (size - bVar.f12315a) - bVar.f12317c);
         y2Var.v.measure(View.MeasureSpec.makeMeasureSpec(Math.max(1, max - AndroidUtilities.dp(24.0f)), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
-        TextView textView = y2Var.f35438w;
+        TextView textView = y2Var.f35440w;
         float f7 = 48.0f;
         textView.measure(View.MeasureSpec.makeMeasureSpec(Math.max(1, max - AndroidUtilities.dp(48.0f)), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(0, 0));
         int min = Math.min(AndroidUtilities.dp(420.0f), Math.max(1, max - AndroidUtilities.dp(24.0f)));
@@ -120,7 +120,7 @@ public final class w2 extends FrameLayout {
             int paddingBottom = x5Var.getPaddingBottom() + x5Var.getPaddingTop();
             x5Var.measure(View.MeasureSpec.makeMeasureSpec(Math.max(1, Math.round((Math.max(0, max3 - paddingBottom) * (min - paddingRight)) / Math.max(1, x5Var.getMeasuredHeight() - paddingBottom)) + paddingRight), 1073741824), View.MeasureSpec.makeMeasureSpec(0, 0));
         }
-        y2Var.f35437s.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-        y2Var.f35435n.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        y2Var.f35439s.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
+        y2Var.f35437n.measure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
     }
 }

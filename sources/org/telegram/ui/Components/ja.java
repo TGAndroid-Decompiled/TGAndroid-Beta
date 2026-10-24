@@ -1,148 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.RecordingCanvas;
-import android.graphics.RenderEffect;
-import android.graphics.RenderNode;
-import android.graphics.Shader;
-import android.os.Build;
+import android.graphics.Paint;
 import android.view.View;
 import java.util.ArrayList;
-import javax.microedition.khronos.egl.EGLContext;
-import org.telegram.messenger.AndroidUtilities;
-public final class ja {
-    public int f27634a;
-    public final View f27635b;
-    public final ArrayList f27636c;
-    public final ArrayList d;
-    public final ArrayList e;
-    public final Object f27637f;
-    public EGLContext f27638g;
-    public final Object h;
-    public int f27639i;
-    public ei.hb f27640j;
-    public Object f27641k;
-    public Object f27642l;
-    public pa f27643m;
-    public final oa f27644n;
-    public Bitmap f27645o;
-    public int f27646p;
+import java.util.WeakHashMap;
+import org.telegram.messenger.NotificationCenter;
+public final class ja implements View.OnAttachStateChangeListener {
+    public final int f27650a;
+    public final Object f27651b;
+    public final Object f27652c;
 
-    public ja(View view) {
-        ArrayList arrayList = new ArrayList();
-        this.f27636c = arrayList;
-        this.d = new ArrayList();
-        this.e = new ArrayList();
-        this.f27637f = new Object();
-        this.h = new Object();
-        this.f27644n = new oa(0, new pg(this, 15));
-        this.f27646p = 0;
-        this.f27635b = view;
-        if (view.isAttachedToWindow()) {
-            arrayList.clear();
-            for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
-                arrayList.add(0, view2);
-                if (!(view2.getParent() instanceof View)) {
-                    break;
+    public ja(int i10, Object obj, Object obj2) {
+        this.f27650a = i10;
+        this.f27652c = obj;
+        this.f27651b = obj2;
+    }
+
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        int i10 = this.f27650a;
+        Object obj = this.f27651b;
+        Object obj2 = this.f27652c;
+        switch (i10) {
+            case 0:
+                ha haVar = (ha) obj;
+                if (haVar != null) {
+                    haVar.d.add((la) obj2);
+                    return;
                 }
-            }
-        }
-        view.addOnAttachStateChangeListener(new ai.n6(this, 6));
-    }
-
-    public final void a(EGLContext eGLContext) {
-        synchronized (this.f27637f) {
-            try {
-                if (this.f27638g == null) {
-                    this.f27638g = eGLContext;
+                return;
+            case 1:
+                h11 h11Var = (h11) obj2;
+                h11Var.f26848k = y5.update(h11Var.f26849l, (View) obj, h11Var.f26848k, h11Var.f26842b);
+                return;
+            default:
+                org.telegram.ui.Wallet.m3 m3Var = (org.telegram.ui.Wallet.m3) obj2;
+                org.telegram.ui.Wallet.l3 l3Var = m3Var.f34827m;
+                if (l3Var != null) {
+                    l3Var.setPaused(!m3Var.f34828n);
                 }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
-    }
-
-    public final Bitmap b() {
-        Bitmap bitmap;
-        pa paVar = this.f27643m;
-        if (paVar == null) {
-            return this.f27645o;
-        }
-        synchronized (paVar.f29488n) {
-            try {
-                if (!paVar.f29491q) {
-                    bitmap = null;
-                } else {
-                    bitmap = paVar.f29490p;
+                m3Var.f34806a.isAttachedToWindow();
+                int i11 = m3Var.f34844v0;
+                if (-1 != i11) {
+                    if (i11 >= 0) {
+                        NotificationCenter.getInstance(i11).removeObserver(m3Var.f34848x0, NotificationCenter.userInfoDidLoad);
+                    }
+                    m3Var.f34844v0 = -1;
+                    return;
                 }
-            } finally {
-            }
-        }
-        if (bitmap == null) {
-            return this.f27645o;
-        }
-        return bitmap;
-    }
-
-    public final boolean c() {
-        if (this.f27642l != null) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void d() {
-        ArrayList arrayList = this.d;
-        int size = arrayList.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = arrayList.get(i11);
-            i11++;
-            ((na) obj).f28906b.invalidate();
-        }
-        ArrayList arrayList2 = this.e;
-        int size2 = arrayList2.size();
-        while (i10 < size2) {
-            Object obj2 = arrayList2.get(i10);
-            i10++;
-            ((Runnable) obj2).run();
+                return;
         }
     }
 
-    public final void e() {
-        pa paVar = this.f27643m;
-        if (paVar != null) {
-            synchronized (paVar.f29488n) {
-                paVar.f29491q = false;
-            }
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f27650a) {
+            case 0:
+                la laVar = (la) this.f27652c;
+                ha haVar = (ha) this.f27651b;
+                if (haVar != null) {
+                    ArrayList arrayList = haVar.d;
+                    arrayList.remove(laVar);
+                    if (haVar.e.isEmpty() && arrayList.isEmpty()) {
+                        haVar.f26984n.a();
+                    }
+                }
+                laVar.f28300n = null;
+                Paint paint = laVar.h;
+                laVar.f28301o = null;
+                paint.setShader(null);
+                return;
+            case 1:
+                y5.release((View) this.f27651b, ((h11) this.f27652c).f26848k);
+                return;
+            default:
+                org.telegram.ui.Wallet.m3 m3Var = (org.telegram.ui.Wallet.m3) this.f27652c;
+                org.telegram.ui.Cells.v0 v0Var = m3Var.f34806a;
+                m3Var.f();
+                m3Var.M = false;
+                m3Var.N = 0L;
+                m3Var.k();
+                o1.k kVar = m3Var.Z;
+                if (kVar != null) {
+                    kVar.c();
+                    m3Var.Z = null;
+                }
+                m3Var.f34807a0 = 1.0f;
+                v0Var.invalidate();
+                if (v0Var.getParent() instanceof View) {
+                    ((View) v0Var.getParent()).invalidate();
+                }
+                m3Var.l();
+                org.telegram.ui.Wallet.y5 y5Var = m3Var.f34823k;
+                WeakHashMap weakHashMap = y5Var.e;
+                weakHashMap.remove((org.telegram.ui.Cells.v0) this.f27651b);
+                if (weakHashMap.isEmpty()) {
+                    y5Var.a();
+                }
+                v0Var.isAttachedToWindow();
+                int i10 = m3Var.f34844v0;
+                if (-1 != i10) {
+                    if (i10 >= 0) {
+                        NotificationCenter.getInstance(i10).removeObserver(m3Var.f34848x0, NotificationCenter.userInfoDidLoad);
+                    }
+                    m3Var.f34844v0 = -1;
+                }
+                org.telegram.ui.Wallet.l3 l3Var = m3Var.f34827m;
+                if (l3Var != null) {
+                    l3Var.setPaused(true);
+                }
+                m3Var.f34825l.stop();
+                m3Var.H = false;
+                return;
         }
-    }
-
-    public final void f(Bitmap bitmap, boolean z10) {
-        StringBuilder sb2 = new StringBuilder("");
-        int i10 = this.f27646p;
-        this.f27646p = i10 + 1;
-        sb2.append(i10);
-        this.f27645o = this.f27644n.b(bitmap, sb2.toString(), 0, 0, z10);
-    }
-
-    public final void g(ei.hb hbVar, Object obj) {
-        this.f27640j = hbVar;
-        this.f27641k = obj;
-        this.f27639i = -14737633;
-        if (obj != null && Build.VERSION.SDK_INT >= 31) {
-            RenderNode renderNode = (RenderNode) obj;
-            RenderNode renderNode2 = new RenderNode("blurRenderNode");
-            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), Shader.TileMode.CLAMP));
-            renderNode2.setPosition(0, 0, renderNode.getWidth(), renderNode.getHeight());
-            RecordingCanvas beginRecording = renderNode2.beginRecording();
-            beginRecording.drawColor(-14737633);
-            beginRecording.drawRenderNode(renderNode);
-            renderNode2.endRecording();
-            this.f27642l = renderNode2;
-            return;
-        }
-        this.f27642l = null;
     }
 }

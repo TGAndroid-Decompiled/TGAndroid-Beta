@@ -14,8 +14,9 @@ import org.telegram.messenger.AnimationNotificationsLocker;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 public final class bc implements Runnable {
     public final int f8809a;
@@ -67,7 +68,7 @@ public final class bc implements Runnable {
                 xc xcVar = (xc) this.f8810b;
                 xcVar.getClass();
                 try {
-                    mm0 currentListView = ((fi.g) xcVar.M0).T.getCurrentListView();
+                    lm0 currentListView = ((fi.g) xcVar.M0).T.getCurrentListView();
                     if (currentListView != null && currentListView.getAdapter() != null) {
                         currentListView.getAdapter().l();
                         return;
@@ -172,13 +173,13 @@ public final class bc implements Runnable {
                 return;
             case 18:
                 AndroidUtilities.addToClipboard(((TL_account.TL_businessChatLink) this.f8810b).link);
-                org.telegram.ui.Components.xc.a0(LaunchActivity.R()).k(false).j();
+                vc.a0(LaunchActivity.R()).k(false).j();
                 return;
             case 19:
                 ig.j0 j0Var = (ig.j0) this.f8810b;
-                b71 b71Var = j0Var.f12972e0;
-                if (b71Var != null) {
-                    b71Var.N(true);
+                a71 a71Var = j0Var.f12972e0;
+                if (a71Var != null) {
+                    a71Var.N(true);
                 }
                 j0Var.T(true);
                 return;

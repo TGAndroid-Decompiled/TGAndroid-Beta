@@ -9,20 +9,20 @@ import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.xj0;
 import w7.z5;
 public final class i3 extends LinearLayout {
-    public final TextView f50759a;
+    public final TextView f50758a;
 
     public i3(Context context, g6 g6Var) {
         super(context);
         setOrientation(1);
-        w9 w9Var = new w9(context);
-        w9Var.setImageDrawable(new yj0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
-        addView(w9Var, z5.t(64, 64, 17, 0, 32, 0, 0));
+        u9 u9Var = new u9(context);
+        u9Var.setImageDrawable(new xj0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+        addView(u9Var, z5.t(64, 64, 17, 0, 32, 0, 0));
         TextView textView = new TextView(context);
-        this.f50759a = textView;
+        this.f50758a = textView;
         r6.W(textView, k6.A6, g6Var);
         textView.setTextSize(1, 14.0f);
         textView.setGravity(17);
@@ -39,6 +39,6 @@ public final class i3 extends LinearLayout {
     }
 
     public void set(CharSequence charSequence) {
-        this.f50759a.setText(charSequence);
+        this.f50758a.setText(charSequence);
     }
 }

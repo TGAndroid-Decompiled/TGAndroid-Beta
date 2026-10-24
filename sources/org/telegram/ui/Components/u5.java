@@ -1,35 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class u5 extends AnimatorListenerAdapter {
-    public final int f31082a;
-    public final a6 f31083b;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class u5 {
+    public ArrayList f31019a;
+    public HashMap f31020b;
+    public ArrayList f31021c;
 
-    public u5(a6 a6Var, int i10) {
-        this.f31082a = i10;
-        this.f31083b = a6Var;
+    public final void a() {
+        ArrayList arrayList = this.f31019a;
+        for (int i10 = 0; i10 < arrayList.size(); i10++) {
+            ((t5) arrayList.get(i10)).d.spanDrawn = false;
+        }
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31082a) {
-            case 0:
-                a6.access$002(this.f31083b, null);
-                a6.access$102(false);
+    public final void b(int i10) {
+        t5 t5Var = (t5) this.f31019a.remove(i10);
+        HashMap hashMap = this.f31020b;
+        w5 w5Var = (w5) hashMap.get(t5Var.f30726c);
+        if (w5Var != null) {
+            ArrayList arrayList = w5Var.f32130b;
+            arrayList.remove(t5Var);
+            w5Var.a();
+            if (arrayList.isEmpty()) {
+                hashMap.remove(t5Var.f30726c);
+                this.f31021c.remove(w5Var);
+            }
+            p5 p5Var = t5Var.f30727f;
+            if (p5Var != null) {
+                p5Var.p(t5Var);
                 return;
-            case 1:
-                a6 a6Var = this.f31083b;
-                a6.access$002(a6Var, null);
-                if (a6.access$200(a6Var) != null) {
-                    a6.access$200(a6Var).run();
-                    a6.access$202(a6Var, null);
-                    return;
-                }
-                return;
-            default:
-                a6.access$302(this.f31083b, null);
-                return;
+            }
+            return;
         }
+        throw new RuntimeException("!!!");
     }
 }

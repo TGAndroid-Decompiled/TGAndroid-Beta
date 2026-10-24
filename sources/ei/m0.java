@@ -10,13 +10,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.Crop.CropAreaView;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public abstract class m0 extends FrameLayout {
     public boolean E;
     public final r6 f9437a;
     public rg.z1 f9438b;
-    public final org.telegram.ui.Components.f6 f9439c;
-    public final org.telegram.ui.Components.f6 d;
+    public final org.telegram.ui.Components.d6 f9439c;
+    public final org.telegram.ui.Components.d6 d;
     public final l0 e;
     public final FrameLayout f9440f;
     public final g0 h;
@@ -38,9 +38,9 @@ public abstract class m0 extends FrameLayout {
         this.f9437a = r6Var;
         l0 l0Var = new l0(this, context);
         this.e = l0Var;
-        bs bsVar = bs.h;
-        this.f9439c = new org.telegram.ui.Components.f6(l0Var, 0L, 320L, bsVar);
-        this.d = new org.telegram.ui.Components.f6(l0Var, 0L, 320L, bsVar);
+        zr zrVar = zr.h;
+        this.f9439c = new org.telegram.ui.Components.d6(l0Var, 0L, 320L, zrVar);
+        this.d = new org.telegram.ui.Components.d6(l0Var, 0L, 320L, zrVar);
         g0 g0Var = new g0(this, context, 1);
         this.h = g0Var;
         g0Var.setListener(new a4.l(this, 16));
@@ -92,9 +92,9 @@ public abstract class m0 extends FrameLayout {
                             z1Var2.G0.orientation = z1Var2.getOrientation();
                             m0Var2.f9438b.k();
                             m0Var2.f9438b.requestLayout();
-                            m0Var2.f9438b.f46158z0.requestLayout();
-                            m0Var2.f9438b.f46158z0.invalidate();
-                            m0Var2.f9438b.f46158z0.post(new com.google.firebase.messaging.s(m0Var2, 8));
+                            m0Var2.f9438b.f46157z0.requestLayout();
+                            m0Var2.f9438b.f46157z0.invalidate();
+                            m0Var2.f9438b.f46157z0.post(new com.google.firebase.messaging.s(m0Var2, 8));
                         }
                         ((gb) m0Var2).F.k0(-1, false, true);
                         return;
@@ -139,9 +139,9 @@ public abstract class m0 extends FrameLayout {
                             z1Var2.G0.orientation = z1Var2.getOrientation();
                             m0Var2.f9438b.k();
                             m0Var2.f9438b.requestLayout();
-                            m0Var2.f9438b.f46158z0.requestLayout();
-                            m0Var2.f9438b.f46158z0.invalidate();
-                            m0Var2.f9438b.f46158z0.post(new com.google.firebase.messaging.s(m0Var2, 8));
+                            m0Var2.f9438b.f46157z0.requestLayout();
+                            m0Var2.f9438b.f46157z0.invalidate();
+                            m0Var2.f9438b.f46157z0.post(new com.google.firebase.messaging.s(m0Var2, 8));
                         }
                         ((gb) m0Var2).F.k0(-1, false, true);
                         return;
@@ -186,9 +186,9 @@ public abstract class m0 extends FrameLayout {
                             z1Var2.G0.orientation = z1Var2.getOrientation();
                             m0Var2.f9438b.k();
                             m0Var2.f9438b.requestLayout();
-                            m0Var2.f9438b.f46158z0.requestLayout();
-                            m0Var2.f9438b.f46158z0.invalidate();
-                            m0Var2.f9438b.f46158z0.post(new com.google.firebase.messaging.s(m0Var2, 8));
+                            m0Var2.f9438b.f46157z0.requestLayout();
+                            m0Var2.f9438b.f46157z0.invalidate();
+                            m0Var2.f9438b.f46157z0.post(new com.google.firebase.messaging.s(m0Var2, 8));
                         }
                         ((gb) m0Var2).F.k0(-1, false, true);
                         return;
@@ -258,7 +258,7 @@ public abstract class m0 extends FrameLayout {
         float rotation = g0Var.getRotation();
         mg.f fVar = this.f9441n;
         fVar.setRotation(rotation);
-        org.telegram.ui.Components.f6 f6Var = this.f9439c;
+        org.telegram.ui.Components.d6 d6Var = this.f9439c;
         if (cropState != null) {
             fVar.b(cropState.cropRotate);
             if (cropState.transformRotation == 0) {
@@ -266,13 +266,13 @@ public abstract class m0 extends FrameLayout {
             }
             fVar.setRotated(z10);
             fVar.setMirrored(cropState.mirrored);
-            f6Var.f(cropState.mirrored, false);
+            d6Var.f(cropState.mirrored, false);
         } else {
             fVar.b(0.0f);
             fVar.setRotated(false);
             fVar.setMirrored(false);
-            f6Var.getClass();
-            f6Var.d(0.0f, false);
+            d6Var.getClass();
+            d6Var.d(0.0f, false);
         }
         g0Var.r(false);
         l0 l0Var = this.e;

@@ -1,35 +1,6 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class qo implements View.OnClickListener {
-    public final int f29955a;
-    public final to f29956b;
-    public final TLRPC.Document f29957c;
-
-    public qo(to toVar, TLRPC.Document document, int i10) {
-        this.f29955a = i10;
-        this.f29956b = toVar;
-        this.f29957c = document;
-    }
-
-    @Override
-    public final void onClick(View view) {
-        switch (this.f29955a) {
-            case 0:
-                so soVar = this.f29956b.d;
-                if (soVar != null) {
-                    soVar.c(this.f29957c);
-                    return;
-                }
-                return;
-            default:
-                so soVar2 = this.f29956b.d;
-                if (soVar2 != null) {
-                    soVar2.c(this.f29957c);
-                    return;
-                }
-                return;
-        }
-    }
+public interface qo {
+    void c(TLRPC.Document document);
 }

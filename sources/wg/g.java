@@ -17,15 +17,15 @@ import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.u9;
 import w7.z5;
 public final class g extends c implements b6 {
-    public final ImageView f49419s;
+    public final ImageView f49418s;
     public f v;
-    public TLRPC.Chat f49420w;
-    public boolean f49421x;
-    public int f49422y;
+    public TLRPC.Chat f49419w;
+    public boolean f49420x;
+    public int f49421y;
 
     public g(Context context, g6 g6Var) {
         super(context, g6Var);
@@ -35,14 +35,14 @@ public final class g extends c implements b6 {
         float f11;
         this.d.setTypeface(AndroidUtilities.bold());
         ImageView imageView = new ImageView(context);
-        this.f49419s = imageView;
+        this.f49418s = imageView;
         imageView.setFocusable(false);
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         int x02 = k6.x0(null, k6.Vh, false);
-        this.f49422y = x02;
+        this.f49421y = x02;
         imageView.setBackground(k6.g0(x02, 1, -1));
         imageView.setImageResource(R.drawable.poll_remove);
-        r6.t(imageView, k6.f21346m6, null, PorterDuff.Mode.MULTIPLY);
+        r6.t(imageView, k6.f21347m6, null, PorterDuff.Mode.MULTIPLY);
         imageView.setContentDescription(LocaleController.getString(R.string.Delete));
         boolean z10 = LocaleController.isRTL;
         if (z10) {
@@ -81,14 +81,14 @@ public final class g extends c implements b6 {
         int i12;
         String string;
         String str2;
-        this.f49421x = z10;
-        this.f49420w = chat;
-        h9 h9Var = this.f49400b;
-        h9Var.q(chat);
+        this.f49420x = z10;
+        this.f49419w = chat;
+        f9 f9Var = this.f49399b;
+        f9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        w9 w9Var = this.f49401c;
-        w9Var.setRoundRadius(dp);
-        w9Var.e(chat, h9Var);
+        u9 u9Var = this.f49400c;
+        u9Var.setRoundRadius(dp);
+        u9Var.e(chat, f9Var);
         String str3 = chat.title;
         k4 k4Var = this.d;
         k4Var.k(Emoji.replaceEmoji(str3, k4Var.getPaint().getFontMetricsInt(), false));
@@ -118,9 +118,9 @@ public final class g extends c implements b6 {
             }
             setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
         }
-        r6.Z(this.e, k6.f21439r5, this.f49399a);
+        r6.Z(this.e, k6.f21440r5, this.f49398a);
         setDivider(true);
-        ImageView imageView = this.f49419s;
+        ImageView imageView = this.f49418s;
         if (z10) {
             imageView.setVisibility(0);
         } else {
@@ -130,13 +130,13 @@ public final class g extends c implements b6 {
     }
 
     public TLRPC.Chat getChat() {
-        return this.f49420w;
+        return this.f49419w;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
-        this.f49419s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
+        this.f49418s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
     }
 
     public void setChatDeleteListener(f fVar) {
@@ -147,9 +147,9 @@ public final class g extends c implements b6 {
     public final void updateColors() {
         try {
             int x02 = k6.x0(null, k6.Vh, false);
-            ImageView imageView = this.f49419s;
-            if (imageView != null && x02 != this.f49422y) {
-                this.f49422y = x02;
+            ImageView imageView = this.f49418s;
+            if (imageView != null && x02 != this.f49421y) {
+                this.f49421y = x02;
                 k6.E1(imageView.getBackground(), x02, true);
                 imageView.invalidate();
             }

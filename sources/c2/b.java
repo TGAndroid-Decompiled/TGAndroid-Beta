@@ -43,9 +43,9 @@ import n2.w;
 import n2.x;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.fz0;
-import org.telegram.ui.Components.su;
+import org.telegram.ui.Components.ez0;
+import org.telegram.ui.Components.qu;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.Wallet.y0;
 import org.telegram.ui.Wallet.z0;
 import org.telegram.ui.a1;
@@ -64,12 +64,12 @@ public final class b implements c3.s {
     public Object d;
 
     public b(View view) {
-        su[] suVarArr = {new su(), new su(), new su()};
-        this.f4494b = suVarArr;
+        qu[] quVarArr = {new qu(), new qu(), new qu()};
+        this.f4494b = quVarArr;
         this.d = new ArrayList();
         AnimatorSet animatorSet = new AnimatorSet();
         this.f4495c = animatorSet;
-        animatorSet.playTogether(i(suVarArr[0], 0, 255, 0, 300), i(suVarArr[1], 0, 255, 150, 300), i(suVarArr[2], 0, 255, 300, 300), i(suVarArr[0], 255, 0, 1000, 400), i(suVarArr[1], 255, 0, 1000, 400), i(suVarArr[2], 255, 0, 1000, 400));
+        animatorSet.playTogether(i(quVarArr[0], 0, 255, 0, 300), i(quVarArr[1], 0, 255, 150, 300), i(quVarArr[2], 0, 255, 300, 300), i(quVarArr[0], 255, 0, 1000, 400), i(quVarArr[1], 255, 0, 1000, 400), i(quVarArr[2], 255, 0, 1000, 400));
         animatorSet.addListener(new o3(this, view));
     }
 
@@ -129,7 +129,7 @@ public final class b implements c3.s {
     }
 
     public static boolean g(b5 b5Var) {
-        if (b5Var.f35871a == null && b5Var.f35872b == null) {
+        if (b5Var.f35920a == null && b5Var.f35921b == null) {
             return false;
         }
         return true;
@@ -154,12 +154,12 @@ public final class b implements c3.s {
     }
 
     public void A(SpannableString spannableString, int i10) {
-        su[] suVarArr = (su[]) this.f4494b;
+        qu[] quVarArr = (qu[]) this.f4494b;
         int i11 = i10 + 1;
-        spannableString.setSpan(suVarArr[0], i10, i11, 0);
+        spannableString.setSpan(quVarArr[0], i10, i11, 0);
         int i12 = i10 + 2;
-        spannableString.setSpan(suVarArr[1], i11, i12, 0);
-        spannableString.setSpan(suVarArr[2], i12, i10 + 3, 0);
+        spannableString.setSpan(quVarArr[1], i11, i12, 0);
+        spannableString.setSpan(quVarArr[2], i12, i10 + 3, 0);
     }
 
     public void B() {
@@ -170,7 +170,7 @@ public final class b implements c3.s {
                     return;
                 }
                 rb.s sVar = (rb.s) ((ArrayDeque) this.f4495c).remove();
-                D(sVar.f45637b, sVar.f45636a);
+                D(sVar.f45636b, sVar.f45635a);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -183,7 +183,7 @@ public final class b implements c3.s {
         ((c3.s) this.f4494b).C();
         if (this.f4493a) {
             for (int i10 = 0; i10 < sparseArray.size(); i10++) {
-                ((z3.n) sparseArray.valueAt(i10)).f51131i = true;
+                ((z3.n) sparseArray.valueAt(i10)).f51130i = true;
             }
         }
     }
@@ -221,9 +221,9 @@ public final class b implements c3.s {
             try {
                 try {
                     tc.u uVar = (tc.u) this.f4494b;
-                    z0 z0Var = y0Var.f35427c;
-                    int i11 = y0Var.f35425a;
-                    AndroidUtilities.runOnUIThread(new fz0(z0Var, uVar, i11, "websocket error: " + z0.a(vVar), 16));
+                    z0 z0Var = y0Var.f35429c;
+                    int i11 = y0Var.f35427a;
+                    AndroidUtilities.runOnUIThread(new ez0(z0Var, uVar, i11, "websocket error: " + z0.a(vVar), 16));
                 } catch (Throwable unused) {
                 }
             } catch (Throwable unused2) {
@@ -270,12 +270,12 @@ public final class b implements c3.s {
         return i12 << 1;
     }
 
-    public ValueAnimator i(su suVar, int i10, int i11, int i12, int i13) {
+    public ValueAnimator i(qu quVar, int i10, int i11, int i12, int i13) {
         ValueAnimator ofInt = ValueAnimator.ofInt(i10, i11);
-        ofInt.addUpdateListener(new l0(17, this, suVar));
+        ofInt.addUpdateListener(new l0(17, this, quVar));
         ofInt.setDuration(i13);
         ofInt.setStartDelay(i12);
-        ofInt.setInterpolator(bs.f25133f);
+        ofInt.setInterpolator(zr.f33337f);
         return ofInt;
     }
 
@@ -612,7 +612,7 @@ public final class b implements c3.s {
             w4 w4Var = new w4(this, context, g6Var, z4Var);
             this.d = w4Var;
             a1 a1Var = new a1(this, 3);
-            WeakHashMap weakHashMap = r0.i0.f45242a;
+            WeakHashMap weakHashMap = r0.i0.f45241a;
             r0.a0.i(w4Var, a1Var);
         }
         ((w4) this.d).a(b5Var);

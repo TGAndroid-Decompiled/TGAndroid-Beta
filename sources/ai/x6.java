@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.SpannableStringBuilder;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Emoji;
-public final class x6 extends org.telegram.ui.Components.zc {
+public final class x6 extends org.telegram.ui.Components.xc {
     public final org.telegram.ui.ActionBar.g6 P;
     public String Q;
     public int R;
@@ -30,7 +30,7 @@ public final class x6 extends org.telegram.ui.Components.zc {
         } else {
             oVar = null;
         }
-        append.append((CharSequence) org.telegram.ui.Components.ad.b(H0, oVar, this.P, null));
+        append.append((CharSequence) org.telegram.ui.Components.yc.b(H0, oVar, this.P, null));
         setText(spannableStringBuilder);
         this.Q = str;
         this.R = i10;

@@ -18,7 +18,7 @@ import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.d6;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.a11;
+import org.telegram.ui.Components.z01;
 import org.telegram.ui.LaunchActivity;
 public final class l3 implements View.OnClickListener {
     public final int f11345a = 1;
@@ -33,9 +33,9 @@ public final class l3 implements View.OnClickListener {
     public final Object f11351s;
     public final Object v;
 
-    public l3(ei.d dVar, a11 a11Var, MessagesController messagesController, long j10, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.h3 h3Var, boolean z10, g6 g6Var) {
+    public l3(ei.d dVar, z01 z01Var, MessagesController messagesController, long j10, TLRPC.User user, String[] strArr, int i10, org.telegram.ui.ActionBar.h3 h3Var, boolean z10, g6 g6Var) {
         this.f11346b = dVar;
-        this.f11350r = a11Var;
+        this.f11350r = z01Var;
         this.f11351s = messagesController;
         this.f11347c = j10;
         this.d = user;
@@ -77,8 +77,8 @@ public final class l3 implements View.OnClickListener {
                 }
                 return;
             default:
-                a11 a11Var = (a11) this.f11350r;
-                d6 d6Var = a11Var.h;
+                z01 z01Var = (z01) this.f11350r;
+                d6 d6Var = z01Var.h;
                 final MessagesController messagesController = (MessagesController) this.f11351s;
                 String[] strArr = (String[]) this.v;
                 final ei.d dVar2 = this.f11346b;
@@ -106,7 +106,7 @@ public final class l3 implements View.OnClickListener {
                                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj3;
                                 org.telegram.ui.ActionBar.h3 h3Var3 = h3Var2;
                                 if (updates != null) {
-                                    long j13 = user2.f20490id;
+                                    long j13 = user2.f20491id;
                                     TLRPC.TL_messages_editChatParticipantRank tL_messages_editChatParticipantRank2 = tL_messages_editChatParticipantRank;
                                     String str = tL_messages_editChatParticipantRank2.rank;
                                     MessagesController messagesController2 = MessagesController.this;
@@ -115,18 +115,18 @@ public final class l3 implements View.OnClickListener {
                                     h3Var3.dismiss();
                                     org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
                                     if (!TextUtils.isEmpty(tL_messages_editChatParticipantRank2.rank) && U != null) {
-                                        xc a02 = xc.a0(U);
+                                        vc a02 = vc.a0(U);
                                         int i12 = R.raw.contact_check;
                                         if (z11) {
                                             i11 = R.string.TagAdded;
                                         } else {
                                             i11 = R.string.TagEdited;
                                         }
-                                        qc M = a02.M(LocaleController.getString(i11), tL_messages_editChatParticipantRank2.rank, i12);
-                                        ub ubVar = M.e;
-                                        if (ubVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
-                                            ((FrameLayout.LayoutParams) ubVar.getLayoutParams()).width = -2;
-                                            ((FrameLayout.LayoutParams) ubVar.getLayoutParams()).gravity |= 1;
+                                        oc M = a02.M(LocaleController.getString(i11), tL_messages_editChatParticipantRank2.rank, i12);
+                                        sb sbVar = M.e;
+                                        if (sbVar.getLayoutParams() instanceof FrameLayout.LayoutParams) {
+                                            ((FrameLayout.LayoutParams) sbVar.getLayoutParams()).width = -2;
+                                            ((FrameLayout.LayoutParams) sbVar.getLayoutParams()).gravity |= 1;
                                         }
                                         M.j();
                                     }
@@ -138,8 +138,8 @@ public final class l3 implements View.OnClickListener {
                         });
                         return;
                     }
-                    float f7 = -a11Var.f24603y;
-                    a11Var.f24603y = f7;
+                    float f7 = -z01Var.f33116y;
+                    z01Var.f33116y = f7;
                     AndroidUtilities.shakeViewSpring(textView, f7);
                     BotWebViewVibrationEffect.APP_ERROR.vibrate();
                     return;

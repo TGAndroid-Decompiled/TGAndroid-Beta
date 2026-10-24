@@ -1,206 +1,196 @@
 package org.telegram.ui.Components;
 
-import android.animation.TimeInterpolator;
-import android.os.SystemClock;
+import android.content.Context;
+import android.graphics.RectF;
 import android.view.View;
+import android.widget.LinearLayout;
+import j$.util.Comparator$CC;
+import j$.util.Comparator$EL;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-public final class f6 {
-    public View f26178a;
-    public final Runnable f26179b;
-    public float f26180c;
-    public float d;
-    public boolean e;
-    public long f26181f;
-    public long f26182g;
-    public TimeInterpolator h;
-    public boolean f26183i;
-    public long f26184j;
-    public float f26185k;
+public abstract class f6 extends LinearLayout {
+    public static final Comparator f26204r = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new ai.v8(14)), new ai.v8(15));
+    public final HashMap f26205a;
+    public final ArrayList f26206b;
+    public final ne.j f26207c;
+    public boolean d;
+    public int e;
+    public int f26208f;
+    public Runnable h;
+    public float f26209n;
 
-    public f6(long j10, TimeInterpolator timeInterpolator) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26178a = null;
-        this.f26182g = j10;
-        this.h = timeInterpolator;
-        this.e = true;
+    public f6(Context context) {
+        super(context);
+        this.f26205a = new HashMap();
+        this.f26206b = new ArrayList();
+        this.f26207c = new ne.j(new s(this, 11), zr.h, 420L);
     }
 
-    public final void a(boolean z10) {
-        float f7;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        d(f7, true);
-    }
-
-    public final float b() {
-        if (!this.f26183i) {
-            return 0.0f;
-        }
-        return w7.r.a(((float) ((SystemClock.elapsedRealtime() - this.f26184j) - this.f26181f)) / ((float) this.f26182g), 0.0f, 1.0f);
-    }
-
-    public final float c() {
-        if (this.f26183i) {
-            long elapsedRealtime = SystemClock.elapsedRealtime();
-            float a2 = w7.r.a(((float) ((elapsedRealtime - this.f26184j) - this.f26181f)) / ((float) this.f26182g), 0.0f, 1.0f);
-            if (elapsedRealtime - this.f26184j >= this.f26181f) {
-                TimeInterpolator timeInterpolator = this.h;
-                if (timeInterpolator == null) {
-                    this.f26180c = AndroidUtilities.lerp(this.f26185k, this.d, a2);
-                } else {
-                    this.f26180c = AndroidUtilities.lerp(this.f26185k, this.d, timeInterpolator.getInterpolation(a2));
-                }
+    public final void a() {
+        this.f26208f = 0;
+        this.e = 0;
+        int childCount = getChildCount();
+        for (int i10 = 0; i10 < childCount; i10++) {
+            View childAt = getChildAt(i10);
+            e6 e6Var = (e6) this.f26205a.get(childAt);
+            if (childAt.getVisibility() == 0 && e6Var != null && e6Var.f25972b) {
+                this.e = childAt.getMeasuredWidth() + this.e;
+                this.f26208f = childAt.getMeasuredHeight() + this.f26208f;
             }
-            if (a2 >= 1.0f) {
-                this.f26183i = false;
+        }
+    }
+
+    public final void b() {
+        ArrayList arrayList = this.f26207c.f17466b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ne.g gVar = (ne.g) obj;
+            View view = ((e6) gVar.f17456a).f25971a;
+            RectF b10 = gVar.b();
+            if (getOrientation() == 1) {
+                view.setTranslationY((getPaddingTop() + b10.top) - view.getTop());
             } else {
-                View view = this.f26178a;
-                if (view != null) {
-                    view.invalidate();
+                view.setTranslationX((getPaddingLeft() + b10.left) - view.getLeft());
+            }
+            f(view, gVar.c());
+        }
+        float f7 = getMetadata().f17464g.f17470a;
+        if (this.f26209n != f7) {
+            this.f26209n = f7;
+            Runnable runnable = this.h;
+            if (runnable != null) {
+                runnable.run();
+            }
+        }
+    }
+
+    public final float c(float f7) {
+        return (f7 * getMetadata().f17462c.f17470a) + getMetadata().f17464g.f17470a;
+    }
+
+    public final boolean d(View view) {
+        e6 e6Var = (e6) this.f26205a.get(view);
+        if (e6Var != null && e6Var.f25972b) {
+            return true;
+        }
+        return false;
+    }
+
+    public abstract void e();
+
+    public void f(View view, float f7) {
+        float lerp = AndroidUtilities.lerp(0.95f, 1.0f, f7);
+        view.setAlpha(f7);
+        view.setScaleX(lerp);
+        view.setScaleY(lerp);
+    }
+
+    public final void g(View view) {
+        e6 e6Var = (e6) this.f26205a.get(view);
+    }
+
+    public float getAnimatedHeightWithPadding() {
+        return c(getPaddingBottom() + getPaddingTop());
+    }
+
+    public int getEntriesCount() {
+        return this.f26207c.f17466b.size();
+    }
+
+    public ne.i getMetadata() {
+        return this.f26207c.d;
+    }
+
+    public int getSumHeightOfAllVisibleChild() {
+        return this.f26208f;
+    }
+
+    public int getSumWidthOfAllVisibleChild() {
+        return this.e;
+    }
+
+    public final void h(int i10, View view) {
+        e6 e6Var = (e6) this.f26205a.get(view);
+        if (e6Var != null) {
+            e6Var.d = i10;
+        }
+    }
+
+    public final void i(View view, boolean z10, boolean z11) {
+        e6 e6Var;
+        if (view != null && (e6Var = (e6) this.f26205a.get(view)) != null) {
+            View view2 = e6Var.f25971a;
+            if (e6Var.f25972b != z10) {
+                e6Var.f25972b = z10;
+                if (z10) {
+                    view2.setVisibility(0);
                 }
-                Runnable runnable = this.f26179b;
-                if (runnable != null) {
-                    runnable.run();
+                if (!z10 && !e6Var.f25973c) {
+                    view2.setVisibility(8);
+                }
+                if (!z11) {
+                    this.d = true;
+                }
+                requestLayout();
+            }
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        ArrayList arrayList = this.f26206b;
+        arrayList.clear();
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            e6 e6Var = (e6) this.f26205a.get(childAt);
+            if (e6Var != null) {
+                e6Var.e = i14;
+                if (childAt.getVisibility() == 0 && e6Var.f25972b) {
+                    arrayList.add(e6Var);
                 }
             }
         }
-        return this.f26180c;
-    }
-
-    public final float d(float f7, boolean z10) {
-        if (!z10 && this.f26182g > 0 && !this.e) {
-            if (Math.abs(this.d - f7) > 1.0E-4f) {
-                this.f26183i = true;
-                this.d = f7;
-                this.f26185k = this.f26180c;
-                this.f26184j = SystemClock.elapsedRealtime();
-            }
-        } else {
-            this.d = f7;
-            this.f26180c = f7;
-            this.f26183i = false;
-            this.e = false;
+        Collections.sort(arrayList, f26204r);
+        this.f26207c.q(arrayList, !this.d);
+        int size = arrayList.size();
+        int i15 = 0;
+        while (i15 < size) {
+            Object obj = arrayList.get(i15);
+            i15++;
+            ((e6) obj).f25973c = true;
         }
-        return c();
+        this.d = false;
+        b();
     }
 
-    public final float e(boolean z10) {
-        float f7;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        return d(f7, false);
+    @Override
+    public void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        a();
     }
 
-    public final float f(boolean z10, boolean z11) {
-        float f7;
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        return d(f7, z11);
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        view.setVisibility(8);
+        this.f26205a.put(view, new e6(view));
     }
 
-    public f6(long j10, long j11, TimeInterpolator timeInterpolator) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26178a = null;
-        this.f26181f = j10;
-        this.f26182g = j11;
-        this.h = timeInterpolator;
-        this.e = true;
+    @Override
+    public final void onViewRemoved(View view) {
+        super.onViewRemoved(view);
+        this.f26205a.remove(view);
     }
 
-    public f6(View view) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        this.h = bs.f25133f;
-        this.f26178a = view;
-        this.e = true;
-    }
-
-    public f6(View view, long j10, TimeInterpolator timeInterpolator) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26178a = view;
-        this.f26182g = j10;
-        this.h = timeInterpolator;
-        this.e = true;
-    }
-
-    public f6(View view, long j10, long j11, TimeInterpolator timeInterpolator) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26178a = view;
-        this.f26181f = j10;
-        this.f26182g = j11;
-        this.h = timeInterpolator;
-        this.e = true;
-    }
-
-    public f6(Runnable runnable) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        this.h = bs.f25133f;
-        this.f26179b = runnable;
-        this.e = true;
-    }
-
-    public f6(Runnable runnable, long j10, TimeInterpolator timeInterpolator) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26179b = runnable;
-        this.f26182g = j10;
-        this.h = timeInterpolator;
-        this.e = true;
-    }
-
-    public f6(Runnable runnable, long j10, TimeInterpolator timeInterpolator, int i10) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26179b = runnable;
-        this.f26181f = 0L;
-        this.f26182g = j10;
-        this.h = timeInterpolator;
-        this.e = true;
-    }
-
-    public f6(float f7, View view, long j10, long j11, TimeInterpolator timeInterpolator) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26178a = view;
-        this.d = f7;
-        this.f26180c = f7;
-        this.f26181f = j10;
-        this.f26182g = j11;
-        this.h = timeInterpolator;
-        this.e = false;
-    }
-
-    public f6(float f7, Runnable runnable, long j10, long j11, TimeInterpolator timeInterpolator) {
-        this.f26181f = 0L;
-        this.f26182g = 200L;
-        bs bsVar = bs.f25133f;
-        this.f26179b = runnable;
-        this.d = f7;
-        this.f26180c = f7;
-        this.f26181f = j10;
-        this.f26182g = j11;
-        this.h = timeInterpolator;
-        this.e = false;
+    public void setOnAnimatedHeightChangedListener(Runnable runnable) {
+        this.h = runnable;
     }
 }

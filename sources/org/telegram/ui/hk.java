@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.content.Context;
 import android.view.View;
 import android.widget.FrameLayout;
-public final class hk extends org.telegram.ui.Components.od {
+public final class hk extends org.telegram.ui.Components.md {
     public final sn d;
 
     public hk(sn snVar, Context context) {

@@ -2,11 +2,11 @@ package ig;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 public final class y0 implements RequestDelegate {
     public final int f13127a;
     public final c1 f13128b;
@@ -30,10 +30,10 @@ public final class y0 implements RequestDelegate {
                                 c1Var2.f12876b.a(0.0f);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 != null) {
-                                    xc.d0(tL_error2);
+                                    vc.d0(tL_error2);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    sl.q(R.string.UnknownError, xc.a0(c1Var2), null);
+                                    tl.q(R.string.UnknownError, vc.a0(c1Var2), null);
                                     return;
                                 } else {
                                     c1Var2.finishFragment();
@@ -44,11 +44,11 @@ public final class y0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null) {
                                     c1Var3.f12876b.a(0.0f);
-                                    xc.d0(tL_error3);
+                                    vc.d0(tL_error3);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
                                     c1Var3.f12876b.a(0.0f);
-                                    sl.q(R.string.UnknownError, xc.a0(c1Var3), null);
+                                    tl.q(R.string.UnknownError, vc.a0(c1Var3), null);
                                     return;
                                 } else {
                                     c1Var3.finishFragment();
@@ -69,10 +69,10 @@ public final class y0 implements RequestDelegate {
                                 c1Var22.f12876b.a(0.0f);
                                 TLRPC.TL_error tL_error2 = tL_error;
                                 if (tL_error2 != null) {
-                                    xc.d0(tL_error2);
+                                    vc.d0(tL_error2);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    sl.q(R.string.UnknownError, xc.a0(c1Var22), null);
+                                    tl.q(R.string.UnknownError, vc.a0(c1Var22), null);
                                     return;
                                 } else {
                                     c1Var22.finishFragment();
@@ -83,11 +83,11 @@ public final class y0 implements RequestDelegate {
                                 TLRPC.TL_error tL_error3 = tL_error;
                                 if (tL_error3 != null) {
                                     c1Var3.f12876b.a(0.0f);
-                                    xc.d0(tL_error3);
+                                    vc.d0(tL_error3);
                                     return;
                                 } else if (tLObject instanceof TLRPC.TL_boolFalse) {
                                     c1Var3.f12876b.a(0.0f);
-                                    sl.q(R.string.UnknownError, xc.a0(c1Var3), null);
+                                    tl.q(R.string.UnknownError, vc.a0(c1Var3), null);
                                     return;
                                 } else {
                                     c1Var3.finishFragment();

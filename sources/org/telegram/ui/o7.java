@@ -10,20 +10,20 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 public final class o7 extends j7 {
-    public final ArrayList f40086n;
-    public final v7 f40087r;
+    public final ArrayList f40092n;
+    public final v7 f40093r;
 
     public o7(v7 v7Var) {
         super(v7Var, 2);
-        this.f40087r = v7Var;
-        this.f40086n = new ArrayList();
+        this.f40093r = v7Var;
+        this.f40092n = new ArrayList();
     }
 
     @Override
     public final void F() {
         boolean z10;
         super.F();
-        ArrayList arrayList = this.f40086n;
+        ArrayList arrayList = this.f40092n;
         arrayList.clear();
         int i10 = 0;
         while (true) {
@@ -49,9 +49,9 @@ public final class o7 extends j7 {
         boolean z11;
         String name;
         float f7;
-        View view = b1Var.f46343a;
+        View view = b1Var.f46342a;
         n7 n7Var = (n7) view;
-        org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) n7Var.f39797b.getChildAt(0);
+        org.telegram.ui.Cells.k7 k7Var = (org.telegram.ui.Cells.k7) n7Var.f39750b.getChildAt(0);
         ArrayList arrayList = this.e;
         bi.b bVar = ((p7) arrayList.get(i10)).d;
         if (bVar == view.getTag()) {
@@ -76,7 +76,7 @@ public final class o7 extends j7 {
         if (!z10) {
             k7Var.setPhoto(file.getPath());
         }
-        org.telegram.ui.Components.w9 imageView = k7Var.getImageView();
+        org.telegram.ui.Components.u9 imageView = k7Var.getImageView();
         if (bVar.h == 5) {
             f7 = 20.0f;
         } else {
@@ -84,15 +84,15 @@ public final class o7 extends j7 {
         }
         imageView.setRoundRadius(AndroidUtilities.dp(f7));
         n7Var.d = z11;
-        n7Var.f39798c.setText(AndroidUtilities.formatFileSize(bVar.f4430c));
-        n7Var.f39796a.a(this.f40087r.h.f4439j.contains(bVar), z10);
+        n7Var.f39751c.setText(AndroidUtilities.formatFileSize(bVar.f4430c));
+        n7Var.f39749a.a(this.f40093r.h.f4439j.contains(bVar), z10);
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
         n7 n7Var = new n7(this, viewGroup.getContext(), 0);
         n7Var.e = 2;
-        n7Var.f39797b.addView(new org.telegram.ui.Cells.k7(viewGroup.getContext(), 3, null));
+        n7Var.f39750b.addView(new org.telegram.ui.Cells.k7(viewGroup.getContext(), 3, null));
         return new s4.b1(n7Var);
     }
 }

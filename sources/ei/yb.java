@@ -5,10 +5,10 @@ import android.media.MediaFormat;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 public final class yb {
-    public final org.telegram.ui.Components.f6 f10168a;
+    public final org.telegram.ui.Components.d6 f10168a;
     public final int f10169b;
     public final short[] d;
     public short e;
@@ -24,7 +24,7 @@ public final class yb {
     public yb(gc gcVar, String str, int i10) {
         long j10;
         this.f10176l = gcVar;
-        this.f10168a = new org.telegram.ui.Components.f6(gcVar, 0L, 600L, bs.h);
+        this.f10168a = new org.telegram.ui.Components.d6(gcVar, 0L, 600L, zr.h);
         int i11 = 0;
         MediaExtractor mediaExtractor = new MediaExtractor();
         this.f10171f = mediaExtractor;

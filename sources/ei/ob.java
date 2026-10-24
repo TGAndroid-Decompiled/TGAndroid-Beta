@@ -1,6 +1,6 @@
 package ei;
 
-import org.telegram.ui.sz0;
+import org.telegram.ui.rz0;
 public final class ob extends qb {
     public final int f9584g;
     public final Object h;
@@ -14,9 +14,9 @@ public final class ob extends qb {
     public final void e() {
         switch (this.f9584g) {
             case 0:
-                sz0 sz0Var = (sz0) this.h;
-                sz0Var.Q = false;
-                sz0Var.invalidate();
+                rz0 rz0Var = (rz0) this.h;
+                rz0Var.Q = false;
+                rz0Var.invalidate();
                 return;
             case 1:
                 ci.p4 t10 = ((ci.z9) this.h).t();
@@ -26,8 +26,8 @@ public final class ob extends qb {
                 }
                 return;
             default:
-                org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) this.h;
-                w9Var.post(new com.google.firebase.messaging.s(w9Var, 27));
+                org.telegram.ui.Components.u9 u9Var = (org.telegram.ui.Components.u9) this.h;
+                u9Var.post(new com.google.firebase.messaging.s(u9Var, 27));
                 return;
         }
     }
@@ -36,9 +36,9 @@ public final class ob extends qb {
     public final void f(boolean z10) {
         switch (this.f9584g) {
             case 0:
-                sz0 sz0Var = (sz0) this.h;
-                sz0Var.Q = true;
-                sz0Var.invalidate();
+                rz0 rz0Var = (rz0) this.h;
+                rz0Var.Q = true;
+                rz0Var.invalidate();
                 return;
             case 1:
                 ci.p4 t10 = ((ci.z9) this.h).t();
@@ -53,7 +53,7 @@ public final class ob extends qb {
                 }
                 return;
             default:
-                ((org.telegram.ui.Components.w9) this.h).setVisibility(0);
+                ((org.telegram.ui.Components.u9) this.h).setVisibility(0);
                 return;
         }
     }

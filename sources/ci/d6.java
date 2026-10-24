@@ -8,16 +8,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ex;
-import org.telegram.ui.Components.h11;
-import org.telegram.ui.Components.s00;
-import org.telegram.ui.io0;
-import org.telegram.ui.mf0;
-import org.telegram.ui.oj0;
+import org.telegram.ui.Components.cx;
+import org.telegram.ui.Components.g11;
+import org.telegram.ui.Components.q00;
+import org.telegram.ui.ho0;
+import org.telegram.ui.lf0;
+import org.telegram.ui.nj0;
 import org.telegram.ui.sa;
-import org.telegram.ui.wm0;
+import org.telegram.ui.vm0;
+import org.telegram.ui.x61;
 import org.telegram.ui.xo;
-import org.telegram.ui.y61;
 public final class d6 implements RequestDelegate {
     public final int f5257a;
 
@@ -58,40 +58,40 @@ public final class d6 implements RequestDelegate {
                 Paint paint = sa.H;
                 return;
             case 10:
-                int i10 = xo.f43626c3;
+                int i10 = xo.f43651c3;
                 return;
             case 11:
                 AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 12:
-                Pattern pattern = org.telegram.ui.Components.f5.f26167a;
+                Pattern pattern = org.telegram.ui.Components.d5.f25562a;
                 return;
             case 13:
-                int i11 = ex.H0;
+                int i11 = cx.H0;
                 return;
             case 14:
-                int i12 = s00.A0;
+                int i12 = q00.A0;
                 return;
             case 15:
                 AndroidUtilities.runOnUIThread(new ah.j(23));
                 return;
             case 16:
-                int i13 = h11.e;
+                int i13 = g11.e;
                 return;
             case 17:
-                int i14 = mf0.f39535v0;
+                int i14 = lf0.f39228v0;
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new oj0(tLObject, 4));
+                AndroidUtilities.runOnUIThread(new nj0(tLObject, 4));
                 return;
             case 19:
-                int i15 = wm0.R;
+                int i15 = vm0.R;
                 return;
             case 20:
-                List list = io0.f38285g1;
+                List list = ho0.f37912g1;
                 return;
             default:
-                int i16 = y61.e;
+                int i16 = x61.e;
                 return;
         }
     }

@@ -11,48 +11,48 @@ import com.google.android.gms.internal.play_billing.k3;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.r5;
+import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.zr;
 public final class p extends View {
-    public final r5 f52535a;
-    public final Drawable f52536b;
-    public float f52537c;
+    public final p5 f52534a;
+    public final Drawable f52535b;
+    public float f52536c;
     public boolean d;
 
     public p(k0 k0Var, Context context, int i10, TLRPC.Document document) {
         super(context);
         int i11;
         if (document != null) {
-            this.f52535a = r5.m(k0Var.f52549a, 5, document);
-            this.f52536b = null;
+            this.f52534a = p5.m(k0Var.f52548a, 5, document);
+            this.f52535b = null;
             return;
         }
-        this.f52535a = null;
+        this.f52534a = null;
         if (i10 == 0) {
             i11 = R.drawable.emoji_tabs_faves;
         } else {
             i11 = R.drawable.msg_emoji_recent;
         }
         Drawable mutate = context.getDrawable(i11).mutate();
-        this.f52536b = mutate;
+        this.f52535b = mutate;
         mutate.setColorFilter(new PorterDuffColorFilter(-1711276033, PorterDuff.Mode.SRC_IN));
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        r5 r5Var = this.f52535a;
-        if (r5Var != null) {
-            r5Var.a(this);
+        p5 p5Var = this.f52534a;
+        if (p5Var != null) {
+            p5Var.a(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        r5 r5Var = this.f52535a;
-        if (r5Var != null) {
-            r5Var.o(this);
+        p5 p5Var = this.f52534a;
+        if (p5Var != null) {
+            p5Var.o(this);
         }
     }
 
@@ -64,22 +64,22 @@ public final class p extends View {
         } else {
             f7 = 0.0f;
         }
-        float f10 = this.f52537c;
+        float f10 = this.f52536c;
         if (f10 != f7) {
             if (Math.abs(f10 - f7) >= 0.02f) {
-                float f11 = this.f52537c;
+                float f11 = this.f52536c;
                 f7 = k3.y(f7, f11, 0.35f, f11);
             }
-            this.f52537c = f7;
+            this.f52536c = f7;
             invalidate();
         }
-        float interpolation = (1.0f - (bs.f25134g.getInterpolation(this.f52537c) * 0.15f)) * AndroidUtilities.dp(26.0f);
+        float interpolation = (1.0f - (zr.f33338g.getInterpolation(this.f52536c) * 0.15f)) * AndroidUtilities.dp(26.0f);
         float f12 = interpolation / 2.0f;
         int width = (int) ((getWidth() / 2.0f) - f12);
         int height = (int) ((getHeight() / 2.0f) - f12);
-        Drawable drawable = this.f52535a;
+        Drawable drawable = this.f52534a;
         if (drawable == null) {
-            drawable = this.f52536b;
+            drawable = this.f52535b;
         }
         if (drawable != null) {
             drawable.setBounds(width, height, (int) (width + interpolation), (int) (height + interpolation));

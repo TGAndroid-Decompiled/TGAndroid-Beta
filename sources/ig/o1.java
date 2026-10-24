@@ -5,9 +5,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import org.telegram.ui.ActionBar.h5;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.tz;
-public final class o1 extends ow0 {
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.rz;
+public final class o1 extends nw0 {
     public final int f13015w0;
 
     public o1(Context context, h5 h5Var, int i10) {
@@ -34,8 +34,8 @@ public final class o1 extends ow0 {
     public void addView(View view) {
         switch (this.f13015w0) {
             case 4:
-                if (view instanceof tz) {
-                    ViewGroup.LayoutParams layoutParams = ((tz) view).getLayoutParams();
+                if (view instanceof rz) {
+                    ViewGroup.LayoutParams layoutParams = ((rz) view).getLayoutParams();
                     if (layoutParams == null) {
                         layoutParams = new FrameLayout.LayoutParams(-1, -2);
                     }

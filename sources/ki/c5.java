@@ -8,8 +8,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.r11;
-import org.telegram.ui.Components.tj0;
+import org.telegram.ui.Components.q11;
+import org.telegram.ui.Components.sj0;
 public abstract class c5 {
     public static Object a(Spanned spanned, int i10, int i11, Class cls) {
         Object[] spans;
@@ -27,8 +27,8 @@ public abstract class c5 {
         Spanned spanned;
         int i10;
         mi.h hVar;
-        tj0 tj0Var;
-        tj0 tj0Var2;
+        sj0 sj0Var;
+        sj0 sj0Var2;
         int i11;
         boolean z10;
         boolean z11;
@@ -74,20 +74,20 @@ public abstract class c5 {
                 hVar = (mi.h) a(spanned, i15, i10, mi.h.class);
             }
             if (spanned != null && hVar == null) {
-                tj0Var = (tj0) a(spanned, i15, i10, tj0.class);
+                sj0Var = (sj0) a(spanned, i15, i10, sj0.class);
             } else {
-                tj0Var = null;
+                sj0Var = null;
             }
-            if (hVar == null && tj0Var == null) {
+            if (hVar == null && sj0Var == null) {
                 CharSequence subSequence = charSequence.subSequence(i15, i10);
                 TL_iv.pageBlockParagraph pageblockparagraph2 = new TL_iv.pageBlockParagraph();
                 pageblockparagraph2.text = e6.f(subSequence);
                 arrayList.add(pageblockparagraph2);
             } else {
                 if (hVar != null) {
-                    tj0Var2 = hVar;
+                    sj0Var2 = hVar;
                 } else {
-                    tj0Var2 = tj0Var;
+                    sj0Var2 = sj0Var;
                 }
                 while (true) {
                     if (i14 < size) {
@@ -103,9 +103,9 @@ public abstract class c5 {
                         if (hVar != null) {
                             a2 = a(spanned, i16, length, mi.h.class);
                         } else {
-                            a2 = a(spanned, i16, length, tj0.class);
+                            a2 = a(spanned, i16, length, sj0.class);
                         }
-                        if (a2 != tj0Var2) {
+                        if (a2 != sj0Var2) {
                             break;
                         }
                         i10 = length;
@@ -132,7 +132,7 @@ public abstract class c5 {
                     TL_iv.pageBlockBlockquote pageblockblockquote = new TL_iv.pageBlockBlockquote();
                     pageblockblockquote.text = e6.f(subSequence2);
                     pageblockblockquote.caption = new TL_iv.textEmpty();
-                    if (tj0Var != null && tj0Var.e) {
+                    if (sj0Var != null && sj0Var.e) {
                         z11 = z10;
                     } else {
                         z11 = false;
@@ -454,7 +454,7 @@ public abstract class c5 {
         if (spannableStringBuilder2.length() == 0) {
             return null;
         }
-        tj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), false);
+        sj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), false);
         return spannableStringBuilder2;
     }
 
@@ -500,7 +500,7 @@ public abstract class c5 {
                     i11++;
                 }
                 if (spannableStringBuilder.length() > 0) {
-                    tj0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
+                    sj0.b(spannableStringBuilder, 0, spannableStringBuilder.length(), false);
                 }
                 arrayList.add(spannableStringBuilder);
                 i10 = i11;
@@ -521,7 +521,7 @@ public abstract class c5 {
                         z11 = false;
                     }
                     if (spannableStringBuilder2.length() > 0) {
-                        tj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);
+                        sj0.b(spannableStringBuilder2, 0, spannableStringBuilder2.length(), z11);
                     }
                     arrayList.add(spannableStringBuilder2);
                 }
@@ -549,8 +549,8 @@ public abstract class c5 {
         }
         SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder);
         ?? obj = new Object();
-        obj.f29754a = i10;
-        spannableStringBuilder2.setSpan(new r11(obj, 0), 0, spannableStringBuilder2.length(), 33);
+        obj.f29448a = i10;
+        spannableStringBuilder2.setSpan(new q11(obj, 0), 0, spannableStringBuilder2.length(), 33);
         return spannableStringBuilder2;
     }
 }

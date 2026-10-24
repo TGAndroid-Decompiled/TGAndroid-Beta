@@ -1,31 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import org.telegram.messenger.AndroidUtilities;
-public final class l70 extends org.telegram.ui.Cells.e9 {
-    public final org.telegram.ui.Cells.u5 f28236w;
-    public boolean f28237x;
-    public final m70 f28238y;
+public final class l70 implements Runnable {
+    public final int f28242a;
+    public final EditTextBoldCursor f28243b;
 
-    public l70(m70 m70Var, Context context) {
-        super(context);
-        this.f28238y = m70Var;
-        this.f28236w = new org.telegram.ui.Cells.u5(this, 16);
+    public l70(EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f28242a = i10;
+        this.f28243b = editTextBoldCursor;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        org.telegram.ui.Cells.u5 u5Var = this.f28236w;
-        AndroidUtilities.cancelRunOnUIThread(u5Var);
-        if (this.f28237x) {
-            AndroidUtilities.runOnUIThread(u5Var, 500L);
+    public final void run() {
+        switch (this.f28242a) {
+            case 0:
+                AndroidUtilities.showKeyboard(this.f28243b);
+                return;
+            case 1:
+                AndroidUtilities.showKeyboard(this.f28243b);
+                return;
+            case 2:
+                AndroidUtilities.showKeyboard(this.f28243b);
+                return;
+            case 3:
+                AndroidUtilities.showKeyboard(this.f28243b);
+                return;
+            case 4:
+                EditTextBoldCursor editTextBoldCursor = this.f28243b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                return;
+            default:
+                EditTextBoldCursor editTextBoldCursor2 = this.f28243b;
+                editTextBoldCursor2.requestFocus();
+                editTextBoldCursor2.setSelection(0, editTextBoldCursor2.length());
+                AndroidUtilities.showKeyboard(editTextBoldCursor2);
+                return;
         }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f28236w);
     }
 }

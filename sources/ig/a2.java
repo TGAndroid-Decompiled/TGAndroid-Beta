@@ -105,7 +105,7 @@ public final class a2 extends LinearLayout implements b6 {
         wd wdVar;
         TextView textView = this.f12853a;
         if (textView != null && (wdVar = this.f12854b) != null) {
-            int i10 = k6.f21277ic;
+            int i10 = k6.f21278ic;
             g6 g6Var = this.d;
             textView.setTextColor(k6.w0(i10, g6Var));
             wdVar.setTextColor(k6.w0(i10, g6Var));

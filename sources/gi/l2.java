@@ -68,7 +68,7 @@ public final class l2 implements Runnable {
                 return;
             default:
                 int i10 = this.f11344b;
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 ApplicationLoader.mainInterfacePausedStageQueue = true;
                 ApplicationLoader.mainInterfacePausedStageQueueTime = 0L;
                 if (VoIPService.getSharedInstance() == null) {

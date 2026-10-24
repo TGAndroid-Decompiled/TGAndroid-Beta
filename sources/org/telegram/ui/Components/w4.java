@@ -1,31 +1,24 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.LinearLayout;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class w4 extends LinearLayout {
-    public boolean f32148a;
-    public final qd0 f32149b;
+public final class w4 extends FrameLayout {
+    public final org.telegram.ui.Cells.z1[] f32124a;
 
-    public w4(Context context, qd0 qd0Var) {
+    public w4(Context context, org.telegram.ui.Cells.z1[] z1VarArr) {
         super(context);
-        this.f32149b = qd0Var;
-        this.f32148a = false;
+        this.f32124a = z1VarArr;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        this.f32148a = true;
-        this.f32149b.getLayoutParams().height = AndroidUtilities.dp(42.0f) * 8;
-        this.f32148a = false;
         super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f32148a) {
-            return;
+        org.telegram.ui.Cells.z1[] z1VarArr = this.f32124a;
+        if (z1VarArr[0] != null) {
+            int measuredWidth = getMeasuredWidth();
+            int measuredHeight = getMeasuredHeight();
+            setMeasuredDimension(measuredWidth, AndroidUtilities.dp(7.0f) + z1VarArr[0].getMeasuredHeight() + measuredHeight);
         }
-        super.requestLayout();
     }
 }

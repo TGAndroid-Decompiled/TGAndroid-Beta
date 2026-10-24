@@ -3,13 +3,13 @@ package org.telegram.ui.Wallet;
 import android.content.Context;
 import android.graphics.Canvas;
 import j$.util.Objects;
-public final class v5 extends org.telegram.ui.Components.q6 {
-    public final int f35323s;
+public final class v5 extends org.telegram.ui.Components.o6 {
+    public final int f35325s;
     public final x5 v;
 
     public v5(x5 x5Var, Context context, int i10) {
         super(context, false, true, true, true, true);
-        this.f35323s = i10;
+        this.f35325s = i10;
         this.v = x5Var;
     }
 
@@ -24,7 +24,7 @@ public final class v5 extends org.telegram.ui.Components.q6 {
     @Override
     public final void onDraw(Canvas canvas) {
         float f7;
-        switch (this.f35323s) {
+        switch (this.f35325s) {
             case 0:
                 float c10 = getDrawable().c();
                 x5 x5Var = this.v;
@@ -35,19 +35,19 @@ public final class v5 extends org.telegram.ui.Components.q6 {
                     f7 = 1.0f;
                 }
                 float f10 = ((f7 - b10) * x5Var.T) + b10;
-                x5Var.f35396b = f10;
+                x5Var.f35398b = f10;
                 int save = canvas.save();
                 canvas.scale(f10, f10, 0.0f, getHeight() / 2.0f);
-                float d = (1.0f - x5Var.T) * x5Var.f35403f0.d(x5Var.f35400d0, false);
-                org.telegram.ui.Components.p6 drawable = getDrawable();
+                float d = (1.0f - x5Var.T) * x5Var.f35405f0.d(x5Var.f35402d0, false);
+                org.telegram.ui.Components.n6 drawable = getDrawable();
                 Objects.requireNonNull(drawable);
                 x5Var.c(d, new n2(drawable, 4), new y3(7, this, canvas));
                 canvas.restoreToCount(save);
                 return;
             default:
                 x5 x5Var2 = this.v;
-                float d10 = (1.0f - x5Var2.T) * x5Var2.f35403f0.d(x5Var2.f35400d0, false);
-                org.telegram.ui.Components.p6 drawable2 = getDrawable();
+                float d10 = (1.0f - x5Var2.T) * x5Var2.f35405f0.d(x5Var2.f35402d0, false);
+                org.telegram.ui.Components.n6 drawable2 = getDrawable();
                 Objects.requireNonNull(drawable2);
                 x5Var2.c(d10, new n2(drawable2, 4), new y3(8, this, canvas));
                 return;

@@ -6,15 +6,15 @@ import java.util.Collections;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 public final class f implements qa.b {
-    public final int f45549a;
+    public final int f45548a;
 
     public f(int i10) {
-        this.f45549a = i10;
+        this.f45548a = i10;
     }
 
     @Override
     public final Object get() {
-        switch (this.f45549a) {
+        switch (this.f45548a) {
             case 0:
                 return Collections.EMPTY_SET;
             case 1:

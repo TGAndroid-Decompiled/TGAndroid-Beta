@@ -10,17 +10,17 @@ import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.k6;
 public final class k1 extends ReplacementSpan {
-    public final TextPaint f48142a;
-    public final Paint f48143b;
-    public final RectF f48144c;
+    public final TextPaint f48141a;
+    public final Paint f48142b;
+    public final RectF f48143c;
     public final boolean d;
 
     public k1(int i10, boolean z10) {
         TextPaint textPaint = new TextPaint(1);
-        this.f48142a = textPaint;
+        this.f48141a = textPaint;
         Paint paint = new Paint(1);
-        this.f48143b = paint;
-        this.f48144c = new RectF();
+        this.f48142b = paint;
+        this.f48143c = new RectF();
         this.d = z10;
         textPaint.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
         textPaint.setTextSize(AndroidUtilities.dp(13.0f));
@@ -30,12 +30,12 @@ public final class k1 extends ReplacementSpan {
 
     @Override
     public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        TextPaint textPaint = this.f48142a;
+        TextPaint textPaint = this.f48141a;
         float measureText = textPaint.measureText(charSequence, i10, i11);
         float f10 = (i12 + i14) / 2.0f;
-        RectF rectF = this.f48144c;
+        RectF rectF = this.f48143c;
         rectF.set(f7, f10 - AndroidUtilities.dp(9.5f), f7 + measureText + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(9.5f) + f10);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f48143b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f48142b);
         if (this.d) {
             int color = textPaint.getColor();
             int o12 = k6.o1(0.0f, color);
@@ -52,6 +52,6 @@ public final class k1 extends ReplacementSpan {
         if (fontMetricsInt != null) {
             paint.getFontMetricsInt(fontMetricsInt);
         }
-        return AndroidUtilities.dp(11.0f) + ((int) Math.ceil(this.f48142a.measureText(charSequence, i10, i11)));
+        return AndroidUtilities.dp(11.0f) + ((int) Math.ceil(this.f48141a.measureText(charSequence, i10, i11)));
     }
 }

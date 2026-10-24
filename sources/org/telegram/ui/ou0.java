@@ -1,133 +1,16 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ou0 extends View {
-    public final Paint f40272a;
-    public final TextPaint f40273b;
-    public int f40274c;
-    public int d;
-    public int e;
-    public int f40275f;
-    public final String h;
-    public final String f40276n;
-    public int f40277r;
-    public final PhotoViewer f40278s;
+import java.util.ArrayList;
+public final class ou0 {
+    public final int f40260a;
+    public final ArrayList f40261b;
+    public final ju0 f40262c;
+    public final PhotoViewer d;
 
-    public ou0(Context context, PhotoViewer photoViewer) {
-        super(context);
-        this.f40278s = photoViewer;
-        this.f40272a = new Paint(1);
-        TextPaint textPaint = new TextPaint(1);
-        this.f40273b = textPaint;
-        textPaint.setTextSize(AndroidUtilities.dp(14.0f));
-        textPaint.setColor(-3289651);
-        this.h = LocaleController.getString("AccDescrVideoCompressLow", R.string.AccDescrVideoCompressLow);
-        this.f40276n = LocaleController.getString("AccDescrVideoCompressHigh", R.string.AccDescrVideoCompressHigh);
-        setImportantForAccessibility(1);
-        setFocusable(true);
-        setAccessibilityDelegate(new nu0(this));
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        int i10;
-        float f7;
-        if (this.f40278s.Z7 != 1) {
-            this.f40275f = (((getMeasuredWidth() - (this.f40274c * this.f40278s.Z7)) - (((this.f40278s.Z7 * 2) - 2) * this.d)) - (this.e * 2)) / (this.f40278s.Z7 - 1);
-        } else {
-            this.f40275f = ((getMeasuredWidth() - (this.f40274c * this.f40278s.Z7)) - (this.d * 2)) - (this.e * 2);
-        }
-        int dp = AndroidUtilities.dp(6.0f) + (getMeasuredHeight() / 2);
-        for (int i11 = 0; i11 < this.f40278s.Z7; i11++) {
-            int i12 = this.e;
-            int i13 = (this.d * 2) + this.f40275f;
-            int i14 = this.f40274c;
-            int i15 = (i14 / 2) + ((i13 + i14) * i11) + i12;
-            if (i11 <= this.f40278s.Y7) {
-                this.f40272a.setColor(-11292945);
-            } else {
-                this.f40272a.setColor(1728053247);
-            }
-            float f10 = i15;
-            float f11 = dp;
-            if (i11 == this.f40278s.Y7) {
-                i10 = AndroidUtilities.dp(6.0f);
-            } else {
-                i10 = this.f40274c / 2;
-            }
-            canvas.drawCircle(f10, f11, i10, this.f40272a);
-            if (i11 != 0) {
-                int i16 = ((i15 - (this.f40274c / 2)) - this.d) - this.f40275f;
-                float f12 = 0.0f;
-                if (i11 == this.f40278s.Y7 + 1) {
-                    f7 = AndroidUtilities.dpf2(2.0f);
-                } else {
-                    f7 = 0.0f;
-                }
-                if (i11 == this.f40278s.Y7) {
-                    f12 = AndroidUtilities.dpf2(2.0f);
-                }
-                canvas.drawRect(f7 + i16, dp - AndroidUtilities.dp(1.0f), (i16 + this.f40275f) - f12, AndroidUtilities.dp(2.0f) + dp, this.f40272a);
-            }
-        }
-        canvas.drawText(this.h, this.e, dp - AndroidUtilities.dp(16.0f), this.f40273b);
-        canvas.drawText(this.f40276n, (getMeasuredWidth() - this.e) - this.f40273b.measureText(this.f40276n), dp - AndroidUtilities.dp(16.0f), this.f40273b);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f40274c = AndroidUtilities.dp(8.0f);
-        this.d = AndroidUtilities.dp(2.0f);
-        this.e = AndroidUtilities.dp(18.0f);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        float x10 = motionEvent.getX();
-        if (motionEvent.getAction() == 0) {
-            this.f40277r = this.f40278s.Y7;
-            getParent().requestDisallowInterceptTouchEvent(true);
-        }
-        int i10 = 0;
-        if (motionEvent.getAction() == 0 || motionEvent.getAction() == 2) {
-            while (true) {
-                if (i10 >= this.f40278s.Z7) {
-                    break;
-                }
-                int i11 = this.e;
-                int i12 = this.f40275f;
-                int i13 = this.d;
-                int i14 = this.f40274c;
-                int i15 = i14 / 2;
-                int i16 = (((i13 * 2) + i12 + i14) * i10) + i11 + i15;
-                int i17 = (i12 / 2) + i15 + i13;
-                if (x10 > i16 - i17 && x10 < i16 + i17) {
-                    if (this.f40278s.Y7 != i10) {
-                        this.f40278s.Y7 = i10;
-                        this.f40278s.T0();
-                        invalidate();
-                        return true;
-                    }
-                } else {
-                    i10++;
-                }
-            }
-        } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-            if (this.f40278s.Y7 != this.f40277r) {
-                this.f40278s.r2(1);
-            }
-            this.f40278s.L6 = false;
-            return true;
-        }
-        return true;
+    public ou0(PhotoViewer photoViewer, int i10, ArrayList arrayList, ju0 ju0Var) {
+        this.d = photoViewer;
+        this.f40261b = arrayList;
+        this.f40260a = i10;
+        this.f40262c = ju0Var;
     }
 }

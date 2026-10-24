@@ -5,42 +5,42 @@ import android.os.Parcel;
 import android.os.Parcelable;
 public final class ig extends o6.a {
     public static final Parcelable.Creator<ig> CREATOR = new dg(1);
-    public final float[] f51523a;
-    public final Bitmap f51524b;
-    public final int f51525c;
+    public final float[] f51522a;
+    public final Bitmap f51523b;
+    public final int f51524c;
     public final int d;
     public final int e;
-    public final int f51526f;
+    public final int f51525f;
     public final int h;
 
     public ig(float[] fArr, Bitmap bitmap, int i10, int i11, int i12, int i13, int i14) {
-        this.f51523a = fArr;
-        this.f51524b = bitmap;
-        this.f51525c = i10;
+        this.f51522a = fArr;
+        this.f51523b = bitmap;
+        this.f51524c = i10;
         this.d = i11;
         this.e = i12;
-        this.f51526f = i13;
+        this.f51525f = i13;
         this.h = i14;
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = w7.f0.q(parcel, 20293);
-        float[] fArr = this.f51523a;
+        float[] fArr = this.f51522a;
         if (fArr != null) {
             int q10 = w7.f0.q(parcel, 1);
             parcel.writeFloatArray(fArr);
             w7.f0.r(parcel, q10);
         }
-        w7.f0.k(parcel, 2, this.f51524b, i10);
+        w7.f0.k(parcel, 2, this.f51523b, i10);
         w7.f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f51525c);
+        parcel.writeInt(this.f51524c);
         w7.f0.s(parcel, 4, 4);
         parcel.writeInt(this.d);
         w7.f0.s(parcel, 5, 4);
         parcel.writeInt(this.e);
         w7.f0.s(parcel, 6, 4);
-        parcel.writeInt(this.f51526f);
+        parcel.writeInt(this.f51525f);
         w7.f0.s(parcel, 7, 4);
         parcel.writeInt(this.h);
         w7.f0.r(parcel, q6);

@@ -7,7 +7,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.m70;
+import org.telegram.ui.Components.k70;
 public final class u3 implements Utilities.Callback {
     public final int f2243a;
     public final long f2244b;
@@ -34,7 +34,7 @@ public final class u3 implements Utilities.Callback {
                 l7.Q0((l7) this.f2245c, (pf.c) this.d, (ug.l1) this.e, this.f2244b, (TL_stars.TL_starGiftUnique) this.f2246f, (TL_wallet.nftItem) this.f2247g, (TL_stars.starGiftDepositPayload) obj);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e((m70) this.f2245c, (org.telegram.ui.ActionBar.c2) this.d, (Context) this.e, this.f2244b, (TLRPC.TL_chatInviteExported) this.f2246f, (TLRPC.TL_chatInviteImporter) this.f2247g, (TLRPC.ChannelParticipant) obj));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.e((k70) this.f2245c, (org.telegram.ui.ActionBar.c2) this.d, (Context) this.e, this.f2244b, (TLRPC.TL_chatInviteExported) this.f2246f, (TLRPC.TL_chatInviteImporter) this.f2247g, (TLRPC.ChannelParticipant) obj));
                 return;
         }
     }

@@ -76,24 +76,24 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.z1;
 import org.telegram.ui.Components.Switch;
-import org.telegram.ui.Components.gu;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.ko0;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.eu;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.jo0;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.voip.k1;
 import org.telegram.ui.Components.voip.t;
 import org.telegram.ui.ey;
 import org.telegram.ui.web.b0;
 import org.telegram.ui.web.b1;
 import org.telegram.ui.web.y0;
+import org.telegram.ui.xe1;
 import org.telegram.ui.xx;
-import org.telegram.ui.ye1;
 import org.webrtc.GlGenericDrawer;
 import p4.r0;
 import p4.s0;
 import r9.r;
 import w7.i6;
-public final class b implements gu, o0, Utilities.Callback5, z1, xx, p5, j, e0, g1, e2.j, e1, k, ne.d, r9.d, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, k1, a5.b {
+public final class b implements eu, o0, Utilities.Callback5, z1, xx, p5, j, e0, g1, e2.j, e1, k, ne.d, r9.d, Vector.TLDeserializer, GlGenericDrawer.TextureCallback, k1, a5.b {
     public final int f14299a;
     public final Object f14300b;
 
@@ -193,14 +193,14 @@ public final class b implements gu, o0, Utilities.Callback5, z1, xx, p5, j, e0, 
         y0 y0Var = (y0) this.f14300b;
         b1 b1Var = y0Var.Q;
         if (webView == y0Var && b1Var != null) {
-            if (webView == b1Var.f43043a && aVar.f281b == 0) {
+            if (webView == b1Var.f43032a && aVar.f281b == 0) {
                 if (uri == null) {
                     uri2 = null;
                 } else {
                     uri2 = uri.toString();
                 }
                 String k10 = b1.k(uri2);
-                if (b1Var.f43068t0 && (TextUtils.isEmpty(b1Var.G0) || !TextUtils.equals(b1Var.G0, k10) || !TextUtils.equals(b1Var.G0, b1Var.getOriginHost()))) {
+                if (b1Var.f43057t0 && (TextUtils.isEmpty(b1Var.G0) || !TextUtils.equals(b1Var.G0, k10) || !TextUtils.equals(b1Var.G0, b1Var.getOriginHost()))) {
                     b1Var.g("onBotWebMessage ignored: untrusted origin");
                     return;
                 }
@@ -409,8 +409,8 @@ public final class b implements gu, o0, Utilities.Callback5, z1, xx, p5, j, e0, 
     }
 
     @Override
-    public j80 i(h1 h1Var) {
-        return j80.H((d2) ((l) this.f14300b).f279b, h1Var);
+    public h80 i(h1 h1Var) {
+        return h80.H((d2) ((l) this.f14300b).f279b, h1Var);
     }
 
     public void j(int i10) {
@@ -431,7 +431,7 @@ public final class b implements gu, o0, Utilities.Callback5, z1, xx, p5, j, e0, 
 
     @Override
     public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        m61 m61Var = (m61) obj;
+        l61 l61Var = (l61) obj;
         View view = (View) obj2;
         Integer num = (Integer) obj3;
         Float f7 = (Float) obj4;
@@ -447,7 +447,7 @@ public final class b implements gu, o0, Utilities.Callback5, z1, xx, p5, j, e0, 
     }
 
     @Override
-    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, xe1 xe1Var) {
         i4 i4Var = (i4) this.f14300b;
         if (arrayList.isEmpty() || ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId <= 0) {
             return false;
@@ -469,7 +469,7 @@ public final class b implements gu, o0, Utilities.Callback5, z1, xx, p5, j, e0, 
             return;
         }
         Utilities.stackBlurBitmap(bitmap, Math.max(7, Math.max(bitmap.getWidth(), bitmap.getHeight()) / 180));
-        AndroidUtilities.runOnUIThread(new ko0(26, tVar, bitmap));
+        AndroidUtilities.runOnUIThread(new jo0(26, tVar, bitmap));
     }
 
     @Override

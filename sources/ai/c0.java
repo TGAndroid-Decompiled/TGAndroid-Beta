@@ -9,7 +9,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.uh0;
+import org.telegram.ui.th0;
 public final class c0 implements RequestDelegate {
     public final int f1066a;
     public final int f1067b;
@@ -53,7 +53,7 @@ public final class c0 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new f9(tLObject, this.f1067b, (ei.d) this.d, (org.telegram.ui.ActionBar.h3) this.e, this.f1068c, tL_error));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new f9((uh0) this.d, tL_error, tLObject, this.f1068c, this.f1067b, (TLRPC.Chat) this.e));
+                AndroidUtilities.runOnUIThread(new f9((th0) this.d, tL_error, tLObject, this.f1068c, this.f1067b, (TLRPC.Chat) this.e));
                 return;
         }
     }
@@ -74,9 +74,9 @@ public final class c0 implements RequestDelegate {
         this.f1068c = j10;
     }
 
-    public c0(uh0 uh0Var, long j10, int i10, TLRPC.Chat chat) {
+    public c0(th0 th0Var, long j10, int i10, TLRPC.Chat chat) {
         this.f1066a = 7;
-        this.d = uh0Var;
+        this.d = th0Var;
         this.f1068c = j10;
         this.f1067b = i10;
         this.e = chat;

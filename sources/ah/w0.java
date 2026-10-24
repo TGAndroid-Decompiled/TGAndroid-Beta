@@ -19,8 +19,8 @@ import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.iu;
-public abstract class w0 extends iu implements b6 {
+import org.telegram.ui.Components.gu;
+public abstract class w0 extends gu implements b6 {
     public final g6 f897c;
     public final le.b d;
     public Runnable e;
@@ -43,12 +43,12 @@ public abstract class w0 extends iu implements b6 {
         setPadding(AndroidUtilities.dp(18.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(18.0f), AndroidUtilities.dp(12.0f));
         r6.W(this, k6.Ud, g6Var);
         r6.I(this, k6.hc, g6Var);
-        r6.E(this, k6.f21507uf, g6Var);
+        r6.E(this, k6.f21508uf, g6Var);
         int i12 = k6.Vd;
         r6.m(this, 34, i12, g6Var);
         r6.F(this, i12, g6Var);
         r6.m(this, 30, k6.Wd, g6Var);
-        r6.m(this, 36, k6.f21525vf, g6Var);
+        r6.m(this, 36, k6.f21526vf, g6Var);
         if (i11 >= 28) {
             setFallbackLineSpacing(false);
         }
@@ -151,7 +151,7 @@ public abstract class w0 extends iu implements b6 {
         try {
             setHintColor(k6.w0(k6.Vd, g6Var));
             setCursorColor(k6.w0(k6.Wd, g6Var));
-            setHandlesColor(k6.w0(k6.f21525vf, g6Var));
+            setHandlesColor(k6.w0(k6.f21526vf, g6Var));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

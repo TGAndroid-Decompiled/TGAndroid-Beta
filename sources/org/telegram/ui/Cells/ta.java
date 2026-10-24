@@ -13,30 +13,30 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public static final int f23713n = 0;
-    public final LinearLayout f23714a;
-    public final TextView f23715b;
-    public final TextView f23716c;
+    public static final int f23714n = 0;
+    public final LinearLayout f23715a;
+    public final TextView f23716b;
+    public final TextView f23717c;
     public final sa d;
     public final sa e;
-    public int f23717f;
+    public int f23718f;
     public int h;
 
     public ta(Activity activity) {
         super(activity);
         setClickable(true);
         LinearLayout linearLayout = new LinearLayout(activity);
-        this.f23714a = linearLayout;
+        this.f23715a = linearLayout;
         linearLayout.setOrientation(1);
         TextView textView = new TextView(activity);
-        this.f23715b = textView;
+        this.f23716b = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setText(LocaleController.getString(R.string.UnconfirmedAuthTitle));
         linearLayout.addView(textView, w7.z5.p(-1, -2, 0.0f, 55, 28, 8, 28, 0));
         TextView textView2 = new TextView(activity);
-        this.f23716c = textView2;
+        this.f23717c = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 13.0f);
         textView2.setLineSpacing(AndroidUtilities.dpf2(2.0f), 1.0f);
@@ -87,7 +87,7 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.b
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((size - getPaddingLeft()) - getPaddingRight(), 1073741824);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.displaySize.y, Integer.MIN_VALUE);
-        LinearLayout linearLayout = this.f23714a;
+        LinearLayout linearLayout = this.f23715a;
         linearLayout.measure(makeMeasureSpec, makeMeasureSpec2);
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + linearLayout.getMeasuredHeight() + 1, 1073741824));
     }
@@ -98,10 +98,10 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.b
         sa saVar;
         sa saVar2;
         float f7;
-        TextView textView2 = this.f23715b;
-        if (textView2 != null && (textView = this.f23716c) != null && (saVar = this.d) != null && (saVar2 = this.e) != null) {
+        TextView textView2 = this.f23716b;
+        if (textView2 != null && (textView = this.f23717c) != null && (saVar = this.d) != null && (saVar2 = this.e) != null) {
             textView2.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
-            textView.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21571y6, false));
+            textView.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21572y6, false));
             int i10 = org.telegram.ui.ActionBar.k6.I6;
             saVar.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
             int x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
@@ -113,13 +113,13 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.b
             }
             int o12 = org.telegram.ui.ActionBar.k6.o1(f7, x02);
             if (saVar.getBackground() != null) {
-                if (o12 != this.f23717f) {
+                if (o12 != this.f23718f) {
                     org.telegram.ui.ActionBar.k6.E1(saVar.getBackground(), o12, true);
                 }
             } else {
                 saVar.setBackground(org.telegram.ui.ActionBar.k6.g0(o12, 7, AndroidUtilities.dp(8.0f)));
             }
-            int i11 = org.telegram.ui.ActionBar.k6.f21421q7;
+            int i11 = org.telegram.ui.ActionBar.k6.f21422q7;
             saVar2.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, i11, false));
             int x03 = org.telegram.ui.ActionBar.k6.x0(null, i11, false);
             if (org.telegram.ui.ActionBar.k6.I.q()) {
@@ -133,7 +133,7 @@ public final class ta extends FrameLayout implements org.telegram.ui.ActionBar.b
             } else {
                 saVar2.setBackground(org.telegram.ui.ActionBar.k6.g0(o13, 7, AndroidUtilities.dp(8.0f)));
             }
-            this.f23717f = o12;
+            this.f23718f = o12;
             this.h = o13;
         }
     }

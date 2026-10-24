@@ -9,18 +9,18 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ey;
-import org.telegram.ui.ye1;
+import org.telegram.ui.xe1;
 public final class r1 implements Utilities.Callback {
-    public final ye1 f11446a;
+    public final xe1 f11446a;
     public final ey f11447b;
     public final long f11448c;
     public final int d;
 
-    public r1(ye1 ye1Var, ey eyVar, long j10, int i10) {
-        this.f11446a = ye1Var;
+    public r1(xe1 xe1Var, ey eyVar, long j10, int i10) {
+        this.f11446a = xe1Var;
         this.f11447b = eyVar;
         this.f11448c = j10;
         this.d = i10;
@@ -32,10 +32,10 @@ public final class r1 implements Utilities.Callback {
         TLRPC.User user;
         int i10;
         Boolean bool = (Boolean) obj;
-        ye1 ye1Var = this.f11446a;
+        xe1 xe1Var = this.f11446a;
         ey eyVar = this.f11447b;
-        if (ye1Var != null) {
-            ye1Var.finishFragment();
+        if (xe1Var != null) {
+            xe1Var.finishFragment();
             eyVar.removeSelfFromStack();
         } else {
             eyVar.finishFragment();
@@ -61,7 +61,7 @@ public final class r1 implements Utilities.Callback {
                 user = chat;
             }
         }
-        xc a02 = xc.a0(U);
+        vc a02 = vc.a0(U);
         if (bool.booleanValue()) {
             i10 = R.string.BotSentRevokeVerifyRequest;
         } else {

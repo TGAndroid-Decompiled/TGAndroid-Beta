@@ -1,56 +1,44 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.view.KeyEvent;
-import android.view.View;
-import android.view.ViewTreeObserver;
-import androidx.recyclerview.widget.RecyclerView;
-public final class tt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final int f30904a;
-    public final int f30905b;
-    public final KeyEvent.Callback f30906c;
+import android.content.Context;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class tt0 implements org.telegram.ui.Cells.m7 {
+    public final wv0 f30886a;
 
-    public tt0(KeyEvent.Callback callback, int i10, int i11) {
-        this.f30904a = i11;
-        this.f30906c = callback;
-        this.f30905b = i10;
+    public tt0(wv0 wv0Var) {
+        this.f30886a = wv0Var;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i10 = this.f30904a;
-        int i11 = this.f30905b;
-        KeyEvent.Callback callback = this.f30906c;
-        switch (i10) {
-            case 0:
-                xv0 xv0Var = (xv0) callback;
-                xv0Var.f32687k0[i11].getViewTreeObserver().removeOnPreDrawListener(this);
-                xv0Var.V(i11);
-                return true;
-            default:
-                s71 s71Var = (s71) callback;
-                ai.u1 u1Var = s71Var.d;
-                u1Var.getViewTreeObserver().removeOnPreDrawListener(this);
-                int childCount = u1Var.getChildCount();
-                AnimatorSet animatorSet = new AnimatorSet();
-                for (int i12 = 0; i12 < childCount; i12++) {
-                    View childAt = u1Var.getChildAt(i12);
-                    u1Var.getClass();
-                    int R = RecyclerView.R(childAt);
-                    if (R >= i11) {
-                        if (R == 1 && u1Var.getAdapter() == s71Var.e && (childAt instanceof org.telegram.ui.Cells.u3)) {
-                            childAt = ((org.telegram.ui.Cells.u3) childAt).getTextView();
-                        }
-                        childAt.setAlpha(0.0f);
-                        ObjectAnimator ofFloat = ObjectAnimator.ofFloat(childAt, View.ALPHA, 0.0f, 1.0f);
-                        ofFloat.setStartDelay((int) ((Math.min(u1Var.getMeasuredHeight(), Math.max(0, childAt.getTop())) / u1Var.getMeasuredHeight()) * 100.0f));
-                        ofFloat.setDuration(200L);
-                        animatorSet.playTogether(ofFloat);
-                    }
-                }
-                animatorSet.start();
-                return true;
+    public final void a(String str, boolean z10) {
+        wv0 wv0Var = this.f30886a;
+        org.telegram.ui.ActionBar.o2 o2Var = wv0Var.f32410v1;
+        if (z10) {
+            org.telegram.ui.ActionBar.h3 h3Var = new org.telegram.ui.ActionBar.h3(1, (Context) o2Var.getParentActivity(), (org.telegram.ui.ActionBar.g6) null, false);
+            h3Var.fixNavigationBar();
+            h3Var.title = str;
+            h3Var.bigTitle = false;
+            CharSequence[] charSequenceArr = {LocaleController.getString("Open", R.string.Open), LocaleController.getString("Copy", R.string.Copy)};
+            mg.j jVar = new mg.j(6, this, str);
+            h3Var.items = charSequenceArr;
+            h3Var.onClickListener = jVar;
+            o2Var.showDialog(h3Var);
+            return;
         }
+        wv0Var.U0(str);
+    }
+
+    @Override
+    public final void b(TLRPC.WebPage webPage, MessageObject messageObject) {
+        wv0 wv0Var = this.f30886a;
+        av.I(wv0Var.f32410v1, messageObject, wv0Var.f32401r1, webPage.site_name, webPage.description, webPage.url, webPage.embed_url, webPage.embed_width, webPage.embed_height, -1, false);
+    }
+
+    @Override
+    public final boolean e() {
+        return !this.f30886a.C1;
     }
 }

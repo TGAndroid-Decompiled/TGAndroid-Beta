@@ -25,14 +25,14 @@ public final class h7 extends i7 {
 
     @Override
     public final void c(org.telegram.ui.ActionBar.o2 o2Var) {
-        o2Var.presentFragment(sn.W9(-this.f9171b.f20343id));
+        o2Var.presentFragment(sn.W9(-this.f9171b.f20344id));
     }
 
     @Override
     public final void d(ImageReceiver imageReceiver) {
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
+        org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
         TLRPC.Chat chat = this.f9171b;
-        h9Var.q(chat);
-        imageReceiver.setForUserOrChat(chat, h9Var);
+        f9Var.q(chat);
+        imageReceiver.setForUserOrChat(chat, f9Var);
     }
 }

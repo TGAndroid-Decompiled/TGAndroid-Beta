@@ -2,9 +2,9 @@ package ai;
 
 import android.content.Context;
 import android.view.MotionEvent;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.vd0;
-public final class s extends vd0 {
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.td0;
+public final class s extends td0 {
     public final int L;
     public final Object M;
 
@@ -24,7 +24,7 @@ public final class s extends vd0 {
                     xVar.Q.setFocusable(true);
                     xVar.Q.setFocusableInTouchMode(true);
                     int D1 = xVar.e.D1(1);
-                    if (D1 >= 0 && D1 < xVar.e.Z2.f24976y.size()) {
+                    if (D1 >= 0 && D1 < xVar.e.Z2.f24650y.size()) {
                         xVar.e.B0();
                         xVar.e.x0(D1);
                     }
@@ -33,15 +33,15 @@ public final class s extends vd0 {
                 return super.dispatchTouchEvent(motionEvent);
             default:
                 org.telegram.ui.ie ieVar = (org.telegram.ui.ie) this.M;
-                j71 j71Var = ieVar.f38154a1;
+                i71 i71Var = ieVar.f38239a1;
                 t tVar2 = ieVar.Y0;
                 if (tVar2 != null && !tVar2.isFocusable()) {
                     tVar2.setFocusable(true);
                     tVar2.setFocusableInTouchMode(true);
-                    int D12 = j71Var.D1(3);
-                    if (D12 >= 0 && D12 < j71Var.Z2.f24976y.size()) {
-                        j71Var.B0();
-                        j71Var.x0(D12);
+                    int D12 = i71Var.D1(3);
+                    if (D12 >= 0 && D12 < i71Var.Z2.f24650y.size()) {
+                        i71Var.B0();
+                        i71Var.x0(D12);
                     }
                     tVar2.requestFocus();
                 }

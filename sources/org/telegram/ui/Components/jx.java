@@ -1,189 +1,399 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.RippleDrawable;
+import android.text.SpannableStringBuilder;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
-public final class jx implements z4.f {
-    public final boolean f27773a;
-    public final tz f27774b;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class jx implements org.telegram.ui.ft {
+    public final rz f27809a;
 
-    public jx(tz tzVar, boolean z10) {
-        this.f27774b = tzVar;
-        this.f27773a = z10;
+    public jx(rz rzVar) {
+        this.f27809a = rzVar;
     }
 
     @Override
-    public final void a(int i10) {
-        boolean z10;
-        int i11;
-        tz tzVar = this.f27774b;
-        gx gxVar = tzVar.h;
-        boolean z11 = false;
-        if (gxVar != null) {
-            int currentItem = gxVar.getCurrentItem();
-            if (currentItem == 2) {
-                i11 = 1;
-            } else if (currentItem == 1) {
-                i11 = 2;
-            } else {
-                i11 = 0;
-            }
-            if (tzVar.A1 != i11) {
-                tzVar.A1 = i11;
-                MessagesController.getGlobalEmojiSettings().edit().putInt("selected_page", i11).commit();
-            }
+    public final MessageObject A() {
+        return null;
+    }
+
+    @Override
+    public final boolean B() {
+        return false;
+    }
+
+    @Override
+    public final void C(TLRPC.Document document) {
+        org.telegram.ui.ActionBar.o2 o2Var = this.f27809a.Y1;
+        if (o2Var instanceof org.telegram.ui.sn) {
+            ((org.telegram.ui.sn) o2Var).gb(document);
         }
-        if (i10 == 0) {
+    }
+
+    @Override
+    public final boolean D() {
+        return true;
+    }
+
+    @Override
+    public final boolean E(TLRPC.Document document) {
+        return true;
+    }
+
+    @Override
+    public final void F(TLRPC.Document document) {
+        TLRPC.TL_stickers_removeStickerFromSet tL_stickers_removeStickerFromSet = new TLRPC.TL_stickers_removeStickerFromSet();
+        tL_stickers_removeStickerFromSet.sticker = MediaDataController.getInputStickerSetItem(document, "").document;
+        ConnectionsManager.getInstance(this.f27809a.f30310c1).sendRequest(tL_stickers_removeStickerFromSet, new x1(this, 4));
+    }
+
+    @Override
+    public final String G(boolean z10) {
+        rz rzVar = this.f27809a;
+        if (z10) {
+            s4.g0 adapter = rzVar.f30325h0.getAdapter();
+            wy wyVar = rzVar.f30331j0;
+            if (adapter == wyVar) {
+                return wyVar.f32438w;
+            }
+            return null;
+        }
+        s4.g0 adapter2 = rzVar.P.getAdapter();
+        ry ryVar = rzVar.S;
+        if (adapter2 == ryVar) {
+            return ryVar.v;
+        }
+        return null;
+    }
+
+    @Override
+    public final void H(TLRPC.Document document) {
+        vc vcVar;
+        SpannableStringBuilder valueOf = SpannableStringBuilder.valueOf(MessageObject.findAnimatedEmojiEmoticon(document));
+        valueOf.setSpan(new y5(document, (Paint.FontMetricsInt) null), 0, valueOf.length(), 33);
+        if (AndroidUtilities.addToClipboard(valueOf)) {
+            rz rzVar = this.f27809a;
+            org.telegram.ui.ActionBar.o2 o2Var = rzVar.Y1;
+            if (o2Var != null) {
+                vcVar = vc.a0(o2Var);
+            } else {
+                vcVar = new vc(rzVar.f30354r, rzVar.Z1);
+            }
+            org.telegram.messenger.tl.p(R.string.EmojiCopied, vcVar);
+        }
+    }
+
+    @Override
+    public final boolean I() {
+        return false;
+    }
+
+    @Override
+    public final boolean J() {
+        return false;
+    }
+
+    @Override
+    public final void L() {
+        this.f27809a.W();
+    }
+
+    @Override
+    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+        if (inputStickerSet == null) {
+            return;
+        }
+        this.f27809a.f30363t1.d(null, inputStickerSet, false);
+    }
+
+    @Override
+    public final boolean N(TLRPC.Document document) {
+        if (document != null) {
+            ArrayList<String> arrayList = Emoji.recentEmoji;
+            if (arrayList.contains("animated_" + document.f20350id)) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final Boolean P(TLRPC.Document document) {
+        TLRPC.User currentUser;
+        boolean z10;
+        if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser()) == null) {
+            return null;
+        }
+        Long emojiStatusDocumentId = UserObject.getEmojiStatusDocumentId(currentUser);
+        if (document != null && (emojiStatusDocumentId == null || emojiStatusDocumentId.longValue() != document.f20350id)) {
             z10 = true;
         } else {
             z10 = false;
         }
-        tzVar.L(z10, true);
-        if (i10 == 2 && (this.f27773a || tzVar.f31024v0)) {
-            z11 = true;
+        return Boolean.valueOf(z10);
+    }
+
+    @Override
+    public final boolean Q() {
+        return true;
+    }
+
+    @Override
+    public final long a() {
+        return this.f27809a.f30363t1.a();
+    }
+
+    @Override
+    public final boolean b() {
+        return this.f27809a.f30363t1.b();
+    }
+
+    @Override
+    public final boolean c() {
+        return this.f27809a.f30363t1.c();
+    }
+
+    @Override
+    public final TLRPC.TL_messageMediaPoll d() {
+        return null;
+    }
+
+    @Override
+    public final boolean e(TLRPC.Document document) {
+        return this.f27809a.f30363t1.j();
+    }
+
+    @Override
+    public final boolean f() {
+        return false;
+    }
+
+    @Override
+    public final TLRPC.PollAnswer g() {
+        return null;
+    }
+
+    @Override
+    public final boolean h() {
+        rz rzVar = this.f27809a;
+        if (rzVar.Y1 == null && rzVar.f30365u0) {
+            return false;
         }
-        tzVar.Q(z11, true);
-        if (tzVar.f31019t1.z()) {
-            if (i10 == 0) {
-                rw rwVar = tzVar.V;
-                if (rwVar != null) {
-                    rwVar.d.requestFocus();
+        return true;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k(int i10) {
+        if (i10 != 2) {
+            return true;
+        }
+        rz rzVar = this.f27809a;
+        org.telegram.ui.ActionBar.o2 o2Var = rzVar.Y1;
+        if ((o2Var instanceof org.telegram.ui.sn) && ((org.telegram.ui.sn) o2Var).H6()) {
+            if (UserConfig.getInstance(UserConfig.selectedAccount).isPremium() || (((org.telegram.ui.sn) rzVar.Y1).i() != null && UserObject.isUserSelf(((org.telegram.ui.sn) rzVar.Y1).i()))) {
+                return true;
+            }
+            return false;
+        }
+        return false;
+    }
+
+    @Override
+    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
+        this.f27809a.f30363t1.m(null, document, str, obj, null, z10, i10);
+    }
+
+    @Override
+    public final void n(TLRPC.Document document) {
+        TLRPC.InputStickerSet inputStickerSet;
+        int i10 = 0;
+        while (true) {
+            if (i10 < document.attributes.size()) {
+                TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i10);
+                if ((documentAttribute instanceof TLRPC.TL_documentAttributeSticker) && (inputStickerSet = documentAttribute.stickerset) != null) {
+                    break;
                 }
-            } else if (i10 == 1) {
-                xw xwVar = tzVar.f31001o0;
-                if (xwVar != null) {
-                    xwVar.d.requestFocus();
-                }
+                i10++;
             } else {
-                dx dxVar = tzVar.G0;
-                if (dxVar != null) {
-                    dxVar.d.requestFocus();
+                inputStickerSet = null;
+                break;
+            }
+        }
+        rz rzVar = this.f27809a;
+        sy0.q0(rzVar.Y1, MediaDataController.getInstance(rzVar.f30310c1).getStickerSet(inputStickerSet, true), document);
+    }
+
+    @Override
+    public final boolean o() {
+        return false;
+    }
+
+    @Override
+    public final void p(TLRPC.Document document) {
+        if (document != null) {
+            Emoji.removeRecentEmoji("animated_" + document.f20350id);
+            yx yxVar = this.f27809a.R;
+            if (yxVar != null) {
+                yxVar.F(false);
+            }
+        }
+    }
+
+    @Override
+    public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+        rz rzVar = this.f27809a;
+        sw swVar = rzVar.f30325h0;
+        if (swVar.getAdapter() == rzVar.f30342n0) {
+            rzVar.f30363t1.v(null, tLObject, null, obj, z10, i10, i11);
+        } else if (swVar.getAdapter() == rzVar.f30331j0) {
+            rzVar.f30363t1.v(null, tLObject, null, obj, z10, i10, i11);
+        }
+    }
+
+    @Override
+    public final void s() {
+        cy cyVar = this.f27809a.P;
+        if (cyVar != null && cyVar.f25487f3 != null) {
+            while (cyVar.f25487f3.size() > 0) {
+                ay ayVar = (ay) cyVar.f25487f3.valueAt(0);
+                cyVar.f25487f3.removeAt(0);
+                if (ayVar != null) {
+                    View view = ayVar.d;
+                    if (view != null && (view.getBackground() instanceof RippleDrawable)) {
+                        ayVar.d.getBackground().setState(new int[0]);
+                    }
+                    View view2 = ayVar.d;
+                    if (view2 != null) {
+                        view2.setPressed(false);
+                    }
                 }
             }
         }
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        float f10;
-        gz gzVar;
-        gz gzVar2;
-        int i12;
-        int i13;
-        int i14;
-        tz tzVar = this.f27774b;
-        gz gzVar3 = tzVar.G0;
-        gz gzVar4 = tzVar.f31001o0;
-        gz gzVar5 = tzVar.V;
-        fx fxVar = tzVar.C0;
-        ax axVar = tzVar.D0;
-        yx yxVar = tzVar.f31004p0;
-        uw uwVar = tzVar.f30981h0;
-        ey eyVar = tzVar.P;
-        int i15 = 2;
-        boolean z10 = true;
-        if (tzVar.f31032x0 == null || tzVar.f30978g0 == null) {
-            f10 = 0.0f;
-        } else {
-            int i16 = 8;
-            if (i10 == 0) {
-                eyVar.setVisibility(0);
-                int i17 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-                f10 = 0.0f;
-                if (i17 == 0) {
-                    i13 = 8;
-                } else {
-                    i13 = 0;
-                }
-                uwVar.setVisibility(i13);
-                if (i17 == 0) {
-                    i14 = 8;
-                } else {
-                    i14 = 0;
-                }
-                yxVar.setVisibility(i14);
-                axVar.setVisibility(8);
-                if (fxVar != null) {
-                    fxVar.setVisibility(8);
-                }
-            } else {
-                f10 = 0.0f;
-                if (i10 == 1) {
-                    eyVar.setVisibility(8);
-                    uwVar.setVisibility(0);
-                    yxVar.setVisibility(0);
-                    int i18 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-                    if (i18 == 0) {
-                        i12 = 8;
-                    } else {
-                        i12 = 0;
-                    }
-                    axVar.setVisibility(i12);
-                    if (fxVar != null) {
-                        if (i18 != 0) {
-                            i16 = 0;
-                        }
-                        fxVar.setVisibility(i16);
-                    }
-                } else if (i10 == 2) {
-                    eyVar.setVisibility(8);
-                    uwVar.setVisibility(8);
-                    yxVar.setVisibility(8);
-                    axVar.setVisibility(0);
-                    if (fxVar != null) {
-                        fxVar.setVisibility(0);
-                    }
-                }
-            }
-        }
-        tzVar.getMeasuredWidth();
-        tzVar.getPaddingLeft();
-        tzVar.getPaddingRight();
-        uy uyVar = tzVar.f31019t1;
-        if (uyVar != null) {
-            if (i10 == 1) {
-                if (i11 == 0) {
-                    i15 = 0;
-                }
-                uyVar.s(i15);
-            } else if (i10 == 2) {
-                uyVar.s(3);
-            } else {
-                uyVar.s(0);
-            }
-        }
-        tzVar.M(true);
-        int currentItem = tzVar.h.getCurrentItem();
-        if (currentItem == 0) {
-            gzVar = gzVar5;
-        } else if (currentItem == 1) {
-            gzVar = gzVar4;
-        } else {
-            gzVar = gzVar3;
-        }
-        String obj = gzVar.d.getText().toString();
-        for (int i19 = 0; i19 < 3; i19++) {
-            if (i19 == 0) {
-                gzVar2 = gzVar5;
-            } else if (i19 == 1) {
-                gzVar2 = gzVar4;
-            } else {
-                gzVar2 = gzVar3;
-            }
-            if (gzVar2 != null) {
-                sq sqVar = gzVar2.d;
-                if (gzVar2 != gzVar && sqVar != null && !sqVar.getText().toString().equals(obj)) {
-                    sqVar.setText(obj);
-                    sqVar.setSelection(obj.length());
-                }
-            }
-        }
-        if ((i10 != 0 || f7 <= f10) && i10 != 1) {
-            z10 = false;
-        }
-        tz.a(tzVar, z10);
-        tzVar.Y();
+    public final h80 u(ah.v vVar) {
+        return null;
     }
 
     @Override
-    public final void c(int i10) {
+    public final void v(TLRPC.Document document) {
+        TLRPC.EmojiStatus emojiStatus;
+        Object obj;
+        vc vcVar;
+        rz rzVar = this.f27809a;
+        FrameLayout frameLayout = rzVar.f30354r;
+        org.telegram.ui.ActionBar.o2 o2Var = rzVar.Y1;
+        org.telegram.ui.ActionBar.g6 g6Var = rzVar.Z1;
+        if (document == null) {
+            emojiStatus = new TLRPC.TL_emojiStatusEmpty();
+        } else {
+            TLRPC.TL_emojiStatus tL_emojiStatus = new TLRPC.TL_emojiStatus();
+            tL_emojiStatus.document_id = document.f20350id;
+            emojiStatus = tL_emojiStatus;
+        }
+        TLRPC.User currentUser = UserConfig.getInstance(UserConfig.selectedAccount).getCurrentUser();
+        if (currentUser == null) {
+            obj = new TLRPC.TL_emojiStatusEmpty();
+        } else {
+            obj = currentUser.emoji_status;
+        }
+        MessagesController.getInstance(rzVar.f30310c1).updateEmojiStatus(emojiStatus);
+        wt wtVar = new wt(2, this, obj);
+        if (document == null) {
+            gc gcVar = new gc(rzVar.getContext(), g6Var);
+            gcVar.f26619b.setText(LocaleController.getString(R.string.RemoveStatusInfo));
+            int i10 = R.drawable.msg_settings_premium;
+            ImageView imageView = gcVar.f26618a;
+            imageView.setImageResource(i10);
+            imageView.setScaleX(0.8f);
+            imageView.setScaleY(0.8f);
+            org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.f21592z9, g6Var, PorterDuff.Mode.MULTIPLY);
+            mc mcVar = new mc(rzVar.getContext(), g6Var, true);
+            mcVar.f28574b = wtVar;
+            gcVar.setButton(mcVar);
+            if (o2Var != null) {
+                oc.g(o2Var, gcVar, 1500).j();
+                return;
+            } else {
+                oc.f(frameLayout, gcVar, 1500).j();
+                return;
+            }
+        }
+        if (o2Var != null) {
+            vcVar = vc.a0(o2Var);
+        } else {
+            vcVar = new vc(frameLayout, g6Var);
+        }
+        vcVar.r(document, LocaleController.getString(R.string.SetAsEmojiStatusInfo), LocaleController.getString(R.string.UndoNoCaps), wtVar).j();
+    }
+
+    @Override
+    public final void x(TLObject tLObject, Object obj) {
+        rz rzVar = this.f27809a;
+        sw swVar = rzVar.f30325h0;
+        if (swVar.getAdapter() != rzVar.f30342n0 && swVar.getAdapter() != rzVar.f30331j0) {
+            return;
+        }
+        rzVar.f30363t1.e(tLObject, obj);
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
+    }
+
+    @Override
+    public final void K() {
+    }
+
+    @Override
+    public final void O(String str) {
+    }
+
+    @Override
+    public final void i(SendMessagesHelper.ImportingSticker importingSticker) {
+    }
+
+    @Override
+    public final void m(String str) {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void z(String str) {
+    }
+
+    @Override
+    public final void w(TLRPC.StickerSet stickerSet, String str) {
+    }
+
+    @Override
+    public final void t(CharSequence charSequence, String str, oy oyVar) {
     }
 }

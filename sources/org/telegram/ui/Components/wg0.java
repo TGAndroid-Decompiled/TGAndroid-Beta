@@ -1,62 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
-public final class wg0 extends org.telegram.ui.n4 {
-    public final int h;
-    public final Object f32241n;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class wg0 extends AnimatorListenerAdapter {
+    public final int f32234a;
+    public final PipRoundVideoView f32235b;
 
-    public wg0(Object obj, Context context, int i10) {
-        super(context);
-        this.h = i10;
-        this.f32241n = obj;
+    public wg0(PipRoundVideoView pipRoundVideoView, int i10) {
+        this.f32234a = i10;
+        this.f32235b = pipRoundVideoView;
     }
 
     @Override
-    public boolean drawChild(Canvas canvas, View view, long j10) {
-        MessageObject playingMessageObject;
-        switch (this.h) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f32234a) {
             case 0:
-                boolean drawChild = super.drawChild(canvas, view, j10);
-                PipRoundVideoView pipRoundVideoView = (PipRoundVideoView) this.f32241n;
-                if (view == pipRoundVideoView.f24405c && (playingMessageObject = MediaController.getInstance().getPlayingMessageObject()) != null) {
-                    pipRoundVideoView.E.set(AndroidUtilities.dpf2(1.5f), AndroidUtilities.dpf2(1.5f), getMeasuredWidth() - AndroidUtilities.dpf2(1.5f), getMeasuredHeight() - AndroidUtilities.dpf2(1.5f));
-                    canvas.drawArc(pipRoundVideoView.E, -90.0f, playingMessageObject.audioProgress * 360.0f, false, org.telegram.ui.ActionBar.k6.f21306k2);
-                }
-                return drawChild;
-            default:
-                return super.drawChild(canvas, view, j10);
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        switch (this.h) {
-            case 1:
-                super.onMeasure(i10, i11);
-                da1 da1Var = (da1) this.f32241n;
-                if (da1Var.f25572f != null) {
-                    ViewGroup.LayoutParams layoutParams = da1Var.d.getLayoutParams();
-                    layoutParams.width = getMeasuredWidth();
-                    layoutParams.height = getMeasuredHeight();
-                    ImageView imageView = da1Var.e;
-                    if (imageView != null) {
-                        ViewGroup.LayoutParams layoutParams2 = imageView.getLayoutParams();
-                        layoutParams2.width = getMeasuredWidth();
-                        layoutParams2.height = getMeasuredHeight();
-                        return;
-                    }
+                PipRoundVideoView pipRoundVideoView = this.f32235b;
+                if (animator.equals(pipRoundVideoView.f24409r)) {
+                    pipRoundVideoView.f24409r = null;
                     return;
                 }
                 return;
             default:
-                super.onMeasure(i10, i11);
+                PipRoundVideoView pipRoundVideoView2 = this.f32235b;
+                pipRoundVideoView2.a(false);
+                Runnable runnable = pipRoundVideoView2.f24410s;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
                 return;
         }
     }

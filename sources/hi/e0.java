@@ -8,7 +8,7 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.i71;
 import w7.z5;
 public final class e0 extends h0 {
     public final k0 h;
@@ -29,12 +29,12 @@ public final class e0 extends h0 {
         s sVar = new s(k0Var, 3);
         u uVar = new u(k0Var, 2);
         g6Var = ((h3) k0Var).resourcesProvider;
-        j71 j71Var = new j71(context, i10, 0, false, sVar, uVar, null, g6Var);
-        this.d = j71Var;
-        j71Var.t1();
-        j71 j71Var2 = this.d;
-        j71Var2.Z2.f24972r = false;
-        j71Var2.setClipToPadding(false);
+        i71 i71Var = new i71(context, i10, 0, false, sVar, uVar, null, g6Var);
+        this.d = i71Var;
+        i71Var.t1();
+        i71 i71Var2 = this.d;
+        i71Var2.Z2.f24646r = false;
+        i71Var2.setClipToPadding(false);
         this.d.setPadding(0, 0, 0, AndroidUtilities.dp(60.0f) + AndroidUtilities.navigationBarHeight);
         this.f12186c.addView(k0Var.G, z5.g());
         this.f12186c.addView(this.d, 0, z5.c(-1.0f, -1));
@@ -48,7 +48,7 @@ public final class e0 extends h0 {
         g6Var3 = ((h3) k0Var).resourcesProvider;
         r6.m(kVar2, 5, i12, g6Var3);
         org.telegram.ui.ActionBar.k kVar3 = this.f12184a;
-        int i13 = k6.f21590z8;
+        int i13 = k6.f21591z8;
         g6Var4 = ((h3) k0Var).resourcesProvider;
         r6.m(kVar3, 3, i13, g6Var4);
         org.telegram.ui.ActionBar.k kVar4 = this.f12184a;
@@ -60,7 +60,7 @@ public final class e0 extends h0 {
         }
         kVar4.setBackButtonImage(i11);
         org.telegram.ui.ActionBar.k kVar5 = this.f12184a;
-        int i14 = k6.f21573y8;
+        int i14 = k6.f21574y8;
         g6Var5 = ((h3) k0Var).resourcesProvider;
         r6.m(kVar5, 1, i14, g6Var5);
         this.f12184a.setTitle(LocaleController.getString(R.string.CommunityAddAChatToCommunity));

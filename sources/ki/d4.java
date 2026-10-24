@@ -10,7 +10,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.r11;
+import org.telegram.ui.Components.q11;
 public abstract class d4 {
     public static void A(java.util.ArrayList r31, java.util.ArrayList r32, java.util.Map r33) {
         throw new UnsupportedOperationException("Method not decompiled: ki.d4.A(java.util.ArrayList, java.util.ArrayList, java.util.Map):void");
@@ -374,9 +374,9 @@ public abstract class d4 {
                                         sb3.append(pageblockmap.zoom);
                                         sb3.append('\"');
                                     }
-                                    if (pageblockmap.f20563w != 0) {
+                                    if (pageblockmap.f20564w != 0) {
                                         sb3.append(" w=\"");
-                                        sb3.append(pageblockmap.f20563w);
+                                        sb3.append(pageblockmap.f20564w);
                                         sb3.append('\"');
                                     }
                                     if (pageblockmap.h != 0) {
@@ -1030,12 +1030,12 @@ public abstract class d4 {
             spannableStringBuilder.append((CharSequence) str);
             int length2 = spannableStringBuilder.length();
             if (j10 != 0) {
-                spannableStringBuilder.setSpan(new org.telegram.ui.Components.a6(j10, (Paint.FontMetricsInt) null), length, length2, 33);
+                spannableStringBuilder.setSpan(new org.telegram.ui.Components.y5(j10, (Paint.FontMetricsInt) null), length, length2, 33);
             }
             if (i10 != 0) {
                 ?? obj = new Object();
-                obj.f29754a = i10 & 114975;
-                spannableStringBuilder.setSpan(new r11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
+                obj.f29448a = i10 & 114975;
+                spannableStringBuilder.setSpan(new q11(obj, AndroidUtilities.dp(SharedConfig.fontSize)), length, length2, 33);
             }
             if (str2 != null) {
                 spannableStringBuilder.setSpan(e6.k(str2), length, length2, 33);

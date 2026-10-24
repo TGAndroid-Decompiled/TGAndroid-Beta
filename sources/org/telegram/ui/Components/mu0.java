@@ -1,79 +1,52 @@
 package org.telegram.ui.Components;
 
 import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class mu0 implements hg.z1, org.telegram.ui.Cells.z4 {
-    public final ou0 f28755a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.Utilities;
+public final class mu0 implements Runnable {
+    public final int f28698a;
+    public final nu0 f28699b;
+    public final String f28700c;
 
-    public mu0(ou0 ou0Var) {
-        this.f28755a = ou0Var;
+    public mu0(nu0 nu0Var, String str, int i10) {
+        this.f28698a = i10;
+        this.f28699b = nu0Var;
+        this.f28700c = str;
     }
 
     @Override
-    public a0.h G() {
-        return null;
-    }
-
-    @Override
-    public boolean O(int i10) {
-        return true;
-    }
-
-    @Override
-    public boolean c(org.telegram.ui.Cells.a5 a5Var, boolean z10) {
-        int intValue = ((Integer) a5Var.getTag()).intValue();
-        ou0 ou0Var = this.f28755a;
-        TLObject E = ou0Var.E(intValue);
-        if (E instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) E;
-            TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = new TLRPC.TL_chatChannelParticipant();
-            tL_chatChannelParticipant.channelParticipant = channelParticipant;
-            tL_chatChannelParticipant.user_id = MessageObject.getPeerId(channelParticipant.peer);
-            tL_chatChannelParticipant.inviter_id = channelParticipant.inviter_id;
-            tL_chatChannelParticipant.date = channelParticipant.date;
-            return ou0Var.f29319s.D1.h(tL_chatChannelParticipant, true, !z10, a5Var);
-        }
-        return false;
-    }
-
-    @Override
-    public void f(int i10) {
-        ou0 ou0Var = this.f28755a;
-        ou0Var.l();
-        if (i10 == 1) {
-            int i11 = ou0Var.f29318r - 1;
-            ou0Var.f29318r = i11;
-            if (i11 == 0) {
-                int i12 = 0;
-                while (true) {
-                    xv0 xv0Var = ou0Var.f29319s;
-                    qu0[] qu0VarArr = xv0Var.f32687k0;
-                    if (i12 < qu0VarArr.length) {
-                        qu0 qu0Var = qu0VarArr[i12];
-                        if (qu0Var.F == 7) {
-                            if (ou0Var.h == 0) {
-                                qu0Var.f30006w.e(false, true);
-                            } else {
-                                xv0Var.z(qu0Var.h, 0, null);
-                            }
-                        }
-                        i12++;
-                    } else {
-                        return;
-                    }
+    public final void run() {
+        long j10;
+        switch (this.f28698a) {
+            case 0:
+                nu0 nu0Var = this.f28699b;
+                String str = this.f28700c;
+                nu0Var.getClass();
+                AndroidUtilities.runOnUIThread(new mu0(nu0Var, str, 1));
+                return;
+            default:
+                nu0 nu0Var2 = this.f28699b;
+                String str2 = this.f28700c;
+                ArrayList arrayList = null;
+                nu0Var2.f29036f = null;
+                if (!ChatObject.isChannel(nu0Var2.f29037n) && nu0Var2.f29039s.f32369d1 != null) {
+                    arrayList = new ArrayList(nu0Var2.f29039s.f32369d1.participants.participants);
                 }
-            }
+                nu0Var2.f29038r = 2;
+                if (arrayList != null) {
+                    Utilities.searchQueue.postRunnable(new jg((Object) nu0Var2, (Object) str2, arrayList, 24));
+                } else {
+                    nu0Var2.f29038r = 1;
+                }
+                hg.a2 a2Var = nu0Var2.e;
+                if (ChatObject.isChannel(nu0Var2.f29037n)) {
+                    j10 = nu0Var2.f29037n.f20344id;
+                } else {
+                    j10 = 0;
+                }
+                a2Var.g(str2, false, false, true, false, j10, false, 2, 1);
+                return;
         }
-    }
-
-    @Override
-    public a0.h x() {
-        return null;
-    }
-
-    @Override
-    public void S(ArrayList arrayList) {
     }
 }

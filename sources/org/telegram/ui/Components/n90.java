@@ -1,40 +1,25 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.ViewTreeObserver;
-import android.widget.FrameLayout;
-import android.widget.PopupWindow;
-public final class n90 implements PopupWindow.OnDismissListener {
-    public final int f28902a;
-    public final FrameLayout f28903b;
-    public final View f28904c;
-    public final ViewTreeObserver.OnPreDrawListener d;
-    public final ViewGroup e;
+import org.telegram.messenger.AndroidUtilities;
+public final class n90 extends i9 {
+    public final ai.w1 e;
 
-    public n90(ViewGroup viewGroup, View view, FrameLayout frameLayout, ViewTreeObserver.OnPreDrawListener onPreDrawListener, int i10) {
-        this.f28902a = i10;
-        this.e = viewGroup;
-        this.f28904c = view;
-        this.f28903b = frameLayout;
-        this.d = onPreDrawListener;
+    public n90(ai.w1 w1Var, Context context) {
+        super(context, false);
+        this.e = w1Var;
     }
 
     @Override
-    public final void onDismiss() {
-        switch (this.f28902a) {
-            case 0:
-                ((r90) this.e).f30129s = null;
-                ei.g6 g6Var = (ei.g6) this.f28904c;
-                g6Var.animate().cancel();
-                g6Var.animate().alpha(0.0f).setDuration(150L).setListener(new i60(this, 4));
-                return;
-            default:
-                ((org.telegram.ui.mz) this.e).f37995x = null;
-                ei.g6 g6Var2 = (ei.g6) this.f28904c;
-                g6Var2.animate().cancel();
-                g6Var2.animate().alpha(0.0f).setDuration(150L).setListener(new p31(this, 27));
-                return;
+    public final void onMeasure(int i10, int i11) {
+        int v;
+        int min = Math.min(3, ((p90) this.e.d).f29523w);
+        if (min == 0) {
+            v = 0;
+        } else {
+            v = com.google.android.gms.internal.play_billing.k3.v(min, 1, 20, 32);
         }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(v), 1073741824), i11);
     }
 }

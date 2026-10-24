@@ -13,46 +13,29 @@ import org.telegram.messenger.ImageLoader;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ai1;
-public final class mp implements ri {
-    public final ti f28732a;
-    public final TL_stories.TL_premium_boostsStatus f28733b;
-    public final org.telegram.ui.ActionBar.g6 f28734c;
-    public final org.telegram.ui.f d;
-    public final long e;
-    public final org.telegram.ui.fc f28735f;
-    public final org.telegram.ui.bd h;
+import org.telegram.ui.zh1;
+public final class mp implements pi {
+    public final up f28665a;
 
-    public mp(ti tiVar, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.f fVar, long j10, org.telegram.ui.fc fcVar, org.telegram.ui.bd bdVar) {
-        this.f28732a = tiVar;
-        this.f28733b = tL_premium_boostsStatus;
-        this.f28734c = g6Var;
-        this.d = fVar;
-        this.e = j10;
-        this.f28735f = fcVar;
-        this.h = bdVar;
+    public mp(up upVar) {
+        this.f28665a = upVar;
     }
 
     @Override
     public final void O(Object obj) {
-        lp lpVar = new lp(obj, null, true, 1);
-        lpVar.W1 = this.f28733b;
-        lpVar.f40713a.f40691a = this.f28734c;
-        lpVar.f40759q1 = this.d;
-        lpVar.c1(this.e);
-        lpVar.J1 = new kp(this.f28732a, this.f28735f, 1);
-        ?? obj2 = new Object();
-        obj2.f21636a = true;
-        obj2.e = true;
-        this.h.showAsSheet(lpVar, obj2);
+        jp jpVar = new jp(obj, null, true, 3);
+        up upVar = this.f28665a;
+        jpVar.W1 = upVar.f31180e0;
+        jpVar.c1(upVar.v.a());
+        jpVar.J1 = new lp(this, 1);
+        up.r(upVar, jpVar);
     }
 
     @Override
     public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        ti tiVar = this.f28732a;
+        up upVar = this.f28665a;
         try {
-            HashMap<Object, Object> selectedPhotos = tiVar.f30742j0.getSelectedPhotos();
+            HashMap<Object, Object> selectedPhotos = upVar.X.f30158j0.getSelectedPhotos();
             if (!selectedPhotos.isEmpty()) {
                 MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.values().iterator().next();
                 String str = photoEntry.imagePath;
@@ -65,20 +48,14 @@ public final class mp implements ri {
                     Point realScreenSize = AndroidUtilities.getRealScreenSize();
                     Bitmap loadBitmap = ImageLoader.loadBitmap(str, null, (float) realScreenSize.x, (float) realScreenSize.y, true);
                     loadBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(file));
-                    lp lpVar = new lp(new ai1(file, file, ""), loadBitmap, false, 0);
-                    lpVar.W1 = this.f28733b;
-                    lpVar.f40713a.f40691a = this.f28734c;
-                    lpVar.f40759q1 = this.d;
-                    lpVar.G1 = false;
-                    lpVar.F1 = false;
-                    lpVar.f40755o1 = 0.2f;
-                    lpVar.c1(this.e);
-                    lpVar.J1 = new kp(tiVar, this.f28735f, 0);
-                    ?? obj = new Object();
-                    obj.f21636a = true;
-                    obj.e = true;
-                    this.h.showAsSheet(lpVar, obj);
-                    tiVar.dismiss();
+                    jp jpVar = new jp(new zh1(file, file, ""), loadBitmap, false, 2);
+                    jpVar.W1 = upVar.f31180e0;
+                    jpVar.G1 = false;
+                    jpVar.F1 = false;
+                    jpVar.f40484o1 = 0.2f;
+                    jpVar.c1(upVar.v.a());
+                    jpVar.J1 = new lp(this, 0);
+                    up.r(upVar, jpVar);
                 }
             }
         } catch (Throwable th2) {
@@ -93,8 +70,8 @@ public final class mp implements ri {
     }
 
     @Override
-    public final void r(gh ghVar) {
-        ghVar.run();
+    public final void r(eh ehVar) {
+        ehVar.run();
     }
 
     @Override

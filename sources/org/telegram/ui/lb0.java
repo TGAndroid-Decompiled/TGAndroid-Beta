@@ -29,22 +29,22 @@ public final class lb0 extends p60 {
                 i10++;
                 groupCall = ((TL_update.TL_updateGroupCall) obj).call;
             }
-            if (LaunchActivity.J1 != null && groupCall != null) {
+            if (LaunchActivity.I1 != null && groupCall != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                tL_inputGroupCall.f20360id = groupCall.f20353id;
+                tL_inputGroupCall.f20361id = groupCall.f20354id;
                 tL_inputGroupCall.access_hash = groupCall.access_hash;
-                org.telegram.ui.Components.voip.d2.g(LaunchActivity.J1, lb0Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
+                org.telegram.ui.Components.voip.d2.g(LaunchActivity.I1, lb0Var.currentAccount, tL_inputGroupCall, false, groupCall, hashSet);
             }
         } else if (tLObject instanceof TL_phone.groupCall) {
             TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject;
             MessagesController.getInstance(lb0Var.currentAccount).putUsers(groupcall.users, false);
             MessagesController.getInstance(lb0Var.currentAccount).putChats(groupcall.chats, false);
-            if (LaunchActivity.J1 != null) {
+            if (LaunchActivity.I1 != null) {
                 TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                 TLRPC.GroupCall groupCall2 = groupcall.call;
-                tL_inputGroupCall2.f20360id = groupCall2.f20353id;
+                tL_inputGroupCall2.f20361id = groupCall2.f20354id;
                 tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                org.telegram.ui.Components.voip.d2.g(LaunchActivity.J1, lb0Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
+                org.telegram.ui.Components.voip.d2.g(LaunchActivity.I1, lb0Var.currentAccount, tL_inputGroupCall2, false, groupCall2, hashSet);
             }
         } else if (tL_error != null) {
             ob0.d().f0(tL_error, false);
@@ -55,10 +55,10 @@ public final class lb0 extends p60 {
     public final void n0(HashSet hashSet) {
         if (hashSet.size() == 1) {
             TLRPC.User user = getMessagesController().getUser((Long) hashSet.iterator().next());
-            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f20490id);
+            TLRPC.UserFull userFull = getMessagesController().getUserFull(user.f20491id);
             if (userFull == null) {
                 TLRPC.TL_users_getFullUser tL_users_getFullUser = new TLRPC.TL_users_getFullUser();
-                tL_users_getFullUser.f20483id = getMessagesController().getInputUser(user.f20490id);
+                tL_users_getFullUser.f20484id = getMessagesController().getInputUser(user.f20491id);
                 getConnectionsManager().sendRequest(tL_users_getFullUser, new a50(6, this, user));
                 return;
             }

@@ -1,35 +1,34 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class h51 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f37754a;
-    public final k51 f37755b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class h51 extends AnimatorListenerAdapter {
+    public final int f37759a;
+    public final j51 f37760b;
 
-    public h51(k51 k51Var, int i10) {
-        this.f37754a = i10;
-        this.f37755b = k51Var;
+    public h51(j51 j51Var, int i10) {
+        this.f37759a = i10;
+        this.f37760b = j51Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f37754a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f37759a) {
             case 0:
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k51 k51Var = this.f37755b;
-                k51Var.N = floatValue;
-                k51Var.V.f35905h0.invalidate();
+                super.onAnimationEnd(animator);
+                this.f37760b.I = null;
                 return;
             case 1:
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k51 k51Var2 = this.f37755b;
-                k51Var2.N = floatValue2;
-                k51Var2.V.f35905h0.invalidate();
+                super.onAnimationEnd(animator);
+                this.f37760b.I = null;
                 return;
             default:
-                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                k51 k51Var3 = this.f37755b;
-                k51Var3.N = floatValue3;
-                k51Var3.V.f35905h0.invalidate();
+                super.onAnimationEnd(animator);
+                j51 j51Var = this.f37760b;
+                j51Var.N = 0.0f;
+                j51Var.I = null;
+                j51Var.M = false;
+                j51Var.d(true, false);
                 return;
         }
     }

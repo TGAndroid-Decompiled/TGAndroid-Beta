@@ -32,18 +32,18 @@ import org.telegram.messenger.voip.VoIPService;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.hw0;
-import org.telegram.ui.Components.rc;
-import org.telegram.ui.Components.ud0;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.gw0;
+import org.telegram.ui.Components.pc;
+import org.telegram.ui.Components.sd0;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.zr;
 import org.webrtc.RendererCommon;
 import w7.z5;
 public final class h1 implements NotificationCenter.NotificationCenterDelegate, tf.a {
-    public static final hw0 f31624b0 = new hw0(new ud0(24), new ud0(25));
-    public static final hw0 f31625c0 = new hw0(new ud0(26), new ud0(27));
-    public static final h1 f31626d0;
+    public static final gw0 f31594b0 = new gw0(new sd0(24), new sd0(25));
+    public static final gw0 f31595c0 = new gw0(new sd0(26), new sd0(27));
+    public static final h1 f31596d0;
     public AccountInstance E;
     public ScaleGestureDetector F;
     public le.b G;
@@ -66,37 +66,37 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
     public ki.u X;
     public com.google.android.gms.internal.cast.p Y;
     public q2 Z;
-    public float f31627a;
-    public boolean f31628a0;
-    public WindowManager f31629b;
-    public WindowManager.LayoutParams f31630c;
+    public float f31597a;
+    public boolean f31598a0;
+    public WindowManager f31599b;
+    public WindowManager.LayoutParams f31600c;
     public org.telegram.ui.e d;
     public ah.v e;
-    public q2 f31631f;
+    public q2 f31601f;
     public FrameLayout h;
-    public h f31632n;
-    public w9 f31633r;
-    public jc f31634s;
+    public h f31602n;
+    public u9 f31603r;
+    public jc f31604s;
     public TLRPC.GroupCallParticipant v;
-    public boolean f31635w;
-    public boolean f31636x;
-    public boolean f31637y;
+    public boolean f31605w;
+    public boolean f31606x;
+    public boolean f31607y;
 
     static {
         ?? obj = new Object();
-        obj.f31627a = 1.4f;
-        obj.f31632n = new h();
-        obj.f31635w = true;
+        obj.f31597a = 1.4f;
+        obj.f31602n = new h();
+        obj.f31605w = true;
         obj.P = 1.0f;
         obj.X = new ki.u(obj, 14);
-        f31626d0 = obj;
+        f31596d0 = obj;
     }
 
     public static void j() {
-        h1 h1Var = f31626d0;
+        h1 h1Var = f31596d0;
         if (h1Var.V) {
             h1Var.V = false;
-            AndroidUtilities.runOnUIThread(new rc(20), 100L);
+            AndroidUtilities.runOnUIThread(new pc(20), 100L);
             h1Var.E.getNotificationCenter().removeObserver(h1Var, NotificationCenter.groupCallUpdated);
             h1Var.E.getNotificationCenter().removeObserver(h1Var, NotificationCenter.applyGroupCallVisibleParticipants);
             NotificationCenter.getGlobalInstance().removeObserver(h1Var, NotificationCenter.didEndCall);
@@ -110,7 +110,7 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             }
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(bs.f25133f);
+            animatorSet.setInterpolator(zr.f33337f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(h1Var.d, View.ALPHA, 0.0f), ObjectAnimator.ofFloat(h1Var.d, View.SCALE_X, 0.1f), ObjectAnimator.ofFloat(h1Var.d, View.SCALE_Y, 0.1f));
             animatorSet.addListener(new e1(h1Var));
             animatorSet.start();
@@ -124,7 +124,7 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
 
     public static void n(Activity activity) {
         Activity activity2;
-        h1 h1Var = f31626d0;
+        h1 h1Var = f31596d0;
         h1Var.getClass();
         if (VoIPService.getSharedInstance() != null && VoIPService.getSharedInstance().groupCall != null && !h1Var.V) {
             h1Var.V = true;
@@ -137,13 +137,13 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             h1Var.N = h1Var.l();
             h1Var.P = 1.0f;
             h1Var.K = false;
-            o1.k kVar = new o1.k(h1Var, f31624b0);
+            o1.k kVar = new o1.k(h1Var, f31594b0);
             o1.l lVar = new o1.l();
             lVar.a(0.75f);
             lVar.b(650.0f);
             kVar.f17622u = lVar;
             h1Var.S = kVar;
-            o1.k kVar2 = new o1.k(h1Var, f31625c0);
+            o1.k kVar2 = new o1.k(h1Var, f31595c0);
             o1.l lVar2 = new o1.l();
             lVar2.a(0.75f);
             lVar2.b(650.0f);
@@ -166,21 +166,21 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             eVar.addView(h1Var.e, z5.c(-1.0f, -1));
             h1Var.e.setOutlineProvider(new ci.n1(17));
             h1Var.e.setClipToOutline(true);
-            r6.i(k6.f21246gg, h1Var.e, null);
-            w9 w9Var = new w9(activity2);
-            h1Var.f31633r = w9Var;
-            h1Var.e.addView(w9Var, z5.c(-1.0f, -1));
+            r6.i(k6.f21247gg, h1Var.e, null);
+            u9 u9Var = new u9(activity2);
+            h1Var.f31603r = u9Var;
+            h1Var.e.addView(u9Var, z5.c(-1.0f, -1));
             q2 q2Var = new q2(activity2, false, false, false, false);
-            h1Var.f31631f = q2Var;
+            h1Var.f31601f = q2Var;
             q2Var.setAlpha(0.0f);
-            h1Var.f31631f.d.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
-            q2 q2Var2 = h1Var.f31631f;
-            q2Var2.f31830a0 = 0;
+            h1Var.f31601f.d.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
+            q2 q2Var2 = h1Var.f31601f;
+            q2Var2.f31800a0 = 0;
             q2Var2.d.setRotateTextureWithScreen(true);
-            h1Var.f31631f.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new g1(h1Var));
-            h1Var.e.addView(h1Var.f31631f, z5.c(-1.0f, -1));
+            h1Var.f31601f.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new g1(h1Var));
+            h1Var.e.addView(h1Var.f31601f, z5.c(-1.0f, -1));
             jc jcVar = new jc(h1Var, activity2, 27);
-            h1Var.f31634s = jcVar;
+            h1Var.f31604s = jcVar;
             h1Var.e.addView(jcVar, z5.c(-1.0f, -1));
             FrameLayout frameLayout = new FrameLayout(activity2);
             h1Var.h = frameLayout;
@@ -194,10 +194,10 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             int dp = AndroidUtilities.dp(8.0f);
             ImageView imageView = new ImageView(activity2);
             imageView.setImageResource(R.drawable.pip_video_close);
-            int i10 = k6.f21262hg;
+            int i10 = k6.f21263hg;
             PorterDuff.Mode mode = PorterDuff.Mode.SRC_ATOP;
             r6.t(imageView, i10, null, mode);
-            int i11 = k6.f21272i6;
+            int i11 = k6.f21273i6;
             imageView.setBackground(k6.g0(k6.x0(null, i11, false), 1, -1));
             imageView.setPadding(dp, dp, dp, dp);
             imageView.setOnClickListener(new ah.f(15));
@@ -212,30 +212,30 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             imageView2.setOnClickListener(new hg.r0(activity2, 14));
             h1Var.h.addView(imageView2, z5.d(38, f7, 5, 0.0f, f10, 48, 0.0f));
             h1Var.e.addView(h1Var.h, z5.c(-1.0f, -1));
-            h1Var.f31629b = (WindowManager) activity2.getSystemService("window");
+            h1Var.f31599b = (WindowManager) activity2.getSystemService("window");
             WindowManager.LayoutParams b10 = uf.b.b(activity2, false);
-            h1Var.f31630c = b10;
+            h1Var.f31600c = b10;
             int i12 = h1Var.M;
             b10.width = i12;
             b10.height = h1Var.N;
             float dp2 = (AndroidUtilities.displaySize.x - i12) - AndroidUtilities.dp(16.0f);
             h1Var.Q = dp2;
             b10.x = (int) dp2;
-            WindowManager.LayoutParams layoutParams = h1Var.f31630c;
+            WindowManager.LayoutParams layoutParams = h1Var.f31600c;
             float dp3 = (AndroidUtilities.displaySize.y - h1Var.N) - AndroidUtilities.dp(16.0f);
             h1Var.R = dp3;
             layoutParams.y = (int) dp3;
-            WindowManager.LayoutParams layoutParams2 = h1Var.f31630c;
+            WindowManager.LayoutParams layoutParams2 = h1Var.f31600c;
             layoutParams2.dimAmount = 0.0f;
             layoutParams2.flags = 520;
             h1Var.d.setAlpha(0.0f);
             h1Var.d.setScaleX(0.1f);
             h1Var.d.setScaleY(0.1f);
-            AndroidUtilities.setPreferredMaxRefreshRate(h1Var.f31629b, h1Var.d, h1Var.f31630c);
-            h1Var.f31629b.addView(h1Var.d, h1Var.f31630c);
+            AndroidUtilities.setPreferredMaxRefreshRate(h1Var.f31599b, h1Var.d, h1Var.f31600c);
+            h1Var.f31599b.addView(h1Var.d, h1Var.f31600c);
             AnimatorSet animatorSet = new AnimatorSet();
             animatorSet.setDuration(250L);
-            animatorSet.setInterpolator(bs.f25133f);
+            animatorSet.setInterpolator(zr.f33337f);
             animatorSet.playTogether(ObjectAnimator.ofFloat(h1Var.d, View.ALPHA, 1.0f), ObjectAnimator.ofFloat(h1Var.d, View.SCALE_X, 1.0f), ObjectAnimator.ofFloat(h1Var.d, View.SCALE_Y, 1.0f));
             animatorSet.addListener(new c1(h1Var, 0));
             animatorSet.start();
@@ -248,11 +248,11 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             }
             if (activity != null && uf.b.a(activity) == 1) {
                 rf.c cVar = new rf.c(activity, h1Var);
-                cVar.f45679c = "pip-rtmp-video";
+                cVar.f45678c = "pip-rtmp-video";
                 cVar.e = 1;
                 cVar.d = AndroidUtilities.dp(10.0f);
-                cVar.f45683j = h1Var.d;
-                cVar.f45684k = h1Var.f31631f.getPlaceholderView();
+                cVar.f45682j = h1Var.d;
+                cVar.f45683k = h1Var.f31601f.getPlaceholderView();
                 h1Var.O = cVar.a();
             }
         }
@@ -261,13 +261,13 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
     @Override
     public final void a(com.google.android.gms.internal.cast.p pVar) {
         this.Y = pVar;
-        q2 q2Var = this.f31631f;
+        q2 q2Var = this.f31601f;
         if (q2Var != null) {
             q2Var.d.clearFirstFrame();
         }
         i(true);
-        this.f31628a0 = true;
-        this.f31629b.removeView(this.d);
+        this.f31598a0 = true;
+        this.f31599b.removeView(this.d);
         this.d.invalidate();
     }
 
@@ -276,17 +276,17 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
         this.Y = pVar;
         rf.d dVar = this.O;
         if (dVar != null && dVar.h.c()) {
-            WindowManager.LayoutParams layoutParams = this.f31630c;
+            WindowManager.LayoutParams layoutParams = this.f31600c;
             int width = ((Rect) this.O.h.f14802a).width();
             this.M = width;
             layoutParams.width = width;
-            WindowManager.LayoutParams layoutParams2 = this.f31630c;
+            WindowManager.LayoutParams layoutParams2 = this.f31600c;
             int height = ((Rect) this.O.h.f14802a).height();
             this.N = height;
             layoutParams2.height = height;
         }
-        this.f31628a0 = false;
-        this.f31629b.addView(this.d, this.f31630c);
+        this.f31598a0 = false;
+        this.f31599b.addView(this.d, this.f31600c);
         this.d.invalidate();
         q2 q2Var = this.Z;
         if (q2Var != null) {
@@ -316,9 +316,9 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
 
     @Override
     public final Bitmap e() {
-        q2 q2Var = this.f31631f;
+        q2 q2Var = this.f31601f;
         if (q2Var != null && q2Var.d.isAvailable()) {
-            return this.f31631f.d.getBitmap();
+            return this.f31601f.d.getBitmap();
         }
         return null;
     }
@@ -330,12 +330,12 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
 
     @Override
     public final View h() {
-        q2 q2Var = new q2(this.f31631f.getContext(), false, false, false, false);
+        q2 q2Var = new q2(this.f31601f.getContext(), false, false, false, false);
         this.Z = q2Var;
         q2Var.d.setOpaque(false);
         this.Z.d.setScalingType(RendererCommon.ScalingType.SCALE_ASPECT_FILL);
         q2 q2Var2 = this.Z;
-        q2Var2.f31830a0 = 0;
+        q2Var2.f31800a0 = 0;
         q2Var2.d.setRotateTextureWithScreen(true);
         this.Z.d.init(VideoCapturerDevice.getEglBase().getEglBaseContext(), new d1(this));
         View view = this.Z.h;
@@ -362,22 +362,22 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             TLRPC.GroupCallParticipant groupCallParticipant3 = VoIPService.getSharedInstance().groupCall.visibleVideoParticipants.get(0).participant;
             if (z10 || (groupCallParticipant2 = this.v) == null || MessageObject.getPeerId(groupCallParticipant2.peer) != MessageObject.getPeerId(groupCallParticipant3.peer)) {
                 if (this.v != null) {
-                    VoIPService.getSharedInstance().removeRemoteSink(this.v, this.f31637y);
+                    VoIPService.getSharedInstance().removeRemoteSink(this.v, this.f31607y);
                 }
                 q2 q2Var = this.Z;
                 if (q2Var == null) {
-                    q2Var = this.f31631f;
+                    q2Var = this.f31601f;
                 }
                 if (groupCallParticipant3.presentation != null) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                this.f31637y = z11;
+                this.f31607y = z11;
                 if (groupCallParticipant3.self) {
-                    VoIPService.getSharedInstance().setSinks(q2Var.d, this.f31637y, null);
+                    VoIPService.getSharedInstance().setSinks(q2Var.d, this.f31607y, null);
                 } else {
-                    VoIPService.getSharedInstance().addRemoteSink(groupCallParticipant3, this.f31637y, q2Var.d, null);
+                    VoIPService.getSharedInstance().addRemoteSink(groupCallParticipant3, this.f31607y, q2Var.d, null);
                 }
                 AccountInstance accountInstance = VoIPService.getSharedInstance().groupCall.currentAccount;
                 MessagesController messagesController = accountInstance.getMessagesController();
@@ -386,20 +386,20 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
                     TLRPC.User user = messagesController.getUser(Long.valueOf(peerId));
                     ImageLocation forUser = ImageLocation.getForUser(accountInstance.getCurrentAccount(), user, 1);
                     if (user != null) {
-                        f13 = h9.d(user.f20490id);
+                        f13 = f9.d(user.f20491id);
                     } else {
                         f13 = i0.a.f(0.2f, -16777216, -1);
                     }
-                    this.f31633r.getImageReceiver().setImage(forUser, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f13, -16777216), i0.a.f(0.4f, f13, -16777216)}), null, user, 0);
+                    this.f31603r.getImageReceiver().setImage(forUser, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f13, -16777216), i0.a.f(0.4f, f13, -16777216)}), null, user, 0);
                 } else {
                     TLRPC.Chat chat = messagesController.getChat(Long.valueOf(-peerId));
                     ImageLocation forChat = ImageLocation.getForChat(accountInstance.getCurrentAccount(), chat, 1);
                     if (chat != null) {
-                        f12 = h9.d(chat.f20343id);
+                        f12 = f9.d(chat.f20344id);
                     } else {
                         f12 = i0.a.f(0.2f, -16777216, -1);
                     }
-                    this.f31633r.getImageReceiver().setImage(forChat, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f12, -16777216), i0.a.f(0.4f, f12, -16777216)}), null, chat, 0);
+                    this.f31603r.getImageReceiver().setImage(forChat, "50_50_b", new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, new int[]{i0.a.f(0.2f, f12, -16777216), i0.a.f(0.4f, f12, -16777216)}), null, chat, 0);
                 }
                 this.v = groupCallParticipant3;
             }
@@ -409,12 +409,12 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
             }
             this.v = null;
         }
-        if (!this.f31636x || (groupCallParticipant = this.v) == null || (((tL_groupCallParticipantVideo = groupCallParticipant.video) == null && groupCallParticipant.presentation == null) || ((tL_groupCallParticipantVideo != null && tL_groupCallParticipantVideo.paused) || ((tL_groupCallParticipantVideo2 = groupCallParticipant.presentation) != null && tL_groupCallParticipantVideo2.paused)))) {
+        if (!this.f31606x || (groupCallParticipant = this.v) == null || (((tL_groupCallParticipantVideo = groupCallParticipant.video) == null && groupCallParticipant.presentation == null) || ((tL_groupCallParticipantVideo != null && tL_groupCallParticipantVideo.paused) || ((tL_groupCallParticipantVideo2 = groupCallParticipant.presentation) != null && tL_groupCallParticipantVideo2.paused)))) {
             z12 = true;
         }
-        if (this.f31635w != z12) {
-            this.f31634s.animate().cancel();
-            ViewPropertyAnimator animate = this.f31634s.animate();
+        if (this.f31605w != z12) {
+            this.f31604s.animate().cancel();
+            ViewPropertyAnimator animate = this.f31604s.animate();
             float f14 = 0.0f;
             if (z12) {
                 f10 = 1.0f;
@@ -422,36 +422,36 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
                 f10 = 0.0f;
             }
             ViewPropertyAnimator duration = animate.alpha(f10).setDuration(150L);
-            bs bsVar = bs.f25133f;
-            duration.setInterpolator(bsVar).start();
-            this.f31633r.animate().cancel();
-            ViewPropertyAnimator animate2 = this.f31633r.animate();
+            zr zrVar = zr.f33337f;
+            duration.setInterpolator(zrVar).start();
+            this.f31603r.animate().cancel();
+            ViewPropertyAnimator animate2 = this.f31603r.animate();
             if (z12) {
                 f11 = 1.0f;
             } else {
                 f11 = 0.0f;
             }
-            animate2.alpha(f11).setDuration(150L).setInterpolator(bsVar).start();
-            this.f31631f.animate().cancel();
-            ViewPropertyAnimator animate3 = this.f31631f.animate();
+            animate2.alpha(f11).setDuration(150L).setInterpolator(zrVar).start();
+            this.f31601f.animate().cancel();
+            ViewPropertyAnimator animate3 = this.f31601f.animate();
             if (!z12) {
                 f14 = 1.0f;
             }
-            animate3.alpha(f14).setDuration(150L).setInterpolator(bsVar).start();
-            this.f31635w = z12;
+            animate3.alpha(f14).setDuration(150L).setInterpolator(zrVar).start();
+            this.f31605w = z12;
         }
         if (this.M == m() * this.P && this.N == l() * this.P) {
             return;
         }
-        WindowManager.LayoutParams layoutParams = this.f31630c;
+        WindowManager.LayoutParams layoutParams = this.f31600c;
         int m10 = (int) (m() * this.P);
         this.M = m10;
         layoutParams.width = m10;
-        WindowManager.LayoutParams layoutParams2 = this.f31630c;
+        WindowManager.LayoutParams layoutParams2 = this.f31600c;
         int l4 = (int) (l() * this.P);
         this.N = l4;
         layoutParams2.height = l4;
-        AndroidUtilities.updateViewLayout(this.f31629b, this.d, this.f31630c);
+        AndroidUtilities.updateViewLayout(this.f31599b, this.d, this.f31600c);
         o1.k kVar = this.S;
         float f15 = this.Q;
         kVar.f17613b = f15;
@@ -482,13 +482,13 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
                     f7 = 1.0f / f10;
                     this.U = Float.valueOf(f7);
                     Point point = AndroidUtilities.displaySize;
-                    this.f31627a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / m();
+                    this.f31597a = (Math.min(point.x, point.y) - AndroidUtilities.dp(32.0f)) / m();
                 }
             }
             f7 = 0.5625f;
             this.U = Float.valueOf(f7);
             Point point2 = AndroidUtilities.displaySize;
-            this.f31627a = (Math.min(point2.x, point2.y) - AndroidUtilities.dp(32.0f)) / m();
+            this.f31597a = (Math.min(point2.x, point2.y) - AndroidUtilities.dp(32.0f)) / m();
         }
         return this.U.floatValue();
     }
@@ -525,7 +525,7 @@ public final class h1 implements NotificationCenter.NotificationCenterDelegate, 
         }
         ValueAnimator duration = ValueAnimator.ofFloat(f7, f10).setDuration(200L);
         this.L = duration;
-        duration.setInterpolator(bs.f25133f);
+        duration.setInterpolator(zr.f33337f);
         this.L.addUpdateListener(new i6(this, 10));
         this.L.addListener(new c1(this, 1));
         this.L.start();

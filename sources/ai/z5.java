@@ -6,11 +6,11 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class z5 extends View {
     public final Paint f2541a;
-    public final org.telegram.ui.Components.f6 f2542b;
-    public final org.telegram.ui.Components.f6 f2543c;
+    public final org.telegram.ui.Components.d6 f2542b;
+    public final org.telegram.ui.Components.d6 f2543c;
     public float d;
     public float e;
 
@@ -19,9 +19,9 @@ public final class z5 extends View {
         Paint paint = new Paint(1);
         this.f2541a = paint;
         a3.d dVar = new a3.d(this, 17);
-        bs bsVar = bs.h;
-        this.f2542b = new org.telegram.ui.Components.f6(dVar, 420L, bsVar, 0);
-        this.f2543c = new org.telegram.ui.Components.f6(new a3.d(this, 17), 420L, bsVar, 0);
+        zr zrVar = zr.h;
+        this.f2542b = new org.telegram.ui.Components.d6(dVar, 420L, zrVar, 0);
+        this.f2543c = new org.telegram.ui.Components.d6(new a3.d(this, 17), 420L, zrVar, 0);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);

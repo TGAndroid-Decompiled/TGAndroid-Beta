@@ -15,31 +15,31 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UnconfirmedAuthController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.vq;
 import org.telegram.ui.ey;
 import org.telegram.ui.sn;
 public final class ra implements View.OnClickListener {
-    public final int f23121a = 0;
-    public final boolean f23122b;
-    public final int f23123c;
+    public final int f23122a = 0;
+    public final boolean f23123b;
+    public final int f23124c;
     public final org.telegram.ui.ActionBar.o2 d;
     public final Serializable e;
 
     public ra(sn snVar, TLRPC.User user, String str, boolean z10, int i10) {
         this.d = snVar;
         this.e = str;
-        this.f23122b = z10;
-        this.f23123c = i10;
+        this.f23123b = z10;
+        this.f23124c = i10;
     }
 
     @Override
     public final void onClick(View view) {
         int i10;
         int i11;
-        int i12 = this.f23121a;
-        int i13 = this.f23123c;
-        boolean z10 = this.f23122b;
+        int i12 = this.f23122a;
+        int i13 = this.f23124c;
+        boolean z10 = this.f23123b;
         Serializable serializable = this.e;
         org.telegram.ui.ActionBar.o2 o2Var = this.d;
         switch (i12) {
@@ -50,13 +50,13 @@ public final class ra implements View.OnClickListener {
                 int i14 = org.telegram.ui.ActionBar.k6.Gi;
                 SpannableStringBuilder replaceSingleTag = AndroidUtilities.replaceSingleTag(string, i14, 0, new g(eyVar, 10));
                 SpannableString spannableString = new SpannableString(">");
-                xq xqVar = new xq(R.drawable.attach_arrow_right, 0);
-                xqVar.setOverrideColor(org.telegram.ui.ActionBar.k6.x0(null, i14, false));
-                xqVar.setScale(0.7f, 0.7f);
-                xqVar.setWidth(AndroidUtilities.dp(12.0f));
-                spannableString.setSpan(xqVar, 0, spannableString.length(), 33);
+                vq vqVar = new vq(R.drawable.attach_arrow_right, 0);
+                vqVar.setOverrideColor(org.telegram.ui.ActionBar.k6.x0(null, i14, false));
+                vqVar.setScale(0.7f, 0.7f);
+                vqVar.setWidth(AndroidUtilities.dp(12.0f));
+                spannableString.setSpan(vqVar, 0, spannableString.length(), 33);
                 AndroidUtilities.replaceCharSequence(">", replaceSingleTag, spannableString);
-                xc a02 = xc.a0(eyVar);
+                vc a02 = vc.a0(eyVar);
                 int i15 = R.raw.contact_check;
                 if (z10) {
                     i10 = R.string.UnconfirmedAuthConfirmedBot;
@@ -70,7 +70,7 @@ public final class ra implements View.OnClickListener {
             default:
                 sn snVar = (sn) o2Var;
                 String str = (String) serializable;
-                Pattern pattern = org.telegram.ui.Components.f5.f26167a;
+                Pattern pattern = org.telegram.ui.Components.d5.f25562a;
                 if (snVar.getParentActivity() != null) {
                     org.telegram.ui.ActionBar.h3 h3Var = new org.telegram.ui.ActionBar.h3(1, (Context) snVar.getParentActivity(), (org.telegram.ui.ActionBar.g6) null, false);
                     h3Var.fixNavigationBar();
@@ -108,7 +108,7 @@ public final class ra implements View.OnClickListener {
                     linearLayout.addView(textView2, w7.z5.t(-1, 48, 0, 16, 12, 16, 8));
                     h3Var.customView = linearLayout;
                     h3Var.show();
-                    textView2.setOnClickListener(new org.telegram.ui.Components.e3(h3Var, 0));
+                    textView2.setOnClickListener(new org.telegram.ui.Components.d3(h3Var, 0));
                     return;
                 }
                 return;
@@ -117,8 +117,8 @@ public final class ra implements View.OnClickListener {
 
     public ra(ey eyVar, boolean z10, int i10, ArrayList arrayList) {
         this.d = eyVar;
-        this.f23122b = z10;
-        this.f23123c = i10;
+        this.f23123b = z10;
+        this.f23124c = i10;
         this.e = arrayList;
     }
 }

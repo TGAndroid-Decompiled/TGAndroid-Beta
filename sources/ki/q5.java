@@ -15,11 +15,11 @@ import java.util.LinkedHashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class q5 extends ViewGroup {
     public final RectF E;
     public final Path F;
-    public final org.telegram.ui.Components.f6 G;
+    public final org.telegram.ui.Components.d6 G;
     public int H;
     public boolean I;
     public boolean J;
@@ -72,7 +72,7 @@ public final class q5 extends ViewGroup {
         paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
         paint2.setStrokeJoin(Paint.Join.ROUND);
         paint2.setStrokeCap(Paint.Cap.ROUND);
-        this.G = new org.telegram.ui.Components.f6(this, 0L, 220L, bs.h);
+        this.G = new org.telegram.ui.Components.d6(this, 0L, 220L, zr.h);
         b();
     }
 
@@ -126,14 +126,14 @@ public final class q5 extends ViewGroup {
     }
 
     public final void b() {
-        int i10 = k6.f21431qh;
+        int i10 = k6.f21432qh;
         org.telegram.ui.ActionBar.g6 g6Var = this.f15527b;
         this.f15530n.setColor(k6.w0(i10, g6Var));
         int w02 = k6.w0(k6.M6, g6Var);
         int red = Color.red(w02);
         int green = Color.green(w02);
         int blue = Color.blue(w02);
-        this.f15531r.setColor(k6.w0(k6.f21412ph, g6Var));
+        this.f15531r.setColor(k6.w0(k6.f21413ph, g6Var));
         this.f15532s.setColor(Color.argb(20, red, green, blue));
         this.H = 255;
         int i11 = k6.Oh;

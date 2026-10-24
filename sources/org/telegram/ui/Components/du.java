@@ -1,25 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import org.telegram.messenger.Utilities;
-public final class du implements Utilities.Callback {
-    public final iu f25732a;
-    public final int f25733b;
-    public final int f25734c;
+import android.view.ActionMode;
+import android.view.Menu;
+import android.view.MenuItem;
+public final class du implements ActionMode.Callback {
+    public final ActionMode.Callback f25837a;
+    public final gu f25838b;
 
-    public du(iu iuVar, int i10, int i11) {
-        this.f25732a = iuVar;
-        this.f25733b = i10;
-        this.f25734c = i11;
+    public du(gu guVar, ActionMode.Callback callback) {
+        this.f25838b = guVar;
+        this.f25837a = callback;
     }
 
     @Override
-    public final void run(Object obj) {
-        CharSequence charSequence = (CharSequence) obj;
-        iu iuVar = this.f25732a;
-        Editable text = iuVar.getText();
-        int i10 = this.f25733b;
-        text.replace(i10, this.f25734c, charSequence);
-        iuVar.setSelection(i10, charSequence.length() + i10);
+    public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
+        if (this.f25838b.performMenuAction(menuItem.getItemId())) {
+            actionMode.finish();
+            return true;
+        }
+        try {
+            return this.f25837a.onActionItemClicked(actionMode, menuItem);
+        } catch (Exception unused) {
+            return true;
+        }
+    }
+
+    @Override
+    public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
+        gu guVar = this.f25838b;
+        guVar.copyPasteShowed = true;
+        guVar.onContextMenuOpen();
+        return this.f25837a.onCreateActionMode(actionMode, menu);
+    }
+
+    @Override
+    public final void onDestroyActionMode(ActionMode actionMode) {
+        gu guVar = this.f25838b;
+        guVar.copyPasteShowed = false;
+        guVar.onContextMenuClose();
+        this.f25837a.onDestroyActionMode(actionMode);
+    }
+
+    @Override
+    public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
+        return this.f25837a.onPrepareActionMode(actionMode, menu);
     }
 }

@@ -25,7 +25,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.xv0;
+import org.telegram.ui.Components.wv0;
 import v7.u6;
 import z3.n;
 public final class c implements o, e1, g1, RequestDelegateTimestamp, z1, MessagesStorage.StringCallback, e2.j {
@@ -66,12 +66,12 @@ public final class c implements o, e1, g1, RequestDelegateTimestamp, z1, Message
         n nVar = (n) this.d;
         z3.a aVar = (z3.a) obj;
         nVar.h.getClass();
-        byte[] s22 = sb.a.s2(aVar.f51104a, aVar.f51106c);
-        x xVar = nVar.f51128c;
+        byte[] s22 = sb.a.s2(aVar.f51103a, aVar.f51105c);
+        x xVar = nVar.f51127c;
         xVar.getClass();
         xVar.L(s22.length, s22);
-        nVar.f51126a.d(s22.length, xVar);
-        long j10 = aVar.f51105b;
+        nVar.f51125a.d(s22.length, xVar);
+        long j10 = aVar.f51104b;
         int i10 = (j10 > (-9223372036854775807L) ? 1 : (j10 == (-9223372036854775807L) ? 0 : -1));
         long j11 = this.f13982c;
         if (i10 == 0) {
@@ -89,7 +89,7 @@ public final class c implements o, e1, g1, RequestDelegateTimestamp, z1, Message
                 j11 = j10 + j12;
             }
         }
-        nVar.f51126a.c(j11, this.f13981b | 1, s22.length, 0, null);
+        nVar.f51125a.c(j11, this.f13981b | 1, s22.length, 0, null);
     }
 
     @Override
@@ -186,7 +186,7 @@ public final class c implements o, e1, g1, RequestDelegateTimestamp, z1, Message
 
     @Override
     public void run(String str) {
-        xv0.i((xv0) this.d, this.f13982c, this.f13981b, str);
+        wv0.i((wv0) this.d, this.f13982c, this.f13981b, str);
     }
 
     public c(a aVar, int i10, long j10, long j11) {

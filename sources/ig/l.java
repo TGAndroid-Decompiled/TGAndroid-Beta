@@ -4,7 +4,7 @@ import android.content.Context;
 import android.text.Editable;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.Cells.h3;
-import org.telegram.ui.Components.d71;
+import org.telegram.ui.Components.c71;
 public final class l extends h3 {
     public final int E;
     public final m F;
@@ -25,18 +25,18 @@ public final class l extends h3 {
 
     @Override
     public final void a(boolean z10) {
-        d71 d71Var;
-        d71 d71Var2;
+        c71 c71Var;
+        c71 c71Var2;
         switch (this.E) {
             case 0:
-                if (z10 && (d71Var = this.F.f25907a) != null) {
-                    d71Var.x0(2);
+                if (z10 && (c71Var = this.F.f25615a) != null) {
+                    c71Var.x0(2);
                     return;
                 }
                 return;
             default:
-                if (z10 && (d71Var2 = this.F.f25907a) != null) {
-                    d71Var2.x0(3);
+                if (z10 && (c71Var2 = this.F.f25615a) != null) {
+                    c71Var2.x0(3);
                     return;
                 }
                 return;

@@ -11,12 +11,12 @@ import android.widget.ImageView;
 import ei.bc;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.eq;
-import org.telegram.ui.Components.f6;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.d6;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.zr;
 public final class g0 extends Drawable {
     public final ImageView f11236a;
     public final Paint f11237b;
@@ -26,10 +26,10 @@ public final class g0 extends Drawable {
     public boolean f11239f;
     public float f11240g;
     public boolean h;
-    public final f6 f11241i;
-    public final f6 f11242j;
-    public final f6 f11243k;
-    public yj0 f11244l;
+    public final d6 f11241i;
+    public final d6 f11242j;
+    public final d6 f11243k;
+    public xj0 f11244l;
 
     public g0(Context context, ImageView imageView) {
         Paint paint = new Paint(1);
@@ -37,10 +37,10 @@ public final class g0 extends Drawable {
         this.f11238c = new RectF();
         this.h = false;
         bc bcVar = new bc(this, 3);
-        bs bsVar = bs.h;
-        this.f11241i = new f6(bcVar, 320L, bsVar, 0);
-        this.f11242j = new f6(new bc(this, 3), 320L, bsVar, 0);
-        this.f11243k = new f6(new bc(this, 3), 320L, bsVar, 0);
+        zr zrVar = zr.h;
+        this.f11241i = new d6(bcVar, 320L, zrVar, 0);
+        this.f11242j = new d6(new bc(this, 3), 320L, zrVar, 0);
+        this.f11243k = new d6(new bc(this, 3), 320L, zrVar, 0);
         this.f11236a = imageView;
         this.d = System.currentTimeMillis();
         this.e = context.getResources().getDrawable(R.drawable.search_files_filled).mutate();
@@ -54,7 +54,7 @@ public final class g0 extends Drawable {
     public final void draw(Canvas canvas) {
         float f7;
         float f10;
-        yj0 yj0Var;
+        xj0 xj0Var;
         int i10;
         Canvas canvas2 = canvas;
         Rect bounds = getBounds();
@@ -71,7 +71,7 @@ public final class g0 extends Drawable {
             float f15 = centerY;
             canvas2.scale(f13, f13, f14, f15);
             Drawable drawable = this.e;
-            drawable.setBounds(org.telegram.ui.Cells.b1.f(2, centerX, drawable), sl.d(2, centerY, drawable), org.telegram.ui.Cells.b1.y(2, centerX, drawable), org.telegram.ui.Cells.b1.u(2, centerY, drawable));
+            drawable.setBounds(org.telegram.ui.Cells.b1.f(2, centerX, drawable), tl.d(2, centerY, drawable), org.telegram.ui.Cells.b1.y(2, centerX, drawable), org.telegram.ui.Cells.b1.u(2, centerY, drawable));
             drawable.setAlpha((int) (f12 * 255.0f));
             drawable.draw(canvas2);
             float dp = AndroidUtilities.dp(14.0f);
@@ -97,7 +97,7 @@ public final class g0 extends Drawable {
             float max = Math.max(0.0f, ((1520.0f * currentTimeMillis2) / 5400.0f) - 20.0f);
             int i11 = 0;
             while (i11 < 4) {
-                u1.a aVar = eq.h;
+                u1.a aVar = cq.h;
                 float f21 = f11;
                 aVar.getInterpolation((currentTimeMillis2 - (i11 * 1350)) / 667.0f);
                 max += aVar.getInterpolation((currentTimeMillis2 - (i10 + 667)) / 667.0f) * 250.0f;
@@ -115,10 +115,10 @@ public final class g0 extends Drawable {
             f7 = 0.0f;
             f10 = 255.0f;
         }
-        if (e > f7 && (yj0Var = this.f11244l) != null) {
-            int i12 = yj0Var.f32934b / 2;
-            int i13 = yj0Var.f32936c / 2;
-            yj0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
+        if (e > f7 && (xj0Var = this.f11244l) != null) {
+            int i12 = xj0Var.f32595b / 2;
+            int i13 = xj0Var.f32597c / 2;
+            xj0Var.setBounds(centerX - i12, centerY - i13, i12 + centerX, i13 + centerY);
             this.f11244l.setAlpha((int) (e * f10));
             this.f11244l.draw(canvas2);
         }

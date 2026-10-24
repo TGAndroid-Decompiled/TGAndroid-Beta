@@ -5,31 +5,31 @@ import android.view.View;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
 public final class v0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f21922a;
-    public final Object f21923b;
+    public final int f21923a;
+    public final Object f21924b;
 
     public v0(Object obj, int i10) {
-        this.f21922a = i10;
-        this.f21923b = obj;
+        this.f21923a = i10;
+        this.f21924b = obj;
     }
 
     @Override
     public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f21922a) {
+        switch (this.f21923a) {
             case 0:
-                b1 b1Var = (b1) this.f21923b;
+                b1 b1Var = (b1) this.f21924b;
                 b1Var.getClass();
-                b1Var.f20709a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b1Var.f20710a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 b1Var.invalidate();
                 return;
             case 1:
-                e1 e1Var = (e1) this.f21923b;
+                e1 e1Var = (e1) this.f21924b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 e1Var.setTextColor(i0.a.f(floatValue, -1, -9194260));
                 e1Var.setIconColor(i0.a.f(floatValue, -1, -9194260));
                 return;
             case 2:
-                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f21923b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f21924b;
                 int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
                 float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 for (int i10 = 0; i10 < itemsCount; i10++) {
@@ -46,22 +46,22 @@ public final class v0 implements ValueAnimator.AnimatorUpdateListener {
                 }
                 return;
             case 3:
-                o1 o1Var = (o1) this.f21923b;
+                o1 o1Var = (o1) this.f21924b;
                 if (!o1Var.e) {
                     float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                    if (o1Var.f21732r) {
+                    if (o1Var.f21733r) {
                         floatValue3 = 1.0f - floatValue3;
                     }
-                    float y3 = (int) com.google.android.gms.internal.play_billing.k3.y(1.0f, floatValue3, o1Var.f21731q, o1Var.f21730p * floatValue3);
+                    float y3 = (int) com.google.android.gms.internal.play_billing.k3.y(1.0f, floatValue3, o1Var.f21732q, o1Var.f21731p * floatValue3);
                     if (!(o1Var instanceof ah.u)) {
-                        o1Var.f21718a.setTranslationY(y3);
+                        o1Var.f21719a.setTranslationY(y3);
                     }
-                    o1Var.e(-y3, floatValue3, o1Var.f21733s);
+                    o1Var.e(-y3, floatValue3, o1Var.f21734s);
                     return;
                 }
                 return;
             case 4:
-                q3 q3Var = (q3) this.f21923b;
+                q3 q3Var = (q3) this.f21924b;
                 q3Var.getClass();
                 q3Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 Iterator it = q3Var.I.iterator();
@@ -71,9 +71,9 @@ public final class v0 implements ValueAnimator.AnimatorUpdateListener {
                 q3Var.invalidate();
                 return;
             default:
-                y3 y3Var = (y3) this.f21923b;
-                y3Var.f21981i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                z3 z3Var = y3Var.f21977b;
+                y3 y3Var = (y3) this.f21924b;
+                y3Var.f21982i = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z3 z3Var = y3Var.f21978b;
                 if (z3Var != null) {
                     z3Var.invalidate();
                     return;

@@ -1,36 +1,55 @@
 package org.telegram.ui;
 
+import android.widget.EditText;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class cq0 implements org.telegram.ui.ActionBar.r0 {
-    public final mq0 f36415a;
+import org.telegram.tgnet.ConnectionsManager;
+public final class cq0 extends org.telegram.ui.ActionBar.k5 {
+    public final nj0 f36386r = new nj0(this, 13);
+    public final lq0 f36387s;
 
-    public cq0(mq0 mq0Var) {
-        this.f36415a = mq0Var;
+    public cq0(lq0 lq0Var) {
+        this.f36387s = lq0Var;
     }
 
     @Override
-    public final void d() {
+    public final boolean b() {
+        this.f36387s.finishFragment();
+        return false;
+    }
+
+    @Override
+    public final void p(ei.e2 e2Var) {
+        this.f36387s.b0(e2Var);
+    }
+
+    @Override
+    public final void q(EditText editText) {
         int i10;
-        int i11;
-        mq0 mq0Var = this.f36415a;
-        org.telegram.ui.ActionBar.e1 e1Var = mq0Var.Q;
-        if (mq0Var.Y) {
-            i10 = R.string.ShowAsGrid;
-        } else {
-            i10 = R.string.ShowAsList;
+        if (editText.getText().length() == 0) {
+            lq0 lq0Var = this.f36387s;
+            lq0Var.f39341f.clear();
+            lq0Var.h.clear();
+            lq0Var.v = null;
+            lq0Var.f39356s = true;
+            lq0Var.f39354r = false;
+            if (lq0Var.f39363x != 0) {
+                i10 = ((org.telegram.ui.ActionBar.o2) lq0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).cancelRequest(lq0Var.f39363x, true);
+                lq0Var.f39363x = 0;
+            }
+            lq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
+            lq0Var.N.e(false, true);
+            lq0Var.j0();
+            return;
         }
-        e1Var.setText(LocaleController.getString(i10));
-        org.telegram.ui.ActionBar.e1 e1Var2 = mq0Var.Q;
-        if (mq0Var.Y) {
-            i11 = R.drawable.msg_media;
-        } else {
-            i11 = R.drawable.msg_list;
-        }
-        e1Var2.setIcon(i11);
+        nj0 nj0Var = this.f36386r;
+        AndroidUtilities.cancelRunOnUIThread(nj0Var);
+        AndroidUtilities.runOnUIThread(nj0Var, 1200L);
     }
 
     @Override
-    public final void c() {
+    public final void n() {
     }
 }

@@ -170,7 +170,7 @@ public final class l0 extends View {
         }
         canvas.rotate(lerp2);
         canvas.rotate(m0Var.f9438b.getOrientation());
-        org.telegram.ui.Components.f6 f6Var = m0Var.f9439c;
+        org.telegram.ui.Components.d6 d6Var = m0Var.f9439c;
         if (m0Var.E) {
             MediaController.CropState cropState5 = m0Var.f9438b.G0;
             if (cropState5 != null && cropState5.mirrored) {
@@ -184,7 +184,7 @@ public final class l0 extends View {
             }
             z10 = false;
         }
-        canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, f6Var.e(z10)), 1.0f);
+        canvas.scale(AndroidUtilities.lerp(1.0f, -1.0f, d6Var.e(z10)), 1.0f);
         canvas.translate((-m0Var.f9438b.getContentWidth()) / 2.0f, (-m0Var.f9438b.getContentHeight()) / 2.0f);
         rg.z1 z1Var3 = m0Var.f9438b;
         Paint paint2 = z1Var3.F0;

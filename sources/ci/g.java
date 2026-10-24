@@ -30,7 +30,7 @@ public final class g implements Utilities.Callback {
                     while (i10 < size) {
                         TLRPC.EmojiGroup emojiGroup = arrayList.get(i10);
                         i10++;
-                        org.telegram.ui.Components.r5.h(this.f5343b).b(emojiGroup.icon_emoji_id, null);
+                        org.telegram.ui.Components.p5.h(this.f5343b).b(emojiGroup.icon_emoji_id, null);
                     }
                     return;
                 }

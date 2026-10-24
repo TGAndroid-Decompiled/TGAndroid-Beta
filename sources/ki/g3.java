@@ -22,7 +22,7 @@ public final class g3 implements z4 {
         tVar.f15568a = 2;
         TL_iv.PageBlock pageBlock = this.f15338b.f15141b;
         if (pageBlock instanceof TL_iv.pageBlockAudio) {
-            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f20349id;
+            ((TL_iv.pageBlockAudio) pageBlock).audio_id = document.f20350id;
         }
         w3 w3Var = this.f15339c;
         w3Var.f15646a4.remove(tVar);

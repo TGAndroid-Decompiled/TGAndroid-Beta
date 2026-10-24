@@ -21,20 +21,20 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.n5;
+import org.telegram.ui.Components.y5;
 public final class y4 extends View {
-    public final n7 f51077a;
-    public final g6 f51078b;
-    public float f51079c;
+    public final n7 f51076a;
+    public final g6 f51077b;
+    public float f51078c;
     public float d;
     public Drawable e;
 
     public y4(Context context, int i10, g6 g6Var) {
         super(context);
-        this.f51078b = g6Var;
+        this.f51077b = g6Var;
         n7 n7Var = new n7(i10, this, g6Var);
-        this.f51077a = n7Var;
+        this.f51076a = n7Var;
         n7Var.f1888y.setCallback(this);
         NotificationCenter.listenEmojiLoading(this);
     }
@@ -42,8 +42,8 @@ public final class y4 extends View {
     public final void a(TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, TLRPC.TL_textWithEntities tL_textWithEntities, String str, boolean z10) {
         float dp;
         float f7;
-        n7 n7Var = this.f51077a;
-        p5 p5Var = n7Var.e;
+        n7 n7Var = this.f51076a;
+        n5 n5Var = n7Var.e;
         j1 j1Var = n7Var.f1874j;
         ImageReceiver imageReceiver = n7Var.d;
         n7Var.N = false;
@@ -59,12 +59,12 @@ public final class y4 extends View {
         paint.setShader(null);
         TL_stars.starGiftAttributePattern stargiftattributepattern = n7Var.f1876l;
         if (stargiftattributepattern != null) {
-            p5Var.i(stargiftattributepattern.document, false);
+            n5Var.i(stargiftattributepattern.document, false);
         } else {
-            p5Var.g(null, false);
+            n5Var.g(null, false);
         }
         TL_stars.starGiftAttributeModel stargiftattributemodel2 = n7Var.f1877m;
-        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f20349id != stargiftattributemodel2.document.f20349id)) {
+        if (stargiftattributemodel2 != null && (stargiftattributemodel == null || stargiftattributemodel.document.f20350id != stargiftattributemodel2.document.f20350id)) {
             imageReceiver.setAutoRepeatCount(0);
             imageReceiver.clearDecorators();
             imageReceiver.setAutoRepeat(0);
@@ -73,11 +73,11 @@ public final class y4 extends View {
         boolean z11 = tL_starGiftUnique.burned;
         n7Var.L = z11;
         if (z11) {
-            int w02 = k6.w0(k6.f21421q7, n7Var.f1870c);
-            Paint paint2 = (Paint) j1Var.f24829b;
+            int w02 = k6.w0(k6.f21422q7, n7Var.f1870c);
+            Paint paint2 = (Paint) j1Var.f33024b;
             paint2.setShader(null);
             paint2.setColor(w02);
-            n7Var.M = r6.f21817b;
+            n7Var.M = r6.f21818b;
             j1Var.f(11, LocaleController.getString(R.string.Gift2UniqueRibbonBurned), true);
         } else {
             j1Var.e(n7Var.f1875k, true, false);
@@ -85,7 +85,7 @@ public final class y4 extends View {
         }
         if (n7Var.S) {
             imageReceiver.onAttachedToWindow();
-            p5Var.a();
+            n5Var.a();
             n7Var.f1888y.d.onAttachedToWindow();
         }
         if (AndroidUtilities.isTablet()) {
@@ -119,26 +119,26 @@ public final class y4 extends View {
     }
 
     public n7 getLayout() {
-        return this.f51077a;
+        return this.f51076a;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.f51077a.a();
+        this.f51076a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        n7 n7Var = this.f51077a;
+        n7 n7Var = this.f51076a;
         n7Var.S = false;
         n7Var.d.onDetachedFromWindow();
         n7Var.e.b();
         j0 j0Var = n7Var.f1888y;
         j0Var.d.onDetachedFromWindow();
-        a6.release((View) null, j0Var.f50776q);
-        j0Var.f50776q = null;
+        y5.release((View) null, j0Var.f50775q);
+        j0Var.f50775q = null;
     }
 
     @Override
@@ -149,14 +149,14 @@ public final class y4 extends View {
         } else {
             i10 = 0;
         }
-        g6 g6Var = this.f51078b;
+        g6 g6Var = this.f51077b;
         if (g6Var != null) {
             g6Var.b(0.0f, getY(), getMeasuredWidth(), i10);
         } else {
             k6.q(0.0f, getY(), getMeasuredWidth(), i10);
         }
-        n7 n7Var = this.f51077a;
-        this.f51079c = (getWidth() - ((int) n7Var.T.e)) / 2.0f;
+        n7 n7Var = this.f51076a;
+        this.f51078c = (getWidth() - ((int) n7Var.T.e)) / 2.0f;
         float dp = n7Var.T.e + AndroidUtilities.dp(8.0f);
         float width = (getWidth() - dp) / 2.0f;
         float dp2 = this.d - AndroidUtilities.dp(4.0f);
@@ -167,7 +167,7 @@ public final class y4 extends View {
         this.e.setBounds(rect);
         this.e.draw(canvas);
         canvas.save();
-        canvas.translate(this.f51079c, this.d);
+        canvas.translate(this.f51078c, this.d);
         n7Var.b(canvas);
         n7Var.c(canvas);
         canvas.restore();
@@ -176,8 +176,8 @@ public final class y4 extends View {
     @Override
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
-        n7 n7Var = this.f51077a;
-        this.f51079c = (size - ((int) n7Var.T.e)) / 2.0f;
+        n7 n7Var = this.f51076a;
+        this.f51078c = (size - ((int) n7Var.T.e)) / 2.0f;
         float paddingTop = getPaddingTop();
         this.d = paddingTop;
         setMeasuredDimension(size, getPaddingBottom() + ((int) paddingTop) + n7Var.P);
@@ -185,7 +185,7 @@ public final class y4 extends View {
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        return this.f51077a.e(this.f51079c, this.d, motionEvent);
+        return this.f51076a.e(this.f51078c, this.d, motionEvent);
     }
 
     public void setLayoutBackground(Drawable drawable) {
@@ -195,7 +195,7 @@ public final class y4 extends View {
 
     @Override
     public final boolean verifyDrawable(Drawable drawable) {
-        if (!super.verifyDrawable(drawable) && drawable != this.f51077a.f1888y) {
+        if (!super.verifyDrawable(drawable) && drawable != this.f51076a.f1888y) {
             return false;
         }
         return true;

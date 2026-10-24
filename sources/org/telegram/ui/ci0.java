@@ -1,46 +1,43 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class ci0 extends qy {
-    public final int[] N;
-    public final qi0 O;
+import android.content.Context;
+public final class ci0 extends org.telegram.ui.Components.tg {
+    public final org.telegram.ui.Components.tg f36355n0;
+    public final boolean f36356o0;
+    public final pi0 f36357p0;
 
-    public ci0(qi0 qi0Var, bi0 bi0Var, int i10) {
-        super(i10, bi0Var);
-        this.O = qi0Var;
-        this.N = new int[2];
+    public ci0(pi0 pi0Var, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, org.telegram.ui.Components.tg tgVar, boolean z10) {
+        super(i10, context, g6Var, false);
+        this.f36357p0 = pi0Var;
+        this.f36355n0 = tgVar;
+        this.f36356o0 = z10;
     }
 
     @Override
-    public final void g(py pyVar) {
-        qi0 qi0Var = this.O;
-        ji0 ji0Var = qi0Var.J;
-        if (pyVar != null) {
-            if (qi0Var.f40832k0 != null) {
-                pyVar.f40560c = true;
-                float f7 = (qy.f() * AndroidUtilities.density) / 1.3f;
-                float f10 = f7 / 3.0f;
-                pyVar.d = f10;
-                pyVar.e = f10;
-                pyVar.f40558a = Utilities.clamp(qi0Var.f40832k0.right - (0.75f * f7), AndroidUtilities.displaySize.x - f7, 0.0f);
-                pyVar.f40559b = qi0Var.f40832k0.bottom - (f7 / 2.0f);
-                return;
-            }
-            org.telegram.ui.Cells.t1 t1Var = qi0Var.P;
-            if (t1Var != null && t1Var.isAttachedToWindow() && qi0Var.P.getMessageObject() != null && qi0Var.P.getMessageObject().getId() == qi0Var.Q) {
-                org.telegram.ui.Cells.t1 t1Var2 = qi0Var.P;
-                int[] iArr = this.N;
-                t1Var2.getLocationOnScreen(iArr);
-                pyVar.f40560c = true;
-                float f11 = (qy.f() * AndroidUtilities.density) / 1.3f;
-                float f12 = f11 / 3.0f;
-                pyVar.d = f12;
-                pyVar.e = f12;
-                float f13 = f11 / 2.0f;
-                pyVar.f40558a = Utilities.clamp(((ji0Var.getScaleX() * qi0Var.P.getTimeX()) + iArr[0]) - f13, AndroidUtilities.displaySize.x - f11, 0.0f);
-                pyVar.f40559b = ((ji0Var.getScaleY() * qi0Var.P.getTimeY()) + iArr[1]) - f13;
-            }
+    public final boolean d() {
+        return this.f36355n0.d();
+    }
+
+    @Override
+    public final boolean e() {
+        return this.f36355n0.e();
+    }
+
+    @Override
+    public final boolean f() {
+        if (this.f36356o0 && this.f36357p0.f40568p0 && this.f30828r <= 0) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final int getFillColor() {
+        return this.f36355n0.getFillColor();
+    }
+
+    @Override
+    public final boolean j() {
+        return this.f36355n0.j();
     }
 }

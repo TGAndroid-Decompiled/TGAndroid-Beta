@@ -20,13 +20,13 @@ import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.iu;
-import org.telegram.ui.Components.r11;
-import org.telegram.ui.Components.s61;
-import org.telegram.ui.Components.s90;
-public final class h1 extends iu implements org.telegram.ui.ActionBar.b6 {
+import org.telegram.ui.Components.gu;
+import org.telegram.ui.Components.q11;
+import org.telegram.ui.Components.q90;
+import org.telegram.ui.Components.r61;
+public final class h1 extends gu implements org.telegram.ui.ActionBar.b6 {
     public boolean E;
-    public s90 F;
+    public q90 F;
     public Paint G;
     public Layout H;
     public int I;
@@ -121,7 +121,7 @@ public final class h1 extends iu implements org.telegram.ui.ActionBar.b6 {
     }
 
     @Override
-    public final s61 createUrlSpan(String str) {
+    public final r61 createUrlSpan(String str) {
         return e6.k(str);
     }
 
@@ -252,12 +252,12 @@ public final class h1 extends iu implements org.telegram.ui.ActionBar.b6 {
 
     @Override
     public final void onDraw(Canvas canvas) {
-        r11[] r11VarArr;
+        q11[] q11VarArr;
         int i10;
         int i11;
         float f7;
         Layout layout = getLayout();
-        s90 s90Var = null;
+        q90 q90Var = null;
         if (layout == null) {
             this.F = null;
             this.H = null;
@@ -271,17 +271,17 @@ public final class h1 extends iu implements org.telegram.ui.ActionBar.b6 {
                 this.F = null;
                 if (text instanceof Spanned) {
                     Spanned spanned = (Spanned) text;
-                    for (r11 r11Var : (r11[]) spanned.getSpans(0, spanned.length(), r11.class)) {
-                        int i12 = r11Var.f30054b.f29754a;
+                    for (q11 q11Var : (q11[]) spanned.getSpans(0, spanned.length(), q11.class)) {
+                        int i12 = q11Var.f29753b.f29448a;
                         if ((65536 & i12) != 0) {
-                            int spanStart = spanned.getSpanStart(r11Var);
-                            int spanEnd = spanned.getSpanEnd(r11Var);
+                            int spanStart = spanned.getSpanStart(q11Var);
+                            int spanEnd = spanned.getSpanEnd(q11Var);
                             if (spanStart >= 0 && spanEnd > spanStart) {
-                                if (s90Var == null) {
-                                    s90Var = new s90(0);
-                                    s90Var.f30432n = false;
+                                if (q90Var == null) {
+                                    q90Var = new q90(0);
+                                    q90Var.f29857n = false;
                                 }
-                                s90Var.d(layout, spanStart, 0.0f);
+                                q90Var.d(layout, spanStart, 0.0f);
                                 if ((32768 & i12) != 0) {
                                     i10 = -AndroidUtilities.dp(6.0f);
                                 } else if ((i12 & 16384) != 0) {
@@ -299,15 +299,15 @@ public final class h1 extends iu implements org.telegram.ui.ActionBar.b6 {
                                 } else {
                                     i11 = 0;
                                 }
-                                s90Var.f30433o = i11;
-                                layout.getSelectionPath(spanStart, spanEnd, s90Var);
+                                q90Var.f29858o = i11;
+                                layout.getSelectionPath(spanStart, spanEnd, q90Var);
                             }
                         }
                     }
-                    if (s90Var != null) {
-                        s90Var.f30432n = true;
+                    if (q90Var != null) {
+                        q90Var.f29857n = true;
                     }
-                    this.F = s90Var;
+                    this.F = q90Var;
                 }
             }
         }
@@ -315,7 +315,7 @@ public final class h1 extends iu implements org.telegram.ui.ActionBar.b6 {
             if (this.G == null) {
                 Paint paint = new Paint(1);
                 this.G = paint;
-                paint.setPathEffect(s90.c());
+                paint.setPathEffect(q90.c());
             }
             this.G.setColor(k6.w0(k6.K6, this.e) & 872415231);
             canvas.save();
@@ -695,12 +695,12 @@ public final class h1 extends iu implements org.telegram.ui.ActionBar.b6 {
                 }
             }
             this.P = false;
-            int w04 = k6.w0(k6.f21242gc, g6Var);
+            int w04 = k6.w0(k6.f21243gc, g6Var);
             if (getLinkTextColors() == null || getLinkTextColors().getDefaultColor() != w04) {
                 setLinkTextColor(w04);
             }
             setCursorColor(k6.w0(k6.G6, g6Var));
-            setHandlesColor(k6.w0(k6.f21327l6, g6Var));
+            setHandlesColor(k6.w0(k6.f21328l6, g6Var));
             boolean g12 = k6.g1();
             androidx.activity.i iVar = this.R;
             if (!g12) {

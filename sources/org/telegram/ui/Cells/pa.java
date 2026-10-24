@@ -8,21 +8,21 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 public final class pa extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public boolean f22907a;
-    public org.telegram.ui.Components.w9 f22908b;
-    public TextView f22909c;
+    public boolean f22908a;
+    public org.telegram.ui.Components.u9 f22909b;
+    public TextView f22910c;
     public TextView d;
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21167c9));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21168c9));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f22907a) {
-            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
+        if (this.f22908a) {
+            canvas.drawLine(AndroidUtilities.dp(72.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21305k0);
         }
     }
 
@@ -33,12 +33,12 @@ public final class pa extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     @Override
     public final void updateColors() {
-        org.telegram.ui.Components.w9 w9Var = this.f22908b;
-        if (w9Var != null) {
+        org.telegram.ui.Components.u9 u9Var = this.f22909b;
+        if (u9Var != null) {
             try {
-                if (w9Var.getImageReceiver() != null && (w9Var.getImageReceiver().getDrawable() instanceof og.c)) {
-                    ((og.c) w9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21167c9, false));
-                    w9Var.invalidate();
+                if (u9Var.getImageReceiver() != null && (u9Var.getImageReceiver().getDrawable() instanceof og.c)) {
+                    ((og.c) u9Var.getImageReceiver().getDrawable()).a(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21168c9, false));
+                    u9Var.invalidate();
                 }
             } catch (Exception e) {
                 FileLog.e(e);

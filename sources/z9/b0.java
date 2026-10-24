@@ -2,26 +2,26 @@ package z9;
 
 import java.util.List;
 public final class b0 extends g1 {
-    public final int f51784a;
-    public final String f51785b;
-    public final int f51786c;
+    public final int f51783a;
+    public final String f51784b;
+    public final int f51785c;
     public final int d;
     public final long e;
-    public final long f51787f;
-    public final long f51788g;
+    public final long f51786f;
+    public final long f51787g;
     public final String h;
-    public final List f51789i;
+    public final List f51788i;
 
     public b0(int i10, String str, int i11, int i12, long j10, long j11, long j12, String str2, List list) {
-        this.f51784a = i10;
-        this.f51785b = str;
-        this.f51786c = i11;
+        this.f51783a = i10;
+        this.f51784b = str;
+        this.f51785c = i11;
         this.d = i12;
         this.e = j10;
-        this.f51787f = j11;
-        this.f51788g = j12;
+        this.f51786f = j11;
+        this.f51787g = j12;
         this.h = str2;
-        this.f51789i = list;
+        this.f51788i = list;
     }
 
     public final boolean equals(Object obj) {
@@ -32,9 +32,9 @@ public final class b0 extends g1 {
         }
         if (obj instanceof g1) {
             b0 b0Var = (b0) ((g1) obj);
-            List list2 = b0Var.f51789i;
+            List list2 = b0Var.f51788i;
             String str2 = b0Var.h;
-            if (this.f51784a == b0Var.f51784a && this.f51785b.equals(b0Var.f51785b) && this.f51786c == b0Var.f51786c && this.d == b0Var.d && this.e == b0Var.e && this.f51787f == b0Var.f51787f && this.f51788g == b0Var.f51788g && ((str = this.h) != null ? str.equals(str2) : str2 == null) && ((list = this.f51789i) != null ? list.equals(list2) : list2 == null)) {
+            if (this.f51783a == b0Var.f51783a && this.f51784b.equals(b0Var.f51784b) && this.f51785c == b0Var.f51785c && this.d == b0Var.d && this.e == b0Var.e && this.f51786f == b0Var.f51786f && this.f51787g == b0Var.f51787g && ((str = this.h) != null ? str.equals(str2) : str2 == null) && ((list = this.f51788i) != null ? list.equals(list2) : list2 == null)) {
                 return true;
             }
         }
@@ -44,9 +44,9 @@ public final class b0 extends g1 {
     public final int hashCode() {
         int hashCode;
         long j10 = this.e;
-        long j11 = this.f51787f;
-        long j12 = this.f51788g;
-        int hashCode2 = (((((((((((((this.f51784a ^ 1000003) * 1000003) ^ this.f51785b.hashCode()) * 1000003) ^ this.f51786c) * 1000003) ^ this.d) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ ((int) (j12 ^ (j12 >>> 32)))) * 1000003;
+        long j11 = this.f51786f;
+        long j12 = this.f51787g;
+        int hashCode2 = (((((((((((((this.f51783a ^ 1000003) * 1000003) ^ this.f51784b.hashCode()) * 1000003) ^ this.f51785c) * 1000003) ^ this.d) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ ((int) (j12 ^ (j12 >>> 32)))) * 1000003;
         int i10 = 0;
         String str = this.h;
         if (str == null) {
@@ -55,7 +55,7 @@ public final class b0 extends g1 {
             hashCode = str.hashCode();
         }
         int i11 = (hashCode2 ^ hashCode) * 1000003;
-        List list = this.f51789i;
+        List list = this.f51788i;
         if (list != null) {
             i10 = list.hashCode();
         }
@@ -63,6 +63,6 @@ public final class b0 extends g1 {
     }
 
     public final String toString() {
-        return "ApplicationExitInfo{pid=" + this.f51784a + ", processName=" + this.f51785b + ", reasonCode=" + this.f51786c + ", importance=" + this.d + ", pss=" + this.e + ", rss=" + this.f51787f + ", timestamp=" + this.f51788g + ", traceFile=" + this.h + ", buildIdMappingForArch=" + this.f51789i + "}";
+        return "ApplicationExitInfo{pid=" + this.f51783a + ", processName=" + this.f51784b + ", reasonCode=" + this.f51785c + ", importance=" + this.d + ", pss=" + this.e + ", rss=" + this.f51786f + ", timestamp=" + this.f51787g + ", traceFile=" + this.h + ", buildIdMappingForArch=" + this.f51788i + "}";
     }
 }

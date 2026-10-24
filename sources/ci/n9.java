@@ -13,11 +13,11 @@ import android.view.View;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.qc;
-public final class n9 extends ow0 {
+import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.zr;
+public final class n9 extends nw0 {
     public final Path A0;
     public final RectF B0;
     public final RectF C0;
@@ -76,7 +76,7 @@ public final class n9 extends ow0 {
         int i10;
         p9 p9Var;
         int i11;
-        gl0 gl0Var;
+        fl0 fl0Var;
         z9 z9Var = this.I0;
         float[] fArr = z9Var.f6251o0;
         p4 currentPeerView = z9Var.f6249n0.getCurrentPeerView();
@@ -93,7 +93,7 @@ public final class n9 extends ow0 {
             }
         }
         float f7 = 0.0f;
-        if (z9Var.f6254p1 && currentPeerView != null && (gl0Var = currentPeerView.f5704r3) != null) {
+        if (z9Var.f6254p1 && currentPeerView != null && (fl0Var = currentPeerView.f5704r3) != null) {
             float f10 = 0.0f;
             for (View view = currentPeerView; view != null && (view.getParent() instanceof View); view = (View) view.getParent()) {
                 f7 += view.getX();
@@ -105,14 +105,14 @@ public final class n9 extends ow0 {
                 return true;
             }
             Rect rect = AndroidUtilities.rectTmp2;
-            gl0Var.getHitRect(rect);
+            fl0Var.getHitRect(rect);
             rect.offset((int) f7, (int) f10);
             if (motionEvent.getAction() == 0 && !rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
                 currentPeerView.a1(false);
                 return true;
             }
             motionEvent.offsetLocation(-rect.left, -rect.top);
-            gl0Var.dispatchTouchEvent(motionEvent);
+            fl0Var.dispatchTouchEvent(motionEvent);
             return true;
         }
         if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
@@ -127,7 +127,7 @@ public final class n9 extends ow0 {
                 ofFloat.addUpdateListener(new k9(this, 0));
                 z9Var.G.addListener(new l9(this, 0));
                 z9Var.G.setDuration(250L);
-                z9Var.G.setInterpolator(bs.f25133f);
+                z9Var.G.setInterpolator(zr.f33337f);
                 z9Var.G.start();
             }
             if (z9Var.V >= 0.3f) {
@@ -237,7 +237,7 @@ public final class n9 extends ow0 {
             org.telegram.ui.ActionBar.o2 o2Var = this.H0;
             AndroidUtilities.requestAdjustResize(o2Var.getParentActivity(), o2Var.getClassGuid());
         }
-        qc.a(this, new m9(this));
+        oc.a(this, new m9(this));
         NotificationCenter.getInstance(z9Var.h).addObserver(z9Var, NotificationCenter.storiesListUpdated);
         NotificationCenter.getInstance(z9Var.h).addObserver(z9Var, NotificationCenter.storiesUpdated);
         NotificationCenter.getInstance(z9Var.h).addObserver(z9Var, NotificationCenter.articleClosed);
@@ -248,7 +248,7 @@ public final class n9 extends ow0 {
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        qc.h(this);
+        oc.h(this);
         z9 z9Var = this.I0;
         NotificationCenter.getInstance(z9Var.h).removeObserver(z9Var, NotificationCenter.storiesListUpdated);
         NotificationCenter.getInstance(z9Var.h).removeObserver(z9Var, NotificationCenter.storiesUpdated);
@@ -286,7 +286,7 @@ public final class n9 extends ow0 {
                 ofFloat.addUpdateListener(new k9(this, 1));
                 z9Var.G.addListener(new l9(this, 1));
                 z9Var.G.setDuration(150L);
-                z9Var.G.setInterpolator(bs.f25133f);
+                z9Var.G.setInterpolator(zr.f33337f);
                 z9Var.G.start();
             }
             p4 t10 = z9Var.t();

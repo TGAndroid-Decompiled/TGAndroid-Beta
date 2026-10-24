@@ -70,7 +70,7 @@ public final class qj extends s4.t {
     @Override
     public final int K() {
         if (this.S) {
-            return (int) ((this.f46445n - this.T.E9) - C());
+            return (int) ((this.f46444n - this.T.E9) - C());
         }
         return super.K();
     }
@@ -135,7 +135,7 @@ public final class qj extends s4.t {
     public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
         this.T.Ea = false;
         li.n nVar = new li.n(recyclerView.getContext(), 0);
-        nVar.f46484a = i10;
+        nVar.f46483a = i10;
         w0(nVar);
     }
 

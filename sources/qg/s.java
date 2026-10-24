@@ -11,18 +11,18 @@ import android.view.MotionEvent;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class s extends View {
-    public final Paint f45041a;
-    public final Paint f45042b;
-    public int f45043c;
+    public final Paint f45040a;
+    public final Paint f45041b;
+    public int f45042c;
     public int d;
     public final y e;
 
     public s(y yVar, Context context) {
         super(context);
         this.e = yVar;
-        this.f45041a = new Paint(1);
+        this.f45040a = new Paint(1);
         Paint paint = new Paint(1);
-        this.f45042b = paint;
+        this.f45041b = paint;
         paint.setColor(-1);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
@@ -31,39 +31,39 @@ public final class s extends View {
     public final void a() {
         int argb;
         int argb2;
-        int i10 = this.f45043c;
+        int i10 = this.f45042c;
         y yVar = this.e;
         if (i10 != 1) {
             if (i10 != 2) {
-                argb = Color.argb(255, 0, Color.green(yVar.f45129f), Color.blue(yVar.f45129f));
-                argb2 = Color.argb(255, 255, Color.green(yVar.f45129f), Color.blue(yVar.f45129f));
+                argb = Color.argb(255, 0, Color.green(yVar.f45128f), Color.blue(yVar.f45128f));
+                argb2 = Color.argb(255, 255, Color.green(yVar.f45128f), Color.blue(yVar.f45128f));
             } else {
-                argb = Color.argb(255, Color.red(yVar.f45129f), Color.green(yVar.f45129f), 0);
-                argb2 = Color.argb(255, Color.red(yVar.f45129f), Color.green(yVar.f45129f), 255);
+                argb = Color.argb(255, Color.red(yVar.f45128f), Color.green(yVar.f45128f), 0);
+                argb2 = Color.argb(255, Color.red(yVar.f45128f), Color.green(yVar.f45128f), 255);
             }
         } else {
-            argb = Color.argb(255, Color.red(yVar.f45129f), 0, Color.blue(yVar.f45129f));
-            argb2 = Color.argb(255, Color.red(yVar.f45129f), 255, Color.blue(yVar.f45129f));
+            argb = Color.argb(255, Color.red(yVar.f45128f), 0, Color.blue(yVar.f45128f));
+            argb2 = Color.argb(255, Color.red(yVar.f45128f), 255, Color.blue(yVar.f45128f));
         }
-        this.f45041a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
+        this.f45040a.setShader(new LinearGradient(0.0f, 0.0f, getWidth(), 0.0f, new int[]{argb, argb2}, (float[]) null, Shader.TileMode.CLAMP));
     }
 
     public final void b(float f7) {
         int argb;
         float dp = AndroidUtilities.dp(6.0f);
-        float a2 = w7.r.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f45042b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
-        int i10 = this.f45043c;
+        float a2 = w7.r.a(((f7 - dp) + (AndroidUtilities.dp(13.0f) - (this.f45041b.getStrokeWidth() / 2.0f))) / (getWidth() - (dp * 2.0f)), 0.0f, 1.0f);
+        int i10 = this.f45042c;
         y yVar = this.e;
         if (i10 != 1) {
             if (i10 != 2) {
-                argb = Color.argb(255, (int) (a2 * 255.0f), Color.green(yVar.f45129f), Color.blue(yVar.f45129f));
+                argb = Color.argb(255, (int) (a2 * 255.0f), Color.green(yVar.f45128f), Color.blue(yVar.f45128f));
             } else {
-                argb = Color.argb(255, Color.red(yVar.f45129f), Color.green(yVar.f45129f), (int) (a2 * 255.0f));
+                argb = Color.argb(255, Color.red(yVar.f45128f), Color.green(yVar.f45128f), (int) (a2 * 255.0f));
             }
         } else {
-            argb = Color.argb(255, Color.red(yVar.f45129f), (int) (a2 * 255.0f), Color.blue(yVar.f45129f));
+            argb = Color.argb(255, Color.red(yVar.f45128f), (int) (a2 * 255.0f), Color.blue(yVar.f45128f));
         }
-        yVar.m(i0.a.o(argb, Color.alpha(yVar.f45129f)), 4);
+        yVar.m(i0.a.o(argb, Color.alpha(yVar.f45128f)), 4);
         invalidate();
     }
 
@@ -75,21 +75,21 @@ public final class s extends View {
         float dp = AndroidUtilities.dp(6.0f);
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(dp, height - dp, getWidth() - dp, height + dp);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f45041a);
-        int i10 = this.f45043c;
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), this.f45040a);
+        int i10 = this.f45042c;
         y yVar = this.e;
         if (i10 != 1) {
             if (i10 != 2) {
-                green = Color.red(yVar.f45129f);
+                green = Color.red(yVar.f45128f);
             } else {
-                green = Color.blue(yVar.f45129f);
+                green = Color.blue(yVar.f45128f);
             }
         } else {
-            green = Color.green(yVar.f45129f);
+            green = Color.green(yVar.f45128f);
         }
         float f7 = green / 255.0f;
         float dp2 = AndroidUtilities.dp(13.0f);
-        Paint paint = this.f45042b;
+        Paint paint = this.f45041b;
         float strokeWidth = dp2 - (paint.getStrokeWidth() / 2.0f);
         float max = Math.max(dp + strokeWidth, (((getWidth() - (2.0f * dp)) * f7) + dp) - strokeWidth);
         canvas.drawCircle(max, height, dp2, paint);

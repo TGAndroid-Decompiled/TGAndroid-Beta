@@ -1,62 +1,59 @@
 package org.telegram.ui;
 
 import android.animation.Animator;
-import android.animation.ObjectAnimator;
-import android.transition.Fade;
-import android.transition.TransitionValues;
-import android.view.View;
+import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-public final class q31 extends Fade {
-    public final int f40616a;
-    public final boolean f40617b;
-    public final boolean f40618c;
-    public final SecretMediaViewer d;
+import java.lang.reflect.Method;
+import org.telegram.messenger.FileLog;
+public final class q31 extends AnimatorListenerAdapter {
+    public final int f40704a;
+    public final org.telegram.ui.Components.fn0 f40705b;
 
-    public q31(SecretMediaViewer secretMediaViewer, boolean z10, boolean z11, int i10) {
-        super(1);
-        this.f40616a = i10;
-        switch (i10) {
-            case 1:
-                this.d = secretMediaViewer;
-                this.f40617b = z10;
-                this.f40618c = z11;
-                super(2);
-                return;
-            default:
-                this.d = secretMediaViewer;
-                this.f40617b = z10;
-                this.f40618c = z11;
-                return;
-        }
+    public q31(org.telegram.ui.Components.fn0 fn0Var, int i10) {
+        this.f40704a = i10;
+        this.f40705b = fn0Var;
     }
 
     @Override
-    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f40616a) {
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f40704a) {
             case 0:
-                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
-                if (this.f40617b && !this.f40618c && view == this.d.Z) {
-                    onAppear.addListener(new v70(this, 23));
-                    ((ObjectAnimator) onAppear).addUpdateListener(new g11(this, 2));
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f40705b.f26397b;
+                secretMediaViewer.Z.getNextView().setText((CharSequence) null);
+                jt0 jt0Var = secretMediaViewer.f34088a0;
+                jt0Var.f43409l0 = false;
+                if (jt0Var.m0 >= 0) {
+                    ((ViewGroup.MarginLayoutParams) jt0Var.f43411o0.getLayoutParams()).topMargin = jt0Var.m0;
+                    jt0Var.m0 = -1;
+                    jt0Var.requestLayout();
+                    return;
                 }
-                return onAppear;
+                return;
             default:
-                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                ((SecretMediaViewer) this.f40705b.f26397b).Z.setTranslationY(0.0f);
+                return;
         }
     }
 
     @Override
-    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
-        switch (this.f40616a) {
-            case 1:
-                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
-                if (!this.f40617b && this.f40618c && view == this.d.Z) {
-                    onDisappear.addListener(new v70(this, 24));
-                    ((ObjectAnimator) onDisappear).addUpdateListener(new g11(this, 3));
+    public void onAnimationStart(Animator animator) {
+        switch (this.f40704a) {
+            case 0:
+                jt0 jt0Var = ((SecretMediaViewer) this.f40705b.f26397b).f34088a0;
+                Method method = jt0Var.f43403f0;
+                if (method != null) {
+                    try {
+                        method.invoke(jt0Var, null);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
                 }
-                return onDisappear;
+                return;
             default:
-                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

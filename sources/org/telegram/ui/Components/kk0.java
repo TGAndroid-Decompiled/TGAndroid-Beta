@@ -1,25 +1,22 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class kk0 extends s4.r0 {
-    public final s4.b0 f28056a;
-    public final qk0 f28057b;
+import android.content.Context;
+import org.telegram.messenger.AndroidUtilities;
+public final class kk0 extends z00 {
+    public final pk0 U;
 
-    public kk0(qk0 qk0Var, s4.b0 b0Var) {
-        this.f28057b = qk0Var;
-        this.f28056a = b0Var;
+    public kk0(pk0 pk0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, g6Var);
+        this.U = pk0Var;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        int loadCount;
-        qk0 qk0Var = this.f28057b;
-        if (qk0Var.f29933w && qk0Var.f29934x && !qk0Var.v) {
-            int N0 = this.f28056a.N0();
-            loadCount = qk0Var.getLoadCount();
-            if (N0 >= (qk0Var.f29929f.h() - 1) - loadCount) {
-                qk0Var.c();
-            }
+    public final int getAdditionalHeight() {
+        nb0 nb0Var;
+        pk0 pk0Var = this.U;
+        if (!pk0Var.H.isEmpty() && (nb0Var = pk0Var.J) != null) {
+            return AndroidUtilities.dp(8.0f) + nb0Var.getMeasuredHeight();
         }
+        return 0;
     }
 }

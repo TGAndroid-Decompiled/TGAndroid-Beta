@@ -2,9 +2,9 @@ package ai;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.go0;
-import org.telegram.ui.Components.jo0;
-import org.telegram.ui.Components.xv0;
+import org.telegram.ui.Components.fo0;
+import org.telegram.ui.Components.io0;
+import org.telegram.ui.Components.wv0;
 public final class db implements Runnable {
     public final int f1154a;
     public final int f1155b;
@@ -25,12 +25,12 @@ public final class db implements Runnable {
     }
 
     private final void b() {
-        xv0.g((xv0) this.f1156c, this.f1155b, (TL_stories.StoryItem) this.d, (String) this.e);
+        wv0.g((wv0) this.f1156c, this.f1155b, (TL_stories.StoryItem) this.d, (String) this.e);
     }
 
     private final void c() {
-        org.telegram.ui.ActionBar.o2 o2Var = ((xv0) this.f1156c).f32711v1;
-        org.telegram.ui.Components.f5.f0(this.f1155b, (TLRPC.TL_error) this.d, o2Var, (TLRPC.TL_messages_editMessage) this.e, new Object[0]);
+        org.telegram.ui.ActionBar.o2 o2Var = ((wv0) this.f1156c).f32410v1;
+        org.telegram.ui.Components.d5.e0(this.f1155b, (TLRPC.TL_error) this.d, o2Var, (TLRPC.TL_messages_editMessage) this.e, new Object[0]);
     }
 
     @Override
@@ -62,11 +62,11 @@ public final class db implements Runnable {
         this.f1155b = i10;
     }
 
-    public db(jo0 jo0Var, int i10, go0 go0Var, org.telegram.ui.ActionBar.g6 g6Var) {
+    public db(io0 io0Var, int i10, fo0 fo0Var, org.telegram.ui.ActionBar.g6 g6Var) {
         this.f1154a = 24;
-        this.f1156c = jo0Var;
+        this.f1156c = io0Var;
         this.f1155b = i10;
-        this.e = go0Var;
+        this.e = fo0Var;
         this.d = g6Var;
     }
 }

@@ -13,24 +13,24 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.Components.m10;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.k10;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.vc;
 public final class lb extends r {
     public final Path R1;
     public final vb S1;
 
-    public lb(vb vbVar, Activity activity, FrameLayout frameLayout, ow0 ow0Var, FrameLayout frameLayout2, ci.b bVar, org.telegram.ui.Components.ja jaVar) {
-        super(activity, frameLayout, ow0Var, frameLayout2, bVar, jaVar);
+    public lb(vb vbVar, Activity activity, FrameLayout frameLayout, nw0 nw0Var, FrameLayout frameLayout2, ci.b bVar, org.telegram.ui.Components.ha haVar) {
+        super(activity, frameLayout, nw0Var, frameLayout2, bVar, haVar);
         this.S1 = vbVar;
         this.R1 = new Path();
     }
 
     @Override
     public final boolean e() {
-        org.telegram.ui.Components.qc qcVar;
-        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((qcVar = org.telegram.ui.Components.qc.f29825w) != null && qcVar.f29826a == 2)) {
+        org.telegram.ui.Components.oc ocVar;
+        if (MessagesController.getInstance(this.U).premiumFeaturesBlocked() || ((ocVar = org.telegram.ui.Components.oc.f29196w) != null && ocVar.f29197a == 2)) {
             return false;
         }
         int i10 = MessagesController.getInstance(this.U).storyCaptionLengthLimitPremium;
@@ -41,13 +41,13 @@ public final class lb extends r {
             int indexOf2 = replaceTags.toString().indexOf("__");
             if (indexOf2 >= 0) {
                 replaceTags.replace(indexOf2, indexOf2 + 2, (CharSequence) "");
-                replaceTags.setSpan(new m10(org.telegram.ui.ActionBar.k6.f21242gc, this.f9402a), indexOf, indexOf2, 33);
+                replaceTags.setSpan(new k10(org.telegram.ui.ActionBar.k6.f21243gc, this.f9402a), indexOf, indexOf2, 33);
                 replaceTags.setSpan(new kb(this, 0), indexOf, indexOf2, 33);
             }
         }
-        org.telegram.ui.Components.qc M = new xc(this.S1.f10000l0, this.f9402a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
-        M.f29826a = 2;
-        M.f29832j = 5000;
+        org.telegram.ui.Components.oc M = new vc(this.S1.f10000l0, this.f9402a).M(LocaleController.getString(R.string.CaptionPremiumTitle), replaceTags, R.raw.caption_limit);
+        M.f29197a = 2;
+        M.f29203j = 5000;
         M.k(false);
         return true;
     }
@@ -68,7 +68,7 @@ public final class lb extends r {
     }
 
     @Override
-    public final void h(org.telegram.ui.Components.na naVar, Canvas canvas, RectF rectF, float f7, boolean z10, float f10, float f11, boolean z11) {
+    public final void h(org.telegram.ui.Components.la laVar, Canvas canvas, RectF rectF, float f7, boolean z10, float f10, float f11, boolean z11) {
         if (!canvas.isHardwareAccelerated()) {
             return;
         }
@@ -78,7 +78,7 @@ public final class lb extends r {
         path.addRoundRect(rectF, f7, f7, Path.Direction.CW);
         canvas.clipPath(path);
         canvas.translate(f10, f11);
-        naVar.b(canvas, true);
+        laVar.b(canvas, true);
         canvas.restore();
     }
 
@@ -104,11 +104,11 @@ public final class lb extends r {
                 for (int i10 = 0; i10 < vbVar.f10032v1.R0.getChildCount(); i10++) {
                     View childAt = vbVar.f10032v1.R0.getChildAt(i10);
                     if (childAt instanceof rg.j) {
-                        il0 selectionBounds = ((rg.j) childAt).getSelectionBounds();
+                        hl0 selectionBounds = ((rg.j) childAt).getSelectionBounds();
                         RectF rectF = AndroidUtilities.rectTmp;
-                        float f11 = selectionBounds.f27364a;
-                        float f12 = selectionBounds.f27365b;
-                        rectF.set(f11, f12, selectionBounds.f27366c + f11, selectionBounds.d + f12);
+                        float f11 = selectionBounds.f27075a;
+                        float f12 = selectionBounds.f27076b;
+                        rectF.set(f11, f12, selectionBounds.f27077c + f11, selectionBounds.d + f12);
                         if (rectF.contains(x12, y11)) {
                             return true;
                         }

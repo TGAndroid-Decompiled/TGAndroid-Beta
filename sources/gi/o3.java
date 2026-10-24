@@ -6,7 +6,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.h80;
 public final class o3 extends ClickableSpan {
     public final int f11396a;
     public final ai.i0 f11397b;
@@ -22,7 +22,7 @@ public final class o3 extends ClickableSpan {
     public final void onClick(View view) {
         boolean z10;
         boolean z11;
-        j80 H = j80.H(this.f11398c, view);
+        h80 H = h80.H(this.f11398c, view);
         boolean z12 = true;
         int i10 = this.f11396a;
         if (i10 == 3) {
@@ -188,8 +188,8 @@ public final class o3 extends ClickableSpan {
             }
         }, LocaleController.getString(R.string.ChannelAffiliateProgramProgramsSortProfitability), z12);
         H.V(5);
-        H.f27581t = false;
-        H.f27580s = 0;
+        H.f26930t = false;
+        H.f26929s = 0;
         H.a0(AndroidUtilities.dp(24.0f), -AndroidUtilities.dp(24.0f));
         H.Z();
     }

@@ -8,23 +8,23 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.RadialProgressView;
 public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final ah.v f23964a;
-    public final RadialProgressView f23965b;
-    public final org.telegram.ui.ActionBar.g6 f23966c;
+    public final ah.v f23965a;
+    public final RadialProgressView f23966b;
+    public final org.telegram.ui.ActionBar.g6 f23967c;
     public float d;
     public int e;
 
     public y0(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
         super(context);
-        this.f23966c = g6Var;
+        this.f23967c = g6Var;
         ah.v vVar = new ah.v(this, context);
-        this.f23964a = vVar;
+        this.f23965a = vVar;
         vVar.setWillNotDraw(false);
         addView(vVar, w7.z5.e(36, 36, 17));
         RadialProgressView radialProgressView = new RadialProgressView(context, g6Var);
-        this.f23965b = radialProgressView;
+        this.f23966b = radialProgressView;
         radialProgressView.setSize(AndroidUtilities.dp(28.0f));
-        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21277ic, g6Var));
+        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21278ic, g6Var));
         vVar.addView(radialProgressView, w7.z5.e(32, 32, 17));
     }
 
@@ -48,13 +48,13 @@ public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.b
         } else {
             i10 = 4;
         }
-        this.f23964a.setVisibility(i10);
+        this.f23965a.setVisibility(i10);
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f23965b.setProgressColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21277ic, this.f23966c));
+            this.f23966b.setProgressColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21278ic, this.f23967c));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

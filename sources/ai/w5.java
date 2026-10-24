@@ -6,7 +6,7 @@ import android.opengl.Matrix;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class w5 {
     public final x5 f2354a;
     public y0 d;
@@ -85,7 +85,7 @@ public final class w5 {
                                 ofFloat.addUpdateListener(new ah.c0(x5Var, 3));
                                 x5Var.G.addListener(new ah.b(x5Var, 3));
                                 x5Var.G.setDuration(i13 * 16);
-                                x5Var.G.setInterpolator(bs.h);
+                                x5Var.G.setInterpolator(zr.h);
                                 x5Var.G.start();
                                 return;
                             }

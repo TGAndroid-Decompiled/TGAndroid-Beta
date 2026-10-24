@@ -18,40 +18,40 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.k61;
 import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.lm0;
 import org.telegram.ui.o00;
-public final class q3 extends l61 {
+public final class q3 extends k61 {
     public static final int f11424a = 0;
 
     static {
-        l61.setup(new l61());
+        k61.setup(new k61());
     }
 
     @Override
-    public final void bindView(View view, m61 m61Var, boolean z10, b71 b71Var, j71 j71Var) {
+    public final void bindView(View view, l61 l61Var, boolean z10, a71 a71Var, i71 i71Var) {
         int i10;
         int i11;
         int i12;
         int i13;
         float f7;
-        Object obj = m61Var.G;
+        Object obj = l61Var.G;
         int i14 = 0;
         if (obj instanceof TL_payments.connectedBotStarRef) {
             r3 r3Var = (r3) view;
             TL_payments.connectedBotStarRef connectedbotstarref = (TL_payments.connectedBotStarRef) obj;
-            boolean z11 = m61Var.f28565r;
+            boolean z11 = l61Var.f28233r;
             g6 g6Var = r3Var.f11453b;
             View view2 = r3Var.e;
             ImageView imageView = r3Var.f11455f;
             TLRPC.User user = MessagesController.getInstance(r3Var.f11452a).getUser(Long.valueOf(connectedbotstarref.bot_id));
-            h9 h9Var = new h9((g6) null);
-            h9Var.r(user);
-            r3Var.f11454c.e(user, h9Var);
+            f9 f9Var = new f9((g6) null);
+            f9Var.r(user);
+            r3Var.f11454c.e(user, f9Var);
             TextView textView = r3Var.h;
             textView.setText(Emoji.replaceEmoji(UserObject.getUserName(user), textView.getPaint().getFontMetricsInt(), false));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
@@ -59,13 +59,13 @@ public final class q3 extends l61 {
                 spannableStringBuilder.append((CharSequence) " d");
                 o00 o00Var = new o00();
                 int i15 = k6.uj;
-                o00Var.f40033f = k6.w0(i15, null);
-                o00Var.f40035r = i15;
-                o00Var.f40036s = null;
-                o00Var.f40034n = true;
+                o00Var.f40046f = k6.w0(i15, null);
+                o00Var.f40048r = i15;
+                o00Var.f40049s = null;
+                o00Var.f40047n = true;
                 o00Var.v = l.H0(connectedbotstarref.commission_permille);
-                if (o00Var.f40032c != null) {
-                    o00Var.f40032c = null;
+                if (o00Var.f40045c != null) {
+                    o00Var.f40045c = null;
                     o00Var.a();
                 }
                 spannableStringBuilder.setSpan(o00Var, 1, 2, 33);
@@ -126,24 +126,24 @@ public final class q3 extends l61 {
         } else if (obj instanceof TL_payments.starRefProgram) {
             r3 r3Var2 = (r3) view;
             TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) obj;
-            boolean z12 = m61Var.f28565r;
+            boolean z12 = l61Var.f28233r;
             TLRPC.User user2 = MessagesController.getInstance(r3Var2.f11452a).getUser(Long.valueOf(starrefprogram.bot_id));
-            h9 h9Var2 = new h9((g6) null);
-            h9Var2.r(user2);
-            r3Var2.f11454c.e(user2, h9Var2);
+            f9 f9Var2 = new f9((g6) null);
+            f9Var2.r(user2);
+            r3Var2.f11454c.e(user2, f9Var2);
             r3Var2.h.setText(UserObject.getUserName(user2));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
             if (starrefprogram.commission_permille > 0) {
                 spannableStringBuilder2.append((CharSequence) " d");
                 o00 o00Var2 = new o00();
                 int i17 = k6.uj;
-                o00Var2.f40033f = k6.w0(i17, null);
-                o00Var2.f40035r = i17;
-                o00Var2.f40036s = null;
-                o00Var2.f40034n = true;
+                o00Var2.f40046f = k6.w0(i17, null);
+                o00Var2.f40048r = i17;
+                o00Var2.f40049s = null;
+                o00Var2.f40047n = true;
                 o00Var2.v = l.H0(starrefprogram.commission_permille);
-                if (o00Var2.f40032c != null) {
-                    o00Var2.f40032c = null;
+                if (o00Var2.f40045c != null) {
+                    o00Var2.f40045c = null;
                     o00Var2.a();
                 }
                 spannableStringBuilder2.setSpan(o00Var2, 1, 2, 33);
@@ -171,7 +171,7 @@ public final class q3 extends l61 {
     }
 
     @Override
-    public final View createView(Context context, mm0 mm0Var, int i10, int i11, g6 g6Var) {
+    public final View createView(Context context, lm0 lm0Var, int i10, int i11, g6 g6Var) {
         return new r3(context, i10, g6Var);
     }
 }

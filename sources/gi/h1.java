@@ -9,8 +9,8 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.Cells.p9;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.yu0;
+import org.telegram.ui.Components.y5;
+import org.telegram.ui.xu0;
 public final class h1 implements org.telegram.ui.Cells.k1 {
     @Override
     public final boolean B1() {
@@ -53,7 +53,7 @@ public final class h1 implements org.telegram.ui.Cells.k1 {
     }
 
     @Override
-    public final yu0 P1() {
+    public final xu0 P1() {
         return null;
     }
 
@@ -153,7 +153,7 @@ public final class h1 implements org.telegram.ui.Cells.k1 {
     }
 
     @Override
-    public final boolean o0(a6 a6Var) {
+    public final boolean o0(y5 y5Var) {
         return false;
     }
 

@@ -191,7 +191,7 @@ public final class r {
         this.f11442j = null;
         try {
             if (this.f11441i == null) {
-                this.f11441i = new qb.c(LaunchActivity.J1, f0.c.d(this.f11436a), new p(this));
+                this.f11441i = new qb.c(LaunchActivity.I1, f0.c.d(this.f11436a), new p(this));
             }
             androidx.biometric.u i11 = i(z10);
             TLRPC.User user = MessagesController.getInstance(this.f11437b).getUser(Long.valueOf(this.f11438c));

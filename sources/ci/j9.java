@@ -4,7 +4,7 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.oc;
 public final class j9 implements GestureDetector.OnGestureListener {
     public final z9 f5481a;
 
@@ -55,7 +55,7 @@ public final class j9 implements GestureDetector.OnGestureListener {
     @Override
     public final boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10) {
         float f11;
-        qc qcVar;
+        oc ocVar;
         z9 z9Var = this.f5481a;
         if (!z9Var.f6242j0) {
             return false;
@@ -89,9 +89,9 @@ public final class j9 implements GestureDetector.OnGestureListener {
                 z9Var.f6231e0 = f12 + f10;
             }
             n9 n9Var = z9Var.f6260s;
-            qc qcVar2 = qc.f29825w;
-            if (qcVar2 != null && qcVar2.h == n9Var) {
-                qcVar2.b();
+            oc ocVar2 = oc.f29196w;
+            if (ocVar2 != null && ocVar2.h == n9Var) {
+                ocVar2.b();
             }
             if (z9Var.f6249n0.getCurrentPeerView() != null) {
                 z9Var.f6249n0.getCurrentPeerView().invalidate();
@@ -109,9 +109,9 @@ public final class j9 implements GestureDetector.OnGestureListener {
                 f11 = 0.3f;
                 z9Var.W -= f10 * f11;
                 n9 n9Var2 = z9Var.f6260s;
-                qcVar = qc.f29825w;
-                if (qcVar != null && qcVar.h == n9Var2) {
-                    qcVar.b();
+                ocVar = oc.f29196w;
+                if (ocVar != null && ocVar.h == n9Var2) {
+                    ocVar.b();
                 }
                 z9.k(z9Var);
                 return true;
@@ -120,9 +120,9 @@ public final class j9 implements GestureDetector.OnGestureListener {
         f11 = 0.6f;
         z9Var.W -= f10 * f11;
         n9 n9Var22 = z9Var.f6260s;
-        qcVar = qc.f29825w;
-        if (qcVar != null) {
-            qcVar.b();
+        ocVar = oc.f29196w;
+        if (ocVar != null) {
+            ocVar.b();
         }
         z9.k(z9Var);
         return true;

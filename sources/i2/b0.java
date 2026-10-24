@@ -7,6 +7,7 @@ import android.view.TextureView;
 import b2.z1;
 import ei.bc;
 import java.util.ArrayList;
+import org.telegram.ui.Components.b81;
 import org.telegram.ui.Components.j81;
 public final class b0 implements a3.m0, k2.v, SurfaceHolder.Callback, TextureView.SurfaceTextureListener {
     public final h0 f12353a;
@@ -18,9 +19,9 @@ public final class b0 implements a3.m0, k2.v, SurfaceHolder.Callback, TextureVie
     @Override
     public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
         h0 h0Var = this.f12353a;
-        org.telegram.messenger.g1 g1Var = h0Var.f12443s0;
-        if (g1Var != null) {
-            g1Var.execute(new z(this, surfaceTexture, i10, i11, 0));
+        b81 b81Var = h0Var.f12443s0;
+        if (b81Var != null) {
+            b81Var.execute(new z(this, surfaceTexture, i10, i11, 0));
             return;
         }
         Surface surface = new Surface(surfaceTexture);
@@ -42,9 +43,9 @@ public final class b0 implements a3.m0, k2.v, SurfaceHolder.Callback, TextureVie
                 return false;
             }
         }
-        org.telegram.messenger.g1 g1Var = h0Var.f12443s0;
-        if (g1Var != null) {
-            g1Var.execute(new bc(this, surfaceTexture));
+        b81 b81Var = h0Var.f12443s0;
+        if (b81Var != null) {
+            b81Var.execute(new bc(this, surfaceTexture));
             return true;
         }
         h0Var.x1(null);
@@ -55,9 +56,9 @@ public final class b0 implements a3.m0, k2.v, SurfaceHolder.Callback, TextureVie
     @Override
     public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
         h0 h0Var = this.f12353a;
-        org.telegram.messenger.g1 g1Var = h0Var.f12443s0;
-        if (g1Var != null) {
-            g1Var.execute(new hg.n(this, surfaceTexture, i10, i11));
+        b81 b81Var = h0Var.f12443s0;
+        if (b81Var != null) {
+            b81Var.execute(new hg.n(this, surfaceTexture, i10, i11));
         } else {
             h0Var.q1(i10, i11);
         }
@@ -66,9 +67,9 @@ public final class b0 implements a3.m0, k2.v, SurfaceHolder.Callback, TextureVie
     @Override
     public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
         h0 h0Var = this.f12353a;
-        org.telegram.messenger.g1 g1Var = h0Var.f12443s0;
-        if (g1Var != null) {
-            g1Var.execute(new hi.t(2, this, surfaceTexture));
+        b81 b81Var = h0Var.f12443s0;
+        if (b81Var != null) {
+            b81Var.execute(new hi.t(2, this, surfaceTexture));
             return;
         }
         ArrayList arrayList = h0Var.f12445t0;

@@ -1,6 +1,6 @@
 package x7;
 public final class f4 implements ja.d {
-    public static final f4 f49823a = new Object();
+    public static final f4 f49822a = new Object();
 
     static {
         si.o0.s(si.o0.m(c0.class, new z(1)));

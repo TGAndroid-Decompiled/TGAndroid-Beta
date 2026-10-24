@@ -8,21 +8,21 @@ import java.util.regex.Pattern;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.BuildVars;
 public final class t90 implements ViewTreeObserver.OnGlobalLayoutListener {
-    public final int f41928a;
-    public final Object f41929b;
+    public final int f41939a;
+    public final Object f41940b;
 
     public t90(Object obj, int i10) {
-        this.f41928a = i10;
-        this.f41929b = obj;
+        this.f41939a = i10;
+        this.f41940b = obj;
     }
 
     @Override
     public final void onGlobalLayout() {
-        int i10 = this.f41928a;
-        Object obj = this.f41929b;
+        int i10 = this.f41939a;
+        Object obj = this.f41940b;
         switch (i10) {
             case 0:
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 int measuredHeight = ((View) obj).getMeasuredHeight();
                 org.telegram.messenger.v0.n(AndroidUtilities.displaySize.y, i2.o1.n(measuredHeight, "height = ", " displayHeight = "));
                 int i11 = (measuredHeight - AndroidUtilities.navigationBarHeight) - AndroidUtilities.statusBarHeight;
@@ -41,9 +41,9 @@ public final class t90 implements ViewTreeObserver.OnGlobalLayoutListener {
                 }
                 return;
             default:
-                qc1 qc1Var = (qc1) obj;
-                qc1Var.Q = SystemClock.elapsedRealtime() + 1500;
-                qc1Var.f40749l0.invalidate();
+                pc1 pc1Var = (pc1) obj;
+                pc1Var.Q = SystemClock.elapsedRealtime() + 1500;
+                pc1Var.f40478l0.invalidate();
                 return;
         }
     }

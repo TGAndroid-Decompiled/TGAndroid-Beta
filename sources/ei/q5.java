@@ -2,17 +2,17 @@ package ei;
 
 import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.ri;
-public final class q5 implements ri {
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.pi;
+public final class q5 implements pi {
     @Override
     public final boolean p0() {
         return false;
     }
 
     @Override
-    public final void r(gh ghVar) {
-        ghVar.run();
+    public final void r(eh ehVar) {
+        ehVar.run();
     }
 
     @Override

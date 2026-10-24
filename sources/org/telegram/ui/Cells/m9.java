@@ -7,56 +7,56 @@ import android.view.MenuItem;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.fu;
+import org.telegram.ui.Components.du;
 public final class m9 extends ActionMode.Callback2 {
-    public final int f22733a = 0;
-    public final ActionMode.Callback f22734b;
-    public final Object f22735c;
+    public final int f22734a = 0;
+    public final ActionMode.Callback f22735b;
+    public final Object f22736c;
 
     public m9(EditTextBoldCursor editTextBoldCursor, ActionMode.Callback callback) {
-        this.f22735c = editTextBoldCursor;
-        this.f22734b = callback;
+        this.f22736c = editTextBoldCursor;
+        this.f22735b = callback;
     }
 
     @Override
     public final boolean onActionItemClicked(ActionMode actionMode, MenuItem menuItem) {
-        switch (this.f22733a) {
+        switch (this.f22734a) {
             case 0:
-                ((l9) this.f22734b).onActionItemClicked(actionMode, menuItem);
+                ((l9) this.f22735b).onActionItemClicked(actionMode, menuItem);
                 return true;
             case 1:
-                return this.f22734b.onActionItemClicked(actionMode, menuItem);
+                return this.f22735b.onActionItemClicked(actionMode, menuItem);
             default:
-                return ((fu) this.f22734b).onActionItemClicked(actionMode, menuItem);
+                return ((du) this.f22735b).onActionItemClicked(actionMode, menuItem);
         }
     }
 
     @Override
     public final boolean onCreateActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22733a) {
+        switch (this.f22734a) {
             case 0:
-                ((l9) this.f22734b).onCreateActionMode(actionMode, menu);
+                ((l9) this.f22735b).onCreateActionMode(actionMode, menu);
                 return true;
             case 1:
-                return this.f22734b.onCreateActionMode(actionMode, menu);
+                return this.f22735b.onCreateActionMode(actionMode, menu);
             default:
-                return ((fu) this.f22734b).onCreateActionMode(actionMode, menu);
+                return ((du) this.f22735b).onCreateActionMode(actionMode, menu);
         }
     }
 
     @Override
     public final void onDestroyActionMode(ActionMode actionMode) {
-        switch (this.f22733a) {
+        switch (this.f22734a) {
             case 0:
                 return;
             case 1:
-                this.f22734b.onDestroyActionMode(actionMode);
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f22735c;
+                this.f22735b.onDestroyActionMode(actionMode);
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.f22736c;
                 editTextBoldCursor.f();
                 editTextBoldCursor.floatingActionMode = null;
                 return;
             default:
-                ((fu) this.f22734b).onDestroyActionMode(actionMode);
+                ((du) this.f22735b).onDestroyActionMode(actionMode);
                 return;
         }
     }
@@ -64,17 +64,17 @@ public final class m9 extends ActionMode.Callback2 {
     @Override
     public final void onGetContentRect(ActionMode actionMode, View view, Rect rect) {
         int i10;
-        switch (this.f22733a) {
+        switch (this.f22734a) {
             case 0:
-                ba baVar = (ba) this.f22735c;
+                ba baVar = (ba) this.f22736c;
                 if (baVar.x()) {
                     baVar.O();
                     int[] l4 = baVar.l();
                     int i11 = 1;
                     if (baVar.W != null) {
-                        int[] B = baVar.B(baVar.f22184u);
-                        i10 = B[0] + baVar.f22153a;
-                        int dp = (((-baVar.m()) / 2) + ((B[1] + baVar.f22155b) + l4[1])) - AndroidUtilities.dp(4.0f);
+                        int[] B = baVar.B(baVar.f22185u);
+                        i10 = B[0] + baVar.f22154a;
+                        int dp = (((-baVar.m()) / 2) + ((B[1] + baVar.f22156b) + l4[1])) - AndroidUtilities.dp(4.0f);
                         if (dp >= 1) {
                             i11 = dp;
                         }
@@ -84,14 +84,14 @@ public final class m9 extends ActionMode.Callback2 {
                     int width = baVar.F.getWidth();
                     baVar.N();
                     if (baVar.W != null) {
-                        width = baVar.B(baVar.v)[0] + baVar.f22153a;
+                        width = baVar.B(baVar.v)[0] + baVar.f22154a;
                     }
                     rect.set(Math.min(i10, width), i11, Math.max(i10, width), i11 + 1);
                     return;
                 }
                 return;
             case 1:
-                ActionMode.Callback callback = this.f22734b;
+                ActionMode.Callback callback = this.f22735b;
                 if (callback instanceof ActionMode.Callback2) {
                     ((ActionMode.Callback2) callback).onGetContentRect(actionMode, view, rect);
                     return;
@@ -100,7 +100,7 @@ public final class m9 extends ActionMode.Callback2 {
                     return;
                 }
             default:
-                ActionMode.Callback callback2 = (ActionMode.Callback) this.f22735c;
+                ActionMode.Callback callback2 = (ActionMode.Callback) this.f22736c;
                 if (callback2 instanceof ActionMode.Callback2) {
                     ((ActionMode.Callback2) callback2).onGetContentRect(actionMode, view, rect);
                     return;
@@ -113,25 +113,25 @@ public final class m9 extends ActionMode.Callback2 {
 
     @Override
     public final boolean onPrepareActionMode(ActionMode actionMode, Menu menu) {
-        switch (this.f22733a) {
+        switch (this.f22734a) {
             case 0:
-                ((l9) this.f22734b).onPrepareActionMode(actionMode, menu);
+                ((l9) this.f22735b).onPrepareActionMode(actionMode, menu);
                 return true;
             case 1:
-                return this.f22734b.onPrepareActionMode(actionMode, menu);
+                return this.f22735b.onPrepareActionMode(actionMode, menu);
             default:
-                return ((fu) this.f22734b).f26458a.onPrepareActionMode(actionMode, menu);
+                return ((du) this.f22735b).f25837a.onPrepareActionMode(actionMode, menu);
         }
     }
 
-    public m9(fu fuVar, ActionMode.Callback callback) {
-        this.f22734b = fuVar;
-        this.f22735c = callback;
+    public m9(du duVar, ActionMode.Callback callback) {
+        this.f22735b = duVar;
+        this.f22736c = callback;
     }
 
     public m9(ba baVar, l9 l9Var) {
-        this.f22735c = baVar;
-        this.f22734b = l9Var;
+        this.f22736c = baVar;
+        this.f22735b = l9Var;
     }
 
     private final void a(ActionMode actionMode) {

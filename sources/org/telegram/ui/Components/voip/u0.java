@@ -12,13 +12,13 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.yc0;
+import org.telegram.ui.Components.wc0;
 import w7.z5;
 public final class u0 extends z4.a {
-    public final v0 f31950c;
+    public final v0 f31920c;
 
     public u0(v0 v0Var) {
-        this.f31950c = v0Var;
+        this.f31920c = v0Var;
     }
 
     @Override
@@ -28,19 +28,19 @@ public final class u0 extends z4.a {
 
     @Override
     public final int b() {
-        return this.f31950c.f31968f.length;
+        return this.f31920c.f31938f.length;
     }
 
     @Override
     public final Object e(z4.h hVar, int i10) {
         Bitmap bitmap;
         ImageView imageView;
-        v0 v0Var = this.f31950c;
-        boolean z10 = v0Var.f31974y;
+        v0 v0Var = this.f31920c;
+        boolean z10 = v0Var.f31944y;
         int i11 = 1;
         if (z10 && i10 == 0) {
             ?? frameLayout = new FrameLayout(v0Var.getContext());
-            frameLayout.setBackground(new yc0(true, -14602694, -13935795, -14395293, -14203560));
+            frameLayout.setBackground(new wc0(true, -14602694, -13935795, -14395293, -14203560));
             ImageView imageView2 = new ImageView(v0Var.getContext());
             imageView2.setScaleType(ImageView.ScaleType.CENTER);
             imageView2.setImageResource(R.drawable.screencast_big);

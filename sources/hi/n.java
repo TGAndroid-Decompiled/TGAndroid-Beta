@@ -9,25 +9,25 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.u9;
 import w7.z5;
 public final class n extends FrameLayout implements b6 {
-    public final w9 f12218a;
+    public final u9 f12218a;
 
     public n(Context context) {
         super(context);
-        w9 w9Var = new w9(context);
-        this.f12218a = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(w9Var, z5.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
+        u9 u9Var = new u9(context);
+        this.f12218a = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
+        addView(u9Var, z5.d(72, 72.0f, 81, 0.0f, 0.0f, 0.0f, 28.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         Drawable drawable = k6.S0;
-        w9 w9Var = this.f12218a;
-        zf.p.a(canvas, drawable, (w9Var.getWidth() / 2.0f) + w9Var.getLeft(), (w9Var.getHeight() / 2.0f) + w9Var.getTop(), w9Var.getHeight());
+        u9 u9Var = this.f12218a;
+        zf.p.a(canvas, drawable, (u9Var.getWidth() / 2.0f) + u9Var.getLeft(), (u9Var.getHeight() / 2.0f) + u9Var.getTop(), u9Var.getHeight());
     }
 
     @Override

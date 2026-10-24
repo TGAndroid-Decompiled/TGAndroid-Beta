@@ -16,7 +16,7 @@ public final class w0 extends yg.h {
         super.onLayout(z10, i10, i11, i12, i13);
         int dp = AndroidUtilities.dp(78.0f) + getMeasuredHeight();
         x0 x0Var = this.K;
-        x0Var.f48233p0 = dp;
-        x0Var.f48232o0.G();
+        x0Var.f48232p0 = dp;
+        x0Var.f48231o0.G();
     }
 }

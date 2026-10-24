@@ -1,59 +1,142 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.messenger.FileLog;
-public final class mt0 extends AnimatorListenerAdapter {
-    public final int f39687a;
-    public final org.telegram.ui.Components.gn0 f39688b;
+import android.text.TextUtils;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SendMessagesHelper;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+public final class mt0 extends bu0 {
+    public final ImageReceiver.BitmapHolder f39653a;
+    public final ju0 f39654b;
+    public final MessageObject f39655c;
+    public final MediaController.PhotoEntry d;
+    public final boolean e;
+    public final boolean f39656f;
+    public final PhotoViewer f39657g;
 
-    public mt0(org.telegram.ui.Components.gn0 gn0Var, int i10) {
-        this.f39687a = i10;
-        this.f39688b = gn0Var;
+    public mt0(PhotoViewer photoViewer, ju0 ju0Var, MessageObject messageObject, MediaController.PhotoEntry photoEntry, boolean z10, boolean z11) {
+        this.f39657g = photoViewer;
+        this.f39654b = ju0Var;
+        this.f39655c = messageObject;
+        this.d = photoEntry;
+        this.e = z10;
+        this.f39656f = z11;
+        this.f39653a = photoViewer.C4.getBitmapSafe();
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f39687a) {
-            case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f39688b.f26682b;
-                photoViewer.Q1.getNextView().setText((CharSequence) null);
-                kt0 kt0Var = photoViewer.T1;
-                kt0Var.f43654l0 = false;
-                if (kt0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) kt0Var.f43656o0.getLayoutParams()).topMargin = kt0Var.m0;
-                    kt0Var.m0 = -1;
-                    kt0Var.requestLayout();
+    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        ju0 ju0Var = this.f39654b;
+        if (ju0Var != null) {
+            return ju0Var.E(this.f39655c, null, 0, z10, false);
+        }
+        return null;
+    }
+
+    @Override
+    public final void M(VideoEditedInfo videoEditedInfo) {
+        MediaController.PhotoEntry photoEntry = this.d;
+        if (!photoEntry.isCropped && !photoEntry.isPainted && !photoEntry.isFiltered && videoEditedInfo == null && TextUtils.isEmpty(photoEntry.caption)) {
+            return;
+        }
+        d0(videoEditedInfo, false, 0, true, false);
+    }
+
+    @Override
+    public final MessageObject V() {
+        return this.f39655c;
+    }
+
+    public final void d0(VideoEditedInfo videoEditedInfo, boolean z10, int i10, boolean z11, boolean z12) {
+        MessageObject messageObject;
+        PhotoViewer photoViewer = this.f39657g;
+        if (photoViewer.l4 != null) {
+            in inVar = null;
+            MessageObject messageObject2 = this.f39655c;
+            if (z11) {
+                messageObject = messageObject2;
+            } else {
+                messageObject = null;
+            }
+            MediaController.PhotoEntry photoEntry = this.d;
+            if (messageObject != null && !TextUtils.isEmpty(photoEntry.caption)) {
+                messageObject.editingMessage = photoEntry.caption;
+                messageObject.editingMessageEntities = photoEntry.entities;
+            }
+            if (z11 || messageObject2 == null) {
+                sn snVar = photoViewer.l4;
+                messageObject2 = snVar.f41764z5;
+                inVar = snVar.f41739x5;
+            }
+            in inVar2 = inVar;
+            MessageObject messageObject3 = messageObject2;
+            if (photoEntry.isVideo) {
+                if (videoEditedInfo != null) {
+                    AccountInstance accountInstance = photoViewer.l4.getAccountInstance();
+                    String str = photoEntry.path;
+                    long a2 = photoViewer.l4.a();
+                    sn snVar2 = photoViewer.l4;
+                    SendMessagesHelper.prepareSendingVideo(accountInstance, str, videoEditedInfo, null, null, a2, messageObject3, snVar2.f41561j4, null, inVar2, photoEntry.entities, photoEntry.ttl, messageObject, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, snVar2.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41674s5);
                     return;
                 }
+                MessageObject messageObject4 = messageObject;
+                AccountInstance accountInstance2 = photoViewer.l4.getAccountInstance();
+                String str2 = photoEntry.path;
+                long a10 = photoViewer.l4.a();
+                sn snVar3 = photoViewer.l4;
+                SendMessagesHelper.prepareSendingVideo(accountInstance2, str2, null, null, null, a10, messageObject3, snVar3.f41561j4, null, inVar2, photoEntry.entities, photoEntry.ttl, messageObject4, z10, i10, 0, z12, photoEntry.hasSpoiler, photoEntry.caption, snVar3.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41674s5);
                 return;
-            default:
-                ((PhotoViewer) this.f39688b.f26682b).Q1.setTranslationY(0.0f);
-                return;
+            }
+            MessageObject messageObject5 = messageObject;
+            if (photoEntry.imagePath != null) {
+                AccountInstance accountInstance3 = photoViewer.l4.getAccountInstance();
+                String str3 = photoEntry.imagePath;
+                String str4 = photoEntry.thumbPath;
+                long a11 = photoViewer.l4.a();
+                sn snVar4 = photoViewer.l4;
+                SendMessagesHelper.prepareSendingPhoto(accountInstance3, str3, str4, null, a11, messageObject3, snVar4.f41561j4, null, inVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, snVar4.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41674s5);
+            } else if (photoEntry.path != null) {
+                AccountInstance accountInstance4 = photoViewer.l4.getAccountInstance();
+                String str5 = photoEntry.path;
+                String str6 = photoEntry.thumbPath;
+                long a12 = photoViewer.l4.a();
+                sn snVar5 = photoViewer.l4;
+                SendMessagesHelper.prepareSendingPhoto(accountInstance4, str5, str6, null, a12, messageObject3, snVar5.f41561j4, null, inVar2, photoEntry.entities, photoEntry.stickers, null, photoEntry.ttl, messageObject5, videoEditedInfo, z10, i10, 0, 0, z12, photoEntry.caption, snVar5.H8(), 0L, 0L, photoViewer.l4.S8(), photoViewer.l4.f41674s5);
+            }
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f39687a) {
-            case 0:
-                kt0 kt0Var = ((PhotoViewer) this.f39688b.f26682b).T1;
-                Method method = kt0Var.f43648f0;
-                if (method != null) {
-                    try {
-                        method.invoke(kt0Var, null);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final ImageReceiver.BitmapHolder j(int i10) {
+        return this.f39653a;
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        d0(videoEditedInfo, z10, i11, false, z11);
+    }
+
+    @Override
+    public final boolean p() {
+        if (this.f39654b != null && this.e) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean r() {
+        if (this.f39654b != null && this.f39656f) {
+            return true;
+        }
+        return false;
     }
 }

@@ -10,14 +10,14 @@ import w7.f0;
 import w7.v6;
 public final class j extends o6.a {
     public static final Parcelable.Creator<j> CREATOR = new m(3);
-    public final int f45465a;
-    public final int f45466b;
-    public final String f45467c;
+    public final int f45464a;
+    public final int f45465b;
+    public final String f45466c;
     public final String d;
     public final int e;
-    public final String f45468f;
+    public final String f45467f;
     public final j h;
-    public final t f45469n;
+    public final t f45468n;
 
     static {
         Process.myUid();
@@ -28,17 +28,17 @@ public final class j extends o6.a {
         u uVar;
         u uVar2;
         t tVar;
-        this.f45465a = i10;
-        this.f45466b = i11;
-        this.f45467c = str;
+        this.f45464a = i10;
+        this.f45465b = i11;
+        this.f45466c = str;
         this.d = str2;
-        this.f45468f = str3;
+        this.f45467f = str3;
         this.e = i12;
-        r rVar = t.f45485b;
+        r rVar = t.f45484b;
         if (list instanceof q) {
             tVar = (t) ((q) list);
             if (tVar.o()) {
-                Object[] array = tVar.toArray(q.f45481a);
+                Object[] array = tVar.toArray(q.f45480a);
                 int length = array.length;
                 if (length == 0) {
                     uVar2 = u.e;
@@ -64,14 +64,14 @@ public final class j extends o6.a {
                 tVar = uVar;
             }
         }
-        this.f45469n = tVar;
+        this.f45468n = tVar;
         this.h = jVar;
     }
 
     public final boolean equals(Object obj) {
         if (obj instanceof j) {
             j jVar = (j) obj;
-            if (this.f45465a == jVar.f45465a && this.f45466b == jVar.f45466b && this.e == jVar.e && this.f45467c.equals(jVar.f45467c) && v6.a(this.d, jVar.d) && v6.a(this.f45468f, jVar.f45468f) && v6.a(this.h, jVar.h) && this.f45469n.equals(jVar.f45469n)) {
+            if (this.f45464a == jVar.f45464a && this.f45465b == jVar.f45465b && this.e == jVar.e && this.f45466c.equals(jVar.f45466c) && v6.a(this.d, jVar.d) && v6.a(this.f45467f, jVar.f45467f) && v6.a(this.h, jVar.h) && this.f45468n.equals(jVar.f45468n)) {
                 return true;
             }
             return false;
@@ -80,18 +80,18 @@ public final class j extends o6.a {
     }
 
     public final int hashCode() {
-        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f45465a), this.f45467c, this.d, this.f45468f});
+        return Arrays.hashCode(new Object[]{Integer.valueOf(this.f45464a), this.f45466c, this.d, this.f45467f});
     }
 
     public final String toString() {
-        String str = this.f45467c;
+        String str = this.f45466c;
         int length = str.length() + 18;
         String str2 = this.d;
         if (str2 != null) {
             length += str2.length();
         }
         StringBuilder sb2 = new StringBuilder(length);
-        sb2.append(this.f45465a);
+        sb2.append(this.f45464a);
         sb2.append("/");
         sb2.append(str);
         if (str2 != null) {
@@ -103,7 +103,7 @@ public final class j extends o6.a {
             }
             sb2.append("]");
         }
-        String str3 = this.f45468f;
+        String str3 = this.f45467f;
         if (str3 != null) {
             sb2.append("/");
             sb2.append(Integer.toHexString(str3.hashCode()));
@@ -115,16 +115,16 @@ public final class j extends o6.a {
     public final void writeToParcel(Parcel parcel, int i10) {
         int q6 = f0.q(parcel, 20293);
         f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f45465a);
+        parcel.writeInt(this.f45464a);
         f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f45466b);
-        f0.l(parcel, 3, this.f45467c);
+        parcel.writeInt(this.f45465b);
+        f0.l(parcel, 3, this.f45466c);
         f0.l(parcel, 4, this.d);
         f0.s(parcel, 5, 4);
         parcel.writeInt(this.e);
-        f0.l(parcel, 6, this.f45468f);
+        f0.l(parcel, 6, this.f45467f);
         f0.k(parcel, 7, this.h, i10);
-        f0.p(parcel, 8, this.f45469n);
+        f0.p(parcel, 8, this.f45468n);
         f0.r(parcel, q6);
     }
 }

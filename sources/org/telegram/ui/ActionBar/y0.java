@@ -7,36 +7,36 @@ import android.graphics.ColorMatrix;
 import android.graphics.ColorMatrixColorFilter;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.y7;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.th0;
-import org.telegram.ui.Components.y9;
+import org.telegram.ui.Components.sh0;
+import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.zr;
 public final class y0 extends AnimatorListenerAdapter {
-    public final int f21967a;
-    public final float f21968b;
-    public final Object f21969c;
+    public final int f21968a;
+    public final float f21969b;
+    public final Object f21970c;
 
     public y0(Object obj, float f7, int i10) {
-        this.f21967a = i10;
-        this.f21969c = obj;
-        this.f21968b = f7;
+        this.f21968a = i10;
+        this.f21970c = obj;
+        this.f21969b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        int i10 = this.f21967a;
-        float f7 = this.f21968b;
-        Object obj = this.f21969c;
+        int i10 = this.f21968a;
+        float f7 = this.f21969b;
+        Object obj = this.f21970c;
         switch (i10) {
             case 0:
                 b1 b1Var = (b1) obj;
                 b1Var.T = null;
-                b1Var.f20709a = f7;
+                b1Var.f20710a = f7;
                 b1Var.invalidate();
                 return;
             case 1:
                 y3 y3Var = (y3) obj;
-                y3Var.f21981i = f7;
-                z3 z3Var = y3Var.f21977b;
+                y3Var.f21982i = f7;
+                z3 z3Var = y3Var.f21978b;
                 if (z3Var != null) {
                     z3Var.invalidate();
                     return;
@@ -58,27 +58,27 @@ public final class y0 extends AnimatorListenerAdapter {
                 y7Var.d.setEmojiColorFilter(new ColorMatrixColorFilter(colorMatrix));
                 return;
             case 4:
-                y9 y9Var = (y9) obj;
-                y9Var.f32846g = f7;
-                y9Var.invalidateSelf();
+                w9 w9Var = (w9) obj;
+                w9Var.f32159g = f7;
+                w9Var.invalidateSelf();
                 return;
             case 5:
-                th0 th0Var = (th0) obj;
-                th0Var.H.unlock();
-                th0Var.f30704b = f7;
+                sh0 sh0Var = (sh0) obj;
+                sh0Var.H.unlock();
+                sh0Var.f30508b = f7;
                 if (f7 <= 0.0f) {
-                    th0Var.G = -1;
+                    sh0Var.G = -1;
                 }
-                th0Var.c(true);
-                th0Var.f30706f = false;
-                if (th0Var.O != null && Math.abs(f7 - 1.0f) < 0.01f) {
-                    th0Var.O.run();
+                sh0Var.c(true);
+                sh0Var.f30510f = false;
+                if (sh0Var.O != null && Math.abs(f7 - 1.0f) < 0.01f) {
+                    sh0Var.O.run();
                     return;
                 }
                 return;
             case 6:
                 org.telegram.ui.Wallet.y2 y2Var = (org.telegram.ui.Wallet.y2) obj;
-                org.telegram.ui.Wallet.x5 x5Var = y2Var.f35436r;
+                org.telegram.ui.Wallet.x5 x5Var = y2Var.f35438r;
                 x5Var.getClass();
                 x5Var.setLayerType(0, null);
                 if (f7 == 0.0f) {
@@ -92,7 +92,7 @@ public final class y0 extends AnimatorListenerAdapter {
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(y2Var.Q, 1.0f);
                     y2Var.P = ofFloat;
                     ofFloat.setDuration(320L);
-                    y2Var.P.setInterpolator(bs.f25134g);
+                    y2Var.P.setInterpolator(zr.f33338g);
                     y2Var.P.addUpdateListener(new org.telegram.ui.Wallet.v2(y2Var, 1));
                     y2Var.P.start();
                     return;
@@ -101,10 +101,10 @@ public final class y0 extends AnimatorListenerAdapter {
                 }
             default:
                 org.telegram.ui.Wallet.o5 o5Var = (org.telegram.ui.Wallet.o5) obj;
-                if (o5Var.f34945l0 == animator) {
-                    o5Var.f34945l0 = null;
+                if (o5Var.f34947l0 == animator) {
+                    o5Var.f34947l0 = null;
                     o5Var.H0(f7);
-                    o5Var.f34948o0.o(false);
+                    o5Var.f34950o0.o(false);
                     return;
                 }
                 return;
@@ -113,11 +113,11 @@ public final class y0 extends AnimatorListenerAdapter {
 
     @Override
     public void onAnimationStart(Animator animator) {
-        switch (this.f21967a) {
+        switch (this.f21968a) {
             case 5:
-                th0 th0Var = (th0) this.f21969c;
-                th0Var.f30706f = true;
-                th0Var.f30705c = this.f21968b;
+                sh0 sh0Var = (sh0) this.f21970c;
+                sh0Var.f30510f = true;
+                sh0Var.f30509c = this.f21969b;
                 return;
             default:
                 super.onAnimationStart(animator);

@@ -1,28 +1,46 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.FileLog;
-public final class ge0 extends v7.l {
-    public final pe0 f26600a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+public final class ge0 extends AnimatorListenerAdapter {
+    public final int f26648a;
+    public final he0 f26649b;
 
-    public ge0(pe0 pe0Var) {
-        this.f26600a = pe0Var;
+    public ge0(he0 he0Var, int i10) {
+        this.f26648a = i10;
+        this.f26649b = he0Var;
     }
 
     @Override
-    public final void a(int i10, CharSequence charSequence) {
-        FileLog.d("PasscodeView onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
-        this.f26600a.o(true);
-    }
-
-    @Override
-    public final void b() {
-        FileLog.d("PasscodeView onAuthenticationFailed");
-        this.f26600a.o(true);
-    }
-
-    @Override
-    public final void c(androidx.biometric.t tVar) {
-        FileLog.d("PasscodeView onAuthenticationSucceeded");
-        this.f26600a.n(true);
+    public final void onAnimationEnd(Animator animator) {
+        EditTextBoldCursor editTextBoldCursor;
+        switch (this.f26648a) {
+            case 0:
+                ne0 ne0Var = this.f26649b.d;
+                if (!ne0Var.P) {
+                    ne0Var.f28882a0 = 1.0f;
+                    ne0Var.h(1.0f);
+                    return;
+                }
+                return;
+            default:
+                he0 he0Var = this.f26649b;
+                ne0 ne0Var2 = he0Var.d;
+                if (!ne0Var2.P) {
+                    Runnable runnable = he0Var.f27019c;
+                    if (runnable != null) {
+                        runnable.run();
+                    }
+                    if (SharedConfig.passcodeType == 1 && ne0Var2.f28897x.getVisibility() != 0 && (editTextBoldCursor = ne0Var2.f28894r) != null) {
+                        editTextBoldCursor.requestFocus();
+                        AndroidUtilities.showKeyboard(ne0Var2.f28894r);
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
     }
 }

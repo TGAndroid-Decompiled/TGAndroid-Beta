@@ -1,52 +1,125 @@
 package org.telegram.ui;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.content.Context;
+import android.graphics.Rect;
+import android.os.Build;
+import android.util.Property;
+import android.view.View;
+import android.widget.ScrollView;
 import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class zf1 extends org.telegram.ui.ActionBar.j {
-    public final bg1 f44136a;
+import org.telegram.messenger.AndroidUtilities;
+public final class zf1 extends ScrollView {
+    public final int[] f44094a;
+    public final Rect f44095b;
+    public boolean f44096c;
+    public final ag1 d;
 
-    public zf1(bg1 bg1Var) {
-        this.f44136a = bg1Var;
+    public zf1(ag1 ag1Var, Context context) {
+        super(context);
+        this.d = ag1Var;
+        this.f44094a = new int[2];
+        this.f44095b = new Rect();
+        this.f44096c = true;
     }
 
     @Override
-    public final void b(int i10) {
-        String string;
-        org.telegram.ui.ActionBar.h5 h5Var;
-        bg1 bg1Var = this.f44136a;
-        if (i10 == -1) {
-            if (bg1Var.G >= 0) {
-                h5Var = ((org.telegram.ui.ActionBar.o2) bg1Var).parentLayout;
-                if (h5Var.getFragmentStack().size() == 1) {
-                    bg1Var.I0();
-                    return;
-                }
-            }
-            bg1Var.finishFragment();
-        } else if (i10 == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bg1Var.getParentActivity());
-            TL_account.Password password = bg1Var.U;
-            if (password != null && password.has_password) {
-                string = LocaleController.getString(R.string.CancelEmailQuestion);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        this.f44096c = false;
+        super.onLayout(z10, i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        org.telegram.ui.ActionBar.k kVar;
+        boolean z10;
+        boolean z11;
+        Integer num;
+        float f7;
+        org.telegram.ui.ActionBar.k kVar2;
+        super.onScrollChanged(i10, i11, i12, i13);
+        ag1 ag1Var = this.d;
+        TextView textView = ag1Var.f35762c;
+        if (textView != null) {
+            int[] iArr = this.f44094a;
+            textView.getLocationOnScreen(iArr);
+            int measuredHeight = ag1Var.f35762c.getMeasuredHeight() + iArr[1];
+            kVar = ((org.telegram.ui.ActionBar.o2) ag1Var).actionBar;
+            if (measuredHeight < kVar.getBottom()) {
+                z10 = true;
             } else {
-                string = LocaleController.getString(R.string.CancelPasswordQuestion);
+                z10 = false;
             }
-            String string2 = LocaleController.getString(R.string.CancelEmailQuestionTitle);
-            String string3 = LocaleController.getString(R.string.Abort);
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
-            c2Var.T = string;
-            c2Var.R = string2;
-            alertDialog$Builder.k(string3, new sp0(this, 23));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-            org.telegram.ui.ActionBar.c2 c2Var2 = alertDialog$Builder.f20678a;
-            bg1Var.showDialog(c2Var2);
-            TextView textView = (TextView) c2Var2.d(-1);
-            if (textView != null) {
-                org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21421q7, null);
+            if (ag1Var.f35762c.getTag() == null) {
+                z11 = true;
+            } else {
+                z11 = false;
             }
+            if (z10 != z11) {
+                TextView textView2 = ag1Var.f35762c;
+                if (z10) {
+                    num = null;
+                } else {
+                    num = 1;
+                }
+                textView2.setTag(num);
+                AnimatorSet animatorSet = ag1Var.K;
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                    ag1Var.K = null;
+                }
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                ag1Var.K = animatorSet2;
+                ei.g6 g6Var = ag1Var.f35777y;
+                float f10 = 0.0f;
+                if (z10) {
+                    f7 = 1.0f;
+                } else {
+                    f7 = 0.0f;
+                }
+                float[] fArr = {f7};
+                Property property = View.ALPHA;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(g6Var, property, fArr);
+                kVar2 = ((org.telegram.ui.ActionBar.o2) ag1Var).actionBar;
+                org.telegram.ui.ActionBar.n5 titleTextView = kVar2.getTitleTextView();
+                if (z10) {
+                    f10 = 1.0f;
+                }
+                animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(titleTextView, property, f10));
+                ag1Var.K.setDuration(150L);
+                ag1Var.K.addListener(new ue1(this, 1));
+                ag1Var.K.start();
+            }
+        }
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
+        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f44096c) {
+            scrollToDescendant(view2);
+        }
+        super.requestChildFocus(view, view2);
+    }
+
+    @Override
+    public final void requestLayout() {
+        this.f44096c = true;
+        super.requestLayout();
+    }
+
+    @Override
+    public final void scrollToDescendant(View view) {
+        Rect rect = this.f44095b;
+        view.getDrawingRect(rect);
+        offsetDescendantRectToMyCoords(view, rect);
+        rect.bottom = AndroidUtilities.dp(120.0f) + rect.bottom;
+        int computeScrollDeltaToGetChildRectOnScreen = computeScrollDeltaToGetChildRectOnScreen(rect);
+        if (computeScrollDeltaToGetChildRectOnScreen < 0) {
+            computeScrollDeltaToGetChildRectOnScreen -= (getMeasuredHeight() - view.getMeasuredHeight()) / 2;
+        }
+        if (computeScrollDeltaToGetChildRectOnScreen != 0) {
+            smoothScrollBy(0, computeScrollDeltaToGetChildRectOnScreen);
         }
     }
 }

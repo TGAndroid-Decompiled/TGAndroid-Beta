@@ -4,7 +4,7 @@ import android.content.Context;
 import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class z1 extends ph.c implements ne.d {
     public static final int v = 0;
     public final ne.e f2528f;
@@ -15,7 +15,7 @@ public final class z1 extends ph.c implements ne.d {
 
     public z1(Context context, org.telegram.ui.ActionBar.g6 g6Var, r0 r0Var) {
         super(context);
-        this.f2528f = new ne.e(0, this, bs.h, 1600L);
+        this.f2528f = new ne.e(0, this, zr.h, 1600L);
         this.h = r0Var;
         this.f2530r = g6Var;
         int i10 = org.telegram.ui.ActionBar.k6.Wk;
@@ -27,7 +27,7 @@ public final class z1 extends ph.c implements ne.d {
         while (true) {
             ph.b[] bVarArr = this.f2529n;
             if (i11 < bVarArr.length) {
-                this.f44736a.addView(bVarArr[i11], w7.z5.l(1.0f, 0, -1));
+                this.f44735a.addView(bVarArr[i11], w7.z5.l(1.0f, 0, -1));
                 this.f2529n[i11].setOnClickListener(new n1(this, i11, 1));
                 i11++;
             } else {
@@ -52,9 +52,9 @@ public final class z1 extends ph.c implements ne.d {
     public final void b() {
         float f7 = this.f2528f.e;
         int measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(8.0f);
-        Rect rect = this.f44738c;
+        Rect rect = this.f44737c;
         rect.set(AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), f7 / 3.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.lerp(AndroidUtilities.dp(8.0f), getMeasuredWidth() - AndroidUtilities.dp(8.0f), (f7 + 1.0f) / 3.0f), measuredHeight);
-        int dp = AndroidUtilities.dp(this.f44737b * 7.0f);
+        int dp = AndroidUtilities.dp(this.f44736b * 7.0f);
         Rect rect2 = this.d;
         rect2.set(rect);
         int i10 = -dp;

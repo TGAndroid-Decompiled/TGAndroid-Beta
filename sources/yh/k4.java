@@ -10,45 +10,45 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.km0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.wz;
-public final class k4 extends bb implements NotificationCenter.NotificationCenterDelegate {
+import org.telegram.ui.Components.uz;
+import org.telegram.ui.Components.z00;
+import org.telegram.ui.Components.za;
+public final class k4 extends za implements NotificationCenter.NotificationCenterDelegate {
     public final int X;
     public final y9 Y;
     public final HashSet Z;
-    public final wz f50803a0;
-    public final FrameLayout f50804b0;
-    public final ei.d f50805c0;
-    public j80 f50806d0;
-    public final gh.c f50807e0;
-    public final gh.c f50808f0;
-    public b71 f50809g0;
-    public i0.b f50810h0;
-    public boolean f50811i0;
-    public int f50812j0;
+    public final uz f50802a0;
+    public final FrameLayout f50803b0;
+    public final ei.d f50804c0;
+    public h80 f50805d0;
+    public final gh.c f50806e0;
+    public final gh.c f50807f0;
+    public a71 f50808g0;
+    public i0.b f50809h0;
+    public boolean f50810i0;
+    public int f50811j0;
 
     public k4(org.telegram.ui.ActionBar.o2 r20, long r21, int r23, gi.g4 r24) {
         throw new UnsupportedOperationException("Method not decompiled: yh.k4.<init>(org.telegram.ui.ActionBar.o2, long, int, gi.g4):void");
     }
 
     public final void S() {
-        this.d.setPadding(AndroidUtilities.dp(9.0f) + this.f50810h0.f12315a + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(9.0f) + this.f50810h0.f12317c + this.backgroundPaddingLeft, this.f50810h0.d);
-        i0.b bVar = this.f50810h0;
+        this.d.setPadding(AndroidUtilities.dp(9.0f) + this.f50809h0.f12315a + this.backgroundPaddingLeft, 0, AndroidUtilities.dp(9.0f) + this.f50809h0.f12317c + this.backgroundPaddingLeft, this.f50809h0.d);
+        i0.b bVar = this.f50809h0;
         int i10 = bVar.f12315a;
         int i11 = this.backgroundPaddingLeft;
-        this.f50804b0.setPadding(i10 + i11, 0, bVar.f12317c + i11, bVar.d);
+        this.f50803b0.setPadding(i10 + i11, 0, bVar.f12317c + i11, bVar.d);
     }
 
     public final boolean T() {
-        mm0 mm0Var = this.d;
-        if (mm0Var != null && mm0Var.G) {
-            for (int i10 = 0; i10 < mm0Var.getChildCount(); i10++) {
-                if (mm0Var.getChildAt(i10) instanceof b10) {
+        lm0 lm0Var = this.d;
+        if (lm0Var != null && lm0Var.G) {
+            for (int i10 = 0; i10 < lm0Var.getChildCount(); i10++) {
+                if (lm0Var.getChildAt(i10) instanceof z00) {
                     return true;
                 }
             }
@@ -58,9 +58,9 @@ public final class k4 extends bb implements NotificationCenter.NotificationCente
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        b71 b71Var;
-        if (i10 == NotificationCenter.starUserGiftsLoaded && (b71Var = this.f50809g0) != null) {
-            b71Var.N(true);
+        a71 a71Var;
+        if (i10 == NotificationCenter.starUserGiftsLoaded && (a71Var = this.f50808g0) != null) {
+            a71Var.N(true);
             if (T()) {
                 this.Y.a();
             }
@@ -75,29 +75,29 @@ public final class k4 extends bb implements NotificationCenter.NotificationCente
 
     @Override
     public final r0.k1 onApplyWindowInsetsToRoot(View view, r0.k1 k1Var) {
-        this.f50810h0 = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        this.f50809h0 = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
         S();
-        return r0.k1.f45250b;
+        return r0.k1.f45249b;
     }
 
     @Override
     public final void onThemeColorsChanged() {
         super.onThemeColorsChanged();
         try {
-            gh.c cVar = this.f50807e0;
+            gh.c cVar = this.f50806e0;
             if (cVar != null) {
-                cVar.a(getThemedColor(k6.f21183d6));
+                cVar.a(getThemedColor(k6.f21184d6));
             }
-            gh.c cVar2 = this.f50808f0;
+            gh.c cVar2 = this.f50807f0;
             if (cVar2 != null) {
-                cVar2.a(getThemedColor(k6.f21125a7));
+                cVar2.a(getThemedColor(k6.f21126a7));
             }
-            int themedColor = getThemedColor(k6.f21125a7);
-            if (this.f50811i0 && themedColor == this.f50812j0) {
+            int themedColor = getThemedColor(k6.f21126a7);
+            if (this.f50810i0 && themedColor == this.f50811j0) {
                 return;
             }
-            this.f50811i0 = true;
-            this.f50812j0 = themedColor;
+            this.f50810i0 = true;
+            this.f50811j0 = themedColor;
             setBackgroundColor(themedColor);
         } catch (Exception e) {
             FileLog.e(e);
@@ -105,11 +105,11 @@ public final class k4 extends bb implements NotificationCenter.NotificationCente
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
-        b71 b71Var = new b71(mm0Var, getContext(), this.currentAccount, 0, false, new t3(this, 1), this.resourcesProvider);
-        this.f50809g0 = b71Var;
-        b71Var.f24972r = false;
-        return b71Var;
+    public final km0 w(lm0 lm0Var) {
+        a71 a71Var = new a71(lm0Var, getContext(), this.currentAccount, 0, false, new t3(this, 1), this.resourcesProvider);
+        this.f50808g0 = a71Var;
+        a71Var.f24646r = false;
+        return a71Var;
     }
 
     @Override

@@ -21,15 +21,15 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.j6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.f5;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.km0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.za;
 import s4.o0;
 import w7.z5;
-public final class a extends bb {
-    public b71 X;
+public final class a extends za {
+    public a71 X;
     public boolean Y;
     public final FrameLayout Z;
     public final boolean f14563a0;
@@ -47,7 +47,7 @@ public final class a extends bb {
         this.L = false;
         this.K = AndroidUtilities.dp(12.0f);
         this.e.setTitle(z());
-        setBackgroundColorKey(k6.f21125a7);
+        setBackgroundColorKey(k6.f21126a7);
         FrameLayout frameLayout = new FrameLayout(context);
         this.Z = frameLayout;
         frameLayout.setPadding(0, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
@@ -63,9 +63,9 @@ public final class a extends bb {
             }
         }
         frameLayout.addView(i6Var, z5.c(-2.0f, i10));
-        mm0 mm0Var = this.d;
+        lm0 lm0Var = this.d;
         int i12 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
+        lm0Var.setPadding(i12, 0, i12, AndroidUtilities.dp(64.0f) + AndroidUtilities.navigationBarHeight);
         this.d.t1();
         this.d.setClipToPadding(false);
         this.d.setOnItemClickListener(new xa(this, 16));
@@ -97,7 +97,7 @@ public final class a extends bb {
             } else {
                 i10 = R.string.CommunityAddToCommunityGroupMessage;
             }
-            f5.P(context, g6Var, string, LocaleController.getString(i10), LocaleController.getString(R.string.Add), new y7(this, callback, z10, 6)).show();
+            d5.O(context, g6Var, string, LocaleController.getString(i10), LocaleController.getString(R.string.Add), new y7(this, callback, z10, 6)).show();
             return;
         }
         callback.run(Boolean.valueOf(z10));
@@ -108,15 +108,15 @@ public final class a extends bb {
         boolean z11;
         if (this.Y != z10) {
             this.Y = z10;
-            mm0 mm0Var = this.d;
-            View V0 = mm0Var.V0(this.f14565c0 + 1);
+            lm0 lm0Var = this.d;
+            View V0 = lm0Var.V0(this.f14565c0 + 1);
             if (V0 instanceof j6) {
                 ((j6) V0).a(!z10);
                 z11 = false;
             } else {
                 z11 = true;
             }
-            View V02 = mm0Var.V0(this.f14565c0 + 2);
+            View V02 = lm0Var.V0(this.f14565c0 + 2);
             if (V02 instanceof j6) {
                 ((j6) V02).a(z10);
             } else {
@@ -129,11 +129,11 @@ public final class a extends bb {
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
-        b71 b71Var = new b71(this.d, getContext(), this.currentAccount, 0, false, new o(this, 11), this.resourcesProvider);
-        this.X = b71Var;
-        b71Var.f24972r = false;
-        return b71Var;
+    public final km0 w(lm0 lm0Var) {
+        a71 a71Var = new a71(this.d, getContext(), this.currentAccount, 0, false, new o(this, 11), this.resourcesProvider);
+        this.X = a71Var;
+        a71Var.f24646r = false;
+        return a71Var;
     }
 
     @Override

@@ -1,25 +1,35 @@
 package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
-public final class l91 extends dq {
-    public final boolean[] f39202e1;
-    public final u91 f39203f1;
-    public final n91 f39204g1;
+public final class l91 implements aq {
+    public final TLRPC.TL_chatChannelParticipant f39175a;
+    public final boolean f39176b;
+    public final boolean[] f39177c;
 
-    public l91(n91 n91Var, long j10, long j11, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10, boolean[] zArr, u91 u91Var) {
-        super(j10, j11, tL_chatAdminRights, null, tL_chatBannedRights, str, 0, true, z10, null);
-        this.f39204g1 = n91Var;
-        this.f39202e1 = zArr;
-        this.f39203f1 = u91Var;
+    public l91(TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant, boolean z10, boolean[] zArr) {
+        this.f39175a = tL_chatChannelParticipant;
+        this.f39176b = z10;
+        this.f39177c = zArr;
     }
 
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        if (!z10 && z11 && this.f39202e1[0]) {
-            u91 u91Var = this.f39203f1;
-            if (org.telegram.ui.Components.xc.a(u91Var)) {
-                org.telegram.ui.Components.xc.C(u91Var, this.f39204g1.f39831a.first_name).j();
-            }
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = this.f39175a;
+        if (i10 == 0) {
+            TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
+            channelParticipant.admin_rights = null;
+            channelParticipant.rank = "";
+            return;
         }
+        TLRPC.ChannelParticipant channelParticipant2 = tL_chatChannelParticipant.channelParticipant;
+        channelParticipant2.admin_rights = tL_chatAdminRights;
+        channelParticipant2.rank = str;
+        if (this.f39176b) {
+            this.f39177c[0] = true;
+        }
+    }
+
+    @Override
+    public final void a(TLRPC.User user) {
     }
 }

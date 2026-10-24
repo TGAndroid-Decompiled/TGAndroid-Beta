@@ -10,9 +10,9 @@ import org.telegram.messenger.Utilities;
 public final class lc extends View implements r2 {
     public Paint f9399a;
     public Paint f9400b;
-    public org.telegram.ui.Components.p6 f9401c;
+    public org.telegram.ui.Components.n6 f9401c;
     public boolean d;
-    public org.telegram.ui.Components.f6 e;
+    public org.telegram.ui.Components.d6 e;
 
     public final void a(long j10, boolean z10) {
         long j11 = j10 % 60;
@@ -34,13 +34,13 @@ public final class lc extends View implements r2 {
         float f7;
         this.d = z10;
         if (!z11) {
-            org.telegram.ui.Components.f6 f6Var = this.e;
+            org.telegram.ui.Components.d6 d6Var = this.e;
             if (z10) {
                 f7 = 1.0f;
             } else {
                 f7 = 0.0f;
             }
-            f6Var.d(f7, true);
+            d6Var.d(f7, true);
         }
         invalidate();
     }
@@ -49,17 +49,17 @@ public final class lc extends View implements r2 {
     public final void onDraw(Canvas canvas) {
         float f7;
         Paint paint = this.f9400b;
-        org.telegram.ui.Components.p6 p6Var = this.f9401c;
+        org.telegram.ui.Components.n6 n6Var = this.f9401c;
         super.onDraw(canvas);
-        org.telegram.ui.Components.f6 f6Var = this.e;
+        org.telegram.ui.Components.d6 d6Var = this.e;
         if (this.d) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        float d = f6Var.d(f7, false);
+        float d = d6Var.d(f7, false);
         float dp = AndroidUtilities.dp(12.66f) * d;
-        float c10 = p6Var.c() + dp;
+        float c10 = n6Var.c() + dp;
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(((getWidth() - c10) / 2.0f) - AndroidUtilities.dp(8.0f), AndroidUtilities.dp(18.0f), ((getWidth() + c10) / 2.0f) + AndroidUtilities.dp(8.0f), AndroidUtilities.dp(40.0f));
         canvas.drawRoundRect(rectF, AndroidUtilities.dp(18.0f), AndroidUtilities.dp(18.0f), this.f9399a);
@@ -68,8 +68,8 @@ public final class lc extends View implements r2 {
             invalidate();
             canvas.drawCircle(rectF.left + AndroidUtilities.dp(10.66f), rectF.centerY(), AndroidUtilities.dp(4.0f) * d, paint);
         }
-        p6Var.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
-        p6Var.draw(canvas);
+        n6Var.setBounds((int) (rectF.left + dp), ((int) rectF.top) - AndroidUtilities.dp(1.0f), (int) rectF.right, (int) rectF.bottom);
+        n6Var.draw(canvas);
     }
 
     @Override

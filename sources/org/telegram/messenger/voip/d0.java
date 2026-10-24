@@ -2,24 +2,24 @@ package org.telegram.messenger.voip;
 
 import android.media.AudioManager;
 public final class d0 implements Runnable {
-    public final int f19927a;
-    public final VoIPService f19928b;
-    public final AudioManager f19929c;
+    public final int f19922a;
+    public final VoIPService f19923b;
+    public final AudioManager f19924c;
 
     public d0(VoIPService voIPService, AudioManager audioManager, int i10) {
-        this.f19927a = i10;
-        this.f19928b = voIPService;
-        this.f19929c = audioManager;
+        this.f19922a = i10;
+        this.f19923b = voIPService;
+        this.f19924c = audioManager;
     }
 
     @Override
     public final void run() {
-        switch (this.f19927a) {
+        switch (this.f19922a) {
             case 0:
-                VoIPService.C(this.f19928b, this.f19929c);
+                VoIPService.C(this.f19923b, this.f19924c);
                 return;
             default:
-                VoIPService.g1(this.f19928b, this.f19929c);
+                VoIPService.g1(this.f19923b, this.f19924c);
                 return;
         }
     }

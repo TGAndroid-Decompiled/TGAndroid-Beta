@@ -1,7 +1,7 @@
 package ci;
 
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class s3 implements Runnable {
     public final int f5911a;
     public final z9 f5912b;
@@ -32,7 +32,7 @@ public final class s3 implements Runnable {
                     }
                     z9Var2.F.addListener(new i9(z9Var2, 0));
                     z9Var2.F.setDuration(320L);
-                    z9Var2.F.setInterpolator(bs.h);
+                    z9Var2.F.setInterpolator(zr.h);
                     z9Var2.F.start();
                     return;
                 }

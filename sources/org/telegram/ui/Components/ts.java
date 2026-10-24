@@ -1,41 +1,39 @@
 package org.telegram.ui.Components;
+public final class ts implements Runnable {
+    public final int f30881a;
+    public final org.telegram.ui.ActionBar.c2[] f30882b;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Shader;
-import android.view.View;
-public final class ts extends View {
-    public final Paint f30898a;
-    public final Matrix f30899b;
-    public LinearGradient f30900c;
-    public int d;
-    public float e;
-    public float f30901f;
-
-    public ts(Context context) {
-        super(context);
-        this.f30898a = new Paint(1);
-        this.f30899b = new Matrix();
+    public ts(org.telegram.ui.ActionBar.c2[] c2VarArr, int i10) {
+        this.f30881a = i10;
+        this.f30882b = c2VarArr;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), this.e + this.f30901f, this.f30898a);
-    }
-
-    public void setColor(int i10) {
-        if (this.d != i10) {
-            this.d = i10;
-            int alpha = Color.alpha(i10);
-            LinearGradient linearGradient = new LinearGradient(0.0f, 0.0f, 0.0f, 1.0f, new int[]{i0.a.o(i10, (alpha * 232) / 255), i0.a.o(i10, (alpha * 192) / 255), i0.a.o(i10, (alpha * 144) / 255), i0.a.o(i10, 0)}, (float[]) null, Shader.TileMode.CLAMP);
-            this.f30900c = linearGradient;
-            this.f30898a.setShader(linearGradient);
-            this.f30900c.setLocalMatrix(this.f30899b);
-            invalidate();
+    public final void run() {
+        switch (this.f30881a) {
+            case 0:
+                org.telegram.ui.ActionBar.c2 c2Var = this.f30882b[0];
+                if (c2Var != null) {
+                    c2Var.dismiss();
+                    return;
+                }
+                return;
+            case 1:
+                org.telegram.ui.ActionBar.c2[] c2VarArr = this.f30882b;
+                try {
+                    c2VarArr[0].dismiss();
+                } catch (Throwable unused) {
+                }
+                c2VarArr[0] = null;
+                return;
+            default:
+                org.telegram.ui.ActionBar.c2[] c2VarArr2 = this.f30882b;
+                try {
+                    c2VarArr2[0].dismiss();
+                } catch (Throwable unused2) {
+                }
+                c2VarArr2[0] = null;
+                return;
         }
     }
 }

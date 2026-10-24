@@ -19,85 +19,85 @@ import javax.microedition.khronos.egl.EGLSurface;
 import org.telegram.messenger.BuildVars;
 import org.telegram.messenger.DispatchQueue;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.Components.ja;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.ha;
+import org.telegram.ui.Components.hw0;
 import org.telegram.ui.Wallet.m4;
 import w7.q6;
 public final class c1 extends DispatchQueue {
-    public final SurfaceTexture f44898a;
-    public EGL10 f44899b;
-    public EGLDisplay f44900c;
+    public final SurfaceTexture f44897a;
+    public EGL10 f44898b;
+    public EGLDisplay f44899c;
     public EGLContext d;
     public EGLSurface e;
-    public boolean f44901f;
+    public boolean f44900f;
     public volatile boolean h;
-    public int f44902n;
-    public int f44903r;
-    public b1 f44904s;
-    public final ja v;
-    public final m4 f44905w;
-    public final b1 f44906x;
-    public final e1 f44907y;
+    public int f44901n;
+    public int f44902r;
+    public b1 f44903s;
+    public final ha v;
+    public final m4 f44904w;
+    public final b1 f44905x;
+    public final e1 f44906y;
 
-    public c1(e1 e1Var, SurfaceTexture surfaceTexture, ja jaVar) {
+    public c1(e1 e1Var, SurfaceTexture surfaceTexture, ha haVar) {
         super("CanvasInternal");
-        this.f44907y = e1Var;
-        this.f44905w = new m4(this, 4);
-        this.f44906x = new b1(this, 0);
-        this.v = jaVar;
-        this.f44898a = surfaceTexture;
+        this.f44906y = e1Var;
+        this.f44904w = new m4(this, 4);
+        this.f44905x = new b1(this, 0);
+        this.v = haVar;
+        this.f44897a = surfaceTexture;
     }
 
     public static void b(c1 c1Var) {
-        if (!c1Var.f44901f) {
+        if (!c1Var.f44900f) {
             return;
         }
-        if (c1Var.d.equals(c1Var.f44899b.eglGetCurrentContext()) && c1Var.e.equals(c1Var.f44899b.eglGetCurrentSurface(12377))) {
+        if (c1Var.d.equals(c1Var.f44898b.eglGetCurrentContext()) && c1Var.e.equals(c1Var.f44898b.eglGetCurrentSurface(12377))) {
             return;
         }
-        EGL10 egl10 = c1Var.f44899b;
-        EGLDisplay eGLDisplay = c1Var.f44900c;
+        EGL10 egl10 = c1Var.f44898b;
+        EGLDisplay eGLDisplay = c1Var.f44899c;
         EGLSurface eGLSurface = c1Var.e;
         egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, c1Var.d);
     }
 
     public final void finish() {
-        ja jaVar = this.v;
+        ha haVar = this.v;
         if (this.e != null) {
-            EGL10 egl10 = this.f44899b;
-            EGLDisplay eGLDisplay = this.f44900c;
+            EGL10 egl10 = this.f44898b;
+            EGLDisplay eGLDisplay = this.f44899c;
             EGLSurface eGLSurface = EGL10.EGL_NO_SURFACE;
             egl10.eglMakeCurrent(eGLDisplay, eGLSurface, eGLSurface, EGL10.EGL_NO_CONTEXT);
-            this.f44899b.eglDestroySurface(this.f44900c, this.e);
+            this.f44898b.eglDestroySurface(this.f44899c, this.e);
             this.e = null;
         }
         EGLContext eGLContext = this.d;
         if (eGLContext != null) {
-            if (jaVar != null) {
-                synchronized (jaVar.f27637f) {
+            if (haVar != null) {
+                synchronized (haVar.f26977f) {
                     try {
-                        if (jaVar.f27638g == eGLContext) {
-                            jaVar.f27638g = null;
+                        if (haVar.f26978g == eGLContext) {
+                            haVar.f26978g = null;
                         }
                     } finally {
                     }
                 }
             }
-            this.f44899b.eglDestroyContext(this.f44900c, this.d);
+            this.f44898b.eglDestroyContext(this.f44899c, this.d);
             this.d = null;
         }
-        EGLDisplay eGLDisplay2 = this.f44900c;
+        EGLDisplay eGLDisplay2 = this.f44899c;
         if (eGLDisplay2 != null) {
-            this.f44899b.eglTerminate(eGLDisplay2);
-            this.f44900c = null;
+            this.f44898b.eglTerminate(eGLDisplay2);
+            this.f44899c = null;
         }
-        if (jaVar != null) {
-            b1 b1Var = this.f44906x;
-            ArrayList arrayList = jaVar.e;
+        if (haVar != null) {
+            b1 b1Var = this.f44905x;
+            ArrayList arrayList = haVar.e;
             arrayList.remove(b1Var);
-            if (arrayList.isEmpty() && jaVar.d.isEmpty()) {
-                jaVar.f27644n.a();
+            if (arrayList.isEmpty() && haVar.d.isEmpty()) {
+                haVar.f26984n.a();
             }
         }
     }
@@ -106,15 +106,15 @@ public final class c1 extends DispatchQueue {
     public final void run() {
         EGLContext eGLContext;
         Bitmap bitmap;
-        e1 e1Var = this.f44907y;
+        e1 e1Var = this.f44906y;
         Bitmap bitmap2 = e1Var.h;
         if (bitmap2 != null && !bitmap2.isRecycled()) {
-            SurfaceTexture surfaceTexture = this.f44898a;
-            ja jaVar = this.v;
+            SurfaceTexture surfaceTexture = this.f44897a;
+            ha haVar = this.v;
             EGL10 egl10 = (EGL10) EGLContext.getEGL();
-            this.f44899b = egl10;
+            this.f44898b = egl10;
             EGLDisplay eglGetDisplay = egl10.eglGetDisplay(EGL10.EGL_DEFAULT_DISPLAY);
-            this.f44900c = eglGetDisplay;
+            this.f44899c = eglGetDisplay;
             int i10 = 0;
             r6 = false;
             r6 = false;
@@ -123,31 +123,31 @@ public final class c1 extends DispatchQueue {
             boolean z10 = false;
             if (eglGetDisplay == EGL10.EGL_NO_DISPLAY) {
                 if (BuildVars.LOGS_ENABLED) {
-                    sl.v(this.f44899b, new StringBuilder("eglGetDisplay failed "));
+                    tl.v(this.f44898b, new StringBuilder("eglGetDisplay failed "));
                 }
                 finish();
             } else {
-                if (!this.f44899b.eglInitialize(eglGetDisplay, new int[2])) {
+                if (!this.f44898b.eglInitialize(eglGetDisplay, new int[2])) {
                     if (BuildVars.LOGS_ENABLED) {
-                        sl.v(this.f44899b, new StringBuilder("eglInitialize failed "));
+                        tl.v(this.f44898b, new StringBuilder("eglInitialize failed "));
                     }
                     finish();
                 } else {
                     int[] iArr = new int[1];
                     EGLConfig[] eGLConfigArr = new EGLConfig[1];
-                    if (!this.f44899b.eglChooseConfig(this.f44900c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
+                    if (!this.f44898b.eglChooseConfig(this.f44899c, new int[]{12352, 4, 12324, 8, 12323, 8, 12322, 8, 12321, 8, 12325, 0, 12326, 0, 12344}, eGLConfigArr, 1, iArr)) {
                         if (BuildVars.LOGS_ENABLED) {
-                            sl.v(this.f44899b, new StringBuilder("eglChooseConfig failed "));
+                            tl.v(this.f44898b, new StringBuilder("eglChooseConfig failed "));
                         }
                         finish();
                     } else {
                         if (iArr[0] > 0) {
                             EGLConfig eGLConfig = eGLConfigArr[0];
                             int[] iArr2 = {12440, 2, 12344};
-                            if (jaVar != null) {
-                                synchronized (jaVar.f27637f) {
+                            if (haVar != null) {
+                                synchronized (haVar.f26977f) {
                                     try {
-                                        eGLContext = jaVar.f27638g;
+                                        eGLContext = haVar.f26978g;
                                         if (eGLContext == null) {
                                             eGLContext = EGL10.EGL_NO_CONTEXT;
                                         }
@@ -157,25 +157,25 @@ public final class c1 extends DispatchQueue {
                             } else {
                                 eGLContext = EGL10.EGL_NO_CONTEXT;
                             }
-                            EGLContext eglCreateContext = this.f44899b.eglCreateContext(this.f44900c, eGLConfig, eGLContext, iArr2);
+                            EGLContext eglCreateContext = this.f44898b.eglCreateContext(this.f44899c, eGLConfig, eGLContext, iArr2);
                             this.d = eglCreateContext;
                             if (eglCreateContext == null) {
                                 if (BuildVars.LOGS_ENABLED) {
-                                    sl.v(this.f44899b, new StringBuilder("eglCreateContext failed "));
+                                    tl.v(this.f44898b, new StringBuilder("eglCreateContext failed "));
                                 }
                                 finish();
                             } else {
-                                if (jaVar != null) {
-                                    jaVar.a(eglCreateContext);
-                                    jaVar.e.add(this.f44906x);
+                                if (haVar != null) {
+                                    haVar.a(eglCreateContext);
+                                    haVar.e.add(this.f44905x);
                                 }
                                 if (surfaceTexture != null) {
-                                    EGLSurface eglCreateWindowSurface = this.f44899b.eglCreateWindowSurface(this.f44900c, eGLConfig, surfaceTexture, null);
+                                    EGLSurface eglCreateWindowSurface = this.f44898b.eglCreateWindowSurface(this.f44899c, eGLConfig, surfaceTexture, null);
                                     this.e = eglCreateWindowSurface;
                                     if (eglCreateWindowSurface != null && eglCreateWindowSurface != EGL10.EGL_NO_SURFACE) {
-                                        if (!this.f44899b.eglMakeCurrent(this.f44900c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
+                                        if (!this.f44898b.eglMakeCurrent(this.f44899c, eglCreateWindowSurface, eglCreateWindowSurface, this.d)) {
                                             if (BuildVars.LOGS_ENABLED) {
-                                                sl.v(this.f44899b, new StringBuilder("eglMakeCurrent failed "));
+                                                tl.v(this.f44898b, new StringBuilder("eglMakeCurrent failed "));
                                             }
                                             finish();
                                         } else {
@@ -183,25 +183,25 @@ public final class c1 extends DispatchQueue {
                                             GLES20.glDisable(3024);
                                             GLES20.glDisable(2960);
                                             GLES20.glDisable(2929);
-                                            s0 s0Var = e1Var.f44936c;
+                                            s0 s0Var = e1Var.f44935c;
                                             s0Var.getClass();
-                                            Map map = g1.f44950a;
+                                            Map map = g1.f44949a;
                                             HashMap hashMap = new HashMap();
-                                            for (Map.Entry entry : g1.f44950a.entrySet()) {
+                                            for (Map.Entry entry : g1.f44949a.entrySet()) {
                                                 Map map2 = (Map) entry.getValue();
                                                 String str = (String) map2.get("fragment");
                                                 String[] strArr = (String[]) map2.get("attributes");
                                                 String[] strArr2 = (String[]) map2.get("uniforms");
                                                 ?? obj = new Object();
-                                                obj.f44947b = new HashMap();
-                                                obj.f44946a = GLES20.glCreateProgram();
+                                                obj.f44946b = new HashMap();
+                                                obj.f44945a = GLES20.glCreateProgram();
                                                 b2.u0 b10 = f1.b(35633, (String) map2.get("vertex"));
                                                 int i11 = b10.f4060a;
                                                 if (b10.f4061b == 0) {
                                                     if (BuildVars.LOGS_ENABLED) {
                                                         FileLog.e("Vertex shader compilation failed");
                                                     }
-                                                    f1.c(i11, i10, obj.f44946a);
+                                                    f1.c(i11, i10, obj.f44945a);
                                                 } else {
                                                     b2.u0 b11 = f1.b(35632, str);
                                                     int i12 = b11.f4060a;
@@ -209,14 +209,14 @@ public final class c1 extends DispatchQueue {
                                                         if (BuildVars.LOGS_ENABLED) {
                                                             FileLog.e("Fragment shader compilation failed");
                                                         }
-                                                        f1.c(i11, i12, obj.f44946a);
+                                                        f1.c(i11, i12, obj.f44945a);
                                                     } else {
-                                                        GLES20.glAttachShader(obj.f44946a, i11);
-                                                        GLES20.glAttachShader(obj.f44946a, i12);
+                                                        GLES20.glAttachShader(obj.f44945a, i11);
+                                                        GLES20.glAttachShader(obj.f44945a, i12);
                                                         for (int i13 = i10; i13 < strArr.length; i13++) {
-                                                            GLES20.glBindAttribLocation(obj.f44946a, i13, strArr[i13]);
+                                                            GLES20.glBindAttribLocation(obj.f44945a, i13, strArr[i13]);
                                                         }
-                                                        int i14 = obj.f44946a;
+                                                        int i14 = obj.f44945a;
                                                         GLES20.glLinkProgram(i14);
                                                         int[] iArr3 = new int[1];
                                                         GLES20.glGetProgramiv(i14, 35714, iArr3, i10);
@@ -224,12 +224,12 @@ public final class c1 extends DispatchQueue {
                                                             FileLog.e(GLES20.glGetProgramInfoLog(i14));
                                                         }
                                                         if (iArr3[i10] == 0) {
-                                                            f1.c(i11, i12, obj.f44946a);
+                                                            f1.c(i11, i12, obj.f44945a);
                                                         } else {
                                                             int length = strArr2.length;
                                                             for (int i15 = i10; i15 < length; i15++) {
                                                                 String str2 = strArr2[i15];
-                                                                obj.f44947b.put(str2, Integer.valueOf(GLES20.glGetUniformLocation(obj.f44946a, str2)));
+                                                                obj.f44946b.put(str2, Integer.valueOf(GLES20.glGetUniformLocation(obj.f44945a, str2)));
                                                             }
                                                             if (i11 != 0) {
                                                                 GLES20.glDeleteShader(i11);
@@ -243,37 +243,37 @@ public final class c1 extends DispatchQueue {
                                                 hashMap.put((String) entry.getKey(), obj);
                                                 i10 = 0;
                                             }
-                                            s0Var.f45058r = DesugarCollections.unmodifiableMap(hashMap);
-                                            iw0 iw0Var = s0Var.f45048g;
-                                            if (e1Var.h.getWidth() != iw0Var.f27465a || e1Var.h.getHeight() != iw0Var.f27466b) {
-                                                Bitmap createBitmap = Bitmap.createBitmap((int) iw0Var.f27465a, (int) iw0Var.f27466b, Bitmap.Config.ARGB_8888);
-                                                new Canvas(createBitmap).drawBitmap(e1Var.h, (Rect) null, new RectF(0.0f, 0.0f, iw0Var.f27465a, iw0Var.f27466b), (Paint) null);
+                                            s0Var.f45057r = DesugarCollections.unmodifiableMap(hashMap);
+                                            hw0 hw0Var = s0Var.f45047g;
+                                            if (e1Var.h.getWidth() != hw0Var.f27188a || e1Var.h.getHeight() != hw0Var.f27189b) {
+                                                Bitmap createBitmap = Bitmap.createBitmap((int) hw0Var.f27188a, (int) hw0Var.f27189b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap).drawBitmap(e1Var.h, (Rect) null, new RectF(0.0f, 0.0f, hw0Var.f27188a, hw0Var.f27189b), (Paint) null);
                                                 e1Var.h = createBitmap;
-                                                e1Var.f44939r = true;
+                                                e1Var.f44938r = true;
                                             }
-                                            if (e1Var.f44938n != null && (bitmap.getWidth() != iw0Var.f27465a || e1Var.f44938n.getHeight() != iw0Var.f27466b)) {
-                                                Bitmap createBitmap2 = Bitmap.createBitmap((int) iw0Var.f27465a, (int) iw0Var.f27466b, Bitmap.Config.ARGB_8888);
-                                                new Canvas(createBitmap2).drawBitmap(e1Var.f44938n, (Rect) null, new RectF(0.0f, 0.0f, iw0Var.f27465a, iw0Var.f27466b), (Paint) null);
-                                                e1Var.f44938n = createBitmap2;
-                                                e1Var.f44939r = true;
+                                            if (e1Var.f44937n != null && (bitmap.getWidth() != hw0Var.f27188a || e1Var.f44937n.getHeight() != hw0Var.f27189b)) {
+                                                Bitmap createBitmap2 = Bitmap.createBitmap((int) hw0Var.f27188a, (int) hw0Var.f27189b, Bitmap.Config.ARGB_8888);
+                                                new Canvas(createBitmap2).drawBitmap(e1Var.f44937n, (Rect) null, new RectF(0.0f, 0.0f, hw0Var.f27188a, hw0Var.f27189b), (Paint) null);
+                                                e1Var.f44937n = createBitmap2;
+                                                e1Var.f44938r = true;
                                             }
                                             Bitmap bitmap3 = e1Var.h;
-                                            Bitmap bitmap4 = e1Var.f44938n;
-                                            if (s0Var.f45051k == null) {
-                                                s0Var.f45051k = new t1(bitmap3);
+                                            Bitmap bitmap4 = e1Var.f44937n;
+                                            if (s0Var.f45050k == null) {
+                                                s0Var.f45050k = new t1(bitmap3);
                                             }
                                             if (s0Var.D == null) {
                                                 s0Var.D = new t1(bitmap4);
                                             }
-                                            if (s0Var.G && s0Var.f45052l == null) {
-                                                s0Var.f45052l = new t1(s0Var.A);
+                                            if (s0Var.G && s0Var.f45051l == null) {
+                                                s0Var.f45051l = new t1(s0Var.A);
                                             }
                                             q6.a();
                                             z10 = true;
                                         }
                                     } else {
                                         if (BuildVars.LOGS_ENABLED) {
-                                            sl.v(this.f44899b, new StringBuilder("createWindowSurface failed "));
+                                            tl.v(this.f44898b, new StringBuilder("createWindowSurface failed "));
                                         }
                                         finish();
                                     }
@@ -291,7 +291,7 @@ public final class c1 extends DispatchQueue {
                     }
                 }
             }
-            this.f44901f = z10;
+            this.f44900f = z10;
             super.run();
         }
     }

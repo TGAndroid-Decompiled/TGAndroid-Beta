@@ -19,9 +19,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.i80;
-public class r8 extends NestedScrollView implements i80 {
+import org.telegram.ui.Components.g80;
+import org.telegram.ui.Components.zr;
+public class r8 extends NestedScrollView implements g80 {
     public final org.telegram.ui.Cells.y9 W;
     public final o1.k f5875a0;
     public final q8 f5876b0;
@@ -61,7 +61,7 @@ public class r8 extends NestedScrollView implements i80 {
         this.f5876b0 = q8Var;
         org.telegram.ui.Cells.y9 y9Var = new org.telegram.ui.Cells.y9(q8Var, g6Var);
         this.W = y9Var;
-        y9Var.f22165h0 = false;
+        y9Var.f22166h0 = false;
         frameLayout.addView(q8Var, -1, -2);
         addView(frameLayout, new ViewGroup.LayoutParams(-1, -2));
         paint.setColor(-16777216);
@@ -109,7 +109,7 @@ public class r8 extends NestedScrollView implements i80 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new j8(this, getScrollY(), f7, 0));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(bs.f25133f);
+        ofFloat.setInterpolator(zr.f33337f);
         ofFloat.start();
     }
 
@@ -122,7 +122,7 @@ public class r8 extends NestedScrollView implements i80 {
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
         ofFloat.addUpdateListener(new j8(this, getScrollY(), f7, 1));
         ofFloat.setDuration(250L);
-        ofFloat.setInterpolator(bs.f25133f);
+        ofFloat.setInterpolator(zr.f33337f);
         ofFloat.start();
     }
 
@@ -371,7 +371,7 @@ public class r8 extends NestedScrollView implements i80 {
         return true;
     }
 
-    public void F(org.telegram.ui.Components.a6 a6Var) {
+    public void F(org.telegram.ui.Components.y5 y5Var) {
     }
 
     public void I(m8 m8Var) {

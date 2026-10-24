@@ -20,7 +20,7 @@ import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.dx;
 import org.telegram.ui.ey;
 import org.telegram.ui.ko;
-import org.telegram.ui.tq0;
+import org.telegram.ui.sq0;
 import org.telegram.ui.xx;
 public final class x2 implements Utilities.Callback {
     public final int f2427a;
@@ -114,7 +114,7 @@ public final class x2 implements Utilities.Callback {
                 Runnable runnable = (Runnable) obj;
                 dxVar.getClass();
                 ((org.telegram.ui.ActionBar.c2) obj3).dismiss();
-                ey eyVar = dxVar.f36747b;
+                ey eyVar = dxVar.f36734b;
                 eyVar.getMessagesController().loadChannelParticipants(Long.valueOf(j10));
                 xx xxVar = eyVar.C2;
                 eyVar.removeSelfFromStack();
@@ -138,7 +138,7 @@ public final class x2 implements Utilities.Callback {
                 Bitmap bitmap = (Bitmap) obj;
                 Drawable[] drawableArr = PhotoViewer.U8;
                 if (bitmap == null) {
-                    AndroidUtilities.runOnUIThread(new tq0(photoViewer, 16));
+                    AndroidUtilities.runOnUIThread(new sq0(photoViewer, 16));
                     return;
                 }
                 try {
@@ -156,7 +156,7 @@ public final class x2 implements Utilities.Callback {
                     return;
                 } catch (Exception e) {
                     FileLog.e(e);
-                    AndroidUtilities.runOnUIThread(new tq0(photoViewer, 17));
+                    AndroidUtilities.runOnUIThread(new sq0(photoViewer, 17));
                     return;
                 }
             default:

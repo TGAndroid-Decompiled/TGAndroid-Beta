@@ -84,13 +84,13 @@ public class BotGuardHelper extends BaseController {
 
     private void openGuardBotWebApp(long j10, long j11, long j12, boolean z10) {
         org.telegram.ui.ActionBar.o2 R;
-        if (LaunchActivity.J1 == null || (R = LaunchActivity.R()) == null) {
+        if (LaunchActivity.I1 == null || (R = LaunchActivity.R()) == null) {
             return;
         }
         TLRPC.User user = getMessagesController().getUser(Long.valueOf(j11));
         if (!z10) {
             if (!SharedPrefsHelper.isWebViewConfirmShown(this.currentAccount, j11) && !getMessagesController().whitelistedBots.contains(Long.valueOf(j11))) {
-                org.telegram.ui.Components.f5.o(R, user, new n0(this, j10, j11, j12, 0), new z1(8));
+                org.telegram.ui.Components.d5.n(R, user, new n0(this, j10, j11, j12, 0), new z1(8));
                 return;
             } else {
                 openGuardBotWebApp(j10, j11, j12, true);
@@ -101,10 +101,10 @@ public class BotGuardHelper extends BaseController {
         org.telegram.ui.ActionBar.o2 R2 = LaunchActivity.R();
         gi.t4 b10 = gi.t4.b(this.currentAccount, j10, j11, null, null, 5, 0, 0L, null, false, null, null, 0, false, false);
         b10.d = j12;
-        gi.d3 d3Var = new gi.d3(LaunchActivity.J1, null);
+        gi.d3 d3Var = new gi.d3(LaunchActivity.I1, null);
         d3Var.x(false);
         d3Var.B0 = true;
-        d3Var.f11171l0 = LaunchActivity.J1;
+        d3Var.f11171l0 = LaunchActivity.I1;
         d3Var.t(R2, b10);
         d3Var.show();
     }

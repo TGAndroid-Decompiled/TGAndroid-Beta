@@ -1,17 +1,17 @@
 package ye;
 public final class c {
-    public static final c f50575a;
-    public static final c f50576b;
-    public static final c f50577c;
+    public static final c f50574a;
+    public static final c f50575b;
+    public static final c f50576c;
     public static final c[] d;
 
     static {
         ?? r02 = new Enum("LEFT", 0);
-        f50575a = r02;
+        f50574a = r02;
         ?? r12 = new Enum("CENTER", 1);
-        f50576b = r12;
+        f50575b = r12;
         ?? r32 = new Enum("RIGHT", 2);
-        f50577c = r32;
+        f50576c = r32;
         d = new c[]{r02, r12, r32};
     }
 

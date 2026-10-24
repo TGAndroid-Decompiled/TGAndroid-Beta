@@ -1,19 +1,6 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class o80 extends mm0 {
-    public final s80 Y2;
-
-    public o80(s80 s80Var, Context context) {
-        super(context, null);
-        this.Y2 = s80Var;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.Y2.f30417s) {
-            return;
-        }
-        super.requestLayout();
-    }
+import org.telegram.tgnet.TLRPC;
+public interface o80 {
+    void a(TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12);
 }

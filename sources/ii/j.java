@@ -12,16 +12,16 @@ import android.widget.TextView;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.mc0;
+import org.telegram.ui.Components.kc0;
 import w7.z5;
 public final class j extends LinearLayout implements b6 {
     public final g6 f13220a;
-    public final mc0 f13221b;
+    public final kc0 f13221b;
     public final FrameLayout f13222c;
     public final ImageView d;
     public final TextView e;
@@ -40,18 +40,18 @@ public final class j extends LinearLayout implements b6 {
         setOrientation(0);
         FrameLayout frameLayout = new FrameLayout(context);
         this.f13222c = frameLayout;
-        mc0 mc0Var = new mc0(1);
-        this.f13221b = mc0Var;
-        frameLayout.setBackground(mc0Var);
+        kc0 kc0Var = new kc0(1);
+        this.f13221b = kc0Var;
+        frameLayout.setBackground(kc0Var);
         ImageView imageView = new ImageView(context);
         this.d = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         frameLayout.addView(imageView, z5.e(24, 24, 17));
-        LinearLayout e = sl.e(context, 1);
+        LinearLayout e = tl.e(context, 1);
         TextView textView = new TextView(context);
         this.e = textView;
         textView.setTextSize(1, 16.0f);
-        TextView f7 = sl.f(e, textView, z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
+        TextView f7 = tl.f(e, textView, z5.k(0.0f, 0.0f, 0.0f, 0.0f, -1, -2), context);
         this.f13223f = f7;
         f7.setGravity(17);
         f7.setMinWidth(AndroidUtilities.dp(20.66f));
@@ -157,7 +157,7 @@ public final class j extends LinearLayout implements b6 {
             if (z10) {
                 i10 = k6.W8;
             } else {
-                i10 = k6.f21366n6;
+                i10 = k6.f21367n6;
             }
             g6 g6Var = this.f13220a;
             r6.W(textView, i10, g6Var);
@@ -191,7 +191,7 @@ public final class j extends LinearLayout implements b6 {
         if (this.f13224n) {
             i10 = k6.W8;
         } else {
-            i10 = k6.f21366n6;
+            i10 = k6.f21367n6;
         }
         int w02 = k6.w0(i10, g6Var);
         TextView textView = this.f13223f;
@@ -207,6 +207,6 @@ public final class j extends LinearLayout implements b6 {
         } else {
             q6 = k6.I.q();
         }
-        this.f13221b.f28635b = q6;
+        this.f13221b.f28004b = q6;
     }
 }

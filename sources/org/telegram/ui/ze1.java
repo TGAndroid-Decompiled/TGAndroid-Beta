@@ -1,21 +1,25 @@
 package org.telegram.ui;
 
-import java.util.Iterator;
-public final class ze1 implements org.telegram.ui.ActionBar.z1 {
-    public final bf1 f44130a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class ze1 implements b11 {
+    public final TLRPC.TL_forumTopic f44087a;
+    public final af1 f44088b;
 
-    public ze1(bf1 bf1Var) {
-        this.f44130a = bf1Var;
+    public ze1(af1 af1Var, TLRPC.TL_forumTopic tL_forumTopic) {
+        this.f44088b = af1Var;
+        this.f44087a = tL_forumTopic;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        ef1 ef1Var = this.f44130a.f36074a;
-        Iterator it = ef1Var.e.iterator();
-        while (it.hasNext()) {
-            ef1.U(ef1Var, ((Integer) it.next()).intValue());
-        }
-        ef1Var.e.clear();
-        ef1Var.V();
+    public final void O() {
+        df1 df1Var = this.f44088b.f35752a;
+        TLRPC.TL_forumTopic tL_forumTopic = this.f44087a;
+        df1.U(df1Var, tL_forumTopic.f20396id);
+        AndroidUtilities.runOnUIThread(new n71(14, this, tL_forumTopic), 300L);
+    }
+
+    @Override
+    public final void r(hk0 hk0Var) {
     }
 }

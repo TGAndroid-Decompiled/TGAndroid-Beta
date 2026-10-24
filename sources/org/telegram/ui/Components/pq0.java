@@ -1,24 +1,56 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Rect;
+import android.view.MotionEvent;
 import android.view.View;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class pq0 implements NotificationCenter.NotificationCenterDelegate {
-    public final TLRPC.Dialog f29637a;
-    public final AtomicReference f29638b;
-    public final View f29639c;
-    public final ir0 d;
+public final class pq0 implements View.OnTouchListener {
+    public final int f29639a;
+    public final Rect f29640b;
+    public final hr0 f29641c;
 
-    public pq0(ir0 ir0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
-        this.d = ir0Var;
-        this.f29637a = dialog;
-        this.f29638b = atomicReference;
-        this.f29639c = view;
+    public pq0(hr0 hr0Var, int i10) {
+        this.f29639a = i10;
+        switch (i10) {
+            case 1:
+                this.f29641c = hr0Var;
+                this.f29640b = new Rect();
+                return;
+            default:
+                this.f29641c = hr0Var;
+                this.f29640b = new Rect();
+                return;
+        }
     }
 
     @Override
-    public final void didReceivedNotification(int r9, int r10, java.lang.Object... r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pq0.didReceivedNotification(int, int, java.lang.Object[]):void");
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        hr0 hr0Var;
+        org.telegram.ui.ActionBar.m1 m1Var;
+        hr0 hr0Var2;
+        org.telegram.ui.ActionBar.m1 m1Var2;
+        switch (this.f29639a) {
+            case 0:
+                if (motionEvent.getActionMasked() == 0 && (m1Var = (hr0Var = this.f29641c).K0) != null && m1Var.isShowing()) {
+                    Rect rect = this.f29640b;
+                    view.getHitRect(rect);
+                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        hr0Var.K0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+            default:
+                if (motionEvent.getActionMasked() == 0 && (m1Var2 = (hr0Var2 = this.f29641c).K0) != null && m1Var2.isShowing()) {
+                    Rect rect2 = this.f29640b;
+                    view.getHitRect(rect2);
+                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
+                        hr0Var2.K0.d(true);
+                        return false;
+                    }
+                    return false;
+                }
+                return false;
+        }
     }
 }

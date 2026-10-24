@@ -4,20 +4,20 @@ import android.view.View;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class hb extends cu0 {
-    public final vb f37813a;
+public final class hb extends bu0 {
+    public final vb f37801a;
 
     public hb(vb vbVar) {
-        this.f37813a = vbVar;
+        this.f37801a = vbVar;
     }
 
     @Override
-    public final mu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         org.telegram.ui.Cells.v0 v0Var;
         MessageObject messageObject2;
         org.telegram.ui.Cells.t1 t1Var;
         MessageObject messageObject3;
-        vb vbVar = this.f37813a;
+        vb vbVar = this.f37801a;
         int childCount = vbVar.v.getChildCount();
         int i11 = 0;
         while (true) {
@@ -53,15 +53,15 @@ public final class hb extends cu0 {
             if (imageReceiver != null) {
                 int[] iArr = new int[2];
                 childAt.getLocationInWindow(iArr);
-                mu0 mu0Var = new mu0();
-                mu0Var.f39693b = iArr[0];
-                mu0Var.f39694c = iArr[1];
-                mu0Var.d = vbVar.v;
-                mu0Var.f39692a = imageReceiver;
-                mu0Var.e = imageReceiver.getBitmapSafe();
-                mu0Var.h = imageReceiver.getRoundRadius(true);
-                mu0Var.f39700l = true;
-                return mu0Var;
+                lu0 lu0Var = new lu0();
+                lu0Var.f39382b = iArr[0];
+                lu0Var.f39383c = iArr[1];
+                lu0Var.d = vbVar.v;
+                lu0Var.f39381a = imageReceiver;
+                lu0Var.e = imageReceiver.getBitmapSafe();
+                lu0Var.h = imageReceiver.getRoundRadius(true);
+                lu0Var.f39389l = true;
+                return lu0Var;
             }
             i11++;
         }

@@ -9,7 +9,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import zf.j0;
 public final class b extends ei.d implements ne.d {
     public final ne.b f17807k0;
@@ -18,10 +18,10 @@ public final class b extends ei.d implements ne.d {
 
     public b(Context context, g6 g6Var) {
         super(context, g6Var, true);
-        this.f17807k0 = new ne.b(0, this, bs.h, 320L, true);
+        this.f17807k0 = new ne.b(0, this, zr.h, 320L, true);
         this.f17808l0 = g6Var;
         f();
-        setOutlineProvider(j0.f52048b);
+        setOutlineProvider(j0.f52047b);
     }
 
     public final int m(int i10) {
@@ -44,8 +44,8 @@ public final class b extends ei.d implements ne.d {
         }
         float f11 = this.f17807k0.e;
         setElevation((1.0f - f11) * AndroidUtilities.dp(1.0f));
-        setColor(i0.a.f(f11, m(k6.f21183d6), m(k6.Oh)));
-        setTextColor(i0.a.f(f11, m(k6.f21421q7), m(k6.Sh)));
+        setColor(i0.a.f(f11, m(k6.f21184d6), m(k6.Oh)));
+        setTextColor(i0.a.f(f11, m(k6.f21422q7), m(k6.Sh)));
         if (Build.VERSION.SDK_INT >= 28) {
             if (q6) {
                 setOutlineAmbientShadowColor(553648127);
@@ -64,13 +64,13 @@ public final class b extends ei.d implements ne.d {
         if (bVar != null && this.m0) {
             try {
                 float f7 = bVar.e;
-                int f10 = i0.a.f(f7, m(k6.f21183d6), m(k6.Oh));
+                int f10 = i0.a.f(f7, m(k6.f21184d6), m(k6.Oh));
                 Drawable background = getBackground();
                 if ((background instanceof ShapeDrawable) && ((ShapeDrawable) background).getPaint().getColor() != f10) {
                     ((ShapeDrawable) background).getPaint().setColor(f10);
                     background.invalidateSelf();
                 }
-                setTextColor(i0.a.f(f7, m(k6.f21421q7), m(k6.Sh)));
+                setTextColor(i0.a.f(f7, m(k6.f21422q7), m(k6.Sh)));
             } catch (Exception e) {
                 FileLog.e(e);
             }

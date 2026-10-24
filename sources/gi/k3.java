@@ -14,7 +14,7 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.h80;
 public final class k3 implements View.OnClickListener {
     public final int f11319a = 1;
     public final int f11320b;
@@ -73,19 +73,19 @@ public final class k3 implements View.OnClickListener {
                 org.telegram.ui.ActionBar.h3 h3Var = this.f11321c;
                 ViewGroup containerView = h3Var.getContainerView();
                 g6 g6Var = this.d;
-                j80 F = j80.F(containerView, g6Var, linearLayout);
+                h80 F = h80.F(containerView, g6Var, linearLayout);
                 int size = arrayList.size();
                 int i12 = 0;
                 while (i12 < size) {
                     int i13 = i12 + 1;
                     TLObject tLObject = (TLObject) arrayList.get(i12);
                     if (tLObject instanceof TLRPC.User) {
-                        j10 = ((TLRPC.User) tLObject).f20490id;
+                        j10 = ((TLRPC.User) tLObject).f20491id;
                     } else {
                         if (tLObject instanceof TLRPC.Chat) {
                             TLRPC.Chat chat = (TLRPC.Chat) tLObject;
                             if (ChatObject.isChannelAndNotMegaGroup(chat)) {
-                                j10 = -chat.f20343id;
+                                j10 = -chat.f20344id;
                             }
                         }
                         i12 = i13;
@@ -98,8 +98,8 @@ public final class k3 implements View.OnClickListener {
                     F.g(tLObject, z10, new f9(i11, j10, this.f11322f, this.h, h3Var, g6Var));
                     i12 = i13;
                 }
-                F.f27581t = false;
-                F.f27580s = 0;
+                F.f26930t = false;
+                F.f26929s = 0;
                 F.V(5);
                 F.a0(AndroidUtilities.dp(24.0f), 0.0f);
                 F.Z();

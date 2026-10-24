@@ -109,10 +109,10 @@ public class z {
 
     public void d(boolean z10) {
         q1.i iVar = (q1.i) ((mi.q) ((le.b) this.f16457c).f16072b).f17037c;
-        if (iVar.f44763c != z10) {
-            if (iVar.f44762b != null) {
+        if (iVar.f44762c != z10) {
+            if (iVar.f44761b != null) {
                 androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f44762b;
+                q1.h hVar = iVar.f44761b;
                 a2.getClass();
                 k6.a(hVar, "initCallback cannot be null");
                 ReentrantReadWriteLock reentrantReadWriteLock = a2.f3110a;
@@ -123,9 +123,9 @@ public class z {
                     reentrantReadWriteLock.writeLock().unlock();
                 }
             }
-            iVar.f44763c = z10;
+            iVar.f44762c = z10;
             if (z10) {
-                q1.i.a(iVar.f44761a, androidx.emoji2.text.l.a().b());
+                q1.i.a(iVar.f44760a, androidx.emoji2.text.l.a().b());
             }
         }
     }

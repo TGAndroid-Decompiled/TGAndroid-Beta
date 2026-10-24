@@ -74,21 +74,21 @@ public final class d implements ServiceConnection {
                     return;
                 }
             default:
-                int i12 = xf.d.f50228a;
+                int i12 = xf.d.f50227a;
                 if (iBinder != null) {
                     IInterface queryLocalInterface2 = iBinder.queryLocalInterface("android.support.customtabs.ICustomTabsService");
                     if (queryLocalInterface2 != null && (queryLocalInterface2 instanceof xf.e)) {
                         eVar = (xf.e) queryLocalInterface2;
                     } else {
                         ?? obj = new Object();
-                        obj.f50227a = iBinder;
+                        obj.f50226a = iBinder;
                         eVar = obj;
                     }
                 }
                 mi.q qVar2 = new mi.q(29, eVar, componentName);
                 if (((pf.b) ((WeakReference) this.f322b).get()) != null) {
-                    pf.d.f44710b = qVar2;
-                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (qVar = pf.d.f44710b) != null) {
+                    pf.d.f44709b = qVar2;
+                    if (MessagesController.getInstance(UserConfig.selectedAccount).isWebBrowserUseCustomTabs() && (qVar = pf.d.f44709b) != null) {
                         try {
                             ((xf.c) ((xf.e) qVar.f17036b)).G0();
                             return;
@@ -127,7 +127,7 @@ public final class d implements ServiceConnection {
                 return;
             default:
                 if (((pf.b) ((WeakReference) this.f322b).get()) != null) {
-                    pf.d.f44710b = null;
+                    pf.d.f44709b = null;
                     return;
                 }
                 return;

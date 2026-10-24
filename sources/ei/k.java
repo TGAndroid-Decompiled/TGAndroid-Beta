@@ -1,5 +1,5 @@
 package ei;
-public final class k extends org.telegram.ui.Components.p6 {
+public final class k extends org.telegram.ui.Components.n6 {
     public final int f9299d0;
     public final Object f9300e0;
 

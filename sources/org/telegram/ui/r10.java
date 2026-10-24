@@ -11,25 +11,25 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 public final class r10 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public org.telegram.ui.ActionBar.n5 f40964a;
-    public ImageView f40965b;
-    public org.telegram.ui.Components.yq f40966c;
+    public org.telegram.ui.ActionBar.n5 f40977a;
+    public ImageView f40978b;
+    public org.telegram.ui.Components.wq f40979c;
     public int d;
     public int e;
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.N6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21311k7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21312k7));
     }
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int dp;
         int measuredWidth;
-        ImageView imageView = this.f40965b;
+        ImageView imageView = this.f40978b;
         int i14 = i12 - i10;
-        org.telegram.ui.ActionBar.n5 n5Var = this.f40964a;
+        org.telegram.ui.ActionBar.n5 n5Var = this.f40977a;
         int textHeight = ((i13 - i11) - n5Var.getTextHeight()) / 2;
         float f7 = 23.0f;
         if (LocaleController.isRTL) {
@@ -57,31 +57,31 @@ public final class r10 extends FrameLayout implements org.telegram.ui.ActionBar.
     public final void onMeasure(int i10, int i11) {
         int size = View.MeasureSpec.getSize(i10);
         AndroidUtilities.dp(48.0f);
-        this.f40964a.measure(org.telegram.messenger.sl.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
-        this.f40965b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
+        this.f40977a.measure(org.telegram.messenger.tl.c(94.0f, size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), 1073741824));
+        this.f40978b.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
         setMeasuredDimension(size, AndroidUtilities.dp(50.0f));
     }
 
     @Override
     public final void updateColors() {
-        ImageView imageView = this.f40965b;
+        ImageView imageView = this.f40978b;
         if (imageView != null) {
             try {
-                if (imageView.getDrawable() instanceof org.telegram.ui.Components.yq) {
-                    org.telegram.ui.Components.yq yqVar = (org.telegram.ui.Components.yq) imageView.getDrawable();
+                if (imageView.getDrawable() instanceof org.telegram.ui.Components.wq) {
+                    org.telegram.ui.Components.wq wqVar = (org.telegram.ui.Components.wq) imageView.getDrawable();
                     int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.N6, false);
-                    int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21311k7, false);
-                    if (yqVar == this.f40966c && x02 == this.d && x03 == this.e) {
+                    int x03 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21312k7, false);
+                    if (wqVar == this.f40979c && x02 == this.d && x03 == this.e) {
                         return;
                     }
-                    this.f40966c = yqVar;
+                    this.f40979c = wqVar;
                     this.d = x02;
                     this.e = x03;
-                    Drawable drawable = yqVar.f33012a;
+                    Drawable drawable = wqVar.f32322a;
                     if (drawable != null) {
                         drawable.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
                     }
-                    Drawable drawable2 = yqVar.f33013b;
+                    Drawable drawable2 = wqVar.f32323b;
                     if (drawable2 != null) {
                         drawable2.setColorFilter(new PorterDuffColorFilter(x03, PorterDuff.Mode.MULTIPLY));
                     }

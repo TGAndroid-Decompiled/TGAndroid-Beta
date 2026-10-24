@@ -7,7 +7,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
@@ -39,9 +39,9 @@ public final class k extends FrameLayout {
         r6.W(textView, i10, g6Var);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setTextSize(1, 14.0f);
-        TextView f10 = sl.f(linearLayout, textView, z5.t(-1, -2, 55, 0, 0, 0, 1), context);
+        TextView f10 = tl.f(linearLayout, textView, z5.t(-1, -2, 55, 0, 0, 0, 1), context);
         this.f11316c = f10;
-        r6.W(f10, k6.f21588z6, g6Var);
+        r6.W(f10, k6.f21589z6, g6Var);
         f10.setTextSize(1, 14.0f);
         linearLayout.addView(f10, z5.t(-1, -2, 55, 0, 0, 0, 0));
     }

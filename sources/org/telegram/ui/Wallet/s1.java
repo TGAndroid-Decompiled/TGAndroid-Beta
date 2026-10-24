@@ -2,21 +2,21 @@ package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.ih;
+import org.telegram.messenger.jh;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class s1 implements Utilities.Callback2 {
-    public final int f35119a;
-    public final e2 f35120b;
-    public final long f35121c;
+    public final int f35121a;
+    public final e2 f35122b;
+    public final long f35123c;
     public final int d;
     public final Object e;
 
     public s1(e2 e2Var, Object obj, long j10, int i10, int i11) {
-        this.f35119a = i11;
-        this.f35120b = e2Var;
+        this.f35121a = i11;
+        this.f35122b = e2Var;
         this.e = obj;
-        this.f35121c = j10;
+        this.f35123c = j10;
         this.d = i10;
     }
 
@@ -26,20 +26,20 @@ public final class s1 implements Utilities.Callback2 {
         final int i10;
         final TL_wallet.tonConnectRequest tonconnectrequest;
         TL_wallet.tonConnectSession tonconnectsession;
-        switch (this.f35119a) {
+        switch (this.f35121a) {
             case 0:
-                final ih ihVar = (ih) this.e;
+                final jh jhVar = (jh) this.e;
                 final TL_wallet.tonConnectPending tonconnectpending = (TL_wallet.tonConnectPending) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                final e2 e2Var = this.f35120b;
-                l0 l0Var = e2Var.f34430b;
+                final e2 e2Var = this.f35122b;
+                l0 l0Var = e2Var.f34432b;
                 byte[] bArr = null;
                 if (tL_error == null && tonconnectpending != null) {
                     ArrayList<TL_wallet.tonConnectRequest> arrayList = tonconnectpending.requests;
                     int size = arrayList.size();
                     int i11 = 0;
                     while (true) {
-                        j10 = this.f35121c;
+                        j10 = this.f35123c;
                         i10 = this.d;
                         if (i11 < size) {
                             TL_wallet.tonConnectRequest tonconnectrequest2 = arrayList.get(i11);
@@ -52,7 +52,7 @@ public final class s1 implements Utilities.Callback2 {
                             tonconnectrequest = null;
                         }
                     }
-                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f20601id == j10 && tonconnectrequest.expires > e2Var.f34432f.getCurrentTime()) {
+                    if (tonconnectrequest != null && (tonconnectsession = tonconnectpending.session) != null && tonconnectsession.f20602id == j10 && tonconnectrequest.expires > e2Var.f34434f.getCurrentTime()) {
                         final String s10 = l0Var.s();
                         if (l0Var.x() != null) {
                             bArr = (byte[]) l0Var.x().clone();
@@ -62,7 +62,7 @@ public final class s1 implements Utilities.Callback2 {
                             @Override
                             public final void run(Object obj3, Object obj4) {
                                 e2 e2Var2 = e2.this;
-                                ih ihVar2 = ihVar;
+                                jh jhVar2 = jhVar;
                                 TL_wallet.tonConnectPending tonconnectpending2 = tonconnectpending;
                                 TL_wallet.tonConnectRequest tonconnectrequest4 = tonconnectrequest;
                                 String str = s10;
@@ -74,33 +74,33 @@ public final class s1 implements Utilities.Callback2 {
                                 e2Var2.getClass();
                                 if (i0Var != null && str2 == null) {
                                     i0 b10 = i0Var.b();
-                                    Utilities.globalQueue.postRunnable(new gi.d1(e2Var2, tonconnectpending2, tonconnectrequest4, b10, str, bArr3, new r1(2, b10, ihVar2), j11, i12));
+                                    Utilities.globalQueue.postRunnable(new gi.d1(e2Var2, tonconnectpending2, tonconnectrequest4, b10, str, bArr3, new r1(2, b10, jhVar2), j11, i12));
                                     return;
                                 }
                                 e2Var2.h = false;
                                 if (str2 == null) {
                                     str2 = "Recovery phrase is unavailable";
                                 }
-                                ihVar2.run(null, str2);
+                                jhVar2.run(null, str2);
                             }
                         }, true, false);
                         return;
                     }
                     e2Var.h = false;
-                    ihVar.run(null, "This request has expired or has already been answered");
+                    jhVar.run(null, "This request has expired or has already been answered");
                     return;
                 }
                 e2Var.h = false;
-                ihVar.run(null, e2.x(tL_error, "getPending"));
+                jhVar.run(null, e2.x(tL_error, "getPending"));
                 return;
             default:
                 Utilities.Callback callback = (Utilities.Callback) this.e;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                e2 e2Var2 = this.f35120b;
+                e2 e2Var2 = this.f35122b;
                 e2Var2.getClass();
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
-                    e2Var2.d(this.f35121c, this.d, callback);
+                    e2Var2.d(this.f35123c, this.d, callback);
                     return;
                 } else {
                     callback.run(e2.x(tL_error2, "closeSession"));

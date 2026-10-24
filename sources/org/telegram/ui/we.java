@@ -7,33 +7,33 @@ import android.graphics.Paint;
 import android.graphics.Shader;
 import org.telegram.messenger.Utilities;
 public final class we implements Utilities.Callback2 {
-    public final int f43014a;
-    public final sn f43015b;
+    public final int f43009a;
+    public final sn f43010b;
 
     public we(sn snVar, int i10) {
-        this.f43014a = i10;
-        this.f43015b = snVar;
+        this.f43009a = i10;
+        this.f43010b = snVar;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f43014a) {
+        switch (this.f43009a) {
             case 0:
-                sn.z1(this.f43015b, (Integer) obj, (Boolean) obj2);
+                sn.z1(this.f43010b, (Integer) obj, (Boolean) obj2);
                 return;
             case 1:
-                sn.s1(this.f43015b, (Long) obj, (Boolean) obj2);
+                sn.s1(this.f43010b, (Long) obj, (Boolean) obj2);
                 return;
             case 2:
                 Bitmap bitmap = (Bitmap) obj;
-                sn snVar = this.f43015b;
+                sn snVar = this.f43010b;
                 gh.b bVar = snVar.L8;
                 bVar.a((Bitmap) obj2);
                 hh.d.c(bVar, snVar.fragmentView);
                 snVar.M8.d();
                 return;
             default:
-                sn snVar2 = this.f43015b;
+                sn snVar2 = this.f43010b;
                 snVar2.N8 = (Bitmap) obj;
                 Paint paint = new Paint(1);
                 snVar2.P8 = paint;

@@ -3,11 +3,11 @@ package org.telegram.ui;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.StatsController;
-public final class gu implements org.telegram.ui.Components.xl0, org.telegram.ui.ActionBar.z1 {
-    public final ku f37664a;
+public final class gu implements org.telegram.ui.Components.wl0, org.telegram.ui.ActionBar.z1 {
+    public final ku f37658a;
 
     public gu(ku kuVar) {
-        this.f37664a = kuVar;
+        this.f37658a = kuVar;
     }
 
     @Override
@@ -15,13 +15,13 @@ public final class gu implements org.telegram.ui.Components.xl0, org.telegram.ui
         int i11;
         int i12;
         int i13;
-        ku kuVar = this.f37664a;
-        ou ouVar = kuVar.f39074p3;
-        ArrayList arrayList = kuVar.f39065g3;
+        ku kuVar = this.f37658a;
+        ou ouVar = kuVar.f39051p3;
+        ArrayList arrayList = kuVar.f39042g3;
         arrayList.clear();
         int i14 = 0;
         while (true) {
-            ju[] juVarArr = kuVar.f39066h3;
+            ju[] juVarArr = kuVar.f39043h3;
             if (i14 >= juVarArr.length) {
                 i11 = ((org.telegram.ui.ActionBar.o2) ouVar).currentAccount;
                 StatsController.getInstance(i11).resetStats(0);
@@ -35,7 +35,7 @@ public final class gu implements org.telegram.ui.Components.xl0, org.telegram.ui
                 return;
             }
             ju juVar = juVarArr[i14];
-            if (juVar.f25309c > 0) {
+            if (juVar.f24712c > 0) {
                 arrayList.add(Integer.valueOf(juVar.d));
             }
             i14++;
@@ -44,12 +44,12 @@ public final class gu implements org.telegram.ui.Components.xl0, org.telegram.ui
 
     @Override
     public int run() {
-        ku kuVar = this.f37664a;
-        ArrayList arrayList = kuVar.f39062d3;
+        ku kuVar = this.f37658a;
+        ArrayList arrayList = kuVar.f39039d3;
         int i10 = 0;
         while (true) {
             if (i10 < arrayList.size()) {
-                if (((fu) arrayList.get(i10)).f44713a == 5) {
+                if (((fu) arrayList.get(i10)).f44712a == 5) {
                     break;
                 }
                 i10++;
@@ -61,7 +61,7 @@ public final class gu implements org.telegram.ui.Components.xl0, org.telegram.ui
         if (i10 < 0) {
             return -1;
         }
-        kuVar.f39059a3.h1(i10, AndroidUtilities.dp(60.0f));
+        kuVar.f39036a3.h1(i10, AndroidUtilities.dp(60.0f));
         return i10;
     }
 }

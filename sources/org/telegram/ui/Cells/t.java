@@ -6,18 +6,18 @@ import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.lm0;
 import org.telegram.ui.ua0;
-public final class t extends mm0 implements NotificationCenter.NotificationCenterDelegate {
+public final class t extends lm0 implements NotificationCenter.NotificationCenterDelegate {
     public ArrayList Y2;
     public s4.b0 Z2;
-    public int f23301a3;
+    public int f23302a3;
 
     public final void C1() {
         ArrayList arrayList = this.Y2;
         arrayList.clear();
         arrayList.addAll(Arrays.asList(ua0.values()));
-        if (MessagesController.getInstance(this.f23301a3).premiumFeaturesBlocked()) {
+        if (MessagesController.getInstance(this.f23302a3).premiumFeaturesBlocked()) {
             int i10 = 0;
             while (i10 < arrayList.size()) {
                 if (((ua0) arrayList.get(i10)).e) {

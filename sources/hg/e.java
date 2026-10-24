@@ -29,12 +29,12 @@ import org.telegram.ui.Cells.q4;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.u3;
 import org.telegram.ui.Cells.wa;
-import org.telegram.ui.Components.br;
-import org.telegram.ui.Components.im0;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.un;
+import org.telegram.ui.Components.hm0;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.sn;
+import org.telegram.ui.Components.zq;
 import w7.z5;
-public abstract class e extends im0 {
+public abstract class e extends hm0 {
     public final boolean E;
     public int F;
     public final boolean G;
@@ -95,7 +95,7 @@ public abstract class e extends im0 {
     }
 
     @Override
-    public final void G(mm0 mm0Var, float f7, int[] iArr) {
+    public final void G(lm0 lm0Var, float f7, int[] iArr) {
         iArr[0] = (int) (h() * f7);
         iArr[1] = 0;
     }
@@ -198,7 +198,7 @@ public abstract class e extends im0 {
             ?? frameLayout = new FrameLayout(this.f11865s);
             frameLayout.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(76.0f), AndroidUtilities.dp(64.0f)));
             TextView textView = new TextView(frameLayout.getContext());
-            frameLayout.f23050a = textView;
+            frameLayout.f23051a = textView;
             k3.m(22.0f, 1, textView);
             r6.W(textView, k6.B6, null);
             textView.setGravity(17);
@@ -296,8 +296,8 @@ public abstract class e extends im0 {
         int i12;
         ArrayList<TLRPC.TL_contact> arrayList2;
         float f7;
-        int i13 = b1Var.f46346f;
-        View view = b1Var.f46343a;
+        int i13 = b1Var.f46345f;
+        View view = b1Var.f46342a;
         int i14 = 7;
         boolean z10 = this.E;
         int i15 = this.f11864r;
@@ -431,7 +431,7 @@ public abstract class e extends im0 {
         }
         TLRPC.User user = MessagesController.getInstance(i15).getUser(Long.valueOf(arrayList2.get(i11).user_id));
         waVar.d(user, null, null, false);
-        if (this.f11867x.h(user.f20490id) < 0) {
+        if (this.f11867x.h(user.f20491id) < 0) {
             z11 = false;
         }
         waVar.c(z11, false);
@@ -493,10 +493,10 @@ public abstract class e extends im0 {
                                     if (i10 != 9) {
                                         view = new b7(context, (org.telegram.ui.Cells.b1) null);
                                     } else {
-                                        View unVar = new un(context, 4);
-                                        unVar.setId(9);
-                                        unVar.setTag(-33024);
-                                        view2 = unVar;
+                                        View snVar = new sn(context, 4);
+                                        snVar.setId(9);
+                                        snVar.setTag(-33024);
+                                        view2 = snVar;
                                     }
                                 } else {
                                     view = new o4(context, false);
@@ -506,7 +506,7 @@ public abstract class e extends im0 {
                             }
                         } else {
                             FrameLayout vVar = new ah.v(this, context, viewGroup, 4);
-                            vVar.addView(new br(context), z5.e(-1, -2, 17));
+                            vVar.addView(new zq(context), z5.e(-1, -2, 17));
                             vVar.setLayoutParams(new s4.o0(-1, -2));
                             vVar.setTag(-33024);
                             view2 = vVar;

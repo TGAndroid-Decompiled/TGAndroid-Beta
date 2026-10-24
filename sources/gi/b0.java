@@ -19,19 +19,19 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.ix0;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.hx0;
+import org.telegram.ui.Components.xj0;
 public final class b0 extends View implements b6 {
     public boolean E;
     public int F;
-    public yj0 G;
+    public xj0 G;
     public int H;
     public int I;
     public final RectF f11098a;
     public final Paint f11099b;
     public final TextPaint f11100c;
     public final y d;
-    public final yj0 e;
+    public final xj0 e;
     public boolean f11101f;
     public float h;
     public String f11102n;
@@ -50,33 +50,33 @@ public final class b0 extends View implements b6 {
         this.f11100c = textPaint;
         y yVar = new y(this);
         this.d = yVar;
-        yj0 yj0Var = new yj0(R.raw.bot_webview_sheet_to_cross, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
-        this.e = yj0Var;
+        xj0 xj0Var = new xj0(R.raw.bot_webview_sheet_to_cross, AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f));
+        this.e = xj0Var;
         this.f11102n = LocaleController.getString(R.string.BotsMenuTitle);
         this.E = true;
         updateColors();
-        yVar.f20962n = true;
+        yVar.f20963n = true;
         yVar.h = false;
         yVar.a(0.0f, false);
         yVar.setCallback(this);
         textPaint.setTypeface(AndroidUtilities.bold());
-        yVar.f20952a.setStrokeCap(Paint.Cap.ROUND);
-        yVar.f20960l = true;
+        yVar.f20953a.setStrokeCap(Paint.Cap.ROUND);
+        yVar.f20961l = true;
         int dp = AndroidUtilities.dp(16.0f);
         int x02 = k6.x0(null, k6.Qh, false);
         this.F = x02;
         org.telegram.ui.Cells.y j02 = k6.j0(dp, dp, dp, dp, 0, x02, x02);
         this.f11107y = j02;
         j02.setCallback(this);
-        yj0Var.setCallback(this);
-        yj0Var.R(this);
+        xj0Var.setCallback(this);
+        xj0Var.R(this);
         setContentDescription(LocaleController.getString("AccDescrBotMenu", R.string.AccDescrBotMenu));
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f21173cf));
-        hashSet.add(Integer.valueOf(k6.f21208ef));
+        hashSet.add(Integer.valueOf(k6.f21174cf));
+        hashSet.add(Integer.valueOf(k6.f21209ef));
         hashSet.add(Integer.valueOf(k6.Qh));
     }
 
@@ -108,7 +108,7 @@ public final class b0 extends View implements b6 {
             this.I = size;
             CharSequence replaceEmoji = Emoji.replaceEmoji(this.f11102n, textPaint.getFontMetricsInt(), false);
             int i12 = (int) (AndroidUtilities.displaySize.x * 0.6f);
-            StaticLayout c10 = ix0.c(replaceEmoji, textPaint, i12, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i12, 1, true);
+            StaticLayout c10 = hx0.c(replaceEmoji, textPaint, i12, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, i12, 1, true);
             this.f11103r = c10;
             if (c10.getLineCount() > 0) {
                 f7 = this.f11103r.getLineWidth(0);
@@ -138,14 +138,14 @@ public final class b0 extends View implements b6 {
         int i10 = 1;
         if (this.f11105w) {
             if (this.f11106x != z10) {
-                yj0 yj0Var = this.e;
-                yj0Var.stop();
-                yj0Var.h = true;
+                xj0 xj0Var = this.e;
+                xj0Var.stop();
+                xj0Var.h = true;
                 if (z10) {
-                    i10 = yj0Var.e[0];
+                    i10 = xj0Var.e[0];
                 }
-                yj0Var.P(i10);
-                yj0Var.start();
+                xj0Var.P(i10);
+                xj0Var.start();
                 this.f11106x = z10;
                 return;
             }
@@ -168,20 +168,20 @@ public final class b0 extends View implements b6 {
     public final void updateColors() {
         TextPaint textPaint = this.f11100c;
         try {
-            this.f11099b.setColor(k6.x0(null, k6.f21173cf, false));
-            int x02 = k6.x0(null, k6.f21208ef, false);
+            this.f11099b.setColor(k6.x0(null, k6.f21174cf, false));
+            int x02 = k6.x0(null, k6.f21209ef, false);
             y yVar = this.d;
-            yVar.f20959k = x02;
-            yVar.f20958j = x02;
-            yj0 yj0Var = this.e;
-            if (yj0Var != null) {
-                if (yj0Var == this.G) {
+            yVar.f20960k = x02;
+            yVar.f20959j = x02;
+            xj0 xj0Var = this.e;
+            if (xj0Var != null) {
+                if (xj0Var == this.G) {
                     if (x02 != this.H) {
                     }
                 }
-                this.G = yj0Var;
+                this.G = xj0Var;
                 this.H = x02;
-                yj0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
+                xj0Var.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
             }
             int alpha = textPaint.getAlpha();
             textPaint.setColor(x02);

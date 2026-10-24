@@ -4,9 +4,9 @@ import e9.x1;
 public final class t1 {
     public static final t1 d = new t1(new b2.p1[0]);
     public static final String e;
-    public final int f47888a;
-    public final x1 f47889b;
-    public int f47890c;
+    public final int f47887a;
+    public final x1 f47888b;
+    public int f47889c;
 
     static {
         String str = e2.m0.f8259a;
@@ -15,8 +15,8 @@ public final class t1 {
 
     public t1(b2.p1... p1VarArr) {
         x1 v = e9.n0.v(p1VarArr);
-        this.f47889b = v;
-        this.f47888a = p1VarArr.length;
+        this.f47888b = v;
+        this.f47887a = p1VarArr.length;
         int i10 = 0;
         while (i10 < v.d) {
             int i11 = i10 + 1;
@@ -30,11 +30,11 @@ public final class t1 {
     }
 
     public final b2.p1 a(int i10) {
-        return (b2.p1) this.f47889b.get(i10);
+        return (b2.p1) this.f47888b.get(i10);
     }
 
     public final int b(b2.p1 p1Var) {
-        int indexOf = this.f47889b.indexOf(p1Var);
+        int indexOf = this.f47888b.indexOf(p1Var);
         if (indexOf >= 0) {
             return indexOf;
         }
@@ -45,7 +45,7 @@ public final class t1 {
         if (this != obj) {
             if (obj != null && t1.class == obj.getClass()) {
                 t1 t1Var = (t1) obj;
-                if (this.f47888a == t1Var.f47888a && this.f47889b.equals(t1Var.f47889b)) {
+                if (this.f47887a == t1Var.f47887a && this.f47888b.equals(t1Var.f47888b)) {
                     return true;
                 }
                 return false;
@@ -56,13 +56,13 @@ public final class t1 {
     }
 
     public final int hashCode() {
-        if (this.f47890c == 0) {
-            this.f47890c = this.f47889b.hashCode();
+        if (this.f47889c == 0) {
+            this.f47889c = this.f47888b.hashCode();
         }
-        return this.f47890c;
+        return this.f47889c;
     }
 
     public final String toString() {
-        return this.f47889b.toString();
+        return this.f47888b.toString();
     }
 }

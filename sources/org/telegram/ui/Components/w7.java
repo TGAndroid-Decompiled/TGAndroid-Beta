@@ -1,77 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.R;
-public final class w7 extends s4.v {
-    public final k8 d;
+import android.content.Context;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class w7 extends FrameLayout {
+    public final RectF f32137a;
+    public boolean f32138b;
+    public int f32139c;
+    public int d;
+    public final i8 e;
 
-    public w7(k8 k8Var) {
-        this.d = k8Var;
+    public w7(i8 i8Var, Context context) {
+        super(context);
+        this.e = i8Var;
+        this.f32137a = new RectF();
+        this.f32138b = false;
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
-        super.a(recyclerView, b1Var);
-        View view = b1Var.f46343a;
-        view.setPressed(false);
-        view.setTag(R.id.dragging, null);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        oc.a(this, new ah.m0(this, 5));
     }
 
     @Override
-    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
-        if (b1Var.f46346f != 0) {
-            return 0;
-        }
-        return s4.v.l(3, 0);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        oc.h(this);
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
-        int b10 = b1Var.b();
-        int b11 = b1Var2.b();
-        k8 k8Var = this.d;
-        if (k8Var.f27939u0) {
-            if (b10 > 0 && b11 > 0) {
-                k8Var.f27940v0.move(b10 - 1, b11 - 1);
-            } else {
-                return false;
-            }
-        } else {
-            k8Var.f27940v0.move(b10, b11);
-        }
-        k8Var.f27942w0.clear();
-        k8Var.f27942w0.addAll(k8Var.f27940v0.list);
-        k8Var.f27936s.p(b10, b11);
-        return true;
+    public final void onDraw(android.graphics.Canvas r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onDraw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final void p(s4.b1 b1Var, int i10) {
-        Boolean bool;
-        v7 v7Var = this.d.f27929n;
-        if (b1Var != null) {
-            v7Var.e1(false);
-        }
-        if (i10 != 0) {
-            v7Var.I0(false);
-            if (b1Var != null) {
-                b1Var.f46343a.setPressed(true);
-            }
-        }
-        if (b1Var != null) {
-            View view = b1Var.f46343a;
-            int i11 = R.id.dragging;
-            if (i10 == 2) {
-                bool = Boolean.TRUE;
-            } else {
-                bool = null;
-            }
-            view.setTag(i11, bool);
-        }
+    public final boolean onInterceptTouchEvent(android.view.MotionEvent r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onInterceptTouchEvent(android.view.MotionEvent):boolean");
     }
 
     @Override
-    public final void q(s4.b1 b1Var) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        i8 i8Var = this.e;
+        i8.P(i8Var);
+        i8Var.K0();
+    }
+
+    @Override
+    public final void onMeasure(int r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f32138b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

@@ -4,10 +4,10 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.text.style.ReplacementSpan;
 public final class o2 extends ReplacementSpan {
-    public final int f22837a;
+    public final int f22838a;
 
     public o2(int i10) {
-        this.f22837a = i10;
+        this.f22838a = i10;
     }
 
     @Override
@@ -22,7 +22,7 @@ public final class o2 extends ReplacementSpan {
             fontMetricsInt.ascent = -1;
             fontMetricsInt.top = -1;
         }
-        return this.f22837a;
+        return this.f22838a;
     }
 
     @Override

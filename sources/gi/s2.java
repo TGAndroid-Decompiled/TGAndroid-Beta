@@ -6,9 +6,9 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffColorFilter;
 import android.view.KeyEvent;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.qu0;
-import org.telegram.ui.Components.xv0;
-import org.telegram.ui.Components.z20;
+import org.telegram.ui.Components.pu0;
+import org.telegram.ui.Components.wv0;
+import org.telegram.ui.Components.x20;
 public final class s2 extends AnimatorListenerAdapter {
     public final int f11470a;
     public final int f11471b;
@@ -33,41 +33,41 @@ public final class s2 extends AnimatorListenerAdapter {
                 d3Var.h();
                 return;
             case 1:
-                z20 z20Var = (z20) this.d;
-                z20Var.L = this.f11471b;
-                z20Var.M = this.f11472c;
-                z20Var.F.setColorFilter(new PorterDuffColorFilter(z20Var.L, PorterDuff.Mode.MULTIPLY));
-                z20Var.E.setColor(z20Var.L);
-                z20Var.f33123r.setColor(z20Var.M);
-                z20Var.J.d(i0.a.o(z20Var.M, 38));
+                x20 x20Var = (x20) this.d;
+                x20Var.L = this.f11471b;
+                x20Var.M = this.f11472c;
+                x20Var.F.setColorFilter(new PorterDuffColorFilter(x20Var.L, PorterDuff.Mode.MULTIPLY));
+                x20Var.E.setColor(x20Var.L);
+                x20Var.f32489r.setColor(x20Var.M);
+                x20Var.J.d(i0.a.o(x20Var.M, 38));
                 return;
             case 2:
-                xv0 xv0Var = (xv0) this.d;
-                qu0[] qu0VarArr = xv0Var.f32687k0;
-                xv0Var.J1.unlock();
-                xv0Var.f32695o1 = false;
-                int[] iArr = xv0Var.f32690m1;
+                wv0 wv0Var = (wv0) this.d;
+                pu0[] pu0VarArr = wv0Var.f32386k0;
+                wv0Var.J1.unlock();
+                wv0Var.f32394o1 = false;
+                int[] iArr = wv0Var.f32389m1;
                 int i11 = this.f11472c;
                 int i12 = this.f11471b;
                 iArr[i12] = i11;
-                for (int i13 = 0; i13 < qu0VarArr.length; i13++) {
-                    qu0 qu0Var = qu0VarArr[i13];
-                    if (qu0Var != null && qu0Var.h != null && (((i10 = qu0Var.F) == 0 || xv0.r0(i10)) && (adapter = qu0VarArr[i13].h.getAdapter()) != null)) {
+                for (int i13 = 0; i13 < pu0VarArr.length; i13++) {
+                    pu0 pu0Var = pu0VarArr[i13];
+                    if (pu0Var != null && pu0Var.h != null && (((i10 = pu0Var.F) == 0 || wv0.r0(i10)) && (adapter = pu0VarArr[i13].h.getAdapter()) != null)) {
                         int h = adapter.h();
                         if (i13 == 0) {
-                            xv0Var.f32707t1[0].g(false);
+                            wv0Var.f32406t1[0].g(false);
                         }
-                        qu0VarArr[i13].f30007x.y1(iArr[i12]);
-                        qu0VarArr[i13].h.a0();
+                        pu0VarArr[i13].f29680x.y1(iArr[i12]);
+                        pu0VarArr[i13].h.a0();
                         if (adapter.h() == h) {
-                            AndroidUtilities.updateVisibleRows(qu0VarArr[i13].h);
+                            AndroidUtilities.updateVisibleRows(pu0VarArr[i13].h);
                         } else {
                             adapter.l();
                         }
-                        qu0VarArr[i13].f30004r.setVisibility(8);
+                        pu0VarArr[i13].f29677r.setVisibility(8);
                     }
                 }
-                xv0Var.a1();
+                wv0Var.a1();
                 return;
             default:
                 org.telegram.ui.Components.voip.t tVar = (org.telegram.ui.Components.voip.t) this.d;

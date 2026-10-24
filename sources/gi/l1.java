@@ -19,21 +19,21 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.km0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.ow0;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.za;
 import w7.z5;
-public final class l1 extends bb {
+public final class l1 extends za {
     public final int X;
     public final String Y;
-    public b71 Z;
+    public a71 Z;
     public final i1 f11338a0;
     public boolean f11339b0;
     public boolean f11340c0;
@@ -131,7 +131,7 @@ public final class l1 extends bb {
                 case 5:
                 case 6:
                     TLRPC.TL_document tL_document2 = new TLRPC.TL_document();
-                    tL_document2.f20349id = 0L;
+                    tL_document2.f20350id = 0L;
                     tL_document2.size = 0L;
                     tL_document2.dc_id = 0;
                     tL_document2.mime_type = botInlineResult.content.mime_type;
@@ -194,7 +194,7 @@ public final class l1 extends bb {
                             tL_document2.attributes.add(tL_documentAttributeSticker);
                             TLRPC.TL_documentAttributeImageSize tL_documentAttributeImageSize = new TLRPC.TL_documentAttributeImageSize();
                             int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeImageSize.f20350w = inlineResultWidthAndHeight[0];
+                            tL_documentAttributeImageSize.f20351w = inlineResultWidthAndHeight[0];
                             tL_documentAttributeImageSize.h = inlineResultWidthAndHeight[1];
                             tL_document2.attributes.add(tL_documentAttributeImageSize);
                             tL_documentAttributeFilename.file_name = "sticker.webp";
@@ -252,7 +252,7 @@ public final class l1 extends bb {
                             tL_documentAttributeFilename.file_name = "video.mp4";
                             TLRPC.TL_documentAttributeVideo tL_documentAttributeVideo = new TLRPC.TL_documentAttributeVideo();
                             int[] inlineResultWidthAndHeight2 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                            tL_documentAttributeVideo.f20350w = inlineResultWidthAndHeight2[0];
+                            tL_documentAttributeVideo.f20351w = inlineResultWidthAndHeight2[0];
                             tL_documentAttributeVideo.h = inlineResultWidthAndHeight2[1];
                             tL_documentAttributeVideo.duration = MessageObject.getInlineResultDuration(botInlineResult);
                             tL_documentAttributeVideo.supports_streaming = true;
@@ -292,7 +292,7 @@ public final class l1 extends bb {
                     if (tL_document2.thumbs.isEmpty()) {
                         TLRPC.TL_photoSize tL_photoSize = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight3 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize.f20368w = inlineResultWidthAndHeight3[0];
+                        tL_photoSize.f20369w = inlineResultWidthAndHeight3[0];
                         z10 = true;
                         tL_photoSize.h = inlineResultWidthAndHeight3[1];
                         tL_photoSize.size = 0;
@@ -318,7 +318,7 @@ public final class l1 extends bb {
                         tL_photo2.file_reference = new byte[0];
                         TLRPC.TL_photoSize tL_photoSize2 = new TLRPC.TL_photoSize();
                         int[] inlineResultWidthAndHeight4 = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
-                        tL_photoSize2.f20368w = inlineResultWidthAndHeight4[0];
+                        tL_photoSize2.f20369w = inlineResultWidthAndHeight4[0];
                         tL_photoSize2.h = inlineResultWidthAndHeight4[1];
                         tL_photoSize2.size = 1;
                         tL_photoSize2.location = new TLRPC.TL_fileLocationUnavailable();
@@ -345,26 +345,26 @@ public final class l1 extends bb {
         org.telegram.ui.Cells.t1 t1Var = new org.telegram.ui.Cells.t1(context, i11);
         t1Var.setDelegate(new Object());
         t1Var.W3(k1Var, null, false, false, false, false);
-        LinearLayout e = sl.e(context, r11);
+        LinearLayout e = tl.e(context, r11);
         e.addView(v0Var, z5.n(-1, -2));
         e.addView(t1Var, z5.n(-1, -2));
-        ?? ow0Var = new ow0(context, null);
-        this.f11338a0 = ow0Var;
-        ow0Var.U(r6.e(null, i11, j10, k6.I.q()));
-        ow0Var.addView(e, z5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
+        ?? nw0Var = new nw0(context, null);
+        this.f11338a0 = nw0Var;
+        nw0Var.U(r6.e(null, i11, j10, k6.I.q()));
+        nw0Var.addView(e, z5.d(-1, -1.0f, 119, 4.0f, 8.0f, 4.0f, 8.0f));
         FrameLayout frameLayout = new FrameLayout(context);
-        ei.d g10 = sl.g(24, context, g6Var, r11);
+        ei.d g10 = tl.g(24, context, g6Var, r11);
         g10.i(LocaleController.getString(R.string.BotShareMessageShare), false, r11);
         g10.setOnClickListener(new ai.e1(this, tL_messages_preparedInlineMessage, s0Var, i11, j10, tVar));
         frameLayout.addView(g10, z5.d(-1, 48.0f, 119, 10.0f, 10.0f, 10.0f, 10.0f));
         ViewGroup viewGroup = this.containerView;
         int i13 = this.backgroundPaddingLeft;
         viewGroup.addView(frameLayout, z5.f(-2.0f, 87, i13, 0, i13, 0));
-        mm0 mm0Var = this.d;
+        lm0 lm0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
+        lm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(68.0f) + r11);
         this.d.t1();
-        int i15 = k6.f21125a7;
+        int i15 = k6.f21126a7;
         setBackgroundColor(getThemedColor(i15));
         fixNavigationBarKey(i15);
         this.Z.N(false);
@@ -379,7 +379,7 @@ public final class l1 extends bb {
         c2Var.r(500L);
         TLRPC.TL_messages_getPreparedInlineMessage tL_messages_getPreparedInlineMessage = new TLRPC.TL_messages_getPreparedInlineMessage();
         tL_messages_getPreparedInlineMessage.bot = MessagesController.getInstance(i10).getInputUser(j10);
-        tL_messages_getPreparedInlineMessage.f20441id = str;
+        tL_messages_getPreparedInlineMessage.f20442id = str;
         ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getPreparedInlineMessage, new z0(i10, c2Var, context, j10, g6Var, tVar, s0Var));
     }
 
@@ -399,20 +399,20 @@ public final class l1 extends bb {
     public final void onCreate(Bundle bundle) {
         int h;
         super.onCreate(bundle);
-        mm0 mm0Var = this.d;
-        if (mm0Var.getAdapter() == null) {
+        lm0 lm0Var = this.d;
+        if (lm0Var.getAdapter() == null) {
             h = 0;
         } else {
-            h = mm0Var.getAdapter().h();
+            h = lm0Var.getAdapter().h();
         }
-        mm0Var.u0(Math.max(h - 1, 0));
+        lm0Var.u0(Math.max(h - 1, 0));
     }
 
     @Override
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            int themedColor = getThemedColor(k6.f21125a7);
+            int themedColor = getThemedColor(k6.f21126a7);
             if (themedColor != this.f11342e0) {
                 this.f11342e0 = themedColor;
                 setBackgroundColor(themedColor);
@@ -423,10 +423,10 @@ public final class l1 extends bb {
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
-        b71 b71Var = new b71(mm0Var, getContext(), this.X, 0, true, new ai.q(this, 26), this.resourcesProvider);
-        this.Z = b71Var;
-        return b71Var;
+    public final km0 w(lm0 lm0Var) {
+        a71 a71Var = new a71(lm0Var, getContext(), this.X, 0, true, new ai.q(this, 26), this.resourcesProvider);
+        this.Z = a71Var;
+        return a71Var;
     }
 
     @Override

@@ -1,10 +1,10 @@
 package ei;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.b00;
-import org.telegram.ui.Components.e00;
+import org.telegram.ui.Components.c00;
 import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.z71;
+import org.telegram.ui.Components.y71;
+import org.telegram.ui.Components.zz;
 public final class o6 implements Runnable {
     public final int f9568a;
     public final r6 f9569b;
@@ -130,13 +130,13 @@ public final class o6 implements Runnable {
                 return;
             default:
                 r6 r6Var4 = this.f9569b;
-                z71 z71Var = r6Var4.f9737n;
-                if (z71Var != null) {
-                    e00 e00Var = z71Var.f33158b;
-                    if (e00Var != null) {
-                        e00Var.postRunnable(new b00(e00Var, 0));
+                y71 y71Var = r6Var4.f9737n;
+                if (y71Var != null) {
+                    c00 c00Var = y71Var.f32834b;
+                    if (c00Var != null) {
+                        c00Var.postRunnable(new zz(c00Var, 0));
                     }
-                    z71Var.f33157a = null;
+                    y71Var.f32833a = null;
                     r6Var4.removeView(r6Var4.f9737n);
                     r6Var4.f9737n = null;
                     return;

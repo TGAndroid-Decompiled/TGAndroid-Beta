@@ -1,23 +1,36 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-public final class d10 implements Utilities.Callback {
-    public final int f25480a = 1;
-    public final org.telegram.ui.ActionBar.h5 f25481b;
-    public final qy f25482c;
+import android.animation.ValueAnimator;
+public final class d10 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f25510a;
+    public final e10 f25511b;
 
-    public d10(org.telegram.ui.ActionBar.h5 h5Var, qy qyVar) {
-        this.f25481b = h5Var;
-        this.f25482c = qyVar;
+    public d10(e10 e10Var, int i10) {
+        this.f25510a = i10;
+        this.f25511b = e10Var;
     }
 
     @Override
-    public final void run(java.lang.Object r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d10.run(java.lang.Object):void");
-    }
-
-    public d10(qy qyVar, org.telegram.ui.ActionBar.h5 h5Var) {
-        this.f25482c = qyVar;
-        this.f25481b = h5Var;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f25510a) {
+            case 0:
+                e10 e10Var = this.f25511b;
+                e10Var.getClass();
+                e10Var.f25920y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e10Var.invalidate();
+                return;
+            case 1:
+                e10 e10Var2 = this.f25511b;
+                e10Var2.getClass();
+                e10Var2.v = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                e10Var2.invalidate();
+                return;
+            default:
+                e10 e10Var3 = this.f25511b;
+                e10Var3.getClass();
+                e10Var3.f25915n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                e10Var3.invalidate();
+                return;
+        }
     }
 }

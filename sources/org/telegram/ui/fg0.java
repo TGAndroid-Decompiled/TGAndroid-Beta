@@ -1,50 +1,113 @@
 package org.telegram.ui;
 
+import android.content.SharedPreferences;
+import android.os.Build;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.RadialProgressView;
-public final class fg0 implements Runnable {
-    public final int f37330a;
-    public final gg0 f37331b;
-    public final wf0 f37332c;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class fg0 {
+    public final gg0 f37332a;
 
-    public fg0(int i10, wf0 wf0Var, gg0 gg0Var) {
-        this.f37330a = i10;
-        this.f37331b = gg0Var;
-        this.f37332c = wf0Var;
+    public fg0(gg0 gg0Var) {
+        this.f37332a = gg0Var;
     }
 
-    @Override
-    public final void run() {
-        int i10 = this.f37330a;
-        wf0 wf0Var = this.f37332c;
-        gg0 gg0Var = this.f37331b;
-        switch (i10) {
-            case 0:
-                int i11 = wf0.F;
-                wf0Var.a();
-                AndroidUtilities.runOnUIThread(new fg0(1, wf0Var, gg0Var), 150L);
-                return;
-            default:
-                hg0 hg0Var = gg0Var.f37598a;
-                hg0Var.h(null);
-                RadialProgressView radialProgressView = hg0Var.f37846a0.N.d;
-                RadialProgressView radialProgressView2 = wf0Var.h.d;
-                radialProgressView.getClass();
-                radialProgressView.f24472a = radialProgressView2.f24472a;
-                radialProgressView.f24473b = radialProgressView2.f24473b;
-                radialProgressView.H = radialProgressView2.H;
-                radialProgressView.I = radialProgressView2.I;
-                radialProgressView.J = radialProgressView2.J;
-                radialProgressView.f24474c = radialProgressView2.f24474c;
-                radialProgressView.f24476n = radialProgressView2.f24476n;
-                radialProgressView.e = radialProgressView2.e;
-                radialProgressView.f24481y = radialProgressView2.f24481y;
-                radialProgressView.F = radialProgressView2.F;
-                radialProgressView.G = radialProgressView2.G;
-                radialProgressView.d = radialProgressView2.d;
-                radialProgressView.E = radialProgressView2.E;
-                radialProgressView.b(85L);
-                return;
+    public final void a(vf0 vf0Var) {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        int i10;
+        gg0 gg0Var = this.f37332a;
+        gg0Var.N = true;
+        hg0 hg0Var = gg0Var.f37562a0;
+        hg0Var.J = 0;
+        hg0Var.r1(0, false);
+        int i11 = Build.VERSION.SDK_INT;
+        if (AndroidUtilities.isSimAvailable()) {
+            if (hg0Var.getParentActivity().checkSelfPermission("android.permission.READ_PHONE_STATE") == 0) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            if (hg0Var.getParentActivity().checkSelfPermission("android.permission.CALL_PHONE") == 0) {
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            if (i11 >= 28 && hg0Var.getParentActivity().checkSelfPermission("android.permission.READ_CALL_LOG") != 0) {
+                z13 = false;
+            } else {
+                z13 = true;
+            }
+            if (i11 >= 26 && hg0Var.getParentActivity().checkSelfPermission("android.permission.READ_PHONE_NUMBERS") != 0) {
+                z14 = false;
+            } else {
+                z14 = true;
+            }
+            oj0 oj0Var = gg0Var.f37561a;
+            if (oj0Var != null && "888".equals(oj0Var.getText())) {
+                z11 = true;
+                z12 = true;
+                z13 = true;
+                z14 = true;
+            }
+            if (hg0Var.v) {
+                hg0Var.f37854r.clear();
+                if (!z11) {
+                    hg0Var.f37854r.add("android.permission.READ_PHONE_STATE");
+                }
+                if (!z12) {
+                    hg0Var.f37854r.add("android.permission.CALL_PHONE");
+                }
+                if (!z13) {
+                    hg0Var.f37854r.add("android.permission.READ_CALL_LOG");
+                }
+                if (!z14 && i11 >= 26) {
+                    hg0Var.f37854r.add("android.permission.READ_PHONE_NUMBERS");
+                }
+                if (!hg0Var.f37854r.isEmpty()) {
+                    SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                    if (!globalMainSettings.getBoolean("firstlogin", true) && !hg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_PHONE_STATE") && !hg0Var.getParentActivity().shouldShowRequestPermissionRationale("android.permission.READ_CALL_LOG")) {
+                        try {
+                            hg0Var.getParentActivity().requestPermissions((String[]) hg0Var.f37854r.toArray(new String[0]), 6);
+                            return;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return;
+                        }
+                    }
+                    globalMainSettings.edit().putBoolean("firstlogin", false).commit();
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(hg0Var.getParentActivity());
+                    alertDialog$Builder.k(LocaleController.getString("Continue", R.string.Continue), null);
+                    if (!z11 && (!z12 || !z13)) {
+                        alertDialog$Builder.f20679a.T = LocaleController.getString("AllowReadCallAndLog", R.string.AllowReadCallAndLog);
+                        i10 = R.raw.calls_log;
+                    } else if (z12 && z13) {
+                        alertDialog$Builder.f20679a.T = LocaleController.getString("AllowReadCall", R.string.AllowReadCall);
+                        i10 = R.raw.incoming_calls;
+                    } else {
+                        alertDialog$Builder.f20679a.T = LocaleController.getString("AllowReadCallLog", R.string.AllowReadCallLog);
+                        i10 = R.raw.calls_log;
+                    }
+                    int i12 = org.telegram.ui.ActionBar.k6.L5;
+                    alertDialog$Builder.m(i10, 46, org.telegram.ui.ActionBar.k6.x0(null, i12, false), null);
+                    alertDialog$Builder.n(i12, null);
+                    hg0Var.h = hg0Var.showDialog(alertDialog$Builder.f20679a);
+                    gg0Var.N = true;
+                    return;
+                }
+            }
+            z10 = true;
+        } else {
+            z10 = true;
         }
+        eg0 eg0Var = new eg0(0, vf0Var, this);
+        vf0Var.h.f(z10, z10);
+        AndroidUtilities.runOnUIThread(eg0Var, 400L);
     }
 }

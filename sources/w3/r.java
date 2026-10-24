@@ -2,9 +2,9 @@ package w3;
 
 import c3.k0;
 public final class r {
-    public final boolean f49005a;
-    public final String f49006b;
-    public final k0 f49007c;
+    public final boolean f49004a;
+    public final String f49005b;
+    public final k0 f49006c;
     public final int d;
     public final byte[] e;
 

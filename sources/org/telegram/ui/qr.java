@@ -13,13 +13,13 @@ public final class qr extends vr {
         this.M = i10;
         this.N = i11;
         this.e = 1.0f;
-        this.f42821f = new o1.k(this, vr.I);
+        this.f42801f = new o1.k(this, vr.I);
         this.h = new o1.k(this, vr.J);
-        this.f42822n = new o1.k(this, vr.K);
-        this.f42823r = new o1.k(this, vr.L);
-        this.f42824s = true;
+        this.f42802n = new o1.k(this, vr.K);
+        this.f42803r = new o1.k(this, vr.L);
+        this.f42804s = true;
         this.v = 1.0f;
-        this.f42825w = 1.0f;
+        this.f42805w = 1.0f;
         this.H = false;
         setBackground(null);
         org.telegram.ui.ActionBar.r6.W(this, org.telegram.ui.ActionBar.k6.G6, null);
@@ -34,44 +34,44 @@ public final class qr extends vr {
         }
         int keyCode = keyEvent.getKeyCode();
         sr srVar = this.O;
-        int length = srVar.f41793f.length;
+        int length = srVar.f41792f.length;
         int i10 = this.M;
         if (i10 >= length) {
             return false;
         }
         if (keyEvent.getAction() == 1) {
-            if (keyCode == 67 && srVar.f41793f[i10].length() == 1) {
-                srVar.f41793f[i10].m();
-                srVar.f41793f[i10].setText("");
+            if (keyCode == 67 && srVar.f41792f[i10].length() == 1) {
+                srVar.f41792f[i10].m();
+                srVar.f41792f[i10].setText("");
                 return true;
-            } else if (keyCode == 67 && srVar.f41793f[i10].length() == 0 && i10 > 0) {
-                vr[] vrVarArr = srVar.f41793f;
+            } else if (keyCode == 67 && srVar.f41792f[i10].length() == 0 && i10 > 0) {
+                vr[] vrVarArr = srVar.f41792f;
                 vrVarArr[i10 - 1].setSelection(vrVarArr[i10 - 1].length());
                 for (int i11 = 0; i11 < i10; i11++) {
                     if (i11 == i10 - 1) {
-                        srVar.f41793f[i10 - 1].requestFocus();
+                        srVar.f41792f[i10 - 1].requestFocus();
                     } else {
-                        srVar.f41793f[i11].clearFocus();
+                        srVar.f41792f[i11].clearFocus();
                     }
                 }
-                srVar.f41793f[i10 - 1].m();
-                srVar.f41793f[i10 - 1].setText("");
+                srVar.f41792f[i10 - 1].m();
+                srVar.f41792f[i10 - 1].setText("");
                 return true;
             } else {
                 if (keyCode >= 7 && keyCode <= 16) {
                     String num = Integer.toString(keyCode - 7);
-                    if (srVar.f41793f[i10].getText() != null && num.equals(srVar.f41793f[i10].getText().toString())) {
+                    if (srVar.f41792f[i10].getText() != null && num.equals(srVar.f41792f[i10].getText().toString())) {
                         if (i10 >= this.N - 1) {
                             srVar.a();
                         } else {
-                            srVar.f41793f[i10 + 1].requestFocus();
+                            srVar.f41792f[i10 + 1].requestFocus();
                         }
                         return true;
                     }
-                    if (srVar.f41793f[i10].length() > 0) {
-                        srVar.f41793f[i10].m();
+                    if (srVar.f41792f[i10].length() > 0) {
+                        srVar.f41792f[i10].m();
                     }
-                    srVar.f41793f[i10].setText(num);
+                    srVar.f41792f[i10].setText(num);
                 }
                 return true;
             }

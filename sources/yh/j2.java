@@ -1,8 +1,8 @@
 package yh;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.r5;
-public final class j2 extends r5 {
+import org.telegram.ui.Components.p5;
+public final class j2 extends p5 {
     @Override
     public final int getIntrinsicHeight() {
         return AndroidUtilities.dp(24.0f);

@@ -10,39 +10,39 @@ import android.view.ViewPropertyAnimator;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 public final class w70 extends ViewGroup {
-    public AnimatorSet f42950a;
-    public boolean f42951b;
-    public final ArrayList f42952c;
-    public org.telegram.ui.Components.v30 d;
-    public org.telegram.ui.Components.v30 e;
-    public int f42953f;
+    public AnimatorSet f42931a;
+    public boolean f42932b;
+    public final ArrayList f42933c;
+    public org.telegram.ui.Components.t30 d;
+    public org.telegram.ui.Components.t30 e;
+    public int f42934f;
     public final x70 h;
 
     public w70(x70 x70Var, Context context) {
         super(context);
         this.h = x70Var;
-        this.f42952c = new ArrayList();
+        this.f42933c = new ArrayList();
     }
 
-    public final void a(org.telegram.ui.Components.v30 v30Var) {
+    public final void a(org.telegram.ui.Components.t30 t30Var) {
         x70 x70Var = this.h;
         x70Var.v = true;
-        x70Var.F.remove(v30Var.getKey());
-        x70Var.G.remove(v30Var);
-        v30Var.setOnClickListener(null);
-        AnimatorSet animatorSet = this.f42950a;
+        x70Var.F.remove(t30Var.getKey());
+        x70Var.G.remove(t30Var);
+        t30Var.setOnClickListener(null);
+        AnimatorSet animatorSet = this.f42931a;
         if (animatorSet != null && animatorSet.isRunning()) {
-            this.f42950a.setupEndValues();
-            this.f42950a.cancel();
+            this.f42931a.setupEndValues();
+            this.f42931a.cancel();
         }
-        this.f42951b = false;
+        this.f42932b = false;
         AnimatorSet animatorSet2 = new AnimatorSet();
-        this.f42950a = animatorSet2;
-        animatorSet2.addListener(new org.telegram.ui.Components.ql0(8, this, v30Var));
-        this.f42950a.setInterpolator(org.telegram.ui.Components.bs.h);
-        this.f42950a.setDuration(320L);
-        this.e = v30Var;
-        ArrayList arrayList = this.f42952c;
+        this.f42931a = animatorSet2;
+        animatorSet2.addListener(new org.telegram.ui.Components.pl0(8, this, t30Var));
+        this.f42931a.setInterpolator(org.telegram.ui.Components.zr.h);
+        this.f42931a.setDuration(320L);
+        this.e = t30Var;
+        ArrayList arrayList = this.f42933c;
         arrayList.clear();
         arrayList.add(ObjectAnimator.ofFloat(this.e, View.SCALE_X, 1.0f, 0.75f));
         arrayList.add(ObjectAnimator.ofFloat(this.e, View.SCALE_Y, 1.0f, 0.75f));
@@ -84,13 +84,13 @@ public final class w70 extends ViewGroup {
         int i18 = 0;
         int i19 = 0;
         while (true) {
-            arrayList = this.f42952c;
+            arrayList = this.f42933c;
             z10 = true;
             if (i16 >= childCount) {
                 break;
             }
             View childAt = getChildAt(i16);
-            if (childAt instanceof org.telegram.ui.Components.v30) {
+            if (childAt instanceof org.telegram.ui.Components.t30) {
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(size, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(28.0f), 1073741824));
                 if (childAt != this.e && childAt.getMeasuredWidth() + i18 > dp) {
                     dp2 += AndroidUtilities.dp(34.0f);
@@ -101,12 +101,12 @@ public final class w70 extends ViewGroup {
                     i19 = 0;
                 }
                 int dp4 = AndroidUtilities.dp(5.0f) + i18;
-                if (!this.f42951b) {
-                    org.telegram.ui.Components.v30 v30Var = this.e;
-                    if (childAt == v30Var) {
+                if (!this.f42932b) {
+                    org.telegram.ui.Components.t30 t30Var = this.e;
+                    if (childAt == t30Var) {
                         childAt.setTranslationX(AndroidUtilities.dp(5.0f) + i19);
                         childAt.setTranslationY(dp3);
-                    } else if (v30Var != null) {
+                    } else if (t30Var != null) {
                         float f12 = dp4;
                         if (childAt.getTranslationX() != f12) {
                             arrayList.add(ObjectAnimator.ofFloat(childAt, View.TRANSLATION_X, f12));
@@ -133,7 +133,7 @@ public final class w70 extends ViewGroup {
             A = AndroidUtilities.dp(372.0f) / 3;
         } else {
             Point point = AndroidUtilities.displaySize;
-            A = org.telegram.messenger.sl.A(158.0f, Math.min(point.x, point.y), 3);
+            A = org.telegram.messenger.tl.A(158.0f, Math.min(point.x, point.y), 3);
         }
         if (i17 > 0) {
             i12 = AndroidUtilities.dp(34.0f) + i17;
@@ -141,7 +141,7 @@ public final class w70 extends ViewGroup {
             i12 = 0;
         }
         x70 x70Var = this.h;
-        if (i12 > x70Var.f43529x - AndroidUtilities.dp(12.0f)) {
+        if (i12 > x70Var.f43495x - AndroidUtilities.dp(12.0f)) {
             z11 = true;
         } else {
             z11 = false;
@@ -156,25 +156,25 @@ public final class w70 extends ViewGroup {
         } else {
             i13 = 0;
         }
-        if (i13 > x70Var.f43529x - AndroidUtilities.dp(12.0f)) {
+        if (i13 > x70Var.f43495x - AndroidUtilities.dp(12.0f)) {
             z12 = true;
         } else {
             z12 = false;
         }
-        if (!this.f42951b) {
+        if (!this.f42932b) {
             int dp5 = AndroidUtilities.dp(28.0f) + dp3;
             x70Var.I = dp2;
-            if (this.f42950a != null) {
-                this.f42953f = AndroidUtilities.dp(28.0f) + dp2;
-                this.f42950a.playTogether(arrayList);
-                this.f42950a.start();
-                this.f42951b = true;
+            if (this.f42931a != null) {
+                this.f42934f = AndroidUtilities.dp(28.0f) + dp2;
+                this.f42931a.playTogether(arrayList);
+                this.f42931a.start();
+                this.f42932b = true;
             } else {
-                this.f42953f = dp5;
+                this.f42934f = dp5;
             }
         }
         if (z12) {
-            max = x70Var.f43529x - AndroidUtilities.dp(12.0f);
+            max = x70Var.f43495x - AndroidUtilities.dp(12.0f);
         } else {
             int dp6 = AndroidUtilities.dp(37.0f);
             if (i17 > 0) {
@@ -182,9 +182,9 @@ public final class w70 extends ViewGroup {
             } else {
                 i14 = 0;
             }
-            max = Math.max(dp6, Math.min(i14, x70Var.f43529x - AndroidUtilities.dp(12.0f)));
+            max = Math.max(dp6, Math.min(i14, x70Var.f43495x - AndroidUtilities.dp(12.0f)));
         }
-        x70Var.f43522b.a(max);
+        x70Var.f43488b.a(max);
         u70 u70Var = x70Var.d;
         if (u70Var != null) {
             if (this.e != null) {
@@ -198,7 +198,7 @@ public final class w70 extends ViewGroup {
             if (max2 > 0) {
                 z10 = false;
             }
-            ViewPropertyAnimator animate = u70Var.f42293c.animate();
+            ViewPropertyAnimator animate = u70Var.f42340c.animate();
             float f15 = 0.0f;
             float f16 = 1.0f;
             if (z10) {
@@ -217,8 +217,8 @@ public final class w70 extends ViewGroup {
                 f16 = 0.5f;
             }
             ViewPropertyAnimator scaleY = scaleX.scaleY(f16);
-            org.telegram.ui.Components.bs bsVar = org.telegram.ui.Components.bs.h;
-            org.telegram.messenger.sl.t(scaleY, bsVar, 320L);
+            org.telegram.ui.Components.zr zrVar = org.telegram.ui.Components.zr.h;
+            org.telegram.messenger.tl.t(scaleY, zrVar, 320L);
             ViewPropertyAnimator animate2 = u70Var.d.animate();
             if (z12) {
                 f11 = ((u70Var.getHeight() - u70Var.getPaddingTop()) - u70Var.getPaddingBottom()) - AndroidUtilities.dp(44.0f);
@@ -231,9 +231,9 @@ public final class w70 extends ViewGroup {
             } else if (max2 > 0) {
                 f15 = Math.max(-AndroidUtilities.dp(36.0f), f14 - AndroidUtilities.dp(46.0f));
             }
-            translationY.translationX(f15).setInterpolator(bsVar).setDuration(320L).start();
-            u70Var.f42294f.e.post(new b0(u70Var, g10, 3));
+            translationY.translationX(f15).setInterpolator(zrVar).setDuration(320L).start();
+            u70Var.f42341f.e.post(new b0(u70Var, g10, 3));
         }
-        setMeasuredDimension(size, this.f42953f);
+        setMeasuredDimension(size, this.f42934f);
     }
 }

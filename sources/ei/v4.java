@@ -127,7 +127,7 @@ public final class v4 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f45741r0 = !d2Var.f45741r0;
+                                        d2Var.f45740r0 = !d2Var.f45740r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -274,7 +274,7 @@ public final class v4 implements Runnable {
                                             ((rg.c2) jVar5).r(true);
                                         } else if (jVar5 instanceof rg.d2) {
                                             rg.d2 d2Var = (rg.d2) jVar5;
-                                            d2Var.f45741r0 = !d2Var.f45741r0;
+                                            d2Var.f45740r0 = !d2Var.f45740r0;
                                             d2Var.invalidate();
                                         } else {
                                             ((rg.z1) jVar5).r(true);
@@ -409,7 +409,7 @@ public final class v4 implements Runnable {
                                             ((rg.c2) jVar5).r(true);
                                         } else if (jVar5 instanceof rg.d2) {
                                             rg.d2 d2Var = (rg.d2) jVar5;
-                                            d2Var.f45741r0 = !d2Var.f45741r0;
+                                            d2Var.f45740r0 = !d2Var.f45740r0;
                                             d2Var.invalidate();
                                         } else {
                                             ((rg.z1) jVar5).r(true);
@@ -545,7 +545,7 @@ public final class v4 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f45741r0 = !d2Var.f45741r0;
+                                        d2Var.f45740r0 = !d2Var.f45740r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -680,7 +680,7 @@ public final class v4 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f45741r0 = !d2Var.f45741r0;
+                                        d2Var.f45740r0 = !d2Var.f45740r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -816,7 +816,7 @@ public final class v4 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f45741r0 = !d2Var.f45741r0;
+                                        d2Var.f45740r0 = !d2Var.f45740r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -963,7 +963,7 @@ public final class v4 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f45741r0 = !d2Var.f45741r0;
+                                        d2Var.f45740r0 = !d2Var.f45740r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -1108,7 +1108,7 @@ public final class v4 implements Runnable {
                                         ((rg.c2) jVar5).r(true);
                                     } else if (jVar5 instanceof rg.d2) {
                                         rg.d2 d2Var = (rg.d2) jVar5;
-                                        d2Var.f45741r0 = !d2Var.f45741r0;
+                                        d2Var.f45740r0 = !d2Var.f45740r0;
                                         d2Var.invalidate();
                                     } else {
                                         ((rg.z1) jVar5).r(true);
@@ -1167,7 +1167,7 @@ public final class v4 implements Runnable {
                 }
                 for (int i13 = 0; i13 < linearLayout.getChildCount(); i13++) {
                     View childAt = linearLayout.getChildAt(i13);
-                    int i14 = org.telegram.ui.ActionBar.k6.f21272i6;
+                    int i14 = org.telegram.ui.ActionBar.k6.f21273i6;
                     int w02 = org.telegram.ui.ActionBar.k6.w0(i14, t5Var);
                     int i15 = 8;
                     if (i13 == 0) {

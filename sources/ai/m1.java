@@ -7,7 +7,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public abstract class m1 {
     public static final float[][] f1798a;
     public static final e0.f0 f1799b;
@@ -92,7 +92,7 @@ public abstract class m1 {
         }
     }
 
-    public static void c(Canvas canvas, org.telegram.ui.Components.p5 p5Var, int i10, float f7, float f10, RectF rectF, float f11) {
+    public static void c(Canvas canvas, org.telegram.ui.Components.n5 n5Var, int i10, float f7, float f10, RectF rectF, float f11) {
         float f12;
         float f13;
         float clamp01;
@@ -169,14 +169,14 @@ public abstract class m1 {
                 }
                 float f51 = f26;
                 if (i12 == 18 || i12 == 19 || i12 == 6 || i12 == 7) {
-                    clamp01 = bs.f25135i.getInterpolation(clamp01);
+                    clamp01 = zr.f33339i.getInterpolation(clamp01);
                 }
                 float[] fArr3 = fArr2;
                 float f52 = f45;
                 float D = com.google.android.gms.internal.play_billing.k3.D(f52, f15, AndroidUtilities.dp(12.0f), f47);
                 int i14 = (clamp01 > f52 ? 1 : (clamp01 == f52 ? 0 : -1));
                 if (i14 < 0) {
-                    f46 = AndroidUtilities.lerp(f18, f46, bs.f25135i.getInterpolation(clamp01));
+                    f46 = AndroidUtilities.lerp(f18, f46, zr.f33339i.getInterpolation(clamp01));
                     D = AndroidUtilities.lerp(f19, D, clamp01);
                     dpf27 = AndroidUtilities.lerp(AndroidUtilities.dpf2(8.0f), dpf27, clamp01);
                 }
@@ -191,9 +191,9 @@ public abstract class m1 {
                 if (i14 < 0) {
                     clamp013 = AndroidUtilities.lerp(0.0f, clamp013, clamp01);
                 }
-                p5Var.setBounds((int) (f46 - dpf27), (int) (D - dpf27), (int) (f46 + dpf27), (int) (D + dpf27));
-                p5Var.v = (int) (clamp013 * 255.0f);
-                p5Var.draw(canvas);
+                n5Var.setBounds((int) (f46 - dpf27), (int) (D - dpf27), (int) (f46 + dpf27), (int) (D + dpf27));
+                n5Var.v = (int) (clamp013 * 255.0f);
+                n5Var.draw(canvas);
                 i12 += 3;
                 i11 += 2;
                 f15 = f10;

@@ -28,25 +28,25 @@ public final class ak extends FragmentContextView {
         switch (this.X0) {
             case 0:
                 sn snVar = this.Y0;
-                org.telegram.ui.Components.ch chVar = snVar.Y0;
-                FrameLayout frameLayout = snVar.f41598m2;
+                org.telegram.ui.Components.ah ahVar = snVar.Y0;
+                FrameLayout frameLayout = snVar.f41595m2;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                chVar.i(frameLayout, z10, true);
+                ahVar.i(frameLayout, z10, true);
                 return;
             default:
                 sn snVar2 = this.Y0;
-                org.telegram.ui.Components.ch chVar2 = snVar2.Y0;
-                FrameLayout frameLayout2 = snVar2.f41575k2;
+                org.telegram.ui.Components.ah ahVar2 = snVar2.Y0;
+                FrameLayout frameLayout2 = snVar2.f41572k2;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                chVar2.i(frameLayout2, z11, true);
+                ahVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

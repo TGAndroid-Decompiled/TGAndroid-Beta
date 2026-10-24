@@ -46,7 +46,7 @@ public final class e extends d {
 
     @Override
     public final void draw(Canvas canvas) {
-        int i10 = r6.f21817b;
+        int i10 = r6.f21818b;
         if (this.f8026s != i10) {
             this.f8026s = i10;
             try {

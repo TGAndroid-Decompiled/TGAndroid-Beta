@@ -7,15 +7,15 @@ import android.graphics.drawable.Drawable;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-public final class ik extends org.telegram.ui.Components.nd {
+public final class ik extends org.telegram.ui.Components.ld {
     public org.telegram.ui.Cells.y e;
-    public int f38252f;
+    public int f38319f;
     public final boolean h;
-    public final sn f38253n;
+    public final sn f38320n;
 
     public ik(sn snVar, Context context, boolean z10) {
         super(context);
-        this.f38253n = snVar;
+        this.f38320n = snVar;
         this.h = z10;
     }
 
@@ -23,18 +23,18 @@ public final class ik extends org.telegram.ui.Components.nd {
     public final void d() {
         int i10;
         try {
-            int themedColor = this.f38253n.getThemedColor(org.telegram.ui.ActionBar.k6.f21524ve);
+            int themedColor = this.f38320n.getThemedColor(org.telegram.ui.ActionBar.k6.f21525ve);
             if (this.e != null) {
                 Drawable background = getBackground();
                 Drawable drawable = this.e;
                 if (background == drawable) {
-                    if (themedColor != this.f38252f) {
+                    if (themedColor != this.f38319f) {
                         org.telegram.ui.ActionBar.k6.E1(drawable, themedColor & 436207615, true);
                     }
-                    if (getImageView() != null && (themedColor != this.f38252f || getImageView().getColorFilter() == null)) {
+                    if (getImageView() != null && (themedColor != this.f38319f || getImageView().getColorFilter() == null)) {
                         getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
                     }
-                    this.f38252f = themedColor;
+                    this.f38319f = themedColor;
                     if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
                         getTextView().setTextColor(themedColor);
                         return;
@@ -53,7 +53,7 @@ public final class ik extends org.telegram.ui.Components.nd {
             if (getImageView() != null) {
                 getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
             }
-            this.f38252f = themedColor;
+            this.f38319f = themedColor;
             if (getTextView() == null) {
             }
         } catch (Exception e) {

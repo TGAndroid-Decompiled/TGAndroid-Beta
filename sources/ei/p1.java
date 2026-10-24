@@ -14,17 +14,17 @@ import org.telegram.messenger.Utilities;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.aw;
-import org.telegram.ui.Components.gn;
-import org.telegram.ui.Components.lz0;
+import org.telegram.ui.Components.en;
+import org.telegram.ui.Components.kz0;
+import org.telegram.ui.Components.yv;
 import org.telegram.ui.FiltersSetupActivity;
-import org.telegram.ui.an0;
 import org.telegram.ui.ht;
 import org.telegram.ui.ks;
 import org.telegram.ui.ky;
 import org.telegram.ui.l10;
 import org.telegram.ui.ny;
 import org.telegram.ui.p10;
+import org.telegram.ui.zm0;
 public final class p1 implements View.OnTouchListener {
     public final int f9591a;
     public final Object f9592b;
@@ -64,25 +64,25 @@ public final class p1 implements View.OnTouchListener {
                 }
                 return false;
             case 2:
-                org.telegram.ui.Components.j8 j8Var = (org.telegram.ui.Components.j8) this.f9592b;
+                org.telegram.ui.Components.h8 h8Var = (org.telegram.ui.Components.h8) this.f9592b;
                 org.telegram.ui.Cells.w wVar = (org.telegram.ui.Cells.w) this.f9593c;
                 if (motionEvent.getAction() == 0) {
-                    org.telegram.ui.Components.k8 k8Var = j8Var.f27548n;
-                    k8Var.G.r(k8Var.f27929n.T(wVar));
+                    org.telegram.ui.Components.i8 i8Var = h8Var.f26897n;
+                    i8Var.G.r(i8Var.f27340n.T(wVar));
                     return false;
                 }
                 return false;
             case 3:
-                return aw.m((aw) this.f9592b, (gn) this.f9593c, motionEvent);
+                return yv.m((yv) this.f9592b, (en) this.f9593c, motionEvent);
             case 4:
-                return lz0.a((lz0) this.f9592b, (org.telegram.ui.Components.j) this.f9593c, motionEvent);
+                return kz0.a((kz0) this.f9592b, (org.telegram.ui.Components.j) this.f9593c, motionEvent);
             case 5:
                 ky kyVar = (ky) this.f9592b;
                 org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) this.f9593c;
                 kyVar.getClass();
                 if (motionEvent.getAction() == 0) {
-                    ny nyVar = kyVar.f39087f;
-                    nyVar.f40006c.r(nyVar.f40005b.T(f4Var));
+                    ny nyVar = kyVar.f39069f;
+                    nyVar.f40019c.r(nyVar.f40018b.T(f4Var));
                     return false;
                 }
                 return false;
@@ -91,15 +91,15 @@ public final class p1 implements View.OnTouchListener {
                 l10 l10Var = (l10) this.f9593c;
                 if (motionEvent.getAction() == 0) {
                     FiltersSetupActivity filtersSetupActivity = p10Var.e;
-                    filtersSetupActivity.f33444c.r(filtersSetupActivity.f33442a.T(l10Var));
+                    filtersSetupActivity.f33446c.r(filtersSetupActivity.f33444a.T(l10Var));
                     return false;
                 }
                 return false;
             default:
-                an0 an0Var = (an0) this.f9592b;
+                zm0 zm0Var = (zm0) this.f9592b;
                 Context context = (Context) this.f9593c;
                 int i15 = 0;
-                if (an0Var.getParentActivity() == null) {
+                if (zm0Var.getParentActivity() == null) {
                     return false;
                 }
                 if (motionEvent.getAction() == 1) {
@@ -135,11 +135,11 @@ public final class p1 implements View.OnTouchListener {
                         if (intValue == 8) {
                             z10 = true;
                         }
-                        AlertDialog$Builder x10 = org.telegram.ui.Components.f5.x(context, i10, i15, i11, i12, i14, i13, string, z10, new hg.b2(an0Var, intValue, editTextBoldCursor, 15));
+                        AlertDialog$Builder w9 = org.telegram.ui.Components.d5.w(context, i10, i15, i11, i12, i14, i13, string, z10, new hg.b2(zm0Var, intValue, editTextBoldCursor, 15));
                         if (intValue == 8) {
-                            x10.h(LocaleController.getString(R.string.PassportSelectNotExpire), new ks(29, an0Var, editTextBoldCursor));
+                            w9.h(LocaleController.getString(R.string.PassportSelectNotExpire), new ks(29, zm0Var, editTextBoldCursor));
                         }
-                        an0Var.showDialog(x10.f20678a);
+                        zm0Var.showDialog(w9.f20679a);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }

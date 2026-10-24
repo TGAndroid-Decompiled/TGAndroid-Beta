@@ -17,7 +17,7 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.y;
 import org.telegram.ui.Components.RadialProgressView;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.Components.wq;
 import w7.z5;
 public class e extends FrameLayout {
     public boolean E;
@@ -89,7 +89,7 @@ public class e extends FrameLayout {
     }
 
     public void b() {
-        int i10 = k6.f21289j5;
+        int i10 = k6.f21290j5;
         TextView textView = this.d;
         g6 g6Var = this.J;
         r6.W(textView, i10, g6Var);
@@ -99,10 +99,10 @@ public class e extends FrameLayout {
         this.h.setProgressColor(k6.w0(i11, g6Var));
         this.H = getContext().getResources().getDrawable(R.drawable.stats_tooltip).mutate();
         int dp = AndroidUtilities.dp(4.0f);
-        this.I = k6.j0(dp, dp, dp, dp, k6.w0(k6.f21254h5, g6Var), k6.w0(k6.f21272i6, g6Var), -16777216);
-        yq yqVar = new yq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
-        yqVar.f33019w = true;
-        setBackground(yqVar);
+        this.I = k6.j0(dp, dp, dp, dp, k6.w0(k6.f21255h5, g6Var), k6.w0(k6.f21273i6, g6Var), -16777216);
+        wq wqVar = new wq(this.H, this.I, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f));
+        wqVar.f32329w = true;
+        setBackground(wqVar);
     }
 
     public final void c(int r22, long r23, java.util.ArrayList r25, boolean r26, int r27, float r28) {

@@ -1,44 +1,30 @@
 package org.telegram.messenger;
+
+import org.telegram.messenger.Utilities;
 public final class bf implements Runnable {
-    public final int f18035a = 2;
-    public final MessagesStorage f18036b;
-    public final boolean f18037c;
-    public final int d;
+    public final int f18019a;
+    public final MessagesStorage f18020b;
+    public final Utilities.Callback f18021c;
+    public final long d;
     public final long e;
 
-    public bf(MessagesStorage messagesStorage, int i10, boolean z10, long j10) {
-        this.f18036b = messagesStorage;
-        this.d = i10;
-        this.f18037c = z10;
-        this.e = j10;
+    public bf(MessagesStorage messagesStorage, Utilities.Callback callback, long j10, long j11, int i10) {
+        this.f18019a = i10;
+        this.f18020b = messagesStorage;
+        this.f18021c = callback;
+        this.d = j10;
+        this.e = j11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18035a) {
+        switch (this.f18019a) {
             case 0:
-                MessagesStorage.Z2(this.f18036b, this.d, this.f18037c, this.e);
-                return;
-            case 1:
-                MessagesStorage.f4(this.f18036b, this.d, this.f18037c, this.e);
+                this.f18020b.lambda$getEphemeralMessages$208(this.f18021c, this.d, this.e);
                 return;
             default:
-                MessagesStorage.V2(this.f18036b, this.d, this.f18037c, this.e);
+                this.f18020b.lambda$getEphemeralMessages$207(this.f18021c, this.d, this.e);
                 return;
         }
-    }
-
-    public bf(MessagesStorage messagesStorage, long j10, int i10, boolean z10) {
-        this.f18036b = messagesStorage;
-        this.e = j10;
-        this.d = i10;
-        this.f18037c = z10;
-    }
-
-    public bf(MessagesStorage messagesStorage, boolean z10, int i10, long j10) {
-        this.f18036b = messagesStorage;
-        this.f18037c = z10;
-        this.d = i10;
-        this.e = j10;
     }
 }

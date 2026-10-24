@@ -3,27 +3,27 @@ package x4;
 import android.content.res.Resources;
 import android.graphics.drawable.Drawable;
 public final class c extends Drawable.ConstantState {
-    public final Drawable.ConstantState f49684a;
+    public final Drawable.ConstantState f49683a;
 
     public c(Drawable.ConstantState constantState) {
-        this.f49684a = constantState;
+        this.f49683a = constantState;
     }
 
     @Override
     public final boolean canApplyTheme() {
-        return this.f49684a.canApplyTheme();
+        return this.f49683a.canApplyTheme();
     }
 
     @Override
     public final int getChangingConfigurations() {
-        return this.f49684a.getChangingConfigurations();
+        return this.f49683a.getChangingConfigurations();
     }
 
     @Override
     public final Drawable newDrawable() {
         d dVar = new d(null);
-        Drawable newDrawable = this.f49684a.newDrawable();
-        dVar.f24829b = newDrawable;
+        Drawable newDrawable = this.f49683a.newDrawable();
+        dVar.f33024b = newDrawable;
         newDrawable.setCallback(dVar.e);
         return dVar;
     }
@@ -31,8 +31,8 @@ public final class c extends Drawable.ConstantState {
     @Override
     public final Drawable newDrawable(Resources resources) {
         d dVar = new d(null);
-        Drawable newDrawable = this.f49684a.newDrawable(resources);
-        dVar.f24829b = newDrawable;
+        Drawable newDrawable = this.f49683a.newDrawable(resources);
+        dVar.f33024b = newDrawable;
         newDrawable.setCallback(dVar.e);
         return dVar;
     }
@@ -40,8 +40,8 @@ public final class c extends Drawable.ConstantState {
     @Override
     public final Drawable newDrawable(Resources resources, Resources.Theme theme) {
         d dVar = new d(null);
-        Drawable newDrawable = this.f49684a.newDrawable(resources, theme);
-        dVar.f24829b = newDrawable;
+        Drawable newDrawable = this.f49683a.newDrawable(resources, theme);
+        dVar.f33024b = newDrawable;
         newDrawable.setCallback(dVar.e);
         return dVar;
     }

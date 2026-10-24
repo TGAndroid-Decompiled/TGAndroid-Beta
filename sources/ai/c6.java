@@ -9,11 +9,11 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class c6 extends FrameLayout {
     public final yh.d1 f1082a;
     public final FrameLayout f1083b;
-    public final org.telegram.ui.Components.w9 f1084c;
+    public final org.telegram.ui.Components.u9 f1084c;
     public final TextView d;
     public final FrameLayout e;
     public final ImageView f1085f;
@@ -36,15 +36,15 @@ public final class c6 extends FrameLayout {
         yh.d1 d1Var = new yh.d1(frameLayout2, null, false);
         this.f1082a = d1Var;
         frameLayout2.setBackground(d1Var);
-        d1Var.f50659s = AndroidUtilities.dp(18.0f);
+        d1Var.f50658s = AndroidUtilities.dp(18.0f);
         d1Var.v = false;
         frameLayout.addView(frameLayout2, w7.z5.e(-1, -1, 119));
         frameLayout2.setAlpha(0.0f);
         frameLayout2.setScaleX(0.6f);
         frameLayout2.setScaleY(0.6f);
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-        this.f1084c = w9Var;
-        frameLayout2.addView(w9Var, w7.z5.e(52, 52, 17));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+        this.f1084c = u9Var;
+        frameLayout2.addView(u9Var, w7.z5.e(52, 52, 17));
         TextView textView = new TextView(context);
         this.d = textView;
         textView.setPadding(AndroidUtilities.dp(5.0f), 0, AndroidUtilities.dp(5.0f), 0);
@@ -171,8 +171,8 @@ public final class c6 extends FrameLayout {
             f10 = 0.0f;
         }
         ViewPropertyAnimator alpha = scaleY.alpha(f10);
-        bs bsVar = bs.h;
-        alpha.setInterpolator(bsVar).setDuration(420L).withEndAction(new Runnable(this) {
+        zr zrVar = zr.h;
+        alpha.setInterpolator(zrVar).setDuration(420L).withEndAction(new Runnable(this) {
             public final c6 f1033b;
 
             {
@@ -222,7 +222,7 @@ public final class c6 extends FrameLayout {
         } else {
             f11 = 0.0f;
         }
-        animate2.alpha(f11).setInterpolator(bsVar).setDuration(420L).withEndAction(new Runnable(this) {
+        animate2.alpha(f11).setInterpolator(zrVar).setDuration(420L).withEndAction(new Runnable(this) {
             public final c6 f1033b;
 
             {
@@ -270,7 +270,7 @@ public final class c6 extends FrameLayout {
         if (z10) {
             f16 = 1.0f;
         }
-        animate3.alpha(f16).setInterpolator(bsVar).setDuration(420L).withEndAction(new Runnable(this) {
+        animate3.alpha(f16).setInterpolator(zrVar).setDuration(420L).withEndAction(new Runnable(this) {
             public final c6 f1033b;
 
             {

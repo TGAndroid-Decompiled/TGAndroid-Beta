@@ -1,6 +1,6 @@
 package w7;
 public final class w3 implements ja.d {
-    public static final w3 f49296a = new Object();
+    public static final w3 f49295a = new Object();
 
     static {
         si.o0.s(si.o0.l(d.class, new a(1)));

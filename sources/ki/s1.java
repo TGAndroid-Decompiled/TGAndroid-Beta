@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ek;
-import org.telegram.ui.Components.ti;
-public final class s1 implements ek {
-    public final ti f15558a;
+import org.telegram.ui.Components.ck;
+import org.telegram.ui.Components.ri;
+public final class s1 implements ck {
+    public final ri f15558a;
     public final d2 f15559b;
 
-    public s1(d2 d2Var, ti tiVar) {
+    public s1(d2 d2Var, ri riVar) {
         this.f15559b = d2Var;
-        this.f15558a = tiVar;
+        this.f15558a = riVar;
     }
 
     @Override

@@ -12,9 +12,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class yz extends FrameLayout {
-    public final TextView f44012a;
-    public final ImageView f44013b;
-    public boolean f44014c;
+    public final TextView f43977a;
+    public final ImageView f43978b;
+    public boolean f43979c;
 
     public yz(Context context) {
         super(context);
@@ -26,7 +26,7 @@ public final class yz extends FrameLayout {
         float f11;
         float f12;
         TextView textView = new TextView(context);
-        this.f44012a = textView;
+        this.f43977a = textView;
         org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.q6, null);
         textView.setTextSize(1, 16.0f);
         textView.setText(LocaleController.getString(R.string.CreateNewLink));
@@ -61,14 +61,14 @@ public final class yz extends FrameLayout {
         }
         addView(textView, w7.z5.d(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f44013b = imageView;
+        this.f43978b = imageView;
         Drawable drawable = context.getResources().getDrawable(R.drawable.poll_add_circle);
         Drawable drawable2 = context.getResources().getDrawable(R.drawable.poll_add_plus);
         int i13 = org.telegram.ui.ActionBar.k6.Oh;
         PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
         org.telegram.ui.ActionBar.r6.z(this, drawable, i13, null, mode);
-        org.telegram.ui.ActionBar.r6.z(this, drawable2, org.telegram.ui.ActionBar.k6.f21311k7, null, mode);
-        imageView.setImageDrawable(new org.telegram.ui.Components.yq(drawable, drawable2));
+        org.telegram.ui.ActionBar.r6.z(this, drawable2, org.telegram.ui.ActionBar.k6.f21312k7, null, mode);
+        imageView.setImageDrawable(new org.telegram.ui.Components.wq(drawable, drawable2));
         imageView.setScaleType(ImageView.ScaleType.CENTER);
         boolean z12 = LocaleController.isRTL;
         int i14 = (z12 ? 5 : 3) | 16;
@@ -88,9 +88,9 @@ public final class yz extends FrameLayout {
     @Override
     public final void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (this.f44014c) {
-            TextView textView = this.f44012a;
-            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f21304k0);
+        if (this.f43979c) {
+            TextView textView = this.f43977a;
+            canvas.drawRect(textView.getLeft(), getMeasuredHeight() - 1, textView.getRight(), getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f21305k0);
         }
     }
 
@@ -109,10 +109,10 @@ public final class yz extends FrameLayout {
         } else {
             f7 = 0.5f;
         }
-        this.f44012a.setAlpha(f7);
+        this.f43977a.setAlpha(f7);
         if (z10) {
             f10 = 1.0f;
         }
-        this.f44013b.setAlpha(f10);
+        this.f43978b.setAlpha(f10);
     }
 }

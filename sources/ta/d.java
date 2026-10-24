@@ -6,20 +6,20 @@ import ra.j;
 public final class d {
     public static final long d = TimeUnit.HOURS.toMillis(24);
     public static final long e = TimeUnit.MINUTES.toMillis(30);
-    public final j f47367a;
-    public long f47368b;
-    public int f47369c;
+    public final j f47366a;
+    public long f47367b;
+    public int f47368c;
 
     public d() {
-        if (sb.a.f46587b == null) {
-            Pattern pattern = j.f45597c;
-            sb.a.f46587b = new sb.a(24);
+        if (sb.a.f46586b == null) {
+            Pattern pattern = j.f45596c;
+            sb.a.f46586b = new sb.a(24);
         }
-        sb.a aVar = sb.a.f46587b;
+        sb.a aVar = sb.a.f46586b;
         if (j.d == null) {
             j.d = new j(aVar);
         }
-        this.f47367a = j.d;
+        this.f47366a = j.d;
     }
 
     public final synchronized long a(int i10) {
@@ -32,16 +32,16 @@ public final class d {
         if (!z10) {
             return d;
         }
-        double pow = Math.pow(2.0d, this.f47369c);
-        this.f47367a.getClass();
+        double pow = Math.pow(2.0d, this.f47368c);
+        this.f47366a.getClass();
         return (long) Math.min(pow + ((long) (Math.random() * 1000.0d)), e);
     }
 
     public final synchronized boolean b() {
         boolean z10;
-        if (this.f47369c != 0) {
-            this.f47367a.f45598a.getClass();
-            if (System.currentTimeMillis() <= this.f47368b) {
+        if (this.f47368c != 0) {
+            this.f47366a.f45597a.getClass();
+            if (System.currentTimeMillis() <= this.f47367b) {
                 z10 = false;
             }
         }
@@ -50,15 +50,15 @@ public final class d {
     }
 
     public final synchronized void c() {
-        this.f47369c = 0;
+        this.f47368c = 0;
     }
 
     public final synchronized void d(int i10) {
         if ((i10 < 200 || i10 >= 300) && i10 != 401 && i10 != 404) {
-            this.f47369c++;
+            this.f47368c++;
             long a2 = a(i10);
-            this.f47367a.f45598a.getClass();
-            this.f47368b = System.currentTimeMillis() + a2;
+            this.f47366a.f45597a.getClass();
+            this.f47367b = System.currentTimeMillis() + a2;
             return;
         }
         c();

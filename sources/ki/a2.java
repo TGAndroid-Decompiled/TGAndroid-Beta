@@ -7,11 +7,11 @@ import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class a2 extends Drawable {
     public boolean f15164c;
     public final Paint f15162a = new Paint(1);
-    public final org.telegram.ui.Components.f6 f15163b = new org.telegram.ui.Components.f6(new u(this, 3), 420, bs.h, 0);
+    public final org.telegram.ui.Components.d6 f15163b = new org.telegram.ui.Components.d6(new u(this, 3), 420, zr.h, 0);
     public int d = 255;
 
     public a2(int i10) {

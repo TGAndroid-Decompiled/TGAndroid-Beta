@@ -3,37 +3,37 @@ package ci;
 import android.content.Context;
 import android.view.ViewPropertyAnimator;
 import android.widget.TextView;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.nk;
-import org.telegram.ui.Components.wx0;
-import org.telegram.ui.ye1;
-public final class n5 extends wx0 {
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.lk;
+import org.telegram.ui.Components.vx0;
+import org.telegram.ui.Components.z00;
+import org.telegram.ui.xe1;
+public final class n5 extends vx0 {
     public final int K = 0;
     public final Object L;
 
-    public n5(nk nkVar, Context context, b10 b10Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, b10Var, 1, g6Var);
-        this.L = nkVar;
+    public n5(lk lkVar, Context context, z00 z00Var, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, z00Var, 1, g6Var);
+        this.L = lkVar;
     }
 
     @Override
     public void e(boolean z10, boolean z11) {
         switch (this.K) {
             case 2:
-                ye1 ye1Var = (ye1) this.L;
+                xe1 xe1Var = (xe1) this.L;
                 super.e(z10, z11);
                 float f7 = 1.0f;
                 if (z11) {
-                    ViewPropertyAnimator animate = ye1Var.f43820n.f39858a.animate();
+                    ViewPropertyAnimator animate = xe1Var.f43573n.f39576a.animate();
                     if (z10) {
                         f7 = 0.0f;
                     }
                     animate.alpha(f7).start();
                     return;
                 }
-                ye1Var.f43820n.f39858a.animate().cancel();
-                TextView textView = ye1Var.f43820n.f39858a;
+                xe1Var.f43573n.f39576a.animate().cancel();
+                TextView textView = xe1Var.f43573n.f39576a;
                 if (z10) {
                     f7 = 0.0f;
                 }
@@ -49,7 +49,7 @@ public final class n5 extends wx0 {
     public float getTranslationY() {
         switch (this.K) {
             case 1:
-                return super.getTranslationY() - ((nk) this.L).M;
+                return super.getTranslationY() - ((lk) this.L).M;
             default:
                 return super.getTranslationY();
         }
@@ -60,7 +60,7 @@ public final class n5 extends wx0 {
         switch (this.K) {
             case 0:
                 t5 t5Var = ((o5) this.L).d;
-                super.onMeasure(i10, sl.c(t5Var.e, t5Var.f5957n - t5Var.f5958r.getPaddingTop(), 1073741824));
+                super.onMeasure(i10, tl.c(t5Var.e, t5Var.f5957n - t5Var.f5958r.getPaddingTop(), 1073741824));
                 return;
             default:
                 super.onMeasure(i10, i11);
@@ -72,7 +72,7 @@ public final class n5 extends wx0 {
     public void setTranslationY(float f7) {
         switch (this.K) {
             case 1:
-                super.setTranslationY(f7 + ((nk) this.L).M);
+                super.setTranslationY(f7 + ((lk) this.L).M);
                 return;
             default:
                 super.setTranslationY(f7);
@@ -85,8 +85,8 @@ public final class n5 extends wx0 {
         this.L = o5Var;
     }
 
-    public n5(ye1 ye1Var, Context context, b10 b10Var) {
-        super(context, b10Var, 0, null);
-        this.L = ye1Var;
+    public n5(xe1 xe1Var, Context context, z00 z00Var) {
+        super(context, z00Var, 0, null);
+        this.L = xe1Var;
     }
 }

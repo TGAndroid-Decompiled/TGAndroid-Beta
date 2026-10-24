@@ -1,84 +1,59 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_stars;
-public final class xb0 implements View.OnClickListener {
-    public final int f32511a;
-    public final boolean f32512b;
-    public final FrameLayout f32513c;
-    public final Object d;
-    public final Object e;
-    public final Object f32514f;
+import org.telegram.messenger.BuildVars;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessageObject;
+public final class xb0 extends s4.t {
+    public final jc0 S;
 
-    public xb0(FrameLayout frameLayout, boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f32511a = i10;
-        this.f32513c = frameLayout;
-        this.f32512b = z10;
-        this.d = obj;
-        this.e = obj2;
-        this.f32514f = obj3;
+    public xb0(jc0 jc0Var) {
+        super(true);
+        this.S = jc0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f32511a;
-        Object obj = this.f32514f;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        boolean z10 = this.f32512b;
-        FrameLayout frameLayout = this.f32513c;
-        switch (i10) {
-            case 0:
-                lc0 lc0Var = (lc0) frameLayout;
-                Context context = (Context) obj3;
-                qc0 qc0Var = (qc0) obj2;
-                qc0 qc0Var2 = (qc0) obj;
-                rc0 rc0Var = lc0Var.f28340c0;
-                MessagePreviewParams messagePreviewParams = rc0Var.d;
-                if (!z10) {
-                    new xc(rc0Var, rc0Var.F).Q(R.raw.star_premium_2, 36, AndroidUtilities.replaceSingleTag("Subscribe to **Telegram Premium** to forward formatted messages without the sender’s name.", new vb0(lc0Var, context, 0))).j();
-                    return;
-                }
-                boolean z11 = messagePreviewParams.hideForwardSendersName;
-                messagePreviewParams.hideForwardSendersName = !z11;
-                rc0Var.f30151x = false;
-                if (z11) {
-                    messagePreviewParams.hideCaption = false;
-                    if (qc0Var != null) {
-                        qc0Var.a(false, true);
+    public final boolean B1(int i10) {
+        byte b10;
+        jc0 jc0Var = this.S;
+        MessageObject messageObject = jc0Var.f27677r.previewMessages.get(i10);
+        MessageObject.GroupedMessages a2 = jc0.a(jc0Var, messageObject);
+        if (a2 != null) {
+            MessageObject.GroupedMessagePosition position = a2.getPosition(messageObject);
+            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
+                int size = a2.posArray.size();
+                for (int i11 = 0; i11 < size; i11++) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = a2.posArray.get(i11);
+                    if (groupedMessagePosition != position) {
+                        byte b11 = groupedMessagePosition.minY;
+                        byte b12 = position.minY;
+                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
+                            return true;
+                        }
                     }
                 }
-                qc0Var2.a(messagePreviewParams.hideForwardSendersName, true);
-                lc0Var.i();
-                lc0Var.l(true);
-                return;
-            default:
-                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) obj3;
-                TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj2;
-                j80 j80Var = (j80) obj;
-                ns0 ns0Var = ((yh.l2) frameLayout).f50825a;
-                if (!z10) {
-                    ai.v9 v9Var = ns0Var.e;
-                    int i11 = tL_starGiftCollection.collection_id;
-                    v9Var.getClass();
-                    ArrayList arrayList = new ArrayList();
-                    arrayList.add(savedStarGift);
-                    v9Var.a(i11, arrayList);
-                    xc.a0(ns0Var.f50924a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2AddedToCollection, ai.l7.X1(savedStarGift.gift), tL_starGiftCollection.title))).j();
-                } else {
-                    ns0Var.e.k(tL_starGiftCollection.collection_id, savedStarGift);
-                    xc.a0(ns0Var.f50924a).R(savedStarGift.gift.getDocument(), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.Gift2RemovedFromCollection, ai.l7.X1(savedStarGift.gift), tL_starGiftCollection.title))).j();
-                }
-                j80Var.u();
-                ns0Var.n();
-                return;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean C1(View view) {
+        return false;
+    }
+
+    @Override
+    public final void b0(qf.e eVar, s4.y0 y0Var) {
+        if (BuildVars.DEBUG_PRIVATE_VERSION) {
+            super.b0(eVar, y0Var);
+            return;
+        }
+        try {
+            super.b0(eVar, y0Var);
+        } catch (Exception e) {
+            FileLog.e(e);
+            AndroidUtilities.runOnUIThread(new wb0(this, 0));
         }
     }
 }

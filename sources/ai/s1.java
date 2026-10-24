@@ -59,7 +59,7 @@ public final class s1 extends f7 {
         }
         for (w1 w1Var : a2Var.Z) {
             Drawable background = w1Var.getBackground();
-            org.telegram.ui.Components.q6 q6Var = (org.telegram.ui.Components.q6) w1Var.d;
+            org.telegram.ui.Components.o6 o6Var = (org.telegram.ui.Components.o6) w1Var.d;
             if (org.telegram.ui.ActionBar.k6.E1(background, i10, false)) {
                 w1Var.invalidate();
             }
@@ -69,11 +69,11 @@ public final class s1 extends f7 {
             fArr[1] = Math.min(1.0f, fArr[1] * 1.1f);
             fArr[2] = Math.min(1.0f, fArr[2] * 1.1f);
             int HSVToColor = Color.HSVToColor(fArr);
-            if (q6Var.getSizeableBackground() instanceof u6) {
-                ((u6) q6Var.getSizeableBackground()).f2254b.setColor(HSVToColor);
-                q6Var.invalidate();
-            } else if (org.telegram.ui.ActionBar.k6.E1(q6Var.getSizeableBackground(), HSVToColor, false)) {
-                q6Var.invalidate();
+            if (o6Var.getSizeableBackground() instanceof u6) {
+                ((u6) o6Var.getSizeableBackground()).f2254b.setColor(HSVToColor);
+                o6Var.invalidate();
+            } else if (org.telegram.ui.ActionBar.k6.E1(o6Var.getSizeableBackground(), HSVToColor, false)) {
+                o6Var.invalidate();
             }
         }
     }

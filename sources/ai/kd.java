@@ -3,10 +3,10 @@ package ai;
 import android.content.Context;
 import android.widget.FrameLayout;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.z00;
 public final class kd extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public final j71 f1641a;
+    public final i71 f1641a;
     public final org.telegram.ui.ActionBar.g6 f1642b;
     public final int f1643c;
     public final int d;
@@ -22,28 +22,28 @@ public final class kd extends FrameLayout implements NotificationCenter.Notifica
         this.f1644f = j10;
         this.f1642b = g6Var;
         this.h = new jd(j10, i11, i10, z10);
-        j71 j71Var = new j71(context, i11, i12, true, new q(this, 10), new a1.c(this, 11), null, g6Var);
-        this.f1641a = j71Var;
-        addView(j71Var, w7.z5.c(-1.0f, -1));
-        j71Var.setOnScrollListener(new ah.d0(this, 4));
+        i71 i71Var = new i71(context, i11, i12, true, new q(this, 10), new a1.c(this, 11), null, g6Var);
+        this.f1641a = i71Var;
+        addView(i71Var, w7.z5.c(-1.0f, -1));
+        i71Var.setOnScrollListener(new ah.d0(this, 4));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         int i12 = NotificationCenter.starTransactionsLoaded;
-        j71 j71Var = this.f1641a;
+        i71 i71Var = this.f1641a;
         if (i10 == i12) {
-            j71Var.Z2.N(true);
-            if (j71Var.canScrollVertically(1)) {
-                for (int i13 = 0; i13 < j71Var.getChildCount(); i13++) {
-                    if (!(j71Var.getChildAt(i13) instanceof b10)) {
+            i71Var.Z2.N(true);
+            if (i71Var.canScrollVertically(1)) {
+                for (int i13 = 0; i13 < i71Var.getChildCount(); i13++) {
+                    if (!(i71Var.getChildAt(i13) instanceof z00)) {
                     }
                 }
                 return;
             }
             this.h.run();
         } else if (i10 == NotificationCenter.botStarsTransactionsLoaded && ((Long) objArr[0]).longValue() == this.f1644f) {
-            j71Var.Z2.N(true);
+            i71Var.Z2.N(true);
         }
     }
 

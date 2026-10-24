@@ -1,52 +1,176 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class br extends LinearLayout {
-    public final w9 f25129a;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.os.Build;
+import java.util.ArrayList;
+import java.util.List;
+public class br extends Path {
+    public static ArrayList f25076g;
+    public int e;
+    public int f25080f;
+    public boolean f25078b = false;
+    public boolean f25079c = true;
+    public float d = 0.0f;
+    public final ArrayList f25077a = new ArrayList(1);
 
-    public br(Context context) {
-        super(context);
-        setOrientation(1);
-        w9 w9Var = new w9(context);
-        this.f25129a = w9Var;
-        w9Var.setImageDrawable(new ea0(w9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
-        if (!AndroidUtilities.isTablet()) {
-            addView(w9Var, w7.z5.q(110, 110, 49));
+    public br() {
+    }
+
+    public final void a() {
+        if (Build.VERSION.SDK_INT >= 34 && this.f25079c && !this.f25078b) {
+            b(this.f25077a);
+            this.f25078b = true;
         }
-        TextView g10 = org.telegram.messenger.v0.g(context, 1, 20.0f);
-        org.telegram.ui.ActionBar.r6.W(g10, org.telegram.ui.ActionBar.k6.G6, null);
-        g10.setGravity(1);
-        g10.setText(LocaleController.getString(R.string.NoContactsYet3));
-        g10.setTypeface(AndroidUtilities.bold());
-        addView(g10, w7.z5.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21165c7, null);
-        textView.setGravity(1);
-        textView.setText(LocaleController.getString(R.string.NoContactsYet3Sub));
-        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView, w7.z5.t(-2, -2, 49, 0, 0, 0, 19));
-        ei.d dVar = new ei.d(context, null, true);
-        dVar.setUseWrapContent(true);
-        dVar.f();
-        dVar.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new xq(R.drawable.filled_new_contact_24, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.NewContact));
-        dVar.i(spannableStringBuilder, false, true);
-        addView(dVar, w7.z5.q(-2, 44, 49));
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f25129a.setImageDrawable(new yj0(R.raw.utyan_empty, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
+    public final void addRect(RectF rectF, Path.Direction direction) {
+        RectF rectF2;
+        if (Build.VERSION.SDK_INT >= 34 && this.f25079c) {
+            ArrayList arrayList = this.f25077a;
+            if (arrayList.size() <= 0 || !((RectF) i2.o1.i(1, arrayList)).contains(rectF)) {
+                if (arrayList.size() > 0 && Math.abs(rectF.top - ((RectF) i2.o1.i(1, arrayList)).top) <= this.d && Math.abs(rectF.bottom - ((RectF) i2.o1.i(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i2.o1.i(1, arrayList)).union(rectF);
+                } else {
+                    ArrayList arrayList2 = f25076g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF2 = (RectF) f25076g.remove(0);
+                    } else {
+                        rectF2 = new RectF();
+                    }
+                    rectF2.set(rectF);
+                    arrayList.add(rectF2);
+                }
+                this.f25078b = false;
+                return;
+            }
+            return;
+        }
+        float f7 = rectF.left;
+        int i10 = this.e;
+        float f10 = f7 - i10;
+        float f11 = rectF.top;
+        int i11 = this.f25080f;
+        super.addRect(f10, f11 - i11, rectF.right + i10, rectF.bottom + i11, direction);
+    }
+
+    public final void b(List list) {
+        if (!list.isEmpty()) {
+            boolean z10 = false;
+            if (list.size() == 1) {
+                super.addRect(((RectF) list.get(0)).left - this.e, ((RectF) list.get(0)).top - this.f25080f, ((RectF) list.get(0)).right + this.e, ((RectF) list.get(0)).bottom + this.f25080f, Path.Direction.CW);
+                return;
+            }
+            RectF rectF = (RectF) list.get(0);
+            int size = list.size() - 1;
+            super.moveTo(rectF.left - this.e, rectF.top - this.f25080f);
+            for (int i10 = 1; i10 < list.size(); i10++) {
+                RectF rectF2 = (RectF) list.get(i10);
+                if (rectF2.width() != 0.0f) {
+                    float f7 = rectF.bottom;
+                    int i11 = this.f25080f;
+                    float f10 = f7 + i11;
+                    float f11 = rectF2.top;
+                    if (f10 >= f11 - i11) {
+                        float f12 = rectF.left;
+                        if (f12 <= rectF2.right) {
+                            float f13 = rectF.right;
+                            float f14 = rectF2.left;
+                            if (f13 >= f14) {
+                                if (f12 != f14) {
+                                    super.lineTo(f12 - this.e, f11);
+                                    super.lineTo(rectF2.left - this.e, rectF2.top);
+                                }
+                                rectF = rectF2;
+                            }
+                        }
+                    }
+                    z10 = true;
+                    size = i10;
+                    break;
+                }
+            }
+            super.lineTo(rectF.left - this.e, rectF.bottom + this.f25080f);
+            super.lineTo(rectF.right + this.e, rectF.bottom + this.f25080f);
+            for (int i12 = size - 1; i12 >= 0; i12--) {
+                RectF rectF3 = (RectF) list.get(i12);
+                if (rectF3.width() != 0.0f) {
+                    float f15 = rectF.right;
+                    if (f15 != rectF3.right) {
+                        super.lineTo(f15 + this.e, rectF.top);
+                        super.lineTo(rectF3.right + this.e, rectF.top);
+                    }
+                    rectF = rectF3;
+                }
+            }
+            super.lineTo(rectF.right + this.e, rectF.top - this.f25080f);
+            super.close();
+            if (z10) {
+                b(list.subList(size, list.size()));
+            }
+        }
+    }
+
+    @Override
+    public void reset() {
+        super.reset();
+        if (Build.VERSION.SDK_INT >= 34 && this.f25079c) {
+            ArrayList arrayList = f25076g;
+            ArrayList arrayList2 = this.f25077a;
+            if (arrayList == null) {
+                f25076g = new ArrayList(arrayList2.size());
+            }
+            f25076g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f25078b = false;
+        }
+    }
+
+    @Override
+    public final void rewind() {
+        super.rewind();
+        if (Build.VERSION.SDK_INT >= 34 && this.f25079c) {
+            ArrayList arrayList = f25076g;
+            ArrayList arrayList2 = this.f25077a;
+            if (arrayList == null) {
+                f25076g = new ArrayList(arrayList2.size());
+            }
+            f25076g.addAll(arrayList2);
+            arrayList2.clear();
+            this.f25078b = false;
+        }
+    }
+
+    public br(int i10) {
+    }
+
+    @Override
+    public void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
+        RectF rectF;
+        if (Build.VERSION.SDK_INT >= 34 && this.f25079c) {
+            ArrayList arrayList = this.f25077a;
+            if (arrayList.size() <= 0 || !((RectF) i2.o1.i(1, arrayList)).contains(f7, f10, f11, f12)) {
+                if (arrayList.size() > 0 && Math.abs(f10 - ((RectF) i2.o1.i(1, arrayList)).top) <= this.d && Math.abs(f12 - ((RectF) i2.o1.i(1, arrayList)).bottom) <= this.d) {
+                    ((RectF) i2.o1.i(1, arrayList)).union(f7, f10, f11, f12);
+                } else {
+                    ArrayList arrayList2 = f25076g;
+                    if (arrayList2 != null && arrayList2.size() > 0) {
+                        rectF = (RectF) f25076g.remove(0);
+                    } else {
+                        rectF = new RectF();
+                    }
+                    rectF.set(f7, f10, f11, f12);
+                    arrayList.add(rectF);
+                }
+                this.f25078b = false;
+                return;
+            }
+            return;
+        }
+        int i10 = this.e;
+        float f13 = f7 - i10;
+        int i11 = this.f25080f;
+        super.addRect(f13, f10 - i11, f11 + i10, f12 + i11, direction);
     }
 }

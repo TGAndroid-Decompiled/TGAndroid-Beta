@@ -1,39 +1,54 @@
 package org.telegram.ui;
-public final class vd1 implements Runnable {
-    public final int f42739a;
-    public final ye1 f42740b;
 
-    public vd1(ye1 ye1Var, int i10) {
-        this.f42739a = i10;
-        this.f42740b = ye1Var;
+import android.view.View;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class vd1 implements xh.c, MessagesController.ErrorDelegate, r0.n, org.telegram.ui.Components.cm0 {
+    public final xe1 f42707a;
+
+    public vd1(xe1 xe1Var) {
+        this.f42707a = xe1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42739a) {
-            case 0:
-                ye1 ye1Var = this.f42740b;
-                ye1Var.w0();
-                ye1Var.A0();
-                return;
-            case 1:
-                this.f42740b.w0();
-                return;
-            case 2:
-                this.f42740b.N0(true);
-                return;
-            case 3:
-                this.f42740b.finishPreviewFragment();
-                return;
-            case 4:
-                ye1 ye1Var2 = this.f42740b;
-                ye1Var2.A0 = null;
-                ye1Var2.U0(true, false);
-                return;
-            default:
-                ye1 ye1Var3 = this.f42740b;
-                ye1Var3.N.postOnAnimation(new vd1(ye1Var3, 1));
-                return;
+    public r0.k1 B0(View view, r0.k1 k1Var) {
+        int i10 = k1Var.f45250a.f(519).d;
+        xe1 xe1Var = this.f42707a;
+        xe1Var.f43560f1 = i10;
+        se1 se1Var = xe1Var.f43582r0;
+        if (se1Var != null) {
+            se1Var.setPadding(0, 0, 0, i10);
         }
+        me1 me1Var = xe1Var.f43573n;
+        if (me1Var != null) {
+            me1Var.f39576a.setTranslationY((-xe1Var.f43560f1) - xe1Var.f43557e1);
+        }
+        xe1Var.h.setTranslationY(((-xe1Var.X0) - xe1Var.f43560f1) - xe1Var.f43557e1);
+        xe1Var.A0();
+        return r0.k1.f45249b;
+    }
+
+    @Override
+    public boolean mo17c(float f7, float f10, int i10, View view) {
+        return xe1.W(this.f42707a, view, f7);
+    }
+
+    @Override
+    public void f(boolean z10, boolean z11) {
+        xe1 xe1Var = this.f42707a;
+        xe1Var.U0.i(xe1Var.R0.b(), z10, z11);
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        return xe1.U(this.f42707a, tL_error);
+    }
+
+    @Override
+    public void h() {
+    }
+
+    @Override
+    public void o(float f7) {
     }
 }

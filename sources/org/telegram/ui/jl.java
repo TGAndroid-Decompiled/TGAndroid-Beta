@@ -9,19 +9,19 @@ import android.graphics.drawable.ShapeDrawable;
 import android.text.TextPaint;
 import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-public final class jl extends org.telegram.ui.Components.p11 {
+public final class jl extends org.telegram.ui.Components.o11 {
     public final sn K;
 
     public jl(Activity activity, org.telegram.ui.ActionBar.g6 g6Var, sn snVar) {
         super(activity);
         this.K = snVar;
         TextPaint textPaint = new TextPaint(1);
-        this.f29392b = textPaint;
+        this.f29125b = textPaint;
         Paint paint = new Paint(1);
-        this.f29393c = paint;
+        this.f29126c = paint;
         this.d = AndroidUtilities.dp(24.0f);
         this.e = new OvershootInterpolator();
-        this.H = new org.telegram.ui.Components.kr0(this, 15);
+        this.H = new org.telegram.ui.Components.jr0(this, 15);
         this.J = new Path();
         int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Hi, g6Var);
         int alpha = Color.alpha(w02);
@@ -40,7 +40,7 @@ public final class jl extends org.telegram.ui.Components.p11 {
     public final void d() {
         int i10 = -(AndroidUtilities.dp(16.0f) + getMeasuredHeight());
         sn snVar = this.K;
-        int top = snVar.Y.getTop() - snVar.f41561j1.getMeasuredHeight();
+        int top = snVar.Y.getTop() - snVar.f41558j1.getMeasuredHeight();
         setTranslationY(top - ((1.0f - getPrepareProgress()) * (top + i10)));
     }
 

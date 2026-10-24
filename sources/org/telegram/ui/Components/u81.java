@@ -21,7 +21,7 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.PhotoViewer;
 public abstract class u81 extends View {
-    public static final Object f31109f0 = new Object();
+    public static final Object f31048f0 = new Object();
     public t81 E;
     public final ArrayList F;
     public r81 G;
@@ -41,30 +41,30 @@ public abstract class u81 extends View {
     public final Paint U;
     public final Paint V;
     public final Paint W;
-    public long f31110a;
-    public final Paint f31111a0;
-    public int f31112b;
-    public final Paint f31113b0;
-    public int f31114c;
-    public final f6 f31115c0;
+    public long f31049a;
+    public final Paint f31050a0;
+    public int f31051b;
+    public final Paint f31052b0;
+    public int f31053c;
+    public final d6 f31054c0;
     public float d;
-    public final Path f31116d0;
+    public final Path f31055d0;
     public float e;
-    public boolean f31117e0;
-    public float f31118f;
+    public boolean f31056e0;
+    public float f31057f;
     public boolean h;
-    public boolean f31119n;
-    public boolean f31120r;
-    public float f31121s;
+    public boolean f31058n;
+    public boolean f31059r;
+    public float f31060s;
     public float v;
-    public boolean f31122w;
-    public ParcelFileDescriptor f31123x;
-    public MediaMetadataRetriever f31124y;
+    public boolean f31061w;
+    public ParcelFileDescriptor f31062x;
+    public MediaMetadataRetriever f31063y;
 
     public u81(Context context) {
         super(context);
         this.e = 1.0f;
-        this.f31121s = 0.5f;
+        this.f31060s = 0.5f;
         this.F = new ArrayList();
         this.L = 1.0f;
         this.M = 0.0f;
@@ -84,11 +84,11 @@ public abstract class u81 extends View {
         Paint paint4 = new Paint(1);
         this.W = paint4;
         Paint paint5 = new Paint(1);
-        this.f31111a0 = paint5;
+        this.f31050a0 = paint5;
         Paint paint6 = new Paint(1);
-        this.f31113b0 = paint6;
-        this.f31115c0 = new f6(0.0f, this, 0L, 200L, bs.f25136j);
-        this.f31116d0 = new Path();
+        this.f31052b0 = paint6;
+        this.f31054c0 = new d6(0.0f, this, 0L, 200L, zr.f33340j);
+        this.f31055d0 = new Path();
         paint.setColor(-1);
         paint2.setColor(-256);
         paint3.setColor(637534208);
@@ -100,21 +100,21 @@ public abstract class u81 extends View {
 
     public final void a() {
         Bitmap bitmap;
-        synchronized (f31109f0) {
+        synchronized (f31048f0) {
             try {
-                ParcelFileDescriptor parcelFileDescriptor = this.f31123x;
+                ParcelFileDescriptor parcelFileDescriptor = this.f31062x;
                 if (parcelFileDescriptor != null) {
                     parcelFileDescriptor.close();
-                    this.f31123x = null;
+                    this.f31062x = null;
                 }
             } catch (Exception e) {
                 FileLog.e(e);
             }
             try {
-                MediaMetadataRetriever mediaMetadataRetriever = this.f31124y;
+                MediaMetadataRetriever mediaMetadataRetriever = this.f31063y;
                 if (mediaMetadataRetriever != null) {
                     mediaMetadataRetriever.release();
-                    this.f31124y = null;
+                    this.f31063y = null;
                 }
             } catch (Exception e7) {
                 FileLog.e(e7);
@@ -122,7 +122,7 @@ public abstract class u81 extends View {
         }
         for (int i10 = 0; i10 < this.F.size(); i10++) {
             s81 s81Var = (s81) this.F.get(i10);
-            if (s81Var != null && (bitmap = s81Var.f30421a) != null) {
+            if (s81Var != null && (bitmap = s81Var.f30465a) != null) {
                 bitmap.recycle();
             }
         }
@@ -158,20 +158,20 @@ public abstract class u81 extends View {
     public final void d(int i10) {
         float f7;
         int i11;
-        if (this.f31124y == null) {
+        if (this.f31063y == null) {
             return;
         }
         if (i10 == 0) {
             this.J = AndroidUtilities.dp(38.0f);
-            int i12 = this.f31112b;
-            if (i12 != 0 && (i11 = this.f31114c) != 0) {
+            int i12 = this.f31051b;
+            if (i12 != 0 && (i11 = this.f31053c) != 0) {
                 f7 = i12 / i11;
             } else {
                 f7 = 1.0f;
             }
             this.K = Math.max(1, (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / (this.J * Utilities.clamp(f7, 1.3333334f, 0.5625f))));
             this.I = (int) Math.ceil((getMeasuredWidth() - AndroidUtilities.dp(32.0f)) / this.K);
-            this.H = this.f31110a / this.K;
+            this.H = this.f31049a / this.K;
         }
         r81 r81Var = new r81(this);
         this.G = r81Var;
@@ -183,11 +183,11 @@ public abstract class u81 extends View {
     }
 
     public long getLength() {
-        return Math.max(1L, this.f31110a);
+        return Math.max(1L, this.f31049a);
     }
 
     public float getProgress() {
-        return this.f31121s;
+        return this.f31060s;
     }
 
     public float getRightProgress() {
@@ -212,7 +212,7 @@ public abstract class u81 extends View {
         float dp4 = dp3 + AndroidUtilities.dp(38.0f);
         ArrayList arrayList = this.F;
         boolean isEmpty = arrayList.isEmpty();
-        Path path = this.f31116d0;
+        Path path = this.f31055d0;
         if (isEmpty && this.G == null) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(dpf2, dp3, measuredWidth + dpf2, dp4);
@@ -245,21 +245,21 @@ public abstract class u81 extends View {
             } else {
                 z10 = false;
             }
-            this.f31117e0 = z10;
+            this.f31056e0 = z10;
             if (!z10) {
                 int i10 = 0;
                 while (true) {
                     if (i10 >= arrayList.size()) {
                         break;
-                    } else if (((s81) arrayList.get(i10)).f30421a == null) {
-                        this.f31117e0 = true;
+                    } else if (((s81) arrayList.get(i10)).f30465a == null) {
+                        this.f31056e0 = true;
                         break;
                     } else {
                         i10++;
                     }
                 }
             }
-            if (this.f31117e0) {
+            if (this.f31056e0) {
                 RectF rectF3 = AndroidUtilities.rectTmp;
                 rectF3.set(dpf2, dp3, AndroidUtilities.dp(4.0f) + f15, dp4);
                 b(canvas, rectF3);
@@ -267,21 +267,21 @@ public abstract class u81 extends View {
             int i11 = 0;
             for (int i12 = 0; i12 < arrayList.size(); i12++) {
                 s81 s81Var = (s81) arrayList.get(i12);
-                Bitmap bitmap = s81Var.f30421a;
+                Bitmap bitmap = s81Var.f30465a;
                 if (bitmap != null) {
                     float f16 = (this.I * i11) + dpf2;
                     float dp5 = AndroidUtilities.dp(6.0f);
-                    float f17 = s81Var.f30422b;
+                    float f17 = s81Var.f30466b;
                     if (f17 != 1.0f) {
                         float f18 = f17 + 0.045714285f;
-                        s81Var.f30422b = f18;
+                        s81Var.f30466b = f18;
                         if (f18 > 1.0f) {
-                            s81Var.f30422b = 1.0f;
+                            s81Var.f30466b = 1.0f;
                         } else {
                             invalidate();
                         }
                         Paint paint = this.Q;
-                        paint.setAlpha((int) (bs.h.getInterpolation(s81Var.f30422b) * 255.0f));
+                        paint.setAlpha((int) (zr.h.getInterpolation(s81Var.f30466b) * 255.0f));
                         canvas.drawBitmap(bitmap, f16, dp5, paint);
                     } else {
                         canvas.drawBitmap(bitmap, f16, dp5, (Paint) null);
@@ -298,7 +298,7 @@ public abstract class u81 extends View {
             f14 = dp3;
             canvas.restore();
         }
-        boolean z11 = this.f31122w;
+        boolean z11 = this.f31061w;
         Paint paint3 = this.T;
         if (!z11) {
             canvas2 = canvas;
@@ -308,7 +308,7 @@ public abstract class u81 extends View {
             paint3.setAlpha(255);
             canvas2.drawRoundRect(rectF4, AndroidUtilities.dpf2(f11), AndroidUtilities.dpf2(f11), paint3);
             rectF4.set(f12, AndroidUtilities.dpf2(f7) + f14, f13, dp4 - AndroidUtilities.dpf2(f7));
-            canvas2.drawRect(rectF4, this.f31111a0);
+            canvas2.drawRect(rectF4, this.f31050a0);
             canvas2.restore();
             float dp7 = AndroidUtilities.dp(f7);
             float dp8 = AndroidUtilities.dp(f10);
@@ -318,7 +318,7 @@ public abstract class u81 extends View {
             rectF4.set(dpf22, f19, dpf22 - dp7, f20);
             float dpf23 = AndroidUtilities.dpf2(f11);
             float dpf24 = AndroidUtilities.dpf2(f11);
-            Paint paint4 = this.f31113b0;
+            Paint paint4 = this.f31052b0;
             canvas2.drawRoundRect(rectF4, dpf23, dpf24, paint4);
             float dpf25 = ((AndroidUtilities.dpf2(f10) - dp7) / f7) + f13;
             rectF4.set(dpf25, f19, dp7 + dpf25, f20);
@@ -326,13 +326,13 @@ public abstract class u81 extends View {
         } else {
             canvas2 = canvas;
         }
-        float d = this.f31115c0.d(0.0f, false);
+        float d = this.f31054c0.d(0.0f, false);
         if (d > 0.0f) {
             c(this.e, d, canvas2, paint3);
         }
-        c(this.f31121s, 1.0f - d, canvas2, paint3);
-        if (this.f31122w) {
-            c(this.f31118f, 1.0f, canvas2, this.U);
+        c(this.f31060s, 1.0f - d, canvas2, paint3);
+        if (this.f31061w) {
+            c(this.f31057f, 1.0f, canvas2, this.U);
         }
     }
 
@@ -359,7 +359,7 @@ public abstract class u81 extends View {
                     break;
                 }
                 s81 s81Var = (s81) arrayList.get(i12);
-                if (s81Var != null && (bitmap = s81Var.f30421a) != null) {
+                if (s81Var != null && (bitmap = s81Var.f30465a) != null) {
                     bitmap.recycle();
                 }
                 i12++;
@@ -383,11 +383,11 @@ public abstract class u81 extends View {
             int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(44.0f);
             float f7 = measuredWidth;
             int dp = AndroidUtilities.dp(22.0f) + ((int) (this.d * f7));
-            int dp2 = AndroidUtilities.dp(22.0f) + ((int) (this.f31121s * f7));
+            int dp2 = AndroidUtilities.dp(22.0f) + ((int) (this.f31060s * f7));
             int dp3 = AndroidUtilities.dp(22.0f) + ((int) (this.e * f7));
             if (motionEvent.getAction() == 0) {
                 getParent().requestDisallowInterceptTouchEvent(true);
-                if (this.f31124y != null) {
+                if (this.f31063y != null) {
                     int dp4 = AndroidUtilities.dp(16.0f);
                     int dp5 = AndroidUtilities.dp(8.0f);
                     if (dp3 != dp && dp2 - dp5 <= x10 && x10 <= dp5 + dp2 && y3 >= 0.0f && y3 <= getMeasuredHeight()) {
@@ -395,7 +395,7 @@ public abstract class u81 extends View {
                         if (t81Var != null) {
                             ((com.google.android.gms.common.api.internal.u) t81Var).c(2);
                         }
-                        this.f31120r = true;
+                        this.f31059r = true;
                         this.v = (int) (x10 - dp2);
                         invalidate();
                         return true;
@@ -413,7 +413,7 @@ public abstract class u81 extends View {
                         if (t81Var3 != null) {
                             ((com.google.android.gms.common.api.internal.u) t81Var3).c(1);
                         }
-                        this.f31119n = true;
+                        this.f31058n = true;
                         this.v = (int) (x10 - dp3);
                         invalidate();
                         return true;
@@ -422,15 +422,15 @@ public abstract class u81 extends View {
                         if (t81Var4 != null) {
                             ((com.google.android.gms.common.api.internal.u) t81Var4).c(2);
                         }
-                        this.f31120r = true;
+                        this.f31059r = true;
                         float dp6 = (x10 - AndroidUtilities.dp(16.0f)) / f7;
-                        this.f31121s = dp6;
+                        this.f31060s = dp6;
                         t81 t81Var5 = this.E;
                         if (t81Var5 != null) {
                             com.google.android.gms.common.api.internal.u uVar = (com.google.android.gms.common.api.internal.u) t81Var5;
                             PhotoViewer photoViewer = (PhotoViewer) uVar.d;
                             if (photoViewer.F2 != null) {
-                                if (photoViewer.f33564c2 == 1) {
+                                if (photoViewer.f33566c2 == 1) {
                                     uVar.j(0);
                                 }
                                 uVar.h(dp6);
@@ -443,25 +443,25 @@ public abstract class u81 extends View {
                 }
             } else if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 if (motionEvent.getAction() == 2) {
-                    if (this.f31120r) {
+                    if (this.f31059r) {
                         float dp7 = (((int) (x10 - this.v)) - AndroidUtilities.dp(16.0f)) / f7;
-                        this.f31121s = dp7;
+                        this.f31060s = dp7;
                         float f10 = this.d;
                         if (dp7 < f10) {
-                            this.f31121s = f10;
+                            this.f31060s = f10;
                         } else {
                             float f11 = this.e;
                             if (dp7 > f11) {
-                                this.f31121s = f11;
+                                this.f31060s = f11;
                             }
                         }
                         t81 t81Var6 = this.E;
                         if (t81Var6 != null) {
-                            float f12 = this.f31121s;
+                            float f12 = this.f31060s;
                             com.google.android.gms.common.api.internal.u uVar2 = (com.google.android.gms.common.api.internal.u) t81Var6;
                             PhotoViewer photoViewer2 = (PhotoViewer) uVar2.d;
                             if (photoViewer2.F2 != null) {
-                                if (photoViewer2.f33564c2 == 1) {
+                                if (photoViewer2.f33566c2 == 1) {
                                     uVar2.j(0);
                                 }
                                 uVar2.h(f12);
@@ -494,13 +494,13 @@ public abstract class u81 extends View {
                             }
                         }
                         float f18 = this.d;
-                        float f19 = this.f31121s;
+                        float f19 = this.f31060s;
                         if (f18 > f19) {
-                            this.f31121s = f18;
+                            this.f31060s = f18;
                         } else {
                             float f20 = this.e;
                             if (f20 < f19) {
-                                this.f31121s = f20;
+                                this.f31060s = f20;
                             }
                         }
                         t81 t81Var7 = this.E;
@@ -512,18 +512,18 @@ public abstract class u81 extends View {
                                 if (j81Var.y()) {
                                     photoViewer3.H2 = false;
                                     photoViewer3.F2.B();
-                                    photoViewer3.f33580e0.invalidate();
+                                    photoViewer3.f33582e0.invalidate();
                                 }
                                 uVar3.j(1);
                                 uVar3.h(f18);
-                                photoViewer3.f33687q3.h(0.0f, false);
+                                photoViewer3.f33689q3.h(0.0f, false);
                                 photoViewer3.S7.setProgress(f18);
                                 photoViewer3.D3();
                             }
                         }
                         invalidate();
                         return true;
-                    } else if (this.f31119n) {
+                    } else if (this.f31058n) {
                         int i11 = (int) (x10 - this.v);
                         if (i11 >= dp) {
                             if (i11 > AndroidUtilities.dp(16.0f) + measuredWidth) {
@@ -550,13 +550,13 @@ public abstract class u81 extends View {
                             }
                         }
                         float f26 = this.d;
-                        float f27 = this.f31121s;
+                        float f27 = this.f31060s;
                         if (f26 > f27) {
-                            this.f31121s = f26;
+                            this.f31060s = f26;
                         } else {
                             float f28 = this.e;
                             if (f28 < f27) {
-                                this.f31121s = f28;
+                                this.f31060s = f28;
                             }
                         }
                         t81 t81Var8 = this.E;
@@ -574,19 +574,19 @@ public abstract class u81 extends View {
                 }
                 this.h = false;
                 return true;
-            } else if (this.f31119n) {
+            } else if (this.f31058n) {
                 t81 t81Var10 = this.E;
                 if (t81Var10 != null) {
                     ((com.google.android.gms.common.api.internal.u) t81Var10).d(1);
                 }
-                this.f31119n = false;
+                this.f31058n = false;
                 return true;
-            } else if (this.f31120r) {
+            } else if (this.f31059r) {
                 t81 t81Var11 = this.E;
                 if (t81Var11 != null) {
                     ((com.google.android.gms.common.api.internal.u) t81Var11).d(2);
                 }
-                this.f31120r = false;
+                this.f31059r = false;
             }
             return true;
         }
@@ -621,18 +621,18 @@ public abstract class u81 extends View {
 
     public void setProgress(float f7) {
         float f10 = 0.0f;
-        if (this.f31122w && (f7 <= 0.0f || f7 >= 1.0f)) {
-            f7 = this.f31118f;
+        if (this.f31061w && (f7 <= 0.0f || f7 >= 1.0f)) {
+            f7 = this.f31057f;
         }
-        long j10 = this.f31110a;
+        long j10 = this.f31049a;
         if (j10 != 0) {
             f10 = 240.0f / ((float) j10);
         }
-        float f11 = this.f31121s;
+        float f11 = this.f31060s;
         if (f7 < f11 && f7 <= this.d + f10 && f11 + f10 >= this.e) {
-            this.f31115c0.d(1.0f, true);
+            this.f31054c0.d(1.0f, true);
         }
-        this.f31121s = f7;
+        this.f31060s = f7;
         invalidate();
     }
 

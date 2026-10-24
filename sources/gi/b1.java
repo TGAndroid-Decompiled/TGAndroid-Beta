@@ -15,7 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -23,11 +23,11 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.x6;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.v6;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ey;
-import org.telegram.ui.hi1;
+import org.telegram.ui.gi1;
 import org.telegram.ui.nq;
 import org.telegram.ui.sn;
 import org.telegram.ui.u80;
@@ -57,7 +57,7 @@ public final class b1 implements Runnable {
     @Override
     public final void run() {
         String h;
-        xc a02;
+        vc a02;
         int i10;
         ey eyVar;
         TLObject tLObject;
@@ -127,8 +127,8 @@ public final class b1 implements Runnable {
                 String str4 = (String) this.h;
                 TLRPC.User user = (TLRPC.User) this.f11112n;
                 String str5 = (String) this.f11113r;
-                ArrayList arrayList = launchActivity.f33467f0;
-                ArrayList arrayList2 = launchActivity.f33463d0;
+                ArrayList arrayList = launchActivity.f33469f0;
+                ArrayList arrayList2 = launchActivity.f33465d0;
                 ArrayList arrayList3 = launchActivity.E0;
                 TLObject tLObject3 = this.f11109b;
                 if (tLObject3 instanceof TLRPC.TL_attachMenuBotsBot) {
@@ -188,29 +188,29 @@ public final class b1 implements Runnable {
                                 tLObject = snVar.e;
                             }
                             if (!MediaDataController.canShowAttachMenuBot(tL_attachMenuBot, tLObject)) {
-                                a02 = xc.a0(o2Var);
+                                a02 = vc.a0(o2Var);
                                 i10 = R.string.BotAlreadyAddedToAttachMenu;
                             } else {
-                                snVar.ba(user.f20490id, str5, false);
+                                snVar.ba(user.f20491id, str5, false);
                                 return;
                             }
                         } else {
-                            a02 = xc.a0(o2Var);
+                            a02 = vc.a0(o2Var);
                             i10 = R.string.BotAlreadyAddedToAttachMenu;
                         }
                     } else {
-                        x6 x6Var = new x6(launchActivity);
-                        x6Var.setColor(k6.x0(null, k6.ia, false));
-                        r6.i(k6.L5, x6Var, null);
-                        x6Var.setAttachBot(tL_attachMenuBot);
-                        hi1.a(launchActivity, new nq(launchActivity, i12, this.d, eyVar, o2Var, user, str5), null);
+                        v6 v6Var = new v6(launchActivity);
+                        v6Var.setColor(k6.x0(null, k6.ia, false));
+                        r6.i(k6.L5, v6Var, null);
+                        v6Var.setAttachBot(tL_attachMenuBot);
+                        gi1.a(launchActivity, new nq(launchActivity, i12, this.d, eyVar, o2Var, user, str5), null);
                         return;
                     }
                 } else {
-                    a02 = xc.a0((org.telegram.ui.ActionBar.o2) i2.o1.i(1, arrayList2));
+                    a02 = vc.a0((org.telegram.ui.ActionBar.o2) i2.o1.i(1, arrayList2));
                     i10 = R.string.BotCantAddToAttachMenu;
                 }
-                sl.q(i10, a02, null);
+                tl.q(i10, a02, null);
                 return;
         }
     }

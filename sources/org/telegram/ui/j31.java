@@ -1,47 +1,46 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
-public final class j31 extends pg.a {
-    public final SaveToGallerySettingsHelper.DialogException f38453c;
-    public final String d;
+import android.app.Activity;
+import android.graphics.Canvas;
+public final class j31 extends org.telegram.ui.Components.o6 {
+    public boolean f38448s;
+    public final org.telegram.ui.Components.d6 v;
+    public final SaveToGallerySettingsActivity f38449w;
 
-    public j31(int i10) {
-        super(i10, false);
-        this.f38453c = null;
+    public j31(SaveToGallerySettingsActivity saveToGallerySettingsActivity, Activity activity) {
+        super(activity, true, true, false);
+        this.f38449w = saveToGallerySettingsActivity;
+        this.v = new org.telegram.ui.Components.d6(this);
+        getDrawable().J = true;
     }
 
-    public final boolean equals(Object obj) {
-        SaveToGallerySettingsHelper.DialogException dialogException;
-        if (this == obj) {
-            return true;
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        float f7;
+        if (this.f38448s) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
         }
-        if (obj == null || j31.class != obj.getClass()) {
-            return false;
-        }
-        j31 j31Var = (j31) obj;
-        if (this.f44713a != j31Var.f44713a) {
-            return false;
-        }
-        String str = this.d;
-        if (str != null) {
-            return Objects.equals(str, j31Var.d);
-        }
-        SaveToGallerySettingsHelper.DialogException dialogException2 = this.f38453c;
-        if (dialogException2 == null || (dialogException = j31Var.f38453c) == null || dialogException2.dialogId == dialogException.dialogId) {
-            return true;
-        }
-        return false;
+        org.telegram.ui.Components.d6 d6Var = this.v;
+        d6Var.d(f7, false);
+        int i10 = org.telegram.ui.ActionBar.k6.f21572y6;
+        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.f38449w;
+        setTextColor(i0.a.f(d6Var.f25568c, saveToGallerySettingsActivity.getThemedColor(i10), saveToGallerySettingsActivity.getThemedColor(org.telegram.ui.ActionBar.k6.f21367n6)));
+        super.dispatchDraw(canvas);
     }
 
-    public j31(SaveToGallerySettingsHelper.DialogException dialogException) {
-        super(2, false);
-        this.f38453c = dialogException;
-    }
-
-    public j31(int i10, String str) {
-        super(i10, false);
-        this.d = str;
-        this.f38453c = null;
+    public final void e(boolean z10, boolean z11) {
+        float f7;
+        if (this.f38448s != z10) {
+            this.f38448s = z10;
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.0f;
+            }
+            this.v.d(f7, z11);
+            invalidate();
+        }
     }
 }

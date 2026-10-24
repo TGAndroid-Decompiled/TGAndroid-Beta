@@ -16,20 +16,20 @@ import java.util.ArrayList;
 import java.util.List;
 import v7.u6;
 public final class h implements q {
-    public final m f51113a;
-    public final w f51114b;
-    public final ArrayList f51115c;
-    public l0 f51116f;
-    public int f51117g;
+    public final m f51112a;
+    public final w f51113b;
+    public final ArrayList f51114c;
+    public l0 f51115f;
+    public int f51116g;
     public int h;
-    public long[] f51118i;
-    public long f51119j;
+    public long[] f51117i;
+    public long f51118j;
     public byte[] e = m0.f8260b;
     public final x d = new x();
 
     public h(m mVar, w wVar) {
         w wVar2;
-        this.f51113a = mVar;
+        this.f51112a = mVar;
         if (wVar != null) {
             v a2 = wVar.a();
             a2.f4082r = v0.n("application/x-media3-cues");
@@ -39,11 +39,11 @@ public final class h implements q {
         } else {
             wVar2 = null;
         }
-        this.f51114b = wVar2;
-        this.f51115c = new ArrayList();
+        this.f51113b = wVar2;
+        this.f51114c = new ArrayList();
         this.h = 0;
-        this.f51118i = m0.f8261c;
-        this.f51119j = -9223372036854775807L;
+        this.f51117i = m0.f8261c;
+        this.f51118j = -9223372036854775807L;
     }
 
     @Override
@@ -61,8 +61,8 @@ public final class h implements q {
         }
         u6.p(z10);
         l0 j02 = sVar.j0(0, 3);
-        this.f51116f = j02;
-        w wVar = this.f51114b;
+        this.f51115f = j02;
+        w wVar = this.f51113b;
         if (wVar != null) {
             j02.b(wVar);
             sVar.C();
@@ -81,7 +81,7 @@ public final class h implements q {
             z10 = false;
         }
         u6.p(z10);
-        this.f51119j = j11;
+        this.f51118j = j11;
         if (this.h == 2) {
             this.h = 1;
         }
@@ -102,14 +102,14 @@ public final class h implements q {
     }
 
     public final void g(g gVar) {
-        this.f51116f.getClass();
-        byte[] bArr = gVar.f51112b;
+        this.f51115f.getClass();
+        byte[] bArr = gVar.f51111b;
         int length = bArr.length;
         x xVar = this.d;
         xVar.getClass();
         xVar.L(bArr.length, bArr);
-        this.f51116f.d(length, xVar);
-        this.f51116f.c(gVar.f51111a, 1, length, 0, null);
+        this.f51115f.d(length, xVar);
+        this.f51115f.c(gVar.f51110a, 1, length, 0, null);
     }
 
     @Override
@@ -117,7 +117,7 @@ public final class h implements q {
         if (this.h == 5) {
             return;
         }
-        this.f51113a.reset();
+        this.f51112a.reset();
         this.h = 5;
     }
 

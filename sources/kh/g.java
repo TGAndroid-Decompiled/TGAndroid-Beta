@@ -15,9 +15,9 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h5;
 import org.telegram.ui.ActionBar.m1;
 import org.telegram.ui.Components.ScrollSlidingTextTabStrip;
-import org.telegram.ui.Components.nn0;
+import org.telegram.ui.Components.mn0;
 import org.telegram.ui.e0;
-import org.telegram.ui.hy0;
+import org.telegram.ui.gy0;
 import org.telegram.ui.kf;
 import org.telegram.ui.km;
 import org.telegram.ui.pe;
@@ -38,12 +38,12 @@ public final class g implements View.OnLongClickListener {
         kf kfVar;
         boolean z10;
         String string;
-        nn0 nn0Var;
+        mn0 mn0Var;
         switch (this.f15129a) {
             case 0:
                 b bVar = ((h) this.f15131c).f15137n;
                 if (bVar != null) {
-                    sn snVar = ((pe) bVar).f40456b;
+                    sn snVar = ((pe) bVar).f40517b;
                     int i10 = this.f15130b;
                     if (i10 == 2) {
                         kfVar = new kf(snVar, 8);
@@ -57,7 +57,7 @@ public final class g implements View.OnLongClickListener {
                     }
                     Activity parentActivity = snVar.getParentActivity();
                     h5 parentLayout = snVar.getParentLayout();
-                    km kmVar = snVar.f41561j1;
+                    km kmVar = snVar.f41558j1;
                     g6 resourceProvider = snVar.getResourceProvider();
                     ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = new ActionBarPopupWindow$ActionBarPopupWindowLayout(parentActivity, null);
                     actionBarPopupWindow$ActionBarPopupWindowLayout.setMinimumWidth(AndroidUtilities.dp(200.0f));
@@ -71,11 +71,11 @@ public final class g implements View.OnLongClickListener {
                         string = LocaleController.getString(R.string.ReadAllPollVotes);
                     }
                     e1Var.j(string, R.drawable.msg_seen, null);
-                    e1Var.setOnClickListener(new hy0(1, kfVar));
+                    e1Var.setOnClickListener(new gy0(1, kfVar));
                     actionBarPopupWindow$ActionBarPopupWindowLayout.addView(e1Var);
                     m1 m1Var = new m1(actionBarPopupWindow$ActionBarPopupWindowLayout, -2, -2);
                     m1Var.e = true;
-                    m1Var.f21631c = 220;
+                    m1Var.f21632c = 220;
                     m1Var.setOutsideTouchable(true);
                     m1Var.setClippingEnabled(true);
                     m1Var.setAnimationStyle(R.style.PopupContextAnimation);
@@ -94,9 +94,9 @@ public final class g implements View.OnLongClickListener {
                         measuredHeight += view2.getY() + view2.getPaddingTop();
                     }
                     m1Var.showAtLocation(kmVar, 51, (int) width, (int) measuredHeight);
-                    snVar.f41484c9 = m1Var;
-                    snVar.i8(snVar.f41711v1, false);
-                    snVar.f41484c9.setOnDismissListener(new e0(snVar, 1));
+                    snVar.f41481c9 = m1Var;
+                    snVar.i8(snVar.f41708v1, false);
+                    snVar.f41481c9.setOnDismissListener(new e0(snVar, 1));
                     try {
                         view.performHapticFeedback(0, 2);
                     } catch (Exception unused) {
@@ -106,7 +106,7 @@ public final class g implements View.OnLongClickListener {
                 return false;
             default:
                 ScrollSlidingTextTabStrip scrollSlidingTextTabStrip = (ScrollSlidingTextTabStrip) this.f15131c;
-                if (!scrollSlidingTextTabStrip.f24508n0 && (nn0Var = scrollSlidingTextTabStrip.f24493b) != null && nn0Var.b1(this.f15130b, view)) {
+                if (!scrollSlidingTextTabStrip.f24509n0 && (mn0Var = scrollSlidingTextTabStrip.f24494b) != null && mn0Var.b1(this.f15130b, view)) {
                     return true;
                 }
                 return false;

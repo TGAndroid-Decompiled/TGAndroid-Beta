@@ -20,8 +20,8 @@ public final class n extends a {
     @Override
     public final void a() {
         e1[] e1VarArr;
-        b0 b0Var = this.f48338r;
-        n2.e eVar = this.f48315x;
+        b0 b0Var = this.f48337r;
+        n2.e eVar = this.f48314x;
         eVar.getClass();
         for (e1 e1Var : (e1[]) eVar.f17103c) {
             if (e1Var.H != 0) {
@@ -32,11 +32,11 @@ public final class n extends a {
         l0 V = eVar.V(this.E);
         V.b(this.F);
         try {
-            long open = b0Var.open(this.f48334b.b(this.G));
+            long open = b0Var.open(this.f48333b.b(this.G));
             if (open != -1) {
                 open += this.G;
             }
-            c3.l lVar = new c3.l(this.f48338r, this.G, open);
+            c3.l lVar = new c3.l(this.f48337r, this.G, open);
             for (int i10 = 0; i10 != -1; i10 = V.a(lVar, Integer.MAX_VALUE, true)) {
                 this.G += i10;
             }

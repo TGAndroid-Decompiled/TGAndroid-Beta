@@ -1,30 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class s8 extends org.telegram.ui.ActionBar.h3 {
-    public final e9 f30411b;
+public final class s8 extends uq {
+    public final int f30463g0;
 
-    public s8(e9 e9Var, Activity activity) {
-        super(activity, true);
-        this.f30411b = e9Var;
+    public s8(Context context, boolean z10, tq tqVar, int i10) {
+        super(context, z10, tqVar);
+        this.f30463g0 = i10;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        e9 e9Var = this.f30411b;
-        e9Var.J.C1(e9Var.Y);
-        e9Var.f25930f = true;
-        e9Var.fragmentView.invalidate();
-        e9Var.e.animate().setListener(new org.telegram.ui.pq(this, 5)).alpha(0.0f).setDuration(200L).start();
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        e9 e9Var = this.f30411b;
-        AndroidUtilities.requestAdjustResize(e9Var.getParentActivity(), e9Var.getClassGuid());
-        e9Var.S = null;
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f30463g0) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+        }
     }
 }

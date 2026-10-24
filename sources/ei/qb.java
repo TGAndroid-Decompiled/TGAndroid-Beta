@@ -18,12 +18,12 @@ public abstract class qb {
         if (g7Var == null) {
             return null;
         }
-        org.telegram.ui.Components.w9 imageView = g7Var.getImageView();
+        org.telegram.ui.Components.u9 imageView = g7Var.getImageView();
         ob obVar = new ob(imageView, 2);
         int[] iArr = new int[2];
         imageView.getLocationOnScreen(iArr);
         obVar.f9681c.set(iArr[0], iArr[1], imageView.getWidth() + i10, imageView.getHeight() + iArr[1]);
-        obVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f22424y);
+        obVar.d = new org.telegram.ui.Cells.f7(imageView.getContext(), null, false, g7Var.f22425y);
         obVar.f9680b = Math.max(obVar.f9681c.width(), obVar.f9681c.height()) / 2.0f;
         return obVar;
     }

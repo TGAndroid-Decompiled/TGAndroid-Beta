@@ -38,7 +38,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, f3 {
         if (c3Var == null) {
             return -1;
         }
-        int a2 = c3Var.a() + c3Var.f36233s;
+        int a2 = c3Var.a() + c3Var.f36208s;
         this.f41286a.getClass();
         return a2 - AndroidUtilities.dp(18);
     }
@@ -49,7 +49,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, f3 {
         if (c3Var == null) {
             return -1;
         }
-        int b10 = c3Var.b() + c3Var.f36233s;
+        int b10 = c3Var.b() + c3Var.f36208s;
         this.f41286a.getClass();
         return AndroidUtilities.dp(18) + b10;
     }
@@ -60,13 +60,13 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, f3 {
         if (c3Var == null) {
             return -1;
         }
-        int c10 = c3Var.c() + c3Var.f36233s;
+        int c10 = c3Var.c() + c3Var.f36208s;
         this.f41286a.getClass();
         return AndroidUtilities.dp(18) + c10;
     }
 
     public int getMinWidth() {
-        return org.telegram.messenger.sl.a(this);
+        return org.telegram.messenger.tl.a(this);
     }
 
     @Override
@@ -128,7 +128,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, f3 {
             TL_iv.pageBlockSubheader pageblocksubheader2 = this.f41289f;
             i4 i4Var = this.f41287b;
             if (i4Var != null && i4Var.G) {
-                alignment = org.telegram.ui.Components.ix0.a();
+                alignment = org.telegram.ui.Components.hx0.a();
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
@@ -139,7 +139,7 @@ public final class s2 extends View implements org.telegram.ui.Cells.n9, f3 {
                 int i13 = this.e;
                 i12 = height + i13;
                 c3 c3Var = this.f41288c;
-                c3Var.f36233s = this.d;
+                c3Var.f36208s = this.d;
                 c3Var.v = i13;
             } else {
                 i12 = 0;

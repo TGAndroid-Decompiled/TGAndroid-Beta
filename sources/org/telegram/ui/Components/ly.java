@@ -1,52 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class ly extends z4.a implements yd0 {
-    public final tz f28433c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class ly implements View.OnClickListener {
+    public final boolean[] f28467a;
+    public final org.telegram.ui.ActionBar.b3 f28468b;
+    public final my f28469c;
 
-    public ly(tz tzVar) {
-        this.f28433c = tzVar;
+    public ly(my myVar, boolean[] zArr, org.telegram.ui.ActionBar.b3 b3Var) {
+        this.f28469c = myVar;
+        this.f28467a = zArr;
+        this.f28468b = b3Var;
     }
 
     @Override
-    public final void a(z4.h hVar, Object obj) {
-        hVar.removeView((View) obj);
-    }
-
-    @Override
-    public final int b() {
-        return this.f28433c.e.size();
-    }
-
-    @Override
-    public final CharSequence d(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return LocaleController.getString(R.string.AccDescrStickers);
-            }
-            return LocaleController.getString(R.string.AccDescrGIFs);
+    public final void onClick(View view) {
+        ry ryVar = this.f28469c.f28718a;
+        boolean[] zArr = this.f28467a;
+        if (zArr[0]) {
+            return;
         }
-        return LocaleController.getString(R.string.Emoji);
-    }
-
-    @Override
-    public final Object e(z4.h hVar, int i10) {
-        FrameLayout frameLayout = ((pz) this.f28433c.e.get(i10)).f29702b;
-        hVar.addView(frameLayout);
-        return frameLayout;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        if (view == obj) {
-            return true;
+        zArr[0] = true;
+        org.telegram.ui.ActionBar.c2[] c2VarArr = {new org.telegram.ui.ActionBar.c2(ryVar.F.getContext(), 3, null)};
+        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
+        rz rzVar = ryVar.F;
+        String str = ryVar.f30295w;
+        if (str == null) {
+            str = rzVar.W0[0];
         }
-        return false;
+        tL_messages_getEmojiURL.lang_code = str;
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.h4(this, c2VarArr, ConnectionsManager.getInstance(rzVar.f30310c1).sendRequest(tL_messages_getEmojiURL, new ai.j2(this, c2VarArr, this.f28468b, 13)), 8), 1000L);
     }
 }

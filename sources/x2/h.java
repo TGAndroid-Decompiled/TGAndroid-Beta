@@ -20,10 +20,10 @@ public final class h extends s1 {
 
     public h(i iVar) {
         d(iVar);
-        this.J = iVar.f49594w0;
-        this.K = iVar.f49595x0;
-        this.L = iVar.f49596y0;
-        this.M = iVar.f49597z0;
+        this.J = iVar.f49593w0;
+        this.K = iVar.f49594x0;
+        this.L = iVar.f49595y0;
+        this.M = iVar.f49596z0;
         this.N = iVar.A0;
         this.O = iVar.B0;
         this.P = iVar.C0;

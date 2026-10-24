@@ -2,9 +2,9 @@ package ad;
 
 import java.util.HashMap;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ah;
-import org.telegram.ui.Components.yj0;
-import org.telegram.ui.Components.zg;
+import org.telegram.ui.Components.xg;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.yg;
 public final class g extends HashMap {
     public final int f518a;
     public final Object f519b;
@@ -18,15 +18,15 @@ public final class g extends HashMap {
     public Object get(Object obj) {
         switch (this.f518a) {
             case 1:
-                int i10 = ((ah) this.f519b).v;
-                yj0 yj0Var = (yj0) super.get(obj);
-                if (yj0Var == null) {
-                    zg zgVar = (zg) obj;
-                    yj0 yj0Var2 = new yj0(zgVar.f33219c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
-                    put(zgVar, yj0Var2);
-                    return yj0Var2;
+                int i10 = ((yg) this.f519b).v;
+                xj0 xj0Var = (xj0) super.get(obj);
+                if (xj0Var == null) {
+                    xg xgVar = (xg) obj;
+                    xj0 xj0Var2 = new xj0(xgVar.f32577c, AndroidUtilities.dp(i10), AndroidUtilities.dp(i10));
+                    put(xgVar, xj0Var2);
+                    return xj0Var2;
                 }
-                return yj0Var;
+                return xj0Var;
             default:
                 return super.get(obj);
         }

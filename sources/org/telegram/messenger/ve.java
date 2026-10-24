@@ -1,27 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.MessagesStorage;
 public final class ve implements Runnable {
-    public final int f19827a;
-    public final MessagesStorage f19828b;
-    public final TLRPC.Message f19829c;
-    public final long d;
+    public final int f19835a;
+    public final MessagesStorage.IntCallback f19836b;
+    public final int f19837c;
 
-    public ve(int i10, long j10, MessagesStorage messagesStorage, TLRPC.Message message) {
-        this.f19827a = i10;
-        this.f19828b = messagesStorage;
-        this.f19829c = message;
-        this.d = j10;
+    public ve(MessagesStorage.IntCallback intCallback, int i10, int i11) {
+        this.f19835a = i11;
+        this.f19836b = intCallback;
+        this.f19837c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19827a) {
+        switch (this.f19835a) {
             case 0:
-                this.f19828b.lambda$updateMessageCustomParams$110(this.f19829c, this.d);
+                this.f19836b.run(this.f19837c);
+                return;
+            case 1:
+                this.f19836b.run(this.f19837c);
                 return;
             default:
-                this.f19828b.lambda$markMessageAsSendErrorWithParams$210(this.f19829c, this.d);
+                this.f19836b.run(this.f19837c);
                 return;
         }
     }

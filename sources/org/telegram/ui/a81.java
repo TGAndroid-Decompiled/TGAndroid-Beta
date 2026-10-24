@@ -1,58 +1,49 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import org.telegram.messenger.Emoji;
-public final class a81 extends org.telegram.ui.Components.l61 {
-    static {
-        org.telegram.ui.Components.l61.setup(new org.telegram.ui.Components.l61());
-    }
+import android.widget.LinearLayout;
+import java.util.HashSet;
+public final class a81 extends LinearLayout implements org.telegram.ui.ActionBar.b6 {
+    public final org.telegram.ui.ActionBar.g6 f35674a;
+    public final org.telegram.ui.Components.w90 f35675b;
+    public final org.telegram.ui.Components.w90 f35676c;
+    public final ei.d d;
+    public final ei.d e;
 
-    public static org.telegram.ui.Components.m61 a(String str, CharSequence charSequence, String str2, View.OnClickListener onClickListener, CharSequence charSequence2, View.OnClickListener onClickListener2) {
-        org.telegram.ui.Components.m61 J = org.telegram.ui.Components.m61.J(a81.class);
-        J.f28559l = str;
-        J.f28560m = charSequence;
-        J.f28561n = str2;
-        J.D = onClickListener;
-        J.f28562o = charSequence2;
-        J.E = onClickListener2;
-        return J;
-    }
-
-    @Override
-    public final void bindView(View view, org.telegram.ui.Components.m61 m61Var, boolean z10, org.telegram.ui.Components.b71 b71Var, org.telegram.ui.Components.j71 j71Var) {
-        b81 b81Var = (b81) view;
-        CharSequence charSequence = m61Var.f28559l;
-        CharSequence charSequence2 = m61Var.f28560m;
-        CharSequence charSequence3 = m61Var.f28561n;
-        View.OnClickListener onClickListener = m61Var.D;
-        CharSequence charSequence4 = m61Var.f28562o;
-        View.OnClickListener onClickListener2 = m61Var.E;
-        ei.d dVar = b81Var.e;
-        org.telegram.ui.Components.y90 y90Var = b81Var.f35964b;
-        int i10 = 0;
-        y90Var.setText(Emoji.replaceEmoji(charSequence, y90Var.getPaint().getFontMetricsInt(), false));
-        org.telegram.ui.Components.y90 y90Var2 = b81Var.f35965c;
-        y90Var2.setText(Emoji.replaceEmoji(charSequence2, y90Var2.getPaint().getFontMetricsInt(), false));
-        ei.d dVar2 = b81Var.d;
-        if (TextUtils.isEmpty(charSequence3)) {
-            i10 = 8;
-        }
-        dVar2.setVisibility(i10);
-        dVar2.setText(charSequence3);
-        dVar2.setOnClickListener(onClickListener);
-        dVar.setText(charSequence4);
-        dVar.setOnClickListener(onClickListener2);
+    public a81(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context);
+        this.f35674a = g6Var;
+        setOrientation(1);
+        int i10 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.Components.w90 a2 = w7.d6.a(context, 15.0f, i10, true, g6Var);
+        this.f35675b = a2;
+        a2.setGravity(17);
+        addView(a2, w7.z5.t(-1, -2, 55, 32, 20, 32, 0));
+        org.telegram.ui.Components.w90 a10 = w7.d6.a(context, 13.0f, i10, false, g6Var);
+        this.f35676c = a10;
+        a10.setGravity(17);
+        addView(a10, w7.z5.r(-1, -2, 55, 32.0f, 9.33f, 32.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(0);
+        ei.d g10 = org.telegram.messenger.tl.g(24, context, g6Var, true);
+        this.d = g10;
+        ei.d g11 = org.telegram.messenger.tl.g(24, context, g6Var, true);
+        this.e = g11;
+        linearLayout.addView(g10, w7.z5.p(0, 42, 1.0f, 112, 0, 0, 12, 0));
+        linearLayout.addView(g11, w7.z5.p(0, 42, 1.0f, 112, 0, 0, 0, 0));
+        addView(linearLayout, w7.z5.t(-1, -2, 55, 24, 18, 24, 16));
     }
 
     @Override
-    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
-        return new b81(context, g6Var);
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.G6));
     }
 
     @Override
-    public final boolean isClickable() {
-        return false;
+    public final void updateColors() {
+        int i10 = org.telegram.ui.ActionBar.k6.G6;
+        org.telegram.ui.ActionBar.g6 g6Var = this.f35674a;
+        this.f35675b.setTextColor(org.telegram.ui.ActionBar.k6.w0(i10, g6Var));
+        this.f35676c.setTextColor(org.telegram.ui.ActionBar.k6.w0(i10, g6Var));
     }
 }

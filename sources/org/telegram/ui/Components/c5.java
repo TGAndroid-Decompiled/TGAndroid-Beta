@@ -1,26 +1,39 @@
 package org.telegram.ui.Components;
-public final class c5 {
-    public final int f25238a;
-    public final int f25239b;
-    public final int f25240c;
-    public final int d;
-    public final int e;
-    public final int f25241f;
-    public final int f25242g;
-    public final int h;
 
-    public c5(org.telegram.ui.ActionBar.g6 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c5.<init>(org.telegram.ui.ActionBar.g6):void");
+import java.util.HashSet;
+import org.telegram.messenger.FileLog;
+public class c5 extends EditTextBoldCursor implements org.telegram.ui.ActionBar.b6 {
+    public boolean f25183b;
+    public int f25184c;
+    public org.telegram.ui.ActionBar.g6 d;
+    public int e;
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        if (this.f25183b) {
+            hashSet.add(Integer.valueOf(this.f25184c));
+        }
     }
 
-    public c5(int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18) {
-        this.f25238a = i10;
-        this.f25239b = i11;
-        this.f25240c = i12;
-        this.d = i13;
-        this.e = i14;
-        this.f25241f = i15;
-        this.f25242g = i16;
-        this.h = i17;
+    public final void i(int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.f25183b = true;
+        this.f25184c = i10;
+        this.d = g6Var;
+        int w02 = org.telegram.ui.ActionBar.k6.w0(i10, g6Var);
+        this.e = w02;
+        setCursorColor(w02);
+    }
+
+    @Override
+    public final void updateColors() {
+        int w02;
+        try {
+            if (this.f25183b && (w02 = org.telegram.ui.ActionBar.k6.w0(this.f25184c, this.d)) != this.e) {
+                this.e = w02;
+                setCursorColor(w02);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 }

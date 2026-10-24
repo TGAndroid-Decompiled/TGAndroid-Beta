@@ -25,8 +25,8 @@ public final class e implements vf {
         obj.f16399c = fb.TYPE_THIN;
         u2.c cVar = new u2.c(19, false);
         cVar.d = ((f) this.f5097b).e.a();
-        cVar.f47712b = (gb) this.f5098c;
-        cVar.f47713c = Long.valueOf((SystemClock.elapsedRealtime() - this.f5096a) & Long.MAX_VALUE);
+        cVar.f47711b = (gb) this.f5098c;
+        cVar.f47712c = Long.valueOf((SystemClock.elapsedRealtime() - this.f5096a) & Long.MAX_VALUE);
         obj.e = new fe(cVar);
         return new a5.a((s3) obj, 0);
     }

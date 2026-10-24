@@ -1,26 +1,35 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class ox extends s4.c0 {
-    public final int f29356r;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class ox extends FrameLayout {
+    public final rz f29421a;
 
-    public ox(Context context, int i10) {
+    public ox(rz rzVar, Context context) {
         super(context);
-        this.f29356r = i10;
+        this.f29421a = rzVar;
     }
 
     @Override
-    public final int i(int i10, int i11, int i12, int i13, int i14) {
-        return super.i(i10, i11, i12, i13, i14) + this.f29356r;
-    }
-
-    @Override
-    public final int m(int i10) {
-        return super.m(i10) * 16;
-    }
-
-    @Override
-    public final int p() {
-        return -1;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        rz rzVar = this.f29421a;
+        tx txVar = rzVar.I;
+        pw pwVar = rzVar.V;
+        cy cyVar = rzVar.P;
+        if (view != cyVar && view != pwVar) {
+            return super.drawChild(canvas, view, j10);
+        }
+        canvas.save();
+        float y3 = txVar.getY() + txVar.getMeasuredHeight() + 1.0f;
+        if (view == cyVar && pwVar != null) {
+            y3 = Math.max(y3, pwVar.getY() + pwVar.getMeasuredHeight() + 1.0f);
+        }
+        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * rzVar.f30304b.e), getMeasuredWidth(), getMeasuredHeight());
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        canvas.restore();
+        return drawChild;
     }
 }

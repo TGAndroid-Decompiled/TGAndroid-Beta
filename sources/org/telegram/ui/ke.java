@@ -20,12 +20,12 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class ke implements Runnable {
-    public final int f38935a;
-    public final sn f38936b;
+    public final int f38900a;
+    public final sn f38901b;
 
     public ke(sn snVar, int i10) {
-        this.f38935a = i10;
-        this.f38936b = snVar;
+        this.f38900a = i10;
+        this.f38901b = snVar;
     }
 
     @Override
@@ -39,18 +39,18 @@ public final class ke implements Runnable {
         float f10;
         float f11;
         boolean z10;
-        int i12 = this.f38935a;
+        int i12 = this.f38900a;
         TLRPC.ChatTheme chatTheme = null;
         ?? r12 = 1;
         int i13 = 0;
-        sn snVar = this.f38936b;
+        sn snVar = this.f38901b;
         switch (i12) {
             case 0:
                 snVar.X5 = null;
                 if (snVar.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(snVar.getParentActivity(), 0, snVar.f41654qa);
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(snVar.getParentActivity(), 0, snVar.f41651qa);
                     boolean isChannel = ChatObject.isChannel(snVar.e);
-                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
                     if (isChannel && !snVar.e.megagroup) {
                         c2Var.T = LocaleController.getString(R.string.JoinByPeekChannelText);
                         c2Var.R = LocaleController.getString(R.string.JoinByPeekChannelTitle);
@@ -83,17 +83,17 @@ public final class ke implements Runnable {
                 return;
             case 5:
                 snVar.t9();
-                AndroidUtilities.forEachViews((RecyclerView) snVar.f41737x0, (Utilities.Callback<View>) new xe(snVar, 6));
+                AndroidUtilities.forEachViews((RecyclerView) snVar.f41734x0, (Utilities.Callback<View>) new xe(snVar, 6));
                 snVar.x7();
-                xj xjVar = snVar.f41563j3;
+                xj xjVar = snVar.f41560j3;
                 if (xjVar != null) {
                     xjVar.setTranslationX(snVar.W8() / 2.0f);
                 }
-                vj vjVar = snVar.f41576k3;
+                vj vjVar = snVar.f41573k3;
                 if (vjVar != null) {
                     vjVar.setTranslationX(snVar.W8() / 2.0f);
                 }
-                FrameLayout frameLayout = snVar.f41476c1;
+                FrameLayout frameLayout = snVar.f41473c1;
                 if (frameLayout != null) {
                     frameLayout.setTranslationX(snVar.W8() / 2.0f);
                 }
@@ -101,23 +101,23 @@ public final class ke implements Runnable {
                 snVar.w7();
                 return;
             case 6:
-                td1 a02 = td1.a0(-snVar.f41519f6, 0L);
-                a02.f41967y = snVar;
+                sd1 a02 = sd1.a0(-snVar.f41516f6, 0L);
+                a02.f41359y = snVar;
                 snVar.presentFragment(a02);
                 return;
             case 7:
                 snVar.hc(true);
                 return;
             case 8:
-                snVar.f41711v1.d(true);
+                snVar.f41708v1.d(true);
                 return;
             case 9:
                 snVar.getNotificationCenter().onAnimationFinish(snVar.R9);
                 return;
             case 10:
-                int childCount = snVar.f41737x0.getChildCount();
+                int childCount = snVar.f41734x0.getChildCount();
                 while (i13 < childCount) {
-                    View childAt = snVar.f41737x0.getChildAt(i13);
+                    View childAt = snVar.f41734x0.getChildAt(i13);
                     if (childAt instanceof org.telegram.ui.Cells.t1) {
                         org.telegram.ui.Cells.t1 t1Var2 = (org.telegram.ui.Cells.t1) childAt;
                         if (t1Var2.getMessageObject().type == 4) {
@@ -132,7 +132,7 @@ public final class ke implements Runnable {
                 snVar.Ec(true);
                 return;
             case 12:
-                wk wkVar = snVar.f41621nb;
+                wk wkVar = snVar.f41618nb;
                 if (wkVar != null) {
                     wkVar.requestLayout();
                     return;
@@ -152,7 +152,7 @@ public final class ke implements Runnable {
                 snVar.getNotificationCenter().runDelayedNotifications();
                 return;
             case 16:
-                TLRPC.UserFull userFull = snVar.f41604m8;
+                TLRPC.UserFull userFull = snVar.f41601m8;
                 if (userFull != null) {
                     chatTheme = userFull.theme;
                 }
@@ -164,14 +164,14 @@ public final class ke implements Runnable {
             case 18:
                 snVar.X7 = Integer.MAX_VALUE;
                 snVar.Z7 = false;
-                snVar.f41455a8 = 0L;
-                snVar.f41469b8 = null;
-                snVar.f41483c8 = null;
-                snVar.f41496d8 = null;
-                snVar.f41507e8 = -1;
+                snVar.f41452a8 = 0L;
+                snVar.f41466b8 = null;
+                snVar.f41480c8 = null;
+                snVar.f41493d8 = null;
+                snVar.f41504e8 = -1;
                 snVar.Y7 = false;
                 snVar.dd(false);
-                snVar.f41532g8 = null;
+                snVar.f41529g8 = null;
                 return;
             case 19:
                 snVar.c7();
@@ -180,7 +180,7 @@ public final class ke implements Runnable {
                 snVar.Y.F0();
                 return;
             case 21:
-                AndroidUtilities.forEachViews((RecyclerView) snVar.f41737x0, (Utilities.Callback<View>) new ci.e(11));
+                AndroidUtilities.forEachViews((RecyclerView) snVar.f41734x0, (Utilities.Callback<View>) new ci.e(11));
                 em emVar = snVar.A0;
                 if (emVar != null) {
                     emVar.O(true);
@@ -188,7 +188,7 @@ public final class ke implements Runnable {
                 }
                 return;
             case 22:
-                sn snVar2 = this.f38936b;
+                sn snVar2 = this.f38901b;
                 int i14 = snVar2.Db;
                 if (i14 != 0) {
                     snVar2.j(i14, snVar2.Eb, snVar2.Fb, snVar2.Gb, snVar2.Hb, snVar2.Ib);
@@ -197,43 +197,43 @@ public final class ke implements Runnable {
                 }
                 return;
             case 23:
-                if (!snVar.f41740x3 && snVar.f41737x0 != null && snVar.getParentActivity() != null && snVar.fragmentView != null) {
-                    org.telegram.ui.Components.bq bqVar = snVar.H2;
-                    if (bqVar == null || bqVar.getTag() == null) {
+                if (!snVar.f41737x3 && snVar.f41734x0 != null && snVar.getParentActivity() != null && snVar.fragmentView != null) {
+                    org.telegram.ui.Components.zp zpVar = snVar.H2;
+                    if (zpVar == null || zpVar.getTag() == null) {
                         if (snVar.H2 == null) {
-                            km kmVar = snVar.f41561j1;
+                            km kmVar = snVar.f41558j1;
                             f7 = 24.0f;
                             int indexOfChild = kmVar.indexOfChild(snVar.S);
                             if (indexOfChild != -1) {
                                 Activity parentActivity = snVar.getParentActivity();
-                                qn qnVar = snVar.f41654qa;
+                                qn qnVar = snVar.f41651qa;
                                 ?? frameLayout2 = new FrameLayout(parentActivity);
-                                frameLayout2.f25123a = new TextView[2];
-                                frameLayout2.f25124b = new org.telegram.ui.Components.bk0[2];
+                                frameLayout2.f33327a = new TextView[2];
+                                frameLayout2.f33328b = new org.telegram.ui.Components.ak0[2];
                                 FrameLayout frameLayout3 = new FrameLayout(parentActivity);
-                                frameLayout3.setBackground(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21429qf, qnVar)));
+                                frameLayout3.setBackground(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(6.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21430qf, qnVar)));
                                 frameLayout3.setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
                                 frameLayout2.addView(frameLayout3, w7.z5.d(-2, -2.0f, 51, 0.0f, 0.0f, 0.0f, 6.0f));
                                 int i15 = 0;
                                 while (i15 < 2) {
-                                    frameLayout2.f25124b[i15] = new ImageView(parentActivity);
-                                    frameLayout2.f25124b[i15].setScaleType(ImageView.ScaleType.CENTER);
-                                    org.telegram.ui.Components.bk0 bk0Var = frameLayout2.f25124b[i15];
+                                    frameLayout2.f33328b[i15] = new ImageView(parentActivity);
+                                    frameLayout2.f33328b[i15].setScaleType(ImageView.ScaleType.CENTER);
+                                    org.telegram.ui.Components.ak0 ak0Var = frameLayout2.f33328b[i15];
                                     if (i15 == 0) {
                                         f10 = 0.0f;
                                     } else {
                                         f10 = 24.0f;
                                     }
-                                    frameLayout3.addView(bk0Var, w7.z5.d(24, 24.0f, 51, 0.0f, f10, 0.0f, 0.0f));
-                                    frameLayout2.f25123a[i15] = new TextView(parentActivity);
-                                    org.telegram.ui.ActionBar.r6.W(frameLayout2.f25123a[i15], org.telegram.ui.ActionBar.k6.f21410pf, qnVar);
-                                    frameLayout2.f25123a[i15].setTextSize(r12, 14.0f);
-                                    frameLayout2.f25123a[i15].setMaxLines(r12);
-                                    frameLayout2.f25123a[i15].setSingleLine(r12);
-                                    frameLayout2.f25123a[i15].setMaxWidth(AndroidUtilities.dp(250.0f));
-                                    frameLayout2.f25123a[i15].setGravity(51);
-                                    frameLayout2.f25123a[i15].setPivotX(0.0f);
-                                    TextView textView = frameLayout2.f25123a[i15];
+                                    frameLayout3.addView(ak0Var, w7.z5.d(24, 24.0f, 51, 0.0f, f10, 0.0f, 0.0f));
+                                    frameLayout2.f33327a[i15] = new TextView(parentActivity);
+                                    org.telegram.ui.ActionBar.r6.W(frameLayout2.f33327a[i15], org.telegram.ui.ActionBar.k6.f21411pf, qnVar);
+                                    frameLayout2.f33327a[i15].setTextSize(r12, 14.0f);
+                                    frameLayout2.f33327a[i15].setMaxLines(r12);
+                                    frameLayout2.f33327a[i15].setSingleLine(r12);
+                                    frameLayout2.f33327a[i15].setMaxWidth(AndroidUtilities.dp(250.0f));
+                                    frameLayout2.f33327a[i15].setGravity(51);
+                                    frameLayout2.f33327a[i15].setPivotX(0.0f);
+                                    TextView textView = frameLayout2.f33327a[i15];
                                     if (i15 == 0) {
                                         f11 = 2.0f;
                                     } else {
@@ -242,22 +242,22 @@ public final class ke implements Runnable {
                                     frameLayout3.addView(textView, w7.z5.d(-2, -2.0f, 51, 32.0f, f11, 10.0f, 0.0f));
                                     if (i15 == 0) {
                                         z10 = r12;
-                                        frameLayout2.f25124b[i15].f(R.raw.ticks_single, 24, 24, null);
-                                        frameLayout2.f25123a[i15].setText(LocaleController.getString(R.string.HintSent));
+                                        frameLayout2.f33328b[i15].f(R.raw.ticks_single, 24, 24, null);
+                                        frameLayout2.f33327a[i15].setText(LocaleController.getString(R.string.HintSent));
                                     } else {
                                         z10 = r12;
-                                        frameLayout2.f25124b[i15].f(R.raw.ticks_double, 24, 24, null);
-                                        frameLayout2.f25123a[i15].setText(LocaleController.getString(R.string.HintRead));
+                                        frameLayout2.f33328b[i15].f(R.raw.ticks_double, 24, 24, null);
+                                        frameLayout2.f33327a[i15].setText(LocaleController.getString(R.string.HintRead));
                                     }
-                                    frameLayout2.f25124b[i15].d();
+                                    frameLayout2.f33328b[i15].d();
                                     i15++;
                                     r12 = z10;
                                 }
                                 i10 = r12;
                                 ImageView imageView = new ImageView(parentActivity);
-                                frameLayout2.f25125c = imageView;
+                                frameLayout2.f33329c = imageView;
                                 imageView.setImageResource(R.drawable.tooltip_arrow);
-                                org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.f21429qf, qnVar, PorterDuff.Mode.MULTIPLY);
+                                org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.f21430qf, qnVar, PorterDuff.Mode.MULTIPLY);
                                 frameLayout2.addView(imageView, w7.z5.d(14, 6.0f, 83, 0.0f, 0.0f, 0.0f, 0.0f));
                                 snVar.H2 = frameLayout2;
                                 kmVar.addView((View) frameLayout2, indexOfChild + 1, w7.z5.d(-2, -2.0f, 51, 10.0f, 0.0f, 10.0f, 0.0f));
@@ -270,87 +270,87 @@ public final class ke implements Runnable {
                             i10 = 1;
                             f7 = 24.0f;
                         }
-                        int childCount2 = snVar.f41737x0.getChildCount();
+                        int childCount2 = snVar.f41734x0.getChildCount();
                         for (int i16 = 0; i16 < childCount2; i16++) {
-                            View childAt2 = snVar.f41737x0.getChildAt(i16);
+                            View childAt2 = snVar.f41734x0.getChildAt(i16);
                             if ((childAt2 instanceof org.telegram.ui.Cells.t1) && (messageObject = (t1Var = (org.telegram.ui.Cells.t1) childAt2).getMessageObject()) != null && messageObject.isOutOwner() && messageObject.isSent()) {
-                                org.telegram.ui.Components.bq bqVar2 = snVar.H2;
-                                ImageView imageView2 = bqVar2.f25125c;
-                                org.telegram.ui.Components.zp zpVar = bqVar2.e;
-                                if (zpVar != null) {
-                                    AndroidUtilities.cancelRunOnUIThread(zpVar);
-                                    bqVar2.e = null;
+                                org.telegram.ui.Components.zp zpVar2 = snVar.H2;
+                                ImageView imageView2 = zpVar2.f33329c;
+                                org.telegram.ui.Components.xp xpVar = zpVar2.e;
+                                if (xpVar != null) {
+                                    AndroidUtilities.cancelRunOnUIThread(xpVar);
+                                    zpVar2.e = null;
                                 }
                                 int[] iArr = new int[2];
                                 t1Var.getLocationInWindow(iArr);
                                 int i17 = iArr[i10];
-                                ((View) bqVar2.getParent()).getLocationInWindow(iArr);
+                                ((View) zpVar2.getParent()).getLocationInWindow(iArr);
                                 int i18 = i17 - iArr[i10];
                                 View view = (View) t1Var.getParent();
-                                bqVar2.measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
-                                if (i18 > AndroidUtilities.dp(10.0f) + bqVar2.getMeasuredHeight()) {
+                                zpVar2.measure(View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(1000, Integer.MIN_VALUE));
+                                if (i18 > AndroidUtilities.dp(10.0f) + zpVar2.getMeasuredHeight()) {
                                     int C = org.telegram.messenger.v0.C(6.0f, t1Var.getChecksY(), i18);
                                     int dp = AndroidUtilities.dp(5.0f) + t1Var.getChecksX();
                                     int measuredWidth = view.getMeasuredWidth();
-                                    float measuredHeight = C - bqVar2.getMeasuredHeight();
-                                    bqVar2.f25126f = measuredHeight;
-                                    bqVar2.setTranslationY(measuredHeight);
+                                    float measuredHeight = C - zpVar2.getMeasuredHeight();
+                                    zpVar2.f33330f = measuredHeight;
+                                    zpVar2.setTranslationY(measuredHeight);
                                     int left = t1Var.getLeft() + dp;
                                     int dp2 = AndroidUtilities.dp(15.0f);
                                     if (left > view.getMeasuredWidth() / 2) {
-                                        int measuredWidth2 = (measuredWidth - bqVar2.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
-                                        bqVar2.setTranslationX(measuredWidth2);
+                                        int measuredWidth2 = (measuredWidth - zpVar2.getMeasuredWidth()) - AndroidUtilities.dp(20.0f);
+                                        zpVar2.setTranslationX(measuredWidth2);
                                         dp2 += measuredWidth2;
                                     } else {
-                                        bqVar2.setTranslationX(0.0f);
+                                        zpVar2.setTranslationX(0.0f);
                                     }
                                     float left2 = ((t1Var.getLeft() + dp) - dp2) - (imageView2.getMeasuredWidth() / 2);
                                     imageView2.setTranslationX(left2);
                                     if (left > view.getMeasuredWidth() / 2) {
                                         if (left2 < AndroidUtilities.dp(10.0f)) {
                                             float dp3 = left2 - AndroidUtilities.dp(10.0f);
-                                            bqVar2.setTranslationX(bqVar2.getTranslationX() + dp3);
+                                            zpVar2.setTranslationX(zpVar2.getTranslationX() + dp3);
                                             imageView2.setTranslationX(left2 - dp3);
                                         }
-                                    } else if (left2 > bqVar2.getMeasuredWidth() - AndroidUtilities.dp(f7)) {
-                                        float measuredWidth3 = (left2 - bqVar2.getMeasuredWidth()) + AndroidUtilities.dp(f7);
-                                        bqVar2.setTranslationX(measuredWidth3);
+                                    } else if (left2 > zpVar2.getMeasuredWidth() - AndroidUtilities.dp(f7)) {
+                                        float measuredWidth3 = (left2 - zpVar2.getMeasuredWidth()) + AndroidUtilities.dp(f7);
+                                        zpVar2.setTranslationX(measuredWidth3);
                                         imageView2.setTranslationX(left2 - measuredWidth3);
                                     } else if (left2 < AndroidUtilities.dp(10.0f)) {
                                         float dp4 = left2 - AndroidUtilities.dp(10.0f);
-                                        bqVar2.setTranslationX(bqVar2.getTranslationX() + dp4);
+                                        zpVar2.setTranslationX(zpVar2.getTranslationX() + dp4);
                                         imageView2.setTranslationX(left2 - dp4);
                                     }
-                                    bqVar2.setPivotX(left2);
-                                    bqVar2.setPivotY(bqVar2.getMeasuredHeight());
-                                    AnimatorSet animatorSet = bqVar2.d;
+                                    zpVar2.setPivotX(left2);
+                                    zpVar2.setPivotY(zpVar2.getMeasuredHeight());
+                                    AnimatorSet animatorSet = zpVar2.d;
                                     if (animatorSet != null) {
                                         animatorSet.cancel();
-                                        bqVar2.d = null;
+                                        zpVar2.d = null;
                                     }
-                                    bqVar2.setTag(Integer.valueOf(i10));
-                                    bqVar2.setVisibility(0);
+                                    zpVar2.setTag(Integer.valueOf(i10));
+                                    zpVar2.setVisibility(0);
                                     AnimatorSet animatorSet2 = new AnimatorSet();
-                                    bqVar2.d = animatorSet2;
-                                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(bqVar2, View.ALPHA, 0.0f, 1.0f);
-                                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(bqVar2, View.SCALE_X, 0.0f, 1.0f);
-                                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(bqVar2, View.SCALE_Y, 0.0f, 1.0f);
+                                    zpVar2.d = animatorSet2;
+                                    ObjectAnimator ofFloat = ObjectAnimator.ofFloat(zpVar2, View.ALPHA, 0.0f, 1.0f);
+                                    ObjectAnimator ofFloat2 = ObjectAnimator.ofFloat(zpVar2, View.SCALE_X, 0.0f, 1.0f);
+                                    ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(zpVar2, View.SCALE_Y, 0.0f, 1.0f);
                                     Animator[] animatorArr = new Animator[3];
                                     animatorArr[0] = ofFloat;
                                     animatorArr[i10] = ofFloat2;
                                     animatorArr[2] = ofFloat3;
                                     animatorSet2.playTogether(animatorArr);
-                                    bqVar2.d.addListener(new org.telegram.ui.Components.aq(bqVar2, 0));
-                                    bqVar2.d.setDuration(180L);
-                                    bqVar2.d.start();
+                                    zpVar2.d.addListener(new org.telegram.ui.Components.yp(zpVar2, 0));
+                                    zpVar2.d.setDuration(180L);
+                                    zpVar2.d.start();
                                     while (i13 < 2) {
-                                        ViewPropertyAnimator interpolator = bqVar2.f25123a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.bs.f25135i);
+                                        ViewPropertyAnimator interpolator = zpVar2.f33327a[i13].animate().scaleX(1.04f).scaleY(1.04f).setInterpolator(org.telegram.ui.Components.zr.f33339i);
                                         if (i13 == 0) {
                                             i11 = 132;
                                         } else {
                                             i11 = 500;
                                         }
-                                        interpolator.setStartDelay(i11 + 140).setDuration(100L).setListener(new gi.p2(bqVar2, i13, 6)).start();
+                                        interpolator.setStartDelay(i11 + 140).setDuration(100L).setListener(new gi.p2(zpVar2, i13, 6)).start();
                                         i13++;
                                     }
                                     snVar.getMessagesController().removeSuggestion(0L, "NEWCOMER_TICKS");
@@ -367,7 +367,7 @@ public final class ke implements Runnable {
                 sn.K0(snVar);
                 return;
             case 25:
-                AndroidUtilities.forEachViews((RecyclerView) snVar.f41737x0, (Utilities.Callback<View>) new ci.e(10));
+                AndroidUtilities.forEachViews((RecyclerView) snVar.f41734x0, (Utilities.Callback<View>) new ci.e(10));
                 em emVar2 = snVar.A0;
                 if (emVar2 != null) {
                     emVar2.O(false);
@@ -385,9 +385,9 @@ public final class ke implements Runnable {
                 }
                 return;
             case 28:
-                org.telegram.ui.Components.ap apVar = ((org.telegram.ui.Components.ap[]) snVar.f41448a0.f900b)[0];
-                org.telegram.ui.ActionBar.n5 n5Var = apVar.d;
-                org.telegram.ui.ActionBar.n5 n5Var2 = apVar.e;
+                org.telegram.ui.Components.yo yoVar = ((org.telegram.ui.Components.yo[]) snVar.f41445a0.f900b)[0];
+                org.telegram.ui.ActionBar.n5 n5Var = yoVar.d;
+                org.telegram.ui.ActionBar.n5 n5Var2 = yoVar.e;
                 snVar.R1 = !snVar.R1;
                 n5Var.setPivotX(0.0f);
                 n5Var2.setPivotX(0.0f);

@@ -12,44 +12,44 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import w7.z5;
 public final class a extends FrameLayout {
-    public final ei.d f49389a;
-    public final View f49390b;
-    public final g6 f49391c;
+    public final ei.d f49388a;
+    public final View f49389b;
+    public final g6 f49390c;
     public final Paint d;
     public boolean e;
 
     public a(Context context, g6 g6Var) {
         super(context);
         this.d = new Paint(1);
-        this.f49391c = g6Var;
+        this.f49390c = g6Var;
         View view = new View(context);
-        this.f49390b = view;
+        this.f49389b = view;
         addView(view, z5.n(-1, -1));
         ei.d dVar = new ei.d(context, g6Var, true);
-        this.f49389a = dVar;
+        this.f49388a = dVar;
         addView(dVar, z5.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
     }
 
     public final void a(int i10, boolean z10) {
         this.e = true;
-        ei.d dVar = this.f49389a;
+        ei.d dVar = this.f49388a;
         dVar.k();
         dVar.setShowZero(true);
         dVar.setEnabled(true);
         dVar.b(i10, z10);
         dVar.i(LocaleController.getString(R.string.BoostingStartGiveaway), z10, true);
-        r6.i(k6.f21254h5, this.f49390b, this.f49391c);
+        r6.i(k6.f21255h5, this.f49389b, this.f49390c);
     }
 
     public final void b(boolean z10) {
-        this.f49389a.setLoading(z10);
+        this.f49388a.setLoading(z10);
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
         if (this.e) {
-            int w02 = k6.w0(k6.f21125a7, this.f49391c);
+            int w02 = k6.w0(k6.f21126a7, this.f49390c);
             Paint paint = this.d;
             paint.setColor(w02);
             paint.setAlpha(255);
@@ -59,7 +59,7 @@ public final class a extends FrameLayout {
 
     public void setCloseStyle(boolean z10) {
         this.e = false;
-        ei.d dVar = this.f49389a;
+        ei.d dVar = this.f49388a;
         dVar.setShowZero(false);
         dVar.setEnabled(true);
         dVar.i(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
@@ -69,7 +69,7 @@ public final class a extends FrameLayout {
     public void setOkStyle(boolean z10) {
         String formatString;
         this.e = false;
-        ei.d dVar = this.f49389a;
+        ei.d dVar = this.f49388a;
         dVar.setShowZero(false);
         dVar.setEnabled(true);
         if (z10) {
@@ -82,6 +82,6 @@ public final class a extends FrameLayout {
 
     @Override
     public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f49389a.setOnClickListener(onClickListener);
+        this.f49388a.setOnClickListener(onClickListener);
     }
 }

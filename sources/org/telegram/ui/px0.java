@@ -1,92 +1,147 @@
 package org.telegram.ui;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.FlagSecureReason;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
 import org.telegram.tgnet.TLRPC;
-public final class px0 implements Runnable {
-    public final int f40555a;
-    public final ProfileActivity f40556b;
-    public final TLRPC.User f40557c;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class px0 implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.fx0, MessagesStorage.BooleanCallback, r0.n, org.telegram.ui.Components.ai0, org.telegram.ui.Components.bm0, FlagSecureReason.FlagSecureCondition, ne.d, k60 {
+    public final int f40645a;
+    public final ProfileActivity f40646b;
 
-    public px0(ProfileActivity profileActivity, TLRPC.User user, int i10) {
-        this.f40555a = i10;
-        this.f40556b = profileActivity;
-        this.f40557c = user;
+    public px0(ProfileActivity profileActivity, int i10) {
+        this.f40645a = i10;
+        this.f40646b = profileActivity;
     }
 
     @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        switch (this.f40555a) {
-            case 0:
-                ProfileActivity profileActivity = this.f40556b;
-                TLRPC.User user = this.f40557c;
-                profileActivity.getClass();
-                profileActivity.presentFragment(sn.W9(user.f20490id));
-                return;
-            case 1:
-                ProfileActivity profileActivity2 = this.f40556b;
-                TLRPC.User user2 = this.f40557c;
-                if (profileActivity2.getParentActivity() != null) {
-                    TLRPC.UserFull userFull = profileActivity2.f34040w2;
-                    if (userFull != null && userFull.video_calls_available) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    org.telegram.ui.Components.voip.d2.m(user2, false, z10, profileActivity2.getParentActivity(), profileActivity2.f34040w2, profileActivity2.getAccountInstance());
-                    return;
-                }
-                return;
-            case 2:
-                ProfileActivity profileActivity3 = this.f40556b;
-                TLRPC.User user3 = this.f40557c;
-                if (profileActivity3.getParentActivity() != null) {
-                    TLRPC.UserFull userFull2 = profileActivity3.f34040w2;
-                    if (userFull2 != null && userFull2.video_calls_available) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    org.telegram.ui.Components.voip.d2.m(user3, true, z11, profileActivity3.getParentActivity(), profileActivity3.f34040w2, profileActivity3.getAccountInstance());
-                    return;
-                }
-                return;
-            case 3:
-                ProfileActivity profileActivity4 = this.f40556b;
-                TLRPC.User user4 = this.f40557c;
-                profileActivity4.getClass();
-                try {
-                    Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
-                    intent.addFlags(268435456);
-                    profileActivity4.getParentActivity().startActivityForResult(intent, 500);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            default:
-                ProfileActivity profileActivity5 = this.f40556b;
-                TLRPC.User user5 = this.f40557c;
-                try {
-                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
-                    if (AndroidUtilities.shouldShowClipboardToast()) {
-                        org.telegram.ui.Components.xc.a0(profileActivity5).i(LocaleController.getString(R.string.PhoneCopied)).j();
-                        return;
-                    }
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
+    public r0.k1 B0(View view, r0.k1 k1Var) {
+        int i10 = k1Var.f45250a.f(519).d;
+        ProfileActivity profileActivity = this.f40646b;
+        profileActivity.f34009r6 = i10;
+        FrameLayout frameLayout = profileActivity.f34030u5;
+        if (frameLayout != null) {
+            ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) frameLayout.getLayoutParams();
+            int i11 = profileActivity.f34009r6 + profileActivity.q6;
+            if (marginLayoutParams != null && marginLayoutParams.bottomMargin != i11) {
+                marginLayoutParams.bottomMargin = i11;
+                profileActivity.f34030u5.setLayoutParams(marginLayoutParams);
+            }
         }
+        qz0 qz0Var = profileActivity.O;
+        if (qz0Var != null) {
+            qz0Var.setPagesPaddingBottom(profileActivity.f34009r6 + profileActivity.f33995p6);
+            org.telegram.ui.Components.ms0 ms0Var = profileActivity.O.V;
+            if (ms0Var != null) {
+                ms0Var.setButtonOffset(profileActivity.f34009r6 + profileActivity.q6);
+            }
+        }
+        return r0.k1.f45249b;
+    }
+
+    @Override
+    public boolean d(int i10, View view) {
+        ProfileActivity profileActivity = this.f40646b;
+        p01 p01Var = profileActivity.e;
+        if (p01Var.f40307w || p01Var.v.isEmpty()) {
+            return false;
+        }
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(profileActivity.getParentActivity(), 0, profileActivity.A0);
+        alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.ClearSearchAlertTitle);
+        alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.ClearSearchAlert);
+        alertDialog$Builder.k(LocaleController.getString(R.string.ClearButton), new px0(profileActivity, 9));
+        alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
+        profileActivity.showDialog(c2Var);
+        TextView textView = (TextView) c2Var.d(-1);
+        if (textView != null) {
+            org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21422q7, null);
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        switch (this.f40645a) {
+            case 0:
+                ProfileActivity profileActivity = this.f40646b;
+                profileActivity.getMessagesController().blockPeer(profileActivity.f33923f1);
+                if (org.telegram.ui.Components.vc.a(profileActivity)) {
+                    org.telegram.ui.Components.vc.d(profileActivity, true).j();
+                    return;
+                }
+                return;
+            case 6:
+                ProfileActivity profileActivity2 = this.f40646b;
+                profileActivity2.getClass();
+                SharedConfig.pushAuthKey = null;
+                SharedConfig.pushAuthKeyId = null;
+                SharedConfig.saveConfig();
+                profileActivity2.getConnectionsManager().switchBackend(true);
+                return;
+            default:
+                p01 p01Var = this.f40646b.e;
+                p01Var.v.clear();
+                MessagesController.getGlobalMainSettings().edit().remove("settingsSearchRecent2").commit();
+                p01Var.l();
+                return;
+        }
+    }
+
+    @Override
+    public void i(int i10, ArrayList arrayList) {
+        TLRPC.ChatParticipants chatParticipants;
+        HashSet hashSet = new HashSet();
+        ArrayList arrayList2 = new ArrayList();
+        ProfileActivity profileActivity = this.f40646b;
+        TLRPC.ChatFull chatFull = profileActivity.f34034v2;
+        if (chatFull != null && (chatParticipants = chatFull.participants) != null && chatParticipants.participants != null) {
+            for (int i11 = 0; i11 < profileActivity.f34034v2.participants.participants.size(); i11++) {
+                hashSet.add(Long.valueOf(profileActivity.f34034v2.participants.participants.get(i11).user_id));
+            }
+        }
+        profileActivity.getMessagesController().addUsersToChat(profileActivity.F2, profileActivity, arrayList, i10, new i3(arrayList2, 5), new i3(profileActivity, 6), new qe0(profileActivity, arrayList2, hashSet, 25));
+    }
+
+    @Override
+    public void o(int i10, float f7, float f10, ne.e eVar) {
+        this.f40646b.Y4();
+    }
+
+    @Override
+    public boolean run() {
+        ProfileActivity profileActivity = this.f40646b;
+        return profileActivity.E2 != null || profileActivity.i4();
+    }
+
+    @Override
+    public void run(boolean z10) {
+        ProfileActivity profileActivity = this.f40646b;
+        profileActivity.K1 = 0;
+        NotificationCenter notificationCenter = profileActivity.getNotificationCenter();
+        int i10 = NotificationCenter.closeChats;
+        notificationCenter.removeObserver(profileActivity, i10);
+        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(i10, new Object[0]);
+        profileActivity.finishFragment();
+        profileActivity.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needDeleteDialog, Long.valueOf(-profileActivity.F2.f20344id), null, profileActivity.F2, Boolean.valueOf(z10));
+    }
+
+    @Override
+    public void h(TLRPC.User user) {
+    }
+
+    @Override
+    public void H(float f7, int i10) {
     }
 }

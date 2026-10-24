@@ -1,56 +1,54 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Rect;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-public final class sk0 implements Utilities.Callback {
-    public final int f30511a;
-    public final gl0 f30512b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class sk0 extends s4.m0 {
+    public final int f30537a;
+    public final fl0 f30538b;
 
-    public sk0(gl0 gl0Var, int i10) {
-        this.f30511a = i10;
-        this.f30512b = gl0Var;
+    public sk0(fl0 fl0Var, int i10) {
+        this.f30537a = i10;
+        this.f30538b = fl0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        float f7;
-        View view = (View) obj;
-        switch (this.f30511a) {
+    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+        switch (this.f30537a) {
             case 0:
-                gl0 gl0Var = this.f30512b;
-                ArrayList arrayList = gl0Var.d;
-                gl0Var.f26631b.getClass();
-                int R = RecyclerView.R(view);
-                if (R >= 0 && R < arrayList.size() && (view instanceof el0)) {
-                    ((el0) view).f(((xk0) arrayList.get(R)).f32590c, true);
+                super.a(rect, view, recyclerView, y0Var);
+                fl0 fl0Var = this.f30538b;
+                if (!fl0Var.q()) {
+                    recyclerView.getClass();
+                    int R = RecyclerView.R(view);
+                    if (R == 0) {
+                        rect.left = AndroidUtilities.dp(6.0f);
+                    }
+                    rect.right = AndroidUtilities.dp(4.0f);
+                    if (R == fl0Var.f26347a0.h() - 1) {
+                        if ((!fl0Var.U.isEmpty() && !MessagesController.getInstance(fl0Var.J).premiumFeaturesBlocked()) || fl0Var.q()) {
+                            rect.right = AndroidUtilities.dp(2.0f);
+                            return;
+                        } else {
+                            rect.right = AndroidUtilities.dp(6.0f);
+                            return;
+                        }
+                    }
                     return;
                 }
+                rect.left = 0;
+                rect.right = 0;
                 return;
             default:
-                if (view instanceof el0) {
-                    el0 el0Var = (el0) view;
-                    dl0 dl0Var = el0Var.f26000b;
-                    el0Var.N = false;
-                    float f10 = 1.0f;
-                    dl0Var.setAlpha(1.0f);
-                    if (this.f30512b.N0) {
-                        float f11 = el0Var.I;
-                        if (el0Var.f26006w) {
-                            f7 = 0.76f;
-                        } else {
-                            f7 = 1.0f;
-                        }
-                        dl0Var.setScaleX(f11 * f7);
-                        float f12 = el0Var.I;
-                        if (el0Var.f26006w) {
-                            f10 = 0.76f;
-                        }
-                        dl0Var.setScaleY(f12 * f10);
-                        return;
-                    }
-                    el0Var.d();
+                recyclerView.getClass();
+                int R2 = RecyclerView.R(view);
+                if (R2 == 0) {
+                    rect.left = AndroidUtilities.dp(8.0f);
+                }
+                if (R2 == this.f30538b.f26347a0.h() - 1) {
+                    rect.right = AndroidUtilities.dp(8.0f);
                     return;
                 }
                 return;

@@ -306,7 +306,7 @@ public final class a8 {
     public static a8 n(File file, TL_stories.StoryItem storyItem) {
         a8 a8Var = new a8();
         a8Var.f8718g = true;
-        a8Var.f8716f = storyItem.f20577id;
+        a8Var.f8716f = storyItem.f20578id;
         a8Var.L = file;
         a8Var.M = false;
         a8Var.f8726k0 = 720;
@@ -330,7 +330,7 @@ public final class a8 {
                     }
                     TLRPC.DocumentAttribute documentAttribute = storyItem.media.document.attributes.get(i11);
                     if (documentAttribute instanceof TLRPC.TL_documentAttributeVideo) {
-                        a8Var.f8726k0 = documentAttribute.f20350w;
+                        a8Var.f8726k0 = documentAttribute.f20351w;
                         a8Var.f8728l0 = documentAttribute.h;
                         a8Var.f8721i = documentAttribute.duration;
                         break;
@@ -404,9 +404,9 @@ public final class a8 {
         arrayList.addAll(arrayList3);
         a8Var.I0 = storyItem.expire_date - storyItem.date;
         try {
-            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.k6.f21382o2.getFontMetricsInt(), true);
+            CharSequence replaceEmoji = Emoji.replaceEmoji(new SpannableString(storyItem.caption), org.telegram.ui.ActionBar.k6.f21383o2.getFontMetricsInt(), true);
             MessageObject.addEntitiesToText(replaceEmoji, storyItem.entities, true, false, true, false);
-            a8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.k6.f21382o2.getFontMetricsInt());
+            a8Var.C0 = MessageObject.replaceAnimatedEmoji(replaceEmoji, storyItem.entities, org.telegram.ui.ActionBar.k6.f21383o2.getFontMetricsInt());
         } catch (Exception unused) {
         }
         a8Var.A();
@@ -498,7 +498,7 @@ public final class a8 {
                 if (MessageObject.isAnimatedStickerDocument(document, true)) {
                     RLottieNative a2 = RLottieNative.a(str, null, null, null, 0, null);
                     if (a2 != null) {
-                        int i10 = a2.f24447a[0];
+                        int i10 = a2.f24448a[0];
                         a2.d();
                         j10 = i10;
                     } else {
@@ -702,8 +702,8 @@ public final class a8 {
                 if (photo.has_stickers) {
                     TLRPC.TL_inputStickeredMediaPhoto tL_inputStickeredMediaPhoto = new TLRPC.TL_inputStickeredMediaPhoto();
                     TLRPC.TL_inputPhoto tL_inputPhoto = new TLRPC.TL_inputPhoto();
-                    tL_inputStickeredMediaPhoto.f20413id = tL_inputPhoto;
-                    tL_inputPhoto.f20362id = photo.f20367id;
+                    tL_inputStickeredMediaPhoto.f20414id = tL_inputPhoto;
+                    tL_inputPhoto.f20363id = photo.f20368id;
                     tL_inputPhoto.access_hash = photo.access_hash;
                     byte[] bArr = photo.file_reference;
                     tL_inputPhoto.file_reference = bArr;
@@ -718,8 +718,8 @@ public final class a8 {
                 if (document != null && MessageObject.isDocumentHasAttachedStickers(document)) {
                     TLRPC.TL_inputStickeredMediaDocument tL_inputStickeredMediaDocument = new TLRPC.TL_inputStickeredMediaDocument();
                     TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    tL_inputStickeredMediaDocument.f20412id = tL_inputDocument;
-                    tL_inputDocument.f20355id = document.f20349id;
+                    tL_inputStickeredMediaDocument.f20413id = tL_inputDocument;
+                    tL_inputDocument.f20356id = document.f20350id;
                     tL_inputDocument.access_hash = document.access_hash;
                     byte[] bArr2 = document.file_reference;
                     tL_inputDocument.file_reference = bArr2;

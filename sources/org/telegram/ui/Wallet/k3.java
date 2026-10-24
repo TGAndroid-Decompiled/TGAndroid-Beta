@@ -8,8 +8,8 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.RectF;
 import android.graphics.Shader;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ca0;
-public final class k3 extends ca0 {
+import org.telegram.ui.Components.aa0;
+public final class k3 extends aa0 {
     public final Paint M;
     public final m3 N;
 
@@ -25,11 +25,11 @@ public final class k3 extends ca0 {
     public final void b(Canvas canvas, Path path) {
         super.b(canvas, path);
         m3 m3Var = this.N;
-        RectF rectF = m3Var.f34812f;
-        if (m3Var.f34829o0 != null) {
+        RectF rectF = m3Var.f34814f;
+        if (m3Var.f34831o0 != null) {
             canvas.saveLayer(rectF, null);
-            m3Var.f34829o0.c((AndroidUtilities.dp(206.0f) - m3Var.f34829o0.l()) / 2.0f, (rectF.bottom - AndroidUtilities.dp(7.0f)) - m3Var.f34829o0.j(), 1.0f, -1, canvas);
-            Shader shader = this.f25297x.getShader();
+            m3Var.f34831o0.c((AndroidUtilities.dp(206.0f) - m3Var.f34831o0.l()) / 2.0f, (rectF.bottom - AndroidUtilities.dp(7.0f)) - m3Var.f34831o0.j(), 1.0f, -1, canvas);
+            Shader shader = this.f24703x.getShader();
             Paint paint = this.M;
             paint.setShader(shader);
             canvas.drawRect(rectF, paint);
@@ -40,6 +40,6 @@ public final class k3 extends ca0 {
     @Override
     public final void invalidateSelf() {
         super.invalidateSelf();
-        this.N.f34804a.invalidate();
+        this.N.f34806a.invalidate();
     }
 }

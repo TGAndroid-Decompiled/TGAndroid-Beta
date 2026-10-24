@@ -1,16 +1,7 @@
 package org.telegram.ui.Components;
-public final class rn extends s4.k {
-    public final fo F;
-
-    public rn(fo foVar) {
-        this.F = foVar;
-    }
-
+public final class rn extends kz0 {
     @Override
-    public final void P(s4.b1 b1Var) {
-        if (b1Var.b() == 0) {
-            fo foVar = this.F;
-            foVar.f28366b.f2(foVar, 0);
-        }
+    public final int d() {
+        return 3;
     }
 }

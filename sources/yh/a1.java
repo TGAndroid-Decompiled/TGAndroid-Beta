@@ -3,7 +3,7 @@ package yh;
 import ai.l7;
 import android.content.Context;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 public final class a1 extends l7 {
     public final o1 B1;
 
@@ -13,11 +13,11 @@ public final class a1 extends l7 {
     }
 
     @Override
-    public final xc getBulletinFactory() {
+    public final vc getBulletinFactory() {
         g6 g6Var;
         o1 o1Var = this.B1;
         org.telegram.ui.ActionBar.e3 e3Var = o1Var.container;
         g6Var = o1Var.resourcesProvider;
-        return new xc(e3Var, g6Var);
+        return new vc(e3Var, g6Var);
     }
 }

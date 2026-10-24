@@ -1,5 +1,179 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ImageReceiver;
-public final class w01 extends ImageReceiver {
+import android.graphics.Canvas;
+import android.graphics.PointF;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class w01 extends View {
+    public static final String[] f42863s = {"🎉", "🎆", "🎈"};
+    public final ProfileActivity f42864a;
+    public t01 f42865b;
+    public t01 f42866c;
+    public final PointF d;
+    public boolean e;
+    public boolean f42867f;
+    public float h;
+    public long f42868n;
+    public boolean f42869r;
+
+    public w01(ProfileActivity profileActivity, t01 t01Var) {
+        super(profileActivity.getParentActivity());
+        this.d = new PointF();
+        this.h = 1.0f;
+        this.f42869r = false;
+        this.f42864a = profileActivity;
+        this.f42865b = t01Var;
+    }
+
+    public final boolean a() {
+        t01 t01Var = this.f42865b;
+        if (!t01Var.f41848b || this.h < 1.0f) {
+            return false;
+        }
+        if (t01Var.f41849c.getLottieAnimation() != null) {
+            this.f42865b.f41849c.getLottieAnimation().N(0, false, false);
+            this.f42865b.f41849c.getLottieAnimation().H(true);
+        }
+        this.f42869r = true;
+        this.h = 0.0f;
+        invalidate();
+        return true;
+    }
+
+    public final void b(t01 t01Var) {
+        if (this.f42865b != t01Var && t01Var != null) {
+            ArrayList arrayList = t01Var.e;
+            if (this.f42869r) {
+                this.f42866c = t01Var;
+                return;
+            }
+            if (this.f42867f) {
+                for (int i10 = 0; i10 < this.f42865b.e.size(); i10++) {
+                    ((v01) this.f42865b.e.get(i10)).setParentView(null);
+                }
+                this.f42867f = false;
+            }
+            t01 t01Var2 = this.f42865b;
+            ArrayList arrayList2 = t01Var2.f41853j;
+            arrayList2.remove(this);
+            if (arrayList2.isEmpty() && t01Var2.f41852i) {
+                t01Var2.b(true);
+                t01Var2.f41852i = false;
+            }
+            this.f42865b = t01Var;
+            if (!this.f42867f) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ((v01) arrayList.get(i11)).setParentView(this);
+                }
+                this.f42867f = true;
+            }
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f42865b.f41853j.add(this);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f42867f) {
+            for (int i10 = 0; i10 < this.f42865b.e.size(); i10++) {
+                ((v01) this.f42865b.e.get(i10)).setParentView(null);
+            }
+            this.f42867f = false;
+        }
+        t01 t01Var = this.f42865b;
+        ArrayList arrayList = t01Var.f41853j;
+        arrayList.remove(this);
+        if (arrayList.isEmpty() && t01Var.f41852i) {
+            t01Var.b(true);
+            t01Var.f41852i = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.f42865b.f41848b) {
+            boolean z10 = true;
+            if (!this.f42867f) {
+                for (int i10 = 0; i10 < this.f42865b.e.size(); i10++) {
+                    ((v01) this.f42865b.e.get(i10)).setParentView(this);
+                }
+                this.f42867f = true;
+                if (!this.e) {
+                    this.e = true;
+                    post(new ly0(this, 5));
+                }
+            }
+            if (!this.f42869r) {
+                return;
+            }
+            long currentTimeMillis = System.currentTimeMillis();
+            this.h = Utilities.clamp(this.h + (((float) Utilities.clamp(currentTimeMillis - this.f42868n, 20L, 0L)) / 4200.0f), 1.0f, 0.0f);
+            this.f42868n = currentTimeMillis;
+            ProfileActivity profileActivity = this.f42864a;
+            ky0 ky0Var = profileActivity.f33884a;
+            int i11 = profileActivity.V2;
+            PointF pointF = this.d;
+            float f7 = 2.0f;
+            if (i11 >= 0) {
+                int i12 = 0;
+                while (true) {
+                    if (i12 >= ky0Var.getChildCount()) {
+                        break;
+                    }
+                    View childAt = ky0Var.getChildAt(i12);
+                    if (i11 == RecyclerView.R(childAt) && (childAt instanceof org.telegram.ui.Cells.c9)) {
+                        wh.n nVar = ((org.telegram.ui.Cells.c9) childAt).f22216a;
+                        pointF.set(nVar.getX() + childAt.getX() + ky0Var.getX() + AndroidUtilities.dp(12.0f), (nVar.getMeasuredHeight() / 2.0f) + nVar.getY() + childAt.getY() + ky0Var.getY());
+                        break;
+                    }
+                    i12++;
+                }
+            }
+            float f10 = qy.f();
+            this.f42865b.f41849c.setImageCoords((getWidth() - AndroidUtilities.dp(f10)) / 2.0f, Math.max(0.0f, pointF.y - (AndroidUtilities.dp(f10) * 0.5f)), AndroidUtilities.dp(f10), AndroidUtilities.dp(f10));
+            canvas.save();
+            canvas.scale(-1.0f, 1.0f, getWidth() / 2.0f, 0.0f);
+            this.f42865b.f41849c.draw(canvas);
+            this.f42865b.f41849c.setAlpha(1.0f - ((this.h - 0.9f) / 0.1f));
+            canvas.restore();
+            int dp = AndroidUtilities.dp(110.0f);
+            int size = this.f42865b.d.size() - 1;
+            while (size >= 0) {
+                v01 v01Var = (v01) this.f42865b.d.get(size);
+                float f11 = size;
+                float cascade = AndroidUtilities.cascade(this.h, f11, this.f42865b.d.size(), 1.8f);
+                float f12 = dp;
+                float f13 = 0.88f * f12;
+                boolean z11 = z10;
+                float c10 = com.google.android.gms.internal.play_billing.k3.c(f13, this.f42865b.d.size() - 1, getWidth(), f7);
+                float f14 = pointF.x;
+                float f15 = f7;
+                float f16 = pointF.y;
+                float f17 = ((c10 - f14) * cascade) + (f13 * f11) + f14;
+                float interpolation = org.telegram.ui.Components.zr.h.getInterpolation(Utilities.clamp(cascade / 0.4f, 1.0f, 0.0f));
+                float f18 = (f12 / f15) * interpolation;
+                float f19 = f12 * interpolation;
+                v01Var.setImageCoords(f17 - f18, (f16 - ((f16 + f12) * ((float) Math.pow(this.h, 2.0d)))) - f18, f19, f19);
+                v01Var.draw(canvas);
+                size--;
+                z10 = z11;
+                f7 = f15;
+            }
+            if (this.h >= 1.0f) {
+                this.f42869r = false;
+                b(this.f42866c);
+                this.f42866c = null;
+                return;
+            }
+            invalidate();
+        }
+    }
 }

@@ -2,36 +2,26 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class na implements Runnable {
-    public final int f19111a;
-    public final MessagesController f19112b;
-    public final TLRPC.Chat f19113c;
+    public final int f19103a;
+    public final MessagesController f19104b;
+    public final TLRPC.Updates f19105c;
+    public final boolean d;
 
-    public na(MessagesController messagesController, TLRPC.Chat chat, int i10) {
-        this.f19111a = i10;
-        this.f19112b = messagesController;
-        this.f19113c = chat;
+    public na(MessagesController messagesController, TLRPC.Updates updates, boolean z10, int i10) {
+        this.f19103a = i10;
+        this.f19104b = messagesController;
+        this.f19105c = updates;
+        this.d = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19111a) {
+        switch (this.f19103a) {
             case 0:
-                this.f19112b.lambda$processUpdateArray$416(this.f19113c);
-                return;
-            case 1:
-                this.f19112b.lambda$processLoadedDialogs$217(this.f19113c);
-                return;
-            case 2:
-                this.f19112b.lambda$addOrRemoveActiveVoiceChat$60(this.f19113c);
-                return;
-            case 3:
-                this.f19112b.lambda$putChat$57(this.f19113c);
-                return;
-            case 4:
-                this.f19112b.lambda$putChat$58(this.f19113c);
+                this.f19104b.lambda$processUpdates$378(this.f19105c, this.d);
                 return;
             default:
-                this.f19112b.lambda$putChat$59(this.f19113c);
+                this.f19104b.lambda$processUpdates$377(this.f19105c, this.d);
                 return;
         }
     }

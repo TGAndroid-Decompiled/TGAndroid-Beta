@@ -1,27 +1,40 @@
 package org.telegram.ui.Components;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-public final class j5 implements o5 {
-    public final int f27516a;
-    public final r5 f27517b;
+public final class j5 implements Runnable {
+    public final int f27553a;
+    public final l5 f27554b;
+    public final ArrayList f27555c;
+    public final HashSet d;
 
-    public j5(r5 r5Var, int i10) {
-        this.f27516a = i10;
-        this.f27517b = r5Var;
+    public j5(l5 l5Var, ArrayList arrayList, HashSet hashSet, int i10) {
+        this.f27553a = i10;
+        this.f27554b = l5Var;
+        this.f27555c = arrayList;
+        this.d = hashSet;
     }
 
     @Override
-    public final void a(TLRPC.Document document) {
-        switch (this.f27516a) {
+    public final void run() {
+        switch (this.f27553a) {
             case 0:
-                r5 r5Var = this.f27517b;
-                r5Var.e = document;
-                r5Var.j(false);
+                AndroidUtilities.runOnUIThread(new j5(this.f27554b, this.f27555c, this.d, 1));
                 return;
             default:
-                r5 r5Var2 = this.f27517b;
-                r5Var2.e = document;
-                r5Var2.j(false);
+                l5 l5Var = this.f27554b;
+                l5Var.d(this.f27555c);
+                HashSet hashSet = this.d;
+                if (!hashSet.isEmpty()) {
+                    ArrayList<Long> arrayList = new ArrayList<>(hashSet);
+                    TLRPC.TL_messages_getCustomEmojiDocuments tL_messages_getCustomEmojiDocuments = new TLRPC.TL_messages_getCustomEmojiDocuments();
+                    tL_messages_getCustomEmojiDocuments.document_id = arrayList;
+                    ConnectionsManager.getInstance(l5Var.e).sendRequest(tL_messages_getCustomEmojiDocuments, new org.telegram.ui.vc(10, l5Var, arrayList));
+                    return;
+                }
                 return;
         }
     }

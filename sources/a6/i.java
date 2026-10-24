@@ -70,12 +70,12 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Components.cp0;
+import org.telegram.ui.Components.bp0;
 import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xq0;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.wq0;
 import rg.d2;
-public final class i implements n0, r, xq0, a0, androidx.activity.result.b, p, OnCompleteListener, d9.k, SuccessContinuation, o, zb, f6.a, w, n, z1, je.a, cp0 {
+public final class i implements n0, r, wq0, a0, androidx.activity.result.b, p, OnCompleteListener, d9.k, SuccessContinuation, o, zb, f6.a, w, n, z1, je.a, bp0 {
     public static i f305c;
     public final int f306a;
     public Object f307b;
@@ -425,8 +425,8 @@ public final class i implements n0, r, xq0, a0, androidx.activity.result.b, p, O
     public void g0() {
         switch (this.f306a) {
             case 4:
-                qc k10 = ((l7) this.f307b).getBulletinFactory().k(false);
-                k10.f29842t = true;
+                oc k10 = ((l7) this.f307b).getBulletinFactory().k(false);
+                k10.f29213t = true;
                 k10.j();
                 return;
             default:
@@ -713,7 +713,7 @@ public final class i implements n0, r, xq0, a0, androidx.activity.result.b, p, O
             }
             try {
                 jSONObject.put("expires_at", j10);
-                fileWriter = new FileWriter((File) cVar.f44852b);
+                fileWriter = new FileWriter((File) cVar.f44851b);
                 try {
                     try {
                         fileWriter.write(jSONObject.toString());
@@ -812,7 +812,7 @@ public final class i implements n0, r, xq0, a0, androidx.activity.result.b, p, O
 
     public i(ya.c cVar) {
         this.f306a = 9;
-        this.f307b = (com.google.android.gms.internal.play_billing.r) cVar.f50564b;
+        this.f307b = (com.google.android.gms.internal.play_billing.r) cVar.f50563b;
     }
 
     public i(Context context, int i10) {

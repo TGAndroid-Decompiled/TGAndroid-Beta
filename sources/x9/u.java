@@ -7,23 +7,23 @@ import java.util.Locale;
 import java.util.UUID;
 import java.util.regex.Pattern;
 public final class u {
-    public static final Pattern f50185g = Pattern.compile("[^\\p{Alnum}]");
+    public static final Pattern f50184g = Pattern.compile("[^\\p{Alnum}]");
     public static final String h = Pattern.quote("/");
-    public final f2.a f50186a;
-    public final Context f50187b;
-    public final String f50188c;
+    public final f2.a f50185a;
+    public final Context f50186b;
+    public final String f50187c;
     public final ra.d d;
     public final r e;
-    public c f50189f;
+    public c f50188f;
 
     public u(Context context, String str, ra.d dVar, r rVar) {
         if (context != null) {
             if (str != null) {
-                this.f50187b = context;
-                this.f50188c = str;
+                this.f50186b = context;
+                this.f50187c = str;
                 this.d = dVar;
                 this.e = rVar;
-                this.f50186a = new Object();
+                this.f50185a = new Object();
                 return;
             }
             throw new IllegalArgumentException("appIdentifier must not be null");
@@ -37,7 +37,7 @@ public final class u {
         if (uuid == null) {
             lowerCase = null;
         } else {
-            lowerCase = f50185g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
+            lowerCase = f50184g.matcher(uuid).replaceAll("").toLowerCase(Locale.US);
         }
         String str2 = "Created new Crashlytics installation ID: " + lowerCase + " for FID: " + str;
         if (Log.isLoggable("FirebaseCrashlytics", 2)) {
@@ -49,13 +49,13 @@ public final class u {
 
     public final synchronized c b() {
         String str;
-        c cVar = this.f50189f;
-        if (cVar != null && (cVar.f50120b != null || !this.e.a())) {
-            return this.f50189f;
+        c cVar = this.f50188f;
+        if (cVar != null && (cVar.f50119b != null || !this.e.a())) {
+            return this.f50188f;
         }
-        u9.b bVar = u9.b.f48073a;
+        u9.b bVar = u9.b.f48072a;
         bVar.c("Determining Crashlytics installation ID...");
-        SharedPreferences sharedPreferences = this.f50187b.getSharedPreferences("com.google.firebase.crashlytics", 0);
+        SharedPreferences sharedPreferences = this.f50186b.getSharedPreferences("com.google.firebase.crashlytics", 0);
         String string = sharedPreferences.getString("firebase.installation.id", null);
         bVar.c("Cached Firebase Installation ID: " + string);
         if (this.e.a()) {
@@ -74,23 +74,23 @@ public final class u {
                 }
             }
             if (str.equals(string)) {
-                this.f50189f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
+                this.f50188f = new c(sharedPreferences.getString("crashlytics.installation.id", null), str);
             } else {
-                this.f50189f = new c(a(str, sharedPreferences), str);
+                this.f50188f = new c(a(str, sharedPreferences), str);
             }
         } else if (string != null && string.startsWith("SYN_")) {
-            this.f50189f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
+            this.f50188f = new c(sharedPreferences.getString("crashlytics.installation.id", null), null);
         } else {
-            this.f50189f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
+            this.f50188f = new c(a("SYN_" + UUID.randomUUID().toString(), sharedPreferences), null);
         }
-        bVar.c("Install IDs: " + this.f50189f);
-        return this.f50189f;
+        bVar.c("Install IDs: " + this.f50188f);
+        return this.f50188f;
     }
 
     public final String c() {
         String str;
-        f2.a aVar = this.f50186a;
-        Context context = this.f50187b;
+        f2.a aVar = this.f50185a;
+        Context context = this.f50186b;
         synchronized (aVar) {
             try {
                 if (aVar.f10296a == null) {

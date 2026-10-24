@@ -1,38 +1,26 @@
 package org.telegram.messenger;
 public final class d7 implements Runnable {
-    public final int f18238a;
-    public final MediaDataController f18239b;
-    public final String f18240c;
+    public final int f18208a;
+    public final MediaDataController f18209b;
+    public final long f18210c;
 
-    public d7(MediaDataController mediaDataController, String str, int i10) {
-        this.f18238a = i10;
-        this.f18239b = mediaDataController;
-        this.f18240c = str;
+    public d7(MediaDataController mediaDataController, long j10, int i10) {
+        this.f18208a = i10;
+        this.f18209b = mediaDataController;
+        this.f18210c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18238a) {
+        switch (this.f18208a) {
             case 0:
-                this.f18239b.lambda$fetchNewEmojiKeywords$208(this.f18240c);
+                MediaDataController.H0(this.f18209b, this.f18210c);
                 return;
             case 1:
-                this.f18239b.lambda$fetchNewEmojiKeywords$210(this.f18240c);
-                return;
-            case 2:
-                this.f18239b.lambda$fetchNewEmojiKeywords$212(this.f18240c);
-                return;
-            case 3:
-                this.f18239b.lambda$fetchNewEmojiKeywords$209(this.f18240c);
-                return;
-            case 4:
-                this.f18239b.lambda$fetchNewEmojiKeywords$214(this.f18240c);
-                return;
-            case 5:
-                this.f18239b.lambda$putEmojiKeywords$215(this.f18240c);
+                MediaDataController.K2(this.f18209b, this.f18210c);
                 return;
             default:
-                this.f18239b.lambda$processLoadedDiceStickers$86(this.f18240c);
+                MediaDataController.z2(this.f18209b, this.f18210c);
                 return;
         }
     }

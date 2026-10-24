@@ -1,79 +1,13 @@
 package org.telegram.ui.Components;
+public final class ft {
+    public s4.b1 f26431a;
+    public s4.b1 f26432b;
+    public int f26433c;
+    public int d;
+    public int e;
+    public int f26434f;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-public final class ft extends AnimatorListenerAdapter {
-    public final int f26455a = 1;
-    public final s4.b1 f26456b;
-    public final View f26457c;
-    public final ViewPropertyAnimator d;
-    public final kt e;
-
-    public ft(kt ktVar, s4.b1 b1Var, ViewPropertyAnimator viewPropertyAnimator, View view) {
-        this.e = ktVar;
-        this.f26456b = b1Var;
-        this.d = viewPropertyAnimator;
-        this.f26457c = view;
-    }
-
-    @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f26455a) {
-            case 1:
-                this.f26457c.setAlpha(1.0f);
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f26455a) {
-            case 0:
-                this.d.setListener(null);
-                this.f26457c.setAlpha(1.0f);
-                kt ktVar = this.e;
-                s4.b1 b1Var = this.f26456b;
-                ktVar.d(b1Var);
-                ktVar.f28150x.remove(b1Var);
-                ktVar.A();
-                return;
-            default:
-                this.d.setListener(null);
-                kt ktVar2 = this.e;
-                s4.b1 b1Var2 = this.f26456b;
-                ktVar2.u(b1Var2);
-                ktVar2.v.remove(b1Var2);
-                ktVar2.A();
-                View view = b1Var2.f46343a;
-                if (view instanceof org.telegram.ui.Cells.q2) {
-                    ((org.telegram.ui.Cells.q2) view).setMoving(false);
-                    return;
-                }
-                return;
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        switch (this.f26455a) {
-            case 0:
-                this.e.y();
-                return;
-            default:
-                this.e.getClass();
-                return;
-        }
-    }
-
-    public ft(kt ktVar, s4.b1 b1Var, View view, ViewPropertyAnimator viewPropertyAnimator) {
-        this.e = ktVar;
-        this.f26456b = b1Var;
-        this.f26457c = view;
-        this.d = viewPropertyAnimator;
+    public final String toString() {
+        return "ChangeInfo{oldHolder=" + this.f26431a + ", newHolder=" + this.f26432b + ", fromX=" + this.f26433c + ", fromY=" + this.d + ", toX=" + this.e + ", toY=" + this.f26434f + '}';
     }
 }

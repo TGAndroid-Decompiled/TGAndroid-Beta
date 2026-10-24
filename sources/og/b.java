@@ -1,7 +1,7 @@
 package og;
 
 import org.telegram.ui.sn;
-import org.telegram.ui.ye1;
+import org.telegram.ui.xe1;
 public final class b implements Runnable {
     public final int f17801a;
     public final sn f17802b;
@@ -17,7 +17,7 @@ public final class b implements Runnable {
             case 0:
                 sn snVar = this.f17802b;
                 if (snVar.getParentLayout() != null) {
-                    ye1.H0(snVar);
+                    xe1.H0(snVar);
                     return;
                 }
                 return;

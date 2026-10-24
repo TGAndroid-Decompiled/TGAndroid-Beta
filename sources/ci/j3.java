@@ -8,8 +8,8 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.y50;
-public final class j3 implements y50 {
+import org.telegram.ui.Components.w50;
+public final class j3 implements w50 {
     public final p4 f5468a;
 
     public j3(p4 p4Var) {

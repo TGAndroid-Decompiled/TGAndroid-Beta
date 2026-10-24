@@ -2,79 +2,54 @@ package org.telegram.ui;
 
 import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
 public final class sv0 extends org.telegram.ui.Cells.t1 {
-    public final Path Ge;
-    public final Paint He;
-    public final byte[] Ie;
-    public final int Je;
-    public final int Ke;
-    public final uv0 Le;
+    public final int Ge;
+    public final int He;
+    public final int Ie;
 
-    public sv0(uv0 uv0Var, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, byte[] bArr, int i11, int i12) {
+    public sv0(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, int i11, int i12, int i13) {
         super(context, i10, false, null, g6Var);
-        this.Le = uv0Var;
-        this.Ie = bArr;
-        this.Je = i11;
-        this.Ke = i12;
-        this.Ge = new Path();
-        this.He = new Paint(1);
+        this.Ge = i13;
+        this.He = i11;
+        this.Ie = i12;
     }
 
     @Override
     public final void X1(Canvas canvas) {
-        this.f23426i6 = 0;
-        this.f23440j6 = this.Y5.size() - 1;
-        this.f23455k6 = (-AndroidUtilities.dp(7.0f)) * this.Le.f42530y;
-        super.X1(canvas);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        canvas.save();
-        int H2 = H2(this.Ie);
-        float G2 = G2(H2);
-        float F2 = F2(H2);
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(getPollButtonsLeft(), G2, getPollButtonsRight(), F2);
-        float f10 = rectF.top;
-        float dp = AndroidUtilities.dp(3.0f);
-        uv0 uv0Var = this.Le;
-        if (uv0Var.V) {
-            f7 = -AndroidUtilities.dp(3.0f);
-        } else {
-            f7 = 0.0f;
+        switch (this.Ge) {
+            case 0:
+                this.f23427i6 = 0;
+                this.f23441j6 = this.Y5.size() - 1;
+                super.X1(canvas);
+                return;
+            default:
+                this.f23427i6 = 0;
+                this.f23441j6 = this.Y5.size() - 1;
+                super.X1(canvas);
+                return;
         }
-        rectF.top = AndroidUtilities.lerp(dp, f7, uv0Var.f42530y) + f10;
-        float f11 = rectF.bottom;
-        boolean z10 = uv0Var.V;
-        float dp2 = AndroidUtilities.dp(3.0f);
-        if (!z10) {
-            dp2 = AndroidUtilities.lerp(dp2, 0.0f, uv0Var.f42530y);
-        }
-        rectF.bottom = f11 + dp2;
-        Path path = this.Ge;
-        path.rewind();
-        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
-        Paint paint = this.He;
-        paint.setColor(0);
-        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.k6.o1(uv0Var.f42530y * 0.2f, -16777216));
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
-        canvas.clipPath(path);
-        R1(canvas);
-        canvas.restore();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(this.Je, this.Ke);
+        switch (this.Ge) {
+            case 0:
+                setMeasuredDimension(this.He, this.Ie);
+                return;
+            default:
+                setMeasuredDimension(this.He, this.Ie);
+                return;
+        }
     }
 
     @Override
     public final void setPressed(boolean z10) {
+        int i10 = this.Ge;
+    }
+
+    private final void A4(boolean z10) {
+    }
+
+    private final void z4(boolean z10) {
     }
 }

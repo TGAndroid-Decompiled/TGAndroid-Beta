@@ -6,17 +6,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.camera.CameraView;
 public final class z implements Runnable {
-    public final b0 f52621a;
+    public final b0 f52620a;
 
     public z(b0 b0Var) {
-        this.f52621a = b0Var;
+        this.f52620a = b0Var;
     }
 
     @Override
     public final void run() {
-        b0 b0Var = this.f52621a;
-        CameraView cameraView = b0Var.f52117b;
-        if (b0Var.f52126h0 && cameraView != null) {
+        b0 b0Var = this.f52620a;
+        CameraView cameraView = b0Var.f52116b;
+        if (b0Var.f52125h0 && cameraView != null) {
             TextureView textureView = cameraView.getTextureView();
             int width = textureView.getWidth();
             int height = textureView.getHeight();
@@ -28,14 +28,14 @@ public final class z implements Runnable {
                     width = Math.max(1, (int) (f7 * min));
                     height = Math.max(1, (int) (f10 * min));
                 }
-                Bitmap bitmap = this.f52621a.f52129k0;
-                if (bitmap == null || bitmap.getWidth() != width || this.f52621a.f52129k0.getHeight() != height) {
-                    this.f52621a.f52129k0 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+                Bitmap bitmap = this.f52620a.f52128k0;
+                if (bitmap == null || bitmap.getWidth() != width || this.f52620a.f52128k0.getHeight() != height) {
+                    this.f52620a.f52128k0 = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                 }
                 try {
-                    textureView.getBitmap(this.f52621a.f52129k0);
-                    b0 b0Var2 = this.f52621a;
-                    z4.b f11 = b0.f(b0Var2.f52129k0, b0Var2.f52127i0, b0Var2.f52128j0, b0Var2.O);
+                    textureView.getBitmap(this.f52620a.f52128k0);
+                    b0 b0Var2 = this.f52620a;
+                    z4.b f11 = b0.f(b0Var2.f52128k0, b0Var2.f52126i0, b0Var2.f52127j0, b0Var2.O);
                     if (f11 != null) {
                         AndroidUtilities.runOnUIThread(new u2.k0(26, this, f11));
                         return;
@@ -44,8 +44,8 @@ public final class z implements Runnable {
                     FileLog.e(th2);
                 }
             }
-            if (this.f52621a.f52126h0) {
-                this.f52621a.f52125g0.postDelayed(this, 150L);
+            if (this.f52620a.f52125h0) {
+                this.f52620a.f52124g0.postDelayed(this, 150L);
             }
         }
     }

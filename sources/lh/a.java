@@ -4,8 +4,8 @@ import ki.u;
 import ne.d;
 import ne.e;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
 import org.telegram.ui.Components.voip.t2;
+import org.telegram.ui.Components.zr;
 public final class a implements d {
     public final e f16140a;
     public final e f16141b;
@@ -16,11 +16,11 @@ public final class a implements d {
     public boolean h;
 
     public a(t2 t2Var, u uVar) {
-        bs bsVar = bs.h;
-        this.f16140a = new e(1, this, bsVar, 350L);
-        this.f16141b = new e(2, this, bsVar, 350L);
-        this.f16142c = new ne.b(0, this, bsVar, 350L, true);
-        this.d = new ne.b(3, this, bsVar, 350L, true);
+        zr zrVar = zr.h;
+        this.f16140a = new e(1, this, zrVar, 350L);
+        this.f16141b = new e(2, this, zrVar, 350L);
+        this.f16142c = new ne.b(0, this, zrVar, 350L, true);
+        this.d = new ne.b(3, this, zrVar, 350L, true);
         this.h = true;
         this.e = t2Var;
         this.f16143f = uVar;

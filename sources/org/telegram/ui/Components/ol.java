@@ -1,33 +1,9 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Point;
-import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashMap;
-import java.util.Map;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.IMapsProvider;
-public final class ol extends FrameLayout {
-    public final HashMap f29227a;
-    public final rl f29228b;
-
-    public ol(rl rlVar, Context context) {
-        super(context);
-        this.f29228b = rlVar;
-        this.f29227a = new HashMap();
-    }
-
-    public final void a() {
-        IMapsProvider.IMap iMap = this.f29228b.F;
-        if (iMap != null) {
-            IMapsProvider.IProjection projection = iMap.getProjection();
-            for (Map.Entry entry : this.f29227a.entrySet()) {
-                View view = (View) entry.getValue();
-                Point screenLocation = projection.toScreenLocation(((IMapsProvider.IMarker) entry.getKey()).getPosition());
-                view.setTranslationX(screenLocation.x - (view.getMeasuredWidth() / 2));
-                view.setTranslationY(AndroidUtilities.dp(22.0f) + (screenLocation.y - view.getMeasuredHeight()));
-            }
-        }
-    }
+import org.telegram.tgnet.TLRPC;
+public final class ol {
+    public int f29313a;
+    public IMapsProvider.IMarker f29314b;
+    public TLRPC.TL_messageMediaVenue f29315c;
 }

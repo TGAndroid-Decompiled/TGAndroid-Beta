@@ -20,13 +20,13 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.u9;
 import w7.z5;
 import zf.p;
 public final class b extends FrameLayout implements b6 {
     public final g6 f13197a;
-    public final w9 f13198b;
+    public final u9 f13198b;
     public final TextView f13199c;
     public final TextView d;
     public final ImageView e;
@@ -34,10 +34,10 @@ public final class b extends FrameLayout implements b6 {
     public b(Context context, g6 g6Var) {
         super(context);
         this.f13197a = g6Var;
-        w9 w9Var = new w9(context);
-        this.f13198b = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
-        addView(w9Var, z5.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
+        u9 u9Var = new u9(context);
+        this.f13198b = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(7.3125f));
+        addView(u9Var, z5.d(26, 26.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         LinearLayout linearLayout = new LinearLayout(context);
         linearLayout.setOrientation(1);
         linearLayout.setGravity(16);
@@ -68,7 +68,7 @@ public final class b extends FrameLayout implements b6 {
         if (chat == null) {
             return;
         }
-        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f20343id);
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(chat.f20344id);
         setTitle(DialogObject.getShortName(chat));
         if (chatFull != null) {
             i11 = chatFull.linked_peers.size();
@@ -76,12 +76,12 @@ public final class b extends FrameLayout implements b6 {
             i11 = 0;
         }
         setSubtitle(LocaleController.formatPluralString("CommunityWithChats", i11, new Object[0]));
-        this.f13198b.e(chat, new h9(chat));
+        this.f13198b.e(chat, new f9(chat));
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f21588z6));
+        hashSet.add(Integer.valueOf(k6.f21589z6));
         hashSet.add(Integer.valueOf(k6.G6));
     }
 
@@ -89,8 +89,8 @@ public final class b extends FrameLayout implements b6 {
     public final void dispatchDraw(Canvas canvas) {
         Paint paint;
         Drawable drawable = k6.S0;
-        w9 w9Var = this.f13198b;
-        p.a(canvas, drawable, (w9Var.getWidth() / 2.0f) + w9Var.getLeft(), (w9Var.getHeight() / 2.0f) + w9Var.getTop(), w9Var.getHeight());
+        u9 u9Var = this.f13198b;
+        p.a(canvas, drawable, (u9Var.getWidth() / 2.0f) + u9Var.getLeft(), (u9Var.getHeight() / 2.0f) + u9Var.getTop(), u9Var.getHeight());
         super.dispatchDraw(canvas);
         g6 g6Var = this.f13197a;
         if (g6Var != null) {
@@ -99,7 +99,7 @@ public final class b extends FrameLayout implements b6 {
             paint = null;
         }
         if (paint == null) {
-            paint = k6.f21304k0;
+            paint = k6.f21305k0;
         }
         canvas.drawLine(AndroidUtilities.dp(58.0f), getMeasuredHeight() - 1, getMeasuredWidth(), getMeasuredHeight() - 1, paint);
     }
@@ -119,7 +119,7 @@ public final class b extends FrameLayout implements b6 {
 
     @Override
     public final void updateColors() {
-        int i10 = k6.f21588z6;
+        int i10 = k6.f21589z6;
         g6 g6Var = this.f13197a;
         this.e.setColorFilter(k6.w0(i10, g6Var));
         this.f13199c.setTextColor(k6.w0(k6.G6, g6Var));

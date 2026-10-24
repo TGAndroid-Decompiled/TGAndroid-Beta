@@ -111,10 +111,10 @@ public final class s6 extends z6 {
                 if (inputMedia != null && (storyItem = messageObject.storyItem) != null && (messageMedia = storyItem.media) != null) {
                     if (inputMedia instanceof TLRPC.TL_inputMediaPhoto) {
                         TLRPC.Photo photo = messageMedia.photo;
-                        if (photo != null && photo.f20367id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f20406id.f20362id) {
+                        if (photo != null && photo.f20368id == ((TLRPC.TL_inputMediaPhoto) inputMedia).f20407id.f20363id) {
                             break;
                         }
-                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f20349id == ((TLRPC.TL_inputMediaDocument) inputMedia).f20404id.f20355id) {
+                    } else if ((inputMedia instanceof TLRPC.TL_inputMediaDocument) && (document = messageMedia.document) != null && document.f20350id == ((TLRPC.TL_inputMediaDocument) inputMedia).f20405id.f20356id) {
                         break;
                     }
                 }
@@ -144,8 +144,8 @@ public final class s6 extends z6 {
         } else {
             id2 = messageObject.getId();
         }
-        message.f20364id = id2;
-        storyItem2.f20577id = id2;
+        message.f20365id = id2;
+        storyItem2.f20578id = id2;
         messageObject2.parentStoriesList = this;
         messageObject2.generateThumbs(false);
         if (arrayList2.isEmpty()) {
@@ -187,8 +187,8 @@ public final class s6 extends z6 {
         TLRPC.Message message = messageObject.messageOwner;
         int i10 = this.I;
         this.I = i10 + 1;
-        message.f20364id = i10;
-        storyItem.f20577id = i10;
+        message.f20365id = i10;
+        storyItem.f20578id = i10;
         messageObject.parentStoriesList = this;
         messageObject.generateThumbs(false);
         ArrayList arrayList = this.H;

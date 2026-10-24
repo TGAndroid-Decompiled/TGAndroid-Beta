@@ -17,16 +17,16 @@ import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.fy0;
+import org.telegram.ui.Components.ey0;
 import org.telegram.ui.TwoStepVerificationActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
-import org.telegram.ui.an0;
-import org.telegram.ui.di1;
-import org.telegram.ui.l61;
-import org.telegram.ui.qm0;
-import org.telegram.ui.s21;
+import org.telegram.ui.ci1;
+import org.telegram.ui.k61;
+import org.telegram.ui.pm0;
+import org.telegram.ui.r21;
 import org.telegram.ui.sn;
-import org.telegram.ui.xk0;
+import org.telegram.ui.wk0;
+import org.telegram.ui.zm0;
 public final class g3 implements Runnable {
     public final int f1341a;
     public final Object f1342b;
@@ -47,21 +47,21 @@ public final class g3 implements Runnable {
     }
 
     private final void a() {
-        l61.R((l61) this.f1342b, (TLRPC.TL_error) this.d, (TLRPC.InputCheckPasswordSRP) this.f1343c, (TLRPC.User) this.e, (TwoStepVerificationActivity) this.f1344f, (TLRPC.TL_channels_editCreator) this.h);
+        k61.R((k61) this.f1342b, (TLRPC.TL_error) this.d, (TLRPC.InputCheckPasswordSRP) this.f1343c, (TLRPC.User) this.e, (TwoStepVerificationActivity) this.f1344f, (TLRPC.TL_channels_editCreator) this.h);
     }
 
     private final void b() {
         byte[] bArr = (byte[]) this.e;
         org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.f1344f;
-        byte[] bArr2 = b2Var.f34325b;
+        byte[] bArr2 = b2Var.f34327b;
         org.telegram.ui.Wallet.r1 r1Var = (org.telegram.ui.Wallet.r1) this.h;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.d;
-        org.telegram.ui.Wallet.l0 l0Var = ((org.telegram.ui.Wallet.e2) this.f1342b).f34430b;
+        org.telegram.ui.Wallet.l0 l0Var = ((org.telegram.ui.Wallet.e2) this.f1342b).f34432b;
         if (TextUtils.equals((String) this.f1343c, l0Var.s()) && Arrays.equals(bArr, l0Var.x())) {
             TL_wallet.inputTonConnectOauthSession inputtonconnectoauthsession = new TL_wallet.inputTonConnectOauthSession();
-            inputtonconnectoauthsession.session_id = tonconnectsession.f20601id;
+            inputtonconnectoauthsession.session_id = tonconnectsession.f20602id;
             inputtonconnectoauthsession.challenge_answer = bArr2;
-            inputtonconnectoauthsession.body = b2Var.f34326c;
+            inputtonconnectoauthsession.body = b2Var.f34328c;
             inputtonconnectoauthsession.proof = b2Var.d;
             r1Var.run(inputtonconnectoauthsession, null);
             return;
@@ -76,12 +76,12 @@ public final class g3 implements Runnable {
         org.telegram.ui.Wallet.w wVar = (org.telegram.ui.Wallet.w) this.f1344f;
         TL_wallet.tonConnectSession tonconnectsession = (TL_wallet.tonConnectSession) this.h;
         org.telegram.ui.Wallet.b2 b2Var = (org.telegram.ui.Wallet.b2) this.d;
-        org.telegram.ui.Wallet.l0 l0Var = e2Var.f34430b;
+        org.telegram.ui.Wallet.l0 l0Var = e2Var.f34432b;
         if (TextUtils.equals((String) this.f1343c, l0Var.s()) && Arrays.equals(bArr, l0Var.x())) {
             TL_wallet.tonConnectCloseSession tonconnectclosesession = new TL_wallet.tonConnectCloseSession();
-            tonconnectclosesession.session_id = tonconnectsession.f20601id;
-            tonconnectclosesession.body = b2Var.f34326c;
-            e2Var.f34432f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(wVar, 3));
+            tonconnectclosesession.session_id = tonconnectsession.f20602id;
+            tonconnectclosesession.body = b2Var.f34328c;
+            e2Var.f34434f.sendRequestTyped(tonconnectclosesession, new Object(), new org.telegram.ui.Wallet.d(wVar, 3));
             return;
         }
         wVar.run("Wallet or TON Connect session changed. Open the request again.");
@@ -97,7 +97,7 @@ public final class g3 implements Runnable {
         if (str != null) {
             callback.run(str);
         } else if (e2Var.y(a2Var) && !e2Var.i(a2Var)) {
-            e2Var.f34432f.sendRequestTyped(sendtransfer, new Object(), new x3(e2Var, callback, a2Var, i0Var, sendtransfer, 6));
+            e2Var.f34434f.sendRequestTyped(sendtransfer, new Object(), new x3(e2Var, callback, a2Var, i0Var, sendtransfer, 6));
         } else {
             callback.run("Request expired or wallet changed");
         }
@@ -137,18 +137,18 @@ public final class g3 implements Runnable {
         org.telegram.ui.ActionBar.g6 g6Var = b1Var.e;
         if (tLObject != null) {
             if (tLObject instanceof TLRPC.TL_urlAuthResultRequest) {
-                xk0.b(false, b1Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, b1Var);
+                wk0.b(false, b1Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultRequest) tLObject, null, null, null, false, b1Var);
             } else if (tLObject instanceof TLRPC.TL_urlAuthResultAccepted) {
-                xk0.b(false, b1Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, null, false, b1Var);
+                wk0.b(false, b1Var.M, tL_messages_requestUrlAuth, (TLRPC.TL_urlAuthResultAccepted) tLObject, null, null, null, false, b1Var);
             } else if (tLObject instanceof TLRPC.TL_urlAuthResultDefault) {
-                org.telegram.ui.Components.f5.p0(b1Var.getContext(), str, false, true, true, false, 0L, null, null, null);
+                org.telegram.ui.Components.d5.o0(b1Var.getContext(), str, false, true, true, false, 0L, null, null, null);
             }
         } else if (tL_error != null) {
             if ("URL_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                new org.telegram.ui.Components.xc(b1Var, g6Var).M(LocaleController.getString(R.string.BotAuthLoggedInFailTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str2), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Gi, g6Var)), R.raw.error).j();
+                new org.telegram.ui.Components.vc(b1Var, g6Var).M(LocaleController.getString(R.string.BotAuthLoggedInFailTitle), AndroidUtilities.replaceSingleLinkBold(LocaleController.formatString(R.string.BotAuthLoggedInFail, str2), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Gi, g6Var)), R.raw.error).j();
                 return;
             }
-            new org.telegram.ui.Components.xc(b1Var, g6Var).f0(tL_error, false);
+            new org.telegram.ui.Components.vc(b1Var, g6Var).f0(tL_error, false);
         }
     }
 
@@ -164,7 +164,7 @@ public final class g3 implements Runnable {
             return;
         }
         int[] iArr = new int[11];
-        Utilities.globalQueue.postRunnable(new fy0(file, iArr, new v7((NotificationCenter.NotificationCenterDelegate) b1Var, (Object) iArr, (Object) file, (Object) c2Var, str, (Object) str2, (Object) str3, 14), 6));
+        Utilities.globalQueue.postRunnable(new ey0(file, iArr, new v7((NotificationCenter.NotificationCenterDelegate) b1Var, (Object) iArr, (Object) file, (Object) c2Var, str, (Object) str2, (Object) str3, 14), 6));
     }
 
     @Override
@@ -212,19 +212,19 @@ public final class g3 implements Runnable {
         this.d = characterStyle;
     }
 
-    public g3(an0 an0Var, TLRPC.TL_error tL_error, String str, qm0 qm0Var, TLObject tLObject, TL_account.sendVerifyPhoneCode sendverifyphonecode) {
+    public g3(zm0 zm0Var, TLRPC.TL_error tL_error, String str, pm0 pm0Var, TLObject tLObject, TL_account.sendVerifyPhoneCode sendverifyphonecode) {
         this.f1341a = 16;
-        this.f1342b = an0Var;
+        this.f1342b = zm0Var;
         this.d = tL_error;
         this.e = str;
-        this.f1344f = qm0Var;
+        this.f1344f = pm0Var;
         this.f1343c = tLObject;
         this.h = sendverifyphonecode;
     }
 
-    public g3(s21 s21Var, TLObject tLObject, CharSequence charSequence, TLRPC.TL_error tL_error, byte[] bArr, String str) {
+    public g3(r21 r21Var, TLObject tLObject, CharSequence charSequence, TLRPC.TL_error tL_error, byte[] bArr, String str) {
         this.f1341a = 17;
-        this.f1342b = s21Var;
+        this.f1342b = r21Var;
         this.f1343c = tLObject;
         this.e = charSequence;
         this.d = tL_error;
@@ -232,9 +232,9 @@ public final class g3 implements Runnable {
         this.h = str;
     }
 
-    public g3(l61 l61Var, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TLRPC.User user, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
+    public g3(k61 k61Var, TLRPC.TL_error tL_error, TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP, TLRPC.User user, TwoStepVerificationActivity twoStepVerificationActivity, TLRPC.TL_channels_editCreator tL_channels_editCreator) {
         this.f1341a = 19;
-        this.f1342b = l61Var;
+        this.f1342b = k61Var;
         this.d = tL_error;
         this.f1343c = inputCheckPasswordSRP;
         this.e = user;
@@ -252,12 +252,12 @@ public final class g3 implements Runnable {
         this.h = str2;
     }
 
-    public g3(yh.o1 o1Var, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, di1 di1Var, Utilities.Callback callback, TLRPC.TL_error tL_error) {
+    public g3(yh.o1 o1Var, org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, ci1 ci1Var, Utilities.Callback callback, TLRPC.TL_error tL_error) {
         this.f1341a = 27;
         this.f1342b = o1Var;
         this.e = c2Var;
         this.f1343c = tLObject;
-        this.f1344f = di1Var;
+        this.f1344f = ci1Var;
         this.h = callback;
         this.d = tL_error;
     }

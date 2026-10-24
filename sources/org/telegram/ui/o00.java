@@ -9,23 +9,23 @@ import android.text.TextPaint;
 import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
 public class o00 extends ReplacementSpan {
-    public final TextPaint f40030a;
-    public final Paint f40031b;
-    public StaticLayout f40032c;
+    public final TextPaint f40043a;
+    public final Paint f40044b;
+    public StaticLayout f40045c;
     public float d;
     public float e;
-    public int f40033f;
+    public int f40046f;
     public final int h;
-    public boolean f40034n;
-    public int f40035r;
-    public org.telegram.ui.ActionBar.g6 f40036s;
+    public boolean f40047n;
+    public int f40048r;
+    public org.telegram.ui.ActionBar.g6 f40049s;
     public CharSequence v;
 
     public o00(int i10) {
         TextPaint textPaint = new TextPaint(1);
-        this.f40030a = textPaint;
+        this.f40043a = textPaint;
         Paint paint = new Paint(1);
-        this.f40031b = paint;
+        this.f40044b = paint;
         this.v = "NEW";
         this.h = i10;
         textPaint.setTypeface(AndroidUtilities.bold());
@@ -34,11 +34,11 @@ public class o00 extends ReplacementSpan {
     }
 
     public final void a() {
-        if (this.f40032c == null) {
-            StaticLayout staticLayout = new StaticLayout(this.v, this.f40030a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-            this.f40032c = staticLayout;
+        if (this.f40045c == null) {
+            StaticLayout staticLayout = new StaticLayout(this.v, this.f40043a, AndroidUtilities.displaySize.x, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f40045c = staticLayout;
             this.d = staticLayout.getLineWidth(0);
-            this.e = this.f40032c.getHeight();
+            this.e = this.f40045c.getHeight();
         }
     }
 
@@ -47,21 +47,21 @@ public class o00 extends ReplacementSpan {
         int i15;
         float f10;
         a();
-        if (this.f40034n) {
-            this.f40033f = org.telegram.ui.ActionBar.k6.w0(this.f40035r, this.f40036s);
+        if (this.f40047n) {
+            this.f40046f = org.telegram.ui.ActionBar.k6.w0(this.f40048r, this.f40049s);
         }
-        int i16 = this.f40033f;
+        int i16 = this.f40046f;
         if (i16 == 0) {
             i16 = paint.getColor();
         }
-        Paint paint2 = this.f40031b;
+        Paint paint2 = this.f40044b;
         paint2.setColor(i16);
         if (AndroidUtilities.computePerceivedBrightness(i16) > 0.721f) {
             i15 = -16777216;
         } else {
             i15 = -1;
         }
-        TextPaint textPaint = this.f40030a;
+        TextPaint textPaint = this.f40043a;
         textPaint.setColor(i15);
         paint2.setAlpha((int) (paint2.getAlpha() * 1.0f));
         textPaint.setAlpha((int) (textPaint.getAlpha() * 1.0f));
@@ -80,7 +80,7 @@ public class o00 extends ReplacementSpan {
         canvas.drawRoundRect(rectF, dp3, dp3, paint2);
         canvas.save();
         canvas.translate(dp, dp2);
-        this.f40032c.draw(canvas);
+        this.f40045c.draw(canvas);
         canvas.restore();
     }
 
@@ -92,9 +92,9 @@ public class o00 extends ReplacementSpan {
 
     public o00() {
         TextPaint textPaint = new TextPaint(1);
-        this.f40030a = textPaint;
+        this.f40043a = textPaint;
         Paint paint = new Paint(1);
-        this.f40031b = paint;
+        this.f40044b = paint;
         this.v = "NEW";
         textPaint.setTypeface(AndroidUtilities.bold());
         paint.setStyle(Paint.Style.FILL);

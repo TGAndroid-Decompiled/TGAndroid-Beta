@@ -1,67 +1,43 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.messenger.AndroidUtilities;
-public final class xy0 extends org.telegram.ui.Components.t90 {
-    public final ProfileActivity P0;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Stories.ProfileStoriesView;
+public final class xy0 extends ProfileStoriesView {
+    public final Context f43712t0;
+    public final ProfileActivity f43713u0;
 
-    public xy0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.P0 = profileActivity;
+    public xy0(ProfileActivity profileActivity, Context context, int i10, long j10, boolean z10, l0 l0Var, uy0 uy0Var, org.telegram.ui.ActionBar.g6 g6Var, Context context2) {
+        super(context, i10, j10, z10, l0Var, uy0Var, g6Var);
+        this.f43713u0 = profileActivity;
+        this.f43712t0 = context2;
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        this.P0.D3();
-    }
-
-    @Override
-    public final void setTextColor(int i10) {
-        int o12;
-        super.setTextColor(i10);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.n5[] n5VarArr = profileActivity.f34000r;
-        org.telegram.ui.ActionBar.n5 n5Var = n5VarArr[2];
-        if (n5Var != null) {
-            n5Var.setTextColor(i10);
-            n5VarArr[3].setTextColor(i10);
+    public final void e(a4.l lVar) {
+        TL_stories.PeerStories peerStories;
+        TL_stories.PeerStories peerStories2;
+        ProfileActivity profileActivity = this.f43713u0;
+        long a2 = profileActivity.a();
+        ci.h7 storiesController = profileActivity.getMessagesController().getStoriesController();
+        boolean I = storiesController.I(a2);
+        Context context = this.f43712t0;
+        if (!I && !storiesController.K(a2) && !storiesController.N(a2)) {
+            TLRPC.UserFull userFull = profileActivity.f34042w2;
+            if (userFull != null && (peerStories2 = userFull.stories) != null && !peerStories2.stories.isEmpty() && profileActivity.f33923f1 != profileActivity.getUserConfig().clientUserId) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34042w2.stories, lVar);
+                return;
+            }
+            TLRPC.ChatFull chatFull = profileActivity.f34034v2;
+            if (chatFull != null && (peerStories = chatFull.stories) != null && !peerStories.stories.isEmpty()) {
+                profileActivity.getOrCreateStoryViewer().E(context, profileActivity.f34034v2.stories, lVar);
+                return;
+            } else {
+                profileActivity.M3();
+                return;
+            }
         }
-        r01 r01Var = profileActivity.f33940h6;
-        if (r01Var != null && r01Var.f40961c != (o12 = org.telegram.ui.ActionBar.k6.o1(1.4f, org.telegram.ui.ActionBar.k6.b(-0.02f, 0.15f, i10)))) {
-            r01Var.f40961c = o12;
-            r01Var.invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        ProfileActivity profileActivity = this.P0;
-        profileActivity.b4();
-        profileActivity.getClass();
-        profileActivity.f34000r[2].setTranslationX(f7);
-        profileActivity.f34000r[3].setTranslationX(f7);
-        org.telegram.ui.Components.hx0 hx0Var = profileActivity.T;
-        if (hx0Var != null) {
-            hx0Var.setTranslationX(f7 - profileActivity.b4());
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.n5[] n5VarArr = profileActivity.f34000r;
-        if (profileActivity.T != null) {
-            AndroidUtilities.dp(3.0f);
-            profileActivity.T.getVisibilityFactor();
-        }
-        n5VarArr[2].setTranslationY(f7);
-        n5VarArr[3].setTranslationY(f7);
-        org.telegram.ui.Components.hx0 hx0Var = profileActivity.T;
-        if (hx0Var != null) {
-            hx0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
-        }
+        profileActivity.getOrCreateStoryViewer().D(context, a2, lVar);
     }
 }

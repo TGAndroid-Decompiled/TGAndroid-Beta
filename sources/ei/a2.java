@@ -18,8 +18,8 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.yq;
-import org.telegram.ui.b61;
+import org.telegram.ui.Components.wq;
+import org.telegram.ui.a61;
 public final class a2 extends s4.g0 {
     public final TLRPC.TL_inputStickerSetShortName E;
     public TLRPC.TL_messages_stickerSet F;
@@ -92,8 +92,8 @@ public final class a2 extends s4.g0 {
         TLRPC.StickerSet stickerSet;
         b2 b2Var = this.N;
         n2 n2Var = b2Var.f8783s;
-        int i11 = b1Var.f46346f;
-        View view = b1Var.f46343a;
+        int i11 = b1Var.f46345f;
+        View view = b1Var.f46342a;
         if (i11 == 0) {
             view.setTag(34);
             view.setLayoutParams(new s4.o0(-1, (int) n2Var.f9513n));
@@ -147,21 +147,21 @@ public final class a2 extends s4.g0 {
                     int i15 = org.telegram.ui.ActionBar.k6.Me;
                     org.telegram.ui.ActionBar.n6 M = org.telegram.ui.ActionBar.r6.M(0.12f, i15);
                     g6Var = ((org.telegram.ui.ActionBar.h3) n2Var).resourcesProvider;
-                    org.telegram.ui.ActionBar.r6.l(n1Var, c02, M.f21710a, -1, 2, M.d, g6Var, PorterDuff.Mode.SRC_IN);
+                    org.telegram.ui.ActionBar.r6.l(n1Var, c02, M.f21711a, -1, 2, M.d, g6Var, PorterDuff.Mode.SRC_IN);
                     Drawable mutate = b2Var.getResources().getDrawable(R.drawable.filled_add_sticker).mutate();
                     g6Var2 = ((org.telegram.ui.ActionBar.h3) n2Var).resourcesProvider;
                     org.telegram.ui.ActionBar.r6.z(n1Var, mutate, i15, g6Var2, PorterDuff.Mode.MULTIPLY);
-                    yq yqVar = new yq(c02, mutate);
+                    wq wqVar = new wq(c02, mutate);
                     int dp = AndroidUtilities.dp(56.0f);
                     int dp2 = AndroidUtilities.dp(56.0f);
-                    yqVar.h = dp;
-                    yqVar.f33016n = dp2;
+                    wqVar.h = dp;
+                    wqVar.f32326n = dp2;
                     int dp3 = AndroidUtilities.dp(24.0f);
                     int dp4 = AndroidUtilities.dp(24.0f);
-                    yqVar.e = dp3;
-                    yqVar.f33015f = dp4;
-                    yqVar.f33017r = true;
-                    n1Var.f9503a = yqVar;
+                    wqVar.e = dp3;
+                    wqVar.f32325f = dp4;
+                    wqVar.f32327r = true;
+                    n1Var.f9503a = wqVar;
                 }
                 n1Var.setDrawable(n1Var.f9503a);
                 return;
@@ -190,9 +190,9 @@ public final class a2 extends s4.g0 {
                         z10 = false;
                     }
                     if (n1Var.h != longValue) {
-                        org.telegram.ui.Components.r5 r5Var = n1Var.d;
-                        if (r5Var != null) {
-                            r5Var.o(n1Var);
+                        org.telegram.ui.Components.p5 p5Var = n1Var.d;
+                        if (p5Var != null) {
+                            p5Var.o(n1Var);
                         }
                         if (longValue != 0) {
                             n1Var.f9504b = true;
@@ -204,7 +204,7 @@ public final class a2 extends s4.g0 {
                             if (!LiteMode.isEnabled(i12)) {
                                 i14 = 13;
                             }
-                            org.telegram.ui.Components.r5 n10 = org.telegram.ui.Components.r5.n(i17, longValue, null, i14);
+                            org.telegram.ui.Components.p5 n10 = org.telegram.ui.Components.p5.n(i17, longValue, null, i14);
                             n1Var.d = n10;
                             if (n1Var.v) {
                                 n10.a(n1Var);
@@ -230,7 +230,7 @@ public final class a2 extends s4.g0 {
             int i18 = this.K;
             if (x1Var.f10079b != i18) {
                 x1Var.f10079b = i18;
-                b61.D(UserConfig.selectedAccount, x1Var.f10078a);
+                a61.D(UserConfig.selectedAccount, x1Var.f10078a);
             }
         }
     }
@@ -258,9 +258,9 @@ public final class a2 extends s4.g0 {
             }
             ?? frameLayout = new FrameLayout(context2);
             frameLayout.f10079b = -1;
-            org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context2);
-            frameLayout.f10078a = w9Var;
-            frameLayout.addView(w9Var, w7.z5.e(36, 36, 17));
+            org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context2);
+            frameLayout.f10078a = u9Var;
+            frameLayout.addView(u9Var, w7.z5.e(36, 36, 17));
             TextView textView = new TextView(context2);
             textView.setTextSize(1, 14.0f);
             textView.setTextColor(-8553090);

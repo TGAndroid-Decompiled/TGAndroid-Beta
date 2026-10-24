@@ -6,10 +6,10 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class y8 {
     public final m4 f6165a;
-    public final org.telegram.ui.Components.f6 f6166b;
+    public final org.telegram.ui.Components.d6 f6166b;
     public final TextPaint f6167c;
     public final StaticLayout d;
     public final float e;
@@ -21,7 +21,7 @@ public final class y8 {
     public y8(p4 p4Var, m4 m4Var) {
         float f7;
         this.f6165a = m4Var;
-        this.f6166b = new org.telegram.ui.Components.f6(p4Var, 0L, 360L, bs.h);
+        this.f6166b = new org.telegram.ui.Components.d6(p4Var, 0L, 360L, zr.h);
         TextPaint textPaint = new TextPaint(1);
         this.f6167c = textPaint;
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));

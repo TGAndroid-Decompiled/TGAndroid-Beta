@@ -9,10 +9,10 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.am0;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.zl0;
 import org.telegram.ui.ua0;
-public final class g0 implements am0 {
+public final class g0 implements zl0 {
     public final int f5344a;
     public final Object f5345b;
     public final Object f5346c;
@@ -37,7 +37,7 @@ public final class g0 implements am0 {
                 m2 m2Var = (m2) obj3;
                 q0 q0Var = (q0) view;
                 v0 v0Var = q0Var.K;
-                j80 F = j80.F((ViewGroup) obj2, new b(), view);
+                h80 F = h80.F((ViewGroup) obj2, new b(), view);
                 F.p(15, -1, LocaleController.formatString(R.string.LiveStoryMessageSent, LocaleController.formatDateTime(v0Var.d, true)));
                 F.k();
                 F.c(R.drawable.msg_openprofile, LocaleController.getString(R.string.OpenProfile), new qa(9, (z9) obj, v0Var), false);
@@ -65,7 +65,7 @@ public final class g0 implements am0 {
                     return;
                 } else if (!w7.g6.a(ua0Var)) {
                     s4.c0 c0Var = new s4.c0(context);
-                    c0Var.f46484a = i10;
+                    c0Var.f46483a = i10;
                     tVar.Z2.w0(c0Var);
                     w7.g6.b(ua0Var);
                     int i12 = org.telegram.ui.Cells.s.h;

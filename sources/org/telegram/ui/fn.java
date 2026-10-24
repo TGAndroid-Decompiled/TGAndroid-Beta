@@ -6,31 +6,31 @@ import android.view.View;
 import java.util.ArrayList;
 import java.util.Collections;
 public final class fn extends View {
-    public final ArrayList f37371a;
-    public final ArrayList f37372b;
-    public final sn f37373c;
+    public final ArrayList f37354a;
+    public final ArrayList f37355b;
+    public final sn f37356c;
 
     public fn(sn snVar, Context context) {
         super(context);
-        this.f37373c = snVar;
-        this.f37371a = new ArrayList();
-        this.f37372b = new ArrayList();
+        this.f37356c = snVar;
+        this.f37354a = new ArrayList();
+        this.f37355b = new ArrayList();
     }
 
     public final void a() {
-        ArrayList arrayList = this.f37371a;
+        ArrayList arrayList = this.f37354a;
         arrayList.clear();
-        sn snVar = this.f37373c;
+        sn snVar = this.f37356c;
         arrayList.add(snVar.W1);
-        arrayList.add(snVar.f41737x0);
+        arrayList.add(snVar.f41734x0);
         arrayList.add(snVar.X);
         arrayList.add(snVar.W3);
         arrayList.add(snVar.U1);
-        arrayList.add(snVar.f41563j3);
+        arrayList.add(snVar.f41560j3);
         arrayList.add(snVar.Y);
-        arrayList.add(snVar.f41711v1);
+        arrayList.add(snVar.f41708v1);
         arrayList.add(snVar.S);
-        arrayList.add(snVar.f41490d2);
+        arrayList.add(snVar.f41487d2);
         arrayList.removeAll(Collections.singleton(null));
     }
 
@@ -42,9 +42,9 @@ public final class fn extends View {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        sn snVar = this.f37373c;
+        sn snVar = this.f37356c;
         snVar.Fc = true;
-        ArrayList arrayList = this.f37372b;
+        ArrayList arrayList = this.f37355b;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -60,9 +60,9 @@ public final class fn extends View {
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
         a();
-        sn snVar = this.f37373c;
+        sn snVar = this.f37356c;
         snVar.Fc = true;
-        ArrayList arrayList = this.f37371a;
+        ArrayList arrayList = this.f37354a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {
@@ -71,7 +71,7 @@ public final class fn extends View {
             View view = (View) obj;
             if (view.getVisibility() == 0) {
                 view.setVisibility(8);
-                this.f37372b.add(view);
+                this.f37355b.add(view);
             }
         }
         snVar.Fc = false;
@@ -81,7 +81,7 @@ public final class fn extends View {
     public void setTranslationX(float f7) {
         super.setTranslationX(f7);
         a();
-        ArrayList arrayList = this.f37371a;
+        ArrayList arrayList = this.f37354a;
         int size = arrayList.size();
         int i10 = 0;
         while (i10 < size) {

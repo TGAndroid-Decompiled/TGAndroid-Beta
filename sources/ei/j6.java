@@ -20,8 +20,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.bs;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.zr;
 public final class j6 extends View {
     public final Paint f9259a;
     public final Paint f9260b;
@@ -31,7 +31,7 @@ public final class j6 extends View {
     public final int f9262f;
     public final int h;
     public final boolean f9263n;
-    public final org.telegram.ui.Components.f6 f9264r;
+    public final org.telegram.ui.Components.d6 f9264r;
     public boolean f9265s;
     public float v;
     public ValueAnimator f9266w;
@@ -47,7 +47,7 @@ public final class j6 extends View {
         this.f9259a = paint;
         Paint paint2 = new Paint(1);
         this.f9260b = paint2;
-        this.f9264r = new org.telegram.ui.Components.f6(this, 0L, 220L, bs.h);
+        this.f9264r = new org.telegram.ui.Components.d6(this, 0L, 220L, zr.h);
         this.f9265s = true;
         this.f9263n = z10;
         paint.setColor(-15098625);
@@ -161,7 +161,7 @@ public final class j6 extends View {
                     this.f9266w = ofFloat;
                     ofFloat.addUpdateListener(new i6(this, 0));
                     this.f9266w.addListener(new ah.b(this, 21));
-                    sl.l(1.5f, this.f9266w);
+                    tl.l(1.5f, this.f9266w);
                     this.f9266w.setDuration(350L);
                     this.f9266w.start();
                 }

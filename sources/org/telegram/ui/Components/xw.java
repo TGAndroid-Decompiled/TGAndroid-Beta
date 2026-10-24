@@ -1,19 +1,20 @@
 package org.telegram.ui.Components;
+public final class xw implements Runnable {
+    public final int f32708a;
+    public final fz f32709b;
 
-import android.content.Context;
-public final class xw extends gz {
-    public final tz H;
-
-    public xw(tz tzVar, Context context) {
-        super(tzVar, context, 2);
-        this.H = tzVar;
+    public xw(fz fzVar, int i10) {
+        this.f32708a = i10;
+        this.f32709b = fzVar;
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        if (getTranslationY() != f7) {
-            super.setTranslationY(f7);
-            this.H.f30978g0.invalidate();
+    public final void run() {
+        switch (this.f32708a) {
+            case 0:
+            default:
+                this.f32709b.e();
+                return;
         }
     }
 }

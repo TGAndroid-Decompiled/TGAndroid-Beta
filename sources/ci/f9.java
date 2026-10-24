@@ -9,13 +9,13 @@ import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class f9 extends Drawable {
     public int f5329a;
     public final View f5330b;
     public final Paint f5331c;
     public final Paint d;
-    public final org.telegram.ui.Components.f6 f5333g;
+    public final org.telegram.ui.Components.d6 f5333g;
     public boolean h;
     public Paint f5334i;
     public int e = 255;
@@ -24,7 +24,7 @@ public final class f9 extends Drawable {
 
     public f9(View view) {
         this.f5330b = view;
-        this.f5333g = new org.telegram.ui.Components.f6(view, 350L, bs.h);
+        this.f5333g = new org.telegram.ui.Components.d6(view, 350L, zr.h);
         Paint paint = new Paint(1);
         this.f5331c = paint;
         paint.setShadowLayer(AndroidUtilities.dp(4.0f), 0.0f, 0.0f, 1593835520);

@@ -20,8 +20,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.ix0;
+import org.telegram.ui.Components.hx0;
+import org.telegram.ui.Components.zr;
 public final class q8 extends View implements org.telegram.ui.Cells.x9 {
     public int E;
     public int F;
@@ -80,9 +80,9 @@ public final class q8 extends View implements org.telegram.ui.Cells.x9 {
         if (Build.VERSION.SDK_INT >= 24) {
             StaticLayout.Builder hyphenationFrequency = StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setBreakStrategy(0).setHyphenationFrequency(0);
             if (LocaleController.isRTL) {
-                alignment = ix0.a();
+                alignment = hx0.a();
             } else {
-                Layout.Alignment[] alignmentArr = ix0.f27468a;
+                Layout.Alignment[] alignmentArr = hx0.f27193a;
                 if (alignmentArr.length >= 5) {
                     alignment = alignmentArr[3];
                 } else {
@@ -123,7 +123,7 @@ public final class q8 extends View implements org.telegram.ui.Cells.x9 {
             p8 p8Var4 = p8VarArr[1];
             p8 p8Var5 = p8VarArr[0];
             p8Var4.f5748q = p8Var5.f5748q;
-            p8Var4.f5749r.d(p8Var5.f5749r.f26180c, true);
+            p8Var4.f5749r.d(p8Var5.f5749r.f25568c, true);
             p8VarArr[0].g(charSequence, m8Var, m8Var2);
             p8 p8Var6 = p8VarArr[0];
             p8Var6.f5748q = z10;
@@ -139,7 +139,7 @@ public final class q8 extends View implements org.telegram.ui.Cells.x9 {
             ofFloat.addUpdateListener(new ah.c0(this, 21));
             this.I.addListener(new ah.b(this, 15));
             this.I.setDuration(180L);
-            this.I.setInterpolator(bs.f25134g);
+            this.I.setInterpolator(zr.f33338g);
             this.I.start();
             return;
         }
@@ -186,8 +186,8 @@ public final class q8 extends View implements org.telegram.ui.Cells.x9 {
         int i10 = 0;
         p8 p8Var = this.f5803r[0];
         q8 q8Var = p8Var.v;
-        org.telegram.ui.Components.a6.release(q8Var, p8Var.d);
-        org.telegram.ui.Components.a6.release(q8Var, p8Var.f5738f);
+        org.telegram.ui.Components.y5.release(q8Var, p8Var.d);
+        org.telegram.ui.Components.y5.release(q8Var, p8Var.f5738f);
         if (p8Var.h == null) {
             return;
         }
@@ -196,7 +196,7 @@ public final class q8 extends View implements org.telegram.ui.Cells.x9 {
             if (i10 < n8VarArr.length) {
                 n8 n8Var = n8VarArr[i10];
                 if (n8Var != null) {
-                    org.telegram.ui.Components.a6.release(q8Var, n8Var.f5607a);
+                    org.telegram.ui.Components.y5.release(q8Var, n8Var.f5607a);
                 }
                 i10++;
             } else {

@@ -4,7 +4,7 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.xp;
+import org.telegram.ui.Components.vp;
 public final class c2 implements View.OnClickListener {
     public final int f1070a;
     public final l7 f1071b;
@@ -96,8 +96,8 @@ public final class c2 implements View.OnClickListener {
             case 18:
                 l7 l7Var5 = this.f1071b;
                 if (!l7Var5.f1730k0.Q) {
-                    xp xpVar = l7Var5.f1752w0;
-                    xpVar.a(!xpVar.f32618a.f24296q, true);
+                    vp vpVar = l7Var5.f1752w0;
+                    vpVar.a(!vpVar.f32005a.f24297q, true);
                     return;
                 }
                 return;

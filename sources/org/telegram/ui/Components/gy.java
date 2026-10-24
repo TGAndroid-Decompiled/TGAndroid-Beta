@@ -1,69 +1,184 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-public final class gy extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public int f26736a;
-    public boolean f26737b;
-    public final FrameLayout f26738c;
-    public final tz d;
+import android.widget.TextView;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.TLRPC;
+public final class gy implements View.OnClickListener {
+    public final int f26811a;
+    public final hy f26812b;
 
-    public gy(tz tzVar, Context context) {
-        super(context);
-        this.d = tzVar;
-        org.telegram.ui.ActionBar.q6 q6Var = org.telegram.ui.ActionBar.r6.f21816a;
-        q6 q6Var2 = new q6(getContext(), false, false, false);
-        q6Var2.b(0.3f, 250L, bs.h);
-        q6Var2.setTextSize(AndroidUtilities.dp(14.0f));
-        q6Var2.setTypeface(AndroidUtilities.bold());
-        int i10 = org.telegram.ui.ActionBar.k6.Sh;
-        org.telegram.ui.ActionBar.g6 g6Var = tzVar.Z1;
-        org.telegram.ui.ActionBar.r6.a0(q6Var2, i10, g6Var);
-        q6Var2.setGravity(17);
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f26738c = frameLayout;
-        frameLayout.setBackground(org.telegram.ui.ActionBar.a6.e(new float[]{8.0f}, tzVar.A(org.telegram.ui.ActionBar.k6.Oh)));
-        frameLayout.addView(q6Var2, w7.z5.e(-1, -2, 17));
-        addView(frameLayout, w7.z5.c(-1.0f, -1));
-        sg.p0 p0Var = new sg.p0(getContext(), g6Var, false);
-        p0Var.setIcon(R.raw.unlock_icon);
-        addView(p0Var, w7.z5.c(-1.0f, -1));
+    public gy(hy hyVar, int i10) {
+        this.f26811a = i10;
+        this.f26812b = hyVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(11.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(11.0f));
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            int A = this.d.A(org.telegram.ui.ActionBar.k6.Oh);
-            FrameLayout frameLayout = this.f26738c;
-            if (frameLayout != null) {
-                if (A == this.f26736a) {
-                    if (this.f26737b != org.telegram.ui.ActionBar.k6.I.q()) {
+    public final void onClick(View view) {
+        TLRPC.StickerSet stickerSet;
+        TLRPC.StickerSet stickerSet2;
+        Integer num;
+        View view2;
+        int R;
+        int i10;
+        TLRPC.StickerSet stickerSet3;
+        int i11 = this.f26811a;
+        hy hyVar = this.f26812b;
+        switch (i11) {
+            case 0:
+                dy dyVar = hyVar.f27201w;
+                if (dyVar != null && (stickerSet = dyVar.f25856b) != null) {
+                    rz rzVar = hyVar.G;
+                    if (!rzVar.f30374w2) {
+                        rzVar.f30374w2 = true;
+                        ArrayList arrayList = new ArrayList(1);
+                        TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
+                        tL_inputStickerSetID.f20364id = stickerSet.f20371id;
+                        tL_inputStickerSetID.access_hash = stickerSet.access_hash;
+                        arrayList.add(tL_inputStickerSetID);
+                        new ix(rzVar, rzVar.Y1, rzVar.getContext(), rzVar.Z1, arrayList, stickerSet).show();
+                        return;
                     }
+                    return;
                 }
-                this.f26737b = org.telegram.ui.ActionBar.k6.I.q();
-                this.f26736a = A;
-                org.telegram.ui.ActionBar.k6.E1(frameLayout.getBackground(), A, false);
-                org.telegram.ui.ActionBar.k6.E1(frameLayout.getBackground(), org.telegram.ui.ActionBar.a6.b(A), true);
-                frameLayout.invalidate();
-            }
-            invalidate();
-        } catch (Exception e) {
-            FileLog.e(e);
+                return;
+            case 1:
+                sg.p0 p0Var = hyVar.f27199r;
+                TextView textView = hyVar.f27198n;
+                TextView textView2 = hyVar.h;
+                if (textView2 != null && textView2.getVisibility() == 0 && textView2.isEnabled()) {
+                    textView2.performClick();
+                    return;
+                } else if (textView != null && textView.getVisibility() == 0 && textView.isEnabled()) {
+                    textView.performClick();
+                    return;
+                } else if (p0Var != null && p0Var.getVisibility() == 0 && p0Var.v.isEnabled()) {
+                    p0Var.performClick();
+                    return;
+                } else {
+                    return;
+                }
+            case 2:
+                rz rzVar2 = hyVar.G;
+                ArrayList arrayList2 = rzVar2.f30349p1;
+                dy dyVar2 = hyVar.f27201w;
+                if (dyVar2 != null && (stickerSet2 = dyVar2.f25856b) != null) {
+                    dyVar2.f25858f = true;
+                    yx yxVar = rzVar2.R;
+                    int i12 = rzVar2.f30310c1;
+                    ArrayList arrayList3 = rzVar2.f30352q1;
+                    cy cyVar = rzVar2.P;
+                    if (!arrayList2.contains(Long.valueOf(stickerSet2.f20371id))) {
+                        arrayList2.add(Long.valueOf(hyVar.f27201w.f25856b.f20371id));
+                    }
+                    hyVar.a(true);
+                    int i13 = 0;
+                    while (true) {
+                        if (i13 < cyVar.getChildCount()) {
+                            if ((cyVar.getChildAt(i13) instanceof fy) && (R = RecyclerView.R((view2 = cyVar.getChildAt(i13)))) >= 0 && (i10 = yxVar.f33075w.get(R)) >= 0 && i10 < arrayList3.size() && arrayList3.get(i10) != null && hyVar.f27201w != null && ((dy) arrayList3.get(i10)).f25856b.f20371id == hyVar.f27201w.f25856b.f20371id) {
+                                num = Integer.valueOf(R);
+                            } else {
+                                i13++;
+                            }
+                        } else {
+                            num = null;
+                            view2 = null;
+                        }
+                    }
+                    if (num != null) {
+                        yxVar.E(num.intValue(), view2);
+                    }
+                    if (hyVar.f27200s == null) {
+                        TLRPC.TL_inputStickerSetID tL_inputStickerSetID2 = new TLRPC.TL_inputStickerSetID();
+                        TLRPC.StickerSet stickerSet4 = hyVar.f27201w.f25856b;
+                        tL_inputStickerSetID2.f20364id = stickerSet4.f20371id;
+                        tL_inputStickerSetID2.access_hash = stickerSet4.access_hash;
+                        TLRPC.TL_messages_stickerSet stickerSet5 = MediaDataController.getInstance(i12).getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID2, true);
+                        if (stickerSet5 != null && stickerSet5.set != null) {
+                            org.telegram.ui.ActionBar.o2 o2Var = rzVar2.Y1;
+                            if (o2Var == null) {
+                                o2Var = new ai.a5(hyVar, 7);
+                            }
+                            yv.g0(o2Var, stickerSet5, true, null, new xp(hyVar, 15));
+                            return;
+                        }
+                        NotificationCenter.getInstance(i12).addObserver(hyVar, NotificationCenter.groupStickersDidLoad);
+                        MediaDataController mediaDataController = MediaDataController.getInstance(i12);
+                        hyVar.f27200s = tL_inputStickerSetID2;
+                        mediaDataController.getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID2, false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                rz rzVar3 = hyVar.G;
+                dy dyVar3 = hyVar.f27201w;
+                if (dyVar3 != null && (stickerSet3 = dyVar3.f25856b) != null) {
+                    dyVar3.f25858f = false;
+                    ArrayList arrayList4 = rzVar3.f30349p1;
+                    int i14 = rzVar3.f30310c1;
+                    arrayList4.remove(Long.valueOf(stickerSet3.f20371id));
+                    hyVar.a(true);
+                    tx txVar = rzVar3.I;
+                    if (txVar != null) {
+                        txVar.p(rzVar3.getEmojipacks());
+                    }
+                    rzVar3.U(rzVar3.Q.I0());
+                    if (hyVar.v == null) {
+                        TLRPC.TL_inputStickerSetID tL_inputStickerSetID3 = new TLRPC.TL_inputStickerSetID();
+                        TLRPC.StickerSet stickerSet6 = hyVar.f27201w.f25856b;
+                        tL_inputStickerSetID3.f20364id = stickerSet6.f20371id;
+                        tL_inputStickerSetID3.access_hash = stickerSet6.access_hash;
+                        TLRPC.TL_messages_stickerSet stickerSet7 = MediaDataController.getInstance(i14).getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID3, true);
+                        if (stickerSet7 != null && stickerSet7.set != null) {
+                            org.telegram.ui.ActionBar.o2 o2Var2 = rzVar3.Y1;
+                            if (o2Var2 == null) {
+                                o2Var2 = new ai.a5(hyVar, 7);
+                            }
+                            org.telegram.ui.ActionBar.o2 o2Var3 = o2Var2;
+                            wt wtVar = new wt(4, hyVar, stickerSet7);
+                            Pattern pattern = yv.V;
+                            if (o2Var3.getFragmentView() != null) {
+                                MediaDataController.getInstance(o2Var3.getCurrentAccount()).toggleStickerSet(o2Var3.getFragmentView().getContext(), stickerSet7, 0, o2Var3, true, true, wtVar, false);
+                                return;
+                            }
+                            return;
+                        }
+                        NotificationCenter.getInstance(i14).addObserver(hyVar, NotificationCenter.groupStickersDidLoad);
+                        MediaDataController mediaDataController2 = MediaDataController.getInstance(i14);
+                        hyVar.v = tL_inputStickerSetID3;
+                        mediaDataController2.getStickerSet((TLRPC.InputStickerSet) tL_inputStickerSetID3, false);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 4:
+                sy syVar = hyVar.G.f30363t1;
+                if (syVar != null) {
+                    syVar.q();
+                    return;
+                }
+                return;
+            case 5:
+                sy syVar2 = hyVar.G.f30363t1;
+                if (syVar2 != null) {
+                    syVar2.q();
+                    return;
+                }
+                return;
+            default:
+                sy syVar3 = hyVar.G.f30363t1;
+                if (syVar3 != null) {
+                    syVar3.q();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
     }
 }

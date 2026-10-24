@@ -10,11 +10,11 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.b61;
-public final class y extends b61 {
+import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.y5;
+import org.telegram.ui.a61;
+public final class y extends a61 {
     public boolean f906e2;
     public final a0 f907f2;
 
@@ -42,19 +42,19 @@ public final class y extends b61 {
         LinkedHashMap linkedHashMap = a0Var.E;
         if (linkedHashMap.containsKey(l4)) {
             arrayList.remove(l4);
-            a6 a6Var = (a6) linkedHashMap.remove(l4);
-            a6Var.setRemoved(new a1.f(9, this, a6Var));
-            a0Var.W(a6Var);
+            y5 y5Var = (y5) linkedHashMap.remove(l4);
+            y5Var.setRemoved(new a1.f(9, this, y5Var));
+            a0Var.W(y5Var);
             a0Var.f640b.x(l4, true);
             a0Var.Y(false);
         } else if (linkedHashMap.size() - (linkedHashMap.containsKey(-1L) ? 1 : 0) >= i10) {
-            xc.a0(a0Var).t(LocaleController.formatPluralString("ReactionMaxCountError", i10, new Object[0]), null).j();
+            vc.a0(a0Var).t(LocaleController.formatPluralString("ReactionMaxCountError", i10, new Object[0]), null).j();
         } else {
             try {
                 int editTextSelectionEnd = a0Var.f643n.getEditTextSelectionEnd();
                 SpannableString spannableString = new SpannableString("b");
-                a6 e = l1.e(document, l4, a0Var.f643n.getFontMetricsInt());
-                e.cacheType = r5.g();
+                y5 e = l1.e(document, l4, a0Var.f643n.getFontMetricsInt());
+                e.cacheType = p5.g();
                 e.setAdded();
                 arrayList.add(w7.r.b(editTextSelectionEnd, 0, arrayList.size()), l4);
                 linkedHashMap.put(l4, e);

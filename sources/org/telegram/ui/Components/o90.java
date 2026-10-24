@@ -1,17 +1,10 @@
 package org.telegram.ui.Components;
+public interface o90 {
+    void a();
 
-import android.content.Context;
-public final class o90 extends jj0 {
-    public final r90 f29118s;
+    void c();
 
-    public o90(r90 r90Var, Context context, String str, String str2, String str3) {
-        super(context, str, str2, str3, false);
-        this.f29118s = r90Var;
-    }
+    void j();
 
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f29118s.E = null;
-    }
+    void k();
 }

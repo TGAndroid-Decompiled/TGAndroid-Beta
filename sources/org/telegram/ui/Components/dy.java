@@ -1,9 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
 public final class dy {
-    public float f25749a;
-    public float f25750b;
-    public long f25751c;
-    public View d;
+    public Long f25855a;
+    public TLRPC.StickerSet f25856b;
+    public ArrayList f25857c = new ArrayList();
+    public TLRPC.InputStickerSet d;
+    public boolean e;
+    public boolean f25858f;
+    public boolean f25859g;
+    public boolean h;
+    public boolean f25860i;
+    public int f25861j;
 }

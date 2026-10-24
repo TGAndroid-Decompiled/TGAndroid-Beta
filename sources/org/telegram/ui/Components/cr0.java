@@ -1,14 +1,83 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.TLObject;
+import android.content.Context;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class cr0 extends hg.a2 {
+public final class cr0 extends hg.b0 {
+    public final dr0 f25459n;
+
+    public cr0(dr0 dr0Var, Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(i10, context, g6Var, true, true);
+        this.f25459n = dr0Var;
+    }
+
     @Override
-    public final boolean d(TLObject tLObject) {
-        if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
-            return false;
+    public final void v(s4.b1 b1Var, int i10) {
+        int i11;
+        TLRPC.Chat chat;
+        int i12;
+        int i13;
+        boolean z10;
+        String str;
+        int i14;
+        org.telegram.ui.Cells.m4 m4Var = (org.telegram.ui.Cells.m4) b1Var.f46342a;
+        hr0 hr0Var = this.f25459n.K;
+        TLRPC.User user = null;
+        if (hr0Var.f27132i0 || hr0Var.f27133j0) {
+            int i15 = org.telegram.ui.ActionBar.k6.f21377ng;
+            int i16 = org.telegram.ui.ActionBar.k6.fg;
+            org.telegram.ui.ActionBar.r6.W(m4Var.f22720b, i15, null);
+            m4Var.H = i16;
+            m4Var.v.b(org.telegram.ui.ActionBar.k6.B5, i16, org.telegram.ui.ActionBar.k6.C5);
         }
-        return true;
+        i11 = ((org.telegram.ui.ActionBar.h3) hr0Var).currentAccount;
+        TLRPC.TL_topPeer tL_topPeer = MediaDataController.getInstance(i11).hints.get(i10);
+        TLRPC.Peer peer = tL_topPeer.peer;
+        long j10 = peer.user_id;
+        if (j10 != 0) {
+            i14 = ((org.telegram.ui.ActionBar.h3) hr0Var).currentAccount;
+            user = MessagesController.getInstance(i14).getUser(Long.valueOf(tL_topPeer.peer.user_id));
+            chat = null;
+        } else {
+            long j11 = peer.channel_id;
+            if (j11 != 0) {
+                j10 = -j11;
+                i13 = ((org.telegram.ui.ActionBar.h3) hr0Var).currentAccount;
+                chat = MessagesController.getInstance(i13).getChat(Long.valueOf(tL_topPeer.peer.channel_id));
+            } else {
+                long j12 = peer.chat_id;
+                if (j12 != 0) {
+                    j10 = -j12;
+                    i12 = ((org.telegram.ui.ActionBar.h3) hr0Var).currentAccount;
+                    chat = MessagesController.getInstance(i12).getChat(Long.valueOf(tL_topPeer.peer.chat_id));
+                } else {
+                    chat = null;
+                    j10 = 0;
+                }
+            }
+        }
+        boolean z11 = false;
+        if (j10 == m4Var.getDialogId()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        m4Var.setTag(Long.valueOf(j10));
+        if (user != null) {
+            str = UserObject.getFirstName(user);
+        } else if (chat != null) {
+            str = chat.title;
+        } else {
+            str = "";
+        }
+        m4Var.a(j10, true, str);
+        if (hr0Var.V.h(j10) >= 0) {
+            z11 = true;
+        }
+        if (m4Var.f22726w) {
+            m4Var.v.a(z11, z10);
+        }
     }
 }

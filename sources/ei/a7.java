@@ -1,7 +1,7 @@
 package ei;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class a7 implements Runnable {
     public final int f8701a;
     public final e7 f8702b;
@@ -19,7 +19,7 @@ public final class a7 implements Runnable {
                 return;
             default:
                 e7 e7Var = this.f8702b;
-                e7Var.f8972a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(bs.h).setDuration(280L).start();
+                e7Var.f8972a.animate().scaleX(1.0f).scaleY(1.0f).setInterpolator(zr.h).setDuration(280L).start();
                 e7Var.f8974c = System.currentTimeMillis();
                 e7Var.invalidate();
                 try {

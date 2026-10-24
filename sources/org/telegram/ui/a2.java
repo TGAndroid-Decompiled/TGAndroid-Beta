@@ -164,7 +164,7 @@ public final class a2 extends FrameLayout implements org.telegram.ui.Cells.n9 {
             if (pageblockmap.level > 0) {
                 i14 = AndroidUtilities.dp(18.0f) + AndroidUtilities.dp(i13 * 14);
                 this.f35554n = i14;
-                i15 = org.telegram.messenger.sl.y(18.0f, i14, size);
+                i15 = org.telegram.messenger.tl.y(18.0f, i14, size);
                 dp = i15;
             } else {
                 this.f35554n = AndroidUtilities.dp(18.0f);
@@ -173,12 +173,12 @@ public final class a2 extends FrameLayout implements org.telegram.ui.Cells.n9 {
                 i15 = size;
             }
             TL_iv.pageBlockMap pageblockmap2 = this.f35558x;
-            int i17 = (int) ((i15 / pageblockmap2.f20563w) * pageblockmap2.h);
+            int i17 = (int) ((i15 / pageblockmap2.f20564w) * pageblockmap2.h);
             Point point = AndroidUtilities.displaySize;
             int max = (int) ((Math.max(point.x, point.y) - AndroidUtilities.dp(56.0f)) * 0.9f);
             if (i17 > max) {
                 TL_iv.pageBlockMap pageblockmap3 = this.f35558x;
-                i15 = (int) ((max / pageblockmap3.h) * pageblockmap3.f20563w);
+                i15 = (int) ((max / pageblockmap3.h) * pageblockmap3.f20564w);
                 i14 += ((size - i14) - i15) / 2;
                 i16 = max;
             } else {
@@ -229,14 +229,14 @@ public final class a2 extends FrameLayout implements org.telegram.ui.Cells.n9 {
                 this.f35556s = height;
                 i16 = org.telegram.messenger.v0.C(4.0f, height, i16);
                 c3 c3Var = this.d;
-                c3Var.f36233s = this.f35554n;
+                c3Var.f36208s = this.f35554n;
                 c3Var.v = this.f35555r;
             }
             int i20 = i16;
             TL_iv.pageBlockMap pageblockmap5 = this.f35558x;
             TL_iv.RichText richText = pageblockmap5.caption.credit;
             if (i4Var != null && i4Var.G) {
-                alignment = org.telegram.ui.Components.ix0.a();
+                alignment = org.telegram.ui.Components.hx0.a();
             } else {
                 alignment = Layout.Alignment.ALIGN_NORMAL;
             }
@@ -245,7 +245,7 @@ public final class a2 extends FrameLayout implements org.telegram.ui.Cells.n9 {
             if (p5 != null) {
                 i20 += this.e.d.getHeight() + AndroidUtilities.dp(4.0f);
                 c3 c3Var2 = this.e;
-                c3Var2.f36233s = this.f35554n;
+                c3Var2.f36208s = this.f35554n;
                 c3Var2.v = this.f35555r + this.f35556s;
             }
             if (!this.h && this.f35558x.level <= 0) {

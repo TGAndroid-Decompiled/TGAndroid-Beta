@@ -3,7 +3,7 @@ package ci;
 import android.content.Context;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class v extends org.telegram.ui.Components.k9 {
+public final class v extends org.telegram.ui.Components.i9 {
     public final int e;
 
     public v(int i10, Context context, boolean z10) {
@@ -33,7 +33,7 @@ public final class v extends org.telegram.ui.Components.k9 {
         int v;
         switch (this.e) {
             case 1:
-                int i12 = this.f27954a.f27619n;
+                int i12 = this.f27369a.f26956n;
                 if (i12 == 0) {
                     v = 0;
                 } else {

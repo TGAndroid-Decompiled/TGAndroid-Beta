@@ -1,48 +1,77 @@
 package org.telegram.messenger;
 
-import java.util.Comparator;
+import java.util.HashSet;
+import java.util.Set;
 import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.TranslateController;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class va implements Comparator {
-    public final int f19817a;
-    public final MessagesController f19818b;
+public final class va implements RequestDelegate {
+    public final int f19810a;
+    public final boolean f19811b;
+    public final long f19812c;
+    public final BaseController d;
+    public final Object e;
+    public final Object f19813f;
 
-    public va(MessagesController messagesController, int i10) {
-        this.f19817a = i10;
-        this.f19818b = messagesController;
+    public va(BaseController baseController, Object obj, boolean z10, long j10, Object obj2, int i10) {
+        this.f19810a = i10;
+        this.d = baseController;
+        this.e = obj;
+        this.f19811b = z10;
+        this.f19812c = j10;
+        this.f19813f = obj2;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int lambda$processUpdatesQueue$326;
-        int lambda$renameSavedReactionTag$487;
-        int lambda$updateSavedReactionTags$486;
-        int lambda$new$9;
-        int lambda$new$10;
-        int lambda$new$11;
-        int lambda$new$12;
-        switch (this.f19817a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f19810a) {
             case 0:
-                lambda$processUpdatesQueue$326 = this.f19818b.lambda$processUpdatesQueue$326((TLRPC.Updates) obj, (TLRPC.Updates) obj2);
-                return lambda$processUpdatesQueue$326;
+                boolean z10 = this.f19811b;
+                ((MessagesController) this.d).lambda$getSendAsPeers$446((a0.h) this.e, this.f19812c, (MessagesController.SendAsPeersInfo) this.f19813f, z10, tLObject, tL_error);
+                return;
             case 1:
-                lambda$renameSavedReactionTag$487 = this.f19818b.lambda$renameSavedReactionTag$487((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$renameSavedReactionTag$487;
+                long j10 = this.f19812c;
+                ((TranslateController) this.d).lambda$pushToTranslate$23((TranslateController.PendingTranslation) this.e, this.f19811b, j10, (Set) this.f19813f, tLObject, tL_error);
+                return;
             case 2:
-                lambda$updateSavedReactionTags$486 = this.f19818b.lambda$updateSavedReactionTags$486((TLRPC.TL_savedReactionTag) obj, (TLRPC.TL_savedReactionTag) obj2);
-                return lambda$updateSavedReactionTags$486;
+                ((ChatThemeController) this.d).lambda$setWallpaperToPeer$17(this.f19812c, this.f19811b, (String) this.e, (Runnable) this.f19813f, tLObject, tL_error);
+                return;
             case 3:
-                lambda$new$9 = this.f19818b.lambda$new$9((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$9;
-            case 4:
-                lambda$new$10 = this.f19818b.lambda$new$10((TLRPC.Dialog) obj, (TLRPC.Dialog) obj2);
-                return lambda$new$10;
-            case 5:
-                lambda$new$11 = this.f19818b.lambda$new$11((MessagesController.CommunityPeerDialog) obj, (MessagesController.CommunityPeerDialog) obj2);
-                return lambda$new$11;
+                long j11 = this.f19812c;
+                ((MemberRequestsController) this.d).lambda$getImporters$1((TLRPC.TL_chatInviteImporter) this.e, this.f19811b, j11, (RequestDelegate) this.f19813f, tLObject, tL_error);
+                return;
             default:
-                lambda$new$12 = this.f19818b.lambda$new$12((TLRPC.Update) obj, (TLRPC.Update) obj2);
-                return lambda$new$12;
+                ((TopicsController) this.d).lambda$reloadTopics$16(this.f19811b, this.f19812c, (HashSet) this.e, (Runnable) this.f19813f, tLObject, tL_error);
+                return;
         }
+    }
+
+    public va(ChatThemeController chatThemeController, long j10, boolean z10, String str, Runnable runnable) {
+        this.f19810a = 2;
+        this.d = chatThemeController;
+        this.f19812c = j10;
+        this.f19811b = z10;
+        this.e = str;
+        this.f19813f = runnable;
+    }
+
+    public va(MessagesController messagesController, a0.h hVar, long j10, MessagesController.SendAsPeersInfo sendAsPeersInfo, boolean z10) {
+        this.f19810a = 0;
+        this.d = messagesController;
+        this.e = hVar;
+        this.f19812c = j10;
+        this.f19813f = sendAsPeersInfo;
+        this.f19811b = z10;
+    }
+
+    public va(TopicsController topicsController, boolean z10, long j10, HashSet hashSet, Runnable runnable) {
+        this.f19810a = 4;
+        this.d = topicsController;
+        this.f19811b = z10;
+        this.f19812c = j10;
+        this.e = hashSet;
+        this.f19813f = runnable;
     }
 }

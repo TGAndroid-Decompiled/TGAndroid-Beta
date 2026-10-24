@@ -1,38 +1,37 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class o9 {
-    public static void a(org.telegram.ui.sn snVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j10, int i11, int i12) {
-        org.telegram.ui.ActionBar.h5 parentLayout;
-        TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat != null || user != null) && (parentLayout = snVar.getParentLayout()) != null) {
-            if (parentLayout.getPulledDialogs() == null) {
-                parentLayout.setPulledDialogs(new ArrayList());
-            }
-            for (n9 n9Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || n9Var.f28900f != j10) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = n9Var.e) != null && tL_forumTopic2.f20395id == tL_forumTopic.f20395id) {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-            ?? obj = new Object();
-            obj.f28897a = org.telegram.ui.sn.class;
-            obj.f28898b = i10;
-            obj.f28900f = j10;
-            obj.h = i12;
-            obj.f28901g = i11;
-            obj.f28899c = chat;
-            obj.d = user;
-            obj.e = tL_forumTopic;
-            parentLayout.getPulledDialogs().add(obj);
-        }
+import android.graphics.Bitmap;
+import org.telegram.messenger.Utilities;
+public final class o9 implements s9 {
+    public final t9 f29172a;
+    public final w7.w5[] f29173b;
+    public final Runnable[] f29174c;
+    public final s60[] d;
+
+    public o9(t9 t9Var, w7.w5[] w5VarArr, Runnable[] runnableArr, s60[] s60VarArr) {
+        this.f29172a = t9Var;
+        this.f29173b = w5VarArr;
+        this.f29174c = runnableArr;
+        this.d = s60VarArr;
     }
 
-    public static org.telegram.ui.ActionBar.m1 b(org.telegram.ui.ActionBar.o2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.g6 r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.o9.b(org.telegram.ui.ActionBar.o2, android.view.View, long, long, org.telegram.ui.ActionBar.g6):org.telegram.ui.ActionBar.m1");
+    @Override
+    public final void dispose() {
+        t9 t9Var = this.f29172a;
+        w7.w5[] w5VarArr = this.f29173b;
+        Runnable[] runnableArr = this.f29174c;
+        s60[] s60VarArr = this.d;
+        w5VarArr[0] = null;
+        if (t9Var.e.contains(runnableArr)) {
+            Utilities.globalQueue.cancelRunnables(runnableArr);
+            t9Var.e.remove(runnableArr);
+        }
+        for (s60 s60Var : s60VarArr) {
+            Bitmap bitmap = (Bitmap) t9Var.f30759b.remove(s60Var);
+            t9Var.f30760c.remove(s60Var);
+            if (bitmap != null) {
+                bitmap.recycle();
+            }
+        }
     }
 }

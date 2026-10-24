@@ -6,7 +6,7 @@ import android.graphics.Rect;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
-import org.telegram.ui.Components.yc0;
+import org.telegram.ui.Components.wc0;
 import org.telegram.ui.vn;
 public final class m {
     public static final Rect f13190f = new Rect();
@@ -49,15 +49,15 @@ public final class m {
             cVar.a(((ColorDrawable) drawable).getColor());
             return cVar;
         }
-        boolean z11 = drawable instanceof yc0;
+        boolean z11 = drawable instanceof wc0;
         gh.b bVar = this.f13192b;
         if (z11) {
-            yc0 yc0Var = (yc0) drawable;
-            if (yc0Var.f32893q < 0) {
+            wc0 wc0Var = (wc0) drawable;
+            if (wc0Var.f32206q < 0) {
                 cVar.a(-16777216);
                 return cVar;
             }
-            bVar.a(yc0Var.f32887k);
+            bVar.a(wc0Var.f32200k);
             return bVar;
         }
         boolean z12 = drawable instanceof BitmapDrawable;

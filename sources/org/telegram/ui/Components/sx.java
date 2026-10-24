@@ -1,26 +1,45 @@
 package org.telegram.ui.Components;
-public final class sx extends g.o {
-    public final tz f30570c;
 
-    public sx(tz tzVar) {
-        this.f30570c = tzVar;
+import android.os.Build;
+import androidx.recyclerview.widget.RecyclerView;
+import j$.util.Objects;
+import org.telegram.messenger.AndroidUtilities;
+public final class sx extends qz {
+    public final rz d;
+
+    public sx(rz rzVar) {
+        super(rzVar, 1);
+        this.d = rzVar;
     }
 
     @Override
-    public final int i(int i10) {
-        tz tzVar = this.f30570c;
-        ay ayVar = tzVar.R;
-        rx rxVar = tzVar.Q;
-        s4.g0 adapter = tzVar.P.getAdapter();
-        ty tyVar = tzVar.S;
-        if (adapter == tyVar) {
-            int j10 = tyVar.j(i10);
-            if (j10 == 1 || j10 == 3 || j10 == 2 || j10 == 4 || j10 == 5) {
-                return rxVar.J;
-            }
-        } else if ((tzVar.f30968d0 && i10 == 0) || i10 == ayVar.d || i10 == ayVar.f24866c || i10 == ayVar.f24867f || ayVar.f24869r.indexOfKey(i10) >= 0 || ayVar.v.indexOfKey(i10) >= 0) {
-            return rxVar.J;
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 0) {
+            this.d.f30319f0 = false;
         }
-        return 1;
+        super.a(recyclerView, i10);
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        bh.f fVar;
+        rz rzVar = this.d;
+        ry ryVar = rzVar.S;
+        px pxVar = rzVar.Q;
+        rzVar.U(pxVar.I0());
+        if (Build.VERSION.SDK_INT >= 31 && (fVar = rzVar.f30333j2) != null) {
+            fVar.f(i10, i11);
+        }
+        super.b(recyclerView, i10, i11);
+        if (ryVar != null && rzVar.P.getAdapter() == ryVar) {
+            ry ryVar2 = ryVar.f30296x.f30009a;
+            if (!ryVar2.F.V.F && !ryVar2.E) {
+                if (pxVar.N0() + 20 > ryVar.h()) {
+                    qy qyVar = ryVar.f30296x;
+                    Objects.requireNonNull(qyVar);
+                    AndroidUtilities.runOnUIThread(new xw(qyVar, 1));
+                }
+            }
+        }
     }
 }

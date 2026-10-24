@@ -15,10 +15,10 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bk0;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.y6;
-public final class t0 extends Drawable implements y6 {
+import org.telegram.ui.Components.ak0;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.w6;
+public final class t0 extends Drawable implements w6 {
     public final Paint f11480a;
     public final Paint f11481b;
     public final Paint f11482c;
@@ -49,20 +49,20 @@ public final class t0 extends Drawable implements y6 {
         int x02 = k6.x0(null, k6.L5, false);
         this.h = x02;
         mutate.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.SRC_IN));
-        h9 h9Var = new h9((g6) null);
-        h9Var.r(user);
-        imageReceiver.setForUserOrChat(user, h9Var);
+        f9 f9Var = new f9((g6) null);
+        f9Var.r(user);
+        imageReceiver.setForUserOrChat(user, f9Var);
         imageReceiver.setRoundRadius(AndroidUtilities.dp(25.0f));
-        h9 h9Var2 = new h9((g6) null);
-        h9Var2.r(user2);
-        imageReceiver2.setForUserOrChat(user2, h9Var2);
+        f9 f9Var2 = new f9((g6) null);
+        f9Var2.r(user2);
+        imageReceiver2.setForUserOrChat(user2, f9Var2);
         imageReceiver2.setRoundRadius(AndroidUtilities.dp(25.0f));
     }
 
     @Override
-    public final void a(bk0 bk0Var) {
-        this.e.setParentView(bk0Var);
-        this.d.setParentView(bk0Var);
+    public final void a(ak0 ak0Var) {
+        this.e.setParentView(ak0Var);
+        this.d.setParentView(ak0Var);
     }
 
     @Override

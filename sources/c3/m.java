@@ -24,10 +24,10 @@ import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Components.ew0;
 import org.telegram.ui.Components.fw0;
-import org.telegram.ui.Components.gw0;
 import z9.e2;
-public final class m implements n, NativeInstance.AudioLevelsCallback, fw0, gw0, z1, Continuation, r9.d, i5.e, d9.k, GenericProvider, Utilities.Callback2Return, eh.d {
+public final class m implements n, NativeInstance.AudioLevelsCallback, ew0, fw0, z1, Continuation, r9.d, i5.e, d9.k, GenericProvider, Utilities.Callback2Return, eh.d {
     public final int f4649a;
 
     public m(int i10) {
@@ -119,7 +119,7 @@ public final class m implements n, NativeInstance.AudioLevelsCallback, fw0, gw0,
                 } else {
                     f7 = 0.76f;
                 }
-                return fh.c.m(f7, k6.w0(k6.f21183d6, g6Var), k6.w0(k6.Sd, g6Var));
+                return fh.c.m(f7, k6.w0(k6.f21184d6, g6Var), k6.w0(k6.Sd, g6Var));
             case 20:
                 if (!LiteMode.isEnabled(256)) {
                     return k6.x0(null, k6.G8, false);
@@ -137,7 +137,7 @@ public final class m implements n, NativeInstance.AudioLevelsCallback, fw0, gw0,
                 } else {
                     f11 = 0.76f;
                 }
-                return fh.c.m(f11, k6.w0(k6.f21183d6, g6Var), k6.w0(k6.Zk, g6Var));
+                return fh.c.m(f11, k6.w0(k6.f21184d6, g6Var), k6.w0(k6.Zk, g6Var));
             case 22:
                 if (LiteMode.isEnabled(262144)) {
                     f12 = 0.85f;
@@ -152,7 +152,7 @@ public final class m implements n, NativeInstance.AudioLevelsCallback, fw0, gw0,
             case 25:
                 return k6.o1(0.075f, -16777216);
             case 26:
-                return k6.o1(0.88f, k6.w0(k6.f21183d6, g6Var));
+                return k6.o1(0.88f, k6.w0(k6.f21184d6, g6Var));
             case 27:
                 int x03 = k6.x0(null, k6.G8, false);
                 if (z10) {
@@ -167,14 +167,14 @@ public final class m implements n, NativeInstance.AudioLevelsCallback, fw0, gw0,
                 } else {
                     f14 = 0.76f;
                 }
-                return fh.c.m(f14, k6.w0(k6.f21183d6, g6Var), k6.w0(k6.Yk, g6Var));
+                return fh.c.m(f14, k6.w0(k6.f21184d6, g6Var), k6.w0(k6.Yk, g6Var));
             default:
                 if (LiteMode.isEnabled(262144)) {
                     f15 = 0.85f;
                 } else {
                     f15 = 0.76f;
                 }
-                return k6.o1(f15, k6.w0(k6.f21183d6, g6Var));
+                return k6.o1(f15, k6.w0(k6.f21184d6, g6Var));
         }
     }
 

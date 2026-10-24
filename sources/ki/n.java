@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ek;
-import org.telegram.ui.Components.ti;
-public final class n implements ek {
-    public final ti f15452a;
+import org.telegram.ui.Components.ck;
+import org.telegram.ui.Components.ri;
+public final class n implements ck {
+    public final ri f15452a;
     public final q f15453b;
 
-    public n(q qVar, ti tiVar) {
+    public n(q qVar, ri riVar) {
         this.f15453b = qVar;
-        this.f15452a = tiVar;
+        this.f15452a = riVar;
     }
 
     @Override
@@ -44,7 +44,7 @@ public final class n implements ek {
         try {
             Intent intent = new Intent("android.intent.action.GET_CONTENT");
             intent.setType("*/*");
-            this.f15453b.f28366b.f30730f0.startActivityForResult(intent, 21);
+            this.f15453b.f27704b.f30146f0.startActivityForResult(intent, 21);
         } catch (Exception e) {
             FileLog.e(e);
         }

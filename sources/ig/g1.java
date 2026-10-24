@@ -11,7 +11,7 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.w8;
-import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.i71;
 import w7.z5;
 public final class g1 extends o2 {
     public final CharSequence f12933a;
@@ -21,7 +21,7 @@ public final class g1 extends o2 {
     public final int e;
     public bc f12936f;
     public hi.t h;
-    public j71 f12937n;
+    public i71 f12937n;
     public boolean f12938r;
 
     public g1(CharSequence charSequence, ArrayList arrayList, int i10, int i11, int i12) {
@@ -60,10 +60,10 @@ public final class g1 extends o2 {
         this.actionBar.setTitle(this.f12933a);
         this.actionBar.setActionBarMenuOnItemClick(new ah.s(this, 17));
         FrameLayout frameLayout = new FrameLayout(context);
-        r6.i(k6.f21125a7, frameLayout, null);
-        j71 j71Var = new j71(this, new hg.o(this, 9), new e1.c(this, 21), null);
-        this.f12937n = j71Var;
-        j71Var.t1();
+        r6.i(k6.f21126a7, frameLayout, null);
+        i71 i71Var = new i71(this, new hg.o(this, 9), new e1.c(this, 21), null);
+        this.f12937n = i71Var;
+        i71Var.t1();
         this.actionBar.setAdaptiveBackground(this.f12937n);
         frameLayout.addView(this.f12937n, z5.c(-1.0f, -1));
         this.fragmentView = frameLayout;
@@ -102,11 +102,11 @@ public final class g1 extends o2 {
             if (this.f12937n != null) {
                 for (int i11 = 0; i11 < this.f12937n.getChildCount(); i11++) {
                     View childAt = this.f12937n.getChildAt(i11);
-                    if ((childAt instanceof w8) && ((w8) childAt).f23915b == -1) {
+                    if ((childAt instanceof w8) && ((w8) childAt).f23916b == -1) {
                         if (this.f12938r) {
-                            i10 = k6.f21219f6;
+                            i10 = k6.f21220f6;
                         } else {
-                            i10 = k6.f21200e6;
+                            i10 = k6.f21201e6;
                         }
                         r6.i(i10, childAt, null);
                     }

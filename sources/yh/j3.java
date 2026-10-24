@@ -11,14 +11,14 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.vq;
 import w7.b6;
 public final class j3 extends TextView {
-    public final xq f50788a;
+    public final vq f50787a;
 
     public j3(Context context, g6 g6Var) {
         super(context);
-        int i10 = k6.f21573y8;
+        int i10 = k6.f21574y8;
         int w02 = k6.w0(i10, g6Var);
         r6.W(this, i10, g6Var);
         org.telegram.ui.Cells.y a02 = k6.a0(k6.o1(0.08f, w02), k6.o1(0.15f, w02), AndroidUtilities.dp(13.0f), AndroidUtilities.dp(13.0f));
@@ -30,10 +30,10 @@ public final class j3 extends TextView {
         setGravity(17);
         setTypeface(AndroidUtilities.bold());
         b6.a(this);
-        xq xqVar = new xq(R.drawable.arrows_select, 0);
-        this.f50788a = xqVar;
-        xqVar.spaceScaleX = 0.8f;
-        xqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        vq vqVar = new vq(R.drawable.arrows_select, 0);
+        this.f50787a = vqVar;
+        vqVar.spaceScaleX = 0.8f;
+        vqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
     }
 
     @Override
@@ -42,25 +42,25 @@ public final class j3 extends TextView {
     }
 
     public void setSorting(r3 r3Var) {
-        xq xqVar;
+        vq vqVar;
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("v ");
         if (r3Var == r3.BY_DATE) {
-            xqVar = new xq(R.drawable.mini_gift_sorting_date, 0);
-            spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
+            vqVar = new vq(R.drawable.mini_gift_sorting_date, 0);
+            spannableStringBuilder.setSpan(vqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortDateShort));
         } else if (r3Var == r3.BY_PRICE) {
-            xqVar = new xq(R.drawable.mini_gift_sorting_price, 0);
-            spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
+            vqVar = new vq(R.drawable.mini_gift_sorting_price, 0);
+            spannableStringBuilder.setSpan(vqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortPriceShort));
         } else if (r3Var == r3.BY_NUMBER) {
-            xqVar = new xq(R.drawable.mini_gift_sorting_num, 0);
-            spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
+            vqVar = new vq(R.drawable.mini_gift_sorting_num, 0);
+            spannableStringBuilder.setSpan(vqVar, 0, 1, 33);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.ResellGiftFilterSortNumberShort));
         } else {
-            xqVar = null;
+            vqVar = null;
         }
-        if (xqVar != null) {
-            xqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
+        if (vqVar != null) {
+            vqVar.translate(0.0f, AndroidUtilities.dp(1.0f));
         }
         setText(spannableStringBuilder);
     }
@@ -68,7 +68,7 @@ public final class j3 extends TextView {
     public void setValue(CharSequence charSequence) {
         SpannableStringBuilder append = new SpannableStringBuilder(charSequence).append((CharSequence) " v");
         int length = append.length();
-        append.setSpan(this.f50788a, append.length() - 1, length, 33);
+        append.setSpan(this.f50787a, append.length() - 1, length, 33);
         setText(append);
     }
 }

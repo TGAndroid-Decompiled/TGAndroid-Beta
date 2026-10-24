@@ -19,20 +19,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.bm0;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.am0;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.an0;
 import org.telegram.ui.h00;
-import org.telegram.ui.kl0;
-import org.telegram.ui.nl0;
-import org.telegram.ui.of1;
+import org.telegram.ui.jl0;
+import org.telegram.ui.ml0;
+import org.telegram.ui.nf1;
 import org.telegram.ui.q00;
 import org.telegram.ui.ts;
 import org.telegram.ui.vo;
 import org.telegram.ui.xo;
-public final class e4 implements of1, Continuation, org.telegram.ui.ActionBar.z1, bm0, ts, androidx.car.app.utils.a {
+import org.telegram.ui.zm0;
+public final class e4 implements nf1, Continuation, org.telegram.ui.ActionBar.z1, am0, ts, androidx.car.app.utils.a {
     public final int f1188a;
     public final boolean f1189b;
     public final Object f1190c;
@@ -62,8 +62,8 @@ public final class e4 implements of1, Continuation, org.telegram.ui.ActionBar.z1
         boolean z10;
         LaunchActivity launchActivity = (LaunchActivity) this.f1190c;
         int[] iArr = (int[]) this.d;
-        Pattern pattern = LaunchActivity.E1;
-        TLRPC.UserFull userFull = MessagesController.getInstance(launchActivity.O).getUserFull(user.f20490id);
+        Pattern pattern = LaunchActivity.D1;
+        TLRPC.UserFull userFull = MessagesController.getInstance(launchActivity.O).getUserFull(user.f20491id);
         if (userFull != null && userFull.video_calls_available) {
             z10 = true;
         } else {
@@ -87,13 +87,13 @@ public final class e4 implements of1, Continuation, org.telegram.ui.ActionBar.z1
             case 2:
                 ig.a0 a0Var = (ig.a0) this.f1190c;
                 boolean z11 = this.f1189b;
-                m61 m61Var = (m61) this.d;
+                l61 l61Var = (l61) this.d;
                 if (!z11) {
                     arrayList = a0Var.f12849k;
                 } else {
                     arrayList = a0Var.f12848j;
                 }
-                arrayList.remove(Long.valueOf(m61Var.f28570x));
+                arrayList.remove(Long.valueOf(l61Var.f28238x));
                 a0Var.e.run();
                 return;
             case 3:
@@ -116,19 +116,19 @@ public final class e4 implements of1, Continuation, org.telegram.ui.ActionBar.z1
                 m9Var.j0(false);
                 return;
             case 4:
-                ((org.telegram.ui.ha) this.f1190c).f37808a.j0((TLRPC.TL_username) this.d, this.f1189b, true);
+                ((org.telegram.ui.ha) this.f1190c).f37797a.j0((TLRPC.TL_username) this.d, this.f1189b, true);
                 return;
             case 5:
                 boolean z14 = this.f1189b;
-                xo xoVar = ((vo) this.f1190c).f42799a;
+                xo xoVar = ((vo) this.f1190c).f42781a;
                 xoVar.C1((TLRPC.TL_username) this.d, z14, true);
-                xoVar.f43628b3.W();
+                xoVar.f43653b3.W();
                 return;
             case 6:
                 org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.f1190c;
                 TLRPC.User user = (TLRPC.User) this.d;
                 boolean z15 = this.f1189b;
-                TLRPC.UserFull userFull = o2Var.getMessagesController().getUserFull(user.f20490id);
+                TLRPC.UserFull userFull = o2Var.getMessagesController().getUserFull(user.f20491id);
                 if (userFull != null && userFull.video_calls_available) {
                     z10 = true;
                 } else {
@@ -139,18 +139,18 @@ public final class e4 implements of1, Continuation, org.telegram.ui.ActionBar.z1
             case 7:
             case 9:
             default:
-                an0 an0Var = (an0) this.f1190c;
+                zm0 zm0Var = (zm0) this.f1190c;
                 boolean z16 = this.f1189b;
-                an0Var.x1();
-                an0Var.i1((TLRPC.TL_secureRequiredType) this.d, null, null, true, new kl0(an0Var, 4), new nl0(an0Var, 6), z16);
+                zm0Var.x1();
+                zm0Var.i1((TLRPC.TL_secureRequiredType) this.d, null, null, true, new jl0(zm0Var, 4), new ml0(zm0Var, 6), z16);
                 return;
             case 8:
                 q00 q00Var = (q00) this.f1190c;
                 h00 h00Var = (h00) this.d;
                 boolean z17 = this.f1189b;
-                int i11 = h00Var.f37701j;
+                int i11 = h00Var.f37704j;
                 if (i11 > 0) {
-                    q00Var.f40594y &= ~i11;
+                    q00Var.f40680y &= ~i11;
                 } else {
                     if (z17) {
                         arrayList2 = q00Var.F;
@@ -194,10 +194,10 @@ public final class e4 implements of1, Continuation, org.telegram.ui.ActionBar.z1
                     return;
                 } catch (Exception unused) {
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o2Var2.getParentActivity());
-                    alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
-                    alertDialog$Builder.f20678a.T = LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled);
+                    alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.RestorePasswordNoEmailTitle);
+                    alertDialog$Builder.f20679a.T = LocaleController.getString("NoMailInstalled", R.string.NoMailInstalled);
                     alertDialog$Builder.k(LocaleController.getString("OK", R.string.OK), null);
-                    o2Var2.showDialog(alertDialog$Builder.f20678a);
+                    o2Var2.showDialog(alertDialog$Builder.f20679a);
                     return;
                 }
         }

@@ -4,17 +4,17 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.c41;
-import org.telegram.ui.Components.fz0;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.ez0;
 public final class y0 {
-    public final int f35425a;
-    public final long f35426b;
-    public final z0 f35427c;
+    public final int f35427a;
+    public final long f35428b;
+    public final z0 f35429c;
 
     public y0(z0 z0Var, int i10, long j10) {
-        this.f35427c = z0Var;
-        this.f35425a = i10;
-        this.f35426b = j10;
+        this.f35429c = z0Var;
+        this.f35427a = i10;
+        this.f35428b = j10;
     }
 
     public final void a(tc.u uVar, tc.x xVar, tc.x xVar2, boolean z10) {
@@ -34,22 +34,22 @@ public final class y0 {
             obj = Integer.valueOf(xVar2.b());
         }
         sb2.append(obj);
-        AndroidUtilities.runOnUIThread(new fz0(this.f35427c, uVar, this.f35425a, sb2.toString(), 16));
+        AndroidUtilities.runOnUIThread(new ez0(this.f35429c, uVar, this.f35427a, sb2.toString(), 16));
     }
 
     public final void b(tc.u uVar, String str) {
         StringBuilder sb2 = new StringBuilder("[gram-wallet-streaming] account=");
-        sb2.append(this.f35427c.f35469a);
+        sb2.append(this.f35429c.f35471a);
         sb2.append(" generation=");
-        int i10 = this.f35425a;
+        int i10 = this.f35427a;
         sb2.append(i10);
         sb2.append(" receive <- ");
         sb2.append(str);
         FileLog.d(sb2.toString());
         try {
-            AndroidUtilities.runOnUIThread(new fz0(this, uVar, i10, new JSONObject(str), 17));
+            AndroidUtilities.runOnUIThread(new ez0(this, uVar, i10, new JSONObject(str), 17));
         } catch (JSONException unused) {
-            AndroidUtilities.runOnUIThread(new c41(this, uVar, i10, 16));
+            AndroidUtilities.runOnUIThread(new b41(this, uVar, i10, 16));
         }
     }
 }

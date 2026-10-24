@@ -48,10 +48,10 @@ import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.Cells.n4;
 import org.telegram.ui.Cells.t1;
 import org.telegram.ui.Cells.z;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.y5;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.sn;
 import v0.i;
@@ -70,7 +70,7 @@ public final class f implements Runnable {
     public final void run() {
         boolean z10;
         boolean z11;
-        xc a02;
+        vc a02;
         int i10;
         int i11;
         MessageObject messageObject;
@@ -90,7 +90,7 @@ public final class f implements Runnable {
                 CredentialProviderPlayServicesImpl.onClearCredential$lambda$14$lambda$13$lambda$12((i) obj2, (p) obj);
                 return;
             case 2:
-                ((a3.f) ((qf.b) obj2).f44865c).h.onVideoSizeChanged((a2) obj);
+                ((a3.f) ((qf.b) obj2).f44864c).h.onVideoSizeChanged((a2) obj);
                 return;
             case 3:
                 String str = m0.f8259a;
@@ -117,16 +117,16 @@ public final class f implements Runnable {
                 return;
             case 7:
                 ah.a0 a0Var = (ah.a0) obj2;
-                a6 a6Var = (a6) obj;
+                y5 y5Var = (y5) obj;
                 SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(a0Var.f643n.getText());
-                a6[] a6VarArr = (a6[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), a6.class);
-                int length = a6VarArr.length;
+                y5[] y5VarArr = (y5[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), y5.class);
+                int length = y5VarArr.length;
                 while (i13 < length) {
-                    a6 a6Var2 = a6VarArr[i13];
-                    if (a6Var2 == a6Var) {
+                    y5 y5Var2 = y5VarArr[i13];
+                    if (y5Var2 == y5Var) {
                         int editTextSelectionEnd = a0Var.f643n.getEditTextSelectionEnd();
-                        int spanEnd = spannableStringBuilder.getSpanEnd(a6Var2);
-                        int spanStart = spannableStringBuilder.getSpanStart(a6Var2);
+                        int spanEnd = spannableStringBuilder.getSpanEnd(y5Var2);
+                        int spanStart = spannableStringBuilder.getSpanStart(y5Var2);
                         a0Var.f643n.getText().delete(spanStart, spanEnd);
                         int i14 = spanEnd - spanStart;
                         w wVar = a0Var.f643n;
@@ -150,20 +150,20 @@ public final class f implements Runnable {
                 if (str5.equals("REACTIONS_TOO_MANY")) {
                     str5 = LocaleController.formatPluralString("ReactionMaxCountError", a0Var2.J, new Object[0]);
                 }
-                xc.a0(a0Var2).t(str5, null).j();
+                vc.a0(a0Var2).t(str5, null).j();
                 return;
             case 9:
-                a6 a6Var3 = (a6) obj;
+                y5 y5Var3 = (y5) obj;
                 ah.a0 a0Var3 = ((y) obj2).f907f2;
                 SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(a0Var3.f643n.getText());
-                a6[] a6VarArr2 = (a6[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), a6.class);
-                int length2 = a6VarArr2.length;
+                y5[] y5VarArr2 = (y5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), y5.class);
+                int length2 = y5VarArr2.length;
                 while (i13 < length2) {
-                    a6 a6Var4 = a6VarArr2[i13];
-                    if (a6Var4 == a6Var3) {
+                    y5 y5Var4 = y5VarArr2[i13];
+                    if (y5Var4 == y5Var3) {
                         int editTextSelectionEnd2 = a0Var3.f643n.getEditTextSelectionEnd();
-                        int spanEnd2 = spannableStringBuilder2.getSpanEnd(a6Var4);
-                        int spanStart2 = spannableStringBuilder2.getSpanStart(a6Var4);
+                        int spanEnd2 = spannableStringBuilder2.getSpanEnd(y5Var4);
+                        int spanStart2 = spannableStringBuilder2.getSpanStart(y5Var4);
                         a0Var3.f643n.getText().delete(spanStart2, spanEnd2);
                         int i15 = spanEnd2 - spanStart2;
                         w wVar2 = a0Var3.f643n;
@@ -178,11 +178,11 @@ public final class f implements Runnable {
                 return;
             case 10:
                 t0 t0Var = (t0) obj2;
-                gl0 gl0Var = (gl0) obj;
+                fl0 fl0Var = (fl0) obj;
                 t0Var.f877l = true;
                 t0Var.f869a.invalidate();
-                gl0Var.f26636c1 = false;
-                gl0Var.invalidate();
+                fl0Var.f26354c1 = false;
+                fl0Var.invalidate();
                 t0Var.c(true);
                 return;
             case 11:
@@ -269,11 +269,11 @@ public final class f implements Runnable {
                 o2 U = LaunchActivity.U();
                 if (U != null) {
                     if (tL_error2 != null && "STARGIFT_ALREADY_BURNED".equalsIgnoreCase(tL_error2.text)) {
-                        a02 = xc.a0(U);
+                        a02 = vc.a0(U);
                         i10 = R.raw.fire_on;
                         i11 = R.string.UniqueGiftNotFoundBurned;
                     } else {
-                        a02 = xc.a0(U);
+                        a02 = vc.a0(U);
                         i10 = R.raw.error;
                         i11 = R.string.UniqueGiftNotFound;
                     }
@@ -287,8 +287,8 @@ public final class f implements Runnable {
             case 18:
                 l7 l7Var = (l7) obj2;
                 if (!((ha) obj).e) {
-                    qc Q = l7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
-                    Q.f29842t = true;
+                    oc Q = l7Var.getBulletinFactory().Q(R.raw.error, 36, LocaleController.formatString(R.string.UnknownErrorCode, "NO_BALANCE"));
+                    Q.f29213t = true;
                     Q.j();
                     return;
                 }
@@ -303,7 +303,7 @@ public final class f implements Runnable {
                 return;
             case 21:
                 l7 l7Var2 = (l7) obj2;
-                xc.a0((sn) obj).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(l7Var2.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new d2(l7Var2, 8)).k(true);
+                vc.a0((sn) obj).K(R.raw.gift, LocaleController.getString(R.string.StarsGiftUpgradeCompleted), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsGiftUpgradeCompletedText, DialogObject.getShortName(l7Var2.X))), LocaleController.getString(R.string.StarsGiftUpgradeCompletedMoreButton), new d2(l7Var2, 8)).k(true);
                 return;
             case 22:
                 l7 l7Var3 = (l7) obj2;
@@ -354,7 +354,7 @@ public final class f implements Runnable {
                     if (faVar != null) {
                         faVar.b();
                     }
-                    TLRPC.ChatFull chatFull = snVar.f41592l8;
+                    TLRPC.ChatFull chatFull = snVar.f41589l8;
                     Context context = q7Var.getContext();
                     int currentAccount = snVar.getCurrentAccount();
                     long a2 = snVar.a();

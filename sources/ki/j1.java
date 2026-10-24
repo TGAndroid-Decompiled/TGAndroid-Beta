@@ -9,10 +9,10 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.tz;
-import org.telegram.ui.Components.yg;
-import org.telegram.ui.qi0;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.rz;
+import org.telegram.ui.Components.wg;
+import org.telegram.ui.pi0;
 public final class j1 implements View.OnClickListener {
     public final int f15399a;
     public final d2 f15400b;
@@ -73,12 +73,12 @@ public final class j1 implements View.OnClickListener {
                     return;
                 }
                 if (d2Var2.A0 == null) {
-                    tz tzVar = new tz(d2Var2, true, false, false, d2Var2.getParentActivity(), true, null, d2Var2.O, true, d2Var2.getResourceProvider(), false, false);
-                    d2Var2.A0 = tzVar;
-                    tzVar.setVisibility(8);
-                    tz tzVar2 = d2Var2.A0;
-                    tzVar2.f31034x2 = false;
-                    tzVar2.setDelegate(new u1(d2Var2));
+                    rz rzVar = new rz(d2Var2, true, false, false, d2Var2.getParentActivity(), true, null, d2Var2.O, true, d2Var2.getResourceProvider(), false, false);
+                    d2Var2.A0 = rzVar;
+                    rzVar.setVisibility(8);
+                    rz rzVar2 = d2Var2.A0;
+                    rzVar2.f30378x2 = false;
+                    rzVar2.setDelegate(new u1(d2Var2));
                     int indexOfChild = d2Var2.O.indexOfChild(d2Var2.f15255a0);
                     if (indexOfChild < 0) {
                         indexOfChild = d2Var2.O.getChildCount();
@@ -104,16 +104,16 @@ public final class j1 implements View.OnClickListener {
                     AndroidUtilities.hideKeyboard(V22);
                 }
                 d2Var2.h0();
-                d2Var2.f15257b0.j(yg.d, true);
+                d2Var2.f15257b0.j(wg.d, true);
                 return;
             case 6:
                 final d2 d2Var3 = this.f15400b;
-                j80 j80Var = d2Var3.f15285x0;
-                if (j80Var != null) {
-                    j80Var.u();
+                h80 h80Var = d2Var3.f15285x0;
+                if (h80Var != null) {
+                    h80Var.u();
                     d2Var3.f15285x0 = null;
                 }
-                final j80 H = j80.H(d2Var3, view);
+                final h80 H = h80.H(d2Var3, view);
                 H.Q = true;
                 a W2 = d2Var3.P.W2();
                 if (W2 != null && W2.b()) {
@@ -195,10 +195,10 @@ public final class j1 implements View.OnClickListener {
                 return;
             case 7:
                 d2 d2Var4 = this.f15400b;
-                j80 j80Var2 = d2Var4.f15285x0;
+                h80 h80Var2 = d2Var4.f15285x0;
                 TL_iv.pageTableCell pagetablecell = null;
-                if (j80Var2 != null) {
-                    j80Var2.u();
+                if (h80Var2 != null) {
+                    h80Var2.u();
                     d2Var4.f15285x0 = null;
                 }
                 w3 w3Var2 = d2Var4.P;
@@ -226,10 +226,10 @@ public final class j1 implements View.OnClickListener {
                 }
             case 8:
                 d2 d2Var5 = this.f15400b;
-                j80 j80Var3 = d2Var5.f15285x0;
+                h80 h80Var3 = d2Var5.f15285x0;
                 TL_iv.pageBlockMath pageblockmath = null;
-                if (j80Var3 != null) {
-                    j80Var3.u();
+                if (h80Var3 != null) {
+                    h80Var3.u();
                     d2Var5.f15285x0 = null;
                 }
                 a W22 = d2Var5.P.W2();
@@ -255,9 +255,9 @@ public final class j1 implements View.OnClickListener {
             case 10:
                 d2 d2Var7 = this.f15400b;
                 d2Var7.r0();
-                qi0 qi0Var = d2Var7.O0;
-                if (qi0Var != null) {
-                    qi0Var.g(true);
+                pi0 pi0Var = d2Var7.O0;
+                if (pi0Var != null) {
+                    pi0Var.g(true);
                     d2Var7.O0 = null;
                     return;
                 }

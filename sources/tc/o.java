@@ -8,7 +8,7 @@ import java.util.zip.DeflaterOutputStream;
 import si.o0;
 public final class o extends w {
     public static final byte[] e = {0, 0, -1, -1};
-    public int f47395c;
+    public int f47394c;
     public c0 d;
 
     public static byte[] a(byte[] r13) {
@@ -16,7 +16,7 @@ public final class o extends w {
     }
 
     public final byte[] b(byte[] bArr) {
-        int i10 = this.f47395c;
+        int i10 = this.f47394c;
         if (i10 == 32768 || bArr.length < i10) {
             try {
                 ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();

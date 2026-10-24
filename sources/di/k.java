@@ -3,26 +3,26 @@ package di;
 import android.view.KeyEvent;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.gj;
-import org.telegram.ui.Components.km;
-import org.telegram.ui.Components.li;
-import org.telegram.ui.Components.ty0;
+import org.telegram.ui.Components.ej;
+import org.telegram.ui.Components.im;
+import org.telegram.ui.Components.ji;
+import org.telegram.ui.Components.sy0;
 import s4.y0;
 public final class k extends s4.s {
     public final int Q;
     public final KeyEvent.Callback R;
 
-    public k(li liVar, int i10, int i11) {
+    public k(ji jiVar, int i10, int i11) {
         super(i10);
         this.Q = i11;
-        this.R = liVar;
+        this.R = jiVar;
     }
 
     @Override
     public boolean Y0() {
         switch (this.Q) {
             case 3:
-                if (((ty0) this.R).W != null && LocaleController.isRTL) {
+                if (((sy0) this.R).W != null && LocaleController.isRTL) {
                     return true;
                 }
                 return false;
@@ -48,14 +48,14 @@ public final class k extends s4.s {
     public void v0(RecyclerView recyclerView, y0 y0Var, int i10) {
         switch (this.Q) {
             case 1:
-                gj gjVar = new gj(this, recyclerView.getContext());
-                gjVar.f46484a = i10;
-                w0(gjVar);
+                ej ejVar = new ej(this, recyclerView.getContext());
+                ejVar.f46483a = i10;
+                w0(ejVar);
                 return;
             case 2:
-                km kmVar = new km(this, recyclerView.getContext());
-                kmVar.f46484a = i10;
-                w0(kmVar);
+                im imVar = new im(this, recyclerView.getContext());
+                imVar.f46483a = i10;
+                w0(imVar);
                 return;
             default:
                 super.v0(recyclerView, y0Var, i10);
@@ -77,10 +77,10 @@ public final class k extends s4.s {
         }
     }
 
-    public k(ty0 ty0Var) {
+    public k(sy0 sy0Var) {
         super(5);
         this.Q = 3;
-        this.R = ty0Var;
+        this.R = sy0Var;
     }
 
     public k(r rVar) {

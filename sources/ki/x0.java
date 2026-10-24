@@ -31,7 +31,7 @@ public final class x0 extends a0 implements org.telegram.ui.ActionBar.b6, n9 {
     @Override
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(k6.vk));
-        hashSet.add(Integer.valueOf(k6.f21507uf));
+        hashSet.add(Integer.valueOf(k6.f21508uf));
     }
 
     @Override
@@ -83,7 +83,7 @@ public final class x0 extends a0 implements org.telegram.ui.ActionBar.b6, n9 {
         if (s2Var != null && (textSelectionHelper = s2Var.f15560a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R >= textSelectionHelper.f22861p0 && R <= textSelectionHelper.f22864s0) {
+            if (R >= 0 && R >= textSelectionHelper.f22862p0 && R <= textSelectionHelper.f22865s0) {
                 canvas2 = canvas;
                 canvas2.drawRoundRect(i11 - AndroidUtilities.dp(12.0f), 0.0f, AndroidUtilities.dp(12.0f) + g11, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), this.f15700s);
                 float dp = (AndroidUtilities.dp(12.0f) - AndroidUtilities.dp(1.0f)) / 2.0f;
@@ -109,6 +109,6 @@ public final class x0 extends a0 implements org.telegram.ui.ActionBar.b6, n9 {
         int i10 = k6.vk;
         org.telegram.ui.ActionBar.g6 g6Var = this.f15698n;
         this.f15699r.setColor(k6.w0(i10, g6Var));
-        this.f15700s.setColor(k6.w0(k6.f21507uf, g6Var));
+        this.f15700s.setColor(k6.w0(k6.f21508uf, g6Var));
     }
 }

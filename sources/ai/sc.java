@@ -9,18 +9,18 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 public final class sc extends FrameLayout {
-    public final org.telegram.ui.Components.q6 f2174a;
+    public final org.telegram.ui.Components.o6 f2174a;
     public final ImageView f2175b;
     public int f2176c;
     public boolean d;
 
     public sc(Context context) {
         super(context);
-        org.telegram.ui.Components.q6 q6Var = new org.telegram.ui.Components.q6(context, false, false, false);
-        this.f2174a = q6Var;
-        q6Var.getDrawable().r(true, true);
-        q6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        addView(q6Var, w7.z5.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
+        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, false, false);
+        this.f2174a = o6Var;
+        o6Var.getDrawable().r(true, true);
+        o6Var.setTextSize(AndroidUtilities.dp(15.0f));
+        addView(o6Var, w7.z5.i(-1.0f, -1.0f, 8388627, 22.0f, 0.0f, 58.0f, 0.0f));
         ImageView imageView = new ImageView(context);
         this.f2175b = imageView;
         imageView.setScaleType(ImageView.ScaleType.CENTER);
@@ -53,7 +53,7 @@ public final class sc extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f21304k0);
+            canvas.drawRect(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight(), org.telegram.ui.ActionBar.k6.f21305k0);
         }
     }
 

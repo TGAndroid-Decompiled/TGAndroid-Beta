@@ -15,11 +15,11 @@ import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.bs;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.zr;
 public final class a extends FrameLayout {
     public final ImageView f5129a;
-    public final org.telegram.ui.Components.p6 f5130b;
+    public final org.telegram.ui.Components.n6 f5130b;
     public final Paint f5131c;
     public final Paint d;
     public boolean e;
@@ -35,13 +35,13 @@ public final class a extends FrameLayout {
         this.d = paint2;
         this.h = 1.0f;
         w7.b6.a(this);
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.f5130b = p6Var;
-        p6Var.u(-9866632);
-        p6Var.w(AndroidUtilities.dp(9.0f));
-        p6Var.setCallback(this);
-        p6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
-        p6Var.J = true;
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true);
+        this.f5130b = n6Var;
+        n6Var.u(-9866632);
+        n6Var.w(AndroidUtilities.dp(9.0f));
+        n6Var.setCallback(this);
+        n6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
+        n6Var.J = true;
         paint.setColor(-14670806);
         paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
         FrameLayout frameLayout = new FrameLayout(context);
@@ -78,7 +78,7 @@ public final class a extends FrameLayout {
             if (z10) {
                 f7 = 0.0f;
             }
-            sl.t(animate.rotation(f7), bs.h, 420L);
+            tl.t(animate.rotation(f7), zr.h, 420L);
             return;
         }
         if (z10) {
@@ -92,9 +92,9 @@ public final class a extends FrameLayout {
         canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), 255, 31);
         super.dispatchDraw(canvas);
         float f7 = this.h;
-        org.telegram.ui.Components.p6 p6Var = this.f5130b;
-        float i10 = p6Var.i() * f7;
-        float max = Math.max(AndroidUtilities.dp(12.0f), p6Var.c() + AndroidUtilities.dp(6.0f));
+        org.telegram.ui.Components.n6 n6Var = this.f5130b;
+        float i10 = n6Var.i() * f7;
+        float max = Math.max(AndroidUtilities.dp(12.0f), n6Var.c() + AndroidUtilities.dp(6.0f));
         canvas.save();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
@@ -103,8 +103,8 @@ public final class a extends FrameLayout {
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.d);
         rectF.set(getWidth() - max, 0.0f, getWidth(), AndroidUtilities.dp(13.0f));
         canvas.drawRoundRect(rectF, rectF.height() / 2.0f, rectF.height() / 2.0f, this.f5131c);
-        canvas.translate(((max - p6Var.c()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
-        p6Var.draw(canvas);
+        canvas.translate(((max - n6Var.c()) / 2.0f) + rectF.left, AndroidUtilities.dp(7.0f));
+        n6Var.draw(canvas);
         canvas.restore();
         canvas.restore();
     }
@@ -127,7 +127,7 @@ public final class a extends FrameLayout {
             this.f5133n = ofFloat;
             ofFloat.addUpdateListener(new ah.c0(this, 8));
             this.f5133n.addListener(new ah.b(this, 5));
-            sl.l(2.5f, this.f5133n);
+            tl.l(2.5f, this.f5133n);
             this.f5133n.setDuration(200L);
             this.f5133n.start();
             this.f5132f = i10;

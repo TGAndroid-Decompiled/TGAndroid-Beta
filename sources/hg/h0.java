@@ -24,7 +24,7 @@ import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -35,18 +35,18 @@ import org.telegram.ui.Cells.i6;
 import org.telegram.ui.Cells.qa;
 import org.telegram.ui.Cells.r8;
 import org.telegram.ui.Cells.u3;
-import org.telegram.ui.Components.b10;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.so0;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.ro0;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.vq;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.z00;
 import org.telegram.ui.ey;
 import org.telegram.ui.px;
-import org.telegram.ui.xa1;
+import org.telegram.ui.wa1;
 import org.telegram.ui.y00;
 import w7.z5;
-public abstract class h0 extends lm0 {
+public abstract class h0 extends km0 {
     public y00 A0;
     public int B0;
     public int C0;
@@ -80,7 +80,7 @@ public abstract class h0 extends lm0 {
     public final int f11908h0;
     public final s4.k f11909i0;
     public final y f11910j0;
-    public xa1 f11911k0;
+    public wa1 f11911k0;
     public final long f11912l0;
     public long f11914n0;
     public View f11915o0;
@@ -130,10 +130,10 @@ public abstract class h0 extends lm0 {
         this.H0 = true;
         this.f11909i0 = kVar;
         this.f11919r0 = eyVar;
-        so0 so0Var = (so0) this;
-        y yVar = new y(so0Var);
+        ro0 ro0Var = (ro0) this;
+        y yVar = new y(ro0Var);
         this.f11910j0 = yVar;
-        yVar.f11819a = new a4.l(so0Var, 22);
+        yVar.f11819a = new a4.l(ro0Var, 22);
         yVar.f11831p = z10;
         this.e = context;
         this.V = i10;
@@ -160,7 +160,7 @@ public abstract class h0 extends lm0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f46346f;
+        int i10 = b1Var.f46345f;
         if (i10 != 1 && i10 != 4 && i10 != 10) {
             return true;
         }
@@ -211,7 +211,7 @@ public abstract class h0 extends lm0 {
         if (!z11) {
             MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new l2(i10, 1));
         } else {
-            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new p6(26, (so0) this, sb2));
+            MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new p6(26, (ro0) this, sb2));
         }
     }
 
@@ -225,20 +225,20 @@ public abstract class h0 extends lm0 {
             if (((TLRPC.User) obj).bot) {
                 return eyVar.A2;
             }
-            return eyVar.f37169z2;
+            return eyVar.f37144z2;
         } else if (!(obj instanceof TLRPC.Chat)) {
             return false;
         } else {
             TLRPC.Chat chat = (TLRPC.Chat) obj;
             if (ChatObject.isChannel(chat)) {
-                return eyVar.f37165y2;
+                return eyVar.f37140y2;
             }
             if (ChatObject.isMegagroup(chat)) {
-                if (eyVar.f37147v2 || eyVar.f37153w2) {
+                if (eyVar.f37122v2 || eyVar.f37128w2) {
                     return true;
                 }
                 return false;
-            } else if (eyVar.f37147v2 || eyVar.f37159x2) {
+            } else if (eyVar.f37122v2 || eyVar.f37134x2) {
                 return true;
             } else {
                 return false;
@@ -302,7 +302,7 @@ public abstract class h0 extends lm0 {
     public final SpannableStringBuilder H(e0 e0Var) {
         SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.getString(e0Var.f11871c));
         spannableStringBuilder.append((CharSequence) "v");
-        spannableStringBuilder.setSpan(new xq(R.drawable.arrows_select, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
+        spannableStringBuilder.setSpan(new vq(R.drawable.arrows_select, 0), spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
         return spannableStringBuilder;
     }
 
@@ -340,12 +340,12 @@ public abstract class h0 extends lm0 {
                 boolean z10 = tLObject instanceof TLRPC.User;
                 int i14 = this.f11921s0;
                 if (z10) {
-                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20490id));
+                    TLRPC.User user = MessagesController.getInstance(i14).getUser(Long.valueOf(((TLRPC.User) tLObject).f20491id));
                     if (user != null) {
                         return user;
                     }
                     return tLObject;
-                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20343id))) != null) {
+                } else if ((tLObject instanceof TLRPC.Chat) && (chat = MessagesController.getInstance(i14).getChat(Long.valueOf(((TLRPC.Chat) tLObject).f20344id))) != null) {
                     return chat;
                 } else {
                     return tLObject;
@@ -501,7 +501,7 @@ public abstract class h0 extends lm0 {
 
     public final boolean L() {
         if (!this.N && !MediaDataController.getInstance(this.f11921s0).hints.isEmpty()) {
-            if (this.f11908h0 != 14 || this.f11919r0.f37169z2) {
+            if (this.f11908h0 != 14 || this.f11919r0.f37144z2) {
                 return true;
             }
             return false;
@@ -697,7 +697,7 @@ public abstract class h0 extends lm0 {
                     long a2 = this.U.a();
                     TLRPC.TL_messages_search tL_messages_search = new TLRPC.TL_messages_search();
                     tL_messages_search.limit = 20;
-                    tL_messages_search.f20452q = str;
+                    tL_messages_search.f20453q = str;
                     tL_messages_search.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_search.peer = MessagesController.getInstance(i12).getInputPeer(a2);
                     if (str.equals(this.Z) && !arrayList.isEmpty()) {
@@ -762,7 +762,7 @@ public abstract class h0 extends lm0 {
                     }
                     tL_messages_searchGlobal.users_only = z12;
                     tL_messages_searchGlobal.limit = 20;
-                    tL_messages_searchGlobal.f20454q = str;
+                    tL_messages_searchGlobal.f20455q = str;
                     tL_messages_searchGlobal.filter = new TLRPC.TL_inputMessagesFilterEmpty();
                     tL_messages_searchGlobal.flags |= 1;
                     tL_messages_searchGlobal.folder_id = this.C0;
@@ -917,7 +917,7 @@ public abstract class h0 extends lm0 {
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        xa1 xa1Var;
+        wa1 wa1Var;
         TextView textView;
         boolean z10;
         int i11 = this.f11908h0;
@@ -929,9 +929,9 @@ public abstract class h0 extends lm0 {
                 if (i11 == 3) {
                     z11 = true;
                 }
-                i6Var.f22519l0 = z11;
-                xa1Var = i6Var;
-                textView = xa1Var;
+                i6Var.f22520l0 = z11;
+                wa1Var = i6Var;
+                textView = wa1Var;
                 break;
             case 1:
                 textView = new u3(context, null);
@@ -944,10 +944,10 @@ public abstract class h0 extends lm0 {
                 textView = new qa(context);
                 break;
             case 4:
-                b10 b10Var = new b10(context, null);
-                b10Var.setViewType(1);
-                b10Var.setIsSingleCell(true);
-                textView = b10Var;
+                z00 z00Var = new z00(context, null);
+                z00Var.setViewType(1);
+                z00Var.setIsSingleCell(true);
+                textView = z00Var;
                 break;
             case 5:
                 TextView textView2 = new TextView(context);
@@ -958,25 +958,25 @@ public abstract class h0 extends lm0 {
                 textView = textView2;
                 break;
             case 6:
-                xa1 xa1Var2 = new xa1(context, 2, null);
-                r6.m(xa1Var2, 20, k6.f21272i6, null);
-                xa1Var2.setTag(9);
-                xa1Var2.setItemAnimator(null);
-                xa1Var2.setLayoutAnimation(null);
+                wa1 wa1Var2 = new wa1(context, 2, null);
+                r6.m(wa1Var2, 20, k6.f21273i6, null);
+                wa1Var2.setTag(9);
+                wa1Var2.setItemAnimator(null);
+                wa1Var2.setLayoutAnimation(null);
                 a0 a0Var = new a0(0);
                 a0Var.j1(0);
-                xa1Var2.setLayoutManager(a0Var);
+                wa1Var2.setLayoutManager(a0Var);
                 if (i11 == 3) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                xa1Var2.setAdapter(new b0(this.f11921s0, this.e, null, false, z10));
-                xa1Var2.setOnItemClickListener(new xa(this, 13));
-                xa1Var2.setOnItemLongClickListener(new w(this));
-                this.f11911k0 = xa1Var2;
-                xa1Var = xa1Var2;
-                textView = xa1Var;
+                wa1Var2.setAdapter(new b0(this.f11921s0, this.e, null, false, z10));
+                wa1Var2.setOnItemClickListener(new xa(this, 13));
+                wa1Var2.setOnItemLongClickListener(new w(this));
+                this.f11911k0 = wa1Var2;
+                wa1Var = wa1Var2;
+                textView = wa1Var;
                 break;
             case 7:
             default:
@@ -989,15 +989,15 @@ public abstract class h0 extends lm0 {
                 v vVar = new v(this, 1);
                 ?? linearLayout = new LinearLayout(context);
                 linearLayout.setOrientation(1);
-                w9 w9Var = new w9(context);
-                w9Var.setImageDrawable(new yj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
-                linearLayout.addView(w9Var, z5.t(120, 120, 1, 0, 27, 0, 0));
+                u9 u9Var = new u9(context);
+                u9Var.setImageDrawable(new xj0(R.raw.utyan_empty, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+                linearLayout.addView(u9Var, z5.t(120, 120, 1, 0, 27, 0, 0));
                 TextView textView3 = new TextView(context);
                 textView3.setTextSize(1, 17.0f);
                 int i12 = k6.G6;
                 r6.W(textView3, i12, null);
                 textView3.setTypeface(AndroidUtilities.bold());
-                sl.m(R.string.SearchMessagesFilterEmptyTitle, textView3, 17);
+                tl.m(R.string.SearchMessagesFilterEmptyTitle, textView3, 17);
                 linearLayout.addView(textView3, z5.t(-1, -2, 1, 0, 8, 0, 9));
                 TextView textView4 = new TextView(context);
                 linearLayout.f11858a = textView4;

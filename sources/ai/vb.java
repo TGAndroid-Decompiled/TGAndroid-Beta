@@ -37,9 +37,9 @@ import org.telegram.messenger.TelegramMediaSession;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
-import org.telegram.messenger.vg;
+import org.telegram.messenger.tl;
 import org.telegram.messenger.voip.VoIPService;
+import org.telegram.messenger.wg;
 import org.telegram.tgnet.SerializedData;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
@@ -51,10 +51,10 @@ import org.telegram.tgnet.tl.TL_update;
 import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.RLottieNative;
-import org.telegram.ui.Components.ps;
+import org.telegram.ui.Components.ns;
+import org.telegram.ui.Components.tw0;
 import org.telegram.ui.Components.uw0;
 import org.telegram.ui.Components.vw0;
-import org.telegram.ui.Components.ww0;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PhotoViewer;
 import org.telegram.ui.SecretMediaViewer;
@@ -64,8 +64,8 @@ import org.telegram.ui.f80;
 import org.telegram.ui.ob0;
 import org.telegram.ui.pm;
 import org.telegram.ui.px;
-import org.telegram.ui.rf0;
-import org.telegram.ui.rg0;
+import org.telegram.ui.qf0;
+import org.telegram.ui.qg0;
 import org.telegram.ui.ri;
 import org.telegram.ui.sn;
 import org.telegram.ui.u50;
@@ -106,7 +106,7 @@ public final class vb implements Runnable {
         TLRPC.TL_messages_stickerSet tL_messages_stickerSet;
         org.telegram.ui.Cells.t1 t1Var;
         boolean z13;
-        org.telegram.ui.Components.xc a02;
+        org.telegram.ui.Components.vc a02;
         int i14;
         ArrayList<TLRPC.User> arrayList;
         ArrayList<TLRPC.Chat> arrayList2;
@@ -132,32 +132,32 @@ public final class vb implements Runnable {
                 ha.y(i17, false).S();
                 org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
                 if (U != null) {
-                    org.telegram.ui.Components.xc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionRenewedToast), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsSubscriptionRenewedToastText, str2)), null).k(false);
+                    org.telegram.ui.Components.vc.a0(U).V(Collections.singletonList(tLObject), LocaleController.getString(R.string.StarsSubscriptionRenewedToast), AndroidUtilities.replaceTags(LocaleController.formatString(R.string.StarsSubscriptionRenewedToastText, str2)), null).k(false);
                     return;
                 }
                 return;
             case 1:
                 long[] jArr = (long[]) obj5;
-                org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) obj3;
-                org.telegram.ui.Components.w9 w9Var2 = (org.telegram.ui.Components.w9) obj2;
+                org.telegram.ui.Components.u9 u9Var = (org.telegram.ui.Components.u9) obj3;
+                org.telegram.ui.Components.u9 u9Var2 = (org.telegram.ui.Components.u9) obj2;
                 TextView textView = (TextView) obj4;
                 if (jArr[0] >= 0) {
                     TLRPC.User user = MessagesController.getInstance(i17).getUser(Long.valueOf(jArr[0]));
-                    org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-                    h9Var.r(user);
-                    w9Var.e(user, h9Var);
+                    org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+                    f9Var.r(user);
+                    u9Var.e(user, f9Var);
                 } else {
                     TLRPC.Chat chat = MessagesController.getInstance(i17).getChat(Long.valueOf(-jArr[0]));
-                    org.telegram.ui.Components.h9 h9Var2 = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-                    h9Var2.q(chat);
-                    w9Var.e(chat, h9Var2);
+                    org.telegram.ui.Components.f9 f9Var2 = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+                    f9Var2.q(chat);
+                    u9Var.e(chat, f9Var2);
                 }
                 if (jArr[0] >= 0) {
                     TLRPC.User user2 = MessagesController.getInstance(i17).getUser(Long.valueOf(jArr[0]));
-                    if (w9Var2 != null) {
-                        org.telegram.ui.Components.h9 h9Var3 = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-                        h9Var3.r(user2);
-                        w9Var2.e(user2, h9Var3);
+                    if (u9Var2 != null) {
+                        org.telegram.ui.Components.f9 f9Var3 = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+                        f9Var3.r(user2);
+                        u9Var2.e(user2, f9Var3);
                     }
                     if (textView != null) {
                         textView.setText(UserObject.getUserName(user2));
@@ -166,10 +166,10 @@ public final class vb implements Runnable {
                     return;
                 }
                 TLRPC.Chat chat2 = MessagesController.getInstance(i17).getChat(Long.valueOf(-jArr[0]));
-                if (w9Var2 != null) {
-                    org.telegram.ui.Components.h9 h9Var4 = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-                    h9Var4.q(chat2);
-                    w9Var2.e(chat2, h9Var4);
+                if (u9Var2 != null) {
+                    org.telegram.ui.Components.f9 f9Var4 = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+                    f9Var4.q(chat2);
+                    u9Var2.e(chat2, f9Var4);
                 }
                 if (textView != null) {
                     if (chat2 != null) {
@@ -196,7 +196,7 @@ public final class vb implements Runnable {
                     currentUser.emoji_status = updateemojistatus.emoji_status;
                     z10 = true;
                     NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userEmojiStatusUpdated, currentUser);
-                    MessagesController.getInstance(i17).updateEmojiStatusUntilUpdate(currentUser.f20490id, currentUser.emoji_status);
+                    MessagesController.getInstance(i17).updateEmojiStatusUntilUpdate(currentUser.f20491id, currentUser.emoji_status);
                 } else {
                     z10 = true;
                 }
@@ -240,13 +240,13 @@ public final class vb implements Runnable {
                             TLRPC.User user3 = (TLRPC.User) obj6;
                             j10 = 0;
                             MessagesController.getInstance(i18).putUser(user3, z14);
-                            j11 = user3.f20490id;
+                            j11 = user3.f20491id;
                         } else {
                             j10 = 0;
                             if (obj6 instanceof TLRPC.Chat) {
                                 TLRPC.Chat chat3 = (TLRPC.Chat) obj6;
                                 MessagesController.getInstance(i18).putChat(chat3, z14);
-                                j11 = -chat3.f20343id;
+                                j11 = -chat3.f20344id;
                             } else {
                                 if (obj6 instanceof TLRPC.EncryptedChat) {
                                     MessagesController.getInstance(i18).putEncryptedChat((TLRPC.EncryptedChat) obj6, z14);
@@ -263,7 +263,7 @@ public final class vb implements Runnable {
                                     if (i21 != -1) {
                                         TLRPC.TL_dialog tL_dialog = new TLRPC.TL_dialog();
                                         long j12 = j11;
-                                        tL_dialog.f20347id = j12;
+                                        tL_dialog.f20348id = j12;
                                         if (i21 != 0) {
                                             tL_dialog.folder_id = i21;
                                         }
@@ -407,7 +407,7 @@ public final class vb implements Runnable {
                 ((MessagesStorage) obj5).lambda$putSentFile$170((String) obj4, (TLObject) obj2, i17, (String) obj3);
                 return;
             case 12:
-                ((NotificationCenter) obj5).lambda$listen$5((View) obj3, (View.OnAttachStateChangeListener) obj2, (vg) obj4, i17);
+                ((NotificationCenter) obj5).lambda$listen$5((View) obj3, (View.OnAttachStateChangeListener) obj2, (wg) obj4, i17);
                 return;
             case 13:
                 ((TelegramMediaSession) obj5).lambda$loadChats$4(i17, (ArrayList) obj3, (a0.h) obj2, (a0.h) obj4);
@@ -429,7 +429,7 @@ public final class vb implements Runnable {
                     if (obj7 instanceof TL_iv.RichText) {
                         TL_iv.RichText richText = (TL_iv.RichText) obj7;
                         k4Var = k4Var2;
-                        CharSequence C = org.telegram.ui.k4.C(k4Var, k4Var2.f38805u0[0].f39753c.E, null, richText, richText, pageBlock2, 1000);
+                        CharSequence C = org.telegram.ui.k4.C(k4Var, k4Var2.f38774u0[0].f39703c.E, null, richText, richText, pageBlock2, 1000);
                         pageBlock = pageBlock2;
                         if (!TextUtils.isEmpty(C)) {
                             lowerCase = C.toString().toLowerCase();
@@ -451,9 +451,9 @@ public final class vb implements Runnable {
                                 int length = str3.length() + indexOf;
                                 if (indexOf == 0 || AndroidUtilities.isPunctuationCharacter(lowerCase.charAt(indexOf - 1))) {
                                     ?? obj8 = new Object();
-                                    obj8.f41298a = indexOf;
-                                    obj8.f41300c = pageBlock;
-                                    obj8.f41299b = obj7;
+                                    obj8.f41293a = indexOf;
+                                    obj8.f41295c = pageBlock;
+                                    obj8.f41294b = obj7;
                                     arrayList11.add(obj8);
                                 }
                                 i24 = length;
@@ -483,11 +483,11 @@ public final class vb implements Runnable {
                         i16++;
                         groupCall = ((TL_update.TL_updateGroupCall) obj9).call;
                     }
-                    if (LaunchActivity.J1 != null && groupCall != null) {
+                    if (LaunchActivity.I1 != null && groupCall != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall = new TLRPC.TL_inputGroupCall();
-                        tL_inputGroupCall.f20360id = groupCall.f20353id;
+                        tL_inputGroupCall.f20361id = groupCall.f20354id;
                         tL_inputGroupCall.access_hash = groupCall.access_hash;
-                        org.telegram.ui.Components.voip.d2.g(LaunchActivity.J1, i25, tL_inputGroupCall, false, groupCall, hashSet);
+                        org.telegram.ui.Components.voip.d2.g(LaunchActivity.I1, i25, tL_inputGroupCall, false, groupCall, hashSet);
                         return;
                     }
                     return;
@@ -495,17 +495,17 @@ public final class vb implements Runnable {
                     TL_phone.groupCall groupcall = (TL_phone.groupCall) tLObject2;
                     MessagesController.getInstance(i25).putUsers(groupcall.users, false);
                     MessagesController.getInstance(i25).putChats(groupcall.chats, false);
-                    if (LaunchActivity.J1 != null) {
+                    if (LaunchActivity.I1 != null) {
                         TLRPC.TL_inputGroupCall tL_inputGroupCall2 = new TLRPC.TL_inputGroupCall();
                         TLRPC.GroupCall groupCall2 = groupcall.call;
-                        tL_inputGroupCall2.f20360id = groupCall2.f20353id;
+                        tL_inputGroupCall2.f20361id = groupCall2.f20354id;
                         tL_inputGroupCall2.access_hash = groupCall2.access_hash;
-                        org.telegram.ui.Components.voip.d2.g(LaunchActivity.J1, i25, tL_inputGroupCall2, false, groupCall2, hashSet);
+                        org.telegram.ui.Components.voip.d2.g(LaunchActivity.I1, i25, tL_inputGroupCall2, false, groupCall2, hashSet);
                         return;
                     }
                     return;
                 } else if (tL_error != null) {
-                    org.telegram.ui.Components.xc.a0(o2Var).f0(tL_error, false);
+                    org.telegram.ui.Components.vc.a0(o2Var).f0(tL_error, false);
                     return;
                 } else {
                     return;
@@ -516,14 +516,14 @@ public final class vb implements Runnable {
             case 18:
                 dn dnVar = (dn) obj5;
                 ri riVar = (ri) obj3;
-                riVar.f44707b = dnVar.f36660a.getMessagesController().ensureMessagesLoaded(-((TLRPC.Chat) obj2).f20343id, i17, new ym(dnVar, riVar, (sn) obj4));
+                riVar.f44706b = dnVar.f36651a.getMessagesController().ensureMessagesLoaded(-((TLRPC.Chat) obj2).f20344id, i17, new ym(dnVar, riVar, (sn) obj4));
                 return;
             case 19:
                 dn dnVar2 = (dn) obj5;
                 MessageObject messageObject = (MessageObject) obj3;
                 Integer num = (Integer) obj2;
                 byte[] bArr = (byte[]) obj4;
-                sn snVar = dnVar2.f36660a;
+                sn snVar = dnVar2.f36651a;
                 int id2 = messageObject.getId();
                 if (messageObject.getDialogId() == snVar.X6) {
                     i12 = 1;
@@ -539,7 +539,7 @@ public final class vb implements Runnable {
                 org.telegram.ui.ActionBar.o2 o2Var2 = (org.telegram.ui.ActionBar.o2) obj4;
                 org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
                 if (c2Var != null) {
-                    c2Var.setOnCancelListener(new org.telegram.ui.Components.y1(iArr, runnable, i17));
+                    c2Var.setOnCancelListener(new org.telegram.ui.Components.q1(iArr, runnable, i17));
                     o2Var2.showDialog(c2VarArr[0]);
                     return;
                 }
@@ -549,7 +549,7 @@ public final class vb implements Runnable {
                 ArrayList arrayList12 = (ArrayList) obj3;
                 ArrayList arrayList13 = (ArrayList) obj2;
                 ArrayList arrayList14 = (ArrayList) obj4;
-                if (LaunchActivity.F1 && (R = LaunchActivity.R()) != null && R.getParentActivity() != null) {
+                if (LaunchActivity.E1 && (R = LaunchActivity.R()) != null && R.getParentActivity() != null) {
                     sg.j0 j0Var = new sg.j0(11, this.f2331b, R.getParentActivity(), R, null);
                     j0Var.M1(chat4, arrayList12, arrayList13, arrayList14, null);
                     j0Var.show();
@@ -561,7 +561,7 @@ public final class vb implements Runnable {
                 org.telegram.ui.ActionBar.c2 c2Var2 = (org.telegram.ui.ActionBar.c2) obj2;
                 org.telegram.ui.ActionBar.o2 o2Var3 = (org.telegram.ui.ActionBar.o2) obj4;
                 SharedPreferences.Editor edit = ((SharedPreferences) obj5).edit();
-                edit.putLong("support_id2", tL_help_support.user.f20490id);
+                edit.putLong("support_id2", tL_help_support.user.f20491id);
                 SerializedData serializedData = new SerializedData();
                 tL_help_support.user.serializeToStream(serializedData);
                 edit.putString("support_user", Base64.encodeToString(serializedData.toByteArray(), 0));
@@ -577,21 +577,21 @@ public final class vb implements Runnable {
                 MessagesStorage.getInstance(i17).putUsersAndChats(arrayList15, null, true, true);
                 MessagesController.getInstance(i17).putUser(tL_help_support.user, false);
                 Bundle bundle = new Bundle();
-                bundle.putLong("user_id", tL_help_support.user.f20490id);
+                bundle.putLong("user_id", tL_help_support.user.f20491id);
                 o2Var3.presentFragment(new sn(bundle));
                 return;
             case 23:
-                ps.P((ps) obj5, (TLObject) obj2, (TLRPC.InputPeer) obj3, i17, (int[]) obj4);
+                ns.P((ns) obj5, (TLObject) obj2, (TLRPC.InputPeer) obj3, i17, (int[]) obj4);
                 return;
             case 24:
-                ww0 ww0Var = (ww0) obj5;
+                vw0 vw0Var = (vw0) obj5;
                 TLRPC.TL_messages_stickerSet tL_messages_stickerSet2 = (TLRPC.TL_messages_stickerSet) obj3;
                 MessageObject messageObject2 = (MessageObject) obj2;
                 org.telegram.ui.Cells.t1 t1Var3 = (org.telegram.ui.Cells.t1) obj4;
-                int[] iArr2 = ww0Var.e;
-                RLottieNative[] rLottieNativeArr = ww0Var.f32362f1;
-                if (ww0Var.W0) {
-                    AndroidUtilities.runOnUIThread(new uw0(ww0Var, 2));
+                int[] iArr2 = vw0Var.e;
+                RLottieNative[] rLottieNativeArr = vw0Var.f32060f1;
+                if (vw0Var.W0) {
+                    AndroidUtilities.runOnUIThread(new tw0(vw0Var, 2));
                     return;
                 }
                 int i26 = 0;
@@ -618,13 +618,13 @@ public final class vb implements Runnable {
                                 if (TextUtils.isEmpty(readRes)) {
                                     tL_messages_stickerSet = tL_messages_stickerSet2;
                                     t1Var = t1Var3;
-                                    AndroidUtilities.runOnUIThread(new vw0(document, i27, messageObject2, t1Var3, tL_messages_stickerSet, 1));
+                                    AndroidUtilities.runOnUIThread(new uw0(document, i27, messageObject2, t1Var3, tL_messages_stickerSet, 1));
                                     z19 = true;
                                 } else {
                                     tL_messages_stickerSet = tL_messages_stickerSet2;
                                     t1Var = t1Var3;
                                     rLottieNativeArr[i26] = RLottieNative.b(readRes, iArr2, null, null);
-                                    ww0Var.f32363g1[i26] = iArr2[0];
+                                    vw0Var.f32061g1[i26] = iArr2[0];
                                 }
                                 i26++;
                                 t1Var3 = t1Var;
@@ -639,10 +639,10 @@ public final class vb implements Runnable {
                     } else {
                         org.telegram.ui.Cells.t1 t1Var4 = t1Var3;
                         if (z19) {
-                            AndroidUtilities.runOnUIThread(new uw0(ww0Var, 3));
+                            AndroidUtilities.runOnUIThread(new tw0(vw0Var, 3));
                             return;
                         } else {
-                            AndroidUtilities.runOnUIThread(new org.telegram.ui.h4(ww0Var, i27, t1Var4, 23));
+                            AndroidUtilities.runOnUIThread(new org.telegram.ui.h4(vw0Var, i27, t1Var4, 23));
                             return;
                         }
                     }
@@ -652,9 +652,9 @@ public final class vb implements Runnable {
                 TLObject tLObject3 = (TLObject) obj2;
                 Uri uri = (Uri) obj3;
                 org.telegram.ui.ActionBar.c2 c2Var3 = (org.telegram.ui.ActionBar.c2) obj4;
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 if (!launchActivity.isFinishing()) {
-                    if (tLObject3 != null && launchActivity.f33487q0 != null) {
+                    if (tLObject3 != null && launchActivity.f33489q0 != null) {
                         TLRPC.TL_messages_historyImportParsed tL_messages_historyImportParsed = (TLRPC.TL_messages_historyImportParsed) tLObject3;
                         Bundle h = a1.g.h("onlySelect", true);
                         h.putString("importTitle", tL_messages_historyImportParsed.title);
@@ -691,7 +691,7 @@ public final class vb implements Runnable {
                                 }
                             }
                         }
-                        if (SecretMediaViewer.g() && SecretMediaViewer.f().f34125s) {
+                        if (SecretMediaViewer.g() && SecretMediaViewer.f().f34127s) {
                             SecretMediaViewer.f().e(false, false);
                         } else if (PhotoViewer.E1() && PhotoViewer.u1().T1()) {
                             PhotoViewer.u1().H0(false, true);
@@ -704,12 +704,12 @@ public final class vb implements Runnable {
                             u50Var.dismiss();
                         }
                         if (AndroidUtilities.isTablet()) {
-                            launchActivity.f33487q0.V(true, true);
-                            launchActivity.f33491s0.V(true, true);
+                            launchActivity.f33489q0.V(true, true);
+                            launchActivity.f33493s0.V(true, true);
                         }
                         ey eyVar = new ey(h);
                         eyVar.C2 = launchActivity;
-                        if (!AndroidUtilities.isTablet() ? launchActivity.f33487q0.getFragmentStack().size() <= 1 || !(launchActivity.f33487q0.getFragmentStack().get(launchActivity.f33487q0.getFragmentStack().size() - 1) instanceof rg0) : launchActivity.f33489r0.getFragmentStack().isEmpty() || !(launchActivity.f33489r0.getFragmentStack().get(launchActivity.f33489r0.getFragmentStack().size() - 1) instanceof rg0)) {
+                        if (!AndroidUtilities.isTablet() ? launchActivity.f33489q0.getFragmentStack().size() <= 1 || !(launchActivity.f33489q0.getFragmentStack().get(launchActivity.f33489q0.getFragmentStack().size() - 1) instanceof qg0) : launchActivity.f33491r0.getFragmentStack().isEmpty() || !(launchActivity.f33491r0.getFragmentStack().get(launchActivity.f33491r0.getFragmentStack().size() - 1) instanceof qg0)) {
                             z14 = false;
                         }
                         ((ActionBarLayout) launchActivity.O()).T(eyVar, z14, false);
@@ -735,7 +735,7 @@ public final class vb implements Runnable {
                 f80 f80Var = (f80) obj3;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 TLRPC.Updates updates2 = (TLRPC.Updates) obj4;
-                ArrayList arrayList16 = launchActivity2.f33463d0;
+                ArrayList arrayList16 = launchActivity2.f33465d0;
                 if (!launchActivity2.isFinishing()) {
                     try {
                         f80Var.run();
@@ -743,14 +743,14 @@ public final class vb implements Runnable {
                         FileLog.e(e11);
                     }
                     if (tL_error2 == null) {
-                        if (launchActivity2.f33487q0 != null && updates2 != null && !updates2.chats.isEmpty()) {
+                        if (launchActivity2.f33489q0 != null && updates2 != null && !updates2.chats.isEmpty()) {
                             TLRPC.Chat chat5 = updates2.chats.get(0);
                             chat5.left = false;
                             chat5.kicked = false;
                             MessagesController.getInstance(i17).putUsers(updates2.users, false);
                             MessagesController.getInstance(i17).putChats(updates2.chats, false);
                             Bundle bundle2 = new Bundle();
-                            bundle2.putLong("chat_id", chat5.f20343id);
+                            bundle2.putLong("chat_id", chat5.f20344id);
                             if (arrayList16.isEmpty() || MessagesController.getInstance(i17).checkCanOpenChat(bundle2, (org.telegram.ui.ActionBar.o2) i2.o1.i(1, arrayList16))) {
                                 sn snVar2 = new sn(bundle2);
                                 NotificationCenter.getInstance(i17).lambda$postNotificationNameOnUIThread$1(NotificationCenter.closeChats, new Object[0]);
@@ -763,7 +763,7 @@ public final class vb implements Runnable {
                     }
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity2);
                     String string = LocaleController.getString(R.string.AppName);
-                    org.telegram.ui.ActionBar.c2 c2Var4 = alertDialog$Builder.f20678a;
+                    org.telegram.ui.ActionBar.c2 c2Var4 = alertDialog$Builder.f20679a;
                     c2Var4.R = string;
                     if (tL_error2.text.startsWith("FLOOD_WAIT")) {
                         c2Var4.T = LocaleController.getString(R.string.FloodWait);
@@ -781,7 +781,7 @@ public final class vb implements Runnable {
                 TLObject tLObject4 = (TLObject) obj2;
                 String str4 = (String) obj4;
                 f80 f80Var2 = (f80) obj3;
-                org.telegram.ui.ActionBar.o2 o2Var4 = (org.telegram.ui.ActionBar.o2) i2.o1.i(1, ((LaunchActivity) obj5).f33463d0);
+                org.telegram.ui.ActionBar.o2 o2Var4 = (org.telegram.ui.ActionBar.o2) i2.o1.i(1, ((LaunchActivity) obj5).f33465d0);
                 try {
                     if (tLObject4 instanceof TL_chatlists.chatlist_ChatlistInvite) {
                         TL_chatlists.chatlist_ChatlistInvite chatlist_chatlistinvite = (TL_chatlists.chatlist_ChatlistInvite) tLObject4;
@@ -801,43 +801,43 @@ public final class vb implements Runnable {
                         MessagesController.getInstance(i17).putChats(arrayList2, false);
                         MessagesController.getInstance(i17).putUsers(arrayList, false);
                         if (z20 && ((TL_chatlists.TL_chatlists_chatlistInvite) chatlist_chatlistinvite).peers.isEmpty()) {
-                            a02 = org.telegram.ui.Components.xc.a0(o2Var4);
+                            a02 = org.telegram.ui.Components.vc.a0(o2Var4);
                             i14 = R.string.NoFolderFound;
                         } else {
-                            ?? bbVar = new org.telegram.ui.Components.bb(o2Var4, false);
-                            bbVar.Y = -1;
-                            bbVar.f27805c0 = "";
-                            bbVar.f27806d0 = new ArrayList();
-                            bbVar.f27808f0 = "";
-                            bbVar.f27810h0 = new ArrayList();
+                            ?? zaVar = new org.telegram.ui.Components.za(o2Var4, false);
+                            zaVar.Y = -1;
+                            zaVar.f27224c0 = "";
+                            zaVar.f27225d0 = new ArrayList();
+                            zaVar.f27227f0 = "";
+                            zaVar.f27229h0 = new ArrayList();
                             ArrayList arrayList17 = new ArrayList();
-                            bbVar.f27811i0 = arrayList17;
-                            bbVar.f27827z0 = -1;
-                            bbVar.C0 = -5;
-                            bbVar.X = str4;
-                            bbVar.Z = chatlist_chatlistinvite;
+                            zaVar.f27230i0 = arrayList17;
+                            zaVar.f27246z0 = -1;
+                            zaVar.C0 = -5;
+                            zaVar.X = str4;
+                            zaVar.Z = chatlist_chatlistinvite;
                             arrayList17.clear();
                             if (z20) {
                                 TL_chatlists.TL_chatlists_chatlistInvite tL_chatlists_chatlistInvite2 = (TL_chatlists.TL_chatlists_chatlistInvite) chatlist_chatlistinvite;
                                 TLRPC.TL_textWithEntities tL_textWithEntities = tL_chatlists_chatlistInvite2.title;
-                                bbVar.f27805c0 = tL_textWithEntities.text;
-                                bbVar.f27806d0 = tL_textWithEntities.entities;
-                                bbVar.f27807e0 = tL_chatlists_chatlistInvite2.title_noanimate;
-                                bbVar.f27809g0 = tL_chatlists_chatlistInvite2.peers;
+                                zaVar.f27224c0 = tL_textWithEntities.text;
+                                zaVar.f27225d0 = tL_textWithEntities.entities;
+                                zaVar.f27226e0 = tL_chatlists_chatlistInvite2.title_noanimate;
+                                zaVar.f27228g0 = tL_chatlists_chatlistInvite2.peers;
                             } else if (chatlist_chatlistinvite instanceof TL_chatlists.TL_chatlists_chatlistInviteAlready) {
                                 TL_chatlists.TL_chatlists_chatlistInviteAlready tL_chatlists_chatlistInviteAlready2 = (TL_chatlists.TL_chatlists_chatlistInviteAlready) chatlist_chatlistinvite;
-                                bbVar.f27809g0 = tL_chatlists_chatlistInviteAlready2.missing_peers;
-                                bbVar.f27812j0 = tL_chatlists_chatlistInviteAlready2.already_peers;
-                                bbVar.Y = tL_chatlists_chatlistInviteAlready2.filter_id;
+                                zaVar.f27228g0 = tL_chatlists_chatlistInviteAlready2.missing_peers;
+                                zaVar.f27231j0 = tL_chatlists_chatlistInviteAlready2.already_peers;
+                                zaVar.Y = tL_chatlists_chatlistInviteAlready2.filter_id;
                                 ArrayList<MessagesController.DialogFilter> arrayList18 = o2Var4.getMessagesController().dialogFilters;
                                 if (arrayList18 != null) {
                                     while (true) {
                                         if (i16 < arrayList18.size()) {
                                             MessagesController.DialogFilter dialogFilter = arrayList18.get(i16);
-                                            if (dialogFilter.f17862id == bbVar.Y) {
-                                                bbVar.f27805c0 = dialogFilter.name;
-                                                bbVar.f27806d0 = dialogFilter.entities;
-                                                bbVar.f27807e0 = dialogFilter.title_noanimate;
+                                            if (dialogFilter.f17862id == zaVar.Y) {
+                                                zaVar.f27224c0 = dialogFilter.name;
+                                                zaVar.f27225d0 = dialogFilter.entities;
+                                                zaVar.f27226e0 = dialogFilter.title_noanimate;
                                             } else {
                                                 i16++;
                                             }
@@ -845,13 +845,13 @@ public final class vb implements Runnable {
                                     }
                                 }
                             }
-                            bbVar.T();
-                            o2Var4.showDialog(bbVar);
+                            zaVar.T();
+                            o2Var4.showDialog(zaVar);
                             f80Var2.run();
                             return;
                         }
                     } else {
-                        a02 = org.telegram.ui.Components.xc.a0(o2Var4);
+                        a02 = org.telegram.ui.Components.vc.a0(o2Var4);
                         i14 = R.string.NoFolderFound;
                     }
                     f80Var2.run();
@@ -860,7 +860,7 @@ public final class vb implements Runnable {
                     FileLog.e(e12);
                     return;
                 }
-                sl.q(i14, a02, null);
+                tl.q(i14, a02, null);
                 break;
             case 28:
                 ((ob0) obj5).v((String) obj4, i17 + 1, (String) obj3, (String) obj2);
@@ -873,7 +873,7 @@ public final class vb implements Runnable {
                 obj10.f4699a = str5;
                 arrayList19.add(obj10.a());
                 FileLog.d("LoginBilling querying \"" + str5 + "\" product");
-                BillingController.getInstance().queryProductDetails(arrayList19, new j6((rf0) obj5, str5, (String) obj3, (String) obj2, this.f2331b));
+                BillingController.getInstance().queryProductDetails(arrayList19, new j6((qf0) obj5, str5, (String) obj3, (String) obj2, this.f2331b));
                 return;
         }
     }

@@ -29,7 +29,7 @@ public class StatsController extends BaseController {
     private long[][] sentBytes;
     private int[][] sentItems;
     private RandomAccessFile statsFile;
-    private static DispatchQueue statsSaveQueue = new DispatchQueue("statsSaveQueue");
+    private static DispatchQueue2 statsSaveQueue = new DispatchQueue2("statsSaveQueue");
     private static final ThreadLocal<Long> lastStatsSaveTime = new ThreadLocal<Long>() {
         @Override
         public Long initialValue() {
@@ -88,7 +88,7 @@ public class StatsController extends BaseController {
                         StatsController.this.statsFile.seek(0L);
                         RandomAccessFile randomAccessFile = StatsController.this.statsFile;
                         zf.z zVar = StatsController.this.byteArrayOutputStream;
-                        randomAccessFile.write(zVar.f52087a, 0, zVar.f52088b);
+                        randomAccessFile.write(zVar.f52086a, 0, zVar.f52087b);
                         StatsController.this.statsFile.getFD().sync();
                     } catch (Exception unused) {
                     }

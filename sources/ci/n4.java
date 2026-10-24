@@ -16,7 +16,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.y41;
+import org.telegram.ui.Components.x41;
 public final class n4 {
     public TL_stories.StoryItem f5595a = null;
     public g7 f5596b = null;
@@ -40,12 +40,12 @@ public final class n4 {
         if (storyItem != null && (messageMedia = storyItem.media) != null) {
             if (messageMedia.photo != null) {
                 StringBuilder sb2 = new StringBuilder("photo#");
-                sb2.append(n4Var.f5595a.media.photo.f20367id);
+                sb2.append(n4Var.f5595a.media.photo.f20368id);
                 sb2.append("at");
                 return a1.g.n(n4Var.f5595a.media.photo.dc_id, "dc", sb2);
             } else if (messageMedia.document != null) {
                 StringBuilder sb3 = new StringBuilder("doc#");
-                sb3.append(n4Var.f5595a.media.document.f20349id);
+                sb3.append(n4Var.f5595a.media.document.f20350id);
                 sb3.append("at");
                 return a1.g.n(n4Var.f5595a.media.document.dc_id, "dc", sb3);
             } else {
@@ -93,7 +93,7 @@ public final class n4 {
             if (p4Var.O1.f5598f) {
                 return String.format(Locale.US, "https://t.me/%1$s/s/live", UserObject.getPublicUsername(user));
             }
-            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(p4Var.O1.f5595a.f20577id));
+            return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", UserObject.getPublicUsername(user), Integer.valueOf(p4Var.O1.f5595a.f20578id));
         }
         TLRPC.Chat chat = MessagesController.getInstance(p4Var.C2).getChat(Long.valueOf(-p4Var.B1));
         if (ChatObject.getPublicUsername(chat) == null) {
@@ -102,7 +102,7 @@ public final class n4 {
         if (p4Var.O1.f5598f) {
             return String.format(Locale.US, "https://t.me/%1$s/s/live", ChatObject.getPublicUsername(chat));
         }
-        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(p4Var.O1.f5595a.f20577id));
+        return String.format(Locale.US, "https://t.me/%1$s/s/%2$s", ChatObject.getPublicUsername(chat), Integer.valueOf(p4Var.O1.f5595a.f20578id));
     }
 
     public final String f() {
@@ -229,7 +229,7 @@ public final class n4 {
                     }
                     if (tL_mediaAreaChannelPost != null && (chat2 = MessagesController.getInstance(i11).getChat(Long.valueOf(tL_mediaAreaChannelPost.channel_id))) != null) {
                         m8Var = new m8();
-                        m8Var.f5565b = Long.valueOf(-chat2.f20343id);
+                        m8Var.f5565b = Long.valueOf(-chat2.f20344id);
                         m8Var.e = true;
                         m8Var.f5564a = i11;
                         m8Var.f5567f = true;
@@ -315,7 +315,7 @@ public final class n4 {
         TL_stories.StoryItem storyItem = this.f5595a;
         if (storyItem != null) {
             TLRPC.MessageMedia messageMedia = storyItem.media;
-            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j10 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f20360id) {
+            if ((messageMedia instanceof TLRPC.TL_messageMediaVideoStream) && j10 == ((TLRPC.TL_messageMediaVideoStream) messageMedia).call.f20361id) {
                 return true;
             }
             return false;
@@ -394,7 +394,7 @@ public final class n4 {
         }
         TL_stories.StoryItem storyItem = n4Var.f5595a;
         if (storyItem != null) {
-            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, y41.L())) {
+            if (storyItem.translated && storyItem.translatedText != null && TextUtils.equals(storyItem.translatedLng, x41.L())) {
                 this.f5599g = true;
                 TLRPC.TL_textWithEntities tL_textWithEntities = n4Var.f5595a.translatedText;
                 String str = tL_textWithEntities.text;

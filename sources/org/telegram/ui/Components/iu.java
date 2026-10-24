@@ -1,1055 +1,574 @@
 package org.telegram.ui.Components;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Canvas;
-import android.os.Bundle;
+import android.graphics.ColorFilter;
+import android.graphics.Path;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.Region;
+import android.os.Build;
+import android.os.Looper;
 import android.text.Editable;
 import android.text.Layout;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.text.style.CharacterStyle;
-import android.view.ActionMode;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
+import android.text.Spanned;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.widget.EditText;
 import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.regex.Pattern;
+import java.util.List;
+import java.util.Stack;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LanguageDetector;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaDataController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.LaunchActivity;
-public class iu extends EditTextBoldCursor implements org.telegram.ui.ActionBar.z4 {
-    private static final int ACCESSIBILITY_ACTION_SHARE = 268435456;
-    private static final int[] STYLE_FLAGS = {1, 2, 4, 8, 16, 256, 16384, 32768};
-    public static final int f27449b = 0;
-    public boolean adaptiveCreateLinkDialog;
-    private boolean allowTextEntitiesIntersection;
-    private String caption;
-    private StaticLayout captionLayout;
-    private boolean copyPasteShowed;
-    private org.telegram.ui.ActionBar.c2 creationLinkDialog;
-    private gu delegate;
-    private int hintColor;
-    private boolean isInitLineCount;
-    private int lineCount;
-    private final org.telegram.ui.ActionBar.g6 resourcesProvider;
-    private i11 rightText;
-    private int selectionEnd;
-    private int selectionStart;
-    private int themedQuoteColor;
-    private int userNameLength;
-    private int xOffset;
-    private int yOffset;
+public abstract class iu extends EditText {
+    private static final int SPOILER_TIMEOUT = 10000;
+    private static Boolean allowHackingTextCanvasCache;
+    private ColorFilter animatedEmojiColorFilter;
+    private u5 animatedEmojiDrawables;
+    private wh.l clickDetector;
+    private boolean clipToPadding;
+    public boolean drawAnimatedEmojiDrawables;
+    private boolean editedWhileQuoteUpdating;
+    private Integer emojiColor;
+    private boolean isSpoilersRevealed;
+    private Layout lastLayout;
+    private float lastRippleX;
+    private float lastRippleY;
+    private int lastText2Length;
+    private int lastTextColor;
+    private int lastTextLength;
+    protected float offsetY;
+    private Path path;
+    private boolean postedSpoilerTimeout;
+    private ArrayList<oj0> quoteBlocks;
+    private boolean quoteBlocksUpdating;
+    public int quoteColor;
+    private boolean[] quoteUpdateLayout;
+    private int quoteUpdatesTries;
+    private Rect rect;
+    private int selEnd;
+    private int selStart;
+    private boolean shouldRevealSpoilersByTouch;
+    private Runnable spoilerTimeout;
+    private List<wh.g> spoilers;
+    private Stack<wh.g> spoilersPool;
+    public boolean suppressOnTextChanged;
+    public boolean wrapCanvasToFixClipping;
+    private hd0 wrappedCanvas;
 
-    public iu(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        this.selectionStart = -1;
-        this.selectionEnd = -1;
-        this.resourcesProvider = g6Var;
-        int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Sc, g6Var);
-        this.themedQuoteColor = w02;
-        this.quoteColor = w02;
-        addTextChangedListener(new ai.u(this, 7));
-        setClipToPadding(true);
-    }
-
-    public static void i(iu iuVar) {
-        iuVar.creationLinkDialog = null;
-        iuVar.requestFocus();
-    }
-
-    public static void j(iu iuVar, int i10, int i11, int i12, int i13) {
-        Editable text = iuVar.getText();
-        ?? obj = new Object();
-        obj.f29754a |= 128;
-        obj.f29755b = i10;
-        obj.f29756c = i11;
-        TLRPC.TL_messageEntityFormattedDate tL_messageEntityFormattedDate = new TLRPC.TL_messageEntityFormattedDate();
-        tL_messageEntityFormattedDate.date = i12;
-        tL_messageEntityFormattedDate.flags = i13;
-        tL_messageEntityFormattedDate.applyFlags();
-        try {
-            text.setSpan(new p10(text.subSequence(i10, i11).toString(), obj, tL_messageEntityFormattedDate), i10, i11, 33);
-        } catch (Exception unused) {
-        }
-        gu guVar = iuVar.delegate;
-        if (guVar != null) {
-            guVar.h();
+    public iu(Context context) {
+        super(context, null, 0, R.style.EditTextNoBackgroundStyle);
+        this.spoilers = new ArrayList();
+        this.spoilersPool = new Stack<>();
+        this.quoteBlocks = new ArrayList<>();
+        this.shouldRevealSpoilersByTouch = true;
+        this.path = new Path();
+        this.drawAnimatedEmojiDrawables = true;
+        this.lastLayout = null;
+        this.spoilerTimeout = new hu(this, 2);
+        this.rect = new Rect();
+        this.wrapCanvasToFixClipping = allowHackingTextCanvas();
+        if (Looper.getMainLooper().getThread() == Thread.currentThread()) {
+            this.clickDetector = new wh.l(this, this.spoilers, new s(this, 28));
         }
     }
 
-    public static void k(iu iuVar, int i10, int i11, Runnable runnable, String str) {
-        Editable text = iuVar.getText();
-        CharacterStyle[] characterStyleArr = (CharacterStyle[]) text.getSpans(i10, i11, CharacterStyle.class);
-        if (characterStyleArr != null && characterStyleArr.length > 0) {
-            for (CharacterStyle characterStyle : characterStyleArr) {
-                if (!(characterStyle instanceof a6) && !(characterStyle instanceof sj0)) {
-                    int spanStart = text.getSpanStart(characterStyle);
-                    int spanEnd = text.getSpanEnd(characterStyle);
-                    text.removeSpan(characterStyle);
-                    if (spanStart < i10) {
-                        text.setSpan(characterStyle, spanStart, i10, 33);
-                    }
-                    if (spanEnd > i11) {
-                        text.setSpan(characterStyle, i11, spanEnd, 33);
-                    }
+    public static void a(iu iuVar) {
+        iuVar.postedSpoilerTimeout = false;
+        iuVar.isSpoilersRevealed = false;
+        iuVar.invalidateSpoilers();
+        if (!iuVar.spoilers.isEmpty()) {
+            iuVar.spoilers.get(0).f49510q = new hu(iuVar, 3);
+            float sqrt = (float) Math.sqrt(Math.pow(iuVar.getHeight(), 2.0d) + Math.pow(iuVar.getWidth(), 2.0d));
+            for (wh.g gVar : iuVar.spoilers) {
+                gVar.j(iuVar.lastRippleX, iuVar.lastRippleY, sqrt, true);
+            }
+        }
+    }
+
+    public static boolean allowHackingTextCanvas() {
+        String str;
+        boolean z10;
+        if (allowHackingTextCanvasCache == null) {
+            String str2 = Build.MANUFACTURER;
+            if ((str2 != null && (str2.toLowerCase().contains("honor") || str2.toLowerCase().contains("huawei") || str2.toLowerCase().contains("alps"))) || ((str = Build.MODEL) != null && str.toLowerCase().contains("mediapad"))) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            allowHackingTextCanvasCache = Boolean.valueOf(z10);
+        }
+        return allowHackingTextCanvasCache.booleanValue();
+    }
+
+    public final void b() {
+        CharSequence charSequence;
+        q11[] q11VarArr;
+        int i10;
+        int i11;
+        if (getLayout() != null) {
+            charSequence = getLayout().getText();
+        } else {
+            charSequence = null;
+        }
+        boolean z10 = false;
+        if (charSequence instanceof Spannable) {
+            Spannable spannable = (Spannable) charSequence;
+            for (q11 q11Var : (q11[]) spannable.getSpans(0, spannable.length(), q11.class)) {
+                int spanStart = spannable.getSpanStart(q11Var);
+                int spanEnd = spannable.getSpanEnd(q11Var);
+                if (q11Var.c() && ((spanStart > (i10 = this.selStart) && spanEnd < this.selEnd) || ((i10 > spanStart && i10 < spanEnd) || ((i11 = this.selEnd) > spanStart && i11 < spanEnd)))) {
+                    removeCallbacks(this.spoilerTimeout);
+                    this.postedSpoilerTimeout = false;
+                    z10 = true;
+                    break;
                 }
             }
         }
-        try {
-            text.setSpan(iuVar.createUrlSpan(str), i10, i11, 33);
-        } catch (Exception unused) {
-        }
-        gu guVar = iuVar.delegate;
-        if (guVar != null) {
-            guVar.h();
-        }
-        if (runnable != null) {
-            runnable.run();
+        if (this.isSpoilersRevealed && !z10 && !this.postedSpoilerTimeout) {
+            this.postedSpoilerTimeout = true;
+            postDelayed(this.spoilerTimeout, 10000L);
         }
     }
 
-    public void addStyle(int i10, int i11, int i12) {
-        int min;
-        Editable text = getText();
-        if (text != null && i11 >= 0 && i12 >= 0 && i11 < i12 && i11 < (min = Math.min(i12, text.length()))) {
-            ?? obj = new Object();
-            obj.f29754a = i10;
-            MediaDataController.addStyleToText(new r11(obj, 0), i11, min, text, true);
-            if ((i10 & 256) != 0) {
-                invalidateSpoilers();
-            }
-            gu guVar = this.delegate;
-            if (guVar != null) {
-                guVar.h();
+    public final void c(wh.g gVar, float f7, float f10) {
+        if (!this.isSpoilersRevealed) {
+            this.lastRippleX = f7;
+            this.lastRippleY = f10;
+            this.postedSpoilerTimeout = false;
+            removeCallbacks(this.spoilerTimeout);
+            setSpoilersRevealed(true, false);
+            gVar.f49510q = new hu(this, 0);
+            float sqrt = (float) Math.sqrt(Math.pow(getHeight(), 2.0d) + Math.pow(getWidth(), 2.0d));
+            for (wh.g gVar2 : this.spoilers) {
+                gVar2.j(f7, f10, sqrt, false);
             }
         }
     }
 
-    public boolean closeCreationLinkDialog(boolean z10) {
-        org.telegram.ui.ActionBar.c2 c2Var = this.creationLinkDialog;
-        if (c2Var != null && c2Var.isShowing()) {
-            if (z10) {
-                this.creationLinkDialog.dismiss();
-                return true;
-            }
-            return true;
-        }
-        return false;
-    }
-
-    public s61 createUrlSpan(String str) {
-        return new s61(str, null);
-    }
-
-    public boolean getAllowTextEntitiesIntersection() {
-        return this.allowTextEntitiesIntersection;
-    }
-
-    public String getCaption() {
-        return this.caption;
-    }
-
-    public int getCurrentStyle(int i10, int i11) {
-        Editable text = getText();
-        int i12 = 0;
-        if (text == null) {
-            return 0;
-        }
-        int max = Math.max(0, i10);
-        int min = Math.min(i11, text.length());
-        if (max < 0 || min < 0 || max >= min) {
-            return 0;
-        }
-        r11[] r11VarArr = (r11[]) text.getSpans(max, min, r11.class);
-        int[] iArr = STYLE_FLAGS;
-        int length = iArr.length;
-        int i13 = 0;
-        int i14 = 0;
-        while (i13 < length) {
-            int i15 = iArr[i13];
-            int i16 = max;
-            int i17 = 1;
-            while (i17 != 0 && i16 < min) {
-                i17 = i12;
-                int i18 = i17;
-                while (i18 < r11VarArr.length) {
-                    r11 r11Var = r11VarArr[i18];
-                    int i19 = r11Var.f30054b.f29754a;
-                    int i20 = i12;
-                    if ((i19 & 512) != 0) {
-                        i19 |= 256;
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        boolean z10;
+        boolean z11;
+        sj0 sj0Var;
+        boolean z12;
+        wh.l lVar;
+        int paddingTop = getPaddingTop() - getScrollY();
+        ArrayList<oj0> arrayList = this.quoteBlocks;
+        if (arrayList == null) {
+            z10 = false;
+        } else {
+            int size = arrayList.size();
+            z10 = false;
+            int i10 = 0;
+            while (i10 < size) {
+                oj0 oj0Var = arrayList.get(i10);
+                i10++;
+                oj0 oj0Var2 = oj0Var;
+                jj0 jj0Var = oj0Var2.e.J;
+                if (oj0Var2.b() && oj0Var2.f29310g.contains(motionEvent.getX(), motionEvent.getY() - paddingTop)) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                if (motionEvent.getAction() == 0) {
+                    if (jj0Var != null) {
+                        jj0Var.b(z11);
                     }
-                    if ((i19 & i15) != 0) {
-                        int spanStart = text.getSpanStart(r11Var);
-                        int spanEnd = text.getSpanEnd(r11VarArr[i18]);
-                        if (spanStart <= i16 && spanEnd > i16) {
-                            i17 = 1;
-                            i16 = spanEnd;
-                        }
+                } else if (motionEvent.getAction() == 1) {
+                    if (jj0Var != null && jj0Var.h && z11) {
+                        oj0Var2.e.e = !sj0Var.e;
+                        invalidateQuotes(true);
+                        z10 = true;
                     }
-                    i18++;
-                    i12 = i20;
+                    if (jj0Var != null) {
+                        jj0Var.b(false);
+                    }
+                } else if (motionEvent.getAction() == 3 && jj0Var != null) {
+                    jj0Var.b(false);
+                }
+                if ((jj0Var != null && jj0Var.h) || z10) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
             }
-            int i21 = i12;
-            if (i16 >= min) {
-                i14 |= i15;
-            }
-            i13++;
-            i12 = i21;
         }
-        return i14;
-    }
-
-    public boolean isNearRightCaption(int i10) {
-        Layout layout = getLayout();
-        if (layout == null || layout.getLineCount() <= 0 || (layout.getLineCount() <= 1 && layout.getLineRight(0) + i10 < (getWidth() - getPaddingLeft()) - getPaddingRight())) {
-            return false;
+        if (!z10) {
+            if (this.shouldRevealSpoilersByTouch && (lVar = this.clickDetector) != null && ((GestureDetector) lVar.f49539a.f16072b).onTouchEvent(motionEvent)) {
+                if (motionEvent.getActionMasked() == 1) {
+                    MotionEvent obtain = MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0);
+                    super.dispatchTouchEvent(obtain);
+                    obtain.recycle();
+                }
+                z12 = true;
+            } else {
+                z12 = false;
+            }
+            if (!super.dispatchTouchEvent(motionEvent) && !z12) {
+                return false;
+            }
         }
         return true;
     }
 
-    public final void l(r11 r11Var) {
-        int selectionEnd;
-        int i10 = this.selectionStart;
-        if (i10 >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
-            this.selectionEnd = -1;
-            this.selectionStart = -1;
-        } else {
-            i10 = getSelectionStart();
-            selectionEnd = getSelectionEnd();
+    public int emojiCacheType() {
+        return p5.g();
+    }
+
+    public float getOffsetY() {
+        return this.offsetY;
+    }
+
+    public CharSequence getTextToUse() {
+        Editable text = getText();
+        if (text == null) {
+            return null;
         }
-        MediaDataController.addStyleToText(r11Var, i10, selectionEnd, getText(), this.allowTextEntitiesIntersection);
-        if (r11Var == null) {
-            Editable text = getText();
-            for (mi.h hVar : (mi.h[]) text.getSpans(i10, selectionEnd, mi.h.class)) {
-                text.removeSpan(hVar);
-            }
-            tj0[] tj0VarArr = (tj0[]) text.getSpans(i10, selectionEnd, tj0.class);
-            for (int i11 = 0; i11 < tj0VarArr.length; i11++) {
-                text.removeSpan(tj0VarArr[i11]);
-                text.removeSpan(tj0VarArr[i11].f30810s);
-                ki.y5 y5Var = tj0VarArr[i11].v;
-                if (y5Var != null) {
-                    text.removeSpan(y5Var);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(text);
+        qj0[] qj0VarArr = (qj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), qj0.class);
+        for (int length = qj0VarArr.length - 1; length >= 0; length--) {
+            qj0 qj0Var = qj0VarArr[length];
+            int spanStart = spannableStringBuilder.getSpanStart(qj0Var);
+            int spanEnd = spannableStringBuilder.getSpanEnd(qj0Var);
+            spannableStringBuilder.removeSpan(qj0Var);
+            spannableStringBuilder.delete(spanStart, spanEnd);
+        }
+        return spannableStringBuilder;
+    }
+
+    public void invalidateEffects() {
+        q11[] q11VarArr;
+        Editable text = getText();
+        if (text != null) {
+            for (q11 q11Var : (q11[]) text.getSpans(0, text.length(), q11.class)) {
+                if (q11Var.c()) {
+                    boolean z10 = this.isSpoilersRevealed;
+                    p11 p11Var = q11Var.f29753b;
+                    if (z10) {
+                        p11Var.f29448a |= 512;
+                    } else {
+                        p11Var.f29448a &= -513;
+                    }
                 }
             }
-            if (tj0VarArr.length > 0) {
-                invalidateQuotes(true);
-            }
         }
-        gu guVar = this.delegate;
-        if (guVar != null) {
-            guVar.h();
-        }
-    }
-
-    public void makeSelectedBold() {
-        ?? obj = new Object();
-        obj.f29754a |= 1;
-        l(new r11(obj, 0));
-    }
-
-    public void makeSelectedDate() {
-        int selectionEnd;
-        int x02;
-        int x03;
-        int i10 = this.selectionStart;
-        if (i10 >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
-            this.selectionEnd = -1;
-            this.selectionStart = -1;
-        } else {
-            i10 = getSelectionStart();
-            selectionEnd = getSelectionEnd();
-        }
-        Context context = getContext();
-        ai.p0 p0Var = new ai.p0(this, i10, selectionEnd);
-        rc rcVar = new rc(9);
-        org.telegram.ui.ActionBar.g6 g6Var = this.resourcesProvider;
-        Pattern pattern = f5.f26167a;
-        if (context == null) {
-            return;
-        }
-        int i11 = org.telegram.ui.ActionBar.k6.f21289j5;
-        if (g6Var != null) {
-            x02 = g6Var.e(i11);
-        } else {
-            x02 = org.telegram.ui.ActionBar.k6.x0(null, i11, false);
-        }
-        int i12 = x02;
-        int i13 = org.telegram.ui.ActionBar.k6.f21254h5;
-        if (g6Var != null) {
-            x03 = g6Var.e(i13);
-        } else {
-            x03 = org.telegram.ui.ActionBar.k6.x0(null, i13, false);
-        }
-        int i14 = x03;
-        int i15 = org.telegram.ui.ActionBar.k6.Ji;
-        if (g6Var != null) {
-            g6Var.e(i15);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i15, false);
-        }
-        int i16 = org.telegram.ui.ActionBar.k6.Ni;
-        if (g6Var != null) {
-            g6Var.e(i16);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i16, false);
-        }
-        int i17 = org.telegram.ui.ActionBar.k6.E8;
-        if (g6Var != null) {
-            g6Var.e(i17);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i17, false);
-        }
-        int i18 = org.telegram.ui.ActionBar.k6.G8;
-        if (g6Var != null) {
-            g6Var.e(i18);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i18, false);
-        }
-        int i19 = org.telegram.ui.ActionBar.k6.f21272i6;
-        if (g6Var != null) {
-            g6Var.e(i19);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i19, false);
-        }
-        int i20 = org.telegram.ui.ActionBar.k6.Sh;
-        if (g6Var != null) {
-            g6Var.e(i20);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i20, false);
-        }
-        int i21 = org.telegram.ui.ActionBar.k6.Oh;
-        if (g6Var != null) {
-            g6Var.e(i21);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i21, false);
-        }
-        int i22 = org.telegram.ui.ActionBar.k6.Qh;
-        if (g6Var != null) {
-            g6Var.e(i22);
-        } else {
-            org.telegram.ui.ActionBar.k6.x0(null, i22, false);
-        }
-        org.telegram.ui.ActionBar.b3 b3Var = new org.telegram.ui.ActionBar.b3(context, g6Var);
-        b3Var.a();
-        long currentTimeMillis = System.currentTimeMillis();
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTimeInMillis(currentTimeMillis);
-        int i23 = calendar.get(1);
-        qd0 qd0Var = new qd0(context, g6Var);
-        qd0Var.setTextColor(i12);
-        qd0Var.setTextOffset(AndroidUtilities.dp(10.0f));
-        qd0Var.setItemCount(5);
-        qd0Var.setMinValue(1);
-        qd0Var.setMaxValue(31);
-        qd0Var.setWrapSelectorWheel(false);
-        qd0Var.setFormatter(new e2(7));
-        qd0 qd0Var2 = new qd0(context, g6Var);
-        qd0Var2.setTextColor(i12);
-        qd0Var2.setTextOffset(-AndroidUtilities.dp(10.0f));
-        qd0Var2.setItemCount(5);
-        qd0Var2.setMinValue(0);
-        qd0Var2.setMaxValue(239);
-        qd0Var2.setValue(120);
-        qd0Var2.setWrapSelectorWheel(false);
-        qd0Var2.setFormatter(new i2.r(calendar, i23, 5));
-        qd0 qd0Var3 = new qd0(context, g6Var);
-        qd0Var3.setContentDescriptionCallback(new gi.c(3));
-        qd0Var3.setWrapSelectorWheel(true);
-        qd0Var3.setAllItemsCount(24);
-        qd0Var3.setItemCount(5);
-        qd0Var3.setTextColor(i12);
-        qd0Var3.setTextOffset(AndroidUtilities.dp(10.0f));
-        qd0Var3.setMinValue(0);
-        qd0Var3.setMaxValue(23);
-        qd0Var3.setFormatter(new e2(8));
-        qd0 qd0Var4 = new qd0(context, g6Var);
-        qd0Var4.setContentDescriptionCallback(new gi.c(4));
-        qd0Var4.setWrapSelectorWheel(true);
-        qd0Var4.setAllItemsCount(60);
-        qd0Var4.setItemCount(5);
-        qd0Var4.setTextColor(i12);
-        qd0Var4.setTextOffset(-AndroidUtilities.dp(10.0f));
-        qd0Var4.setMinValue(0);
-        qd0Var4.setMaxValue(59);
-        qd0Var4.setValue(0);
-        qd0Var4.setFormatter(new e2(9));
-        calendar.setTimeInMillis(currentTimeMillis);
-        qd0Var4.setValue(calendar.get(12));
-        qd0Var3.setValue(calendar.get(11));
-        qd0Var.setValue(calendar.get(5));
-        qd0Var2.setValue(calendar.get(2) + 120);
-        i11 i11Var = new i11(LocaleController.formatString(R.string.formatDateAtTime, "", "").trim(), 16.0f, null);
-        i11Var.q(AndroidUtilities.dp(100.0f));
-        Layout.Alignment alignment = Layout.Alignment.ALIGN_CENTER;
-        i11Var.a();
-        i11Var.n(1);
-        i11Var.o(i12);
-        i11 i11Var2 = new i11(":", 18.0f, null);
-        i11Var2.q(AndroidUtilities.dp(100.0f));
-        i11Var2.a();
-        i11Var2.n(1);
-        i11Var2.f27162a.setColor(i12);
-        FrameLayout frameLayout = new FrameLayout(context);
-        c4 c4Var = new c4(context, qd0Var2, qd0Var, qd0Var3, qd0Var4);
-        c4Var.setOrientation(1);
-        frameLayout.addView(c4Var, w7.z5.c(-1.0f, -1));
-        FrameLayout frameLayout2 = new FrameLayout(context);
-        c4Var.addView(frameLayout2, w7.z5.t(-1, -2, 51, 22, 0, 0, 4));
-        TextView textView = new TextView(context);
-        textView.setText(LocaleController.getString(R.string.RelativeDateAddDate));
-        textView.setTextColor(i12);
-        textView.setTextSize(1, 20.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        frameLayout2.addView(textView, w7.z5.d(-2, -2.0f, 51, 0.0f, 12.0f, 0.0f, 0.0f));
-        textView.setOnTouchListener(new di.d(10));
-        ei.m5 m5Var = new ei.m5(context, i11Var2, qd0Var4, 4);
-        m5Var.setOrientation(0);
-        m5Var.setWeightSum(1.0f);
-        c4Var.addView(m5Var, w7.z5.p(-1, -2, 1.0f, 0, 0, 12, 0, 12));
-        ei.d dVar = new ei.d(context, g6Var, true);
-        ai.t7 t7Var = new ai.t7(dVar, qd0Var, qd0Var2, qd0Var3, qd0Var4);
-        m5Var.addView(qd0Var, w7.z5.l(0.2f, 0, 270));
-        m5Var.addView(qd0Var2, w7.z5.l(0.4f, 0, 270));
-        m5Var.addView(qd0Var3, w7.z5.l(0.2f, 0, 270));
-        m5Var.addView(qd0Var4, w7.z5.l(0.2f, 0, 270));
-        qd0Var.setOnValueChangedListener(t7Var);
-        qd0Var2.setOnValueChangedListener(t7Var);
-        qd0Var3.setOnValueChangedListener(t7Var);
-        qd0Var4.setOnValueChangedListener(t7Var);
-        boolean[] zArr = {true};
-        dVar.setPadding(AndroidUtilities.dp(34.0f), 0, AndroidUtilities.dp(34.0f), 0);
-        dVar.f();
-        c4Var.addView(dVar, w7.z5.t(-1, 48, 83, 16, 15, 16, 16));
-        dVar.setOnClickListener(new z1(zArr, qd0Var, qd0Var2, qd0Var3, qd0Var4, p0Var, new int[1], b3Var));
-        b3Var.b(frameLayout);
-        org.telegram.ui.ActionBar.h3 h3Var = b3Var.f20728a;
-        h3Var.show();
-        h3Var.setOnDismissListener(new g2(1, rcVar, zArr));
-        h3Var.setBackgroundColor(i14);
-        h3Var.fixNavigationBar(i14);
-        f5.c(dVar, qd0Var, qd0Var2, qd0Var3, qd0Var4);
-    }
-
-    public void makeSelectedItalic() {
-        ?? obj = new Object();
-        obj.f29754a |= 2;
-        l(new r11(obj, 0));
-    }
-
-    public void makeSelectedMono() {
-        ?? obj = new Object();
-        obj.f29754a |= 4;
-        l(new r11(obj, 0));
-    }
-
-    public void makeSelectedQuote() {
-        makeSelectedQuote(false);
-    }
-
-    public void makeSelectedRegular() {
-        l(null);
-    }
-
-    public void makeSelectedSpoiler() {
-        ?? obj = new Object();
-        obj.f29754a |= 256;
-        l(new r11(obj, 0));
         invalidateSpoilers();
     }
 
-    public void makeSelectedStrike() {
-        ?? obj = new Object();
-        obj.f29754a |= 8;
-        l(new r11(obj, 0));
-    }
-
-    public void makeSelectedUnderline() {
-        ?? obj = new Object();
-        obj.f29754a |= 16;
-        l(new r11(obj, 0));
-    }
-
-    public void makeSelectedUrl() {
-        makeSelectedUrl(null);
-    }
-
-    public void notifySpansChanged() {
-        gu guVar = this.delegate;
-        if (guVar != null) {
-            guVar.h();
+    public void invalidateQuotes(boolean z10) {
+        int i10;
+        if (this.quoteBlocksUpdating) {
+            this.editedWhileQuoteUpdating = true;
+            return;
         }
+        int i11 = 0;
+        if (getLayout() != null && getLayout().getText() != null) {
+            i10 = getLayout().getText().length();
+        } else {
+            i10 = 0;
+        }
+        if (z10 || this.lastText2Length != i10) {
+            this.quoteUpdatesTries = 2;
+            this.lastText2Length = i10;
+        }
+        if (this.quoteUpdatesTries > 0) {
+            if (this.quoteUpdateLayout == null) {
+                this.quoteUpdateLayout = new boolean[1];
+            }
+            this.quoteUpdateLayout[0] = false;
+            this.editedWhileQuoteUpdating = false;
+            this.quoteBlocksUpdating = true;
+            this.quoteBlocks = sj0.d(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            if (this.editedWhileQuoteUpdating) {
+                this.quoteBlocks = sj0.d(this, getLayout(), this.quoteBlocks, this.quoteUpdateLayout);
+            }
+            this.quoteBlocksUpdating = false;
+            this.editedWhileQuoteUpdating = false;
+            if (this.quoteUpdateLayout[0]) {
+                resetFontMetricsCache();
+            }
+            this.quoteUpdatesTries--;
+            if (getLayout() != null && getLayout().getText() != null) {
+                i11 = getLayout().getText().length();
+            }
+            this.lastText2Length = i11;
+        }
+    }
+
+    public void invalidateSpoilers() {
+        u5 u5Var;
+        u5 u5Var2;
+        List<wh.g> list = this.spoilers;
+        if (list == null) {
+            return;
+        }
+        this.spoilersPool.addAll(list);
+        this.spoilers.clear();
+        if (this.isSpoilersRevealed) {
+            invalidate();
+            return;
+        }
+        Layout layout = getLayout();
+        if (layout != null && (layout.getText() instanceof Spannable)) {
+            if (this.drawAnimatedEmojiDrawables && (u5Var2 = this.animatedEmojiDrawables) != null) {
+                ArrayList arrayList = u5Var2.f31019a;
+                for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                    ((t5) arrayList.get(i10)).d.recordPositions = false;
+                }
+            }
+            Stack<wh.g> stack = this.spoilersPool;
+            List<wh.g> list2 = this.spoilers;
+            ArrayList<oj0> arrayList2 = this.quoteBlocks;
+            int i11 = wh.g.A;
+            int measuredWidth = getMeasuredWidth();
+            Layout layout2 = getLayout();
+            if (measuredWidth <= 0) {
+                measuredWidth = -2;
+            }
+            wh.g.a(this, layout2, 0, measuredWidth, (Spanned) getText(), stack, list2, arrayList2);
+            if (this.drawAnimatedEmojiDrawables && (u5Var = this.animatedEmojiDrawables) != null) {
+                ArrayList arrayList3 = u5Var.f31019a;
+                for (int i12 = 0; i12 < arrayList3.size(); i12++) {
+                    ((t5) arrayList3.get(i12)).d.recordPositions = true;
+                }
+            }
+        }
+        invalidate();
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        updateAnimatedEmoji(true);
+        invalidateQuotes(false);
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        removeCallbacks(this.spoilerTimeout);
+        y5.release(this, this.animatedEmojiDrawables);
     }
 
     @Override
     public void onDraw(Canvas canvas) {
         Canvas canvas2;
-        Layout layout;
-        if (this.quoteColor == this.themedQuoteColor) {
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Sc, this.resourcesProvider);
-            this.themedQuoteColor = w02;
-            this.quoteColor = w02;
-        }
+        int color;
         canvas.save();
-        canvas.translate(0.0f, this.offsetY);
-        super.onDraw(canvas);
-        try {
-            if (this.captionLayout != null && this.userNameLength == length()) {
-                TextPaint paint = getPaint();
-                int color = getPaint().getColor();
-                paint.setColor(this.hintColor);
-                canvas.save();
-                canvas.translate(this.xOffset, this.yOffset);
-                this.captionLayout.draw(canvas);
-                canvas.restore();
-                paint.setColor(color);
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
+        if (this.clipToPadding && getScrollY() != 0) {
+            canvas.clipRect(-AndroidUtilities.dp(3.0f), (getScrollY() - super.getExtendedPaddingTop()) - this.offsetY, getMeasuredWidth(), ((getScrollY() + getMeasuredHeight()) + super.getExtendedPaddingBottom()) - this.offsetY);
         }
-        if (this.rightText != null && length() != 0 && (layout = getLayout()) != null && layout.getLineCount() > 0) {
+        int paddingLeft = getPaddingLeft();
+        if (!this.spoilers.isEmpty()) {
+            this.path.rewind();
+            for (wh.g gVar : this.spoilers) {
+                Rect bounds = gVar.getBounds();
+                this.path.addRect(bounds.left + paddingLeft, bounds.top, bounds.right + paddingLeft, bounds.bottom, Path.Direction.CW);
+            }
+            canvas.clipPath(this.path, Region.Op.DIFFERENCE);
+        }
+        invalidateQuotes(false);
+        for (int i10 = 0; i10 < this.quoteBlocks.size(); i10++) {
+            int width = getWidth();
+            int i11 = this.quoteColor;
+            getPaint();
+            this.quoteBlocks.get(i10).a(canvas, width, i11);
+        }
+        updateAnimatedEmoji(false);
+        if (this.wrapCanvasToFixClipping) {
+            if (this.wrappedCanvas == null) {
+                this.wrappedCanvas = new Canvas();
+            }
+            hd0 hd0Var = this.wrappedCanvas;
+            hd0Var.f27014a = canvas;
+            super.onDraw(hd0Var);
+        } else {
+            super.onDraw(canvas);
+        }
+        if (this.drawAnimatedEmojiDrawables && this.animatedEmojiDrawables != null) {
+            canvas.save();
+            canvas.translate(getPaddingLeft(), 0.0f);
             canvas2 = canvas;
-            this.rightText.c(layout.getLineRight(0), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), 1.0f, this.hintColor, canvas2);
+            y5.drawAnimatedEmojis(canvas2, getLayout(), this.animatedEmojiDrawables, 0.0f, this.spoilers, computeVerticalScrollOffset() - AndroidUtilities.dp(6.0f), computeVerticalScrollOffset() + computeVerticalScrollExtent(), 0.0f, 1.0f, this.animatedEmojiColorFilter);
+            canvas2.restore();
         } else {
             canvas2 = canvas;
         }
         canvas2.restore();
-    }
-
-    @Override
-    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        s0.d dVar = new s0.d(accessibilityNodeInfo);
-        if (!TextUtils.isEmpty(this.caption)) {
-            dVar.l(this.caption);
-        }
-        ArrayList d = dVar.d();
-        int size = d.size();
-        int i10 = 0;
-        while (true) {
-            if (i10 >= size) {
-                break;
-            }
-            s0.c cVar = (s0.c) d.get(i10);
-            if (((AccessibilityNodeInfo.AccessibilityAction) cVar.f46297a).getId() == 268435456) {
-                dVar.f46300a.removeAction((AccessibilityNodeInfo.AccessibilityAction) cVar.f46297a);
-                break;
-            }
-            i10++;
-        }
-        if (hasSelection()) {
-            dVar.b(new s0.c(null, R.id.menu_spoiler, LocaleController.getString(R.string.Spoiler), null));
-            dVar.b(new s0.c(null, R.id.menu_bold, LocaleController.getString(R.string.Bold), null));
-            dVar.b(new s0.c(null, R.id.menu_italic, LocaleController.getString(R.string.Italic), null));
-            dVar.b(new s0.c(null, R.id.menu_mono, LocaleController.getString(R.string.Mono), null));
-            dVar.b(new s0.c(null, R.id.menu_strike, LocaleController.getString(R.string.Strike), null));
-            dVar.b(new s0.c(null, R.id.menu_underline, LocaleController.getString(R.string.Underline), null));
-            dVar.b(new s0.c(null, R.id.menu_link, LocaleController.getString(R.string.CreateLink), null));
-            dVar.b(new s0.c(null, R.id.menu_regular, LocaleController.getString(R.string.Regular), null));
-            dVar.b(new s0.c(null, R.id.menu_date, LocaleController.getString(R.string.FormattedDate), null));
-        }
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        int indexOf;
-        int i12;
-        boolean z10;
-        try {
-            if (getMeasuredWidth() == 0 && getMeasuredHeight() == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.isInitLineCount = z10;
-            super.onMeasure(i10, i11);
-            if (this.isInitLineCount) {
-                this.lineCount = getLineCount();
-            }
-            this.isInitLineCount = false;
-        } catch (Exception e) {
-            setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(51.0f));
-            FileLog.e(e);
-        }
-        this.captionLayout = null;
-        String str = this.caption;
-        if (str != null && str.length() > 0) {
-            Editable text = getText();
-            if (text.length() > 1 && text.charAt(0) == '@' && (indexOf = TextUtils.indexOf((CharSequence) text, ' ')) != -1) {
-                TextPaint paint = getPaint();
-                CharSequence subSequence = text.subSequence(0, indexOf + 1);
-                int ceil = (int) Math.ceil(paint.measureText(text, 0, i12));
-                this.userNameLength = subSequence.length();
-                int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - ceil;
-                CharSequence ellipsize = TextUtils.ellipsize(this.caption, paint, measuredWidth, TextUtils.TruncateAt.END);
-                this.xOffset = ceil;
-                try {
-                    StaticLayout staticLayout = new StaticLayout(ellipsize, getPaint(), measuredWidth, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
-                    this.captionLayout = staticLayout;
-                    if (staticLayout.getLineCount() > 0) {
-                        this.xOffset = (int) (this.xOffset + (-this.captionLayout.getLineLeft(0)));
+        if (!this.spoilers.isEmpty()) {
+            wh.g gVar2 = this.spoilers.get(0);
+            if (gVar2.f49506m > 0.0f && gVar2.f49507n > 0.0f) {
+                canvas2.save();
+                canvas2.clipPath(this.path);
+                this.path.rewind();
+                this.spoilers.get(0).e(this.path);
+                canvas2.clipPath(this.path);
+                canvas2.translate(0.0f, -getPaddingTop());
+                if (this.wrapCanvasToFixClipping) {
+                    if (this.wrappedCanvas == null) {
+                        this.wrappedCanvas = new Canvas();
                     }
-                    this.yOffset = ((getMeasuredHeight() - this.captionLayout.getLineBottom(0)) / 2) + AndroidUtilities.dp(0.5f);
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                    hd0 hd0Var2 = this.wrappedCanvas;
+                    hd0Var2.f27014a = canvas2;
+                    super.onDraw(hd0Var2);
+                } else {
+                    super.onDraw(canvas2);
                 }
+                canvas2.restore();
             }
-        }
-    }
-
-    @Override
-    public boolean onTextContextMenuItem(int i10) {
-        if (i10 == 16908322) {
-            ClipData primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip();
-            if (primaryClip != null && primaryClip.getItemCount() == 1 && primaryClip.getDescription().hasMimeType("text/html")) {
-                try {
-                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(zf.l.a(primaryClip.getItemAt(0).getHtmlText()));
-                    Emoji.replaceEmoji((CharSequence) spannableStringBuilder, getPaint().getFontMetricsInt(), false, (int[]) null);
-                    a6[] a6VarArr = (a6[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), a6.class);
-                    if (a6VarArr != null) {
-                        for (a6 a6Var : a6VarArr) {
-                            a6Var.applyFontMetrics(getPaint().getFontMetricsInt(), r5.g());
-                        }
-                    }
-                    int max = Math.max(0, getSelectionStart());
-                    int min = Math.min(getText().length(), getSelectionEnd());
-                    sj0[] sj0VarArr = (sj0[]) getText().getSpans(max, min, sj0.class);
-                    if (sj0VarArr != null && sj0VarArr.length > 0) {
-                        sj0[] sj0VarArr2 = (sj0[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), sj0.class);
-                        for (int i11 = 0; i11 < sj0VarArr2.length; i11++) {
-                            spannableStringBuilder.removeSpan(sj0VarArr2[i11]);
-                            spannableStringBuilder.removeSpan(sj0VarArr2[i11].f30507a);
-                        }
+            this.rect.set(0, (int) ((getScrollY() - super.getExtendedPaddingTop()) - this.offsetY), getWidth(), (int) (((getScrollY() + getMeasuredHeight()) + super.getExtendedPaddingBottom()) - this.offsetY));
+            canvas2.save();
+            canvas2.clipRect(this.rect);
+            canvas2.translate(paddingLeft, 0.0f);
+            for (wh.g gVar3 : this.spoilers) {
+                Rect bounds2 = gVar3.getBounds();
+                Rect rect = this.rect;
+                int i12 = rect.top;
+                int i13 = bounds2.bottom;
+                if ((i12 <= i13 && rect.bottom >= bounds2.top) || (bounds2.top <= rect.bottom && i13 >= i12)) {
+                    if (gVar3.f49517y) {
+                        color = this.quoteColor;
                     } else {
-                        tj0.a(spannableStringBuilder);
+                        color = getPaint().getColor();
                     }
-                    setText(getText().replace(max, min, spannableStringBuilder));
-                    setSelection(spannableStringBuilder.length() + max, max + spannableStringBuilder.length());
-                    return true;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                    gVar3.h(color);
+                    gVar3.draw(canvas2);
                 }
             }
+            canvas2.restore();
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        invalidateQuotes(false);
+    }
+
+    @Override
+    public void onSelectionChanged(int i10, int i11) {
+        super.onSelectionChanged(i10, i11);
+        if (this.suppressOnTextChanged) {
+            return;
+        }
+        this.selStart = i10;
+        this.selEnd = i11;
+        b();
+    }
+
+    @Override
+    public void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        invalidateEffects();
+    }
+
+    @Override
+    public void onTextChanged(java.lang.CharSequence r4, int r5, int r6, int r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.iu.onTextChanged(java.lang.CharSequence, int, int, int):void");
+    }
+
+    public void recycleEmojis() {
+        y5.release(this, this.animatedEmojiDrawables);
+    }
+
+    public void resetFontMetricsCache() {
+        float textSize = getTextSize();
+        setTextSize(0, 1.0f + textSize);
+        setTextSize(0, textSize);
+    }
+
+    public void setClipToPadding(boolean z10) {
+        this.clipToPadding = z10;
+    }
+
+    public void setEmojiColor(Integer num) {
+        int intValue;
+        this.emojiColor = num;
+        if (num == null) {
+            intValue = this.lastTextColor;
         } else {
-            try {
-                if (i10 == 16908321) {
-                    int max2 = Math.max(0, getSelectionStart());
-                    int min2 = Math.min(getText().length(), getSelectionEnd());
-                    AndroidUtilities.addToClipboard(getText().subSequence(max2, min2));
-                    AndroidUtilities.findActivity(getContext()).closeContextMenu();
-                    org.telegram.ui.ActionBar.k4 k4Var = this.floatingActionMode;
-                    if (k4Var != null) {
-                        k4Var.finish();
-                    }
-                    setSelection(max2, min2);
-                    return true;
-                } else if (i10 == 16908320) {
-                    int max3 = Math.max(0, getSelectionStart());
-                    int min3 = Math.min(getText().length(), getSelectionEnd());
-                    AndroidUtilities.addToClipboard(getText().subSequence(max3, min3));
-                    SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder();
-                    if (max3 != 0) {
-                        spannableStringBuilder2.append(getText().subSequence(0, max3));
-                    }
-                    if (min3 != getText().length()) {
-                        spannableStringBuilder2.append(getText().subSequence(min3, getText().length()));
-                    }
-                    setText(spannableStringBuilder2);
-                    setSelection(max3, max3);
-                    return true;
-                }
-            } catch (Exception unused) {
-            }
+            intValue = num.intValue();
         }
-        return super.onTextContextMenuItem(i10);
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean z10) {
-        try {
-            super.onWindowFocusChanged(z10);
-        } catch (Throwable th2) {
-            FileLog.e(th2);
-        }
-    }
-
-    @Override
-    public boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!performMenuAction(i10) && !super.performAccessibilityAction(i10, bundle)) {
-            return false;
-        }
-        return true;
-    }
-
-    public boolean performMenuAction(int i10) {
-        if (i10 == R.id.menu_regular) {
-            makeSelectedRegular();
-            return true;
-        } else if (i10 == R.id.menu_bold) {
-            makeSelectedBold();
-            return true;
-        } else if (i10 == R.id.menu_italic) {
-            makeSelectedItalic();
-            return true;
-        } else if (i10 == R.id.menu_mono) {
-            makeSelectedMono();
-            return true;
-        } else if (i10 == R.id.menu_link) {
-            makeSelectedUrl();
-            return true;
-        } else if (i10 == R.id.menu_strike) {
-            makeSelectedStrike();
-            return true;
-        } else if (i10 == R.id.menu_underline) {
-            makeSelectedUnderline();
-            return true;
-        } else if (i10 == R.id.menu_spoiler) {
-            makeSelectedSpoiler();
-            return true;
-        } else if (i10 == R.id.menu_quote) {
-            makeSelectedQuote();
-            return true;
-        } else if (i10 == R.id.menu_date) {
-            makeSelectedDate();
-            return true;
-        } else if (i10 == R.id.menu_translate) {
-            translateSelected();
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public void removeStyle(int i10, int i11, int i12) {
-        r11[] r11VarArr;
-        Editable text = getText();
-        if (text != null && i11 >= 0 && i12 >= 0 && i11 < i12) {
-            int min = Math.min(i12, text.length());
-            int i13 = i10 & 256;
-            if (i13 != 0) {
-                i10 |= 512;
-            }
-            for (r11 r11Var : (r11[]) text.getSpans(i11, min, r11.class)) {
-                q11 q11Var = r11Var.f30054b;
-                int i14 = q11Var.f29754a;
-                if ((i14 & i10) != 0) {
-                    int spanStart = text.getSpanStart(r11Var);
-                    int spanEnd = text.getSpanEnd(r11Var);
-                    text.removeSpan(r11Var);
-                    if (spanStart < i11) {
-                        text.setSpan(new r11(new q11(q11Var), 0), spanStart, i11, 33);
-                    }
-                    if (spanEnd > min) {
-                        text.setSpan(new r11(new q11(q11Var), 0), min, spanEnd, 33);
-                    }
-                    int max = Math.max(spanStart, i11);
-                    int min2 = Math.min(spanEnd, min);
-                    int i15 = i14 & (~i10);
-                    if (i15 != 0 && max < min2) {
-                        q11 q11Var2 = new q11(q11Var);
-                        q11Var2.f29754a = i15;
-                        text.setSpan(new r11(q11Var2, 0), max, min2, 33);
-                    }
-                }
-            }
-            if (i13 != 0) {
-                invalidateSpoilers();
-            }
-            gu guVar = this.delegate;
-            if (guVar != null) {
-                guVar.h();
-            }
-        }
-    }
-
-    public void setAllowTextEntitiesIntersection(boolean z10) {
-        this.allowTextEntitiesIntersection = z10;
-    }
-
-    public void setCaption(String str) {
-        String str2 = this.caption;
-        if ((str2 != null && str2.length() != 0) || (str != null && str.length() != 0)) {
-            String str3 = this.caption;
-            if (str3 == null || !str3.equals(str)) {
-                this.caption = str;
-                if (str != null) {
-                    this.caption = str.replace('\n', ' ');
-                }
-                requestLayout();
-            }
-        }
-    }
-
-    public void setDelegate(gu guVar) {
-        this.delegate = guVar;
-    }
-
-    @Override
-    public void setHintColor(int i10) {
-        super.setHintColor(i10);
-        this.hintColor = i10;
+        this.animatedEmojiColorFilter = new PorterDuffColorFilter(intValue, PorterDuff.Mode.SRC_IN);
         invalidate();
     }
 
-    public void setRightText(CharSequence charSequence) {
-        this.rightText = new i11(charSequence, 16.0f, getTypeface());
+    public void setOffsetY(float f7) {
+        this.offsetY = f7;
+        invalidate();
     }
 
-    public void setSelectionOverride(int i10, int i11) {
-        this.selectionStart = i10;
-        this.selectionEnd = i11;
+    public void setShouldRevealSpoilersByTouch(boolean z10) {
+        this.shouldRevealSpoilersByTouch = z10;
     }
 
-    public void showInputDialog(String str, String str2, String str3, boolean z10, hu huVar) {
-        showInputDialog(str, str2, str3, z10, this.adaptiveCreateLinkDialog, huVar);
+    public void setSpoilersRevealed(boolean z10, boolean z11) {
+        q11[] q11VarArr;
+        this.isSpoilersRevealed = z10;
+        Editable text = getText();
+        if (text != null) {
+            for (q11 q11Var : (q11[]) text.getSpans(0, text.length(), q11.class)) {
+                if (q11Var.c()) {
+                    p11 p11Var = q11Var.f29753b;
+                    if (z10) {
+                        p11Var.f29448a |= 512;
+                    } else {
+                        p11Var.f29448a &= -513;
+                    }
+                }
+            }
+        }
+        this.suppressOnTextChanged = true;
+        setText(text, TextView.BufferType.EDITABLE);
+        setSelection(this.selStart, this.selEnd);
+        this.suppressOnTextChanged = false;
+        if (z11) {
+            invalidateSpoilers();
+        }
     }
 
     @Override
-    public ActionMode startActionMode(ActionMode.Callback callback) {
-        return super.startActionMode(new org.telegram.ui.Cells.m9(new fu(this, callback), callback));
-    }
-
-    public void toggleStyleForSelection(int i10) {
-        if (getText() != null) {
-            int selectionStart = getSelectionStart();
-            int selectionEnd = getSelectionEnd();
-            if (selectionStart >= 0 && selectionEnd >= 0) {
-                if (selectionStart > selectionEnd) {
-                    selectionEnd = selectionStart;
-                    selectionStart = selectionEnd;
-                }
-                if (selectionStart < selectionEnd) {
-                    if ((getCurrentStyle(selectionStart, selectionEnd) & i10) == 0) {
-                        int i11 = 4;
-                        if (i10 == 4) {
-                            i11 = 49435;
-                        } else if (i10 == 16384) {
-                            i11 = 32772;
-                        } else if (i10 == 32768) {
-                            i11 = 16388;
-                        }
-                        removeStyle(i11, selectionStart, selectionEnd);
-                        addStyle(i10, selectionStart, selectionEnd);
-                        return;
-                    }
-                    removeStyle(i10, selectionStart, selectionEnd);
-                }
+    public void setText(CharSequence charSequence, TextView.BufferType bufferType) {
+        if (!this.suppressOnTextChanged) {
+            this.isSpoilersRevealed = false;
+            Stack<wh.g> stack = this.spoilersPool;
+            if (stack != null) {
+                stack.clear();
             }
         }
-    }
-
-    public void translateSelected() {
-        int selectionEnd;
-        org.telegram.ui.ActionBar.g6 g6Var;
-        int i10 = this.selectionStart;
-        if (i10 >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
-            this.selectionEnd = -1;
-            this.selectionStart = -1;
-        } else {
-            i10 = getSelectionStart();
-            selectionEnd = getSelectionEnd();
-        }
-        CharSequence subSequence = getText().subSequence(i10, selectionEnd);
-        org.telegram.ui.ActionBar.o2 U = LaunchActivity.U();
-        Context context = getContext();
-        if (U != null) {
-            g6Var = U.getResourceProvider();
-        } else {
-            g6Var = null;
-        }
-        k51 k51Var = new k51(context, g6Var);
-        k51Var.f27873a0 = subSequence;
-        if (LanguageDetector.hasSupport()) {
-            LanguageDetector.detectLanguage(subSequence.toString(), new tv(k51Var, 26), new ud0(23));
-        }
-        k51Var.f27876d0 = new du(this, i10, selectionEnd);
-        k51Var.show();
-        setSelection(i10, selectionEnd);
-    }
-
-    public void makeSelectedQuote(boolean z10) {
-        int selectionEnd;
-        int i10 = this.selectionStart;
-        if (i10 >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
-            this.selectionEnd = -1;
-            this.selectionStart = -1;
-        } else {
-            i10 = getSelectionStart();
-            selectionEnd = getSelectionEnd();
-        }
-        int c10 = tj0.c(getText(), i10, selectionEnd, z10);
-        if (c10 >= 0) {
-            setSelection(c10);
-            resetFontMetricsCache();
-        }
-        invalidateQuotes(true);
-        invalidateSpoilers();
-    }
-
-    public void makeSelectedUrl(Runnable runnable) {
-        int selectionEnd;
-        int i10 = this.selectionStart;
-        if (i10 >= 0 && (selectionEnd = this.selectionEnd) >= 0) {
-            this.selectionEnd = -1;
-            this.selectionStart = -1;
-        } else {
-            i10 = getSelectionStart();
-            selectionEnd = getSelectionEnd();
-        }
-        showInputDialog(LocaleController.getString(R.string.CreateLink), LocaleController.getString(R.string.URL), "http://", true, new m4.s0(this, i10, selectionEnd, runnable));
-    }
-
-    public void showInputDialog(String str, String str2, String str3, boolean z10, boolean z11, hu huVar) {
-        AlertDialog$Builder alertDialog$Builder;
-        CharSequence charSequence;
-        if (z11) {
-            alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
-        } else {
-            alertDialog$Builder = new AlertDialog$Builder(getContext(), 0, this.resourcesProvider);
-        }
-        AlertDialog$Builder alertDialog$Builder2 = alertDialog$Builder;
-        org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder2.f20678a;
-        c2Var.R = str;
-        FrameLayout frameLayout = new FrameLayout(getContext());
-        final ai.t tVar = new ai.t(getContext(), 3);
-        String str4 = str3 == null ? "" : str3;
-        tVar.setTextSize(1, 18.0f);
-        tVar.setText(str4);
-        org.telegram.ui.ActionBar.r6.W(tVar, org.telegram.ui.ActionBar.k6.f21289j5, this.resourcesProvider);
-        tVar.setHintText(str2);
-        org.telegram.ui.ActionBar.r6.m(tVar, 35, org.telegram.ui.ActionBar.k6.L6, this.resourcesProvider);
-        tVar.setSingleLine(true);
-        tVar.setFocusable(true);
-        tVar.setTransformHintToHeader(true);
-        org.telegram.ui.ActionBar.r6.H(tVar, org.telegram.ui.ActionBar.k6.f21310k6, org.telegram.ui.ActionBar.k6.f21327l6, org.telegram.ui.ActionBar.k6.f21404p7, this.resourcesProvider);
-        tVar.setImeOptions(6);
-        tVar.setBackgroundDrawable(null);
-        tVar.requestFocus();
-        tVar.setPadding(0, 0, 0, 0);
-        org.telegram.ui.ActionBar.r6.E(tVar, org.telegram.ui.ActionBar.k6.f21507uf, this.resourcesProvider);
-        org.telegram.ui.ActionBar.r6.m(tVar, 36, org.telegram.ui.ActionBar.k6.f21525vf, this.resourcesProvider);
-        frameLayout.addView(tVar, w7.z5.e(-1, -1, 119));
-        TextView textView = new TextView(getContext());
-        com.google.android.gms.internal.play_billing.k3.m(12.0f, 1, textView);
-        textView.setPadding(org.telegram.ui.Cells.b1.e(10.0f, R.string.Paste, textView), 0, AndroidUtilities.dp(10.0f), 0);
-        textView.setGravity(17);
-        int i10 = org.telegram.ui.ActionBar.k6.f21386o6;
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i10, this.resourcesProvider);
-        org.telegram.ui.ActionBar.r6.W(textView, i10, this.resourcesProvider);
-        int dp = AndroidUtilities.dp(6.0f);
-        int o12 = org.telegram.ui.ActionBar.k6.o1(0.12f, w02);
-        int o13 = org.telegram.ui.ActionBar.k6.o1(0.15f, w02);
-        org.telegram.ui.Cells.y j02 = org.telegram.ui.ActionBar.k6.j0(dp, dp, dp, dp, o12, o13, o13);
-        org.telegram.ui.ActionBar.n6 M = org.telegram.ui.ActionBar.r6.M(0.12f, i10);
-        org.telegram.ui.ActionBar.n6 M2 = org.telegram.ui.ActionBar.r6.M(0.15f, i10);
-        org.telegram.ui.ActionBar.g6 g6Var = this.resourcesProvider;
-        textView.setBackground(j02);
-        org.telegram.ui.ActionBar.r6.k(textView, j02, M, M2, g6Var);
-        w7.b6.b(textView, 0.1f, 1.5f);
-        frameLayout.addView(textView, w7.z5.d(-2, 26.0f, 21, 0.0f, 0.0f, 24.0f, 3.0f));
-        textView.setVisibility(z10 ? 0 : 8);
-        ei.s1 s1Var = new ei.s1(this, z10, tVar, str4, textView);
-        textView.setOnClickListener(new ai.v0(this, tVar, s1Var, 23));
-        tVar.addTextChangedListener(new ai.u(s1Var, 8));
-        ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService("clipboard");
-        if (z10 && TextUtils.equals(str4, "http://") && clipboardManager != null && clipboardManager.hasPrimaryClip()) {
-            try {
-                charSequence = clipboardManager.getPrimaryClip().getItemAt(0).coerceToText(getContext());
-            } catch (Exception e) {
-                FileLog.e(e);
-                charSequence = null;
-            }
-            if (charSequence != null) {
-                tVar.setText(charSequence);
-                tVar.setSelection(0, tVar.getText().length());
-            }
-        }
-        s1Var.run();
-        alertDialog$Builder2.o(frameLayout);
-        alertDialog$Builder2.k(LocaleController.getString(R.string.OK), new p2(16, huVar, tVar));
-        alertDialog$Builder2.h(LocaleController.getString(R.string.Cancel), null);
-        if (z11) {
-            this.creationLinkDialog = c2Var;
-            c2Var.setOnDismissListener(new a1(this, 6));
-            this.creationLinkDialog.setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    switch (r2) {
-                        case 0:
-                            ai.t tVar2 = tVar;
-                            tVar2.requestFocus();
-                            AndroidUtilities.showKeyboard(tVar2);
-                            return;
-                        default:
-                            ai.t tVar3 = tVar;
-                            tVar3.requestFocus();
-                            AndroidUtilities.showKeyboard(tVar3);
-                            return;
-                    }
-                }
-            });
-            this.creationLinkDialog.r(250L);
-        } else {
-            alertDialog$Builder2.p().setOnShowListener(new DialogInterface.OnShowListener() {
-                @Override
-                public final void onShow(DialogInterface dialogInterface) {
-                    switch (r2) {
-                        case 0:
-                            ai.t tVar2 = tVar;
-                            tVar2.requestFocus();
-                            AndroidUtilities.showKeyboard(tVar2);
-                            return;
-                        default:
-                            ai.t tVar3 = tVar;
-                            tVar3.requestFocus();
-                            AndroidUtilities.showKeyboard(tVar3);
-                            return;
-                    }
-                }
-            });
-        }
-        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) tVar.getLayoutParams();
-        if (marginLayoutParams != null) {
-            if (marginLayoutParams instanceof FrameLayout.LayoutParams) {
-                ((FrameLayout.LayoutParams) marginLayoutParams).gravity = 1;
-            }
-            int dp2 = AndroidUtilities.dp(24.0f);
-            marginLayoutParams.leftMargin = dp2;
-            marginLayoutParams.rightMargin = dp2;
-            marginLayoutParams.height = AndroidUtilities.dp(36.0f);
-            tVar.setLayoutParams(marginLayoutParams);
-        }
-        tVar.setSelection(0, tVar.getText().length());
+        super.setText(charSequence, bufferType);
     }
 
     @Override
-    public ActionMode startActionMode(ActionMode.Callback callback, int i10) {
-        return super.startActionMode(new org.telegram.ui.Cells.m9(new fu(this, callback), callback), i10);
+    public void setTextColor(int i10) {
+        this.lastTextColor = i10;
+        super.setTextColor(i10);
+        Integer num = this.emojiColor;
+        if (num != null) {
+            i10 = num.intValue();
+        }
+        this.animatedEmojiColorFilter = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
     }
 
-    public void onContextMenuClose() {
-    }
-
-    public void onContextMenuOpen() {
-    }
-
-    public void onLineCountChanged(int i10, int i11) {
+    public void updateAnimatedEmoji(boolean z10) {
+        int i10;
+        if (this.drawAnimatedEmojiDrawables) {
+            if (getLayout() != null && getLayout().getText() != null) {
+                i10 = getLayout().getText().length();
+            } else {
+                i10 = 0;
+            }
+            if (!z10 && this.lastLayout == getLayout() && this.lastTextLength == i10) {
+                return;
+            }
+            this.animatedEmojiDrawables = y5.update(emojiCacheType(), this, this.animatedEmojiDrawables, getLayout());
+            this.lastLayout = getLayout();
+            this.lastTextLength = i10;
+        }
     }
 }

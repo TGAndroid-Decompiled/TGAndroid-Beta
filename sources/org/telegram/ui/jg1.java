@@ -1,80 +1,58 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.content.SharedPreferences;
+import android.text.TextUtils;
 import android.view.View;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-public final class jg1 extends org.telegram.ui.Components.e71 {
-    public hg1 d;
-    public long e;
-    public fg1 f38564f;
-    public String h;
-    public org.telegram.ui.ActionBar.u0 f38565n;
-    public boolean f38566r;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class jg1 extends org.telegram.ui.Components.k61 {
+    public static final int f38559a = 0;
 
-    @Override
-    public final void U(java.util.ArrayList r18, org.telegram.ui.Components.b71 r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.jg1.U(java.util.ArrayList, org.telegram.ui.Components.b71):void");
+    static {
+        org.telegram.ui.Components.k61.setup(new org.telegram.ui.Components.k61());
     }
 
     @Override
-    public final CharSequence V() {
-        return LocaleController.getString(R.string.EditProfileChannelTitle);
-    }
-
-    @Override
-    public final void W(org.telegram.ui.Components.m61 m61Var, View view) {
-        fg1 fg1Var = this.f38564f;
-        int i10 = m61Var.d;
-        if (i10 == 1) {
-            fg1Var.run(null);
-            finishFragment();
-        } else if (i10 == 2) {
-            this.f38566r = true;
-            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
-            if (!BuildVars.DEBUG_VERSION && globalMainSettings.getBoolean("channel_intro", false)) {
-                presentFragment(new md(org.telegram.ui.Cells.b1.i(0, "step")));
-                return;
-            }
-            presentFragment(new g(0));
-            globalMainSettings.edit().putBoolean("channel_intro", true).apply();
-        } else if (m61Var.f44713a == 12) {
-            finishFragment();
-            fg1Var.run(getMessagesController().getChat(Long.valueOf(-m61Var.f28570x)));
+    public final void bindView(View view, org.telegram.ui.Components.l61 l61Var, boolean z10, org.telegram.ui.Components.a71 a71Var, org.telegram.ui.Components.i71 i71Var) {
+        float f7;
+        kg1 kg1Var = (kg1) view;
+        int i10 = l61Var.f28226k;
+        CharSequence charSequence = l61Var.f28227l;
+        CharSequence charSequence2 = l61Var.f28228m;
+        boolean z11 = l61Var.f28232q;
+        boolean z12 = l61Var.f28233r;
+        int i11 = l61Var.f28240z;
+        TextView textView = kg1Var.e;
+        ImageView imageView = kg1Var.f38921f;
+        kg1Var.h = z11;
+        kg1Var.f38922n = z12;
+        kg1Var.f38919b.setImageResource(i10);
+        int i12 = 8;
+        if (i11 != 0) {
+            imageView.setVisibility(0);
+            imageView.setImageResource(i11);
+        } else {
+            imageView.setVisibility(8);
         }
-    }
-
-    @Override
-    public final boolean X(org.telegram.ui.Components.m61 m61Var, View view) {
-        return false;
-    }
-
-    @Override
-    public final View createView(Context context) {
-        org.telegram.ui.ActionBar.u0 c10 = this.actionBar.m().c(0, R.drawable.outline_header_search, getResourceProvider());
-        c10.F();
-        c10.H = new ig.b2(this, 19);
-        this.f38565n = c10;
-        c10.setSearchFieldHint(LocaleController.getString(R.string.Search));
-        this.f38565n.setContentDescription(LocaleController.getString(R.string.Search));
-        this.f38565n.setVisibility(8);
-        super.createView(context);
-        this.f25907a.t1();
-        this.actionBar.setAdaptiveBackground(this.f25907a);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final void onResume() {
-        super.onResume();
-        if (this.f38566r) {
-            hg1 hg1Var = this.d;
-            hg1Var.f37858c = false;
-            hg1Var.f37859f.add(new ig1(this, 0));
-            this.f38566r = false;
+        kg1Var.d.setText(charSequence);
+        textView.setText(charSequence2);
+        if (!TextUtils.isEmpty(charSequence2)) {
+            i12 = 0;
         }
+        textView.setVisibility(i12);
+        if (TextUtils.isEmpty(charSequence2)) {
+            f7 = 15.0f;
+        } else {
+            f7 = 10.0f;
+        }
+        int dp = AndroidUtilities.dp(f7);
+        kg1Var.f38920c.setPadding(0, dp, 0, dp);
+        kg1Var.updateColors();
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.lm0 lm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
+        return new kg1(context, g6Var);
     }
 }

@@ -2,9 +2,9 @@ package u2;
 
 import m.g3;
 public final class z0 implements g0 {
-    public final g2.g f47948a;
-    public final qg.g0 f47949b;
-    public final g3 f47950c;
+    public final g2.g f47947a;
+    public final qg.g0 f47948b;
+    public final g3 f47949c;
     public final oa.d d;
     public final int e;
 
@@ -12,9 +12,9 @@ public final class z0 implements g0 {
         qg.g0 g0Var = new qg.g0(oVar, 17);
         g3 g3Var = new g3(5);
         oa.d dVar = new oa.d(27);
-        this.f47948a = gVar;
-        this.f47949b = g0Var;
-        this.f47950c = g3Var;
+        this.f47947a = gVar;
+        this.f47948b = g0Var;
+        this.f47949c = g3Var;
         this.d = dVar;
         this.e = 1048576;
     }
@@ -22,7 +22,7 @@ public final class z0 implements g0 {
     @Override
     public final a1 a(b2.o0 o0Var) {
         o0Var.f3894b.getClass();
-        return new a1(o0Var, this.f47948a, this.f47949b, this.f47950c.B(o0Var), this.d, this.e, null);
+        return new a1(o0Var, this.f47947a, this.f47948b, this.f47949c.B(o0Var), this.d, this.e, null);
     }
 
     @Override

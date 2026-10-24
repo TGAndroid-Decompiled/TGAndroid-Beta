@@ -1,45 +1,29 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.mq0;
-public final class wb implements RequestDelegate {
-    public final int f20058a = 0;
-    public final int f20059b;
-    public final boolean f20060c;
-    public final TLRPC.User d;
-    public final NotificationCenter.NotificationCenterDelegate e;
-    public final Object f20061f;
+public final class wb implements Runnable {
+    public final int f20049a;
+    public final MessagesController f20050b;
+    public final TLRPC.Dialog f20051c;
 
-    public wb(MessagesController messagesController, int i10, TLRPC.Chat chat, TLRPC.User user, boolean z10) {
-        this.e = messagesController;
-        this.f20059b = i10;
-        this.f20061f = chat;
-        this.d = user;
-        this.f20060c = z10;
+    public wb(MessagesController messagesController, TLRPC.Dialog dialog, int i10) {
+        this.f20049a = i10;
+        this.f20050b = messagesController;
+        this.f20051c = dialog;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20058a) {
+    public final void run() {
+        switch (this.f20049a) {
             case 0:
-                TLRPC.User user = this.d;
-                boolean z10 = this.f20060c;
-                ((MessagesController) this.e).lambda$pinMessage$129(this.f20059b, (TLRPC.Chat) this.f20061f, user, z10, tLObject, tL_error);
+                this.f20050b.lambda$checkLastDialogMessage$224(this.f20051c);
+                return;
+            case 1:
+                this.f20050b.lambda$checkLastDialogMessage$225(this.f20051c);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new ki.r2((mq0) this.e, (String) this.f20061f, this.f20059b, tLObject, this.f20060c, this.d));
+                this.f20050b.lambda$checkLastDialogMessage$223(this.f20051c);
                 return;
         }
-    }
-
-    public wb(mq0 mq0Var, String str, int i10, boolean z10, TLRPC.User user) {
-        this.e = mq0Var;
-        this.f20061f = str;
-        this.f20059b = i10;
-        this.f20060c = z10;
-        this.d = user;
     }
 }

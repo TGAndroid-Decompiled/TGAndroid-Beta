@@ -16,7 +16,7 @@ public final class pj extends li.m {
     public final void F() {
         sn snVar = this.X;
         if (snVar.T9 == -1) {
-            snVar.T9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.T9, sn.f41445bd, false);
+            snVar.T9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.T9, sn.f41442bd, false);
         }
     }
 
@@ -36,7 +36,7 @@ public final class pj extends li.m {
     @Override
     public final void W() {
         sn snVar = this.X;
-        snVar.T9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.T9, sn.f41445bd, false);
+        snVar.T9 = snVar.getNotificationCenter().setAnimationInProgress(snVar.T9, sn.f41442bd, false);
         Runnable runnable = this.W;
         if (runnable != null) {
             AndroidUtilities.cancelRunOnUIThread(runnable);
@@ -48,9 +48,9 @@ public final class pj extends li.m {
         org.telegram.ui.ActionBar.w2 w2Var = snVar.Y.getAdjustPanLayoutHelper().h;
         AndroidUtilities.cancelRunOnUIThread(w2Var);
         w2Var.run();
-        org.telegram.ui.Components.af afVar = snVar.Y.Y3;
-        AndroidUtilities.cancelRunOnUIThread(afVar);
-        afVar.run();
+        org.telegram.ui.Components.ye yeVar = snVar.Y.Y3;
+        AndroidUtilities.cancelRunOnUIThread(yeVar);
+        yeVar.run();
     }
 
     @Override

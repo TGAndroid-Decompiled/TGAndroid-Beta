@@ -12,9 +12,9 @@ import java.io.IOException;
 import k6.h;
 import l5.j;
 public abstract class b {
-    public static final char[] f48047a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
-    public static Boolean f48048b;
-    public static Boolean f48049c;
+    public static final char[] f48046a = {'0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'};
+    public static Boolean f48047b;
+    public static Boolean f48048c;
     public static Boolean d;
     public static Boolean e;
 
@@ -76,14 +76,14 @@ public abstract class b {
 
     public static boolean f(Context context) {
         PackageManager packageManager = context.getPackageManager();
-        if (f48048b == null) {
-            f48048b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+        if (f48047b == null) {
+            f48047b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
         }
-        if (!f48048b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
-            if (f48049c == null) {
-                f48049c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
+        if (!f48047b.booleanValue() || Build.VERSION.SDK_INT >= 24) {
+            if (f48048c == null) {
+                f48048c = Boolean.valueOf(context.getPackageManager().hasSystemFeature("cn.google"));
             }
-            if (f48049c.booleanValue()) {
+            if (f48048c.booleanValue()) {
                 if (!d() || Build.VERSION.SDK_INT >= 30) {
                     return true;
                 }

@@ -60,7 +60,7 @@ public final class k0 {
         k6.w0(i10, g6Var);
         r6.X(h1Var, r6.M(0.5f, i10), g6Var);
         n6 M = r6.M(0.35f, i10);
-        r6.o(h1Var, 1, M.f21710a, -1, 2, M.d, g6Var);
+        r6.o(h1Var, 1, M.f21711a, -1, 2, M.d, g6Var);
     }
 
     public final void b() {

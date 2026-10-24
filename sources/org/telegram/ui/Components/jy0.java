@@ -1,5 +1,5 @@
 package org.telegram.ui.Components;
-public final class jy0 extends org.telegram.ui.cu0 {
+public final class jy0 extends org.telegram.ui.bu0 {
     @Override
     public final boolean Q() {
         return true;

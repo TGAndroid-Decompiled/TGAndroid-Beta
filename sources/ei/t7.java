@@ -13,22 +13,22 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class t7 extends FrameLayout {
     public final int f9870a;
-    public final org.telegram.ui.Components.h9 f9871b;
-    public final org.telegram.ui.Components.w9 f9872c;
+    public final org.telegram.ui.Components.f9 f9871b;
+    public final org.telegram.ui.Components.u9 f9872c;
     public final TextView d;
     public ViewPropertyAnimator e;
 
     public t7(Activity activity, int i10) {
         super(activity);
         this.f9870a = i10;
-        this.f9871b = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f9872c = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
-        addView(w9Var, w7.z5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
+        this.f9871b = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(activity);
+        this.f9872c = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(15.0f));
+        addView(u9Var, w7.z5.d(30, 30.0f, 19, 14.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(activity);
         this.d = textView;
         textView.setTextSize(1, 14.0f);
@@ -60,7 +60,7 @@ public final class t7 extends FrameLayout {
             if (z10) {
                 f7 = 1.0f;
             }
-            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(bs.h).withEndAction(new ah.t(8, this, z10)).setDuration(320L);
+            ViewPropertyAnimator duration = animate.alpha(f7).setInterpolator(zr.h).withEndAction(new ah.t(8, this, z10)).setDuration(320L);
             this.e = duration;
             duration.start();
             return;
@@ -86,18 +86,18 @@ public final class t7 extends FrameLayout {
         }
         int i11 = (peerDialogId > 0L ? 1 : (peerDialogId == 0L ? 0 : -1));
         TextView textView = this.d;
-        org.telegram.ui.Components.w9 w9Var = this.f9872c;
-        org.telegram.ui.Components.h9 h9Var = this.f9871b;
+        org.telegram.ui.Components.u9 u9Var = this.f9872c;
+        org.telegram.ui.Components.f9 f9Var = this.f9871b;
         if (i11 >= 0) {
             TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(peerDialogId));
-            h9Var.r(user);
-            w9Var.e(user, h9Var);
+            f9Var.r(user);
+            u9Var.e(user, f9Var);
             textView.setText(UserObject.getUserName(user));
             return;
         }
         TLRPC.Chat chat = MessagesController.getInstance(i10).getChat(Long.valueOf(-peerDialogId));
-        h9Var.q(chat);
-        w9Var.e(chat, h9Var);
+        f9Var.q(chat);
+        u9Var.e(chat, f9Var);
         if (chat == null) {
             str = "";
         } else {

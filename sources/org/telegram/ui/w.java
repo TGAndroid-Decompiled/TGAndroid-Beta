@@ -12,38 +12,38 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_iv;
 public final class w implements Runnable {
-    public final int f42877a = 0;
-    public final TLObject f42878b;
-    public final int f42879c;
+    public final int f42856a = 0;
+    public final TLObject f42857b;
+    public final int f42858c;
     public final boolean d;
     public final Object e;
-    public final Object f42880f;
+    public final Object f42859f;
     public final Object h;
-    public final Object f42881n;
+    public final Object f42860n;
 
     public w(k4 k4Var, TLObject tLObject, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
         this.e = k4Var;
-        this.f42878b = tLObject;
-        this.f42879c = i10;
-        this.f42880f = webPage;
+        this.f42857b = tLObject;
+        this.f42858c = i10;
+        this.f42859f = webPage;
         this.h = messageObject;
         this.d = z10;
-        this.f42881n = str;
+        this.f42860n = str;
     }
 
     @Override
     public final void run() {
         s4.b1 K;
         int i10 = 0;
-        switch (this.f42877a) {
+        switch (this.f42856a) {
             case 0:
                 k4 k4Var = (k4) this.e;
-                TLObject tLObject = this.f42878b;
-                int i11 = this.f42879c;
-                TLRPC.WebPage webPage = (TLRPC.WebPage) this.f42880f;
+                TLObject tLObject = this.f42857b;
+                int i11 = this.f42858c;
+                TLRPC.WebPage webPage = (TLRPC.WebPage) this.f42859f;
                 MessageObject messageObject = (MessageObject) this.h;
                 boolean z10 = this.d;
-                String str = (String) this.f42881n;
+                String str = (String) this.f42860n;
                 boolean z11 = tLObject instanceof TLRPC.TL_messages_webPage;
                 TLRPC.WebPage webPage2 = tLObject;
                 if (z11) {
@@ -55,7 +55,7 @@ public final class w implements Runnable {
                 if (webPage2 instanceof TLRPC.TL_webPage) {
                     TLRPC.TL_webPage tL_webPage = (TLRPC.TL_webPage) webPage2;
                     if (tL_webPage.cached_page != null) {
-                        if (!k4Var.f38789d0.isEmpty() && k4Var.f38789d0.get(0) == webPage) {
+                        if (!k4Var.f38758d0.isEmpty() && k4Var.f38758d0.get(0) == webPage) {
                             if (messageObject != null) {
                                 messageObject.messageOwner.media.webpage = tL_webPage;
                                 TLRPC.TL_messages_messages tL_messages_messages = new TLRPC.TL_messages_messages();
@@ -63,12 +63,12 @@ public final class w implements Runnable {
                                 MessagesStorage.getInstance(i11).putMessages((TLRPC.messages_Messages) tL_messages_messages, messageObject.getDialogId(), -2, 0, false, messageObject.scheduled ? 1 : 0, 0L);
                             }
                             if (z10) {
-                                k4Var.f38789d0.add(tL_webPage);
+                                k4Var.f38758d0.add(tL_webPage);
                             } else {
-                                k4Var.f38789d0.set(0, tL_webPage);
+                                k4Var.f38758d0.set(0, tL_webPage);
                             }
-                            if (k4Var.f38789d0.size() == 1) {
-                                ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f20496id).commit();
+                            if (k4Var.f38758d0.size() == 1) {
+                                ApplicationLoader.applicationContext.getSharedPreferences("articles", 0).edit().remove("article" + tL_webPage.f20497id).commit();
                                 k4Var.e0(z10 ? 1 : 0, tL_webPage, false);
                                 if (str != null) {
                                     k4Var.V(str, false);
@@ -76,7 +76,7 @@ public final class w implements Runnable {
                             }
                         }
                         a0.h hVar = new a0.h(1);
-                        hVar.k(tL_webPage, tL_webPage.f20496id);
+                        hVar.k(tL_webPage, tL_webPage.f20497id);
                         MessagesStorage.getInstance(i11).putWebPages(hVar);
                         return;
                     }
@@ -91,11 +91,11 @@ public final class w implements Runnable {
                             page.views = i13;
                             page.flags |= 8;
                             while (true) {
-                                n3[] n3VarArr = k4Var.f38805u0;
+                                n3[] n3VarArr = k4Var.f38774u0;
                                 if (i10 < n3VarArr.length) {
-                                    i4 i4Var = n3VarArr[i10].f39753c;
-                                    if (i4Var.E == webPage && (K = k4Var.f38805u0[i10].f39752b.K(i4Var.h() - 1)) != null) {
-                                        k4Var.f38805u0[i10].f39753c.y(K);
+                                    i4 i4Var = n3VarArr[i10].f39703c;
+                                    if (i4Var.E == webPage && (K = k4Var.f38774u0[i10].f39702b.K(i4Var.h() - 1)) != null) {
+                                        k4Var.f38774u0[i10].f39703c.y(K);
                                     }
                                     i10++;
                                 } else if (messageObject != null) {
@@ -119,11 +119,11 @@ public final class w implements Runnable {
                 break;
             default:
                 pf.c cVar = (pf.c) this.e;
-                org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) this.f42880f;
-                TLObject tLObject2 = this.f42878b;
-                int i14 = this.f42879c;
+                org.telegram.ui.ActionBar.c2[] c2VarArr = (org.telegram.ui.ActionBar.c2[]) this.f42859f;
+                TLObject tLObject2 = this.f42857b;
+                int i14 = this.f42858c;
                 Uri uri = (Uri) this.h;
-                Context context = (Context) this.f42881n;
+                Context context = (Context) this.f42860n;
                 boolean z12 = this.d;
                 if (cVar != null) {
                     cVar.b();
@@ -155,11 +155,11 @@ public final class w implements Runnable {
 
     public w(pf.c cVar, org.telegram.ui.ActionBar.c2[] c2VarArr, TLObject tLObject, int i10, Uri uri, Context context, boolean z10) {
         this.e = cVar;
-        this.f42880f = c2VarArr;
-        this.f42878b = tLObject;
-        this.f42879c = i10;
+        this.f42859f = c2VarArr;
+        this.f42857b = tLObject;
+        this.f42858c = i10;
         this.h = uri;
-        this.f42881n = context;
+        this.f42860n = context;
         this.d = z10;
     }
 }

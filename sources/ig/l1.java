@@ -19,8 +19,8 @@ import org.telegram.ui.ActionBar.ActionBarLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.ey;
+import org.telegram.ui.xe1;
 import org.telegram.ui.xx;
-import org.telegram.ui.ye1;
 public final class l1 implements org.telegram.ui.ActionBar.z1, xx {
     public final int f12987a;
     public final KeyEvent.Callback f12988b;
@@ -80,7 +80,7 @@ public final class l1 implements org.telegram.ui.ActionBar.z1, xx {
     }
 
     @Override
-    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, ye1 ye1Var) {
+    public boolean w(ey eyVar, ArrayList arrayList, CharSequence charSequence, boolean z10, boolean z11, int i10, int i11, xe1 xe1Var) {
         String str;
         TLRPC.TL_chatAdminRights tL_chatAdminRights;
         final LaunchActivity launchActivity = (LaunchActivity) this.f12988b;
@@ -88,7 +88,7 @@ public final class l1 implements org.telegram.ui.ActionBar.z1, xx {
         final String str2 = (String) this.d;
         final String str3 = (String) this.e;
         final ey eyVar2 = (ey) this.f12990f;
-        Pattern pattern = LaunchActivity.E1;
+        Pattern pattern = LaunchActivity.D1;
         final long j10 = ((MessagesStorage.TopicKey) arrayList.get(0)).dialogId;
         final TLRPC.Chat chat = MessagesController.getInstance(launchActivity.O).getChat(Long.valueOf(-j10));
         final int i12 = this.f12987a;
@@ -96,14 +96,14 @@ public final class l1 implements org.telegram.ui.ActionBar.z1, xx {
             MessagesController.getInstance(i12).checkIsInChat(false, chat, user, new MessagesController.IsInChatCheckedCallback() {
                 @Override
                 public final void run(boolean z12, TLRPC.TL_chatAdminRights tL_chatAdminRights2, String str4) {
-                    Pattern pattern2 = LaunchActivity.E1;
-                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.m8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, eyVar2, user, j10, str4));
+                    Pattern pattern2 = LaunchActivity.D1;
+                    AndroidUtilities.runOnUIThread(new org.telegram.messenger.n8(LaunchActivity.this, str2, tL_chatAdminRights2, z12, str3, i12, chat, eyVar2, user, j10, str4));
                 }
             });
         } else {
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(launchActivity);
             String string = LocaleController.getString(R.string.AddBot);
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
             c2Var.R = string;
             if (chat == null) {
                 str = "";
@@ -115,7 +115,7 @@ public final class l1 implements org.telegram.ui.ActionBar.z1, xx {
             alertDialog$Builder.k(LocaleController.getString(R.string.AddBot), new org.telegram.ui.ActionBar.z1() {
                 @Override
                 public final void g(org.telegram.ui.ActionBar.c2 c2Var2, int i13) {
-                    Pattern pattern2 = LaunchActivity.E1;
+                    Pattern pattern2 = LaunchActivity.D1;
                     Bundle h = a1.g.h("scrollToTopOnResume", true);
                     long j11 = -j10;
                     h.putLong("chat_id", j11);

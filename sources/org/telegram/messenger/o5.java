@@ -1,29 +1,38 @@
 package org.telegram.messenger;
-public final class o5 implements Runnable {
-    public final int f19173a;
-    public final LocaleController f19174b;
-    public final int f19175c;
 
-    public o5(LocaleController localeController, int i10, int i11) {
-        this.f19173a = i11;
-        this.f19174b = localeController;
-        this.f19175c = i10;
+import org.telegram.messenger.LocaleController;
+import org.telegram.tgnet.TLObject;
+public final class o5 implements Runnable {
+    public final int f19164a;
+    public final LocaleController f19165b;
+    public final LocaleController.LocaleInfo f19166c;
+    public final TLObject d;
+    public final int e;
+    public final Runnable f19167f;
+
+    public o5(LocaleController localeController, LocaleController.LocaleInfo localeInfo, TLObject tLObject, int i10, Runnable runnable, int i11) {
+        this.f19164a = i11;
+        this.f19165b = localeController;
+        this.f19166c = localeInfo;
+        this.d = tLObject;
+        this.e = i10;
+        this.f19167f = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f19173a) {
+        switch (this.f19164a) {
             case 0:
-                LocaleController.u(this.f19174b, this.f19175c);
+                this.f19165b.lambda$applyRemoteLanguage$16(this.f19166c, this.d, this.e, this.f19167f);
                 return;
             case 1:
-                LocaleController.h(this.f19174b, this.f19175c);
+                this.f19165b.lambda$applyRemoteLanguage$20(this.f19166c, this.d, this.e, this.f19167f);
                 return;
             case 2:
-                LocaleController.k(this.f19174b, this.f19175c);
+                this.f19165b.lambda$applyRemoteLanguage$18(this.f19166c, this.d, this.e, this.f19167f);
                 return;
             default:
-                LocaleController.q(this.f19174b, this.f19175c);
+                this.f19165b.lambda$applyRemoteLanguage$14(this.f19166c, this.d, this.e, this.f19167f);
                 return;
         }
     }

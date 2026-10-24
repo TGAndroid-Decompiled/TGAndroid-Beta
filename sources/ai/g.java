@@ -119,7 +119,7 @@ public final class g implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new ei.z1((ig.y) this.f1331b, tLObject, (TL_account.TL_businessChatLink) this.f1332c, false, 25));
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new hi.t(4, (ig.j0) this.f1331b, (org.telegram.ui.Components.d2) this.f1332c));
+                AndroidUtilities.runOnUIThread(new hi.t(4, (ig.j0) this.f1331b, (org.telegram.ui.Components.c2) this.f1332c));
                 return;
             case 22:
                 AndroidUtilities.runOnUIThread(new ig.d2((ig.e2) this.f1331b, tLObject, (SharedPreferences) this.f1332c, 0));
@@ -156,7 +156,7 @@ public final class g implements RequestDelegate {
                                 Boolean bool = null;
                                 while (i11 < size2) {
                                     org.telegram.ui.ActionBar.i6 i6Var = (org.telegram.ui.ActionBar.i6) arrayList3.get(i11);
-                                    if (i6Var.f20975o.equals(tL_wallPaper.slug)) {
+                                    if (i6Var.f20976o.equals(tL_wallPaper.slug)) {
                                         if (bool == null) {
                                             bool = Boolean.valueOf(pathToAttach.exists());
                                         }
@@ -169,22 +169,22 @@ public final class g implements RequestDelegate {
                                             arrayList4.add(i6Var);
                                         } else {
                                             String attachFileName = FileLoader.getAttachFileName(tL_wallPaper.document);
-                                            if (f6Var.f20894b == null) {
-                                                f6Var.f20894b = new HashMap();
+                                            if (f6Var.f20895b == null) {
+                                                f6Var.f20895b = new HashMap();
                                             }
-                                            org.telegram.ui.ActionBar.e6 e6Var2 = (org.telegram.ui.ActionBar.e6) f6Var.f20894b.get(attachFileName);
+                                            org.telegram.ui.ActionBar.e6 e6Var2 = (org.telegram.ui.ActionBar.e6) f6Var.f20895b.get(attachFileName);
                                             if (e6Var2 == null) {
                                                 ?? obj = new Object();
                                                 arrayList2 = arrayList3;
-                                                obj.f20875b = new ArrayList();
-                                                obj.f20874a = tL_wallPaper;
-                                                f6Var.f20894b.put(attachFileName, obj);
+                                                obj.f20876b = new ArrayList();
+                                                obj.f20875a = tL_wallPaper;
+                                                f6Var.f20895b.put(attachFileName, obj);
                                                 e6Var = obj;
                                             } else {
                                                 arrayList2 = arrayList3;
                                                 e6Var = e6Var2;
                                             }
-                                            e6Var.f20875b.add(i6Var);
+                                            e6Var.f20876b.add(i6Var);
                                         }
                                     } else {
                                         arrayList2 = arrayList3;

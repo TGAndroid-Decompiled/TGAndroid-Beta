@@ -13,18 +13,18 @@ import java.util.concurrent.atomic.AtomicReference;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.ca0;
-import org.telegram.ui.Components.tm0;
-import org.telegram.ui.Components.v90;
-import org.telegram.ui.Components.z90;
+import org.telegram.ui.Components.aa0;
+import org.telegram.ui.Components.sm0;
+import org.telegram.ui.Components.t90;
+import org.telegram.ui.Components.x90;
+import org.telegram.ui.Components.zr;
 public final class p8 {
-    public z90 f5735a;
-    public org.telegram.ui.Components.a6 f5736b;
-    public final v90 f5737c;
-    public org.telegram.ui.Components.w5 d;
+    public x90 f5735a;
+    public org.telegram.ui.Components.y5 f5736b;
+    public final t90 f5737c;
+    public org.telegram.ui.Components.u5 d;
     public StaticLayout e;
-    public org.telegram.ui.Components.w5 f5738f;
+    public org.telegram.ui.Components.u5 f5738f;
     public StaticLayout f5739g;
     public n8[] h;
     public final ArrayList f5740i;
@@ -36,30 +36,30 @@ public final class p8 {
     public m8 f5746o;
     public m8 f5747p;
     public boolean f5748q;
-    public final org.telegram.ui.Components.f6 f5749r;
-    public final ca0 f5750s;
+    public final org.telegram.ui.Components.d6 f5749r;
+    public final aa0 f5750s;
     public final Path f5751t;
     public final AtomicReference f5752u;
     public final q8 v;
 
     public p8(q8 q8Var) {
         this.v = q8Var;
-        this.f5737c = new v90(q8Var);
+        this.f5737c = new t90(q8Var);
         ArrayList arrayList = new ArrayList();
         this.f5740i = arrayList;
         this.f5741j = new Stack();
         this.f5745n = "";
-        this.f5749r = new org.telegram.ui.Components.f6(q8Var.J, 0L, 400L, bs.h);
+        this.f5749r = new org.telegram.ui.Components.d6(q8Var.J, 0L, 400L, zr.h);
         Path path = new Path();
         this.f5751t = path;
         this.f5752u = new AtomicReference();
         this.f5742k = new wh.l(q8Var, arrayList, new a1.c(this, 20));
-        ca0 ca0Var = new ca0();
-        this.f5750s = ca0Var;
-        ca0Var.f25298y = path;
-        ca0Var.k(4.0f);
-        ca0Var.g(org.telegram.ui.ActionBar.k6.o1(0.3f, -1), org.telegram.ui.ActionBar.k6.o1(0.1f, -1), org.telegram.ui.ActionBar.k6.o1(0.2f, -1), org.telegram.ui.ActionBar.k6.o1(0.7f, -1));
-        ca0Var.setCallback(q8Var);
+        aa0 aa0Var = new aa0();
+        this.f5750s = aa0Var;
+        aa0Var.f24704y = path;
+        aa0Var.k(4.0f);
+        aa0Var.g(org.telegram.ui.ActionBar.k6.o1(0.3f, -1), org.telegram.ui.ActionBar.k6.o1(0.1f, -1), org.telegram.ui.ActionBar.k6.o1(0.2f, -1), org.telegram.ui.ActionBar.k6.o1(0.7f, -1));
+        aa0Var.setCallback(q8Var);
     }
 
     public final int a(int i10) {
@@ -107,9 +107,9 @@ public final class p8 {
             if (e <= 0.0f && !this.f5748q) {
                 return;
             }
-            ca0 ca0Var = this.f5750s;
-            ca0Var.setAlpha((int) (e * 255.0f * lerp));
-            ca0Var.draw(canvas2);
+            aa0 aa0Var = this.f5750s;
+            aa0Var.setAlpha((int) (e * 255.0f * lerp));
+            aa0Var.draw(canvas2);
             q8Var.invalidate();
         }
     }
@@ -161,9 +161,9 @@ public final class p8 {
                 canvas.save();
                 canvas.translate(q8Var.E, q8Var.F + i10);
                 d(this.f5739g, canvas, arrayList3);
-                org.telegram.ui.Components.w5 update = org.telegram.ui.Components.a6.update(0, q8Var, this.f5738f, this.f5739g);
+                org.telegram.ui.Components.u5 update = org.telegram.ui.Components.y5.update(0, q8Var, this.f5738f, this.f5739g);
                 this.f5738f = update;
-                org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, this.f5739g, update, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
+                org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, this.f5739g, update, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
                 arrayList = arrayList3;
                 canvas.restore();
                 if (z10) {
@@ -193,26 +193,26 @@ public final class p8 {
                                     f(n8Var.f5608b, q8Var.E + n8Var.e, q8Var.F + i10 + n8Var.f5610f);
                                 }
                                 n8Var.f5608b.draw(canvas);
-                                org.telegram.ui.Components.w5 update2 = org.telegram.ui.Components.a6.update(0, q8Var, n8Var.f5607a, n8Var.f5608b);
+                                org.telegram.ui.Components.u5 update2 = org.telegram.ui.Components.y5.update(0, q8Var, n8Var.f5607a, n8Var.f5608b);
                                 n8Var.f5607a = update2;
                                 arrayList2 = arrayList;
                                 i11 = i13;
-                                org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, n8Var.f5608b, update2, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, q8Var.f5805w, porterDuffColorFilter);
+                                org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, n8Var.f5608b, update2, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, q8Var.f5805w, porterDuffColorFilter);
                                 canvas.restore();
                             }
                         } else {
                             arrayList2 = arrayList;
                             i11 = i13;
                             float lerp = AndroidUtilities.lerp(f11, f12, q8Var.f5805w);
-                            float lerp2 = AndroidUtilities.lerp(n8Var.d, n8Var.f5610f, bs.f25134g.getInterpolation(q8Var.f5805w));
+                            float lerp2 = AndroidUtilities.lerp(n8Var.d, n8Var.f5610f, zr.f33338g.getInterpolation(q8Var.f5805w));
                             canvas.translate(q8Var.E + lerp, q8Var.F + i10 + lerp2);
                             if (z10) {
                                 f(n8Var.f5608b, q8Var.E + lerp, q8Var.F + i10 + lerp2);
                             }
                             n8Var.f5608b.draw(canvas);
-                            org.telegram.ui.Components.w5 update3 = org.telegram.ui.Components.a6.update(0, q8Var, n8Var.f5607a, n8Var.f5608b);
+                            org.telegram.ui.Components.u5 update3 = org.telegram.ui.Components.y5.update(0, q8Var, n8Var.f5607a, n8Var.f5608b);
                             n8Var.f5607a = update3;
-                            org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, n8Var.f5608b, update3, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
+                            org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, n8Var.f5608b, update3, 0.0f, arrayList2, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
                         }
                         canvas.restore();
                         i13 = i11 + 1;
@@ -233,9 +233,9 @@ public final class p8 {
                 r8Var.W.W(canvas);
             }
             d(this.e, canvas, arrayList3);
-            org.telegram.ui.Components.w5 update4 = org.telegram.ui.Components.a6.update(0, q8Var, this.d, this.e);
+            org.telegram.ui.Components.u5 update4 = org.telegram.ui.Components.y5.update(0, q8Var, this.d, this.e);
             this.d = update4;
-            org.telegram.ui.Components.a6.drawAnimatedEmojis(canvas, this.e, update4, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
+            org.telegram.ui.Components.y5.drawAnimatedEmojis(canvas, this.e, update4, 0.0f, arrayList3, 0.0f, 0.0f, 0.0f, 1.0f, porterDuffColorFilter);
             canvas.restore();
             if (z10) {
                 f(this.e, q8Var.E, q8Var.F + i10);
@@ -368,7 +368,7 @@ public final class p8 {
                     }
                     n8 n8Var = n8VarArr[i16];
                     if (n8Var != null) {
-                        org.telegram.ui.Components.a6.release(r8Var, n8Var.f5607a);
+                        org.telegram.ui.Components.y5.release(r8Var, n8Var.f5607a);
                     }
                     i16++;
                 }
@@ -415,7 +415,7 @@ public final class p8 {
         int i18 = q8Var.E;
         int i19 = q8Var.F;
         wh.l lVar = this.f5742k;
-        lVar.f49542c = i18;
+        lVar.f49541c = i18;
         lVar.d = i19;
     }
 
@@ -452,10 +452,10 @@ public final class p8 {
             o8 o8Var = new o8(this, 0);
             m8Var.f5578r = q8Var;
             m8Var.f5579s = o8Var;
-            new tm0(q8Var);
+            new sm0(q8Var);
             m8Var.f5570j.setCallback(q8Var);
-            m8Var.h.f26178a = q8Var;
-            m8Var.f5569i.f32867a = q8Var;
+            m8Var.h.f25566a = q8Var;
+            m8Var.f5569i.f32180a = q8Var;
             m8Var.c();
         }
         m8 m8Var3 = this.f5747p;
@@ -463,10 +463,10 @@ public final class p8 {
             o8 o8Var2 = new o8(this, 1);
             m8Var3.f5578r = q8Var;
             m8Var3.f5579s = o8Var2;
-            new tm0(q8Var);
+            new sm0(q8Var);
             m8Var3.f5570j.setCallback(q8Var);
-            m8Var3.h.f26178a = q8Var;
-            m8Var3.f5569i.f32867a = q8Var;
+            m8Var3.h.f25566a = q8Var;
+            m8Var3.f5569i.f32180a = q8Var;
             m8Var3.c();
         }
         q8Var.f5804s = 0;

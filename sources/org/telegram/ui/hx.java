@@ -4,25 +4,25 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import org.telegram.messenger.AndroidUtilities;
 public final class hx extends AnimatorListenerAdapter {
-    public final int f37977a;
-    public final float f37978b;
-    public final ey f37979c;
+    public final int f38065a;
+    public final float f38066b;
+    public final ey f38067c;
 
     public hx(ey eyVar, float f7, int i10) {
-        this.f37977a = i10;
-        this.f37979c = eyVar;
-        this.f37978b = f7;
+        this.f38065a = i10;
+        this.f38067c = eyVar;
+        this.f38066b = f7;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
         int i10;
         int i11;
-        switch (this.f37977a) {
+        switch (this.f38065a) {
             case 0:
                 super.onAnimationEnd(animator);
-                ey eyVar = this.f37979c;
-                eyVar.f37148v3 = null;
+                ey eyVar = this.f38067c;
+                eyVar.f37123v3 = null;
                 int i12 = 0;
                 eyVar.O = false;
                 eyVar.Q = true;
@@ -33,22 +33,22 @@ public final class hx extends AnimatorListenerAdapter {
                 } else {
                     i10 = 0;
                 }
-                eyVar.y3 = -(AndroidUtilities.dp(i10 + 48) - this.f37978b);
-                eyVar.f37059e0[0].setTranslationY(0.0f);
+                eyVar.y3 = -(AndroidUtilities.dp(i10 + 48) - this.f38066b);
+                eyVar.f37034e0[0].setTranslationY(0.0f);
                 while (true) {
-                    dy[] dyVarArr = eyVar.f37059e0;
+                    dy[] dyVarArr = eyVar.f37034e0;
                     if (i12 < dyVarArr.length) {
                         dy dyVar = dyVarArr[i12];
                         if (dyVar != null) {
-                            dyVar.f36750a.requestLayout();
+                            dyVar.f36737a.requestLayout();
                         }
                         i12++;
                     } else {
                         eyVar.fragmentView.requestLayout();
                         tx txVar = eyVar.X;
-                        if (txVar != null && eyVar.f37042b.f17447f) {
-                            txVar.f27836r.requestFocus();
-                            AndroidUtilities.showKeyboard(eyVar.X.f27836r);
+                        if (txVar != null && eyVar.f37017b.f17447f) {
+                            txVar.f27258r.requestFocus();
+                            AndroidUtilities.showKeyboard(eyVar.X.f27258r);
                             return;
                         }
                         return;
@@ -57,8 +57,8 @@ public final class hx extends AnimatorListenerAdapter {
                 break;
             default:
                 super.onAnimationEnd(animator);
-                ey eyVar2 = this.f37979c;
-                eyVar2.f37148v3 = null;
+                ey eyVar2 = this.f38067c;
+                eyVar2.f37123v3 = null;
                 eyVar2.P = 0;
                 eyVar2.O = true;
                 if (eyVar2.K) {
@@ -66,15 +66,15 @@ public final class hx extends AnimatorListenerAdapter {
                 } else {
                     i11 = 0;
                 }
-                eyVar2.y3 = AndroidUtilities.dp(i11 + 48) - this.f37978b;
-                eyVar2.f37059e0[0].setTranslationY(0.0f);
+                eyVar2.y3 = AndroidUtilities.dp(i11 + 48) - this.f38066b;
+                eyVar2.f37034e0[0].setTranslationY(0.0f);
                 int i13 = 0;
                 while (true) {
-                    dy[] dyVarArr2 = eyVar2.f37059e0;
+                    dy[] dyVarArr2 = eyVar2.f37034e0;
                     if (i13 < dyVarArr2.length) {
                         dy dyVar2 = dyVarArr2[i13];
                         if (dyVar2 != null) {
-                            dyVar2.f36750a.requestLayout();
+                            dyVar2.f36737a.requestLayout();
                         }
                         i13++;
                     } else {

@@ -6,8 +6,8 @@ import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.a6;
-public final class r extends a6 {
+import org.telegram.ui.Components.y5;
+public final class r extends y5 {
     public final Bitmap f853a;
 
     public r(a0 a0Var) {

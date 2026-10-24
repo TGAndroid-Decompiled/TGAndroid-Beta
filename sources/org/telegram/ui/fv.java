@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class fv implements DialogInterface.OnDismissListener {
-    public final int f37422a;
-    public final ey f37423b;
+    public final int f37384a;
+    public final ey f37385b;
 
     public fv(ey eyVar, int i10) {
-        this.f37422a = i10;
-        this.f37423b = eyVar;
+        this.f37384a = i10;
+        this.f37385b = eyVar;
     }
 
     @Override
     public final void onDismiss(DialogInterface dialogInterface) {
-        switch (this.f37422a) {
+        switch (this.f37384a) {
             case 0:
-                ey.h0(this.f37423b);
+                ey.h0(this.f37385b);
                 return;
             case 1:
-                ey eyVar = this.f37423b;
+                ey eyVar = this.f37385b;
                 if (eyVar.S3 != null) {
                     eyVar.getMessagesController().removeSuggestion(0L, eyVar.S3);
                     eyVar.S3 = null;
@@ -26,10 +26,10 @@ public final class fv implements DialogInterface.OnDismissListener {
                 }
                 return;
             case 2:
-                this.f37423b.Z3(true);
+                this.f37385b.Z3(true);
                 return;
             default:
-                this.f37423b.Z3(true);
+                this.f37385b.Z3(true);
                 return;
         }
     }

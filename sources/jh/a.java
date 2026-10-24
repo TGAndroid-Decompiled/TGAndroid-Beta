@@ -20,15 +20,15 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.y;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.eq;
+import org.telegram.ui.Components.cq;
+import org.telegram.ui.Components.zr;
 import w7.z5;
 public final class a extends FrameLayout implements d, b6 {
     public final ne.b f14554a;
     public final ne.b f14555b;
     public ImageView f14556c;
     public ImageView d;
-    public eq e;
+    public cq e;
     public g6 f14557f;
     public float h;
     public int f14558n;
@@ -36,9 +36,9 @@ public final class a extends FrameLayout implements d, b6 {
 
     public a(Context context) {
         super(context);
-        bs bsVar = bs.h;
-        this.f14554a = new ne.b(0, this, bsVar, 320L, false);
-        this.f14555b = new ne.b(1, this, bsVar, 320L, true);
+        zr zrVar = zr.h;
+        this.f14554a = new ne.b(0, this, zrVar, 320L, false);
+        this.f14555b = new ne.b(1, this, zrVar, 320L, true);
         this.h = 1.0f;
     }
 
@@ -112,7 +112,7 @@ public final class a extends FrameLayout implements d, b6 {
             }
             if (this.d.getVisibility() != i10) {
                 this.d.setVisibility(i10);
-                this.e.f26026c = -1L;
+                this.e.f25432c = -1L;
             }
         }
     }

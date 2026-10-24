@@ -12,8 +12,8 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.Components.ChatActivityEnterView;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.vc;
 public final class k3 implements Utilities.Callback {
     public final int f5489a = 1;
     public final boolean f5490b;
@@ -32,7 +32,7 @@ public final class k3 implements Utilities.Callback {
     public final void run(Object obj) {
         ah.d1 d1Var;
         TLRPC.Document f7;
-        xc xcVar;
+        vc vcVar;
         int i10;
         int i11;
         int i12;
@@ -73,7 +73,7 @@ public final class k3 implements Utilities.Callback {
                     of2.payStars = l4.longValue();
                     SendMessagesHelper.getInstance(p4Var.C2).sendMessage(of2);
                 } else {
-                    f7 = org.telegram.ui.Components.r5.f(p4Var.C2, i1Var.f785g);
+                    f7 = org.telegram.ui.Components.p5.f(p4Var.C2, i1Var.f785g);
                     String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(f7, null);
                     if (findAnimatedEmojiEmoticon == null) {
                         if (p4Var.f5668f2.getReactionsWindow() != null) {
@@ -94,8 +94,8 @@ public final class k3 implements Utilities.Callback {
                     SendMessagesHelper.getInstance(p4Var.C2).sendMessage(of3);
                 }
                 if (l4.longValue() <= 0) {
-                    qc r10 = new xc(p4Var.f5656c1, p4Var.B0).r(f7, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new androidx.fragment.app.d(l3Var, 10));
-                    r10.f29832j = 5000;
+                    oc r10 = new vc(p4Var.f5656c1, p4Var.B0).r(f7, LocaleController.getString(R.string.ReactionSent), LocaleController.getString(R.string.ViewInChat), new androidx.fragment.app.d(l3Var, 10));
+                    r10.f29203j = 5000;
                     r10.j();
                 }
                 if (p4Var.f5668f2.getReactionsWindow() != null) {
@@ -111,7 +111,7 @@ public final class k3 implements Utilities.Callback {
                 if (((Boolean) obj).booleanValue()) {
                     storyItem.pinned = z10;
                     if (p4Var2.C1) {
-                        xc xcVar2 = new xc(q3Var, g6Var);
+                        vc vcVar2 = new vc(q3Var, g6Var);
                         if (z10) {
                             i12 = R.raw.contact_check;
                         } else {
@@ -122,28 +122,28 @@ public final class k3 implements Utilities.Callback {
                         } else {
                             i13 = R.string.StoryArchivedFromProfile;
                         }
-                        xcVar2.Q(i12, 36, LocaleController.getString(i13)).j();
+                        vcVar2.Q(i12, 36, LocaleController.getString(i13)).j();
                         return;
                     } else if (z10) {
-                        new xc(q3Var, g6Var).M(LocaleController.getString(R.string.StoryPinnedToPosts), LocaleController.getString(R.string.StoryPinnedToPostsDescription), R.raw.contact_check).j();
+                        new vc(q3Var, g6Var).M(LocaleController.getString(R.string.StoryPinnedToPosts), LocaleController.getString(R.string.StoryPinnedToPostsDescription), R.raw.contact_check).j();
                         return;
                     } else {
-                        xcVar = new xc(q3Var, g6Var);
+                        vcVar = new vc(q3Var, g6Var);
                         i10 = R.raw.chats_archived;
                         i11 = R.string.StoryUnpinnedFromPosts;
                     }
                 } else {
-                    xcVar = new xc(q3Var, g6Var);
+                    vcVar = new vc(q3Var, g6Var);
                     i10 = R.raw.error;
                     i11 = R.string.UnknownError;
                 }
-                org.telegram.messenger.v0.p(i11, xcVar, i10, 36);
+                org.telegram.messenger.v0.p(i11, vcVar, i10, 36);
                 return;
             default:
                 ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj4;
-                int i16 = ChatActivityEnterView.f24050r5;
+                int i16 = ChatActivityEnterView.f24051r5;
                 ((org.telegram.ui.ActionBar.c2) obj3).dismiss();
-                yh.o1 o1Var = new yh.o1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f20490id, ug.q.c(ug.q.b(1, (List) obj)), null);
+                yh.o1 o1Var = new yh.o1(chatActivityEnterView.getContext(), chatActivityEnterView.Q, ((TLRPC.User) obj2).f20491id, ug.q.c(ug.q.b(1, (List) obj)), null);
                 o1Var.V(z10);
                 o1Var.show();
                 return;

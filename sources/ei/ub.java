@@ -12,11 +12,11 @@ import android.view.TextureView;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.gl0;
-import org.telegram.ui.Components.ow0;
-import org.telegram.ui.Components.tz;
-import org.telegram.ui.Components.u20;
-public final class ub extends ow0 {
+import org.telegram.ui.Components.fl0;
+import org.telegram.ui.Components.nw0;
+import org.telegram.ui.Components.rz;
+import org.telegram.ui.Components.s20;
+public final class ub extends nw0 {
     public boolean A0;
     public float B0;
     public float C0;
@@ -31,7 +31,7 @@ public final class ub extends ow0 {
         super(activity, null);
         this.E0 = vbVar;
         this.A0 = false;
-        this.f9931w0 = new le.b((Context) activity, (u20) new sb(this));
+        this.f9931w0 = new le.b((Context) activity, (s20) new sb(this));
         this.f9932x0 = new ScaleGestureDetector(activity, new tb(this));
     }
 
@@ -166,7 +166,7 @@ public final class ub extends ow0 {
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
         int i14;
         ah.v vVar;
-        tz emojiView;
+        rz emojiView;
         int measuredWidth = getMeasuredWidth();
         int measuredHeight = getMeasuredHeight();
         vb vbVar = this.E0;
@@ -212,14 +212,14 @@ public final class ub extends ow0 {
         }
         xa xaVar = vbVar.f10032v1;
         if (xaVar != null) {
-            tz tzVar = xaVar.f9039p2;
-            if (tzVar != null) {
-                tzVar.layout(vbVar.Y, (measuredHeight - vbVar.f9968b0) - tzVar.getMeasuredHeight(), measuredWidth - vbVar.f9965a0, measuredHeight - vbVar.f9968b0);
+            rz rzVar = xaVar.f9039p2;
+            if (rzVar != null) {
+                rzVar.layout(vbVar.Y, (measuredHeight - vbVar.f9968b0) - rzVar.getMeasuredHeight(), measuredWidth - vbVar.f9965a0, measuredHeight - vbVar.f9968b0);
             }
-            gl0 gl0Var = vbVar.f10032v1.Z1;
-            if (gl0Var != null) {
+            fl0 fl0Var = vbVar.f10032v1.Z1;
+            if (fl0Var != null) {
                 int i21 = vbVar.Y;
-                gl0Var.layout(i21, vbVar.Z, gl0Var.getMeasuredWidth() + i21, vbVar.f10032v1.Z1.getMeasuredHeight() + vbVar.Z);
+                fl0Var.layout(i21, vbVar.Z, fl0Var.getMeasuredWidth() + i21, vbVar.f10032v1.Z1.getMeasuredHeight() + vbVar.Z);
                 if (vbVar.f10032v1.Z1.getReactionsWindow() != null) {
                     vVar = vbVar.f10032v1.Z1.getReactionsWindow().f871c;
                 } else {
@@ -247,7 +247,7 @@ public final class ub extends ow0 {
             View childAt = getChildAt(i23);
             if (childAt instanceof t0) {
                 childAt.layout(0, 0, measuredWidth, measuredHeight);
-            } else if (childAt instanceof org.telegram.ui.Components.ib) {
+            } else if (childAt instanceof org.telegram.ui.Components.gb) {
                 childAt.layout(0, i15, childAt.getMeasuredWidth(), childAt.getMeasuredHeight() + i15);
             }
         }
@@ -311,7 +311,7 @@ public final class ub extends ow0 {
         }
         lb lbVar = vbVar.f9973c1;
         if (lbVar != null) {
-            tz emojiView = lbVar.f9410f.getEmojiView();
+            rz emojiView = lbVar.f9410f.getEmojiView();
             Q();
             AndroidUtilities.dp(20.0f);
             if (emojiView != null) {
@@ -320,13 +320,13 @@ public final class ub extends ow0 {
         }
         xa xaVar = vbVar.f10032v1;
         if (xaVar != null) {
-            tz tzVar = xaVar.f9039p2;
-            if (tzVar != null) {
-                tzVar.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(vbVar.f10032v1.f9039p2.getLayoutParams().height, 1073741824));
+            rz rzVar = xaVar.f9039p2;
+            if (rzVar != null) {
+                rzVar.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(vbVar.f10032v1.f9039p2.getLayoutParams().height, 1073741824));
             }
-            gl0 gl0Var = vbVar.f10032v1.Z1;
-            if (gl0Var != null) {
-                measureChild(gl0Var, i10, i11);
+            fl0 fl0Var = vbVar.f10032v1.Z1;
+            if (fl0Var != null) {
+                measureChild(fl0Var, i10, i11);
                 if (vbVar.f10032v1.Z1.getReactionsWindow() != null) {
                     measureChild(vbVar.f10032v1.Z1.getReactionsWindow().f871c, i10, i11);
                 }
@@ -336,7 +336,7 @@ public final class ub extends ow0 {
             View childAt = getChildAt(i22);
             if (childAt instanceof t0) {
                 childAt.measure(View.MeasureSpec.makeMeasureSpec(i16, 1073741824), View.MeasureSpec.makeMeasureSpec(size2, 1073741824));
-            } else if (childAt instanceof org.telegram.ui.Components.ib) {
+            } else if (childAt instanceof org.telegram.ui.Components.gb) {
                 int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(i16, 1073741824);
                 int dp2 = AndroidUtilities.dp(340.0f);
                 if (vbVar.V) {

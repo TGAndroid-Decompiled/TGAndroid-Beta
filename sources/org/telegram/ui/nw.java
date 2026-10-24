@@ -28,25 +28,25 @@ public final class nw extends FragmentContextView {
         switch (this.X0) {
             case 0:
                 ey eyVar = this.Y0;
-                org.telegram.ui.Components.us usVar = eyVar.J1;
+                org.telegram.ui.Components.ss ssVar = eyVar.J1;
                 FrameLayout frameLayout = eyVar.G1;
                 if (i10 == 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                usVar.i(frameLayout, z10, true);
+                ssVar.i(frameLayout, z10, true);
                 return;
             default:
                 ey eyVar2 = this.Y0;
-                org.telegram.ui.Components.us usVar2 = eyVar2.J1;
+                org.telegram.ui.Components.ss ssVar2 = eyVar2.J1;
                 FrameLayout frameLayout2 = eyVar2.I1;
                 if (i10 == 0) {
                     z11 = true;
                 } else {
                     z11 = false;
                 }
-                usVar2.i(frameLayout2, z11, true);
+                ssVar2.i(frameLayout2, z11, true);
                 return;
         }
     }

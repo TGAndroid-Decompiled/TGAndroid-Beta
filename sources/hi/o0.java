@@ -1,6 +1,6 @@
 package hi;
 
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.sn;
 public final class o0 implements Runnable {
     public final int f12232a = 0;
@@ -24,7 +24,7 @@ public final class o0 implements Runnable {
                     snVar.Z9();
                     snVar.ec();
                 }
-                t0.f(xc.a0(snVar), i10, this.f12234c);
+                t0.f(vc.a0(snVar), i10, this.f12234c);
                 return;
             default:
                 boolean z10 = this.f12234c;

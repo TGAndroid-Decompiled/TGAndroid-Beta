@@ -2,8 +2,8 @@ package ki;
 
 import android.text.TextUtils;
 import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.Components.hu;
-public final class g4 implements hu, i4 {
+import org.telegram.ui.Components.fu;
+public final class g4 implements fu, i4 {
     public final int f15340a;
     public final v3 f15341b;
 

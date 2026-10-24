@@ -3,7 +3,7 @@ package ig;
 import android.os.Bundle;
 import android.view.View;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.sn;
 public final class t0 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5 {
     public final int f13075a;
@@ -28,15 +28,15 @@ public final class t0 implements org.telegram.ui.ActionBar.z1, Utilities.Callbac
 
     @Override
     public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        m61 m61Var = (m61) obj;
+        l61 l61Var = (l61) obj;
         View view = (View) obj2;
         ((Integer) obj3).getClass();
         ((Float) obj4).getClass();
         ((Float) obj5).getClass();
         u0 u0Var = this.f13076b;
-        if (!u0Var.e.h(m61Var)) {
-            int i10 = m61Var.d;
-            if (i10 != 2 && m61Var.f44713a != 17) {
+        if (!u0Var.e.h(l61Var)) {
+            int i10 = l61Var.d;
+            if (i10 != 2 && l61Var.f44712a != 17) {
                 if (i10 == 1) {
                     u0Var.v = !u0Var.v;
                     u0Var.d.Z2.N(true);

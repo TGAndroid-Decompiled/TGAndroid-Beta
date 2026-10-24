@@ -8,7 +8,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_payments;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
 public final class n0 implements Utilities.Callback2 {
     public final int f12219a;
@@ -36,7 +36,7 @@ public final class n0 implements Utilities.Callback2 {
                         t0.d(o2Var, -j10, 2);
                         return;
                     } else {
-                        xc.a0(o2Var).f0(tL_error, false);
+                        vc.a0(o2Var).f0(tL_error, false);
                         return;
                     }
                 }
@@ -48,7 +48,7 @@ public final class n0 implements Utilities.Callback2 {
             case 2:
                 LaunchActivity launchActivity = (LaunchActivity) obj3;
                 Long l4 = (Long) obj2;
-                Pattern pattern = LaunchActivity.E1;
+                Pattern pattern = LaunchActivity.D1;
                 if ("paid".equals((String) obj) && l4.longValue() != 0) {
                     AndroidUtilities.runOnUIThread(new a3.i0(launchActivity, l4, this.f12220b, 28));
                     return;

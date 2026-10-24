@@ -27,18 +27,18 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.rl0;
-import org.telegram.ui.Components.rm0;
-import org.telegram.ui.Components.yz;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.ql0;
+import org.telegram.ui.Components.qm0;
+import org.telegram.ui.Components.wz;
+import org.telegram.ui.Components.zr;
 public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBar.b6, NotificationCenter.NotificationCenterDelegate {
     public s5 E;
     public s5 F;
     public c7 G;
     public int H;
     public boolean I;
-    public final rl0 J;
+    public final ql0 J;
     public final z9 K;
     public final d5 L;
     public final e5 M;
@@ -65,7 +65,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
     public final b f5959s;
     public final int v;
     public final o5 f5960w;
-    public final yz f5961x;
+    public final wz f5961x;
     public a6 f5962y;
 
     public t5(z9 z9Var, Context context, e5 e5Var, ai.r0 r0Var) {
@@ -80,7 +80,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
         this.v = z9Var.h;
         TextView textView = new TextView(context);
         this.h = textView;
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21289j5, bVar);
+        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21290j5, bVar);
         textView.setTextSize(1, 20.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setPadding(AndroidUtilities.dp(21.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(21.0f), AndroidUtilities.dp(8.0f));
@@ -89,10 +89,10 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
         y4 y4Var = new y4(this, context, bVar);
         this.f5958r = y4Var;
         y4Var.setClipToPadding(false);
-        this.J = new rl0(y4Var, true);
-        yz yzVar = new yz(y4Var, 0);
-        this.f5961x = yzVar;
-        y4Var.setLayoutManager(yzVar);
+        this.J = new ql0(y4Var, true);
+        wz wzVar = new wz(y4Var, 0);
+        this.f5961x = wzVar;
+        y4Var.setLayoutManager(wzVar);
         y4Var.setNestedScrollingEnabled(true);
         o5 o5Var = new o5(this);
         this.f5960w = o5Var;
@@ -110,7 +110,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
         View view = new View(getContext());
         this.f5952a = view;
         GradientDrawable.Orientation orientation = GradientDrawable.Orientation.TOP_BOTTOM;
-        int i10 = org.telegram.ui.ActionBar.k6.f21254h5;
+        int i10 = org.telegram.ui.ActionBar.k6.f21255h5;
         int w02 = org.telegram.ui.ActionBar.k6.w0(i10, bVar);
         this.f5953a0 = w02;
         view.setBackground(new GradientDrawable(orientation, new int[]{w02, 0}));
@@ -159,7 +159,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
             if (sparseArray == null) {
                 s5Var = null;
             } else {
-                s5Var = (s5) sparseArray.get(storyItem.f20577id);
+                s5Var = (s5) sparseArray.get(storyItem.f20578id);
             }
             TL_stories.StoryViews storyViews = storyItem.views;
             if (storyViews == null) {
@@ -181,7 +181,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
                 sparseArray = new SparseArray();
                 hVar.k(sparseArray, j11);
             }
-            sparseArray.put(storyItem.f20577id, s5Var2);
+            sparseArray.put(storyItem.f20578id, s5Var2);
         }
     }
 
@@ -375,7 +375,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
         i();
         h(false);
         if (a6Var != null && a6Var.f5150a != null) {
-            NotificationsController.getInstance(this.v).processSeenStoryReactions(j10, a6Var.f5150a.f20577id);
+            NotificationsController.getInstance(this.v).processSeenStoryReactions(j10, a6Var.f5150a.f20578id);
         }
     }
 
@@ -409,12 +409,12 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
                 ofFloat.addUpdateListener(new ah.c0(i5Var, 18));
                 i5Var.f5447w.addListener(new ah.b(i5Var, 13));
                 i5Var.f5447w.setDuration(250L);
-                i5Var.f5447w.setInterpolator(bs.f25133f);
+                i5Var.f5447w.setInterpolator(zr.f33337f);
                 i5Var.f5447w.start();
             }
         }
         boolean z12 = e5Var.f5288a;
-        rm0 rm0Var = i5Var.v;
+        qm0 qm0Var = i5Var.v;
         if (z12) {
             s5 s5Var = this.E;
             if (s5Var != null && s5Var.f5918f) {
@@ -425,7 +425,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
         } else {
             i10 = R.drawable.menu_views_recent3;
         }
-        rm0Var.a(i10, z10);
+        qm0Var.a(i10, z10);
     }
 
     public final void i() {
@@ -448,7 +448,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
         int i10 = this.v;
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.storiesUpdated);
         NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.storiesBlocklistUpdate);
-        qc.a(this, new ah.m0(this, 2));
+        oc.a(this, new ah.m0(this, 2));
     }
 
     @Override
@@ -462,7 +462,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
         int i10 = this.v;
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.storiesUpdated);
         NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.storiesBlocklistUpdate);
-        qc.h(this);
+        oc.h(this);
     }
 
     @Override
@@ -496,7 +496,7 @@ public abstract class t5 extends FrameLayout implements org.telegram.ui.ActionBa
     @Override
     public final void updateColors() {
         try {
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, this.f5959s);
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21255h5, this.f5959s);
             View view = this.f5952a;
             if (view != null && w02 != this.f5953a0) {
                 this.f5953a0 = w02;

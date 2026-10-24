@@ -15,7 +15,7 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.rm0;
+import org.telegram.ui.Components.qm0;
 public final class i5 extends FrameLayout {
     public final LinearLayout f5440a;
     public final Paint f5441b;
@@ -27,7 +27,7 @@ public final class i5 extends FrameLayout {
     public final RectF f5444n;
     public float f5445r;
     public int f5446s;
-    public final rm0 v;
+    public final qm0 v;
     public ValueAnimator f5447w;
     public final t5 f5448x;
 
@@ -39,7 +39,7 @@ public final class i5 extends FrameLayout {
         this.e = new RectF();
         this.f5444n = new RectF();
         this.f5445r = 1.0f;
-        int i10 = org.telegram.ui.ActionBar.k6.f21272i6;
+        int i10 = org.telegram.ui.ActionBar.k6.f21273i6;
         b bVar = t5Var.f5959s;
         paint.setColor(org.telegram.ui.ActionBar.k6.w0(i10, bVar));
         LinearLayout linearLayout = new LinearLayout(context);
@@ -47,7 +47,7 @@ public final class i5 extends FrameLayout {
         TextView textView = new TextView(context);
         this.f5442c = textView;
         textView.setText(LocaleController.getString(R.string.AllViewers));
-        int i11 = org.telegram.ui.ActionBar.k6.f21289j5;
+        int i11 = org.telegram.ui.ActionBar.k6.f21290j5;
         org.telegram.ui.ActionBar.r6.W(textView, i11, bVar);
         textView.setTextSize(1, 14.0f);
         textView.setTypeface(AndroidUtilities.bold());
@@ -70,13 +70,13 @@ public final class i5 extends FrameLayout {
         linearLayout2.setBackground(c02);
         org.telegram.ui.ActionBar.r6.k(linearLayout2, c02, O, null, bVar);
         linearLayout2.setOrientation(0);
-        rm0 rm0Var = new rm0(getContext());
-        this.v = rm0Var;
-        rm0Var.f30231r = true;
-        rm0Var.a(R.drawable.menu_views_reactions3, false);
+        qm0 qm0Var = new qm0(getContext());
+        this.v = qm0Var;
+        qm0Var.f29963r = true;
+        qm0Var.a(R.drawable.menu_views_reactions3, false);
         ImageView imageView = new ImageView(getContext());
         imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-        imageView.setImageDrawable(rm0Var);
+        imageView.setImageDrawable(qm0Var);
         imageView.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
         linearLayout2.addView(imageView, w7.z5.n(26, 26));
         ImageView imageView2 = new ImageView(getContext());
@@ -120,8 +120,8 @@ public final class i5 extends FrameLayout {
                         h5 h5Var = new h5(i5Var, i5Var.getContext(), t5Var4.f5959s);
                         t5Var4.f5956f = h5Var;
                         LinearLayout linearLayout3 = i5Var.f5440a;
-                        h5Var.f27043b = true;
-                        h5Var.f27042a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        h5Var.f26427b = true;
+                        h5Var.f26426a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -162,8 +162,8 @@ public final class i5 extends FrameLayout {
                         h5 h5Var = new h5(i5Var, i5Var.getContext(), t5Var4.f5959s);
                         t5Var4.f5956f = h5Var;
                         LinearLayout linearLayout3 = i5Var.f5440a;
-                        h5Var.f27043b = true;
-                        h5Var.f27042a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        h5Var.f26427b = true;
+                        h5Var.f26426a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }
@@ -204,8 +204,8 @@ public final class i5 extends FrameLayout {
                         h5 h5Var = new h5(i5Var, i5Var.getContext(), t5Var4.f5959s);
                         t5Var4.f5956f = h5Var;
                         LinearLayout linearLayout3 = i5Var.f5440a;
-                        h5Var.f27043b = true;
-                        h5Var.f27042a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
+                        h5Var.f26427b = true;
+                        h5Var.f26426a.showAsDropDown(linearLayout3, 0, (-linearLayout3.getMeasuredHeight()) - AndroidUtilities.dp(8.0f));
                         return;
                 }
             }

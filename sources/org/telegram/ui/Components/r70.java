@@ -1,177 +1,110 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.view.View;
 import android.view.ViewGroup;
-import org.telegram.messenger.DialogObject;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class r70 extends lm0 {
-    public final x70 f30113c;
+public final class r70 extends km0 {
+    public ArrayList f30085c = new ArrayList();
+    public ArrayList d = new ArrayList();
+    public final hg.a2 e;
+    public int f30086f;
+    public Runnable h;
+    public final v70 f30087n;
 
-    public r70(x70 x70Var) {
-        this.f30113c = x70Var;
+    public r70(v70 v70Var) {
+        this.f30087n = v70Var;
+        hg.a2 a2Var = new hg.a2(false);
+        this.e = a2Var;
+        a2Var.f11819a = new rv(this, 8);
     }
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f46346f;
-        if (i10 == 3 || i10 == 1) {
+        if (b1Var.f46345f == 1) {
             return true;
         }
         return false;
     }
 
-    public final TLObject E(int i10) {
-        int i11;
-        int i12;
-        x70 x70Var = this.f30113c;
-        if (x70Var.m0 != null) {
-            TLRPC.Dialog dialog = (TLRPC.Dialog) x70Var.f32463n0.get(i10 - x70Var.Y);
-            if (DialogObject.isUserDialog(dialog.f20347id)) {
-                i12 = ((org.telegram.ui.ActionBar.h3) x70Var).currentAccount;
-                return MessagesController.getInstance(i12).getUser(Long.valueOf(dialog.f20347id));
-            }
-            i11 = ((org.telegram.ui.ActionBar.h3) x70Var).currentAccount;
-            return MessagesController.getInstance(i11).getChat(Long.valueOf(-dialog.f20347id));
-        }
-        return (TLObject) x70Var.f32455e0.get(i10 - x70Var.Y);
-    }
-
     @Override
     public final int h() {
-        return this.f30113c.f32453c0;
+        int size = this.f30085c.size();
+        hg.a2 a2Var = this.e;
+        int size2 = a2Var.d.size();
+        int size3 = a2Var.e.size();
+        int i10 = size + size2;
+        if (size3 != 0) {
+            i10 += size3 + 1;
+        }
+        int i11 = i10 + 2;
+        this.f30086f = i11;
+        return i11;
     }
 
     @Override
     public final int j(int i10) {
-        x70 x70Var = this.f30113c;
-        if (i10 == x70Var.X) {
-            return 1;
-        }
-        x70Var.getClass();
         if (i10 == 0) {
             return 2;
         }
-        if (i10 >= x70Var.Y && i10 < x70Var.Z) {
-            return 3;
-        }
-        if (i10 == x70Var.f32452b0) {
+        if (i10 == this.f30086f - 1) {
             return 4;
         }
-        if (i10 == x70Var.f32451a0) {
-            return 5;
+        if (i10 - 1 != this.e.d.size() + this.f30085c.size()) {
+            return 1;
         }
         return 0;
     }
 
     @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        long j10;
-        boolean z10;
-        long j11;
-        boolean z11;
-        int i11 = b1Var.f46346f;
-        View view = b1Var.f46343a;
-        if (i11 != 2) {
-            if (i11 == 3) {
-                org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) view;
-                TLObject E = E(i10);
-                Object object = f4Var.getObject();
-                if (object instanceof TLRPC.User) {
-                    j10 = ((TLRPC.User) object).f20490id;
-                } else if (object instanceof TLRPC.Chat) {
-                    j10 = -((TLRPC.Chat) object).f20343id;
-                } else {
-                    j10 = 0;
-                }
-                x70 x70Var = this.f30113c;
-                boolean z12 = false;
-                if (i10 != x70Var.Z) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                f4Var.e(E, null, null, z10);
-                if (E instanceof TLRPC.User) {
-                    j11 = ((TLRPC.User) E).f20490id;
-                } else if (E instanceof TLRPC.Chat) {
-                    j11 = -((TLRPC.Chat) E).f20343id;
-                } else {
-                    j11 = 0;
-                }
-                if (j11 != 0) {
-                    a0.h hVar = x70Var.T;
-                    if (hVar != null && hVar.h(j11) >= 0) {
-                        f4Var.c(true, false);
-                        f4Var.setCheckBoxEnabled(false);
-                        return;
-                    }
-                    if (x70Var.f32456f0.h(j11) >= 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    if (j10 == j11) {
-                        z12 = true;
-                    }
-                    f4Var.c(z11, z12);
-                    f4Var.setCheckBoxEnabled(true);
-                    return;
-                }
-                return;
-            }
-            return;
-        }
-        view.requestLayout();
+    public final void v(s4.b1 r12, int r13) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r70.v(s4.b1, int):void");
     }
 
     @Override
     public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        org.telegram.ui.Cells.x4 x4Var;
-        boolean z10;
+        View view;
+        int i11;
         Context context = viewGroup.getContext();
-        if (i10 != 2) {
-            x70 x70Var = this.f30113c;
-            if (i10 != 3) {
+        if (i10 != 1) {
+            if (i10 != 2) {
                 if (i10 != 4) {
-                    if (i10 != 5) {
-                        org.telegram.ui.Cells.x4 x4Var2 = new org.telegram.ui.Cells.x4(context);
-                        x4Var2.b(LocaleController.getString(R.string.VoipGroupCopyInviteLink), R.drawable.msg_link, 7, true);
-                        int i11 = org.telegram.ui.ActionBar.k6.f21365n5;
-                        x4Var2.a(i11, i11);
-                        x4Var = x4Var2;
+                    ?? frameLayout = new FrameLayout(context);
+                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.e7, frameLayout, null);
+                    Drawable drawable = frameLayout.getResources().getDrawable(R.drawable.shadowdown);
+                    frameLayout.f22324a = drawable;
+                    org.telegram.ui.ActionBar.r6.z(frameLayout, drawable, org.telegram.ui.ActionBar.k6.Zh, null, PorterDuff.Mode.MULTIPLY);
+                    TextView textView = new TextView(frameLayout.getContext());
+                    frameLayout.f22325b = textView;
+                    com.google.android.gms.internal.play_billing.k3.m(14.0f, 1, textView);
+                    org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21137ai, null);
+                    int i12 = 3;
+                    if (LocaleController.isRTL) {
+                        i11 = 5;
                     } else {
-                        q70 q70Var = new q70(0, 0, context, null, null);
-                        q70Var.setLayoutParams(new s4.o0(-1, -1));
-                        q70Var.e.setVisibility(8);
-                        org.telegram.ui.xt xtVar = x70Var.m0;
-                        wh.n nVar = q70Var.d;
-                        if (xtVar != null) {
-                            nVar.setText(LocaleController.getString(R.string.FilterNoChats));
-                        } else {
-                            nVar.setText(LocaleController.getString(R.string.NoContacts));
-                        }
-                        q70Var.setAnimateLayoutChange(true);
-                        x4Var = q70Var;
+                        i11 = 3;
                     }
+                    textView.setGravity(i11 | 16);
+                    if (LocaleController.isRTL) {
+                        i12 = 5;
+                    }
+                    frameLayout.addView(textView, w7.z5.d(-1, -1.0f, i12 | 48, 16.0f, 0.0f, 16.0f, 0.0f));
+                    view = frameLayout;
                 } else {
-                    x4Var = new View(context);
+                    view = new View(context);
                 }
             } else {
-                if (x70Var.m0 != null) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                x4Var = new org.telegram.ui.Cells.f4(context, 1, 0, z10);
+                view = new ai.jc(this, context, 19);
             }
         } else {
-            x4Var = new ai.jc(this, context, 18);
+            view = new org.telegram.ui.Cells.f4(context, 1, 0, false);
         }
-        return new s4.b1(x4Var);
+        return new s4.b1(view);
     }
 }

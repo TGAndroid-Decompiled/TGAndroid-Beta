@@ -8,18 +8,18 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.TLRPC;
-public final class xo extends org.telegram.ui.Components.mm0 {
-    public static final int f43626c3 = 0;
+public final class xo extends org.telegram.ui.Components.lm0 {
+    public static final int f43651c3 = 0;
     public final wo Y2;
     public boolean Z2;
-    public final Paint f43627a3;
-    public final yo f43628b3;
+    public final Paint f43652a3;
+    public final yo f43653b3;
 
     public xo(yo yoVar, Context context) {
         super(context, null);
-        this.f43628b3 = yoVar;
+        this.f43653b3 = yoVar;
         this.Z2 = false;
-        this.f43627a3 = new Paint(1);
+        this.f43652a3 = new Paint(1);
         wo woVar = new wo(this);
         this.Y2 = woVar;
         setAdapter(woVar);
@@ -31,7 +31,7 @@ public final class xo extends org.telegram.ui.Components.mm0 {
     public final void C1(TLRPC.TL_username tL_username, boolean z10, boolean z11) {
         TLRPC.TL_username tL_username2;
         int min;
-        yo yoVar = this.f43628b3;
+        yo yoVar = this.f43653b3;
         ArrayList arrayList = yoVar.O;
         int i10 = 0;
         for (int i11 = 0; i11 < arrayList.size(); i11++) {
@@ -86,7 +86,7 @@ public final class xo extends org.telegram.ui.Components.mm0 {
                                 paVar.setLoading(yoVar.Q.contains(tL_username2.username));
                                 TLRPC.TL_username tL_username3 = paVar.v;
                                 if (tL_username3 != null) {
-                                    paVar.a(tL_username3, paVar.f40437w, true, paVar.f40438x);
+                                    paVar.a(tL_username3, paVar.f40421w, true, paVar.f40422x);
                                 }
                             }
                         } else {
@@ -96,7 +96,7 @@ public final class xo extends org.telegram.ui.Components.mm0 {
                     if (i13 >= 0 && i12 != i13) {
                         int i18 = i13 - 1;
                         wo woVar = this.Y2;
-                        ArrayList arrayList2 = woVar.f43407c.f43628b3.O;
+                        ArrayList arrayList2 = woVar.f43379c.f43653b3.O;
                         if (i11 < arrayList2.size() && i18 < arrayList2.size()) {
                             arrayList2.add(i18, (TLRPC.TL_username) arrayList2.remove(i11));
                             woVar.p(i12, i13);
@@ -119,7 +119,7 @@ public final class xo extends org.telegram.ui.Components.mm0 {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         int R;
-        int size = this.f43628b3.O.size();
+        int size = this.f43653b3.O.size();
         int i10 = Integer.MAX_VALUE;
         int i11 = Integer.MIN_VALUE;
         for (int i12 = 0; i12 < getChildCount(); i12++) {
@@ -130,8 +130,8 @@ public final class xo extends org.telegram.ui.Components.mm0 {
             }
         }
         if (i10 < i11) {
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21183d6, this.f28705n2);
-            Paint paint = this.f43627a3;
+            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21184d6, this.f28396n2);
+            Paint paint = this.f43652a3;
             paint.setColor(w02);
             canvas2 = canvas;
             canvas2.drawRect(0.0f, i10, getWidth(), i11, paint);

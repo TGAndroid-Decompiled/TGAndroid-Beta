@@ -16,16 +16,16 @@ import z7.sf;
 import z7.uf;
 import z7.wf;
 public final class r extends c1 {
-    public final int f47341b;
+    public final int f47340b;
 
     public r(int i10) {
         super(6);
-        this.f47341b = i10;
+        this.f47340b = i10;
     }
 
     @Override
     public final Object Q0(Object obj) {
-        switch (this.f47341b) {
+        switch (this.f47340b) {
             case 0:
                 rb.g c10 = rb.g.c();
                 Context b10 = rb.g.c().b();
@@ -41,7 +41,7 @@ public final class r extends c1 {
             case 1:
                 v8 v8Var = (v8) obj;
                 rb.g c11 = rb.g.c();
-                return new y8(c11.b(), (rb.k) c11.a(rb.k.class), new w8(rb.g.c().b(), v8Var), v8Var.f48612a);
+                return new y8(c11.b(), (rb.k) c11.a(rb.k.class), new w8(rb.g.c().b(), v8Var), v8Var.f48611a);
             case 2:
                 rb.g c12 = rb.g.c();
                 return new la(c12.b(), (rb.k) c12.a(rb.k.class), new ka(rb.g.c().b(), (ia) obj));

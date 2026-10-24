@@ -24,25 +24,25 @@ public final class sp implements org.telegram.ui.ActionBar.z1, MessagesControlle
                 dqVar.t0(true);
                 vp vpVar = new vp(dqVar, 0);
                 if (!dqVar.L && !dqVar.M) {
-                    dqVar.getMessagesController().addUserToChat(dqVar.f36706x.f20343id, dqVar.f36704w, 0, dqVar.Z0, dqVar, true, vpVar, new sp(dqVar, 3));
+                    dqVar.getMessagesController().addUserToChat(dqVar.f36697x.f20344id, dqVar.f36695w, 0, dqVar.Z0, dqVar, true, vpVar, new sp(dqVar, 3));
                     return;
                 }
                 MessagesController messagesController = dqVar.getMessagesController();
-                long j10 = dqVar.f36706x.f20343id;
-                TLRPC.User user = dqVar.f36704w;
+                long j10 = dqVar.f36697x.f20344id;
+                TLRPC.User user = dqVar.f36695w;
                 if (dqVar.L) {
                     o02 = dqVar.N;
                 } else {
                     o02 = dq.o0(false);
                 }
-                messagesController.setUserAdminRole(j10, user, o02, dqVar.T, false, dqVar, dqVar.f36674a1, dqVar.L, dqVar.Z0, vpVar, new sp(dqVar, 2));
+                messagesController.setUserAdminRole(j10, user, o02, dqVar.T, false, dqVar, dqVar.f36665a1, dqVar.L, dqVar.Z0, vpVar, new sp(dqVar, 2));
                 return;
             case 2:
             case 3:
             default:
                 dq dqVar2 = this.f41781b;
                 dqVar2.getClass();
-                dqVar2.presentFragment(new bg1(6, null));
+                dqVar2.presentFragment(new ag1(6, null));
                 return;
             case 4:
                 this.f41781b.finishFragment();
@@ -52,7 +52,7 @@ public final class sp implements org.telegram.ui.ActionBar.z1, MessagesControlle
                 dq dqVar3 = this.f41781b;
                 m4.w0 w0Var = new m4.w0(23, dqVar3, twoStepVerificationActivity);
                 twoStepVerificationActivity.Z = 0;
-                twoStepVerificationActivity.f34240b0 = w0Var;
+                twoStepVerificationActivity.f34242b0 = w0Var;
                 dqVar3.presentFragment(twoStepVerificationActivity);
                 return;
         }

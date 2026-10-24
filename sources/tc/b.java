@@ -2,22 +2,22 @@ package tc;
 
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.fz0;
+import org.telegram.ui.Components.ez0;
 import org.telegram.ui.Wallet.y0;
 import org.telegram.ui.Wallet.z0;
 public final class b extends z {
-    public final int f47377b;
+    public final int f47376b;
 
     public b(String str, u uVar, int i10, int i11) {
         super(str, uVar, i10);
-        this.f47377b = i11;
+        this.f47376b = i11;
     }
 
     @Override
     public final void a() {
-        switch (this.f47377b) {
+        switch (this.f47376b) {
             case 0:
-                u uVar = this.f47438a;
+                u uVar = this.f47437a;
                 try {
                     uVar.b();
                     return;
@@ -34,9 +34,9 @@ public final class b extends z {
                         try {
                             try {
                                 u uVar2 = (u) bVar.f4494b;
-                                z0 z0Var = y0Var.f35427c;
-                                int i11 = y0Var.f35425a;
-                                AndroidUtilities.runOnUIThread(new fz0(z0Var, uVar2, i11, "connect error: " + z0.a(e), 16));
+                                z0 z0Var = y0Var.f35429c;
+                                int i11 = y0Var.f35427a;
+                                AndroidUtilities.runOnUIThread(new ez0(z0Var, uVar2, i11, "connect error: " + z0.a(e), 16));
                             } catch (Throwable unused) {
                             }
                         } catch (Throwable unused2) {
@@ -46,7 +46,7 @@ public final class b extends z {
                     return;
                 }
             default:
-                this.f47438a.d();
+                this.f47437a.d();
                 return;
         }
     }

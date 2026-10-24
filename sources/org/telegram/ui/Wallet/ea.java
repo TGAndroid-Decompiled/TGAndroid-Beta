@@ -7,19 +7,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ea extends FrameLayout {
-    public final TextView f34466a;
-    public final ImageView f34467b;
-    public m6 f34468c;
+    public final TextView f34468a;
+    public final ImageView f34469b;
+    public m6 f34470c;
     public float d;
     public float e;
-    public boolean f34469f;
+    public boolean f34471f;
 
     public ea(Context context) {
         super(context);
         setClipChildren(false);
         setClipToPadding(false);
         TextView textView = new TextView(context);
-        this.f34466a = textView;
+        this.f34468a = textView;
         textView.setSingleLine(true);
         textView.setIncludeFontPadding(false);
         textView.setGravity(21);
@@ -27,7 +27,7 @@ public final class ea extends FrameLayout {
         textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
         addView(textView);
         ImageView imageView = new ImageView(context);
-        this.f34467b = imageView;
+        this.f34469b = imageView;
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setImportantForAccessibility(2);
         addView(imageView, w7.z5.c(16.0f, 16));
@@ -37,27 +37,27 @@ public final class ea extends FrameLayout {
         float f7;
         float height = (((getHeight() * 0.5f) - AndroidUtilities.dp(19.0f)) * this.d) + AndroidUtilities.dp(19.0f);
         float width = getWidth() - (c() * 0.5f);
-        TextView textView = this.f34466a;
+        TextView textView = this.f34468a;
         textView.setPivotX(textView.getWidth());
         textView.setPivotY(textView.getHeight() * 0.5f);
         textView.setScaleX((this.d * 0.42857146f) + 1.0f);
         textView.setScaleY((this.d * 0.42857146f) + 1.0f);
         textView.setTranslationX(((getWidth() - c()) - b()) - textView.getWidth());
         textView.setTranslationY(height - (textView.getHeight() * 0.5f));
-        ImageView imageView = this.f34467b;
+        ImageView imageView = this.f34469b;
         imageView.setTranslationX(width - AndroidUtilities.dp(8.0f));
         imageView.setTranslationY(height - AndroidUtilities.dp(8.0f));
         imageView.setAlpha(1.0f - this.d);
-        m6 m6Var = this.f34468c;
+        m6 m6Var = this.f34470c;
         if (m6Var != null) {
             m6Var.setTranslationX(width - AndroidUtilities.dp(20.0f));
-            this.f34468c.setTranslationY(height - AndroidUtilities.dp(20.0f));
-            this.f34468c.setPivotX(AndroidUtilities.dp(20.0f));
-            this.f34468c.setPivotY(AndroidUtilities.dp(20.0f));
-            this.f34468c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.e * 0.12f) + 1.0f));
-            this.f34468c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.e * 0.18f)));
-            m6 m6Var2 = this.f34468c;
-            if (this.f34469f) {
+            this.f34470c.setTranslationY(height - AndroidUtilities.dp(20.0f));
+            this.f34470c.setPivotX(AndroidUtilities.dp(20.0f));
+            this.f34470c.setPivotY(AndroidUtilities.dp(20.0f));
+            this.f34470c.setScaleX(((this.d * 0.4f) + 0.6f) * ((this.e * 0.12f) + 1.0f));
+            this.f34470c.setScaleY(((this.d * 0.4f) + 0.6f) * (1.0f - (this.e * 0.18f)));
+            m6 m6Var2 = this.f34470c;
+            if (this.f34471f) {
                 f7 = 0.0f;
             } else {
                 f7 = this.d;
@@ -76,10 +76,10 @@ public final class ea extends FrameLayout {
 
     @Override
     public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        TextView textView = this.f34466a;
+        TextView textView = this.f34468a;
         textView.layout(0, 0, textView.getMeasuredWidth(), textView.getMeasuredHeight());
-        this.f34467b.layout(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
-        m6 m6Var = this.f34468c;
+        this.f34469b.layout(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        m6 m6Var = this.f34470c;
         if (m6Var != null) {
             m6Var.layout(0, 0, AndroidUtilities.dp(40.0f), AndroidUtilities.dp(40.0f));
         }
@@ -90,10 +90,10 @@ public final class ea extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec((int) (Math.max(0, View.MeasureSpec.getSize(i10) - Math.round(b() + c())) / ((this.d * 0.42857146f) + 1.0f)), Integer.MIN_VALUE);
         int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824);
-        TextView textView = this.f34466a;
+        TextView textView = this.f34468a;
         textView.measure(makeMeasureSpec, makeMeasureSpec2);
-        this.f34467b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
-        m6 m6Var = this.f34468c;
+        this.f34469b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(16.0f), 1073741824));
+        m6 m6Var = this.f34470c;
         if (m6Var != null) {
             m6Var.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
         }

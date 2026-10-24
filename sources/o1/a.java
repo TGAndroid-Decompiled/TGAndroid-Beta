@@ -6,8 +6,8 @@ import android.view.Choreographer;
 import java.util.ArrayList;
 import k2.w0;
 import m.g3;
-import org.telegram.ui.Components.w11;
-import org.telegram.ui.Components.y11;
+import org.telegram.ui.Components.v11;
+import org.telegram.ui.Components.x11;
 public final class a implements Choreographer.FrameCallback {
     public final int f17593a;
     public final Object f17594b;
@@ -116,13 +116,13 @@ public final class a implements Choreographer.FrameCallback {
                 }
                 return;
             default:
-                w11 w11Var = ((y11) this.f17594b).f32784a;
-                if (w11Var != null) {
-                    Handler handler = w11Var.getHandler();
-                    if (handler != null && w11Var.f32101b.get()) {
+                v11 v11Var = ((x11) this.f17594b).f32479a;
+                if (v11Var != null) {
+                    Handler handler = v11Var.getHandler();
+                    if (handler != null && v11Var.f31255b.get()) {
                         handler.sendMessage(handler.obtainMessage(0));
                     }
-                    if (((y11) this.f17594b).f32784a.S) {
+                    if (((x11) this.f17594b).f32479a.S) {
                         Choreographer.getInstance().postFrameCallback(this);
                         return;
                     }

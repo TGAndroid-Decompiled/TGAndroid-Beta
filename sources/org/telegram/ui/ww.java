@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class ww extends org.telegram.ui.Components.ia {
+public final class ww extends org.telegram.ui.Components.ga {
     @Override
     public final int C1() {
         return AndroidUtilities.dp(48.0f);

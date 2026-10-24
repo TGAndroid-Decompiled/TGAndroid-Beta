@@ -1,90 +1,137 @@
 package org.telegram.ui;
 
-import android.app.Dialog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class xf1 implements Runnable {
-    public final int f43593a;
-    public final bg1 f43594b;
-    public final TLRPC.TL_error f43595c;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class xf1 implements TextWatcher {
+    public final int f43599a;
+    public final ag1 f43600b;
 
-    public xf1(bg1 bg1Var, TLRPC.TL_error tL_error, int i10) {
-        this.f43593a = i10;
-        this.f43594b = bg1Var;
-        this.f43595c = tL_error;
+    public xf1(ag1 ag1Var, int i10) {
+        this.f43599a = i10;
+        this.f43600b = ag1Var;
     }
 
     @Override
-    public final void run() {
-        String formatPluralString;
-        String formatPluralString2;
-        int i10 = this.f43593a;
-        TLRPC.TL_error tL_error = this.f43595c;
-        bg1 bg1Var = this.f43594b;
-        switch (i10) {
+    public final void afterTextChanged(Editable editable) {
+        org.telegram.ui.Components.xj0 xj0Var;
+        switch (this.f43599a) {
             case 0:
-                bg1Var.w0();
-                if (tL_error == null) {
-                    bg1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(bg1Var.getParentActivity());
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new sf1(bg1Var, 3));
-                    String string = LocaleController.getString(R.string.PasswordReset);
-                    org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
-                    c2Var.T = string;
-                    c2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
-                    Dialog showDialog = bg1Var.showDialog(c2Var);
-                    if (showDialog != null) {
-                        showDialog.setCanceledOnTouchOutside(false);
-                        showDialog.setCancelable(false);
-                        return;
-                    }
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue < 60) {
-                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
-                    } else {
-                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
-                    }
-                    bg1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
-                    return;
-                } else {
-                    bg1Var.G0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
-                    return;
-                }
+                this.f43600b.getClass();
+                return;
             case 1:
-                bg1Var.w0();
-                if (tL_error == null) {
-                    if (bg1Var.getParentActivity() != null) {
-                        bg1Var.u0(new tf1(bg1Var, 5));
+                ag1 ag1Var = this.f43600b;
+                if (!ag1Var.M) {
+                    int i10 = ag1Var.O;
+                    if (i10 == 0) {
+                        org.telegram.ui.Components.xj0 animatedDrawable = ag1Var.f35758a.getAnimatedDrawable();
+                        if (ag1Var.f35772n.length() > 0) {
+                            if (ag1Var.f35772n.getTransformationMethod() == null) {
+                                org.telegram.ui.Components.xj0[] xj0VarArr = ag1Var.f35767f0;
+                                if (animatedDrawable != xj0VarArr[3] && animatedDrawable != (xj0Var = xj0VarArr[5])) {
+                                    ag1Var.f35758a.setAnimation(xj0Var);
+                                    ag1Var.f35767f0[5].T(0.0f, false);
+                                    ag1Var.f35758a.d();
+                                    return;
+                                }
+                                return;
+                            }
+                            org.telegram.ui.Components.xj0[] xj0VarArr2 = ag1Var.f35767f0;
+                            if (animatedDrawable != xj0VarArr2[3]) {
+                                org.telegram.ui.Components.xj0 xj0Var2 = xj0VarArr2[2];
+                                if (animatedDrawable != xj0Var2) {
+                                    ag1Var.f35758a.setAnimation(xj0Var2);
+                                    ag1Var.f35767f0[2].P(49);
+                                    ag1Var.f35767f0[2].T(0.0f, false);
+                                    ag1Var.f35758a.d();
+                                    return;
+                                } else if (xj0Var2.f32594a0 < 49) {
+                                    xj0Var2.P(49);
+                                    return;
+                                } else {
+                                    return;
+                                }
+                            }
+                            return;
+                        }
+                        if (animatedDrawable != ag1Var.f35767f0[3] || ag1Var.f35772n.getTransformationMethod() != null) {
+                            org.telegram.ui.Components.xj0[] xj0VarArr3 = ag1Var.f35767f0;
+                            if (animatedDrawable != xj0VarArr3[5]) {
+                                xj0VarArr3[2].P(-1);
+                                org.telegram.ui.Components.xj0 xj0Var3 = ag1Var.f35767f0[2];
+                                if (animatedDrawable != xj0Var3) {
+                                    ag1Var.f35758a.setAnimation(xj0Var3);
+                                    ag1Var.f35767f0[2].N(49, false, false);
+                                }
+                                ag1Var.f35758a.d();
+                                return;
+                            }
+                        }
+                        ag1Var.f35758a.setAnimation(ag1Var.f35767f0[4]);
+                        ag1Var.f35767f0[4].T(0.0f, false);
+                        ag1Var.f35758a.d();
+                        return;
+                    } else if (i10 == 1) {
+                        try {
+                            ag1Var.f35767f0[6].P((int) ((Math.min(1.0f, ag1Var.f35772n.getLayout().getLineWidth(0) / ag1Var.f35772n.getWidth()) * 142.0f) + 18.0f));
+                            ag1Var.f35758a.d();
+                            return;
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                            return;
+                        }
+                    } else if (i10 == 8 && editable.length() > 0) {
+                        ag1Var.H0(true);
+                        return;
+                    } else {
                         return;
                     }
-                    return;
-                } else if (tL_error.text.startsWith("CODE_INVALID")) {
-                    bg1Var.y0();
-                    return;
-                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
-                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
-                    if (intValue2 < 60) {
-                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
-                    } else {
-                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
-                    }
-                    bg1Var.G0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
-                    return;
-                } else {
-                    bg1Var.G0(LocaleController.getString(R.string.AppName), tL_error.text);
-                    return;
                 }
-            case 2:
-                bg1.e0(bg1Var, tL_error);
                 return;
             default:
-                bg1.Z(bg1Var, tL_error);
+                ag1 ag1Var2 = this.f43600b;
+                if (ag1Var2.F) {
+                    if (ag1Var2.E.getVisibility() != 0 && !TextUtils.isEmpty(editable)) {
+                        AndroidUtilities.updateViewVisibilityAnimated(ag1Var2.E, true, 0.1f, true);
+                        return;
+                    } else if (ag1Var2.E.getVisibility() != 8 && TextUtils.isEmpty(editable)) {
+                        AndroidUtilities.updateViewVisibilityAnimated(ag1Var2.E, false, 0.1f, true);
+                        return;
+                    } else {
+                        return;
+                    }
+                }
                 return;
         }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f43599a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f43599a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

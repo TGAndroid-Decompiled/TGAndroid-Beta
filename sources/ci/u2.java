@@ -33,7 +33,7 @@ public final class u2 extends ChatActivityEnterView {
     public final void A0(int i10, int i11) {
         p4 p4Var = this.f5981w5;
         if (p4Var.f5653b2 != null) {
-            this.f24133n3 = true;
+            this.f24134n3 = true;
             this.f5979u5 = this.E0.getMeasuredHeight();
             this.f5980v5 = this.E0.getScrollY();
             invalidate();
@@ -84,11 +84,11 @@ public final class u2 extends ChatActivityEnterView {
                 i10 = 400;
             }
             if (length > i10) {
-                NumberTextView numberTextView = this.f24058b0;
+                NumberTextView numberTextView = this.f24059b0;
                 if (numberTextView != null) {
                     AndroidUtilities.shakeViewSpring(numberTextView, 3.5f);
                     try {
-                        this.f24058b0.performHapticFeedback(3, 2);
+                        this.f24059b0.performHapticFeedback(3, 2);
                     } catch (Exception unused) {
                     }
                 }
@@ -97,7 +97,7 @@ public final class u2 extends ChatActivityEnterView {
             if (!p4Var.C0(true)) {
                 if (formatTextWithEntities instanceof Spannable) {
                     Spannable spannable = (Spannable) formatTextWithEntities;
-                    i11 = ((org.telegram.ui.Components.a6[]) spannable.getSpans(0, formatTextWithEntities.length(), org.telegram.ui.Components.a6.class)).length + ((Emoji.EmojiSpan[]) spannable.getSpans(0, formatTextWithEntities.length(), Emoji.EmojiSpan.class)).length;
+                    i11 = ((org.telegram.ui.Components.y5[]) spannable.getSpans(0, formatTextWithEntities.length(), org.telegram.ui.Components.y5.class)).length + ((Emoji.EmojiSpan[]) spannable.getSpans(0, formatTextWithEntities.length(), Emoji.EmojiSpan.class)).length;
                 } else {
                     i11 = 0;
                 }
@@ -142,7 +142,7 @@ public final class u2 extends ChatActivityEnterView {
             float width = getWidth();
             p4 p4Var = this.f5981w5;
             if (p4Var.f5677i2 != null) {
-                f7 = this.f24192y * 1.5f;
+                f7 = this.f24193y * 1.5f;
             } else {
                 f7 = 0.0f;
             }

@@ -3,10 +3,10 @@ package hi;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.cu0;
-import org.telegram.ui.mu0;
-public final class m extends cu0 {
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.bu0;
+import org.telegram.ui.lu0;
+public final class m extends bu0 {
     public final o f12214a;
 
     public m(o oVar) {
@@ -14,7 +14,7 @@ public final class m extends cu0 {
     }
 
     @Override
-    public final mu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
         TLRPC.FileLocation fileLocation2;
         TLRPC.ChatPhoto chatPhoto;
         if (fileLocation != null) {
@@ -26,20 +26,20 @@ public final class m extends cu0 {
             if (fileLocation2 != null && fileLocation2.local_id == fileLocation.local_id && fileLocation2.volume_id == fileLocation.volume_id && fileLocation2.dc_id == fileLocation.dc_id) {
                 int[] iArr = new int[2];
                 oVar.f12229w.getLocationInWindow(iArr);
-                mu0 mu0Var = new mu0();
-                mu0Var.f39693b = iArr[0];
-                mu0Var.f39694c = iArr[1];
-                w9 w9Var = oVar.f12229w;
-                mu0Var.d = w9Var;
-                ImageReceiver imageReceiver = w9Var.getImageReceiver();
-                mu0Var.f39692a = imageReceiver;
-                mu0Var.f39695f = -oVar.f12224c;
-                mu0Var.e = imageReceiver.getBitmapSafe();
-                mu0Var.f39696g = -1L;
-                mu0Var.h = oVar.f12229w.getImageReceiver().getRoundRadius(true);
-                mu0Var.f39699k = 1.0f;
-                mu0Var.f39704p = true;
-                return mu0Var;
+                lu0 lu0Var = new lu0();
+                lu0Var.f39382b = iArr[0];
+                lu0Var.f39383c = iArr[1];
+                u9 u9Var = oVar.f12229w;
+                lu0Var.d = u9Var;
+                ImageReceiver imageReceiver = u9Var.getImageReceiver();
+                lu0Var.f39381a = imageReceiver;
+                lu0Var.f39384f = -oVar.f12224c;
+                lu0Var.e = imageReceiver.getBitmapSafe();
+                lu0Var.f39385g = -1L;
+                lu0Var.h = oVar.f12229w.getImageReceiver().getRoundRadius(true);
+                lu0Var.f39388k = 1.0f;
+                lu0Var.f39393p = true;
+                return lu0Var;
             }
         }
         return null;

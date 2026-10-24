@@ -34,7 +34,7 @@ public final class el extends org.telegram.ui.ActionBar.n5 {
         switch (this.M0) {
             case 2:
                 super.onAttachedToWindow();
-                ((jp0) this.N0).f38619s.a();
+                ((ip0) this.N0).f38359s.a();
                 return;
             default:
                 super.onAttachedToWindow();
@@ -47,7 +47,7 @@ public final class el extends org.telegram.ui.ActionBar.n5 {
         switch (this.M0) {
             case 2:
                 super.onDetachedFromWindow();
-                ((jp0) this.N0).f38619s.b();
+                ((ip0) this.N0).f38359s.b();
                 return;
             default:
                 super.onDetachedFromWindow();
@@ -79,13 +79,13 @@ public final class el extends org.telegram.ui.ActionBar.n5 {
                 ProfileActivity profileActivity = (ProfileActivity) this.N0;
                 super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
                 if (isFocusable()) {
-                    if (profileActivity.h != null || profileActivity.f33973n != null) {
+                    if (profileActivity.h != null || profileActivity.f33975n != null) {
                         StringBuilder sb2 = new StringBuilder(getText());
-                        if (profileActivity.f33973n != null) {
+                        if (profileActivity.f33975n != null) {
                             if (sb2.length() > 0) {
                                 sb2.append(", ");
                             }
-                            sb2.append(profileActivity.f33973n);
+                            sb2.append(profileActivity.f33975n);
                         }
                         if (profileActivity.h != null) {
                             if (sb2.length() > 0) {
@@ -113,7 +113,7 @@ public final class el extends org.telegram.ui.ActionBar.n5 {
                 super.setTranslationY(f7);
                 sn snVar = (sn) this.N0;
                 if (this == snVar.P2[0] && snVar.T2[1] != null) {
-                    if (snVar.f41452a5 && f7 < 0.0f) {
+                    if (snVar.f41449a5 && f7 < 0.0f) {
                         snVar.L2.setTranslationY(f7 / 2.0f);
                         return;
                     } else {

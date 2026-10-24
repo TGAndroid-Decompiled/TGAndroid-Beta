@@ -74,7 +74,7 @@ public final class p7 extends AnimatorListenerAdapter {
             default:
                 d50 d50Var = (d50) obj;
                 d50Var.h = f7;
-                d50Var.f36505a.invalidate();
+                d50Var.f36472a.invalidate();
                 if (runnable != null) {
                     runnable.run();
                     return;

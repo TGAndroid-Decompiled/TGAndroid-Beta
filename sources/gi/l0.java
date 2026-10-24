@@ -13,7 +13,7 @@ import org.telegram.tgnet.tl.TL_keyboard;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.a6;
+import org.telegram.ui.Components.y5;
 import w7.z5;
 public final class l0 extends FrameLayout {
     public final wh.n f11333a;
@@ -31,7 +31,7 @@ public final class l0 extends FrameLayout {
         this.f11335c = keyboardButton;
         wh.n nVar = new wh.n(context);
         this.f11333a = nVar;
-        nVar.f49551r = false;
+        nVar.f49550r = false;
         nVar.setTextSize(1, 14.0f);
         nVar.setTypeface(AndroidUtilities.bold());
         NotificationCenter.listenEmojiLoading(nVar);
@@ -42,7 +42,7 @@ public final class l0 extends FrameLayout {
         TL_keyboard.KeyboardButtonStyle keyboardButtonStyle = keyboardButton.style;
         if (keyboardButtonStyle != null && keyboardButtonStyle.icon != 0) {
             spannableStringBuilder.append((CharSequence) "* ");
-            spannableStringBuilder.setSpan(new a6(keyboardButton.style.icon, nVar.getPaint().getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder.setSpan(new y5(keyboardButton.style.icon, nVar.getPaint().getFontMetricsInt()), 0, 1, 33);
         }
         spannableStringBuilder.append(Emoji.replaceEmoji(keyboardButton.text, nVar.getPaint().getFontMetricsInt(), false));
         ImageView imageView = new ImageView(getContext());
@@ -80,13 +80,13 @@ public final class l0 extends FrameLayout {
         if (keyboardButtonStyle != null) {
             if (keyboardButtonStyle.bg_primary) {
                 o12 = k6.o1(0.8f, k6.w0(k6.dl, g6Var));
-                k10 = i0.a.k(k6.w0(k6.f21272i6, g6Var), o12);
+                k10 = i0.a.k(k6.w0(k6.f21273i6, g6Var), o12);
             } else if (keyboardButtonStyle.bg_danger) {
                 o12 = k6.o1(0.8f, k6.w0(k6.el, g6Var));
-                k10 = i0.a.k(k6.w0(k6.f21272i6, g6Var), o12);
+                k10 = i0.a.k(k6.w0(k6.f21273i6, g6Var), o12);
             } else if (keyboardButtonStyle.bg_success) {
                 o12 = k6.o1(0.8f, k6.w0(k6.fl, g6Var));
-                k10 = i0.a.k(k6.w0(k6.f21272i6, g6Var), o12);
+                k10 = i0.a.k(k6.w0(k6.f21273i6, g6Var), o12);
             }
             i10 = o12;
             i11 = k10;

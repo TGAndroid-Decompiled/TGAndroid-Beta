@@ -1,64 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
+import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-public final class lb0 extends Drawable {
-    public Paint f28322a;
-    public Paint f28323b;
-    public long f28324c;
-    public float d;
-    public boolean e;
-    public boolean f28325f;
-    public float f28326g;
-    public float h;
-    public float f28327i;
-    public float f28328j;
-    public float f28329k;
-    public long f28330l;
-    public org.telegram.ui.Cells.t1 f28331m;
+import android.text.style.ReplacementSpan;
+import android.view.KeyEvent;
+public final class lb0 extends ReplacementSpan {
+    public final int f28315a;
+    public final KeyEvent.Callback f28316b;
 
-    public final void a() {
-        int i10;
-        int i11;
-        Rect bounds = getBounds();
-        float centerX = bounds.centerX();
-        float centerY = bounds.centerY();
-        float f7 = bounds.left - centerX;
-        float f10 = bounds.top - centerY;
-        this.f28326g = (float) Math.ceil(Math.sqrt(com.google.android.gms.internal.play_billing.k3.y(i11, centerY, f10, f7 * (i10 - centerX))));
+    public lb0(KeyEvent.Callback callback, int i10) {
+        this.f28315a = i10;
+        this.f28316b = callback;
     }
 
     @Override
-    public final void draw(android.graphics.Canvas r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.lb0.draw(android.graphics.Canvas):void");
+    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        int i15 = this.f28315a;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
+    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f28315a) {
+            case 0:
+                return ((nb0) this.f28316b).f28862x;
+            case 1:
+                return (int) ((org.telegram.ui.ej0) this.f28316b).f36934n0;
+            default:
+                return (int) ((ug.l1) this.f28316b).f48164t0;
+        }
     }
 
-    @Override
-    public final void setAlpha(int i10) {
-        this.f28322a.setAlpha(i10);
+    private final void a(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        a();
+    private final void b(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f28322a.setColorFilter(colorFilter);
-    }
-
-    @Override
-    public final void setBounds(Rect rect) {
-        super.setBounds(rect);
-        a();
+    private final void c(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
     }
 }

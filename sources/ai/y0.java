@@ -54,7 +54,7 @@ public final class y0 implements Runnable {
         TLRPC.TL_messages_sendQuickReplyMessages tL_messages_sendQuickReplyMessages = (TLRPC.TL_messages_sendQuickReplyMessages) this.e;
         int i10 = z1Var.f13138a;
         if (!arrayList.isEmpty() && arrayList.size() >= y1Var.a()) {
-            tL_messages_sendQuickReplyMessages.f20458id = arrayList;
+            tL_messages_sendQuickReplyMessages.f20459id = arrayList;
             for (int i11 = 0; i11 < arrayList.size(); i11++) {
                 tL_messages_sendQuickReplyMessages.random_id.add(Long.valueOf(Utilities.random.nextLong()));
             }
@@ -71,7 +71,7 @@ public final class y0 implements Runnable {
         AtomicBoolean atomicBoolean = (AtomicBoolean) this.f2473c;
         m4.h hVar = (m4.h) this.d;
         AtomicBoolean atomicBoolean2 = (AtomicBoolean) this.e;
-        synchronized (eVar.f45176a) {
+        synchronized (eVar.f45175a) {
             try {
                 if (!atomicBoolean.get()) {
                     eVar.l(hVar);

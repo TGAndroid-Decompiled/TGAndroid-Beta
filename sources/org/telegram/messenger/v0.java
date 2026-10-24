@@ -102,8 +102,8 @@ public abstract class v0 {
         alertDialog$Builder.p();
     }
 
-    public static void p(int i10, org.telegram.ui.Components.xc xcVar, int i11, int i12) {
-        xcVar.Q(i11, i12, LocaleController.getString(i10)).j();
+    public static void p(int i10, org.telegram.ui.Components.vc vcVar, int i11, int i12) {
+        vcVar.Q(i11, i12, LocaleController.getString(i10)).j();
     }
 
     public static void q(TextView textView, int i10, org.telegram.ui.ActionBar.g6 g6Var, int i11, float f7) {

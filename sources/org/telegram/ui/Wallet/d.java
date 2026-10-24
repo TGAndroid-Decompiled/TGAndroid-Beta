@@ -8,28 +8,28 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_toncenter;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.c71;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.Wallet.WalletEngine2;
 public final class d implements Utilities.Callback2 {
-    public final int f34383a;
-    public final Object f34384b;
+    public final int f34385a;
+    public final Object f34386b;
 
     public d(Object obj, int i10) {
-        this.f34383a = i10;
-        this.f34384b = obj;
+        this.f34385a = i10;
+        this.f34386b = obj;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
         String str;
         String x10;
-        b71 b71Var;
-        switch (this.f34383a) {
+        a71 a71Var;
+        switch (this.f34385a) {
             case 0:
-                f fVar = (f) this.f34384b;
+                f fVar = (f) this.f34386b;
                 TL_wallet.currencyRates currencyrates = (TL_wallet.currencyRates) obj;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
                 if (tL_error != null) {
@@ -40,7 +40,7 @@ public final class d implements Utilities.Callback2 {
                     return;
                 }
             case 1:
-                j jVar = (j) this.f34384b;
+                j jVar = (j) this.f34386b;
                 TL_wallet.walletTransaction wallettransaction = (TL_wallet.walletTransaction) obj;
                 String str2 = (String) obj2;
                 if (wallettransaction == null) {
@@ -59,10 +59,10 @@ public final class d implements Utilities.Callback2 {
                 jVar.run(Long.valueOf(wallettransaction.fee), null);
                 return;
             case 2:
-                ((Utilities.Callback2) this.f34384b).run((i0) obj, (String) obj2);
+                ((Utilities.Callback2) this.f34386b).run((i0) obj, (String) obj2);
                 return;
             case 3:
-                w wVar = (w) this.f34384b;
+                w wVar = (w) this.f34386b;
                 TLRPC.Bool bool = (TLRPC.Bool) obj;
                 TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
                 if (tL_error2 == null && (bool instanceof TLRPC.TL_boolTrue)) {
@@ -73,10 +73,10 @@ public final class d implements Utilities.Callback2 {
                 wVar.run(x10);
                 return;
             case 4:
-                e2 e2Var = (e2) this.f34384b;
+                e2 e2Var = (e2) this.f34386b;
                 TL_wallet.tonConnectSessions tonconnectsessions = (TL_wallet.tonConnectSessions) obj;
                 TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                l0 l0Var = e2Var.f34430b;
+                l0 l0Var = e2Var.f34432b;
                 ArrayList arrayList = e2Var.d;
                 e2Var.e = -1;
                 if (tL_error3 == null && tonconnectsessions != null) {
@@ -92,16 +92,16 @@ public final class d implements Utilities.Callback2 {
                 l0Var.J();
                 return;
             case 5:
-                b71 b71Var2 = (b71) obj2;
-                ((ArrayList) obj).add(m61.k(((j2) this.f34384b).Y));
+                a71 a71Var2 = (a71) obj2;
+                ((ArrayList) obj).add(l61.k(((j2) this.f34386b).Y));
                 return;
             case 6:
-                y2 y2Var = (y2) this.f34384b;
+                y2 y2Var = (y2) this.f34386b;
                 Bitmap bitmap = (Bitmap) obj;
                 Bitmap bitmap2 = (Bitmap) obj2;
                 if (!y2Var.S && !y2Var.R) {
                     y2Var.G = bitmap;
-                    y2Var.f35435n.invalidate();
+                    y2Var.f35437n.invalidate();
                     y2Var.d();
                     y2Var.E.a(bitmap2);
                     y2Var.h.post(new u2(y2Var, 1));
@@ -111,22 +111,22 @@ public final class d implements Utilities.Callback2 {
                 bitmap2.recycle();
                 return;
             case 7:
-                o5 o5Var = (o5) this.f34384b;
+                o5 o5Var = (o5) this.f34386b;
                 TL_account.Password password = (TL_account.Password) obj;
                 TLRPC.TL_error tL_error4 = (TLRPC.TL_error) obj2;
                 if (password != null) {
                     o5Var.Q0 = true;
                     o5Var.R0 = password.has_password;
-                    d71 d71Var = o5Var.f25907a;
-                    if (d71Var != null && (b71Var = d71Var.Z2) != null) {
-                        b71Var.N(true);
+                    c71 c71Var = o5Var.f25615a;
+                    if (c71Var != null && (a71Var = c71Var.Z2) != null) {
+                        a71Var.N(true);
                         return;
                     }
                     return;
                 }
                 return;
             case 8:
-                Utilities.Callback callback = (Utilities.Callback) this.f34384b;
+                Utilities.Callback callback = (Utilities.Callback) this.f34386b;
                 TL_toncenter.onrampSession onrampsession = (TL_toncenter.onrampSession) obj;
                 TLRPC.TL_error tL_error5 = (TLRPC.TL_error) obj2;
                 if (onrampsession != null && !TextUtils.isEmpty(onrampsession.url)) {
@@ -141,18 +141,18 @@ public final class d implements Utilities.Callback2 {
                 callback.run((tL_error5 == null || (r5 = tL_error5.text) == null) ? "NO_SESSION" : "NO_SESSION");
                 return;
             case 9:
-                WalletEngine2.HttpTransport.lambda$execute$0((b7) this.f34384b, (TL_toncenter.apiResponse) obj, (TLRPC.TL_error) obj2);
+                WalletEngine2.HttpTransport.lambda$execute$0((b7) this.f34386b, (TL_toncenter.apiResponse) obj, (TLRPC.TL_error) obj2);
                 return;
             default:
                 String str3 = (String) obj;
                 Boolean bool2 = (Boolean) obj2;
-                ((s9) this.f34384b).f35184f = false;
+                ((s9) this.f34386b).f35186f = false;
                 return;
         }
     }
 
     public d(l0 l0Var, j jVar) {
-        this.f34383a = 1;
-        this.f34384b = jVar;
+        this.f34385a = 1;
+        this.f34386b = jVar;
     }
 }

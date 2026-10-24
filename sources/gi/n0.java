@@ -10,11 +10,11 @@ import android.widget.ScrollView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public abstract class n0 extends LinearLayout implements qh.a, ne.k {
     public final g6 f11371a;
     public final FrameLayout f11372b;
@@ -34,7 +34,7 @@ public abstract class n0 extends LinearLayout implements qh.a, ne.k {
         super(context);
         this.f11375n = new ArrayList();
         this.v = new GradientDrawable(GradientDrawable.Orientation.BOTTOM_TOP, null);
-        this.f11379x = new ne.l(this, bs.h, 320L);
+        this.f11379x = new ne.l(this, zr.h, 320L);
         this.f11371a = g6Var;
         setOrientation(1);
         ScrollView scrollView = new ScrollView(context);
@@ -133,7 +133,7 @@ public abstract class n0 extends LinearLayout implements qh.a, ne.k {
             if (!this.f11374f) {
                 max = 44;
             } else {
-                max = (int) Math.max(44.0f, (sl.B(4.0f, this.f11373c.rows.size() - 1, this.e - AndroidUtilities.dp(16.0f)) / this.f11373c.rows.size()) / AndroidUtilities.density);
+                max = (int) Math.max(44.0f, (tl.B(4.0f, this.f11373c.rows.size() - 1, this.e - AndroidUtilities.dp(16.0f)) / this.f11373c.rows.size()) / AndroidUtilities.density);
             }
             this.h = max;
             int dp = AndroidUtilities.dp(max);

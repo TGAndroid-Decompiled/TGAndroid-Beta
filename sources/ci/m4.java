@@ -9,7 +9,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.xj0;
 public final class m4 {
     public final Paint f5536a;
     public final Paint f5537b;
@@ -30,8 +30,8 @@ public final class m4 {
     public final Drawable f5549q;
     public final Drawable f5550r;
     public final Drawable f5551s;
-    public final yj0 f5552t;
-    public final yj0 f5553u;
+    public final xj0 f5552t;
+    public final xj0 f5553u;
 
     public m4(Context context) {
         new RectF();
@@ -46,11 +46,11 @@ public final class m4 {
         this.f5549q = context.getDrawable(R.drawable.media_more);
         this.f5550r = context.getDrawable(R.drawable.menu_stream_pip);
         this.f5551s = context.getDrawable(R.drawable.msg_delete);
-        this.f5553u = new yj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        yj0 yj0Var = new yj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
-        this.f5552t = yj0Var;
-        yj0Var.N(20, false, true);
-        yj0Var.stop();
+        this.f5553u = new xj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        xj0 xj0Var = new xj0(R.raw.media_mute_unmute, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), true, null);
+        this.f5552t = xj0Var;
+        xj0Var.N(20, false, true);
+        xj0Var.stop();
         Paint paint = new Paint(1);
         this.f5536a = paint;
         paint.setColor(1442840575);
@@ -69,29 +69,29 @@ public final class m4 {
     public final void a(boolean z10, boolean z11) {
         int i10;
         int i11 = 20;
-        yj0 yj0Var = this.f5553u;
+        xj0 xj0Var = this.f5553u;
         if (!z11) {
             if (z10) {
                 i10 = 20;
             } else {
                 i10 = 0;
             }
-            yj0Var.N(i10, false, false);
+            xj0Var.N(i10, false, false);
             if (!z10) {
                 i11 = 0;
             }
-            yj0Var.P(i11);
+            xj0Var.P(i11);
         } else if (z10) {
-            if (yj0Var.f32933a0 > 20) {
-                yj0Var.N(0, false, false);
+            if (xj0Var.f32594a0 > 20) {
+                xj0Var.N(0, false, false);
             }
-            yj0Var.P(20);
-            yj0Var.start();
+            xj0Var.P(20);
+            xj0Var.start();
         } else {
-            int i12 = yj0Var.f32933a0;
+            int i12 = xj0Var.f32594a0;
             if (i12 != 0 && i12 < 43) {
-                yj0Var.P(43);
-                yj0Var.start();
+                xj0Var.P(43);
+                xj0Var.start();
             }
         }
     }

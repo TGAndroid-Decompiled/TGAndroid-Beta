@@ -1,3 +1,7 @@
 package org.telegram.ui.Components;
-public final class nz extends oh.a {
+
+import android.widget.FrameLayout;
+public final class nz {
+    public int f29080a;
+    public FrameLayout f29081b;
 }

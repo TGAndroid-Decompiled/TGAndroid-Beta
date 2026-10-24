@@ -9,14 +9,14 @@ import java.io.File;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MediaController;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.eh0;
+import org.telegram.ui.Components.dh0;
+import org.telegram.ui.Components.zr;
 public final class xa extends f6 {
     public final vb A2;
     public boolean f10133z2;
 
-    public xa(vb vbVar, Context context, boolean z10, File file, boolean z11, boolean z12, ub ubVar, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, a8 a8Var, int i12, int i13, MediaController.CropState cropState, org.telegram.ui.Components.ja jaVar, ci.b bVar, q6 q6Var, jb jbVar) {
-        super(context, z10, file, z11, z12, ubVar, activity, i10, bitmap, bitmap2, i11, arrayList, a8Var, i12, i13, cropState, jaVar, bVar, q6Var, jbVar);
+    public xa(vb vbVar, Context context, boolean z10, File file, boolean z11, boolean z12, ub ubVar, Activity activity, int i10, Bitmap bitmap, Bitmap bitmap2, int i11, ArrayList arrayList, a8 a8Var, int i12, int i13, MediaController.CropState cropState, org.telegram.ui.Components.ha haVar, ci.b bVar, q6 q6Var, jb jbVar) {
+        super(context, z10, file, z11, z12, ubVar, activity, i10, bitmap, bitmap2, i11, arrayList, a8Var, i12, i13, cropState, haVar, bVar, q6Var, jbVar);
         this.A2 = vbVar;
     }
 
@@ -32,11 +32,11 @@ public final class xa extends f6 {
         vbVar.f10032v1.M0(false);
         vbVar.f9973c1.clearAnimation();
         ViewPropertyAnimator duration = vbVar.f9973c1.animate().alpha(0.0f).setDuration(180L);
-        bs bsVar = bs.f25134g;
-        duration.setInterpolator(bsVar).start();
+        zr zrVar = zr.f33338g;
+        duration.setInterpolator(zrVar).start();
         if (vbVar.f9985g0 != 2) {
             vbVar.Y0.clearAnimation();
-            vbVar.Y0.animate().alpha(0.0f).setDuration(180L).setInterpolator(bsVar).start();
+            vbVar.Y0.animate().alpha(0.0f).setDuration(180L).setInterpolator(zrVar).start();
         }
         T0(p(), false);
     }
@@ -48,12 +48,12 @@ public final class xa extends f6 {
             vbVar.f10012p1.setVisibility(0);
             vbVar.f10012p1.setAlpha(0.0f);
             vbVar.f10012p1.clearAnimation();
-            vbVar.f10012p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(bs.f25134g).start();
+            vbVar.f10012p1.animate().alpha(1.0f).setDuration(180L).setInterpolator(zr.f33338g).start();
             return;
         }
         vbVar.f10012p1.a(false, z11);
         vbVar.f10012p1.clearAnimation();
-        ViewPropertyAnimator interpolator = vbVar.f10012p1.animate().alpha(0.0f).withEndAction(new com.google.firebase.messaging.s(this, 25)).setDuration(180L).setInterpolator(bs.f25134g);
+        ViewPropertyAnimator interpolator = vbVar.f10012p1.animate().alpha(0.0f).withEndAction(new com.google.firebase.messaging.s(this, 25)).setDuration(180L).setInterpolator(zr.f33338g);
         if (z11) {
             j10 = 500;
         } else {
@@ -93,15 +93,15 @@ public final class xa extends f6 {
             f7 = 0.0f;
         }
         ViewPropertyAnimator duration = animate.alpha(f7).setDuration(180L);
-        bs bsVar = bs.f25134g;
-        duration.setInterpolator(bsVar).start();
+        zr zrVar = zr.f33338g;
+        duration.setInterpolator(zrVar).start();
         vbVar.Y0.clearAnimation();
         ViewPropertyAnimator animate2 = vbVar.Y0.animate();
         int i10 = vbVar.f9985g0;
         if (i10 == -1 || i10 == 2) {
             f10 = 1.0f;
         }
-        animate2.alpha(f10).setDuration(180L).setInterpolator(bsVar).start();
+        animate2.alpha(f10).setDuration(180L).setInterpolator(zrVar).start();
         T0(false, z10);
         if (z10 && (jVar = this.J0) != null) {
             A0(jVar);
@@ -159,7 +159,7 @@ public final class xa extends f6 {
             jbVar.x(6, z10);
             g6 g6Var = vbVar.f9995j1;
             if (g6Var != null) {
-                ((eh0) g6Var.f9080c).a(vbVar.X0.k(), true);
+                ((dh0) g6Var.f9080c).a(vbVar.X0.k(), true);
             }
         }
         lb lbVar = vbVar.f9973c1;

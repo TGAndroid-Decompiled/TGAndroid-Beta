@@ -1,35 +1,26 @@
 package org.telegram.ui.Components;
+public final class qx extends g.o {
+    public final rz f30006c;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class qx extends FrameLayout {
-    public final tz f30023a;
-
-    public qx(tz tzVar, Context context) {
-        super(context);
-        this.f30023a = tzVar;
+    public qx(rz rzVar) {
+        this.f30006c = rzVar;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        tz tzVar = this.f30023a;
-        vx vxVar = tzVar.I;
-        rw rwVar = tzVar.V;
-        ey eyVar = tzVar.P;
-        if (view != eyVar && view != rwVar) {
-            return super.drawChild(canvas, view, j10);
+    public final int i(int i10) {
+        rz rzVar = this.f30006c;
+        yx yxVar = rzVar.R;
+        px pxVar = rzVar.Q;
+        s4.g0 adapter = rzVar.P.getAdapter();
+        ry ryVar = rzVar.S;
+        if (adapter == ryVar) {
+            int j10 = ryVar.j(i10);
+            if (j10 == 1 || j10 == 3 || j10 == 2 || j10 == 4 || j10 == 5) {
+                return pxVar.J;
+            }
+        } else if ((rzVar.f30312d0 && i10 == 0) || i10 == yxVar.d || i10 == yxVar.f33070c || i10 == yxVar.f33071f || yxVar.f33073r.indexOfKey(i10) >= 0 || yxVar.v.indexOfKey(i10) >= 0) {
+            return pxVar.J;
         }
-        canvas.save();
-        float y3 = vxVar.getY() + vxVar.getMeasuredHeight() + 1.0f;
-        if (view == eyVar && rwVar != null) {
-            y3 = Math.max(y3, rwVar.getY() + rwVar.getMeasuredHeight() + 1.0f);
-        }
-        canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * tzVar.f30960b.e), getMeasuredWidth(), getMeasuredHeight());
-        boolean drawChild = super.drawChild(canvas, view, j10);
-        canvas.restore();
-        return drawChild;
+        return 1;
     }
 }

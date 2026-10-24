@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.ui.Cells.c6;
-import org.telegram.ui.Components.e5;
+import org.telegram.ui.Components.c5;
 public final class r0 implements DialogInterface.OnDismissListener {
     public final int f11443a;
     public final Object f11444b;
@@ -56,14 +56,14 @@ public final class r0 implements DialogInterface.OnDismissListener {
             case 2:
                 org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.f11444b;
                 Activity activity = (Activity) this.d;
-                AndroidUtilities.hideKeyboard((e5) this.f11445c);
+                AndroidUtilities.hideKeyboard((c5) this.f11445c);
                 if (o2Var != null) {
                     AndroidUtilities.requestAdjustResize(activity, o2Var.getClassGuid());
                     return;
                 }
                 return;
             case 3:
-                ((Utilities.Callback) this.f11445c).run(Integer.valueOf(((org.telegram.ui.Components.s3) this.d).getValue() + (((org.telegram.ui.Components.q3) this.f11444b).getValue() * 60)));
+                ((Utilities.Callback) this.f11445c).run(Integer.valueOf(((org.telegram.ui.Components.r3) this.d).getValue() + (((org.telegram.ui.Components.p3) this.f11444b).getValue() * 60)));
                 return;
             case 4:
                 org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) this.f11445c;
@@ -72,8 +72,8 @@ public final class r0 implements DialogInterface.OnDismissListener {
                 if (!((AtomicBoolean) this.f11444b).get()) {
                     b1Var.x(y7Var, "popup_closed", new JSONObject());
                 }
-                b1Var.f43048c0 = null;
-                b1Var.f43050e0 = System.currentTimeMillis();
+                b1Var.f43037c0 = null;
+                b1Var.f43039e0 = System.currentTimeMillis();
                 return;
             case 5:
                 org.telegram.ui.ActionBar.o2 o2Var2 = (org.telegram.ui.ActionBar.o2) this.f11444b;
@@ -86,7 +86,7 @@ public final class r0 implements DialogInterface.OnDismissListener {
                 return;
             default:
                 AndroidUtilities.hideKeyboard((yh.x1) this.f11444b);
-                AndroidUtilities.requestAdjustResize((Activity) this.d, ((yh.p2) this.f11445c).f50924a.getClassGuid());
+                AndroidUtilities.requestAdjustResize((Activity) this.d, ((yh.p2) this.f11445c).f50923a.getClassGuid());
                 return;
         }
     }

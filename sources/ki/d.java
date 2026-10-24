@@ -1,7 +1,7 @@
 package ki;
 
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.qi0;
+import org.telegram.ui.pi0;
 public final class d implements Runnable {
     public final int f15247a;
     public final q f15248b;
@@ -17,9 +17,9 @@ public final class d implements Runnable {
             case 0:
                 q qVar = this.f15248b;
                 qVar.K(2147483646, true, 0, false, 0L);
-                qi0 qi0Var = qVar.O;
-                if (qi0Var != null) {
-                    qi0Var.g(false);
+                pi0 pi0Var = qVar.O;
+                if (pi0Var != null) {
+                    pi0Var.g(false);
                     qVar.O = null;
                     return;
                 }
@@ -27,9 +27,9 @@ public final class d implements Runnable {
             case 1:
                 q qVar2 = this.f15248b;
                 qVar2.K(0, false, 0, false, 0L);
-                qi0 qi0Var2 = qVar2.O;
-                if (qi0Var2 != null) {
-                    qi0Var2.g(true);
+                pi0 pi0Var2 = qVar2.O;
+                if (pi0Var2 != null) {
+                    pi0Var2.g(true);
                     qVar2.O = null;
                     return;
                 }
@@ -37,7 +37,7 @@ public final class d implements Runnable {
             case 2:
                 q qVar3 = this.f15248b;
                 if (!UserConfig.getInstance(qVar3.f15507n).isPremium()) {
-                    new sg.y0(qVar3.f28366b.f30730f0, qVar3.getContext(), qVar3.f15507n, 43, true).show();
+                    new sg.y0(qVar3.f27704b.f30146f0, qVar3.getContext(), qVar3.f15507n, 43, true).show();
                     return;
                 }
                 return;

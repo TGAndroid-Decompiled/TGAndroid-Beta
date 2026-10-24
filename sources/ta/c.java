@@ -24,13 +24,13 @@ import si.o0;
 public final class c {
     public static final Pattern d = Pattern.compile("[0-9]+s");
     public static final Charset e = Charset.forName("UTF-8");
-    public final Context f47364a;
-    public final qa.b f47365b;
-    public final d f47366c = new d();
+    public final Context f47363a;
+    public final qa.b f47364b;
+    public final d f47365c = new d();
 
     public c(Context context, qa.b bVar) {
-        this.f47364a = context;
-        this.f47365b = bVar;
+        this.f47363a = context;
+        this.f47364b = bVar;
     }
 
     public static URL a(String str) {

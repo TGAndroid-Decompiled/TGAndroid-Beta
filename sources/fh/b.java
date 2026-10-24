@@ -35,12 +35,12 @@ import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o6;
 import org.telegram.ui.ActionBar.p6;
 import org.telegram.ui.ActionBar.z1;
+import org.telegram.ui.Components.ew0;
 import org.telegram.ui.Components.fw0;
 import org.telegram.ui.Components.gw0;
-import org.telegram.ui.Components.hw0;
-import org.telegram.ui.Components.yq;
+import org.telegram.ui.Components.wq;
 import v7.u6;
-public final class b implements d, fw0, gw0, GenericProvider, k, r9.d, p6, o6, o, z1 {
+public final class b implements d, ew0, fw0, GenericProvider, k, r9.d, p6, o6, o, z1 {
     public final int f10613a;
 
     public b(int i10) {
@@ -183,8 +183,8 @@ public final class b implements d, fw0, gw0, GenericProvider, k, r9.d, p6, o6, o
     @Override
     public void d(int i10, View view) {
         Drawable background = view.getBackground();
-        if (background instanceof yq) {
-            Drawable drawable = ((yq) background).f33012a;
+        if (background instanceof wq) {
+            Drawable drawable = ((wq) background).f32322a;
             if (drawable instanceof ColorDrawable) {
                 ((ColorDrawable) drawable).setColor(i10);
                 view.invalidate();
@@ -195,8 +195,8 @@ public final class b implements d, fw0, gw0, GenericProvider, k, r9.d, p6, o6, o
     @Override
     public int f(View view) {
         Drawable background = view.getBackground();
-        if (background instanceof yq) {
-            Drawable drawable = ((yq) background).f33012a;
+        if (background instanceof wq) {
+            Drawable drawable = ((wq) background).f32322a;
             if (drawable instanceof ColorDrawable) {
                 return ((ColorDrawable) drawable).getColor();
             }
@@ -235,9 +235,9 @@ public final class b implements d, fw0, gw0, GenericProvider, k, r9.d, p6, o6, o
         float f7;
         switch (this.f10613a) {
             case 0:
-                return k6.o1(0.78f, k6.w0(k6.f21254h5, g6Var));
+                return k6.o1(0.78f, k6.w0(k6.f21255h5, g6Var));
             case 1:
-                return k6.o1(0.7f, k6.w0(k6.f21183d6, g6Var));
+                return k6.o1(0.7f, k6.w0(k6.f21184d6, g6Var));
             case 2:
                 LiteMode.isEnabled(262144);
                 return 0;
@@ -247,7 +247,7 @@ public final class b implements d, fw0, gw0, GenericProvider, k, r9.d, p6, o6, o
                 } else {
                     f7 = 0.76f;
                 }
-                return k6.o1(f7, k6.w0(k6.f21183d6, g6Var));
+                return k6.o1(f7, k6.w0(k6.f21184d6, g6Var));
         }
     }
 
@@ -274,7 +274,7 @@ public final class b implements d, fw0, gw0, GenericProvider, k, r9.d, p6, o6, o
     @Override
     public Object provide(Object obj) {
         Void r12 = (Void) obj;
-        hw0 hw0Var = e4.f11202b0;
+        gw0 gw0Var = e4.f11202b0;
         return Boolean.FALSE;
     }
 }

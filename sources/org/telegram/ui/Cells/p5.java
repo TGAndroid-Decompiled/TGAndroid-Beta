@@ -6,26 +6,26 @@ import android.graphics.RectF;
 import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 public final class p5 extends FrameLayout {
-    public final int f22888a;
-    public RectF f22889b;
+    public final int f22889a;
+    public RectF f22890b;
 
     public p5(Context context, int i10) {
         super(context);
-        this.f22888a = i10;
+        this.f22889a = i10;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        switch (this.f22888a) {
+        switch (this.f22889a) {
             case 0:
-                RectF rectF = this.f22889b;
+                RectF rectF = this.f22890b;
                 rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.k6.f21268i2);
+                canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.k6.f21269i2);
                 return;
             default:
-                RectF rectF2 = this.f22889b;
+                RectF rectF2 = this.f22890b;
                 rectF2.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
-                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.k6.f21268i2);
+                canvas.drawRoundRect(rectF2, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), org.telegram.ui.ActionBar.k6.f21269i2);
                 return;
         }
     }

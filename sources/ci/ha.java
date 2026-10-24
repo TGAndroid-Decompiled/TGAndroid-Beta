@@ -22,14 +22,14 @@ public final class ha {
         this.f5428a = i10;
     }
 
-    public final void a(org.telegram.ui.Components.ia iaVar) {
+    public final void a(org.telegram.ui.Components.ga gaVar) {
         long j10;
         TLRPC.UserStatus userStatus;
         long currentTimeMillis = System.currentTimeMillis();
         ArrayList arrayList = this.f5430c;
         arrayList.clear();
-        for (int i10 = 0; i10 < iaVar.getChildCount(); i10++) {
-            View childAt = iaVar.getChildAt(i10);
+        for (int i10 = 0; i10 < gaVar.getChildCount(); i10++) {
+            View childAt = gaVar.getChildAt(i10);
             if (childAt instanceof org.telegram.ui.Cells.q2) {
                 j10 = ((org.telegram.ui.Cells.q2) childAt).getDialogId();
             } else if (childAt instanceof wa) {
@@ -56,9 +56,9 @@ public final class ha {
         }
         if (!arrayList.isEmpty()) {
             this.d.addAll(arrayList);
-            ga gaVar = this.e;
-            AndroidUtilities.cancelRunOnUIThread(gaVar);
-            AndroidUtilities.runOnUIThread(gaVar, 300L);
+            ga gaVar2 = this.e;
+            AndroidUtilities.cancelRunOnUIThread(gaVar2);
+            AndroidUtilities.runOnUIThread(gaVar2, 300L);
         }
     }
 }

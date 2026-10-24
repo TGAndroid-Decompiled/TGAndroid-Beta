@@ -10,23 +10,23 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.b71;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.l61;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.z00;
+import org.telegram.ui.Components.x00;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.gk;
 import org.telegram.ui.sn;
-public final class dd extends org.telegram.ui.Components.bb implements NotificationCenter.NotificationCenterDelegate {
+public final class dd extends org.telegram.ui.Components.za implements NotificationCenter.NotificationCenterDelegate {
     public final long X;
     public final cd Y;
     public final FrameLayout Z;
-    public final z00 f1158a0;
+    public final x00 f1158a0;
     public Runnable f1159b0;
     public final TLRPC.InputPeer f1160c0;
     public final boolean f1161d0;
-    public b71 f1162e0;
+    public a71 f1162e0;
     public boolean f1163f0;
 
     public dd(android.content.Context r17, org.telegram.ui.ActionBar.g6 r18, long r19, int r21, java.lang.String r22, java.lang.Runnable r23, long r24) {
@@ -34,17 +34,17 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
     }
 
     public static void P(dd ddVar, int i10) {
-        m61 G;
-        b71 b71Var = ddVar.f1162e0;
-        if (b71Var != null && (G = b71Var.G(i10 - 1)) != null) {
-            b71 b71Var2 = ddVar.f1162e0;
+        l61 G;
+        a71 a71Var = ddVar.f1162e0;
+        if (a71Var != null && (G = a71Var.G(i10 - 1)) != null) {
+            a71 a71Var2 = ddVar.f1162e0;
             if (G.d == -1) {
                 ddVar.f1163f0 = !ddVar.f1163f0;
-                b71Var2.N(true);
+                a71Var2.N(true);
             } else if (G.G(yc.class) && (G.G instanceof TL_stars.TL_starsTopupOption)) {
                 Activity findActivity = AndroidUtilities.findActivity(ddVar.getContext());
                 if (findActivity == null) {
-                    findActivity = LaunchActivity.J1;
+                    findActivity = LaunchActivity.I1;
                 }
                 if (findActivity != null) {
                     ha.y(ddVar.currentAccount, false).f(findActivity, (TL_stars.TL_starsTopupOption) G.G, new r5(2, ddVar, G), ddVar.f1160c0);
@@ -53,24 +53,24 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
         }
     }
 
-    public static void Q(dd ddVar, m61 m61Var, Boolean bool, String str) {
+    public static void Q(dd ddVar, l61 l61Var, Boolean bool, String str) {
         if (ddVar.getContext() != null) {
             if (bool.booleanValue()) {
-                new org.telegram.ui.Components.xc((FrameLayout) ddVar.containerView, ddVar.resourcesProvider).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) m61Var.B, new Object[0])), R.raw.stars_topup).j();
+                new org.telegram.ui.Components.vc((FrameLayout) ddVar.containerView, ddVar.resourcesProvider).M(LocaleController.getString(R.string.StarsAcquired), AndroidUtilities.replaceTags(LocaleController.formatPluralString("StarsAcquiredInfo", (int) l61Var.B, new Object[0])), R.raw.stars_topup).j();
                 ddVar.f1158a0.c(true);
                 ha.y(ddVar.currentAccount, false).T(true);
             } else if (str != null) {
-                i2.o1.t(R.string.UnknownErrorCode, new Object[]{str}, new org.telegram.ui.Components.xc((FrameLayout) ddVar.containerView, ddVar.resourcesProvider), R.raw.error, 36);
+                i2.o1.t(R.string.UnknownErrorCode, new Object[]{str}, new org.telegram.ui.Components.vc((FrameLayout) ddVar.containerView, ddVar.resourcesProvider), R.raw.error, 36);
             }
         }
     }
 
-    public final void R(ArrayList arrayList, b71 b71Var) {
+    public final void R(ArrayList arrayList, a71 a71Var) {
         long j10;
         int i10;
         int i11;
         cd cdVar = this.Y;
-        arrayList.add(m61.l(cdVar));
+        arrayList.add(l61.l(cdVar));
         boolean z10 = this.f1161d0;
         if (z10) {
             i2.o1.q(R.string.TelegramStarsChoose, arrayList);
@@ -105,7 +105,7 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
                 }
                 if (i15 < 3) {
                     arrayList.clear();
-                    arrayList.add(m61.k(cdVar));
+                    arrayList.add(l61.k(cdVar));
                     i2.o1.q(R.string.TelegramStarsChoose, arrayList);
                     int i17 = 0;
                     for (int i18 = 0; i18 < z11.size(); i18++) {
@@ -131,11 +131,11 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
                             }
                             String string = LocaleController.getString(i11);
                             int i19 = rc.f2138a;
-                            m61 J = m61.J(rc.class);
+                            l61 J = l61.J(rc.class);
                             J.d = -1;
-                            J.f28559l = string;
-                            J.f28554f = !this.f1163f0;
-                            J.f28564q = true;
+                            J.f28227l = string;
+                            J.f28222f = !this.f1163f0;
+                            J.f28232q = true;
                             arrayList.add(J);
                         }
                     } else {
@@ -151,11 +151,11 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
                         }
                         String string2 = LocaleController.getString(i10);
                         int i20 = rc.f2138a;
-                        m61 J2 = m61.J(rc.class);
+                        l61 J2 = l61.J(rc.class);
                         J2.d = -1;
-                        J2.f28559l = string2;
-                        J2.f28554f = !this.f1163f0;
-                        J2.f28564q = true;
+                        J2.f28227l = string2;
+                        J2.f28222f = !this.f1163f0;
+                        J2.f28232q = true;
                         arrayList.add(J2);
                     }
                 } else {
@@ -166,28 +166,28 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
                     }
                 }
             } else {
-                arrayList.add(m61.n(31));
-                arrayList.add(m61.n(31));
-                arrayList.add(m61.n(31));
+                arrayList.add(l61.n(31));
+                arrayList.add(l61.n(31));
+                arrayList.add(l61.n(31));
             }
         }
-        arrayList.add(m61.k(this.Z));
+        arrayList.add(l61.k(this.Z));
     }
 
     @Override
     public final void didReceivedNotification(int i10, int i11, Object... objArr) {
         Runnable runnable;
         if (i10 == NotificationCenter.starOptionsLoaded || i10 == NotificationCenter.starBalanceUpdated) {
-            b71 b71Var = this.f1162e0;
-            if (b71Var != null) {
-                b71Var.N(true);
+            a71 a71Var = this.f1162e0;
+            if (a71Var != null) {
+                a71Var.N(true);
             }
             long j10 = ha.y(this.currentAccount, false).p().amount;
             long j11 = this.X;
             ((TextView) this.Y.f1112b).setText(LocaleController.formatPluralStringComma("StarsNeededTitle", (int) (j11 - j10)));
-            org.telegram.ui.Components.xa xaVar = this.e;
-            if (xaVar != null) {
-                xaVar.setTitle(z());
+            org.telegram.ui.Components.va vaVar = this.e;
+            if (vaVar != null) {
+                vaVar.setTitle(z());
             }
             if (j10 >= j11 && (runnable = this.f1159b0) != null) {
                 runnable.run();
@@ -217,7 +217,7 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
     public final void show() {
         gk gkVar;
         if (!this.f1161d0) {
-            org.telegram.messenger.v0.p(R.string.PaymentInvoiceDisabledStarsText, new org.telegram.ui.Components.xc(org.telegram.ui.Components.lb.a(getContext()), this.resourcesProvider), R.raw.stars_topup, 36);
+            org.telegram.messenger.v0.p(R.string.PaymentInvoiceDisabledStarsText, new org.telegram.ui.Components.vc(org.telegram.ui.Components.jb.a(getContext()), this.resourcesProvider), R.raw.stars_topup, 36);
         } else if (ha.y(this.currentAccount, false).p().amount >= this.X) {
             Runnable runnable = this.f1159b0;
             if (runnable != null) {
@@ -239,10 +239,10 @@ public final class dd extends org.telegram.ui.Components.bb implements Notificat
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
-        b71 b71Var = new b71(this.d, getContext(), this.currentAccount, 0, true, new q(this, 8), this.resourcesProvider);
-        this.f1162e0 = b71Var;
-        return b71Var;
+    public final km0 w(lm0 lm0Var) {
+        a71 a71Var = new a71(this.d, getContext(), this.currentAccount, 0, true, new q(this, 8), this.resourcesProvider);
+        this.f1162e0 = a71Var;
+        return a71Var;
     }
 
     @Override

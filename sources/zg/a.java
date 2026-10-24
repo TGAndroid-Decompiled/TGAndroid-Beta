@@ -10,19 +10,19 @@ import android.text.TextPaint;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
 public final class a extends Drawable {
-    public final TextPaint f52089a;
-    public final TextPaint f52090b;
-    public final RectF f52091c;
+    public final TextPaint f52088a;
+    public final TextPaint f52089b;
+    public final RectF f52090c;
     public final Drawable d;
     public float e;
-    public String f52092f;
+    public String f52091f;
 
     public a(Context context) {
         TextPaint textPaint = new TextPaint(1);
-        this.f52089a = textPaint;
+        this.f52088a = textPaint;
         TextPaint textPaint2 = new TextPaint(1);
-        this.f52090b = textPaint2;
-        this.f52091c = new RectF();
+        this.f52089b = textPaint2;
+        this.f52090c = new RectF();
         textPaint.setColor(-1);
         textPaint.setTypeface(AndroidUtilities.bold());
         textPaint.setTextSize(AndroidUtilities.dp(12.0f));
@@ -33,18 +33,18 @@ public final class a extends Drawable {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        RectF rectF = this.f52091c;
+        RectF rectF = this.f52090c;
         rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f52090b);
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), this.f52089b);
         int dp = AndroidUtilities.dp(2.0f) + bounds.left;
         int dp2 = AndroidUtilities.dp(1.0f) + bounds.top;
         int dp3 = AndroidUtilities.dp(2.0f) + bounds.left;
         Drawable drawable = this.d;
         drawable.setBounds(dp, dp2, drawable.getIntrinsicWidth() + dp3, drawable.getIntrinsicHeight() + AndroidUtilities.dp(1.0f) + getBounds().top);
         drawable.draw(canvas);
-        String str = this.f52092f;
+        String str = this.f52091f;
         if (str != null) {
-            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.f52089a);
+            canvas.drawText(str, AndroidUtilities.dp(16.5f) + bounds.left, AndroidUtilities.dp(13.0f) + bounds.top, this.f52088a);
         }
     }
 

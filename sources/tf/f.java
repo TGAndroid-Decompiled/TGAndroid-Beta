@@ -7,38 +7,38 @@ import android.os.Build;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class f {
-    public final Picture f47465a;
-    public final RenderNode f47466b;
+    public final Picture f47464a;
+    public final RenderNode f47465b;
 
     public f(int i10, int i11, Utilities.Callback callback) {
         Picture picture = new Picture();
-        this.f47465a = picture;
+        this.f47464a = picture;
         callback.run(picture.beginRecording(i10, i11));
         picture.endRecording();
         if (Build.VERSION.SDK_INT >= 29) {
             RenderNode renderNode = new RenderNode("pip-node-" + View.generateViewId());
-            this.f47466b = renderNode;
+            this.f47465b = renderNode;
             renderNode.setPosition(0, 0, i10, i11);
             renderNode.beginRecording().drawPicture(picture);
             renderNode.endRecording();
             return;
         }
-        this.f47466b = null;
+        this.f47465b = null;
     }
 
     public final void a(Canvas canvas, float f7) {
         boolean z10;
         Canvas canvas2;
         if (Build.VERSION.SDK_INT >= 29) {
-            RenderNode renderNode = this.f47466b;
+            RenderNode renderNode = this.f47465b;
             if (renderNode != null) {
                 renderNode.setAlpha(f7);
-                canvas.drawRenderNode(this.f47466b);
+                canvas.drawRenderNode(this.f47465b);
                 return;
             }
             return;
         }
-        Picture picture = this.f47465a;
+        Picture picture = this.f47464a;
         if (picture != null && f7 > 0.001f) {
             if (f7 < 0.999f) {
                 z10 = true;
@@ -60,7 +60,7 @@ public final class f {
 
     public final void b() {
         if (Build.VERSION.SDK_INT >= 29) {
-            this.f47466b.discardDisplayList();
+            this.f47465b.discardDisplayList();
         }
     }
 }

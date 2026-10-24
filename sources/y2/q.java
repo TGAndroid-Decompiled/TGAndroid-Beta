@@ -5,37 +5,37 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.telegram.ui.o70;
 public final class q {
-    public static final o70 f50385g = new o70(28);
+    public static final o70 f50384g = new o70(28);
     public static final o70 h = new o70(29);
     public int d;
     public int e;
-    public int f50389f;
-    public final p[] f50387b = new p[5];
-    public final ArrayList f50386a = new ArrayList();
-    public int f50388c = -1;
+    public int f50388f;
+    public final p[] f50386b = new p[5];
+    public final ArrayList f50385a = new ArrayList();
+    public int f50387c = -1;
 
     public final void a(float f7, int i10) {
         p pVar;
-        int i11 = this.f50388c;
-        ArrayList arrayList = this.f50386a;
+        int i11 = this.f50387c;
+        ArrayList arrayList = this.f50385a;
         if (i11 != 1) {
-            Collections.sort(arrayList, f50385g);
-            this.f50388c = 1;
+            Collections.sort(arrayList, f50384g);
+            this.f50387c = 1;
         }
-        int i12 = this.f50389f;
-        p[] pVarArr = this.f50387b;
+        int i12 = this.f50388f;
+        p[] pVarArr = this.f50386b;
         if (i12 > 0) {
             int i13 = i12 - 1;
-            this.f50389f = i13;
+            this.f50388f = i13;
             pVar = pVarArr[i13];
         } else {
             pVar = new Object();
         }
         int i14 = this.d;
         this.d = i14 + 1;
-        pVar.f50382a = i14;
-        pVar.f50383b = i10;
-        pVar.f50384c = f7;
+        pVar.f50381a = i14;
+        pVar.f50382b = i10;
+        pVar.f50383c = f7;
         arrayList.add(pVar);
         this.e += i10;
         while (true) {
@@ -43,17 +43,17 @@ public final class q {
             if (i15 > 2000) {
                 int i16 = i15 - 2000;
                 p pVar2 = (p) arrayList.get(0);
-                int i17 = pVar2.f50383b;
+                int i17 = pVar2.f50382b;
                 if (i17 <= i16) {
                     this.e -= i17;
                     arrayList.remove(0);
-                    int i18 = this.f50389f;
+                    int i18 = this.f50388f;
                     if (i18 < 5) {
-                        this.f50389f = i18 + 1;
+                        this.f50388f = i18 + 1;
                         pVarArr[i18] = pVar2;
                     }
                 } else {
-                    pVar2.f50383b = i17 - i16;
+                    pVar2.f50382b = i17 - i16;
                     this.e -= i16;
                 }
             } else {
@@ -63,24 +63,24 @@ public final class q {
     }
 
     public final float b() {
-        int i10 = this.f50388c;
-        ArrayList arrayList = this.f50386a;
+        int i10 = this.f50387c;
+        ArrayList arrayList = this.f50385a;
         if (i10 != 0) {
             Collections.sort(arrayList, h);
-            this.f50388c = 0;
+            this.f50387c = 0;
         }
         float f7 = 0.5f * this.e;
         int i11 = 0;
         for (int i12 = 0; i12 < arrayList.size(); i12++) {
             p pVar = (p) arrayList.get(i12);
-            i11 += pVar.f50383b;
+            i11 += pVar.f50382b;
             if (i11 >= f7) {
-                return pVar.f50384c;
+                return pVar.f50383c;
             }
         }
         if (arrayList.isEmpty()) {
             return Float.NaN;
         }
-        return ((p) o1.i(1, arrayList)).f50384c;
+        return ((p) o1.i(1, arrayList)).f50383c;
     }
 }

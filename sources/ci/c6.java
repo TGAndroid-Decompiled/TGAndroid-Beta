@@ -18,14 +18,14 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
-import org.telegram.ui.Components.c41;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.b41;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.ProfileActivity;
 import org.telegram.ui.t40;
 import org.telegram.ui.u50;
 import org.telegram.ui.vb;
-import org.telegram.ui.xj0;
-import org.telegram.ui.ye1;
+import org.telegram.ui.wj0;
+import org.telegram.ui.xe1;
 public final class c6 implements View.OnClickListener {
     public final int f5222a;
     public final int f5223b;
@@ -53,7 +53,7 @@ public final class c6 implements View.OnClickListener {
             case 2:
                 int[] iArr = (int[]) this.f5224c;
                 AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.d;
-                xj0 xj0Var = (xj0) this.e;
+                wj0 wj0Var = (wj0) this.e;
                 iArr[0] = ((Integer) view.getTag()).intValue();
                 SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(UserConfig.selectedAccount).edit();
                 int i10 = this.f5223b;
@@ -65,8 +65,8 @@ public final class c6 implements View.OnClickListener {
                     edit.putInt("popupChannel", iArr[0]);
                 }
                 edit.commit();
-                alertDialog$Builder.f20678a.N0.run();
-                xj0Var.run();
+                alertDialog$Builder.f20679a.N0.run();
+                wj0Var.run();
                 return;
             case 3:
                 u50 u50Var = (u50) this.f5224c;
@@ -75,12 +75,12 @@ public final class c6 implements View.OnClickListener {
                 int size = arrayList.size();
                 int i11 = this.f5223b;
                 if (i11 < size) {
-                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) u50Var.f42171a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
+                    TLRPC.GroupCallParticipant groupCallParticipant2 = (TLRPC.GroupCallParticipant) u50Var.f42217a1.participants.f(MessageObject.getPeerId(groupCallParticipant.peer));
                     if (groupCallParticipant2 != null) {
                         groupCallParticipant = groupCallParticipant2;
                     }
                     u50Var.x1(groupCallParticipant, MessageObject.getPeerId(groupCallParticipant.peer), ((Integer) arrayList.get(i11)).intValue());
-                    t40 t40Var = u50Var.f42195f3;
+                    t40 t40Var = u50Var.f42241f3;
                     if (t40Var != null) {
                         t40Var.dismiss();
                         return;
@@ -110,9 +110,9 @@ public final class c6 implements View.OnClickListener {
                 try {
                     AndroidUtilities.addToClipboard(str);
                     if (this.f5223b == profileActivity.P3) {
-                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessHoursCopied)).j();
+                        vc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessHoursCopied)).j();
                     } else {
-                        xc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessLocationCopied)).j();
+                        vc.a0(profileActivity).i(LocaleController.getString(R.string.BusinessLocationCopied)).j();
                     }
                     return;
                 } catch (Exception e) {
@@ -120,16 +120,16 @@ public final class c6 implements View.OnClickListener {
                     return;
                 }
             case 6:
-                ye1 ye1Var = (ye1) this.f5224c;
+                xe1 xe1Var = (xe1) this.f5224c;
                 TLRPC.TL_forumTopic tL_forumTopic = (TLRPC.TL_forumTopic) this.d;
                 ActionBarPopupWindow$ActionBarPopupWindowLayout[] actionBarPopupWindow$ActionBarPopupWindowLayoutArr = (ActionBarPopupWindow$ActionBarPopupWindowLayout[]) this.e;
-                MessagesController messagesController = ye1Var.getMessagesController();
-                long j10 = -ye1Var.f43792a;
-                if (messagesController.isDialogMuted(j10, tL_forumTopic.f20395id)) {
-                    ye1Var.getNotificationsController().muteDialog(j10, tL_forumTopic.f20395id, false);
-                    ye1Var.finishPreviewFragment();
-                    if (xc.a(ye1Var)) {
-                        xc.z(ye1Var, 4, 0, ye1Var.getResourceProvider()).j();
+                MessagesController messagesController = xe1Var.getMessagesController();
+                long j10 = -xe1Var.f43545a;
+                if (messagesController.isDialogMuted(j10, tL_forumTopic.f20396id)) {
+                    xe1Var.getNotificationsController().muteDialog(j10, tL_forumTopic.f20396id, false);
+                    xe1Var.finishPreviewFragment();
+                    if (vc.a(xe1Var)) {
+                        vc.z(xe1Var, 4, 0, xe1Var.getResourceProvider()).j();
                         return;
                     }
                     return;
@@ -145,7 +145,7 @@ public final class c6 implements View.OnClickListener {
                     org.telegram.ui.Wallet.t3 t3Var = new org.telegram.ui.Wallet.t3(dVar2, h3Var2, g6Var, 0);
                     int i13 = this.f5223b;
                     org.telegram.ui.Wallet.l0 w9 = org.telegram.ui.Wallet.l0.w(i13);
-                    w9.j0(new c41(i13, t3Var, w9));
+                    w9.j0(new b41(i13, t3Var, w9));
                     return;
                 }
                 return;

@@ -1,22 +1,22 @@
 package org.telegram.ui;
 public final class p70 implements Runnable {
-    public final int f40388a;
-    public final x70 f40389b;
+    public final int f40381a;
+    public final x70 f40382b;
 
     public p70(x70 x70Var, int i10) {
-        this.f40388a = i10;
-        this.f40389b = x70Var;
+        this.f40381a = i10;
+        this.f40382b = x70Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f40388a) {
+        switch (this.f40381a) {
             case 0:
-                x70 x70Var = this.f40389b;
+                x70 x70Var = this.f40382b;
                 x70Var.h.postOnAnimation(new p70(x70Var, 1));
                 return;
             default:
-                this.f40389b.Y();
+                this.f40382b.Y();
                 return;
         }
     }

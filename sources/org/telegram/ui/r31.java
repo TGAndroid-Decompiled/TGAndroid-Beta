@@ -2,57 +2,51 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.messenger.FileLog;
+import android.animation.AnimatorSet;
 public final class r31 extends AnimatorListenerAdapter {
-    public final int f41009a;
-    public final org.telegram.ui.Components.gn0 f41010b;
+    public final int f41021a;
+    public final SecretMediaViewer f41022b;
 
-    public r31(org.telegram.ui.Components.gn0 gn0Var, int i10) {
-        this.f41009a = i10;
-        this.f41010b = gn0Var;
+    public r31(SecretMediaViewer secretMediaViewer, int i10) {
+        this.f41021a = i10;
+        this.f41022b = secretMediaViewer;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f41009a) {
+        switch (this.f41021a) {
             case 0:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f41010b.f26682b;
-                secretMediaViewer.Z.getNextView().setText((CharSequence) null);
-                kt0 kt0Var = secretMediaViewer.f34086a0;
-                kt0Var.f43654l0 = false;
-                if (kt0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) kt0Var.f43656o0.getLayoutParams()).topMargin = kt0Var.m0;
-                    kt0Var.m0 = -1;
-                    kt0Var.requestLayout();
+                SecretMediaViewer secretMediaViewer = this.f41022b;
+                Runnable runnable = secretMediaViewer.f34118o0;
+                if (runnable != null) {
+                    runnable.run();
+                    secretMediaViewer.f34118o0 = null;
+                    return;
+                }
+                return;
+            case 1:
+                SecretMediaViewer secretMediaViewer2 = this.f41022b;
+                AnimatorSet animatorSet = secretMediaViewer2.G;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    secretMediaViewer2.F.setVisibility(8);
+                    secretMediaViewer2.G = null;
+                    secretMediaViewer2.f34088a0.scrollTo(0, 0);
+                    return;
+                }
+                return;
+            case 2:
+                SecretMediaViewer secretMediaViewer3 = this.f41022b;
+                Runnable runnable2 = secretMediaViewer3.f34118o0;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    secretMediaViewer3.f34118o0 = null;
                     return;
                 }
                 return;
             default:
-                ((SecretMediaViewer) this.f41010b.f26682b).Z.setTranslationY(0.0f);
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f41009a) {
-            case 0:
-                kt0 kt0Var = ((SecretMediaViewer) this.f41010b.f26682b).f34086a0;
-                Method method = kt0Var.f43648f0;
-                if (method != null) {
-                    try {
-                        method.invoke(kt0Var, null);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
+                SecretMediaViewer secretMediaViewer4 = this.f41022b;
+                secretMediaViewer4.K0 = null;
+                secretMediaViewer4.e.invalidate();
                 return;
         }
     }

@@ -10,17 +10,17 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 public final class m70 extends z4.a {
-    public final int f39386c;
+    public final int f39452c;
     public final NotificationCenter.NotificationCenterDelegate d;
 
     public m70(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, int i10) {
-        this.f39386c = i10;
+        this.f39452c = i10;
         this.d = notificationCenterDelegate;
     }
 
     @Override
     public final void a(z4.h hVar, Object obj) {
-        switch (this.f39386c) {
+        switch (this.f39452c) {
             case 0:
                 hVar.removeView((View) obj);
                 return;
@@ -35,11 +35,11 @@ public final class m70 extends z4.a {
 
     @Override
     public final int b() {
-        switch (this.f39386c) {
+        switch (this.f39452c) {
             case 0:
                 return ((n70) this.d).F.length;
             case 1:
-                if (((qc1) this.d).f40716b != 0) {
+                if (((pc1) this.d).f40445b != 0) {
                     return 1;
                 }
                 return 2;
@@ -50,7 +50,7 @@ public final class m70 extends z4.a {
 
     @Override
     public int c(Object obj) {
-        switch (this.f39386c) {
+        switch (this.f39452c) {
             case 1:
                 return -1;
             default:
@@ -67,13 +67,13 @@ public final class m70 extends z4.a {
         org.telegram.ui.ActionBar.g6 g6Var2;
         org.telegram.ui.ActionBar.g6 g6Var3;
         int i11;
-        switch (this.f39386c) {
+        switch (this.f39452c) {
             case 0:
                 TextView textView = new TextView(hVar.getContext());
                 n70 n70Var = (n70) this.d;
-                textView.setTag(n70Var.f39800a);
+                textView.setTag(n70Var.f39753a);
                 TextView textView2 = new TextView(hVar.getContext());
-                textView2.setTag(n70Var.f39801b);
+                textView2.setTag(n70Var.f39754b);
                 ah.v vVar = new ah.v(hVar.getContext(), textView, textView2);
                 int i12 = org.telegram.ui.ActionBar.k6.G6;
                 org.telegram.messenger.v0.q(textView, i12, null, 1, 26.0f);
@@ -89,11 +89,11 @@ public final class m70 extends z4.a {
                 textView2.setText(AndroidUtilities.replaceTags(n70Var.G[i10]));
                 return vVar;
             case 1:
-                qc1 qc1Var = (qc1) this.d;
+                pc1 pc1Var = (pc1) this.d;
                 if (i10 == 0) {
-                    view = qc1Var.f40768u0;
+                    view = pc1Var.f40497u0;
                 } else {
-                    view = qc1Var.f40752n0;
+                    view = pc1Var.f40481n0;
                 }
                 hVar.addView(view);
                 return view;
@@ -101,17 +101,17 @@ public final class m70 extends z4.a {
                 sg.y0 y0Var = (sg.y0) this.d;
                 sg.x0 x0Var = new sg.x0(y0Var, y0Var.getContext(), i10);
                 hVar.addView(x0Var);
-                x0Var.f46934a = i10;
-                sw0 sw0Var = (sw0) y0Var.d.get(i10);
-                int i13 = sw0Var.f41814a;
-                String str = sw0Var.d;
-                CharSequence charSequence = sw0Var.f41816c;
+                x0Var.f46933a = i10;
+                rw0 rw0Var = (rw0) y0Var.d.get(i10);
+                int i13 = rw0Var.f41244a;
+                String str = rw0Var.d;
+                CharSequence charSequence = rw0Var.f41246c;
                 int i14 = 8;
-                TextView textView3 = x0Var.f46935b;
-                org.telegram.ui.Components.y90 y90Var = x0Var.f46936c;
+                TextView textView3 = x0Var.f46934b;
+                org.telegram.ui.Components.w90 w90Var = x0Var.f46935c;
                 if (i13 != 0 && i13 != 14 && i13 != 28) {
                     if (y0Var.E) {
-                        int i15 = y0Var.f46955y;
+                        int i15 = y0Var.f46954y;
                         if (i15 == 4) {
                             textView3.setText(LocaleController.getString(R.string.AdditionalReactions));
                             i11 = R.string.AdditionalReactionsDescription;
@@ -150,24 +150,24 @@ public final class m70 extends z4.a {
                             i11 = R.string.PremiumPreviewSharingDisableDescription;
                         } else {
                             textView3.setText(charSequence);
-                            y90Var.setText(AndroidUtilities.replaceTags(str));
+                            w90Var.setText(AndroidUtilities.replaceTags(str));
                             x0Var.h = false;
                         }
-                        org.telegram.ui.Cells.b1.r(i11, y90Var);
+                        org.telegram.ui.Cells.b1.r(i11, w90Var);
                         x0Var.h = false;
                     } else {
                         textView3.setText(charSequence);
-                        y90Var.setText(AndroidUtilities.replaceTags(str));
+                        w90Var.setText(AndroidUtilities.replaceTags(str));
                         x0Var.h = false;
                     }
                 } else {
                     textView3.setText("");
-                    y90Var.setText("");
+                    w90Var.setText("");
                     x0Var.h = true;
                 }
-                y90Var.setMaxWidth(ei.x3.a(y90Var.getText(), y90Var.getPaint()));
+                w90Var.setMaxWidth(ei.x3.a(w90Var.getText(), w90Var.getPaint()));
                 x0Var.requestLayout();
-                if (sw0Var.f41814a == 40) {
+                if (rw0Var.f41244a == 40) {
                     z10 = true;
                 } else {
                     z10 = false;
@@ -201,7 +201,7 @@ public final class m70 extends z4.a {
                     }
                     linearLayout2.setVisibility(i14);
                 }
-                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) y90Var.getLayoutParams();
+                ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) w90Var.getLayoutParams();
                 if (z10) {
                     f7 = 6.0f;
                 } else {
@@ -214,7 +214,7 @@ public final class m70 extends z4.a {
 
     @Override
     public final boolean f(View view, Object obj) {
-        switch (this.f39386c) {
+        switch (this.f39452c) {
             case 0:
                 return view.equals(obj);
             case 1:
@@ -232,7 +232,7 @@ public final class m70 extends z4.a {
 
     @Override
     public void h(int i10) {
-        switch (this.f39386c) {
+        switch (this.f39452c) {
             case 0:
                 n70 n70Var = (n70) this.d;
                 n70Var.e.setCurrentPage(i10);

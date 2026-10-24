@@ -1,30 +1,26 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-public final class pd0 implements NotificationCenter.NotificationCenterDelegate {
-    public final rd0 f40453a;
+import android.content.Context;
+import android.view.View;
+import android.widget.ViewSwitcher;
+import org.telegram.messenger.AndroidUtilities;
+public final class pd0 extends ViewSwitcher {
+    public final int f40514a;
 
-    public pd0(rd0 rd0Var) {
-        this.f40453a = rd0Var;
+    public pd0(Context context, int i10) {
+        super(context);
+        this.f40514a = i10;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        rd0 rd0Var = this.f40453a;
-        int intValue = ((Integer) objArr[0]).intValue();
-        ((Integer) objArr[1]).getClass();
-        Intent intent = (Intent) objArr[2];
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.onActivityResultReceived);
-        if (intValue == 200) {
-            try {
-                rd0Var.F = (GoogleSignInAccount) w7.b9.b(intent).getResult(com.google.android.gms.common.api.f.class);
-                rd0Var.h(null);
-            } catch (com.google.android.gms.common.api.f e) {
-                FileLog.e(e);
-            }
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f40514a) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(100.0f), Integer.MIN_VALUE));
+                return;
         }
     }
 }

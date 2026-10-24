@@ -11,29 +11,29 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class k extends FrameLayout {
-    public final org.telegram.ui.ActionBar.n5 f22617a;
-    public final TextView f22618b;
-    public final org.telegram.ui.Components.w9 f22619c;
+    public final org.telegram.ui.ActionBar.n5 f22618a;
+    public final TextView f22619b;
+    public final org.telegram.ui.Components.u9 f22620c;
     public final ImageView d;
-    public final org.telegram.ui.Components.h9 e;
-    public int f22620f;
+    public final org.telegram.ui.Components.f9 e;
+    public int f22621f;
 
     public k(Activity activity, boolean z10) {
         super(activity);
         setMinimumWidth(AndroidUtilities.dp(196.0f));
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
-        this.e = h9Var;
-        h9Var.u(AndroidUtilities.dp(12.0f));
-        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(activity);
-        this.f22619c = w9Var;
-        w9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
-        addView(w9Var, w7.z5.d(36, 36.0f, 51, 10.0f, 10.0f, 0.0f, 0.0f));
+        org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
+        this.e = f9Var;
+        f9Var.u(AndroidUtilities.dp(12.0f));
+        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(activity);
+        this.f22620c = u9Var;
+        u9Var.setRoundRadius(AndroidUtilities.dp(18.0f));
+        addView(u9Var, w7.z5.d(36, 36.0f, 51, 10.0f, 10.0f, 0.0f, 0.0f));
         org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(activity);
-        this.f22617a = n5Var;
+        this.f22618a = n5Var;
         n5Var.setTextSize(15);
         n5Var.setTypeface(AndroidUtilities.bold());
         n5Var.setEllipsizeByGradient(true);
@@ -41,12 +41,12 @@ public final class k extends FrameLayout {
         n5Var.setGravity(19);
         if (z10) {
             addView(n5Var, w7.z5.d(-2, -2.0f, 51, 61.0f, 7.0f, 8.0f, 0.0f));
-            org.telegram.ui.ActionBar.r6.Z(n5Var, org.telegram.ui.ActionBar.k6.f21376ng, null);
+            org.telegram.ui.ActionBar.r6.Z(n5Var, org.telegram.ui.ActionBar.k6.f21377ng, null);
             n5Var.l(LocaleController.getString(R.string.VoipGroupDisplayAs), false);
             TextView textView = new TextView(activity);
-            this.f22618b = textView;
-            org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21394og, null);
-            sl.u(textView, 1, 15.0f, 1, 1);
+            this.f22619b = textView;
+            org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21395og, null);
+            tl.u(textView, 1, 15.0f, 1, 1);
             textView.setSingleLine(true);
             textView.setMaxWidth(AndroidUtilities.dp(320.0f));
             textView.setGravity(51);
@@ -65,14 +65,14 @@ public final class k extends FrameLayout {
     }
 
     public int getAccountNumber() {
-        return this.f22620f;
+        return this.f22621f;
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        if (this.f22618b == null) {
-            org.telegram.ui.ActionBar.r6.Z(this.f22617a, org.telegram.ui.ActionBar.k6.G9, null);
+        if (this.f22619b == null) {
+            org.telegram.ui.ActionBar.r6.Z(this.f22618a, org.telegram.ui.ActionBar.k6.G9, null);
         }
     }
 
@@ -82,7 +82,7 @@ public final class k extends FrameLayout {
         int i12;
         float f7;
         ImageView imageView = this.d;
-        if (imageView == null && ((textView = this.f22618b) == null || getLayoutParams().width == -2)) {
+        if (imageView == null && ((textView = this.f22619b) == null || getLayoutParams().width == -2)) {
             if (View.MeasureSpec.getMode(i10) == Integer.MIN_VALUE) {
                 float dp = AndroidUtilities.dp(196.0f);
                 if (imageView != null) {
@@ -91,7 +91,7 @@ public final class k extends FrameLayout {
                     i12 = 0;
                 }
                 float dp2 = AndroidUtilities.dp(i12 + 69);
-                org.telegram.ui.ActionBar.n5 n5Var = this.f22617a;
+                org.telegram.ui.ActionBar.n5 n5Var = this.f22618a;
                 float measureText = n5Var.getTextPaint().measureText(n5Var.getText().toString());
                 if (textView != null) {
                     f7 = textView.getPaint().measureText(textView.getText().toString());
@@ -110,24 +110,24 @@ public final class k extends FrameLayout {
     public void setObject(TLObject tLObject) {
         String str;
         boolean z10 = tLObject instanceof TLRPC.User;
-        org.telegram.ui.Components.w9 w9Var = this.f22619c;
-        TextView textView = this.f22618b;
-        org.telegram.ui.Components.h9 h9Var = this.e;
+        org.telegram.ui.Components.u9 u9Var = this.f22620c;
+        TextView textView = this.f22619b;
+        org.telegram.ui.Components.f9 f9Var = this.e;
         if (z10) {
             TLRPC.User user = (TLRPC.User) tLObject;
-            h9Var.r(user);
+            f9Var.r(user);
             textView.setText(ContactsController.formatName(user.first_name, user.last_name));
-            w9Var.e(user, h9Var);
+            u9Var.e(user, f9Var);
             return;
         }
         TLRPC.Chat chat = (TLRPC.Chat) tLObject;
-        h9Var.q(chat);
+        f9Var.q(chat);
         if (chat == null) {
             str = "";
         } else {
             str = chat.title;
         }
         textView.setText(str);
-        w9Var.e(chat, h9Var);
+        u9Var.e(chat, f9Var);
     }
 }

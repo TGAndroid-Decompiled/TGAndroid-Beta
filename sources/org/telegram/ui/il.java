@@ -10,22 +10,22 @@ import org.telegram.messenger.MessageSuggestionParams;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-public final class il implements org.telegram.ui.Components.ri {
-    public final sn f38258a;
+public final class il implements org.telegram.ui.Components.pi {
+    public final sn f38323a;
 
     public il(sn snVar) {
-        this.f38258a = snVar;
+        this.f38323a = snVar;
     }
 
     @Override
     public final void J() {
-        this.f38258a.Y.M();
+        this.f38323a.Y.M();
     }
 
     @Override
     public final void X(TLRPC.User user) {
         String publicUsername = UserObject.getPublicUsername(user);
-        sn snVar = this.f38258a;
+        sn snVar = this.f38323a;
         if (snVar.Y != null && user != null && !TextUtils.isEmpty(publicUsername)) {
             gk gkVar = snVar.Y;
             gkVar.setFieldText("@" + publicUsername + " ");
@@ -50,7 +50,7 @@ public final class il implements org.telegram.ui.Components.ri {
         boolean z19;
         String str2;
         TLRPC.Message message;
-        sn snVar = this.f38258a;
+        sn snVar = this.f38323a;
         if (snVar.getParentActivity() != null && (a3Var = snVar.V1) != null) {
             boolean z20 = a3Var.G;
             MessageObject messageObject = a3Var.K1;
@@ -58,7 +58,7 @@ public final class il implements org.telegram.ui.Components.ri {
             if (messageObject != null && (message = messageObject.messageOwner) != null) {
                 message.invert_media = z12;
             }
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || a3Var.f30742j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || a3Var.f30158j0.getSelectedPhotos().isEmpty())) {
                 ci.a3 a3Var2 = snVar.V1;
                 if (a3Var2 != null) {
                     a3Var2.dismissWithButtonClick(i10);
@@ -70,8 +70,8 @@ public final class il implements org.telegram.ui.Components.ri {
             if (a3Var3 != null && i10 != 8) {
                 a3Var3.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = snVar.V1.f30742j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = snVar.V1.f30742j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = snVar.V1.f30158j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = snVar.V1.f30158j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int ceil = (int) Math.ceil(selectedPhotos.size() / 10.0f);
                 int i15 = 0;
@@ -154,18 +154,18 @@ public final class il implements org.telegram.ui.Components.ri {
                     }
                     MessageObject messageObject2 = snVar.B5;
                     if (messageObject2 != null && messageObject2.needResendWhenEdit()) {
-                        MessageSuggestionParams messageSuggestionParams = snVar.f41677s5;
+                        MessageSuggestionParams messageSuggestionParams = snVar.f41674s5;
                         if (messageSuggestionParams == null) {
                             messageSuggestionParams = MessageSuggestionParams.of(snVar.B5.messageOwner.suggested_post);
                         }
                         MessageSuggestionParams messageSuggestionParams2 = messageSuggestionParams;
                         AccountInstance accountInstance = snVar.getAccountInstance();
                         int i19 = ceil;
-                        long j12 = snVar.f41519f6;
+                        long j12 = snVar.f41516f6;
                         MessageObject messageObject3 = snVar.B5;
                         int i20 = i15;
-                        MessageObject messageObject4 = snVar.f41564j4;
-                        in inVar = snVar.f41742x5;
+                        MessageObject messageObject4 = snVar.f41561j4;
+                        in inVar = snVar.f41739x5;
                         if (i10 != 4 && !z13) {
                             z16 = true;
                             arrayList = arrayList2;
@@ -177,21 +177,21 @@ public final class il implements org.telegram.ui.Components.ri {
                         }
                         i14 = i20;
                         i13 = i19;
-                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j12, messageObject3, messageObject4, null, inVar, z17, z10, null, z11, i11, i12, snVar.f41492d4, z14, null, snVar.H8(), j10, z12, j11, snVar.S8(), messageSuggestionParams2);
+                        SendMessagesHelper.prepareSendingMedia(accountInstance, arrayList, j12, messageObject3, messageObject4, null, inVar, z17, z10, null, z11, i11, i12, snVar.f41489d4, z14, null, snVar.H8(), j10, z12, j11, snVar.S8(), messageSuggestionParams2);
                     } else {
                         i13 = ceil;
                         i14 = i15;
                         AccountInstance accountInstance2 = snVar.getAccountInstance();
-                        long j13 = snVar.f41519f6;
-                        MessageObject messageObject5 = snVar.f41767z5;
-                        MessageObject messageObject6 = snVar.f41564j4;
-                        in inVar2 = snVar.f41742x5;
+                        long j13 = snVar.f41516f6;
+                        MessageObject messageObject5 = snVar.f41764z5;
+                        MessageObject messageObject6 = snVar.f41561j4;
+                        in inVar2 = snVar.f41739x5;
                         if (i10 != 4 && !z13) {
                             z15 = false;
                         } else {
                             z15 = true;
                         }
-                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j13, messageObject5, messageObject6, null, inVar2, z15, z10, snVar.B5, z11, i11, i12, snVar.f41492d4, z14, null, snVar.H8(), j10, z12, j11, snVar.S8(), snVar.f41677s5);
+                        SendMessagesHelper.prepareSendingMedia(accountInstance2, arrayList2, j13, messageObject5, messageObject6, null, inVar2, z15, z10, snVar.B5, z11, i11, i12, snVar.f41489d4, z14, null, snVar.H8(), j10, z12, j11, snVar.S8(), snVar.f41674s5);
                     }
                     i15 = i14 + 1;
                     ceil = i13;
@@ -205,10 +205,10 @@ public final class il implements org.telegram.ui.Components.ri {
                 hashMap = selectedPhotos;
             }
             if (i11 != 0) {
-                if (snVar.f41504e4 == -1) {
-                    snVar.f41504e4 = 0;
+                if (snVar.f41501e4 == -1) {
+                    snVar.f41501e4 = 0;
                 }
-                snVar.f41504e4 += hashMap.size();
+                snVar.f41501e4 += hashMap.size();
                 snVar.Lc(true);
             }
         }
@@ -220,13 +220,13 @@ public final class il implements org.telegram.ui.Components.ri {
     }
 
     @Override
-    public final void r(org.telegram.ui.Components.gh ghVar) {
-        this.f38258a.k8(ghVar);
+    public final void r(org.telegram.ui.Components.eh ehVar) {
+        this.f38323a.k8(ehVar);
     }
 
     @Override
     public final boolean u() {
-        return this.f38258a.U9();
+        return this.f38323a.U9();
     }
 
     @Override

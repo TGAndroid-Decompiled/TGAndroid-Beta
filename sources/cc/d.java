@@ -72,13 +72,13 @@ public final class d implements vf {
                 l0Var.c(j10);
             }
             Interpolator interpolator = (Interpolator) this.d;
-            if (interpolator != null && (view = (View) l0Var.f45252a.get()) != null) {
+            if (interpolator != null && (view = (View) l0Var.f45251a.get()) != null) {
                 view.animate().setInterpolator(interpolator);
             }
             if (((m0) this.e) != null) {
                 l0Var.d((i) this.f5095f);
             }
-            View view2 = (View) l0Var.f45252a.get();
+            View view2 = (View) l0Var.f45251a.get();
             if (view2 != null) {
                 view2.animate().start();
             }
@@ -97,15 +97,15 @@ public final class d implements vf {
         jg jgVar = (jg) this.f5095f;
         ?? obj = new Object();
         u2.c cVar = new u2.c(18, false);
-        cVar.f47712b = Long.valueOf(j10 & Long.MAX_VALUE);
-        cVar.f47713c = (gb) this.d;
+        cVar.f47711b = Long.valueOf(j10 & Long.MAX_VALUE);
+        cVar.f47712c = (gb) this.d;
         cVar.d = Boolean.valueOf(z10);
         obj.f6893b = new va(cVar);
         int i11 = aVar.e;
         f.f5100l.getClass();
         int i12 = aVar.e;
         if (i12 == -1) {
-            Bitmap bitmap = aVar.f49345a;
+            Bitmap bitmap = aVar.f49344a;
             l.h(bitmap);
             i10 = bitmap.getAllocationByteCount();
         } else if (i12 != 17 && i12 != 842094169) {
@@ -147,21 +147,21 @@ public final class d implements vf {
         obj.f6892a = fVar.e.a();
         if (jgVar != null) {
             List list = jgVar.d;
-            g gVar = z7.i.f51507b;
+            g gVar = z7.i.f51506b;
             Object[] array = list.toArray();
             int length = array.length;
             e9.a(length, array);
             obj.e = z7.i.q(length, array);
-            List<ig> list2 = jgVar.f51538a;
+            List<ig> list2 = jgVar.f51537a;
             if (!list2.isEmpty()) {
                 Object[] objArr = new Object[4];
                 int i13 = 0;
                 for (ig igVar : list2) {
                     ?? obj2 = new Object();
-                    obj2.f45176a = Integer.valueOf(igVar.f51525c & Integer.MAX_VALUE);
-                    obj2.f45177b = Integer.valueOf(igVar.d & Integer.MAX_VALUE);
-                    obj2.f45178c = Integer.valueOf(igVar.e & Integer.MAX_VALUE);
-                    obj2.d = Integer.valueOf(igVar.f51526f & Integer.MAX_VALUE);
+                    obj2.f45175a = Integer.valueOf(igVar.f51524c & Integer.MAX_VALUE);
+                    obj2.f45176b = Integer.valueOf(igVar.d & Integer.MAX_VALUE);
+                    obj2.f45177c = Integer.valueOf(igVar.e & Integer.MAX_VALUE);
+                    obj2.d = Integer.valueOf(igVar.f51525f & Integer.MAX_VALUE);
                     te teVar = new te(obj2);
                     int i14 = i13 + 1;
                     int length2 = objArr.length;

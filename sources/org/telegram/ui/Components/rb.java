@@ -1,10 +1,6 @@
 package org.telegram.ui.Components;
 public interface rb {
-    void a();
+    void D0(sb sbVar, db dbVar, ng ngVar, vl vlVar);
 
-    void b();
-
-    void c(qc qcVar);
-
-    void d();
+    void c(sb sbVar, db dbVar, bb bbVar, eb ebVar);
 }

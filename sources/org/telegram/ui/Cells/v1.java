@@ -13,9 +13,9 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final TextView f23829a;
-    public final ImageView f23830b;
-    public final FrameLayout f23831c;
+    public final TextView f23830a;
+    public final ImageView f23831b;
+    public final FrameLayout f23832c;
     public final org.telegram.ui.ActionBar.g6 d;
     public int e;
 
@@ -25,7 +25,7 @@ public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b
         int x02;
         this.d = g6Var;
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f23831c = frameLayout;
+        this.f23832c = frameLayout;
         frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
         Drawable background = frameLayout.getBackground();
         int i10 = org.telegram.ui.ActionBar.k6.Fe;
@@ -33,7 +33,7 @@ public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b
         org.telegram.ui.ActionBar.r6.z(frameLayout, background, i10, g6Var, mode);
         addView(frameLayout, w7.z5.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
         ImageView imageView = new ImageView(context);
-        this.f23830b = imageView;
+        this.f23831b = imageView;
         imageView.setImageResource(R.drawable.ic_ab_new);
         int i11 = org.telegram.ui.ActionBar.k6.De;
         if (g6Var != null) {
@@ -50,7 +50,7 @@ public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b
         imageView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
         frameLayout.addView(imageView, w7.z5.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f23829a = textView;
+        this.f23830a = textView;
         textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
         textView.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.Ee, g6Var);
@@ -59,15 +59,15 @@ public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public FrameLayout getBackgroundLayout() {
-        return this.f23831c;
+        return this.f23832c;
     }
 
     public ImageView getImageView() {
-        return this.f23830b;
+        return this.f23831b;
     }
 
     public TextView getTextView() {
-        return this.f23829a;
+        return this.f23830a;
     }
 
     @Override
@@ -76,7 +76,7 @@ public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public void setText(String str) {
-        this.f23829a.setText(str);
+        this.f23830a.setText(str);
     }
 
     @Override
@@ -96,7 +96,7 @@ public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b
             } else {
                 x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
             }
-            ImageView imageView = this.f23830b;
+            ImageView imageView = this.f23831b;
             if (imageView != null && x02 != this.e) {
                 this.e = x02;
                 imageView.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));

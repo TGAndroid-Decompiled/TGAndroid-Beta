@@ -7,22 +7,22 @@ import r0.i0;
 import r0.k1;
 import r0.n;
 public final class b implements n {
-    public Object f51134a;
-    public Object f51135b;
+    public Object f51133a;
+    public Object f51134b;
 
     public b(String str, PointF[] pointFArr) {
-        this.f51134a = str;
-        this.f51135b = pointFArr;
+        this.f51133a = str;
+        this.f51134b = pointFArr;
     }
 
     @Override
     public k1 B0(View view, k1 k1Var) {
-        h hVar = (h) this.f51135b;
+        h hVar = (h) this.f51134b;
         k1 g10 = i0.g(view, k1Var);
-        if (g10.f45251a.n()) {
+        if (g10.f45250a.n()) {
             return g10;
         }
-        Rect rect = (Rect) this.f51134a;
+        Rect rect = (Rect) this.f51133a;
         rect.left = g10.b();
         rect.top = g10.d();
         rect.right = g10.c();

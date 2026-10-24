@@ -13,11 +13,11 @@ import android.view.ViewConfiguration;
 import android.widget.FrameLayout;
 import ei.ja;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.t00;
-import org.telegram.ui.ve1;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.r00;
+import org.telegram.ui.ue1;
 public final class s5 extends FrameLayout implements SensorEventListener {
-    public static final Object f35128n0 = new Object();
+    public static final Object f35130n0 = new Object();
     public final float[] E;
     public final float[] F;
     public final z5 G;
@@ -37,37 +37,37 @@ public final class s5 extends FrameLayout implements SensorEventListener {
     public boolean U;
     public long V;
     public boolean W;
-    public boolean f35129a;
-    public boolean f35130a0;
-    public p5 f35131b;
-    public ValueAnimator f35132b0;
-    public int f35133c;
-    public float f35134c0;
+    public boolean f35131a;
+    public boolean f35132a0;
+    public p5 f35133b;
+    public ValueAnimator f35134b0;
+    public int f35135c;
+    public float f35136c0;
     public u2 d;
-    public float f35135d0;
-    public final t00 e;
-    public float f35136e0;
-    public final ci.l1 f35137f;
-    public float f35138f0;
-    public float f35139g0;
+    public float f35137d0;
+    public final r00 e;
+    public float f35138e0;
+    public final ci.l1 f35139f;
+    public float f35140f0;
+    public float f35141g0;
     public final ei.g6 h;
-    public float f35140h0;
-    public int f35141i0;
-    public int f35142j0;
-    public final m4 f35143k0;
-    public float f35144l0;
+    public float f35142h0;
+    public int f35143i0;
+    public int f35144j0;
+    public final m4 f35145k0;
+    public float f35146l0;
     public float m0;
-    public final r5 f35145n;
-    public final ah.x f35146r;
-    public final m.s3 f35147s;
+    public final r5 f35147n;
+    public final ah.x f35148r;
+    public final m.s3 f35149s;
     public final float[] v;
-    public final SensorManager f35148w;
-    public final Sensor f35149x;
-    public final boolean f35150y;
+    public final SensorManager f35150w;
+    public final Sensor f35151x;
+    public final boolean f35152y;
 
     public s5(Context context, int i10, int i11) {
         super(context);
-        this.f35147s = new m.s3();
+        this.f35149s = new m.s3();
         this.v = new float[8];
         this.E = new float[9];
         this.F = new float[3];
@@ -75,35 +75,35 @@ public final class s5 extends FrameLayout implements SensorEventListener {
         this.I = -0.22f;
         this.J = -0.28f;
         this.P = -1;
-        this.f35136e0 = 1.0f;
-        this.f35139g0 = Float.NaN;
-        this.f35140h0 = Float.NaN;
-        this.f35143k0 = new m4(this, 1);
-        this.f35133c = i10;
+        this.f35138e0 = 1.0f;
+        this.f35141g0 = Float.NaN;
+        this.f35142h0 = Float.NaN;
+        this.f35145k0 = new m4(this, 1);
+        this.f35135c = i10;
         boolean z10 = false;
         setClipChildren(false);
         setClipToPadding(false);
         setWillNotDraw(false);
         setCameraDistance(AndroidUtilities.dp(4800.0f));
         w7.b6.b(this, 0.02f, 1.2f);
-        t00 t00Var = new t00(this, context);
-        this.e = t00Var;
-        addView(t00Var, w7.z5.e(-1, -1, 17));
+        r00 r00Var = new r00(this, context);
+        this.e = r00Var;
+        addView(r00Var, w7.z5.e(-1, -1, 17));
         ci.l1 l1Var = new ci.l1(context, 1);
-        this.f35137f = l1Var;
+        this.f35139f = l1Var;
         l1Var.setPadding(2, 2, 2, 2);
         l1Var.setLayerType(2, null);
         FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(-1, -1);
         layoutParams.setMargins(-2, -2, -2, -2);
-        t00Var.addView(l1Var, layoutParams);
+        r00Var.addView(l1Var, layoutParams);
         ei.g6 g6Var = new ei.g6(this, context);
         this.h = g6Var;
         l1Var.addView(g6Var, w7.z5.e(-1, -1, 17));
         r5 r5Var = new r5(this, context);
-        this.f35145n = r5Var;
+        this.f35147n = r5Var;
         l1Var.addView(r5Var, w7.z5.e(-1, -1, 17));
         ah.x xVar = new ah.x(this, context, 28);
-        this.f35146r = xVar;
+        this.f35148r = xVar;
         xVar.setClipChildren(false);
         xVar.setClipToPadding(false);
         xVar.setLayerType(2, null);
@@ -112,22 +112,22 @@ public final class s5 extends FrameLayout implements SensorEventListener {
         l1Var.addView(xVar, w7.z5.e(336, 205, 51));
         this.H = ViewConfiguration.get(context).getScaledTouchSlop();
         SensorManager sensorManager = (SensorManager) context.getSystemService("sensor");
-        this.f35148w = sensorManager;
+        this.f35150w = sensorManager;
         Sensor defaultSensor = sensorManager.getDefaultSensor(15);
         defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(11) : defaultSensor;
         defaultSensor = defaultSensor == null ? sensorManager.getDefaultSensor(4) : defaultSensor;
-        this.f35149x = defaultSensor;
+        this.f35151x = defaultSensor;
         if (defaultSensor != null && defaultSensor.getType() != 4) {
             z10 = true;
         }
-        this.f35150y = z10;
+        this.f35152y = z10;
         q5 q5Var = new q5(this, 1);
-        if (p5.f35005j0 && p5.f35010p0.get(Integer.valueOf(i10)) != null) {
-            this.f35131b = new p5(context.getApplicationContext(), i10, i11, q5Var);
+        if (p5.f35007j0 && p5.f35012p0.get(Integer.valueOf(i10)) != null) {
+            this.f35133b = new p5(context.getApplicationContext(), i10, i11, q5Var);
             return;
         }
-        t00Var.setVisibility(4);
-        p5.f35007l0.postRunnable(new gi.m4(this, context, i10, i11, q5Var));
+        r00Var.setVisibility(4);
+        p5.f35009l0.postRunnable(new gi.m4(this, context, i10, i11, q5Var));
     }
 
     public static float c(float f7, float f10, float f11) {
@@ -135,62 +135,62 @@ public final class s5 extends FrameLayout implements SensorEventListener {
     }
 
     public final void a() {
-        ValueAnimator valueAnimator = this.f35132b0;
+        ValueAnimator valueAnimator = this.f35134b0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f35132b0.cancel();
-            this.f35132b0 = null;
+            this.f35134b0.cancel();
+            this.f35134b0 = null;
         }
         float f7 = this.N;
         float f10 = this.O;
         ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.f35132b0 = ofFloat;
+        this.f35134b0 = ofFloat;
         ofFloat.setDuration(600L);
-        sl.l(1.2f, this.f35132b0);
-        this.f35132b0.addUpdateListener(new ja(this, f7, f10, 6));
-        this.f35132b0.addListener(new ve1(this, 7));
-        this.f35132b0.start();
+        tl.l(1.2f, this.f35134b0);
+        this.f35134b0.addUpdateListener(new ja(this, f7, f10, 6));
+        this.f35134b0.addListener(new ue1(this, 7));
+        this.f35134b0.start();
     }
 
     public final void b(float f7, float f10) {
         boolean z10;
         float[] fArr;
-        this.f35134c0 = f7;
-        this.f35138f0 = f10;
-        float f11 = f7 + this.f35144l0;
+        this.f35136c0 = f7;
+        this.f35140f0 = f10;
+        float f11 = f7 + this.f35146l0;
         float f12 = f10 + this.m0;
         if (Math.cos(Math.toRadians(f12)) * Math.cos(Math.toRadians(f11)) < 0.0d) {
             z10 = true;
         } else {
             z10 = false;
         }
-        boolean z11 = this.f35129a;
-        r5 r5Var = this.f35145n;
+        boolean z11 = this.f35131a;
+        r5 r5Var = this.f35147n;
         if (z11 != z10) {
-            this.f35129a = z10;
-            this.f35146r.invalidate();
+            this.f35131a = z10;
+            this.f35148r.invalidate();
             r5Var.invalidate();
         }
         int width = getWidth();
         int height = getHeight();
-        if (this.f35139g0 == f11 && this.f35140h0 == f12 && this.f35141i0 == width && this.f35142j0 == height) {
+        if (this.f35141g0 == f11 && this.f35142h0 == f12 && this.f35143i0 == width && this.f35144j0 == height) {
             return;
         }
-        this.f35139g0 = f11;
-        this.f35140h0 = f12;
-        this.f35141i0 = width;
-        this.f35142j0 = height;
+        this.f35141g0 = f11;
+        this.f35142h0 = f12;
+        this.f35143i0 = width;
+        this.f35144j0 = height;
         if (width > 0 && height > 0) {
-            this.f35147s.c(width, height, f11, f12, z10, this.v);
-            p5 p5Var = this.f35131b;
+            this.f35149s.c(width, height, f11, f12, z10, this.v);
+            p5 p5Var = this.f35133b;
             if (p5Var != null) {
-                float[] fArr2 = p5Var.f35030n;
-                float[] fArr3 = p5Var.f35029m;
-                float[] fArr4 = p5Var.f35027k;
-                float[] fArr5 = p5Var.f35028l;
-                int[] iArr = p5Var.f35031o;
-                p5Var.f35034r = z10;
-                float[] fArr6 = p5Var.f35024i;
+                float[] fArr2 = p5Var.f35032n;
+                float[] fArr3 = p5Var.f35031m;
+                float[] fArr4 = p5Var.f35029k;
+                float[] fArr5 = p5Var.f35030l;
+                int[] iArr = p5Var.f35033o;
+                p5Var.f35036r = z10;
+                float[] fArr6 = p5Var.f35026i;
                 if (z10) {
                     fArr = fArr5;
                 } else {
@@ -199,7 +199,7 @@ public final class s5 extends FrameLayout implements SensorEventListener {
                 if (!z10) {
                     fArr4 = fArr5;
                 }
-                m.s3 s3Var = this.f35147s;
+                m.s3 s3Var = this.f35149s;
                 s3Var.getClass();
                 int i10 = 0;
                 while (i10 < fArr6.length / 2) {
@@ -218,7 +218,7 @@ public final class s5 extends FrameLayout implements SensorEventListener {
                     fArr = fArr7;
                 }
                 int[] iArr2 = iArr;
-                p5Var.f35033q = width / 336.0f;
+                p5Var.f35035q = width / 336.0f;
                 int i12 = 0;
                 while (i12 < 76) {
                     int i13 = i12 + 1;
@@ -239,11 +239,11 @@ public final class s5 extends FrameLayout implements SensorEventListener {
                     iArr2[i16 + 1] = i15;
                 }
             }
-            t00 t00Var = this.e;
-            int width2 = t00Var.getWidth();
-            int height2 = t00Var.getHeight();
+            r00 r00Var = this.e;
+            int width2 = r00Var.getWidth();
+            int height2 = r00Var.getHeight();
             if (width2 != 0 && height2 != 0) {
-                float[] fArr9 = (float[]) t00Var.d;
+                float[] fArr9 = (float[]) r00Var.d;
                 fArr9[0] = 0.0f;
                 fArr9[1] = 0.0f;
                 float f15 = width2;
@@ -254,11 +254,11 @@ public final class s5 extends FrameLayout implements SensorEventListener {
                 fArr9[5] = f16;
                 fArr9[6] = 0.0f;
                 fArr9[7] = f16;
-                t00Var.f30587b = ((Matrix) t00Var.f30588c).setPolyToPoly(fArr9, 0, this.v, 0, 4);
-                t00Var.invalidate();
+                r00Var.f30028b = ((Matrix) r00Var.f30029c).setPolyToPoly(fArr9, 0, this.v, 0, 4);
+                r00Var.invalidate();
             }
         }
-        p5 p5Var2 = this.f35131b;
+        p5 p5Var2 = this.f35133b;
         if (p5Var2 != null) {
             p5Var2.k(f11, f12);
         }
@@ -276,20 +276,20 @@ public final class s5 extends FrameLayout implements SensorEventListener {
 
     public final void e() {
         boolean z10;
-        SensorManager sensorManager = this.f35148w;
+        SensorManager sensorManager = this.f35150w;
         if (sensorManager != null) {
             if (this.W && isShown() && getWindowVisibility() == 0 && hasWindowFocus()) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            if (this.f35130a0 != z10) {
-                this.f35130a0 = z10;
-                m4 m4Var = this.f35143k0;
+            if (this.f35132a0 != z10) {
+                this.f35132a0 = z10;
+                m4 m4Var = this.f35145k0;
                 removeCallbacks(m4Var);
                 if (z10) {
                     this.V = 0L;
-                    Sensor sensor = this.f35149x;
+                    Sensor sensor = this.f35151x;
                     if (sensor != null) {
                         sensorManager.registerListener(this, sensor, 1);
                     }
@@ -302,15 +302,15 @@ public final class s5 extends FrameLayout implements SensorEventListener {
     }
 
     public float getCardRotationX() {
-        return this.f35134c0;
+        return this.f35136c0;
     }
 
     public float getCardRotationY() {
-        return this.f35138f0;
+        return this.f35140f0;
     }
 
     public FrameLayout getFrontFace() {
-        return this.f35146r;
+        return this.f35148r;
     }
 
     @Override
@@ -319,10 +319,10 @@ public final class s5 extends FrameLayout implements SensorEventListener {
         this.W = true;
         this.V = 0L;
         z5 z5Var = this.G;
-        z5Var.f35497a = false;
+        z5Var.f35499a = false;
         z5Var.h = 0L;
-        z5Var.f35502i = 0L;
-        z5Var.f35503j = 0L;
+        z5Var.f35504i = 0L;
+        z5Var.f35505j = 0L;
         this.K = 0.0f;
         this.L = 0.0f;
         this.M = 0.0f;
@@ -333,11 +333,11 @@ public final class s5 extends FrameLayout implements SensorEventListener {
     public final void onDetachedFromWindow() {
         this.W = false;
         e();
-        ValueAnimator valueAnimator = this.f35132b0;
+        ValueAnimator valueAnimator = this.f35134b0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f35132b0.cancel();
-            this.f35132b0 = null;
+            this.f35134b0.cancel();
+            this.f35134b0 = null;
         }
         super.onDetachedFromWindow();
     }
@@ -350,7 +350,7 @@ public final class s5 extends FrameLayout implements SensorEventListener {
 
     @Override
     public final void onSensorChanged(SensorEvent sensorEvent) {
-        if (this.f35150y) {
+        if (this.f35152y) {
             float[] fArr = sensorEvent.values;
             float[] fArr2 = this.E;
             SensorManager.getRotationMatrixFromVector(fArr2, fArr);
@@ -379,23 +379,23 @@ public final class s5 extends FrameLayout implements SensorEventListener {
         z5 z5Var = this.G;
         z5Var.getClass();
         if (!Float.isNaN(f10) && !Float.isInfinite(f10) && !Float.isNaN(f11) && !Float.isInfinite(f11)) {
-            z5Var.f35498b = f10;
-            z5Var.f35499c = f11;
-            z5Var.f35502i = j11;
-            if (!z5Var.f35497a) {
-                z5Var.f35497a = true;
+            z5Var.f35500b = f10;
+            z5Var.f35501c = f11;
+            z5Var.f35504i = j11;
+            if (!z5Var.f35499a) {
+                z5Var.f35499a = true;
                 z5Var.d = f10;
                 z5Var.e = f11;
-                z5Var.f35500f = f10;
-                z5Var.f35501g = f11;
+                z5Var.f35502f = f10;
+                z5Var.f35503g = f11;
                 z5Var.h = j11;
                 return;
             }
-            float f12 = f10 - z5Var.f35500f;
-            float f13 = f11 - z5Var.f35501g;
+            float f12 = f10 - z5Var.f35502f;
+            float f13 = f11 - z5Var.f35503g;
             if ((f13 * f13) + (f12 * f12) > 1.265625f) {
-                z5Var.f35500f = f10;
-                z5Var.f35501g = f11;
+                z5Var.f35502f = f10;
+                z5Var.f35503g = f11;
                 z5Var.h = j11;
             }
         }
@@ -405,10 +405,10 @@ public final class s5 extends FrameLayout implements SensorEventListener {
     public final void onSizeChanged(int i10, int i11, int i12, int i13) {
         super.onSizeChanged(i10, i11, i12, i13);
         float dp = i10 / AndroidUtilities.dp(336.0f);
-        ah.x xVar = this.f35146r;
+        ah.x xVar = this.f35148r;
         xVar.setScaleX(dp);
         xVar.setScaleY(i11 / AndroidUtilities.dp(205.0f));
-        b(this.f35134c0, this.f35138f0);
+        b(this.f35136c0, this.f35140f0);
     }
 
     @Override
@@ -473,11 +473,11 @@ public final class s5 extends FrameLayout implements SensorEventListener {
             postDelayed(new q5(this, 0), Math.max(0L, 80 - (motionEvent.getEventTime() - motionEvent.getDownTime())));
             return true;
         }
-        ValueAnimator valueAnimator = this.f35132b0;
+        ValueAnimator valueAnimator = this.f35134b0;
         if (valueAnimator != null) {
             valueAnimator.removeAllListeners();
-            this.f35132b0.cancel();
-            this.f35132b0 = null;
+            this.f35134b0.cancel();
+            this.f35134b0 = null;
         }
         getParent().requestDisallowInterceptTouchEvent(true);
         d(0, motionEvent);
@@ -511,19 +511,19 @@ public final class s5 extends FrameLayout implements SensorEventListener {
     }
 
     public void setAdditionalTilt(float f7) {
-        float f10 = this.f35135d0;
+        float f10 = this.f35137d0;
         if (f10 == f7) {
             return;
         }
-        this.f35135d0 = f7;
-        b((this.f35134c0 + f7) - f10, this.f35138f0);
+        this.f35137d0 = f7;
+        b((this.f35136c0 + f7) - f10, this.f35140f0);
     }
 
     public void setCardIcon(int i10) {
-        r5 r5Var = this.f35145n;
-        s5 s5Var = r5Var.f35105b;
-        s5Var.f35133c = i10;
-        p5 p5Var = s5Var.f35131b;
+        r5 r5Var = this.f35147n;
+        s5 s5Var = r5Var.f35107b;
+        s5Var.f35135c = i10;
+        p5 p5Var = s5Var.f35133b;
         if (p5Var != null) {
             p5Var.j(i10);
         }
@@ -531,8 +531,8 @@ public final class s5 extends FrameLayout implements SensorEventListener {
     }
 
     public void setHasCardNumber(boolean z10) {
-        r5 r5Var = this.f35145n;
-        r5Var.f35104a = z10;
+        r5 r5Var = this.f35147n;
+        r5Var.f35106a = z10;
         r5Var.invalidate();
     }
 
@@ -541,15 +541,15 @@ public final class s5 extends FrameLayout implements SensorEventListener {
         g6Var.f9079b = fArr;
         this.e.invalidate();
         g6Var.invalidate();
-        this.f35145n.invalidate();
+        this.f35147n.invalidate();
     }
 
     public void setUseGyroscope(float f7) {
-        if (this.f35136e0 == f7) {
+        if (this.f35138e0 == f7) {
             return;
         }
-        this.f35136e0 = f7;
-        b((this.L * f7) + this.N + this.f35135d0, (this.M * f7) + this.O);
+        this.f35138e0 = f7;
+        b((this.L * f7) + this.N + this.f35137d0, (this.M * f7) + this.O);
     }
 
     @Override

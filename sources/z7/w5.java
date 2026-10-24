@@ -1,6 +1,6 @@
 package z7;
 public final class w5 implements ja.d {
-    public static final w5 f51688a = new Object();
+    public static final w5 f51687a = new Object();
 
     static {
         si.o0.s(si.o0.n(w.class, si.o0.r(2, si.o0.n(w.class, new s(1)))));

@@ -3,20 +3,20 @@ package org.telegram.utils.code.highlight;
 import com.google.android.gms.internal.play_billing.s0;
 import mi.s;
 public final class PrismaHighlighter implements AutoCloseable {
-    public long f44248a;
-    public final String[] f44249b;
-    public final s f44250c;
+    public long f44247a;
+    public final String[] f44248b;
+    public final s f44249c;
 
     public PrismaHighlighter(byte[] bArr) {
         if (bArr != null) {
             long nativeCreate = nativeCreate(bArr);
-            this.f44248a = nativeCreate;
+            this.f44247a = nativeCreate;
             if (nativeCreate != 0) {
                 try {
                     String[] nativeGetTokenNames = nativeGetTokenNames(nativeCreate);
-                    this.f44249b = nativeGetTokenNames;
+                    this.f44248b = nativeGetTokenNames;
                     if (nativeGetTokenNames != null && nativeGetTokenNames.length != 0 && "".equals(nativeGetTokenNames[0])) {
-                        this.f44250c = new s(nativeGetTokenNames);
+                        this.f44249c = new s(nativeGetTokenNames);
                         return;
                     }
                     throw new IllegalStateException("Invalid native token name table");
@@ -82,7 +82,7 @@ public final class PrismaHighlighter implements AutoCloseable {
 
     public final synchronized String[] a() {
         long j10;
-        j10 = this.f44248a;
+        j10 = this.f44247a;
         if (j10 != 0) {
         } else {
             throw new IllegalStateException("Highlighter is closed");
@@ -92,26 +92,26 @@ public final class PrismaHighlighter implements AutoCloseable {
 
     public final synchronized s0 c(String str, String str2) {
         int[] nativeHighlight;
-        long j10 = this.f44248a;
+        long j10 = this.f44247a;
         if (j10 != 0) {
             if (str != null) {
                 nativeHighlight = nativeHighlight(j10, str, str2);
-                d(this.f44249b.length, nativeHighlight, str);
+                d(this.f44248b.length, nativeHighlight, str);
             } else {
                 throw new NullPointerException("text");
             }
         } else {
             throw new IllegalStateException("Highlighter is closed");
         }
-        return new s0(nativeHighlight, this.f44250c);
+        return new s0(nativeHighlight, this.f44249c);
     }
 
     @Override
     public final synchronized void close() {
-        long j10 = this.f44248a;
+        long j10 = this.f44247a;
         if (j10 != 0) {
             nativeDestroy(j10);
-            this.f44248a = 0L;
+            this.f44247a = 0L;
         }
     }
 }

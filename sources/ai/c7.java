@@ -2,7 +2,7 @@ package ai;
 
 import android.content.Context;
 import android.view.View;
-public final class c7 extends org.telegram.ui.Components.w9 {
+public final class c7 extends org.telegram.ui.Components.u9 {
     public final int G;
 
     public c7(Context context, int i10) {

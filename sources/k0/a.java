@@ -16,12 +16,12 @@ public final class a extends FingerprintManager.AuthenticationCallback {
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((w) ((e) this.f14608a.f44852b).d).a(i10, charSequence);
+        ((w) ((e) this.f14608a.f44851b).d).a(i10, charSequence);
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((w) ((e) this.f14608a.f44852b).d).f2846a;
+        WeakReference weakReference = ((w) ((e) this.f14608a.f44851b).d).f2846a;
         if (weakReference.get() != null && ((y) weakReference.get()).f2856n) {
             y yVar = (y) weakReference.get();
             if (yVar.f2863u == null) {
@@ -33,7 +33,7 @@ public final class a extends FingerprintManager.AuthenticationCallback {
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((w) ((e) this.f14608a.f44852b).d).f2846a;
+        WeakReference weakReference = ((w) ((e) this.f14608a.f44851b).d).f2846a;
         if (weakReference.get() != null) {
             y yVar = (y) weakReference.get();
             if (yVar.f2862t == null) {

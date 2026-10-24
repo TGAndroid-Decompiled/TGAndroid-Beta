@@ -7,7 +7,7 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesStorage;
 import org.telegram.tgnet.tl.TL_account;
 import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.e5;
+import org.telegram.ui.Components.c5;
 public final class p implements TextView.OnEditorActionListener {
     public final int f13016a;
     public final int f13017b;
@@ -62,14 +62,14 @@ public final class p implements TextView.OnEditorActionListener {
                 }
                 return true;
             default:
-                e5 e5Var = (e5) this.e;
+                c5 c5Var = (c5) this.e;
                 MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f13019f;
                 if (i10 != 6) {
                     return false;
                 }
-                String obj2 = e5Var.getText().toString();
+                String obj2 = c5Var.getText().toString();
                 if (obj2.length() > this.f13017b) {
-                    AndroidUtilities.shakeView(e5Var);
+                    AndroidUtilities.shakeView(c5Var);
                 } else {
                     stringCallback.run(obj2);
                     org.telegram.ui.ActionBar.c2 c2Var2 = this.f13018c[0];

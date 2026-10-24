@@ -3,7 +3,7 @@ package org.telegram.ui;
 import android.graphics.Canvas;
 import android.view.View;
 import android.view.ViewGroup;
-public final class s30 extends org.telegram.ui.Components.qu {
+public final class s30 extends org.telegram.ui.Components.ou {
     public final u50 V;
 
     public s30(u50 u50Var, LaunchActivity launchActivity, x40 x40Var, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.g6 g6Var) {
@@ -28,10 +28,10 @@ public final class s30 extends org.telegram.ui.Components.qu {
     public final void f() {
         ViewGroup viewGroup;
         super.f();
-        org.telegram.ui.Components.tz emojiView = getEmojiView();
+        org.telegram.ui.Components.rz emojiView = getEmojiView();
         if (emojiView != null) {
-            emojiView.f31028w0 = false;
-            emojiView.f31034x2 = false;
+            emojiView.f30372w0 = false;
+            emojiView.f30378x2 = false;
             emojiView.setShouldDrawBackground(false);
             viewGroup = ((org.telegram.ui.ActionBar.h3) this.V).containerView;
             emojiView.setBottomInset(viewGroup.getPaddingBottom());

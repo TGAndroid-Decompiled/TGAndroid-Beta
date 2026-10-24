@@ -11,17 +11,17 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.xp;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.vp;
 public final class x8 extends FrameLayout {
-    public final TextView f23956a;
-    public final TextView f23957b;
-    public final xp f23958c;
+    public final TextView f23957a;
+    public final TextView f23958b;
+    public final vp f23959c;
     public boolean d;
     public boolean e;
-    public int f23959f;
+    public int f23960f;
     public float h;
-    public float f23960n;
+    public float f23961n;
 
     static {
         new t8("animationProgress", 1);
@@ -37,11 +37,11 @@ public final class x8 extends FrameLayout {
         int i13;
         float f11;
         float f12;
-        this.f23959f = 50;
+        this.f23960f = 50;
         TextView textView = new TextView(context);
-        this.f23956a = textView;
+        this.f23957a = textView;
         org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.G6, null);
-        sl.u(textView, 1, 16.0f, 1, 1);
+        tl.u(textView, 1, 16.0f, 1, 1);
         textView.setSingleLine(true);
         if (LocaleController.isRTL) {
             i10 = 5;
@@ -70,8 +70,8 @@ public final class x8 extends FrameLayout {
         }
         addView(textView, w7.z5.d(-1, -1.0f, i14, f7, 0.0f, f10, 0.0f));
         TextView textView2 = new TextView(context);
-        this.f23957b = textView2;
-        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21588z6, null);
+        this.f23958b = textView2;
+        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21589z6, null);
         textView2.setTextSize(1, 13.0f);
         if (LocaleController.isRTL) {
             i12 = 5;
@@ -102,27 +102,27 @@ public final class x8 extends FrameLayout {
             f12 = 21;
         }
         addView(textView2, w7.z5.d(-2, -2.0f, i15, f11, 36.0f, f12, 0.0f));
-        xp xpVar = new xp(context, 21, null);
-        this.f23958c = xpVar;
-        xpVar.setDrawUnchecked(true);
-        xpVar.setDrawBackgroundAsArc(10);
-        xpVar.setDuration(100L);
-        xpVar.b(org.telegram.ui.ActionBar.k6.f21256h7, org.telegram.ui.ActionBar.k6.f21291j7, org.telegram.ui.ActionBar.k6.f21311k7);
-        addView(xpVar, w7.z5.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
+        vp vpVar = new vp(context, 21, null);
+        this.f23959c = vpVar;
+        vpVar.setDrawUnchecked(true);
+        vpVar.setDrawBackgroundAsArc(10);
+        vpVar.setDuration(100L);
+        vpVar.b(org.telegram.ui.ActionBar.k6.f21257h7, org.telegram.ui.ActionBar.k6.f21292j7, org.telegram.ui.ActionBar.k6.f21312k7);
+        addView(vpVar, w7.z5.d(20, 20.0f, (LocaleController.isRTL ? 5 : 3) | 16, 22.0f, 0.0f, 22.0f, 0.0f));
         setClipChildren(false);
     }
 
     public void setAnimationProgress(float f7) {
         this.h = f7;
-        Math.max(this.f23960n, getMeasuredWidth() - this.f23960n);
+        Math.max(this.f23961n, getMeasuredWidth() - this.f23961n);
         AndroidUtilities.dp(40.0f);
         getMeasuredHeight();
     }
 
     public final void b(String str, String str2, boolean z10, boolean z11) {
-        TextView textView = this.f23956a;
+        TextView textView = this.f23957a;
         textView.setText(str);
-        TextView textView2 = this.f23957b;
+        TextView textView2 = this.f23958b;
         textView2.setText(str2);
         this.d = z11;
         textView2.setVisibility(0);
@@ -165,7 +165,7 @@ public final class x8 extends FrameLayout {
             } else {
                 i10 = 0;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21304k0);
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21305k0);
         }
     }
 
@@ -174,10 +174,10 @@ public final class x8 extends FrameLayout {
         super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
         accessibilityNodeInfo.setClassName("android.widget.checkbox");
         accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f23958c.f32618a.f24296q);
+        accessibilityNodeInfo.setChecked(this.f23959c.f32005a.f24297q);
         StringBuilder sb2 = new StringBuilder();
-        sb2.append(this.f23956a.getText());
-        TextView textView = this.f23957b;
+        sb2.append(this.f23957a.getText());
+        TextView textView = this.f23958b;
         if (textView != null) {
             sb2.append("\n");
             sb2.append(textView.getText());
@@ -193,17 +193,17 @@ public final class x8 extends FrameLayout {
             return;
         }
         int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (this.f23957b.getVisibility() == 0) {
+        if (this.f23958b.getVisibility() == 0) {
             f7 = 64.0f;
         } else {
-            f7 = this.f23959f;
+            f7 = this.f23960f;
         }
         super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(f7) + (this.d ? 1 : 0), 1073741824));
     }
 
     @Override
     public final boolean onTouchEvent(MotionEvent motionEvent) {
-        this.f23960n = motionEvent.getX();
+        this.f23961n = motionEvent.getX();
         return super.onTouchEvent(motionEvent);
     }
 
@@ -214,11 +214,11 @@ public final class x8 extends FrameLayout {
     }
 
     public void setChecked(boolean z10) {
-        this.f23958c.a(z10, true);
+        this.f23959c.a(z10, true);
     }
 
     public void setHeight(int i10) {
-        this.f23959f = i10;
+        this.f23960f = i10;
     }
 
     @Override
@@ -227,6 +227,6 @@ public final class x8 extends FrameLayout {
     }
 
     public void setTypeface(Typeface typeface) {
-        this.f23956a.setTypeface(typeface);
+        this.f23957a.setTypeface(typeface);
     }
 }

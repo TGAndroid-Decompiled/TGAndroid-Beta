@@ -11,13 +11,13 @@ import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.qx0;
-import org.telegram.ui.Components.zn0;
+import org.telegram.ui.Components.px0;
+import org.telegram.ui.Components.yn0;
 public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
     public final org.telegram.ui.ActionBar.g6 f9154a;
     public final FrameLayout f9155b;
     public final ImageView f9156c;
-    public final zn0 d;
+    public final yn0 d;
     public final e2 e;
     public final int f9157f;
     public g2 h;
@@ -48,12 +48,12 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
         this.f9156c = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
-        zn0 zn0Var = new zn0();
-        this.d = zn0Var;
-        zn0Var.c(0, false, false);
+        yn0 yn0Var = new yn0();
+        this.d = yn0Var;
+        yn0Var.c(0, false, false);
         int i11 = org.telegram.ui.ActionBar.k6.Je;
-        zn0Var.a(org.telegram.ui.ActionBar.k6.w0(i11, g6Var));
-        imageView.setImageDrawable(zn0Var);
+        yn0Var.a(org.telegram.ui.ActionBar.k6.w0(i11, g6Var));
+        imageView.setImageDrawable(yn0Var);
         frameLayout.addView(imageView, w7.z5.e(36, 36, 51));
         e2 e2Var = new e2(this, context, 0);
         this.e = e2Var;
@@ -79,7 +79,7 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
         this.f9159r = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageDrawable(new f2(g6Var));
-        int i13 = org.telegram.ui.ActionBar.k6.f21272i6;
+        int i13 = org.telegram.ui.ActionBar.k6.f21273i6;
         org.telegram.ui.Cells.y g02 = org.telegram.ui.ActionBar.k6.g0(org.telegram.ui.ActionBar.k6.w0(i13, g6Var), 1, AndroidUtilities.dp(15.0f));
         org.telegram.ui.ActionBar.n6 O2 = org.telegram.ui.ActionBar.r6.O(i13);
         imageView2.setBackground(g02);
@@ -103,7 +103,7 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
                         return;
                     default:
                         h2 h2Var = this.f8827b;
-                        int i14 = h2Var.d.f33293k;
+                        int i14 = h2Var.d.f33003k;
                         if (i14 == 1) {
                             h2Var.b();
                             g2 g2Var = h2Var.h;
@@ -137,7 +137,7 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
                         return;
                     default:
                         h2 h2Var = this.f8827b;
-                        int i14 = h2Var.d.f33293k;
+                        int i14 = h2Var.d.f33003k;
                         if (i14 == 1) {
                             h2Var.b();
                             g2 g2Var = h2Var.h;
@@ -195,11 +195,11 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
                         h2Var.d(false);
                         return;
                     default:
-                        qx0 qx0Var = (qx0) obj;
+                        px0 px0Var = (px0) obj;
                         h2 h2Var2 = this.f8893b;
                         g2 g2Var3 = h2Var2.h;
                         if (g2Var3 != null) {
-                            if (g2Var3.getSelectedCategory() == qx0Var) {
+                            if (g2Var3.getSelectedCategory() == px0Var) {
                                 h2Var2.h.L1(null);
                                 Utilities.Callback2 callback2 = h2Var2.f9161w;
                                 if (callback2 != null) {
@@ -208,8 +208,8 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
                                 }
                                 return;
                             }
-                            h2Var2.h.L1(qx0Var);
-                            String str = qx0Var.f30024a;
+                            h2Var2.h.L1(px0Var);
+                            String str = px0Var.f29685a;
                             int categoryIndex = h2Var2.h.getCategoryIndex();
                             Utilities.Callback2 callback22 = h2Var2.f9161w;
                             if (callback22 != null) {
@@ -240,11 +240,11 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
                         h2Var.d(false);
                         return;
                     default:
-                        qx0 qx0Var = (qx0) obj;
+                        px0 px0Var = (px0) obj;
                         h2 h2Var2 = this.f8893b;
                         g2 g2Var3 = h2Var2.h;
                         if (g2Var3 != null) {
-                            if (g2Var3.getSelectedCategory() == qx0Var) {
+                            if (g2Var3.getSelectedCategory() == px0Var) {
                                 h2Var2.h.L1(null);
                                 Utilities.Callback2 callback2 = h2Var2.f9161w;
                                 if (callback2 != null) {
@@ -253,8 +253,8 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
                                 }
                                 return;
                             }
-                            h2Var2.h.L1(qx0Var);
-                            String str = qx0Var.f30024a;
+                            h2Var2.h.L1(px0Var);
+                            String str = px0Var.f29685a;
                             int categoryIndex = h2Var2.h.getCategoryIndex();
                             Utilities.Callback2 callback22 = h2Var2.f9161w;
                             if (callback22 != null) {
@@ -300,7 +300,7 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
         if (z11 && ((e2Var.length() != 0 || ((g2Var2 = this.h) != null && g2Var2.getSelectedCategory() != null)) && !z10)) {
             return;
         }
-        if (e2Var.length() <= 0 && ((g2Var = this.h) == null || g2Var.f31246p3 <= 0.5f || ((g2Var == null || !g2Var.f31241k3) && g2Var.getSelectedCategory() == null))) {
+        if (e2Var.length() <= 0 && ((g2Var = this.h) == null || g2Var.f30926p3 <= 0.5f || ((g2Var == null || !g2Var.f30921k3) && g2Var.getSelectedCategory() == null))) {
             i10 = 0;
         } else {
             i10 = 1;
@@ -317,10 +317,10 @@ public final class h2 extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void updateColors() {
         try {
-            zn0 zn0Var = this.d;
+            yn0 yn0Var = this.d;
             org.telegram.ui.ActionBar.g6 g6Var = this.f9154a;
-            if (zn0Var != null) {
-                zn0Var.a(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Je, g6Var));
+            if (yn0Var != null) {
+                yn0Var.a(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Je, g6Var));
             }
             ImageView imageView = this.f9156c;
             if (imageView != null) {

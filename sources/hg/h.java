@@ -12,7 +12,7 @@ import org.telegram.ui.ActionBar.a6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
 import org.telegram.ui.Cells.a3;
-import org.telegram.ui.Components.w9;
+import org.telegram.ui.Components.u9;
 import w7.z5;
 public final class h extends a3 {
     public final m f11898f;
@@ -20,43 +20,43 @@ public final class h extends a3 {
     public h(m mVar, Context context) {
         super(context);
         this.f11898f = mVar;
-        this.f22079a = UserConfig.selectedAccount;
+        this.f22080a = UserConfig.selectedAccount;
         setOrientation(1);
-        r6.i(k6.f21125a7, this, null);
+        r6.i(k6.f21126a7, this, null);
         m5 m5Var = new m5(context, 3);
         m5Var.f9478c = new Path();
         Paint paint = new Paint(1);
         m5Var.f9477b = paint;
-        paint.setColor(k6.x0(null, k6.f21183d6, false));
+        paint.setColor(k6.x0(null, k6.f21184d6, false));
         paint.setShadowLayer(AndroidUtilities.dp(1.33f), 0.0f, AndroidUtilities.dp(0.33f), 503316480);
         m5Var.setWillNotDraw(false);
         m5Var.setOrientation(1);
         m5Var.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(16.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f));
-        w9 w9Var = new w9(context);
-        this.f22080b = w9Var;
-        w9Var.setOnClickListener(new View.OnClickListener(this) {
-            public final hg.h f24021b;
+        u9 u9Var = new u9(context);
+        this.f22081b = u9Var;
+        u9Var.setOnClickListener(new View.OnClickListener(this) {
+            public final hg.h f24022b;
 
             {
-                this.f24021b = this;
+                this.f24022b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f24021b.f22080b.getImageReceiver().startAnimation();
+                        this.f24022b.f22081b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f24021b.f11898f.L();
+                        this.f24022b.f11898f.L();
                         return;
                 }
             }
         });
         a();
-        m5Var.addView(w9Var, z5.q(130, 130, 49));
+        m5Var.addView(u9Var, z5.q(130, 130, 49));
         TextView textView = new TextView(context);
-        this.f22081c = textView;
+        this.f22082c = textView;
         textView.setGravity(17);
         textView.setTextSize(1, 18.0f);
         r6.W(textView, k6.G6, null);
@@ -66,7 +66,7 @@ public final class h extends a3 {
         this.d = textView2;
         textView2.setGravity(17);
         textView2.setTextSize(1, 14.0f);
-        r6.W(textView2, k6.f21571y6, null);
+        r6.W(textView2, k6.f21572y6, null);
         m5Var.addView(textView2, z5.t(-1, -2, 49, 0, 7, 0, 0));
         TextView textView3 = new TextView(context);
         this.e = textView3;
@@ -77,20 +77,20 @@ public final class h extends a3 {
         textView3.setTypeface(AndroidUtilities.bold());
         textView3.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
         textView3.setOnClickListener(new View.OnClickListener(this) {
-            public final hg.h f24021b;
+            public final hg.h f24022b;
 
             {
-                this.f24021b = this;
+                this.f24022b = this;
             }
 
             @Override
             public final void onClick(View view) {
                 switch (r2) {
                     case 0:
-                        this.f24021b.f22080b.getImageReceiver().startAnimation();
+                        this.f24022b.f22081b.getImageReceiver().startAnimation();
                         return;
                     default:
-                        this.f24021b.f11898f.L();
+                        this.f24022b.f11898f.L();
                         return;
                 }
             }

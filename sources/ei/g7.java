@@ -29,21 +29,21 @@ public final class g7 extends i7 {
     @Override
     public final void c(org.telegram.ui.ActionBar.o2 o2Var) {
         TLRPC.User user = this.f9081b;
-        if (user.f20490id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
+        if (user.f20491id == UserConfig.getInstance(UserConfig.selectedAccount).getClientUserId()) {
             Bundle bundle = new Bundle();
-            bundle.putLong("user_id", user.f20490id);
+            bundle.putLong("user_id", user.f20491id);
             bundle.putBoolean("my_profile", true);
             o2Var.presentFragment(new ProfileActivity(bundle, null));
             return;
         }
-        o2Var.presentFragment(ProfileActivity.o4(user.f20490id));
+        o2Var.presentFragment(ProfileActivity.o4(user.f20491id));
     }
 
     @Override
     public final void d(ImageReceiver imageReceiver) {
-        org.telegram.ui.Components.h9 h9Var = new org.telegram.ui.Components.h9((org.telegram.ui.ActionBar.g6) null);
+        org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
         TLRPC.User user = this.f9081b;
-        h9Var.r(user);
-        imageReceiver.setForUserOrChat(user, h9Var);
+        f9Var.r(user);
+        imageReceiver.setForUserOrChat(user, f9Var);
     }
 }

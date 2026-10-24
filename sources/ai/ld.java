@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.Components.d91;
-import org.telegram.ui.Components.m61;
+import org.telegram.ui.Components.l61;
 public final class ld extends d91 {
     public final Context f1782a;
     public final int f1783b;
@@ -56,7 +56,7 @@ public final class ld extends d91 {
         if (i10 >= 0) {
             ArrayList arrayList = this.f1786g;
             if (i10 < arrayList.size()) {
-                return ((m61) arrayList.get(i10)).f28572z;
+                return ((l61) arrayList.get(i10)).f28240z;
             }
             return 0;
         }
@@ -71,23 +71,23 @@ public final class ld extends d91 {
         int i11 = this.f1783b;
         if (i10 == 0) {
             ha y3 = ha.y(i11, this.f1784c);
-            arrayList.add(m61.C(0));
+            arrayList.add(l61.C(0));
             if (y3.O(1)) {
-                arrayList.add(m61.C(1));
+                arrayList.add(l61.C(1));
             }
             if (y3.O(2)) {
-                arrayList.add(m61.C(2));
+                arrayList.add(l61.C(2));
                 return;
             }
             return;
         }
         k0 g10 = k0.g(i11);
-        arrayList.add(m61.C(0));
+        arrayList.add(l61.C(0));
         if (!g10.k(j10).f1521a[1].isEmpty()) {
-            arrayList.add(m61.C(1));
+            arrayList.add(l61.C(1));
         }
         if (!g10.k(j10).f1521a[2].isEmpty()) {
-            arrayList.add(m61.C(2));
+            arrayList.add(l61.C(2));
         }
     }
 

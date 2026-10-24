@@ -2,15 +2,15 @@ package yh;
 
 import android.view.View;
 public final class w0 implements View.OnAttachStateChangeListener {
-    public final ai.z f51030a;
+    public final ai.z f51029a;
 
     public w0(ai.z zVar) {
-        this.f51030a = zVar;
+        this.f51029a = zVar;
     }
 
     @Override
     public final void onViewAttachedToWindow(View view) {
-        this.f51030a.run();
+        this.f51029a.run();
     }
 
     @Override

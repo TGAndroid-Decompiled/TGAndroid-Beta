@@ -4,8 +4,8 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.fl0;
-public final class l3 implements fl0 {
+import org.telegram.ui.Components.el0;
+public final class l3 implements el0 {
     public final p4 f5513a;
 
     public l3(p4 p4Var) {
@@ -28,7 +28,7 @@ public final class l3 implements fl0 {
         if (!z10) {
             p4Var.m0(new ai.x9(this, view, i1Var, z10, z11));
         } else {
-            org.telegram.ui.Components.f5.a0(p4Var.C2, 1, p4Var.B1, new k3(this, z10, i1Var, view));
+            org.telegram.ui.Components.d5.Z(p4Var.C2, 1, p4Var.B1, new k3(this, z10, i1Var, view));
         }
     }
 

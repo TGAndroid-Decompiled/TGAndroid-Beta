@@ -7,10 +7,10 @@ import android.net.Uri;
 import android.view.TextureView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class d0 {
     public int f8877a;
-    public final org.telegram.ui.Components.f6 f8878b;
+    public final org.telegram.ui.Components.d6 f8878b;
     public final ImageReceiver f8879c;
     public c0 d;
     public TextureView e;
@@ -28,7 +28,7 @@ public final class d0 {
 
     public d0(e0 e0Var) {
         this.f8889p = e0Var;
-        this.f8878b = new org.telegram.ui.Components.f6(e0Var, 0L, 1200L, bs.f25134g);
+        this.f8878b = new org.telegram.ui.Components.d6(e0Var, 0L, 1200L, zr.f33338g);
         this.f8879c = new ImageReceiver(e0Var);
     }
 
@@ -142,7 +142,7 @@ public final class d0 {
             this.f8888o = ofFloat;
             ofFloat.addUpdateListener(new ci.u4(this, 2));
             this.f8888o.addListener(new ah.b(this, 17));
-            this.f8888o.setInterpolator(bs.h);
+            this.f8888o.setInterpolator(zr.h);
             this.f8888o.setDuration(360L);
             this.f8888o.start();
         } else {

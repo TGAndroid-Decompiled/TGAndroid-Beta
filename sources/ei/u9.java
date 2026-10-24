@@ -15,11 +15,11 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
 public final class u9 implements Utilities.Callback {
     public final int f9928a;
     public final vb f9929b;
@@ -170,17 +170,17 @@ public final class u9 implements Utilities.Callback {
                 vb vbVar4 = this.f9929b;
                 ci.b bVar = vbVar4.f9964a;
                 int intValue = ((Integer) obj).intValue() / 3600;
-                org.telegram.ui.Components.kb kbVar = new org.telegram.ui.Components.lb(vbVar4.f9967b, new o8(1)).f28320a;
-                WindowManager.LayoutParams layout = kbVar.getLayout();
+                org.telegram.ui.Components.ib ibVar2 = new org.telegram.ui.Components.jb(vbVar4.f9967b, new o8(1)).f27654a;
+                WindowManager.LayoutParams layout = ibVar2.getLayout();
                 if (layout != null) {
                     layout.height = -2;
                     layout.width = vbVar4.f10017r.getWidth();
                     layout.y = (int) (vbVar4.f10017r.getY() + AndroidUtilities.dp(56.0f));
-                    org.telegram.ui.Components.lb lbVar = kbVar.f27997a;
-                    lbVar.getWindow().setAttributes(lbVar.f28321b);
+                    org.telegram.ui.Components.jb jbVar = ibVar2.f27390a;
+                    jbVar.getWindow().setAttributes(jbVar.f27655b);
                 }
-                kbVar.setTouchable(true);
-                new xc(kbVar, bVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.k6.f21242gc, 0, new t9(vbVar4, 27), bVar)).k(true);
+                ibVar2.setTouchable(true);
+                new vc(ibVar2, bVar).G(R.raw.fire_on, 3, AndroidUtilities.replaceSingleTag(LocaleController.formatPluralString("StoryPeriodPremium", intValue, new Object[0]), org.telegram.ui.ActionBar.k6.f21243gc, 0, new t9(vbVar4, 27), bVar)).k(true);
                 return;
             case 6:
                 Boolean bool = (Boolean) obj;
@@ -204,10 +204,10 @@ public final class u9 implements Utilities.Callback {
                 } else {
                     f7 = 1.0f;
                 }
-                sl.s(animate, f7, 120L);
-                org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f29825w;
-                if (qcVar != null && qcVar.f29826a == 2) {
-                    qcVar.l();
+                tl.s(animate, f7, 120L);
+                org.telegram.ui.Components.oc ocVar = org.telegram.ui.Components.oc.f29196w;
+                if (ocVar != null && ocVar.f29197a == 2) {
+                    ocVar.l();
                     return;
                 }
                 return;
@@ -220,9 +220,9 @@ public final class u9 implements Utilities.Callback {
             case 8:
                 t tVar = (t) obj;
                 vb vbVar7 = this.f9929b;
-                ib ibVar2 = vbVar7.A0;
+                ib ibVar3 = vbVar7.A0;
                 vbVar7.f10046z0 = tVar;
-                ibVar2.o(tVar);
+                ibVar3.o(tVar);
                 vbVar7.I0.setSelected(tVar);
                 ya yaVar = vbVar7.B0;
                 if (yaVar != null) {
@@ -342,9 +342,9 @@ public final class u9 implements Utilities.Callback {
                 Integer num3 = (Integer) obj;
                 vb vbVar11 = this.f9929b;
                 if (vbVar11.K1 != null) {
-                    lb lbVar2 = vbVar11.f9973c1;
-                    if (!lbVar2.O1) {
-                        lbVar2.clearFocus();
+                    lb lbVar = vbVar11.f9973c1;
+                    if (!lbVar.O1) {
+                        lbVar.clearFocus();
                         if (num3.intValue() == 5) {
                             vbVar11.W();
                             return;
@@ -415,9 +415,9 @@ public final class u9 implements Utilities.Callback {
                     }
                     maVar2.setTranslationY(i16 - contentHeight);
                 }
-                org.telegram.ui.Components.qc qcVar2 = org.telegram.ui.Components.qc.f29825w;
-                if (qcVar2 != null && qcVar2.f29826a == 2) {
-                    qcVar2.l();
+                org.telegram.ui.Components.oc ocVar2 = org.telegram.ui.Components.oc.f29196w;
+                if (ocVar2 != null && ocVar2.f29197a == 2) {
+                    ocVar2.l();
                 }
                 if (vbVar12.f9973c1.f9421p0 && (maVar = vbVar12.f9976d1) != null) {
                     maVar.c(false, true);

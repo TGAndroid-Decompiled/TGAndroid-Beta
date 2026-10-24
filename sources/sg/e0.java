@@ -1,16 +1,16 @@
 package sg;
 public class e0 {
-    public final int f46671a;
-    public final int f46672b;
-    public final String f46673c;
+    public final int f46670a;
+    public final int f46671b;
+    public final String f46672c;
     public final String d;
     public final int e;
-    public boolean f46674f;
+    public boolean f46673f;
 
     public e0(int i10, int i11, int i12, String str, String str2) {
-        this.f46671a = i10;
-        this.f46672b = i11;
-        this.f46673c = str;
+        this.f46670a = i10;
+        this.f46671b = i11;
+        this.f46672c = str;
         this.d = str2;
         this.e = i12;
     }

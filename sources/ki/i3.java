@@ -38,14 +38,14 @@ public final class i3 implements z4 {
         tVar.f15572g = photo;
         tVar.f15568a = 2;
         TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, AndroidUtilities.getPhotoSize());
-        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f20368w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
+        if (closestPhotoSizeWithSize != null && (i10 = closestPhotoSizeWithSize.f20369w) > 0 && (i11 = closestPhotoSizeWithSize.h) > 0) {
             tVar.f15574j = i10;
             tVar.f15575k = i11;
         }
         a aVar = this.f15393b;
         TL_iv.PageBlock T3 = w3.T3(aVar, tVar);
         if (T3 instanceof TL_iv.pageBlockPhoto) {
-            ((TL_iv.pageBlockPhoto) T3).photo_id = photo.f20367id;
+            ((TL_iv.pageBlockPhoto) T3).photo_id = photo.f20368id;
         }
         w3 w3Var = this.f15394c;
         w3Var.f15646a4.remove(tVar);
@@ -61,7 +61,7 @@ public final class i3 implements z4 {
         a aVar = this.f15393b;
         TL_iv.PageBlock T3 = w3.T3(aVar, tVar);
         if (T3 instanceof TL_iv.pageBlockVideo) {
-            ((TL_iv.pageBlockVideo) T3).video_id = document.f20349id;
+            ((TL_iv.pageBlockVideo) T3).video_id = document.f20350id;
         }
         w3 w3Var = this.f15394c;
         w3Var.f15646a4.remove(tVar);

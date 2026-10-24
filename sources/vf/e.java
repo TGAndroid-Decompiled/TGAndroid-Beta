@@ -7,7 +7,7 @@ import ci.h3;
 import org.telegram.messenger.R;
 public abstract class e {
     public static b a(View view, d dVar) {
-        b bVar = dVar.f48786b;
+        b bVar = dVar.f48785b;
         if (bVar != null) {
             return bVar;
         }
@@ -29,7 +29,7 @@ public abstract class e {
                 }
                 bVar2 = bVar3;
             }
-            dVar.f48786b = bVar2;
+            dVar.f48785b = bVar2;
             return bVar2;
         }
         throw new IllegalArgumentException("Cannot add OnPostDrawListener to root view");

@@ -1,187 +1,148 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import java.io.File;
-import java.util.ArrayList;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLRPC;
-public final class ec1 extends org.telegram.ui.ActionBar.j {
-    public final qc1 f36921a;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Shader;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.GradientDrawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class ec1 extends org.telegram.ui.Components.u9 {
+    public Drawable G;
+    public final boolean H;
+    public float I;
+    public float J;
+    public final pc1 K;
 
-    public ec1(qc1 qc1Var) {
-        this.f36921a = qc1Var;
+    public ec1(pc1 pc1Var, Activity activity) {
+        super(activity);
+        this.K = pc1Var;
+        this.H = true;
     }
 
     @Override
-    public final void b(int i10) {
-        File file;
-        org.telegram.ui.ActionBar.i6 k10;
-        String b10;
-        String str;
-        int i11;
-        String str2;
-        qc1 qc1Var = this.f36921a;
-        org.telegram.ui.ActionBar.i6 i6Var = qc1Var.v;
-        int i12 = 0;
-        if (i10 == -1) {
-            if (qc1Var.P0(true)) {
-                qc1Var.N0(false);
-            }
-        } else if (i10 >= 1 && i10 <= 3) {
-            qc1Var.Y0(i10, true);
-        } else if (i10 == 4) {
-            if (qc1Var.f40772w) {
-                org.telegram.ui.ActionBar.k6.s1(false);
-            }
-            File d = i6Var.d();
-            if (d != null) {
-                d.delete();
-            }
-            TLRPC.TL_wallPaper tL_wallPaper = qc1Var.X0;
-            if (tL_wallPaper != null) {
-                str2 = tL_wallPaper.slug;
+    public Drawable getBackground() {
+        return this.G;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        this.I = 0.0f;
+        this.J = 0.0f;
+        boolean z10 = this.H;
+        pc1 pc1Var = this.K;
+        if (z10) {
+            Drawable drawable = this.G;
+            if (!(drawable instanceof ColorDrawable) && !(drawable instanceof GradientDrawable) && !(drawable instanceof org.telegram.ui.Components.wc0)) {
+                if (drawable instanceof BitmapDrawable) {
+                    if (((BitmapDrawable) drawable).getTileModeX() == Shader.TileMode.REPEAT) {
+                        canvas.save();
+                        float f7 = 2.0f / AndroidUtilities.density;
+                        canvas.scale(f7, f7);
+                        this.G.setBounds(0, 0, (int) Math.ceil(getMeasuredWidth() / f7), (int) Math.ceil(getMeasuredHeight() / f7));
+                        this.G.draw(canvas);
+                        canvas.restore();
+                    } else {
+                        int measuredHeight = getMeasuredHeight();
+                        float max = Math.max(getMeasuredWidth() / this.G.getIntrinsicWidth(), measuredHeight / this.G.getIntrinsicHeight());
+                        int ceil = (int) Math.ceil(this.G.getIntrinsicWidth() * max * pc1Var.f40511z1);
+                        int ceil2 = (int) Math.ceil(this.G.getIntrinsicHeight() * max * pc1Var.f40511z1);
+                        int measuredWidth = (getMeasuredWidth() - ceil) / 2;
+                        int i10 = (measuredHeight - ceil2) / 2;
+                        this.J = i10;
+                        this.G.setBounds(measuredWidth, i10, ceil + measuredWidth, ceil2 + i10);
+                        this.G.draw(canvas);
+                    }
+                }
             } else {
-                str2 = "";
-            }
-            i6Var.f20975o = str2;
-            i6Var.f20976p = qc1Var.f40750m1;
-            i6Var.f20977q = qc1Var.F1;
-            if (((int) i6Var.f20970j) == 0) {
-                i6Var.f20970j = 4294967296L;
-            }
-            if (((int) i6Var.f20971k) == 0) {
-                i6Var.f20971k = 4294967296L;
-            }
-            if (((int) i6Var.f20972l) == 0) {
-                i6Var.f20972l = 4294967296L;
-            }
-            if (((int) i6Var.f20973m) == 0) {
-                i6Var.f20973m = 4294967296L;
-            }
-            qc1Var.W0();
-            NotificationCenter.getGlobalInstance().removeObserver(qc1Var, NotificationCenter.wallpapersDidLoad);
-            org.telegram.ui.ActionBar.k6.w1(qc1Var.f40731f0, true, false, false, true, false);
-            org.telegram.ui.ActionBar.k6.o();
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.needSetDayNightTheme, qc1Var.f40731f0, Boolean.valueOf(qc1Var.f40734g0), null, -1);
-            qc1Var.finishFragment();
-        } else if (i10 == 5) {
-            if (qc1Var.getParentActivity() != null) {
-                StringBuilder sb2 = new StringBuilder();
-                if (qc1Var.G1) {
-                    sb2.append("blur");
-                }
-                if (qc1Var.F1) {
-                    if (sb2.length() > 0) {
-                        sb2.append("+");
-                    }
-                    sb2.append("motion");
-                }
-                Object obj = qc1Var.C1;
-                if (obj instanceof TLRPC.TL_wallPaper) {
-                    StringBuilder sb3 = new StringBuilder("https://");
-                    i11 = ((org.telegram.ui.ActionBar.o2) qc1Var).currentAccount;
-                    sb3.append(MessagesController.getInstance(i11).linkPrefix);
-                    sb3.append("/bg/");
-                    sb3.append(((TLRPC.TL_wallPaper) obj).slug);
-                    b10 = sb3.toString();
-                    if (sb2.length() > 0) {
-                        StringBuilder i13 = si.o0.i(b10, "?mode=");
-                        i13.append(sb2.toString());
-                        b10 = i13.toString();
-                    }
-                } else if (obj instanceof zh1) {
-                    TLRPC.TL_wallPaper tL_wallPaper2 = qc1Var.X0;
-                    if (tL_wallPaper2 != null) {
-                        str = tL_wallPaper2.slug;
-                    } else {
-                        str = "c";
-                    }
-                    zh1 zh1Var = new zh1(str, qc1Var.f40715a1, qc1Var.f40722c1, qc1Var.f40725d1, qc1Var.f40728e1, qc1Var.f40741i1, qc1Var.f40750m1, qc1Var.F1, null);
-                    zh1Var.f44155g = tL_wallPaper2;
-                    b10 = zh1Var.b();
-                } else if (BuildVars.DEBUG_PRIVATE_VERSION && (k10 = org.telegram.ui.ActionBar.k6.I.k(false)) != null) {
-                    zh1 zh1Var2 = new zh1(k10.f20975o, (int) k10.f20970j, (int) k10.f20971k, (int) k10.f20972l, (int) k10.f20973m, k10.f20974n, k10.f20976p, k10.f20977q, null);
-                    int size = qc1Var.V0.size();
-                    while (true) {
-                        if (i12 >= size) {
-                            break;
-                        }
-                        TLRPC.TL_wallPaper tL_wallPaper3 = (TLRPC.TL_wallPaper) qc1Var.V0.get(i12);
-                        if (tL_wallPaper3.pattern && k10.f20975o.equals(tL_wallPaper3.slug)) {
-                            zh1Var2.f44155g = tL_wallPaper3;
-                            break;
-                        }
-                        i12++;
-                    }
-                    b10 = zh1Var2.b();
-                } else {
-                    return;
-                }
-                qc1Var.showDialog(new cc1(this, qc1Var.getParentActivity(), b10, b10));
-            }
-        } else if (i10 == 6) {
-            if (SharedConfig.dayNightWallpaperSwitchHint <= 3) {
-                SharedConfig.dayNightWallpaperSwitchHint = 10;
-                SharedConfig.increaseDayNightWallpaperSiwtchHint();
-            }
-            boolean a2 = qc1Var.f40759q1.a();
-            hc1 hc1Var = qc1Var.f40759q1;
-            if (hc1Var != null) {
-                if (!hc1Var.I0()) {
-                    qc1Var.g1();
-                    return;
-                }
-                qc1Var.f40759q1.c1(true);
-                org.telegram.ui.Components.yj0 yj0Var = qc1Var.O1;
-                yj0Var.h = true;
-                if (a2) {
-                    yj0Var.P(0);
-                } else {
-                    yj0Var.P(36);
-                }
-                qc1Var.O1.start();
-                if (qc1Var.N1) {
-                    hc1 hc1Var2 = qc1Var.f40759q1;
-                    float f7 = 0.0f;
-                    if (hc1Var2 != null && hc1Var2.a()) {
-                        qc1Var.S1.setVisibility(0);
-                        qc1Var.S1.a(qc1Var.f40755o1);
-                    } else {
-                        qc1Var.S1.a(0.0f);
-                    }
-                    ValueAnimator valueAnimator = qc1Var.Q1;
-                    if (valueAnimator != null) {
-                        valueAnimator.removeAllListeners();
-                        qc1Var.Q1.cancel();
-                    }
-                    float f10 = qc1Var.f40757p1;
-                    if (qc1Var.f40759q1.a()) {
-                        f7 = 1.0f;
-                    }
-                    ValueAnimator ofFloat = ValueAnimator.ofFloat(f10, f7);
-                    qc1Var.Q1 = ofFloat;
-                    ofFloat.addUpdateListener(new g11(this, 12));
-                    qc1Var.Q1.addListener(new v70(this, 28));
-                    qc1Var.Q1.setDuration(250L);
-                    qc1Var.Q1.setInterpolator(org.telegram.ui.Components.bs.f25133f);
-                    qc1Var.Q1.start();
-                }
-            }
-        } else if (i10 == 7) {
-            Object obj2 = qc1Var.C1;
-            if ((obj2 instanceof ai1) && (file = ((ai1) obj2).e) != null) {
-                MediaController.PhotoEntry photoEntry = new MediaController.PhotoEntry(0, 0, 0L, file.getAbsolutePath(), 0, false, 0, 0, 0L);
-                photoEntry.isVideo = false;
-                photoEntry.thumbPath = null;
-                ArrayList arrayList = new ArrayList();
-                arrayList.add(photoEntry);
-                PhotoViewer.u1().M2(qc1Var.getParentActivity(), null, null);
-                PhotoViewer.u1().i2(arrayList, 0, 3, false, new dc1(this, photoEntry), null);
+                drawable.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
+                this.G.draw(canvas);
             }
         }
+        if (pc1Var.f40448b2) {
+            if (!pc1Var.f40449c.isFinished() && pc1Var.f40449c.computeScrollOffset()) {
+                if (pc1Var.f40449c.getStartX() < pc1Var.X1 && pc1Var.f40449c.getStartX() > 0) {
+                    pc1Var.Y1 = pc1Var.f40449c.getCurrX();
+                }
+                pc1Var.V0();
+                invalidate();
+            }
+            canvas.save();
+            float f10 = -pc1Var.Y1;
+            this.I = f10;
+            canvas.translate(f10, 0.0f);
+            super.onDraw(canvas);
+            canvas.restore();
+        } else {
+            super.onDraw(canvas);
+        }
+        if (pc1Var.N1) {
+            float f11 = pc1Var.f40484o1;
+            if (f11 > 0.0f) {
+                canvas.drawColor(i0.a.o(-16777216, (int) (f11 * 255.0f * pc1Var.f40486p1)));
+            }
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        pc1 pc1Var = this.K;
+        org.telegram.ui.Components.o91 o91Var = pc1Var.f40503w1;
+        int measuredWidth = getMeasuredWidth();
+        int measuredHeight = getMeasuredHeight();
+        o91Var.getClass();
+        float a2 = org.telegram.ui.Components.o91.a(measuredWidth, measuredHeight);
+        pc1Var.f40511z1 = a2;
+        if (pc1Var.F1) {
+            setScaleX(a2);
+            setScaleY(pc1Var.f40511z1);
+        }
+        if (pc1Var.f40445b == 2) {
+            getMeasuredWidth();
+            getMeasuredHeight();
+        }
+        int measuredWidth2 = getMeasuredWidth() + (getMeasuredHeight() << 16);
+        if (pc1Var.f40452c2 != measuredWidth2) {
+            pc1Var.f40448b2 = false;
+            Bitmap bitmap = pc1Var.D1;
+            if (bitmap != null) {
+                int measuredHeight2 = (int) ((getMeasuredHeight() / pc1Var.D1.getHeight()) * bitmap.getWidth());
+                if (measuredHeight2 - getMeasuredWidth() > 100) {
+                    pc1Var.f40448b2 = true;
+                    pc1Var.a2 = (int) ((pc1Var.D1.getHeight() / getMeasuredHeight()) * getMeasuredWidth());
+                    float measuredWidth3 = (measuredHeight2 - getMeasuredWidth()) / 2.0f;
+                    pc1Var.Y1 = measuredWidth3;
+                    pc1Var.Z1 = measuredWidth3;
+                    pc1Var.X1 = measuredWidth3 * 2.0f;
+                    s(measuredHeight2, getMeasuredHeight());
+                    this.v = true;
+                    pc1Var.V0();
+                }
+            }
+            if (!pc1Var.f40448b2) {
+                s(-1, -1);
+                this.v = false;
+            }
+        }
+        pc1Var.f40452c2 = measuredWidth2;
+    }
+
+    @Override
+    public void setBackground(Drawable drawable) {
+        this.G = drawable;
+        if (drawable != null) {
+            drawable.setCallback(this);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.G != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

@@ -10,34 +10,34 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.AnimationNotificationsLocker;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public abstract class o1 {
-    public static final bs f21717w = li.m.V;
-    public final FrameLayout f21718a;
-    public FrameLayout f21719b;
-    public ViewGroup f21720c;
+    public static final zr f21718w = li.m.V;
+    public final FrameLayout f21719a;
+    public FrameLayout f21720b;
+    public ViewGroup f21721c;
     public View d;
-    public boolean f21721f;
-    public boolean f21722g;
-    public View f21726l;
-    public ValueAnimator f21727m;
-    public float f21730p;
-    public float f21731q;
-    public boolean f21732r;
-    public boolean f21733s;
+    public boolean f21722f;
+    public boolean f21723g;
+    public View f21727l;
+    public ValueAnimator f21728m;
+    public float f21731p;
+    public float f21732q;
+    public boolean f21733r;
+    public boolean f21734s;
     public boolean v;
     public boolean e = false;
     public final w2 h = new w2(this, 2);
-    public int f21723i = -1;
-    public int f21724j = -1;
-    public int f21725k = -1;
-    public final AnimationNotificationsLocker f21728n = new AnimationNotificationsLocker();
-    public final ArrayList f21729o = new ArrayList();
-    public final n1 f21734t = new n1(this);
-    public final boolean f21735u = true;
+    public int f21724i = -1;
+    public int f21725j = -1;
+    public int f21726k = -1;
+    public final AnimationNotificationsLocker f21729n = new AnimationNotificationsLocker();
+    public final ArrayList f21730o = new ArrayList();
+    public final n1 f21735t = new n1(this);
+    public final boolean f21736u = true;
 
     public o1(FrameLayout frameLayout) {
-        this.f21718a = frameLayout;
+        this.f21719a = frameLayout;
         AndroidUtilities.runOnUIThread(new p(this, 4));
     }
 
@@ -55,12 +55,12 @@ public abstract class o1 {
 
     public final void c() {
         d();
-        View view = this.f21718a;
+        View view = this.f21719a;
         Activity a2 = a(view.getContext());
         if (a2 != null) {
-            this.f21720c = (ViewGroup) ((ViewGroup) a2.getWindow().getDecorView()).findViewById(16908290);
+            this.f21721c = (ViewGroup) ((ViewGroup) a2.getWindow().getDecorView()).findViewById(16908290);
         }
-        View view2 = this.f21719b;
+        View view2 = this.f21720b;
         if (view2 == null) {
             while (true) {
                 view2 = null;
@@ -80,20 +80,20 @@ public abstract class o1 {
         }
         this.d = view2;
         if (view2 != null) {
-            this.f21726l = view2;
-            view2.getViewTreeObserver().addOnPreDrawListener(this.f21734t);
+            this.f21727l = view2;
+            view2.getViewTreeObserver().addOnPreDrawListener(this.f21735t);
         }
     }
 
     public final void d() {
-        ValueAnimator valueAnimator = this.f21727m;
+        ValueAnimator valueAnimator = this.f21728m;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        View view = this.f21726l;
+        View view = this.f21727l;
         if (view != null) {
-            view.getViewTreeObserver().removeOnPreDrawListener(this.f21734t);
-            this.f21726l = null;
+            view.getViewTreeObserver().removeOnPreDrawListener(this.f21735t);
+            this.f21727l = null;
         }
     }
 
@@ -106,7 +106,7 @@ public abstract class o1 {
     public final void h(int i10) {
         int i11 = 0;
         while (true) {
-            ArrayList arrayList = this.f21729o;
+            ArrayList arrayList = this.f21730o;
             if (i11 < arrayList.size()) {
                 ((View) arrayList.get(i11)).getLayoutParams().height = i10;
                 ((View) arrayList.get(i11)).requestLayout();
@@ -123,18 +123,18 @@ public abstract class o1 {
 
     public final void j() {
         float f7;
-        ValueAnimator valueAnimator = this.f21727m;
+        ValueAnimator valueAnimator = this.f21728m;
         if (valueAnimator != null) {
             valueAnimator.cancel();
         }
-        this.f21721f = false;
+        this.f21722f = false;
         this.e = false;
-        this.f21728n.unlock();
-        this.f21727m = null;
+        this.f21729n.unlock();
+        this.f21728m = null;
         h(-1);
-        this.f21729o.clear();
+        this.f21730o.clear();
         this.d.requestLayout();
-        boolean z10 = this.f21733s;
+        boolean z10 = this.f21734s;
         if (z10) {
             f7 = 1.0f;
         } else {
@@ -142,7 +142,7 @@ public abstract class o1 {
         }
         e(0.0f, f7, z10);
         if (!(this instanceof ah.u)) {
-            this.f21718a.setTranslationY(0.0f);
+            this.f21719a.setTranslationY(0.0f);
         }
         f();
     }

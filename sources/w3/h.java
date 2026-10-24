@@ -39,31 +39,31 @@ public final class h implements c3.q {
     public boolean L;
     public boolean M;
     public long N;
-    public final z3.k f48935a;
-    public final int f48936b;
-    public final List f48937c;
+    public final z3.k f48934a;
+    public final int f48935b;
+    public final List f48936c;
     public final byte[] h;
-    public final x f48940i;
-    public final k0 f48941j;
-    public final e2.c f48946o;
-    public final l0 f48947p;
-    public final qb.c f48948q;
-    public x1 f48949r;
-    public int f48950s;
-    public int f48951t;
-    public long f48952u;
+    public final x f48939i;
+    public final k0 f48940j;
+    public final e2.c f48945o;
+    public final l0 f48946p;
+    public final qb.c f48947q;
+    public x1 f48948r;
+    public int f48949s;
+    public int f48950t;
+    public long f48951u;
     public int v;
-    public x f48953w;
-    public long f48954x;
-    public int f48955y;
-    public long f48956z;
-    public final n2.e f48942k = new n2.e(1);
-    public final x f48943l = new x(16);
+    public x f48952w;
+    public long f48953x;
+    public int f48954y;
+    public long f48955z;
+    public final n2.e f48941k = new n2.e(1);
+    public final x f48942l = new x(16);
     public final x e = new x(f2.q.f10352a);
-    public final x f48938f = new x(6);
-    public final x f48939g = new x();
-    public final ArrayDeque f48944m = new ArrayDeque();
-    public final ArrayDeque f48945n = new ArrayDeque();
+    public final x f48937f = new x(6);
+    public final x f48938g = new x();
+    public final ArrayDeque f48943m = new ArrayDeque();
+    public final ArrayDeque f48944n = new ArrayDeque();
     public final SparseArray d = new SparseArray();
 
     static {
@@ -73,24 +73,24 @@ public final class h implements c3.q {
     }
 
     public h(z3.k kVar, int i10, k0 k0Var, List list, l2.o oVar) {
-        this.f48935a = kVar;
-        this.f48936b = i10;
-        this.f48941j = k0Var;
-        this.f48937c = DesugarCollections.unmodifiableList(list);
-        this.f48947p = oVar;
+        this.f48934a = kVar;
+        this.f48935b = i10;
+        this.f48940j = k0Var;
+        this.f48936c = DesugarCollections.unmodifiableList(list);
+        this.f48946p = oVar;
         byte[] bArr = new byte[16];
         this.h = bArr;
-        this.f48940i = new x(bArr);
+        this.f48939i = new x(bArr);
         e9.l0 l0Var = n0.f8481b;
-        this.f48949r = x1.e;
+        this.f48948r = x1.e;
         this.A = -9223372036854775807L;
-        this.f48956z = -9223372036854775807L;
+        this.f48955z = -9223372036854775807L;
         this.B = -9223372036854775807L;
         this.I = c3.s.f4663i;
         this.J = new l0[0];
         this.K = new l0[0];
-        this.f48946o = new e2.c(new e(this));
-        this.f48948q = new qb.c(10);
+        this.f48945o = new e2.c(new e(this));
+        this.f48947q = new qb.c(10);
         this.N = -1L;
     }
 
@@ -141,7 +141,7 @@ public final class h implements c3.q {
         boolean z10;
         xVar.N(i10 + 8);
         int m10 = xVar.m();
-        byte[] bArr = c.f48917a;
+        byte[] bArr = c.f48916a;
         if ((m10 & 1) == 0) {
             if ((m10 & 2) != 0) {
                 z10 = true;
@@ -150,19 +150,19 @@ public final class h implements c3.q {
             }
             int E = xVar.E();
             if (E == 0) {
-                Arrays.fill(sVar.f49016l, 0, sVar.e, false);
+                Arrays.fill(sVar.f49015l, 0, sVar.e, false);
                 return;
             }
             int i11 = sVar.e;
-            x xVar2 = sVar.f49018n;
+            x xVar2 = sVar.f49017n;
             if (E == i11) {
-                Arrays.fill(sVar.f49016l, 0, E, z10);
+                Arrays.fill(sVar.f49015l, 0, E, z10);
                 xVar2.K(xVar.a());
-                sVar.f49015k = true;
-                sVar.f49019o = true;
+                sVar.f49014k = true;
+                sVar.f49018o = true;
                 xVar.k(0, xVar2.f8300c, xVar2.f8298a);
                 xVar2.N(0);
-                sVar.f49019o = false;
+                sVar.f49018o = false;
                 return;
             }
             StringBuilder n10 = o1.n(E, "Senc sample count ", " is different from fragment sample count");
@@ -236,7 +236,7 @@ public final class h implements c3.q {
             e9.l0 l0Var = n0.f8481b;
             x1Var = x1.e;
         }
-        this.f48949r = x1Var;
+        this.f48948r = x1Var;
         if (m10 == null) {
             return true;
         }
@@ -246,16 +246,16 @@ public final class h implements c3.q {
     @Override
     public final void c(c3.s sVar) {
         int i10;
-        int i11 = this.f48936b;
+        int i11 = this.f48935b;
         if ((i11 & 32) == 0) {
-            sVar = new c2.b(sVar, this.f48935a);
+            sVar = new c2.b(sVar, this.f48934a);
         }
         this.I = sVar;
         h();
         l0[] l0VarArr = new l0[2];
         this.J = l0VarArr;
         int i12 = 0;
-        l0 l0Var = this.f48947p;
+        l0 l0Var = this.f48946p;
         if (l0Var != null) {
             l0VarArr[0] = l0Var;
             i10 = 1;
@@ -273,7 +273,7 @@ public final class h implements c3.q {
         for (l0 l0Var2 : l0VarArr2) {
             l0Var2.b(P);
         }
-        List list = this.f48937c;
+        List list = this.f48936c;
         this.K = new l0[list.size()];
         while (i12 < this.K.length) {
             l0 j02 = this.I.j0(i13, 3);
@@ -291,17 +291,17 @@ public final class h implements c3.q {
         for (int i10 = 0; i10 < size; i10++) {
             ((g) sparseArray.valueAt(i10)).e();
         }
-        this.f48945n.clear();
-        this.f48955y = 0;
-        ((PriorityQueue) this.f48946o.e).clear();
-        this.f48956z = j11;
-        this.f48944m.clear();
+        this.f48944n.clear();
+        this.f48954y = 0;
+        ((PriorityQueue) this.f48945o.e).clear();
+        this.f48955z = j11;
+        this.f48943m.clear();
         h();
     }
 
     @Override
     public final List e() {
-        return this.f48949r;
+        return this.f48948r;
     }
 
     @Override
@@ -310,7 +310,7 @@ public final class h implements c3.q {
     }
 
     public final void h() {
-        this.f48950s = 0;
+        this.f48949s = 0;
         this.v = 0;
     }
 

@@ -1,16 +1,21 @@
 package org.telegram.ui;
-public final class u71 extends org.telegram.ui.Components.j71 {
-    public final c81 f42295g3;
 
-    public u71(c81 c81Var, c81 c81Var2, f5 f5Var, s71 s71Var, s71 s71Var2) {
-        super(c81Var2, f5Var, s71Var, s71Var2);
-        this.f42295g3 = c81Var;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class u71 extends org.telegram.ui.Components.hr0 {
+    public final b81 f42342e1;
+
+    public u71(b81 b81Var, Activity activity, String str) {
+        super(activity, null, str, false, null, false, null);
+        this.f42342e1 = b81Var;
     }
 
     @Override
-    public final float getSectionsEdgeTop() {
-        org.telegram.ui.ActionBar.k kVar;
-        kVar = ((org.telegram.ui.ActionBar.o2) this.f42295g3).actionBar;
-        return kVar.getHeight();
+    public final void W0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
+        if (!z10) {
+            return;
+        }
+        AndroidUtilities.runOnUIThread(new n71(this, hVar, i10), 250L);
     }
 }

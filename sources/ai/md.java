@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.ui.Components.l91;
-import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.lm0;
 public final class md extends LinearLayout implements NotificationCenter.NotificationCenterDelegate {
     public final int f1837a;
     public final l91 f1838b;
@@ -23,11 +23,11 @@ public final class md extends LinearLayout implements NotificationCenter.Notific
         l91Var.setAdapter(ldVar);
         View n10 = l91Var.n(3, true);
         View view = new View(context);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d7, view, g6Var);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21185d7, view, g6Var);
         addView(n10, w7.z5.n(-1, 48));
         addView(view, new LinearLayout.LayoutParams(w7.z5.z(-1.0f), w7.z5.z(1.0f / AndroidUtilities.density)));
         addView(l91Var, w7.z5.n(-1, -1));
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21254h5, this, g6Var);
+        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21255h5, this, g6Var);
     }
 
     @Override
@@ -38,7 +38,7 @@ public final class md extends LinearLayout implements NotificationCenter.Notific
         }
     }
 
-    public mm0 getCurrentListView() {
+    public lm0 getCurrentListView() {
         View currentView = this.f1838b.getCurrentView();
         if (!(currentView instanceof kd)) {
             return null;

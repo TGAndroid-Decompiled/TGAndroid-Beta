@@ -27,58 +27,58 @@ public final class i implements f1, h1, y2.g, y2.j {
     public boolean N;
     public boolean O;
     public boolean P;
-    public final int f48342a;
-    public final int[] f48343b;
-    public final w[] f48344c;
+    public final int f48341a;
+    public final int[] f48342b;
+    public final w[] f48343c;
     public final boolean[] d;
     public final l2.l e;
-    public final l2.b f48345f;
+    public final l2.b f48344f;
     public final a5.a h;
-    public final oa.d f48346n;
-    public final y2.l f48347r;
-    public final t f48348s;
+    public final oa.d f48345n;
+    public final y2.l f48346r;
+    public final t f48347s;
     public final ArrayList v;
-    public final List f48349w;
-    public final e1 f48350x;
-    public final e1[] f48351y;
+    public final List f48348w;
+    public final e1 f48349x;
+    public final e1[] f48350y;
 
     public i(int i10, int[] iArr, w[] wVarArr, l2.l lVar, l2.b bVar, androidx.biometric.e eVar, long j10, n2.n nVar, n2.k kVar, oa.d dVar, a5.a aVar, boolean z10, long j11, z2.a aVar2) {
         y2.l lVar2;
-        this.f48342a = i10;
-        this.f48343b = iArr;
-        this.f48344c = wVarArr;
+        this.f48341a = i10;
+        this.f48342b = iArr;
+        this.f48343c = wVarArr;
         this.e = lVar;
-        this.f48345f = bVar;
+        this.f48344f = bVar;
         this.h = aVar;
-        this.f48346n = dVar;
+        this.f48345n = dVar;
         if (aVar2 != null) {
             lVar2 = new y2.l(aVar2);
         } else {
             lVar2 = new y2.l("ChunkSampleStream");
         }
-        this.f48347r = lVar2;
-        this.f48348s = new t(6);
+        this.f48346r = lVar2;
+        this.f48347s = new t(6);
         ArrayList arrayList = new ArrayList();
         this.v = arrayList;
-        this.f48349w = DesugarCollections.unmodifiableList(arrayList);
+        this.f48348w = DesugarCollections.unmodifiableList(arrayList);
         int length = iArr.length;
-        this.f48351y = new e1[length];
+        this.f48350y = new e1[length];
         this.d = new boolean[length];
         int i11 = length + 1;
         int[] iArr2 = new int[i11];
         e1[] e1VarArr = new e1[i11];
         nVar.getClass();
         e1 e1Var = new e1(eVar, nVar, kVar);
-        this.f48350x = e1Var;
+        this.f48349x = e1Var;
         iArr2[0] = i10;
         e1VarArr[0] = e1Var;
         int i12 = 0;
         while (i12 < length) {
             e1 e1Var2 = new e1(eVar, null, null);
-            this.f48351y[i12] = e1Var2;
+            this.f48350y[i12] = e1Var2;
             int i13 = i12 + 1;
             e1VarArr[i13] = e1Var2;
-            iArr2[i13] = this.f48343b[i12];
+            iArr2[i13] = this.f48342b[i12];
             i12 = i13;
         }
         this.E = new n2.e(20, iArr2, e1VarArr);
@@ -92,14 +92,14 @@ public final class i implements f1, h1, y2.g, y2.j {
     }
 
     public final boolean A() {
-        if ((this.M || this.N) && !this.P && !this.f48347r.c()) {
+        if ((this.M || this.N) && !this.P && !this.f48346r.c()) {
             return true;
         }
         return false;
     }
 
     public final void B() {
-        int C = C(this.f48350x.v(), this.K - 1);
+        int C = C(this.f48349x.v(), this.K - 1);
         while (true) {
             int i10 = this.K;
             if (i10 <= C) {
@@ -107,7 +107,7 @@ public final class i implements f1, h1, y2.g, y2.j {
                 a aVar = (a) this.v.get(i10);
                 w wVar = aVar.d;
                 if (!wVar.equals(this.G)) {
-                    this.h.m(this.f48342a, wVar, aVar.e, aVar.f48336f, aVar.h);
+                    this.h.m(this.f48341a, wVar, aVar.e, aVar.f48335f, aVar.h);
                 }
                 this.G = wVar;
             } else {
@@ -131,31 +131,31 @@ public final class i implements f1, h1, y2.g, y2.j {
     public final void D(l2.b bVar) {
         e1[] e1VarArr;
         this.H = bVar;
-        e1 e1Var = this.f48350x;
+        e1 e1Var = this.f48349x;
         e1Var.l();
         n2.h hVar = e1Var.h;
         if (hVar != null) {
             hVar.a(e1Var.e);
             e1Var.h = null;
-            e1Var.f47741g = null;
+            e1Var.f47740g = null;
         }
-        for (e1 e1Var2 : this.f48351y) {
+        for (e1 e1Var2 : this.f48350y) {
             e1Var2.l();
             n2.h hVar2 = e1Var2.h;
             if (hVar2 != null) {
                 hVar2.a(e1Var2.e);
                 e1Var2.h = null;
-                e1Var2.f47741g = null;
+                e1Var2.f47740g = null;
             }
         }
-        this.f48347r.e(this);
+        this.f48346r.e(this);
     }
 
     @Override
     public final void a() {
-        y2.l lVar = this.f48347r;
+        y2.l lVar = this.f48346r;
         lVar.a();
-        this.f48350x.C();
+        this.f48349x.C();
         if (!lVar.d()) {
             l2.l lVar2 = this.e;
             u2.b bVar = lVar2.f15938m;
@@ -170,27 +170,27 @@ public final class i implements f1, h1, y2.g, y2.j {
     @Override
     public final void b() {
         e1[] e1VarArr;
-        e1 e1Var = this.f48350x;
+        e1 e1Var = this.f48349x;
         e1Var.G(true);
         n2.h hVar = e1Var.h;
         if (hVar != null) {
             hVar.a(e1Var.e);
             e1Var.h = null;
-            e1Var.f47741g = null;
+            e1Var.f47740g = null;
         }
-        for (e1 e1Var2 : this.f48351y) {
+        for (e1 e1Var2 : this.f48350y) {
             e1Var2.G(true);
             n2.h hVar2 = e1Var2.h;
             if (hVar2 != null) {
                 hVar2.a(e1Var2.e);
                 e1Var2.h = null;
-                e1Var2.f47741g = null;
+                e1Var2.f47740g = null;
             }
         }
         for (l2.j jVar : this.e.f15934i) {
             e eVar = jVar.f15925a;
             if (eVar != null) {
-                eVar.f48326a.release();
+                eVar.f48325a.release();
             }
         }
         h hVar3 = this.H;
@@ -205,7 +205,7 @@ public final class i implements f1, h1, y2.g, y2.j {
                     if (hVar4 != null) {
                         hVar4.a(e1Var3.e);
                         e1Var3.h = null;
-                        e1Var3.f47741g = null;
+                        e1Var3.f47740g = null;
                     }
                 }
             }
@@ -214,7 +214,7 @@ public final class i implements f1, h1, y2.g, y2.j {
 
     @Override
     public final boolean c() {
-        return this.f48347r.d();
+        return this.f48346r.d();
     }
 
     @Override
@@ -225,7 +225,7 @@ public final class i implements f1, h1, y2.g, y2.j {
         if (this.P) {
             return Long.MIN_VALUE;
         }
-        return w().f48337n;
+        return w().f48336n;
     }
 
     @Override
@@ -235,7 +235,7 @@ public final class i implements f1, h1, y2.g, y2.j {
 
     @Override
     public final boolean f() {
-        if (!y() && this.f48350x.A(this.P)) {
+        if (!y() && this.f48349x.A(this.P)) {
             return true;
         }
         return false;
@@ -245,7 +245,7 @@ public final class i implements f1, h1, y2.g, y2.j {
     public final int g(qf.b bVar, h2.h hVar, int i10) {
         if (!y() && !A() && !this.O) {
             a aVar = this.L;
-            e1 e1Var = this.f48350x;
+            e1 e1Var = this.f48349x;
             if (aVar == null || aVar.d(0) > e1Var.v()) {
                 B();
                 return e1Var.F(bVar, hVar, i10, this.P);
@@ -260,15 +260,15 @@ public final class i implements f1, h1, y2.g, y2.j {
         v vVar;
         f fVar = (f) iVar;
         if (i10 == 0) {
-            long j12 = fVar.f48333a;
-            vVar = new v(fVar.f48334b, j10);
+            long j12 = fVar.f48332a;
+            vVar = new v(fVar.f48333b, j10);
         } else {
-            long j13 = fVar.f48333a;
-            g2.m mVar = fVar.f48334b;
-            b0 b0Var = fVar.f48338r;
+            long j13 = fVar.f48332a;
+            g2.m mVar = fVar.f48333b;
+            b0 b0Var = fVar.f48337r;
             vVar = new v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
         }
-        this.h.v(vVar, fVar.f48335c, this.f48342a, fVar.d, fVar.e, fVar.f48336f, fVar.h, fVar.f48337n, i10);
+        this.h.v(vVar, fVar.f48334c, this.f48341a, fVar.d, fVar.e, fVar.f48335f, fVar.h, fVar.f48336n, i10);
     }
 
     @Override
@@ -293,18 +293,18 @@ public final class i implements f1, h1, y2.g, y2.j {
         o oVar = lVar.h;
         if (oVar != null) {
             long j12 = oVar.d;
-            if (j12 == -9223372036854775807L || fVar.f48337n > j12) {
-                oVar.d = fVar.f48337n;
+            if (j12 == -9223372036854775807L || fVar.f48336n > j12) {
+                oVar.d = fVar.f48336n;
             }
             oVar.e.h = true;
         }
-        long j13 = fVar.f48333a;
-        g2.m mVar2 = fVar.f48334b;
-        b0 b0Var = fVar.f48338r;
+        long j13 = fVar.f48332a;
+        g2.m mVar2 = fVar.f48333b;
+        b0 b0Var = fVar.f48337r;
         v vVar = new v(mVar2, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
-        this.f48346n.getClass();
-        this.h.r(vVar, fVar.f48335c, this.f48342a, fVar.d, fVar.e, fVar.f48336f, fVar.h, fVar.f48337n);
-        this.f48345f.b(this);
+        this.f48345n.getClass();
+        this.h.r(vVar, fVar.f48334c, this.f48341a, fVar.d, fVar.e, fVar.f48335f, fVar.h, fVar.f48336n);
+        this.f48344f.b(this);
     }
 
     @Override
@@ -313,7 +313,7 @@ public final class i implements f1, h1, y2.g, y2.j {
             return 0;
         }
         boolean z10 = this.P;
-        e1 e1Var = this.f48350x;
+        e1 e1Var = this.f48349x;
         int x10 = e1Var.x(j10, z10);
         a aVar = this.L;
         if (aVar != null) {
@@ -348,19 +348,19 @@ public final class i implements f1, h1, y2.g, y2.j {
             }
         }
         if (w9 != null) {
-            j10 = Math.max(j10, w9.f48337n);
+            j10 = Math.max(j10, w9.f48336n);
         }
-        return Math.max(j10, this.f48350x.s());
+        return Math.max(j10, this.f48349x.s());
     }
 
     @Override
     public final void u(long j10) {
         int size;
-        y2.l lVar = this.f48347r;
+        y2.l lVar = this.f48346r;
         if (!lVar.c() && !y()) {
             boolean d = lVar.d();
             boolean z10 = false;
-            List list = this.f48349w;
+            List list = this.f48348w;
             l2.l lVar2 = this.e;
             ArrayList arrayList = this.v;
             if (d) {
@@ -403,16 +403,16 @@ public final class i implements f1, h1, y2.g, y2.j {
                     }
                 }
                 if (size != -1) {
-                    long j11 = w().f48337n;
+                    long j11 = w().f48336n;
                     a v = v(size);
                     if (arrayList.isEmpty()) {
                         this.I = this.J;
                     }
                     this.P = false;
-                    this.h.C(this.f48342a, v.h, j11);
+                    this.h.C(this.f48341a, v.h, j11);
                 }
             }
-            if (this.f48350x.z()) {
+            if (this.f48349x.z()) {
                 this.P = true;
             }
         }
@@ -424,9 +424,9 @@ public final class i implements f1, h1, y2.g, y2.j {
         m0.X(i10, arrayList.size(), arrayList);
         this.K = Math.max(this.K, arrayList.size());
         int i11 = 0;
-        this.f48350x.o(aVar.d(0));
+        this.f48349x.o(aVar.d(0));
         while (true) {
-            e1[] e1VarArr = this.f48351y;
+            e1[] e1VarArr = this.f48350y;
             if (i11 < e1VarArr.length) {
                 e1 e1Var = e1VarArr[i11];
                 i11++;
@@ -444,12 +444,12 @@ public final class i implements f1, h1, y2.g, y2.j {
     public final boolean x(int i10) {
         int v;
         a aVar = (a) this.v.get(i10);
-        if (this.f48350x.v() > aVar.d(0)) {
+        if (this.f48349x.v() > aVar.d(0)) {
             return true;
         }
         int i11 = 0;
         do {
-            e1[] e1VarArr = this.f48351y;
+            e1[] e1VarArr = this.f48350y;
             if (i11 >= e1VarArr.length) {
                 return false;
             }
@@ -471,16 +471,16 @@ public final class i implements f1, h1, y2.g, y2.j {
         f fVar = (f) iVar;
         this.F = null;
         this.L = null;
-        long j12 = fVar.f48333a;
-        g2.m mVar = fVar.f48334b;
-        b0 b0Var = fVar.f48338r;
+        long j12 = fVar.f48332a;
+        g2.m mVar = fVar.f48333b;
+        b0 b0Var = fVar.f48337r;
         v vVar = new v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
-        this.f48346n.getClass();
-        this.h.q(vVar, fVar.f48335c, this.f48342a, fVar.d, fVar.e, fVar.f48336f, fVar.h, fVar.f48337n);
+        this.f48345n.getClass();
+        this.h.q(vVar, fVar.f48334c, this.f48341a, fVar.d, fVar.e, fVar.f48335f, fVar.h, fVar.f48336n);
         if (!z10) {
             if (y()) {
-                this.f48350x.G(false);
-                for (e1 e1Var : this.f48351y) {
+                this.f48349x.G(false);
+                for (e1 e1Var : this.f48350y) {
                     e1Var.G(false);
                 }
             } else if (fVar instanceof a) {
@@ -490,7 +490,7 @@ public final class i implements f1, h1, y2.g, y2.j {
                     this.I = this.J;
                 }
             }
-            this.f48345f.b(this);
+            this.f48344f.b(this);
         }
     }
 }

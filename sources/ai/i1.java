@@ -17,23 +17,23 @@ public final class i1 {
     public int f1460g = -1;
     public RadialGradient h;
     public Paint f1461i;
-    public org.telegram.ui.Components.r5 f1462j;
-    public org.telegram.ui.Components.f6 f1463k;
+    public org.telegram.ui.Components.p5 f1462j;
+    public org.telegram.ui.Components.d6 f1463k;
     public final RectF f1464l;
-    public final org.telegram.ui.Components.yc f1465m;
+    public final org.telegram.ui.Components.wc f1465m;
 
     public i1(j1 j1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         long j10;
         new Matrix();
         this.f1464l = new RectF();
-        this.f1465m = new org.telegram.ui.Components.yc(j1Var);
-        this.f1456a = tL_starGiftUnique.f20567id;
+        this.f1465m = new org.telegram.ui.Components.wc(j1Var);
+        this.f1456a = tL_starGiftUnique.f20568id;
         TLRPC.Document document = tL_starGiftUnique.getDocument();
         this.f1457b = document;
         if (document == null) {
             j10 = 0;
         } else {
-            j10 = document.f20349id;
+            j10 = document.f20350id;
         }
         this.f1458c = j10;
         this.d = ((TL_stars.starGiftAttributeBackdrop) ha.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);

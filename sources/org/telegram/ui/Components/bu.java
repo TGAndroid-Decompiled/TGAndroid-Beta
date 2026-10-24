@@ -1,23 +1,25 @@
 package org.telegram.ui.Components;
-public final class bu extends p6 {
-    public final int f25149d0;
-    public final EditTextBoldCursor f25150e0;
 
-    public bu(EditTextBoldCursor editTextBoldCursor, int i10) {
-        super(false, false, false);
-        this.f25149d0 = i10;
-        this.f25150e0 = editTextBoldCursor;
+import android.text.Editable;
+import org.telegram.messenger.Utilities;
+public final class bu implements Utilities.Callback {
+    public final gu f25093a;
+    public final int f25094b;
+    public final int f25095c;
+
+    public bu(gu guVar, int i10, int i11) {
+        this.f25093a = guVar;
+        this.f25094b = i10;
+        this.f25095c = i11;
     }
 
     @Override
-    public final void invalidateSelf() {
-        switch (this.f25149d0) {
-            case 0:
-                this.f25150e0.invalidate();
-                return;
-            default:
-                this.f25150e0.invalidate();
-                return;
-        }
+    public final void run(Object obj) {
+        CharSequence charSequence = (CharSequence) obj;
+        gu guVar = this.f25093a;
+        Editable text = guVar.getText();
+        int i10 = this.f25094b;
+        text.replace(i10, this.f25095c, charSequence);
+        guVar.setSelection(i10, charSequence.length() + i10);
     }
 }

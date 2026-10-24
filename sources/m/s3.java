@@ -15,7 +15,7 @@ import ki.c6;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.h80;
 import w7.z5;
 public final class s3 implements n5.b {
     public Object f16397a;
@@ -45,9 +45,9 @@ public final class s3 implements n5.b {
 
     public void a() {
         e(null);
-        j80 j80Var = (j80) this.f16399c;
-        if (j80Var != null) {
-            j80Var.u();
+        h80 h80Var = (h80) this.f16399c;
+        if (h80Var != null) {
+            h80Var.u();
             this.f16399c = null;
         }
         this.d = null;
@@ -68,7 +68,7 @@ public final class s3 implements n5.b {
                 ki.n0 n0Var = (ki.n0) obj;
                 ki.m0 m0Var = new ki.m0(c6Var.getContext(), n0Var, g6Var);
                 m0Var.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(12.0f), 0);
-                m0Var.setBackground(k6.Z(k6.w0(k6.f21272i6, g6Var), 0, 0));
+                m0Var.setBackground(k6.Z(k6.w0(k6.f21273i6, g6Var), 0, 0));
                 m0Var.setOnClickListener(new ai.v0(this, c6Var, n0Var, 13));
                 ((LinearLayout) this.d).addView(m0Var, z5.n(-1, 48));
             }
@@ -138,8 +138,8 @@ public final class s3 implements n5.b {
     }
 
     public void f(c6 c6Var, String str) {
-        j80 j80Var;
-        j80 j80Var2;
+        h80 h80Var;
+        h80 h80Var2;
         if (str == null) {
             a();
             return;
@@ -150,13 +150,13 @@ public final class s3 implements n5.b {
             return;
         }
         e(c6Var);
-        if (((c6) this.f16400f) == c6Var && a2.equals((ArrayList) this.e) && (j80Var2 = (j80) this.f16399c) != null && j80Var2.D()) {
+        if (((c6) this.f16400f) == c6Var && a2.equals((ArrayList) this.e) && (h80Var2 = (h80) this.f16399c) != null && h80Var2.D()) {
             return;
         }
-        if (((c6) this.f16400f) == c6Var && (j80Var = (j80) this.f16399c) != null && j80Var.D() && ((LinearLayout) this.d) != null) {
+        if (((c6) this.f16400f) == c6Var && (h80Var = (h80) this.f16399c) != null && h80Var.D() && ((LinearLayout) this.d) != null) {
             this.e = a2;
             b(c6Var, a2);
-            ((j80) this.f16399c).O();
+            ((h80) this.f16399c).O();
             return;
         }
         a();
@@ -167,16 +167,16 @@ public final class s3 implements n5.b {
         this.d = linearLayout;
         linearLayout.setOrientation(1);
         b(c6Var, a2);
-        j80 i10 = ((ki.o0) this.f16397a).i(c6Var.getEditText());
+        h80 i10 = ((ki.o0) this.f16397a).i(c6Var.getEditText());
         i10.Q = true;
-        i10.f27580s = 0;
-        i10.f27581t = false;
+        i10.f26929s = 0;
+        i10.f26930t = false;
         i10.r((LinearLayout) this.d, z5.n(220, -2));
         i10.X = AndroidUtilities.dp(240.0f);
-        i10.f27562i = 3;
+        i10.f26911i = 3;
         i10.a0(-AndroidUtilities.dp(12.0f), 0.0f);
-        i10.f27575p = new ki.u(this, 2);
-        i10.f27555d0 = true;
+        i10.f26924p = new ki.u(this, 2);
+        i10.f26904d0 = true;
         if (i10.D()) {
             i10.C();
         }

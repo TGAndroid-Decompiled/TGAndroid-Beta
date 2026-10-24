@@ -2,42 +2,40 @@ package org.telegram.ui.Components;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.SharedConfig;
+import android.animation.AnimatorSet;
 public final class ie0 extends AnimatorListenerAdapter {
-    public final int f27308a;
-    public final je0 f27309b;
+    public final int f27418a;
+    public final ei.x8 f27419b;
 
-    public ie0(je0 je0Var, int i10) {
-        this.f27308a = i10;
-        this.f27309b = je0Var;
+    public ie0(ei.x8 x8Var, int i10) {
+        this.f27418a = i10;
+        this.f27419b = x8Var;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        EditTextBoldCursor editTextBoldCursor;
-        switch (this.f27308a) {
+        switch (this.f27418a) {
             case 0:
-                pe0 pe0Var = this.f27309b.d;
-                if (!pe0Var.P) {
-                    pe0Var.f29526a0 = 1.0f;
-                    pe0Var.h(1.0f);
+                ei.x8 x8Var = this.f27419b;
+                AnimatorSet animatorSet = (AnimatorSet) x8Var.e;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    x8Var.e = null;
+                    return;
+                }
+                return;
+            case 1:
+                ei.x8 x8Var2 = this.f27419b;
+                AnimatorSet animatorSet2 = (AnimatorSet) x8Var2.e;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    x8Var2.e = null;
                     return;
                 }
                 return;
             default:
-                je0 je0Var = this.f27309b;
-                pe0 pe0Var2 = je0Var.d;
-                if (!pe0Var2.P) {
-                    Runnable runnable = je0Var.f27679c;
-                    if (runnable != null) {
-                        runnable.run();
-                    }
-                    if (SharedConfig.passcodeType == 1 && pe0Var2.f29541x.getVisibility() != 0 && (editTextBoldCursor = pe0Var2.f29538r) != null) {
-                        editTextBoldCursor.requestFocus();
-                        AndroidUtilities.showKeyboard(pe0Var2.f29538r);
-                        return;
-                    }
+                ei.x8 x8Var3 = this.f27419b;
+                AnimatorSet animatorSet3 = (AnimatorSet) x8Var3.e;
+                if (animatorSet3 != null && animatorSet3.equals(animator)) {
+                    x8Var3.e = null;
                     return;
                 }
                 return;

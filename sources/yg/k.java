@@ -24,10 +24,10 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n5;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.jx0;
-import org.telegram.ui.Components.w9;
-import org.telegram.ui.Components.xp;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.ix0;
+import org.telegram.ui.Components.u9;
+import org.telegram.ui.Components.vp;
 import w7.z5;
 public final class k extends wg.c implements b6 {
     public boolean E;
@@ -36,13 +36,13 @@ public final class k extends wg.c implements b6 {
     public TLRPC.User H;
     public TLRPC.Chat I;
     public TL_stories.TL_myBoost J;
-    public final jx0 K;
+    public final ix0 K;
     public int L;
-    public final boolean[] f50609s;
-    public final xp v;
-    public final ImageView f50610w;
-    public boolean f50611x;
-    public final ImageView f50612y;
+    public final boolean[] f50608s;
+    public final vp v;
+    public final ImageView f50609w;
+    public boolean f50610x;
+    public final ImageView f50611y;
 
     public k(Context context, boolean z10, boolean z11, g6 g6Var, boolean z12) {
         super(context, g6Var);
@@ -53,17 +53,17 @@ public final class k extends wg.c implements b6 {
         float f10;
         int i13;
         float f11;
-        this.f50609s = new boolean[1];
+        this.f50608s = new boolean[1];
         this.G = true;
-        this.K = new jx0(this);
+        this.K = new ix0(this);
         this.d.setTypeface(AndroidUtilities.bold());
-        this.f49402f.setVisibility(8);
+        this.f49401f.setVisibility(8);
         if (z11) {
-            xp xpVar = new xp(context, 21, g6Var);
-            this.v = xpVar;
-            xpVar.b(k6.B5, k6.f21254h5, k6.f21311k7);
-            xpVar.setDrawUnchecked(false);
-            xpVar.setDrawBackgroundAsArc(3);
+            vp vpVar = new vp(context, 21, g6Var);
+            this.v = vpVar;
+            vpVar.b(k6.B5, k6.f21255h5, k6.f21312k7);
+            vpVar.setDrawUnchecked(false);
+            vpVar.setDrawBackgroundAsArc(3);
             boolean z13 = LocaleController.isRTL;
             if (z13) {
                 i13 = 5;
@@ -76,32 +76,32 @@ public final class k extends wg.c implements b6 {
             } else {
                 f11 = 40.0f;
             }
-            addView(xpVar, z5.d(24, 24.0f, i14, f11, 33.0f, z13 ? 39.0f : 0.0f, 0.0f));
+            addView(vpVar, z5.d(24, 24.0f, i14, f11, 33.0f, z13 ? 39.0f : 0.0f, 0.0f));
             d();
         } else if (z10) {
-            xp xpVar2 = new xp(context, 21, g6Var);
-            this.v = xpVar2;
+            vp vpVar2 = new vp(context, 21, g6Var);
+            this.v = vpVar2;
             if (z12) {
-                xpVar2.b(k6.f21273i7, k6.f21291j7, k6.C5);
+                vpVar2.b(k6.f21274i7, k6.f21292j7, k6.C5);
             } else {
-                xpVar2.b(k6.B5, k6.f21291j7, k6.C5);
+                vpVar2.b(k6.B5, k6.f21292j7, k6.C5);
             }
-            xpVar2.setDrawUnchecked(true);
-            xpVar2.setDrawBackgroundAsArc(10);
-            addView(xpVar2);
-            xpVar2.a(false, false);
+            vpVar2.setDrawUnchecked(true);
+            vpVar2.setDrawBackgroundAsArc(10);
+            addView(vpVar2);
+            vpVar2.a(false, false);
             if (LocaleController.isRTL) {
                 i10 = 5;
             } else {
                 i10 = 3;
             }
-            xpVar2.setLayoutParams(z5.d(24, 24.0f, i10 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
+            vpVar2.setLayoutParams(z5.d(24, 24.0f, i10 | 16, 13.0f, 0.0f, 14.0f, 0.0f));
             d();
         } else {
             this.v = null;
         }
         ImageView imageView = new ImageView(context);
-        this.f50610w = imageView;
+        this.f50609w = imageView;
         ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
         imageView.setScaleType(scaleType);
         imageView.setImageResource(R.drawable.ic_ab_other);
@@ -115,7 +115,7 @@ public final class k extends wg.c implements b6 {
         }
         addView(imageView, z5.d(32, 32.0f, i11 | 16, 12.0f, 0.0f, 12.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
-        this.f50612y = imageView2;
+        this.f50611y = imageView2;
         imageView2.setScaleType(scaleType);
         imageView2.setImageResource(R.drawable.menu_phone);
         int i16 = k6.Oh;
@@ -166,13 +166,13 @@ public final class k extends wg.c implements b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f21591z9));
+        hashSet.add(Integer.valueOf(k6.f21592z9));
     }
 
     @Override
     public final boolean b() {
-        xp xpVar = this.v;
-        if (xpVar != null && xpVar.getDrawUnchecked()) {
+        vp vpVar = this.v;
+        if (vpVar != null && vpVar.getDrawUnchecked()) {
             return true;
         }
         return false;
@@ -180,9 +180,9 @@ public final class k extends wg.c implements b6 {
 
     @Override
     public final void c(boolean z10, boolean z11) {
-        xp xpVar = this.v;
-        if (xpVar != null && xpVar.getVisibility() == 0) {
-            xpVar.a(z10, z11);
+        vp vpVar = this.v;
+        if (vpVar != null && vpVar.getVisibility() == 0) {
+            vpVar.a(z10, z11);
         }
     }
 
@@ -198,35 +198,35 @@ public final class k extends wg.c implements b6 {
         float f11 = 0.0f;
         int i11 = 0;
         ImageView imageView = this.F;
-        ImageView imageView2 = this.f50612y;
+        ImageView imageView2 = this.f50611y;
         if (z11) {
             imageView2.setVisibility(0);
             ViewPropertyAnimator animate = imageView2.animate();
-            if (z10 && this.f50611x) {
+            if (z10 && this.f50610x) {
                 f10 = 1.0f;
             } else {
                 f10 = 0.0f;
             }
             ViewPropertyAnimator alpha = animate.alpha(f10);
             Runnable runnable2 = null;
-            if (z10 && this.f50611x) {
+            if (z10 && this.f50610x) {
                 runnable = null;
             } else {
                 runnable = new Runnable(this) {
-                    public final k f50607b;
+                    public final k f50606b;
 
                     {
-                        this.f50607b = this;
+                        this.f50606b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f50607b.f50612y.setVisibility(8);
+                                this.f50606b.f50611y.setVisibility(8);
                                 return;
                             default:
-                                this.f50607b.F.setVisibility(8);
+                                this.f50606b.F.setVisibility(8);
                                 return;
                         }
                     }
@@ -241,20 +241,20 @@ public final class k extends wg.c implements b6 {
             ViewPropertyAnimator alpha2 = animate2.alpha(f11);
             if (!z10 || !this.E) {
                 runnable2 = new Runnable(this) {
-                    public final k f50607b;
+                    public final k f50606b;
 
                     {
-                        this.f50607b = this;
+                        this.f50606b = this;
                     }
 
                     @Override
                     public final void run() {
                         switch (r2) {
                             case 0:
-                                this.f50607b.f50612y.setVisibility(8);
+                                this.f50606b.f50611y.setVisibility(8);
                                 return;
                             default:
-                                this.f50607b.F.setVisibility(8);
+                                this.f50606b.F.setVisibility(8);
                                 return;
                         }
                     }
@@ -264,13 +264,13 @@ public final class k extends wg.c implements b6 {
             return;
         }
         imageView2.animate().cancel();
-        if (z10 && this.f50611x) {
+        if (z10 && this.f50610x) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
         imageView2.setAlpha(f7);
-        if (z10 && this.f50611x) {
+        if (z10 && this.f50610x) {
             i10 = 0;
         } else {
             i10 = 8;
@@ -305,20 +305,20 @@ public final class k extends wg.c implements b6 {
         String string;
         float f10;
         String str;
-        this.f50610w.setVisibility(8);
+        this.f50609w.setVisibility(8);
         this.I = chat;
         this.H = null;
-        h9 h9Var = this.f49400b;
-        h9Var.q(chat);
+        f9 f9Var = this.f49399b;
+        f9Var.q(chat);
         if (ChatObject.isForum(chat)) {
             f7 = 12.0f;
         } else {
             f7 = 20.0f;
         }
         int dp = AndroidUtilities.dp(f7);
-        w9 w9Var = this.f49401c;
-        w9Var.setRoundRadius(dp);
-        w9Var.e(chat, h9Var);
+        u9 u9Var = this.f49400c;
+        u9Var.setRoundRadius(dp);
+        u9Var.e(chat, f9Var);
         String str2 = chat.title;
         k4 k4Var = this.d;
         k4Var.k(str2);
@@ -343,7 +343,7 @@ public final class k extends wg.c implements b6 {
             string = LocaleController.getString(i11);
         }
         setSubtitle(string);
-        r6.Z(this.e, k6.f21439r5, this.f49399a);
+        r6.Z(this.e, k6.f21440r5, this.f49398a);
         if (i10 > 200) {
             f10 = 0.3f;
         } else {
@@ -353,49 +353,49 @@ public final class k extends wg.c implements b6 {
     }
 
     public final void i(float f7, boolean z10) {
-        xp xpVar = this.v;
-        if (xpVar != null) {
+        vp vpVar = this.v;
+        if (vpVar != null) {
             if (z10) {
-                if (Math.abs(xpVar.getAlpha() - f7) > 0.1d) {
-                    xpVar.animate().cancel();
-                    xpVar.animate().alpha(f7).start();
+                if (Math.abs(vpVar.getAlpha() - f7) > 0.1d) {
+                    vpVar.animate().cancel();
+                    vpVar.animate().alpha(f7).start();
                     return;
                 }
                 return;
             }
-            xpVar.animate().cancel();
-            xpVar.setAlpha(f7);
+            vpVar.animate().cancel();
+            vpVar.setAlpha(f7);
         }
     }
 
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        this.K.f27775a.a();
+        this.K.f27510a.a();
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        this.K.f27775a.b();
+        this.K.f27510a.b();
     }
 
     public void setBoost(TL_stories.TL_myBoost tL_myBoost) {
-        this.f50610w.setVisibility(8);
+        this.f50609w.setVisibility(8);
         this.J = tL_myBoost;
         TLRPC.Chat chat = MessagesController.getInstance(UserConfig.selectedAccount).getChat(Long.valueOf(-DialogObject.getPeerDialogId(tL_myBoost.peer)));
         this.I = chat;
-        h9 h9Var = this.f49400b;
-        h9Var.q(chat);
+        f9 f9Var = this.f49399b;
+        f9Var.q(chat);
         int dp = AndroidUtilities.dp(20.0f);
-        w9 w9Var = this.f49401c;
-        w9Var.setRoundRadius(dp);
-        w9Var.e(this.I, h9Var);
+        u9 u9Var = this.f49400c;
+        u9Var.setRoundRadius(dp);
+        u9Var.e(this.I, f9Var);
         String str = this.I.title;
         k4 k4Var = this.d;
         k4Var.k(str);
-        int i10 = k6.f21439r5;
-        g6 g6Var = this.f49399a;
+        int i10 = k6.f21440r5;
+        g6 g6Var = this.f49398a;
         n5 n5Var = this.e;
         r6.Z(n5Var, i10, g6Var);
         setSubtitle(LocaleController.formatString(R.string.BoostExpireOn, LocaleController.getInstance().getFormatterBoostExpired().format(new Date(tL_myBoost.expires * 1000))));
@@ -413,7 +413,7 @@ public final class k extends wg.c implements b6 {
     }
 
     public void setOptions(View.OnClickListener onClickListener) {
-        ImageView imageView = this.f50610w;
+        ImageView imageView = this.f50609w;
         if (onClickListener != null) {
             imageView.setVisibility(0);
             imageView.setOnClickListener(onClickListener);
@@ -424,19 +424,19 @@ public final class k extends wg.c implements b6 {
 
     public void setUser(TLRPC.User user) {
         int i10;
-        this.f50610w.setVisibility(8);
+        this.f50609w.setVisibility(8);
         this.H = user;
         this.I = null;
-        h9 h9Var = this.f49400b;
-        h9Var.r(user);
+        f9 f9Var = this.f49399b;
+        f9Var.r(user);
         int dp = AndroidUtilities.dp(20.0f);
-        w9 w9Var = this.f49401c;
-        w9Var.setRoundRadius(dp);
-        w9Var.e(user, h9Var);
+        u9 u9Var = this.f49400c;
+        u9Var.setRoundRadius(dp);
+        u9Var.e(user, f9Var);
         String userName = UserObject.getUserName(user);
         k4 k4Var = this.d;
         k4Var.k(userName);
-        boolean[] zArr = this.f50609s;
+        boolean[] zArr = this.f50608s;
         zArr[0] = false;
         if (UserObject.isBot(user)) {
             int i11 = user.bot_active_users;
@@ -449,29 +449,29 @@ public final class k extends wg.c implements b6 {
             setSubtitle(LocaleController.formatUserStatus(UserConfig.selectedAccount, user, zArr));
         }
         if (zArr[0]) {
-            i10 = k6.f21365n5;
+            i10 = k6.f21366n5;
         } else {
-            i10 = k6.f21439r5;
+            i10 = k6.f21440r5;
         }
-        r6.Z(this.e, i10, this.f49399a);
-        xp xpVar = this.v;
-        if (xpVar != null) {
-            xpVar.setAlpha(1.0f);
+        r6.Z(this.e, i10, this.f49398a);
+        vp vpVar = this.v;
+        if (vpVar != null) {
+            vpVar.setAlpha(1.0f);
         }
-        int x02 = k6.x0(null, k6.f21591z9, false);
+        int x02 = k6.x0(null, k6.f21592z9, false);
         this.L = x02;
         k4Var.i(this.K.a(user, false, x02));
     }
 
     @Override
     public final void updateColors() {
-        jx0 jx0Var;
+        ix0 ix0Var;
         k4 k4Var;
         int x02;
         try {
-            if (this.H != null && (jx0Var = this.K) != null && (k4Var = this.d) != null && (x02 = k6.x0(null, k6.f21591z9, false)) != this.L) {
+            if (this.H != null && (ix0Var = this.K) != null && (k4Var = this.d) != null && (x02 = k6.x0(null, k6.f21592z9, false)) != this.L) {
                 this.L = x02;
-                jx0Var.a(this.H, false, x02);
+                ix0Var.a(this.H, false, x02);
                 k4Var.invalidate();
             }
         } catch (Exception e) {

@@ -1,6 +1,6 @@
 package sg;
 public final class k0 {
-    public int f46738a;
-    public int f46739b = 5;
-    public long f46740c;
+    public int f46737a;
+    public int f46738b = 5;
+    public long f46739c;
 }

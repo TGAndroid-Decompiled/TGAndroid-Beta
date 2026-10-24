@@ -1,36 +1,52 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class fc0 extends org.telegram.ui.ActionBar.j {
-    public final sc0 f37302a;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserObject;
+public final class fc0 extends hg.s0 {
+    public boolean m0;
+    public final rc0 f37296n0;
 
-    public fc0(sc0 sc0Var) {
-        this.f37302a = sc0Var;
+    public fc0(rc0 rc0Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.g6 g6Var, boolean z10, boolean z11) {
+        super(context, i10, j10, false, g6Var, false, z10, z11);
+        this.f37296n0 = rc0Var;
+        this.m0 = true;
     }
 
     @Override
-    public final void b(int i10) {
-        sc0 sc0Var = this.f37302a;
-        if (i10 == -1) {
-            sc0Var.finishFragment();
-        } else if (i10 == 1) {
-            try {
-                TLRPC.GeoPoint geoPoint = sc0Var.B0.messageOwner.media.geo;
-                double d = geoPoint.lat;
-                double d10 = geoPoint._long;
-                Activity parentActivity = sc0Var.getParentActivity();
-                parentActivity.startActivity(new Intent("android.intent.action.VIEW", Uri.parse("geo:" + d + "," + d10 + "?q=" + d + "," + d10)));
-            } catch (Exception e) {
-                FileLog.e(e);
+    public final void K() {
+        this.f37296n0.r0(null);
+    }
+
+    @Override
+    public final void N(ArrayList arrayList) {
+        int i10;
+        rc0 rc0Var = this.f37296n0;
+        MessageObject messageObject = rc0Var.A0;
+        if (messageObject != null && messageObject.isLiveLocation()) {
+            int i11 = 0;
+            if (arrayList != null) {
+                i10 = 0;
+                for (int i12 = 0; i12 < arrayList.size(); i12++) {
+                    lc0 lc0Var = (lc0) arrayList.get(i12);
+                    if (lc0Var != null && !UserObject.isUserSelf(lc0Var.f39193c)) {
+                        i10++;
+                    }
+                }
+            } else {
+                i10 = 0;
             }
-        } else if (i10 == 5) {
-            sc0Var.s0(false);
-        } else if (i10 == 6) {
-            sc0Var.r0(null);
+            if (this.m0 && i10 == 1) {
+                rc0Var.f41104i0 = ((lc0) arrayList.get(0)).f39191a;
+            }
+            this.m0 = false;
+            org.telegram.ui.ActionBar.u0 u0Var = rc0Var.Z;
+            if (i10 != 1) {
+                i11 = 8;
+            }
+            u0Var.setVisibility(i11);
         }
+        super.N(arrayList);
     }
 }

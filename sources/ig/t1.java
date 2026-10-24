@@ -17,15 +17,15 @@ import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.h9;
-import org.telegram.ui.Components.xp;
+import org.telegram.ui.Components.f9;
+import org.telegram.ui.Components.vp;
 import w7.z5;
 public final class t1 extends FrameLayout implements b6 {
-    public final h9 f13077a;
+    public final f9 f13077a;
     public final ImageReceiver f13078b;
     public final TextView f13079c;
     public final TextView d;
-    public final xp e;
+    public final vp e;
     public final Path f13080f;
     public final Paint h;
     public final g6 f13081n;
@@ -38,7 +38,7 @@ public final class t1 extends FrameLayout implements b6 {
         float f10;
         float f11;
         float f12;
-        this.f13077a = new h9((g6) null);
+        this.f13077a = new f9((g6) null);
         this.f13078b = new ImageReceiver(this);
         this.f13080f = new Path();
         this.h = new Paint(1);
@@ -69,7 +69,7 @@ public final class t1 extends FrameLayout implements b6 {
         this.d = textView2;
         textView2.setLines(2);
         textView2.setEllipsize(truncateAt);
-        r6.W(textView2, k6.f21588z6, g6Var);
+        r6.W(textView2, k6.f21589z6, g6Var);
         textView2.setTextSize(1, 15.0f);
         boolean z11 = LocaleController.isRTL;
         if (z11) {
@@ -83,12 +83,12 @@ public final class t1 extends FrameLayout implements b6 {
             f12 = 40.0f;
         }
         addView(textView2, z5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
-        xp xpVar = new xp(getContext(), 21, g6Var);
-        this.e = xpVar;
-        xpVar.b(-1, k6.f21183d6, k6.f21311k7);
-        xpVar.setDrawUnchecked(false);
-        xpVar.setDrawBackgroundAsArc(3);
-        addView(xpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
+        vp vpVar = new vp(getContext(), 21, g6Var);
+        this.e = vpVar;
+        vpVar.b(-1, k6.f21184d6, k6.f21312k7);
+        vpVar.setDrawUnchecked(false);
+        vpVar.setDrawBackgroundAsArc(3);
+        addView(vpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
     }
 
     @Override
@@ -109,7 +109,7 @@ public final class t1 extends FrameLayout implements b6 {
         if (this.f13083s) {
             Paint V0 = k6.V0("paintDivider", this.f13081n);
             if (V0 == null) {
-                V0 = k6.f21304k0;
+                V0 = k6.f21305k0;
             }
             Paint paint = V0;
             float f11 = 78.0f;
@@ -139,7 +139,7 @@ public final class t1 extends FrameLayout implements b6 {
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.ROUND);
         paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(k6.o1(0.85f, k6.w0(k6.f21588z6, this.f13081n)));
+        paint.setColor(k6.o1(0.85f, k6.w0(k6.f21589z6, this.f13081n)));
         Path path = this.f13080f;
         path.rewind();
         float measuredHeight = getMeasuredHeight() / 2.0f;
@@ -161,7 +161,7 @@ public final class t1 extends FrameLayout implements b6 {
     @Override
     public final void updateColors() {
         try {
-            this.h.setColor(k6.o1(0.85f, k6.w0(k6.f21588z6, this.f13081n)));
+            this.h.setColor(k6.o1(0.85f, k6.w0(k6.f21589z6, this.f13081n)));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

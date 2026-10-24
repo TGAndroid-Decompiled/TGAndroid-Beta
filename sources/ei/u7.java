@@ -18,16 +18,16 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.gb1;
+import org.telegram.ui.Components.zr;
+import org.telegram.ui.fb1;
 public class u7 extends View {
     public final Path E;
     public final Path F;
     public final Path G;
     public final Path H;
     public final Path I;
-    public final org.telegram.ui.Components.f6 J;
-    public final org.telegram.ui.Components.f6 K;
+    public final org.telegram.ui.Components.d6 J;
+    public final org.telegram.ui.Components.d6 K;
     public float L;
     public long M;
     public float N;
@@ -40,22 +40,22 @@ public class u7 extends View {
     public float f9917c;
     public float d;
     public boolean e;
-    public final org.telegram.ui.Components.f6 f9918f;
+    public final org.telegram.ui.Components.d6 f9918f;
     public Utilities.Callback h;
     public final Paint f9919n;
     public final Paint f9920r;
     public final Paint f9921s;
     public final Paint v;
     public final Paint f9922w;
-    public final org.telegram.ui.Components.p6 f9923x;
-    public final org.telegram.ui.Components.p6 f9924y;
+    public final org.telegram.ui.Components.n6 f9923x;
+    public final org.telegram.ui.Components.n6 f9924y;
 
     public u7(Context context, int i10) {
         super(context);
         this.f9916b = 0.0f;
         this.f9917c = 1.0f;
-        bs bsVar = bs.h;
-        this.f9918f = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
+        zr zrVar = zr.h;
+        this.f9918f = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
         Paint paint = new Paint(1);
         this.f9919n = paint;
         Paint paint2 = new Paint(1);
@@ -66,24 +66,24 @@ public class u7 extends View {
         this.v = paint4;
         Paint paint5 = new Paint(1);
         this.f9922w = paint5;
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, true, true);
-        this.f9923x = p6Var;
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, true, true);
+        this.f9923x = n6Var;
         this.E = new Path();
         this.F = new Path();
         this.G = new Path();
         this.H = new Path();
         this.I = new Path();
-        this.J = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
-        this.K = new org.telegram.ui.Components.f6(this, 0L, 350L, bsVar);
+        this.J = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
+        this.K = new org.telegram.ui.Components.d6(this, 0L, 350L, zrVar);
         this.Q = new TextPaint(1);
         this.f9915a = i10;
-        p6Var.x(AndroidUtilities.bold());
-        p6Var.n(0.3f, 40L, bsVar);
-        p6Var.setCallback(this);
-        p6Var.u(-1);
-        p6Var.M = AndroidUtilities.displaySize.x;
+        n6Var.x(AndroidUtilities.bold());
+        n6Var.n(0.3f, 40L, zrVar);
+        n6Var.setCallback(this);
+        n6Var.u(-1);
+        n6Var.M = AndroidUtilities.displaySize.x;
         if (i10 == 0) {
-            p6Var.w(AndroidUtilities.dp(15.0f));
+            n6Var.w(AndroidUtilities.dp(15.0f));
             this.f9924y = null;
             paint2.setColor(-1);
             paint3.setColor(-1);
@@ -92,25 +92,25 @@ public class u7 extends View {
             paint5.setStyle(Paint.Style.STROKE);
             paint5.setStrokeCap(Paint.Cap.ROUND);
         } else {
-            p6Var.w(AndroidUtilities.dp(14.0f));
-            p6Var.f29437b = 5;
-            org.telegram.ui.Components.p6 p6Var2 = new org.telegram.ui.Components.p6(false, true, true);
-            this.f9924y = p6Var2;
-            p6Var2.M = AndroidUtilities.displaySize.x;
-            p6Var2.w(AndroidUtilities.dp(14.0f));
-            p6Var2.x(AndroidUtilities.bold());
-            p6Var2.n(0.3f, 40L, bsVar);
-            p6Var2.setCallback(this);
-            p6Var2.u(-1);
+            n6Var.w(AndroidUtilities.dp(14.0f));
+            n6Var.f28797b = 5;
+            org.telegram.ui.Components.n6 n6Var2 = new org.telegram.ui.Components.n6(false, true, true);
+            this.f9924y = n6Var2;
+            n6Var2.M = AndroidUtilities.displaySize.x;
+            n6Var2.w(AndroidUtilities.dp(14.0f));
+            n6Var2.x(AndroidUtilities.bold());
+            n6Var2.n(0.3f, 40L, zrVar);
+            n6Var2.setCallback(this);
+            n6Var2.u(-1);
             if (i10 == 1) {
-                p6Var2.t(LocaleController.getString(R.string.FlashWarmth), true, true);
+                n6Var2.t(LocaleController.getString(R.string.FlashWarmth), true, true);
             } else if (i10 == 2) {
-                p6Var2.t(LocaleController.getString(R.string.FlashIntensity), true, true);
+                n6Var2.t(LocaleController.getString(R.string.FlashIntensity), true, true);
             } else if (i10 == 3) {
-                p6Var2.t(LocaleController.getString(R.string.WallpaperDimming), true, true);
+                n6Var2.t(LocaleController.getString(R.string.WallpaperDimming), true, true);
             }
         }
-        p6Var.t("", true, true);
+        n6Var.t("", true, true);
         paint.setColor(-1);
         paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.XOR));
     }
@@ -127,8 +127,8 @@ public class u7 extends View {
         this.f9917c = 0.9f;
     }
 
-    public final void c(gb1 gb1Var) {
-        this.h = gb1Var;
+    public final void c(fb1 fb1Var) {
+        this.h = fb1Var;
     }
 
     public final void d(float f7) {
@@ -162,18 +162,18 @@ public class u7 extends View {
         float f12 = f7;
         canvas.saveLayerAlpha(0.0f, 0.0f, this.O, this.P, 255, 31);
         int i10 = this.f9915a;
-        org.telegram.ui.Components.p6 p6Var = this.f9923x;
+        org.telegram.ui.Components.n6 n6Var = this.f9923x;
         if (i10 == 0) {
-            p6Var.setBounds(AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(1.0f), this.O, this.P - AndroidUtilities.dp(1.0f));
-            p6Var.draw(canvas);
+            n6Var.setBounds(AndroidUtilities.dp(42.0f), -AndroidUtilities.dp(1.0f), this.O, this.P - AndroidUtilities.dp(1.0f));
+            n6Var.draw(canvas);
         } else {
-            int c10 = (this.O - ((int) p6Var.c())) - AndroidUtilities.dp(6.0f);
+            int c10 = (this.O - ((int) n6Var.c())) - AndroidUtilities.dp(6.0f);
             int dp = this.P - AndroidUtilities.dp(1.0f);
-            org.telegram.ui.Components.p6 p6Var2 = this.f9924y;
-            p6Var2.setBounds(AndroidUtilities.dp(12.33f), -AndroidUtilities.dp(1.0f), c10, dp);
-            p6Var2.draw(canvas);
-            p6Var.setBounds(this.O - AndroidUtilities.dp(111.0f), -AndroidUtilities.dp(1.0f), this.O - AndroidUtilities.dp(11.0f), this.P - AndroidUtilities.dp(1.0f));
-            p6Var.draw(canvas);
+            org.telegram.ui.Components.n6 n6Var2 = this.f9924y;
+            n6Var2.setBounds(AndroidUtilities.dp(12.33f), -AndroidUtilities.dp(1.0f), c10, dp);
+            n6Var2.draw(canvas);
+            n6Var.setBounds(this.O - AndroidUtilities.dp(111.0f), -AndroidUtilities.dp(1.0f), this.O - AndroidUtilities.dp(11.0f), this.P - AndroidUtilities.dp(1.0f));
+            n6Var.draw(canvas);
         }
         if (i10 == 0) {
             canvas.drawPath(this.F, this.f9920r);
@@ -274,16 +274,16 @@ public class u7 extends View {
     public final void e(float f7) {
         long j10;
         String str = Math.round(100.0f * f7) + "%";
-        org.telegram.ui.Components.p6 p6Var = this.f9923x;
-        if (!TextUtils.equals(p6Var.f29442i, str)) {
-            p6Var.a();
+        org.telegram.ui.Components.n6 n6Var = this.f9923x;
+        if (!TextUtils.equals(n6Var.f28802i, str)) {
+            n6Var.a();
             if (this.e) {
                 j10 = 320;
             } else {
                 j10 = 40;
             }
-            p6Var.n(0.3f, j10, bs.h);
-            p6Var.t(str, true, true);
+            n6Var.n(0.3f, j10, zr.h);
+            n6Var.t(str, true, true);
         }
         if (this.f9915a == 1) {
             this.f9919n.setColor(s2.f(f7));

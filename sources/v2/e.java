@@ -10,21 +10,21 @@ import c3.u;
 import v7.u6;
 public final class e implements s {
     public static final u v = new Object();
-    public final q f48326a;
-    public final int f48327b;
-    public final w f48328c;
+    public final q f48325a;
+    public final int f48326b;
+    public final w f48327c;
     public final SparseArray d = new SparseArray();
-    public final d e = d.f48325a;
-    public boolean f48329f;
+    public final d e = d.f48324a;
+    public boolean f48328f;
     public n2.e h;
-    public long f48330n;
-    public e0 f48331r;
-    public w[] f48332s;
+    public long f48329n;
+    public e0 f48330r;
+    public w[] f48331s;
 
     public e(q qVar, int i10, w wVar) {
-        this.f48326a = qVar;
-        this.f48327b = i10;
-        this.f48328c = wVar;
+        this.f48325a = qVar;
+        this.f48326b = i10;
+        this.f48327c = wVar;
     }
 
     @Override
@@ -36,31 +36,31 @@ public final class e implements s {
             wVar.getClass();
             wVarArr[i10] = wVar;
         }
-        this.f48332s = wVarArr;
+        this.f48331s = wVarArr;
     }
 
     public final c3.j a() {
-        e0 e0Var = this.f48331r;
+        e0 e0Var = this.f48330r;
         if (e0Var instanceof c3.j) {
             return (c3.j) e0Var;
         }
         if (e0Var instanceof u3.d) {
-            return ((u3.d) e0Var).f47961a;
+            return ((u3.d) e0Var).f47960a;
         }
         return null;
     }
 
     public final void b(n2.e eVar, long j10, long j11) {
         this.h = eVar;
-        this.f48330n = j11;
-        boolean z10 = this.f48329f;
-        q qVar = this.f48326a;
+        this.f48329n = j11;
+        boolean z10 = this.f48328f;
+        q qVar = this.f48325a;
         if (!z10) {
             qVar.c(this);
             if (j10 != -9223372036854775807L) {
                 qVar.d(0L, j10);
             }
-            this.f48329f = true;
+            this.f48328f = true;
             return;
         }
         if (j10 == -9223372036854775807L) {
@@ -73,11 +73,11 @@ public final class e implements s {
             if (i10 < sparseArray.size()) {
                 c cVar = (c) sparseArray.valueAt(i10);
                 if (eVar == null) {
-                    cVar.f48323f = cVar.f48322c;
+                    cVar.f48322f = cVar.f48321c;
                 } else {
-                    cVar.f48324g = j11;
-                    l0 V = eVar.V(cVar.f48320a);
-                    cVar.f48323f = V;
+                    cVar.f48323g = j11;
+                    l0 V = eVar.V(cVar.f48319a);
+                    cVar.f48322f = V;
                     w wVar = cVar.e;
                     if (wVar != null) {
                         V.b(wVar);
@@ -92,7 +92,7 @@ public final class e implements s {
 
     @Override
     public final void g0(e0 e0Var) {
-        this.f48331r = e0Var;
+        this.f48330r = e0Var;
     }
 
     @Override
@@ -102,26 +102,26 @@ public final class e implements s {
         SparseArray sparseArray = this.d;
         c cVar = (c) sparseArray.get(i10);
         if (cVar == null) {
-            if (this.f48332s == null) {
+            if (this.f48331s == null) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             u6.p(z10);
-            if (i11 == this.f48327b) {
-                wVar = this.f48328c;
+            if (i11 == this.f48326b) {
+                wVar = this.f48327c;
             } else {
                 wVar = null;
             }
             cVar = new c(i10, i11, wVar, this.e);
             n2.e eVar = this.h;
-            long j10 = this.f48330n;
+            long j10 = this.f48329n;
             if (eVar == null) {
-                cVar.f48323f = cVar.f48322c;
+                cVar.f48322f = cVar.f48321c;
             } else {
-                cVar.f48324g = j10;
+                cVar.f48323g = j10;
                 l0 V = eVar.V(i11);
-                cVar.f48323f = V;
+                cVar.f48322f = V;
                 w wVar2 = cVar.e;
                 if (wVar2 != null) {
                     V.b(wVar2);

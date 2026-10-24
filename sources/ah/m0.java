@@ -11,13 +11,13 @@ import ei.vb;
 import gi.e4;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.ob;
-import org.telegram.ui.Components.om;
-import org.telegram.ui.Components.qc;
-import org.telegram.ui.Components.ty0;
-import org.telegram.ui.Components.ub;
-import org.telegram.ui.Components.y7;
-public final class m0 implements ob {
+import org.telegram.ui.Components.mb;
+import org.telegram.ui.Components.mm;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.sb;
+import org.telegram.ui.Components.sy0;
+import org.telegram.ui.Components.w7;
+public final class m0 implements mb {
     public final int f829a;
     public final Object f830b;
 
@@ -57,13 +57,13 @@ public final class m0 implements ob {
     }
 
     @Override
-    public final void b(qc qcVar) {
+    public final void b(oc ocVar) {
         i4 i4Var;
         switch (this.f829a) {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29826a == 2 && (i4Var = ((q3) this.f830b).f5782x.Q1) != null) {
+                if (ocVar.f29197a == 2 && (i4Var = ((q3) this.f830b).f5782x.Q1) != null) {
                     z9 z9Var = ((q9) i4Var).d;
                     z9Var.Y0 = true;
                     z9Var.P();
@@ -81,9 +81,9 @@ public final class m0 implements ob {
             case 10:
                 return;
             default:
-                ub ubVar = qcVar.e;
+                sb sbVar = ocVar.e;
                 yh.i0 i0Var = (yh.i0) this.f830b;
-                dh.d c10 = i0Var.e.c(ubVar, null, true);
+                dh.d c10 = i0Var.e.c(sbVar, null, true);
                 eh.e eVar = new eh.e(yh.i0.p(i0Var));
                 eVar.e = new c3.m(22);
                 float dpf2 = AndroidUtilities.dpf2(0.5f);
@@ -92,7 +92,7 @@ public final class m0 implements ob {
                 eVar.h = dpf22;
                 c10.o(eVar);
                 c10.q(AndroidUtilities.dp(16.0f));
-                ubVar.setCustomBackground(c10);
+                sbVar.setCustomBackground(c10);
                 return;
         }
     }
@@ -103,13 +103,13 @@ public final class m0 implements ob {
     }
 
     @Override
-    public final void d(qc qcVar) {
+    public final void d(oc ocVar) {
         i4 i4Var;
         switch (this.f829a) {
             case 0:
                 return;
             case 1:
-                if (qcVar.f29826a == 2 && (i4Var = ((q3) this.f830b).f5782x.Q1) != null) {
+                if (ocVar.f29197a == 2 && (i4Var = ((q3) this.f830b).f5782x.Q1) != null) {
                     z9 z9Var = ((q9) i4Var).d;
                     z9Var.Y0 = false;
                     z9Var.P();
@@ -181,21 +181,21 @@ public final class m0 implements ob {
                 dp = AndroidUtilities.dp(12.0f);
                 break;
             case 5:
-                return ((y7) this.f830b).e.f27945y.getHeight();
+                return ((w7) this.f830b).e.f27356y.getHeight();
             case 6:
                 return ((o2) this.f830b).getBottomInset();
             case 7:
-                ob obVar = (ob) this.f830b;
-                if (obVar == null) {
+                mb mbVar = (mb) this.f830b;
+                if (mbVar == null) {
                     return 0;
                 }
-                return obVar.f(i10);
+                return mbVar.f(i10);
             case 8:
                 editTextHeight = AndroidUtilities.dp(126.0f);
-                dp = ((om) this.f830b).f29231c.f28366b.getBottomInset();
+                dp = ((mm) this.f830b).f28626c.f27704b.getBottomInset();
                 break;
             case 9:
-                FrameLayout frameLayout = ((ty0) this.f830b).f30954w;
+                FrameLayout frameLayout = ((sy0) this.f830b).f30661w;
                 if (frameLayout != null) {
                     return frameLayout.getHeight();
                 }
@@ -234,8 +234,8 @@ public final class m0 implements ob {
             case 6:
                 return false;
             case 7:
-                ob obVar = (ob) this.f830b;
-                if (obVar != null && obVar.g(i10)) {
+                mb mbVar = (mb) this.f830b;
+                if (mbVar != null && mbVar.g(i10)) {
                     return true;
                 }
                 return false;
@@ -268,11 +268,11 @@ public final class m0 implements ob {
             case 6:
                 return 0;
             case 7:
-                ob obVar = (ob) this.f830b;
-                if (obVar == null) {
+                mb mbVar = (mb) this.f830b;
+                if (mbVar == null) {
                     return AndroidUtilities.statusBarHeight;
                 }
-                return obVar.h(i10);
+                return mbVar.h(i10);
             case 8:
                 return 0;
             case 9:
@@ -284,49 +284,49 @@ public final class m0 implements ob {
         }
     }
 
-    private final void A(qc qcVar) {
+    private final void A(oc ocVar) {
     }
 
-    private final void B(qc qcVar) {
+    private final void B(oc ocVar) {
     }
 
-    private final void C(qc qcVar) {
+    private final void C(oc ocVar) {
     }
 
-    private final void D(qc qcVar) {
+    private final void D(oc ocVar) {
     }
 
-    private final void E(qc qcVar) {
+    private final void E(oc ocVar) {
     }
 
-    private final void F(qc qcVar) {
+    private final void F(oc ocVar) {
     }
 
-    private final void G(qc qcVar) {
+    private final void G(oc ocVar) {
     }
 
-    private final void H(qc qcVar) {
+    private final void H(oc ocVar) {
     }
 
-    private final void I(qc qcVar) {
+    private final void I(oc ocVar) {
     }
 
-    private final void J(qc qcVar) {
+    private final void J(oc ocVar) {
     }
 
-    private final void K(qc qcVar) {
+    private final void K(oc ocVar) {
     }
 
-    private final void L(qc qcVar) {
+    private final void L(oc ocVar) {
     }
 
-    private final void M(qc qcVar) {
+    private final void M(oc ocVar) {
     }
 
-    private final void N(qc qcVar) {
+    private final void N(oc ocVar) {
     }
 
-    private final void O(qc qcVar) {
+    private final void O(oc ocVar) {
     }
 
     private final void i(float f7) {
@@ -365,21 +365,21 @@ public final class m0 implements ob {
     private final void t(float f7) {
     }
 
-    private final void u(qc qcVar) {
+    private final void u(oc ocVar) {
     }
 
-    private final void v(qc qcVar) {
+    private final void v(oc ocVar) {
     }
 
-    private final void w(qc qcVar) {
+    private final void w(oc ocVar) {
     }
 
-    private final void x(qc qcVar) {
+    private final void x(oc ocVar) {
     }
 
-    private final void y(qc qcVar) {
+    private final void y(oc ocVar) {
     }
 
-    private final void z(qc qcVar) {
+    private final void z(oc ocVar) {
     }
 }

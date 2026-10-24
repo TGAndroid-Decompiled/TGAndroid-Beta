@@ -5,29 +5,29 @@ import android.graphics.Paint;
 import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
 public final class h9 {
-    public final float f34582a;
-    public final float f34583b;
-    public final float f34584c;
+    public final float f34584a;
+    public final float f34585b;
+    public final float f34586c;
     public final float d;
     public final float e;
-    public final boolean f34585f;
-    public final long f34586g;
+    public final boolean f34587f;
+    public final long f34588g;
     public final i9 h;
 
     public h9(i9 i9Var, h9 h9Var, float f7, boolean z10) {
         float y3;
         this.h = i9Var;
-        this.f34585f = z10;
-        this.f34583b = f7;
-        this.f34582a = h9Var != null ? h9Var.f34582a : f7;
-        this.f34586g = (h9Var == null || z10) ? SystemClock.uptimeMillis() : h9Var.f34586g;
+        this.f34587f = z10;
+        this.f34585b = f7;
+        this.f34584a = h9Var != null ? h9Var.f34584a : f7;
+        this.f34588g = (h9Var == null || z10) ? SystemClock.uptimeMillis() : h9Var.f34588g;
         float f10 = 0.0f;
         float a2 = (h9Var == null || !z10) ? 0.0f : h9Var.a();
         if (h9Var != null) {
-            float f11 = h9Var.f34584c;
+            float f11 = h9Var.f34586c;
             f10 = com.google.android.gms.internal.play_billing.k3.y(1.0f, f11, a2, f11);
         }
-        this.f34584c = f10;
+        this.f34586c = f10;
         if (h9Var == null) {
             y3 = i9Var.O;
         } else {
@@ -42,7 +42,7 @@ public final class h9 {
         if (this.h.I >= 1.0f) {
             return 1.0f;
         }
-        return i9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f34586g)) / 320.0f));
+        return i9.S.getInterpolation(Math.min(1.0f, ((float) (SystemClock.uptimeMillis() - this.f34588g)) / 320.0f));
     }
 
     public final void b(Canvas canvas, Paint paint, String str, float f7, int i10) {
@@ -50,13 +50,13 @@ public final class h9 {
         float f11;
         float a2 = a();
         float f12 = 1.0f;
-        boolean z10 = this.f34585f;
+        boolean z10 = this.f34587f;
         if (z10) {
             f10 = 0.0f;
         } else {
             f10 = 1.0f;
         }
-        float f13 = this.f34584c;
+        float f13 = this.f34586c;
         float y3 = com.google.android.gms.internal.play_billing.k3.y(f10, f13, a2, f13);
         if (y3 <= 0.0f) {
             return;
@@ -95,30 +95,30 @@ public final class h9 {
     }
 
     public final float d() {
-        float f7 = this.f34583b;
-        float f10 = this.f34582a;
+        float f7 = this.f34585b;
+        float f10 = this.f34584a;
         return (i9.S.getInterpolation(this.h.I) * (f7 - f10)) + f10;
     }
 
     public h9(i9 i9Var, float f7) {
         this.h = i9Var;
-        this.f34585f = false;
-        this.f34583b = f7;
-        this.f34582a = f7;
-        this.f34584c = 1.0f;
+        this.f34587f = false;
+        this.f34585b = f7;
+        this.f34584a = f7;
+        this.f34586c = 1.0f;
         this.d = 1.0f;
         this.e = 0.0f;
-        this.f34586g = SystemClock.uptimeMillis();
+        this.f34588g = SystemClock.uptimeMillis();
     }
 
     public h9(i9 i9Var, float f7, h9 h9Var) {
         this.h = i9Var;
-        this.f34585f = h9Var.f34585f;
-        this.f34583b = f7;
-        this.f34582a = f7;
-        this.f34584c = h9Var.f34584c;
+        this.f34587f = h9Var.f34587f;
+        this.f34585b = f7;
+        this.f34584a = f7;
+        this.f34586c = h9Var.f34586c;
         this.d = h9Var.d;
         this.e = h9Var.e;
-        this.f34586g = h9Var.f34586g;
+        this.f34588g = h9Var.f34588g;
     }
 }

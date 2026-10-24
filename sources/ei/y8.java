@@ -77,19 +77,19 @@ public final class y8 extends pg.a {
         if (this != obj) {
             if (obj != null && y8.class == obj.getClass()) {
                 y8 y8Var = (y8) obj;
-                int i10 = this.f44713a;
-                if (i10 == y8Var.f44713a) {
+                int i10 = this.f44712a;
+                if (i10 == y8Var.f44712a) {
                     if (i10 != -1 || (this.f10161o == y8Var.f10161o && this.f10162p == y8Var.f10162p)) {
                         if (i10 != 3 || (this.f10154g == y8Var.f10154g && this.h == y8Var.h && this.f10155i == y8Var.f10155i && this.f10156j == y8Var.f10156j && this.f10157k == y8Var.f10157k && this.f10159m == y8Var.f10159m && this.f10160n == y8Var.f10160n)) {
                             if (i10 != 0 || this.f10152c == y8Var.f10152c) {
                                 if (i10 != 2 || TextUtils.equals(this.e, y8Var.e)) {
-                                    if (this.f44713a != 8 || TextUtils.equals(this.e, y8Var.e)) {
-                                        int i11 = this.f44713a;
+                                    if (this.f44712a != 8 || TextUtils.equals(this.e, y8Var.e)) {
+                                        int i11 = this.f44712a;
                                         if ((i11 != 4 && i11 != 11) || (TextUtils.equals(this.e, y8Var.e) && TextUtils.equals(this.f10153f, y8Var.f10153f))) {
-                                            if (this.f44713a != 6 || (TextUtils.equals(this.e, y8Var.e) && this.f10152c == y8Var.f10152c)) {
-                                                if (this.f44713a != 7 || (this.f10152c == y8Var.f10152c && TextUtils.equals(this.e, y8Var.e) && this.f10157k == y8Var.f10157k)) {
-                                                    if (this.f44713a != 9 || (this.f10163q == y8Var.f10163q && this.d == y8Var.d && TextUtils.equals(this.e, y8Var.e) && TextUtils.equals(this.f10153f, y8Var.f10153f))) {
-                                                        if (this.f44713a != 10 || this.f10163q == y8Var.f10163q) {
+                                            if (this.f44712a != 6 || (TextUtils.equals(this.e, y8Var.e) && this.f10152c == y8Var.f10152c)) {
+                                                if (this.f44712a != 7 || (this.f10152c == y8Var.f10152c && TextUtils.equals(this.e, y8Var.e) && this.f10157k == y8Var.f10157k)) {
+                                                    if (this.f44712a != 9 || (this.f10163q == y8Var.f10163q && this.d == y8Var.d && TextUtils.equals(this.e, y8Var.e) && TextUtils.equals(this.f10153f, y8Var.f10153f))) {
+                                                        if (this.f44712a != 10 || this.f10163q == y8Var.f10163q) {
                                                             return true;
                                                         }
                                                         return false;

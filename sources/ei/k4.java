@@ -21,20 +21,20 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.zr;
 public final class k4 extends View implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.Components.f6 E;
-    public final org.telegram.ui.Components.f6 F;
+    public final org.telegram.ui.Components.d6 E;
+    public final org.telegram.ui.Components.d6 F;
     public final org.telegram.ui.ActionBar.g6 f9313a;
     public final ImageReceiver f9314b;
     public final Paint f9315c;
     public final Paint d;
-    public final org.telegram.ui.Components.p6 e;
+    public final org.telegram.ui.Components.n6 e;
     public boolean f9316f;
     public boolean h;
     public View.OnClickListener f9317n;
-    public final yc f9318r;
+    public final wc f9318r;
     public int f9319s;
     public String v;
     public float f9320w;
@@ -49,21 +49,21 @@ public final class k4 extends View implements org.telegram.ui.ActionBar.b6 {
         this.f9315c = paint;
         Paint paint2 = new Paint(1);
         this.d = paint2;
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, false, false);
-        this.e = p6Var;
-        this.f9318r = new yc(this);
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false);
+        this.e = n6Var;
+        this.f9318r = new wc(this);
         this.f9319s = -1;
-        bs bsVar = bs.h;
-        this.E = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
-        this.F = new org.telegram.ui.Components.f6(this, 0L, 320L, bsVar);
-        p6Var.setCallback(this);
-        p6Var.u(-1);
-        p6Var.f29437b = 17;
-        p6Var.w(AndroidUtilities.dp(16.0f));
-        p6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
-        p6Var.M = AndroidUtilities.displaySize.x;
-        p6Var.n(0.65f, 480L, bsVar);
-        p6Var.A = 0.35f;
+        zr zrVar = zr.h;
+        this.E = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
+        this.F = new org.telegram.ui.Components.d6(this, 0L, 320L, zrVar);
+        n6Var.setCallback(this);
+        n6Var.u(-1);
+        n6Var.f28797b = 17;
+        n6Var.w(AndroidUtilities.dp(16.0f));
+        n6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
+        n6Var.M = AndroidUtilities.displaySize.x;
+        n6Var.n(0.65f, 480L, zrVar);
+        n6Var.A = 0.35f;
         paint.setStyle(Paint.Style.STROKE);
         paint.setColor(-1);
         this.f9313a = g6Var;
@@ -301,10 +301,10 @@ public final class k4 extends View implements org.telegram.ui.ActionBar.b6 {
             float f11 = f7 - f10;
             float f12 = this.f9321x;
             float f13 = f7 + f10;
-            org.telegram.ui.Components.p6 p6Var = this.e;
-            p6Var.o(f11, f12, f13, f12);
-            p6Var.B = (int) (e7 * 255.0f);
-            p6Var.draw(canvas);
+            org.telegram.ui.Components.n6 n6Var = this.e;
+            n6Var.o(f11, f12, f13, f12);
+            n6Var.B = (int) (e7 * 255.0f);
+            n6Var.draw(canvas);
         }
         canvas.restore();
     }
@@ -336,18 +336,18 @@ public final class k4 extends View implements org.telegram.ui.ActionBar.b6 {
             z10 = false;
         }
         int action = motionEvent.getAction();
-        yc ycVar = this.f9318r;
+        wc wcVar = this.f9318r;
         if (action == 0) {
-            ycVar.c(z10);
+            wcVar.c(z10);
         } else if (motionEvent.getAction() == 1) {
-            if (ycVar.f32872i && z10 && (onClickListener = this.f9317n) != null) {
+            if (wcVar.f32185i && z10 && (onClickListener = this.f9317n) != null) {
                 onClickListener.onClick(this);
             }
-            ycVar.c(false);
+            wcVar.c(false);
         } else if (motionEvent.getAction() == 3) {
-            ycVar.c(false);
+            wcVar.c(false);
         }
-        if (ycVar.f32872i || super.onTouchEvent(motionEvent)) {
+        if (wcVar.f32185i || super.onTouchEvent(motionEvent)) {
             return true;
         }
         return false;

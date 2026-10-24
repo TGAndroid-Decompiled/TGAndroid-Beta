@@ -11,9 +11,9 @@ import e9.n0;
 import e9.x1;
 import java.util.List;
 public final class d implements q {
-    public s f49644a;
-    public i f49645b;
-    public boolean f49646c;
+    public s f49643a;
+    public i f49644b;
+    public boolean f49645c;
 
     @Override
     public final boolean a(r rVar) {
@@ -26,27 +26,27 @@ public final class d implements q {
 
     @Override
     public final void c(s sVar) {
-        this.f49644a = sVar;
+        this.f49643a = sVar;
     }
 
     @Override
     public final void d(long j10, long j11) {
-        i iVar = this.f49645b;
+        i iVar = this.f49644b;
         if (iVar != null) {
-            e eVar = iVar.f49658a;
-            f fVar = eVar.f49647a;
-            fVar.f49650a = 0;
-            fVar.f49651b = 0L;
-            fVar.f49652c = 0;
+            e eVar = iVar.f49657a;
+            f fVar = eVar.f49646a;
+            fVar.f49649a = 0;
+            fVar.f49650b = 0L;
+            fVar.f49651c = 0;
             fVar.d = 0;
             fVar.e = 0;
-            eVar.f49648b.K(0);
-            eVar.f49649c = -1;
+            eVar.f49647b.K(0);
+            eVar.f49648c = -1;
             eVar.e = false;
             if (j10 == 0) {
-                iVar.d(!iVar.f49666l);
+                iVar.d(!iVar.f49665l);
             } else if (iVar.h != 0) {
-                long j12 = (iVar.f49663i * j11) / 1000000;
+                long j12 = (iVar.f49662i * j11) / 1000000;
                 iVar.e = j12;
                 g gVar = iVar.d;
                 String str = m0.f8259a;
@@ -70,13 +70,13 @@ public final class d implements q {
     public final boolean g(r rVar) {
         boolean z10;
         f fVar = new f();
-        if (fVar.a(rVar, true) && (fVar.f49650a & 2) == 2) {
+        if (fVar.a(rVar, true) && (fVar.f49649a & 2) == 2) {
             int min = Math.min(fVar.e, 8);
             x xVar = new x(min);
             rVar.a(0, min, xVar.f8298a);
             xVar.N(0);
             if (xVar.a() >= 5 && xVar.A() == 127 && xVar.C() == 1179402563) {
-                this.f49645b = new i();
+                this.f49644b = new i();
                 return true;
             }
             xVar.N(0);
@@ -86,11 +86,11 @@ public final class d implements q {
                 z10 = false;
             }
             if (z10) {
-                this.f49645b = new i();
+                this.f49644b = new i();
             } else {
                 xVar.N(0);
-                if (h.e(xVar, h.f49655o)) {
-                    this.f49645b = new i();
+                if (h.e(xVar, h.f49654o)) {
+                    this.f49644b = new i();
                 }
             }
             return true;

@@ -4,7 +4,7 @@ import org.telegram.messenger.Utilities;
 import org.telegram.messenger.video.VideoPlayerHolderBase;
 import org.telegram.messenger.voip.NativeInstance;
 import org.telegram.messenger.voip.VoipAudioManager;
-import org.telegram.ui.Components.tz;
+import org.telegram.ui.Components.rz;
 public final class n0 implements Runnable {
     public final int f8270a;
     public final boolean f8271b;
@@ -34,7 +34,7 @@ public final class n0 implements Runnable {
                 VoipAudioManager.lambda$isBluetoothAndSpeakerOnAsync$3((Utilities.Callback2) this.d, this.f8271b, this.f8272c);
                 return;
             default:
-                ((tz) this.d).P(false, this.f8271b, this.f8272c);
+                ((rz) this.d).P(false, this.f8271b, this.f8272c);
                 return;
         }
     }

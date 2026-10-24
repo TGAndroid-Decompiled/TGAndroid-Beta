@@ -1,7 +1,7 @@
 package ei;
 
 import android.widget.FrameLayout;
-import org.telegram.ui.Components.jb0;
+import org.telegram.ui.Components.hb0;
 public final class q4 implements o1.f {
     public final int f9656a;
     public final FrameLayout f9657b;
@@ -44,21 +44,21 @@ public final class q4 implements o1.f {
                 }
                 return;
             default:
-                jb0 jb0Var = (jb0) this.f9657b;
+                hb0 hb0Var = (hb0) this.f9657b;
                 if (!z10) {
-                    jb0Var.K = null;
+                    hb0Var.K = null;
                     boolean z11 = this.f9658c;
                     if (z11) {
                         i10 = 8;
                     } else {
                         i10 = 0;
                     }
-                    jb0Var.setVisibility(i10);
-                    if (jb0Var.N && z11) {
-                        jb0Var.N = false;
-                        jb0Var.f27653b.setLayoutManager(jb0Var.getNeededLayoutManager());
-                        jb0Var.I = true;
-                        jb0Var.o(true);
+                    hb0Var.setVisibility(i10);
+                    if (hb0Var.N && z11) {
+                        hb0Var.N = false;
+                        hb0Var.f26993b.setLayoutManager(hb0Var.getNeededLayoutManager());
+                        hb0Var.I = true;
+                        hb0Var.o(true);
                         return;
                     }
                     return;

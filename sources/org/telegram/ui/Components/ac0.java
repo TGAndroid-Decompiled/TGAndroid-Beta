@@ -1,24 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-public final class ac0 extends g.o {
-    public final lc0 f24687c;
+import android.content.Context;
+import android.view.MotionEvent;
+public final class ac0 extends org.telegram.ui.ActionBar.e1 {
+    public final int V;
 
-    public ac0(lc0 lc0Var) {
-        this.f24687c = lc0Var;
+    public ac0(int i10, int i11, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10, boolean z11) {
+        super(i10, context, g6Var, z10, z11);
+        this.V = i11;
     }
 
     @Override
-    public final int i(int i10) {
-        MessageObject messageObject;
-        MessageObject.GroupedMessages a2;
-        if (i10 >= 0) {
-            lc0 lc0Var = this.f24687c;
-            if (i10 < lc0Var.f28343r.previewMessages.size() && (a2 = lc0.a(lc0Var, (messageObject = lc0Var.f28343r.previewMessages.get(i10)))) != null) {
-                return a2.getPosition(messageObject).spanSize;
-            }
-            return 1000;
+    public final void l() {
+        switch (this.V) {
+            case 0:
+                setBackground(null);
+                return;
+            default:
+                setBackground(null);
+                return;
         }
-        return 1000;
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.V) {
+            case 0:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+            default:
+                if (getVisibility() == 0 && getAlpha() >= 0.5f) {
+                    return super.onTouchEvent(motionEvent);
+                }
+                return false;
+        }
     }
 }

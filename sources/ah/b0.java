@@ -2,7 +2,7 @@ package ah;
 
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.gl0;
+import org.telegram.ui.Components.fl0;
 import org.telegram.ui.sn;
 import w7.z5;
 public final class b0 implements Runnable {
@@ -40,10 +40,10 @@ public final class b0 implements Runnable {
                     } else {
                         i10 = 0;
                     }
-                    ?? gl0Var = new gl0(i10, snVar.getCurrentAccount(), f0Var.getContext(), f0Var.f724a, snVar.getResourceProvider());
-                    gl0Var.f720m1 = 1.0f;
-                    gl0Var.setWillNotDraw(false);
-                    f0Var.f725b = gl0Var;
+                    ?? fl0Var = new fl0(i10, snVar.getCurrentAccount(), f0Var.getContext(), f0Var.f724a, snVar.getResourceProvider());
+                    fl0Var.f720m1 = 1.0f;
+                    fl0Var.setWillNotDraw(false);
+                    f0Var.f725b = fl0Var;
                     int dp = AndroidUtilities.dp(4.0f);
                     if (LocaleController.isRTL) {
                         i11 = 0;
@@ -56,7 +56,7 @@ public final class b0 implements Runnable {
                     if (!LocaleController.isRTL) {
                         i13 = 0;
                     }
-                    gl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
+                    fl0Var.setPadding(i14, dp2, dp3 + i13, AndroidUtilities.dp(i12));
                     f0Var.f725b.setDelegate(new qb.c(f0Var, 3));
                     f0Var.f725b.setClipChildren(false);
                     f0Var.f725b.setClipToPadding(false);
@@ -65,7 +65,7 @@ public final class b0 implements Runnable {
                 f0Var.c(false);
                 if (f0Var.f725b.isEnabled()) {
                     f0Var.f732x = true;
-                    f0Var.f725b.p(f0Var.e, snVar.f41592l8, true);
+                    f0Var.f725b.p(f0Var.e, snVar.f41589l8, true);
                     f0Var.f725b.r(false);
                     return;
                 }

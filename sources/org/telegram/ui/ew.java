@@ -13,10 +13,10 @@ import org.telegram.messenger.SharedConfig;
 import org.telegram.ui.ActionBar.AlertDialog$Builder;
 import org.telegram.ui.Components.UndoView;
 public final class ew extends org.telegram.ui.ActionBar.j {
-    public final ey f37028a;
+    public final ey f37003a;
 
     public ew(ey eyVar) {
-        this.f37028a = eyVar;
+        this.f37003a = eyVar;
     }
 
     @Override
@@ -30,24 +30,24 @@ public final class ew extends org.telegram.ui.ActionBar.j {
         boolean z10;
         org.telegram.ui.ActionBar.k kVar;
         org.telegram.ui.ActionBar.k kVar2;
-        ey eyVar = this.f37028a;
+        ey eyVar = this.f37003a;
         ArrayList arrayList3 = eyVar.I2;
         if ((i10 == 201 || i10 == 200 || i10 == 202 || i10 == 203) && (nxVar = eyVar.C0) != null) {
-            HashMap hashMap = nxVar.f24822z0;
+            HashMap hashMap = nxVar.f33326z0;
             ey eyVar2 = nxVar.J0;
             if (i10 == 202) {
                 if (eyVar2 != null && eyVar2.getParentActivity() != null) {
                     ArrayList arrayList4 = new ArrayList(hashMap.values());
                     AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(eyVar2.getParentActivity());
-                    alertDialog$Builder.f20678a.R = LocaleController.formatPluralString("RemoveDocumentsTitle", hashMap.size(), new Object[0]);
+                    alertDialog$Builder.f20679a.R = LocaleController.formatPluralString("RemoveDocumentsTitle", hashMap.size(), new Object[0]);
                     SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
                     spannableStringBuilder.append((CharSequence) AndroidUtilities.replaceTags(LocaleController.formatPluralString("RemoveDocumentsMessage", hashMap.size(), new Object[0]))).append((CharSequence) "\n\n").append((CharSequence) LocaleController.getString(R.string.RemoveDocumentsAlertMessage));
-                    alertDialog$Builder.f20678a.T = spannableStringBuilder;
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.ud0(10));
-                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new org.telegram.ui.Components.p2(21, nxVar, arrayList4));
+                    alertDialog$Builder.f20679a.T = spannableStringBuilder;
+                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new org.telegram.ui.Components.sd0(10));
+                    alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new org.telegram.ui.Components.o2(21, nxVar, arrayList4));
                     TextView textView = (TextView) alertDialog$Builder.p().d(-1);
                     if (textView != null) {
-                        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21421q7, null);
+                        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21422q7, null);
                         return;
                     }
                     return;
@@ -67,7 +67,7 @@ public final class ew extends org.telegram.ui.ActionBar.j {
                 return;
             } else if (i10 == 201) {
                 ey eyVar3 = new ey(org.telegram.messenger.v0.e(3, "onlySelect", "dialogsType", true));
-                eyVar3.C2 = new org.telegram.ui.Components.tv(nxVar, 18);
+                eyVar3.C2 = new org.telegram.ui.Components.rv(nxVar, 18);
                 eyVar2.presentFragment(eyVar3);
                 return;
             } else {
@@ -83,7 +83,7 @@ public final class ew extends org.telegram.ui.ActionBar.j {
                     nx nxVar2 = eyVar.C0;
                     if (nxVar2 != null && nxVar2.getVisibility() == 0) {
                         nx nxVar3 = eyVar.C0;
-                        if (nxVar3.f24821y0) {
+                        if (nxVar3.f33325y0) {
                             nxVar3.P(false);
                             return;
                         }
@@ -99,21 +99,21 @@ public final class ew extends org.telegram.ui.ActionBar.j {
                 }
                 return;
             }
-            cw cwVar = eyVar.f37167z0;
-            if (cwVar == null || !cwVar.f30320n) {
+            cw cwVar = eyVar.f37142z0;
+            if (cwVar == null || !cwVar.f29721n) {
                 kVar = ((org.telegram.ui.ActionBar.o2) eyVar).actionBar;
                 if (kVar.s()) {
                     nx nxVar5 = eyVar.C0;
                     if (nxVar5 != null && nxVar5.getVisibility() == 0) {
                         nx nxVar6 = eyVar.C0;
-                        if (nxVar6.f24821y0) {
+                        if (nxVar6.f33325y0) {
                             nxVar6.P(false);
                             return;
                         }
                     }
                     eyVar.Z3(true);
                     return;
-                } else if (eyVar.f37096l2 || eyVar.W2 != 0 || eyVar.Y2 != 0) {
+                } else if (eyVar.f37071l2 || eyVar.W2 != 0 || eyVar.Y2 != 0) {
                     eyVar.finishFragment();
                     return;
                 } else {
@@ -127,8 +127,8 @@ public final class ew extends org.telegram.ui.ActionBar.j {
                 SharedConfig.appLocked = true;
                 SharedConfig.saveConfig();
                 int[] iArr = new int[2];
-                eyVar.f37065f0.getLocationInWindow(iArr);
-                ((LaunchActivity) eyVar.getParentActivity()).L0(false, true, (eyVar.f37065f0.getMeasuredWidth() / 2) + iArr[0], (eyVar.f37065f0.getMeasuredHeight() / 2) + iArr[1], new ti(this, 25));
+                eyVar.f37040f0.getLocationInWindow(iArr);
+                ((LaunchActivity) eyVar.getParentActivity()).L0(false, true, (eyVar.f37040f0.getMeasuredWidth() / 2) + iArr[0], (eyVar.f37040f0.getMeasuredHeight() / 2) + iArr[1], new ti(this, 25));
                 eyVar.getNotificationsController().showNotifications();
                 eyVar.w3();
             }
@@ -138,19 +138,19 @@ public final class ew extends org.telegram.ui.ActionBar.j {
         } else if (i10 == 11) {
             eyVar.n4(eyVar.D1);
         } else if (i10 == 109) {
-            org.telegram.ui.Components.v00 v00Var = new org.telegram.ui.Components.v00(eyVar, arrayList3);
-            v00Var.f31271s = new xt(this, 4);
-            eyVar.showDialog(v00Var);
+            org.telegram.ui.Components.t00 t00Var = new org.telegram.ui.Components.t00(eyVar, arrayList3);
+            t00Var.f30677s = new xt(this, 4);
+            eyVar.showDialog(t00Var);
         } else if (i10 == 110) {
-            MessagesController.DialogFilter dialogFilter2 = eyVar.getMessagesController().getDialogFilters().get(eyVar.f37059e0[0].h);
-            ArrayList I = org.telegram.ui.Components.v00.I(eyVar, dialogFilter2, arrayList3, false, false);
+            MessagesController.DialogFilter dialogFilter2 = eyVar.getMessagesController().getDialogFilters().get(eyVar.f37034e0[0].h);
+            ArrayList I = org.telegram.ui.Components.t00.I(eyVar, dialogFilter2, arrayList3, false, false);
             if (dialogFilter2 != null) {
                 i11 = dialogFilter2.neverShow.size();
             } else {
                 i11 = 0;
             }
             if (I.size() + i11 > 100) {
-                eyVar.showDialog(org.telegram.ui.Components.f5.N(eyVar.getParentActivity(), LocaleController.getString(R.string.FilterAddToAlertFullTitle), LocaleController.getString(R.string.FilterAddToAlertFullText)).f20678a);
+                eyVar.showDialog(org.telegram.ui.Components.d5.M(eyVar.getParentActivity(), LocaleController.getString(R.string.FilterAddToAlertFullTitle), LocaleController.getString(R.string.FilterAddToAlertFullText)).f20679a);
                 return;
             }
             if (!I.isEmpty()) {

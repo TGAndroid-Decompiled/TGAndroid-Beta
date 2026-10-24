@@ -1,18 +1,41 @@
 package org.telegram.ui.Components;
-public final class w51 {
-    public final f61 f32163a;
-    public final i61 f32164b;
 
-    public w51(i61 i61Var, f61 f61Var) {
-        this.f32164b = i61Var;
-        this.f32163a = f61Var;
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class w51 extends xn0 {
+    public final h61 f32131f;
+
+    public w51(h61 h61Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+        super(context, 14.0f, g6Var);
+        this.f32131f = h61Var;
     }
 
-    public final int a() {
-        return this.f32164b.f27225s.v;
-    }
-
-    public final void b(boolean r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w51.b(boolean):void");
+    @Override
+    public final void a(String str) {
+        hg.e2 e2Var = this.f32131f.v;
+        hg.c2 c2Var = e2Var.S;
+        int i10 = e2Var.f11876c;
+        if (e2Var.N != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.N, true);
+            e2Var.N = 0;
+        }
+        if (e2Var.O != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(e2Var.O, true);
+            e2Var.O = 0;
+        }
+        if (TextUtils.isEmpty(str)) {
+            e2Var.R = null;
+            e2Var.F.clear();
+            e2Var.I.clear();
+            e2Var.E.clear();
+            e2Var.e.b(false);
+            e2Var.l();
+        } else {
+            e2Var.R = str.toLowerCase();
+        }
+        AndroidUtilities.cancelRunOnUIThread(c2Var);
+        AndroidUtilities.runOnUIThread(c2Var, 300L);
     }
 }

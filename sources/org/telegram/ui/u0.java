@@ -1,17 +1,17 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-public final class u0 extends org.telegram.ui.Components.s6 {
-    public final int f42119b;
+public final class u0 extends org.telegram.ui.Components.q6 {
+    public final int f42168b;
 
     public u0(String str, int i10) {
         super(str, 0);
-        this.f42119b = i10;
+        this.f42168b = i10;
     }
 
     @Override
     public final void c(Object obj, float f7) {
-        switch (this.f42119b) {
+        switch (this.f42168b) {
             case 0:
                 ((ArticleViewer$WindowView) obj).setInnerTranslationX(f7);
                 return;
@@ -22,7 +22,7 @@ public final class u0 extends org.telegram.ui.Components.s6 {
                 ((org.telegram.ui.Cells.t1) obj).setTimeAlpha(f7);
                 return;
             case 3:
-                ((sz0) obj).setCrossfadeProgress(f7);
+                ((rz0) obj).setCrossfadeProgress(f7);
                 return;
             case 4:
                 ((SecretMediaViewer) obj).setVideoCrossfadeAlpha(f7);
@@ -31,12 +31,12 @@ public final class u0 extends org.telegram.ui.Components.s6 {
                 ((SecretMediaViewer) obj).setAnimationValue(f7);
                 return;
             default:
-                v31 v31Var = (v31) obj;
-                if (v31Var.f42587a != f7) {
-                    v31Var.f42587a = f7;
-                    SecretMediaViewer secretMediaViewer = v31Var.f42592r;
+                u31 u31Var = (u31) obj;
+                if (u31Var.f42198a != f7) {
+                    u31Var.f42198a = f7;
+                    SecretMediaViewer secretMediaViewer = u31Var.f42203r;
                     secretMediaViewer.S.setAlpha(f7);
-                    if (v31Var.f42588b) {
+                    if (u31Var.f42199b) {
                         org.telegram.ui.ActionBar.n5 n5Var = secretMediaViewer.S;
                         n5Var.setPivotX(n5Var.getWidth());
                         org.telegram.ui.ActionBar.n5 n5Var2 = secretMediaViewer.S;
@@ -46,15 +46,15 @@ public final class u0 extends org.telegram.ui.Components.s6 {
                         secretMediaViewer.S.setScaleX(f11);
                         secretMediaViewer.S.setScaleY(f11);
                         org.telegram.ui.Components.l81 l81Var = secretMediaViewer.Q;
-                        if (l81Var.f28298y != f10) {
-                            l81Var.f28298y = f10;
+                        if (l81Var.f28270y != f10) {
+                            l81Var.f28270y = f10;
                             l81Var.v.invalidate();
                             return;
                         }
                         return;
                     }
-                    if (v31Var.f42589c) {
-                        v31Var.setTranslationY((1.0f - f7) * AndroidUtilities.dpf2(24.0f));
+                    if (u31Var.f42200c) {
+                        u31Var.setTranslationY((1.0f - f7) * AndroidUtilities.dpf2(24.0f));
                     }
                     secretMediaViewer.R.setAlpha(f7);
                     return;
@@ -65,7 +65,7 @@ public final class u0 extends org.telegram.ui.Components.s6 {
 
     @Override
     public final Object get(Object obj) {
-        switch (this.f42119b) {
+        switch (this.f42168b) {
             case 0:
                 return Float.valueOf(((ArticleViewer$WindowView) obj).getInnerTranslationX());
             case 1:
@@ -73,13 +73,13 @@ public final class u0 extends org.telegram.ui.Components.s6 {
             case 2:
                 return Float.valueOf(((org.telegram.ui.Cells.t1) obj).getTimeAlpha());
             case 3:
-                return Float.valueOf(((sz0) obj).S);
+                return Float.valueOf(((rz0) obj).S);
             case 4:
                 return Float.valueOf(((SecretMediaViewer) obj).getVideoCrossfadeAlpha());
             case 5:
                 return Float.valueOf(((SecretMediaViewer) obj).getAnimationValue());
             default:
-                return Float.valueOf(((v31) obj).f42587a);
+                return Float.valueOf(((u31) obj).f42198a);
         }
     }
 }

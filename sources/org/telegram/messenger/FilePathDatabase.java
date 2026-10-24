@@ -22,7 +22,7 @@ public class FilePathDatabase {
     private final int currentAccount;
     private SQLiteDatabase database;
     boolean databaseCreated;
-    private DispatchQueue dispatchQueue;
+    private DispatchQueue2 dispatchQueue;
     private File shmCacheFile;
     private final String NULL_PATH = "~null~";
     private final ConcurrentHashMap<String, String> cache = new ConcurrentHashMap<>();
@@ -72,9 +72,9 @@ public class FilePathDatabase {
             synchronized (this) {
                 try {
                     if (this.dispatchQueue == null) {
-                        DispatchQueue dispatchQueue = new DispatchQueue("files_database_queue_" + this.currentAccount);
-                        this.dispatchQueue = dispatchQueue;
-                        dispatchQueue.setPriority(10);
+                        DispatchQueue2 dispatchQueue2 = new DispatchQueue2("files_database_queue_" + this.currentAccount);
+                        this.dispatchQueue = dispatchQueue2;
+                        dispatchQueue2.setPriority(10);
                     }
                 } catch (Throwable th2) {
                     throw th2;
@@ -297,7 +297,7 @@ public class FilePathDatabase {
             CountDownLatch countDownLatch = new CountDownLatch(1);
             long currentTimeMillis = System.currentTimeMillis();
             long[] jArr = new long[1];
-            postToFrontRunnable(new nk(this, arrayList2, jArr, countDownLatch, 6));
+            postToFrontRunnable(new ok(this, arrayList2, jArr, countDownLatch, 6));
             try {
                 countDownLatch.await();
             } catch (InterruptedException e) {
@@ -446,7 +446,7 @@ public class FilePathDatabase {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.FilePathDatabase.getPath(long, int, int, boolean):java.lang.String");
     }
 
-    public DispatchQueue getQueue() {
+    public DispatchQueue2 getQueue() {
         ensureQueueExist();
         return this.dispatchQueue;
     }
@@ -478,7 +478,7 @@ public class FilePathDatabase {
     public LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> lookupFiles(ArrayList<? extends CacheByChatsController.KeepMediaFile> arrayList) {
         CountDownLatch countDownLatch = new CountDownLatch(1);
         LongSparseArray<ArrayList<CacheByChatsController.KeepMediaFile>> longSparseArray = new LongSparseArray<>();
-        postRunnable(new nk(this, arrayList, longSparseArray, countDownLatch, 5));
+        postRunnable(new ok(this, arrayList, longSparseArray, countDownLatch, 5));
         try {
             countDownLatch.await();
             return longSparseArray;

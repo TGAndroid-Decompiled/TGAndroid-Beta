@@ -132,11 +132,11 @@ public final class d extends e {
             lVar.f8134f = e0.q.d(e);
             qVar.n(lVar);
             PackageManager packageManager = context.getPackageManager();
-            if (u6.b.f48048b == null) {
-                u6.b.f48048b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
+            if (u6.b.f48047b == null) {
+                u6.b.f48047b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
             }
-            if (u6.b.f48048b.booleanValue()) {
-                qVar.E.icon = context.getApplicationInfo().icon;
+            if (u6.b.f48047b.booleanValue()) {
+                qVar.F.icon = context.getApplicationInfo().icon;
                 qVar.f8154j = 2;
                 if (u6.b.f(context)) {
                     qVar.a(2131231009, resources.getString(2131689573), pendingIntent);
@@ -144,9 +144,9 @@ public final class d extends e {
                     qVar.f8152g = pendingIntent;
                 }
             } else {
-                qVar.E.icon = 17301642;
+                qVar.F.icon = 17301642;
                 qVar.p(resources.getString(2131689565));
-                qVar.E.when = System.currentTimeMillis();
+                qVar.F.when = System.currentTimeMillis();
                 qVar.f8152g = pendingIntent;
                 qVar.f(e);
             }

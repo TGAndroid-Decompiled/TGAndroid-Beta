@@ -2,14 +2,14 @@ package ei;
 
 import android.view.MotionEvent;
 import android.view.View;
-import org.telegram.ui.Components.pw0;
+import org.telegram.ui.Components.ow0;
 public final class x4 implements View.OnTouchListener {
     public final int f10117a;
-    public final pw0 f10118b;
+    public final ow0 f10118b;
 
-    public x4(pw0 pw0Var, int i10) {
+    public x4(ow0 ow0Var, int i10) {
         this.f10117a = i10;
-        this.f10118b = pw0Var;
+        this.f10118b = ow0Var;
     }
 
     @Override

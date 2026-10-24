@@ -1,10 +1,10 @@
 package ei;
 
 import android.content.Context;
-import org.telegram.ui.Components.rx;
-import org.telegram.ui.Components.tz;
-import org.telegram.ui.b61;
-import org.telegram.ui.p41;
+import org.telegram.ui.Components.px;
+import org.telegram.ui.Components.rz;
+import org.telegram.ui.a61;
+import org.telegram.ui.o41;
 public final class l1 extends li.n {
     public final int f9369q;
     public final Object f9370r;
@@ -22,14 +22,14 @@ public final class l1 extends li.n {
                 ((o1) this.f9370r).f9552c3 = true;
                 return;
             case 1:
-                ((tz) this.f9370r).f30975f0 = true;
+                ((rz) this.f9370r).f30319f0 = true;
                 return;
             case 2:
             case 3:
             default:
                 return;
             case 4:
-                ((b61) this.f9370r).f35941x1 = true;
+                ((a61) this.f9370r).f35658x1 = true;
                 return;
         }
     }
@@ -41,19 +41,19 @@ public final class l1 extends li.n {
                 ((o1) this.f9370r).f9552c3 = false;
                 return;
             case 1:
-                ((tz) this.f9370r).f30975f0 = false;
+                ((rz) this.f9370r).f30319f0 = false;
                 return;
             case 2:
-                ((rx) this.f9370r).Q.f30975f0 = false;
+                ((px) this.f9370r).Q.f30319f0 = false;
                 return;
             case 3:
-                ((p41) this.f9370r).R.f35941x1 = false;
+                ((o41) this.f9370r).R.f35658x1 = false;
                 return;
             case 4:
-                ((b61) this.f9370r).f35941x1 = false;
+                ((a61) this.f9370r).f35658x1 = false;
                 return;
             default:
-                ((p41) this.f9370r).R.f35941x1 = false;
+                ((o41) this.f9370r).R.f35658x1 = false;
                 return;
         }
     }

@@ -15,8 +15,8 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.sn;
 public final class q7 extends View {
@@ -36,8 +36,8 @@ public final class q7 extends View {
     public final RectF h;
     public final Paint f2068n;
     public boolean f2069r;
-    public final org.telegram.ui.Components.f6 f2070s;
-    public final org.telegram.ui.Components.p6 v;
+    public final org.telegram.ui.Components.d6 f2070s;
+    public final org.telegram.ui.Components.n6 v;
     public boolean f2071w;
     public final a1.f f2072x;
     public float f2073y;
@@ -50,21 +50,21 @@ public final class q7 extends View {
         this.h = new RectF();
         this.f2068n = new Paint();
         new Paint();
-        this.f2070s = new org.telegram.ui.Components.f6(this, 0L, 420L, bs.h);
-        org.telegram.ui.Components.p6 p6Var = new org.telegram.ui.Components.p6(false, false, false);
-        this.v = p6Var;
+        this.f2070s = new org.telegram.ui.Components.d6(this, 0L, 420L, zr.h);
+        org.telegram.ui.Components.n6 n6Var = new org.telegram.ui.Components.n6(false, false, false);
+        this.v = n6Var;
         new Matrix();
         this.J = new ArrayList();
         this.K = new int[]{R.raw.star_reaction_effect1, R.raw.star_reaction_effect2, R.raw.star_reaction_effect3, R.raw.star_reaction_effect4, R.raw.star_reaction_effect5};
         this.f2064a = snVar;
-        p6Var.setCallback(this);
-        p6Var.r(false, true);
-        p6Var.w(AndroidUtilities.dp(40.0f));
-        p6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
-        p6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
-        p6Var.M = AndroidUtilities.displaySize.x;
-        p6Var.u(-1);
-        p6Var.f29437b = 17;
+        n6Var.setCallback(this);
+        n6Var.r(false, true);
+        n6Var.w(AndroidUtilities.dp(40.0f));
+        n6Var.x(AndroidUtilities.getTypeface("fonts/num.otf"));
+        n6Var.s(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(3.5f), 0);
+        n6Var.M = AndroidUtilities.displaySize.x;
+        n6Var.u(-1);
+        n6Var.f28797b = 17;
         this.H = new o7(this, 0);
         this.f2072x = new a1.f(25, this, snVar);
     }
@@ -118,7 +118,7 @@ public final class q7 extends View {
         this.E = ofFloat;
         ofFloat.addUpdateListener(new ah.c0(this, 5));
         this.E.addListener(new p7(this, f7, o7Var, 0));
-        this.E.setInterpolator(bs.h);
+        this.E.setInterpolator(zr.h);
         this.E.setDuration(320L);
         this.E.start();
     }
@@ -145,16 +145,16 @@ public final class q7 extends View {
                     if (arrayList.size() <= 4) {
                         break;
                     }
-                    ((yj0) arrayList.remove(0)).C(true);
+                    ((xj0) arrayList.remove(0)).C(true);
                 }
                 Random random = Utilities.fastRandom;
                 int[] iArr = this.K;
-                yj0 yj0Var = new yj0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
-                yj0Var.R(this);
-                yj0Var.J(true);
-                yj0Var.K(0);
-                yj0Var.start();
-                arrayList.add(yj0Var);
+                xj0 xj0Var = new xj0(iArr[random.nextInt(iArr.length)], AndroidUtilities.dp(70.0f), AndroidUtilities.dp(70.0f));
+                xj0Var.R(this);
+                xj0Var.J(true);
+                xj0Var.K(0);
+                xj0Var.start();
+                arrayList.add(xj0Var);
                 invalidate();
                 ah.g1 m10 = reactionsLayoutInBubble.m("stars");
                 if (m10 != null) {
@@ -167,9 +167,9 @@ public final class q7 extends View {
                     }
                     ha.y(snVar.getCurrentAccount(), false).d0(messageObject, this.f2064a, 1L, true, false, null);
                 }
-                org.telegram.ui.Components.p6 p6Var = this.v;
-                p6Var.a();
-                p6Var.t("+" + y3.E(messageObject), true, true);
+                org.telegram.ui.Components.n6 n6Var = this.v;
+                n6Var.a();
+                n6Var.t("+" + y3.E(messageObject), true, true);
                 this.f2069r = true;
                 o7 o7Var = this.H;
                 AndroidUtilities.cancelRunOnUIThread(o7Var);

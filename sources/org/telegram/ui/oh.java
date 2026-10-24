@@ -2,14 +2,14 @@ package org.telegram.ui;
 
 import org.telegram.messenger.Utilities;
 public final class oh implements Utilities.Callback0Return {
-    public final int f40156a;
-    public final Object f40157b;
-    public final Object f40158c;
+    public final int f40189a;
+    public final Object f40190b;
+    public final Object f40191c;
 
     public oh(int i10, Object obj, Object obj2) {
-        this.f40156a = i10;
-        this.f40157b = obj;
-        this.f40158c = obj2;
+        this.f40189a = i10;
+        this.f40190b = obj;
+        this.f40191c = obj2;
     }
 
     @Override

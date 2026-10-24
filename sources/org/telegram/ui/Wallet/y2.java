@@ -25,12 +25,12 @@ import org.telegram.messenger.UserObject;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.cn0;
-import org.telegram.ui.Components.di0;
-import org.telegram.ui.Components.xq;
-import org.telegram.ui.ae0;
+import org.telegram.ui.Components.bn0;
+import org.telegram.ui.Components.ci0;
+import org.telegram.ui.Components.vq;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.w10;
+import org.telegram.ui.zd0;
 public final class y2 extends Dialog {
     public static final int W = 0;
     public final gh.b E;
@@ -51,22 +51,22 @@ public final class y2 extends Dialog {
     public boolean T;
     public Runnable U;
     public final int[] V;
-    public final org.telegram.ui.ActionBar.o2 f35431a;
-    public final di0 f35432b;
-    public final boolean f35433c;
+    public final org.telegram.ui.ActionBar.o2 f35433a;
+    public final ci0 f35434b;
+    public final boolean f35435c;
     public final boolean d;
     public final boolean e;
-    public final RectF f35434f;
+    public final RectF f35436f;
     public final w2 h;
-    public final x2 f35435n;
-    public final x5 f35436r;
-    public final t7 f35437s;
+    public final x2 f35437n;
+    public final x5 f35438r;
+    public final t7 f35439s;
     public final ci.h4 v;
-    public final TextView f35438w;
-    public final Paint f35439x;
-    public final RectF f35440y;
+    public final TextView f35440w;
+    public final Paint f35441x;
+    public final RectF f35442y;
 
-    public y2(org.telegram.ui.ActionBar.o2 o2Var, di0 di0Var, TLRPC.User user, TL_wallet.card cardVar) {
+    public y2(org.telegram.ui.ActionBar.o2 o2Var, ci0 ci0Var, TLRPC.User user, TL_wallet.card cardVar) {
         super(o2Var.getParentActivity(), R.style.TransparentDialog);
         boolean z10;
         boolean z11;
@@ -76,9 +76,9 @@ public final class y2 extends Dialog {
         int i11;
         String formatString;
         RectF rectF = new RectF();
-        this.f35434f = rectF;
-        this.f35439x = new Paint(3);
-        this.f35440y = new RectF();
+        this.f35436f = rectF;
+        this.f35441x = new Paint(3);
+        this.f35442y = new RectF();
         gh.b bVar = new gh.b();
         this.E = bVar;
         this.H = i0.b.e;
@@ -86,9 +86,9 @@ public final class y2 extends Dialog {
         this.M = new RectF();
         this.N = new RectF();
         this.V = new int[2];
-        this.f35431a = o2Var;
-        this.f35432b = di0Var;
-        if (user != null && user.f20490id == UserConfig.getInstance(o2Var.getCurrentAccount()).getClientUserId()) {
+        this.f35433a = o2Var;
+        this.f35434b = ci0Var;
+        if (user != null && user.f20491id == UserConfig.getInstance(o2Var.getCurrentAccount()).getClientUserId()) {
             z10 = true;
         } else {
             z10 = false;
@@ -99,31 +99,31 @@ public final class y2 extends Dialog {
         } else {
             z11 = false;
         }
-        this.f35433c = z11;
+        this.f35435c = z11;
         if (user != null && !z10 && !z11) {
             z12 = true;
         } else {
             z12 = false;
         }
         this.d = z12;
-        di0Var.getLocationOnScreen(new int[2]);
-        rectF.set(di0Var.v);
+        ci0Var.getLocationOnScreen(new int[2]);
+        rectF.set(ci0Var.v);
         rectF.offset(iArr[0], iArr[1]);
         AndroidUtilities.enableEdgeToEdge(getWindow());
         w2 w2Var = new w2(this, getContext());
         this.h = w2Var;
         x2 x2Var = new x2(this, getContext());
-        this.f35435n = x2Var;
+        this.f35437n = x2Var;
         x2Var.setAlpha(0.0f);
         w2Var.addView(x2Var, w7.z5.c(-1.0f, -1));
         w2Var.setClipChildren(false);
         w2Var.setClipToPadding(false);
         w2Var.setOnClickListener(new s2(this, 0));
         n2 n2Var = new n2(this, 1);
-        WeakHashMap weakHashMap = r0.i0.f45242a;
+        WeakHashMap weakHashMap = r0.i0.f45241a;
         r0.a0.i(w2Var, n2Var);
         x5 x5Var = new x5(getContext());
-        this.f35436r = x5Var;
+        this.f35438r = x5Var;
         x5Var.setDiamondOnCard(true);
         int currentAccount = o2Var.getCurrentAccount();
         String userName = UserObject.getUserName(user);
@@ -137,12 +137,12 @@ public final class y2 extends Dialog {
         if (!TextUtils.isEmpty(l4)) {
             x5Var.O.c(l4, false, true);
         }
-        x5Var.setCardOnClickListener(new ae0(24, this, o2Var));
+        x5Var.setCardOnClickListener(new zd0(24, this, o2Var));
         x5Var.setOnClickListener(new ah.f(24));
         x5Var.setAlpha(0.0f);
         w2Var.addView(x5Var, w7.z5.c(-2.0f, -2));
         t7 t7Var = new t7(o2Var, x5Var, null, cardVar);
-        this.f35437s = t7Var;
+        this.f35439s = t7Var;
         w2Var.addView(t7Var, w7.z5.c(-1.0f, -1));
         bh.b bVar2 = new bh.b(bVar);
         this.F = bVar2;
@@ -150,7 +150,7 @@ public final class y2 extends Dialog {
         bVar2.f4366g = w2Var;
         ci.h4 h4Var = new ci.h4(getContext());
         this.v = h4Var;
-        dh.d c10 = bVar2.c(h4Var, new eh.b(org.telegram.ui.ActionBar.k6.f21183d6, o2Var.getResourceProvider()), false);
+        dh.d c10 = bVar2.c(h4Var, new eh.b(org.telegram.ui.ActionBar.k6.f21184d6, o2Var.getResourceProvider()), false);
         c10.p(AndroidUtilities.dp(8.0f));
         c10.q(AndroidUtilities.dp(22.0f));
         h4Var.setBackground(c10);
@@ -171,10 +171,10 @@ public final class y2 extends Dialog {
             dVar.i(string, false, true);
         } else {
             SpannableStringBuilder append = new SpannableStringBuilder("G  ").append(string);
-            xq xqVar = new xq(R.drawable.mini_gram_24, 0);
-            xqVar.setSize(AndroidUtilities.dp(20.0f));
-            xqVar.setOverrideColor(-1);
-            append.setSpan(xqVar, 0, 1, 33);
+            vq vqVar = new vq(R.drawable.mini_gram_24, 0);
+            vqVar.setSize(AndroidUtilities.dp(20.0f));
+            vqVar.setOverrideColor(-1);
+            append.setSpan(vqVar, 0, 1, 33);
             dVar.i(append, false, true);
         }
         dVar.setStateListAnimator(null);
@@ -190,7 +190,7 @@ public final class y2 extends Dialog {
         h4Var.setVisibility(i11);
         w2Var.addView(h4Var, w7.z5.e(-2, 60, 81));
         TextView textView = new TextView(getContext());
-        this.f35438w = textView;
+        this.f35440w = textView;
         textView.setTextSize(14.0f);
         textView.setTypeface(AndroidUtilities.bold());
         textView.setGravity(17);
@@ -232,7 +232,7 @@ public final class y2 extends Dialog {
             z10 = false;
         }
         this.K = z10;
-        x5 x5Var = this.f35436r;
+        x5 x5Var = this.f35438r;
         x5Var.getClass();
         x5Var.setLayerType(2, null);
         ValueAnimator ofFloat = ValueAnimator.ofFloat(this.I, f7);
@@ -252,13 +252,13 @@ public final class y2 extends Dialog {
     public final void b() {
         if (!this.S) {
             this.S = true;
-            this.f35436r.setLayerType(0, null);
-            this.f35432b.setEjectProgress(0.0f);
+            this.f35438r.setLayerType(0, null);
+            this.f35434b.setEjectProgress(0.0f);
             super.dismiss();
-            this.f35437s.p();
+            this.f35439s.p();
             this.E.a(null);
             this.G = null;
-            if (this.U != null && this.f35431a.getParentActivity() != null) {
+            if (this.U != null && this.f35433a.getParentActivity() != null) {
                 Runnable runnable = this.U;
                 this.U = null;
                 AndroidUtilities.runOnUIThread(runnable);
@@ -267,7 +267,7 @@ public final class y2 extends Dialog {
     }
 
     public final boolean c() {
-        if (!this.f35433c && !this.d && !this.e) {
+        if (!this.f35435c && !this.d && !this.e) {
             return false;
         }
         return true;
@@ -277,7 +277,7 @@ public final class y2 extends Dialog {
         int i10;
         boolean q6 = org.telegram.ui.ActionBar.k6.I.q();
         Bitmap bitmap = this.G;
-        TextView textView = this.f35438w;
+        TextView textView = this.f35440w;
         if (bitmap != null && !bitmap.isRecycled()) {
             w2 w2Var = this.h;
             if (w2Var.getWidth() > 0 && w2Var.getHeight() > 0) {
@@ -312,9 +312,9 @@ public final class y2 extends Dialog {
     public final void e() {
         float f7;
         float f10;
-        float interpolation = bs.f25134g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.I / 0.4f)));
+        float interpolation = zr.f33338g.getInterpolation(Math.max(0.0f, Math.min(1.0f, this.I / 0.4f)));
         float max = Math.max(0.0f, Math.min(1.0f, (this.I - 0.3f) / 0.7f));
-        float interpolation2 = bs.h.getInterpolation(max);
+        float interpolation2 = zr.h.getInterpolation(max);
         if (this.K) {
             float sqrt = ((float) Math.sqrt(0.4375d)) * 10.0f;
             double d = max * sqrt;
@@ -322,10 +322,10 @@ public final class y2 extends Dialog {
         } else {
             f7 = interpolation2;
         }
-        x5 x5Var = this.f35436r;
+        x5 x5Var = this.f35438r;
         float width = x5Var.getWidth();
         float height = x5Var.getHeight();
-        RectF rectF = this.f35434f;
+        RectF rectF = this.f35436f;
         float max2 = Math.max(0.2f, Math.min(1.0f, rectF.width() / Math.max(1.0f, height)));
         float lerp = AndroidUtilities.lerp(max2, 1.0f, f7);
         float centerY = rectF.centerY();
@@ -367,12 +367,12 @@ public final class y2 extends Dialog {
         x5Var.setUseGyroscope(this.Q * interpolation2);
         float f23 = 1.0f - interpolation2;
         this.J = Math.max(0.0f, f11 * f23);
-        this.f35432b.setEjectProgress(interpolation);
-        this.f35435n.setAlpha(this.I);
-        this.f35437s.setAlpha(interpolation2);
+        this.f35434b.setEjectProgress(interpolation);
+        this.f35437n.setAlpha(this.I);
+        this.f35439s.setAlpha(interpolation2);
         ci.h4 h4Var = this.v;
         h4Var.setAlpha(interpolation2);
-        TextView textView = this.f35438w;
+        TextView textView = this.f35440w;
         textView.setAlpha(interpolation2);
         textView.setTranslationY((-AndroidUtilities.dp(8.0f)) * f23);
         h4Var.setTranslationY(AndroidUtilities.dp(16.0f) * f23);
@@ -408,9 +408,9 @@ public final class y2 extends Dialog {
         if (!AndroidUtilities.isSafeToShow(getContext())) {
             return;
         }
-        cn0.d(new d(this, 6));
+        bn0.d(new d(this, 6));
         super.show();
-        WeakHashMap weakHashMap = r0.i0.f45242a;
+        WeakHashMap weakHashMap = r0.i0.f45241a;
         r0.y.c(this.h);
     }
 }

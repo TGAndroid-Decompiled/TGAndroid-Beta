@@ -1,83 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
+import android.content.Intent;
 import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-public final class y40 implements org.telegram.ui.lq0 {
-    public boolean f32804a;
-    public final HashMap f32805b;
-    public final ArrayList f32806c;
-    public final e50 d;
+import org.telegram.messenger.FileLog;
+public final class y40 implements org.telegram.ui.tp0 {
+    public final c50 f32818a;
 
-    public y40(e50 e50Var, HashMap hashMap, ArrayList arrayList) {
-        this.d = e50Var;
-        this.f32805b = hashMap;
-        this.f32806c = arrayList;
+    public y40(c50 c50Var) {
+        this.f32818a = c50Var;
     }
 
     @Override
-    public final boolean e() {
-        return this.d.f25853b.e();
+    public final void a(ArrayList arrayList) {
+        c50.a(this.f32818a, false, arrayList);
     }
 
     @Override
-    public final void h(int i10, boolean z10, boolean z11) {
-        String str;
-        HashMap hashMap = this.f32805b;
-        if (!hashMap.isEmpty()) {
-            e50 e50Var = this.d;
-            if (e50Var.f25853b != null && !this.f32804a && !z10) {
-                this.f32804a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f32806c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        if (obj instanceof MediaController.SearchImage) {
-                            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                            String str2 = searchImage.imagePath;
-                            if (str2 != null) {
-                                sendingMediaInfo.path = str2;
-                            } else {
-                                sendingMediaInfo.searchImage = searchImage;
-                            }
-                            sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                            sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                            CharSequence charSequence = searchImage.caption;
-                            if (charSequence != null) {
-                                str = charSequence.toString();
-                            } else {
-                                str = null;
-                            }
-                            sendingMediaInfo.caption = str;
-                            sendingMediaInfo.entities = searchImage.entities;
-                            sendingMediaInfo.masks = searchImage.stickers;
-                            sendingMediaInfo.ttl = searchImage.ttl;
-                        }
-                        i11++;
-                    } else {
-                        e50.a(e50Var, false, arrayList);
-                        return;
-                    }
-                }
-            }
+    public final void b() {
+        try {
+            Intent intent = new Intent("android.intent.action.GET_CONTENT");
+            intent.setType("image/*");
+            this.f32818a.f25185a.startActivityForResult(intent, 14);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void b(Editable editable) {
-    }
-
-    @Override
-    public final void g() {
     }
 }

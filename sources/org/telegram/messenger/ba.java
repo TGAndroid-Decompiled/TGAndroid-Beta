@@ -1,39 +1,47 @@
 package org.telegram.messenger;
-public final class ba implements Runnable {
-    public final int f18018a;
-    public final MessagesController f18019b;
-    public final int f18020c;
-    public final long d;
-    public final long e;
 
-    public ba(int i10, long j10, long j11, MessagesController messagesController) {
-        this.f18018a = 2;
-        this.f18019b = messagesController;
+import java.util.ArrayList;
+public final class ba implements Runnable {
+    public final int f17995a;
+    public final MessagesController f17996b;
+    public final ArrayList f17997c;
+    public final long d;
+
+    public ba(MessagesController messagesController, long j10, ArrayList arrayList, int i10) {
+        this.f17995a = i10;
+        this.f17996b = messagesController;
         this.d = j10;
-        this.e = j11;
-        this.f18020c = i10;
+        this.f17997c = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18018a) {
+        switch (this.f17995a) {
             case 0:
-                MessagesController.r4(this.f18020c, this.d, this.e, this.f18019b);
+                MessagesController.n8(this.d, this.f17997c, this.f17996b);
                 return;
             case 1:
-                MessagesController.o1(this.f18020c, this.d, this.e, this.f18019b);
+                MessagesController.h7(this.d, this.f17997c, this.f17996b);
+                return;
+            case 2:
+                MessagesController.k3(this.d, this.f17997c, this.f17996b);
+                return;
+            case 3:
+                MessagesController.y1(this.d, this.f17997c, this.f17996b);
+                return;
+            case 4:
+                MessagesController.h3(this.d, this.f17997c, this.f17996b);
                 return;
             default:
-                MessagesController.R1(this.f18020c, this.d, this.e, this.f18019b);
+                MessagesController.J0(this.d, this.f17997c, this.f17996b);
                 return;
         }
     }
 
-    public ba(MessagesController messagesController, int i10, long j10, long j11, int i11) {
-        this.f18018a = i11;
-        this.f18019b = messagesController;
-        this.f18020c = i10;
+    public ba(MessagesController messagesController, ArrayList arrayList, long j10, int i10) {
+        this.f17995a = i10;
+        this.f17996b = messagesController;
+        this.f17997c = arrayList;
         this.d = j10;
-        this.e = j11;
     }
 }

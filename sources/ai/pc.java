@@ -14,14 +14,14 @@ public final class pc extends LinearLayout {
     public final Matrix f2026b;
     public final RadialGradient f2027c;
     public final Paint d;
-    public final org.telegram.ui.Components.p5 e;
+    public final org.telegram.ui.Components.n5 e;
 
-    public pc(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.p5 p5Var) {
+    public pc(Context context, Matrix matrix, RadialGradient radialGradient, Paint paint, org.telegram.ui.Components.n5 n5Var) {
         super(context);
         this.f2026b = matrix;
         this.f2027c = radialGradient;
         this.d = paint;
-        this.e = p5Var;
+        this.e = n5Var;
         this.f2025a = new Path();
     }
 

@@ -2,11 +2,11 @@ package zh;
 
 import android.graphics.Bitmap;
 import android.graphics.Paint;
-import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.n5;
 public final class b1 {
-    public p5 f52149a;
-    public long f52150b;
-    public Bitmap f52151c;
+    public n5 f52148a;
+    public long f52149b;
+    public Bitmap f52150c;
     public Paint d;
     public int e;
 }

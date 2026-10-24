@@ -8,28 +8,28 @@ import android.graphics.Path;
 import android.graphics.RectF;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.mm0;
-public abstract class j1 extends mm0 {
-    public static final Paint f45831d3;
-    public static final Paint f45832e3;
-    public static final Path f45833f3;
-    public static final Paint f45834g3;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.zr;
+public abstract class j1 extends lm0 {
+    public static final Paint f45830d3;
+    public static final Paint f45831e3;
+    public static final Path f45832f3;
+    public static final Paint f45833g3;
     public final Paint Y2;
     public final Paint Z2;
-    public int f45835a3;
-    public qg.u0 f45836b3;
-    public q0.a f45837c3;
+    public int f45834a3;
+    public qg.u0 f45835b3;
+    public q0.a f45836c3;
 
     static {
         Paint paint = new Paint(1);
-        f45831d3 = paint;
+        f45830d3 = paint;
         Paint paint2 = new Paint(1);
-        f45832e3 = paint2;
+        f45831e3 = paint2;
         paint.setColor(-2013265920);
         paint2.setColor(-1996488705);
-        f45833f3 = new Path();
-        f45834g3 = new Paint(1);
+        f45832f3 = new Path();
+        f45833g3 = new Paint(1);
     }
 
     public j1(Context context) {
@@ -37,7 +37,7 @@ public abstract class j1 extends mm0 {
         this.Y2 = new Paint(1);
         Paint paint = new Paint(1);
         this.Z2 = paint;
-        this.f45835a3 = -1;
+        this.f45834a3 = -1;
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
         setPadding(AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f));
@@ -55,12 +55,12 @@ public abstract class j1 extends mm0 {
                 float f11 = i10;
                 float f12 = f7 + f11;
                 float f13 = f10 + f11;
-                Paint paint = f45831d3;
+                Paint paint = f45830d3;
                 Canvas canvas2 = canvas;
                 canvas2.drawRect(f7, f10, f12, f13, paint);
                 float f14 = i10 * 2;
                 float f15 = f7 + f14;
-                Paint paint2 = f45832e3;
+                Paint paint2 = f45831e3;
                 float f16 = f10;
                 canvas2.drawRect(f12, f16, f15, f13, paint2);
                 float f17 = f16 + f14;
@@ -75,14 +75,14 @@ public abstract class j1 extends mm0 {
     }
 
     public static void D1(float f7, float f10, float f11, int i10, Canvas canvas) {
-        Paint paint = f45834g3;
+        Paint paint = f45833g3;
         paint.setColor(i10);
         if (paint.getAlpha() != 255) {
             RectF rectF = AndroidUtilities.rectTmp;
             rectF.set(f7 - f11, f10 - f11, f7 + f11, f10 + f11);
             paint.setAlpha(255);
             canvas.drawArc(rectF, -45.0f, -180.0f, true, paint);
-            Path path = f45833f3;
+            Path path = f45832f3;
             path.rewind();
             path.moveTo(rectF.centerX(), rectF.centerY());
             path.lineTo((float) i2.o1.f(-1.5707963267948966d, rectF.width() / 2.0f, rectF.centerX()), (float) ((Math.sin(-1.5707963267948966d) * (rectF.height() / 2.0f)) + rectF.centerY()));
@@ -104,9 +104,9 @@ public abstract class j1 extends mm0 {
         float interpolation;
         float f10;
         if (z10) {
-            interpolation = bs.f25134g.getInterpolation(f7);
+            interpolation = zr.f33338g.getInterpolation(f7);
         } else {
-            interpolation = bs.f25135i.getInterpolation(f7);
+            interpolation = zr.f33339i.getInterpolation(f7);
         }
         float childCount = 1.0f / (getChildCount() - 1);
         for (int i10 = 0; i10 < getChildCount(); i10++) {
@@ -129,20 +129,20 @@ public abstract class j1 extends mm0 {
     }
 
     public int getSelectedColorIndex() {
-        return this.f45835a3;
+        return this.f45834a3;
     }
 
     public void setColorListener(q0.a aVar) {
-        this.f45837c3 = aVar;
+        this.f45836c3 = aVar;
     }
 
     public void setColorPalette(qg.u0 u0Var) {
-        this.f45836b3 = u0Var;
+        this.f45835b3 = u0Var;
         getAdapter().l();
     }
 
     public void setSelectedColorIndex(int i10) {
-        this.f45835a3 = i10;
+        this.f45834a3 = i10;
         getAdapter().l();
     }
 }

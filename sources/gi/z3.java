@@ -10,9 +10,9 @@ import org.telegram.messenger.FileLog;
 import org.telegram.ui.ActionBar.b6;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.hw0;
+import org.telegram.ui.Components.gw0;
 public class z3 extends View implements b6 {
-    public final hw0 f11608a;
+    public final gw0 f11608a;
     public final Paint f11609b;
     public float f11610c;
     public o1.k d;
@@ -20,9 +20,9 @@ public class z3 extends View implements b6 {
 
     public z3(Context context, g6 g6Var) {
         super(context);
-        hw0 hw0Var = new hw0(new fh.b(11), new fh.b(12));
-        hw0Var.f27066c = 100.0f;
-        this.f11608a = hw0Var;
+        gw0 gw0Var = new gw0(new fh.b(11), new fh.b(12));
+        gw0Var.f26806c = 100.0f;
+        this.f11608a = gw0Var;
         Paint paint = new Paint(1);
         this.f11609b = paint;
         this.e = g6Var;

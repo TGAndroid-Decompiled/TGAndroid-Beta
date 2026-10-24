@@ -15,27 +15,27 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 import zf.p;
 public final class a extends c implements ne.d {
     public final ne.b d;
     public final int[] e;
-    public final Drawable f47631f;
+    public final Drawable f47630f;
     public final TextPaint h;
-    public StaticLayout f47632n;
-    public int f47633r;
-    public int f47634s;
+    public StaticLayout f47631n;
+    public int f47632r;
+    public int f47633s;
 
     public a(Context context, g6 g6Var) {
         super(g6Var);
-        this.d = new ne.b(0, this, bs.h, 320L, false);
+        this.d = new ne.b(0, this, zr.h, 320L, false);
         this.e = new int[]{16842910, 16842919};
-        this.f47631f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
+        this.f47630f = context.getResources().getDrawable(R.drawable.outline_poll_add_24).mutate();
         this.h = new TextPaint(k6.P2);
-        int w02 = k6.w0(k6.f21272i6, g6Var);
-        if (this.f47646b != w02) {
-            k6.E1(this.f47645a, w02, false);
-            this.f47646b = w02;
+        int w02 = k6.w0(k6.f21273i6, g6Var);
+        if (this.f47645b != w02) {
+            k6.E1(this.f47644a, w02, false);
+            this.f47645b = w02;
         }
         b();
         c();
@@ -43,19 +43,19 @@ public final class a extends c implements ne.d {
 
     @Override
     public final void a(int i10) {
-        this.f47645a.setAlpha(i10);
+        this.f47644a.setAlpha(i10);
         b();
         c();
     }
 
     public final void b() {
-        Drawable drawable = this.f47631f;
-        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f47647c));
+        Drawable drawable = this.f47630f;
+        drawable.setAlpha((int) ((1.0f - this.d.e) * this.f47646c));
     }
 
     public final void c() {
         TextPaint textPaint = this.h;
-        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f47647c));
+        textPaint.setAlpha((int) ((1.0f - this.d.e) * this.f47646c));
     }
 
     public final void d(boolean z10, boolean z11) {
@@ -65,21 +65,21 @@ public final class a extends c implements ne.d {
     @Override
     public final void draw(Canvas canvas) {
         Rect bounds = getBounds();
-        this.f47645a.draw(canvas);
-        p.b(canvas, this.f47631f, 1.0f - this.d.e);
-        if (this.f47632n != null) {
+        this.f47644a.draw(canvas);
+        p.b(canvas, this.f47630f, 1.0f - this.d.e);
+        if (this.f47631n != null) {
             canvas.save();
             canvas.translate(AndroidUtilities.dp(44.0f) + bounds.left, AndroidUtilities.dp(13.66f) + bounds.top);
-            this.f47632n.draw(canvas);
+            this.f47631n.draw(canvas);
             canvas.restore();
         }
     }
 
     public final void e(int i10) {
-        if (this.f47634s != i10) {
-            this.f47634s = i10;
+        if (this.f47633s != i10) {
+            this.f47633s = i10;
             this.h.setColor(i10);
-            this.f47631f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
+            this.f47630f.setColorFilter(new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN));
             c();
         }
     }
@@ -98,13 +98,13 @@ public final class a extends c implements ne.d {
         float dp = AndroidUtilities.dp(22.33f) + rect.left;
         AndroidUtilities.dp(27.0f);
         AndroidUtilities.dp(44.0f);
-        p.d(this.f47631f, dp, exactCenterY, 17);
+        p.d(this.f47630f, dp, exactCenterY, 17);
         int width = rect.width() - AndroidUtilities.dp(56.0f);
-        if (this.f47632n != null && this.f47633r == width) {
+        if (this.f47631n != null && this.f47632r == width) {
             return;
         }
-        this.f47633r = width;
-        this.f47632n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+        this.f47632r = width;
+        this.f47631n = new StaticLayout(LocaleController.getString(R.string.PollAddAnOption), this.h, width, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
     }
 
     @Override

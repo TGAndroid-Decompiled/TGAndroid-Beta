@@ -20,39 +20,39 @@ public class p3 {
     public org.telegram.ui.k4 J;
     public gi.y0 K;
     public boolean L;
-    public gi.t4 f21754a;
-    public org.telegram.ui.web.y0 f21755b;
-    public org.telegram.ui.n3 f21756c;
+    public gi.t4 f21755a;
+    public org.telegram.ui.web.y0 f21756b;
+    public org.telegram.ui.n3 f21757c;
     public Object d;
     public boolean e;
-    public String f21757f;
-    public int f21758g;
+    public String f21758f;
+    public int f21759g;
     public int h;
-    public int f21759i;
-    public boolean f21760j;
-    public float f21761k = Float.MAX_VALUE;
-    public boolean f21762l = true;
-    public Bitmap f21763m;
-    public boolean f21764n;
-    public boolean f21765o;
-    public int f21766p;
-    public int f21767q;
-    public int f21768r;
-    public int f21769s;
-    public boolean f21770t;
-    public boolean f21771u;
+    public int f21760i;
+    public boolean f21761j;
+    public float f21762k = Float.MAX_VALUE;
+    public boolean f21763l = true;
+    public Bitmap f21764m;
+    public boolean f21765n;
+    public boolean f21766o;
+    public int f21767p;
+    public int f21768q;
+    public int f21769r;
+    public int f21770s;
+    public boolean f21771t;
+    public boolean f21772u;
     public boolean v;
-    public a5.a f21772w;
-    public String f21773x;
-    public boolean f21774y;
-    public boolean f21775z;
+    public a5.a f21773w;
+    public String f21774x;
+    public boolean f21775y;
+    public boolean f21776z;
 
     public final void a() {
         try {
-            org.telegram.ui.web.y0 y0Var = this.f21755b;
+            org.telegram.ui.web.y0 y0Var = this.f21756b;
             if (y0Var != null) {
                 y0Var.destroy();
-                this.f21755b = null;
+                this.f21756b = null;
             }
             org.telegram.ui.k4 k4Var = this.J;
             if (k4Var != null) {
@@ -70,13 +70,13 @@ public class p3 {
             }
             return this.E;
         }
-        gi.t4 t4Var = this.f21754a;
+        gi.t4 t4Var = this.f21755a;
         if (t4Var == null) {
             return "";
         }
         if (t4Var.f11495g == 6) {
             return t4Var.e;
         }
-        return UserObject.getUserName(MessagesController.getInstance(t4Var.f11491a).getUser(Long.valueOf(this.f21754a.f11493c)));
+        return UserObject.getUserName(MessagesController.getInstance(t4Var.f11491a).getUser(Long.valueOf(this.f21755a.f11493c)));
     }
 }

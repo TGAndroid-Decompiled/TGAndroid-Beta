@@ -11,10 +11,10 @@ import android.view.MotionEvent;
 import android.widget.FrameLayout;
 import java.util.Arrays;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.il0;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.Components.vf0;
-import org.telegram.ui.Components.xf0;
+import org.telegram.ui.Components.hl0;
+import org.telegram.ui.Components.hw0;
+import org.telegram.ui.Components.uf0;
+import org.telegram.ui.Components.wf0;
 public final class hb extends FrameLayout {
     public final Rect f9177a;
     public final Rect f9178b;
@@ -47,9 +47,9 @@ public final class hb extends FrameLayout {
         super.dispatchDraw(recordingCanvas);
         if (z10 && i10 >= 31) {
             this.f9179c.endRecording();
-            org.telegram.ui.Components.ja jaVar = this.d.f10018r0;
-            if (jaVar != null) {
-                jaVar.g(this, this.f9179c);
+            org.telegram.ui.Components.ha haVar = this.d.f10018r0;
+            if (haVar != null) {
+                haVar.g(this, this.f9179c);
             }
             canvas.drawRenderNode(this.f9179c);
         }
@@ -83,19 +83,19 @@ public final class hb extends FrameLayout {
     public final void onMeasure(int i10, int i11) {
         super.onMeasure(i10, i11);
         vb vbVar = this.d;
-        xf0 xf0Var = vbVar.F1;
-        if (xf0Var != null) {
-            il0 il0Var = xf0Var.e;
-            il0Var.f27364a = 0.0f;
-            il0Var.f27365b = 0.0f;
-            il0Var.f27366c = xf0Var.getMeasuredWidth();
-            il0Var.d = vbVar.F1.getMeasuredHeight();
+        wf0 wf0Var = vbVar.F1;
+        if (wf0Var != null) {
+            hl0 hl0Var = wf0Var.e;
+            hl0Var.f27075a = 0.0f;
+            hl0Var.f27076b = 0.0f;
+            hl0Var.f27077c = wf0Var.getMeasuredWidth();
+            hl0Var.d = vbVar.F1.getMeasuredHeight();
         }
-        vf0 vf0Var = vbVar.E1;
-        if (vf0Var != null) {
-            iw0 iw0Var = vf0Var.d;
-            iw0Var.f27465a = vf0Var.getMeasuredWidth();
-            iw0Var.f27466b = vbVar.E1.getMeasuredHeight();
+        uf0 uf0Var = vbVar.E1;
+        if (uf0Var != null) {
+            hw0 hw0Var = uf0Var.d;
+            hw0Var.f27188a = uf0Var.getMeasuredWidth();
+            hw0Var.f27189b = vbVar.E1.getMeasuredHeight();
         }
     }
 

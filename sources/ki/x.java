@@ -15,7 +15,7 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.RichMessageLayout;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_aicompose;
@@ -23,15 +23,15 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.n6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.b71;
-import org.telegram.ui.Components.bb;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.a71;
+import org.telegram.ui.Components.km0;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.mm0;
-public final class x extends bb {
+import org.telegram.ui.Components.za;
+import org.telegram.ui.Components.zr;
+public final class x extends za {
     public final int X;
     public final Utilities.Callback Y;
-    public b71 Z;
+    public a71 Z;
     public final FrameLayout f15689a0;
     public final FrameLayout f15690b0;
     public final RichMessageLayout.PreviewView f15691c0;
@@ -46,7 +46,7 @@ public final class x extends bb {
         super(context, null, true, false, g6Var);
         this.X = i10;
         this.Y = callback;
-        int i11 = k6.f21125a7;
+        int i11 = k6.f21126a7;
         setBackgroundColorKey(i11);
         fixNavigationBarKey(i11);
         FrameLayout frameLayout = new FrameLayout(context);
@@ -116,7 +116,7 @@ public final class x extends bb {
         this.f15691c0 = previewView;
         previewView.setPadding(AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(12.0f));
         int dp = AndroidUtilities.dp(12.0f);
-        int i13 = k6.f21183d6;
+        int i13 = k6.f21184d6;
         ShapeDrawable c02 = k6.c0(dp, k6.w0(i13, g6Var));
         n6 O = r6.O(i13);
         previewView.setBackground(c02);
@@ -137,7 +137,7 @@ public final class x extends bb {
         f3Var.addTextChangedListener(new w(this));
         frameLayout3.addView(h3Var, w7.z5.c(-2.0f, -1));
         frameLayout3.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
-        ei.d g10 = sl.g(24, context, g6Var, true);
+        ei.d g10 = tl.g(24, context, g6Var, true);
         this.f15694f0 = g10;
         g10.i(LocaleController.getString(R.string.ArticleAIGenerate), false, true);
         g10.setOnClickListener(new View.OnClickListener(this) {
@@ -188,14 +188,14 @@ public final class x extends bb {
         ((ViewGroup.MarginLayoutParams) g10.getLayoutParams()).leftMargin += this.backgroundPaddingLeft;
         ((ViewGroup.MarginLayoutParams) g10.getLayoutParams()).rightMargin += this.backgroundPaddingLeft;
         s4.k kVar = new s4.k();
-        kVar.f46377m = false;
+        kVar.f46376m = false;
         kVar.C = false;
-        kVar.o(bs.h);
+        kVar.o(zr.h);
         kVar.n(350L);
         this.d.setItemAnimator(kVar);
-        mm0 mm0Var = this.d;
+        lm0 lm0Var = this.d;
         int i14 = this.backgroundPaddingLeft;
-        mm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(72.0f));
+        lm0Var.setPadding(i14, 0, i14, AndroidUtilities.dp(72.0f));
         this.d.setClipToPadding(false);
         this.Z.N(false);
         P();
@@ -228,10 +228,10 @@ public final class x extends bb {
     }
 
     @Override
-    public final lm0 w(mm0 mm0Var) {
-        b71 b71Var = new b71(mm0Var, getContext(), this.X, 0, true, new hg.o(this, 14), this.resourcesProvider);
-        this.Z = b71Var;
-        return b71Var;
+    public final km0 w(lm0 lm0Var) {
+        a71 a71Var = new a71(lm0Var, getContext(), this.X, 0, true, new hg.o(this, 14), this.resourcesProvider);
+        this.Z = a71Var;
+        return a71Var;
     }
 
     @Override

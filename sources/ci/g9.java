@@ -19,8 +19,8 @@ public final class g9 extends b9 {
     public final f9 J;
     public final ah.y0 K;
     public final ImageReceiver L;
-    public final org.telegram.ui.Components.f6 M;
-    public final org.telegram.ui.Components.p6 N;
+    public final org.telegram.ui.Components.d6 M;
+    public final org.telegram.ui.Components.n6 N;
     public boolean O;
 
     public g9(Context context, d9 d9Var, TL_stories.TL_mediaAreaSuggestedReaction tL_mediaAreaSuggestedReaction, qy qyVar) {
@@ -32,8 +32,8 @@ public final class g9 extends b9 {
         ah.y0 y0Var = new ah.y0(this);
         this.K = y0Var;
         this.L = new ImageReceiver(this);
-        this.M = new org.telegram.ui.Components.f6(this);
-        this.N = new org.telegram.ui.Components.p6(false, false, false);
+        this.M = new org.telegram.ui.Components.d6(this);
+        this.N = new org.telegram.ui.Components.n6(false, false, false);
         ah.i1 d = ah.i1.d(tL_mediaAreaSuggestedReaction.reaction);
         this.I = d;
         if (tL_mediaAreaSuggestedReaction.flipped) {
@@ -43,7 +43,7 @@ public final class g9 extends b9 {
         y0Var.e(d);
         qyVar.getClass();
         String str = d.f784f;
-        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.r5.f(qyVar.f40935b, d.f785g)) : str;
+        str = str == null ? MessageObject.findAnimatedEmojiEmoticon(org.telegram.ui.Components.p5.f(qyVar.f40951b, d.f785g)) : str;
         if (str != null && (arrayList = (ArrayList) qyVar.e.get(str)) != null && !arrayList.isEmpty()) {
             int min = Math.min(1, arrayList.size());
             for (int i10 = 0; i10 < min; i10++) {
@@ -53,9 +53,9 @@ public final class g9 extends b9 {
         if (this.I.f784f != null && (tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(this.I.f784f)) != null) {
             this.L.setImage(ImageLocation.getForDocument(tL_availableReaction.center_icon), "40_40_lastreactframe", null, "webp", tL_availableReaction, 1);
         }
-        org.telegram.ui.Components.p6 p6Var = this.N;
-        p6Var.f29437b = 17;
-        p6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
+        org.telegram.ui.Components.n6 n6Var = this.N;
+        n6Var.f28797b = 17;
+        n6Var.x(AndroidUtilities.getTypeface("fonts/rcondensedbold.ttf"));
         this.N.w(AndroidUtilities.dp(18.0f));
         this.N.M = AndroidUtilities.displaySize.x;
         if (tL_mediaAreaSuggestedReaction.dark) {
@@ -99,11 +99,11 @@ public final class g9 extends b9 {
         y0Var.c(rect);
         y0Var.a(canvas);
         float height2 = (f9Var.getBounds().height() * 0.839f) + f9Var.getBounds().top;
-        org.telegram.ui.Components.p6 p6Var = this.N;
-        p6Var.setBounds(f9Var.getBounds().left, (int) (height2 - AndroidUtilities.dp(10.0f)), f9Var.getBounds().right, (int) (AndroidUtilities.dp(10.0f) + height2));
+        org.telegram.ui.Components.n6 n6Var = this.N;
+        n6Var.setBounds(f9Var.getBounds().left, (int) (height2 - AndroidUtilities.dp(10.0f)), f9Var.getBounds().right, (int) (AndroidUtilities.dp(10.0f) + height2));
         canvas.save();
         canvas.scale(d, d, f9Var.getBounds().centerX(), height2);
-        p6Var.draw(canvas);
+        n6Var.draw(canvas);
         canvas.restore();
     }
 
@@ -111,7 +111,7 @@ public final class g9 extends b9 {
         boolean z11;
         boolean z12;
         float f7 = 0.0f;
-        org.telegram.ui.Components.f6 f6Var = this.M;
+        org.telegram.ui.Components.d6 d6Var = this.M;
         if (storyViews != null) {
             for (int i10 = 0; i10 < storyViews.reactions.size(); i10++) {
                 if (ah.l1.c(storyViews.reactions.get(i10).reaction, this.I)) {
@@ -131,7 +131,7 @@ public final class g9 extends b9 {
                         if (this.O) {
                             f7 = 1.0f;
                         }
-                        f6Var.d(f7, true);
+                        d6Var.d(f7, true);
                         return;
                     }
                     return;
@@ -144,11 +144,11 @@ public final class g9 extends b9 {
             if (this.O) {
                 f7 = 1.0f;
             }
-            f6Var.d(f7, true);
+            d6Var.d(f7, true);
         }
     }
 
-    public org.telegram.ui.Components.r5 getAnimatedEmojiDrawable() {
+    public org.telegram.ui.Components.p5 getAnimatedEmojiDrawable() {
         return this.K.f909b;
     }
 

@@ -9,7 +9,7 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_ephemeral;
 public final class r extends q {
     public final void b(int i10, ConcurrentHashMap concurrentHashMap, ConcurrentHashMap concurrentHashMap2, int i11) {
-        ArrayList arrayList = this.f52059a;
+        ArrayList arrayList = this.f52058a;
         int size = arrayList.size();
         int i12 = 0;
         while (i12 < size) {
@@ -25,14 +25,14 @@ public final class r extends q {
                 b10.edit_date = i11;
                 b10.flags |= 32768;
             }
-            a0.h hVar = this.f52060b;
+            a0.h hVar = this.f52059b;
             TLRPC.TL_messages_messages tL_messages_messages = (TLRPC.TL_messages_messages) hVar.f(dialogId);
             if (tL_messages_messages == null) {
                 tL_messages_messages = new TLRPC.TL_messages_messages();
                 hVar.k(tL_messages_messages, dialogId);
             }
             tL_messages_messages.messages.add(b10);
-            a0.h hVar2 = this.f52061c;
+            a0.h hVar2 = this.f52060c;
             ArrayList arrayList2 = (ArrayList) hVar2.f(dialogId);
             if (arrayList2 == null) {
                 arrayList2 = v0.j(dialogId, hVar2);

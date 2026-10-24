@@ -11,7 +11,7 @@ public final class xw extends s4.b0 {
     @Override
     public final int R0() {
         dy dyVar = this.I;
-        if (dyVar.f36756s == 0 && this.J.W.X3() && dyVar.v == 2) {
+        if (dyVar.f36743s == 0 && this.J.W.X3() && dyVar.v == 2) {
             return 1;
         }
         return 0;

@@ -13,18 +13,18 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class hp extends org.telegram.ui.Components.lm0 {
-    public final Context f37890c;
+public final class hp extends org.telegram.ui.Components.km0 {
+    public final Context f37955c;
     public final kp d;
 
     public hp(kp kpVar, Context context) {
         this.d = kpVar;
-        this.f37890c = context;
+        this.f37955c = context;
     }
 
     @Override
     public final void A(s4.b1 b1Var) {
-        View view = b1Var.f46343a;
+        View view = b1Var.f46342a;
         if (view instanceof org.telegram.ui.Cells.a5) {
             ((org.telegram.ui.Cells.a5) view).a();
         }
@@ -32,7 +32,7 @@ public final class hp extends org.telegram.ui.Components.lm0 {
 
     @Override
     public final boolean D(s4.b1 b1Var) {
-        int i10 = b1Var.f46346f;
+        int i10 = b1Var.f46345f;
         if (i10 != 0 && i10 != 2) {
             return false;
         }
@@ -42,7 +42,7 @@ public final class hp extends org.telegram.ui.Components.lm0 {
     @Override
     public final int h() {
         kp kpVar = this.d;
-        if (kpVar.f39027w && !kpVar.f39028x) {
+        if (kpVar.f38995w && !kpVar.f38996x) {
             return 0;
         }
         return kpVar.M;
@@ -71,9 +71,9 @@ public final class hp extends org.telegram.ui.Components.lm0 {
     public final void v(s4.b1 b1Var, int i10) {
         String h;
         kp kpVar = this.d;
-        boolean z10 = kpVar.f39026s;
-        int i11 = b1Var.f46346f;
-        View view = b1Var.f46343a;
+        boolean z10 = kpVar.f38994s;
+        int i11 = b1Var.f46345f;
+        View view = b1Var.f46342a;
         boolean z11 = false;
         if (i11 != 0) {
             if (i11 != 1) {
@@ -81,16 +81,16 @@ public final class hp extends org.telegram.ui.Components.lm0 {
                     org.telegram.ui.Cells.x4 x4Var = (org.telegram.ui.Cells.x4) view;
                     if (z10) {
                         if (kpVar.h.linked_chat_id != 0) {
-                            int i12 = org.telegram.ui.ActionBar.k6.f21404p7;
+                            int i12 = org.telegram.ui.ActionBar.k6.f21405p7;
                             x4Var.a(i12, i12);
                             x4Var.b(LocaleController.getString(R.string.DiscussionUnlinkGroup), R.drawable.msg_remove, 5, false);
                             return;
                         }
-                        x4Var.a(org.telegram.ui.ActionBar.k6.f21516v6, org.telegram.ui.ActionBar.k6.f21499u6);
+                        x4Var.a(org.telegram.ui.ActionBar.k6.f21517v6, org.telegram.ui.ActionBar.k6.f21500u6);
                         x4Var.b(LocaleController.getString(R.string.DiscussionCreateGroup), R.drawable.msg_groups, 5, true);
                         return;
                     }
-                    int i13 = org.telegram.ui.ActionBar.k6.f21404p7;
+                    int i13 = org.telegram.ui.ActionBar.k6.f21405p7;
                     x4Var.a(i13, i13);
                     x4Var.b(LocaleController.getString(R.string.DiscussionUnlinkChannel), R.drawable.msg_remove, 5, false);
                     return;
@@ -133,26 +133,26 @@ public final class hp extends org.telegram.ui.Components.lm0 {
         FrameLayout a5Var;
         TLRPC.Chat chat;
         kp kpVar = this.d;
-        boolean z10 = kpVar.f39026s;
+        boolean z10 = kpVar.f38994s;
         if (i10 != 0) {
-            Context context = this.f37890c;
+            Context context = this.f37955c;
             if (i10 != 1) {
                 if (i10 != 2) {
                     if (i10 != 4) {
                         FrameLayout frameLayout = new FrameLayout(context);
                         ?? linearLayout = new LinearLayout(context);
-                        linearLayout.f36668c = UserConfig.selectedAccount;
+                        linearLayout.f36659c = UserConfig.selectedAccount;
                         linearLayout.setPadding(0, AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f));
                         linearLayout.setOrientation(1);
-                        org.telegram.ui.Components.w9 w9Var = new org.telegram.ui.Components.w9(context);
-                        linearLayout.f36666a = w9Var;
-                        org.telegram.ui.Components.ea0 ea0Var = new org.telegram.ui.Components.ea0(w9Var, "M476.1,397.4c25.8-47.2,0.3-105.9-50.9-120c-2.5-6.9-7.8-12.7-15-16.4l0.4-229.4c0-12.3-10-22.4-22.4-22.4H128.5c-12.3,0-22.4,10-22.4,22.4l-0.4,229.8v0c0,6.7,2.9,12.6,7.6,16.7c-51.6,15.9-79.2,77.2-48.1,116.4c-8.7,11.7-13.4,27.5-14,47.2c-1.7,34.5,21.6,45.8,55.9,45.8c52.3,0,99.1,4.6,105.1-36.2c16.5,0.9,7.1-37.3-6.5-53.3c18.4-22.4,18.3-52.9,4.9-78.2c-0.7-5.3-3.8-9.8-8.1-12.6c-1.5-2-1.6-2-2.1-2.7c0.2-1,1.2-11.8-3.4-20.9h138.5c-4.8,8.8-4.7,17-2.9,22.1c-5.3,4.8-6.8,12.3-5.2,17c-11.4,24.9-10,53.8,4.3,77.5c-6.8,9.7-11.2,21.7-12.6,31.6c-0.2-0.2-0.4-0.3-0.6-0.5c0.8-3.3,0.4-6.4-1.3-7.8c9.3-12.1-4.5-29.2-17-21.7c-3.8-2.8-10.6-3.2-18.1-0.5c-2.4-10.6-21.1-10.6-28.6-1c-1.3,0.3-2.9,0.8-4.5,1.9c-5.2-0.9-10.9,0.1-14.1,4.4c-6.9,3-9.5,10.4-7.8,17c-0.9,1.8-1.1,4-0.8,6.3c-1.6,1.2-2.3,3.1-2,4.9c0.1,0.6,10.4,56.6,11.2,62c0.3,1.8,1.5,3.2,3.1,3.9c8.7,3.4,12,3.8,30.1,9.4c2.7,0.8,2.4,0.8,6.7-0.1c16.4-3.5,30.2-8.9,30.8-9.2c1.6-0.6,2.7-2,3.1-3.7c0.1-0.4,6.8-36.5,10-53.2c0.9,4.2,3.3,7.3,7.4,7.5c1.2,7.8,4.4,14.5,9.5,19.9c16.4,17.3,44.9,15.7,64.9,16.1c38.3,0.8,74.5,1.5,84.4-24.4C488.9,453.5,491.3,421.3,476.1,397.4z", AndroidUtilities.dp(104.0f), AndroidUtilities.dp(104.0f));
-                        linearLayout.f36667b = ea0Var;
-                        w9Var.setImageDrawable(ea0Var);
-                        linearLayout.addView(w9Var, w7.z5.t(104, 104, 49, 0, 2, 0, 0));
+                        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
+                        linearLayout.f36657a = u9Var;
+                        org.telegram.ui.Components.ca0 ca0Var = new org.telegram.ui.Components.ca0(u9Var, "M476.1,397.4c25.8-47.2,0.3-105.9-50.9-120c-2.5-6.9-7.8-12.7-15-16.4l0.4-229.4c0-12.3-10-22.4-22.4-22.4H128.5c-12.3,0-22.4,10-22.4,22.4l-0.4,229.8v0c0,6.7,2.9,12.6,7.6,16.7c-51.6,15.9-79.2,77.2-48.1,116.4c-8.7,11.7-13.4,27.5-14,47.2c-1.7,34.5,21.6,45.8,55.9,45.8c52.3,0,99.1,4.6,105.1-36.2c16.5,0.9,7.1-37.3-6.5-53.3c18.4-22.4,18.3-52.9,4.9-78.2c-0.7-5.3-3.8-9.8-8.1-12.6c-1.5-2-1.6-2-2.1-2.7c0.2-1,1.2-11.8-3.4-20.9h138.5c-4.8,8.8-4.7,17-2.9,22.1c-5.3,4.8-6.8,12.3-5.2,17c-11.4,24.9-10,53.8,4.3,77.5c-6.8,9.7-11.2,21.7-12.6,31.6c-0.2-0.2-0.4-0.3-0.6-0.5c0.8-3.3,0.4-6.4-1.3-7.8c9.3-12.1-4.5-29.2-17-21.7c-3.8-2.8-10.6-3.2-18.1-0.5c-2.4-10.6-21.1-10.6-28.6-1c-1.3,0.3-2.9,0.8-4.5,1.9c-5.2-0.9-10.9,0.1-14.1,4.4c-6.9,3-9.5,10.4-7.8,17c-0.9,1.8-1.1,4-0.8,6.3c-1.6,1.2-2.3,3.1-2,4.9c0.1,0.6,10.4,56.6,11.2,62c0.3,1.8,1.5,3.2,3.1,3.9c8.7,3.4,12,3.8,30.1,9.4c2.7,0.8,2.4,0.8,6.7-0.1c16.4-3.5,30.2-8.9,30.8-9.2c1.6-0.6,2.7-2,3.1-3.7c0.1-0.4,6.8-36.5,10-53.2c0.9,4.2,3.3,7.3,7.4,7.5c1.2,7.8,4.4,14.5,9.5,19.9c16.4,17.3,44.9,15.7,64.9,16.1c38.3,0.8,74.5,1.5,84.4-24.4C488.9,453.5,491.3,421.3,476.1,397.4z", AndroidUtilities.dp(104.0f), AndroidUtilities.dp(104.0f));
+                        linearLayout.f36658b = ca0Var;
+                        u9Var.setImageDrawable(ca0Var);
+                        linearLayout.addView(u9Var, w7.z5.t(104, 104, 49, 0, 2, 0, 0));
                         frameLayout.addView((View) linearLayout, w7.z5.d(-2, -2.0f, 49, 0.0f, 10.0f, 0.0f, 0.0f));
                         TextView textView = new TextView(context);
-                        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21239g9, null);
+                        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21240g9, null);
                         textView.setTextSize(1, 14.0f);
                         textView.setGravity(17);
                         if (z10) {
@@ -178,10 +178,10 @@ public final class hp extends org.telegram.ui.Components.lm0 {
                         if (z10) {
                             chat = (TLRPC.Chat) kpVar.v.get(0);
                         } else {
-                            chat = kpVar.f39023f;
+                            chat = kpVar.f38991f;
                         }
                         gp gpVar = new gp(this, context, chat, chat);
-                        kpVar.f39029y = gpVar;
+                        kpVar.f38997y = gpVar;
                         a5Var = gpVar;
                     }
                 } else {
@@ -191,7 +191,7 @@ public final class hp extends org.telegram.ui.Components.lm0 {
                 a5Var = new org.telegram.ui.Cells.e9(context);
             }
         } else {
-            a5Var = new org.telegram.ui.Cells.a5(6, 2, this.f37890c, null, false);
+            a5Var = new org.telegram.ui.Cells.a5(6, 2, this.f37955c, null, false);
         }
         return new s4.b1(a5Var);
     }

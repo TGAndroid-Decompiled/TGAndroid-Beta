@@ -2,7 +2,7 @@ package ai;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.u91;
+import org.telegram.ui.t91;
 public final class o3 implements Runnable {
     public final int f1930a = 0;
     public final TLRPC.Chat f1931b;
@@ -15,14 +15,14 @@ public final class o3 implements Runnable {
     public final void run() {
         switch (this.f1930a) {
             case 0:
-                l7.D2(u91.d0(this.f1931b, true));
+                l7.D2(t91.d0(this.f1931b, true));
                 return;
             default:
                 TLRPC.Chat chat = this.f1931b;
                 if (chat != null) {
                     ?? obj = new Object();
-                    obj.f21636a = true;
-                    LaunchActivity.R().showAsSheet(new org.telegram.ui.y5(-chat.f20343id), obj);
+                    obj.f21637a = true;
+                    LaunchActivity.R().showAsSheet(new org.telegram.ui.y5(-chat.f20344id), obj);
                     return;
                 }
                 return;

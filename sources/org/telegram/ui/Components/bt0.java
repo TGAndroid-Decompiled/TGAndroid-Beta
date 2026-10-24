@@ -1,34 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-public final class bt0 extends org.telegram.ui.sn {
-    public boolean f25146ed;
-    public final int f25147fd;
-    public final xv0 f25148gd;
+import androidx.recyclerview.widget.RecyclerView;
+public final class bt0 extends s4.r0 {
+    public final ss0 f25090a;
+    public final ts0 f25091b;
+    public final wv0 f25092c;
 
-    public bt0(xv0 xv0Var, Bundle bundle, int i10) {
-        super(bundle);
-        this.f25148gd = xv0Var;
-        this.f25147fd = i10;
-        this.f25146ed = true;
+    public bt0(wv0 wv0Var, ss0 ss0Var, ts0 ts0Var) {
+        this.f25092c = wv0Var;
+        this.f25090a = ss0Var;
+        this.f25091b = ts0Var;
     }
 
     @Override
-    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
-        xv0 xv0Var = this.f25148gd;
-        iv0 iv0Var = xv0Var.S;
-        if (this.f25146ed) {
-            if (this.f41560j0 != null) {
-                qa("");
-                this.f41560j0.H(iv0Var.f27459w, false);
-            }
-            org.telegram.ui.rk rkVar = this.A1;
-            if (rkVar != null) {
-                rkVar.e(iv0Var.f27460x, false);
-            }
-            xv0Var.f32711v1.getMediaDataController().portSavedSearchResults(getClassGuid(), iv0Var.f27460x, iv0Var.f27459w, iv0Var.f27456n, iv0Var.h, this.f25147fd, iv0Var.v, iv0Var.f27458s);
-            this.f25146ed = false;
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        if (i10 != 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        super.onTransitionAnimationStart(z10, z11);
+        this.f25092c.f32362b1 = z10;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12;
+        int i13;
+        wv0 wv0Var = this.f25092c;
+        lv0[] lv0VarArr = wv0Var.f32406t1;
+        ts0 ts0Var = this.f25091b;
+        ss0 ss0Var = this.f25090a;
+        wv0Var.H(ss0Var, (lm0) recyclerView, ts0Var);
+        if (i11 != 0 && ((i13 = wv0Var.f32386k0[0].F) == 0 || i13 == 5)) {
+            lv0VarArr[0].f28439a.isEmpty();
+        }
+        if (i11 != 0 && ((i12 = ss0Var.F) == 0 || wv0.r0(i12))) {
+            wv0.r(ss0Var, lv0VarArr, true);
+        }
+        ss0Var.h.L0(true);
+        if (ss0Var.G != null) {
+            ss0Var.invalidate();
+        }
+        wv0Var.q0();
     }
 }

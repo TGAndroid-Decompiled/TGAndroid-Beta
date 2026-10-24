@@ -1,40 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.LanguageSelectActivity;
-import org.telegram.ui.LaunchActivity;
-public final class g1 implements org.telegram.ui.ActionBar.z1 {
-    public final int f26499a;
-    public final LaunchActivity f26500b;
+import org.telegram.messenger.AndroidUtilities;
+public final class g1 implements Runnable {
+    public final int f26514a;
+    public final c5 f26515b;
+    public final org.telegram.ui.ActionBar.c2 f26516c;
+    public final org.telegram.ui.ActionBar.o2 d;
 
-    public g1(LaunchActivity launchActivity, int i10) {
-        this.f26499a = i10;
-        this.f26500b = launchActivity;
+    public g1(c5 c5Var, org.telegram.ui.ActionBar.c2 c2Var, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
+        this.f26514a = i10;
+        this.f26515b = c5Var;
+        this.f26516c = c2Var;
+        this.d = o2Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f26499a) {
+    public final void run() {
+        switch (this.f26514a) {
             case 0:
-                this.f26500b.u0(new LanguageSelectActivity());
-                return;
-            case 1:
-                this.f26500b.u0(new org.telegram.ui.c7());
+                AndroidUtilities.runOnUIThread(new g1(this.f26515b, this.f26516c, this.d, 1));
                 return;
             default:
-                LaunchActivity launchActivity = this.f26500b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    launchActivity.startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
+                d5.d0(this.f26515b, this.f26516c, this.d);
+                return;
         }
     }
 }

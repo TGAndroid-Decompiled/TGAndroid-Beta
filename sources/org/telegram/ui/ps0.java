@@ -1,44 +1,30 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import java.util.ArrayList;
+import android.animation.ValueAnimator;
+import android.graphics.Outline;
+import android.view.View;
+import android.view.ViewOutlineProvider;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.tgnet.TLRPC;
-public final class ps0 extends org.telegram.ui.Components.ir0 {
-    public final FrameLayout f40537e1;
-    public final boolean f40538f1;
-    public final PhotoViewer f40539g1;
+public final class ps0 extends ViewOutlineProvider {
+    public final int f40627a;
+    public final float f40628b;
+    public final Object f40629c;
 
-    public ps0(PhotoViewer photoViewer, Context context, sn snVar, ArrayList arrayList, String str, Integer num, FrameLayout frameLayout, boolean z10) {
-        super(context, snVar, arrayList, null, null, false, str, null, false, true, false, num, null);
-        this.f40539g1 = photoViewer;
-        this.f40537e1 = frameLayout;
-        this.f40538f1 = z10;
+    public ps0(Object obj, float f7, int i10) {
+        this.f40627a = i10;
+        this.f40629c = obj;
+        this.f40628b = f7;
     }
 
     @Override
-    public final void W0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.fz0(this, this.f40537e1, hVar, i10, 12), 250L);
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        if (this.f40538f1) {
-            AndroidUtilities.runOnUIThread(new oj0(this, 18), 50L);
-        }
-        PhotoViewer photoViewer = this.f40539g1;
-        photoViewer.f33571d0.softInputMode = 272;
-        try {
-            ((WindowManager) photoViewer.f33759y.getSystemService("window")).updateViewLayout(photoViewer.f33597g0, photoViewer.f33571d0);
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void getOutline(View view, Outline outline) {
+        switch (this.f40627a) {
+            case 0:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f40628b) * ((Float) ((ValueAnimator) this.f40629c).getAnimatedValue()).floatValue() * AndroidUtilities.dp(10.0f));
+                return;
+            default:
+                outline.setRoundRect(0, 0, view.getMeasuredWidth(), view.getMeasuredHeight(), (1.0f / this.f40628b) * (1.0f - ((PhotoViewer) this.f40629c).W) * AndroidUtilities.dp(10.0f));
+                return;
         }
     }
 }

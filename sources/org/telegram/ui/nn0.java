@@ -2,11 +2,11 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class nn0 implements go0 {
-    public final io0 f39932a;
+public final class nn0 implements fo0 {
+    public final ho0 f39924a;
 
-    public nn0(io0 io0Var) {
-        this.f39932a = io0Var;
+    public nn0(ho0 ho0Var) {
+        this.f39924a = ho0Var;
     }
 
     @Override
@@ -16,9 +16,9 @@ public final class nn0 implements go0 {
 
     @Override
     public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        io0 io0Var = this.f39932a;
-        io0Var.I0 = tL_payments_validateRequestedInfo;
-        io0Var.B0(tL_payments_validateRequestedInfo.info);
+        ho0 ho0Var = this.f39924a;
+        ho0Var.I0 = tL_payments_validateRequestedInfo;
+        ho0Var.B0(tL_payments_validateRequestedInfo.info);
     }
 
     @Override

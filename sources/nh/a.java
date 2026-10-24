@@ -3,7 +3,7 @@ package nh;
 import android.text.SpannableStringBuilder;
 import android.util.SparseArray;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.xq;
+import org.telegram.ui.Components.vq;
 public abstract class a {
     public static final SparseArray f17537a = new SparseArray(6);
 
@@ -20,13 +20,13 @@ public abstract class a {
             spannableStringBuilder.insert(0, (CharSequence) "* ");
         }
         SparseArray sparseArray = f17537a;
-        xq xqVar = (xq) sparseArray.get(i10);
-        if (xqVar == null) {
-            xqVar = new xq(i10, 0);
-            xqVar.setColorKey(k6.il);
-            sparseArray.put(i10, xqVar);
+        vq vqVar = (vq) sparseArray.get(i10);
+        if (vqVar == null) {
+            vqVar = new vq(i10, 0);
+            vqVar.setColorKey(k6.il);
+            sparseArray.put(i10, vqVar);
         }
-        spannableStringBuilder.setSpan(xqVar, 0, 1, 33);
+        spannableStringBuilder.setSpan(vqVar, 0, 1, 33);
         if (z10) {
             spannableStringBuilder.append((char) 8297);
         }

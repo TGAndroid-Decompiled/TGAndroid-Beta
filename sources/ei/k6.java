@@ -7,8 +7,8 @@ import android.widget.FrameLayout;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.bs;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.zr;
 public final class k6 extends FrameLayout {
     public View f9325a;
     public ArrayList f9326b;
@@ -51,7 +51,7 @@ public final class k6 extends FrameLayout {
                 this.f9331s.setInterpolator(new LinearInterpolator());
             } else {
                 this.f9331s.setDuration(350L);
-                this.f9331s.setInterpolator(bs.h);
+                this.f9331s.setInterpolator(zr.h);
             }
             this.f9331s.start();
             return;
@@ -106,7 +106,7 @@ public final class k6 extends FrameLayout {
             View childAt = getChildAt(i10);
             float f7 = this.f9329n;
             if (this.f9330r) {
-                f7 = bs.h.getInterpolation(AndroidUtilities.cascade(f7, i10 - 1, getChildCount() - 1, 3.0f));
+                f7 = zr.h.getInterpolation(AndroidUtilities.cascade(f7, i10 - 1, getChildCount() - 1, 3.0f));
             }
             childAt.setAlpha(f7);
             childAt.setTranslationY((1.0f - f7) * AndroidUtilities.dp(24.0f));
@@ -134,7 +134,7 @@ public final class k6 extends FrameLayout {
         if (i17 < 2) {
             B = 0;
         } else {
-            B = sl.B(40.0f, i17, dp) / (i17 - 1);
+            B = tl.B(40.0f, i17, dp) / (i17 - 1);
         }
         if (c()) {
             f7 = 20.0f;
@@ -142,11 +142,11 @@ public final class k6 extends FrameLayout {
             f7 = 30.0f;
         }
         int min = Math.min(AndroidUtilities.dp(f7), B);
-        int A = sl.A(40.0f, i16, 2);
+        int A = tl.A(40.0f, i16, 2);
         int dp2 = (AndroidUtilities.dp(40.0f) + i16) / 2;
         int dp3 = AndroidUtilities.dp(12.33f);
         if (!c()) {
-            i14 = (sl.B(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
+            i14 = (tl.B(40.0f, i17, dp) - ((i17 - 1) * min)) / 2;
         } else {
             i14 = 0;
         }

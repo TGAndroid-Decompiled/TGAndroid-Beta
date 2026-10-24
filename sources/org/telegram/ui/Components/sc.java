@@ -1,21 +1,62 @@
 package org.telegram.ui.Components;
-public final class sc implements Runnable {
-    public final int f30454a;
-    public final yb f30455b;
 
-    public sc(yb ybVar, int i10) {
-        this.f30454a = i10;
-        this.f30455b = ybVar;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class sc extends ClickableSpan {
+    public final int f30479a;
+    public final Runnable f30480b;
+
+    public sc(int i10, Runnable runnable) {
+        this.f30479a = i10;
+        this.f30480b = runnable;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30454a) {
+    public final void onClick(View view) {
+        switch (this.f30479a) {
             case 0:
-                this.f30455b.performHapticFeedback(3, 2);
+                this.f30480b.run();
+                return;
+            case 1:
+                Runnable runnable = this.f30480b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 2:
+                Runnable runnable2 = this.f30480b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
                 return;
             default:
-                this.f30455b.performHapticFeedback(3, 2);
+                Runnable runnable3 = this.f30480b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f30479a) {
+            case 0:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 1:
+                textPaint.setUnderlineText(false);
+                return;
+            case 2:
+                textPaint.setUnderlineText(false);
+                return;
+            default:
+                textPaint.setUnderlineText(false);
                 return;
         }
     }

@@ -58,7 +58,7 @@ public final class y9 extends VideoPlayerHolderBase {
                                         StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
                                         sb2.append(t10.getCurrentPeer());
                                         sb2.append(" storyId=");
-                                        org.telegram.messenger.v0.n(n4Var.f5595a.f20577id, sb2);
+                                        org.telegram.messenger.v0.n(n4Var.f5595a.f20578id, sb2);
                                         return;
                                     }
                                     return;
@@ -72,7 +72,7 @@ public final class y9 extends VideoPlayerHolderBase {
                                         StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
                                         sb3.append(t11.getCurrentPeer());
                                         sb3.append(" storyId=");
-                                        org.telegram.messenger.v0.n(n4Var2.f5595a.f20577id, sb3);
+                                        org.telegram.messenger.v0.n(n4Var2.f5595a.f20578id, sb3);
                                         return;
                                     }
                                     return;
@@ -102,7 +102,7 @@ public final class y9 extends VideoPlayerHolderBase {
                                         StringBuilder sb2 = new StringBuilder("StoryViewer displayed story buffering dialogId=");
                                         sb2.append(t10.getCurrentPeer());
                                         sb2.append(" storyId=");
-                                        org.telegram.messenger.v0.n(n4Var.f5595a.f20577id, sb2);
+                                        org.telegram.messenger.v0.n(n4Var.f5595a.f20578id, sb2);
                                         return;
                                     }
                                     return;
@@ -116,7 +116,7 @@ public final class y9 extends VideoPlayerHolderBase {
                                         StringBuilder sb3 = new StringBuilder("StoryViewer displayed story playing dialogId=");
                                         sb3.append(t11.getCurrentPeer());
                                         sb3.append(" storyId=");
-                                        org.telegram.messenger.v0.n(n4Var2.f5595a.f20577id, sb3);
+                                        org.telegram.messenger.v0.n(n4Var2.f5595a.f20578id, sb3);
                                         return;
                                     }
                                     return;

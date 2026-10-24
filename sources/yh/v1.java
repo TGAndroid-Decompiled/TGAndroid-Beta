@@ -13,25 +13,25 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.a6;
 import org.telegram.ui.Components.d91;
-import org.telegram.ui.Components.ns0;
+import org.telegram.ui.Components.ms0;
+import org.telegram.ui.Components.y5;
 public final class v1 extends d91 {
-    public final int f51017a;
-    public final g6 f51018b;
-    public final ns0 f51019c;
+    public final int f51016a;
+    public final g6 f51017b;
+    public final ms0 f51018c;
 
-    public v1(ns0 ns0Var, int i10, g6 g6Var) {
-        this.f51019c = ns0Var;
-        this.f51017a = i10;
-        this.f51018b = g6Var;
+    public v1(ms0 ms0Var, int i10, g6 g6Var) {
+        this.f51018c = ms0Var;
+        this.f51016a = i10;
+        this.f51017b = g6Var;
     }
 
     @Override
     public final void a(ArrayList arrayList) {
-        ns0 ns0Var = this.f51019c;
-        q1 q1Var = ns0Var.N;
-        v9 v9Var = ns0Var.e;
+        ms0 ms0Var = this.f51018c;
+        q1 q1Var = ms0Var.N;
+        v9 v9Var = ms0Var.e;
         ArrayList arrayList2 = new ArrayList();
         int size = arrayList.size();
         int i10 = 0;
@@ -72,12 +72,12 @@ public final class v1 extends d91 {
         arrayList3.clear();
         arrayList3.addAll(arrayList4);
         v9Var.j();
-        l2 currentPage = ns0Var.getCurrentPage();
+        l2 currentPage = ms0Var.getCurrentPage();
         if (currentPage != null) {
             if (currentPage.d) {
                 i10 = v9Var.f(currentPage.e.d) + 1;
             }
-            ns0Var.f50928n.e(0.0f, i10, i10);
+            ms0Var.f50927n.e(0.0f, i10, i10);
         }
         AndroidUtilities.cancelRunOnUIThread(q1Var);
         AndroidUtilities.runOnUIThread(q1Var, 1000L);
@@ -87,12 +87,12 @@ public final class v1 extends d91 {
     public final void b(View view, int i10, int i11) {
         y9 y9Var;
         boolean z10;
-        ns0 ns0Var = this.f51019c;
-        v9 v9Var = ns0Var.e;
+        ms0 ms0Var = this.f51018c;
+        v9 v9Var = ms0Var.e;
         l2 l2Var = (l2) view;
         int i12 = 0;
         if (i11 == 0) {
-            y9Var = ns0Var.d;
+            y9Var = ms0Var.d;
             z10 = false;
         } else {
             int i13 = i10 - 1;
@@ -115,12 +115,12 @@ public final class v1 extends d91 {
         l2Var.f(false);
         LinearLayout linearLayout = l2Var.E;
         if (linearLayout != null) {
-            if (!l2Var.f50825a.e.h()) {
+            if (!l2Var.f50824a.e.h()) {
                 i12 = 8;
             }
             linearLayout.setVisibility(i12);
         }
-        l2Var.setVisibleHeight(ns0Var.Q);
+        l2Var.setVisibleHeight(ms0Var.Q);
         l2Var.setHasTabs(!v9Var.d().isEmpty());
     }
 
@@ -137,12 +137,12 @@ public final class v1 extends d91 {
         if (i10 == -1) {
             return null;
         }
-        return new l2(this.f51019c, this.f51017a, this.f51018b);
+        return new l2(this.f51018c, this.f51016a, this.f51017b);
     }
 
     @Override
     public final int e() {
-        return this.f51019c.e.d().size() + 1;
+        return this.f51018c.e.d().size() + 1;
     }
 
     @Override
@@ -150,7 +150,7 @@ public final class v1 extends d91 {
         if (i10 == 0) {
             return -2;
         }
-        return ((TL_stars.TL_starGiftCollection) this.f51019c.e.d().get(i10 - 1)).collection_id;
+        return ((TL_stars.TL_starGiftCollection) this.f51018c.e.d().get(i10 - 1)).collection_id;
     }
 
     @Override
@@ -158,7 +158,7 @@ public final class v1 extends d91 {
         if (i10 == 0) {
             return LocaleController.getString(R.string.Gift2CollectionAll);
         }
-        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f51019c.e.d().get(i10 - 1);
+        TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f51018c.e.d().get(i10 - 1);
         if (tL_starGiftCollection == null) {
             return null;
         }
@@ -167,7 +167,7 @@ public final class v1 extends d91 {
             TextPaint textPaint = new TextPaint(1);
             textPaint.setTextSize(AndroidUtilities.dp(16.0f));
             SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("e ");
-            spannableStringBuilder2.setSpan(new a6(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
+            spannableStringBuilder2.setSpan(new y5(tL_starGiftCollection.icon, textPaint.getFontMetricsInt()), 0, 1, 33);
             spannableStringBuilder.insert(0, (CharSequence) spannableStringBuilder2);
         }
         return spannableStringBuilder;

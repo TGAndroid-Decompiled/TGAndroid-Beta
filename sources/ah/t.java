@@ -33,15 +33,15 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.ui.ActionBar.f4;
 import org.telegram.ui.ActionBar.j6;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.k40;
-import org.telegram.ui.Components.kw;
-import org.telegram.ui.Components.lz0;
-import org.telegram.ui.Components.ms0;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.i10;
+import org.telegram.ui.Components.i40;
+import org.telegram.ui.Components.iw;
+import org.telegram.ui.Components.kz0;
+import org.telegram.ui.Components.ls0;
+import org.telegram.ui.Components.oc;
+import org.telegram.ui.Components.sp;
+import org.telegram.ui.Components.tp;
 import org.telegram.ui.Components.up;
-import org.telegram.ui.Components.vp;
-import org.telegram.ui.Components.wp;
 import org.telegram.ui.im;
 import org.telegram.ui.ko;
 public final class t implements Runnable {
@@ -110,20 +110,20 @@ public final class t implements Runnable {
                     }
                 }
                 l7Var2.U0 = -1;
-                qc qcVar = qc.f29825w;
-                if (qcVar != null) {
-                    qcVar.c(0L, false);
+                oc ocVar = oc.f29196w;
+                if (ocVar != null) {
+                    ocVar.c(0L, false);
                     return;
                 }
                 return;
             case 4:
                 di.r rVar = (di.r) obj;
-                ms0 ms0Var = rVar.W;
+                ls0 ls0Var = rVar.W;
                 if (z11) {
-                    new di.u(ms0Var.f8075a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.r0(ms0Var, 10)).show();
+                    new di.u(ls0Var.f8075a, LocaleController.getString(R.string.ProfileBotPreviewLanguageChoose), new ai.r0(ls0Var, 10)).show();
                     return;
                 } else {
-                    ms0Var.b(rVar.f8061a.E);
+                    ls0Var.b(rVar.f8061a.E);
                     return;
                 }
             case 5:
@@ -194,7 +194,7 @@ public final class t implements Runnable {
                 return;
             case 12:
                 String str = e2.m0.f8259a;
-                i2.h0 h0Var = ((i2.b0) ((k2.v) ((qf.b) obj).f44865c)).f12353a;
+                i2.h0 h0Var = ((i2.b0) ((k2.v) ((qf.b) obj).f44864c)).f12353a;
                 if (h0Var.f12416d0 != z11) {
                     h0Var.f12416d0 = z11;
                     h0Var.f12431m.e(23, new i2.x(1, z11));
@@ -241,71 +241,71 @@ public final class t implements Runnable {
                 pf.d.r(context, LocaleController.getString(i11));
                 return;
             case 24:
-                lz0 lz0Var = ((im) obj).f38268c.f41635p1;
-                if (lz0Var != null && z11) {
-                    lz0Var.setVisibility(8);
+                kz0 kz0Var = ((im) obj).f38328c.f41632p1;
+                if (kz0Var != null && z11) {
+                    kz0Var.setVisibility(8);
                     return;
                 }
                 return;
             case 25:
                 ko koVar = (ko) obj;
-                koVar.f39012w0.autotranslation = z11;
-                koVar.getMessagesController().putChat(koVar.f39012w0, false);
+                koVar.f38980w0.autotranslation = z11;
+                koVar.getMessagesController().putChat(koVar.f38980w0, false);
                 return;
             case 26:
-                wp wpVar = (wp) obj;
-                up upVar = wpVar.h;
-                if (upVar != null && upVar.d != null && !wpVar.isDismissed()) {
-                    wpVar.F(z11, true);
-                    if (wpVar.L != null) {
-                        wpVar.O = true;
-                        if (!wpVar.A()) {
-                            wallPaper = wpVar.f32297n.f40872g;
+                up upVar = (up) obj;
+                sp spVar = upVar.h;
+                if (spVar != null && spVar.d != null && !upVar.isDismissed()) {
+                    upVar.F(z11, true);
+                    if (upVar.L != null) {
+                        upVar.O = true;
+                        if (!upVar.A()) {
+                            wallPaper = upVar.f31188n.f40883g;
                         }
                         TLRPC.WallPaper wallPaper2 = wallPaper;
-                        f4 f4Var = wpVar.L.f32035a;
-                        if (f4Var.f20884a) {
-                            wpVar.f32297n.q(null, wallPaper2, false, Boolean.valueOf(z11), false);
+                        f4 f4Var = upVar.L.f30871a;
+                        if (f4Var.f20885a) {
+                            upVar.f31188n.q(null, wallPaper2, false, Boolean.valueOf(z11), false);
                         } else {
-                            wpVar.f32297n.q(f4Var, wallPaper2, false, Boolean.valueOf(z11), false);
+                            upVar.f31188n.q(f4Var, wallPaper2, false, Boolean.valueOf(z11), false);
                         }
                     }
-                    if (AndroidUtilities.isTablet() && (u10 = wp.u(z11)) != null && u10 != k6.I) {
-                        if (z11 == wpVar.f32299s) {
+                    if (AndroidUtilities.isTablet() && (u10 = up.u(z11)) != null && u10 != k6.I) {
+                        if (z11 == upVar.f31190s) {
                             z10 = false;
                         }
-                        wpVar.f32294i0 = z10;
-                        wpVar.J(u10);
+                        upVar.f31185i0 = z10;
+                        upVar.J(u10);
                     }
-                    if (upVar.d != null) {
-                        while (i13 < upVar.d.size()) {
-                            ((vp) upVar.d.get(i13)).f32037c = z11 ? 1 : 0;
+                    if (spVar.d != null) {
+                        while (i13 < spVar.d.size()) {
+                            ((tp) spVar.d.get(i13)).f30873c = z11 ? 1 : 0;
                             i13++;
                         }
-                        upVar.l();
+                        spVar.l();
                         return;
                     }
                     return;
                 }
                 return;
             case 27:
-                kw kwVar = (kw) obj;
+                iw iwVar = (iw) obj;
                 if (!z11) {
-                    kwVar.E.setVisibility(8);
+                    iwVar.E.setVisibility(8);
                     return;
                 }
                 return;
             case 28:
-                k10 k10Var = (k10) obj;
-                k10Var.S(k10Var.f27826y0, z11);
+                i10 i10Var = (i10) obj;
+                i10Var.S(i10Var.f27245y0, z11);
                 return;
             default:
-                k40 k40Var = (k40) obj;
+                i40 i40Var = (i40) obj;
                 if (!z11) {
-                    k40Var.f27861r.setVisibility(8);
+                    i40Var.f27285r.setVisibility(8);
                     return;
                 } else {
-                    k40Var.getClass();
+                    i40Var.getClass();
                     return;
                 }
         }

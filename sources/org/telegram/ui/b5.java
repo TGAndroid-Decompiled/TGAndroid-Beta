@@ -6,28 +6,28 @@ import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.NotificationCenter;
 import org.telegram.tgnet.TLRPC;
 public final class b5 {
-    public final ImageLocation f35871a;
-    public final ImageLocation f35872b;
-    public final ImageLocation f35873c;
+    public final ImageLocation f35920a;
+    public final ImageLocation f35921b;
+    public final ImageLocation f35922c;
     public final String d;
     public final String e;
-    public final String f35874f;
-    public final BitmapDrawable f35875g;
+    public final String f35923f;
+    public final BitmapDrawable f35924g;
     public final Object h;
-    public final h5[] f35876i;
-    public final d5 f35877j;
+    public final h5[] f35925i;
+    public final d5 f35926j;
 
     public b5(ImageLocation imageLocation, ImageLocation imageLocation2, ImageLocation imageLocation3, String str, String str2, String str3, BitmapDrawable bitmapDrawable, Object obj, h5[] h5VarArr, d5 d5Var) {
-        this.f35871a = imageLocation;
-        this.f35872b = imageLocation2;
-        this.f35873c = imageLocation3;
+        this.f35920a = imageLocation;
+        this.f35921b = imageLocation2;
+        this.f35922c = imageLocation3;
         this.d = str;
         this.e = str2;
-        this.f35874f = str3;
-        this.f35875g = bitmapDrawable;
+        this.f35923f = str3;
+        this.f35924g = bitmapDrawable;
         this.h = obj;
-        this.f35876i = h5VarArr;
-        this.f35877j = d5Var;
+        this.f35925i = h5VarArr;
+        this.f35926j = d5Var;
     }
 
     public static b5 a(TLRPC.Chat chat, TLRPC.ChatFull chatFull, h5... h5VarArr) {

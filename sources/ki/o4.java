@@ -17,7 +17,7 @@ import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.WebFile;
-import org.telegram.messenger.sl;
+import org.telegram.messenger.tl;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.ActionBar.k6;
@@ -87,7 +87,7 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
     public final void addColorKeys(HashSet hashSet) {
         hashSet.add(Integer.valueOf(k6.pe));
         hashSet.add(Integer.valueOf(k6.Gd));
-        hashSet.add(Integer.valueOf(k6.f21507uf));
+        hashSet.add(Integer.valueOf(k6.f21508uf));
         hashSet.add(Integer.valueOf(k6.G6));
     }
 
@@ -191,7 +191,7 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
             Drawable drawable = this.E;
             if (drawable != null) {
                 int f7 = org.telegram.ui.Cells.b1.f(2, centerX, drawable);
-                int d = sl.d(2, centerY, drawable);
+                int d = tl.d(2, centerY, drawable);
                 drawable.setBounds(f7, d, drawable.getIntrinsicWidth() + f7, drawable.getIntrinsicHeight() + d);
                 drawable.draw(canvas2);
             }
@@ -218,7 +218,7 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
         if (m4Var != null && (textSelectionHelper = ((s3) m4Var).f15561a.getTextSelectionHelper()) != null && textSelectionHelper.x() && (getParent() instanceof RecyclerView)) {
             ((RecyclerView) getParent()).getClass();
             int R = RecyclerView.R(this);
-            if (R >= 0 && R > textSelectionHelper.f22861p0 && R <= textSelectionHelper.f22864s0) {
+            if (R >= 0 && R > textSelectionHelper.f22862p0 && R <= textSelectionHelper.f22865s0) {
                 canvas2.drawRect(getPaddingLeft(), getPaddingTop(), getWidth() - getPaddingRight(), getPaddingTop() + this.K, this.f15487w);
             }
         }
@@ -244,8 +244,8 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
         int paddingRight = getPaddingRight();
         int max = Math.max(0, (size - paddingLeft) - paddingRight);
         TL_iv.pageBlockMap map = getMap();
-        if (map != null && map.f20563w > 0 && map.h > 0) {
-            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20563w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
+        if (map != null && map.f20564w > 0 && map.h > 0) {
+            this.K = Math.max(Math.min((int) (((max - AndroidUtilities.dp(32.0f)) * map.h) / map.f20564w), AndroidUtilities.dp(420.0f)), AndroidUtilities.dp(120.0f));
         } else {
             this.K = (AndroidUtilities.dp(200.0f) - getPaddingTop()) - getPaddingBottom();
         }
@@ -260,7 +260,7 @@ public final class o4 extends a0 implements org.telegram.ui.ActionBar.b6, n9, l0
         org.telegram.ui.ActionBar.g6 g6Var = this.f15485r;
         this.f15486s.setColor(k6.w0(i10, g6Var));
         this.v.setColor(k6.w0(k6.Gd, g6Var));
-        this.f15487w.setColor(k6.w0(k6.f21507uf, g6Var));
+        this.f15487w.setColor(k6.w0(k6.f21508uf, g6Var));
         int i11 = k6.G6;
         this.f15488x.setColor(k6.o1(0.5f, k6.w0(i11, g6Var)));
         this.E.setColorFilter(new PorterDuffColorFilter(k6.o1(0.5f, k6.w0(i11, g6Var)), PorterDuff.Mode.SRC_IN));

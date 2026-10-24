@@ -18,20 +18,20 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.SharedConfig;
 import org.telegram.messenger.Utilities;
-public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.md0, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, org.telegram.ui.Components.rw0 {
-    public final int f43441a;
+public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.kd0, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6, GenericProvider, FlagSecureReason.FlagSecureCondition, Utilities.Callback2Return, org.telegram.ui.Components.qw0 {
+    public final int f43416a;
 
     public wv(int i10) {
-        this.f43441a = i10;
+        this.f43416a = i10;
     }
 
     @Override
     public void d(int i10, View view) {
-        switch (this.f43441a) {
+        switch (this.f43416a) {
             case 5:
                 Drawable background = view.getBackground();
-                if (background instanceof org.telegram.ui.Components.yq) {
-                    Drawable drawable = ((org.telegram.ui.Components.yq) background).f33012a;
+                if (background instanceof org.telegram.ui.Components.wq) {
+                    Drawable drawable = ((org.telegram.ui.Components.wq) background).f32322a;
                     if (drawable instanceof ColorDrawable) {
                         ((ColorDrawable) drawable).setColor(i10);
                         view.invalidate();
@@ -42,10 +42,10 @@ public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
                 return;
             default:
                 org.telegram.ui.Wallet.f3 f3Var = (org.telegram.ui.Wallet.f3) view;
-                ShapeDrawable shapeDrawable = f3Var.f34489e0;
+                ShapeDrawable shapeDrawable = f3Var.f34491e0;
                 if (shapeDrawable != null) {
                     shapeDrawable.getPaint().setColor(i10);
-                    f3Var.f34489e0.invalidateSelf();
+                    f3Var.f34491e0.invalidateSelf();
                     return;
                 }
                 return;
@@ -54,7 +54,7 @@ public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
 
     @Override
     public String e(int i10) {
-        switch (this.f43441a) {
+        switch (this.f43416a) {
             case 2:
                 return String.format("%02d", Integer.valueOf(i10));
             case 3:
@@ -81,18 +81,18 @@ public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
 
     @Override
     public int f(View view) {
-        switch (this.f43441a) {
+        switch (this.f43416a) {
             case 4:
                 Drawable background = view.getBackground();
-                if (background instanceof org.telegram.ui.Components.yq) {
-                    Drawable drawable = ((org.telegram.ui.Components.yq) background).f33012a;
+                if (background instanceof org.telegram.ui.Components.wq) {
+                    Drawable drawable = ((org.telegram.ui.Components.wq) background).f32322a;
                     if (drawable instanceof ColorDrawable) {
                         return ((ColorDrawable) drawable).getColor();
                     }
                 }
                 return 0;
             default:
-                ShapeDrawable shapeDrawable = ((org.telegram.ui.Wallet.f3) view).f34489e0;
+                ShapeDrawable shapeDrawable = ((org.telegram.ui.Wallet.f3) view).f34491e0;
                 if (shapeDrawable != null) {
                     return shapeDrawable.getPaint().getColor();
                 }
@@ -102,7 +102,7 @@ public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
 
     @Override
     public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f43441a) {
+        switch (this.f43416a) {
             case 0:
                 MessagesController.getGlobalNotificationsSettings().edit().putBoolean("askedAboutMiuiLockscreen", true).commit();
                 return;
@@ -151,12 +151,12 @@ public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
     @Override
     public Object provide(Object obj) {
         Void r82 = (Void) obj;
-        switch (this.f43441a) {
+        switch (this.f43416a) {
             case 6:
                 int dp = AndroidUtilities.dp(150.0f);
                 Bitmap createBitmap = Bitmap.createBitmap(AndroidUtilities.dp(200.0f), dp, Bitmap.Config.ARGB_8888);
                 Canvas canvas = new Canvas(createBitmap);
-                canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21183d6, false));
+                canvas.drawColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21184d6, false));
                 Paint paint = new Paint(1);
                 paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
                 canvas.drawCircle(createBitmap.getWidth() / 2.0f, createBitmap.getHeight() / 2.0f, dp / 2.0f, paint);
@@ -170,8 +170,8 @@ public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
                 new Canvas(createBitmap2).drawCircle(f7, f7, f7, paint2);
                 return createBitmap2;
             default:
-                Pattern pattern = LaunchActivity.E1;
-                return new rg0();
+                Pattern pattern = LaunchActivity.D1;
+                return new qg0();
         }
     }
 
@@ -186,7 +186,7 @@ public final class wv implements org.telegram.ui.ActionBar.z1, org.telegram.ui.C
 
     @Override
     public boolean run() {
-        Pattern pattern = LaunchActivity.E1;
+        Pattern pattern = LaunchActivity.D1;
         return SharedConfig.passcodeHash.length() > 0 && !SharedConfig.allowScreenCapture;
     }
 

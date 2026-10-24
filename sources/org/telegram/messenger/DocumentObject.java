@@ -20,13 +20,13 @@ public class DocumentObject {
             P0.getClass();
             org.telegram.ui.ActionBar.i6 i6Var = new org.telegram.ui.ActionBar.i6();
             org.telegram.ui.ActionBar.j6.i(i6Var, themeSettings);
-            i6Var.f20965b = P0;
+            i6Var.f20966b = P0;
             this.accent = i6Var;
             TLRPC.WallPaper wallPaper = this.themeSettings.wallpaper;
             if (wallPaper instanceof TLRPC.TL_wallPaper) {
                 TLRPC.Document document = ((TLRPC.TL_wallPaper) wallPaper).document;
                 this.wallpaper = document;
-                this.f20349id = document.f20349id;
+                this.f20350id = document.f20350id;
                 this.access_hash = document.access_hash;
                 this.file_reference = document.file_reference;
                 this.user_id = document.user_id;
@@ -42,7 +42,7 @@ public class DocumentObject {
                 this.attributes = document.attributes;
                 return;
             }
-            this.f20349id = -2147483648L;
+            this.f20350id = -2147483648L;
             this.dc_id = Integer.MIN_VALUE;
         }
     }
@@ -107,7 +107,7 @@ public class DocumentObject {
             if (photoSize instanceof TLRPC.TL_photoPathSize) {
                 tL_photoPathSize = (TLRPC.TL_photoPathSize) photoSize;
             } else if ((photoSize instanceof TLRPC.TL_photoSize) && z10) {
-                i11 = photoSize.f20368w;
+                i11 = photoSize.f20369w;
                 i12 = photoSize.h;
             }
         }
@@ -143,7 +143,7 @@ public class DocumentObject {
                 for (int i14 = 0; i14 < size2; i14++) {
                     TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i14);
                     if ((documentAttribute instanceof TLRPC.TL_documentAttributeImageSize) || (documentAttribute instanceof TLRPC.TL_documentAttributeVideo)) {
-                        i11 = documentAttribute.f20350w;
+                        i11 = documentAttribute.f20351w;
                         i12 = documentAttribute.h;
                         break;
                     }

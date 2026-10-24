@@ -7,17 +7,17 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.sc0;
+import org.telegram.ui.rc0;
 public final class v0 implements Runnable {
     public final int f13097a = 0;
     public final c1 f13098b;
-    public final sc0 f13099c;
+    public final rc0 f13099c;
     public final org.telegram.ui.ActionBar.c2 d;
 
-    public v0(c1 c1Var, org.telegram.ui.ActionBar.c2 c2Var, sc0 sc0Var) {
+    public v0(c1 c1Var, org.telegram.ui.ActionBar.c2 c2Var, rc0 rc0Var) {
         this.f13098b = c1Var;
         this.d = c2Var;
-        this.f13099c = sc0Var;
+        this.f13099c = rc0Var;
     }
 
     @Override
@@ -31,7 +31,7 @@ public final class v0 implements Runnable {
                 return;
             default:
                 c1 c1Var2 = this.f13098b;
-                sc0 sc0Var = this.f13099c;
+                rc0 rc0Var = this.f13099c;
                 try {
                     List<Address> fromLocationName = new Geocoder(c1Var2.getParentActivity(), LocaleController.getInstance().getCurrentLocale()).getFromLocationName(c1Var2.E, 1);
                     if (!fromLocationName.isEmpty()) {
@@ -42,19 +42,19 @@ public final class v0 implements Runnable {
                         tL_channelLocation.geo_point = tL_geoPoint;
                         tL_geoPoint.lat = address.getLatitude();
                         tL_channelLocation.geo_point._long = address.getLongitude();
-                        sc0Var.A0 = tL_channelLocation;
+                        rc0Var.f41126z0 = tL_channelLocation;
                     }
                 } catch (Exception e) {
                     FileLog.e(e);
                 }
-                AndroidUtilities.runOnUIThread(new v0(c1Var2, this.d, sc0Var));
+                AndroidUtilities.runOnUIThread(new v0(c1Var2, this.d, rc0Var));
                 return;
         }
     }
 
-    public v0(c1 c1Var, sc0 sc0Var, org.telegram.ui.ActionBar.c2 c2Var) {
+    public v0(c1 c1Var, rc0 rc0Var, org.telegram.ui.ActionBar.c2 c2Var) {
         this.f13098b = c1Var;
-        this.f13099c = sc0Var;
+        this.f13099c = rc0Var;
         this.d = c2Var;
     }
 }

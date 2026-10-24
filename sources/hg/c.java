@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.DispatchQueue2;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
@@ -53,10 +53,10 @@ public abstract class c extends pg.b {
                 this.E = null;
             }
             this.J = true;
-            DispatchQueue dispatchQueue = Utilities.searchQueue;
+            DispatchQueue2 dispatchQueue2 = Utilities.searchQueue;
             a aVar = new a((t0) this, str, location, 0);
             this.E = aVar;
-            dispatchQueue.postRunnable(aVar, 400L);
+            dispatchQueue2.postRunnable(aVar, 400L);
             return;
         }
         this.f11845s.clear();

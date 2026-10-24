@@ -1,91 +1,96 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-public final class le1 extends View {
-    public final HashMap f39232a;
-    public final me1 f39233b;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserObject;
+public final class le1 extends pg.b {
+    public final xe1 d;
 
-    public le1(me1 me1Var, Activity activity) {
-        super(activity);
-        this.f39233b = me1Var;
-        this.f39232a = new HashMap();
+    public le1(xe1 xe1Var) {
+        this.d = xe1Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
+    public final boolean D(s4.b1 b1Var) {
+        int i10 = b1Var.f46345f;
+        if (i10 != 0 && i10 != 3) {
+            return false;
+        }
+        return true;
+    }
+
+    public final ArrayList F() {
+        xe1 xe1Var = this.d;
+        xe1Var.getClass();
+        return xe1Var.f43548b;
+    }
+
+    @Override
+    public final int h() {
+        return F().size() + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == h() - 1) {
+            return 2;
+        }
+        return ((ne1) this.d.f43548b.get(i10)).f44712a;
+    }
+
+    @Override
+    public final void l() {
+        this.d.f43551c = h();
+        super.l();
+    }
+
+    @Override
+    public final void v(s4.b1 r21, int r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.le1.v(s4.b1, int):void");
+    }
+
+    @Override
+    public final s4.b1 x(ViewGroup viewGroup, int i10) {
+        boolean z10;
+        int i11;
         int i12;
         int i13;
-        float f7;
-        int i14;
-        int dp;
-        boolean z10;
-        int i15;
-        me1 me1Var = this.f39233b;
-        ye1 ye1Var = me1Var.d;
-        int size = View.MeasureSpec.getSize(i10);
-        int dp2 = AndroidUtilities.dp(64.0f);
-        int i16 = 0;
-        int i17 = 0;
-        for (int i18 = 0; i18 < me1Var.F().size(); i18++) {
-            if (me1Var.F().get(i18) != null && ((oe1) me1Var.F().get(i18)).f40146c != null) {
-                String str = ((oe1) me1Var.F().get(i18)).f40146c.title;
-                HashMap hashMap = this.f39232a;
-                Boolean bool = (Boolean) hashMap.get(str);
-                if (bool == null) {
-                    int i19 = 50;
-                    if (!LocaleController.isRTL) {
-                        if (ye1Var.isInPreviewMode()) {
-                            i15 = 11;
-                        } else {
-                            i15 = 50;
-                        }
-                        f7 = i15 + 4;
-                    } else {
-                        f7 = 18.0f;
-                    }
-                    int dp3 = AndroidUtilities.dp(f7);
-                    if (!LocaleController.isRTL) {
-                        i14 = size - dp3;
-                        dp = AndroidUtilities.dp(22.0f);
-                    } else {
-                        i14 = size - dp3;
-                        if (ye1Var.isInPreviewMode()) {
-                            i19 = 11;
-                        }
-                        dp = AndroidUtilities.dp(i19 + 13);
-                    }
-                    if (org.telegram.ui.ActionBar.k6.B0[0].measureText(str) <= (i14 - dp) - ((int) Math.ceil(org.telegram.ui.ActionBar.k6.I0.measureText("00:00")))) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    bool = Boolean.valueOf(z10);
-                    hashMap.put(str, bool);
-                }
-                if (!bool.booleanValue()) {
-                    i13 = 20;
-                } else {
-                    i13 = 0;
-                }
-                int dp4 = AndroidUtilities.dp(i13 + 64);
-                if (((oe1) me1Var.F().get(i18)).f40146c.f20395id == 1) {
-                    dp2 = dp4;
-                }
-                if (((oe1) me1Var.F().get(i18)).f40146c.hidden) {
-                    i16++;
-                }
-                i17 += dp4;
+        xe1 xe1Var = this.d;
+        if (i10 != 0 && i10 != 3) {
+            if (i10 == 2) {
+                ke1 ke1Var = new ke1(this, xe1Var.getParentActivity());
+                xe1Var.E0 = ke1Var;
+                return new s4.b1(ke1Var);
             }
+            org.telegram.ui.Components.z00 z00Var = new org.telegram.ui.Components.z00(viewGroup.getContext(), null);
+            z00Var.setViewType(24);
+            z00Var.setIsSingleCell(true);
+            z00Var.f33104w = true;
+            return new s4.b1(z00Var);
         }
-        if (i16 > 0) {
-            i12 = (((ye1Var.N.getMeasuredHeight() - ye1Var.N.getPaddingTop()) - ye1Var.N.getPaddingBottom()) - i17) + dp2;
-        } else {
-            i12 = 0;
+        te1 te1Var = new te1(xe1Var, viewGroup.getContext(), false);
+        if (i10 == 3) {
+            i11 = ((org.telegram.ui.ActionBar.o2) xe1Var).currentAccount;
+            boolean isBotForumWithEditableTopics = UserObject.isBotForumWithEditableTopics(i11, -xe1Var.f43545a);
+            te1Var.setForumIcon(og.d.d(og.a.f17793k[0], ""));
+            if (!isBotForumWithEditableTopics) {
+                i12 = R.string.BotForumAskForStartOffNewChatTitle;
+            } else {
+                i12 = R.string.BotForumAskForStartNewChatTitle;
+            }
+            te1Var.setTitleOverride(LocaleController.getString(i12));
+            if (!isBotForumWithEditableTopics) {
+                i13 = R.string.BotForumAskForStartOffNewChatForward;
+            } else {
+                i13 = R.string.BotForumAskForStartNewChatForward;
+            }
+            te1Var.setCustomMessage(LocaleController.getString(i13));
         }
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.max(0, i12), 1073741824));
+        z10 = ((org.telegram.ui.ActionBar.o2) xe1Var).inPreviewMode;
+        te1Var.f22969k0 = z10;
+        te1Var.setArchivedPullAnimation(xe1Var.f43588w);
+        return new s4.b1(te1Var);
     }
 }

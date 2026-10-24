@@ -1,45 +1,46 @@
 package org.telegram.messenger;
 
 import java.util.ArrayList;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class zb implements RequestDelegate {
-    public final int f20305a;
-    public final MessagesController f20306b;
-    public final long f20307c;
-    public final long d;
-    public final ArrayList e;
+public final class zb implements Runnable {
+    public final int f20290a = 0;
+    public final MessagesController f20291b;
+    public final long f20292c;
+    public final ArrayList d;
+    public final long e;
 
-    public zb(int i10, long j10, long j11, ArrayList arrayList, MessagesController messagesController) {
-        this.f20305a = i10;
-        this.f20306b = messagesController;
-        this.f20307c = j10;
-        this.d = j11;
-        this.e = arrayList;
+    public zb(MessagesController messagesController, long j10, long j11, ArrayList arrayList) {
+        this.f20291b = messagesController;
+        this.f20292c = j10;
+        this.e = j11;
+        this.d = arrayList;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20305a) {
+    public final void run() {
+        switch (this.f20290a) {
             case 0:
-                this.f20306b.lambda$checkUnreadPollVotesInternal2$433(this.f20307c, this.d, this.e, tLObject, tL_error);
+                this.f20291b.lambda$checkUnreadPollVotesInternal2$434(this.f20292c, this.e, 0, this.d);
                 return;
             case 1:
-                this.f20306b.lambda$checkUnreadPollVotesInternal2$435(this.f20307c, this.d, this.e, tLObject, tL_error);
-                return;
-            case 2:
-                this.f20306b.lambda$checkUnreadPollVotesInternal2$437(this.f20307c, this.d, this.e, tLObject, tL_error);
-                return;
-            case 3:
-                this.f20306b.lambda$checkUnreadReactionsInternal2$426(this.f20307c, this.d, this.e, tLObject, tL_error);
-                return;
-            case 4:
-                this.f20306b.lambda$checkUnreadReactionsInternal2$428(this.f20307c, this.d, this.e, tLObject, tL_error);
+                this.f20291b.lambda$processUpdateArray$422(this.f20292c, this.d, this.e);
                 return;
             default:
-                this.f20306b.lambda$checkUnreadReactionsInternal2$430(this.f20307c, this.d, this.e, tLObject, tL_error);
+                this.f20291b.lambda$deleteMessagesByPush$369(this.d, this.f20292c, this.e);
                 return;
         }
+    }
+
+    public zb(MessagesController messagesController, long j10, ArrayList arrayList, long j11) {
+        this.f20291b = messagesController;
+        this.f20292c = j10;
+        this.d = arrayList;
+        this.e = j11;
+    }
+
+    public zb(MessagesController messagesController, ArrayList arrayList, long j10, long j11) {
+        this.f20291b = messagesController;
+        this.d = arrayList;
+        this.f20292c = j10;
+        this.e = j11;
     }
 }

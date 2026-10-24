@@ -12,8 +12,8 @@ public final class i8 extends View {
     public Paint f5455a;
     public boolean f5456b;
     public androidx.activity.i f5457c;
-    public org.telegram.ui.Components.f6 d;
-    public org.telegram.ui.Components.f6 e;
+    public org.telegram.ui.Components.d6 d;
+    public org.telegram.ui.Components.d6 e;
     public float f5458f;
 
     public final void a(boolean z10) {
@@ -75,20 +75,20 @@ public final class i8 extends View {
         float f7;
         Paint paint = this.f5455a;
         super.onDraw(canvas);
-        org.telegram.ui.Components.f6 f6Var = this.e;
-        f6Var.d(this.f5458f, false);
-        org.telegram.ui.Components.f6 f6Var2 = this.d;
+        org.telegram.ui.Components.d6 d6Var = this.e;
+        d6Var.d(this.f5458f, false);
+        org.telegram.ui.Components.d6 d6Var2 = this.d;
         if (this.f5456b) {
             f7 = 1.0f;
         } else {
             f7 = 0.0f;
         }
-        f6Var2.d(f7, false);
-        if (f6Var2.f26180c != 0.0f) {
+        d6Var2.d(f7, false);
+        if (d6Var2.f25568c != 0.0f) {
             float measuredHeight = getMeasuredHeight() / 2.0f;
-            paint.setAlpha((int) (f6Var2.f26180c * 255.0f));
+            paint.setAlpha((int) (d6Var2.f25568c * 255.0f));
             RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(0.0f, 0.0f, getMeasuredWidth() * f6Var.f26180c, getMeasuredHeight());
+            rectF.set(0.0f, 0.0f, getMeasuredWidth() * d6Var.f25568c, getMeasuredHeight());
             canvas.drawRoundRect(rectF, measuredHeight, measuredHeight, paint);
         }
     }

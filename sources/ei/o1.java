@@ -10,10 +10,10 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import org.telegram.messenger.SharedConfig;
-import org.telegram.ui.Components.mm0;
-import org.telegram.ui.Components.pl0;
-public final class o1 extends mm0 {
-    public pl0 Y2;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.ol0;
+public final class o1 extends lm0 {
+    public ol0 Y2;
     public boolean Z2;
     public float f9550a3;
     public float f9551b3;
@@ -43,18 +43,18 @@ public final class o1 extends mm0 {
             View m10 = sVar.m(i10);
             int L0 = sVar.L0();
             if ((m10 == null && Math.abs(i10 - L0) > sVar.J * 9.0f) || !SharedConfig.animationsEnabled()) {
-                pl0 pl0Var = o1Var.Y2;
+                ol0 ol0Var = o1Var.Y2;
                 if (sVar.L0() < i10) {
                     i12 = 0;
                 } else {
                     i12 = 1;
                 }
-                pl0Var.f29589b = i12;
+                ol0Var.f29317b = i12;
                 o1Var.Y2.c(i10, i11, false, false);
                 return;
             }
             l1 l1Var = new l1(o1Var, o1Var.getContext(), 0);
-            l1Var.f46484a = i10;
+            l1Var.f46483a = i10;
             l1Var.f16207p = i11;
             sVar.w0(l1Var);
         }
@@ -82,7 +82,7 @@ public final class o1 extends mm0 {
         if (!rect.isEmpty()) {
             this.B1.setBounds(rect);
             canvas.save();
-            q0.a aVar = this.f28703m2;
+            q0.a aVar = this.f28394m2;
             if (aVar != null) {
                 aVar.accept(canvas);
             }
@@ -210,10 +210,10 @@ public final class o1 extends mm0 {
         super.setLayoutManager(n0Var);
         this.Y2 = null;
         if (n0Var instanceof s4.b0) {
-            pl0 pl0Var = new pl0(this, (s4.b0) n0Var);
-            this.Y2 = pl0Var;
-            pl0Var.f29593i = new k1(this, 0);
-            pl0Var.h = new e1.c(this, 3);
+            ol0 ol0Var = new ol0(this, (s4.b0) n0Var);
+            this.Y2 = ol0Var;
+            ol0Var.f29321i = new k1(this, 0);
+            ol0Var.h = new e1.c(this, 3);
         }
     }
 }

@@ -6,19 +6,19 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class bz implements RequestDelegate {
-    public final int f36196a;
-    public final oz f36197b;
+    public final int f36162a;
+    public final oz f36163b;
 
     public bz(oz ozVar, int i10) {
-        this.f36196a = i10;
-        this.f36197b = ozVar;
+        this.f36162a = i10;
+        this.f36163b = ozVar;
     }
 
     @Override
     public final void run(TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f36196a) {
+        switch (this.f36162a) {
             case 0:
-                final oz ozVar = this.f36197b;
+                final oz ozVar = this.f36163b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -27,7 +27,7 @@ public final class bz implements RequestDelegate {
                                 oz ozVar2 = ozVar;
                                 ozVar2.G = 0;
                                 if (tL_error == null) {
-                                    org.telegram.messenger.v0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(ozVar2), R.raw.contact_check, 36);
+                                    org.telegram.messenger.v0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.vc.a0(ozVar2), R.raw.contact_check, 36);
                                     return;
                                 }
                                 return;
@@ -39,7 +39,7 @@ public final class bz implements RequestDelegate {
                 });
                 return;
             default:
-                final oz ozVar2 = this.f36197b;
+                final oz ozVar2 = this.f36163b;
                 AndroidUtilities.runOnUIThread(new Runnable() {
                     @Override
                     public final void run() {
@@ -48,7 +48,7 @@ public final class bz implements RequestDelegate {
                                 oz ozVar22 = ozVar2;
                                 ozVar22.G = 0;
                                 if (tL_error == null) {
-                                    org.telegram.messenger.v0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.xc.a0(ozVar22), R.raw.contact_check, 36);
+                                    org.telegram.messenger.v0.p(R.string.FilterInviteNameEdited, org.telegram.ui.Components.vc.a0(ozVar22), R.raw.contact_check, 36);
                                     return;
                                 }
                                 return;

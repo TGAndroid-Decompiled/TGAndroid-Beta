@@ -3,28 +3,28 @@ package org.telegram.ui;
 import android.os.Bundle;
 import org.telegram.tgnet.TLObject;
 public final class y80 implements Runnable {
-    public final int f43744a = 1;
-    public final LaunchActivity f43745b;
-    public final byte[] f43746c;
+    public final int f43784a = 1;
+    public final LaunchActivity f43785b;
+    public final byte[] f43786c;
     public final int d;
     public final Integer e;
-    public final String f43747f;
+    public final String f43787f;
     public final int h;
-    public final long f43748n;
-    public final Object f43749r;
-    public final Object f43750s;
+    public final long f43788n;
+    public final Object f43789r;
+    public final Object f43790s;
     public final Object v;
 
     public y80(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i10, Integer num, String str, int i11, long j10, k0 k0Var, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f43745b = launchActivity;
-        this.f43749r = bundle;
-        this.f43746c = bArr;
+        this.f43785b = launchActivity;
+        this.f43789r = bundle;
+        this.f43786c = bArr;
         this.d = i10;
         this.e = num;
-        this.f43747f = str;
+        this.f43787f = str;
         this.h = i11;
-        this.f43748n = j10;
-        this.f43750s = k0Var;
+        this.f43788n = j10;
+        this.f43790s = k0Var;
         this.v = o2Var;
     }
 
@@ -34,14 +34,14 @@ public final class y80 implements Runnable {
     }
 
     public y80(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j10, Runnable runnable, String str, int i10, int i11) {
-        this.f43745b = launchActivity;
-        this.f43749r = tLObject;
+        this.f43785b = launchActivity;
+        this.f43789r = tLObject;
         this.e = num;
-        this.f43750s = num2;
-        this.f43746c = bArr;
-        this.f43748n = j10;
+        this.f43790s = num2;
+        this.f43786c = bArr;
+        this.f43788n = j10;
         this.v = runnable;
-        this.f43747f = str;
+        this.f43787f = str;
         this.d = i10;
         this.h = i11;
     }

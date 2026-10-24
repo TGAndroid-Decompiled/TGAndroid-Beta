@@ -8,7 +8,7 @@ import org.telegram.ui.LaunchActivity;
 public final class n4 extends org.telegram.ui.ActionBar.o2 {
     @Override
     public final Context getContext() {
-        return AndroidUtilities.findActivity(LaunchActivity.J1);
+        return AndroidUtilities.findActivity(LaunchActivity.I1);
     }
 
     @Override
@@ -20,7 +20,7 @@ public final class n4 extends org.telegram.ui.ActionBar.o2 {
     public final Activity getParentActivity() {
         Activity findActivity = AndroidUtilities.findActivity(ApplicationLoader.applicationContext);
         if (findActivity == null) {
-            return LaunchActivity.J1;
+            return LaunchActivity.I1;
         }
         return findActivity;
     }

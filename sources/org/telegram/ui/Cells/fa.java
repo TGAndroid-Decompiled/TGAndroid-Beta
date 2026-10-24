@@ -8,11 +8,11 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class fa extends t1 {
     public final GestureDetector Ge;
-    public final org.telegram.ui.Components.i5 He;
-    public final org.telegram.ui.Components.i5 Ie;
+    public final org.telegram.ui.Components.g5 He;
+    public final org.telegram.ui.Components.g5 Ie;
     public final int Je;
     public final ga Ke;
 
@@ -21,9 +21,9 @@ public final class fa extends t1 {
         this.Ke = gaVar;
         this.Je = i11;
         this.Ge = new GestureDetector(context2, new ea(this));
-        bs bsVar = bs.f25134g;
-        this.He = new org.telegram.ui.Components.i5(this, 180L, bsVar, 0);
-        this.Ie = new org.telegram.ui.Components.i5(this, 180L, bsVar, 0);
+        zr zrVar = zr.f33338g;
+        this.He = new org.telegram.ui.Components.g5(this, 180L, zrVar, 0);
+        this.Ie = new org.telegram.ui.Components.g5(this, 180L, zrVar, 0);
     }
 
     @Override
@@ -32,9 +32,9 @@ public final class fa extends t1 {
         int w03;
         MessagesController.PeerColors peerColors;
         MessageObject messageObject = getMessageObject();
-        org.telegram.ui.Components.i5 i5Var = this.Ie;
-        org.telegram.ui.Components.i5 i5Var2 = this.He;
-        org.telegram.ui.Components.h9 h9Var = this.f23501n9;
+        org.telegram.ui.Components.g5 g5Var = this.Ie;
+        org.telegram.ui.Components.g5 g5Var2 = this.He;
+        org.telegram.ui.Components.f9 f9Var = this.f23502n9;
         if (messageObject != null && getMessageObject().overrideLinkColor >= 0) {
             int i10 = getMessageObject().overrideLinkColor;
             if (i10 >= 14) {
@@ -50,22 +50,22 @@ public final class fa extends t1 {
                 }
                 if (peerColor != null) {
                     int color1 = peerColor.getColor1();
-                    w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21405p8[org.telegram.ui.Components.h9.f(color1)], this.Id);
-                    w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21422q8[org.telegram.ui.Components.h9.f(color1)], this.Id);
+                    w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21406p8[org.telegram.ui.Components.f9.f(color1)], this.Id);
+                    w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21423q8[org.telegram.ui.Components.f9.f(color1)], this.Id);
                 } else {
                     long j10 = i10;
-                    w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21405p8[org.telegram.ui.Components.h9.e(j10)], this.Id);
-                    w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21422q8[org.telegram.ui.Components.h9.e(j10)], this.Id);
+                    w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21406p8[org.telegram.ui.Components.f9.e(j10)], this.Id);
+                    w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21423q8[org.telegram.ui.Components.f9.e(j10)], this.Id);
                 }
             } else {
                 long j11 = i10;
-                w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21405p8[org.telegram.ui.Components.h9.e(j11)], this.Id);
-                w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21422q8[org.telegram.ui.Components.h9.e(j11)], this.Id);
+                w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21406p8[org.telegram.ui.Components.f9.e(j11)], this.Id);
+                w03 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21423q8[org.telegram.ui.Components.f9.e(j11)], this.Id);
             }
-            h9Var.i(i5Var2.a(w02, false), i5Var.a(w03, false));
+            f9Var.i(g5Var2.a(w02, false), g5Var.a(w03, false));
         } else {
-            i5Var2.a(h9Var.b(), false);
-            i5Var.a(h9Var.c(), false);
+            g5Var2.a(f9Var.b(), false);
+            g5Var.a(f9Var.c(), false);
         }
         if (getAvatarImage() != null && getAvatarImage().getImageHeight() != 0.0f) {
             getAvatarImage().setImageCoords(getAvatarImage().getImageX(), (getMeasuredHeight() - getAvatarImage().getImageHeight()) - AndroidUtilities.dp(4.0f), getAvatarImage().getImageWidth(), getAvatarImage().getImageHeight());

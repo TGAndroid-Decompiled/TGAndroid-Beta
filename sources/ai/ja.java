@@ -4,7 +4,7 @@ import android.content.Context;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.NotificationsController;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.h80;
 import org.telegram.ui.sn;
 public final class ja implements Runnable {
     public final int f1561a = 0;
@@ -56,7 +56,7 @@ public final class ja implements Runnable {
                     }
                     return;
                 } else {
-                    new org.telegram.ui.Components.xc(x0Var.f6081b, new ci.b()).f0(tL_error, true);
+                    new org.telegram.ui.Components.vc(x0Var.f6081b, new ci.b()).f0(tL_error, true);
                     return;
                 }
             case 2:
@@ -65,14 +65,14 @@ public final class ja implements Runnable {
             default:
                 org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) this.f1564f;
                 org.telegram.ui.ActionBar.g6 g6Var = (org.telegram.ui.ActionBar.g6) this.h;
-                ((j80) this.e).u();
+                ((h80) this.e).u();
                 int i13 = this.f1562b;
                 MessagesController messagesController = MessagesController.getInstance(i13);
                 long j13 = this.f1563c;
                 long j14 = this.d;
                 boolean isDialogMuted = messagesController.isDialogMuted(j13, j14);
                 NotificationsController.getInstance(i13).muteDialog(j13, j14, !isDialogMuted);
-                if (org.telegram.ui.Components.xc.a(o2Var)) {
+                if (org.telegram.ui.Components.vc.a(o2Var)) {
                     if (!isDialogMuted) {
                         i10 = 3;
                     } else {
@@ -83,7 +83,7 @@ public final class ja implements Runnable {
                     } else {
                         i11 = 0;
                     }
-                    org.telegram.ui.Components.xc.z(o2Var, i10, i11, g6Var).j();
+                    org.telegram.ui.Components.vc.z(o2Var, i10, i11, g6Var).j();
                     return;
                 }
                 return;
@@ -108,8 +108,8 @@ public final class ja implements Runnable {
         this.h = iArr;
     }
 
-    public ja(j80 j80Var, int i10, long j10, long j11, sn snVar, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.e = j80Var;
+    public ja(h80 h80Var, int i10, long j10, long j11, sn snVar, org.telegram.ui.ActionBar.g6 g6Var) {
+        this.e = h80Var;
         this.f1562b = i10;
         this.f1563c = j10;
         this.d = j11;

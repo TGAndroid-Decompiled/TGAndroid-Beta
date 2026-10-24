@@ -120,7 +120,7 @@ public final class l6 extends FrameLayout {
     }
 
     public final void b(CharSequence charSequence) {
-        this.e.f5876b0.b(org.telegram.ui.Components.a6.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
+        this.e.f5876b0.b(org.telegram.ui.Components.y5.cloneSpans(new SpannableString(charSequence)), null, null, false, false);
     }
 
     @Override

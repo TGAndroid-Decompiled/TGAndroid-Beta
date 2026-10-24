@@ -11,11 +11,11 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.cm0;
-import org.telegram.ui.Components.j80;
-import org.telegram.ui.Components.pb0;
-import org.telegram.ui.Components.xc;
-public final class c5 implements cm0 {
+import org.telegram.ui.Components.bm0;
+import org.telegram.ui.Components.h80;
+import org.telegram.ui.Components.nb0;
+import org.telegram.ui.Components.vc;
+public final class c5 implements bm0 {
     public final z9 f5220a;
     public final t5 f5221b;
 
@@ -46,12 +46,12 @@ public final class c5 implements cm0 {
             final org.telegram.ui.Cells.o6 o6Var = (org.telegram.ui.Cells.o6) view;
             z9 z9Var = this.f5220a;
             if (z9Var.v != null && (storyView = ((j5) t5Var.f5960w.f5636c.get(i10)).f5470b) != null && (user = (messagesController = MessagesController.getInstance(i11)).getUser(Long.valueOf(storyView.user_id))) != null) {
-                if (messagesController.blockePeers.indexOfKey(user.f20490id) >= 0) {
+                if (messagesController.blockePeers.indexOfKey(user.f20491id) >= 0) {
                     z10 = true;
                 } else {
                     z10 = false;
                 }
-                if (!user.contact && ContactsController.getInstance(i11).contactsDict.get(Long.valueOf(user.f20490id)) == null) {
+                if (!user.contact && ContactsController.getInstance(i11).contactsDict.get(Long.valueOf(user.f20491id)) == null) {
                     z11 = false;
                 } else {
                     z11 = true;
@@ -75,11 +75,11 @@ public final class c5 implements cm0 {
                 if (isUserSelf) {
                     return false;
                 }
-                j80 F = j80.F(z9Var.v, bVar, view);
-                F.f27562i = 3;
-                F.f27564j = true;
-                F.W(new ColorDrawable(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21254h5, bVar)));
-                F.f27580s = 133;
+                h80 F = h80.F(z9Var.v, bVar, view);
+                F.f26911i = 3;
+                F.f26913j = true;
+                F.W(new ColorDrawable(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21255h5, bVar)));
+                F.f26929s = 133;
                 if (d && !L && !z10 && !isUserSelf) {
                     z12 = true;
                 } else {
@@ -105,18 +105,18 @@ public final class c5 implements cm0 {
                         c5 c5Var = this.f5147b;
                         switch (i12) {
                             case 0:
-                                messagesController2.getStoriesController().j0(user2.f20490id, true, true);
+                                messagesController2.getStoriesController().j0(user2.f20491id, true, true);
                                 t5 t5Var2 = c5Var.f5221b;
-                                i2.o1.t(R.string.StoryHidFromToast, new Object[]{str3}, new xc(t5Var2, t5Var2.f5959s), R.raw.ic_ban, 36);
+                                i2.o1.t(R.string.StoryHidFromToast, new Object[]{str3}, new vc(t5Var2, t5Var2.f5959s), R.raw.ic_ban, 36);
                                 if (t5Var2.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
                                 o6Var2.a(f7, true);
                                 return;
                             default:
-                                messagesController2.getStoriesController().j0(user2.f20490id, false, true);
+                                messagesController2.getStoriesController().j0(user2.f20491id, false, true);
                                 t5 t5Var3 = c5Var.f5221b;
-                                i2.o1.t(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(t5Var3, t5Var3.f5959s), R.raw.contact_check, 36);
+                                i2.o1.t(R.string.StoryShownBackToToast, new Object[]{str3}, new vc(t5Var3, t5Var3.f5959s), R.raw.contact_check, 36);
                                 if (t5Var3.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
@@ -151,18 +151,18 @@ public final class c5 implements cm0 {
                         c5 c5Var = this.f5147b;
                         switch (i12) {
                             case 0:
-                                messagesController2.getStoriesController().j0(user2.f20490id, true, true);
+                                messagesController2.getStoriesController().j0(user2.f20491id, true, true);
                                 t5 t5Var2 = c5Var.f5221b;
-                                i2.o1.t(R.string.StoryHidFromToast, new Object[]{str3}, new xc(t5Var2, t5Var2.f5959s), R.raw.ic_ban, 36);
+                                i2.o1.t(R.string.StoryHidFromToast, new Object[]{str3}, new vc(t5Var2, t5Var2.f5959s), R.raw.ic_ban, 36);
                                 if (t5Var2.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
                                 o6Var2.a(f7, true);
                                 return;
                             default:
-                                messagesController2.getStoriesController().j0(user2.f20490id, false, true);
+                                messagesController2.getStoriesController().j0(user2.f20491id, false, true);
                                 t5 t5Var3 = c5Var.f5221b;
-                                i2.o1.t(R.string.StoryShownBackToToast, new Object[]{str3}, new xc(t5Var3, t5Var3.f5959s), R.raw.contact_check, 36);
+                                i2.o1.t(R.string.StoryShownBackToToast, new Object[]{str3}, new vc(t5Var3, t5Var3.f5959s), R.raw.contact_check, 36);
                                 if (t5Var3.d(storyView2)) {
                                     f7 = 1.0f;
                                 }
@@ -191,9 +191,9 @@ public final class c5 implements cm0 {
                         float f10;
                         switch (r6) {
                             case 0:
-                                messagesController.blockPeer(user.f20490id);
+                                messagesController.blockPeer(user.f20491id);
                                 t5 t5Var2 = this.f5175b.f5221b;
-                                new xc(t5Var2, t5Var2.f5959s).e(true).j();
+                                new vc(t5Var2, t5Var2.f5959s).e(true).j();
                                 if (t5Var2.d(storyView)) {
                                     f7 = 1.0f;
                                 } else {
@@ -205,10 +205,10 @@ public final class c5 implements cm0 {
                                 MessagesController messagesController2 = messagesController;
                                 h7 storiesController = messagesController2.getStoriesController();
                                 TLRPC.User user2 = user;
-                                storiesController.j0(user2.f20490id, false, true);
-                                messagesController2.unblockPeer(user2.f20490id);
+                                storiesController.j0(user2.f20491id, false, true);
+                                messagesController2.unblockPeer(user2.f20491id);
                                 t5 t5Var3 = this.f5175b.f5221b;
-                                new xc(t5Var3, t5Var3.f5959s).e(false).j();
+                                new vc(t5Var3, t5Var3.f5959s).e(false).j();
                                 if (t5Var3.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
@@ -237,9 +237,9 @@ public final class c5 implements cm0 {
                         float f10;
                         switch (r6) {
                             case 0:
-                                messagesController.blockPeer(user.f20490id);
+                                messagesController.blockPeer(user.f20491id);
                                 t5 t5Var2 = this.f5175b.f5221b;
-                                new xc(t5Var2, t5Var2.f5959s).e(true).j();
+                                new vc(t5Var2, t5Var2.f5959s).e(true).j();
                                 if (t5Var2.d(storyView)) {
                                     f7 = 1.0f;
                                 } else {
@@ -251,10 +251,10 @@ public final class c5 implements cm0 {
                                 MessagesController messagesController2 = messagesController;
                                 h7 storiesController = messagesController2.getStoriesController();
                                 TLRPC.User user2 = user;
-                                storiesController.j0(user2.f20490id, false, true);
-                                messagesController2.unblockPeer(user2.f20490id);
+                                storiesController.j0(user2.f20491id, false, true);
+                                messagesController2.unblockPeer(user2.f20491id);
                                 t5 t5Var3 = this.f5175b.f5221b;
-                                new xc(t5Var3, t5Var3.f5959s).e(false).j();
+                                new vc(t5Var3, t5Var3.f5959s).e(false).j();
                                 if (t5Var3.d(storyView)) {
                                     f10 = 1.0f;
                                 } else {
@@ -272,13 +272,13 @@ public final class c5 implements cm0 {
                 }
                 F.m(z16, R.drawable.msg_user_remove, LocaleController.getString(R.string.StoryDeleteContact), true, new ai.t0(this, user, str2, o6Var, storyView, 11));
                 TLRPC.Reaction reaction = storyView.reaction;
-                if ((reaction instanceof TLRPC.TL_reactionCustomEmoji) && (c10 = org.telegram.ui.Components.r5.h(i11).c(((TLRPC.TL_reactionCustomEmoji) reaction).document_id)) != null) {
+                if ((reaction instanceof TLRPC.TL_reactionCustomEmoji) && (c10 = org.telegram.ui.Components.p5.h(i11).c(((TLRPC.TL_reactionCustomEmoji) reaction).document_id)) != null) {
                     F.k();
                     ArrayList arrayList = new ArrayList();
                     arrayList.add(c10);
-                    pb0 pb0Var = new pb0(t5Var.v, 3, t5Var.getContext(), arrayList, bVar);
-                    pb0Var.setOnClickListener(new ai.v0(this, arrayList, F, 6));
-                    F.q(pb0Var);
+                    nb0 nb0Var = new nb0(t5Var.v, 3, t5Var.getContext(), arrayList, bVar);
+                    nb0Var.setOnClickListener(new ai.v0(this, arrayList, F, 6));
+                    F.q(nb0Var);
                     z17 = true;
                 } else {
                     z17 = false;

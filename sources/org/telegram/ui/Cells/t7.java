@@ -9,19 +9,19 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.xp;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.vp;
 public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public p7[] f23704a;
-    public MessageObject[] f23705b;
-    public int[] f23706c;
+    public p7[] f23705a;
+    public MessageObject[] f23706b;
+    public int[] f23707c;
     public q7 d;
     public int e;
-    public boolean f23707f;
+    public boolean f23708f;
     public boolean h;
-    public Paint f23708n;
-    public int f23709r;
-    public int f23710s;
+    public Paint f23709n;
+    public int f23710r;
+    public int f23711s;
 
     public static int a(int i10) {
         if (AndroidUtilities.isTablet()) {
@@ -32,13 +32,13 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
 
     public final void b(int i10, boolean z10, boolean z11) {
         float f7;
-        p7 p7Var = this.f23704a[i10];
-        FrameLayout frameLayout = p7Var.f22896f;
-        xp xpVar = p7Var.e;
-        if (xpVar.getVisibility() != 0) {
-            xpVar.setVisibility(0);
+        p7 p7Var = this.f23705a[i10];
+        FrameLayout frameLayout = p7Var.f22897f;
+        vp vpVar = p7Var.e;
+        if (vpVar.getVisibility() != 0) {
+            vpVar.setVisibility(0);
         }
-        xpVar.a(z10, true);
+        vpVar.a(z10, true);
         AnimatorSet animatorSet = p7Var.h;
         if (animatorSet != null) {
             animatorSet.cancel();
@@ -63,10 +63,10 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public final void c(MessageObject messageObject, int i10, int i11) {
-        p7[] p7VarArr = this.f23704a;
-        MessageObject[] messageObjectArr = this.f23705b;
+        p7[] p7VarArr = this.f23705a;
+        MessageObject[] messageObjectArr = this.f23706b;
         messageObjectArr[i10] = messageObject;
-        this.f23706c[i10] = i11;
+        this.f23707c[i10] = i11;
         if (messageObject != null) {
             p7VarArr[i10].setVisibility(0);
             p7VarArr[i10].setMessageObject(messageObject);
@@ -84,7 +84,7 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void invalidate() {
         for (int i10 = 0; i10 < 6; i10++) {
-            this.f23704a[i10].invalidate();
+            this.f23705a[i10].invalidate();
         }
         super.invalidate();
     }
@@ -103,9 +103,9 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     public final void onMeasure(int i10, int i11) {
         int a2;
         int dp;
-        View[] viewArr = this.f23704a;
-        if (this.f23709r == 1) {
-            a2 = sl.B(2.0f, this.e - 1, View.MeasureSpec.getSize(i10)) / this.e;
+        View[] viewArr = this.f23705a;
+        if (this.f23710r == 1) {
+            a2 = tl.B(2.0f, this.e - 1, View.MeasureSpec.getSize(i10)) / this.e;
         } else {
             a2 = a(this.e);
         }
@@ -113,7 +113,7 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
         int i12 = 0;
         for (int i13 = 0; i13 < this.e; i13++) {
             FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i13].getLayoutParams();
-            if (this.f23707f) {
+            if (this.f23708f) {
                 dp = 0;
             } else {
                 dp = AndroidUtilities.dp(2.0f);
@@ -134,7 +134,7 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
             viewArr[i13].setLayoutParams(layoutParams);
         }
         this.h = false;
-        if (!this.f23707f) {
+        if (!this.f23708f) {
             i12 = AndroidUtilities.dp(2.0f);
         }
         super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12 + a2, 1073741824));
@@ -153,12 +153,12 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     }
 
     public void setIsFirst(boolean z10) {
-        this.f23707f = z10;
+        this.f23708f = z10;
     }
 
     public void setItemsCount(int i10) {
         int i11;
-        p7[] p7VarArr = this.f23704a;
+        p7[] p7VarArr = this.f23705a;
         for (int i12 = 0; i12 < p7VarArr.length; i12++) {
             p7VarArr[i12].clearAnimation();
             p7 p7Var = p7VarArr[i12];
@@ -175,7 +175,7 @@ public final class t7 extends FrameLayout implements org.telegram.ui.ActionBar.b
     @Override
     public final void updateColors() {
         try {
-            this.f23708n.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Lh, false));
+            this.f23709n.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Lh, false));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

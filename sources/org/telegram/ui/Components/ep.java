@@ -1,51 +1,29 @@
 package org.telegram.ui.Components;
-public final class ep implements Runnable {
-    public final int f26019a;
-    public final wp f26020b;
 
-    public ep(wp wpVar, int i10) {
-        this.f26019a = i10;
-        this.f26020b = wpVar;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class ep implements Utilities.Callback {
+    public final int f26089a;
+    public final up f26090b;
+
+    public ep(up upVar, int i10) {
+        this.f26089a = i10;
+        this.f26090b = upVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26019a) {
+    public final void run(Object obj) {
+        switch (this.f26089a) {
             case 0:
-                this.f26020b.h.l();
-                return;
-            case 1:
-                this.f26020b.v(true);
-                return;
-            case 2:
-                wp wpVar = this.f26020b;
-                org.telegram.ui.sn snVar = wpVar.v;
-                org.telegram.ui.ActionBar.o2 d02 = org.telegram.ui.u91.d0(snVar.getMessagesController().getChat(Long.valueOf(-snVar.a())), true);
-                ?? obj = new Object();
-                obj.f21636a = true;
-                d02.setResourceProvider(snVar.getResourceProvider());
-                obj.f21638c = new rc(7);
-                obj.d = new ep(wpVar, 3);
-                obj.f21637b = new ep(wpVar, 4);
-                obj.e = true;
-                wpVar.W = d02;
-                snVar.showAsSheet(d02, obj);
-                return;
-            case 3:
-                this.f26020b.z();
-                return;
-            case 4:
-                this.f26020b.W = null;
-                return;
-            case 5:
-                this.f26020b.z();
-                return;
-            case 6:
-                this.f26020b.W = null;
+                up upVar = this.f26090b;
+                upVar.f31180e0 = (TL_stories.TL_premium_boostsStatus) obj;
+                upVar.f31179d0 = true;
+                upVar.L(true);
+                upVar.f31178c0 = false;
                 return;
             default:
-                wp wpVar2 = this.f26020b;
-                wpVar2.T.f(wpVar2.F, true);
+                up.m(this.f26090b, (ChannelBoostsController.CanApplyBoost) obj);
                 return;
         }
     }

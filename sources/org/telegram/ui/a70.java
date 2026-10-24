@@ -4,20 +4,20 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import org.telegram.messenger.AndroidUtilities;
 public final class a70 implements TextWatcher {
-    public final b70 f35583a;
+    public final b70 f35664a;
 
     public a70(b70 b70Var) {
-        this.f35583a = b70Var;
+        this.f35664a = b70Var;
     }
 
     @Override
     public final void afterTextChanged(Editable editable) {
         String trim = editable.toString().trim();
-        b70 b70Var = this.f35583a;
+        b70 b70Var = this.f35664a;
         e70 e70Var = b70Var.h;
-        if (b70Var.f35954c != 0) {
-            e70Var.getConnectionsManager().cancelRequest(b70Var.f35954c, true);
-            b70Var.f35954c = 0;
+        if (b70Var.f35942c != 0) {
+            e70Var.getConnectionsManager().cancelRequest(b70Var.f35942c, true);
+            b70Var.f35942c = 0;
         }
         ot otVar = b70Var.d;
         if (otVar != null) {

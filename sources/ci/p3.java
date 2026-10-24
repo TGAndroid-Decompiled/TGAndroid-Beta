@@ -3,8 +3,8 @@ package ci;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.view.View;
-import org.telegram.ui.Components.fl0;
-public final class p3 implements fl0 {
+import org.telegram.ui.Components.el0;
+public final class p3 implements el0 {
     public final p4 f5648a;
 
     public p3(p4 p4Var) {

@@ -7,22 +7,22 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class zw extends b61 {
-    public final s51[] f44217e2;
-    public final ey f44218f2;
+public final class zw extends a61 {
+    public final r51[] f44216e2;
+    public final ey f44217f2;
 
-    public zw(ey eyVar, ey eyVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.g6 g6Var, s51[] s51VarArr) {
+    public zw(ey eyVar, ey eyVar2, Activity activity, Integer num, org.telegram.ui.ActionBar.g6 g6Var, r51[] r51VarArr) {
         super(eyVar2, activity, true, num, 0, g6Var);
-        this.f44218f2 = eyVar;
-        this.f44217e2 = s51VarArr;
+        this.f44217f2 = eyVar;
+        this.f44216e2 = r51VarArr;
     }
 
     @Override
     public final boolean F(TL_stars.TL_starGiftUnique tL_starGiftUnique) {
         int i10;
         if (tL_starGiftUnique != null) {
-            i10 = ((org.telegram.ui.ActionBar.o2) this.f44218f2).currentAccount;
-            if (ai.ha.y(i10, false).n(tL_starGiftUnique.f20567id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
+            i10 = ((org.telegram.ui.ActionBar.o2) this.f44217f2).currentAccount;
+            if (ai.ha.y(i10, false).n(tL_starGiftUnique.f20568id) != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                 return false;
             }
             return true;
@@ -38,14 +38,14 @@ public final class zw extends b61 {
         int i11;
         int i12;
         org.telegram.ui.ActionBar.g6 g6Var;
-        s51[] s51VarArr = this.f44217e2;
-        ey eyVar = this.f44218f2;
+        r51[] r51VarArr = this.f44216e2;
+        ey eyVar = this.f44217f2;
         if (l4 == null) {
             emojiStatus = new TLRPC.TL_emojiStatusEmpty();
         } else {
             if (tL_starGiftUnique != null) {
                 i10 = ((org.telegram.ui.ActionBar.o2) eyVar).currentAccount;
-                TL_stars.SavedStarGift n10 = ai.ha.y(i10, false).n(tL_starGiftUnique.f20567id);
+                TL_stars.SavedStarGift n10 = ai.ha.y(i10, false).n(tL_starGiftUnique.f20568id);
                 if (n10 != null && MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) < 2) {
                     MessagesController.getGlobalMainSettings().edit().putInt("statusgiftpage", MessagesController.getGlobalMainSettings().getInt("statusgiftpage", 0) + 1).apply();
                     Context context = getContext();
@@ -57,16 +57,16 @@ public final class zw extends b61 {
                     l7Var.L2(n10, null);
                     l7Var.P2();
                     l7Var.show();
-                    s51 s51Var = s51VarArr[0];
-                    if (s51Var != null) {
+                    r51 r51Var = r51VarArr[0];
+                    if (r51Var != null) {
                         eyVar.M0 = null;
-                        s51Var.dismiss();
+                        r51Var.dismiss();
                         return;
                     }
                     return;
                 }
                 TLRPC.TL_inputEmojiStatusCollectible tL_inputEmojiStatusCollectible = new TLRPC.TL_inputEmojiStatusCollectible();
-                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f20567id;
+                tL_inputEmojiStatusCollectible.collectible_id = tL_starGiftUnique.f20568id;
                 tL_emojiStatus = tL_inputEmojiStatusCollectible;
                 if (num != null) {
                     tL_inputEmojiStatusCollectible.flags |= 1;
@@ -94,10 +94,10 @@ public final class zw extends b61 {
             obj.h = longValue;
             oVar.a(obj);
         }
-        s51 s51Var2 = s51VarArr[0];
-        if (s51Var2 != null) {
+        r51 r51Var2 = r51VarArr[0];
+        if (r51Var2 != null) {
             eyVar.M0 = null;
-            s51Var2.dismiss();
+            r51Var2.dismiss();
         }
     }
 }

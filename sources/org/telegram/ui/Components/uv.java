@@ -1,25 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-public final class uv extends q61 {
-    public final vv e;
+import org.telegram.messenger.R;
+public final class uv implements Runnable {
+    public final int f31229a;
+    public final vv f31230b;
 
-    public uv(vv vvVar, String str) {
-        super(str, (q11) null);
-        this.e = vvVar;
+    public uv(vv vvVar, int i10) {
+        this.f31229a = i10;
+        this.f31230b = vvVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        vv vvVar = this.e;
-        i10 = ((org.telegram.ui.ActionBar.h3) vvVar.f32065x).currentAccount;
-        MessagesController messagesController = MessagesController.getInstance(i10);
-        String url = getURL();
-        aw awVar = vvVar.f32065x;
-        messagesController.openByUserName(url, awVar.f24855c, 1);
-        awVar.i0();
-        awVar.dismiss();
+    public final void run() {
+        switch (this.f31229a) {
+            case 0:
+                this.f31230b.f32052f.dismiss();
+                return;
+            default:
+                yv yvVar = this.f31230b.f32052f;
+                yvVar.dismiss();
+                org.telegram.ui.ActionBar.o2 o2Var = yvVar.f33049c;
+                if (o2Var != null && o2Var.getParentActivity() != null) {
+                    org.telegram.messenger.tl.q(R.string.AddEmojiNotFound, vc.a0(o2Var), null);
+                    return;
+                }
+                return;
+        }
     }
 }

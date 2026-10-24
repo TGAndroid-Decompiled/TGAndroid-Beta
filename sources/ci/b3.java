@@ -8,9 +8,9 @@ import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.gh;
-import org.telegram.ui.Components.ri;
-public final class b3 implements ri {
+import org.telegram.ui.Components.eh;
+import org.telegram.ui.Components.pi;
+public final class b3 implements pi {
     public final p4 f5170a;
 
     public b3(p4 p4Var) {
@@ -34,7 +34,7 @@ public final class b3 implements ri {
         String str2;
         p4 p4Var = this.f5170a;
         if (p4Var.J0.m0 && (storyItem = p4Var.O1.f5595a) != null && !(storyItem instanceof TL_stories.TL_storyItemSkipped)) {
-            if (i10 != 8 && i10 != 7 && (i10 != 4 || p4Var.I2.f30742j0.getSelectedPhotos().isEmpty())) {
+            if (i10 != 8 && i10 != 7 && (i10 != 4 || p4Var.I2.f30158j0.getSelectedPhotos().isEmpty())) {
                 a3 a3Var = p4Var.I2;
                 if (a3Var != null) {
                     a3Var.dismissWithButtonClick(i10);
@@ -46,8 +46,8 @@ public final class b3 implements ri {
             if (i10 != 8) {
                 p4Var.I2.dismiss(true);
             }
-            HashMap<Object, Object> selectedPhotos = p4Var.I2.f30742j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = p4Var.I2.f30742j0.getSelectedPhotosOrder();
+            HashMap<Object, Object> selectedPhotos = p4Var.I2.f30158j0.getSelectedPhotos();
+            ArrayList<Object> selectedPhotosOrder = p4Var.I2.f30158j0.getSelectedPhotosOrder();
             if (!selectedPhotos.isEmpty()) {
                 int i13 = 0;
                 int i14 = 0;
@@ -133,8 +133,8 @@ public final class b3 implements ri {
     }
 
     @Override
-    public final void r(gh ghVar) {
-        NotificationCenter.getInstance(this.f5170a.C2).doOnIdle(ghVar);
+    public final void r(eh ehVar) {
+        NotificationCenter.getInstance(this.f5170a.C2).doOnIdle(ehVar);
     }
 
     @Override

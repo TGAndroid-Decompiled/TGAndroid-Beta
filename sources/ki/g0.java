@@ -134,7 +134,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.b6 {
         addView(textView, w7.z5.e(-2, 38, 17));
         int i11 = k6.Oh;
         int w02 = k6.w0(i11, g6Var);
-        int v = k6.v(k6.w0(k6.f21183d6, g6Var), k6.o1(0.1f, w02));
+        int v = k6.v(k6.w0(k6.f21184d6, g6Var), k6.o1(0.1f, w02));
         r6.W(textView, i11, g6Var);
         textView.setBackground(k6.a0(v, k6.o1(0.16f, w02), AndroidUtilities.dp(19.0f), AndroidUtilities.dp(19.0f)));
         Drawable mutate = getContext().getResources().getDrawable(R.drawable.msg_add).mutate();
@@ -160,7 +160,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.b6 {
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.f21183d6));
+        hashSet.add(Integer.valueOf(k6.f21184d6));
     }
 
     public final void h() {
@@ -313,7 +313,7 @@ public final class g0 extends a0 implements org.telegram.ui.ActionBar.b6 {
         int i10 = k6.Oh;
         org.telegram.ui.ActionBar.g6 g6Var = this.f15330r;
         int w02 = k6.w0(i10, g6Var);
-        int i11 = k6.f21183d6;
+        int i11 = k6.f21184d6;
         int w03 = k6.w0(i11, g6Var);
         if (w02 != this.F || w03 != this.G) {
             this.F = w02;

@@ -1,190 +1,79 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class kn0 implements TextWatcher {
-    public boolean f38978a;
-    public String f38979b;
-    public boolean f38980c;
-    public int d;
-    public int e;
-    public boolean f38981f;
-    public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
-    public final io0 f38982n;
+import android.content.Context;
+import android.view.View;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class kn0 extends LinearLayout {
+    public boolean f38948a;
+    public final int f38949b;
+    public final int[] f38950c;
+    public final int[] d;
 
-    public kn0(io0 io0Var) {
-        this.f38982n = io0Var;
-    }
-
-    public final int a(String str) {
-        int i10 = 0;
-        while (true) {
-            char[] cArr = this.h;
-            if (i10 < cArr.length) {
-                int indexOf = str.indexOf(cArr[i10]);
-                if (indexOf >= 0) {
-                    return indexOf;
-                }
-                i10++;
-            } else {
-                return -1;
-            }
-        }
+    public kn0(Context context, int i10, int[] iArr, int[] iArr2) {
+        super(context);
+        this.f38949b = i10;
+        this.f38950c = iArr;
+        this.d = iArr2;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        long j10;
-        boolean z10;
-        String str;
-        String str2;
-        String substring;
-        io0 io0Var = this.f38982n;
-        if (io0Var.m0) {
+    public final void onMeasure(int i10, int i11) {
+        View childAt;
+        int size = View.MeasureSpec.getSize(i10);
+        this.f38948a = true;
+        int dp = AndroidUtilities.dp(9.0f);
+        int i12 = this.f38949b;
+        int i13 = (i12 - 1) * dp;
+        int[] iArr = this.f38950c;
+        float f7 = 1.0f;
+        if ((iArr[0] * i12) + i13 <= size) {
+            setWeightSum(1.0f);
+            int childCount = getChildCount();
+            for (int i14 = 0; i14 < childCount; i14++) {
+                getChildAt(i14).getLayoutParams().width = 0;
+                ((LinearLayout.LayoutParams) getChildAt(i14).getLayoutParams()).weight = 1.0f / childCount;
+            }
+        } else if (this.d[0] + i13 <= size) {
+            setWeightSum(1.0f);
+            int i15 = size - i13;
+            int childCount2 = getChildCount();
+            for (int i16 = 0; i16 < childCount2; i16++) {
+                LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) getChildAt(i16).getLayoutParams();
+                layoutParams.width = 0;
+                float intValue = ((Integer) childAt.getTag(R.id.width_tag)).intValue() / i15;
+                layoutParams.weight = intValue;
+                f7 -= intValue;
+            }
+            float f10 = f7 / (i12 - 1);
+            if (f10 > 0.0f) {
+                int childCount3 = getChildCount();
+                for (int i17 = 0; i17 < childCount3; i17++) {
+                    View childAt2 = getChildAt(i17);
+                    LinearLayout.LayoutParams layoutParams2 = (LinearLayout.LayoutParams) childAt2.getLayoutParams();
+                    if (((Integer) childAt2.getTag(R.id.width_tag)).intValue() != iArr[0]) {
+                        layoutParams2.weight += f10;
+                    }
+                }
+            }
+        } else {
+            setWeightSum(0.0f);
+            int childCount4 = getChildCount();
+            for (int i18 = 0; i18 < childCount4; i18++) {
+                getChildAt(i18).getLayoutParams().width = -2;
+                ((LinearLayout.LayoutParams) getChildAt(i18).getLayoutParams()).weight = 0.0f;
+            }
+        }
+        this.f38948a = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f38948a) {
             return;
         }
-        Long l4 = io0Var.H0;
-        if (l4 != null) {
-            j10 = l4.longValue();
-        } else {
-            j10 = 0;
-        }
-        String str3 = this.f38979b;
-        if (str3 == null) {
-            str3 = LocaleController.fixNumbers(editable.toString());
-        }
-        int a2 = a(str3);
-        if (a2 >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int currencyExpDivider = LocaleController.getCurrencyExpDivider(io0Var.C0.invoice.currency);
-        if (a2 >= 0) {
-            str = str3.substring(0, a2);
-        } else {
-            str = str3;
-        }
-        String str4 = "";
-        if (a2 < 0) {
-            str2 = "";
-        } else {
-            str2 = str3.substring(a2 + 1);
-        }
-        long longValue = Utilities.parseLong(jf.b.d(str, false)).longValue() * currencyExpDivider;
-        long longValue2 = Utilities.parseLong(jf.b.d(str2, false)).longValue();
-        String o10 = a1.g.o(longValue2, "");
-        String str5 = "" + (currencyExpDivider - 1);
-        if (a2 > 0 && o10.length() > str5.length()) {
-            if (this.e - a2 < o10.length()) {
-                substring = o10.substring(0, str5.length());
-            } else {
-                substring = o10.substring(o10.length() - str5.length());
-            }
-            longValue2 = Utilities.parseLong(substring).longValue();
-        }
-        Long valueOf = Long.valueOf(longValue + longValue2);
-        io0Var.H0 = valueOf;
-        if (io0Var.C0.invoice.max_tip_amount != 0) {
-            long longValue3 = valueOf.longValue();
-            long j11 = io0Var.C0.invoice.max_tip_amount;
-            if (longValue3 > j11) {
-                io0Var.H0 = Long.valueOf(j11);
-            }
-        }
-        int selectionStart = io0Var.f38300f[0].getSelectionStart();
-        io0Var.m0 = true;
-        if (io0Var.H0.longValue() == 0) {
-            io0Var.f38300f[0].setText("");
-        } else {
-            EditTextBoldCursor editTextBoldCursor = io0Var.f38300f[0];
-            str4 = LocaleController.getInstance().formatCurrencyString(io0Var.H0.longValue(), false, z10, true, io0Var.C0.invoice.currency);
-            editTextBoldCursor.setText(str4);
-        }
-        if (j10 < io0Var.H0.longValue() && j10 != 0 && this.f38978a && selectionStart >= 0) {
-            EditTextBoldCursor editTextBoldCursor2 = io0Var.f38300f[0];
-            editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
-        } else if (this.f38980c && this.d != io0Var.f38300f[0].length()) {
-            EditTextBoldCursor editTextBoldCursor3 = io0Var.f38300f[0];
-            editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
-        } else if (!this.f38981f && z10 && a2 >= 0) {
-            int a10 = a(str4);
-            if (a10 > 0) {
-                io0Var.f38300f[0].setSelection(a10 + 1);
-            } else {
-                EditTextBoldCursor editTextBoldCursor4 = io0Var.f38300f[0];
-                editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
-            }
-        } else {
-            EditTextBoldCursor editTextBoldCursor5 = io0Var.f38300f[0];
-            editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
-        }
-        this.f38981f = z10;
-        io0Var.L0();
-        this.f38979b = null;
-        io0Var.m0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int length;
-        boolean z10;
-        String str;
-        if (!this.f38982n.m0) {
-            this.f38978a = !TextUtils.isEmpty(charSequence);
-            this.f38979b = null;
-            if (charSequence == null) {
-                length = 0;
-            } else {
-                length = charSequence.length();
-            }
-            this.d = length;
-            this.e = i10;
-            if (i11 == 1 && i12 == 0) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            this.f38980c = z10;
-            if (z10) {
-                String fixNumbers = LocaleController.fixNumbers(charSequence);
-                char charAt = fixNumbers.charAt(i10);
-                int a2 = a(fixNumbers);
-                if (a2 >= 0) {
-                    str = fixNumbers.substring(a2 + 1);
-                } else {
-                    str = "";
-                }
-                long longValue = Utilities.parseLong(jf.b.d(str, false)).longValue();
-                if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
-                    if (a2 > 0 && i10 > a2 && longValue == 0) {
-                        this.f38979b = fixNumbers.substring(0, a2 - 1);
-                        return;
-                    }
-                    return;
-                }
-                while (true) {
-                    int i13 = i10 - 1;
-                    if (i13 >= 0) {
-                        char charAt2 = fixNumbers.charAt(i13);
-                        if (charAt2 >= '0' && charAt2 <= '9') {
-                            this.f38979b = fixNumbers.substring(0, i13) + fixNumbers.substring(i10);
-                            return;
-                        }
-                        i10 = i13;
-                    } else {
-                        return;
-                    }
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        super.requestLayout();
     }
 }

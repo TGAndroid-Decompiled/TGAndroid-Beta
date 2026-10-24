@@ -13,17 +13,17 @@ public final class zm extends pf.c {
     @Override
     public final void c(boolean z10) {
         if (!z10) {
-            AndroidUtilities.runOnUIThread(new tj(this.e.f36660a, 9), 250L);
+            AndroidUtilities.runOnUIThread(new tj(this.e.f36651a, 9), 250L);
         }
     }
 
     @Override
     public final void d() {
         dn dnVar = this.e;
-        sn snVar = dnVar.f36660a;
+        sn snVar = dnVar.f36651a;
         org.telegram.ui.Cells.t1 t1Var = this.d;
         snVar.Jb = t1Var.getMessageObject().getId();
-        sn snVar2 = dnVar.f36660a;
+        sn snVar2 = dnVar.f36651a;
         snVar2.Kb = 2;
         snVar2.Lb = null;
         t1Var.invalidate();

@@ -6,8 +6,8 @@ import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.b91;
 import org.telegram.ui.Components.l91;
-import org.telegram.ui.Components.w70;
-import org.telegram.ui.vg1;
+import org.telegram.ui.Components.u70;
+import org.telegram.ui.ug1;
 public final class u4 implements ValueAnimator.AnimatorUpdateListener {
     public final int f5985a;
     public final Object f5986b;
@@ -91,10 +91,10 @@ public final class u4 implements ValueAnimator.AnimatorUpdateListener {
                 s7Var.invalidate();
                 return;
             case 7:
-                ((org.telegram.ui.Components.w9) this.f5986b).setRoundRadius(((Integer) valueAnimator.getAnimatedValue()).intValue());
+                ((org.telegram.ui.Components.u9) this.f5986b).setRoundRadius(((Integer) valueAnimator.getAnimatedValue()).intValue());
                 return;
             case 8:
-                ai.u1 u1Var = ((w70) this.f5986b).e.d;
+                ai.u1 u1Var = ((u70) this.f5986b).e.d;
                 int i11 = u1Var.C1;
                 if (i11 != -1 && (view = u1Var.D1) != null) {
                     u1Var.k1(i11, view);
@@ -105,12 +105,12 @@ public final class u4 implements ValueAnimator.AnimatorUpdateListener {
             case 9:
                 l91 l91Var = (l91) this.f5986b;
                 View[] viewArr = l91Var.e;
-                if (l91Var.f28314x) {
+                if (l91Var.f28288x) {
                     float abs = 1.0f - (Math.abs(viewArr[0].getTranslationX()) / viewArr[0].getMeasuredWidth());
-                    l91Var.f28308c = abs;
+                    l91Var.f28282c = abs;
                     b91 b91Var = l91Var.M;
                     if (b91Var != null) {
-                        b91Var.e(abs, l91Var.d, l91Var.f28307b);
+                        b91Var.e(abs, l91Var.d, l91Var.f28281b);
                     }
                 }
                 l91Var.w(false);
@@ -119,18 +119,18 @@ public final class u4 implements ValueAnimator.AnimatorUpdateListener {
                 org.telegram.ui.Components.voip.s1 s1Var = (org.telegram.ui.Components.voip.s1) this.f5986b;
                 float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 s1Var.J = floatValue;
-                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31883i0;
+                org.telegram.ui.Components.voip.r1 r1Var = s1Var.f31853i0;
                 if (r1Var != null) {
-                    ((vg1) r1Var).f42771b.f40172d0.d(floatValue, s1Var.P);
+                    ((ug1) r1Var).f42429b.f39835d0.d(floatValue, s1Var.P);
                 }
                 s1Var.invalidate();
                 return;
             case 11:
-                ((s4.u) this.f5986b).f46471x = valueAnimator.getAnimatedFraction();
+                ((s4.u) this.f5986b).f46470x = valueAnimator.getAnimatedFraction();
                 return;
             case 12:
                 sg.p0 p0Var = (sg.p0) this.f5986b;
-                p0Var.f46806s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                p0Var.f46805s = ((Float) valueAnimator.getAnimatedValue()).floatValue();
                 p0Var.e();
                 return;
             default:

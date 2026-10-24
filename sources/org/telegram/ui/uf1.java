@@ -1,61 +1,30 @@
 package org.telegram.ui;
+public final class uf1 implements Runnable {
+    public final int f42416a;
+    public final ag1 f42417b;
+    public final byte[] f42418c;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class uf1 implements RequestDelegate {
-    public final int f42421a;
-    public final bg1 f42422b;
-
-    public uf1(bg1 bg1Var, int i10) {
-        this.f42421a = i10;
-        this.f42422b = bg1Var;
+    public uf1(ag1 ag1Var, byte[] bArr, int i10) {
+        this.f42416a = i10;
+        this.f42417b = ag1Var;
+        this.f42418c = bArr;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f42421a) {
+    public final void run() {
+        switch (this.f42416a) {
             case 0:
-                final bg1 bg1Var = this.f42422b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                bg1.b0(bg1Var, tL_error, tLObject);
-                                return;
-                            default:
-                                bg1.h0(bg1Var, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new xf1(this.f42422b, tL_error, 0));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new xf1(this.f42422b, tL_error, 1));
-                return;
-            case 3:
-                AndroidUtilities.runOnUIThread(new xf1(this.f42422b, tL_error, 2));
+                ag1.Y(this.f42417b, this.f42418c);
                 return;
             default:
-                final bg1 bg1Var2 = this.f42422b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                bg1.b0(bg1Var2, tL_error, tLObject);
-                                return;
-                            default:
-                                bg1.h0(bg1Var2, tL_error, tLObject);
-                                return;
-                        }
-                    }
-                });
+                ag1 ag1Var = this.f42417b;
+                ag1Var.w0();
+                ag1Var.V = this.f42418c;
+                ag1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                ag1 ag1Var2 = new ag1(9, ag1Var.U);
+                ag1Var2.H = ag1Var.H;
+                ag1Var2.G = ag1Var.G;
+                ag1Var.presentFragment(ag1Var2, true);
                 return;
         }
     }

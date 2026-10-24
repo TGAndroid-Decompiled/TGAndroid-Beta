@@ -3,17 +3,13 @@ package ah;
 import ai.v6;
 import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.ui.Components.d41;
-import org.telegram.ui.Components.ed;
-import org.telegram.ui.Components.lp0;
-import org.telegram.ui.Components.oq;
+import org.telegram.ui.Components.c41;
+import org.telegram.ui.Components.cd;
+import org.telegram.ui.Components.kp0;
+import org.telegram.ui.Components.mq;
 public final class f1 implements Drawable.Callback {
     public final int f734a;
     public Object f735b;
-
-    public f1() {
-        this.f734a = 2;
-    }
 
     @Override
     public final void invalidateDrawable(Drawable drawable) {
@@ -39,25 +35,25 @@ public final class f1 implements Drawable.Callback {
                 ((ki.t0) this.f735b).f15580b.invalidate();
                 return;
             case 4:
-                ((oq) this.f735b).invalidateSelf();
+                ((mq) this.f735b).invalidateSelf();
                 return;
             case 5:
-                ((lp0) this.f735b).f28389b.run();
+                ((kp0) this.f735b).f28046b.run();
                 return;
             case 6:
-                ((ed) this.f735b).invalidateSelf();
+                ((cd) this.f735b).invalidateSelf();
                 return;
             case 7:
-                ((d41) this.f735b).invalidateSelf();
+                ((c41) this.f735b).invalidateSelf();
                 return;
             case 8:
                 ((x4.d) this.f735b).invalidateSelf();
                 return;
             case 9:
-                ((xg.a) this.f735b).f50231c.invalidate();
+                ((xg.a) this.f735b).f50230c.invalidate();
                 return;
             default:
-                ((xg.c) this.f735b).f50256c.invalidate();
+                ((xg.c) this.f735b).f50255c.invalidate();
                 return;
         }
     }
@@ -84,12 +80,12 @@ public final class f1 implements Drawable.Callback {
             case 3:
                 return;
             case 4:
-                ((oq) this.f735b).scheduleSelf(runnable, j10);
+                ((mq) this.f735b).scheduleSelf(runnable, j10);
                 return;
             case 5:
                 return;
             case 6:
-                ((ed) this.f735b).scheduleSelf(runnable, j10);
+                ((cd) this.f735b).scheduleSelf(runnable, j10);
                 return;
             case 7:
                 return;
@@ -97,10 +93,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f735b).scheduleSelf(runnable, j10);
                 return;
             case 9:
-                ((xg.a) this.f735b).f50231c.invalidate();
+                ((xg.a) this.f735b).f50230c.invalidate();
                 return;
             default:
-                ((xg.c) this.f735b).f50256c.invalidate();
+                ((xg.c) this.f735b).f50255c.invalidate();
                 return;
         }
     }
@@ -127,12 +123,12 @@ public final class f1 implements Drawable.Callback {
             case 3:
                 return;
             case 4:
-                ((oq) this.f735b).unscheduleSelf(runnable);
+                ((mq) this.f735b).unscheduleSelf(runnable);
                 return;
             case 5:
                 return;
             case 6:
-                ((ed) this.f735b).unscheduleSelf(runnable);
+                ((cd) this.f735b).unscheduleSelf(runnable);
                 return;
             case 7:
                 return;
@@ -140,10 +136,10 @@ public final class f1 implements Drawable.Callback {
                 ((x4.d) this.f735b).unscheduleSelf(runnable);
                 return;
             case 9:
-                ((xg.a) this.f735b).f50231c.invalidate();
+                ((xg.a) this.f735b).f50230c.invalidate();
                 return;
             default:
-                ((xg.c) this.f735b).f50256c.invalidate();
+                ((xg.c) this.f735b).f50255c.invalidate();
                 return;
         }
     }

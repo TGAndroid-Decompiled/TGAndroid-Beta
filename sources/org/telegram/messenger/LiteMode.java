@@ -3,7 +3,10 @@ package org.telegram.messenger;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.os.BatteryManager;
+import android.os.SystemClock;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,6 +16,7 @@ import org.telegram.tgnet.TLRPC;
 import w7.r;
 public class LiteMode {
     private static int BATTERY_HIGH = 10;
+    private static final long BATTERY_LEVEL_QUERY_INTERVAL = 60000;
     private static int BATTERY_LOW = 10;
     private static int BATTERY_MEDIUM = 10;
     public static final int FLAGS_ANIMATED_EMOJI = 28700;
@@ -44,8 +48,9 @@ public class LiteMode {
     public static int PRESET_LOW = 198684;
     public static int PRESET_MEDIUM = 204383;
     public static int PRESET_POWER_SAVER = 0;
-    private static int lastBatteryLevelCached = -1;
-    private static long lastBatteryLevelChecked;
+    private static volatile boolean batteryLevelQueryRunning = false;
+    private static volatile int lastBatteryLevel = -1;
+    private static volatile long lastBatteryLevelChecked;
     private static boolean lastPowerSaverApplied;
     private static boolean loaded;
     private static HashSet<Utilities.Callback<Boolean>> onPowerSaverAppliedListeners;
@@ -53,10 +58,12 @@ public class LiteMode {
     private static int value;
 
     public static class BatteryReceiver extends BroadcastReceiver {
+        private BatteryReceiver() {
+        }
+
         @Override
         public void onReceive(Context context, Intent intent) {
-            long unused = LiteMode.lastBatteryLevelChecked = 0L;
-            LiteMode.getValue();
+            LiteMode.onBatteryChanged(intent);
         }
     }
 
@@ -68,7 +75,13 @@ public class LiteMode {
     }
 
     public static int getBatteryLevel() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.LiteMode.getBatteryLevel():int");
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        if (!batteryLevelQueryRunning && (lastBatteryLevelChecked == 0 || elapsedRealtime - lastBatteryLevelChecked > 60000)) {
+            batteryLevelQueryRunning = true;
+            lastBatteryLevelChecked = elapsedRealtime;
+            Utilities.globalQueue.postRunnable(new z1(13));
+        }
+        return lastBatteryLevel;
     }
 
     public static int getPowerSaverLevel() {
@@ -80,6 +93,17 @@ public class LiteMode {
 
     public static int getValue() {
         return getValue(false);
+    }
+
+    private static boolean isBatteryLow(int i10) {
+        int i11 = powerSaverLevel;
+        if (i11 < 100) {
+            if (i10 < 0 || i10 > i11) {
+                return false;
+            }
+            return true;
+        }
+        return true;
     }
 
     public static boolean isEnabled(int i10) {
@@ -104,7 +128,7 @@ public class LiteMode {
         return lastPowerSaverApplied;
     }
 
-    public static void lambda$onPowerSaverApplied$0(boolean z10) {
+    public static void lambda$onPowerSaverApplied$1(boolean z10) {
         Iterator<Utilities.Callback<Boolean>> it = onPowerSaverAppliedListeners.iterator();
         while (it.hasNext()) {
             Utilities.Callback<Boolean> next = it.next();
@@ -197,10 +221,20 @@ public class LiteMode {
         loaded = true;
     }
 
+    public static void onBatteryChanged(Intent intent) {
+        if (intent != null) {
+            int intExtra = intent.getIntExtra("level", -1);
+            int intExtra2 = intent.getIntExtra("scale", -1);
+            if (intExtra >= 0 && intExtra2 > 0) {
+                setBatteryLevel(r.b(Math.round((intExtra * 100.0f) / intExtra2), 0, 100));
+            }
+        }
+    }
+
     private static void onFlagsUpdate(int i10, int i11) {
         int i12 = (~i10) & i11;
         if ((i12 & 28700) > 0) {
-            org.telegram.ui.Components.r5.u();
+            org.telegram.ui.Components.p5.u();
         }
         int i13 = i12 & 32;
         if (i13 > 0) {
@@ -218,7 +252,7 @@ public class LiteMode {
             onFlagsUpdate(PRESET_POWER_SAVER, getValue(true));
         }
         if (onPowerSaverAppliedListeners != null) {
-            AndroidUtilities.runOnUIThread(new c4(2, z10));
+            AndroidUtilities.runOnUIThread(new d4(2, z10));
         }
     }
 
@@ -256,6 +290,31 @@ public class LiteMode {
         return i10;
     }
 
+    public static void queryBatteryLevel() {
+        int i10 = -1;
+        try {
+            BatteryManager batteryManager = (BatteryManager) ApplicationLoader.applicationContext.getSystemService("batterymanager");
+            if (batteryManager != null) {
+                i10 = batteryManager.getIntProperty(4);
+            }
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+        }
+        lastBatteryLevelChecked = SystemClock.elapsedRealtime();
+        batteryLevelQueryRunning = false;
+        if (i10 >= 0 && i10 <= 100) {
+            setBatteryLevel(i10);
+        }
+    }
+
+    public static void registerBatteryReceiver() {
+        try {
+            onBatteryChanged(ApplicationLoader.applicationContext.registerReceiver(new BatteryReceiver(), new IntentFilter("android.intent.action.BATTERY_CHANGED")));
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+        }
+    }
+
     public static void removeOnPowerSaverAppliedListener(Utilities.Callback<Boolean> callback) {
         HashSet<Utilities.Callback<Boolean>> hashSet = onPowerSaverAppliedListeners;
         if (hashSet != null) {
@@ -270,6 +329,15 @@ public class LiteMode {
     public static void setAllFlags(int i10) {
         value = i10;
         savePreference();
+    }
+
+    private static void setBatteryLevel(int i10) {
+        lastBatteryLevelChecked = SystemClock.elapsedRealtime();
+        if (lastBatteryLevel == i10) {
+            return;
+        }
+        lastBatteryLevel = i10;
+        AndroidUtilities.runOnUIThread(new z1(12));
     }
 
     public static void setPowerSaverLevel(int i10) {
@@ -320,9 +388,7 @@ public class LiteMode {
             loadPreference();
         }
         if (!z10) {
-            int batteryLevel = getBatteryLevel();
-            int i10 = powerSaverLevel;
-            if (batteryLevel <= i10 && i10 > 0) {
+            if (powerSaverLevel > 0 && isBatteryLow(getBatteryLevel())) {
                 if (!lastPowerSaverApplied) {
                     lastPowerSaverApplied = true;
                     onPowerSaverApplied(true);

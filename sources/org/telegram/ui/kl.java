@@ -3,11 +3,11 @@ package org.telegram.ui;
 import android.content.Intent;
 import java.util.ArrayList;
 import org.telegram.messenger.FileLog;
-public final class kl implements up0 {
-    public final sn f38967a;
+public final class kl implements tp0 {
+    public final sn f38936a;
 
     public kl(sn snVar) {
-        this.f38967a = snVar;
+        this.f38936a = snVar;
     }
 
     @Override
@@ -21,7 +21,7 @@ public final class kl implements up0 {
             intent2.setType("image/*");
             Intent createChooser = Intent.createChooser(intent2, null);
             createChooser.putExtra("android.intent.extra.INITIAL_INTENTS", new Intent[]{intent});
-            this.f38967a.startActivityForResult(createChooser, 1);
+            this.f38936a.startActivityForResult(createChooser, 1);
         } catch (Exception e) {
             FileLog.e(e);
         }

@@ -4,11 +4,11 @@ import android.view.View;
 import android.view.accessibility.AccessibilityNodeInfo;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Cells.t7;
-import org.telegram.ui.Components.iw0;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.wz;
+import org.telegram.ui.Components.hw0;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.uz;
 import s4.y0;
-public final class h extends wz {
+public final class h extends uz {
     public final int X = 0;
     public final Object Y;
 
@@ -28,13 +28,13 @@ public final class h extends wz {
     }
 
     @Override
-    public iw0 D1(int i10) {
+    public hw0 D1(int i10) {
         switch (this.X) {
             case 0:
-                iw0 iw0Var = (iw0) this.Y;
-                iw0Var.f27466b = 100.0f;
-                iw0Var.f27465a = 100.0f;
-                return iw0Var;
+                hw0 hw0Var = (hw0) this.Y;
+                hw0Var.f27189b = 100.0f;
+                hw0Var.f27188a = 100.0f;
+                return hw0Var;
             default:
                 return super.D1(i10);
         }
@@ -46,7 +46,7 @@ public final class h extends wz {
         switch (this.X) {
             case 0:
                 super.U(eVar, y0Var, view, dVar);
-                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46300a;
+                AccessibilityNodeInfo accessibilityNodeInfo = dVar.f46299a;
                 AccessibilityNodeInfo.CollectionItemInfo collectionItemInfo = accessibilityNodeInfo.getCollectionItemInfo();
                 if (collectionItemInfo != null) {
                     cVar = new n5.c(collectionItemInfo);
@@ -72,7 +72,7 @@ public final class h extends wz {
     public int W0(y0 y0Var) {
         switch (this.X) {
             case 1:
-                if (((j71) this.Y).f27541b3) {
+                if (((i71) this.Y).f27320b3) {
                     return AndroidUtilities.displaySize.y;
                 }
                 return super.W0(y0Var);
@@ -94,8 +94,8 @@ public final class h extends wz {
         }
     }
 
-    public h(j71 j71Var, int i10) {
+    public h(i71 i71Var, int i10) {
         super(i10, false);
-        this.Y = j71Var;
+        this.Y = i71Var;
     }
 }

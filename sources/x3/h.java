@@ -10,9 +10,9 @@ import f2.q;
 import java.util.ArrayList;
 import java.util.Arrays;
 public final class h extends i {
-    public static final byte[] f49655o = {79, 112, 117, 115, 72, 101, 97, 100};
-    public static final byte[] f49656p = {79, 112, 117, 115, 84, 97, 103, 115};
-    public boolean f49657n;
+    public static final byte[] f49654o = {79, 112, 117, 115, 72, 101, 97, 100};
+    public static final byte[] f49655p = {79, 112, 117, 115, 84, 97, 103, 115};
+    public boolean f49656n;
 
     public static boolean e(x xVar, byte[] bArr) {
         if (xVar.a() < bArr.length) {
@@ -33,12 +33,12 @@ public final class h extends i {
         if (bArr.length > 1) {
             b10 = bArr[1];
         }
-        return (this.f49663i * q.e(b11, b10)) / 1000000;
+        return (this.f49662i * q.e(b11, b10)) / 1000000;
     }
 
     @Override
     public final boolean c(x xVar, long j10, n2.e eVar) {
-        if (e(xVar, f49655o)) {
+        if (e(xVar, f49654o)) {
             byte[] copyOf = Arrays.copyOf(xVar.f8298a, xVar.f8300c);
             int i10 = copyOf[9] & 255;
             ArrayList a2 = q.a(copyOf);
@@ -52,10 +52,10 @@ public final class h extends i {
                 eVar.f17102b = new w(vVar);
                 return true;
             }
-        } else if (e(xVar, f49656p)) {
+        } else if (e(xVar, f49655p)) {
             ((w) eVar.f17102b).getClass();
-            if (!this.f49657n) {
-                this.f49657n = true;
+            if (!this.f49656n) {
+                this.f49656n = true;
                 xVar.O(8);
                 t0 r10 = c3.b.r(n0.v(c3.b.u(xVar, false, false).f4655a));
                 if (r10 != null) {
@@ -76,7 +76,7 @@ public final class h extends i {
     public final void d(boolean z10) {
         super.d(z10);
         if (z10) {
-            this.f49657n = false;
+            this.f49656n = false;
         }
     }
 }

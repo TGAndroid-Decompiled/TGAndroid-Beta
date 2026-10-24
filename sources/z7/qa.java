@@ -11,14 +11,14 @@ public enum qa implements u {
     UI_IMAGE(6),
     CV_PIXEL_BUFFER_REF(9);
     
-    public final int f51616a;
+    public final int f51615a;
 
     qa(int i10) {
-        this.f51616a = i10;
+        this.f51615a = i10;
     }
 
     @Override
     public final int zza() {
-        return this.f51616a;
+        return this.f51615a;
     }
 }

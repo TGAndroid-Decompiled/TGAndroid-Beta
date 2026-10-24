@@ -7,7 +7,7 @@ import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.ri;
 public final class kc implements Utilities.CallbackReturn {
     public final int f1639a;
     public final KeyEvent.Callback f1640b;
@@ -35,16 +35,16 @@ public final class kc implements Utilities.CallbackReturn {
             case 4:
                 rg.m0 m0Var = (rg.m0) this.f1640b;
                 if (((Integer) obj).intValue() == 2) {
-                    ti tiVar = new ti(m0Var.getContext(), new rg.x(m0Var), false, false, false, m0Var.Q1);
-                    tiVar.drawNavigationBar = true;
-                    tiVar.T1(LocaleController.getString(R.string.AddImage));
-                    tiVar.f30722c2 = new rg.y(m0Var, tiVar);
-                    tiVar.setOnDismissListener(new ei.e1(7));
-                    tiVar.R1(1, false);
-                    tiVar.w1();
+                    ri riVar = new ri(m0Var.getContext(), new rg.x(m0Var), false, false, false, m0Var.Q1);
+                    riVar.drawNavigationBar = true;
+                    riVar.T1(LocaleController.getString(R.string.AddImage));
+                    riVar.f30138c2 = new rg.y(m0Var, riVar);
+                    riVar.setOnDismissListener(new ei.e1(7));
+                    riVar.R1(1, false);
+                    riVar.w1();
                     MediaController.forceBroadcastNewPhotos = true;
-                    tiVar.f30742j0.f0();
-                    tiVar.show();
+                    riVar.f30158j0.f0();
+                    riVar.show();
                 }
                 return Boolean.TRUE;
             default:

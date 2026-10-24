@@ -13,12 +13,12 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.r5;
-import org.telegram.ui.Components.yj0;
+import org.telegram.ui.Components.p5;
+import org.telegram.ui.Components.xj0;
 import org.telegram.ui.qy;
 public final class e {
     public static int f710m;
-    public r5 f711a;
+    public p5 f711a;
     public Rect f712b;
     public ArrayList f713c;
     public View d;
@@ -31,14 +31,14 @@ public final class e {
     public int f718k;
     public long f719l;
 
-    public static e a(r5 r5Var, boolean z10, boolean z11) {
+    public static e a(p5 p5Var, boolean z10, boolean z11) {
         int i10 = UserConfig.selectedAccount;
         ?? obj = new Object();
         obj.f712b = new Rect();
         obj.f713c = new ArrayList();
         obj.f715g = true;
         obj.f718k = -1;
-        obj.f711a = r5Var;
+        obj.f711a = p5Var;
         obj.f714f = z10;
         obj.h = i10;
         obj.f716i = z11;
@@ -89,13 +89,13 @@ public final class e {
         TLRPC.Document document;
         boolean z12 = this.f714f;
         int i10 = this.h;
-        r5 r5Var = this.f711a;
-        r5Var.a(view);
+        p5 p5Var = this.f711a;
+        p5Var.a(view);
         this.d = view;
         ImageReceiver imageReceiver = this.f717j;
         if (imageReceiver != null && this.f716i) {
             imageReceiver.onAttachedToWindow();
-            TLRPC.Document document2 = r5Var.e;
+            TLRPC.Document document2 = p5Var.e;
             TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
             String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
             if (findAnimatedEmojiEmoticon != null && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(findAnimatedEmojiEmoticon)) != null && (document = tL_availableReaction.around_animation) != null) {
@@ -153,7 +153,7 @@ public final class e {
                 imageReceiver.setAutoRepeat(0);
                 return;
             }
-            imageReceiver.setImageBitmap(new yj0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+            imageReceiver.setImageBitmap(new xj0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
         }
     }
 }

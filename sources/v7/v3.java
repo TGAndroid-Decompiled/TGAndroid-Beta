@@ -1,6 +1,6 @@
 package v7;
 public final class v3 implements ja.d {
-    public static final v3 f48599a = new Object();
+    public static final v3 f48598a = new Object();
 
     static {
         si.o0.s(si.o0.k(h.class, si.o0.o(2, si.o0.k(h.class, new e(1)))));

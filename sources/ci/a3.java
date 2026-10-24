@@ -5,11 +5,11 @@ import android.content.Context;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.ri;
 import org.telegram.ui.gk;
 import org.telegram.ui.km;
 import org.telegram.ui.sn;
-public final class a3 extends ti {
+public final class a3 extends ri {
     public final int V2;
     public final NotificationCenter.NotificationCenterDelegate W2;
 
@@ -36,16 +36,16 @@ public final class a3 extends ti {
             case 2:
                 sn snVar = (sn) notificationCenterDelegate;
                 a3 a3Var2 = snVar.V1;
-                if (a3Var2 != null && (a3Var2.isShowing() || this.f30787x0)) {
+                if (a3Var2 != null && (a3Var2.isShowing() || this.f30203x0)) {
                     Activity parentActivity = snVar.getParentActivity();
                     i10 = ((org.telegram.ui.ActionBar.o2) snVar).classGuid;
                     AndroidUtilities.requestAdjustResize(parentActivity, i10);
                 }
                 super.dismissInternal();
                 snVar.Y9(false, true);
-                km kmVar = snVar.f41561j1;
+                km kmVar = snVar.f41558j1;
                 if (kmVar != null) {
-                    WeakHashMap weakHashMap = r0.i0.f45242a;
+                    WeakHashMap weakHashMap = r0.i0.f45241a;
                     r0.y.c(kmVar);
                     return;
                 }
@@ -89,7 +89,7 @@ public final class a3 extends ti {
                 return;
             default:
                 sn snVar = (sn) notificationCenterDelegate;
-                boolean z10 = this.f30787x0;
+                boolean z10 = this.f30203x0;
                 boolean M = this.B0.M();
                 if (!M) {
                     snVar.P3 = false;
@@ -118,9 +118,9 @@ public final class a3 extends ti {
                         AndroidUtilities.requestAdjustResize(parentActivity, i10);
                     }
                     snVar.Y9(false, false);
-                    km kmVar = snVar.f41561j1;
+                    km kmVar = snVar.f41558j1;
                     if (kmVar != null) {
-                        WeakHashMap weakHashMap = r0.i0.f45242a;
+                        WeakHashMap weakHashMap = r0.i0.f45241a;
                         r0.y.c(kmVar);
                         return;
                     }

@@ -20,45 +20,45 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.wx0;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.vx0;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.sn;
 import w7.z5;
 public final class r extends o2 implements ne.d {
     public final ne.b f12240a;
     public long f12241b;
     public FrameLayout f12242c;
-    public j71 d;
+    public i71 d;
     public kh.f e;
     public LinearLayout f12243f;
     public ei.d h;
     public ei.d f12244n;
-    public wx0 f12245r;
+    public vx0 f12245r;
     public TLRPC.ChatFull f12246s;
     public s0 v;
     public int f12247w;
 
     public r(Bundle bundle) {
         super(bundle);
-        this.f12240a = new ne.b(0, this, bs.h, 320L, false);
+        this.f12240a = new ne.b(0, this, zr.h, 320L, false);
     }
 
-    public static void U(r rVar, m61 m61Var) {
-        Object obj = m61Var.G;
+    public static void U(r rVar, l61 l61Var) {
+        Object obj = l61Var.G;
         if (obj instanceof ii.f) {
             ii.f fVar = (ii.f) obj;
             long j10 = fVar.f13205a;
             TLRPC.Chat chat = MessagesController.getInstance(rVar.currentAccount).getChat(Long.valueOf(-j10));
             TLRPC.User user = MessagesController.getInstance(rVar.currentAccount).getUser(Long.valueOf(j10));
             if (user != null) {
-                rVar.presentFragment(sn.W9(user.f20490id));
+                rVar.presentFragment(sn.W9(user.f20491id));
             } else if (!ChatObject.isPublic(chat) && !ChatObject.isInChat(chat)) {
                 new ji.b(rVar.getParentActivity(), chat, new p6(29, rVar, fVar)).show();
             } else {
-                rVar.presentFragment(sn.W9(-chat.f20343id));
+                rVar.presentFragment(sn.W9(-chat.f20344id));
             }
         }
     }
@@ -74,7 +74,7 @@ public final class r extends o2 implements ne.d {
     public final View createView(Context context) {
         boolean z10 = true;
         setHasOwnBackground(true);
-        s0 s0Var = new s0(getParentActivity(), this.resourceProvider, xc.a0(this), this.currentAccount, this.f12241b);
+        s0 s0Var = new s0(getParentActivity(), this.resourceProvider, vc.a0(this), this.currentAccount, this.f12241b);
         this.v = s0Var;
         s0Var.h = new ya.c(this, 23);
         s0Var.d();
@@ -85,14 +85,14 @@ public final class r extends o2 implements ne.d {
         this.actionBar.setTitle(LocaleController.getString(R.string.CommunityPendingRequests));
         FrameLayout frameLayout = new FrameLayout(context);
         this.f12242c = frameLayout;
-        int i10 = k6.f21125a7;
+        int i10 = k6.f21126a7;
         r6.i(i10, frameLayout, null);
-        j71 j71Var = new j71(this, new hg.o(this, 1), new p(this), new p(this));
-        this.d = j71Var;
-        j71Var.setClipToPadding(false);
-        j71 j71Var2 = this.d;
-        j71Var2.Z2.f24972r = false;
-        j71Var2.t1();
+        i71 i71Var = new i71(this, new hg.o(this, 1), new p(this), new p(this));
+        this.d = i71Var;
+        i71Var.setClipToPadding(false);
+        i71 i71Var2 = this.d;
+        i71Var2.Z2.f24646r = false;
+        i71Var2.t1();
         this.d.j(new ah.d0(this, 10));
         this.actionBar.setAdaptiveBackground(this.d);
         this.f12242c.addView(this.d, z5.c(-1.0f, -1));
@@ -111,7 +111,7 @@ public final class r extends o2 implements ne.d {
         this.f12244n = dVar;
         dVar.e();
         ei.d dVar2 = this.f12244n;
-        int f7 = i0.a.f(0.125f, getThemedColor(k6.f21183d6), getThemedColor(k6.G6));
+        int f7 = i0.a.f(0.125f, getThemedColor(k6.f21184d6), getThemedColor(k6.G6));
         this.f12247w = f7;
         dVar2.setColor(f7);
         this.f12244n.setText(LocaleController.getString(R.string.CommunityPendingRequestDeclineAll));
@@ -161,9 +161,9 @@ public final class r extends o2 implements ne.d {
         });
         this.f12243f.addView(this.h, z5.p(0, 48, 1.0f, 0, 4, 0, 4, 0));
         this.f12242c.addView(this.f12243f, z5.e(-1, -2, 80));
-        wx0 wx0Var = new wx0(getParentActivity(), null, 16, this.resourceProvider);
-        this.f12245r = wx0Var;
-        wx0Var.d.setText(LocaleController.getString(R.string.NoCommunityJoinRequests));
+        vx0 vx0Var = new vx0(getParentActivity(), null, 16, this.resourceProvider);
+        this.f12245r = vx0Var;
+        vx0Var.d.setText(LocaleController.getString(R.string.NoCommunityJoinRequests));
         this.f12245r.e.setText(LocaleController.getString(R.string.NoCommunityJoinRequestsDescription));
         this.f12245r.setAnimateLayoutChange(true);
         this.f12245r.setVisibility(8);
@@ -176,7 +176,7 @@ public final class r extends o2 implements ne.d {
         V(0);
         FrameLayout frameLayout2 = this.f12242c;
         p pVar = new p(this);
-        WeakHashMap weakHashMap = r0.i0.f45242a;
+        WeakHashMap weakHashMap = r0.i0.f45241a;
         r0.a0.i(frameLayout2, pVar);
         setBulletinDelegate(new o8(4));
         FrameLayout frameLayout3 = this.f12242c;
@@ -208,11 +208,11 @@ public final class r extends o2 implements ne.d {
         }
         linearLayout.setVisibility(i11);
         this.f12245r.setAlpha(f7);
-        wx0 wx0Var = this.f12245r;
+        vx0 vx0Var = this.f12245r;
         if (f7 > 0.0f) {
             i12 = 0;
         }
-        wx0Var.setVisibility(i12);
+        vx0Var.setVisibility(i12);
     }
 
     @Override
@@ -238,7 +238,7 @@ public final class r extends o2 implements ne.d {
     public final void onThemeColorsChanged() {
         try {
             super.onThemeColorsChanged();
-            int f7 = i0.a.f(0.125f, getThemedColor(k6.f21183d6), getThemedColor(k6.G6));
+            int f7 = i0.a.f(0.125f, getThemedColor(k6.f21184d6), getThemedColor(k6.G6));
             ei.d dVar = this.f12244n;
             if (dVar != null && f7 != this.f12247w) {
                 this.f12247w = f7;

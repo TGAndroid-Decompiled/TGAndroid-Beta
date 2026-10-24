@@ -11,25 +11,25 @@ import e9.s;
 import java.util.ArrayList;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.md0;
+import org.telegram.ui.Components.kd0;
 import u2.c1;
 import u2.f0;
-public final class b implements s5.e, r9.d, z1, qa.a, d9.k, e2.j, md0 {
-    public final int f46293a;
+public final class b implements s5.e, r9.d, z1, qa.a, d9.k, e2.j, kd0 {
+    public final int f46292a;
 
     public b(int i10) {
-        this.f46293a = i10;
+        this.f46292a = i10;
     }
 
     @Override
     public void accept(Object obj) {
-        ((c1) obj).f47723b.release();
+        ((c1) obj).f47722b.release();
     }
 
     @Override
     public Object apply(Object obj) {
         byte[] decode;
-        switch (this.f46293a) {
+        switch (this.f46292a) {
             case 6:
                 Cursor rawQuery = ((SQLiteDatabase) obj).rawQuery("SELECT distinct t._id, t.backend_name, t.priority, t.extras FROM transport_contexts AS t, events AS e WHERE e.context_id = t._id", new String[0]);
                 try {
@@ -54,7 +54,7 @@ public final class b implements s5.e, r9.d, z1, qa.a, d9.k, e2.j, md0 {
             case 19:
                 return ((q) obj).b().getClass().getSimpleName();
             case 20:
-                return n0.u(s.x(((f0) obj).r().f47889b, new b(22)));
+                return n0.u(s.x(((f0) obj).r().f47888b, new b(22)));
             default:
                 return Integer.valueOf(((p1) obj).f3909c);
         }
@@ -62,7 +62,7 @@ public final class b implements s5.e, r9.d, z1, qa.a, d9.k, e2.j, md0 {
 
     @Override
     public String e(int i10) {
-        switch (this.f46293a) {
+        switch (this.f46292a) {
             case 25:
                 return String.valueOf(i10);
             default:
@@ -72,7 +72,7 @@ public final class b implements s5.e, r9.d, z1, qa.a, d9.k, e2.j, md0 {
 
     @Override
     public void g(c2 c2Var, int i10) {
-        switch (this.f46293a) {
+        switch (this.f46292a) {
             case 11:
                 c2Var.dismiss();
                 return;
@@ -92,7 +92,7 @@ public final class b implements s5.e, r9.d, z1, qa.a, d9.k, e2.j, md0 {
 
     @Override
     public void h(qa.b bVar) {
-        switch (this.f46293a) {
+        switch (this.f46292a) {
             case 17:
                 if (Log.isLoggable("FirebaseCrashlytics", 3)) {
                     Log.d("FirebaseCrashlytics", "AnalyticsConnector now available.", null);
@@ -111,7 +111,7 @@ public final class b implements s5.e, r9.d, z1, qa.a, d9.k, e2.j, md0 {
     }
 
     public b(Object obj, int i10) {
-        this.f46293a = i10;
+        this.f46292a = i10;
     }
 
     private final void b(c2 c2Var, int i10) {

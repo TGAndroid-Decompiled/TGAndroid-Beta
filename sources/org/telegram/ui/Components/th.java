@@ -1,87 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class th implements org.telegram.ui.lq0 {
-    public boolean f30700a;
-    public final HashMap f30701b;
-    public final ArrayList f30702c;
-    public final ti d;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+public final class th extends org.telegram.ui.bu0 {
+    public final MediaController.PhotoEntry f30843a;
+    public final ri f30844b;
 
-    public th(ti tiVar, HashMap hashMap, ArrayList arrayList) {
-        this.d = tiVar;
-        this.f30701b = hashMap;
-        this.f30702c = arrayList;
+    public th(ri riVar, MediaController.PhotoEntry photoEntry) {
+        this.f30844b = riVar;
+        this.f30843a = photoEntry;
     }
 
     @Override
-    public final boolean e() {
-        return true;
-    }
-
-    @Override
-    public final void h(int i10, boolean z10, boolean z11) {
-        String str;
-        if (!z10) {
-            HashMap hashMap = this.f30701b;
-            if (!hashMap.isEmpty() && !this.f30700a) {
-                this.f30700a = true;
-                ArrayList arrayList = new ArrayList();
-                int i11 = 0;
-                while (true) {
-                    ArrayList arrayList2 = this.f30702c;
-                    if (i11 < arrayList2.size()) {
-                        Object obj = hashMap.get(arrayList2.get(i11));
-                        SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                        arrayList.add(sendingMediaInfo);
-                        MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
-                        String str2 = searchImage.imagePath;
-                        if (str2 != null) {
-                            sendingMediaInfo.path = str2;
-                        } else {
-                            sendingMediaInfo.searchImage = searchImage;
-                        }
-                        sendingMediaInfo.thumbPath = searchImage.thumbPath;
-                        sendingMediaInfo.videoEditedInfo = searchImage.editedInfo;
-                        CharSequence charSequence = searchImage.caption;
-                        if (charSequence != null) {
-                            str = charSequence.toString();
-                        } else {
-                            str = null;
-                        }
-                        sendingMediaInfo.caption = str;
-                        sendingMediaInfo.entities = searchImage.entities;
-                        sendingMediaInfo.masks = searchImage.stickers;
-                        sendingMediaInfo.ttl = searchImage.ttl;
-                        TLRPC.BotInlineResult botInlineResult = searchImage.inlineResult;
-                        if (botInlineResult != null && searchImage.type == 1) {
-                            sendingMediaInfo.inlineResult = botInlineResult;
-                            sendingMediaInfo.params = searchImage.params;
-                        }
-                        searchImage.date = (int) (System.currentTimeMillis() / 1000);
-                        i11++;
-                    } else {
-                        ((org.telegram.ui.sn) this.d.f30730f0).g8(i10, arrayList, z11);
-                        return;
-                    }
-                }
-            }
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, final boolean z10, final int i11, int i12, final boolean z11) {
+        ri riVar = this.f30844b;
+        riVar.f30209y2 = true;
+        if (riVar.f30138c2 == null) {
+            return;
         }
-    }
-
-    @Override
-    public final void a() {
-    }
-
-    @Override
-    public final void b(Editable editable) {
-    }
-
-    @Override
-    public final void g() {
+        final MediaController.PhotoEntry photoEntry = this.f30843a;
+        photoEntry.editedInfo = videoEditedInfo;
+        d5.Z(riVar.M1, riVar.o1() + 1, 0L, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ArrayList arrayList = ChatAttachAlertPhotoLayout.f24226t1;
+                arrayList.clear();
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f24225s1;
+                hashMap.clear();
+                arrayList.add(0);
+                hashMap.put(0, photoEntry);
+                th.this.f30844b.f30138c2.b0(7, true, z10, i11, 0, 0L, false, z11, ((Long) obj).longValue());
+            }
+        });
     }
 }

@@ -7,12 +7,12 @@ import android.text.style.ClickableSpan;
 import android.view.View;
 import org.telegram.messenger.voip.GroupCallMessage;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-import org.telegram.ui.Components.al;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.yk;
 import org.telegram.ui.LaunchActivity;
 import org.telegram.ui.PremiumPreviewFragment;
 import org.telegram.ui.r30;
-import org.telegram.ui.ue0;
+import org.telegram.ui.te0;
 public final class kb extends ClickableSpan {
     public final int f9349a;
     public final Object f9350b;
@@ -41,7 +41,7 @@ public final class kb extends ClickableSpan {
             case 2:
                 org.telegram.ui.Cells.x1 x1Var = (org.telegram.ui.Cells.x1) this.f9350b;
                 Context context = x1Var.getContext();
-                pf.d.r(context, "https://fragment.com/username/" + ((org.telegram.ui.ra) x1Var.M).e.f41336r);
+                pf.d.r(context, "https://fragment.com/username/" + ((org.telegram.ui.ra) x1Var.M).e.f41331r);
                 return;
             case 3:
                 ((org.telegram.ui.vb) this.f9350b).finishFragment();
@@ -50,17 +50,17 @@ public final class kb extends ClickableSpan {
                 ((org.telegram.ui.s1) this.f9350b).run();
                 return;
             case 5:
-                ((xc) this.f9350b).f32515a.presentFragment(new PremiumPreviewFragment(0, "settings"));
+                ((vc) this.f9350b).f31414a.presentFragment(new PremiumPreviewFragment(0, "settings"));
                 return;
             case 6:
-                al alVar = (al) this.f9350b;
-                org.telegram.ui.Wallet.o5.E0(alVar.getContext(), alVar.f24751n, alVar.f28365a);
+                yk ykVar = (yk) this.f9350b;
+                org.telegram.ui.Wallet.o5.E0(ykVar.getContext(), ykVar.f32954n, ykVar.f27703a);
                 return;
             case 7:
                 ((ActionBarLayout) ((LaunchActivity) this.f9350b).O()).Q(new PremiumPreviewFragment(0, "gift"));
                 return;
             case 8:
-                ((ue0) this.f9350b).p(false);
+                ((te0) this.f9350b).p(false);
                 return;
             case 9:
                 org.telegram.ui.Wallet.j9 j9Var = (org.telegram.ui.Wallet.j9) this.f9350b;
@@ -69,8 +69,8 @@ public final class kb extends ClickableSpan {
                 org.telegram.ui.Wallet.o5.E0(parentActivity, i10, j9Var.getResourceProvider());
                 return;
             case 10:
-                sg.j0 j0Var = ((sg.c0) this.f9350b).f46651c;
-                ug.l.m(j0Var.f25029n, sg.j0.i1(j0Var), j0Var.f46706a0, null);
+                sg.j0 j0Var = ((sg.c0) this.f9350b).f46650c;
+                ug.l.m(j0Var.f33212n, sg.j0.i1(j0Var), j0Var.f46705a0, null);
                 return;
             default:
                 return;
@@ -102,7 +102,7 @@ public final class kb extends ClickableSpan {
                 textPaint.setUnderlineText(false);
                 return;
             case 6:
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Oh, ((al) this.f9350b).f28365a));
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Oh, ((yk) this.f9350b).f27703a));
                 textPaint.setUnderlineText(false);
                 return;
             case 7:
@@ -120,12 +120,12 @@ public final class kb extends ClickableSpan {
             case 10:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21242gc, sg.j0.S0(((sg.c0) this.f9350b).f46651c)));
+                textPaint.setColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21243gc, sg.j0.S0(((sg.c0) this.f9350b).f46650c)));
                 return;
             default:
                 super.updateDrawState(textPaint);
                 textPaint.setUnderlineText(false);
-                Integer num = ((sg.m1) this.f9350b).f46774u0;
+                Integer num = ((sg.m1) this.f9350b).f46773u0;
                 if (num != null) {
                     textPaint.setColor(num.intValue());
                     return;

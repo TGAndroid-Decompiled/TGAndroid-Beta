@@ -1,40 +1,30 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ContactsController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
 public final class sj implements Runnable {
-    public final int f30504a;
-    public final tj f30505b;
-    public final String f30506c;
-    public final int d;
+    public final int f30523a;
+    public final uj f30524b;
 
-    public sj(tj tjVar, String str, int i10, int i11) {
-        this.f30504a = i11;
-        this.f30505b = tjVar;
-        this.f30506c = str;
-        this.d = i10;
+    public sj(uj ujVar, int i10) {
+        this.f30523a = i10;
+        this.f30524b = ujVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f30504a) {
+        switch (this.f30523a) {
             case 0:
-                tj tjVar = this.f30505b;
-                String str = this.f30506c;
-                int i10 = this.d;
-                tjVar.getClass();
-                AndroidUtilities.runOnUIThread(new sj(tjVar, str, i10, 1));
+                uj ujVar = this.f30524b;
+                if (ujVar.f31143f != null) {
+                    ujVar.v = org.telegram.messenger.tl.h(new StringBuilder("+"), ujVar.f31143f.phone, jf.b.c());
+                    ujVar.f31146s = ujVar.f31143f;
+                    AndroidUtilities.runOnUIThread(new sj(ujVar, 1));
+                    return;
+                }
                 return;
             default:
-                tj tjVar2 = this.f30505b;
-                String str2 = this.f30506c;
-                int i11 = this.d;
-                tjVar2.getClass();
-                int i12 = UserConfig.selectedAccount;
-                Utilities.searchQueue.postRunnable(new ki.h0(tjVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
+                uj ujVar2 = this.f30524b;
+                ujVar2.f31142c.l(ujVar2.v, false);
                 return;
         }
     }

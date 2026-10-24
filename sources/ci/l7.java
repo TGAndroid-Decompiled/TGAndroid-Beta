@@ -17,8 +17,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.sl;
-import org.telegram.ui.Components.yj0;
+import org.telegram.messenger.tl;
+import org.telegram.ui.Components.xj0;
 public final class l7 extends FrameLayout {
     public final ArrayList f5526a;
     public ValueAnimator f5527b;
@@ -45,7 +45,7 @@ public final class l7 extends FrameLayout {
         TextView textView = new TextView(context);
         textView.setTextColor(-1);
         textView.setTypeface(AndroidUtilities.bold());
-        sl.n(R.string.StoriesIntroHeader, textView, 1, 20.0f);
+        tl.n(R.string.StoriesIntroHeader, textView, 1, 20.0f);
         linearLayout.addView(textView, w7.z5.n(-2, -2));
         TextView textView2 = new TextView(context);
         textView2.setTextColor(-1761607681);
@@ -92,7 +92,7 @@ public final class l7 extends FrameLayout {
         TextView textView3 = new TextView(context);
         textView3.setTextColor(-1);
         textView3.setTypeface(AndroidUtilities.bold());
-        sl.n(R.string.StoriesIntroDismiss, textView3, 1, 14.0f);
+        tl.n(R.string.StoriesIntroDismiss, textView3, 1, 14.0f);
         linearLayout.addView(textView3, w7.z5.k(0.0f, 73.0f, 0.0f, 0.0f, -2, -2));
         addView(linearLayout, w7.z5.e(-1, -2, 17));
         BitmapDrawable bitmapDrawable = new BitmapDrawable(getContext().getResources(), AndroidUtilities.makeBlurBitmap(n9Var, 12.0f, 10));
@@ -131,16 +131,16 @@ public final class l7 extends FrameLayout {
         ArrayList arrayList = this.f5526a;
         if (i10 != -1) {
             k7 k7Var = (k7) arrayList.get(i10);
-            yj0 yj0Var = k7Var.f5499c;
-            yj0Var.M(0);
-            yj0Var.stop();
+            xj0 xj0Var = k7Var.f5499c;
+            xj0Var.M(0);
+            xj0Var.stop();
             k7Var.f5501n = 0.0f;
             k7Var.invalidate();
         }
         k7 k7Var2 = (k7) arrayList.get(this.d);
-        yj0 yj0Var2 = k7Var2.f5499c;
-        yj0Var2.M(0);
-        yj0Var2.stop();
+        xj0 xj0Var2 = k7Var2.f5499c;
+        xj0Var2.M(0);
+        xj0Var2.stop();
         k7Var2.f5501n = 0.0f;
         k7Var2.invalidate();
         c();

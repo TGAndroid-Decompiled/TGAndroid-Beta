@@ -23,17 +23,18 @@ import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f5;
-import org.telegram.ui.Components.j71;
-import org.telegram.ui.Components.k9;
-import org.telegram.ui.Components.m61;
-import org.telegram.ui.Components.oc;
-import org.telegram.ui.Components.xc;
-import org.telegram.ui.Components.y90;
+import org.telegram.ui.Components.d5;
+import org.telegram.ui.Components.i71;
+import org.telegram.ui.Components.i9;
+import org.telegram.ui.Components.l61;
+import org.telegram.ui.Components.mc;
+import org.telegram.ui.Components.nc;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.w90;
 public final class s0 implements ii.e {
     public final Context f12250a;
     public final g6 f12251b;
-    public final xc f12252c;
+    public final vc f12252c;
     public final int d;
     public final long e;
     public final TLRPC.Chat f12253f;
@@ -50,10 +51,10 @@ public final class s0 implements ii.e {
     public final a0.h f12254g = new a0.h();
     public ArrayList f12256j = new ArrayList();
 
-    public s0(Context context, g6 g6Var, xc xcVar, int i10, long j10) {
+    public s0(Context context, g6 g6Var, vc vcVar, int i10, long j10) {
         this.f12250a = context;
         this.f12251b = g6Var;
-        this.f12252c = xcVar;
+        this.f12252c = vcVar;
         this.d = i10;
         this.e = j10;
         this.f12253f = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
@@ -77,8 +78,8 @@ public final class s0 implements ii.e {
         }
     }
 
-    public final void b(j71 j71Var) {
-        if (!this.f12259m && !this.f12260n && j71Var.Y2.N0() + 10 > j71Var.Z2.f24976y.size()) {
+    public final void b(i71 i71Var) {
+        if (!this.f12259m && !this.f12260n && i71Var.Y2.N0() + 10 > i71Var.Z2.f24650y.size()) {
             d();
         }
     }
@@ -103,16 +104,16 @@ public final class s0 implements ii.e {
                             z10 = false;
                         }
                         int i11 = ii.g.f13208a;
-                        m61 J = m61.J(ii.g.class);
+                        l61 J = l61.J(ii.g.class);
                         J.G = new ii.f(peerDialogId, user, z11);
                         J.H = this;
-                        J.f28557j = !z10;
+                        J.f28225j = !z10;
                         arrayList.add(J);
                     }
                 }
             }
             if (!this.f12260n) {
-                arrayList.add(m61.n(29));
+                arrayList.add(l61.n(29));
             }
         }
     }
@@ -156,10 +157,10 @@ public final class s0 implements ii.e {
                 } else {
                     i11 = R.string.Decline;
                 }
-                c2 P = f5.P(this.f12250a, this.f12251b, string, replaceTags, LocaleController.getString(i11), new ah.t(11, this, z10));
-                P.show();
-                if (!z10 && (textView = (TextView) P.d(-1)) != null) {
-                    r6.W(textView, k6.f21421q7, null);
+                c2 O = d5.O(this.f12250a, this.f12251b, string, replaceTags, LocaleController.getString(i11), new ah.t(11, this, z10));
+                O.show();
+                if (!z10 && (textView = (TextView) O.d(-1)) != null) {
+                    r6.W(textView, k6.f21422q7, null);
                     return;
                 }
                 return;
@@ -201,41 +202,41 @@ public final class s0 implements ii.e {
         this.f12255i = new ud(this, j10, z10, 2);
         Context context = this.f12250a;
         g6 g6Var = this.f12251b;
-        org.telegram.ui.Components.pc pcVar = new org.telegram.ui.Components.pc(context, g6Var, false);
+        nc ncVar = new nc(context, g6Var, false);
         TLObject userOrChat = MessagesController.getInstance(i12).getUserOrChat(j10);
-        k9 k9Var = pcVar.f29508a;
+        i9 i9Var = ncVar.f28864a;
         if (userOrChat != null) {
-            k9Var.setCount(1);
-            k9Var.b(0, userOrChat, UserConfig.selectedAccount);
+            i9Var.setCount(1);
+            i9Var.b(0, userOrChat, UserConfig.selectedAccount);
             i11 = 1;
         } else {
             i11 = 0;
         }
-        k9Var.setTranslationX(AndroidUtilities.dp(7.0f));
-        k9Var.setScaleX(1.333f);
-        k9Var.setScaleY(1.333f);
-        k9Var.a(false);
-        y90 y90Var = pcVar.f29509b;
-        y90Var.setSingleLine(false);
-        y90Var.setMaxLines(2);
-        y90Var.setTextSize(1, 14.0f);
-        y90Var.setText(replaceTags);
-        if (y90Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
+        i9Var.setTranslationX(AndroidUtilities.dp(7.0f));
+        i9Var.setScaleX(1.333f);
+        i9Var.setScaleY(1.333f);
+        i9Var.a(false);
+        w90 w90Var = ncVar.f28865b;
+        w90Var.setSingleLine(false);
+        w90Var.setMaxLines(2);
+        w90Var.setTextSize(1, 14.0f);
+        w90Var.setText(replaceTags);
+        if (w90Var.getLayoutParams() instanceof ViewGroup.MarginLayoutParams) {
             int dp = AndroidUtilities.dp(74 - ((3 - i11) * 12));
             if (LocaleController.isRTL) {
-                ((ViewGroup.MarginLayoutParams) y90Var.getLayoutParams()).rightMargin = dp;
+                ((ViewGroup.MarginLayoutParams) w90Var.getLayoutParams()).rightMargin = dp;
             } else {
-                ((ViewGroup.MarginLayoutParams) y90Var.getLayoutParams()).leftMargin = dp;
+                ((ViewGroup.MarginLayoutParams) w90Var.getLayoutParams()).leftMargin = dp;
             }
         }
         if (LocaleController.isRTL) {
-            k9Var.setTranslationX(AndroidUtilities.dp(32 - ((i11 - 1) * 12)));
+            i9Var.setTranslationX(AndroidUtilities.dp(32 - ((i11 - 1) * 12)));
         }
-        oc ocVar = new oc(context, g6Var, true, true);
-        ocVar.e(LocaleController.getString(R.string.UndoNoCaps));
-        ocVar.f29152b = new v3(this, j10, 12);
-        ocVar.f29153c = this.f12255i;
-        pcVar.setButton(ocVar);
-        this.f12252c.b(pcVar, 5000).j();
+        mc mcVar = new mc(context, g6Var, true, true);
+        mcVar.e(LocaleController.getString(R.string.UndoNoCaps));
+        mcVar.f28574b = new v3(this, j10, 12);
+        mcVar.f28575c = this.f12255i;
+        ncVar.setButton(mcVar);
+        this.f12252c.b(ncVar, 5000).j();
     }
 }

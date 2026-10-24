@@ -7,12 +7,12 @@ import android.widget.FrameLayout;
 import java.util.WeakHashMap;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.Components.d91;
-import org.telegram.ui.g31;
-import org.telegram.ui.n41;
+import org.telegram.ui.f31;
+import org.telegram.ui.m41;
+import org.telegram.ui.q21;
 import org.telegram.ui.r21;
-import org.telegram.ui.s21;
-import org.telegram.ui.sg1;
-import org.telegram.ui.ug1;
+import org.telegram.ui.rg1;
+import org.telegram.ui.tg1;
 import org.telegram.ui.w50;
 public final class j5 extends d91 {
     public final int f1543a;
@@ -61,48 +61,48 @@ public final class j5 extends d91 {
             case 1:
                 return;
             case 2:
-                ((r21) view).a(i11);
+                ((q21) view).a(i11);
                 return;
             case 3:
                 return;
             case 4:
-                ug1 ug1Var = (ug1) obj;
-                SparseArray sparseArray = ug1Var.f42431a;
-                sg1 sg1Var = (sg1) sparseArray.get(i10);
-                if (sg1Var != null) {
-                    o2Var = sg1Var.f41408a;
+                tg1 tg1Var = (tg1) obj;
+                SparseArray sparseArray = tg1Var.f42049a;
+                rg1 rg1Var = (rg1) sparseArray.get(i10);
+                if (rg1Var != null) {
+                    o2Var = rg1Var.f41154a;
                 } else {
-                    org.telegram.ui.ActionBar.o2 V = ug1Var.V(i10);
-                    sg1 sg1Var2 = new sg1(V);
-                    sparseArray.put(i10, sg1Var2);
+                    org.telegram.ui.ActionBar.o2 V = tg1Var.V(i10);
+                    rg1 rg1Var2 = new rg1(V);
+                    sparseArray.put(i10, rg1Var2);
                     o2Var = V;
-                    sg1Var = sg1Var2;
+                    rg1Var = rg1Var2;
                 }
-                if (!sg1Var.f41409b) {
+                if (!rg1Var.f41155b) {
                     o2Var.onFragmentCreate();
-                    sg1Var.f41409b = true;
+                    rg1Var.f41155b = true;
                 }
-                o2Var.setParentLayout(ug1Var.getParentLayout());
+                o2Var.setParentLayout(tg1Var.getParentLayout());
                 if (o2Var.getFragmentView() == null) {
                     o2Var.performCreateView((Context) this.f1544b);
-                    o2Var.setTitleOverlayText(ug1Var.f42435n, ug1Var.f42436r, ug1Var.f42437s);
+                    o2Var.setTitleOverlayText(tg1Var.f42053n, tg1Var.f42054r, tg1Var.f42055s);
                 }
                 FrameLayout frameLayout2 = (FrameLayout) view;
                 frameLayout2.removeAllViews();
                 View fragmentView = o2Var.getFragmentView();
                 AndroidUtilities.removeFromParent(fragmentView);
                 if (!o2Var.hasOwnBackground() && fragmentView.getBackground() == null) {
-                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21183d6, fragmentView, null);
+                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, fragmentView, null);
                 }
                 frameLayout2.addView(fragmentView, w7.z5.c(-1.0f, -1));
                 if (o2Var.getActionBar() != null && o2Var.getActionBar().K) {
                     AndroidUtilities.removeFromParent(o2Var.getActionBar());
                     frameLayout2.addView(o2Var.getActionBar());
                 }
-                WeakHashMap weakHashMap = r0.i0.f45242a;
+                WeakHashMap weakHashMap = r0.i0.f45241a;
                 r0.y.c(frameLayout2);
-                ug1Var.checkSystemBarColors();
-                ug1Var.U();
+                tg1Var.checkSystemBarColors();
+                tg1Var.U();
                 return;
             default:
                 return;
@@ -148,13 +148,13 @@ public final class j5 extends d91 {
                 frameLayout3.setOnClickListener(new w50(this, 23));
                 return frameLayout3;
             case 2:
-                return new r21((s21) this.f1545c, (Context) this.f1544b);
+                return new q21((r21) this.f1545c, (Context) this.f1544b);
             case 3:
                 FrameLayout frameLayout4 = new FrameLayout((Context) this.f1544b);
-                frameLayout4.setOnClickListener(new g31(this, 6));
+                frameLayout4.setOnClickListener(new f31(this, 6));
                 return frameLayout4;
             case 4:
-                return new n41((Context) this.f1544b, 7);
+                return new m41((Context) this.f1544b, 7);
             default:
                 if (i10 == 0) {
                     return ((ug.y) this.f1544b).getContainerView();
@@ -176,7 +176,7 @@ public final class j5 extends d91 {
             case 3:
                 return 2;
             case 4:
-                ((ug1) this.f1545c).getClass();
+                ((tg1) this.f1545c).getClass();
                 return 4;
             default:
                 return 2;

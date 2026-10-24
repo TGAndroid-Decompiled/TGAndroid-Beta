@@ -14,32 +14,32 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_chatlists;
-public final class d00 extends org.telegram.ui.Components.bb {
+public final class d00 extends org.telegram.ui.Components.za {
     public int X;
     public final MessagesController.DialogFilter Y;
     public final ArrayList Z;
-    public final FrameLayout f36458a0;
-    public b00 f36459b0;
-    public final TextView f36460c0;
-    public final ArrayList f36461d0;
-    public final ArrayList f36462e0;
+    public final FrameLayout f36434a0;
+    public b00 f36435b0;
+    public final TextView f36436c0;
+    public final ArrayList f36437d0;
+    public final ArrayList f36438e0;
 
     public d00(org.telegram.ui.ActionBar.o2 o2Var, MessagesController.DialogFilter dialogFilter, ArrayList arrayList) {
         super(o2Var, false);
         ArrayList arrayList2 = new ArrayList();
         this.Z = arrayList2;
-        this.f36461d0 = new ArrayList();
-        this.f36462e0 = new ArrayList();
+        this.f36437d0 = new ArrayList();
+        this.f36438e0 = new ArrayList();
         this.Y = dialogFilter;
         if (arrayList != null) {
             arrayList2.addAll(arrayList);
         }
         U(false);
         this.e.setTitle(R(null));
-        fixNavigationBar(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21254h5, false));
+        fixNavigationBar(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21255h5, false));
         this.X = this.navBarColor;
         TextView textView = new TextView(getContext());
-        this.f36460c0 = textView;
+        this.f36436c0 = textView;
         textView.setTextSize(1, 14.0f);
         org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.Sh, null);
         textView.setTypeface(AndroidUtilities.bold());
@@ -54,7 +54,7 @@ public final class d00 extends org.telegram.ui.Components.bb {
         d.rightMargin += i11;
         this.containerView.addView(textView, d);
         FrameLayout frameLayout = new FrameLayout(getContext());
-        this.f36458a0 = frameLayout;
+        this.f36434a0 = frameLayout;
         this.containerView.addView(frameLayout, w7.z5.d(-1, 100.0f, 80, 6.0f, 0.0f, 6.0f, 0.0f));
         T();
     }
@@ -69,16 +69,16 @@ public final class d00 extends org.telegram.ui.Components.bb {
     }
 
     @Override
-    public final void F(org.telegram.ui.Components.ow0 ow0Var) {
-        org.telegram.ui.Components.mm0 mm0Var = this.d;
-        mm0Var.setOverScrollMode(2);
-        mm0Var.setOnItemClickListener(new h(this, 11));
+    public final void F(org.telegram.ui.Components.nw0 nw0Var) {
+        org.telegram.ui.Components.lm0 lm0Var = this.d;
+        lm0Var.setOverScrollMode(2);
+        lm0Var.setOnItemClickListener(new h(this, 11));
         s4.k kVar = new s4.k();
-        kVar.f46377m = false;
+        kVar.f46376m = false;
         kVar.C = false;
-        kVar.o(org.telegram.ui.Components.bs.h);
+        kVar.o(org.telegram.ui.Components.zr.h);
         kVar.n(350L);
-        mm0Var.setItemAnimator(kVar);
+        lm0Var.setItemAnimator(kVar);
     }
 
     public final void Q() {
@@ -89,7 +89,7 @@ public final class d00 extends org.telegram.ui.Components.bb {
         while (true) {
             dialogFilter = this.Y;
             int size = dialogFilter.alwaysShow.size();
-            o2Var = this.f25029n;
+            o2Var = this.f33212n;
             if (i10 >= size) {
                 break;
             }
@@ -139,7 +139,7 @@ public final class d00 extends org.telegram.ui.Components.bb {
         } else {
             i10 = 8;
         }
-        this.f36460c0.setVisibility(i10);
+        this.f36436c0.setVisibility(i10);
         int dp = AndroidUtilities.dp(6.0f);
         int dp2 = AndroidUtilities.dp(6.0f);
         if (arrayList.isEmpty()) {
@@ -151,9 +151,9 @@ public final class d00 extends org.telegram.ui.Components.bb {
     }
 
     public final void U(boolean z10) {
-        ArrayList arrayList = this.f36461d0;
+        ArrayList arrayList = this.f36437d0;
         arrayList.clear();
-        ArrayList arrayList2 = this.f36462e0;
+        ArrayList arrayList2 = this.f36438e0;
         arrayList.addAll(arrayList2);
         arrayList2.clear();
         ?? aVar = new pg.a(0, false);
@@ -165,11 +165,11 @@ public final class d00 extends org.telegram.ui.Components.bb {
             arrayList2.add(new pg.a(8, false));
             for (int i10 = 0; i10 < arrayList3.size(); i10++) {
                 ?? aVar2 = new pg.a(7, false);
-                aVar2.f37704m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
+                aVar2.f37707m = (TL_chatlists.TL_exportedChatlistInvite) arrayList3.get(i10);
                 arrayList2.add(aVar2);
             }
         }
-        b00 b00Var = this.f36459b0;
+        b00 b00Var = this.f36435b0;
         if (b00Var != null) {
             if (z10) {
                 b00Var.E(arrayList, arrayList2);
@@ -184,7 +184,7 @@ public final class d00 extends org.telegram.ui.Components.bb {
         int x02;
         super.onThemeColorsChanged();
         try {
-            if (this.navBarColor == this.X && (x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21254h5, false)) != this.navBarColor) {
+            if (this.navBarColor == this.X && (x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21255h5, false)) != this.navBarColor) {
                 fixNavigationBar(x02);
                 this.X = this.navBarColor;
             }
@@ -194,9 +194,9 @@ public final class d00 extends org.telegram.ui.Components.bb {
     }
 
     @Override
-    public final org.telegram.ui.Components.lm0 w(org.telegram.ui.Components.mm0 mm0Var) {
+    public final org.telegram.ui.Components.km0 w(org.telegram.ui.Components.lm0 lm0Var) {
         b00 b00Var = new b00(this);
-        this.f36459b0 = b00Var;
+        this.f36435b0 = b00Var;
         return b00Var;
     }
 

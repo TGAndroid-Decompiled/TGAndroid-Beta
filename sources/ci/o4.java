@@ -15,7 +15,7 @@ public final class o4 {
     public o4(Context context, int i10) {
         switch (i10) {
             case 2:
-                this.d = ri.h.f46237a;
+                this.d = ri.h.f46236a;
                 this.f5631a = true;
                 this.f5635g = ri.o.H;
                 this.f5632b = context;

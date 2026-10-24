@@ -7,7 +7,7 @@ public final class ma0 implements Consumer {
     @Override
     public final void accept(Object obj) {
         ((Boolean) obj).getClass();
-        Pattern pattern = LaunchActivity.E1;
+        Pattern pattern = LaunchActivity.D1;
     }
 
     public Consumer andThen(Consumer consumer) {

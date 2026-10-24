@@ -1,6 +1,6 @@
 package x7;
 public final class i2 implements ja.d {
-    public static final i2 f49862a = new Object();
+    public static final i2 f49861a = new Object();
 
     static {
         si.o0.s(si.o0.m(c0.class, new z(1)));

@@ -1,70 +1,70 @@
 package org.telegram.ui;
 public final class go implements Runnable {
-    public final int f37639a;
-    public final long f37640b;
-    public final long f37641c;
+    public final int f37617a;
+    public final long f37618b;
+    public final long f37619c;
     public final Object d;
 
     public go(Object obj, long j10, long j11, int i10) {
-        this.f37639a = i10;
+        this.f37617a = i10;
         this.d = obj;
-        this.f37640b = j10;
-        this.f37641c = j11;
+        this.f37618b = j10;
+        this.f37619c = j11;
     }
 
     @Override
     public final void run() {
-        org.telegram.ui.Components.b71 b71Var;
-        switch (this.f37639a) {
+        org.telegram.ui.Components.a71 a71Var;
+        switch (this.f37617a) {
             case 0:
-                ko.W((ko) this.d, this.f37640b, this.f37641c);
+                ko.W((ko) this.d, this.f37618b, this.f37619c);
                 return;
             case 1:
                 org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) this.d;
-                long j10 = this.f37640b;
-                long j11 = this.f37641c;
-                y1Var.f43338f = j10;
+                long j10 = this.f37618b;
+                long j11 = this.f37619c;
+                y1Var.f43327f = j10;
                 y1Var.h = j11;
-                org.telegram.ui.Components.d71 d71Var = y1Var.f25907a;
-                if (d71Var != null && (b71Var = d71Var.Z2) != null && d71Var.G) {
-                    b71Var.N(true);
+                org.telegram.ui.Components.c71 c71Var = y1Var.f25615a;
+                if (c71Var != null && (a71Var = c71Var.Z2) != null && c71Var.G) {
+                    a71Var.N(true);
                     return;
                 }
                 return;
             case 2:
                 ri.o oVar = (ri.o) this.d;
-                long j12 = this.f37640b;
-                long j13 = this.f37641c;
-                if (oVar.f46267n == ri.m.h) {
+                long j12 = this.f37618b;
+                long j13 = this.f37619c;
+                if (oVar.f46266n == ri.m.h) {
                     long j14 = ((j12 - j13) * 48000) / 1000;
-                    oVar.f46270q = j14;
-                    oVar.f46272s = 0L;
-                    oVar.f46273t = ri.o.q(j14);
+                    oVar.f46269q = j14;
+                    oVar.f46271s = 0L;
+                    oVar.f46272t = ri.o.q(j14);
                     oVar.i();
                     return;
                 }
                 return;
             default:
-                long j15 = this.f37640b;
-                long j16 = this.f37641c;
+                long j15 = this.f37618b;
+                long j16 = this.f37619c;
                 ri.o oVar2 = (ri.o) ((cc.e) this.d).f5098c;
-                if (j15 == oVar2.f46269p) {
-                    oVar2.f46268o = null;
-                    oVar2.f46270q += j16;
-                    oVar2.f46271r = 0L;
-                    oVar2.f46262i.removeCallbacks(oVar2.E);
-                    ri.m mVar = oVar2.f46267n;
-                    if (mVar == ri.m.f46255s) {
+                if (j15 == oVar2.f46268p) {
+                    oVar2.f46267o = null;
+                    oVar2.f46269q += j16;
+                    oVar2.f46270r = 0L;
+                    oVar2.f46261i.removeCallbacks(oVar2.E);
+                    ri.m mVar = oVar2.f46266n;
+                    if (mVar == ri.m.f46254s) {
                         oVar2.c();
                         oVar2.s();
                         oVar2.l("cancelled");
                         return;
-                    } else if (mVar == ri.m.f46254r) {
+                    } else if (mVar == ri.m.f46253r) {
                         oVar2.c();
                         oVar2.s();
                         return;
-                    } else if (oVar2.f46275w) {
-                        oVar2.f46275w = false;
+                    } else if (oVar2.f46274w) {
+                        oVar2.f46274w = false;
                         oVar2.i();
                         return;
                     } else if (mVar == ri.m.d) {
@@ -74,9 +74,9 @@ public final class go implements Runnable {
                             return;
                         }
                         long j17 = oVar2.j();
-                        oVar2.f46272s = 0L;
-                        oVar2.f46273t = j17;
-                        oVar2.f46263j.execute(new org.telegram.utils.recorder.audio.c(1, oVar2, iVar));
+                        oVar2.f46271s = 0L;
+                        oVar2.f46272t = j17;
+                        oVar2.f46262j.execute(new org.telegram.utils.recorder.audio.c(1, oVar2, iVar));
                         return;
                     } else {
                         return;

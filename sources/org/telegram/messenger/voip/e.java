@@ -20,60 +20,60 @@ import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.ui.ActionBar.c2;
 import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.m70;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.k70;
+import org.telegram.ui.Components.vc;
+import org.telegram.ui.j21;
 import org.telegram.ui.je;
-import org.telegram.ui.k21;
-import org.telegram.ui.s21;
+import org.telegram.ui.r21;
 import org.telegram.ui.sn;
 public final class e implements Runnable {
-    public final int f19930a = 0;
-    public final long f19931b;
-    public final Object f19932c;
+    public final int f19925a = 0;
+    public final long f19926b;
+    public final Object f19927c;
     public final Object d;
     public final Object e;
-    public final Object f19933f;
+    public final Object f19928f;
     public final Object h;
-    public final Object f19934n;
+    public final Object f19929n;
 
     public e(long j10, AtomicBoolean atomicBoolean, AtomicInteger atomicInteger, ConferenceCall conferenceCall, TLObject tLObject, TLRPC.TL_error tL_error, TL_phone.getGroupCallChainBlocks getgroupcallchainblocks) {
-        this.f19932c = conferenceCall;
+        this.f19927c = conferenceCall;
         this.d = getgroupcallchainblocks;
-        this.f19931b = j10;
+        this.f19926b = j10;
         this.e = tLObject;
-        this.f19933f = tL_error;
+        this.f19928f = tL_error;
         this.h = atomicBoolean;
-        this.f19934n = atomicInteger;
+        this.f19929n = atomicInteger;
     }
 
     @Override
     public final void run() {
         TLRPC.VideoSize closestVideoSizeWithSize;
         boolean z10;
-        switch (this.f19930a) {
+        switch (this.f19925a) {
             case 0:
-                ((ConferenceCall) this.f19932c).lambda$poll$7((TL_phone.getGroupCallChainBlocks) this.d, this.f19931b, (TLObject) this.e, (TLRPC.TL_error) this.f19933f, (AtomicBoolean) this.h, (AtomicInteger) this.f19934n);
+                ((ConferenceCall) this.f19927c).lambda$poll$7((TL_phone.getGroupCallChainBlocks) this.d, this.f19926b, (TLObject) this.e, (TLRPC.TL_error) this.f19928f, (AtomicBoolean) this.h, (AtomicInteger) this.f19929n);
                 return;
             case 1:
-                m70.n((m70) this.f19932c, (c2) this.d, (Context) this.e, this.f19931b, (TLRPC.TL_chatInviteExported) this.f19933f, (TLRPC.TL_chatInviteImporter) this.h, (TLRPC.ChannelParticipant) this.f19934n);
+                k70.n((k70) this.f19927c, (c2) this.d, (Context) this.e, this.f19926b, (TLRPC.TL_chatInviteExported) this.f19928f, (TLRPC.TL_chatInviteImporter) this.h, (TLRPC.ChannelParticipant) this.f19929n);
                 return;
             case 2:
-                Activity activity = (Activity) this.f19932c;
+                Activity activity = (Activity) this.f19927c;
                 g6 g6Var = (g6) this.d;
-                byte[] bArr = (byte[]) this.f19933f;
-                MessageObject messageObject = (MessageObject) this.f19934n;
-                s21 s21Var = new s21(activity, g6Var, this.f19931b, bArr);
-                s21Var.R((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.e));
-                s21Var.v = new k21((sn) this.h, activity, g6Var, messageObject);
-                s21Var.show();
+                byte[] bArr = (byte[]) this.f19928f;
+                MessageObject messageObject = (MessageObject) this.f19929n;
+                r21 r21Var = new r21(activity, g6Var, this.f19926b, bArr);
+                r21Var.R((TLRPC.TL_channels_sponsoredMessageReportResultChooseOption) ((TLObject) this.e));
+                r21Var.v = new j21((sn) this.h, activity, g6Var, messageObject);
+                r21Var.show();
                 return;
             default:
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f19933f;
-                sn snVar = (sn) this.f19932c;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f19928f;
+                sn snVar = (sn) this.f19927c;
                 TLObject tLObject = (TLObject) this.e;
                 TLRPC.FileLocation[] fileLocationArr = (TLRPC.FileLocation[]) this.d;
                 String str = (String) this.h;
-                TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f19934n;
+                TLRPC.FileLocation[] fileLocationArr2 = (TLRPC.FileLocation[]) this.f19929n;
                 if (tL_error == null) {
                     TLRPC.User user = snVar.getMessagesController().getUser(Long.valueOf(snVar.getUserConfig().getClientUserId()));
                     TLRPC.TL_photos_photo tL_photos_photo = (TLRPC.TL_photos_photo) tLObject;
@@ -87,7 +87,7 @@ public final class e implements Runnable {
                     }
                     TLRPC.TL_userProfilePhoto tL_userProfilePhoto = new TLRPC.TL_userProfilePhoto();
                     user.photo = tL_userProfilePhoto;
-                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f20367id;
+                    tL_userProfilePhoto.photo_id = tL_photos_photo.photo.f20368id;
                     if (closestPhotoSizeWithSize != null) {
                         tL_userProfilePhoto.photo_small = closestPhotoSizeWithSize.location;
                     }
@@ -113,16 +113,16 @@ public final class e implements Runnable {
                     } else if (closestPhotoSizeWithSize2 != null && fileLocationArr2[0] != null) {
                         FileLoader.getInstance(snVar.getCurrentAccount()).getPathToAttach(fileLocationArr2[0], true).renameTo(FileLoader.getInstance(snVar.getCurrentAccount()).getPathToAttach(closestPhotoSizeWithSize2, true));
                     }
-                    snVar.getMessagesController().getDialogPhotos(user.f20490id).addPhotoAtStart(tL_photos_photo.photo);
+                    snVar.getMessagesController().getDialogPhotos(user.f20491id).addPhotoAtStart(tL_photos_photo.photo);
                     ArrayList arrayList2 = new ArrayList();
                     arrayList2.add(user);
                     snVar.getMessagesStorage().putUsersAndChats(arrayList2, null, false, true);
                     MessagesController messagesController = snVar.getMessagesController();
-                    long j10 = this.f19931b;
+                    long j10 = this.f19926b;
                     TLRPC.UserFull userFull = messagesController.getUserFull(j10);
                     userFull.profile_photo = tL_photos_photo.photo;
                     snVar.getMessagesStorage().updateUserInfo(userFull, false);
-                    xc.a0(snVar).V(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new je(j10, snVar)), null).j();
+                    vc.a0(snVar).V(Collections.singletonList(user), AndroidUtilities.replaceTags(LocaleController.getString(R.string.ApplyAvatarHintTitle)), AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ApplyAvatarHint), new je(j10, snVar)), null).j();
                     return;
                 }
                 return;
@@ -131,31 +131,31 @@ public final class e implements Runnable {
 
     public e(TLObject tLObject, Activity activity, g6 g6Var, long j10, byte[] bArr, sn snVar, MessageObject messageObject) {
         this.e = tLObject;
-        this.f19932c = activity;
+        this.f19927c = activity;
         this.d = g6Var;
-        this.f19931b = j10;
-        this.f19933f = bArr;
+        this.f19926b = j10;
+        this.f19928f = bArr;
         this.h = snVar;
-        this.f19934n = messageObject;
+        this.f19929n = messageObject;
     }
 
     public e(TLRPC.TL_error tL_error, sn snVar, TLObject tLObject, TLRPC.FileLocation[] fileLocationArr, String str, TLRPC.FileLocation[] fileLocationArr2, long j10) {
-        this.f19933f = tL_error;
-        this.f19932c = snVar;
+        this.f19928f = tL_error;
+        this.f19927c = snVar;
         this.e = tLObject;
         this.d = fileLocationArr;
         this.h = str;
-        this.f19934n = fileLocationArr2;
-        this.f19931b = j10;
+        this.f19929n = fileLocationArr2;
+        this.f19926b = j10;
     }
 
-    public e(m70 m70Var, c2 c2Var, Context context, long j10, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
-        this.f19932c = m70Var;
+    public e(k70 k70Var, c2 c2Var, Context context, long j10, TLRPC.TL_chatInviteExported tL_chatInviteExported, TLRPC.TL_chatInviteImporter tL_chatInviteImporter, TLRPC.ChannelParticipant channelParticipant) {
+        this.f19927c = k70Var;
         this.d = c2Var;
         this.e = context;
-        this.f19931b = j10;
-        this.f19933f = tL_chatInviteExported;
+        this.f19926b = j10;
+        this.f19928f = tL_chatInviteExported;
         this.h = tL_chatInviteImporter;
-        this.f19934n = channelParticipant;
+        this.f19929n = channelParticipant;
     }
 }

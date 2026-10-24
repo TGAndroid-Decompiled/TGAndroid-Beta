@@ -1,5 +1,6 @@
 package ah;
 
+import ai.a6;
 import ai.c6;
 import ai.d6;
 import ai.e6;
@@ -52,8 +53,8 @@ import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.a6;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.y5;
+import org.telegram.ui.Components.zr;
 import org.telegram.ui.Stories.recorder.FfmpegAudioWaveformLoader;
 import org.telegram.ui.k4;
 import rg.s1;
@@ -80,11 +81,11 @@ public final class o implements Runnable {
         switch (this.f837a) {
             case 0:
                 a0 a0Var = (a0) this.f839c;
-                a6 a6Var = (a6) this.d;
+                y5 y5Var = (y5) this.d;
                 int i11 = this.f838b;
                 Editable text = a0Var.f643n.getText();
-                int spanStart = text.getSpanStart(a6Var);
-                int spanEnd = text.getSpanEnd(a6Var);
+                int spanStart = text.getSpanStart(y5Var);
+                int spanEnd = text.getSpanEnd(y5Var);
                 int i12 = spanEnd - spanStart;
                 if (spanStart != -1 && spanEnd != -1) {
                     a0Var.f643n.getText().delete(spanStart, spanEnd);
@@ -98,7 +99,7 @@ public final class o implements Runnable {
                 int i13 = this.f838b;
                 TL_stars.StarGift starGift = (TL_stars.StarGift) this.d;
                 int[] iArr = e6Var.V;
-                ai.a6 a6Var2 = e6Var.f1203f;
+                a6 a6Var = e6Var.f1203f;
                 x5 x5Var = e6Var.h;
                 if (starGift != null) {
                     c6 c6Var = new c6(e6Var.getContext());
@@ -109,14 +110,14 @@ public final class o implements Runnable {
                     c6Var.setScaleY(0.5f);
                     c6Var.setAlpha(0.0f);
                     ViewPropertyAnimator duration = c6Var.animate().alpha(1.0f).scaleX(1.0f).scaleY(1.0f).setDuration(520L);
-                    bs bsVar = bs.h;
-                    ViewPropertyAnimator interpolator = duration.setInterpolator(bsVar);
+                    zr zrVar = zr.h;
+                    ViewPropertyAnimator interpolator = duration.setInterpolator(zrVar);
                     interpolator.setUpdateListener(new c0(e6Var, 2));
                     interpolator.start();
                     x5Var.f2438a[i13].setVisibility(8);
-                    a6Var2.setVisibility(0);
-                    a6Var2.setAlpha(0.0f);
-                    a6Var2.animate().alpha(0.5f).setDuration(820L).setInterpolator(bsVar).start();
+                    a6Var.setVisibility(0);
+                    a6Var.setAlpha(0.0f);
+                    a6Var.animate().alpha(0.5f).setDuration(820L).setInterpolator(zrVar).start();
                     return;
                 }
                 FrameLayout frameLayout = new FrameLayout(e6Var.getContext());
@@ -136,7 +137,7 @@ public final class o implements Runnable {
                 d6 d6Var = e6Var.f1197b;
                 int[] iArr2 = e6Var.U;
                 d6Var.a(iArr2[2], iArr2[3]);
-                a6Var2.a(iArr[3], iArr[2]);
+                a6Var.a(iArr[3], iArr[2]);
                 return;
             case 2:
                 ((Utilities.Callback3) this.d).run(LocaleController.formatString(R.string.Gift2RarityHint, gi.l.H0(this.f838b)), (x6) this.f839c, Boolean.FALSE);
@@ -245,7 +246,7 @@ public final class o implements Runnable {
                 s1 s1Var = f6Var.f9029k1;
                 int i22 = s1Var.d + 1;
                 s1Var.a(i22);
-                AndroidUtilities.updateImageViewImageAnimated(s1Var.f46066a[i22], i21);
+                AndroidUtilities.updateImageViewImageAnimated(s1Var.f46065a[i22], i21);
                 s1Var.e = true;
                 return;
             case 12:
@@ -359,8 +360,8 @@ public final class o implements Runnable {
                 k4 k4Var = (k4) this.f839c;
                 String str4 = (String) this.d;
                 int i30 = this.f838b;
-                HashMap hashMap = new HashMap(k4Var.f38805u0[0].f39753c.f38065w);
-                ArrayList arrayList2 = new ArrayList(k4Var.f38805u0[0].f39753c.f38066x);
+                HashMap hashMap = new HashMap(k4Var.f38774u0[0].f39703c.f38142w);
+                ArrayList arrayList2 = new ArrayList(k4Var.f38774u0[0].f39703c.f38143x);
                 k4Var.W0 = null;
                 Utilities.searchQueue.postRunnable(new vb(k4Var, arrayList2, hashMap, str4, i30, 15));
                 return;
@@ -381,7 +382,7 @@ public final class o implements Runnable {
                 int i32 = this.f838b;
                 TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView = (TLRPC.TL_chatInviteJoinResultWebView) this.f839c;
                 MessagesController.getInstance(i32).putUsers(tL_chatInviteJoinResultWebView.users, false);
-                BotGuardHelper.getInstance(i32).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20343id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
+                BotGuardHelper.getInstance(i32).openGuardBotWebApp(-((TLRPC.Chat) this.d).f20344id, tL_chatInviteJoinResultWebView.bot_id, tL_chatInviteJoinResultWebView.query_id);
                 return;
         }
     }

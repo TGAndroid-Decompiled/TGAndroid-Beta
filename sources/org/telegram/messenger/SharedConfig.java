@@ -279,14 +279,14 @@ public class SharedConfig {
         }
 
         public void toSerializedData(OutputSerializedData outputSerializedData) {
-            outputSerializedData.writeString(this.settings.f45165b);
-            outputSerializedData.writeInt32(this.settings.f45166c);
+            outputSerializedData.writeString(this.settings.f45164b);
+            outputSerializedData.writeInt32(this.settings.f45165c);
             outputSerializedData.writeString(this.settings.d);
             outputSerializedData.writeString(this.settings.e);
-            outputSerializedData.writeString(this.settings.f45167f);
+            outputSerializedData.writeString(this.settings.f45166f);
             outputSerializedData.writeInt64(this.ping);
             outputSerializedData.writeInt64(this.availableCheckTime);
-            int c10 = m1.j.c(this.settings.f45164a);
+            int c10 = m1.j.c(this.settings.f45163a);
             int i10 = 1;
             if (c10 != 1) {
                 i10 = 2;
@@ -489,12 +489,12 @@ public class SharedConfig {
     }
 
     public static void checkSaveToGalleryFiles() {
-        Utilities.globalQueue.postRunnable(new z1(22));
+        Utilities.globalQueue.postRunnable(new z1(24));
     }
 
     public static void checkSdCard(File file) {
         if (file != null && storageCacheDir != null && !readOnlyStorageDirAlertShowed && file.getPath().startsWith(storageCacheDir)) {
-            AndroidUtilities.runOnUIThread(new z1(21));
+            AndroidUtilities.runOnUIThread(new z1(23));
         }
     }
 
@@ -908,13 +908,13 @@ public class SharedConfig {
         if (!readOnlyStorageDirAlertShowed && (R = LaunchActivity.R()) != null && R.getParentActivity() != null) {
             storageCacheDir = null;
             saveConfig();
-            ImageLoader.getInstance().checkMediaPaths(new z1(20));
+            ImageLoader.getInstance().checkMediaPaths(new z1(22));
             readOnlyStorageDirAlertShowed = true;
             AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getParentActivity());
-            alertDialog$Builder.f20678a.R = LocaleController.getString(R.string.SdCardError);
-            alertDialog$Builder.f20678a.S = LocaleController.getString(R.string.SdCardErrorDescription);
-            alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new wg(3));
-            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20678a;
+            alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.SdCardError);
+            alertDialog$Builder.f20679a.S = LocaleController.getString(R.string.SdCardErrorDescription);
+            alertDialog$Builder.k(LocaleController.getString(R.string.DoNotUseSDCard), new xg(3));
+            org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
             c2Var.setCanceledOnTouchOutside(false);
             c2Var.show();
         }
@@ -1211,7 +1211,7 @@ public class SharedConfig {
 
     public static void saveProxyList() {
         ArrayList arrayList = new ArrayList(proxyList);
-        Collections.sort(arrayList, new yh(4));
+        Collections.sort(arrayList, new zh(4));
         SerializedData serializedData = new SerializedData();
         serializedData.writeInt32(-1);
         serializedData.writeByte(3);

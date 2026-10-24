@@ -20,9 +20,9 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.Components.af0;
-import org.telegram.ui.Components.da0;
-import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.ba0;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.ze0;
 public final class l2 extends View {
     public final Paint f9371a;
     public final TextPaint f9372b;
@@ -92,9 +92,9 @@ public final class l2 extends View {
             if (MessagesController.getInstance(i10).storyWeatherPreload) {
                 spannableStringBuilder = replaceEmoji;
                 spannableStringBuilder = replaceEmoji;
-                if (af0.d("android.permission.ACCESS_COARSE_LOCATION") && tcVar == null) {
+                if (ze0.d("android.permission.ACCESS_COARSE_LOCATION") && tcVar == null) {
                     SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder("___");
-                    spannableStringBuilder2.setSpan(new da0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
+                    spannableStringBuilder2.setSpan(new ba0(AndroidUtilities.dp(68.0f), this), 0, spannableStringBuilder2.length(), 33);
                     j2VarArr[0] = new j2(this, spannableStringBuilder2);
                     uc.a(false, new ai.o2(7, this, j2VarArr));
                     spannableStringBuilder = spannableStringBuilder2;
@@ -261,13 +261,13 @@ public final class l2 extends View {
             }
         }
         if (i2Var != null) {
-            yc ycVar = i2Var.f9200g;
+            wc wcVar = i2Var.f9200g;
             if (motionEvent.getAction() != 1 && motionEvent.getAction() != 3) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            ycVar.c(z10);
+            wcVar.c(z10);
         }
         if (motionEvent.getAction() == 1 && i2Var != null && (d1Var = this.e) != null) {
             d1Var.run(Integer.valueOf(i2Var.f9196a));

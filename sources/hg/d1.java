@@ -23,7 +23,7 @@ import org.telegram.ui.f60;
 import org.telegram.ui.f80;
 import org.telegram.ui.k4;
 import org.telegram.ui.lq;
-import org.telegram.ui.rf0;
+import org.telegram.ui.qf0;
 public final class d1 implements Runnable {
     public final int f11859a;
     public final int f11860b;
@@ -171,9 +171,9 @@ public final class d1 implements Runnable {
         this.f11863n = str;
     }
 
-    public d1(rf0 rf0Var, String str, c5.i iVar, List list, String str2, String str3, int i10) {
+    public d1(qf0 qf0Var, String str, c5.i iVar, List list, String str2, String str3, int i10) {
         this.f11859a = 13;
-        this.d = rf0Var;
+        this.d = qf0Var;
         this.f11861c = str;
         this.e = iVar;
         this.f11862f = list;

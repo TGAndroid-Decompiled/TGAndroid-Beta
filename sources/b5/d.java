@@ -176,7 +176,7 @@ public abstract class d {
     }
 
     public static Context f() {
-        LaunchActivity launchActivity = LaunchActivity.J1;
+        LaunchActivity launchActivity = LaunchActivity.I1;
         if (launchActivity == null) {
             return ApplicationLoader.applicationContext;
         }

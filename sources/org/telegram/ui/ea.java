@@ -14,19 +14,19 @@ import android.widget.FrameLayout;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 public final class ea extends org.telegram.ui.ActionBar.j {
-    public final int f36885a;
-    public final Object f36886b;
+    public final int f36863a;
+    public final Object f36864b;
 
     public ea(Object obj, int i10) {
-        this.f36885a = i10;
-        this.f36886b = obj;
+        this.f36863a = i10;
+        this.f36864b = obj;
     }
 
     @Override
     public final void b(int i10) {
         Runnable runnable;
-        int i11 = this.f36885a;
-        Object obj = this.f36886b;
+        int i11 = this.f36863a;
+        Object obj = this.f36864b;
         switch (i11) {
             case 0:
                 sa saVar = (sa) obj;
@@ -49,7 +49,7 @@ public final class ea extends org.telegram.ui.ActionBar.j {
             case 2:
                 bd bdVar = (bd) obj;
                 if (i10 == -1) {
-                    if (bdVar.f36019b >= bdVar.U0() && bdVar.S0()) {
+                    if (bdVar.f36017b >= bdVar.U0() && bdVar.S0()) {
                         bdVar.X0();
                         return;
                     } else {
@@ -78,14 +78,14 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     lc lcVar = new lc(bdVar, bdVar.getParentActivity(), canvas, (bdVar.L.getMeasuredWidth() / 2.0f) + f7, (bdVar.L.getMeasuredHeight() / 2.0f) + f10, max, paint, createBitmap, paint2, f7, f10, 0);
                     bdVar.m0 = lcVar;
                     lcVar.setOnTouchListener(new di.d(2));
-                    bdVar.f36034n0 = 0.0f;
+                    bdVar.f36032n0 = 0.0f;
                     ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-                    bdVar.f36035o0 = ofFloat;
+                    bdVar.f36033o0 = ofFloat;
                     ofFloat.addUpdateListener(new ei.eb(bdVar, 1));
-                    bdVar.f36035o0.addListener(new m.a(bdVar, 22));
-                    bdVar.f36035o0.setDuration(400L);
-                    bdVar.f36035o0.setInterpolator(org.telegram.ui.Components.st.e);
-                    bdVar.f36035o0.start();
+                    bdVar.f36033o0.addListener(new m.a(bdVar, 22));
+                    bdVar.f36033o0.setDuration(400L);
+                    bdVar.f36033o0.setInterpolator(org.telegram.ui.Components.qt.e);
+                    bdVar.f36033o0.start();
                     frameLayout.addView(bdVar.m0, new ViewGroup.LayoutParams(-1, -1));
                     AndroidUtilities.runOnUIThread(new gc(bdVar, 0));
                     return;
@@ -112,8 +112,8 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     yoVar.finishFragment();
                     return;
                 } else if (i10 == 1) {
-                    org.telegram.ui.Components.as asVar = yoVar.f43933r;
-                    if (asVar == null || asVar.f24834c <= 0.0f) {
+                    org.telegram.ui.Components.yr yrVar = yoVar.f43920r;
+                    if (yrVar == null || yrVar.f33027c <= 0.0f) {
                         yoVar.Z();
                         return;
                     }
@@ -162,55 +162,55 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                     return;
                 }
             case 9:
-                org.telegram.ui.Components.k8 k8Var = (org.telegram.ui.Components.k8) obj;
+                org.telegram.ui.Components.i8 i8Var = (org.telegram.ui.Components.i8) obj;
                 if (i10 == -1) {
-                    k8Var.dismiss();
+                    i8Var.dismiss();
                     return;
                 } else {
-                    k8Var.A0(i10);
+                    i8Var.A0(i10);
                     return;
                 }
             case 10:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.bb) obj).dismiss();
+                    ((org.telegram.ui.Components.za) obj).dismiss();
                     return;
                 }
                 return;
             case 11:
-                org.telegram.ui.Components.ti tiVar = (org.telegram.ui.Components.ti) obj;
+                org.telegram.ui.Components.ri riVar = (org.telegram.ui.Components.ri) obj;
                 if (i10 == -1) {
-                    if (!tiVar.B0.j()) {
-                        tiVar.dismiss();
+                    if (!riVar.B0.j()) {
+                        riVar.dismiss();
                         return;
                     }
                     return;
                 }
-                tiVar.B0.w(i10);
+                riVar.B0.w(i10);
                 return;
             case 12:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.k40) obj).finishFragment();
+                    ((org.telegram.ui.Components.i40) obj).finishFragment();
                     return;
                 }
                 return;
             case 13:
-                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.ig0) obj).f27318r) != null) {
+                if (i10 == -1 && (runnable = ((org.telegram.ui.Components.hg0) obj).f27032r) != null) {
                     AndroidUtilities.runOnUIThread(runnable);
                     return;
                 }
                 return;
             case 14:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.oh0) obj).dismiss();
+                    ((org.telegram.ui.Components.nh0) obj).dismiss();
                     return;
                 }
                 return;
             case 15:
-                ((org.telegram.ui.Components.ir0) obj).onBackPressed();
+                ((org.telegram.ui.Components.hr0) obj).onBackPressed();
                 return;
             case 16:
                 if (i10 == -1) {
-                    ((org.telegram.ui.Components.e71) obj).finishFragment();
+                    ((org.telegram.ui.Components.d71) obj).finishFragment();
                     return;
                 }
                 return;
@@ -222,7 +222,7 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                 return;
             case 18:
                 if (i10 == -1) {
-                    ((hh1) obj).a(false, false);
+                    ((gh1) obj).a(false, false);
                     return;
                 }
                 return;
@@ -275,10 +275,10 @@ public final class ea extends org.telegram.ui.ActionBar.j {
                         ozVar.c0();
                         return;
                     } else if (Math.abs(ozVar.U - 0.5f) < 0.1f) {
-                        for (int i12 = 0; i12 < ozVar.f40303a.getChildCount(); i12++) {
-                            View childAt = ozVar.f40303a.getChildAt(i12);
-                            ozVar.f40303a.getClass();
-                            if (RecyclerView.R(childAt) == ozVar.M && (childAt instanceof org.telegram.ui.Components.h10)) {
+                        for (int i12 = 0; i12 < ozVar.f40280a.getChildCount(); i12++) {
+                            View childAt = ozVar.f40280a.getChildAt(i12);
+                            ozVar.f40280a.getClass();
+                            if (RecyclerView.R(childAt) == ozVar.M && (childAt instanceof org.telegram.ui.Components.f10)) {
                                 int i13 = -ozVar.v;
                                 ozVar.v = i13;
                                 AndroidUtilities.shakeViewSpring(childAt, i13);

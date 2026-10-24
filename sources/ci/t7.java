@@ -50,14 +50,14 @@ public final class t7 implements RequestDelegate {
                             int size = tL_stories_stories.stories.size();
                             long j10 = this.f5965c;
                             if (i12 < size) {
-                                if (tL_stories_stories.stories.get(i12).f20577id == v7.e(messageObject)) {
+                                if (tL_stories_stories.stories.get(i12).f20578id == v7.e(messageObject)) {
                                     v7.b(i10, j10, messageObject, tL_stories_stories.stories.get(i12));
                                 } else {
                                     i12++;
                                 }
                             } else {
                                 TL_stories.TL_storyItemDeleted tL_storyItemDeleted = new TL_stories.TL_storyItemDeleted();
-                                tL_storyItemDeleted.f20577id = v7.e(messageObject);
+                                tL_storyItemDeleted.f20578id = v7.e(messageObject);
                                 v7.b(i10, j10, messageObject, tL_storyItemDeleted);
                             }
                         }

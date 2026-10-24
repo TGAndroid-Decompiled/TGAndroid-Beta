@@ -16,8 +16,8 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.bs;
-import org.telegram.ui.Components.eh0;
+import org.telegram.ui.Components.dh0;
+import org.telegram.ui.Components.zr;
 public final class v9 implements View.OnClickListener {
     public final int f9961a;
     public final vb f9962b;
@@ -30,7 +30,7 @@ public final class v9 implements View.OnClickListener {
     @Override
     public final void onClick(View view) {
         long j10;
-        bs bsVar;
+        zr zrVar;
         boolean z10;
         int i10;
         String string;
@@ -97,11 +97,11 @@ public final class v9 implements View.OnClickListener {
                         valueAnimator2.setDuration(j10);
                         ValueAnimator valueAnimator3 = vbVar2.E2;
                         if (z12) {
-                            bsVar = bs.f25135i;
+                            zrVar = zr.f33339i;
                         } else {
-                            bsVar = bs.h;
+                            zrVar = zr.h;
                         }
-                        valueAnimator3.setInterpolator(bsVar);
+                        valueAnimator3.setInterpolator(zrVar);
                         vbVar2.E2.start();
                         vbVar2.f10004n.addView(vbVar2.C2, new ViewGroup.LayoutParams(-1, -1));
                         AndroidUtilities.runOnUIThread(new t9(vbVar2, 4));
@@ -158,11 +158,11 @@ public final class v9 implements View.OnClickListener {
                         if (x3Var.getMeasuredWidth() < 0) {
                             x3Var.G = string;
                         } else {
-                            org.telegram.ui.Components.p6 p6Var = x3Var.H;
+                            org.telegram.ui.Components.n6 n6Var = x3Var.H;
                             if (!LocaleController.isRTL && z13) {
                                 z11 = true;
                             }
-                            p6Var.t(string, z11, true);
+                            n6Var.t(string, z11, true);
                         }
                         vbVar.f9998k1.u();
                     }
@@ -174,7 +174,7 @@ public final class v9 implements View.OnClickListener {
             case 3:
                 boolean k10 = vbVar.X0.k();
                 vbVar.X0.x(-9982, k10);
-                ((eh0) vbVar.f9995j1.f9080c).a(!k10, true);
+                ((dh0) vbVar.f9995j1.f9080c).a(!k10, true);
                 return;
             case 4:
                 if (vbVar.B0 != null && !vbVar.S1) {

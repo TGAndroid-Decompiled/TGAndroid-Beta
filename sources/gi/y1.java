@@ -11,10 +11,10 @@ import org.telegram.messenger.R;
 import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lb;
-import org.telegram.ui.Components.xc;
+import org.telegram.ui.Components.jb;
+import org.telegram.ui.Components.vc;
 import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.s21;
+import org.telegram.ui.r21;
 import org.telegram.ui.sn;
 public final class y1 implements Runnable {
     public final int f11592a;
@@ -132,10 +132,10 @@ public final class y1 implements Runnable {
             case 13:
                 int i13 = d3Var.H;
                 Context context = d3Var.getContext();
-                xc xcVar = new xc(lb.a(d3Var.getContext()), d3Var.F);
+                vc vcVar = new vc(jb.a(d3Var.getContext()), d3Var.F);
                 long j10 = d3Var.I;
-                int i14 = s21.f41291w;
-                s21.N(i13, context, j10, false, false, new ArrayList(), xcVar, null, new byte[0], null, null);
+                int i14 = r21.f40991w;
+                r21.N(i13, context, j10, false, false, new ArrayList(), vcVar, null, new byte[0], null, null);
                 return;
             case 14:
                 d3.j(d3Var.H, d3Var.I, new y1(d3Var, 15));

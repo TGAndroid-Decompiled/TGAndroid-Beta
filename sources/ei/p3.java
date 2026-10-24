@@ -10,8 +10,8 @@ import org.telegram.messenger.MessagesController;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lm0;
-public abstract class p3 extends lm0 {
+import org.telegram.ui.Components.km0;
+public abstract class p3 extends km0 {
     public boolean d;
     public String f9597f;
     public String h;
@@ -80,25 +80,25 @@ public abstract class p3 extends lm0 {
 
     @Override
     public final void v(s4.b1 b1Var, int i10) {
-        org.telegram.ui.Components.w9 w9Var = (org.telegram.ui.Components.w9) b1Var.f46343a;
+        org.telegram.ui.Components.u9 u9Var = (org.telegram.ui.Components.u9) b1Var.f46342a;
         TLObject tLObject = (TLObject) this.f9596c.get(i10);
         boolean z10 = tLObject instanceof TLRPC.Document;
         ColorDrawable colorDrawable = this.f9600s;
         if (z10) {
-            w9Var.h(ImageLocation.getForDocument((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
+            u9Var.h(ImageLocation.getForDocument((TLRPC.Document) tLObject), "200_200", colorDrawable, null);
         } else if (tLObject instanceof TLRPC.Photo) {
             TLRPC.Photo photo = (TLRPC.Photo) tLObject;
-            w9Var.h(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 320), photo), "200_200", colorDrawable, null);
+            u9Var.h(ImageLocation.getForPhoto(FileLoader.getClosestPhotoSizeWithSize(photo.sizes, 320), photo), "200_200", colorDrawable, null);
         } else if (tLObject instanceof TLRPC.BotInlineResult) {
             TLRPC.BotInlineResult botInlineResult = (TLRPC.BotInlineResult) tLObject;
             TLRPC.WebDocument webDocument = botInlineResult.thumb;
             if (webDocument != null) {
-                w9Var.h(ImageLocation.getForPath(webDocument.url), "200_200", colorDrawable, botInlineResult);
+                u9Var.h(ImageLocation.getForPath(webDocument.url), "200_200", colorDrawable, botInlineResult);
             } else {
-                w9Var.b();
+                u9Var.b();
             }
         } else {
-            w9Var.b();
+            u9Var.b();
         }
     }
 

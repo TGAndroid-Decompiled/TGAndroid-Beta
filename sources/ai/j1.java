@@ -8,7 +8,7 @@ import android.view.animation.LinearInterpolator;
 import java.util.ArrayList;
 import java.util.HashSet;
 import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class j1 extends View implements NotificationCenter.NotificationCenterDelegate {
     public float E;
     public y9 F;
@@ -32,12 +32,12 @@ public final class j1 extends View implements NotificationCenter.NotificationCen
     public float v;
     public float f1531w;
     public float f1532x;
-    public final org.telegram.ui.Components.f6 f1533y;
+    public final org.telegram.ui.Components.d6 f1533y;
 
     public j1(Context context, int i10, long j10, org.telegram.ui.l0 l0Var) {
         super(context);
         this.d = true;
-        this.f1533y = new org.telegram.ui.Components.f6(this, 0L, 350L, bs.h);
+        this.f1533y = new org.telegram.ui.Components.d6(this, 0L, 350L, zr.h);
         this.E = 1.0f;
         this.G = new ArrayList();
         this.H = new ArrayList();

@@ -5,8 +5,8 @@ import m.b3;
 import m.e2;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.i01;
-import org.telegram.ui.my0;
+import org.telegram.ui.h01;
+import org.telegram.ui.ly0;
 import z4.h;
 public final class a extends DataSetObserver {
     public final int f11643a;
@@ -33,20 +33,20 @@ public final class a extends DataSetObserver {
                 }
                 return;
             case 2:
-                i01 i01Var = (i01) this.f11644b;
-                ProfileActivity profileActivity = i01Var.f38007n;
-                int realCount = profileActivity.f33981o0.getRealCount();
+                h01 h01Var = (h01) this.f11644b;
+                ProfileActivity profileActivity = h01Var.f37712n;
+                int realCount = profileActivity.f33983o0.getRealCount();
                 if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
                     profileActivity.B0 = 1;
                 }
-                i01Var.a(false);
-                i01Var.b(1.0f);
-                if (profileActivity.f34001r0 != null) {
+                h01Var.a(false);
+                h01Var.b(1.0f);
+                if (profileActivity.f34003r0 != null) {
                     if (profileActivity.U0.t()) {
-                        AndroidUtilities.runOnUIThread(new my0(i01Var, 4), 500L);
+                        AndroidUtilities.runOnUIThread(new ly0(h01Var, 4), 500L);
                         return;
                     } else {
-                        i01Var.c();
+                        h01Var.c();
                         return;
                     }
                 }

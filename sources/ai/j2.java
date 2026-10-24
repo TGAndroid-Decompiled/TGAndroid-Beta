@@ -12,15 +12,15 @@ import org.telegram.tgnet.tl.TL_account;
 import org.telegram.tgnet.tl.TL_phone;
 import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.Components.ez0;
-import org.telegram.ui.Components.g30;
-import org.telegram.ui.Components.j90;
-import org.telegram.ui.Components.k10;
-import org.telegram.ui.Components.lg;
-import org.telegram.ui.Components.mz;
-import org.telegram.ui.Components.ny;
-import org.telegram.ui.Components.ty0;
-import org.telegram.ui.k01;
+import org.telegram.ui.Components.dz0;
+import org.telegram.ui.Components.e30;
+import org.telegram.ui.Components.h90;
+import org.telegram.ui.Components.i10;
+import org.telegram.ui.Components.jg;
+import org.telegram.ui.Components.kz;
+import org.telegram.ui.Components.ly;
+import org.telegram.ui.Components.sy0;
+import org.telegram.ui.j01;
 public final class j2 implements RequestDelegate {
     public final int f1534a;
     public final Object f1535b;
@@ -77,22 +77,22 @@ public final class j2 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i(tLObject, (org.telegram.ui.ActionBar.i6) this.f1535b, (org.telegram.ui.ActionBar.j6) this.f1536c, (TLRPC.TL_theme) this.d, 4));
                 return;
             case 13:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((ny) this.f1535b, (org.telegram.ui.ActionBar.c2[]) this.f1536c, tLObject, (org.telegram.ui.ActionBar.b3) this.d, 24));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((ly) this.f1535b, (org.telegram.ui.ActionBar.c2[]) this.f1536c, tLObject, (org.telegram.ui.ActionBar.b3) this.d, 24));
                 return;
             case 14:
-                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((mz) this.f1535b, (TLRPC.TL_messages_getStickers) this.f1536c, tLObject, (Runnable) this.d));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.camera.i((kz) this.f1535b, (TLRPC.TL_messages_getStickers) this.f1536c, tLObject, (Runnable) this.d));
                 return;
             case 15:
-                AndroidUtilities.runOnUIThread(new lg((Object) ((k10) this.f1535b), (Object) ((org.telegram.ui.ActionBar.o2) this.f1536c), (ArrayList) this.d, 7));
+                AndroidUtilities.runOnUIThread(new jg((Object) ((i10) this.f1535b), (Object) ((org.telegram.ui.ActionBar.o2) this.f1536c), (ArrayList) this.d, 7));
                 return;
             case 16:
-                AndroidUtilities.runOnUIThread(new j90(tL_error, (ei.d) this.f1535b, (org.telegram.ui.r6) this.f1536c, (Runnable) this.d));
+                AndroidUtilities.runOnUIThread(new h90(tL_error, (ei.d) this.f1535b, (org.telegram.ui.r6) this.f1536c, (Runnable) this.d));
                 return;
             case 17:
-                AndroidUtilities.runOnUIThread(new g30((ty0) this.f1535b, (String) this.f1536c, tL_error, tLObject, (TextView) this.d, 1));
+                AndroidUtilities.runOnUIThread(new e30((sy0) this.f1535b, (String) this.f1536c, tL_error, tLObject, (TextView) this.d, 1));
                 return;
             case 18:
-                AndroidUtilities.runOnUIThread(new g30((ez0) this.f1535b, tLObject, (TLRPC.UserFull) this.f1536c, (TL_account.TL_birthday) this.d, tL_error, 2));
+                AndroidUtilities.runOnUIThread(new e30((dz0) this.f1535b, tLObject, (TLRPC.UserFull) this.f1536c, (TL_account.TL_birthday) this.d, tL_error, 2));
                 return;
             case 19:
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.b0((org.telegram.ui.web.b1) this.f1535b, tL_error, (String) this.f1536c, (TLRPC.TL_inputInvoiceSlug) this.d, tLObject));
@@ -101,10 +101,10 @@ public final class j2 implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new org.telegram.ui.web.b0((org.telegram.ui.web.b1) this.f1535b, tLObject, (String[]) this.f1536c, tL_error, (org.telegram.ui.ActionBar.c2) this.d));
                 return;
             case 21:
-                AndroidUtilities.runOnUIThread(new k01(tL_error, (Utilities.Callback) this.f1535b, tLObject, (MessagesController) this.f1536c, (Utilities.Callback) this.d, 9));
+                AndroidUtilities.runOnUIThread(new j01(tL_error, (Utilities.Callback) this.f1535b, tLObject, (MessagesController) this.f1536c, (Utilities.Callback) this.d, 9));
                 return;
             case 22:
-                AndroidUtilities.runOnUIThread(new k01(tL_error, (org.telegram.messenger.w) this.f1535b, tLObject, (MessagesController) this.f1536c, (org.telegram.messenger.k2) this.d, 10));
+                AndroidUtilities.runOnUIThread(new j01(tL_error, (org.telegram.messenger.w) this.f1535b, tLObject, (MessagesController) this.f1536c, (org.telegram.messenger.k2) this.d, 10));
                 return;
             case 23:
                 ug.t tVar = (ug.t) this.f1535b;
@@ -121,13 +121,13 @@ public final class j2 implements RequestDelegate {
                     return;
                 }
             case 24:
-                AndroidUtilities.runOnUIThread(new k01(tLObject, (MessagesController) this.f1535b, (ci.y2) this.f1536c, (ug.e) this.d, tL_error, 11));
+                AndroidUtilities.runOnUIThread(new j01(tLObject, (MessagesController) this.f1535b, (ci.y2) this.f1536c, (ug.e) this.d, tL_error, 11));
                 return;
             case 25:
-                AndroidUtilities.runOnUIThread(new k01((ug.l1) this.f1535b, tLObject, (TLRPC.UserFull) this.f1536c, (TL_account.TL_birthday) this.d, tL_error, 12));
+                AndroidUtilities.runOnUIThread(new j01((ug.l1) this.f1535b, tLObject, (TLRPC.UserFull) this.f1536c, (TL_account.TL_birthday) this.d, tL_error, 12));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new k01((yh.x4) this.f1535b, tLObject, (TLRPC.TL_inputStorePaymentGiftPremium) this.f1536c, tL_error, (TLRPC.TL_payments_canPurchaseStore) this.d, 13));
+                AndroidUtilities.runOnUIThread(new j01((yh.x4) this.f1535b, tLObject, (TLRPC.TL_inputStorePaymentGiftPremium) this.f1536c, tL_error, (TLRPC.TL_payments_canPurchaseStore) this.d, 13));
                 return;
         }
     }

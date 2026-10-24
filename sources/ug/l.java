@@ -13,23 +13,23 @@ import org.telegram.ui.ActionBar.g6;
 import org.telegram.ui.ActionBar.h3;
 import org.telegram.ui.ActionBar.k6;
 import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.qc;
+import org.telegram.ui.Components.oc;
 public final class l extends h3 {
     public static l e;
-    public final j f48145b;
-    public final x0 f48146c;
+    public final j f48144b;
+    public final x0 f48145c;
     public boolean d;
 
     public l(Activity activity, y yVar, x0 x0Var, g6 g6Var, boolean z10) {
         super(1, (Context) activity, g6Var, true);
         boolean z11;
-        this.f48146c = x0Var;
+        this.f48145c = x0Var;
         setApplyBottomPadding(false);
         setApplyTopPadding(false);
         this.useBackgroundTopPadding = false;
         setBackgroundColor(0);
         fixNavigationBar();
-        if (i0.a.h(k6.w0(k6.f21254h5, this.resourcesProvider)) > 0.699999988079071d) {
+        if (i0.a.h(k6.w0(k6.f21255h5, this.resourcesProvider)) > 0.699999988079071d) {
             z11 = true;
         } else {
             z11 = false;
@@ -37,20 +37,20 @@ public final class l extends h3 {
         AndroidUtilities.setLightStatusBar(this, z11);
         this.d = getContext().getResources().getConfiguration().orientation == 2;
         j jVar = new j(this, getContext(), x0Var, g6Var, yVar);
-        this.f48145b = jVar;
+        this.f48144b = jVar;
         jVar.setOverScrollMode(2);
         jVar.setClipToPadding(false);
         jVar.setAdapter(new j5(yVar, x0Var));
         jVar.setPosition(0);
         setCustomView(jVar);
-        yVar.f48258t0 = new i(this, 0);
-        yVar.f48256r0 = new n2.e(this, x0Var, false, 19);
-        x0Var.f48238u0 = new k(this, yVar, g6Var);
-        x0Var.f48236s0 = new i(this, 1);
+        yVar.f48257t0 = new i(this, 0);
+        yVar.f48255r0 = new n2.e(this, x0Var, false, 19);
+        x0Var.f48237u0 = new k(this, yVar, g6Var);
+        x0Var.f48235s0 = new i(this, 1);
         if (!z10) {
             MessagesController.getInstance(this.currentAccount).getStoriesController().R();
         }
-        qc.a(this.container, new o8(13));
+        oc.a(this.container, new o8(13));
     }
 
     public static void m(o2 o2Var, g6 g6Var, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway) {
@@ -82,9 +82,9 @@ public final class l extends h3 {
 
     @Override
     public final void onBackPressed() {
-        j jVar = this.f48145b;
+        j jVar = this.f48144b;
         if (jVar.getCurrentPosition() > 0) {
-            x0 x0Var = this.f48146c;
+            x0 x0Var = this.f48145c;
             if (x0Var.S()) {
                 return;
             }
@@ -100,7 +100,7 @@ public final class l extends h3 {
     @Override
     public final void onConfigurationChanged(Configuration configuration) {
         boolean z10;
-        this.f48146c.onConfigurationChanged(configuration);
+        this.f48145c.onConfigurationChanged(configuration);
         if (getContext().getResources().getConfiguration().orientation == 2) {
             z10 = true;
         } else {

@@ -85,14 +85,14 @@ import org.telegram.tgnet.tl.TL_iv;
 import org.telegram.ui.Cells.n9;
 import org.telegram.ui.Cells.o9;
 import org.telegram.ui.Components.g81;
-import org.telegram.ui.Components.j80;
+import org.telegram.ui.Components.h80;
 import org.telegram.ui.Components.j81;
-import org.telegram.ui.Components.so0;
-import org.telegram.ui.Components.ti;
+import org.telegram.ui.Components.ri;
+import org.telegram.ui.Components.ro0;
 import org.telegram.ui.Stories.ProfileStoriesView;
 import org.telegram.ui.px;
-import org.telegram.ui.sz0;
-import org.telegram.ui.yy0;
+import org.telegram.ui.rz0;
+import org.telegram.ui.xy0;
 import r0.b0;
 import r0.i0;
 import r0.k1;
@@ -417,7 +417,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
                 int i12 = rect.left;
                 int i13 = rect.right;
                 ViewGroup viewGroup2 = rVar.J;
-                WeakHashMap weakHashMap = i0.f45242a;
+                WeakHashMap weakHashMap = i0.f45241a;
                 k1 a2 = b0.a(viewGroup2);
                 if (a2 == null) {
                     b10 = 0;
@@ -569,7 +569,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     public void I(Exception exc) {
         e2.a.d("DecoderAudioRenderer", "Audio sink error", exc);
         qf.b bVar = ((FfmpegAudioRenderer) this.f279b).I;
-        Handler handler = (Handler) bVar.f44864b;
+        Handler handler = (Handler) bVar.f44863b;
         if (handler != null) {
             handler.post(new k2.r(bVar, exc, 1));
         }
@@ -625,8 +625,8 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     }
 
     @Override
-    public j80 M(View view) {
-        return j80.H((d2) this.f279b, view);
+    public h80 M(View view) {
+        return h80.H((d2) this.f279b, view);
     }
 
     @Override
@@ -665,7 +665,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
 
     @Override
     public boolean O(int i10) {
-        if (i10 == ((so0) this.f279b).f11903d0) {
+        if (i10 == ((ro0) this.f279b).f11903d0) {
             return true;
         }
         return false;
@@ -681,7 +681,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void Q(u0 u0Var) {
         qf.b bVar = ((FfmpegAudioRenderer) this.f279b).I;
-        Handler handler = (Handler) bVar.f44864b;
+        Handler handler = (Handler) bVar.f44863b;
         if (handler != null) {
             handler.post(new u(bVar, u0Var, 1));
         }
@@ -696,17 +696,17 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
         r4 r4Var4;
         w9Var.f6068b = null;
         w9Var.f6069c = null;
-        yy0 yy0Var = (yy0) this.f279b;
-        sz0 sz0Var = yy0Var.h;
-        ArrayList arrayList = yy0Var.f34192w;
-        if (yy0Var.N < 0.2f) {
-            w9Var.f6068b = sz0Var.getImageReceiver();
+        xy0 xy0Var = (xy0) this.f279b;
+        rz0 rz0Var = xy0Var.h;
+        ArrayList arrayList = xy0Var.f34194w;
+        if (xy0Var.N < 0.2f) {
+            w9Var.f6068b = rz0Var.getImageReceiver();
             w9Var.f6069c = null;
-            w9Var.f6067a = sz0Var;
+            w9Var.f6067a = rz0Var;
             w9Var.h = 0.0f;
             w9Var.f6072i = AndroidUtilities.displaySize.y;
-            w9Var.f6071g = (View) yy0Var.getParent();
-            w9Var.d = yy0Var.f34194y;
+            w9Var.f6071g = (View) xy0Var.getParent();
+            w9Var.d = xy0Var.f34196y;
             w9Var.f6077n = true;
             return true;
         }
@@ -746,10 +746,10 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
         }
         w9Var.f6069c = imageReceiver;
         w9Var.f6068b = null;
-        w9Var.f6067a = yy0Var;
+        w9Var.f6067a = xy0Var;
         w9Var.h = 0.0f;
         w9Var.f6072i = AndroidUtilities.displaySize.y;
-        w9Var.f6071g = (View) yy0Var.getParent();
+        w9Var.f6071g = (View) xy0Var.getParent();
         if (r4Var != null && r4Var2 != null) {
             w9Var.f6070f = new t7(this, new RectF(r4Var.f5866m), r4Var, new RectF(r4Var2.f5866m), r4Var2);
             return true;
@@ -761,26 +761,26 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void S(ArrayList arrayList) {
         boolean z10;
-        so0 so0Var = (so0) this.f279b;
+        ro0 ro0Var = (ro0) this.f279b;
         for (int i10 = 0; i10 < arrayList.size(); i10++) {
-            so0Var.J.add(((y1) arrayList.get(i10)).f12139a);
+            ro0Var.J.add(((y1) arrayList.get(i10)).f12139a);
         }
-        px pxVar = so0Var.U;
+        px pxVar = ro0Var.U;
         if (pxVar != null) {
-            if (so0Var.D0 > 0) {
+            if (ro0Var.D0 > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             pxVar.d(z10, false);
         }
-        so0Var.l();
+        ro0Var.l();
     }
 
     @Override
     public void T(u0 u0Var) {
         qf.b bVar = ((FfmpegAudioRenderer) this.f279b).I;
-        Handler handler = (Handler) bVar.f44864b;
+        Handler handler = (Handler) bVar.f44863b;
         if (handler != null) {
             handler.post(new u(bVar, u0Var, 0));
         }
@@ -789,7 +789,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void V(ki.v3 v3Var, View view) {
         d2 d2Var = (d2) this.f279b;
-        j80 H = j80.H(d2Var, view);
+        h80 H = h80.H(d2Var, view);
         H.Q = true;
         d2Var.getParentActivity();
         d2Var.getResourceProvider();
@@ -822,8 +822,8 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
 
     @Override
     public void X0(long j10, int i10, ci.s3 s3Var) {
-        int i11 = ProfileStoriesView.f34167s0;
-        ((yy0) this.f279b).f(true, false);
+        int i11 = ProfileStoriesView.f34169s0;
+        ((xy0) this.f279b).f(true, false);
         s3Var.run();
     }
 
@@ -856,7 +856,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
         FfmpegAudioRenderer ffmpegAudioRenderer = (FfmpegAudioRenderer) this.f279b;
         ffmpegAudioRenderer.f3428g0 = true;
         qf.b bVar = ffmpegAudioRenderer.I;
-        Handler handler = (Handler) bVar.f44864b;
+        Handler handler = (Handler) bVar.f44863b;
         if (handler != null) {
             handler.post(new ai.v3(bVar, j10, 13));
         }
@@ -909,7 +909,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
                 com.google.android.gms.common.api.g gVar = new com.google.android.gms.common.api.g(new com.google.android.gms.common.api.h(-1, -1, 0, true));
                 Parcel obtain3 = Parcel.obtain();
                 obtain3.writeInterfaceToken("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-                int i12 = q7.a.f44833a;
+                int i12 = q7.a.f44832a;
                 obtain3.writeStrongBinder(fVar3);
                 q7.a.b(obtain3, (g7.f) obj3);
                 q7.a.b(obtain3, gVar);
@@ -1024,27 +1024,27 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void f(int i10) {
         boolean z10;
-        so0 so0Var = (so0) this.f279b;
-        so0Var.D0--;
-        so0Var.f11904e0 = i10;
-        if (so0Var.f11906f0 != i10) {
-            so0Var.f11920s.clear();
+        ro0 ro0Var = (ro0) this.f279b;
+        ro0Var.D0--;
+        ro0Var.f11904e0 = i10;
+        if (ro0Var.f11906f0 != i10) {
+            ro0Var.f11920s.clear();
         }
-        if (so0Var.f11907g0 != i10) {
-            so0Var.I.clear();
+        if (ro0Var.f11907g0 != i10) {
+            ro0Var.I.clear();
         }
-        so0Var.N = true;
-        px pxVar = so0Var.U;
+        ro0Var.N = true;
+        px pxVar = ro0Var.U;
         if (pxVar != null) {
-            if (so0Var.D0 > 0) {
+            if (ro0Var.D0 > 0) {
                 z10 = true;
             } else {
                 z10 = false;
             }
             pxVar.d(z10, true);
         }
-        so0Var.l();
-        px pxVar2 = so0Var.U;
+        ro0Var.l();
+        px pxVar2 = ro0Var.U;
         if (pxVar2 != null) {
             pxVar2.c();
         }
@@ -1161,13 +1161,13 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     public void i(ki.a aVar) {
         d2 d2Var = (d2) this.f279b;
         if (aVar != null && (aVar.f15141b instanceof TL_iv.pageBlockMap) && AndroidUtilities.isMapsInstalled(d2Var)) {
-            ti tiVar = new ti(d2Var.getParentActivity(), d2Var, false, false, false, d2Var.getResourceProvider());
-            tiVar.f30722c2 = new oa.d(12);
-            tiVar.P = true;
-            tiVar.A1.setVisibility(8);
-            tiVar.f30796z2 = new u2(d2Var, aVar, tiVar, 12);
-            tiVar.w1();
-            tiVar.show();
+            ri riVar = new ri(d2Var.getParentActivity(), d2Var, false, false, false, d2Var.getResourceProvider());
+            riVar.f30138c2 = new oa.d(12);
+            riVar.P = true;
+            riVar.A1.setVisibility(8);
+            riVar.f30212z2 = new u2(d2Var, aVar, riVar, 12);
+            riVar.w1();
+            riVar.show();
         }
     }
 
@@ -1208,7 +1208,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void n(t3 t3Var, View view) {
         d2 d2Var = (d2) this.f279b;
-        j80 H = j80.H(d2Var, view);
+        h80 H = h80.H(d2Var, view);
         H.Q = true;
         d2Var.f15285x0 = j4.c(H, d2Var, d2Var.getParentActivity(), d2Var.getResourceProvider(), t3Var, false);
     }
@@ -1216,7 +1216,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void onAudioSessionIdChanged(int i10) {
         qf.b bVar = ((FfmpegAudioRenderer) this.f279b).I;
-        Handler handler = (Handler) bVar.f44864b;
+        Handler handler = (Handler) bVar.f44863b;
         if (handler != null) {
             handler.post(new ah.g(bVar, i10, 14));
         }
@@ -1244,7 +1244,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void onSkipSilenceEnabledChanged(boolean z10) {
         qf.b bVar = ((FfmpegAudioRenderer) this.f279b).I;
-        Handler handler = (Handler) bVar.f44864b;
+        Handler handler = (Handler) bVar.f44863b;
         if (handler != null) {
             handler.post(new t(12, bVar, z10));
         }
@@ -1395,8 +1395,8 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
         rg.d2 d2Var = ((r6) this.f279b).f9749w;
         if (d2Var != null) {
             float f10 = i10 / i11;
-            if (Math.abs(d2Var.f45748y0 - f10) >= 1.0E-4f) {
-                d2Var.f45748y0 = f10;
+            if (Math.abs(d2Var.f45747y0 - f10) >= 1.0E-4f) {
+                d2Var.f45747y0 = f10;
                 d2Var.requestLayout();
             }
         }
@@ -1441,7 +1441,7 @@ public final class l implements z3.d, a0, androidx.activity.result.b, r, v9, OnS
     @Override
     public void t(int i10, long j10, long j11) {
         qf.b bVar = ((FfmpegAudioRenderer) this.f279b).I;
-        Handler handler = (Handler) bVar.f44864b;
+        Handler handler = (Handler) bVar.f44863b;
         if (handler != null) {
             handler.post(new k2.t(bVar, i10, j10, j11, 0));
         }

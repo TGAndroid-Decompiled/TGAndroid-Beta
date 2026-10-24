@@ -10,17 +10,17 @@ public class FileLoaderPriorityQueue {
     int currentAccount;
     String name;
     int type;
-    final DispatchQueue workerQueue;
+    final DispatchQueue2 workerQueue;
     public ArrayList<FileLoadOperation> allOperations = new ArrayList<>();
     public ArrayList<FileLoadOperation> tmpListOperations = new ArrayList<>();
     boolean checkOperationsScheduled = false;
     Runnable checkOperationsRunnable = new i1(this, 18);
 
-    public FileLoaderPriorityQueue(int i10, String str, int i11, DispatchQueue dispatchQueue) {
+    public FileLoaderPriorityQueue(int i10, String str, int i11, DispatchQueue2 dispatchQueue2) {
         this.currentAccount = i10;
         this.name = str;
         this.type = i11;
-        this.workerQueue = dispatchQueue;
+        this.workerQueue = dispatchQueue2;
     }
 
     public static void a(FileLoaderPriorityQueue fileLoaderPriorityQueue) {

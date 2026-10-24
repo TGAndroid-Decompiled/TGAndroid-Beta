@@ -1,28 +1,24 @@
 package org.telegram.ui.Components;
 
 import org.telegram.messenger.Utilities;
-public final class cn implements Utilities.Callback {
-    public final int f25380a;
-    public final fo f25381b;
-    public final int f25382c;
+import org.telegram.tgnet.TLRPC;
+public final class cn implements kl, org.telegram.ui.ActionBar.z1 {
+    public final Utilities.Callback f25353a;
 
-    public cn(fo foVar, int i10, int i11) {
-        this.f25380a = i11;
-        this.f25381b = foVar;
-        this.f25382c = i10;
+    public cn(Utilities.Callback callback) {
+        this.f25353a = callback;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f25380a) {
-            case 0:
-                this.f25381b.h0(this.f25382c, (rh.e) obj);
-                return;
-            default:
-                fo foVar = this.f25381b;
-                foVar.getClass();
-                foVar.h0(this.f25382c, new sh.e((String) obj));
-                return;
+    public void b(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
+        this.f25353a.run(new sh.f(messageMedia));
+    }
+
+    @Override
+    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+        Utilities.Callback callback = this.f25353a;
+        if (callback != null) {
+            callback.run(Boolean.FALSE);
         }
     }
 }

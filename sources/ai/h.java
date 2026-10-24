@@ -17,7 +17,7 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fy0;
+import org.telegram.ui.Components.ey0;
 import org.telegram.ui.o70;
 public final class h implements RequestDelegate {
     public final int f1375a;
@@ -175,7 +175,7 @@ public final class h implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new fy0(v0Var, hashMap, arrayList, 23));
+                    AndroidUtilities.runOnUIThread(new ey0(v0Var, hashMap, arrayList, 23));
                     return;
                 }
                 return;
@@ -236,7 +236,7 @@ public final class h implements RequestDelegate {
                             }
                         });
                     }
-                    AndroidUtilities.runOnUIThread(new fy0(k0Var, hashMap2, arrayList2, 26));
+                    AndroidUtilities.runOnUIThread(new ey0(k0Var, hashMap2, arrayList2, 26));
                     return;
                 }
                 return;
@@ -247,7 +247,7 @@ public final class h implements RequestDelegate {
                 AndroidUtilities.runOnUIThread(new u2.k0(11, (wf.c) obj, tLObject));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new fy0((wf.d) obj, tLObject, tL_error, 27));
+                AndroidUtilities.runOnUIThread(new ey0((wf.d) obj, tLObject, tL_error, 27));
                 return;
         }
     }

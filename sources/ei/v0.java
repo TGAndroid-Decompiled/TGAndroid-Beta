@@ -12,7 +12,7 @@ import android.text.TextUtils;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.bs;
+import org.telegram.ui.Components.zr;
 public final class v0 extends View {
     public final Paint f9938a;
     public final TextPaint f9939b;
@@ -22,7 +22,7 @@ public final class v0 extends View {
     public final Path f9941f;
     public com.google.firebase.messaging.s h;
     public boolean f9942n;
-    public final org.telegram.ui.Components.f6 f9943r;
+    public final org.telegram.ui.Components.d6 f9943r;
 
     public v0(Context context) {
         super(context);
@@ -33,8 +33,8 @@ public final class v0 extends View {
         TextPaint textPaint = new TextPaint(1);
         this.f9939b = textPaint;
         this.f9941f = new Path();
-        org.telegram.ui.Components.f6 f6Var = new org.telegram.ui.Components.f6(this);
-        this.f9943r = f6Var;
+        org.telegram.ui.Components.d6 d6Var = new org.telegram.ui.Components.d6(this);
+        this.f9943r = d6Var;
         paint.setColor(-869783512);
         paint.setPathEffect(new CornerPathEffect(AndroidUtilities.dp(6.0f)));
         textPaint.setTextSize(AndroidUtilities.dp(14.0f));
@@ -53,7 +53,7 @@ public final class v0 extends View {
             f10 = 0.0f;
         }
         this.e = f10;
-        f6Var.d(0.0f, true);
+        d6Var.d(0.0f, true);
     }
 
     public final void a(boolean z10) {
@@ -75,12 +75,12 @@ public final class v0 extends View {
         }
         canvas.save();
         if (this.f9942n) {
-            f7 = bs.f25137k.getInterpolation(e);
+            f7 = zr.f33341k.getInterpolation(e);
         } else {
             f7 = 1.0f;
         }
         canvas.translate(0.0f, f7 * AndroidUtilities.dp(12.0f));
-        float interpolation = bs.h.getInterpolation(e);
+        float interpolation = zr.h.getInterpolation(e);
         float measuredWidth = getMeasuredWidth();
         float measuredHeight = getMeasuredHeight();
         float dp = AndroidUtilities.dp(22.0f) + this.d;
