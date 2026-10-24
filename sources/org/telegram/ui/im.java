@@ -280,7 +280,7 @@ public final class im implements org.telegram.ui.Components.og {
                 snVar.getMediaDataController().cleanDraft(snVar.f41519f6, j11, false);
             }
         }
-        snVar.Eb(false, null, null, null, null, z10, i10, null, false, j10, null, true);
+        snVar.Fb(false, null, null, null, null, z10, i10, null, false, j10, null, true);
         gk gkVar = snVar.Y;
         if (gkVar != null && gkVar.getEmojiView() != null && (f1Var = snVar.Y.getEmojiView().T0) != null) {
             if (f1Var.e) {

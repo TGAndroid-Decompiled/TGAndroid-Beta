@@ -17,11 +17,10 @@ public final class l implements Runnable {
     public final void run() {
         switch (this.f18126a) {
             case 0:
-                CameraView.CameraGLThread cameraGLThread = this.d;
-                CameraView.i(this.f18127b, this.f18128c, cameraGLThread);
+                this.f18127b.lambda$createCamera$12(this.d, this.f18128c);
                 return;
             default:
-                CameraView.j(this.f18127b, this.f18128c, this.d);
+                this.f18127b.lambda$createCamera$9(this.f18128c, this.d);
                 return;
         }
     }

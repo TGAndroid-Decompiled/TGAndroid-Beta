@@ -979,6 +979,10 @@ public class ImageLoader {
             AndroidUtilities.runOnUIThread(new i3(3, this, drawable));
         }
 
+        private void runInternal() {
+            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.CacheOutTask.runInternal():void");
+        }
+
         public void cancel() {
             synchronized (this.sync) {
                 try {
@@ -994,7 +998,19 @@ public class ImageLoader {
 
         @Override
         public void run() {
-            throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.ImageLoader.CacheOutTask.run():void");
+            try {
+                runInternal();
+                synchronized (this.sync) {
+                    this.runningThread = null;
+                }
+                Thread.interrupted();
+            } catch (Throwable th2) {
+                synchronized (this.sync) {
+                    this.runningThread = null;
+                    Thread.interrupted();
+                    throw th2;
+                }
+            }
         }
     }
 

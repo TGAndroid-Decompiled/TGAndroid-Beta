@@ -402,7 +402,7 @@ public final class e6 extends BitmapDrawable implements Animatable, zf.c {
         if (this.f25896z0 != null) {
             boolean isEmpty = this.f25887t0.isEmpty();
             if (isEmpty && this.J0 == null) {
-                c6 c6Var2 = new c6(this, 1);
+                c6 c6Var2 = new c6(this, 3);
                 this.J0 = c6Var2;
                 AndroidUtilities.runOnUIThread(c6Var2, 600L);
             } else if (!isEmpty && (c6Var = this.J0) != null) {
@@ -717,7 +717,7 @@ public final class e6 extends BitmapDrawable implements Animatable, zf.c {
             animatedFileDrawableStream.cancel(true);
             this.f25888u0 = null;
         }
-        t();
+        AndroidUtilities.executeOnUIThread(new c6(this, 2));
     }
 
     public final void v(ImageReceiver imageReceiver) {

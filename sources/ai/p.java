@@ -343,7 +343,7 @@ public final class p implements View.OnClickListener {
                 bVar.dismiss();
                 return;
             case 23:
-                ki.d2.Y((ki.d2) obj2, (Context) obj, view);
+                ki.d2.X((ki.d2) obj2, (Context) obj, view);
                 return;
             case 24:
                 ((VideoAds) obj2).lambda$show$2((VideoAds.CloseDrawable) obj, view);

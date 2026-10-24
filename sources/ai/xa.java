@@ -48,6 +48,7 @@ public final class xa implements am0 {
         TLRPC.BotInlineResult botInlineResult;
         TLRPC.Document document2;
         long longValue;
+        int i12;
         org.telegram.ui.Components.r5 r5Var;
         org.telegram.ui.ActionBar.k kVar;
         Object O;
@@ -157,7 +158,8 @@ public final class xa implements am0 {
                             document2 = r5Var.e;
                         }
                         if (document2 == null && longValue != 0) {
-                            document2 = org.telegram.ui.Components.r5.f(ei.n2.Z(n2Var2), longValue);
+                            i12 = ((org.telegram.ui.ActionBar.h3) n2Var2).currentAccount;
+                            document2 = org.telegram.ui.Components.r5.f(i12, longValue);
                         }
                         if (document2 != null) {
                             Utilities.Callback3Return callback3Return2 = n2Var2.E;
@@ -238,14 +240,14 @@ public final class xa implements am0 {
                     }
                     eyVar.H3();
                     if (AndroidUtilities.isTablet() && eyVar.f37059e0 != null) {
-                        int i12 = 0;
+                        int i13 = 0;
                         while (true) {
                             dy[] dyVarArr = eyVar.f37059e0;
-                            if (i12 < dyVarArr.length) {
-                                lw lwVar = dyVarArr[i12].d;
+                            if (i13 < dyVarArr.length) {
+                                lw lwVar = dyVarArr[i13].d;
                                 eyVar.f37115p2.dialogId = longValue2;
                                 lwVar.f12001s = longValue2;
-                                i12++;
+                                i13++;
                             } else {
                                 eyVar.g5(MessagesController.UPDATE_MASK_SELECT_DIALOG, true);
                             }
@@ -274,9 +276,9 @@ public final class xa implements am0 {
                 ig.f0 f0Var = h0Var2.f12946y;
                 if (adapter == f0Var) {
                     ArrayList arrayList3 = f0Var.d;
-                    int i13 = i10 - 1;
-                    if (i13 >= 0 && i13 < arrayList3.size()) {
-                        O = arrayList3.get(i13);
+                    int i14 = i10 - 1;
+                    if (i14 >= 0 && i14 < arrayList3.size()) {
+                        O = arrayList3.get(i14);
                     } else {
                         O = null;
                     }
@@ -308,17 +310,17 @@ public final class xa implements am0 {
                 if (G2 != null) {
                     ig.a0 a0Var = j0Var.Z;
                     if (!a0Var.h(G2)) {
-                        int i14 = G2.d;
-                        int i15 = ig.j0.f12966k0;
-                        if (i14 == -1) {
+                        int i15 = G2.d;
+                        int i16 = ig.j0.f12966k0;
+                        if (i15 == -1) {
                             j0Var.f12973f0 = true;
                             a0Var.h = true;
                             j0Var.f12972e0.N(true);
                             j0Var.T(true);
                             return;
                         }
-                        int i16 = ig.j0.f12967l0;
-                        if (i14 == -2) {
+                        int i17 = ig.j0.f12967l0;
+                        if (i15 == -2) {
                             j0Var.f12973f0 = false;
                             a0Var.h = false;
                             j0Var.f12972e0.N(true);
@@ -332,11 +334,11 @@ public final class xa implements am0 {
                 return;
             case 16:
                 ji.a aVar = (ji.a) this.f2458b;
-                int i17 = aVar.X.G(i10 - 1).d;
-                if (i17 == 151) {
+                int i18 = aVar.X.G(i10 - 1).d;
+                if (i18 == 151) {
                     aVar.Q(false);
                     return;
-                } else if (i17 == 150) {
+                } else if (i18 == 150) {
                     aVar.Q(true);
                     return;
                 } else {
@@ -399,8 +401,8 @@ public final class xa implements am0 {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                        int i18 = savedStarGift.msg_id;
-                        long j10 = i18 == 0 ? savedStarGift.saved_id : i18;
+                        int i19 = savedStarGift.msg_id;
+                        long j10 = i19 == 0 ? savedStarGift.saved_id : i19;
                         boolean z10 = false;
                         if (hashSet.contains(Long.valueOf(j10))) {
                             hashSet.remove(Long.valueOf(j10));
@@ -436,11 +438,11 @@ public final class xa implements am0 {
                                 return;
                             }
                             zh.c1 c1Var2 = n0Var.d;
-                            int i19 = c1Var2.f52180b;
+                            int i20 = c1Var2.f52180b;
                             String o10 = a1.g.o(j11, "c:");
                             HashMap hashMap = c1Var2.J;
                             if (!hashMap.containsKey(o10)) {
-                                org.telegram.ui.Components.r5 m10 = org.telegram.ui.Components.r5.m(i19, 2, document3);
+                                org.telegram.ui.Components.r5 m10 = org.telegram.ui.Components.r5.m(i20, 2, document3);
                                 m10.a(c1Var2);
                                 hashMap.put(o10, m10);
                             }
@@ -468,11 +470,11 @@ public final class xa implements am0 {
                                     a1.g.y(1, a10);
                                 }
                                 StringBuilder sb2 = new StringBuilder();
-                                for (int i20 = 0; i20 < a10.size(); i20++) {
-                                    if (i20 > 0) {
+                                for (int i21 = 0; i21 < a10.size(); i21++) {
+                                    if (i21 > 0) {
                                         sb2.append(',');
                                     }
-                                    sb2.append(a10.get(i20));
+                                    sb2.append(a10.get(i21));
                                 }
                                 MessagesController.getMainSettings(k0Var2.f52549a).edit().putString("qrAppliedEmoji", sb2.toString()).apply();
                                 k0Var2.J = true;

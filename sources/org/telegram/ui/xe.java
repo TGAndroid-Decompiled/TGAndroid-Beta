@@ -25,7 +25,7 @@ public final class xe implements Utilities.Callback {
                 sn snVar2 = this.f43587b;
                 snVar2.f41677s5 = messageSuggestionParams;
                 snVar2.B5.messageOwner.suggested_post = messageSuggestionParams.toTl();
-                snVar2.Eb(true, null, snVar2.B5, null, null, true, 0, null, false, 0L, null, true);
+                snVar2.Eb(true, null, snVar2.B5, null, null, null, false);
                 return;
             case 1:
                 snVar.Bb(true, false);

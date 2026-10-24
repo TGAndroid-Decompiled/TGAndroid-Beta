@@ -128,11 +128,7 @@ public final class b implements Iterable {
     public final Iterator iterator() {
         Semaphore semaphore = this.f45657f;
         if (semaphore != null) {
-            try {
-                semaphore.acquire();
-            } catch (InterruptedException unused) {
-                throw new IllegalStateException();
-            }
+            semaphore.acquireUninterruptibly();
         }
         synchronized (this.f45655b) {
             try {

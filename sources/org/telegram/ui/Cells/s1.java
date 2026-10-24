@@ -323,12 +323,10 @@ public final class s1 {
         boolean z11;
         boolean z12;
         boolean z13;
-        int repliesCount;
         boolean z14;
         float f7;
         boolean z15;
         boolean z16;
-        int repliesCount2;
         n0 n0Var;
         boolean z17 = true;
         this.f23219v0 = true;
@@ -407,8 +405,7 @@ public final class s1 {
         }
         this.K2 = z13;
         if (t1Var.Z8 != null) {
-            repliesCount2 = t1Var.getRepliesCount();
-            this.M = repliesCount2;
+            this.M = t1Var.getRepliesCount();
             this.N = t1Var.f23417h9;
             this.T = t1Var.Z8;
             this.O = t1Var.f23346c9;
@@ -417,8 +414,7 @@ public final class s1 {
             this.R = t1Var.f23402g9;
             this.S = t1Var.f23331b9;
         }
-        repliesCount = t1Var.getRepliesCount();
-        this.E = repliesCount;
+        this.E = t1Var.getRepliesCount();
         this.f23135b2 = t1Var.getMessageObject().messageOwner.views;
         this.G = t1Var.Vb;
         this.f23140c2 = t1Var.Sb;

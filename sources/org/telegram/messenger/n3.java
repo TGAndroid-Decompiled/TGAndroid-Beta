@@ -25,7 +25,7 @@ public final class n3 implements Runnable {
         switch (this.f19086a) {
             case 0:
                 int i10 = this.e;
-                ((FilePathDatabase) this.f19089f).lambda$putPath$1(this.f19088c, this.f19087b, this.d, (String) this.h, i10);
+                FilePathDatabase.a((FilePathDatabase) this.f19089f, this.f19088c, this.f19087b, this.d, (String) this.h, i10);
                 return;
             default:
                 int i11 = this.e;

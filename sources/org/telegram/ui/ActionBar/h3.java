@@ -238,11 +238,6 @@ public class h3 extends Dialog implements k2 {
         return i10;
     }
 
-    public static boolean access$2202(h3 h3Var, boolean z10) {
-        h3Var.multipleLinesTitle = z10;
-        return z10;
-    }
-
     public static View access$2302(h3 h3Var, View view) {
         h3Var.customView = view;
         return view;

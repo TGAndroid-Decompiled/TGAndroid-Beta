@@ -10329,6 +10329,10 @@ public class RichMessageLayout {
         return getMinWidth();
     }
 
+    public int getMaxWidth() {
+        return this.maxWidth;
+    }
+
     public wh.f getMediaSpoilerEffect() {
         View view = this.view;
         if (view == null) {

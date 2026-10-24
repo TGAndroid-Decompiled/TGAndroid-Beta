@@ -758,12 +758,11 @@ public final class oh0 extends org.telegram.ui.ActionBar.h3 {
         int i10 = org.telegram.ui.ActionBar.k6.f21254h5;
         arrayList.add(new org.telegram.ui.ActionBar.t6(viewGroup, 0, (Class[]) null, (Paint) null, drawableArr, (org.telegram.ui.ActionBar.s6) null, i10));
         arrayList.add(new org.telegram.ui.ActionBar.t6(this.f29177f, 256, (Class[]) null, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f21289j5));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f29175b, 0, new Class[]{View.class}, (String[]) null, (Drawable[]) null, z6Var, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f29175b, 0, new Class[]{View.class}, (String[]) null, (Drawable[]) null, z6Var, org.telegram.ui.ActionBar.k6.f21271i5));
-        int i11 = org.telegram.ui.ActionBar.k6.q6;
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f29175b, 0, new Class[]{org.telegram.ui.Cells.r8.class}, new String[]{"textView"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i11));
-        int i12 = org.telegram.ui.ActionBar.k6.N6;
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f29175b, 0, new Class[]{org.telegram.ui.Cells.r8.class}, new String[]{"imageView"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i12));
+        ih0 ih0Var = this.f29175b;
+        arrayList.add(new org.telegram.ui.ActionBar.t6(ih0Var, 0, new Class[]{View.class}, (String[]) null, (Drawable[]) null, z6Var, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.t6(ih0Var, 0, new Class[]{View.class}, (String[]) null, (Drawable[]) null, z6Var, org.telegram.ui.ActionBar.k6.f21271i5));
+        arrayList.add(new org.telegram.ui.ActionBar.t6(ih0Var, 0, new Class[]{org.telegram.ui.Cells.r8.class}, new String[]{"textView"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.q6));
+        arrayList.add(new org.telegram.ui.ActionBar.t6(ih0Var, 0, new Class[]{org.telegram.ui.Cells.r8.class}, new String[]{"imageView"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.N6));
         return arrayList;
     }
 

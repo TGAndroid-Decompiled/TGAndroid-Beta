@@ -2613,7 +2613,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
                     snVar.getMediaDataController().cleanDraft(snVar.f41519f6, topicId, false);
                 }
             }
-            snVar.Eb(false, null, null, null, null, true, 0, null, true, 0L, null, true);
+            snVar.Fb(false, null, null, null, null, true, 0, null, true, 0L, null, true);
         }
     }
 
@@ -5190,8 +5190,8 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
         }
     }
 
-    public final void Eb(boolean r31, org.telegram.messenger.MessageObject r32, org.telegram.messenger.MessageObject r33, java.util.ArrayList r34, org.telegram.tgnet.TLRPC.WebPage r35, boolean r36, int r37, org.telegram.ui.in r38, boolean r39, long r40, org.telegram.messenger.MessageSuggestionParams r42, boolean r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sn.Eb(boolean, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.util.ArrayList, org.telegram.tgnet.TLRPC$WebPage, boolean, int, org.telegram.ui.in, boolean, long, org.telegram.messenger.MessageSuggestionParams, boolean):void");
+    public final void Eb(boolean z10, MessageObject messageObject, MessageObject messageObject2, ArrayList arrayList, TLRPC.WebPage webPage, in inVar, boolean z11) {
+        Fb(z10, messageObject, messageObject2, arrayList, webPage, true, 0, inVar, z11, 0L, null, true);
     }
 
     public final void Ec(boolean z10) {
@@ -5594,8 +5594,8 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sn.Fa(int):void");
     }
 
-    public final void Fb(boolean z10, MessageObject messageObject, TLRPC.WebPage webPage, boolean z11, boolean z12) {
-        Eb(z10, messageObject, null, null, webPage, true, 0, null, z11, 0L, null, z12);
+    public final void Fb(boolean r31, org.telegram.messenger.MessageObject r32, org.telegram.messenger.MessageObject r33, java.util.ArrayList r34, org.telegram.tgnet.TLRPC.WebPage r35, boolean r36, int r37, org.telegram.ui.in r38, boolean r39, long r40, org.telegram.messenger.MessageSuggestionParams r42, boolean r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sn.Fb(boolean, org.telegram.messenger.MessageObject, org.telegram.messenger.MessageObject, java.util.ArrayList, org.telegram.tgnet.TLRPC$WebPage, boolean, int, org.telegram.ui.in, boolean, long, org.telegram.messenger.MessageSuggestionParams, boolean):void");
     }
 
     public final void Fc(int r43, boolean r44) {
@@ -5663,7 +5663,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
     }
 
     public final void Gb(ArrayList arrayList) {
-        Eb(true, null, null, arrayList, null, true, 0, null, false, 0L, null, true);
+        Eb(true, null, null, arrayList, null, null, false);
     }
 
     public final void Gc() {
@@ -5762,7 +5762,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
     }
 
     public final void Hb(MessageObject messageObject) {
-        Fb(true, messageObject, null, false, true);
+        Eb(true, messageObject, null, null, null, null, false);
     }
 
     public final void Hc(boolean z10) {
@@ -5922,7 +5922,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
     }
 
     public final void Ib(MessageObject messageObject, in inVar) {
-        Eb(true, messageObject, null, null, null, true, 0, inVar, false, 0L, null, true);
+        Eb(true, messageObject, null, null, null, inVar, false);
     }
 
     public final void Ic(boolean z10) {
@@ -6554,7 +6554,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
     }
 
     public final void Jb(MessageSuggestionParams messageSuggestionParams) {
-        Eb(true, null, null, null, null, true, 0, null, false, 0L, messageSuggestionParams, true);
+        Fb(true, null, null, null, null, true, 0, null, false, 0L, messageSuggestionParams, true);
     }
 
     public final void Jc(boolean z10) {
@@ -6654,7 +6654,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
     }
 
     public final void Kb(boolean z10, TLRPC.WebPage webPage, boolean z11) {
-        Fb(z10, null, webPage, z11, true);
+        Eb(z10, null, null, null, webPage, null, z11);
     }
 
     public final void Kc(MessageObject messageObject, int i10) {
@@ -10751,7 +10751,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
             }
             this.U1.getAdapter().f11954f0 = false;
             this.Y.setVisibility(0);
-            Eb(true, null, messageObject, null, null, true, 0, null, false, 0L, null, true);
+            Eb(true, null, messageObject, null, null, null, false);
             oc(false);
             if (!z10) {
                 Q6();
@@ -12854,7 +12854,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
     }
 
     public final void j9(boolean z10) {
-        Fb(false, null, null, false, z10);
+        Fb(false, null, null, null, null, true, 0, null, false, 0L, null, z10);
     }
 
     public final boolean ja(String str, org.telegram.ui.Cells.t1 t1Var, CharacterStyle characterStyle, int i10, int i11) {
@@ -13438,7 +13438,7 @@ public class sn extends org.telegram.ui.ActionBar.o2 implements NotificationCent
         }
         MessageObject messageObject2 = this.B5;
         if (messageObject2 != null) {
-            Eb(true, null, messageObject2, null, null, true, 0, null, false, 0L, null, true);
+            Eb(true, null, messageObject2, null, null, null, false);
         } else {
             Kb(false, null, true);
         }

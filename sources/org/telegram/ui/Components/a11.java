@@ -412,7 +412,7 @@ public final class a11 extends LinearLayout {
         }
         dv0Var.S7 = z13;
         this.f24599r.generateLayout(null);
-        dv0Var.W3(this.f24599r, null, false, false, false, false);
+        this.d.W3(this.f24599r, null, false, false, false, false);
         h9 h9Var = this.e;
         h9Var.r(user);
         this.f24597f.e(user, h9Var);

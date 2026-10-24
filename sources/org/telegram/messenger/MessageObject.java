@@ -3914,6 +3914,7 @@ public class MessageObject {
         int[] iArr;
         int i10;
         float f7;
+        int dp;
         int i11 = this.type;
         if ((i11 == 0 || i11 == 19 || i11 == 36) && this.messageOwner.peer_id != null && (charSequence = this.messageText) != null && (charSequence.length() != 0 || this.isBotPendingDraft)) {
             if (this.layoutCreated) {
@@ -3932,7 +3933,12 @@ public class MessageObject {
                 } else {
                     f7 = 0.0f;
                 }
-                if (Math.abs(this.generatedWithMinSize - i10) > AndroidUtilities.dp(52.0f) || this.generatedWithDensity != AndroidUtilities.density || this.generatedWithFontSize != f7) {
+                if (this.type == 36) {
+                    dp = 0;
+                } else {
+                    dp = AndroidUtilities.dp(52.0f);
+                }
+                if (Math.abs(this.generatedWithMinSize - i10) > dp || this.generatedWithDensity != AndroidUtilities.density || this.generatedWithFontSize != f7) {
                     this.layoutCreated = false;
                 }
             }

@@ -659,7 +659,7 @@ public class ActionBarLayout extends FrameLayout implements h5, ng.b {
 
     public final void Z(int i10) {
         if (i10 >= 0 && i10 < getFragmentStack().size()) {
-            a0((o2) getFragmentStack().get(i10));
+            b0((o2) getFragmentStack().get(i10), false);
         }
     }
 

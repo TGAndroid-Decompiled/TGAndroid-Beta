@@ -4320,8 +4320,549 @@ public class ChatActivityEnterView extends FrameLayout implements NotificationCe
         B();
     }
 
-    public boolean R0(final int r36, final boolean r37, final int r38, boolean r39, long r40) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ChatActivityEnterView.R0(int, boolean, int, boolean, long):boolean");
+    public boolean R0(final int i10, final boolean z10, final int i11, boolean z11, long j10) {
+        boolean z12;
+        ChatActivityEnterView chatActivityEnterView;
+        ChatActivityEnterView chatActivityEnterView2;
+        CharSequence textToUse;
+        boolean z13;
+        CharSequence charSequence;
+        boolean z14;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        CharSequence charSequence2;
+        CharSequence charSequence3;
+        int i16;
+        MessageObject.SendAnimationData sendAnimationData;
+        boolean z15;
+        String str;
+        CharSequence charSequence4;
+        SendMessageChatArguments sendMessageChatArguments;
+        boolean z16;
+        ?? r32;
+        boolean z17;
+        boolean z18;
+        boolean z19;
+        boolean z20;
+        MessagePreviewParams messagePreviewParams;
+        MessagePreviewParams messagePreviewParams2;
+        ChatActivityEnterView chatActivityEnterView3;
+        TLRPC.Chat chat;
+        MessagePreviewParams messagePreviewParams3;
+        MessageObject messageObject;
+        boolean z21;
+        int[] iArr;
+        char c10;
+        boolean z22;
+        boolean z23;
+        TLRPC.Chat chat2;
+        TL_iv.RichMessage richMessage;
+        SendMessageChatArguments sendMessageChatArguments2;
+        long j11;
+        int i17;
+        SendMessageChatArguments sendMessageChatArguments3;
+        ChatActivityEnterView chatActivityEnterView4;
+        boolean z24;
+        int i18;
+        dg dgVar;
+        if (z11 && !this.f24128m5.f17447f) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        if (z12) {
+            boolean b02 = f5.b0(this.Q, this.Q2, getMessagesCount(), new Utilities.Callback() {
+                @Override
+                public final void run(Object obj) {
+                    int i19 = ChatActivityEnterView.f24050r5;
+                    ChatActivityEnterView chatActivityEnterView5 = ChatActivityEnterView.this;
+                    chatActivityEnterView5.getClass();
+                    chatActivityEnterView5.R0(i10, z10, i11, false, ((Long) obj).longValue());
+                }
+            }, j10);
+            if (b02 && this.f24164s4) {
+                if (this.f24066c1) {
+                    if (!this.Z2.e1()) {
+                        SlideTextView slideTextView = this.f24115k1;
+                        if (slideTextView != null) {
+                            slideTextView.setEnabled(false);
+                        }
+                        this.Z2.i1();
+                        return b02;
+                    }
+                } else if (!MediaController.getInstance().isRecordingPaused()) {
+                    if (this.f24164s4) {
+                        this.J3 = true;
+                    }
+                    MediaController.getInstance().toggleRecordingPause(this.O);
+                    this.Z2.X0(0);
+                    SlideTextView slideTextView2 = this.f24115k1;
+                    if (slideTextView2 != null) {
+                        slideTextView2.setEnabled(false);
+                    }
+                }
+            }
+            return b02;
+        }
+        if (this.G0 == Integer.MAX_VALUE && !c()) {
+            og ogVar = this.Z2;
+            if (ogVar != null) {
+                ogVar.Q0();
+                return false;
+            }
+            chatActivityEnterView2 = this;
+        } else {
+            org.telegram.ui.sn snVar = this.P2;
+            if (snVar != null) {
+                TLRPC.Chat chat3 = snVar.e;
+                if (snVar.i() != null || ((ChatObject.isChannel(chat3) && chat3.megagroup) || !ChatObject.isChannel(chat3))) {
+                    MessagesController.getNotificationsSettings(this.Q).edit().putBoolean("silent_" + this.Q2, !z10).commit();
+                }
+            }
+            if (this.f24200z3) {
+                k1(false, true, false, true);
+                if (this.R1 != 0 && (dgVar = this.U0) != null) {
+                    dgVar.u(false);
+                    this.U0.B();
+                }
+            }
+            if (z12) {
+                chatActivityEnterView = this;
+                if (chatActivityEnterView.o1(new org.telegram.messenger.xa(this, z10, i10, i11, j10))) {
+                    chatActivityEnterView2 = chatActivityEnterView;
+                }
+            } else {
+                chatActivityEnterView = this;
+            }
+            chatActivityEnterView.E4 = true;
+            VideoEditedInfo videoEditedInfo = chatActivityEnterView.f24080e3;
+            xe xeVar = chatActivityEnterView.J0;
+            if (videoEditedInfo != null) {
+                og ogVar2 = chatActivityEnterView.Z2;
+                if (chatActivityEnterView.O) {
+                    i18 = Integer.MAX_VALUE;
+                } else {
+                    i18 = 0;
+                }
+                ogVar2.a2(4, i10, i18, chatActivityEnterView.S4, j10, z10);
+                chatActivityEnterView.S4 = 0L;
+                xeVar.setEffect(0L);
+                chatActivityEnterView.l0(true);
+                chatActivityEnterView.F(true);
+                AndroidUtilities.runOnUIThread(new rd(chatActivityEnterView, 2), 100L);
+                chatActivityEnterView.f24103i1 = 0L;
+                return false;
+            } else if (chatActivityEnterView.f24061b3 != null) {
+                MessageObject playingMessageObject = MediaController.getInstance().getPlayingMessageObject();
+                if (playingMessageObject != null && playingMessageObject == chatActivityEnterView.f24074d3) {
+                    MediaController.getInstance().cleanupPlayer(true, true);
+                }
+                MediaController.getInstance().cleanRecording(false);
+                MediaDataController mediaDataController = MediaDataController.getInstance(chatActivityEnterView.Q);
+                long j12 = chatActivityEnterView.Q2;
+                if (snVar != null && snVar.f41689t4) {
+                    j11 = snVar.d();
+                } else {
+                    j11 = 0;
+                }
+                mediaDataController.pushDraftVoiceMessage(j12, j11, null);
+                hl0 hl0Var = chatActivityEnterView.f24097h1;
+                if (hl0Var != null && (hl0Var.f26980s > 0.0f || hl0Var.v < 1.0f)) {
+                    hl0Var.setPlaying(false);
+                    String s10 = a1.g.s(new StringBuilder(), chatActivityEnterView.f24068c3, ".ogg");
+                    if (MediaController.cropOpusFile(chatActivityEnterView.f24068c3, s10, chatActivityEnterView.f24097h1.getAudioLeftMs(), chatActivityEnterView.f24097h1.getAudioRightMs())) {
+                        try {
+                            new File(chatActivityEnterView.f24068c3).delete();
+                        } catch (Exception e) {
+                            FileLog.e(e);
+                        }
+                        try {
+                            new File(s10).renameTo(new File(chatActivityEnterView.f24068c3));
+                        } catch (Exception e7) {
+                            FileLog.e(e7);
+                        }
+                        int i19 = 0;
+                        while (true) {
+                            if (i19 >= chatActivityEnterView.f24061b3.attributes.size()) {
+                                break;
+                            }
+                            TLRPC.DocumentAttribute documentAttribute = chatActivityEnterView.f24061b3.attributes.get(i19);
+                            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
+                                documentAttribute.waveform = MediaController.getWaveform(chatActivityEnterView.f24068c3);
+                                documentAttribute.duration = chatActivityEnterView.f24097h1.getNewDuration();
+                                break;
+                            }
+                            i19++;
+                        }
+                    }
+                }
+                TLRPC.TL_document tL_document = chatActivityEnterView.f24061b3;
+                String str2 = chatActivityEnterView.f24068c3;
+                long j13 = chatActivityEnterView.Q2;
+                MessageObject messageObject2 = chatActivityEnterView.T2;
+                MessageObject threadMessage = chatActivityEnterView.getThreadMessage();
+                if (chatActivityEnterView.O) {
+                    i17 = Integer.MAX_VALUE;
+                } else {
+                    i17 = 0;
+                }
+                SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(tL_document, null, str2, j13, messageObject2, threadMessage, null, null, null, null, z10, i10, 0, i17, null, null, false);
+                if (snVar != null) {
+                    sendMessageChatArguments3 = snVar.H8();
+                } else {
+                    sendMessageChatArguments3 = null;
+                }
+                of2.sendMessageChatArguments = sendMessageChatArguments3;
+                of2.effect_id = this.S4;
+                of2.payStars = j10;
+                of2.monoForumPeer = getSendMonoForumPeerId();
+                of2.suggestionParams = getSendMessageSuggestionParams();
+                this.S4 = 0L;
+                xeVar.setEffect(0L);
+                if (!this.Z2.r1()) {
+                    MessageObject.SendAnimationData sendAnimationData2 = new MessageObject.SendAnimationData();
+                    if (System.currentTimeMillis() - this.M0 < 200) {
+                        z24 = true;
+                    } else {
+                        z24 = false;
+                    }
+                    sendAnimationData2.fromPreview = z24;
+                    of2.sendAnimationData = sendAnimationData2;
+                }
+                q(of2);
+                SendMessagesHelper.getInstance(this.Q).sendMessage(of2);
+                og ogVar3 = this.Z2;
+                if (ogVar3 != null) {
+                    chatActivityEnterView4 = this;
+                    ogVar3.L(null, z10, i10, i11, j10);
+                } else {
+                    chatActivityEnterView4 = this;
+                }
+                chatActivityEnterView4.l0(true);
+                chatActivityEnterView4.F(true);
+                AndroidUtilities.runOnUIThread(new rd(chatActivityEnterView4, 3), 100L);
+                chatActivityEnterView4.f24103i1 = 0L;
+                return false;
+            } else {
+                ChatActivityEnterView chatActivityEnterView5 = chatActivityEnterView;
+                long j14 = 200;
+                String str3 = "";
+                if (chatActivityEnterView5.D1 && (richMessage = chatActivityEnterView5.E1) != null) {
+                    AccountInstance accountInstance = chatActivityEnterView5.R;
+                    ArrayList<TL_iv.PageBlock> arrayList = richMessage.blocks;
+                    ArrayList<TLRPC.Photo> arrayList2 = richMessage.photos;
+                    ArrayList<TLRPC.Document> arrayList3 = richMessage.documents;
+                    long j15 = chatActivityEnterView5.Q2;
+                    MessageObject messageObject3 = chatActivityEnterView5.T2;
+                    MessageObject threadMessage2 = chatActivityEnterView5.getThreadMessage();
+                    org.telegram.ui.in inVar = chatActivityEnterView5.V2;
+                    if (snVar != null) {
+                        sendMessageChatArguments2 = snVar.H8();
+                    } else {
+                        sendMessageChatArguments2 = null;
+                    }
+                    SendMessagesHelper.prepareSendingArticle(accountInstance, arrayList, arrayList2, arrayList3, null, false, j15, messageObject3, threadMessage2, inVar, z10, i10, i11, sendMessageChatArguments2, chatActivityEnterView5.S4, chatActivityEnterView5.getSendMonoForumPeerId(), j10);
+                    chatActivityEnterView2 = this;
+                    chatActivityEnterView2.S4 = 0L;
+                    xeVar.setEffect(0L);
+                    chatActivityEnterView2.E0.setText("");
+                    chatActivityEnterView2.L();
+                    og ogVar4 = chatActivityEnterView2.Z2;
+                    if (ogVar4 != null) {
+                        ogVar4.L(null, z10, i10, i11, j10);
+                    }
+                    chatActivityEnterView2.F(true);
+                } else {
+                    org.telegram.ui.sn snVar2 = snVar;
+                    int i20 = 1;
+                    xe xeVar2 = xeVar;
+                    chatActivityEnterView2 = chatActivityEnterView5;
+                    pf pfVar = chatActivityEnterView2.E0;
+                    if (pfVar == null) {
+                        textToUse = "";
+                    } else {
+                        textToUse = pfVar.getTextToUse();
+                    }
+                    if (snVar2 != null && (chat2 = snVar2.e) != null && chat2.slowmode_enabled && !ChatObject.hasAdminRights(chat2)) {
+                        int length = textToUse.length();
+                        int maxMessageLength = chatActivityEnterView2.R.getMessagesController().getMaxMessageLength();
+                        org.telegram.ui.ActionBar.g6 g6Var = chatActivityEnterView2.W3;
+                        if (length > maxMessageLength) {
+                            f5.u0(snVar2, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSendErrorTooLong", R.string.SlowmodeSendErrorTooLong), g6Var);
+                        } else if (chatActivityEnterView2.H2 && textToUse.length() > 0) {
+                            f5.u0(snVar2, LocaleController.getString("Slowmode", R.string.Slowmode), LocaleController.getString("SlowmodeSendError", R.string.SlowmodeSendError), g6Var);
+                        }
+                    }
+                    if (!D(chatActivityEnterView2.Q, chatActivityEnterView2.Q2, snVar2, textToUse)) {
+                        org.telegram.ui.in inVar2 = chatActivityEnterView2.V2;
+                        if (inVar2 != null && snVar2 != null && inVar2.f38273f) {
+                            snVar2.Xb();
+                            z14 = false;
+                        } else {
+                            int[] iArr2 = new int[1];
+                            Emoji.parseEmojis(textToUse, iArr2);
+                            int i21 = 0;
+                            if (iArr2[0] > 0) {
+                                z13 = true;
+                            } else {
+                                z13 = false;
+                            }
+                            if (!z13) {
+                                charSequence = AndroidUtilities.getTrimmedString(textToUse);
+                            } else {
+                                charSequence = textToUse;
+                            }
+                            boolean v12 = chatActivityEnterView2.v1();
+                            int maxMessageLength2 = chatActivityEnterView2.R.getMessagesController().getMaxMessageLength();
+                            if (charSequence.length() != 0) {
+                                if (chatActivityEnterView2.Z2 != null && snVar2 != null) {
+                                    if (i10 != 0) {
+                                        z22 = true;
+                                    } else {
+                                        z22 = false;
+                                    }
+                                    if (z22 == snVar2.c()) {
+                                        chatActivityEnterView2.Z2.F0();
+                                    }
+                                }
+                                int i22 = 0;
+                                while (true) {
+                                    int i23 = i22 + maxMessageLength2;
+                                    if (charSequence.length() > i23) {
+                                        int i24 = i23 - 1;
+                                        i13 = -1;
+                                        i14 = -1;
+                                        i15 = -1;
+                                        for (int i25 = i21; i24 > i22 && i25 < 300; i25++) {
+                                            char charAt = charSequence.charAt(i24);
+                                            if (i24 > 0) {
+                                                c10 = charSequence.charAt(i24 - 1);
+                                            } else {
+                                                c10 = ' ';
+                                            }
+                                            if (charAt == '\n' && c10 == '\n') {
+                                                i12 = i24;
+                                                break;
+                                            }
+                                            if (charAt == '\n') {
+                                                i15 = i24;
+                                            } else if (i13 < 0 && Character.isWhitespace(charAt) && c10 == '.') {
+                                                i13 = i24;
+                                            } else if (i14 < 0 && Character.isWhitespace(charAt)) {
+                                                i14 = i24;
+                                            }
+                                            i24--;
+                                        }
+                                        i12 = -1;
+                                    } else {
+                                        i12 = -1;
+                                        i13 = -1;
+                                        i14 = -1;
+                                        i15 = -1;
+                                    }
+                                    int min = Math.min(i23, charSequence.length());
+                                    if (i12 > 0) {
+                                        min = i12;
+                                    } else if (i15 > 0) {
+                                        min = i15;
+                                    } else if (i13 > 0) {
+                                        min = i13;
+                                    } else if (i14 > 0) {
+                                        min = i14;
+                                    }
+                                    CharSequence subSequence = charSequence.subSequence(i22, min);
+                                    if (!z13) {
+                                        subSequence = AndroidUtilities.getTrimmedString(subSequence);
+                                    }
+                                    CharSequence[] charSequenceArr = new CharSequence[i20];
+                                    charSequenceArr[i21] = subSequence;
+                                    ArrayList<TLRPC.MessageEntity> entities = MediaDataController.getInstance(chatActivityEnterView2.Q).getEntities(charSequenceArr, v12);
+                                    if (!chatActivityEnterView2.Z2.r1()) {
+                                        MessageObject.SendAnimationData sendAnimationData3 = new MessageObject.SendAnimationData();
+                                        int i26 = i20;
+                                        charSequence2 = charSequence;
+                                        if (System.currentTimeMillis() - chatActivityEnterView2.M0 < j14) {
+                                            z21 = i26;
+                                        } else {
+                                            z21 = i21;
+                                        }
+                                        sendAnimationData3.fromPreview = z21;
+                                        float dp = AndroidUtilities.dp(22.0f);
+                                        sendAnimationData3.height = dp;
+                                        sendAnimationData3.width = dp;
+                                        pf pfVar2 = chatActivityEnterView2.E0;
+                                        if (pfVar2 != null) {
+                                            pfVar2.getLocationInWindow(chatActivityEnterView2.N2);
+                                            sendAnimationData3.f17860x = AndroidUtilities.dp(11.0f) + iArr[i21];
+                                            sendAnimationData3.f17861y = AndroidUtilities.dp(19.0f) + iArr[i26];
+                                        } else {
+                                            sendAnimationData3.f17860x = AndroidUtilities.dp(55.0f);
+                                            sendAnimationData3.f17861y = AndroidUtilities.displaySize.y - AndroidUtilities.dp(19.0f);
+                                        }
+                                        charSequence3 = textToUse;
+                                        sendAnimationData = sendAnimationData3;
+                                        i16 = min;
+                                    } else {
+                                        int i27 = i20;
+                                        charSequence2 = charSequence;
+                                        if (chatActivityEnterView2.L0 != null) {
+                                            MessageObject.SendAnimationData sendAnimationData4 = new MessageObject.SendAnimationData();
+                                            charSequence3 = textToUse;
+                                            i16 = min;
+                                            if (System.currentTimeMillis() - chatActivityEnterView2.M0 < j14) {
+                                                z15 = i27;
+                                            } else {
+                                                z15 = i21;
+                                            }
+                                            sendAnimationData4.fromPreview = z15;
+                                            sendAnimationData = sendAnimationData4;
+                                        } else {
+                                            charSequence3 = textToUse;
+                                            i16 = min;
+                                            sendAnimationData = null;
+                                        }
+                                    }
+                                    boolean checkUpdateStickersOrder = SendMessagesHelper.checkUpdateStickersOrder(charSequence2);
+                                    MessageObject threadMessage3 = chatActivityEnterView2.getThreadMessage();
+                                    if (threadMessage3 == null && (messageObject = chatActivityEnterView2.U2) != null) {
+                                        threadMessage3 = messageObject;
+                                    }
+                                    str = str3;
+                                    xe xeVar3 = xeVar2;
+                                    charSequence4 = charSequence3;
+                                    boolean z25 = v12;
+                                    int i28 = i16;
+                                    CharSequence charSequence5 = charSequence2;
+                                    org.telegram.ui.sn snVar3 = snVar2;
+                                    SendMessagesHelper.SendMessageParams of3 = SendMessagesHelper.SendMessageParams.of(charSequenceArr[i21].toString(), chatActivityEnterView2.Q2, chatActivityEnterView2.T2, threadMessage3, chatActivityEnterView2.X2, chatActivityEnterView2.Y2, entities, null, null, z10, i10, i11, sendAnimationData, checkUpdateStickersOrder);
+                                    if (snVar3 != null) {
+                                        sendMessageChatArguments = snVar3.H8();
+                                    } else {
+                                        sendMessageChatArguments = null;
+                                    }
+                                    of3.sendMessageChatArguments = sendMessageChatArguments;
+                                    of3.effect_id = this.S4;
+                                    of3.payStars = j10;
+                                    of3.monoForumPeer = getSendMonoForumPeerId();
+                                    of3.suggestionParams = getSendMessageSuggestionParams();
+                                    this.S4 = 0L;
+                                    xeVar3.setEffect(0L);
+                                    q(of3);
+                                    if (snVar3 != null && (messagePreviewParams3 = snVar3.f41663r5) != null && messagePreviewParams3.webpageTop) {
+                                        z16 = true;
+                                    } else {
+                                        z16 = false;
+                                    }
+                                    of3.invert_media = z16;
+                                    if (snVar3 != null && (chat = snVar3.e) != null && !ChatObject.canSendEmbed(chat)) {
+                                        z17 = false;
+                                        of3.searchLinks = false;
+                                        r32 = 0;
+                                        of3.mediaWebPage = null;
+                                        z18 = 1;
+                                    } else {
+                                        r32 = 0;
+                                        r32 = 0;
+                                        r32 = 0;
+                                        z17 = false;
+                                        TLRPC.WebPage webPage = this.X2;
+                                        if (webPage instanceof TLRPC.TL_webPagePending) {
+                                            z18 = 1;
+                                            of3.searchLinks = true;
+                                            of3.mediaWebPage = null;
+                                        } else {
+                                            z18 = 1;
+                                            z18 = 1;
+                                            if (webPage != null) {
+                                                TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
+                                                of3.mediaWebPage = tL_messageMediaWebPage;
+                                                tL_messageMediaWebPage.webpage = this.X2;
+                                                if (snVar3 != null && (messagePreviewParams2 = snVar3.f41663r5) != null && !messagePreviewParams2.webpageSmall) {
+                                                    z19 = true;
+                                                } else {
+                                                    z19 = false;
+                                                }
+                                                tL_messageMediaWebPage.force_large_media = z19;
+                                                if (snVar3 != null && (messagePreviewParams = snVar3.f41663r5) != null && messagePreviewParams.webpageSmall) {
+                                                    z20 = true;
+                                                } else {
+                                                    z20 = false;
+                                                }
+                                                tL_messageMediaWebPage.force_small_media = z20;
+                                            }
+                                        }
+                                    }
+                                    if (snVar3 != null) {
+                                        snVar3.B5 = r32;
+                                        snVar3.S5 = r32;
+                                        MessagePreviewParams messagePreviewParams4 = snVar3.f41663r5;
+                                        if (messagePreviewParams4 != null) {
+                                            messagePreviewParams4.updateLink(this.Q, null, "", null, null, null);
+                                        }
+                                        this.X2 = r32;
+                                        this.Y2 = z18;
+                                        snVar3.m8();
+                                    }
+                                    SendMessagesHelper.getInstance(this.Q).sendMessage(of3);
+                                    int i29 = i28 + 1;
+                                    if (i28 == charSequence5.length()) {
+                                        break;
+                                    }
+                                    i22 = i29;
+                                    xeVar2 = xeVar3;
+                                    i20 = z18;
+                                    i21 = z17;
+                                    chatActivityEnterView2 = this;
+                                    snVar2 = snVar3;
+                                    charSequence = charSequence5;
+                                    textToUse = charSequence4;
+                                    v12 = z25;
+                                    str3 = str;
+                                    j14 = 200;
+                                }
+                                if (this.Z2.r1() || ((i10 != 0 && !c()) || c())) {
+                                    chatActivityEnterView3 = this;
+                                    pf pfVar3 = chatActivityEnterView3.E0;
+                                    if (pfVar3 != null) {
+                                        pfVar3.setText(str);
+                                    }
+                                    og ogVar5 = chatActivityEnterView3.Z2;
+                                    if (ogVar5 != null) {
+                                        ogVar5.L(charSequence4, z10, i10, i11, j10);
+                                    }
+                                } else {
+                                    this.f24090g0 = z17;
+                                    org.telegram.messenger.sf sfVar = new org.telegram.messenger.sf(this, charSequence4, z10, i10, i11, j10);
+                                    chatActivityEnterView3 = this;
+                                    chatActivityEnterView3.f24084f0 = sfVar;
+                                    AndroidUtilities.runOnUIThread(sfVar, 200L);
+                                }
+                                chatActivityEnterView3.C2 = 0L;
+                                z23 = z17;
+                                chatActivityEnterView3.O1();
+                                return z23;
+                            }
+                            z14 = false;
+                        }
+                        chatActivityEnterView3 = chatActivityEnterView2;
+                        z23 = z14;
+                        if (chatActivityEnterView3.H2) {
+                            og ogVar6 = chatActivityEnterView3.Z2;
+                            z23 = z14;
+                            if (ogVar6 != null) {
+                                ogVar6.L(null, z10, i10, i11, j10);
+                                z23 = z14;
+                            }
+                        }
+                        chatActivityEnterView3.O1();
+                        return z23;
+                    }
+                }
+            }
+        }
+        return false;
     }
 
     public final void S() {
