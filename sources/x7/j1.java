@@ -1,29 +1,19 @@
 package x7;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-public final class j1 extends a9.a implements l3 {
-    public final m0 V0(x6.b bVar, n6 n6Var) {
-        m0 aVar;
-        Parcel N0 = N0();
-        int i10 = y.f50079a;
-        N0.writeStrongBinder(bVar);
-        N0.writeInt(1);
-        n6Var.writeToParcel(N0, 0);
-        Parcel P0 = P0(N0, 1);
-        IBinder readStrongBinder = P0.readStrongBinder();
-        if (readStrongBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = readStrongBinder.queryLocalInterface("com.google.android.gms.vision.label.internal.client.INativeImageLabeler");
-            if (queryLocalInterface instanceof m0) {
-                aVar = (m0) queryLocalInterface;
-            } else {
-                aVar = new a9.a(readStrongBinder, "com.google.android.gms.vision.label.internal.client.INativeImageLabeler", 10);
-            }
+import org.telegram.ui.Components.b10;
+public final class j1 implements ka.d {
+    public static final j1 f51528a = new Object();
+
+    static {
+        b10.s(b10.n(d.class, b10.q(3, b10.n(d.class, b10.q(2, b10.n(d.class, new a(1)))))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ka.e eVar = (ka.e) obj2;
+            throw null;
         }
-        P0.recycle();
-        return aVar;
+        throw new ClassCastException();
     }
 }

@@ -1,5 +1,7 @@
 package m;
 
+import a8.kc;
+import a8.ng;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.Bitmap;
@@ -8,42 +10,40 @@ import android.graphics.drawable.Drawable;
 import android.graphics.drawable.RippleDrawable;
 import android.net.Uri;
 import android.util.AttributeSet;
-import android.widget.ImageButton;
 import android.widget.ImageView;
-import v7.q7;
-public class v extends ImageButton {
-    public final e2.c f16412a;
-    public final a5.a f16413b;
-    public boolean f16414c;
+public class v extends ImageView {
+    public final e2.c f17870a;
+    public final ng f17871b;
+    public boolean f17872c;
 
     public v(Context context, AttributeSet attributeSet, int i10) {
         super(context, attributeSet, i10);
-        d3.a(context);
-        this.f16414c = false;
-        c3.a(this, getContext());
+        c3.a(context);
+        this.f17872c = false;
+        b3.a(this, getContext());
         e2.c cVar = new e2.c(this);
-        this.f16412a = cVar;
+        this.f17870a = cVar;
         cVar.f(attributeSet, i10);
-        a5.a aVar = new a5.a(this);
-        this.f16413b = aVar;
-        aVar.u(attributeSet, i10);
+        ng ngVar = new ng(this);
+        this.f17871b = ngVar;
+        ngVar.t(attributeSet, i10);
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f16412a;
+        e2.c cVar = this.f17870a;
         if (cVar != null) {
             cVar.b();
         }
-        a5.a aVar = this.f16413b;
-        if (aVar != null) {
-            aVar.c();
+        ng ngVar = this.f17871b;
+        if (ngVar != null) {
+            ngVar.b();
         }
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f16412a;
+        e2.c cVar = this.f17870a;
         if (cVar != null) {
             return cVar.d();
         }
@@ -51,7 +51,7 @@ public class v extends ImageButton {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f16412a;
+        e2.c cVar = this.f17870a;
         if (cVar != null) {
             return cVar.e();
         }
@@ -59,26 +59,26 @@ public class v extends ImageButton {
     }
 
     public ColorStateList getSupportImageTintList() {
-        e3 e3Var;
-        a5.a aVar = this.f16413b;
-        if (aVar == null || (e3Var = (e3) aVar.d) == null) {
+        d3 d3Var;
+        ng ngVar = this.f17871b;
+        if (ngVar == null || (d3Var = (d3) ngVar.d) == null) {
             return null;
         }
-        return (ColorStateList) e3Var.f16259c;
+        return (ColorStateList) d3Var.f17707c;
     }
 
     public PorterDuff.Mode getSupportImageTintMode() {
-        e3 e3Var;
-        a5.a aVar = this.f16413b;
-        if (aVar == null || (e3Var = (e3) aVar.d) == null) {
+        d3 d3Var;
+        ng ngVar = this.f17871b;
+        if (ngVar == null || (d3Var = (d3) ngVar.d) == null) {
             return null;
         }
-        return (PorterDuff.Mode) e3Var.d;
+        return (PorterDuff.Mode) d3Var.d;
     }
 
     @Override
     public final boolean hasOverlappingRendering() {
-        if (!(((ImageView) this.f16413b.f282c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
+        if (!(((ImageView) this.f17871b.f640c).getBackground() instanceof RippleDrawable) && super.hasOverlappingRendering()) {
             return true;
         }
         return false;
@@ -87,7 +87,7 @@ public class v extends ImageButton {
     @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f16412a;
+        e2.c cVar = this.f17870a;
         if (cVar != null) {
             cVar.g();
         }
@@ -96,7 +96,7 @@ public class v extends ImageButton {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f16412a;
+        e2.c cVar = this.f17870a;
         if (cVar != null) {
             cVar.h(i10);
         }
@@ -105,25 +105,25 @@ public class v extends ImageButton {
     @Override
     public void setImageBitmap(Bitmap bitmap) {
         super.setImageBitmap(bitmap);
-        a5.a aVar = this.f16413b;
-        if (aVar != null) {
-            aVar.c();
+        ng ngVar = this.f17871b;
+        if (ngVar != null) {
+            ngVar.b();
         }
     }
 
     @Override
     public void setImageDrawable(Drawable drawable) {
-        a5.a aVar = this.f16413b;
-        if (aVar != null && drawable != null && !this.f16414c) {
-            aVar.f281b = drawable.getLevel();
+        ng ngVar = this.f17871b;
+        if (ngVar != null && drawable != null && !this.f17872c) {
+            ngVar.f639b = drawable.getLevel();
         }
         super.setImageDrawable(drawable);
-        if (aVar != null) {
-            aVar.c();
-            if (!this.f16414c) {
-                ImageView imageView = (ImageView) aVar.f282c;
+        if (ngVar != null) {
+            ngVar.b();
+            if (!this.f17872c) {
+                ImageView imageView = (ImageView) ngVar.f640c;
                 if (imageView.getDrawable() != null) {
-                    imageView.getDrawable().setLevel(aVar.f281b);
+                    imageView.getDrawable().setLevel(ngVar.f639b);
                 }
             }
         }
@@ -132,71 +132,73 @@ public class v extends ImageButton {
     @Override
     public void setImageLevel(int i10) {
         super.setImageLevel(i10);
-        this.f16414c = true;
+        this.f17872c = true;
     }
 
     @Override
     public void setImageResource(int i10) {
-        a5.a aVar = this.f16413b;
-        ImageView imageView = (ImageView) aVar.f282c;
-        if (i10 != 0) {
-            Drawable b10 = q7.b(imageView.getContext(), i10);
-            if (b10 != null) {
-                m1.a(b10);
+        ng ngVar = this.f17871b;
+        if (ngVar != null) {
+            ImageView imageView = (ImageView) ngVar.f640c;
+            if (i10 != 0) {
+                Drawable b10 = kc.b(imageView.getContext(), i10);
+                if (b10 != null) {
+                    l1.a(b10);
+                }
+                imageView.setImageDrawable(b10);
+            } else {
+                imageView.setImageDrawable(null);
             }
-            imageView.setImageDrawable(b10);
-        } else {
-            imageView.setImageDrawable(null);
+            ngVar.b();
         }
-        aVar.c();
     }
 
     @Override
     public void setImageURI(Uri uri) {
         super.setImageURI(uri);
-        a5.a aVar = this.f16413b;
-        if (aVar != null) {
-            aVar.c();
+        ng ngVar = this.f17871b;
+        if (ngVar != null) {
+            ngVar.b();
         }
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f16412a;
+        e2.c cVar = this.f17870a;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f16412a;
+        e2.c cVar = this.f17870a;
         if (cVar != null) {
             cVar.m(mode);
         }
     }
 
     public void setSupportImageTintList(ColorStateList colorStateList) {
-        a5.a aVar = this.f16413b;
-        if (aVar != null) {
-            if (((e3) aVar.d) == null) {
-                aVar.d = new Object();
+        ng ngVar = this.f17871b;
+        if (ngVar != null) {
+            if (((d3) ngVar.d) == null) {
+                ngVar.d = new Object();
             }
-            e3 e3Var = (e3) aVar.d;
-            e3Var.f16259c = colorStateList;
-            e3Var.f16258b = true;
-            aVar.c();
+            d3 d3Var = (d3) ngVar.d;
+            d3Var.f17707c = colorStateList;
+            d3Var.f17706b = true;
+            ngVar.b();
         }
     }
 
     public void setSupportImageTintMode(PorterDuff.Mode mode) {
-        a5.a aVar = this.f16413b;
-        if (aVar != null) {
-            if (((e3) aVar.d) == null) {
-                aVar.d = new Object();
+        ng ngVar = this.f17871b;
+        if (ngVar != null) {
+            if (((d3) ngVar.d) == null) {
+                ngVar.d = new Object();
             }
-            e3 e3Var = (e3) aVar.d;
-            e3Var.d = mode;
-            e3Var.f16257a = true;
-            aVar.c();
+            d3 d3Var = (d3) ngVar.d;
+            d3Var.d = mode;
+            d3Var.f17705a = true;
+            ngVar.b();
         }
     }
 }

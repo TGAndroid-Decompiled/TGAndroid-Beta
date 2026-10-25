@@ -1,30 +1,143 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class ot0 extends AnimatorListenerAdapter {
-    public final pt0 f40254a;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class ot0 extends bu0 {
+    public final int f42285p0;
+    public final NotificationCenter.NotificationCenterDelegate f42286q0;
 
-    public ot0(pt0 pt0Var) {
-        this.f40254a = pt0Var;
+    public ot0(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, eu0 eu0Var, FrameLayout frameLayout, int i10) {
+        super(context, eu0Var, frameLayout);
+        this.f42285p0 = i10;
+        this.f42286q0 = notificationCenterDelegate;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        super.onAnimationEnd(animator);
-        pt0 pt0Var = this.f40254a;
-        PhotoViewer photoViewer = pt0Var.f40634c;
-        photoViewer.f33664n4 = 0;
-        photoViewer.H1();
-        photoViewer.L0.setAlpha(255);
-        photoViewer.f33582e0.invalidate();
-        photoViewer.P0.setTranslationY(0.0f);
-        if (photoViewer.f33718t4) {
-            PhotoViewer.b0(photoViewer, pt0Var.f40633b.intValue());
+    public boolean D() {
+        switch (this.f42285p0) {
+            case 0:
+                return !((PhotoViewer) this.f42286q0).f35765s;
+            default:
+                return super.D();
         }
-        ju0 ju0Var = pt0Var.f40632a;
-        if (ju0Var != null) {
-            ju0Var.d();
+    }
+
+    @Override
+    public void E() {
+        switch (this.f42285p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f42286q0;
+                if (secretMediaViewer.J && getScrollY() <= 0) {
+                    AndroidUtilities.runOnUIThread(secretMediaViewer.f36187r1, 3000L);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void F() {
+        switch (this.f42285p0) {
+            case 1:
+                AndroidUtilities.cancelRunOnUIThread(((SecretMediaViewer) this.f42286q0).f36187r1);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void G() {
+        boolean z10;
+        switch (this.f42285p0) {
+            case 1:
+                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f42286q0;
+                if (secretMediaViewer.K0 == null) {
+                    if (getScrollY() < getMeasuredHeight() / 3.0f && secretMediaViewer.f36172k0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    secretMediaViewer.k(z10, true);
+                    return;
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public void invalidate() {
+        boolean z10;
+        boolean z11;
+        int i10;
+        boolean z12;
+        switch (this.f42285p0) {
+            case 0:
+                super.invalidate();
+                PhotoViewer photoViewer = (PhotoViewer) this.f42286q0;
+                mu0[] mu0VarArr = photoViewer.W0;
+                ImageView[] imageViewArr = photoViewer.y3;
+                if (photoViewer.J) {
+                    int scrollY = getScrollY();
+                    float translationY = photoViewer.Q1.getTranslationY();
+                    float f7 = 0.0f;
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (scrollY == 0 && translationY == 0.0f) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    if (!z10) {
+                        int b10 = mu0VarArr[0].b() + mu0VarArr[0].f41659j;
+                        if (D()) {
+                            i10 = AndroidUtilities.statusBarHeight;
+                        } else {
+                            i10 = 0;
+                        }
+                        int top = (((photoViewer.Z1.getTop() + ((int) translationY)) - scrollY) + (org.telegram.ui.ActionBar.k.getCurrentActionBarHeight() + i10)) - AndroidUtilities.dp(12.0f);
+                        if (top > AndroidUtilities.dp(32.0f) + ((int) imageViewArr[0].getY())) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        if (top > b10) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        z11 = z12;
+                    }
+                    if (photoViewer.f35834z3) {
+                        if (imageViewArr[0].getTag() != null && ((Integer) imageViewArr[0].getTag()).intValue() == 3 && z11) {
+                            imageViewArr[0].setTag(2);
+                            imageViewArr[0].animate().alpha(1.0f).setDuration(150L).setListener(new i50(this, 13)).start();
+                        } else if (imageViewArr[0].getTag() == null && !z11) {
+                            imageViewArr[0].setTag(3);
+                            imageViewArr[0].animate().alpha(0.0f).setListener(null).setDuration(150L).start();
+                        }
+                    }
+                    mu0 mu0Var = mu0VarArr[0];
+                    if (z10) {
+                        f7 = 1.0f;
+                    }
+                    mu0Var.e(2, f7, true);
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
         }
     }
 }

@@ -1,173 +1,115 @@
 package jg;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.ArrayList;
-public final class l extends g {
-    @Override
-    public final lg.f h(kg.a aVar) {
-        return new lg.f(aVar, true, null);
+import android.graphics.Matrix;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.ImageView;
+import android.widget.ToggleButton;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.Components.ru;
+public final class l extends ImageView {
+    public final int f15770a;
+
+    public l(Context context, int i10) {
+        super(context);
+        this.f15770a = i10;
     }
 
     @Override
-    public final void k(android.graphics.Canvas r26) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.l.k(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void n(Canvas canvas) {
-        float f7;
-        boolean z10;
-        ArrayList arrayList;
-        int i10;
-        ArrayList arrayList2;
-        int i11;
-        float f10;
-        float f11;
-        float f12;
-        getMeasuredHeight();
-        getMeasuredHeight();
-        ArrayList arrayList3 = this.d;
-        int size = arrayList3.size();
-        kg.b bVar = this.f14508h0;
-        if (bVar != null) {
-            float[] fArr = bVar.f15099b;
-            if (fArr.length < 2) {
-                f7 = 1.0f;
-            } else {
-                f7 = fArr[1] * this.C0;
-            }
-            int i12 = 0;
-            while (i12 < size) {
-                lg.f fVar = (lg.f) arrayList3.get(i12);
-                boolean z11 = fVar.f16126n;
-                Paint paint = fVar.f16117b;
-                float[] fArr2 = fVar.f16124l;
-                Path path = fVar.e;
-                float f13 = 0.0f;
-                if (!z11 && fVar.f16127o == 0.0f) {
-                    arrayList = arrayList3;
-                    i10 = size;
-                } else {
-                    path.reset();
-                    int length = this.f14508h0.f15099b.length;
-                    long[] jArr = fVar.f16116a.f15092a;
-                    fVar.f16119f.reset();
-                    int i13 = 0;
-                    int i14 = 0;
-                    while (true) {
-                        z10 = g.A1;
-                        if (i14 >= length) {
-                            break;
-                        }
-                        float f14 = f13;
-                        long[] jArr2 = jArr;
-                        long j10 = jArr2[i14];
-                        if (j10 < 0) {
-                            arrayList2 = arrayList3;
-                            i11 = size;
-                        } else {
-                            kg.b bVar2 = this.f14508h0;
-                            arrayList2 = arrayList3;
-                            float f15 = this.C0 * bVar2.f15099b[i14];
-                            boolean z12 = g.B1;
-                            if (z12) {
-                                f10 = this.f14512j0;
-                                i11 = size;
-                            } else {
-                                i11 = size;
-                                f10 = (float) bVar2.e;
-                            }
-                            if (z12) {
-                                f12 = this.f14514k0;
-                                f11 = f10;
-                            } else {
-                                f11 = f10;
-                                f12 = (float) bVar2.f15101f;
-                            }
-                            float f16 = (1.0f - ((((float) j10) - f12) / (f11 - f12))) * this.B0;
-                            if (z10) {
-                                if (i13 == 0) {
-                                    float f17 = f7 / 2.0f;
-                                    fArr2[i13] = f15 - f17;
-                                    fArr2[i13 + 1] = f16;
-                                    float f18 = f15 + f17;
-                                    fArr2[i13 + 2] = f18;
-                                    fArr2[i13 + 3] = f16;
-                                    int i15 = i13 + 5;
-                                    fArr2[i13 + 4] = f18;
-                                    i13 += 6;
-                                    fArr2[i15] = f16;
-                                } else if (i14 == length - 1) {
-                                    float f19 = f7 / 2.0f;
-                                    float f20 = f15 - f19;
-                                    fArr2[i13] = f20;
-                                    fArr2[i13 + 1] = f16;
-                                    fArr2[i13 + 2] = f20;
-                                    fArr2[i13 + 3] = f16;
-                                    float f21 = f15 + f19;
-                                    fArr2[i13 + 4] = f21;
-                                    fArr2[i13 + 5] = f16;
-                                    fArr2[i13 + 6] = f21;
-                                    fArr2[i13 + 7] = f16;
-                                    int i16 = i13 + 9;
-                                    fArr2[i13 + 8] = f21;
-                                    i13 += 10;
-                                    fArr2[i16] = f14;
-                                } else {
-                                    float f22 = f7 / 2.0f;
-                                    float f23 = f15 - f22;
-                                    fArr2[i13] = f23;
-                                    fArr2[i13 + 1] = f16;
-                                    fArr2[i13 + 2] = f23;
-                                    fArr2[i13 + 3] = f16;
-                                    float f24 = f15 + f22;
-                                    fArr2[i13 + 4] = f24;
-                                    fArr2[i13 + 5] = f16;
-                                    int i17 = i13 + 7;
-                                    fArr2[i13 + 6] = f24;
-                                    i13 += 8;
-                                    fArr2[i17] = f16;
-                                }
-                            } else {
-                                if (i14 == 0) {
-                                    path.moveTo(f15 - (f7 / 2.0f), f16);
-                                } else {
-                                    path.lineTo(f15 - (f7 / 2.0f), f16);
-                                }
-                                path.lineTo((f7 / 2.0f) + f15, f16);
-                            }
-                        }
-                        i14++;
-                        f13 = f14;
-                        jArr = jArr2;
-                        arrayList3 = arrayList2;
-                        size = i11;
-                    }
-                    arrayList = arrayList3;
-                    i10 = size;
-                    float f25 = f13;
-                    fVar.f16122j = i13;
-                    if (fVar.f16126n || fVar.f16127o != f25) {
-                        paint.setAlpha((int) (fVar.f16127o * 255.0f));
-                        if (z10) {
-                            canvas.drawLines(fArr2, 0, fVar.f16122j, paint);
-                        } else {
-                            canvas.drawPath(path, paint);
-                        }
-                    }
-                }
-                i12++;
-                arrayList3 = arrayList;
-                size = i10;
-            }
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f15770a) {
+            case 2:
+                super.dispatchDraw(canvas);
+                return;
+            default:
+                super.dispatchDraw(canvas);
+                return;
         }
     }
 
     @Override
-    public final void t() {
-        this.P0 = true;
-        super.t();
+    public boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f15770a) {
+            case 1:
+                if (getAlpha() < 0.5f) {
+                    return false;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return super.dispatchTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f15770a) {
+            case 4:
+                super.onDraw(canvas);
+                invalidate();
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f15770a) {
+            case 5:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setClassName(ToggleButton.class.getName());
+                accessibilityNodeInfo.setCheckable(true);
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    accessibilityNodeInfo.setChecked(sharedInstance.isSpeakerphoneOn());
+                    return;
+                }
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        float f7;
+        float f10;
+        switch (this.f15770a) {
+            case 0:
+                super.onMeasure(i10, i11);
+                Matrix imageMatrix = getImageMatrix();
+                int measuredWidth = (getMeasuredWidth() - getPaddingLeft()) - getPaddingRight();
+                int measuredHeight = (getMeasuredHeight() - getPaddingTop()) - getPaddingBottom();
+                int intrinsicWidth = getDrawable().getIntrinsicWidth();
+                int intrinsicHeight = getDrawable().getIntrinsicHeight();
+                if (intrinsicWidth * measuredHeight > intrinsicHeight * measuredWidth) {
+                    f7 = measuredHeight;
+                    f10 = intrinsicHeight;
+                } else {
+                    f7 = measuredWidth;
+                    f10 = intrinsicWidth;
+                }
+                float f11 = f7 / f10;
+                imageMatrix.setScale(f11, f11);
+                setImageMatrix(imageMatrix);
+                return;
+            case 3:
+                int size = View.MeasureSpec.getSize(i10);
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec(size, 1073741824), View.MeasureSpec.makeMeasureSpec(size, 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    public l(ru ruVar, Context context) {
+        super(context);
+        this.f15770a = 2;
     }
 }

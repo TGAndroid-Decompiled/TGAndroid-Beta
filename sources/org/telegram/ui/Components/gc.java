@@ -1,33 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.Typeface;
-import android.widget.ImageView;
-public class gc extends lb {
-    public final ImageView f26618a;
-    public final w90 f26619b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class gc extends FrameLayout {
+    public final h6 f28529a;
+    public final h6 f28530b;
+    public final Paint f28531c;
+    public final RectF d;
+    public final long e;
+    public final hc f28532f;
 
-    public gc(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
-        int i10 = org.telegram.ui.ActionBar.k6.Hi;
-        getThemedColor(i10);
-        ImageView imageView = new ImageView(context);
-        this.f26618a = imageView;
-        org.telegram.ui.ActionBar.r6.t(imageView, i10, g6Var, PorterDuff.Mode.MULTIPLY);
-        addView(imageView, w7.z5.i(24.0f, 24.0f, 8388627, 16.0f, 12.0f, 16.0f, 12.0f));
-        w90 w90Var = new w90(context, null);
-        this.f26619b = w90Var;
-        w90Var.setDisablePaddingsOffsetY(true);
-        w90Var.setSingleLine();
-        org.telegram.ui.ActionBar.r6.W(w90Var, i10, g6Var);
-        w90Var.setTypeface(Typeface.SANS_SERIF);
-        w90Var.setTextSize(1, 15.0f);
-        addView(w90Var, w7.z5.i(-2.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+    public gc(hc hcVar, Activity activity) {
+        super(activity);
+        this.f28532f = hcVar;
+        ds dsVar = ds.h;
+        this.f28529a = new h6(this, 320L, dsVar);
+        this.f28530b = new h6(this, 320L, dsVar);
+        Paint paint = new Paint(1);
+        this.f28531c = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(268435455);
+        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.d = new RectF();
+        this.e = System.currentTimeMillis();
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f26619b.getText();
+    public final void onDraw(Canvas canvas) {
+        boolean z10;
+        int i10;
+        hc hcVar = this.f28532f;
+        float d = this.f28529a.d(hcVar.f28909a, false);
+        if (hcVar.f28909a >= 1.0f) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        float e = this.f28530b.e(z10);
+        float width = getWidth() / 2.0f;
+        float height = getHeight() / 2.0f;
+        RectF rectF = this.d;
+        rectF.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), AndroidUtilities.dpf2(13.0f) + width, AndroidUtilities.dpf2(13.0f) + height);
+        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.e)) * 0.45f) % 5400.0f;
+        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
+        for (int i11 = 0; i11 < 4; i11++) {
+            u1.a aVar = gq.h;
+            aVar.getInterpolation((currentTimeMillis - (i11 * 1350)) / 667.0f);
+            max += aVar.getInterpolation((currentTimeMillis - (i10 + 667)) / 667.0f) * 250.0f;
+        }
+        int o12 = org.telegram.ui.ActionBar.y6.o1((1.0f - e) * 1.0f, -1);
+        Paint paint = this.f28531c;
+        paint.setColor(o12);
+        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, d) * (-360.0f), false, paint);
+        if (d < 1.0f && e < 1.0f) {
+            invalidate();
+        }
+        super.onDraw(canvas);
     }
 }

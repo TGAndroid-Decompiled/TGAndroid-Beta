@@ -1,58 +1,19 @@
 package org.telegram.ui;
 
+import java.util.TimerTask;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class fe0 implements Runnable {
-    public final int f37317a;
-    public final ie0 f37318b;
+public final class fe0 extends TimerTask {
+    public final ge0 f39349a;
 
-    public fe0(ie0 ie0Var, int i10) {
-        this.f37317a = i10;
-        this.f37318b = ie0Var;
+    public fe0(ge0 ge0Var) {
+        this.f39349a = ge0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f37317a) {
-            case 0:
-                ie0 ie0Var = this.f37318b;
-                ei.e2 e2Var = ie0Var.f38268c;
-                e2Var.requestFocus();
-                String str = ie0Var.K;
-                if (str != null) {
-                    int i10 = 1;
-                    if (str.length() > 1) {
-                        String obj = e2Var.getText().toString();
-                        int length = obj.length();
-                        int i11 = 0;
-                        while (i11 < length && obj.charAt(i11) <= ' ') {
-                            i11++;
-                        }
-                        int length2 = ie0Var.K.length() + i11;
-                        if (length2 < 0 || length2 >= obj.length() || obj.charAt(length2) != ' ') {
-                            i10 = 0;
-                        }
-                        e2Var.setSelection(Utilities.clamp(length2 + i10, obj.length(), 0), e2Var.getText().length());
-                        return;
-                    }
-                }
-                e2Var.setSelection(0, e2Var.getText().length());
-                return;
-            case 1:
-                this.f37318b.p(true);
-                return;
-            case 2:
-                this.f37318b.n(false);
-                return;
-            default:
-                ei.e2 e2Var2 = this.f37318b.f38268c;
-                if (e2Var2 != null) {
-                    e2Var2.requestFocus();
-                    e2Var2.setSelection(e2Var2.length());
-                    AndroidUtilities.showKeyboard(e2Var2);
-                    return;
-                }
-                return;
+        if (this.f39349a.N == null) {
+            return;
         }
+        AndroidUtilities.runOnUIThread(new p00(this, 24));
     }
 }

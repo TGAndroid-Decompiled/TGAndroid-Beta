@@ -1,19 +1,52 @@
 package w7;
-
-import java.nio.ByteBuffer;
 public abstract class m {
-    public b2.t0 a(l3.a aVar) {
-        boolean z10;
-        ByteBuffer byteBuffer = aVar.f11661c;
-        byteBuffer.getClass();
-        if (byteBuffer.position() == 0 && byteBuffer.hasArray() && byteBuffer.arrayOffset() == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
         }
-        v7.u6.g(z10);
-        return b(aVar, byteBuffer);
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+            }
+            a2 = n.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = n.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
     }
 
-    public abstract b2.t0 b(l3.a aVar, ByteBuffer byteBuffer);
+    public static void b(int i10, int i11) {
+        if (i10 >= 0 && i10 <= i11) {
+            return;
+        }
+        throw new IndexOutOfBoundsException(d(i10, i11, "index"));
+    }
+
+    public static void c(int i10, int i11, int i12) {
+        String d;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
+        }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                d = n.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                d = d(i11, i12, "end index");
+            }
+        } else {
+            d = d(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(d);
+    }
+
+    public static String d(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return n.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return n.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+    }
 }

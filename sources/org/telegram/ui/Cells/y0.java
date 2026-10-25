@@ -7,25 +7,26 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.ui.Components.RadialProgressView;
-public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final ah.v f23965a;
-    public final RadialProgressView f23966b;
-    public final org.telegram.ui.ActionBar.g6 f23967c;
+import org.telegram.ui.Components.gb1;
+public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public final bh.p f25731a;
+    public final RadialProgressView f25732b;
+    public final org.telegram.ui.ActionBar.u6 f25733c;
     public float d;
     public int e;
 
-    public y0(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+    public y0(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
         super(context);
-        this.f23967c = g6Var;
-        ah.v vVar = new ah.v(this, context);
-        this.f23965a = vVar;
-        vVar.setWillNotDraw(false);
-        addView(vVar, w7.z5.e(36, 36, 17));
-        RadialProgressView radialProgressView = new RadialProgressView(context, g6Var);
-        this.f23966b = radialProgressView;
+        this.f25733c = u6Var;
+        bh.p pVar = new bh.p(this, context);
+        this.f25731a = pVar;
+        pVar.setWillNotDraw(false);
+        addView(pVar, gb1.i(36, 36, 17));
+        RadialProgressView radialProgressView = new RadialProgressView(context, u6Var);
+        this.f25732b = radialProgressView;
         radialProgressView.setSize(AndroidUtilities.dp(28.0f));
-        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21278ic, g6Var));
-        vVar.addView(radialProgressView, w7.z5.e(32, 32, 17));
+        radialProgressView.setProgressColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23451ic, u6Var));
+        pVar.addView(radialProgressView, gb1.i(32, 32, 17));
     }
 
     public final void a(float f7, int i10) {
@@ -48,13 +49,13 @@ public final class y0 extends FrameLayout implements org.telegram.ui.ActionBar.b
         } else {
             i10 = 4;
         }
-        this.f23965a.setVisibility(i10);
+        this.f25731a.setVisibility(i10);
     }
 
     @Override
     public final void updateColors() {
         try {
-            this.f23966b.setProgressColor(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21278ic, this.f23967c));
+            this.f25732b.setProgressColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23451ic, this.f25733c));
             invalidate();
         } catch (Exception e) {
             FileLog.e(e);

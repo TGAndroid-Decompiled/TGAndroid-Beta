@@ -14,7 +14,7 @@ import java.util.function.IntFunction;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 public abstract class a extends AbstractCollection implements Serializable, Collection {
-    public static final Object[] f48056a = new Object[0];
+    public static final Object[] f49590a = new Object[0];
 
     @Override
     public final boolean add(Object obj) {
@@ -38,11 +38,17 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
 
     public abstract int h(Object[] objArr);
 
-    public abstract int m();
+    public int m() {
+        throw new UnsupportedOperationException();
+    }
 
-    public abstract int n();
+    public int n() {
+        throw new UnsupportedOperationException();
+    }
 
-    public abstract Object[] o();
+    public Object[] o() {
+        return null;
+    }
 
     @Override
     public Stream parallelStream() {
@@ -103,7 +109,7 @@ public abstract class a extends AbstractCollection implements Serializable, Coll
 
     @Override
     public final Object[] toArray() {
-        return toArray(f48056a);
+        return toArray(f49590a);
     }
 
     @Override

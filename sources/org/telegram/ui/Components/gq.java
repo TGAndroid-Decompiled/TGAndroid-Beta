@@ -1,83 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.view.MotionEvent;
-import androidx.core.widget.NestedScrollView;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-public final class gq extends NestedScrollView {
-    public boolean W;
-    public final kq f26763a0;
+public class gq extends Drawable {
+    public static final u1.a h = new u1.a();
+    public float f28674a;
+    public final float f28675b;
+    public long f28676c;
+    public final float[] d;
+    public final Paint e;
+    public float f28677f;
+    public final RectF f28678g;
 
-    public gq(kq kqVar, Context context) {
-        super(context);
-        this.f26763a0 = kqVar;
+    public gq(int i10) {
+        this.f28674a = AndroidUtilities.dp(18.0f);
+        this.f28675b = AndroidUtilities.dp(2.25f);
+        this.f28676c = -1L;
+        this.d = new float[2];
+        Paint paint = new Paint();
+        this.e = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.f28678g = new RectF();
+        b(i10);
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
+    public static void a(float[] fArr, float f7) {
         int i10;
-        int i11;
-        kq kqVar = this.f26763a0;
-        int i12 = kqVar.h;
-        i10 = ((org.telegram.ui.ActionBar.h3) kqVar).backgroundPaddingTop;
-        int scrollY = (int) ((getScrollY() + (i12 - i10)) - getTranslationY());
-        Drawable drawable = kqVar.f28065b;
-        int measuredWidth = getMeasuredWidth();
-        i11 = ((org.telegram.ui.ActionBar.h3) kqVar).backgroundPaddingTop;
-        drawable.setBounds(0, scrollY, measuredWidth, AndroidUtilities.dp(19.0f) + i11 + kqVar.d.getMeasuredHeight() + scrollY);
-        drawable.draw(canvas);
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (motionEvent.getAction() == 0) {
-            kq kqVar = this.f26763a0;
-            if (kqVar.h != 0 && motionEvent.getY() < kqVar.h) {
-                kqVar.dismiss();
-                return true;
-            }
+        float f10 = (1520.0f * f7) / 5400.0f;
+        fArr[0] = Math.max(0.0f, f10 - 20.0f);
+        fArr[1] = f10;
+        for (int i11 = 0; i11 < 4; i11++) {
+            u1.a aVar = h;
+            fArr[1] = (aVar.getInterpolation((f7 - (i11 * 1350)) / 667.0f) * 250.0f) + fArr[1];
+            fArr[0] = (aVar.getInterpolation((f7 - (i10 + 667)) / 667.0f) * 250.0f) + fArr[0];
         }
-        return super.onInterceptTouchEvent(motionEvent);
+    }
+
+    public final void b(int i10) {
+        this.e.setColor(i10);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        kq.m(this.f26763a0);
-    }
-
-    @Override
-    public final void onMeasure(int r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.gq.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        super.onScrollChanged(i10, i11, i12, i13);
-        kq.m(this.f26763a0);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f26763a0.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
+    public final void draw(Canvas canvas) {
+        if (this.f28676c < 0) {
+            this.f28676c = SystemClock.elapsedRealtime();
         }
-        return false;
+        float[] fArr = this.d;
+        a(fArr, (float) ((SystemClock.elapsedRealtime() - this.f28676c) % 5400));
+        float f7 = this.f28677f;
+        float f10 = fArr[0];
+        Paint paint = this.e;
+        canvas.drawArc(this.f28678g, f7 + f10, fArr[1] - f10, false, paint);
+        invalidateSelf();
     }
 
     @Override
-    public final void requestLayout() {
-        if (this.W) {
-            return;
-        }
-        super.requestLayout();
+    public int getIntrinsicHeight() {
+        return (int) (this.f28674a + this.f28675b);
     }
 
     @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        kq.m(this.f26763a0);
+    public int getIntrinsicWidth() {
+        return (int) (this.f28674a + this.f28675b);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.e.setAlpha(i10);
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        float f7 = i10;
+        float f10 = i12 - i10;
+        float f11 = this.f28675b;
+        float f12 = this.f28674a;
+        float f13 = i11;
+        float f14 = i13 - i11;
+        this.f28678g.set(c3.h0.B(f10 - (f11 / 2.0f), f12, 2.0f, f7), (((f14 - (f11 / 2.0f)) - f12) / 2.0f) + f13, ((((f11 / 2.0f) + f10) + f12) / 2.0f) + f7, ((((f11 / 2.0f) + f14) + f12) / 2.0f) + f13);
+        super.setBounds(i10, i11, i12, i13);
+        this.e.setStrokeWidth(f11);
+    }
+
+    public gq(float f7, float f10, int i10) {
+        this.f28674a = AndroidUtilities.dp(18.0f);
+        this.f28675b = AndroidUtilities.dp(2.25f);
+        this.f28676c = -1L;
+        this.d = new float[2];
+        Paint paint = new Paint();
+        this.e = paint;
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
+        this.f28678g = new RectF();
+        this.f28674a = f7;
+        this.f28675b = f10;
+        b(i10);
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

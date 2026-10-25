@@ -1,111 +1,35 @@
 package s9;
 
-import ai.y3;
-import com.google.android.gms.internal.cast.i4;
-import java.util.Collection;
-import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
+import android.os.StrictMode;
+import com.google.firebase.concurrent.ExecutorsRegistrar;
+import java.util.Collections;
+import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
-public final class f implements ScheduledExecutorService, AutoCloseable {
-    public final ExecutorService f46565a;
-    public final ScheduledExecutorService f46566b;
+public final class f implements ra.b {
+    public final int f47987a;
 
-    public f(ExecutorService executorService, ScheduledExecutorService scheduledExecutorService) {
-        this.f46565a = executorService;
-        this.f46566b = scheduledExecutorService;
+    public f(int i10) {
+        this.f47987a = i10;
     }
 
     @Override
-    public final boolean awaitTermination(long j10, TimeUnit timeUnit) {
-        return this.f46565a.awaitTermination(j10, timeUnit);
-    }
-
-    @Override
-    public final void close() {
-        i4.i(this);
-    }
-
-    @Override
-    public final void execute(Runnable runnable) {
-        this.f46565a.execute(runnable);
-    }
-
-    @Override
-    public final List invokeAll(Collection collection) {
-        return this.f46565a.invokeAll(collection);
-    }
-
-    @Override
-    public final Object invokeAny(Collection collection) {
-        return this.f46565a.invokeAny(collection);
-    }
-
-    @Override
-    public final boolean isShutdown() {
-        return this.f46565a.isShutdown();
-    }
-
-    @Override
-    public final boolean isTerminated() {
-        return this.f46565a.isTerminated();
-    }
-
-    @Override
-    public final ScheduledFuture schedule(Runnable runnable, long j10, TimeUnit timeUnit) {
-        return new h(new y3(this, runnable, j10, timeUnit, 6));
-    }
-
-    @Override
-    public final ScheduledFuture scheduleAtFixedRate(Runnable runnable, long j10, long j11, TimeUnit timeUnit) {
-        return new h(new c(this, runnable, j10, j11, timeUnit, 0));
-    }
-
-    @Override
-    public final ScheduledFuture scheduleWithFixedDelay(Runnable runnable, long j10, long j11, TimeUnit timeUnit) {
-        return new h(new c(this, runnable, j10, j11, timeUnit, 1));
-    }
-
-    @Override
-    public final void shutdown() {
-        throw new UnsupportedOperationException("Shutting down is not allowed.");
-    }
-
-    @Override
-    public final List shutdownNow() {
-        throw new UnsupportedOperationException("Shutting down is not allowed.");
-    }
-
-    @Override
-    public final Future submit(Callable callable) {
-        return this.f46565a.submit(callable);
-    }
-
-    @Override
-    public final List invokeAll(Collection collection, long j10, TimeUnit timeUnit) {
-        return this.f46565a.invokeAll(collection, j10, timeUnit);
-    }
-
-    @Override
-    public final Object invokeAny(Collection collection, long j10, TimeUnit timeUnit) {
-        return this.f46565a.invokeAny(collection, j10, timeUnit);
-    }
-
-    @Override
-    public final ScheduledFuture schedule(Callable callable, long j10, TimeUnit timeUnit) {
-        return new h(new y3(this, callable, j10, timeUnit, 7));
-    }
-
-    @Override
-    public final Future submit(Runnable runnable, Object obj) {
-        return this.f46565a.submit(runnable, obj);
-    }
-
-    @Override
-    public final Future submit(Runnable runnable) {
-        return this.f46565a.submit(runnable);
+    public final Object get() {
+        switch (this.f47987a) {
+            case 0:
+                return Collections.EMPTY_SET;
+            case 1:
+                return null;
+            case 2:
+                return ExecutorsRegistrar.a();
+            case 3:
+                n nVar = ExecutorsRegistrar.f7695a;
+                return new t9.f(Executors.newFixedThreadPool(Math.max(2, Runtime.getRuntime().availableProcessors()), new t9.a("Firebase Lite", 0, new StrictMode.ThreadPolicy.Builder().detectAll().penaltyLog().build())), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
+            case 4:
+                n nVar2 = ExecutorsRegistrar.f7695a;
+                return new t9.f(Executors.newCachedThreadPool(new t9.a("Firebase Blocking", 11, null)), (ScheduledExecutorService) ExecutorsRegistrar.d.get());
+            default:
+                n nVar3 = ExecutorsRegistrar.f7695a;
+                return Executors.newSingleThreadScheduledExecutor(new t9.a("Firebase Scheduler", 0, null));
+        }
     }
 }

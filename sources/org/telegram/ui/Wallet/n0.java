@@ -3,84 +3,84 @@ package org.telegram.ui.Wallet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_wallet;
-import org.telegram.ui.pl0;
+import org.telegram.ui.zg1;
 public final class n0 {
-    public static final long[] f34889j = {500, 1000, 3000, 5000, 10000};
-    public final int f34890a;
-    public final String f34891b;
-    public final pl0 f34892c;
+    public static final long[] f36975j = {500, 1000, 3000, 5000, 10000};
+    public final int f36976a;
+    public final String f36977b;
+    public final zg1 f36978c;
     public boolean d;
     public int e;
-    public int f34893f;
-    public int f34894g = -1;
+    public int f36979f;
+    public int f36980g = -1;
     public final m0 h = new Runnable(this) {
-        public final n0 f34796b;
+        public final n0 f36874b;
 
         {
-            this.f34796b = this;
+            this.f36874b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    n0 n0Var = this.f34796b;
+                    n0 n0Var = this.f36874b;
                     if (n0Var.d) {
                         n0Var.e++;
-                        if (n0Var.f34894g >= 0) {
-                            ConnectionsManager.getInstance(n0Var.f34890a).cancelRequest(n0Var.f34894g, true);
-                            n0Var.f34894g = -1;
+                        if (n0Var.f36980g >= 0) {
+                            ConnectionsManager.getInstance(n0Var.f36976a).cancelRequest(n0Var.f36980g, true);
+                            n0Var.f36980g = -1;
                         }
                         n0Var.a();
                         return;
                     }
                     return;
                 default:
-                    n0 n0Var2 = this.f34796b;
+                    n0 n0Var2 = this.f36874b;
                     if (n0Var2.d) {
                         int i10 = n0Var2.e + 1;
                         n0Var2.e = i10;
                         TL_wallet.getTransactionsByMsgHash gettransactionsbymsghash = new TL_wallet.getTransactionsByMsgHash();
-                        gettransactionsbymsghash.msg_hash.add(n0Var2.f34891b);
+                        gettransactionsbymsghash.msg_hash.add(n0Var2.f36977b);
                         AndroidUtilities.runOnUIThread(n0Var2.h, 30000L);
-                        n0Var2.f34894g = ConnectionsManager.getInstance(n0Var2.f34890a).sendRequestTyped(gettransactionsbymsghash, new Object(), new org.telegram.ui.Components.o(n0Var2, i10, 1));
+                        n0Var2.f36980g = ConnectionsManager.getInstance(n0Var2.f36976a).sendRequestTyped(gettransactionsbymsghash, new Object(), new org.telegram.ui.Components.o(n0Var2, i10, 1));
                         return;
                     }
                     return;
             }
         }
     };
-    public final m0 f34895i = new Runnable(this) {
-        public final n0 f34796b;
+    public final m0 f36981i = new Runnable(this) {
+        public final n0 f36874b;
 
         {
-            this.f34796b = this;
+            this.f36874b = this;
         }
 
         @Override
         public final void run() {
             switch (r2) {
                 case 0:
-                    n0 n0Var = this.f34796b;
+                    n0 n0Var = this.f36874b;
                     if (n0Var.d) {
                         n0Var.e++;
-                        if (n0Var.f34894g >= 0) {
-                            ConnectionsManager.getInstance(n0Var.f34890a).cancelRequest(n0Var.f34894g, true);
-                            n0Var.f34894g = -1;
+                        if (n0Var.f36980g >= 0) {
+                            ConnectionsManager.getInstance(n0Var.f36976a).cancelRequest(n0Var.f36980g, true);
+                            n0Var.f36980g = -1;
                         }
                         n0Var.a();
                         return;
                     }
                     return;
                 default:
-                    n0 n0Var2 = this.f34796b;
+                    n0 n0Var2 = this.f36874b;
                     if (n0Var2.d) {
                         int i10 = n0Var2.e + 1;
                         n0Var2.e = i10;
                         TL_wallet.getTransactionsByMsgHash gettransactionsbymsghash = new TL_wallet.getTransactionsByMsgHash();
-                        gettransactionsbymsghash.msg_hash.add(n0Var2.f34891b);
+                        gettransactionsbymsghash.msg_hash.add(n0Var2.f36977b);
                         AndroidUtilities.runOnUIThread(n0Var2.h, 30000L);
-                        n0Var2.f34894g = ConnectionsManager.getInstance(n0Var2.f34890a).sendRequestTyped(gettransactionsbymsghash, new Object(), new org.telegram.ui.Components.o(n0Var2, i10, 1));
+                        n0Var2.f36980g = ConnectionsManager.getInstance(n0Var2.f36976a).sendRequestTyped(gettransactionsbymsghash, new Object(), new org.telegram.ui.Components.o(n0Var2, i10, 1));
                         return;
                     }
                     return;
@@ -88,32 +88,32 @@ public final class n0 {
         }
     };
 
-    public n0(int i10, String str, pl0 pl0Var) {
-        this.f34890a = i10;
-        this.f34891b = str;
-        this.f34892c = pl0Var;
+    public n0(int i10, String str, zg1 zg1Var) {
+        this.f36976a = i10;
+        this.f36977b = str;
+        this.f36978c = zg1Var;
     }
 
     public final void a() {
         if (!this.d) {
             return;
         }
-        int i10 = this.f34893f;
-        long j10 = f34889j[i10];
+        int i10 = this.f36979f;
+        long j10 = f36975j[i10];
         if (i10 < 4) {
-            this.f34893f = i10 + 1;
+            this.f36979f = i10 + 1;
         }
-        AndroidUtilities.runOnUIThread(this.f34895i, j10);
+        AndroidUtilities.runOnUIThread(this.f36981i, j10);
     }
 
     public final void b() {
         this.d = false;
         this.e++;
-        AndroidUtilities.cancelRunOnUIThread(this.f34895i);
+        AndroidUtilities.cancelRunOnUIThread(this.f36981i);
         AndroidUtilities.cancelRunOnUIThread(this.h);
-        if (this.f34894g >= 0) {
-            ConnectionsManager.getInstance(this.f34890a).cancelRequest(this.f34894g, true);
-            this.f34894g = -1;
+        if (this.f36980g >= 0) {
+            ConnectionsManager.getInstance(this.f36976a).cancelRequest(this.f36980g, true);
+            this.f36980g = -1;
         }
     }
 }

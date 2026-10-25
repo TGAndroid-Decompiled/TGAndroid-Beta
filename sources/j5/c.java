@@ -1,52 +1,30 @@
 package j5;
-
-import ah.l0;
-import android.animation.ValueAnimator;
-import java.net.URL;
-import org.telegram.ui.Components.zr;
-import w7.i;
 public final class c {
-    public long f14301a;
-    public int f14302b;
-    public Object f14303c;
+    public final String f15512a;
 
-    public c(int i10, URL url, long j10) {
-        this.f14302b = i10;
-        this.f14303c = url;
-        this.f14301a = j10;
-    }
-
-    public void a(ki.a aVar, b bVar) {
-        long j10;
-        boolean z10;
-        int i10;
-        int b10 = i.b(aVar);
-        if (aVar != null) {
-            j10 = aVar.f15140a;
-        } else {
-            j10 = Long.MIN_VALUE;
-        }
-        if (j10 == this.f14301a && this.f14302b >= 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f14301a = j10;
-        ValueAnimator valueAnimator = (ValueAnimator) this.f14303c;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f14303c = null;
-        }
-        if (z10 && (i10 = this.f14302b) != b10) {
-            ValueAnimator ofInt = ValueAnimator.ofInt(i10, b10);
-            ofInt.addUpdateListener(new l0(8, this, bVar));
-            ofInt.setInterpolator(zr.f33337f);
-            ofInt.setDuration(200L);
-            this.f14303c = ofInt;
-            ofInt.start();
+    public c(String str) {
+        if (str != null) {
+            this.f15512a = str;
             return;
         }
-        this.f14302b = b10;
-        bVar.j(b10);
+        throw new NullPointerException("name is null");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (!(obj instanceof c)) {
+            return false;
+        }
+        return this.f15512a.equals(((c) obj).f15512a);
+    }
+
+    public final int hashCode() {
+        return this.f15512a.hashCode() ^ 1000003;
+    }
+
+    public final String toString() {
+        return a1.g.s(new StringBuilder("Encoding{name=\""), this.f15512a, "\"}");
     }
 }

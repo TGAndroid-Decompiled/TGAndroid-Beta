@@ -1,24 +1,22 @@
 package org.telegram.ui.ActionBar;
+public final class t5 {
+    public static final t5 f23100a;
+    public static final t5 f23101b;
+    public static final t5[] f23102c;
 
-import android.graphics.Point;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class t5 extends w7.w5 {
-    @Override
-    public final void b(int i10, int i11) {
-        boolean z10;
-        Point point = AndroidUtilities.displaySize;
-        boolean z11 = true;
-        if (point.x <= point.y) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        if (i10 > i11) {
-            z11 = false;
-        }
-        if (z10 == z11) {
-            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
-        }
+    static {
+        ?? r02 = new Enum("GLASS", 0);
+        f23100a = r02;
+        ?? r12 = new Enum("ACCENT", 1);
+        f23101b = r12;
+        f23102c = new t5[]{r02, r12};
+    }
+
+    public static t5 valueOf(String str) {
+        return (t5) Enum.valueOf(t5.class, str);
+    }
+
+    public static t5[] values() {
+        return (t5[]) f23102c.clone();
     }
 }

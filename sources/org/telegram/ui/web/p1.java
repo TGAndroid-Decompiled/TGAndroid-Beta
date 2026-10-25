@@ -2,33 +2,33 @@ package org.telegram.ui.web;
 
 import org.telegram.messenger.AndroidUtilities;
 public final class p1 implements Runnable {
-    public final int f43218a;
-    public final org.telegram.ui.m0 f43219b;
+    public final int f45350a;
+    public final org.telegram.ui.l0 f45351b;
 
-    public p1(org.telegram.ui.m0 m0Var, int i10) {
-        this.f43218a = i10;
-        this.f43219b = m0Var;
+    public p1(org.telegram.ui.l0 l0Var, int i10) {
+        this.f45350a = i10;
+        this.f45351b = l0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f43218a) {
+        switch (this.f45350a) {
             case 0:
-                org.telegram.ui.m0 m0Var = this.f43219b;
-                m0Var.A0 = true;
-                if (m0Var.getParent() != null) {
-                    m0Var.getParent().requestDisallowInterceptTouchEvent(true);
+                org.telegram.ui.l0 l0Var = this.f45351b;
+                l0Var.A0 = true;
+                if (l0Var.getParent() != null) {
+                    l0Var.getParent().requestDisallowInterceptTouchEvent(true);
                 }
                 try {
-                    m0Var.performHapticFeedback(0, 1);
+                    l0Var.performHapticFeedback(0, 1);
                     return;
                 } catch (Exception unused) {
                     return;
                 }
             default:
-                org.telegram.ui.m0 m0Var2 = this.f43219b;
-                ai.t tVar = m0Var2.f43260b0;
-                if (m0Var2.W) {
+                org.telegram.ui.l0 l0Var2 = this.f45351b;
+                bi.t tVar = l0Var2.f45392b0;
+                if (l0Var2.W) {
                     tVar.requestFocus();
                     AndroidUtilities.showKeyboard(tVar);
                     return;

@@ -1,14 +1,18 @@
 package i2;
 public final class m0 {
-    public final int f12515a;
-    public final int f12516b;
-    public final int f12517c;
-    public final u2.k1 d;
+    public final s0 f13660a;
 
-    public m0(int i10, int i11, int i12, u2.k1 k1Var) {
-        this.f12515a = i10;
-        this.f12516b = i11;
-        this.f12517c = i12;
-        this.d = k1Var;
+    public m0(s0 s0Var) {
+        this.f13660a = s0Var;
+    }
+
+    public final void a() {
+        s0 s0Var = this.f13660a;
+        if (s0Var.T) {
+            s0Var.S.getClass();
+        } else if (!s0Var.f13741j0) {
+            return;
+        }
+        s0Var.f13744n.f(2);
     }
 }

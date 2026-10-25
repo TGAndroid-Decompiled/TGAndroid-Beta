@@ -1,7 +1,4 @@
 package o6;
-public abstract class a implements b {
-    @Override
-    public final int describeContents() {
-        return 0;
-    }
+public abstract class a extends c8.b implements h {
+    public static final int f19095b = 0;
 }

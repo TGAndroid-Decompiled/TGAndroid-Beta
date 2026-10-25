@@ -1,43 +1,44 @@
 package h3;
 
-import b2.t0;
-import c3.a0;
+import b2.u0;
+import b6.i;
+import c3.j0;
 import c3.l;
-import c3.l0;
+import c3.o;
+import c3.p;
 import c3.q;
-import c3.r;
 import c3.s;
 import c3.u;
-import c3.w;
 import e2.x;
-import e9.n0;
-import e9.x1;
+import f9.g0;
+import f9.i0;
+import f9.s1;
 import java.util.List;
 import q3.h;
-public final class b implements q {
-    public s e;
-    public l0 f11682f;
-    public t0 h;
-    public w f11684i;
-    public int f11685j;
-    public int f11686k;
-    public a f11687l;
-    public int f11688m;
-    public long f11689n;
-    public final byte[] f11679a = new byte[42];
-    public final x f11680b = new x(new byte[32768], 0);
-    public final boolean f11681c = false;
-    public final u d = new Object();
-    public int f11683g = 0;
+public final class b implements o {
+    public q e;
+    public j0 f12591f;
+    public u0 h;
+    public u f12593i;
+    public int f12594j;
+    public int f12595k;
+    public a f12596l;
+    public int f12597m;
+    public long f12598n;
+    public final byte[] f12588a = new byte[42];
+    public final x f12589b = new x(new byte[32768], 0);
+    public final boolean f12590c = false;
+    public final s d = new Object();
+    public int f12592g = 0;
 
     @Override
-    public final boolean a(r rVar) {
-        t0 b10 = new a0(0).b(rVar, h.f44789b, 0);
-        if (b10 != null) {
-            int length = b10.f4014a.length;
+    public final boolean a(p pVar) {
+        u0 c02 = new i(8).c0(pVar, h.f46938b, 0);
+        if (c02 != null) {
+            int length = c02.f3465a.length;
         }
         x xVar = new x(4);
-        ((l) rVar).j(xVar.f8298a, 0, 4, false);
+        ((l) pVar).h(xVar.f9732a, 0, 4, false);
         if (xVar.C() != 1716281667) {
             return false;
         }
@@ -45,19 +46,19 @@ public final class b implements q {
     }
 
     @Override
-    public final void c(s sVar) {
-        this.e = sVar;
-        this.f11682f = sVar.j0(0, 1);
-        sVar.C();
+    public final void c(q qVar) {
+        this.e = qVar;
+        this.f12591f = qVar.F1(0, 1);
+        qVar.Q0();
     }
 
     @Override
     public final void d(long j10, long j11) {
         long j12 = 0;
         if (j10 == 0) {
-            this.f11683g = 0;
+            this.f12592g = 0;
         } else {
-            a aVar = this.f11687l;
+            a aVar = this.f12596l;
             if (aVar != null) {
                 aVar.d(j11);
             }
@@ -65,24 +66,24 @@ public final class b implements q {
         if (j11 != 0) {
             j12 = -1;
         }
-        this.f11689n = j12;
-        this.f11688m = 0;
-        this.f11680b.K(0);
+        this.f12598n = j12;
+        this.f12597m = 0;
+        this.f12589b.K(0);
     }
 
     @Override
     public final List e() {
-        e9.l0 l0Var = n0.f8481b;
-        return x1.e;
+        g0 g0Var = i0.f10287b;
+        return s1.e;
     }
 
     @Override
-    public final int f(c3.r r32, c3.u r33) {
-        throw new UnsupportedOperationException("Method not decompiled: h3.b.f(c3.r, c3.u):int");
+    public final int f(c3.p r32, c3.s r33) {
+        throw new UnsupportedOperationException("Method not decompiled: h3.b.f(c3.p, c3.s):int");
     }
 
     @Override
-    public final q b() {
+    public final o b() {
         return this;
     }
 

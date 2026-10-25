@@ -1,38 +1,107 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.ChannelBoostsController;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
 public final class r80 implements Utilities.Callback {
-    public final int f41054a;
-    public final Object f41055b;
-    public final Object f41056c;
-    public final Object d;
-    public final Object e;
-    public final Object f41057f;
-    public final Object f41058g;
+    public final int f43048a;
+    public final LaunchActivity f43049b;
+    public final sz f43050c;
+    public final Long d;
 
-    public r80(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
-        this.f41054a = i10;
-        this.f41055b = obj;
-        this.f41056c = obj2;
-        this.e = obj3;
-        this.f41058g = obj4;
-        this.f41057f = obj5;
-        this.d = obj6;
+    public r80(LaunchActivity launchActivity, sz szVar, Long l4, int i10) {
+        this.f43048a = i10;
+        this.f43049b = launchActivity;
+        this.f43050c = szVar;
+        this.d = l4;
     }
 
     @Override
-    public final void run(java.lang.Object r19) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.r80.run(java.lang.Object):void");
-    }
-
-    public r80(LaunchActivity launchActivity, pf.c cVar, Runnable runnable, ChannelBoostsController channelBoostsController, Long l4, org.telegram.ui.Cells.t1 t1Var) {
-        this.f41054a = 1;
-        this.f41055b = launchActivity;
-        this.f41056c = cVar;
-        this.d = runnable;
-        this.f41058g = channelBoostsController;
-        this.e = l4;
-        this.f41057f = t1Var;
+    public final void run(Object obj) {
+        org.telegram.ui.Components.wc Y;
+        int i10;
+        int i11;
+        org.telegram.ui.Components.wc Y2;
+        int i12;
+        int i13;
+        int i14 = this.f43048a;
+        Long l4 = this.d;
+        sz szVar = this.f43050c;
+        LaunchActivity launchActivity = this.f43049b;
+        TL_stories.StoryItem storyItem = (TL_stories.StoryItem) obj;
+        switch (i14) {
+            case 0:
+                Pattern pattern = LaunchActivity.D1;
+                try {
+                    szVar.run();
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+                org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();
+                if (storyItem == null) {
+                    Y = org.telegram.ui.Components.wc.Y();
+                    if (Y != null) {
+                        i10 = R.raw.story_bomb2;
+                        i11 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    Y = org.telegram.ui.Components.wc.Y();
+                    if (Y != null) {
+                        i10 = R.raw.story_bomb1;
+                        i11 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R != null) {
+                    storyItem.dialogId = l4.longValue();
+                    di.y9 createOverlayStoryViewer = R.createOverlayStoryViewer();
+                    createOverlayStoryViewer.v();
+                    createOverlayStoryViewer.F(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+                org.telegram.messenger.t.q(i11, Y, i10, 36);
+                return;
+            default:
+                Pattern pattern2 = LaunchActivity.D1;
+                try {
+                    szVar.run();
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                }
+                org.telegram.ui.ActionBar.r2 R2 = LaunchActivity.R();
+                if (storyItem == null) {
+                    Y2 = org.telegram.ui.Components.wc.Y();
+                    if (Y2 != null) {
+                        i12 = R.raw.story_bomb2;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (storyItem instanceof TL_stories.TL_storyItemDeleted) {
+                    Y2 = org.telegram.ui.Components.wc.Y();
+                    if (Y2 != null) {
+                        i12 = R.raw.story_bomb1;
+                        i13 = R.string.StoryNotFound;
+                    } else {
+                        return;
+                    }
+                } else if (R2 != null) {
+                    storyItem.dialogId = l4.longValue();
+                    di.y9 createOverlayStoryViewer2 = R2.createOverlayStoryViewer();
+                    createOverlayStoryViewer2.v();
+                    createOverlayStoryViewer2.F(launchActivity, storyItem, null);
+                    return;
+                } else {
+                    return;
+                }
+                org.telegram.messenger.t.q(i13, Y2, i12, 36);
+                return;
+        }
     }
 }

@@ -1,59 +1,32 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class cl0 implements TextWatcher {
-    public final int f36368a;
-    public final PasscodeActivity f36369b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+public final class cl0 extends Drawable {
+    public final org.telegram.ui.Components.q11 f38493a;
+    public final org.telegram.ui.ActionBar.u6 f38494b;
 
-    public cl0(PasscodeActivity passcodeActivity, int i10) {
-        this.f36368a = i10;
-        this.f36369b = passcodeActivity;
+    public cl0(org.telegram.ui.Components.q11 q11Var, org.telegram.ui.ActionBar.u6 u6Var) {
+        this.f38493a = q11Var;
+        this.f38494b = u6Var;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10 = this.f36368a;
+    public final void draw(Canvas canvas) {
+        this.f38493a.c(getBounds().centerX() - (this.f38493a.f31788c / 2.0f), getBounds().centerY(), 1.0f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.G6, this.f38494b), canvas);
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        switch (this.f36368a) {
-            case 0:
-                PasscodeActivity passcodeActivity = this.f36369b;
-                yk0 yk0Var = passcodeActivity.S;
-                if (passcodeActivity.R) {
-                    passcodeActivity.f33533n.removeCallbacks(yk0Var);
-                    yk0Var.run();
-                    return;
-                }
-                return;
-            default:
-                PasscodeActivity passcodeActivity2 = this.f36369b;
-                yk0 yk0Var2 = passcodeActivity2.S;
-                if (passcodeActivity2.R) {
-                    passcodeActivity2.f33533n.removeCallbacks(yk0Var2);
-                    yk0Var2.run();
-                    return;
-                }
-                return;
-        }
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        int i13 = this.f36368a;
+    public final void setAlpha(int i10) {
     }
 
-    private final void a(Editable editable) {
-    }
-
-    private final void b(Editable editable) {
-    }
-
-    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
-    }
-
-    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

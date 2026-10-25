@@ -1,29 +1,55 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class wb implements Runnable {
-    public final int f20049a;
-    public final MessagesController f20050b;
-    public final TLRPC.Dialog f20051c;
+public final class wb implements RequestDelegate {
+    public final int f21748a;
+    public final BaseController f21749b;
+    public final long f21750c;
+    public final Object d;
+    public final Object e;
 
-    public wb(MessagesController messagesController, TLRPC.Dialog dialog, int i10) {
-        this.f20049a = i10;
-        this.f20050b = messagesController;
-        this.f20051c = dialog;
+    public wb(MessagesController messagesController, long j10, Object obj, TLObject tLObject, int i10) {
+        this.f21748a = i10;
+        this.f21749b = messagesController;
+        this.f21750c = j10;
+        this.d = obj;
+        this.e = tLObject;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20049a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f21748a) {
             case 0:
-                this.f20050b.lambda$checkLastDialogMessage$224(this.f20051c);
+                ((MessagesController) this.f21749b).lambda$getSavedReactionTags$491(this.f21750c, (TLRPC.messages_SavedReactionTags) this.d, (TLRPC.TL_messages_getSavedReactionTags) this.e, tLObject, tL_error);
                 return;
             case 1:
-                this.f20050b.lambda$checkLastDialogMessage$225(this.f20051c);
+                ((MessagesController) this.f21749b).lambda$deleteSavedDialog$142(this.f21750c, (int[]) this.d, (TLRPC.InputPeer) this.e, tLObject, tL_error);
+                return;
+            case 2:
+                ((MessagesController) this.f21749b).lambda$addUsersToChannel$273((org.telegram.ui.ActionBar.r2) this.d, (TLRPC.TL_channels_inviteToChannel) this.e, this.f21750c, tLObject, tL_error);
                 return;
             default:
-                this.f20050b.lambda$checkLastDialogMessage$223(this.f20051c);
+                ((TopicsController) this.f21749b).lambda$pinTopic$20((org.telegram.ui.ActionBar.r2) this.d, this.f21750c, (ArrayList) this.e, tLObject, tL_error);
                 return;
         }
+    }
+
+    public wb(MessagesController messagesController, org.telegram.ui.ActionBar.r2 r2Var, TLRPC.TL_channels_inviteToChannel tL_channels_inviteToChannel, long j10) {
+        this.f21748a = 2;
+        this.f21749b = messagesController;
+        this.d = r2Var;
+        this.e = tL_channels_inviteToChannel;
+        this.f21750c = j10;
+    }
+
+    public wb(TopicsController topicsController, org.telegram.ui.ActionBar.r2 r2Var, long j10, ArrayList arrayList) {
+        this.f21748a = 3;
+        this.f21749b = topicsController;
+        this.d = r2Var;
+        this.f21750c = j10;
+        this.e = arrayList;
     }
 }

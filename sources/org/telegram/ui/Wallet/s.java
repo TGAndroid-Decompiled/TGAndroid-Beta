@@ -1,73 +1,226 @@
 package org.telegram.ui.Wallet;
 
+import android.graphics.Bitmap;
+import java.util.Calendar;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
+import org.telegram.messenger.kh;
+import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class s implements Utilities.Callback3 {
-    public final int f35117a = 0;
-    public final l0 f35118b;
-    public final Object f35119c;
-    public final Object d;
-    public final Object e;
+import org.telegram.ui.Components.ny0;
+import org.telegram.ui.Components.vs0;
+import org.telegram.ui.Components.wc;
+public final class s implements Utilities.Callback {
+    public final int f37204a;
+    public final Object f37205b;
+    public final Object f37206c;
 
-    public s(l0 l0Var, Utilities.Callback callback, byte[] bArr, i0 i0Var) {
-        this.f35118b = l0Var;
-        this.f35119c = callback;
-        this.d = bArr;
-        this.e = i0Var;
+    public s(int i10, Object obj, Object obj2) {
+        this.f37204a = i10;
+        this.f37205b = obj;
+        this.f37206c = obj2;
     }
 
     @Override
-    public final void run(Object obj, Object obj2, Object obj3) {
-        switch (this.f35117a) {
+    public final void run(Object obj) {
+        switch (this.f37204a) {
             case 0:
-                Utilities.Callback callback = (Utilities.Callback) this.f35119c;
-                byte[] bArr = (byte[]) this.d;
-                i0 i0Var = (i0) this.e;
-                TL_wallet.WalletState walletState = (TL_wallet.WalletState) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                TLRPC.InputCheckPasswordSRP inputCheckPasswordSRP = (TLRPC.InputCheckPasswordSRP) obj3;
-                l0 l0Var = this.f35118b;
-                int i10 = l0Var.f34743a;
-                if (tL_error == null || !"WALLET_PROOF_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    if (tL_error != null) {
-                        String str = tL_error.text;
-                        if (str == null) {
-                            str = "NULL_ERROR";
-                        }
-                        callback.run(str);
-                        return;
-                    }
-                    l0Var.i0(walletState);
-                    new p0(l0.v(), l0Var.s(), i10).p(UserConfig.getInstance(i10).getClientUserId(), bArr, i0Var, callback);
-                    l0Var.P();
+                ((i0) this.f37205b).close();
+                ((x7) this.f37206c).run((String) obj);
+                return;
+            case 1:
+                ((l0) this.f37205b).f36817q.put((TL_wallet.walletTransaction) obj, (bi.f4) this.f37206c);
+                return;
+            case 2:
+                g0 g0Var = (g0) this.f37205b;
+                z7 z7Var = (z7) this.f37206c;
+                String str = (String) obj;
+                if (str != null) {
+                    g0Var.close();
+                    l0.i("prepare disable backup, failed to save secret phrase to local storage: ".concat(str));
+                    z7Var.run(null, str);
+                    return;
+                }
+                l0.F("prepare disable backup: done!");
+                z7Var.run(g0Var, null);
+                return;
+            case 3:
+                ((e2) this.f37205b).h = false;
+                ((kh) this.f37206c).run(null, (String) obj);
+                return;
+            case 4:
+                ((i0) this.f37205b).close();
+                ((o) this.f37206c).run((String) obj);
+                return;
+            case 5:
+                ((i0) this.f37205b).close();
+                ((o) this.f37206c).run((String) obj);
+                return;
+            case 6:
+                AndroidUtilities.runOnUIThread(new h((z1) this.f37205b, (k) this.f37206c, (String) obj, 7));
+                return;
+            case 7:
+                ((i0) this.f37205b).close();
+                ((s) this.f37206c).run((String) obj);
+                return;
+            case 8:
+                m5 m5Var = (m5) this.f37205b;
+                l0 l0Var = (l0) this.f37206c;
+                String str2 = (String) obj;
+                m5Var.C0.setLoading(false);
+                if ("NO_LOCAL_BACKUP".equalsIgnoreCase(str2)) {
+                    w7 w7Var = new w7();
+                    w7Var.f37445s = l0Var.x();
+                    m5Var.presentFragment(w7Var);
+                    return;
+                } else if (str2 != null) {
+                    wc.b0(m5Var).f0(str2, false);
+                    return;
+                } else {
+                    m5Var.presentFragment(new r9());
+                    return;
+                }
+            case 9:
+                w7 w7Var2 = (w7) this.f37205b;
+                l0 l0Var2 = (l0) this.f37206c;
+                String str3 = (String) obj;
+                w7Var2.d.setLoading(false);
+                if (str3 != null) {
+                    wc.b0(w7Var2).f0(str3, false);
+                    return;
+                }
+                w7Var2.finishFragment();
+                l0Var2.J();
+                return;
+            case 10:
+                h8 h8Var = (h8) this.f37205b;
+                h hVar = (h) this.f37206c;
+                String str4 = (String) obj;
+                if (str4 != null) {
+                    wc.b0(h8Var).f0(str4, false);
+                    return;
+                } else {
+                    hVar.run();
+                    return;
+                }
+            case 11:
+                h8 h8Var2 = (h8) this.f37205b;
+                org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.f37206c;
+                String str5 = (String) obj;
+                if (str5 != null) {
+                    wc.b0(h8Var2).f0(str5, false);
+                    return;
+                }
+                h8Var2.finishFragment();
+                if (r2Var instanceof m5) {
+                    AndroidUtilities.runOnUIThread(new t2(2, r2Var), 300L);
                     return;
                 }
                 return;
-            default:
-                s9 s9Var = (s9) this.f35119c;
-                TLRPC.User user = (TLRPC.User) this.d;
-                String str2 = (String) this.e;
-                String str3 = (String) obj;
-                Boolean bool = (Boolean) obj2;
-                Utilities.Callback callback2 = (Utilities.Callback) obj3;
-                String str4 = s9Var.e;
-                l0 l0Var2 = this.f35118b;
-                if (!l0.a(str4, l0Var2.s())) {
-                    callback2.run("WALLET_CHANGED");
-                    return;
-                } else {
-                    l0Var2.b0(user, str2, 0L, str3, null, s9Var.d, null, new w(11, s9Var, callback2), null, null);
+            case 12:
+                ((h8) this.f37205b).f30417a.f32150g3.O(true);
+                ((Utilities.Callback) this.f37206c).run((String) obj);
+                return;
+            case 13:
+                r9 r9Var = (r9) this.f37205b;
+                String str6 = (String) obj;
+                ((Utilities.Callback) this.f37206c).run(str6);
+                if (str6 == null && !r9Var.f37199r) {
+                    if (r9Var.getParentLayout() != null) {
+                        for (org.telegram.ui.ActionBar.r2 r2Var2 : r9Var.getParentLayout().getFragmentStack()) {
+                            if (r2Var2 instanceof m5) {
+                                ((m5) r2Var2).K0();
+                            }
+                        }
+                    }
+                    r9Var.finishFragment();
                     return;
                 }
+                return;
+            case 14:
+                ca.Z((ca) this.f37205b, (TL_wallet.tonConnectSession) this.f37206c, (Utilities.Callback) obj);
+                return;
+            case 15:
+                org.telegram.ui.web.y1 y1Var = (org.telegram.ui.web.y1) this.f37205b;
+                org.telegram.ui.web.b1 b1Var = (org.telegram.ui.web.b1) obj;
+                y1Var.getClass();
+                ((org.telegram.ui.web.f1[]) this.f37206c)[0].finishFragment();
+                Utilities.Callback callback = y1Var.f45459f;
+                if (callback != null) {
+                    y1Var.finishFragment();
+                    callback.run(b1Var);
+                    return;
+                }
+                qf.d.r(y1Var.getParentActivity(), b1Var.f45198c);
+                return;
+            case 16:
+                org.telegram.ui.web.h2 h2Var = (org.telegram.ui.web.h2) this.f37205b;
+                h2Var.getClass();
+                AndroidUtilities.runOnUIThread(new ny0(h2Var, (org.telegram.ui.web.g2) this.f37206c, (Bitmap) obj, 11));
+                return;
+            case 17:
+                zh.p1 p1Var = (zh.p1) this.f37205b;
+                Utilities.Callback callback2 = (Utilities.Callback) this.f37206c;
+                Boolean bool = (Boolean) obj;
+                p1Var.getClass();
+                if (callback2 != null) {
+                    callback2.run(bool);
+                }
+                if (bool.booleanValue()) {
+                    p1Var.skipDismissAnimation();
+                }
+                p1Var.dismiss();
+                return;
+            case 18:
+                bi.t9 t9Var = (bi.t9) this.f37205b;
+                bi.a0 a0Var = (bi.a0) this.f37206c;
+                if (((Object[]) obj)[1] == t9Var) {
+                    a0Var.run();
+                    return;
+                }
+                return;
+            case 19:
+                vs0 vs0Var = (vs0) this.f37205b;
+                TL_stars.TL_starGiftCollection tL_starGiftCollection = (TL_stars.TL_starGiftCollection) this.f37206c;
+                String str7 = (String) obj;
+                bi.q9 q9Var = vs0Var.e;
+                int i10 = tL_starGiftCollection.collection_id;
+                q9Var.getClass();
+                TL_stars.updateStarGiftCollection updatestargiftcollection = new TL_stars.updateStarGiftCollection();
+                int i11 = q9Var.f5291a;
+                updatestargiftcollection.peer = MessagesController.getInstance(i11).getInputPeer(q9Var.f5292b);
+                updatestargiftcollection.collection_id = i10;
+                updatestargiftcollection.flags |= 1;
+                updatestargiftcollection.title = str7;
+                ConnectionsManager.getInstance(i11).sendRequest(updatestargiftcollection, null);
+                tL_starGiftCollection.title = str7;
+                vs0Var.f(true);
+                return;
+            default:
+                zh.y4 y4Var = (zh.y4) this.f37205b;
+                TLRPC.User user = (TLRPC.User) this.f37206c;
+                Void r10 = (Void) obj;
+                long j10 = y4Var.Z;
+                Runnable runnable = y4Var.f53338g0;
+                if (runnable != null) {
+                    runnable.run();
+                }
+                y4Var.dismiss();
+                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.giftsToUserSent, new Object[0]);
+                AndroidUtilities.runOnUIThread(new zh.p4(0, user), 250L);
+                MessagesController.getInstance(y4Var.Y).getMainSettings().edit().putBoolean("show_gift_for_" + j10, true).putBoolean(Calendar.getInstance().get(1) + "show_gift_for_" + j10, true).apply();
+                return;
         }
     }
 
-    public s(s9 s9Var, l0 l0Var, TLRPC.User user, String str) {
-        this.f35119c = s9Var;
-        this.f35118b = l0Var;
-        this.d = user;
-        this.e = str;
+    public s(l0 l0Var, g0 g0Var, z7 z7Var) {
+        this.f37204a = 2;
+        this.f37205b = g0Var;
+        this.f37206c = z7Var;
     }
 }

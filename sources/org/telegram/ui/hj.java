@@ -1,65 +1,89 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class hj extends org.telegram.ui.Components.mo {
-    public final sn f37877z0;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class hj implements View.OnTouchListener {
+    public View f40015a;
+    public org.telegram.ui.ActionBar.o1 f40016b;
+    public final Rect f40017c = new Rect();
+    public boolean d;
+    public boolean e;
+    public final org.telegram.ui.Components.u20 f40018f;
+    public final int[] h;
+    public View f40019n;
+    public float f40020r;
+    public float f40021s;
+    public final View v;
+    public final un f40022w;
 
-    public hj(sn snVar, Context context, sn snVar2, boolean z10, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, snVar2, z10, g6Var);
-        this.f37877z0 = snVar;
+    public hj(un unVar, ImageView imageView) {
+        this.f40022w = unVar;
+        this.v = imageView;
+        org.telegram.ui.Components.u20 u20Var = new org.telegram.ui.Components.u20((Context) null, new f(this, 24));
+        this.f40018f = u20Var;
+        this.h = new int[2];
+        u20Var.v = true;
     }
 
     @Override
-    public final boolean a() {
-        boolean z10;
-        sn snVar = this.f37877z0;
-        if (!snVar.f41469bb && !snVar.isInPreviewMode()) {
-            z10 = ((org.telegram.ui.ActionBar.o2) snVar).inBubbleMode;
-            if (!z10 && snVar.f41557j0 != null && !snVar.E3) {
-                if (!snVar.K9() || snVar.f41686t4) {
-                    return true;
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        View view2;
+        this.f40015a = view;
+        if (motionEvent.getAction() == 0) {
+            this.f40020r = motionEvent.getX();
+            this.f40021s = motionEvent.getY();
+            this.e = false;
+        }
+        this.f40018f.a(motionEvent);
+        if (this.f40016b != null && !this.d && motionEvent.getAction() == 2) {
+            View view3 = this.f40015a;
+            int[] iArr = this.h;
+            view3.getLocationOnScreen(iArr);
+            float x9 = motionEvent.getX() + iArr[0];
+            float y3 = motionEvent.getY() + iArr[1];
+            this.f40016b.getContentView().getLocationOnScreen(iArr);
+            float f7 = x9 - iArr[0];
+            float f10 = y3 - iArr[1];
+            this.f40019n = null;
+            ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) this.f40016b.getContentView();
+            for (int i10 = 0; i10 < actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount(); i10++) {
+                View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i10);
+                Rect rect = this.f40017c;
+                childAt.getHitRect(rect);
+                childAt.getTag();
+                if (childAt.getVisibility() == 0 && childAt.isClickable()) {
+                    if (!rect.contains((int) f7, (int) f10)) {
+                        childAt.setPressed(false);
+                        childAt.setSelected(false);
+                    } else {
+                        childAt.setPressed(true);
+                        childAt.setSelected(true);
+                        childAt.drawableHotspotChanged(f7, f10 - childAt.getTop());
+                        this.f40019n = childAt;
+                    }
                 }
-                return false;
             }
-            return false;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean d() {
-        sn snVar = this.f37877z0;
-        TLRPC.User user = snVar.f41509f;
-        if (user != null && user.linked_community_id != 0) {
-            snVar.showDialog(new hi.k0(snVar, snVar.f41509f.linked_community_id, null, null));
-            return true;
+        if ((motionEvent.getAction() == 2 && Math.abs(motionEvent.getX() - this.f40020r) > AndroidUtilities.touchSlop * 2.0f) || Math.abs(motionEvent.getY() - this.f40021s) > AndroidUtilities.touchSlop * 2.0f) {
+            this.e = true;
+            this.f40015a.setPressed(false);
+            this.f40015a.setSelected(false);
         }
-        TLRPC.Chat chat = snVar.e;
-        if (chat != null && chat.linked_community_id != 0) {
-            snVar.showDialog(new hi.k0(snVar, snVar.e.linked_community_id, null, null));
-            return true;
+        if (motionEvent.getAction() == 1 && !this.d && !this.e) {
+            View view4 = this.f40019n;
+            if (view4 != null) {
+                view4.callOnClick();
+                this.d = true;
+                return true;
+            } else if (this.f40016b == null && (view2 = this.f40015a) != null) {
+                view2.callOnClick();
+            }
         }
-        return false;
-    }
-
-    @Override
-    public final void f() {
-        String str;
-        sn snVar = this.f37877z0;
-        if (snVar.J9()) {
-            str = "";
-        } else {
-            str = null;
-        }
-        snVar.qa(str);
-    }
-
-    @Override
-    public final boolean p() {
-        if (this.f37877z0.f41489d4 == 3) {
-            return true;
-        }
-        return false;
+        return true;
     }
 }

@@ -5,20 +5,20 @@ import android.os.Message;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 public final class b extends Handler {
-    public final ArrayList f44508a = new ArrayList();
-    public final ArrayList f44509b = new ArrayList();
-    public final e f44510c;
+    public final ArrayList f46648a = new ArrayList();
+    public final ArrayList f46649b = new ArrayList();
+    public final e f46650c;
 
     public b(e eVar) {
-        this.f44510c = eVar;
+        this.f46650c = eVar;
     }
 
     public static void a(t tVar, int i10, Object obj, int i11) {
         v vVar;
         v vVar2;
         boolean z10;
-        x xVar = tVar.f44618a;
-        s sVar = tVar.f44619b;
+        x xVar = tVar.f46758a;
+        s sVar = tVar.f46759b;
         int i12 = 65280 & i10;
         if (i12 != 256) {
             if (i12 != 512) {
@@ -46,17 +46,17 @@ public final class b extends Handler {
         if (i10 != 264 && i10 != 262) {
             vVar = (v) obj;
         } else {
-            vVar = (v) ((q0.b) obj).f44743b;
+            vVar = (v) ((q0.b) obj).f46892b;
         }
         if (i10 != 264 && i10 != 262) {
             vVar2 = null;
         } else {
-            vVar2 = (v) ((q0.b) obj).f44742a;
+            vVar2 = (v) ((q0.b) obj).f46891a;
         }
         if (vVar != null) {
             boolean z11 = true;
-            if ((tVar.d & 2) == 0 && !vVar.h(tVar.f44620c)) {
-                z zVar = x.c().f44532u;
+            if ((tVar.d & 2) == 0 && !vVar.h(tVar.f46760c)) {
+                z zVar = x.c().f46672u;
                 if (zVar == null) {
                     z10 = false;
                 } else {
@@ -103,19 +103,19 @@ public final class b extends Handler {
 
     @Override
     public final void handleMessage(Message message) {
-        int q6;
-        ArrayList arrayList = this.f44508a;
-        e eVar = this.f44510c;
-        ArrayList arrayList2 = eVar.f44520i;
-        j0 j0Var = eVar.f44530s;
+        int q5;
+        ArrayList arrayList = this.f46648a;
+        e eVar = this.f46650c;
+        ArrayList arrayList2 = eVar.f46660i;
+        j0 j0Var = eVar.f46670s;
         int i10 = message.what;
         Object obj = message.obj;
         int i11 = message.arg1;
-        if (i10 == 259 && eVar.e().f44628c.equals(((v) obj).f44628c)) {
+        if (i10 == 259 && eVar.e().f46768c.equals(((v) obj).f46768c)) {
             eVar.o(true);
         }
         int i12 = 0;
-        ArrayList arrayList3 = this.f44509b;
+        ArrayList arrayList3 = this.f46649b;
         if (i10 != 262) {
             if (i10 != 264) {
                 switch (i10) {
@@ -128,20 +128,20 @@ public final class b extends Handler {
                     case 259:
                         v vVar = (v) obj;
                         j0Var.getClass();
-                        if (vVar.c() != j0Var && (q6 = j0Var.q(vVar)) >= 0) {
-                            j0Var.C((i0) j0Var.H.get(q6));
+                        if (vVar.c() != j0Var && (q5 = j0Var.q(vVar)) >= 0) {
+                            j0Var.C((i0) j0Var.H.get(q5));
                             break;
                         }
                         break;
                 }
             } else {
-                v vVar2 = (v) ((q0.b) obj).f44743b;
+                v vVar2 = (v) ((q0.b) obj).f46892b;
                 arrayList3.add(vVar2);
                 j0Var.v(vVar2);
                 j0Var.x(vVar2);
             }
         } else {
-            v vVar3 = (v) ((q0.b) obj).f44743b;
+            v vVar3 = (v) ((q0.b) obj).f46892b;
             j0Var.x(vVar3);
             if (eVar.v != null && vVar3.d()) {
                 int size = arrayList3.size();
@@ -163,7 +163,7 @@ public final class b extends Handler {
                     if (xVar == null) {
                         arrayList2.remove(size2);
                     } else {
-                        arrayList.addAll(xVar.f44647b);
+                        arrayList.addAll(xVar.f46787b);
                     }
                 } else {
                     int size3 = arrayList.size();

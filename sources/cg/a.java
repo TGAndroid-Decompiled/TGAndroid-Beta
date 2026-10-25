@@ -1,16 +1,14 @@
 package cg;
+public abstract class a {
+    public float f6287a = 1.0f;
 
-import java.nio.ShortBuffer;
-import oa.d;
-import rb.b;
-import t7.u;
-public interface a {
-    public static final u f5125k = new u(5);
-    public static final b f5126l = new b(6);
-    public static final d f5127m = new d(6);
-    public static final pb.a f5128o = new pb.a(6);
+    public abstract short a();
 
-    int E1(int i10, int i11, int i12);
+    public abstract int b();
 
-    void P0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11);
+    public abstract boolean c();
+
+    public abstract void d();
+
+    public abstract void e(int i10, int i11);
 }

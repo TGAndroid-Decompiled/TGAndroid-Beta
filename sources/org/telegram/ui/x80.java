@@ -1,82 +1,48 @@
 package org.telegram.ui;
 
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.RequestDelegate;
+import android.os.Bundle;
 import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class x80 implements RequestDelegate {
-    public final int f43499a;
-    public final LaunchActivity f43500b;
-    public final int f43501c;
-    public final f80 d;
-    public final Object e;
-    public final Object f43502f;
-    public final Object f43503g;
-    public final Object h;
-    public final Object f43504i;
+public final class x80 implements Runnable {
+    public final int f45691a = 1;
+    public final LaunchActivity f45692b;
+    public final byte[] f45693c;
+    public final int d;
+    public final Integer e;
+    public final String f45694f;
+    public final int h;
+    public final long f45695n;
+    public final Object f45696r;
+    public final Object f45697s;
+    public final Object v;
 
-    public x80(LaunchActivity launchActivity, f80 f80Var, int i10, TL_account.authorizationForm authorizationform, TL_account.getAuthorizationForm getauthorizationform, String str, String str2, String str3) {
-        this.f43499a = 0;
-        this.f43500b = launchActivity;
-        this.d = f80Var;
-        this.f43501c = i10;
-        this.f43504i = authorizationform;
-        this.e = getauthorizationform;
-        this.f43502f = str;
-        this.f43503g = str2;
-        this.h = str3;
+    public x80(LaunchActivity launchActivity, Bundle bundle, byte[] bArr, int i10, Integer num, String str, int i11, long j10, j0 j0Var, org.telegram.ui.ActionBar.r2 r2Var) {
+        this.f45692b = launchActivity;
+        this.f45696r = bundle;
+        this.f45693c = bArr;
+        this.d = i10;
+        this.e = num;
+        this.f45694f = str;
+        this.h = i11;
+        this.f45695n = j10;
+        this.f45697s = j0Var;
+        this.v = r2Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f43499a;
-        Object obj = this.h;
-        Object obj2 = this.f43503g;
-        Object obj3 = this.f43502f;
-        Object obj4 = this.e;
-        Object obj5 = this.f43504i;
-        switch (i10) {
-            case 0:
-                Pattern pattern = LaunchActivity.D1;
-                AndroidUtilities.runOnUIThread(new ai.d9(this.f43500b, this.d, tLObject, this.f43501c, (TL_account.authorizationForm) obj5, (TL_account.getAuthorizationForm) obj4, (String) obj3, (String) obj2, (String) obj, 3));
-                return;
-            case 1:
-                int[] iArr = (int[]) obj5;
-                TL_account.getAuthorizationForm getauthorizationform = (TL_account.getAuthorizationForm) obj4;
-                String str = (String) obj3;
-                String str2 = (String) obj2;
-                String str3 = (String) obj;
-                Pattern pattern2 = LaunchActivity.D1;
-                TL_account.authorizationForm authorizationform = (TL_account.authorizationForm) tLObject;
-                LaunchActivity launchActivity = this.f43500b;
-                f80 f80Var = this.d;
-                if (authorizationform != null) {
-                    TL_account.getPassword getpassword = new TL_account.getPassword();
-                    int i11 = this.f43501c;
-                    iArr[0] = ConnectionsManager.getInstance(i11).sendRequest(getpassword, new x80(launchActivity, f80Var, i11, authorizationform, getauthorizationform, str, str2, str3));
-                    return;
-                }
-                AndroidUtilities.runOnUIThread(new lq(launchActivity, f80Var, tL_error, 15));
-                return;
-            default:
-                Pattern pattern3 = LaunchActivity.D1;
-                AndroidUtilities.runOnUIThread(new ai.d9(this.f43500b, tLObject, (int[]) obj5, this.f43501c, this.d, (Integer) obj4, (Integer) obj3, (Long) obj2, (Integer) obj, 2));
-                return;
-        }
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.x80.run():void");
     }
 
-    public x80(LaunchActivity launchActivity, int[] iArr, int i10, f80 f80Var, Object obj, Object obj2, Object obj3, Object obj4, int i11) {
-        this.f43499a = i11;
-        this.f43500b = launchActivity;
-        this.f43504i = iArr;
-        this.f43501c = i10;
-        this.d = f80Var;
-        this.e = obj;
-        this.f43502f = obj2;
-        this.f43503g = obj3;
-        this.h = obj4;
+    public x80(LaunchActivity launchActivity, TLObject tLObject, Integer num, Integer num2, byte[] bArr, long j10, Runnable runnable, String str, int i10, int i11) {
+        this.f45692b = launchActivity;
+        this.f45696r = tLObject;
+        this.e = num;
+        this.f45697s = num2;
+        this.f45693c = bArr;
+        this.f45695n = j10;
+        this.v = runnable;
+        this.f45694f = str;
+        this.d = i10;
+        this.h = i11;
     }
 }

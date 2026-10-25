@@ -1,27 +1,26 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class e2 implements Runnable {
-    public final int f18290a;
-    public final DownloadController f18291b;
-    public final TLRPC.Document f18292c;
-    public final MessageObject d;
+    public final int f19951a;
+    public final DownloadController f19952b;
+    public final MessageObject f19953c;
 
-    public e2(DownloadController downloadController, TLRPC.Document document, MessageObject messageObject, int i10) {
-        this.f18290a = i10;
-        this.f18291b = downloadController;
-        this.f18292c = document;
-        this.d = messageObject;
+    public e2(DownloadController downloadController, MessageObject messageObject, int i10) {
+        this.f19951a = i10;
+        this.f19952b = downloadController;
+        this.f19953c = messageObject;
     }
 
     @Override
     public final void run() {
-        switch (this.f18290a) {
+        switch (this.f19951a) {
             case 0:
-                this.f18291b.lambda$onDownloadComplete$7(this.f18292c, this.d);
+                this.f19952b.lambda$startDownloadFile$4(this.f19953c);
+                return;
+            case 1:
+                this.f19952b.lambda$onDownloadFail$9(this.f19953c);
                 return;
             default:
-                this.f18291b.lambda$startDownloadFile$5(this.f18292c, this.d);
+                this.f19952b.lambda$onDownloadComplete$6(this.f19953c);
                 return;
         }
     }

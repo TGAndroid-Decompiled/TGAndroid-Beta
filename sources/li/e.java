@@ -1,35 +1,45 @@
 package li;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Cells.t1;
-import org.telegram.ui.Components.ro;
-public final class e extends AnimatorListenerAdapter {
-    public final t1 f16165a;
-    public final float f16166b;
-    public final float f16167c;
-    public final float d;
-    public final float e;
-    public final m f16168f;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.ui.Components.cj;
+import org.telegram.ui.Components.nl;
+import org.telegram.ui.Components.ti;
+public final class e implements nl, cj {
+    public final q f17204a;
+    public final ti f17205b;
 
-    public e(m mVar, t1 t1Var, float f7, float f10, float f11, float f12) {
-        this.f16168f = mVar;
-        this.f16165a = t1Var;
-        this.f16166b = f7;
-        this.f16167c = f10;
-        this.d = f11;
-        this.e = f12;
+    public e(q qVar, ti tiVar) {
+        this.f17204a = qVar;
+        this.f17205b = tiVar;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        t1 t1Var = this.f16165a;
-        t1Var.getTransitionParams().j();
-        t1Var.getPhotoImage().setImageCoords(this.f16166b, this.f16167c, this.d, this.e);
-        ro roVar = this.f16168f.P;
-        if (roVar != null) {
-            roVar.h.setAlpha(1.0f);
+    public void d(TLRPC.MessageMedia messageMedia, int i10, boolean z10, int i11, long j10) {
+        q qVar = this.f17204a;
+        qVar.getClass();
+        ti tiVar = this.f17205b;
+        if (messageMedia != null && messageMedia.geo != null) {
+            TL_iv.pageBlockMap pageblockmap = new TL_iv.pageBlockMap();
+            pageblockmap.geo = messageMedia.geo;
+            pageblockmap.zoom = 15;
+            pageblockmap.f22250w = 600;
+            pageblockmap.h = 400;
+            qVar.f17418r.X1(pageblockmap);
+            qVar.Y(true);
+            tiVar.dismiss(true);
+            return;
         }
-        t1Var.invalidate();
+        tiVar.dismiss(true);
+    }
+
+    @Override
+    public void j(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+        if (!arrayList.isEmpty()) {
+            this.f17204a.f17418r.h2((MessageObject) arrayList.get(0));
+        }
+        this.f17205b.dismiss(true);
     }
 }

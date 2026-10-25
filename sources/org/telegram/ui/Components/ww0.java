@@ -1,58 +1,75 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
 import android.content.Context;
-import android.graphics.PointF;
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public class ww0 extends s4.c0 {
-    public final zr f32424r;
-    public int f32425s;
-    public float f32426t;
+public abstract class ww0 extends vw0 {
+    public Activity f34540l0;
+    public final Rect m0;
+    public int f34541n0;
+    public boolean f34542o0;
 
-    public ww0(Context context) {
-        super(context);
-        this.f32424r = zr.f33337f;
-        this.f32426t = 1.0f;
+    public ww0(Context context, Activity activity) {
+        super(context, null);
+        this.m0 = new Rect();
+        setActivity(activity);
     }
 
     @Override
-    public final void g(View view, s4.w0 w0Var) {
-        int j10 = j(o(), view);
-        int k10 = k(p(), view);
-        int m10 = m((int) Math.sqrt((k10 * k10) + (j10 * j10)));
-        if (m10 > 0) {
-            w0Var.b(-j10, -k10, m10, this.f32424r);
+    public int Q() {
+        View rootView = getRootView();
+        Rect rect = this.m0;
+        getWindowVisibleDisplayFrame(rect);
+        int i10 = 0;
+        if (this.f34542o0) {
+            int height = rootView.getHeight();
+            if (rect.top != 0) {
+                i10 = AndroidUtilities.statusBarHeight;
+            }
+            return ((height - i10) - AndroidUtilities.getViewInset(rootView)) - (rect.bottom - rect.top);
         }
-        AndroidUtilities.runOnUIThread(new jr0(this, 9), Math.max(0, m10));
+        int height2 = (this.f34540l0.getWindow().getDecorView().getHeight() - AndroidUtilities.getViewInset(rootView)) - rootView.getBottom();
+        if (height2 <= Math.max(AndroidUtilities.dp(10.0f), AndroidUtilities.statusBarHeight)) {
+            return 0;
+        }
+        return height2;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        return super.k(i10, view) - this.f32425s;
-    }
-
-    @Override
-    public final int m(int i10) {
-        return Math.round(Math.min(super.m(i10), 500) * this.f32426t);
-    }
-
-    @Override
-    public final int n(int i10) {
-        return Math.round(Math.min(super.n(i10), 150) * this.f32426t);
-    }
-
-    @Override
-    public final void q(s4.w0 w0Var) {
-        PointF a2 = a(this.f46483a);
-        if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-            s4.x0.b(a2);
-            this.f46365k = a2;
-            this.f46369o = (int) (a2.x * 10000.0f);
-            this.f46370p = (int) (a2.y * 10000.0f);
-            w0Var.b((int) (this.f46369o * 1.2f), (int) (this.f46370p * 1.2f), (int) (n(10000) * 1.2f), this.f32424r);
+    public void R() {
+        boolean z10;
+        if (this.f34286n == null && this.f34287r.isEmpty()) {
             return;
         }
-        w0Var.d = this.f46483a;
-        h();
+        this.f34541n0 = Q();
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        post(new d60(7, this, z10));
+    }
+
+    @Override
+    public int getKeyboardHeight() {
+        return this.f34541n0;
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        R();
+    }
+
+    public void setActivity(Activity activity) {
+        this.f34540l0 = activity;
+    }
+
+    public void setWithoutWindow(boolean z10) {
+        this.f34542o0 = z10;
     }
 }

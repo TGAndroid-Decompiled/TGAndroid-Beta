@@ -1,21 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.VideoEditedInfo;
-public interface w50 {
-    long a();
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+public final class w50 {
+    public final ByteBuffer[] f34364a = new ByteBuffer[10];
+    public final long[] f34365b = new long[10];
+    public final int[] f34366c = new int[10];
+    public int d;
+    public int e;
+    public boolean f34367f;
 
-    boolean c();
-
-    int getClassGuid();
-
-    View getFragmentView();
-
-    Activity getParentActivity();
-
-    void s(MediaController.PhotoEntry photoEntry, VideoEditedInfo videoEditedInfo, boolean z10, int i10, int i11, boolean z11, long j10);
-
-    boolean x();
+    public w50() {
+        for (int i10 = 0; i10 < 10; i10++) {
+            this.f34364a[i10] = ByteBuffer.allocateDirect(2048);
+            this.f34364a[i10].order(ByteOrder.nativeOrder());
+        }
+    }
 }

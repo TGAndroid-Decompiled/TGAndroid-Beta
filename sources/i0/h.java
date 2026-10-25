@@ -12,13 +12,13 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.nio.ByteBuffer;
 public class h extends f {
-    public final Class f12329f;
-    public final Constructor f12330g;
+    public final Class f13464f;
+    public final Constructor f13465g;
     public final Method h;
-    public final Method f12331i;
-    public final Method f12332j;
-    public final Method f12333k;
-    public final Method f12334l;
+    public final Method f13466i;
+    public final Method f13467j;
+    public final Method f13468k;
+    public final Method f13469l;
 
     public h() {
         Method method;
@@ -47,13 +47,13 @@ public class h extends f {
             method4 = null;
             method5 = null;
         }
-        this.f12329f = cls;
-        this.f12330g = constructor;
+        this.f13464f = cls;
+        this.f13465g = constructor;
         this.h = method2;
-        this.f12331i = method3;
-        this.f12332j = method4;
-        this.f12333k = method5;
-        this.f12334l = method;
+        this.f13466i = method3;
+        this.f13467j = method4;
+        this.f13468k = method5;
+        this.f13469l = method;
     }
 
     public static Method l(Class cls) {
@@ -70,21 +70,21 @@ public class h extends f {
         }
         if (method != null) {
             try {
-                obj = this.f12330g.newInstance(null);
+                obj = this.f13465g.newInstance(null);
             } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
                 obj = null;
             }
             if (obj != null) {
-                h0.f[] fVarArr = eVar.f11619a;
+                h0.f[] fVarArr = eVar.f12530a;
                 int length = fVarArr.length;
                 int i11 = 0;
                 while (true) {
                     if (i11 < length) {
                         h0.f fVar = fVarArr[i11];
                         Context context2 = context;
-                        if (!i(context2, obj, fVar.f11620a, fVar.e, fVar.f11621b, fVar.f11622c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
+                        if (!i(context2, obj, fVar.f12531a, fVar.e, fVar.f12532b, fVar.f12533c ? 1 : 0, FontVariationAxis.fromFontVariationSettings(fVar.d))) {
                             try {
-                                this.f12333k.invoke(obj, null);
+                                this.f13468k.invoke(obj, null);
                                 break;
                             } catch (IllegalAccessException | InvocationTargetException unused2) {
                             }
@@ -116,14 +116,14 @@ public class h extends f {
         }
         if (method != null) {
             try {
-                obj = this.f12330g.newInstance(null);
+                obj = this.f13465g.newInstance(null);
             } catch (IllegalAccessException | InstantiationException | InvocationTargetException unused) {
                 obj = null;
             }
             if (obj != null) {
                 if (!i(context, obj, str, 0, -1, -1, null)) {
                     try {
-                        this.f12333k.invoke(obj, null);
+                        this.f13468k.invoke(obj, null);
                     } catch (IllegalAccessException | InvocationTargetException unused2) {
                     }
                 } else if (k(obj)) {
@@ -145,9 +145,9 @@ public class h extends f {
 
     public Typeface j(Object obj) {
         try {
-            Object newInstance = Array.newInstance(this.f12329f, 1);
+            Object newInstance = Array.newInstance(this.f13464f, 1);
             Array.set(newInstance, 0, obj);
-            return (Typeface) this.f12334l.invoke(null, newInstance, -1, -1);
+            return (Typeface) this.f13469l.invoke(null, newInstance, -1, -1);
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return null;
         }
@@ -155,7 +155,7 @@ public class h extends f {
 
     public final boolean k(Object obj) {
         try {
-            return ((Boolean) this.f12332j.invoke(obj, null)).booleanValue();
+            return ((Boolean) this.f13467j.invoke(obj, null)).booleanValue();
         } catch (IllegalAccessException | InvocationTargetException unused) {
             return false;
         }

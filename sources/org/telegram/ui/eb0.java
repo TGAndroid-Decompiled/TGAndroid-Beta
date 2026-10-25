@@ -1,55 +1,56 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.text.Editable;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class eb0 extends org.telegram.ui.Cells.h3 {
-    public boolean E;
-    public final gb0 F;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class eb0 implements Utilities.Callback2 {
+    public final int f39071a;
+    public final lb0 f39072b;
+    public final String f39073c;
 
-    public eb0(gb0 gb0Var, Context context, String str, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, str, false, false, -1, g6Var);
-        this.F = gb0Var;
+    public eb0(lb0 lb0Var, String str, int i10) {
+        this.f39071a = i10;
+        this.f39072b = lb0Var;
+        this.f39073c = str;
     }
 
     @Override
-    public final void b(Editable editable) {
-        int i10;
-        int i11;
-        if (this.E) {
-            return;
-        }
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        gb0 gb0Var = this.F;
-        if (isEmpty) {
-            gb0Var.f37528s.setText("");
-            return;
-        }
-        try {
-            long parseLong = Long.parseLong(editable.toString());
-            if (parseLong > gb0Var.getMessagesController().starsSubscriptionAmountMax) {
-                this.E = true;
-                parseLong = gb0Var.getMessagesController().starsSubscriptionAmountMax;
-                setText(Long.toString(parseLong));
-                this.E = false;
-            }
-            TextView textView = gb0Var.f37528s;
-            if (gb0Var.getConnectionsManager().isTestBackend()) {
-                i10 = R.string.RequireMonthlyFeePriceTest5Minutes;
-            } else {
-                i10 = R.string.RequireMonthlyFeePrice;
-            }
-            BillingController billingController = BillingController.getInstance();
-            i11 = ((org.telegram.ui.ActionBar.o2) gb0Var).currentAccount;
-            textView.setText(LocaleController.formatString(i10, billingController.formatCurrency((long) ((parseLong / 1000.0d) * MessagesController.getInstance(i11).starsUsdWithdrawRate1000), "USD")));
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void run(Object obj, Object obj2) {
+        switch (this.f39071a) {
+            case 0:
+                TL_account.Passkeys passkeys = (TL_account.Passkeys) obj;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                lb0 lb0Var = this.f39072b;
+                lb0Var.c();
+                if (passkeys != null) {
+                    lb0Var.u(new PasskeysActivity(passkeys.passkeys), false);
+                    if ("create".equalsIgnoreCase(this.f39073c)) {
+                        lb0Var.x("addPasskeyRow");
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                org.telegram.ui.Wallet.z1 z1Var = (org.telegram.ui.Wallet.z1) obj;
+                String str = (String) obj2;
+                lb0 lb0Var2 = this.f39072b;
+                lb0Var2.c();
+                if (z1Var == null) {
+                    if (str == null) {
+                        str = LocaleController.getString(R.string.WalletTonConnectSessionResponseEmpty);
+                    }
+                    org.telegram.ui.Components.wc.c0(str);
+                    return;
+                }
+                org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
+                if (U != null && U.getContext() != null) {
+                    org.telegram.ui.Wallet.e2.B(U.getContext(), lb0Var2.f41236b, z1Var, null, U.getResourceProvider(), null, new hb0(lb0Var2, this.f39073c, 1));
+                    return;
+                }
+                return;
         }
     }
 }

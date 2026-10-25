@@ -1,130 +1,243 @@
 package ig;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ShapeDrawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
+import android.widget.TextView;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n5;
-import org.telegram.ui.ActionBar.n6;
-import org.telegram.ui.ActionBar.r6;
-import w7.z5;
-public final class t extends FrameLayout {
-    public final n5 f13071a;
-    public final wh.n f13072b;
-    public final n5 f13073c;
-    public final g6 d;
-    public boolean e;
-    public TL_account.TL_businessChatLink f13074f;
+import org.telegram.tgnet.TLMethod;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.lx;
+public final class t implements Runnable {
+    public final int f14245a;
+    public final Object f14246b;
+    public final int f14247c;
+    public final int d;
+    public final Object e;
+    public final Object f14248f;
+    public final TLObject h;
+    public final ArrayList f14249n;
+    public final TLObject f14250r;
 
-    public t(Context context, g6 g6Var) {
-        super(context);
+    public t(i0 i0Var, int i10, int i11, TLRPC.TL_error tL_error, String str, TLObject tLObject, TLMethod tLMethod, ArrayList arrayList, int i12) {
+        this.f14245a = i12;
+        this.f14246b = i0Var;
+        this.f14247c = i10;
+        this.d = i11;
+        this.e = tL_error;
+        this.f14248f = str;
+        this.h = tLObject;
+        this.f14250r = tLMethod;
+        this.f14249n = arrayList;
+    }
+
+    @Override
+    public final void run() {
+        boolean z10;
+        boolean z11;
         int i10;
+        boolean z12;
         int i11;
-        this.d = g6Var;
-        setWillNotDraw(false);
-        ImageView imageView = new ImageView(context);
-        imageView.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
-        imageView.setImageResource(R.drawable.msg_limit_links);
-        imageView.setPadding(AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f), AndroidUtilities.dp(9.0f));
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        int dp = AndroidUtilities.dp(36.0f);
-        int i12 = k6.Oh;
-        ShapeDrawable K = k6.K(dp, k6.x0(null, i12, false));
-        n6 O = r6.O(i12);
-        imageView.setBackground(K);
-        r6.k(imageView, K, O, null, null);
-        imageView.setOnClickListener(new hg.r0(this, 6));
-        addView(imageView, z5.i(36.0f, 36.0f, 8388627, 14.0f, 0.0f, 14.0f, 0.0f));
-        n5 n5Var = new n5(context);
-        this.f13071a = n5Var;
-        n5Var.setTextSize(15);
-        r6.Z(n5Var, k6.G6, null);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+        boolean z13;
+        ConcurrentHashMap<Long, Integer> concurrentHashMap;
+        boolean z14;
+        int i12 = this.f14245a;
+        ArrayList arrayList = this.f14249n;
+        TLObject tLObject = this.h;
+        int i13 = this.d;
+        int i14 = this.f14247c;
+        boolean z15 = true;
+        int i15 = 0;
+        TLObject tLObject2 = this.f14250r;
+        Object obj = this.f14248f;
+        Object obj2 = this.e;
+        Object obj3 = this.f14246b;
+        switch (i12) {
+            case 0:
+                i0 i0Var = (i0) obj3;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
+                String str = (String) obj;
+                TLRPC.TL_messages_search tL_messages_search = (TLRPC.TL_messages_search) tLObject2;
+                y yVar = i0Var.f14083j0;
+                ArrayList arrayList2 = i0Var.H;
+                int i16 = i0Var.f14094s0;
+                if (i14 == i0Var.T && (i13 <= 0 || i13 == i0Var.f14076d0)) {
+                    i0Var.D0--;
+                    if (tL_error == null) {
+                        i0Var.f14073b0 = str;
+                        TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+                        MessagesStorage.getInstance(i16).putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
+                        MessagesController.getInstance(i16).putUsers(messages_messages.users, false);
+                        MessagesController.getInstance(i16).putChats(messages_messages.chats, false);
+                        if (tL_messages_search.add_offset == 0) {
+                            arrayList2.clear();
+                        }
+                        i0Var.f14075c0 = messages_messages.next_rate;
+                        for (int i17 = 0; i17 < messages_messages.messages.size(); i17++) {
+                            TLRPC.Message message = messages_messages.messages.get(i17);
+                            int i18 = MessagesController.getInstance(i16).deletedHistory.get(MessageObject.getDialogId(message));
+                            if (i18 == 0 || message.f22048id > i18) {
+                                arrayList2.add((MessageObject) arrayList.get(i17));
+                            }
+                        }
+                        i0Var.N = true;
+                        if (messages_messages.messages.size() != 20) {
+                            z10 = true;
+                        } else {
+                            z10 = false;
+                        }
+                        i0Var.X = z10;
+                        if (i13 > 0) {
+                            i0Var.f14080g0 = i13;
+                            if (i0Var.f14079f0 != i13) {
+                                i0Var.f14093s.clear();
+                            }
+                            if (i0Var.f14077e0 != i13) {
+                                yVar.b();
+                            }
+                        }
+                        yVar.f(i0Var.f14093s, i0Var.f14097v0);
+                        lx lxVar = i0Var.U;
+                        if (lxVar != null) {
+                            if (i0Var.D0 > 0) {
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            lxVar.d(z11, true);
+                            i0Var.U.c();
+                        }
+                        i0Var.l();
+                    }
+                }
+                i0Var.Q = 0;
+                return;
+            case 1:
+                i0 i0Var2 = (i0) obj3;
+                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
+                String str2 = (String) obj;
+                TLRPC.TL_messages_searchGlobal tL_messages_searchGlobal = (TLRPC.TL_messages_searchGlobal) tLObject2;
+                y yVar2 = i0Var2.f14083j0;
+                ArrayList arrayList3 = i0Var2.I;
+                ArrayList arrayList4 = i0Var2.H;
+                int i19 = i0Var2.f14094s0;
+                if (i14 == i0Var2.P && (i13 <= 0 || i13 == i0Var2.f14076d0)) {
+                    i0Var2.D0--;
+                    if (tL_error2 == null) {
+                        i0Var2.f14073b0 = str2;
+                        TLRPC.messages_Messages messages_messages2 = (TLRPC.messages_Messages) tLObject;
+                        MessagesStorage.getInstance(i19).putUsersAndChats(messages_messages2.users, messages_messages2.chats, true, true);
+                        MessagesController.getInstance(i19).putUsers(messages_messages2.users, false);
+                        MessagesController.getInstance(i19).putChats(messages_messages2.chats, false);
+                        if (tL_messages_searchGlobal.offset_id == 0) {
+                            arrayList3.clear();
+                        }
+                        i0Var2.f14075c0 = messages_messages2.next_rate;
+                        int i20 = 0;
+                        while (i20 < messages_messages2.messages.size()) {
+                            TLRPC.Message message2 = messages_messages2.messages.get(i20);
+                            int i21 = MessagesController.getInstance(i19).deletedHistory.get(MessageObject.getDialogId(message2));
+                            if (i21 == 0 || message2.f22048id > i21) {
+                                MessageObject messageObject = (MessageObject) arrayList.get(i20);
+                                if (!arrayList4.isEmpty()) {
+                                    for (int i22 = i15; i22 < arrayList4.size(); i22++) {
+                                        MessageObject messageObject2 = (MessageObject) arrayList4.get(i22);
+                                        if (messageObject2 == null || messageObject == null || messageObject.getId() != messageObject2.getId() || messageObject.getDialogId() != messageObject2.getDialogId()) {
+                                        }
+                                    }
+                                }
+                                arrayList3.add(messageObject);
+                                long dialogId = MessageObject.getDialogId(message2);
+                                if (message2.out) {
+                                    concurrentHashMap = MessagesController.getInstance(i19).dialogs_read_outbox_max;
+                                } else {
+                                    concurrentHashMap = MessagesController.getInstance(i19).dialogs_read_inbox_max;
+                                }
+                                Integer num = concurrentHashMap.get(Long.valueOf(dialogId));
+                                if (num != null) {
+                                    if (num.intValue() < message2.f22048id) {
+                                        z14 = true;
+                                    } else {
+                                        z14 = false;
+                                    }
+                                    message2.unread = z14;
+                                }
+                            }
+                            i20++;
+                            z15 = true;
+                            i15 = 0;
+                        }
+                        i0Var2.N = z15;
+                        if (messages_messages2.messages.size() != 20) {
+                            z12 = true;
+                        } else {
+                            z12 = false;
+                        }
+                        i0Var2.W = z12;
+                        if (i13 > 0) {
+                            i0Var2.f14080g0 = i13;
+                            if (i0Var2.f14079f0 != i13) {
+                                i0Var2.f14093s.clear();
+                            }
+                            if (i0Var2.f14077e0 != i13) {
+                                yVar2.b();
+                            }
+                        }
+                        yVar2.f(i0Var2.f14093s, i0Var2.f14097v0);
+                        lx lxVar2 = i0Var2.U;
+                        if (lxVar2 != null) {
+                            if (i0Var2.D0 > 0) {
+                                z13 = true;
+                            } else {
+                                z13 = false;
+                            }
+                            i11 = 1;
+                            lxVar2.d(z13, true);
+                            i0Var2.U.c();
+                        } else {
+                            i11 = 1;
+                        }
+                        i0Var2.G0 = i11;
+                        i0Var2.H0 = i11;
+                        i10 = 0;
+                        i0Var2.d = false;
+                        e0 e0Var = i0Var2.E0;
+                        if (e0Var != null) {
+                            String str3 = i0Var2.Z;
+                            TextView textView = e0Var.f14044a;
+                            int i23 = R.string.SearchMessagesFilterEmptyText;
+                            Object[] objArr = new Object[i11];
+                            objArr[0] = str3;
+                            textView.setText(LocaleController.formatString(i23, objArr));
+                        }
+                        i0Var2.l();
+                        i0Var2.O = i10;
+                        return;
+                    }
+                }
+                i10 = 0;
+                i0Var2.O = i10;
+                return;
+            default:
+                ((MediaDataController) obj3).lambda$processLoadStickersResponse$73(this.h, this.f14249n, this.f14247c, (a0.h) obj2, (TLRPC.StickerSet) obj, (TLRPC.TL_messages_allStickers) tLObject2, this.d);
+                return;
         }
-        n5Var.setGravity(i10);
-        addView(n5Var, z5.i(-1.0f, 20.0f, 55, 64.0f, 10.0f, 14.0f, 0.0f));
-        n5 n5Var2 = new n5(context);
-        this.f13073c = n5Var2;
-        n5Var2.setTextSize(14);
-        int i13 = k6.f21589z6;
-        r6.Z(n5Var2, i13, null);
-        if (LocaleController.isRTL) {
-            i11 = 3;
-        } else {
-            i11 = 5;
-        }
-        n5Var2.setGravity(i11);
-        addView(n5Var2, z5.i(-1.0f, 18.0f, 55, 64.0f, 10.66f, 14.0f, 0.0f));
-        wh.n nVar = new wh.n(context);
-        this.f13072b = nVar;
-        nVar.setTextSize(1, 13.0f);
-        nVar.setMaxLines(1);
-        nVar.setEllipsize(TextUtils.TruncateAt.END);
-        r6.W(nVar, i13, g6Var);
-        nVar.setGravity(LocaleController.isRTL ? 5 : 3);
-        nVar.f49550r = false;
-        nVar.setUseAlphaForEmoji(false);
-        NotificationCenter.listenEmojiLoading(nVar);
-        addView(nVar, z5.i(-1.0f, 20.0f, 87, 64.0f, 0.0f, 14.0f, 6.0f));
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        super.onDraw(canvas);
-        if (this.e) {
-            Paint V0 = k6.V0("paintDivider", this.d);
-            if (V0 == null) {
-                V0 = k6.f21305k0;
-            }
-            Paint paint = V0;
-            float f10 = 64.0f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 64.0f;
-            }
-            float dp = AndroidUtilities.dp(f7);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!LocaleController.isRTL) {
-                f10 = 0.0f;
-            }
-            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f10), getMeasuredHeight(), paint);
-        }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        boolean z11 = LocaleController.isRTL;
-        n5 n5Var = this.f13073c;
-        n5 n5Var2 = this.f13071a;
-        if (z11) {
-            n5Var2.setPadding(n5Var.getTextWidth(), 0, 0, 0);
-        } else {
-            n5Var2.setPadding(0, 0, n5Var.getTextWidth(), 0);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f) + (this.e ? 1 : 0), 1073741824));
+    public t(MediaDataController mediaDataController, TLObject tLObject, ArrayList arrayList, int i10, a0.h hVar, TLRPC.StickerSet stickerSet, TLRPC.TL_messages_allStickers tL_messages_allStickers, int i11) {
+        this.f14245a = 2;
+        this.f14246b = mediaDataController;
+        this.h = tLObject;
+        this.f14249n = arrayList;
+        this.f14247c = i10;
+        this.e = hVar;
+        this.f14248f = stickerSet;
+        this.f14250r = tL_messages_allStickers;
+        this.d = i11;
     }
 }

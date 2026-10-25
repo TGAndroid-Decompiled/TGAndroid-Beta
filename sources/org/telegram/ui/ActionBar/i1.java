@@ -1,75 +1,68 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.graphics.Canvas;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class i1 extends LinearLayout {
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f20948a;
+import android.view.ViewGroup;
+public final class i1 extends AnimatorListenerAdapter {
+    public final int f22701a;
+    public final o1 f22702b;
 
-    public i1(ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, Context context) {
-        super(context);
-        this.f20948a = actionBarPopupWindow$ActionBarPopupWindowLayout;
+    public i1(o1 o1Var, int i10) {
+        this.f22701a = i10;
+        this.f22702b = o1Var;
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if ((view instanceof j1) && this.f20948a.N != null) {
-            return false;
-        }
-        return super.drawChild(canvas, view, j10);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        i1 i1Var = this;
-        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = i1Var.f20948a;
-        if (actionBarPopupWindow$ActionBarPopupWindowLayout.O) {
-            actionBarPopupWindow$ActionBarPopupWindowLayout.E = -1000000;
-            actionBarPopupWindow$ActionBarPopupWindowLayout.F = -1000000;
-            int childCount = i1Var.getChildCount();
-            ArrayList arrayList = null;
-            int i12 = 0;
-            int i13 = 0;
-            int i14 = 0;
-            while (i12 < childCount) {
-                View childAt = i1Var.getChildAt(i12);
-                if (childAt.getVisibility() != 8) {
-                    Object tag = childAt.getTag(R.id.width_tag);
-                    Object tag2 = childAt.getTag(R.id.object_tag);
-                    Object tag3 = childAt.getTag(R.id.fit_width_tag);
-                    if (tag != null) {
-                        childAt.getLayoutParams().width = -2;
-                    }
-                    i1Var.measureChildWithMargins(childAt, i10, 0, i11, 0);
-                    if (tag3 == null) {
-                        boolean z10 = tag instanceof Integer;
-                        if (!z10 && tag2 == null) {
-                            i13 = Math.max(i13, childAt.getMeasuredWidth());
-                        } else if (z10) {
-                            i14 = Math.max(((Integer) tag).intValue(), childAt.getMeasuredWidth());
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.E = childAt.getMeasuredHeight();
-                            actionBarPopupWindow$ActionBarPopupWindowLayout.F = AndroidUtilities.dp(6.0f) + actionBarPopupWindow$ActionBarPopupWindowLayout.E;
+    public final void onAnimationEnd(Animator animator) {
+        ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout;
+        float f7;
+        switch (this.f22701a) {
+            case 0:
+                o1 o1Var = this.f22702b;
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout2 = null;
+                o1Var.f22905a = null;
+                ViewGroup viewGroup = (ViewGroup) o1Var.getContentView();
+                if (viewGroup instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
+                    actionBarPopupWindow$ActionBarPopupWindowLayout = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup;
+                    actionBarPopupWindow$ActionBarPopupWindowLayout.f22360n = false;
+                } else {
+                    for (int i10 = 0; i10 < viewGroup.getChildCount(); i10++) {
+                        if (viewGroup.getChildAt(i10) instanceof ActionBarPopupWindow$ActionBarPopupWindowLayout) {
+                            actionBarPopupWindow$ActionBarPopupWindowLayout2 = (ActionBarPopupWindow$ActionBarPopupWindowLayout) viewGroup.getChildAt(i10);
+                            actionBarPopupWindow$ActionBarPopupWindowLayout2.f22360n = false;
                         }
                     }
-                    if (arrayList == null) {
-                        arrayList = new ArrayList();
+                    actionBarPopupWindow$ActionBarPopupWindowLayout = actionBarPopupWindow$ActionBarPopupWindowLayout2;
+                }
+                int itemsCount = actionBarPopupWindow$ActionBarPopupWindowLayout.getItemsCount();
+                for (int i11 = 0; i11 < itemsCount; i11++) {
+                    View childAt = actionBarPopupWindow$ActionBarPopupWindowLayout.L.getChildAt(i11);
+                    if (!(childAt instanceof l1)) {
+                        if (childAt.isEnabled()) {
+                            f7 = 1.0f;
+                        } else {
+                            f7 = 0.5f;
+                        }
+                        childAt.setAlpha(f7);
                     }
-                    arrayList.add(childAt);
                 }
-                i12++;
-                i1Var = this;
-            }
-            if (arrayList != null) {
-                int size = arrayList.size();
-                for (int i15 = 0; i15 < size; i15++) {
-                    ((View) arrayList.get(i15)).getLayoutParams().width = Math.max(i13, i14);
+                return;
+            default:
+                o1 o1Var2 = this.f22702b;
+                o1Var2.f22905a = null;
+                o1Var2.d = false;
+                o1Var2.setFocusable(false);
+                try {
+                    super/*android.widget.PopupWindow*/.dismiss();
+                } catch (Exception unused) {
                 }
-            }
+                o1Var2.j();
+                if (o1Var2.e) {
+                    o1Var2.f22911j.unlock();
+                    return;
+                }
+                return;
         }
-        super.onMeasure(i10, i11);
     }
 }

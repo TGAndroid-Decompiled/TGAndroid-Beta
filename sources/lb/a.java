@@ -1,102 +1,65 @@
 package lb;
 
-import gb.d;
-import j$.util.Objects;
-import java.lang.reflect.GenericArrayType;
-import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
-import java.lang.reflect.TypeVariable;
-import java.lang.reflect.WildcardType;
-public class a<T> {
-    public final Class f16057a;
-    public final Type f16058b;
-    public final int f16059c;
+import fb.g;
+import fb.u;
+import fb.v;
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.TimeZone;
+public final class a extends u {
+    public static final C0000a f16957b = new C0000a();
+    public final SimpleDateFormat f16958a;
 
-    public a() {
-        Type genericSuperclass = getClass().getGenericSuperclass();
-        if (genericSuperclass instanceof ParameterizedType) {
-            ParameterizedType parameterizedType = (ParameterizedType) genericSuperclass;
-            if (parameterizedType.getRawType() == a.class) {
-                Type a2 = d.a(parameterizedType.getActualTypeArguments()[0]);
-                if (!Objects.equals(System.getProperty("gson.allowCapturingTypeVariables"), "true")) {
-                    a(a2);
-                }
-                this.f16058b = a2;
-                this.f16057a = d.h(a2);
-                this.f16059c = a2.hashCode();
-                return;
+    public class C0000a implements v {
+        @Override
+        public final u create(g gVar, mb.a aVar) {
+            if (aVar.f18407a == Date.class) {
+                return new a(0);
             }
-        } else if (genericSuperclass == a.class) {
-            throw new IllegalStateException("TypeToken must be created with a type argument: new TypeToken<...>() {}; When using code shrinkers (ProGuard, R8, ...) make sure that generic signatures are preserved.\nSee " + "https://github.com/google/gson/blob/main/Troubleshooting.md#".concat("type-token-raw"));
+            return null;
         }
-        throw new IllegalStateException("Must only create direct subclasses of TypeToken");
     }
 
-    public static void a(Type type) {
-        if (!(type instanceof TypeVariable)) {
-            if (type instanceof GenericArrayType) {
-                a(((GenericArrayType) type).getGenericComponentType());
-                return;
-            }
-            int i10 = 0;
-            if (type instanceof ParameterizedType) {
-                ParameterizedType parameterizedType = (ParameterizedType) type;
-                Type ownerType = parameterizedType.getOwnerType();
-                if (ownerType != null) {
-                    a(ownerType);
-                }
-                Type[] actualTypeArguments = parameterizedType.getActualTypeArguments();
-                int length = actualTypeArguments.length;
-                while (i10 < length) {
-                    a(actualTypeArguments[i10]);
-                    i10++;
-                }
-                return;
-            } else if (type instanceof WildcardType) {
-                WildcardType wildcardType = (WildcardType) type;
-                for (Type type2 : wildcardType.getLowerBounds()) {
-                    a(type2);
-                }
-                Type[] upperBounds = wildcardType.getUpperBounds();
-                int length2 = upperBounds.length;
-                while (i10 < length2) {
-                    a(upperBounds[i10]);
-                    i10++;
-                }
-                return;
-            } else if (type != null) {
-                return;
-            } else {
-                throw new IllegalArgumentException("TypeToken captured `null` as type argument; probably a compiler / runtime bug");
+    public a(int i10) {
+        this();
+    }
+
+    @Override
+    public final Object read(nb.a aVar) {
+        Date date;
+        if (aVar.x() == 9) {
+            aVar.t();
+            return null;
+        }
+        String v = aVar.v();
+        synchronized (this) {
+            TimeZone timeZone = this.f16958a.getTimeZone();
+            try {
+                date = new Date(this.f16958a.parse(v).getTime());
+                this.f16958a.setTimeZone(timeZone);
+            } catch (ParseException e) {
+                throw new RuntimeException("Failed parsing '" + v + "' as SQL Date; at path " + aVar.j(), e);
             }
         }
-        TypeVariable typeVariable = (TypeVariable) type;
-        throw new IllegalArgumentException("TypeToken type argument must not contain a type variable; captured type variable " + typeVariable.getName() + " declared by " + typeVariable.getGenericDeclaration() + "\nSee " + "https://github.com/google/gson/blob/main/Troubleshooting.md#".concat("typetoken-type-variable"));
+        return date;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj instanceof a) {
-            if (d.e(this.f16058b, ((a) obj).f16058b)) {
-                return true;
-            }
-            return false;
+    @Override
+    public final void write(nb.b bVar, Object obj) {
+        String format;
+        Date date = (Date) obj;
+        if (date == null) {
+            bVar.i();
+            return;
         }
-        return false;
+        synchronized (this) {
+            format = this.f16958a.format((java.util.Date) date);
+        }
+        bVar.r(format);
     }
 
-    public final int hashCode() {
-        return this.f16059c;
-    }
-
-    public final String toString() {
-        return d.k(this.f16058b);
-    }
-
-    public a(Type type) {
-        Objects.requireNonNull(type);
-        Type a2 = d.a(type);
-        this.f16058b = a2;
-        this.f16057a = d.h(a2);
-        this.f16059c = a2.hashCode();
+    private a() {
+        this.f16958a = new SimpleDateFormat("MMM d, yyyy");
     }
 }

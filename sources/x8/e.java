@@ -1,82 +1,19 @@
 package x8;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.data.DataHolder;
-import i2.o1;
-import java.io.Closeable;
-import java.util.ArrayList;
-import java.util.Iterator;
-public final class e implements com.google.android.gms.common.api.q, Iterable, Closeable {
-    public final DataHolder f50095a;
-    public boolean f50096b = false;
-    public ArrayList f50097c;
-    public final Status d;
-
-    public e(DataHolder dataHolder) {
-        this.f50095a = dataHolder;
-        this.d = new Status(dataHolder.e, null, null, null);
-    }
+import a8.df;
+import android.os.Parcel;
+import android.os.Parcelable;
+import w8.s;
+public final class e extends p6.a {
+    public static final Parcelable.Creator<e> CREATOR = new s(19);
+    public String f51692a;
+    public String f51693b;
 
     @Override
-    public final void close() {
-        DataHolder dataHolder = this.f50095a;
-        if (dataHolder != null) {
-            dataHolder.close();
-        }
-    }
-
-    @Override
-    public final Status h() {
-        return this.d;
-    }
-
-    @Override
-    public final Iterator iterator() {
-        return new ed.b(this);
-    }
-
-    public final int m(int i10) {
-        if (i10 >= 0 && i10 < this.f50097c.size()) {
-            return ((Integer) this.f50097c.get(i10)).intValue();
-        }
-        throw new IllegalArgumentException(o1.l(i10, "Position ", " is out of bounds for this buffer"));
-    }
-
-    public final void n() {
-        synchronized (this) {
-            try {
-                if (!this.f50096b) {
-                    DataHolder dataHolder = this.f50095a;
-                    n6.l.h(dataHolder);
-                    int i10 = dataHolder.f6555n;
-                    ArrayList arrayList = new ArrayList();
-                    this.f50097c = arrayList;
-                    if (i10 > 0) {
-                        arrayList.add(0);
-                        int b10 = this.f50095a.b(0);
-                        DataHolder dataHolder2 = this.f50095a;
-                        dataHolder2.c(0, "path");
-                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f6553c.getInt("path"));
-                        for (int i11 = 1; i11 < i10; i11++) {
-                            int b11 = this.f50095a.b(i11);
-                            DataHolder dataHolder3 = this.f50095a;
-                            dataHolder3.c(i11, "path");
-                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f6553c.getInt("path"));
-                            if (string2 != null) {
-                                if (!string2.equals(string)) {
-                                    this.f50097c.add(Integer.valueOf(i11));
-                                    string = string2;
-                                }
-                            } else {
-                                throw new NullPointerException("Missing value for markerColumn: path, at row: " + i11 + ", for window: " + b11);
-                            }
-                        }
-                    }
-                    this.f50096b = true;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q5 = df.q(parcel, 20293);
+        df.l(parcel, 2, this.f51692a);
+        df.l(parcel, 3, this.f51693b);
+        df.r(parcel, q5);
     }
 }

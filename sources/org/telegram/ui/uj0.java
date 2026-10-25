@@ -1,47 +1,46 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class uj0 implements Runnable {
-    public final int f42442a;
-    public final NotificationsCustomSettingsActivity f42443b;
-    public final hk0 f42444c;
-    public final View d;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
+public final class uj0 extends s4.u0 {
+    public final int f44150a;
+    public final org.telegram.ui.Components.r71 f44151b;
+    public final vj0 f44152c;
+    public final xj0 d;
 
-    public uj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, hk0 hk0Var, View view, int i10, int i11) {
-        this.f42442a = i11;
-        this.f42443b = notificationsCustomSettingsActivity;
-        this.f42444c = hk0Var;
-        this.d = view;
+    public uj0(xj0 xj0Var, int i10, org.telegram.ui.Components.r71 r71Var, vj0 vj0Var) {
+        this.d = xj0Var;
+        this.f44150a = i10;
+        this.f44151b = r71Var;
+        this.f44152c = vj0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42442a) {
-            case 0:
-                this.f42443b.k0(this.f42444c, this.d, false);
-                return;
-            case 1:
-                this.f42443b.e0(this.f42444c, this.d);
-                return;
-            case 2:
-                NotificationsCustomSettingsActivity.X(this.f42443b, this.f42444c, this.d);
-                return;
-            case 3:
-                NotificationsCustomSettingsActivity.V(this.f42443b, this.f42444c, this.d);
-                return;
-            case 4:
-                this.f42443b.e0(this.f42444c, this.d);
-                return;
-            default:
-                this.f42443b.k0(this.f42444c, this.d, true);
-                return;
+    public final void a(RecyclerView recyclerView, int i10) {
+        if (i10 == 1) {
+            int i11 = this.f44150a;
+            xj0 xj0Var = this.d;
+            if (i11 != 2) {
+                xj0.a0(xj0Var);
+            } else if (xj0Var.getParentActivity() != null) {
+                AndroidUtilities.hideKeyboard(xj0Var.getParentActivity().getCurrentFocus());
+            }
         }
     }
 
-    public uj0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, hk0 hk0Var, View view, boolean z10, int i10) {
-        this.f42442a = i10;
-        this.f42443b = notificationsCustomSettingsActivity;
-        this.f42444c = hk0Var;
-        this.d = view;
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        int i12 = this.f44150a;
+        xj0 xj0Var = this.d;
+        vj0 vj0Var = this.f44152c;
+        if (i11 >= 0) {
+            org.telegram.ui.Components.r71 r71Var = this.f44151b;
+            if (r71Var.f32149f3.N0() >= r71Var.f32150g3.f29509y.size() - 5 && !vj0Var.f44842k) {
+                xj0Var.l0(i12, false);
+            }
+        }
+        if (i12 == 1) {
+            xj0Var.m0(vj0Var);
+        }
     }
 }

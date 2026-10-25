@@ -1,41 +1,69 @@
 package org.telegram.ui.Components;
 
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.PremiumPreviewFragment;
-import org.telegram.ui.StickersActivity;
-import org.telegram.ui.ThemeActivity;
-public final class qd implements Runnable {
-    public final int f29883a;
-    public final org.telegram.ui.ActionBar.o2 f29884b;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class qd implements ValueAnimator.AnimatorUpdateListener {
+    public final int f31900a;
+    public final ChatActivityEnterView f31901b;
 
-    public qd(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f29883a = i10;
-        this.f29884b = o2Var;
+    public qd(ChatActivityEnterView chatActivityEnterView, int i10) {
+        this.f31900a = i10;
+        this.f31901b = chatActivityEnterView;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f29883a;
-        org.telegram.ui.ActionBar.o2 o2Var = this.f29884b;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        int i10 = this.f31900a;
+        ChatActivityEnterView chatActivityEnterView = this.f31901b;
         switch (i10) {
             case 0:
-                int i11 = ChatActivityEnterView.f24051r5;
-                if (o2Var != null) {
-                    new sg.y0(o2Var, 11, false).show();
-                    return;
-                } else if (o2Var.getContext() instanceof LaunchActivity) {
-                    ((LaunchActivity) o2Var.getContext()).u0(new PremiumPreviewFragment(0, null));
-                    return;
-                } else {
+                ze zeVar = chatActivityEnterView.J1;
+                if (zeVar != null) {
+                    zeVar.setTranslationX(zeVar.f35308a);
                     return;
                 }
+                return;
             case 1:
-                o2Var.presentFragment(new StickersActivity(0, null));
+                ze zeVar2 = chatActivityEnterView.J1;
+                if (zeVar2 != null) {
+                    zeVar2.setTranslationX(zeVar2.f35308a);
+                    return;
+                }
+                return;
+            case 2:
+                chatActivityEnterView.f25915m1.invalidate();
+                return;
+            case 3:
+                chatActivityEnterView.f25915m1.invalidate();
+                return;
+            case 4:
+                int i11 = ChatActivityEnterView.f25841r5;
+                chatActivityEnterView.f25972w0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                dg dgVar = chatActivityEnterView.U0;
+                if (dgVar != null) {
+                    dgVar.Y();
+                    return;
+                }
+                return;
+            case 5:
+                chatActivityEnterView.J1.setTranslationX(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 6:
+                int i12 = ChatActivityEnterView.f25841r5;
+                chatActivityEnterView.N1.setTransformToSeekbar(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                if (!chatActivityEnterView.f25857c1) {
+                    chatActivityEnterView.f25888h1.setAlpha(chatActivityEnterView.N1.getTransformToSeekbarProgressStep3());
+                    chatActivityEnterView.f25888h1.invalidate();
+                }
+                chatActivityEnterView.u0();
                 return;
             default:
-                ThemeActivity themeActivity = new ThemeActivity(0);
-                themeActivity.T0 = true;
-                o2Var.presentFragment(themeActivity);
+                int i13 = ChatActivityEnterView.f25841r5;
+                chatActivityEnterView.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                chatActivityEnterView.f25973w1.setScaleX(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f25973w1.setScaleY(AndroidUtilities.lerp(0.6f, 1.0f, floatValue));
+                chatActivityEnterView.f25973w1.setAlpha(floatValue);
                 return;
         }
     }

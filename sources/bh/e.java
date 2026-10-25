@@ -1,66 +1,159 @@
 package bh;
 
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.support.v4.media.session.x;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import zf.g0;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.t5;
+import org.telegram.ui.Components.xj0;
+import org.telegram.ui.oy;
 public final class e {
-    public final d f4386b;
-    public final d f4387c;
+    public static int f4013m;
+    public t5 f4014a;
+    public Rect f4015b;
+    public ArrayList f4016c;
+    public View d;
     public long e;
-    public final RenderNode f4385a = x.c();
-    public final Rect d = new Rect();
+    public boolean f4017f;
+    public boolean f4018g;
+    public int h;
+    public boolean f4019i;
+    public ImageReceiver f4020j;
+    public int f4021k;
+    public long f4022l;
 
-    public e(f fVar) {
-        int i10;
-        if (fVar.f4388a) {
-            d dVar = new d(fVar, "glass", 0, true);
-            this.f4387c = dVar;
-            dVar.e = 4;
-            dVar.f4381f = 4;
-            dVar.d(AndroidUtilities.dpf2(6.0f), g0.b());
-            d dVar2 = new d(fVar, "blur", 0, false);
-            this.f4386b = dVar2;
-            dVar2.e = 8;
-            dVar2.f4381f = 8;
-            dVar2.c(AndroidUtilities.dpf2(38.34f));
-        } else if (fVar.f4390c) {
-            d dVar3 = new d(fVar, "blur", 0, false);
-            this.f4386b = dVar3;
-            boolean z10 = fVar.f4389b;
+    public static e a(t5 t5Var, boolean z10, boolean z11) {
+        int i10 = UserConfig.selectedAccount;
+        ?? obj = new Object();
+        obj.f4015b = new Rect();
+        obj.f4016c = new ArrayList();
+        obj.f4018g = true;
+        obj.f4021k = -1;
+        obj.f4014a = t5Var;
+        obj.f4017f = z10;
+        obj.h = i10;
+        obj.f4019i = z11;
+        obj.e = System.currentTimeMillis();
+        if (z11 && LiteMode.isEnabled(4112)) {
+            ImageReceiver imageReceiver = new ImageReceiver();
+            obj.f4020j = imageReceiver;
             if (z10) {
-                i10 = 16;
-            } else {
-                i10 = 8;
+                imageReceiver.setAllowDrawWhileCacheGenerating(true);
             }
-            int i11 = z10 ? 16 : 8;
-            dVar3.e = i10;
-            dVar3.f4381f = i11;
-            dVar3.d(AndroidUtilities.dpf2(40.0f), g0.b());
-            this.f4387c = null;
-        } else {
-            d dVar4 = new d(fVar, "blur", 1, false);
-            this.f4386b = dVar4;
-            dVar4.e = 8;
-            dVar4.f4381f = 8;
-            dVar4.c(AndroidUtilities.dpf2(40.0f));
-            dVar4.e(g0.b());
-            this.f4387c = null;
+        }
+        return obj;
+    }
+
+    public final void b(android.graphics.Canvas r18) {
+        throw new UnsupportedOperationException("Method not decompiled: bh.e.b(android.graphics.Canvas):void");
+    }
+
+    public final boolean c() {
+        if (System.currentTimeMillis() - this.e > 2500) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d(View view) {
+        this.f4014a.o(view);
+        ImageReceiver imageReceiver = this.f4020j;
+        if (imageReceiver != null) {
+            imageReceiver.onDetachedFromWindow();
+            imageReceiver.clearImage();
         }
     }
 
-    public static void a(e eVar, RectF rectF) {
-        Rect rect = eVar.d;
-        float f7 = rectF.left;
-        float f10 = 16;
-        rect.left = Math.round(f7 - (f7 % f10));
-        float f11 = rectF.top;
-        rect.top = Math.round(f11 - (f11 % f10));
-        float f12 = rectF.right;
-        rect.right = Math.round((f10 - (f12 % f10)) + f12);
-        float f13 = rectF.bottom;
-        rect.bottom = Math.round((f10 - (f13 % f10)) + f13);
+    public final void e(int i10, int i11, int i12, int i13) {
+        Rect rect = this.f4015b;
+        rect.set(i10, i11, i12, i13);
+        ImageReceiver imageReceiver = this.f4020j;
+        if (imageReceiver != null) {
+            imageReceiver.setImageCoords(rect);
+        }
+    }
+
+    public final void f(View view) {
+        boolean z10;
+        boolean z11;
+        TLRPC.TL_availableReaction tL_availableReaction;
+        TLRPC.Document document;
+        boolean z12 = this.f4017f;
+        int i10 = this.h;
+        t5 t5Var = this.f4014a;
+        t5Var.a(view);
+        this.d = view;
+        ImageReceiver imageReceiver = this.f4020j;
+        if (imageReceiver != null && this.f4019i) {
+            imageReceiver.onAttachedToWindow();
+            TLRPC.Document document2 = t5Var.e;
+            TLRPC.TL_messages_stickerSet tL_messages_stickerSet = null;
+            String findAnimatedEmojiEmoticon = MessageObject.findAnimatedEmojiEmoticon(document2, null);
+            if (findAnimatedEmojiEmoticon != null && (tL_availableReaction = MediaDataController.getInstance(i10).getReactionsMap().get(findAnimatedEmojiEmoticon)) != null && (document = tL_availableReaction.around_animation) != null) {
+                if (z12) {
+                    StringBuilder sb2 = new StringBuilder();
+                    int i11 = f4013m;
+                    f4013m = i11 + 1;
+                    sb2.append(i11);
+                    sb2.append(" ");
+                    imageReceiver.setUniqKeyPrefix(sb2.toString());
+                    int f7 = oy.f();
+                    TLRPC.Document document3 = tL_availableReaction.around_animation;
+                    z10 = true;
+                    imageReceiver.setImage(ImageLocation.getForDocument(tL_availableReaction.around_animation), f7 + "_" + f7 + "_pcache_compress", null, null, document3, 0);
+                } else {
+                    ImageLocation forDocument = ImageLocation.getForDocument(document);
+                    String a2 = s0.a();
+                    TLRPC.Document document4 = tL_availableReaction.around_animation;
+                    z10 = true;
+                    imageReceiver.setImage(forDocument, a2, null, null, document4, 0);
+                }
+                z11 = z10;
+            } else {
+                z10 = true;
+                z11 = false;
+            }
+            if (!z11) {
+                String str = UserConfig.getInstance(i10).genericAnimationsStickerPack;
+                if (str != null && (tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByName(str)) == null) {
+                    tL_messages_stickerSet = MediaDataController.getInstance(i10).getStickerSetByEmojiOrName(str);
+                }
+                if (tL_messages_stickerSet != null) {
+                    if (this.f4021k < 0) {
+                        this.f4021k = Math.abs(Utilities.fastRandom.nextInt() % tL_messages_stickerSet.documents.size());
+                    }
+                    if (z12) {
+                        StringBuilder sb3 = new StringBuilder();
+                        int i12 = f4013m;
+                        f4013m = i12 + 1;
+                        sb3.append(i12);
+                        sb3.append(" ");
+                        imageReceiver.setUniqKeyPrefix(sb3.toString());
+                        int f10 = oy.f();
+                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f4021k)), f10 + "_" + f10 + "_pcache_compress", null, null, tL_messages_stickerSet.documents.get(this.f4021k), 0);
+                    } else {
+                        imageReceiver.setImage(ImageLocation.getForDocument(tL_messages_stickerSet.documents.get(this.f4021k)), "60_60", null, null, tL_messages_stickerSet.documents.get(this.f4021k), 0);
+                    }
+                    z11 = z10;
+                }
+            }
+            if (z11) {
+                if (imageReceiver.getLottieAnimation() != null) {
+                    imageReceiver.getLottieAnimation().N(0, false, z10);
+                }
+                imageReceiver.setAutoRepeat(0);
+                return;
+            }
+            imageReceiver.setImageBitmap(new xj0(R.raw.custom_emoji_reaction, AndroidUtilities.dp(60.0f), AndroidUtilities.dp(60.0f), false, null));
+        }
     }
 }

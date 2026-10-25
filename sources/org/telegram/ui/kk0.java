@@ -1,46 +1,37 @@
 package org.telegram.ui;
 
-import android.net.Uri;
-import android.text.TextUtils;
-import java.io.File;
-import java.io.IOException;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.tgnet.TLRPC;
-public final class kk0 {
-    public boolean f38931a;
-    public boolean f38932b;
-    public int f38933c;
-    public int d;
-    public TLRPC.Document e;
-    public String f38934f;
-    public String f38935g;
+import org.telegram.messenger.Utilities;
+public final class kk0 implements Runnable {
+    public final int f40956a;
+    public final lk0 f40957b;
+    public final String f40958c;
 
-    public final Uri a(int i10) {
-        if (!TextUtils.isEmpty(this.f38935g)) {
-            return Uri.fromFile(new File(this.f38935g));
+    public kk0(lk0 lk0Var, String str, int i10) {
+        this.f40956a = i10;
+        this.f40957b = lk0Var;
+        this.f40958c = str;
+    }
+
+    @Override
+    public final void run() {
+        switch (this.f40956a) {
+            case 0:
+                lk0 lk0Var = this.f40957b;
+                String str = this.f40958c;
+                lk0Var.getClass();
+                AndroidUtilities.runOnUIThread(new kk0(lk0Var, str, 1));
+                return;
+            default:
+                lk0 lk0Var2 = this.f40957b;
+                String str2 = this.f40958c;
+                ig.a2 a2Var = lk0Var2.h;
+                int i10 = lk0Var2.f41292n.f35576s;
+                boolean z10 = true;
+                a2Var.g(str2, true, (i10 == 1 || i10 == 3) ? false : false, true, false, 0L, false, 0, 0);
+                Utilities.searchQueue.postRunnable(new oe0(lk0Var2, str2, new ArrayList(lk0Var2.f41292n.f35577w), 11));
+                return;
         }
-        TLRPC.Document document = this.e;
-        if (document != null) {
-            String str = document.file_name_fixed;
-            String documentExtension = FileLoader.getDocumentExtension(document);
-            if (documentExtension != null) {
-                String lowerCase = documentExtension.toLowerCase();
-                if (!str.endsWith(lowerCase)) {
-                    str = a1.g.D(str, ".", lowerCase);
-                }
-                File file = new File(AndroidUtilities.getCacheDir(), str);
-                if (!file.exists()) {
-                    try {
-                        AndroidUtilities.copyFile(FileLoader.getInstance(i10).getPathToAttach(this.e), file);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return Uri.fromFile(file);
-            }
-            return null;
-        }
-        return null;
     }
 }

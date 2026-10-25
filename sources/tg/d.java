@@ -1,160 +1,127 @@
 package tg;
 
-import android.opengl.GLES20;
-import android.opengl.GLSurfaceView;
-import javax.microedition.khronos.egl.EGLConfig;
-import javax.microedition.khronos.opengles.GL10;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.web.a2;
-public final class d implements GLSurfaceView.Renderer {
-    public long f47494a;
-    public boolean f47495b;
-    public int f47496c;
-    public final f d;
+import android.content.Context;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.vh;
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Cells.x3;
+import org.telegram.ui.Components.Premium.LimitPreviewView;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.o41;
+public final class d extends lm0 {
+    public final u6 f48837c;
+    public final int d;
+    public final int e;
+    public final ArrayList f48838f;
+    public final a1 h;
+    public int f48839n;
+    public c f48840r;
+    public final boolean f48841s;
 
-    public d(f fVar) {
-        this.d = fVar;
+    public d(int i10, u6 u6Var) {
+        ArrayList arrayList = new ArrayList();
+        this.f48838f = arrayList;
+        this.f48841s = true;
+        this.f48837c = u6Var;
+        a1 a1Var = new a1(y6.Lj, y6.Mj, y6.Nj, y6.Oj, u6Var);
+        this.h = a1Var;
+        a1Var.f48802o = 0.0f;
+        a1Var.f48803p = 0.0f;
+        a1Var.f48804q = 1.0f;
+        MessagesController messagesController = MessagesController.getInstance(i10);
+        arrayList.add(new e(messagesController.channelsLimitDefault, messagesController.channelsLimitPremium, LocaleController.getString(R.string.GroupsAndChannelsLimitTitle), LocaleController.formatString(R.string.GroupsAndChannelsLimitSubtitle, Integer.valueOf(messagesController.channelsLimitPremium))));
+        arrayList.add(new e(messagesController.dialogFiltersPinnedLimitDefault, messagesController.dialogFiltersPinnedLimitPremium, LocaleController.getString(R.string.PinChatsLimitTitle), LocaleController.formatString(R.string.PinChatsLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersPinnedLimitPremium))));
+        arrayList.add(new e(messagesController.publicLinksLimitDefault, messagesController.publicLinksLimitPremium, LocaleController.getString(R.string.PublicLinksLimitTitle), LocaleController.formatString(R.string.PublicLinksLimitSubtitle, Integer.valueOf(messagesController.publicLinksLimitPremium))));
+        arrayList.add(new e(messagesController.savedGifsLimitDefault, messagesController.savedGifsLimitPremium, LocaleController.getString(R.string.SavedGifsLimitTitle), LocaleController.formatString(R.string.SavedGifsLimitSubtitle, Integer.valueOf(messagesController.savedGifsLimitPremium))));
+        arrayList.add(new e(messagesController.stickersFavedLimitDefault, messagesController.stickersFavedLimitPremium, LocaleController.getString(R.string.FavoriteStickersLimitTitle), LocaleController.formatString(R.string.FavoriteStickersLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium))));
+        arrayList.add(new e(messagesController.aboutLengthLimitDefault, messagesController.aboutLengthLimitPremium, LocaleController.getString(R.string.BioLimitTitle), LocaleController.formatString(R.string.BioLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium))));
+        arrayList.add(new e(messagesController.captionLengthLimitDefault, messagesController.captionLengthLimitPremium, LocaleController.getString(R.string.CaptionsLimitTitle), LocaleController.formatString(R.string.CaptionsLimitSubtitle, Integer.valueOf(messagesController.stickersFavedLimitPremium))));
+        arrayList.add(new e(messagesController.dialogFiltersLimitDefault, messagesController.dialogFiltersLimitPremium, LocaleController.getString(R.string.FoldersLimitTitle), LocaleController.formatString(R.string.FoldersLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersLimitPremium))));
+        arrayList.add(new e(messagesController.dialogFiltersChatsLimitDefault, messagesController.dialogFiltersChatsLimitPremium, LocaleController.getString(R.string.ChatPerFolderLimitTitle), LocaleController.formatString(R.string.ChatPerFolderLimitSubtitle, Integer.valueOf(messagesController.dialogFiltersChatsLimitPremium))));
+        arrayList.add(new e(3, 4, LocaleController.getString(R.string.ConnectedAccountsLimitTitle), LocaleController.formatString(R.string.ConnectedAccountsLimitSubtitle, 4)));
+        arrayList.add(new e(messagesController.recommendedChannelsLimitDefault, messagesController.recommendedChannelsLimitPremium, LocaleController.getString(R.string.SimilarChannelsLimitTitle), LocaleController.formatString(R.string.SimilarChannelsLimitSubtitle, Integer.valueOf(messagesController.recommendedChannelsLimitPremium))));
+        this.d = 1;
+        this.e = 1;
+        this.d = arrayList.size() + 1;
     }
 
     @Override
-    public final void onDrawFrame(GL10 gl10) {
-        float min;
-        if (this.d.f47504r) {
-            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-            GLES20.glClear(16384);
-        } else if (!this.d.f47507x) {
-            GLES20.glBindFramebuffer(36160, 0);
-            GLES20.glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-            GLES20.glClear(16384);
-            if (!this.d.f47508y) {
-                this.d.f47508y = true;
-                final int i10 = this.d.E;
-                this.d.post(new Runnable(this) {
-                    public final d f47492b;
+    public final boolean D(s4.e1 e1Var) {
+        return false;
+    }
 
-                    {
-                        this.f47492b = this;
-                    }
+    @Override
+    public final int h() {
+        return this.d;
+    }
 
-                    @Override
-                    public final void run() {
-                        switch (r3) {
-                            case 0:
-                                d dVar = this.f47492b;
-                                f.a(dVar.d, i10);
-                                return;
-                            default:
-                                d dVar2 = this.f47492b;
-                                int i11 = i10;
-                                f fVar = dVar2.d;
-                                if (fVar.e && !fVar.f47504r && i11 == dVar2.d.G) {
-                                    f fVar2 = dVar2.d;
-                                    fVar2.f47505s = true;
-                                    Runnable runnable = fVar2.v;
-                                    fVar2.v = null;
-                                    if (runnable != null) {
-                                        runnable.run();
-                                        return;
-                                    }
-                                    return;
-                                }
-                                return;
-                        }
-                    }
-                });
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        if (i10 == 0) {
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        if (e1Var.f47738f == 0) {
+            f fVar = (f) e1Var.f47735a;
+            int i11 = i10 - this.e;
+            ArrayList arrayList = this.f48838f;
+            fVar.a((e) arrayList.get(i11));
+            LimitPreviewView limitPreviewView = fVar.f48854c;
+            limitPreviewView.F = ((e) arrayList.get(i11)).e;
+            limitPreviewView.f26219c = this.f48839n;
+        }
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        x3 x3Var;
+        Context context = viewGroup.getContext();
+        u6 u6Var = this.f48837c;
+        if (i10 != 1) {
+            if (i10 != 2) {
+                ?? fVar = new f(context, u6Var);
+                fVar.f48854c.setParentViewForGradien(this.f48840r);
+                fVar.f48854c.setStaticGradinet(this.h);
+                x3Var = fVar;
+            } else {
+                x3Var = new x3(context, 16);
             }
+        } else if (this.f48841s) {
+            ?? o41Var = new o41(context, 10);
+            LinearLayout d = vh.d(context, 0);
+            ImageView imageView = new ImageView(context);
+            imageView.setImageDrawable(b1.c(context.getDrawable(R.drawable.other_2x_large), b1.d().f48820a));
+            d.addView(imageView, gb1.h(40, 28.0f, 16, 0.0f, 0.0f, 8.0f, 0.0f));
+            TextView textView = new TextView(context);
+            textView.setText(LocaleController.getString(R.string.DoubledLimits));
+            textView.setGravity(17);
+            textView.setTextSize(1, 20.0f);
+            f7.V(textView, y6.G6, u6Var);
+            textView.setTypeface(AndroidUtilities.bold());
+            d.addView(textView, gb1.i(-2, -2, 16));
+            o41Var.addView(d, gb1.i(-2, -2, 17));
+            x3Var = o41Var;
         } else {
-            try {
-                long nanoTime = System.nanoTime();
-                g gVar = this.d.f47499a;
-                long j10 = this.f47494a;
-                if (j10 == 0) {
-                    min = 0.016666668f;
-                } else {
-                    min = Math.min(0.1f, ((float) (nanoTime - j10)) / 1.0E9f);
-                }
-                gVar.G = min;
-                this.f47494a = nanoTime;
-                f fVar = this.d;
-                fVar.f47499a.f47511c.A = fVar.f47506w;
-                this.d.f47499a.onDrawFrame(gl10);
-                int glGetError = GLES20.glGetError();
-                if (glGetError == 0) {
-                    if (!this.f47495b) {
-                        this.f47495b = true;
-                        final int i11 = this.f47496c;
-                        this.d.post(new Runnable(this) {
-                            public final d f47492b;
-
-                            {
-                                this.f47492b = this;
-                            }
-
-                            @Override
-                            public final void run() {
-                                switch (r3) {
-                                    case 0:
-                                        d dVar = this.f47492b;
-                                        f.a(dVar.d, i11);
-                                        return;
-                                    default:
-                                        d dVar2 = this.f47492b;
-                                        int i112 = i11;
-                                        f fVar2 = dVar2.d;
-                                        if (fVar2.e && !fVar2.f47504r && i112 == dVar2.d.G) {
-                                            f fVar22 = dVar2.d;
-                                            fVar22.f47505s = true;
-                                            Runnable runnable = fVar22.v;
-                                            fVar22.v = null;
-                                            if (runnable != null) {
-                                                runnable.run();
-                                                return;
-                                            }
-                                            return;
-                                        }
-                                        return;
-                                }
-                            }
-                        });
-                        return;
-                    }
-                    return;
-                }
-                throw new IllegalStateException("Diamond GL error: " + glGetError);
-            } catch (RuntimeException e) {
-                FileLog.e(e);
-                this.d.f47504r = true;
-                this.d.post(new a2(this, 29));
-            }
+            x3Var = new x3(context, 64);
         }
-    }
-
-    @Override
-    public final void onSurfaceChanged(GL10 gl10, int i10, int i11) {
-        this.f47495b = false;
-        this.f47496c = this.d.G;
-        if (!this.d.f47504r) {
-            this.d.f47499a.onSurfaceChanged(gl10, i10, i11);
-        }
-    }
-
-    @Override
-    public final void onSurfaceCreated(GL10 gl10, EGLConfig eGLConfig) {
-        f fVar = this.d;
-        int i10 = fVar.G + 1;
-        fVar.G = i10;
-        this.f47496c = i10;
-        this.f47495b = false;
-        this.f47494a = 0L;
-        this.d.f47504r = false;
-        g gVar = this.d.f47499a;
-        gVar.f47511c = null;
-        try {
-            gVar.onSurfaceCreated(gl10, eGLConfig);
-        } catch (RuntimeException e) {
-            FileLog.e(e);
-            this.d.f47504r = true;
-            this.d.post(new a2(this, 29));
-        }
+        return ic.a.n(x3Var, x3Var, -1, -2);
     }
 }

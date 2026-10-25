@@ -5,18 +5,18 @@ import org.telegram.messenger.FileLoader;
 import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessagesController;
-public final class fi0 implements z4.f {
-    public final ni0 f26327a;
+public final class fi0 implements a5.i {
+    public final ni0 f28192a;
 
     public fi0(ni0 ni0Var) {
-        this.f26327a = ni0Var;
+        this.f28192a = ni0Var;
     }
 
     @Override
     public final void a(int i10) {
         boolean z10;
-        ni0 ni0Var = this.f26327a;
-        int i11 = ni0Var.f28932o1;
+        ni0 ni0Var = this.f28192a;
+        int i11 = ni0Var.f30997o1;
         int i12 = 0;
         if (i10 >= i11) {
             z10 = true;
@@ -25,7 +25,7 @@ public final class fi0 implements z4.f {
         }
         if (i10 != i11) {
             ni0Var.getClass();
-            ni0Var.f28932o1 = i10;
+            ni0Var.f30997o1 = i10;
         }
         MessagesController.DialogPhotos dialogPhotos = ni0Var.S0;
         if (dialogPhotos != null) {
@@ -40,24 +40,24 @@ public final class fi0 implements z4.f {
     @Override
     public final void b(float f7, int i10, int i11) {
         ImageLocation imageLocation;
-        ni0 ni0Var = this.f26327a;
+        ni0 ni0Var = this.f28192a;
         ni0Var.B(f7, i10);
         if (i11 == 0) {
             int k10 = ni0Var.D0.k(i10);
-            if (ni0Var.f28927i1) {
+            if (ni0Var.f30992i1) {
                 k10--;
             }
             ni0Var.getCurrentItemView();
             int childCount = ni0Var.getChildCount();
             for (int i12 = 0; i12 < childCount; i12++) {
                 View childAt = ni0Var.getChildAt(i12);
-                if (childAt instanceof u9) {
+                if (childAt instanceof y9) {
                     mi0 mi0Var = ni0Var.D0;
                     int k11 = mi0Var.k(mi0Var.d.indexOf(childAt));
-                    if (ni0Var.f28927i1) {
+                    if (ni0Var.f30992i1) {
                         k11--;
                     }
-                    ImageReceiver imageReceiver = ((u9) childAt).getImageReceiver();
+                    ImageReceiver imageReceiver = ((y9) childAt).getImageReceiver();
                     boolean allowStartAnimation = imageReceiver.getAllowStartAnimation();
                     if (k11 >= 0 && k11 < ni0Var.W0.size()) {
                         if (k11 == k10) {
@@ -70,7 +70,7 @@ public final class fi0 implements z4.f {
                                 FileLoader.getInstance(ni0Var.L0).setForceStreamLoadingFile(imageLocation2.location, "mp4");
                             }
                         } else if (allowStartAnimation) {
-                            c6 animation = imageReceiver.getAnimation();
+                            g6 animation = imageReceiver.getAnimation();
                             if (animation != null && (imageLocation = (ImageLocation) ni0Var.W0.get(k11)) != null) {
                                 animation.y(imageLocation.videoSeekTo, false, true);
                             }

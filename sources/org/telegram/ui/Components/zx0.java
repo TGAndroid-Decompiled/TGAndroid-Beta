@@ -1,31 +1,42 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
-public final class zx0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f33362a;
-    public final View f33363b;
-    public final FrameLayout f33364c;
-
-    public zx0(FrameLayout frameLayout, View view, int i10) {
-        this.f33362a = i10;
-        this.f33364c = frameLayout;
-        this.f33363b = view;
+import org.telegram.messenger.CacheFetcher;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class zx0 extends CacheFetcher {
+    @Override
+    public final void getLocal(int i10, Object obj, Utilities.Callback2 callback2) {
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new org.telegram.ui.g4(i10, (Integer) obj, callback2, 23));
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f33362a) {
-            case 0:
-                ay0 ay0Var = (ay0) this.f33364c;
-                ay0Var.f24837b = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ay0Var.invalidate();
-                ((jn0) this.f33363b).invalidate();
-                return;
-            default:
-                ((l91) this.f33364c).E(this.f33363b, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
+    public final void getRemote(int i10, Object obj, long j10, Utilities.Callback4 callback4) {
+        TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups;
+        Integer num = (Integer) obj;
+        if (num.intValue() == 1) {
+            TLRPC.TL_messages_getEmojiStatusGroups tL_messages_getEmojiStatusGroups = new TLRPC.TL_messages_getEmojiStatusGroups();
+            tL_messages_getEmojiStatusGroups.hash = (int) j10;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiStatusGroups;
+        } else if (num.intValue() == 2) {
+            TLRPC.TL_messages_getEmojiProfilePhotoGroups tL_messages_getEmojiProfilePhotoGroups = new TLRPC.TL_messages_getEmojiProfilePhotoGroups();
+            tL_messages_getEmojiProfilePhotoGroups.hash = (int) j10;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiProfilePhotoGroups;
+        } else if (num.intValue() == 3) {
+            TLRPC.TL_messages_getEmojiStickerGroups tL_messages_getEmojiStickerGroups = new TLRPC.TL_messages_getEmojiStickerGroups();
+            tL_messages_getEmojiStickerGroups.hash = (int) j10;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiStickerGroups;
+        } else {
+            TLRPC.TL_messages_getEmojiGroups tL_messages_getEmojiGroups2 = new TLRPC.TL_messages_getEmojiGroups();
+            tL_messages_getEmojiGroups2.hash = (int) j10;
+            tL_messages_getEmojiGroups = tL_messages_getEmojiGroups2;
         }
+        ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getEmojiGroups, new yx0(callback4, 0));
+    }
+
+    @Override
+    public final void setLocal(int i10, Object obj, Object obj2, long j10) {
+        MessagesStorage.getInstance(i10).getStorageQueue().postRunnable(new org.telegram.ui.g4(i10, (TLRPC.TL_messages_emojiGroups) obj2, (Integer) obj, 22));
     }
 }

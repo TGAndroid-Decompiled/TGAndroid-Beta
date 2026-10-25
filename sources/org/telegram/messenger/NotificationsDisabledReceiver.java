@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.SystemClock;
 import android.text.TextUtils;
+import org.telegram.ui.Components.b10;
 public class NotificationsDisabledReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -95,11 +96,11 @@ public class NotificationsDisabledReceiver extends BroadcastReceiver {
                                         FileLog.d("apply channel{else} " + stringExtra + " state");
                                     }
                                     SharedPreferences.Editor edit4 = notificationsSettings.edit();
-                                    String h = si.o0.h("notify2_", sharedPrefKey);
+                                    String j10 = b10.j("notify2_", sharedPrefKey);
                                     if (booleanExtra) {
                                         i10 = 2;
                                     }
-                                    edit4.putInt(h, i10);
+                                    edit4.putInt(j10, i10);
                                     if (!booleanExtra) {
                                         edit4.remove("notifyuntil_" + sharedPrefKey);
                                     }

@@ -1,35 +1,60 @@
 package org.telegram.ui.Components;
+public final class c01 extends gb1 {
+    public final int f27017c;
 
-import android.view.ViewGroup;
-public final class c01 extends ViewGroup.MarginLayoutParams {
-    public e01 f25148a;
-    public e01 f25149b;
-
-    public c01() {
-        super(-2, -2);
-        e01 e01Var = e01.e;
-        this.f25148a = e01Var;
-        this.f25149b = e01Var;
-        setMargins(Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE, Integer.MIN_VALUE);
-        this.f25148a = e01Var;
-        this.f25149b = e01Var;
+    public c01(int i10) {
+        this.f27017c = i10;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
+    @Override
+    public final int F(j01 j01Var, int i10) {
+        switch (this.f27017c) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return Integer.MIN_VALUE;
+            default:
+                return Integer.MIN_VALUE;
         }
-        if (obj == null || c01.class != obj.getClass()) {
-            return false;
-        }
-        c01 c01Var = (c01) obj;
-        if (this.f25149b.equals(c01Var.f25149b) && this.f25148a.equals(c01Var.f25148a)) {
-            return true;
-        }
-        return false;
     }
 
-    public final int hashCode() {
-        return this.f25149b.hashCode() + (this.f25148a.hashCode() * 31);
+    @Override
+    public h01 G() {
+        switch (this.f27017c) {
+            case 3:
+                return new h01();
+            default:
+                return super.G();
+        }
+    }
+
+    @Override
+    public final int H(j01 j01Var, int i10) {
+        switch (this.f27017c) {
+            case 0:
+                return Integer.MIN_VALUE;
+            case 1:
+                return 0;
+            case 2:
+                return i10;
+            case 3:
+                return 0;
+            default:
+                return 0;
+        }
+    }
+
+    @Override
+    public int J(int i10, int i11) {
+        switch (this.f27017c) {
+            case 4:
+                return i11;
+            default:
+                return i10;
+        }
     }
 }

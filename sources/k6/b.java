@@ -1,36 +1,34 @@
 package k6;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.content.DialogInterface;
 import android.os.Bundle;
-public class b extends DialogFragment {
-    public Dialog f15011a;
-    public DialogInterface.OnCancelListener f15012b;
-    public AlertDialog f15013c;
+import android.util.Log;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.SuccessContinuation;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import java.io.IOException;
+public final class b implements Continuation, SuccessContinuation {
+    public static final b f16403a = new Object();
+    public static final b f16404b = new Object();
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        DialogInterface.OnCancelListener onCancelListener = this.f15012b;
-        if (onCancelListener != null) {
-            onCancelListener.onCancel(dialogInterface);
+    public Task then(Object obj) {
+        Bundle bundle = (Bundle) obj;
+        int i10 = a.h;
+        if (bundle != null && bundle.containsKey("google.messenger")) {
+            return Tasks.forResult(null);
         }
+        return Tasks.forResult(bundle);
     }
 
     @Override
-    public final Dialog onCreateDialog(Bundle bundle) {
-        Dialog dialog = this.f15011a;
-        if (dialog == null) {
-            setShowsDialog(false);
-            if (this.f15013c == null) {
-                Activity activity = getActivity();
-                n6.l.h(activity);
-                this.f15013c = new AlertDialog.Builder(activity).create();
-            }
-            return this.f15013c;
+    public Object then(Task task) {
+        if (task.isSuccessful()) {
+            return (Bundle) task.getResult();
         }
-        return dialog;
+        if (Log.isLoggable("Rpc", 3)) {
+            Log.d("Rpc", "Error making request: ".concat(String.valueOf(task.getException())));
+        }
+        throw new IOException("SERVICE_NOT_AVAILABLE", task.getException());
     }
 }

@@ -1,20 +1,46 @@
 package m4;
-public interface u {
-    void a(int i10, o oVar);
 
-    void b(int i10);
+import a8.yb;
+import android.util.SparseBooleanArray;
+import java.util.HashSet;
+public final class u {
+    public static final q1 e;
+    public static final b2.c1 f18259f;
+    public final q1 f18260a;
+    public final b2.c1 f18261b;
+    public final f9.i0 f18262c;
+    public final f9.i0 d;
 
-    void c(int i10, b2.b1 b1Var);
+    static {
+        int[] iArr;
+        HashSet hashSet = new HashSet();
+        f9.s1 s1Var = p1.d;
+        for (int i10 = 0; i10 < s1Var.d; i10++) {
+            hashSet.add(new p1(((Integer) s1Var.get(i10)).intValue()));
+        }
+        e = new q1(hashSet);
+        HashSet hashSet2 = new HashSet();
+        f9.s1 s1Var2 = p1.e;
+        for (int i11 = 0; i11 < s1Var2.d; i11++) {
+            hashSet2.add(new p1(((Integer) s1Var2.get(i11)).intValue()));
+        }
+        for (int i12 = 0; i12 < s1Var.d; i12++) {
+            hashSet2.add(new p1(((Integer) s1Var.get(i12)).intValue()));
+        }
+        new q1(hashSet2);
+        SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
+        for (int i13 : b2.b1.f3146b) {
+            yb.p(!false);
+            sparseBooleanArray.append(i13, true);
+        }
+        yb.p(!false);
+        f18259f = new b2.c1(new b2.v(sparseBooleanArray));
+    }
 
-    void d(int i10, int i11, int i12);
-
-    void e(int i10, o1 o1Var);
-
-    void f(int i10, r1 r1Var, boolean z10, boolean z11, int i11);
-
-    void g();
-
-    void h(int i10, k1 k1Var, b2.b1 b1Var, boolean z10, boolean z11);
-
-    void j(int i10, s1 s1Var);
+    public u(q1 q1Var, b2.c1 c1Var, f9.i0 i0Var, f9.i0 i0Var2) {
+        this.f18260a = q1Var;
+        this.f18261b = c1Var;
+        this.f18262c = i0Var;
+        this.d = i0Var2;
+    }
 }

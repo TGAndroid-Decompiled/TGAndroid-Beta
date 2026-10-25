@@ -1,31 +1,34 @@
 package org.telegram.messenger;
-public final class yh implements Runnable {
-    public final int f20232a;
-    public final SavedMessagesController f20233b;
 
-    public yh(SavedMessagesController savedMessagesController, int i10) {
-        this.f20232a = i10;
-        this.f20233b = savedMessagesController;
+import android.view.View;
+import org.telegram.messenger.RichMessageLayout;
+public final class yh implements Runnable {
+    public final int f21924a = 0;
+    public final RichMessageLayout.Text f21925b;
+    public final RichMessageLayout f21926c;
+    public final View d;
+
+    public yh(RichMessageLayout.Text text, View view, RichMessageLayout richMessageLayout) {
+        this.f21925b = text;
+        this.d = view;
+        this.f21926c = richMessageLayout;
     }
 
     @Override
     public final void run() {
-        switch (this.f20232a) {
+        switch (this.f21924a) {
             case 0:
-                this.f20233b.update();
-                return;
-            case 1:
-                SavedMessagesController.k(this.f20233b);
-                return;
-            case 2:
-                SavedMessagesController.h(this.f20233b);
-                return;
-            case 3:
-                SavedMessagesController.j(this.f20233b);
+                this.f21925b.lambda$revealSpoilers$4(this.d, this.f21926c);
                 return;
             default:
-                SavedMessagesController.b(this.f20233b);
+                this.f21925b.lambda$revealSpoilers$3(this.f21926c, this.d);
                 return;
         }
+    }
+
+    public yh(RichMessageLayout.Text text, RichMessageLayout richMessageLayout, View view) {
+        this.f21925b = text;
+        this.f21926c = richMessageLayout;
+        this.d = view;
     }
 }

@@ -1,43 +1,24 @@
 package g9;
 
-import java.math.RoundingMode;
-public abstract class e {
-    public static final int[] f10963a;
+import a8.yb;
+import java.io.OutputStream;
+public final class e extends OutputStream {
+    public final String toString() {
+        return "ByteStreams.nullOutputStream()";
+    }
 
-    static {
-        int[] iArr = new int[RoundingMode.values().length];
-        f10963a = iArr;
-        try {
-            iArr[RoundingMode.UNNECESSARY.ordinal()] = 1;
-        } catch (NoSuchFieldError unused) {
-        }
-        try {
-            f10963a[RoundingMode.DOWN.ordinal()] = 2;
-        } catch (NoSuchFieldError unused2) {
-        }
-        try {
-            f10963a[RoundingMode.FLOOR.ordinal()] = 3;
-        } catch (NoSuchFieldError unused3) {
-        }
-        try {
-            f10963a[RoundingMode.UP.ordinal()] = 4;
-        } catch (NoSuchFieldError unused4) {
-        }
-        try {
-            f10963a[RoundingMode.CEILING.ordinal()] = 5;
-        } catch (NoSuchFieldError unused5) {
-        }
-        try {
-            f10963a[RoundingMode.HALF_DOWN.ordinal()] = 6;
-        } catch (NoSuchFieldError unused6) {
-        }
-        try {
-            f10963a[RoundingMode.HALF_UP.ordinal()] = 7;
-        } catch (NoSuchFieldError unused7) {
-        }
-        try {
-            f10963a[RoundingMode.HALF_EVEN.ordinal()] = 8;
-        } catch (NoSuchFieldError unused8) {
-        }
+    @Override
+    public final void write(int i10) {
+    }
+
+    @Override
+    public final void write(byte[] bArr) {
+        bArr.getClass();
+    }
+
+    @Override
+    public final void write(byte[] bArr, int i10, int i11) {
+        bArr.getClass();
+        yb.n(i10, i11 + i10, bArr.length);
     }
 }

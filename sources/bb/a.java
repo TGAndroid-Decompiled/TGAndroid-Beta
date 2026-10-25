@@ -1,23 +1,38 @@
 package bb;
 
-import kotlin.jvm.internal.i;
-import x9.j;
+import android.os.Build;
+import java.util.ArrayList;
 public final class a {
-    public final ke.d f4235a;
-    public j f4236b = null;
+    public final String f3720a;
+    public final String f3721b;
+    public final String f3722c;
+    public final q d;
+    public final ArrayList e;
 
-    public a(ke.d dVar) {
-        this.f4235a = dVar;
+    public a(String str, String versionName, String appBuildVersion, q qVar, ArrayList arrayList) {
+        String deviceManufacturer = Build.MANUFACTURER;
+        kotlin.jvm.internal.i.e(versionName, "versionName");
+        kotlin.jvm.internal.i.e(appBuildVersion, "appBuildVersion");
+        kotlin.jvm.internal.i.e(deviceManufacturer, "deviceManufacturer");
+        this.f3720a = str;
+        this.f3721b = versionName;
+        this.f3722c = appBuildVersion;
+        this.d = qVar;
+        this.e = arrayList;
     }
 
     public final boolean equals(Object obj) {
         if (this != obj) {
             if (obj instanceof a) {
                 a aVar = (a) obj;
-                if (!this.f4235a.equals(aVar.f4235a) || !i.a(this.f4236b, aVar.f4236b)) {
-                    return false;
+                if (this.f3720a.equals(aVar.f3720a) && kotlin.jvm.internal.i.a(this.f3721b, aVar.f3721b) && kotlin.jvm.internal.i.a(this.f3722c, aVar.f3722c)) {
+                    String str = Build.MANUFACTURER;
+                    if (!kotlin.jvm.internal.i.a(str, str) || !this.d.equals(aVar.d) || !this.e.equals(aVar.e)) {
+                        return false;
+                    }
+                    return true;
                 }
-                return true;
+                return false;
             }
             return false;
         }
@@ -25,18 +40,11 @@ public final class a {
     }
 
     public final int hashCode() {
-        int hashCode;
-        int hashCode2 = this.f4235a.hashCode() * 31;
-        j jVar = this.f4236b;
-        if (jVar == null) {
-            hashCode = 0;
-        } else {
-            hashCode = jVar.hashCode();
-        }
-        return hashCode2 + hashCode;
+        int f7 = a1.g.f(a1.g.f(a1.g.f(this.f3720a.hashCode() * 31, 31, this.f3721b), 31, this.f3722c), 31, Build.MANUFACTURER);
+        return this.e.hashCode() + ((this.d.hashCode() + f7) * 31);
     }
 
     public final String toString() {
-        return "Dependency(mutex=" + this.f4235a + ", subscriber=" + this.f4236b + ')';
+        return "AndroidApplicationInfo(packageName=" + this.f3720a + ", versionName=" + this.f3721b + ", appBuildVersion=" + this.f3722c + ", deviceManufacturer=" + Build.MANUFACTURER + ", currentProcessDetails=" + this.d + ", appProcessDetails=" + this.e + ')';
     }
 }

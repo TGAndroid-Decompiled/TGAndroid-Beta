@@ -1,29 +1,22 @@
 package d9;
-public final class a extends i {
-    public final i f7891a;
-    public final i f7892b;
 
-    public a(i iVar, i iVar2) {
-        iVar.getClass();
-        this.f7891a = iVar;
-        iVar2.getClass();
-        this.f7892b = iVar2;
-    }
+import android.app.Activity;
+import android.content.Intent;
+import android.os.Build;
+import android.os.Bundle;
+public abstract class a extends Activity {
+    public abstract Class getServiceClass();
 
     @Override
-    public final boolean apply(Object obj) {
-        return c(((Character) obj).charValue());
-    }
-
-    @Override
-    public final boolean c(char c10) {
-        if (this.f7891a.c(c10) && this.f7892b.c(c10)) {
-            return true;
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Intent intent = new Intent(this, getServiceClass());
+        intent.putExtra("SearchActionVerificationClientExtraIntent", getIntent());
+        if (Build.VERSION.SDK_INT >= 26) {
+            startForegroundService(intent);
+        } else {
+            startService(intent);
         }
-        return false;
-    }
-
-    public final String toString() {
-        return "CharMatcher.and(" + this.f7891a + ", " + this.f7892b + ")";
+        finish();
     }
 }

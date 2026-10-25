@@ -1,25 +1,23 @@
 package org.telegram.messenger;
-public final class c2 implements Runnable {
-    public final int f18059a;
-    public final DownloadController f18060b;
 
-    public c2(DownloadController downloadController, int i10) {
-        this.f18059a = i10;
-        this.f18060b = downloadController;
+import android.os.Handler;
+import android.os.Message;
+public final class c2 implements Handler.Callback {
+    public final int f19744a;
+    public final Thread f19745b;
+
+    public c2(Thread thread, int i10) {
+        this.f19744a = i10;
+        this.f19745b = thread;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18059a) {
+    public final boolean handleMessage(Message message) {
+        switch (this.f19744a) {
             case 0:
-                DownloadController.m(this.f18060b);
-                return;
-            case 1:
-                DownloadController.l(this.f18060b);
-                return;
+                return DispatchQueue.a((DispatchQueue) this.f19745b, message);
             default:
-                DownloadController.a(this.f18060b);
-                return;
+                return DispatchQueue2.a((DispatchQueue2) this.f19745b, message);
         }
     }
 }

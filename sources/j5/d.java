@@ -1,73 +1,25 @@
 package j5;
+public final class d {
+    public static final d f15513a;
+    public static final d f15514b;
+    public static final d f15515c;
+    public static final d[] d;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import java.net.MalformedURLException;
-import java.net.URL;
-import k5.f;
-import k5.g;
-import k5.h;
-import k5.i;
-import k5.j;
-import k5.k;
-import k5.l;
-import k5.n;
-import k5.o;
-import k5.q;
-import k5.r;
-import k5.s;
-import k5.v;
-import ki.t1;
-import m5.e;
-import si.o0;
-public final class d implements e {
-    public final t1 f14304a;
-    public final ConnectivityManager f14305b;
-    public final Context f14306c;
-    public final URL d;
-    public final u5.a e;
-    public final u5.a f14307f;
-    public final int f14308g;
-
-    public d(Context context, u5.a aVar, u5.a aVar2) {
-        la.d dVar = new la.d();
-        k5.c cVar = k5.c.f14959a;
-        dVar.a(o.class, cVar);
-        dVar.a(i.class, cVar);
-        f fVar = f.f14969a;
-        dVar.a(s.class, fVar);
-        dVar.a(l.class, fVar);
-        k5.d dVar2 = k5.d.f14961a;
-        dVar.a(q.class, dVar2);
-        dVar.a(j.class, dVar2);
-        k5.b bVar = k5.b.f14949a;
-        dVar.a(k5.a.class, bVar);
-        dVar.a(h.class, bVar);
-        k5.e eVar = k5.e.f14964a;
-        dVar.a(r.class, eVar);
-        dVar.a(k.class, eVar);
-        g gVar = g.f14974a;
-        dVar.a(v.class, gVar);
-        dVar.a(n.class, gVar);
-        dVar.d = true;
-        this.f14304a = new t1(dVar, 4);
-        this.f14306c = context;
-        this.f14305b = (ConnectivityManager) context.getSystemService("connectivity");
-        this.d = b(a.f14295c);
-        this.e = aVar2;
-        this.f14307f = aVar;
-        this.f14308g = 130000;
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f15513a = r02;
+        ?? r12 = new Enum("VERY_LOW", 1);
+        f15514b = r12;
+        ?? r32 = new Enum("HIGHEST", 2);
+        f15515c = r32;
+        d = new d[]{r02, r12, r32};
     }
 
-    public static URL b(String str) {
-        try {
-            return new URL(str);
-        } catch (MalformedURLException e) {
-            throw new IllegalArgumentException(o0.h("Invalid url: ", str), e);
-        }
+    public static d valueOf(String str) {
+        return (d) Enum.valueOf(d.class, str);
     }
 
-    public final l5.h a(l5.h r7) {
-        throw new UnsupportedOperationException("Method not decompiled: j5.d.a(l5.h):l5.h");
+    public static d[] values() {
+        return (d[]) d.clone();
     }
 }

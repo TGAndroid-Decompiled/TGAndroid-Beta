@@ -1,56 +1,56 @@
 package org.telegram.ui.Components;
 public final class nh implements Runnable {
-    public final int f28907a;
-    public final ri f28908b;
-    public final boolean f28909c;
+    public final int f30970a;
+    public final ti f30971b;
+    public final boolean f30972c;
 
-    public nh(ri riVar, boolean z10, int i10) {
-        this.f28907a = i10;
-        this.f28908b = riVar;
-        this.f28909c = z10;
+    public nh(ti tiVar, boolean z10, int i10) {
+        this.f30970a = i10;
+        this.f30971b = tiVar;
+        this.f30972c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f28907a) {
+        switch (this.f30970a) {
             case 0:
-                boolean z10 = this.f28909c;
-                ri riVar = this.f28908b;
+                boolean z10 = this.f30972c;
+                ti tiVar = this.f30971b;
                 if (!z10) {
-                    riVar.f30147f1.setVisibility(8);
+                    tiVar.f33019f1.setVisibility(8);
                     return;
                 } else {
-                    riVar.getClass();
+                    tiVar.getClass();
                     return;
                 }
             case 1:
-                boolean z11 = this.f28909c;
-                ri riVar2 = this.f28908b;
+                boolean z11 = this.f30972c;
+                ti tiVar2 = this.f30971b;
                 if (!z11) {
-                    riVar2.f30198w.setVisibility(8);
+                    tiVar2.f33070w.setVisibility(8);
                     return;
                 } else {
-                    riVar2.getClass();
+                    tiVar2.getClass();
                     return;
                 }
             case 2:
-                boolean z12 = this.f28909c;
-                ri riVar3 = this.f28908b;
+                boolean z12 = this.f30972c;
+                ti tiVar3 = this.f30971b;
                 if (!z12) {
-                    riVar3.f30206y.setVisibility(8);
+                    tiVar3.f33078y.setVisibility(8);
                     return;
                 } else {
-                    riVar3.getClass();
+                    tiVar3.getClass();
                     return;
                 }
             default:
-                boolean z13 = this.f28909c;
-                ri riVar4 = this.f28908b;
+                boolean z13 = this.f30972c;
+                ti tiVar4 = this.f30971b;
                 if (z13) {
-                    riVar4.A1.setVisibility(4);
+                    tiVar4.A1.setVisibility(4);
                     return;
                 } else {
-                    riVar4.getClass();
+                    tiVar4.getClass();
                     return;
                 }
         }

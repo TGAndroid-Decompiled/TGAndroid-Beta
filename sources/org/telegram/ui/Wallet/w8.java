@@ -1,30 +1,110 @@
 package org.telegram.ui.Wallet;
 
 import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class w8 implements Utilities.Callback {
-    public final int f35359a;
-    public final j9 f35360b;
+import org.telegram.tgnet.TLRPC;
+public final class w8 implements Utilities.Callback3 {
+    public final int f37446a;
+    public final i9 f37447b;
+    public final l0 f37448c;
+    public final long d;
 
-    public w8(j9 j9Var, int i10) {
-        this.f35359a = i10;
-        this.f35360b = j9Var;
+    public w8(i9 i9Var, l0 l0Var, long j10, int i10) {
+        this.f37446a = i10;
+        this.f37447b = i9Var;
+        this.f37448c = l0Var;
+        this.d = j10;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f35359a) {
+    public final void run(Object obj, Object obj2, Object obj3) {
+        byte[] bArr;
+        byte[] bArr2;
+        switch (this.f37446a) {
             case 0:
-                j9.a0(this.f35360b, (String) obj);
-                return;
-            case 1:
-                this.f35360b.f34675p0 = (TL_wallet.walletTransaction) obj;
-                return;
-            case 2:
-                this.f35360b.f34675p0 = (TL_wallet.walletTransaction) obj;
+                String str = (String) obj;
+                final Utilities.Callback callback = (Utilities.Callback) obj3;
+                final i9 i9Var = this.f37447b;
+                TLRPC.User user = i9Var.f36693f;
+                String str2 = i9Var.h;
+                if (((Boolean) obj2).booleanValue()) {
+                    bArr = i9Var.n0();
+                } else {
+                    bArr = null;
+                }
+                byte[] bArr3 = bArr;
+                this.f37448c.b0(user, str2, this.d, str, bArr3, null, i9Var.f36701n, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj4) {
+                        String str3 = (String) obj4;
+                        switch (r3) {
+                            case 0:
+                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
+                                    callback.run(str3);
+                                    if (str3 == null) {
+                                        i9 i9Var2 = i9Var;
+                                        i9Var2.fragmentView.postDelayed(new r8(i9Var2, 4), 220L);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str3)) {
+                                    callback.run(str3);
+                                    if (str3 == null) {
+                                        i9 i9Var3 = i9Var;
+                                        i9Var3.fragmentView.postDelayed(new r8(i9Var3, 4), 220L);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                }, new v8(i9Var, 2), null);
                 return;
             default:
-                this.f35360b.f34675p0 = (TL_wallet.walletTransaction) obj;
+                String str3 = (String) obj;
+                final Utilities.Callback callback2 = (Utilities.Callback) obj3;
+                final i9 i9Var2 = this.f37447b;
+                TLRPC.User user2 = i9Var2.f36693f;
+                String str4 = i9Var2.h;
+                if (((Boolean) obj2).booleanValue()) {
+                    bArr2 = i9Var2.n0();
+                } else {
+                    bArr2 = null;
+                }
+                byte[] bArr4 = bArr2;
+                this.f37448c.b0(user2, str4, this.d, str3, bArr4, null, i9Var2.f36701n, new Utilities.Callback() {
+                    @Override
+                    public final void run(Object obj4) {
+                        String str32 = (String) obj4;
+                        switch (r3) {
+                            case 0:
+                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
+                                    callback2.run(str32);
+                                    if (str32 == null) {
+                                        i9 i9Var22 = i9Var2;
+                                        i9Var22.fragmentView.postDelayed(new r8(i9Var22, 4), 220L);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                            default:
+                                if (!"PASSCODE_FAILED".equalsIgnoreCase(str32)) {
+                                    callback2.run(str32);
+                                    if (str32 == null) {
+                                        i9 i9Var3 = i9Var2;
+                                        i9Var3.fragmentView.postDelayed(new r8(i9Var3, 4), 220L);
+                                        return;
+                                    }
+                                    return;
+                                }
+                                return;
+                        }
+                    }
+                }, new v8(i9Var2, 3), null);
                 return;
         }
     }

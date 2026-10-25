@@ -298,14 +298,14 @@ public class Camera2Session {
                             }
                         }
                     }
-                } catch (Exception e7) {
-                    e = e7;
+                } catch (Exception e10) {
+                    e = e10;
                     camera2Session = null;
                 }
             }
             camera2Session = null;
-        } catch (Exception e10) {
-            e = e10;
+        } catch (Exception e11) {
+            e = e11;
             camera2Session = null;
             size = null;
             str = null;
@@ -476,7 +476,7 @@ public class Camera2Session {
     }
 
     public void open(SurfaceTexture surfaceTexture) {
-        this.handler.post(new s(1, this, surfaceTexture));
+        this.handler.post(new r(1, this, surfaceTexture));
     }
 
     public void setFlash(boolean z10) {

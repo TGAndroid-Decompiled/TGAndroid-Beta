@@ -15,9 +15,9 @@ public abstract class a0 {
     }
 
     public static k1 b(View view, k1 k1Var, Rect rect) {
-        WindowInsets g10 = k1Var.g();
-        if (g10 != null) {
-            return k1.h(view, view.computeSystemWindowInsets(g10, rect));
+        WindowInsets g7 = k1Var.g();
+        if (g7 != null) {
+            return k1.h(view, view.computeSystemWindowInsets(g7, rect));
         }
         rect.setEmpty();
         return k1Var;

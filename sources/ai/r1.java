@@ -1,9 +1,11 @@
 package ai;
-
-import android.view.View;
-public final class r1 extends s4.k {
-    @Override
-    public final float A(View view) {
-        return 0.3f;
-    }
+public final class r1 {
+    public int f1663a;
+    public int f1664b;
+    public int f1665c;
+    public int d;
+    public int e;
+    public int f1666f;
+    public int f1667g;
+    public int h;
 }

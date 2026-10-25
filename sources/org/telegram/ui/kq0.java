@@ -1,14 +1,7 @@
 package org.telegram.ui;
-
-import android.text.Editable;
-public interface kq0 {
-    void a();
-
-    void b(Editable editable);
-
-    boolean e();
-
-    void g();
-
-    void h(int i10, boolean z10, boolean z11);
+public final class kq0 extends s4.t {
+    @Override
+    public final boolean y0() {
+        return false;
+    }
 }

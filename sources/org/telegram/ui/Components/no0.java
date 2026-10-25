@@ -1,97 +1,141 @@
 package org.telegram.ui.Components;
 
-import android.text.TextUtils;
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class no0 extends s4.r0 {
-    public final int f28985a;
-    public final org.telegram.ui.ey f28986b;
-    public final org.telegram.ui.nx f28987c;
+public final class no0 extends View {
+    public mo0 f31047a;
+    public final h6 f31048b;
+    public final eh.d f31049c;
+    public bh.x0 d;
+    public boolean e;
+    public final Path f31050f;
+    public final RectF h;
+    public final RectF f31051n;
+    public boolean f31052r;
+    public final oo0 f31053s;
 
-    public no0(org.telegram.ui.nx nxVar, org.telegram.ui.ey eyVar, int i10) {
-        this.f28985a = i10;
-        this.f28987c = nxVar;
-        this.f28986b = eyVar;
+    public no0(oo0 oo0Var, Context context) {
+        super(context);
+        this.f31053s = oo0Var;
+        this.f31048b = new h6(this, 0L, 260L, ds.h);
+        this.f31050f = new Path();
+        this.h = new RectF();
+        this.f31051n = new RectF();
+        gb1.b(this);
+        ch.b bVar = oo0Var.v;
+        if (bVar != null) {
+            eh.d c10 = bVar.c(this, null, false);
+            c10.v(oo0Var.f31341w);
+            c10.A(AndroidUtilities.dp(5.0f));
+            eh.d u10 = c10.u();
+            org.telegram.messenger.vh.s(u10, AndroidUtilities.dp(6.0f), 4.0f);
+            this.f31049c = u10;
+        }
     }
 
-    @Override
-    public final void a(RecyclerView recyclerView, int i10) {
-        switch (this.f28985a) {
-            case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f28986b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 1:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f28986b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 2:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f28986b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            default:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(this.f28986b.getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
+    public final void a(boolean z10, boolean z11) {
+        if (this.e == z10) {
+            return;
+        }
+        this.e = z10;
+        mo0 mo0Var = this.f31047a;
+        if (mo0Var != null) {
+            mo0Var.f4182p = z10;
+            h6 h6Var = this.f31048b;
+            if (z11) {
+                mo0Var.f4175i = mo0Var.N;
+                mo0Var.f4173g = mo0Var.O;
+                mo0Var.h = mo0Var.P;
+                h6Var.d(0.0f, true);
+            } else {
+                h6Var.d(1.0f, true);
+            }
+            invalidate();
         }
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        org.telegram.ui.px pxVar;
-        int i12;
-        lm0 lm0Var;
-        switch (this.f28985a) {
-            case 0:
-                org.telegram.ui.nx nxVar = this.f28987c;
-                nxVar.f33315o0.V();
-                nxVar.R(i10, i11);
-                return;
-            case 1:
-                org.telegram.ui.nx nxVar2 = this.f28987c;
-                nxVar2.f33322v0.W();
-                nxVar2.R(i10, i11);
-                return;
-            case 2:
-                org.telegram.ui.nx nxVar3 = this.f28987c;
-                ro0 ro0Var = nxVar3.f33303b0;
-                s4.b0 b0Var = nxVar3.f33304c0;
-                int L0 = b0Var.L0();
-                int N0 = b0Var.N0();
-                int abs = Math.abs(b0Var.N0() - L0) + 1;
-                int h = recyclerView.getAdapter().h();
-                if (abs > 0 && (((ro0Var.U.a() != 0 && !ro0Var.X) || !ro0Var.W) && (N0 == h - 1 || ((pxVar = ro0Var.U) != null && pxVar.a() != 0 && (i12 = ro0Var.Y) >= 0 && L0 <= i12 && N0 >= i12)))) {
-                    ro0Var.P();
-                }
-                nxVar3.R(i10, i11);
-                return;
-            default:
-                org.telegram.ui.nx nxVar4 = this.f28987c;
-                to0 to0Var = nxVar4.f33311j0;
-                if (to0Var.f24797a0 && !to0Var.Y && !TextUtils.isEmpty(to0Var.f24800d0) && (lm0Var = to0Var.d) != null) {
-                    int i13 = 0;
-                    while (true) {
-                        if (i13 < lm0Var.getChildCount()) {
-                            if (lm0Var.getChildAt(i13) instanceof z00) {
-                                if (to0Var.f24797a0 && !to0Var.Y && !TextUtils.isEmpty(to0Var.f24800d0)) {
-                                    to0Var.V(true);
-                                }
-                            } else {
-                                i13++;
-                            }
-                        }
-                    }
-                }
-                nxVar4.R(i10, i11);
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        if (!this.f31052r) {
+            mo0 mo0Var = this.f31047a;
+            if (mo0Var != null) {
+                mo0Var.a();
+            }
+            this.f31052r = true;
         }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        if (this.f31052r) {
+            mo0 mo0Var = this.f31047a;
+            if (mo0Var != null) {
+                mo0Var.b();
+            }
+            this.f31052r = false;
+        }
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int i10;
+        oo0 oo0Var = this.f31053s;
+        Paint paint = oo0Var.f31342x;
+        int width = (getWidth() - this.f31047a.A) / 2;
+        int height = getHeight();
+        mo0 mo0Var = this.f31047a;
+        int i11 = mo0Var.B;
+        int i12 = (height - i11) / 2;
+        eh.d dVar = this.f31049c;
+        if (dVar != null) {
+            Rect rect = AndroidUtilities.rectTmp2;
+            rect.set(width, i12, mo0Var.A + width, i11 + i12);
+            RectF rectF = this.f31051n;
+            rectF.set(rect);
+            RectF rectF2 = this.h;
+            boolean equals = rectF.equals(rectF2);
+            Path path = this.f31050f;
+            if (!equals) {
+                rectF2.set(rectF);
+                bh.y0.h(rectF2, rectF, path);
+            }
+            rect.inset(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f));
+            rect.right = AndroidUtilities.dp(1.0f) + rect.right;
+            dVar.setBounds(rect);
+            canvas.save();
+            canvas.clipPath(path);
+            dVar.draw(canvas);
+            org.telegram.ui.ActionBar.u6 u6Var = oo0Var.f31336c;
+            if (u6Var == null ? org.telegram.ui.ActionBar.y6.I.q() : u6Var.a()) {
+                i10 = 687865855;
+            } else {
+                i10 = -1;
+            }
+            paint.setColor(i10);
+            canvas.drawPath(path, paint);
+            canvas.restore();
+        }
+        this.f31047a.d(canvas, width, i12, this.f31048b.d(1.0f, false), 1.0f, false, false, 0.0f);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int dp;
+        int dp2 = AndroidUtilities.dp(8.67f);
+        mo0 mo0Var = this.f31047a;
+        if (mo0Var != null) {
+            dp = mo0Var.A;
+        } else {
+            dp = AndroidUtilities.dp(44.33f);
+        }
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(dp2 + dp, 1073741824), i11);
     }
 }

@@ -1,85 +1,111 @@
 package org.telegram.ui;
 
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ml0 implements org.telegram.ui.ActionBar.z1, qt, nm0 {
-    public final int f39619a;
-    public final zm0 f39620b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class ml0 extends org.telegram.ui.Components.lm0 {
+    public final Context f41572c;
+    public final PasscodeActivity d;
 
-    public ml0(zm0 zm0Var, int i10) {
-        this.f39619a = i10;
-        this.f39620b = zm0Var;
+    public ml0(PasscodeActivity passcodeActivity, Context context) {
+        this.d = passcodeActivity;
+        this.f41572c = context;
     }
 
     @Override
-    public void L0(lt ltVar) {
-        String str;
-        switch (this.f39619a) {
-            case 2:
-                zm0 zm0Var = this.f39620b;
-                zm0Var.Y[5].setText(ltVar.f39375a);
-                zm0Var.f44164s = ltVar.d;
-                return;
-            default:
-                zm0 zm0Var2 = this.f39620b;
-                zm0Var2.Y[0].setText(ltVar.f39375a);
-                if (zm0Var2.U0.indexOf(ltVar.f39375a) != -1) {
-                    zm0Var2.Z0 = true;
-                    String str2 = (String) zm0Var2.V0.get(ltVar.f39375a);
-                    zm0Var2.Y[1].setText(str2);
-                    String str3 = (String) zm0Var2.X0.get(str2);
-                    EditTextBoldCursor editTextBoldCursor = zm0Var2.Y[2];
-                    if (str3 != null) {
-                        str = str3.replace('X', (char) 8211);
-                    } else {
-                        str = null;
+    public final boolean D(s4.e1 e1Var) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        int b10 = e1Var.b();
+        PasscodeActivity passcodeActivity = this.d;
+        i10 = passcodeActivity.fingerprintRow;
+        if (b10 != i10) {
+            i11 = passcodeActivity.autoLockRow;
+            if (b10 != i11 && b10 != passcodeActivity.N) {
+                i12 = passcodeActivity.changePasscodeRow;
+                if (b10 != i12) {
+                    i13 = passcodeActivity.disablePasscodeRow;
+                    if (b10 != i13 && b10 != passcodeActivity.J && b10 != passcodeActivity.K) {
+                        return false;
                     }
-                    editTextBoldCursor.setHintText(str);
-                    zm0Var2.Z0 = false;
+                    return true;
                 }
-                AndroidUtilities.runOnUIThread(new jl0(zm0Var2, 3), 300L);
-                zm0Var2.Y[2].requestFocus();
-                EditTextBoldCursor editTextBoldCursor2 = zm0Var2.Y[2];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.length());
-                return;
+                return true;
+            }
+            return true;
         }
+        return true;
     }
 
     @Override
-    public void a(String str, String str2) {
-        this.f39620b.w1();
+    public final int h() {
+        return this.d.P;
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f39619a) {
-            case 0:
-                zm0 zm0Var = this.f39620b;
-                zm0Var.getClass();
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    zm0Var.getParentActivity().startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
+    public final int j(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        PasscodeActivity passcodeActivity = this.d;
+        i11 = passcodeActivity.fingerprintRow;
+        if (i10 != i11 && i10 != passcodeActivity.N && i10 != passcodeActivity.K && i10 != passcodeActivity.J) {
+            i12 = passcodeActivity.changePasscodeRow;
+            if (i10 != i12) {
+                i13 = passcodeActivity.autoLockRow;
+                if (i10 != i13) {
+                    i14 = passcodeActivity.disablePasscodeRow;
+                    if (i10 != i14) {
+                        if (i10 != passcodeActivity.H && i10 != passcodeActivity.O && i10 != passcodeActivity.G && i10 != passcodeActivity.L) {
+                            if (i10 != passcodeActivity.M && i10 != passcodeActivity.I) {
+                                if (i10 == 0) {
+                                    return 4;
+                                }
+                                return 0;
+                            }
+                            return 3;
+                        }
+                        return 2;
+                    }
+                    return 1;
                 }
-            case 1:
-                this.f39620b.finishFragment();
-                return;
-            case 2:
-            case 3:
-            default:
-                zm0.a0(this.f39620b);
-                return;
-            case 4:
-                zm0.d0(this.f39620b);
-                return;
+                return 1;
+            }
+            return 1;
         }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 r8, int r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ml0.v(s4.e1, int):void");
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        View a9Var;
+        Context context = this.f41572c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        a9Var = new org.telegram.ui.Cells.i9(context);
+                    } else {
+                        a9Var = new nl0(context);
+                        a9Var.setTag(-33024);
+                    }
+                } else {
+                    a9Var = new org.telegram.ui.Cells.q4(context);
+                }
+            } else {
+                a9Var = new org.telegram.ui.Cells.ga(context);
+            }
+        } else {
+            a9Var = new org.telegram.ui.Cells.a9(context);
+        }
+        return new s4.e1(a9Var);
     }
 }

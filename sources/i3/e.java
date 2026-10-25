@@ -1,20 +1,20 @@
 package i3;
 
-import ai.c1;
-import c3.l0;
+import b2.h;
+import c3.j0;
 import e2.x;
 import f2.q;
-public final class e extends c1 {
-    public final x f12691b;
-    public final x f12692c;
+public final class e extends h {
+    public final x f13831b;
+    public final x f13832c;
     public int d;
     public boolean e;
-    public boolean f12693f;
-    public int f12694g;
+    public boolean f13833f;
+    public int f13834g;
 
-    public e(l0 l0Var) {
-        super(l0Var);
-        this.f12691b = new x(q.f10352a);
-        this.f12692c = new x(4);
+    public e(j0 j0Var) {
+        super(j0Var);
+        this.f13831b = new x(q.f10111a);
+        this.f13832c = new x(4);
     }
 }

@@ -5,36 +5,36 @@ import android.app.Application;
 import android.os.Bundle;
 import android.util.Log;
 public final class c implements Application.ActivityLifecycleCallbacks {
-    public Object f8085a;
-    public Activity f8086b;
-    public final int f8087c;
+    public Object f9513a;
+    public Activity f9514b;
+    public final int f9515c;
     public boolean d = false;
     public boolean e = false;
-    public boolean f8088f = false;
+    public boolean f9516f = false;
 
     public c(Activity activity) {
-        this.f8086b = activity;
-        this.f8087c = activity.hashCode();
+        this.f9514b = activity;
+        this.f9515c = activity.hashCode();
     }
 
     @Override
     public final void onActivityDestroyed(Activity activity) {
-        if (this.f8086b == activity) {
-            this.f8086b = null;
+        if (this.f9514b == activity) {
+            this.f9514b = null;
             this.e = true;
         }
     }
 
     @Override
     public final void onActivityPaused(Activity activity) {
-        if (this.e && !this.f8088f && !this.d) {
-            Object obj = this.f8085a;
+        if (this.e && !this.f9516f && !this.d) {
+            Object obj = this.f9513a;
             try {
-                Object obj2 = d.f8091c.get(activity);
-                if (obj2 == obj && activity.hashCode() == this.f8087c) {
-                    d.f8093g.postAtFrontOfQueue(new j9.u(13, d.f8090b.get(activity), obj2));
-                    this.f8088f = true;
-                    this.f8085a = null;
+                Object obj2 = d.f9519c.get(activity);
+                if (obj2 == obj && activity.hashCode() == this.f9515c) {
+                    d.f9521g.postAtFrontOfQueue(new k9.u(13, d.f9518b.get(activity), obj2));
+                    this.f9516f = true;
+                    this.f9513a = null;
                 }
             } catch (Throwable th2) {
                 Log.e("ActivityRecreator", "Exception while fetching field values", th2);
@@ -44,7 +44,7 @@ public final class c implements Application.ActivityLifecycleCallbacks {
 
     @Override
     public final void onActivityStarted(Activity activity) {
-        if (this.f8086b == activity) {
+        if (this.f9514b == activity) {
             this.d = true;
         }
     }

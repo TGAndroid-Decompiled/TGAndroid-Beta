@@ -1,36 +1,74 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class d10 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f25510a;
-    public final e10 f25511b;
+import android.os.Bundle;
+import android.view.View;
+import android.view.accessibility.AccessibilityNodeInfo;
+public abstract class d10 extends jp0 {
+    public final boolean d;
 
-    public d10(e10 e10Var, int i10) {
-        this.f25510a = i10;
-        this.f25511b = e10Var;
+    public d10(boolean z10) {
+        this.d = z10;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f25510a) {
-            case 0:
-                e10 e10Var = this.f25511b;
-                e10Var.getClass();
-                e10Var.f25920y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e10Var.invalidate();
-                return;
-            case 1:
-                e10 e10Var2 = this.f25511b;
-                e10Var2.getClass();
-                e10Var2.v = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
-                e10Var2.invalidate();
-                return;
-            default:
-                e10 e10Var3 = this.f25511b;
-                e10Var3.getClass();
-                e10Var3.f25915n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                e10Var3.invalidate();
-                return;
+    public final boolean a() {
+        if (k() > j()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean b() {
+        if (k() < i()) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final void c(boolean z10) {
+        float h = h();
+        if (z10) {
+            h *= -1.0f;
+        }
+        l(Math.min(i(), Math.max(j(), k() + h)));
+    }
+
+    @Override
+    public final void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.e(view, accessibilityNodeInfo);
+        if (this.d) {
+            accessibilityNodeInfo.addAction((AccessibilityNodeInfo.AccessibilityAction) s0.c.f47645j.f47646a);
+            accessibilityNodeInfo.setRangeInfo(AccessibilityNodeInfo.RangeInfo.obtain(1, j(), i(), k()));
         }
     }
+
+    @Override
+    public final boolean g(View view, int i10, Bundle bundle) {
+        if (super.g(view, i10, bundle)) {
+            return true;
+        }
+        if (i10 == s0.c.f47645j.a()) {
+            l(bundle.getFloat("android.view.accessibility.action.ARGUMENT_PROGRESS_VALUE"));
+            return true;
+        }
+        return false;
+    }
+
+    public float h() {
+        return 0.05f;
+    }
+
+    public float i() {
+        return 1.0f;
+    }
+
+    public float j() {
+        return 0.0f;
+    }
+
+    public abstract float k();
+
+    public abstract void l(float f7);
 }

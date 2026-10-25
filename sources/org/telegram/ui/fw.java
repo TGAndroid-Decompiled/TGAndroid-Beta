@@ -1,29 +1,27 @@
 package org.telegram.ui;
 
-import android.view.View;
-public final class fw extends org.telegram.ui.Components.ht {
-    public final dy E;
+import android.text.SpannableStringBuilder;
+public final class fw extends org.telegram.ui.Components.hj0 {
+    public final int f39479f0 = 0;
+    public final Object f39480g0;
 
-    public fw(zx zxVar, dy dyVar) {
-        super(zxVar);
-        this.E = dyVar;
+    public fw(af1 af1Var, SpannableStringBuilder spannableStringBuilder, SpannableStringBuilder spannableStringBuilder2) {
+        super(spannableStringBuilder, spannableStringBuilder2);
+        this.f39480g0 = af1Var;
     }
 
     @Override
-    public final void y() {
-        dy dyVar = this.E;
-        if (dyVar.f36739c.L0() == 0) {
-            View m10 = dyVar.f36739c.m(0);
-            if (m10 != null) {
-                m10.invalidate();
-            }
-            if (dyVar.v == 2) {
-                dyVar.v = 1;
-            }
-            kw kwVar = dyVar.f36741n;
-            if (kwVar != null) {
-                kwVar.b();
-            }
+    public final float d() {
+        switch (this.f39479f0) {
+            case 0:
+                return ((ay) this.f39480g0).f37910a.getViewOffset();
+            default:
+                return ((af1) this.f39480g0).N.f46051m3;
         }
+    }
+
+    public fw(String str, String str2, ay ayVar) {
+        super(str, str2);
+        this.f39480g0 = ayVar;
     }
 }

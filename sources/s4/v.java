@@ -1,178 +1,86 @@
 package s4;
 
-import ai.ce;
-import android.graphics.Canvas;
+import android.animation.Animator;
+import android.animation.ValueAnimator;
 import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ly;
-public abstract class v {
-    public static final ce f46472b = new ce(2);
-    public static final ce f46473c = new ce(3);
-    public int f46474a = -1;
+import di.u4;
+public final class v implements Animator.AnimatorListener {
+    public final e1 E;
+    public final z F;
+    public final float f47837a;
+    public final float f47838b;
+    public final float f47839c;
+    public final float d;
+    public final e1 e;
+    public final int f47840f;
+    public final ValueAnimator h;
+    public boolean f47841n;
+    public float f47842r;
+    public float f47843s;
+    public boolean v = false;
+    public boolean f47844w = false;
+    public float f47845x;
+    public final int f47846y;
 
-    public static int c(int i10, int i11) {
-        int i12;
-        int i13 = i10 & 789516;
-        if (i13 == 0) {
-            return i10;
-        }
-        int i14 = i10 & (~i13);
-        if (i11 == 0) {
-            i12 = i13 << 2;
-        } else {
-            int i15 = i13 << 1;
-            i14 |= (-789517) & i15;
-            i12 = (i15 & 789516) << 2;
-        }
-        return i14 | i12;
+    public v(z zVar, e1 e1Var, int i10, float f7, float f10, float f11, float f12, int i11, e1 e1Var2) {
+        this.F = zVar;
+        this.f47846y = i11;
+        this.E = e1Var2;
+        this.f47840f = i10;
+        this.e = e1Var;
+        this.f47837a = f7;
+        this.f47838b = f10;
+        this.f47839c = f11;
+        this.d = f12;
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+        this.h = ofFloat;
+        ofFloat.addUpdateListener(new u4(this, 11));
+        ofFloat.setTarget(e1Var.f47735a);
+        ofFloat.addListener(this);
+        this.f47845x = 0.0f;
     }
 
-    public static int l(int i10, int i11) {
-        int i12 = i11 | i10;
-        return (i10 << 16) | (i11 << 8) | i12;
-    }
-
-    public void a(RecyclerView recyclerView, b1 b1Var) {
-        View view = b1Var.f46342a;
-        Object tag = view.getTag();
-        if (tag instanceof Float) {
-            float floatValue = ((Float) tag).floatValue();
-            WeakHashMap weakHashMap = r0.i0.f45241a;
-            r0.a0.h(view, floatValue);
+    public final void a(Animator animator) {
+        if (!this.f47844w) {
+            this.e.q(true);
         }
-        view.setTag(null);
-        view.setTranslationX(0.0f);
-        view.setTranslationY(0.0f);
+        this.f47844w = true;
     }
 
-    public int b(int i10, int i11) {
-        int i12;
-        int i13 = i10 & 3158064;
-        if (i13 == 0) {
-            return i10;
-        }
-        int i14 = i10 & (~i13);
-        if (i11 == 0) {
-            i12 = i13 >> 2;
-        } else {
-            int i15 = i13 >> 1;
-            i14 |= (-3158065) & i15;
-            i12 = (i15 & 3158064) >> 2;
-        }
-        return i14 | i12;
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        this.f47845x = 1.0f;
     }
 
-    public long d(RecyclerView recyclerView, int i10, float f7, float f10) {
-        l0 itemAnimator = recyclerView.getItemAnimator();
-        if (itemAnimator == null) {
-            if (i10 == 8) {
-                return 200L;
-            }
-            return 250L;
-        } else if (i10 == 8) {
-            return itemAnimator.j();
-        } else {
-            return itemAnimator.d;
-        }
-    }
-
-    public abstract int e(RecyclerView recyclerView, b1 b1Var);
-
-    public float g() {
-        return 0.5f;
-    }
-
-    public final int i(int i10, int i11, long j10) {
-        if (this.f46474a == -1) {
-            this.f46474a = AndroidUtilities.dp(20.0f);
-        }
-        int i12 = this.f46474a;
-        float f7 = 1.0f;
-        int interpolation = (int) (f46473c.getInterpolation(Math.min(1.0f, (Math.abs(i11) * 1.0f) / i10)) * ((int) Math.signum(i11)) * i12);
-        if (j10 <= 500) {
-            f7 = ((float) j10) / 500.0f;
-        }
-        int interpolation2 = (int) (f46472b.getInterpolation(f7) * interpolation);
-        if (interpolation2 == 0) {
-            if (i11 <= 0) {
-                return -1;
-            }
-            return 1;
-        }
-        return interpolation2;
-    }
-
-    public boolean j() {
-        return true;
-    }
-
-    public boolean k() {
-        return !(this instanceof ly);
-    }
-
-    public void m(Canvas canvas, RecyclerView recyclerView, b1 b1Var, float f7, float f10, int i10, boolean z10) {
-        View view = b1Var.f46342a;
-        if (z10 && view.getTag() == null) {
-            WeakHashMap weakHashMap = r0.i0.f45241a;
-            Float valueOf = Float.valueOf(r0.a0.e(view));
-            int childCount = recyclerView.getChildCount();
-            float f11 = 0.0f;
-            for (int i11 = 0; i11 < childCount; i11++) {
-                View childAt = recyclerView.getChildAt(i11);
-                if (childAt != view) {
-                    WeakHashMap weakHashMap2 = r0.i0.f45241a;
-                    float e = r0.a0.e(childAt);
-                    if (e > f11) {
-                        f11 = e;
-                    }
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        a(animator);
+        if (!this.v) {
+            int i10 = this.f47846y;
+            e1 e1Var = this.E;
+            z zVar = this.F;
+            if (i10 <= 0) {
+                zVar.f47866x.a(zVar.H, e1Var);
+            } else {
+                zVar.f47858a.add(e1Var.f47735a);
+                this.f47841n = true;
+                if (i10 > 0) {
+                    zVar.H.post(new k9.u(zVar, this, i10));
                 }
             }
-            r0.a0.h(view, f11 + 1.0f);
-            view.setTag(valueOf);
-        }
-        view.setTranslationX(f7);
-        view.setTranslationY(f10);
-    }
-
-    public abstract boolean n(RecyclerView recyclerView, b1 b1Var, b1 b1Var2);
-
-    public void o(RecyclerView recyclerView, b1 b1Var, b1 b1Var2, int i10, int i11, int i12) {
-        View view = b1Var2.f46342a;
-        n0 layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof b0) {
-            ((b0) layoutManager).b1(b1Var.f46342a, view, i11, i12);
-            return;
-        }
-        if (layoutManager.d()) {
-            if (n0.x(view) <= recyclerView.getPaddingLeft()) {
-                recyclerView.u0(i10);
-            }
-            if (n0.y(view) >= recyclerView.getWidth() - recyclerView.getPaddingRight()) {
-                recyclerView.u0(i10);
-            }
-        }
-        if (layoutManager.e()) {
-            if (n0.z(view) <= recyclerView.getPaddingTop()) {
-                recyclerView.u0(i10);
-            }
-            if (n0.v(view) >= recyclerView.getHeight() - recyclerView.getPaddingBottom()) {
-                recyclerView.u0(i10);
+            View view = zVar.M;
+            View view2 = e1Var.f47735a;
+            if (view == view2) {
+                zVar.q(view2);
             }
         }
     }
 
-    public abstract void q(b1 b1Var);
-
-    public float f(float f7) {
-        return f7;
+    @Override
+    public final void onAnimationRepeat(Animator animator) {
     }
 
-    public float h(float f7) {
-        return f7;
-    }
-
-    public void p(b1 b1Var, int i10) {
+    @Override
+    public final void onAnimationStart(Animator animator) {
     }
 }

@@ -1,174 +1,187 @@
 package ig;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+import java.util.Timer;
+import org.telegram.messenger.ContactsController;
 import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.vp;
-import w7.z5;
-public final class t1 extends FrameLayout implements b6 {
-    public final f9 f13077a;
-    public final ImageReceiver f13078b;
-    public final TextView f13079c;
-    public final TextView d;
-    public final vp e;
-    public final Path f13080f;
-    public final Paint h;
-    public final g6 f13081n;
-    public final int[] f13082r;
-    public boolean f13083s;
-
-    public t1(Context context, g6 g6Var) {
-        super(context);
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        this.f13077a = new f9((g6) null);
-        this.f13078b = new ImageReceiver(this);
-        this.f13080f = new Path();
-        this.h = new Paint(1);
-        this.f13082r = new int[1];
-        this.f13081n = g6Var;
-        setWillNotDraw(false);
-        TextView textView = new TextView(context);
-        this.f13079c = textView;
-        textView.setSingleLine();
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        textView.setEllipsize(truncateAt);
-        r6.W(textView, k6.G6, g6Var);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 16.0f);
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            f7 = 40.0f;
-        } else {
-            f7 = 78.0f;
-        }
-        if (z10) {
-            f10 = 78.0f;
-        } else {
-            f10 = 40.0f;
-        }
-        addView(textView, z5.d(-1, -2.0f, 7, f7, 10.33f, f10, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setLines(2);
-        textView2.setEllipsize(truncateAt);
-        r6.W(textView2, k6.f21589z6, g6Var);
-        textView2.setTextSize(1, 15.0f);
-        boolean z11 = LocaleController.isRTL;
-        if (z11) {
-            f11 = 40.0f;
-        } else {
-            f11 = 78.0f;
-        }
-        if (z11) {
-            f12 = 78.0f;
-        } else {
-            f12 = 40.0f;
-        }
-        addView(textView2, z5.d(-1, -2.0f, 7, f11, 32.0f, f12, 0.0f));
-        vp vpVar = new vp(getContext(), 21, g6Var);
-        this.e = vpVar;
-        vpVar.b(-1, k6.f21184d6, k6.f21312k7);
-        vpVar.setDrawUnchecked(false);
-        vpVar.setDrawBackgroundAsArc(3);
-        addView(vpVar, z5.i(24.0f, 24.0f, 8388659, 33.0f, 25.0f, 0.0f, 0.0f));
-    }
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Cells.m6;
+import org.telegram.ui.Cells.v8;
+import org.telegram.ui.Cells.z3;
+import org.telegram.ui.Components.c10;
+import org.telegram.ui.Components.lm0;
+import org.telegram.ui.Components.vn;
+public abstract class t1 extends lm0 {
+    public int E;
+    public int F;
+    public ArrayList G;
+    public ArrayList H;
+    public String I;
+    public int J;
+    public Context f14251c;
+    public ArrayList d;
+    public ArrayList e;
+    public a2 f14252f;
+    public a0.h h;
+    public Timer f14253n;
+    public boolean f14254r;
+    public boolean f14255s;
+    public boolean v;
+    public boolean f14256w;
+    public long f14257x;
+    public boolean f14258y;
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int dp;
-        float f7;
-        if (LocaleController.isRTL) {
-            dp = getMeasuredWidth() - AndroidUtilities.dp(65.0f);
-        } else {
-            dp = AndroidUtilities.dp(9.0f);
+    public final boolean D(s4.e1 e1Var) {
+        int i10 = e1Var.f47738f;
+        if (i10 != 0 && i10 != 2 && i10 != 3) {
+            return false;
         }
-        float f10 = dp;
-        ImageReceiver imageReceiver = this.f13078b;
-        imageReceiver.setImageCoords(f10, AndroidUtilities.dp(11.33f), AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-        imageReceiver.draw(canvas);
-        super.onDraw(canvas);
-        canvas.drawPath(this.f13080f, this.h);
-        if (this.f13083s) {
-            Paint V0 = k6.V0("paintDivider", this.f13081n);
-            if (V0 == null) {
-                V0 = k6.f21305k0;
-            }
-            Paint paint = V0;
-            float f11 = 78.0f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 78.0f;
-            }
-            float dp2 = AndroidUtilities.dp(f7);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!LocaleController.isRTL) {
-                f11 = 0.0f;
-            }
-            canvas.drawRect(dp2, measuredHeight, width - AndroidUtilities.dp(f11), getMeasuredHeight(), paint);
-        }
+        return true;
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float measuredWidth;
-        int i12;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(78.0f) + (this.f13083s ? 1 : 0), 1073741824));
-        Paint.Style style = Paint.Style.STROKE;
-        Paint paint = this.h;
-        paint.setStyle(style);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.66f));
-        paint.setColor(k6.o1(0.85f, k6.w0(k6.f21589z6, this.f13081n)));
-        Path path = this.f13080f;
-        path.rewind();
-        float measuredHeight = getMeasuredHeight() / 2.0f;
-        if (LocaleController.isRTL) {
-            measuredWidth = AndroidUtilities.dpf2(29.66f);
-        } else {
-            measuredWidth = getMeasuredWidth() - AndroidUtilities.dpf2(24.33f);
+    public final Object E(int i10) {
+        int size = this.d.size();
+        int size2 = this.H.size();
+        a2 a2Var = this.f14252f;
+        int size3 = a2Var.e.size();
+        int size4 = a2Var.f13994j.size();
+        if (i10 >= 0 && i10 < size) {
+            return this.d.get(i10);
         }
-        path.moveTo(measuredWidth, measuredHeight - AndroidUtilities.dpf2(5.66f));
-        if (LocaleController.isRTL) {
-            i12 = -1;
-        } else {
-            i12 = 1;
+        int i11 = i10 - size;
+        if (size2 > 0) {
+            if (i11 == 0) {
+                return null;
+            }
+            if (i11 > 0 && i11 <= size2) {
+                return this.H.get(i11 - 1);
+            }
+            i11 -= size2 + 1;
         }
-        path.lineTo((AndroidUtilities.dpf2(5.33f) * i12) + measuredWidth, measuredHeight);
-        path.lineTo(measuredWidth, AndroidUtilities.dpf2(5.66f) + measuredHeight);
+        if (i11 >= 0 && i11 < size4) {
+            return a2Var.f13994j.get(i11);
+        }
+        int i12 = i11 - size4;
+        if (i12 <= 0 || i12 > size3) {
+            return null;
+        }
+        return a2Var.e.get(i12 - 1);
     }
 
-    @Override
-    public final void updateColors() {
+    public abstract void F();
+
+    public final void G(String str) {
         try {
-            this.h.setColor(k6.o1(0.85f, k6.w0(k6.f21589z6, this.f13081n)));
-            invalidate();
+            Timer timer = this.f14253n;
+            if (timer != null) {
+                timer.cancel();
+            }
         } catch (Exception e) {
             FileLog.e(e);
         }
+        this.d.clear();
+        this.H.clear();
+        this.e.clear();
+        if (this.f14254r) {
+            this.f14252f.g(null, true, false, this.f14255s, this.v, this.f14257x, this.f14256w, 0, 0);
+        }
+        l();
+        if (!TextUtils.isEmpty(str)) {
+            Timer timer2 = new Timer();
+            this.f14253n = timer2;
+            timer2.schedule(new r1(this, str, 0), 200L, 300L);
+        }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int h() {
+        a2 a2Var = this.f14252f;
+        this.J = -1;
+        int size = this.d.size();
+        if (!this.H.isEmpty()) {
+            this.J = size;
+            size += this.H.size() + 1;
+        }
+        int size2 = a2Var.e.size();
+        if (size2 != 0) {
+            size += size2 + 1;
+        }
+        int size3 = a2Var.f13994j.size();
+        if (size3 != 0) {
+            return size + size3;
+        }
+        return size;
+    }
+
+    @Override
+    public final int j(int i10) {
+        Object E = E(i10);
+        if (E == null) {
+            return 1;
+        }
+        if (E instanceof String) {
+            if ("section".equals((String) E)) {
+                return 1;
+            }
+            return 2;
+        } else if (E instanceof ContactsController.Contact) {
+            return 3;
+        } else {
+            return 0;
+        }
+    }
+
+    @Override
+    public final void v(s4.e1 r14, int r15) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.t1.v(s4.e1, int):void");
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        z3 z3Var;
+        Context context = this.f14251c;
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 3) {
+                    if (i10 != 4) {
+                        if (i10 != 5) {
+                            z3Var = new v8(16, context, false);
+                        } else {
+                            c10 c10Var = new c10(context, null);
+                            c10Var.setIsSingleCell(true);
+                            c10Var.setViewType(29);
+                            f7.i(y6.f23354d6, c10Var, null);
+                            z3Var = c10Var;
+                        }
+                    } else {
+                        View vnVar = new vn(context, 7);
+                        vnVar.setId(9);
+                        vnVar.setTag(-33024);
+                        z3Var = vnVar;
+                    }
+                } else {
+                    m6 m6Var = new m6(context, null);
+                    m6Var.M0 = true;
+                    m6Var.E0 = true;
+                    z3Var = m6Var;
+                }
+            } else {
+                z3 z3Var2 = new z3(context, 26, null);
+                z3Var2.setNoBackground(true);
+                z3Var = z3Var2;
+            }
+        } else {
+            m6 m6Var2 = new m6(context, null);
+            m6Var2.M0 = true;
+            m6Var2.E0 = true;
+            z3Var = m6Var2;
+        }
+        return new s4.e1(z3Var);
     }
 }

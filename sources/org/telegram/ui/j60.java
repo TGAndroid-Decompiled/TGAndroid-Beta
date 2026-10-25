@@ -1,23 +1,36 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.messenger.ContactsController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class j60 implements Comparator {
-    public static String a(TLObject tLObject) {
-        if (tLObject instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) tLObject;
-            return ContactsController.formatName(user.first_name, user.last_name);
-        } else if (tLObject instanceof TLRPC.Chat) {
-            return ((TLRPC.Chat) tLObject).title;
-        } else {
-            return "";
-        }
+import android.content.Context;
+public final class j60 extends org.telegram.ui.Components.q20 {
+    public final r60 f40467r;
+
+    public j60(r60 r60Var, Context context, int i10) {
+        super(context, i10);
+        this.f40467r = r60Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        return a((TLObject) obj).compareTo(a((TLObject) obj2));
+    public final void a(org.telegram.ui.Components.x30 x30Var) {
+        super.a(x30Var);
+        r60.a0(this.f40467r);
+    }
+
+    @Override
+    public final void b() {
+        super.b();
+        r60.a0(this.f40467r);
+    }
+
+    @Override
+    public final void c(org.telegram.ui.Components.x30 x30Var) {
+        r60 r60Var = this.f40467r;
+        if (x30Var == r60Var.X) {
+            r60Var.X = null;
+        }
+        if (x30Var == r60Var.Y) {
+            r60Var.Y = null;
+        }
+        super.c(x30Var);
+        r60.a0(r60Var);
     }
 }

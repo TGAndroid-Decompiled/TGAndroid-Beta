@@ -1,31 +1,25 @@
 package u2;
-public final class r0 implements Runnable {
-    public final int f47877a;
-    public final y0 f47878b;
+public final class r0 {
+    public static final r0 f49409a;
+    public static final r0 f49410b;
+    public static final r0 f49411c;
+    public static final r0[] d;
 
-    public r0(y0 y0Var, int i10) {
-        this.f47877a = i10;
-        this.f47878b = y0Var;
+    static {
+        ?? r02 = new Enum("PASS_THROUGH", 0);
+        f49409a = r02;
+        ?? r12 = new Enum("DISCARD_AFTER_NEXT_SAMPLE_METADATA", 1);
+        f49410b = r12;
+        ?? r32 = new Enum("DISCARDING", 2);
+        f49411c = r32;
+        d = new r0[]{r02, r12, r32};
     }
 
-    @Override
-    public final void run() {
-        switch (this.f47877a) {
-            case 0:
-                this.f47878b.f47928b0 = true;
-                return;
-            case 1:
-                this.f47878b.w();
-                return;
-            default:
-                y0 y0Var = this.f47878b;
-                if (!y0Var.f47936h0) {
-                    e0 e0Var = y0Var.I;
-                    e0Var.getClass();
-                    e0Var.b(y0Var);
-                    return;
-                }
-                return;
-        }
+    public static r0 valueOf(String str) {
+        return (r0) Enum.valueOf(r0.class, str);
+    }
+
+    public static r0[] values() {
+        return (r0[]) d.clone();
     }
 }

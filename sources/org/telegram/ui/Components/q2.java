@@ -1,15 +1,43 @@
 package org.telegram.ui.Components;
-public final class q2 implements org.telegram.ui.ActionBar.z1 {
-    public final int f29754a;
-    public final org.telegram.ui.ActionBar.o2 f29755b;
 
-    public q2(int i10, org.telegram.ui.ActionBar.o2 o2Var) {
-        this.f29754a = i10;
-        this.f29755b = o2Var;
+import android.content.DialogInterface;
+public final class q2 implements DialogInterface.OnDismissListener {
+    public final int f31803a = 0;
+    public final boolean[] f31804b;
+    public final Runnable f31805c;
+
+    public q2(Runnable runnable, boolean[] zArr) {
+        this.f31805c = runnable;
+        this.f31804b = zArr;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 r11, int r12) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.q2.g(org.telegram.ui.ActionBar.c2, int):void");
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f31803a) {
+            case 0:
+                Runnable runnable = this.f31805c;
+                if (runnable != null && this.f31804b[0]) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            default:
+                boolean[] zArr = this.f31804b;
+                if (!zArr[0]) {
+                    zArr[0] = true;
+                    Runnable runnable2 = this.f31805c;
+                    if (runnable2 != null) {
+                        runnable2.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
+        }
+    }
+
+    public q2(boolean[] zArr, Runnable runnable) {
+        this.f31804b = zArr;
+        this.f31805c = runnable;
     }
 }

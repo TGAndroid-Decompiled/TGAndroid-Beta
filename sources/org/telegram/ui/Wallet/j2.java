@@ -7,43 +7,43 @@ import android.graphics.Paint;
 import android.view.ViewGroup;
 import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.km0;
+import org.telegram.ui.Components.bb;
+import org.telegram.ui.Components.j71;
 import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.za;
-public class j2 extends za implements org.telegram.ui.ActionBar.b6 {
-    public a71 X;
+import org.telegram.ui.Components.mm0;
+public class j2 extends bb implements org.telegram.ui.ActionBar.p6 {
+    public j71 X;
     public final ViewGroup Y;
     public final Paint Z;
-    public float f34642a0;
+    public float f36728a0;
 
-    public j2(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, null, true, false, g6Var);
+    public j2(Context context, ViewGroup viewGroup, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, null, true, false, u6Var);
         this.Z = new Paint();
         this.v = 0.1f;
         this.Y = viewGroup;
-        lm0 lm0Var = this.d;
+        mm0 mm0Var = this.d;
         int i10 = this.backgroundPaddingLeft;
-        lm0Var.setPadding(i10, 0, i10, 0);
+        mm0Var.setPadding(i10, 0, i10, 0);
         updateColors();
-        this.X.N(false);
+        this.X.O(false);
     }
 
     @Override
-    public void E(float f7) {
-        this.f34642a0 = f7;
+    public void F(float f7) {
+        this.f36728a0 = f7;
         if (this.topBulletinContainer != null) {
             this.topBulletinContainer.setTranslationY(Math.max((this.containerView.getY() + f7) + this.backgroundPaddingTop, this.topBulletinContainer.getHeight() + (AndroidUtilities.dp(56.0f) + AndroidUtilities.statusBarHeight)) - this.topBulletinContainer.getBottom());
         }
     }
 
     public int P() {
-        return getThemedColor(org.telegram.ui.ActionBar.k6.f21126a7);
+        return getThemedColor(org.telegram.ui.ActionBar.y6.f23297a7);
     }
 
     @Override
     public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21126a7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23297a7));
     }
 
     @Override
@@ -52,7 +52,7 @@ public class j2 extends za implements org.telegram.ui.ActionBar.b6 {
         float f7;
         float width;
         float height = getContainer().getHeight();
-        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f34642a0 + this.backgroundPaddingTop);
+        float max = Math.max(height - AndroidUtilities.navigationBarHeight, this.containerView.getY() + this.f36728a0 + this.backgroundPaddingTop);
         if (max >= height) {
             return;
         }
@@ -114,14 +114,14 @@ public class j2 extends za implements org.telegram.ui.ActionBar.b6 {
     }
 
     @Override
-    public final km0 w(lm0 lm0Var) {
-        a71 a71Var = new a71(lm0Var, getContext(), this.currentAccount, 0, true, new d(this, 5), this.resourcesProvider);
-        this.X = a71Var;
-        return a71Var;
+    public final lm0 v(mm0 mm0Var) {
+        j71 j71Var = new j71(mm0Var, getContext(), this.currentAccount, 0, true, new d(this, 5), this.resourcesProvider);
+        this.X = j71Var;
+        return j71Var;
     }
 
     @Override
-    public final CharSequence z() {
+    public final CharSequence y() {
         return null;
     }
 }

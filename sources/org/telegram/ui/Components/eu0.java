@@ -1,32 +1,21 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class eu0 extends tv0 {
-    public final wv0 G;
+public final class eu0 extends uv0 {
+    public final aw0 h;
 
-    public eu0(wv0 wv0Var, Context context) {
-        super(wv0Var, context, 0, false);
-        this.G = wv0Var;
+    public eu0(aw0 aw0Var, Context context) {
+        super(aw0Var, context);
+        this.h = aw0Var;
     }
 
     @Override
     public final void l() {
-        boolean z10;
         super.l();
-        wv0 wv0Var = this.G;
-        pu0 X = wv0Var.X(8);
-        if (X != null && X.f29677r.getVisibility() == 0) {
-            wv0Var.f32368d0.l();
-        }
-        if (X != null) {
-            gt0 gt0Var = X.f29679w;
-            ci.z6 z6Var = this.f30902s;
-            if (z6Var != null && (z6Var.k() || (wv0Var.k0() && this.f30902s.g() > 0))) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            gt0Var.e(z10, true);
+        aw0 aw0Var = this.h;
+        tu0 d02 = aw0Var.d0(0);
+        if (d02 != null && d02.f33157n.getVisibility() == 0) {
+            aw0Var.K.l();
         }
     }
 }

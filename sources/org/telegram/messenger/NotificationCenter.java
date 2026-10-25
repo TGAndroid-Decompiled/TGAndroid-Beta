@@ -21,6 +21,7 @@ public class NotificationCenter {
     public static final int activeGroupCallsUpdated;
     public static final int activityPermissionsGranted;
     public static final int adminedChannelsLoaded;
+    public static final int agentSettingsUpdated;
     public static final int albumsDidLoad;
     public static boolean alreadyLogged = false;
     public static final int animatedEmojiDocumentLoaded;
@@ -57,6 +58,7 @@ public class NotificationCenter {
     public static final int cameraInitied;
     public static final int changeRepliesCounter;
     public static final int channelConnectedBotsUpdate;
+    public static final int channelNewsUpdated;
     public static final int channelRecommendationsLoaded;
     public static final int channelRightsUpdated;
     public static final int channelStarsUpdated;
@@ -396,10 +398,10 @@ public class NotificationCenter {
 
     public static class DelayedPost {
         private Object[] args;
-        private int f17865id;
+        private int f19552id;
 
         private DelayedPost(int i10, Object[] objArr) {
-            this.f17865id = i10;
+            this.f19552id = i10;
             this.args = objArr;
         }
     }
@@ -477,9 +479,9 @@ public class NotificationCenter {
                 } else {
                     kVar.getClass();
                 }
-                StringBuilder n10 = i2.o1.n(i11, "Index ", " must be in 0..");
-                n10.append(kVar.f24b - 1);
-                throw new IndexOutOfBoundsException(n10.toString());
+                StringBuilder k10 = ic.a.k(i11, "Index ", " must be in 0..");
+                k10.append(kVar.f24b - 1);
+                throw new IndexOutOfBoundsException(k10.toString());
             }
             this.ids.f24b = 0;
             this.notificationCenter = null;
@@ -563,328 +565,330 @@ public class NotificationCenter {
         contactsDidLoad = i10 + 23;
         contactsImported = i10 + 24;
         hasNewContactsToImport = i10 + 25;
-        chatDidCreated = i10 + 26;
-        chatDidFailCreate = i10 + 27;
-        chatInfoDidLoad = i10 + 28;
-        chatInfoCantLoad = i10 + 29;
-        mediaDidLoad = i10 + 30;
-        mediaCountDidLoad = i10 + 31;
-        mediaCountsDidLoad = i10 + 32;
-        encryptedChatUpdated = i10 + 33;
-        messagesReadEncrypted = i10 + 34;
-        encryptedChatCreated = i10 + 35;
-        dialogPhotosLoaded = i10 + 36;
-        reloadDialogPhotos = i10 + 37;
-        folderBecomeEmpty = i10 + 38;
-        removeAllMessagesFromDialog = i10 + 39;
-        notificationsSettingsUpdated = i10 + 40;
-        blockedUsersDidLoad = i10 + 41;
-        openedChatChanged = i10 + 42;
-        didCreatedNewDeleteTask = i10 + 43;
-        mainUserInfoChanged = i10 + 44;
-        privacyRulesUpdated = i10 + 45;
-        updateMessageMedia = i10 + 46;
-        replaceMessagesObjects = i10 + 47;
-        didSetPasscode = i10 + 48;
-        passcodeDismissed = i10 + 49;
-        twoStepPasswordChanged = i10 + 50;
-        didSetOrRemoveTwoStepPassword = i10 + 51;
-        didRemoveTwoStepPassword = i10 + 52;
-        replyMessagesDidLoad = i10 + 53;
-        didLoadPinnedMessages = i10 + 54;
-        newSessionReceived = i10 + 55;
-        didReceivedWebpages = i10 + 56;
-        didReceivedWebpagesInUpdates = i10 + 57;
-        stickersDidLoad = i10 + 58;
-        diceStickersDidLoad = i10 + 59;
-        featuredStickersDidLoad = i10 + 60;
-        featuredEmojiDidLoad = i10 + 61;
-        groupStickersDidLoad = i10 + 62;
-        messagesReadContent = i10 + 63;
-        botInfoDidLoad = i10 + 64;
-        userInfoDidLoad = i10 + 65;
-        pinnedInfoDidLoad = i10 + 66;
-        botKeyboardDidLoad = i10 + 67;
-        chatSearchResultsAvailable = i10 + 68;
-        hashtagSearchUpdated = i10 + 69;
-        chatSearchResultsLoading = i10 + 70;
-        musicDidLoad = i10 + 71;
-        moreMusicDidLoad = i10 + 72;
-        needShowAlert = i10 + 73;
-        needShowPlayServicesAlert = i10 + 74;
-        didUpdateMessagesViews = i10 + 75;
-        needReloadRecentDialogsSearch = i10 + 76;
-        peerSettingsDidLoad = i10 + 77;
-        wasUnableToFindCurrentLocation = i10 + 78;
-        reloadHints = i10 + 79;
-        reloadInlineHints = i10 + 80;
-        reloadGuestBotHints = i10 + 81;
-        reloadWebappsHints = i10 + 82;
-        newDraftReceived = i10 + 83;
-        recentDocumentsDidLoad = i10 + 84;
-        needAddArchivedStickers = i10 + 85;
-        archivedStickersCountDidLoad = i10 + 86;
-        paymentFinished = i10 + 87;
-        channelRightsUpdated = i10 + 88;
-        openArticle = i10 + 89;
-        articleClosed = i10 + 90;
-        updateMentionsCount = i10 + 91;
-        didUpdatePollResults = i10 + 92;
-        chatOnlineCountDidLoad = i10 + 93;
-        videoLoadingStateChanged = i10 + 94;
-        newPeopleNearbyAvailable = i10 + 95;
-        stopAllHeavyOperations = i10 + 96;
-        startAllHeavyOperations = i10 + 97;
-        stopSpoilers = i10 + 98;
-        startSpoilers = i10 + 99;
-        sendingMessagesChanged = i10 + 100;
-        didUpdateReactions = i10 + 101;
-        didUpdateExtendedMedia = i10 + 102;
-        didVerifyMessagesStickers = i10 + 103;
-        scheduledMessagesUpdated = i10 + 104;
-        newSuggestionsAvailable = i10 + 105;
-        didLoadChatInviter = i10 + 106;
-        didLoadChatAdmins = i10 + 107;
-        historyImportProgressChanged = i10 + 108;
-        stickersImportProgressChanged = i10 + 109;
-        stickersImportComplete = i10 + 110;
-        dialogDeleted = i10 + 111;
-        webViewResultSent = i10 + 112;
-        voiceTranscriptionUpdate = i10 + 113;
-        animatedEmojiDocumentLoaded = i10 + 114;
-        recentEmojiStatusesUpdate = i10 + 115;
-        updateSearchSettings = i10 + 116;
-        updateTranscriptionLock = i10 + 117;
-        businessMessagesUpdated = i10 + 118;
-        quickRepliesUpdated = i10 + 119;
-        quickRepliesDeleted = i10 + 120;
-        bookmarkAdded = i10 + 121;
-        starReactionAnonymousUpdate = i10 + 122;
-        businessLinksUpdated = i10 + 123;
-        businessLinkCreated = i10 + 124;
-        needDeleteBusinessLink = i10 + 125;
-        messageTranslated = i10 + 126;
-        messageTranslating = i10 + 127;
-        dialogIsTranslatable = i10 + 128;
-        dialogTranslate = i10 + 129;
-        didGenerateFingerprintKeyPair = i10 + 130;
-        walletPendingTransactionsChanged = i10 + 131;
-        walletSyncProgressChanged = i10 + 132;
-        httpFileDidLoad = i10 + 133;
-        httpFileDidFailedLoad = i10 + 134;
-        didUpdateConnectionState = i10 + 135;
-        fileUploaded = i10 + 136;
-        fileUploadFailed = i10 + 137;
-        fileUploadProgressChanged = i10 + 138;
-        fileLoadProgressChanged = i10 + 139;
-        fileLoaded = i10 + 140;
-        fileLoadFailed = i10 + 141;
-        filePreparingStarted = i10 + 142;
-        fileNewChunkAvailable = i10 + 143;
-        filePreparingFailed = i10 + 144;
-        dialogsUnreadCounterChanged = i10 + 145;
-        messagePlayingProgressDidChanged = i10 + 146;
-        messagePlayingDidReset = i10 + 147;
-        messagePlayingPlayStateChanged = i10 + 148;
-        messagePlayingDidStart = i10 + 149;
-        messagePlayingDidSeek = i10 + 150;
-        messagePlayingGoingToStop = i10 + 151;
-        recordProgressChanged = i10 + 152;
-        recordStarted = i10 + 153;
-        recordStartError = i10 + 154;
-        recordStopped = i10 + 155;
-        recordPaused = i10 + 156;
-        recordResumed = i10 + 157;
-        screenshotTook = i10 + 158;
-        albumsDidLoad = i10 + 159;
-        audioDidSent = i10 + 160;
-        audioRecordTooShort = i10 + 161;
-        audioRouteChanged = i10 + 162;
-        didStartedCall = i10 + 163;
-        groupCallUpdated = i10 + 164;
-        storyGroupCallUpdated = i10 + 165;
-        groupCallSpeakingUsersUpdated = i10 + 166;
-        groupCallScreencastStateChanged = i10 + 167;
-        activeGroupCallsUpdated = i10 + 168;
-        applyGroupCallVisibleParticipants = i10 + 169;
-        groupCallTypingsUpdated = i10 + 170;
-        didEndCall = i10 + 171;
-        closeInCallActivity = i10 + 172;
-        groupCallVisibilityChanged = i10 + 173;
-        liveStoryUpdated = i10 + 174;
-        liveStoryMessageUpdate = i10 + 175;
-        appDidLogout = i10 + 176;
-        configLoaded = i10 + 177;
-        needDeleteDialog = i10 + 178;
-        newEmojiSuggestionsAvailable = i10 + 179;
-        themeUploadedToServer = i10 + 180;
-        themeUploadError = i10 + 181;
-        dialogFiltersUpdated = i10 + 182;
-        filterSettingsUpdated = i10 + 183;
-        suggestedFiltersLoaded = i10 + 184;
-        updateBotMenuButton = i10 + 185;
-        giftsToUserSent = i10 + 186;
-        didStartedMultiGiftsSelector = i10 + 187;
-        boostedChannelByUser = i10 + 188;
-        boostByChannelCreated = i10 + 189;
-        didUpdatePremiumGiftStickers = i10 + 190;
-        didUpdateTonGiftStickers = i10 + 191;
-        didUpdatePremiumGiftFieldIcon = i10 + 192;
-        storiesEnabledUpdate = i10 + 193;
-        storiesBlocklistUpdate = i10 + 194;
-        storiesLimitUpdate = i10 + 195;
-        storiesSendAsUpdate = i10 + 196;
-        unconfirmedAuthUpdate = i10 + 197;
-        dialogPhotosUpdate = i10 + 198;
-        channelRecommendationsLoaded = i10 + 199;
-        savedMessagesDialogsUpdate = i10 + 200;
-        savedReactionTagsUpdate = i10 + 201;
-        userIsPremiumBlockedUpadted = i10 + 202;
-        storyAlbumsCollectionsUpdate = i10 + 203;
-        savedMessagesForwarded = i10 + 204;
-        emojiKeywordsLoaded = i10 + 205;
-        smsJobStatusUpdate = i10 + 206;
-        storyQualityUpdate = i10 + 207;
-        openBoostForUsersDialog = i10 + 208;
-        groupRestrictionsUnlockedByBoosts = i10 + 209;
-        chatWasBoostedByUser = i10 + 210;
-        groupPackUpdated = i10 + 211;
-        timezonesUpdated = i10 + 212;
-        customStickerCreated = i10 + 213;
-        premiumFloodWaitReceived = i10 + 214;
-        availableEffectsUpdate = i10 + 215;
-        starOptionsLoaded = i10 + 216;
-        starGiftOptionsLoaded = i10 + 217;
-        starGiveawayOptionsLoaded = i10 + 218;
-        starBalanceUpdated = i10 + 219;
-        starTransactionsLoaded = i10 + 220;
-        starSubscriptionsLoaded = i10 + 221;
-        factCheckLoaded = i10 + 222;
-        botStarsUpdated = i10 + 223;
-        botStarsTransactionsLoaded = i10 + 224;
-        channelStarsUpdated = i10 + 225;
-        updateAllMessages = i10 + 226;
-        starGiftsLoaded = i10 + 227;
-        starUserGiftsLoaded = i10 + 228;
-        starUserGiftCollectionsLoaded = i10 + 229;
-        starGiftSoldOut = i10 + 230;
-        updateStories = i10 + 231;
-        botDownloadsUpdate = i10 + 232;
-        channelSuggestedBotsUpdate = i10 + 233;
-        channelConnectedBotsUpdate = i10 + 234;
-        adminedChannelsLoaded = i10 + 235;
-        messagesFeeUpdated = i10 + 236;
-        commonChatsLoaded = i10 + 237;
-        appConfigUpdated = i10 + 238;
-        activeAuctionsUpdated = i10 + 239;
-        conferenceEmojiUpdated = i10 + 240;
-        contentSettingsLoaded = i10 + 241;
-        musicListLoaded = i10 + 242;
-        musicIdsLoaded = i10 + 243;
-        profileMusicUpdated = i10 + 244;
-        updatedChatRanks = i10 + 245;
-        joinedGroup = i10 + 246;
-        loadedAiComposeTones = i10 + 247;
-        updatedChatbot = i10 + 248;
-        walletUpdate = i10 + 249;
-        walletTransactionsUpdate = i10 + 250;
-        activeAccountChanged = i10 + 251;
-        pushMessagesUpdated = i10 + 252;
-        wallpapersDidLoad = i10 + 253;
-        wallpapersNeedReload = i10 + 254;
-        didReceiveSmsCode = i10 + 255;
-        didReceiveCall = i10 + 256;
-        emojiLoaded = i10 + 257;
-        invalidateMotionBackground = i10 + 258;
-        closeOtherAppActivities = i10 + 259;
-        cameraInitied = i10 + 260;
-        didReplacedPhotoInMemCache = i10 + 261;
-        didSetNewTheme = i10 + 262;
-        themeListUpdated = i10 + 263;
-        didApplyNewTheme = i10 + 264;
-        themeAccentListUpdated = i10 + 265;
-        needCheckSystemBarColors = i10 + 266;
-        needShareTheme = i10 + 267;
-        needSetDayNightTheme = i10 + 268;
-        goingToPreviewTheme = i10 + 269;
-        locationPermissionGranted = i10 + 270;
-        locationPermissionDenied = i10 + 271;
-        reloadInterface = i10 + 272;
-        suggestedLangpack = i10 + 273;
-        didSetNewWallpapper = i10 + 274;
-        proxySettingsChanged = i10 + 275;
-        proxyCheckDone = i10 + 276;
-        proxyChangedByRotation = i10 + 277;
-        liveLocationsChanged = i10 + 278;
-        newLocationAvailable = i10 + 279;
-        liveLocationsCacheChanged = i10 + 280;
-        notificationsCountUpdated = i10 + 281;
-        playerDidStartPlaying = i10 + 282;
-        closeSearchByActiveAction = i10 + 283;
-        messagePlayingSpeedChanged = i10 + 284;
-        screenStateChanged = i10 + 285;
-        didClearDatabase = i10 + 286;
-        voipServiceCreated = i10 + 287;
-        webRtcMicAmplitudeEvent = i10 + 288;
-        webRtcSpeakerAmplitudeEvent = i10 + 289;
-        showBulletin = i10 + 290;
-        appUpdateAvailable = i10 + 291;
-        appUpdateLoading = i10 + 292;
-        onDatabaseMigration = i10 + 293;
-        onEmojiInteractionsReceived = i10 + 294;
-        emojiPreviewThemesChanged = i10 + 295;
-        reactionsDidLoad = i10 + 296;
-        attachMenuBotsDidLoad = i10 + 297;
-        chatAvailableReactionsUpdated = i10 + 298;
-        dialogsUnreadReactionsCounterChanged = i10 + 299;
-        dialogsUnreadPollVotesCounterChanged = i10 + 300;
-        onDatabaseOpened = i10 + 301;
-        onDownloadingFilesChanged = i10 + 302;
-        onActivityResultReceived = i10 + 303;
-        onRequestPermissionResultReceived = i10 + 304;
-        onUserRingtonesUpdated = i10 + 305;
-        currentUserPremiumStatusChanged = i10 + 306;
-        premiumPromoUpdated = i10 + 307;
-        premiumStatusChangedGlobal = i10 + 308;
-        currentUserShowLimitReachedDialog = i10 + 309;
-        billingProductDetailsUpdated = i10 + 310;
-        billingConfirmPurchaseError = i10 + 311;
-        premiumStickersPreviewLoaded = i10 + 312;
-        userEmojiStatusUpdated = i10 + 313;
-        requestPermissions = i10 + 314;
-        permissionsGranted = i10 + 315;
-        activityPermissionsGranted = i10 + 316;
-        topicsDidLoaded = i10 + 317;
-        chatSwitchedForum = i10 + 318;
-        didUpdateGlobalAutoDeleteTimer = i10 + 319;
-        onDatabaseReset = i10 + 320;
-        wallpaperSettedToUser = i10 + 321;
-        storiesUpdated = i10 + 322;
-        storyDeleted = i10 + 323;
-        storiesListUpdated = i10 + 324;
-        storiesDraftsUpdated = i10 + 325;
-        chatlistFolderUpdate = i10 + 326;
-        uploadStoryProgress = i10 + 327;
-        uploadStoryEnd = i10 + 328;
-        customTypefacesLoaded = i10 + 329;
-        stealthModeChanged = i10 + 330;
-        onReceivedChannelDifference = i10 + 331;
-        storiesReadUpdated = i10 + 332;
-        nearEarEvent = i10 + 333;
-        translationModelDownloading = i10 + 334;
-        translationModelDownloaded = i10 + 335;
-        botForumTopicDidCreate = i10 + 336;
-        botForumDraftUpdate = i10 + 337;
-        botForumDraftDelete = i10 + 338;
-        tlSchemeParseException = i10 + 339;
-        memoryLeakFoundException = i10 + 340;
-        callTabsVisibleToggled = i10 + 341;
-        contactsPermissionBadgeCheck = i10 + 342;
-        guardBotDecisionResult = i10 + 343;
-        webBrowserSettingsUpdate = i10 + 344;
-        communityPendingRequestsUpdate = i10 + 345;
-        totalEvents = i10 + 347;
-        communitySwitchedCollapsed = i10 + 346;
+        channelNewsUpdated = i10 + 26;
+        chatDidCreated = i10 + 27;
+        chatDidFailCreate = i10 + 28;
+        chatInfoDidLoad = i10 + 29;
+        chatInfoCantLoad = i10 + 30;
+        mediaDidLoad = i10 + 31;
+        mediaCountDidLoad = i10 + 32;
+        mediaCountsDidLoad = i10 + 33;
+        encryptedChatUpdated = i10 + 34;
+        messagesReadEncrypted = i10 + 35;
+        encryptedChatCreated = i10 + 36;
+        dialogPhotosLoaded = i10 + 37;
+        reloadDialogPhotos = i10 + 38;
+        folderBecomeEmpty = i10 + 39;
+        removeAllMessagesFromDialog = i10 + 40;
+        notificationsSettingsUpdated = i10 + 41;
+        blockedUsersDidLoad = i10 + 42;
+        openedChatChanged = i10 + 43;
+        didCreatedNewDeleteTask = i10 + 44;
+        mainUserInfoChanged = i10 + 45;
+        privacyRulesUpdated = i10 + 46;
+        updateMessageMedia = i10 + 47;
+        replaceMessagesObjects = i10 + 48;
+        didSetPasscode = i10 + 49;
+        passcodeDismissed = i10 + 50;
+        twoStepPasswordChanged = i10 + 51;
+        didSetOrRemoveTwoStepPassword = i10 + 52;
+        didRemoveTwoStepPassword = i10 + 53;
+        replyMessagesDidLoad = i10 + 54;
+        didLoadPinnedMessages = i10 + 55;
+        newSessionReceived = i10 + 56;
+        didReceivedWebpages = i10 + 57;
+        didReceivedWebpagesInUpdates = i10 + 58;
+        stickersDidLoad = i10 + 59;
+        diceStickersDidLoad = i10 + 60;
+        featuredStickersDidLoad = i10 + 61;
+        featuredEmojiDidLoad = i10 + 62;
+        groupStickersDidLoad = i10 + 63;
+        messagesReadContent = i10 + 64;
+        botInfoDidLoad = i10 + 65;
+        userInfoDidLoad = i10 + 66;
+        pinnedInfoDidLoad = i10 + 67;
+        botKeyboardDidLoad = i10 + 68;
+        chatSearchResultsAvailable = i10 + 69;
+        hashtagSearchUpdated = i10 + 70;
+        chatSearchResultsLoading = i10 + 71;
+        musicDidLoad = i10 + 72;
+        moreMusicDidLoad = i10 + 73;
+        needShowAlert = i10 + 74;
+        needShowPlayServicesAlert = i10 + 75;
+        didUpdateMessagesViews = i10 + 76;
+        needReloadRecentDialogsSearch = i10 + 77;
+        peerSettingsDidLoad = i10 + 78;
+        wasUnableToFindCurrentLocation = i10 + 79;
+        reloadHints = i10 + 80;
+        reloadInlineHints = i10 + 81;
+        reloadGuestBotHints = i10 + 82;
+        reloadWebappsHints = i10 + 83;
+        newDraftReceived = i10 + 84;
+        recentDocumentsDidLoad = i10 + 85;
+        needAddArchivedStickers = i10 + 86;
+        archivedStickersCountDidLoad = i10 + 87;
+        paymentFinished = i10 + 88;
+        channelRightsUpdated = i10 + 89;
+        openArticle = i10 + 90;
+        articleClosed = i10 + 91;
+        updateMentionsCount = i10 + 92;
+        didUpdatePollResults = i10 + 93;
+        chatOnlineCountDidLoad = i10 + 94;
+        videoLoadingStateChanged = i10 + 95;
+        newPeopleNearbyAvailable = i10 + 96;
+        stopAllHeavyOperations = i10 + 97;
+        startAllHeavyOperations = i10 + 98;
+        stopSpoilers = i10 + 99;
+        startSpoilers = i10 + 100;
+        sendingMessagesChanged = i10 + 101;
+        didUpdateReactions = i10 + 102;
+        didUpdateExtendedMedia = i10 + 103;
+        didVerifyMessagesStickers = i10 + 104;
+        scheduledMessagesUpdated = i10 + 105;
+        newSuggestionsAvailable = i10 + 106;
+        didLoadChatInviter = i10 + 107;
+        didLoadChatAdmins = i10 + 108;
+        historyImportProgressChanged = i10 + 109;
+        stickersImportProgressChanged = i10 + 110;
+        stickersImportComplete = i10 + 111;
+        dialogDeleted = i10 + 112;
+        webViewResultSent = i10 + 113;
+        voiceTranscriptionUpdate = i10 + 114;
+        animatedEmojiDocumentLoaded = i10 + 115;
+        recentEmojiStatusesUpdate = i10 + 116;
+        updateSearchSettings = i10 + 117;
+        updateTranscriptionLock = i10 + 118;
+        businessMessagesUpdated = i10 + 119;
+        quickRepliesUpdated = i10 + 120;
+        quickRepliesDeleted = i10 + 121;
+        bookmarkAdded = i10 + 122;
+        starReactionAnonymousUpdate = i10 + 123;
+        businessLinksUpdated = i10 + 124;
+        businessLinkCreated = i10 + 125;
+        needDeleteBusinessLink = i10 + 126;
+        messageTranslated = i10 + 127;
+        messageTranslating = i10 + 128;
+        dialogIsTranslatable = i10 + 129;
+        dialogTranslate = i10 + 130;
+        didGenerateFingerprintKeyPair = i10 + 131;
+        walletPendingTransactionsChanged = i10 + 132;
+        walletSyncProgressChanged = i10 + 133;
+        httpFileDidLoad = i10 + 134;
+        httpFileDidFailedLoad = i10 + 135;
+        didUpdateConnectionState = i10 + 136;
+        fileUploaded = i10 + 137;
+        fileUploadFailed = i10 + 138;
+        fileUploadProgressChanged = i10 + 139;
+        fileLoadProgressChanged = i10 + 140;
+        fileLoaded = i10 + 141;
+        fileLoadFailed = i10 + 142;
+        filePreparingStarted = i10 + 143;
+        fileNewChunkAvailable = i10 + 144;
+        filePreparingFailed = i10 + 145;
+        dialogsUnreadCounterChanged = i10 + 146;
+        messagePlayingProgressDidChanged = i10 + 147;
+        messagePlayingDidReset = i10 + 148;
+        messagePlayingPlayStateChanged = i10 + 149;
+        messagePlayingDidStart = i10 + 150;
+        messagePlayingDidSeek = i10 + 151;
+        messagePlayingGoingToStop = i10 + 152;
+        recordProgressChanged = i10 + 153;
+        recordStarted = i10 + 154;
+        recordStartError = i10 + 155;
+        recordStopped = i10 + 156;
+        recordPaused = i10 + 157;
+        recordResumed = i10 + 158;
+        screenshotTook = i10 + 159;
+        albumsDidLoad = i10 + 160;
+        audioDidSent = i10 + 161;
+        audioRecordTooShort = i10 + 162;
+        audioRouteChanged = i10 + 163;
+        didStartedCall = i10 + 164;
+        groupCallUpdated = i10 + 165;
+        storyGroupCallUpdated = i10 + 166;
+        groupCallSpeakingUsersUpdated = i10 + 167;
+        groupCallScreencastStateChanged = i10 + 168;
+        activeGroupCallsUpdated = i10 + 169;
+        applyGroupCallVisibleParticipants = i10 + 170;
+        groupCallTypingsUpdated = i10 + 171;
+        didEndCall = i10 + 172;
+        closeInCallActivity = i10 + 173;
+        groupCallVisibilityChanged = i10 + 174;
+        liveStoryUpdated = i10 + 175;
+        liveStoryMessageUpdate = i10 + 176;
+        appDidLogout = i10 + 177;
+        configLoaded = i10 + 178;
+        needDeleteDialog = i10 + 179;
+        newEmojiSuggestionsAvailable = i10 + 180;
+        themeUploadedToServer = i10 + 181;
+        themeUploadError = i10 + 182;
+        dialogFiltersUpdated = i10 + 183;
+        filterSettingsUpdated = i10 + 184;
+        suggestedFiltersLoaded = i10 + 185;
+        updateBotMenuButton = i10 + 186;
+        giftsToUserSent = i10 + 187;
+        didStartedMultiGiftsSelector = i10 + 188;
+        boostedChannelByUser = i10 + 189;
+        boostByChannelCreated = i10 + 190;
+        didUpdatePremiumGiftStickers = i10 + 191;
+        didUpdateTonGiftStickers = i10 + 192;
+        didUpdatePremiumGiftFieldIcon = i10 + 193;
+        storiesEnabledUpdate = i10 + 194;
+        storiesBlocklistUpdate = i10 + 195;
+        storiesLimitUpdate = i10 + 196;
+        storiesSendAsUpdate = i10 + 197;
+        unconfirmedAuthUpdate = i10 + 198;
+        dialogPhotosUpdate = i10 + 199;
+        channelRecommendationsLoaded = i10 + 200;
+        savedMessagesDialogsUpdate = i10 + 201;
+        savedReactionTagsUpdate = i10 + 202;
+        userIsPremiumBlockedUpadted = i10 + 203;
+        storyAlbumsCollectionsUpdate = i10 + 204;
+        savedMessagesForwarded = i10 + 205;
+        emojiKeywordsLoaded = i10 + 206;
+        smsJobStatusUpdate = i10 + 207;
+        storyQualityUpdate = i10 + 208;
+        openBoostForUsersDialog = i10 + 209;
+        groupRestrictionsUnlockedByBoosts = i10 + 210;
+        chatWasBoostedByUser = i10 + 211;
+        groupPackUpdated = i10 + 212;
+        timezonesUpdated = i10 + 213;
+        customStickerCreated = i10 + 214;
+        premiumFloodWaitReceived = i10 + 215;
+        availableEffectsUpdate = i10 + 216;
+        starOptionsLoaded = i10 + 217;
+        starGiftOptionsLoaded = i10 + 218;
+        starGiveawayOptionsLoaded = i10 + 219;
+        starBalanceUpdated = i10 + 220;
+        starTransactionsLoaded = i10 + 221;
+        starSubscriptionsLoaded = i10 + 222;
+        factCheckLoaded = i10 + 223;
+        botStarsUpdated = i10 + 224;
+        botStarsTransactionsLoaded = i10 + 225;
+        channelStarsUpdated = i10 + 226;
+        updateAllMessages = i10 + 227;
+        starGiftsLoaded = i10 + 228;
+        starUserGiftsLoaded = i10 + 229;
+        starUserGiftCollectionsLoaded = i10 + 230;
+        starGiftSoldOut = i10 + 231;
+        updateStories = i10 + 232;
+        botDownloadsUpdate = i10 + 233;
+        channelSuggestedBotsUpdate = i10 + 234;
+        channelConnectedBotsUpdate = i10 + 235;
+        adminedChannelsLoaded = i10 + 236;
+        messagesFeeUpdated = i10 + 237;
+        commonChatsLoaded = i10 + 238;
+        appConfigUpdated = i10 + 239;
+        activeAuctionsUpdated = i10 + 240;
+        conferenceEmojiUpdated = i10 + 241;
+        contentSettingsLoaded = i10 + 242;
+        musicListLoaded = i10 + 243;
+        musicIdsLoaded = i10 + 244;
+        profileMusicUpdated = i10 + 245;
+        updatedChatRanks = i10 + 246;
+        joinedGroup = i10 + 247;
+        loadedAiComposeTones = i10 + 248;
+        agentSettingsUpdated = i10 + 249;
+        updatedChatbot = i10 + 250;
+        walletUpdate = i10 + 251;
+        walletTransactionsUpdate = i10 + 252;
+        activeAccountChanged = i10 + 253;
+        pushMessagesUpdated = i10 + 254;
+        wallpapersDidLoad = i10 + 255;
+        wallpapersNeedReload = i10 + 256;
+        didReceiveSmsCode = i10 + 257;
+        didReceiveCall = i10 + 258;
+        emojiLoaded = i10 + 259;
+        invalidateMotionBackground = i10 + 260;
+        closeOtherAppActivities = i10 + 261;
+        cameraInitied = i10 + 262;
+        didReplacedPhotoInMemCache = i10 + 263;
+        didSetNewTheme = i10 + 264;
+        themeListUpdated = i10 + 265;
+        didApplyNewTheme = i10 + 266;
+        themeAccentListUpdated = i10 + 267;
+        needCheckSystemBarColors = i10 + 268;
+        needShareTheme = i10 + 269;
+        needSetDayNightTheme = i10 + 270;
+        goingToPreviewTheme = i10 + 271;
+        locationPermissionGranted = i10 + 272;
+        locationPermissionDenied = i10 + 273;
+        reloadInterface = i10 + 274;
+        suggestedLangpack = i10 + 275;
+        didSetNewWallpapper = i10 + 276;
+        proxySettingsChanged = i10 + 277;
+        proxyCheckDone = i10 + 278;
+        proxyChangedByRotation = i10 + 279;
+        liveLocationsChanged = i10 + 280;
+        newLocationAvailable = i10 + 281;
+        liveLocationsCacheChanged = i10 + 282;
+        notificationsCountUpdated = i10 + 283;
+        playerDidStartPlaying = i10 + 284;
+        closeSearchByActiveAction = i10 + 285;
+        messagePlayingSpeedChanged = i10 + 286;
+        screenStateChanged = i10 + 287;
+        didClearDatabase = i10 + 288;
+        voipServiceCreated = i10 + 289;
+        webRtcMicAmplitudeEvent = i10 + 290;
+        webRtcSpeakerAmplitudeEvent = i10 + 291;
+        showBulletin = i10 + 292;
+        appUpdateAvailable = i10 + 293;
+        appUpdateLoading = i10 + 294;
+        onDatabaseMigration = i10 + 295;
+        onEmojiInteractionsReceived = i10 + 296;
+        emojiPreviewThemesChanged = i10 + 297;
+        reactionsDidLoad = i10 + 298;
+        attachMenuBotsDidLoad = i10 + 299;
+        chatAvailableReactionsUpdated = i10 + 300;
+        dialogsUnreadReactionsCounterChanged = i10 + 301;
+        dialogsUnreadPollVotesCounterChanged = i10 + 302;
+        onDatabaseOpened = i10 + 303;
+        onDownloadingFilesChanged = i10 + 304;
+        onActivityResultReceived = i10 + 305;
+        onRequestPermissionResultReceived = i10 + 306;
+        onUserRingtonesUpdated = i10 + 307;
+        currentUserPremiumStatusChanged = i10 + 308;
+        premiumPromoUpdated = i10 + 309;
+        premiumStatusChangedGlobal = i10 + 310;
+        currentUserShowLimitReachedDialog = i10 + 311;
+        billingProductDetailsUpdated = i10 + 312;
+        billingConfirmPurchaseError = i10 + 313;
+        premiumStickersPreviewLoaded = i10 + 314;
+        userEmojiStatusUpdated = i10 + 315;
+        requestPermissions = i10 + 316;
+        permissionsGranted = i10 + 317;
+        activityPermissionsGranted = i10 + 318;
+        topicsDidLoaded = i10 + 319;
+        chatSwitchedForum = i10 + 320;
+        didUpdateGlobalAutoDeleteTimer = i10 + 321;
+        onDatabaseReset = i10 + 322;
+        wallpaperSettedToUser = i10 + 323;
+        storiesUpdated = i10 + 324;
+        storyDeleted = i10 + 325;
+        storiesListUpdated = i10 + 326;
+        storiesDraftsUpdated = i10 + 327;
+        chatlistFolderUpdate = i10 + 328;
+        uploadStoryProgress = i10 + 329;
+        uploadStoryEnd = i10 + 330;
+        customTypefacesLoaded = i10 + 331;
+        stealthModeChanged = i10 + 332;
+        onReceivedChannelDifference = i10 + 333;
+        storiesReadUpdated = i10 + 334;
+        nearEarEvent = i10 + 335;
+        translationModelDownloading = i10 + 336;
+        translationModelDownloaded = i10 + 337;
+        botForumTopicDidCreate = i10 + 338;
+        botForumDraftUpdate = i10 + 339;
+        botForumDraftDelete = i10 + 340;
+        tlSchemeParseException = i10 + 341;
+        memoryLeakFoundException = i10 + 342;
+        callTabsVisibleToggled = i10 + 343;
+        contactsPermissionBadgeCheck = i10 + 344;
+        guardBotDecisionResult = i10 + 345;
+        webBrowserSettingsUpdate = i10 + 346;
+        communityPendingRequestsUpdate = i10 + 347;
+        totalEvents = i10 + 349;
+        communitySwitchedCollapsed = i10 + 348;
     }
 
     public NotificationCenter(int i10) {
@@ -915,7 +919,7 @@ public class NotificationCenter {
             arrayList2.add(notificationCenterDelegate);
             if (BuildVars.DEBUG_VERSION && !alreadyLogged && arrayList2.size() > 1000) {
                 alreadyLogged = true;
-                FileLog.e((Throwable) new RuntimeException(i2.o1.k(i10, "Total observers more than 1000, need check for memory leak. ")), true);
+                FileLog.e((Throwable) new RuntimeException(ic.a.i(i10, "Total observers more than 1000, need check for memory leak. ")), true);
             }
         }
     }
@@ -943,7 +947,7 @@ public class NotificationCenter {
                 }
             }
             if (j10 != Long.MAX_VALUE) {
-                AndroidUtilities.runOnUIThread(new vg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
+                AndroidUtilities.runOnUIThread(new wg(this, 0), Math.max(17L, 5017 - (elapsedRealtime - j10)));
             }
         }
     }
@@ -963,18 +967,18 @@ public class NotificationCenter {
             if (intValue2 == -1) {
                 Log.i("ObserverDiff", "key=" + keyAt + " REMOVED (was " + intValue + ")");
             } else if (intValue != intValue2) {
-                StringBuilder k10 = com.google.android.gms.internal.play_billing.k3.k("key=", keyAt, " CHANGED: ", intValue, " -> ");
-                k10.append(intValue2);
-                Log.i("ObserverDiff", k10.toString());
+                StringBuilder n10 = c3.h0.n("key=", keyAt, " CHANGED: ", intValue, " -> ");
+                n10.append(intValue2);
+                Log.i("ObserverDiff", n10.toString());
             }
         }
         for (int i11 = 0; i11 < sparseArray2.size(); i11++) {
             int keyAt2 = sparseArray2.keyAt(i11);
             if (sparseArray.get(keyAt2, -1).intValue() == -1) {
-                StringBuilder n10 = i2.o1.n(keyAt2, "key=", " ADDED (size=");
-                n10.append(sparseArray2.valueAt(i11));
-                n10.append(")");
-                Log.i("ObserverDiff", n10.toString());
+                StringBuilder k10 = ic.a.k(keyAt2, "key=", " ADDED (size=");
+                k10.append(sparseArray2.valueAt(i11));
+                k10.append(")");
+                Log.i("ObserverDiff", k10.toString());
             }
         }
     }
@@ -1035,7 +1039,7 @@ public class NotificationCenter {
     }
 
     public void lambda$checkForExpiredNotifications$0() {
-        this.checkForExpiredNotifications = new vg(this, 1);
+        this.checkForExpiredNotifications = new wg(this, 1);
     }
 
     public static void lambda$listen$4(int i10, Utilities.Callback callback, int i11, int i12, Object[] objArr) {
@@ -1055,7 +1059,7 @@ public class NotificationCenter {
     }
 
     public static void listenEmojiLoading(View view) {
-        getGlobalInstance().listen(view, emojiLoaded, new e1(view, 2));
+        getGlobalInstance().listen(view, emojiLoaded, new g1(view, 2));
     }
 
     private void postNotificationDebounced(int i10, Object[] objArr) {
@@ -1063,9 +1067,9 @@ public class NotificationCenter {
         if (this.alreadyPostedRunnubles.indexOfKey(hashCode) >= 0) {
             return;
         }
-        d5 d5Var = new d5(this, i10, objArr, hashCode);
-        this.alreadyPostedRunnubles.put(hashCode, d5Var);
-        AndroidUtilities.runOnUIThread(d5Var, 250L);
+        e5 e5Var = new e5(this, i10, objArr, hashCode);
+        this.alreadyPostedRunnubles.put(hashCode, e5Var);
+        AndroidUtilities.runOnUIThread(e5Var, 250L);
     }
 
     public static void sanitize() {
@@ -1093,12 +1097,12 @@ public class NotificationCenter {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with View with destroyed Context");
                                 valueAt.remove(size);
                             }
-                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.o2) {
-                            if (((org.telegram.ui.ActionBar.o2) notificationCenterDelegate).isFinished) {
+                        } else if (notificationCenterDelegate instanceof org.telegram.ui.ActionBar.r2) {
+                            if (((org.telegram.ui.ActionBar.r2) notificationCenterDelegate).isFinished) {
                                 FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BaseFragment");
                                 valueAt.remove(size);
                             }
-                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.h3) && ((org.telegram.ui.ActionBar.h3) notificationCenterDelegate).isDismissed()) {
+                        } else if ((notificationCenterDelegate instanceof org.telegram.ui.ActionBar.k3) && ((org.telegram.ui.ActionBar.k3) notificationCenterDelegate).isDismissed()) {
                             FileLog.e("MEMORY_LEAK observer " + keyAt + " with destroyed BottomSheet");
                             valueAt.remove(size);
                         }
@@ -1218,9 +1222,9 @@ public class NotificationCenter {
                 }
             };
             view.addOnAttachStateChangeListener(onAttachStateChangeListener);
-            return new ai.vb(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 12);
+            return new bi.sb(this, view, onAttachStateChangeListener, notificationCenterDelegate, i10, 12);
         }
-        return new z1(19);
+        return new a2(19);
     }
 
     public void onAnimationFinish(int i10) {
@@ -1353,7 +1357,7 @@ public class NotificationCenter {
     }
 
     public void postNotificationNameOnUIThread(int i10, Object... objArr) {
-        AndroidUtilities.runOnUIThread(new w4(this, i10, objArr, 19));
+        AndroidUtilities.runOnUIThread(new x4(this, i10, objArr, 19));
     }
 
     public void removeDelayed(Runnable runnable) {
@@ -1395,7 +1399,7 @@ public class NotificationCenter {
             this.delayedPosts.clear();
             for (int i10 = 0; i10 < this.delayedPostsTmp.size(); i10++) {
                 DelayedPost delayedPost = this.delayedPostsTmp.get(i10);
-                postNotificationNameInternal(delayedPost.f17865id, true, delayedPost.args);
+                postNotificationNameInternal(delayedPost.f19552id, true, delayedPost.args);
             }
             this.delayedPostsTmp.clear();
         }
@@ -1517,9 +1521,9 @@ public class NotificationCenter {
         allowedNotifications.allowedIds = iArr;
         this.allowedNotifications.put(this.animationInProgressPointer, allowedNotifications);
         if (this.checkForExpiredNotifications == null) {
-            vg vgVar = new vg(this, 1);
-            this.checkForExpiredNotifications = vgVar;
-            AndroidUtilities.runOnUIThread(vgVar, 5017L);
+            wg wgVar = new wg(this, 1);
+            this.checkForExpiredNotifications = wgVar;
+            AndroidUtilities.runOnUIThread(wgVar, 5017L);
         }
         return this.animationInProgressPointer;
     }

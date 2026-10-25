@@ -1,50 +1,17 @@
 package u7;
+public final class e {
+    public final Object f49595a;
+    public final Object f49596b;
+    public final Object f49597c;
 
-import j$.util.Objects;
-import w7.x7;
-public final class e extends d {
-    public static final e e = new e(0, new Object[0]);
-    public final transient Object[] f48061c;
-    public final transient int d;
-
-    public e(int i10, Object[] objArr) {
-        this.f48061c = objArr;
-        this.d = i10;
+    public e(Object obj, Object obj2, Object obj3) {
+        this.f49595a = obj;
+        this.f49596b = obj2;
+        this.f49597c = obj3;
     }
 
-    @Override
-    public final Object get(int i10) {
-        x7.a(i10, this.d);
-        Object obj = this.f48061c[i10];
-        Objects.requireNonNull(obj);
-        return obj;
-    }
-
-    @Override
-    public final int h(Object[] objArr) {
-        Object[] objArr2 = this.f48061c;
-        int i10 = this.d;
-        System.arraycopy(objArr2, 0, objArr, 0, i10);
-        return i10;
-    }
-
-    @Override
-    public final int m() {
-        return this.d;
-    }
-
-    @Override
-    public final int n() {
-        return 0;
-    }
-
-    @Override
-    public final Object[] o() {
-        return this.f48061c;
-    }
-
-    @Override
-    public final int size() {
-        return this.d;
+    public final IllegalArgumentException a() {
+        Object obj = this.f49595a;
+        return new IllegalArgumentException(a1.g.q(String.valueOf(obj), "=", String.valueOf(this.f49597c), a1.g.w("Multiple entries with same key: ", String.valueOf(obj), "=", String.valueOf(this.f49596b), " and ")));
     }
 }

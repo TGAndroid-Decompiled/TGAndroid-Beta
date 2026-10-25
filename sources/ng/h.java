@@ -1,66 +1,58 @@
 package ng;
 
-import android.graphics.Canvas;
-import android.os.Bundle;
-import android.text.TextPaint;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.Locale;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.gp0;
-import org.telegram.ui.Components.q6;
-public final class h extends FrameLayout {
-    public gp0 f17522a;
-    public float f17523b;
-    public float f17524c;
-    public float d;
-    public q6 e;
-    public String f17525f;
-    public TextPaint h;
-    public int f17526n;
+import android.animation.ValueAnimator;
+import c3.h0;
+public final class h implements ValueAnimator.AnimatorUpdateListener {
+    public final int f18813a;
+    public final p f18814b;
+    public final float f18815c;
+    public final float[] d;
+    public final float e;
+    public final float f18816f;
 
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f17522a.invalidate();
+    public h(p pVar, float f7, float[] fArr, float f10, float f11, int i10) {
+        this.f18813a = i10;
+        this.f18814b = pVar;
+        this.f18815c = f7;
+        this.d = fArr;
+        this.e = f10;
+        this.f18816f = f11;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        TextPaint textPaint = this.h;
-        textPaint.setColor(k6.x0(null, k6.G6, false));
-        canvas.drawText(this.f17525f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), textPaint);
-        textPaint.setColor(k6.x0(null, k6.I6, false));
-        String format = String.format(Locale.ROOT, "%.2f", Float.valueOf(this.d));
-        canvas.drawText(format, (getMeasuredWidth() - AndroidUtilities.dp(8.0f)) - textPaint.measureText(format), this.f17522a.getY() + AndroidUtilities.dp(23.0f), textPaint);
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f17522a.getSeekBarAccessibilityDelegate().e(this, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        int size = View.MeasureSpec.getSize(i10);
-        if (this.f17526n != size) {
-            gp0 gp0Var = this.f17522a;
-            float floatValue = ((Float) this.e.get(null)).floatValue();
-            float f7 = this.f17523b;
-            gp0Var.setProgress((floatValue - f7) / (this.f17524c - f7));
-            this.f17526n = size;
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f18813a) {
+            case 0:
+                p pVar = this.f18814b;
+                pVar.getClass();
+                float z10 = h0.z(this.f18815c, 1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue(), 1.0f);
+                float[] fArr = this.d;
+                float f7 = fArr[0];
+                float f10 = z10 / f7;
+                fArr[0] = f7 * f10;
+                n.g(pVar.L, f10, this.e, this.f18816f);
+                pVar.r(false);
+                return;
+            default:
+                p pVar2 = this.f18814b;
+                pVar2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                float[] fArr2 = this.d;
+                float f11 = fArr2[1];
+                float f12 = (this.f18815c * floatValue) - f11;
+                fArr2[1] = f11 + f12;
+                float f13 = fArr2[2];
+                float f14 = (this.e * floatValue) - f13;
+                fArr2[2] = f13 + f14;
+                n nVar = pVar2.L;
+                float f15 = fArr2[0];
+                n.f(nVar, f12 * f15, f14 * f15);
+                float f16 = fArr2[0];
+                float f17 = (((this.f18816f - 1.0f) * floatValue) + 1.0f) / f16;
+                fArr2[0] = f16 * f17;
+                n.g(pVar2.L, f17, 0.0f, 0.0f);
+                pVar2.r(false);
+                return;
         }
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(int i10, Bundle bundle) {
-        if (!super.performAccessibilityAction(i10, bundle) && !this.f17522a.getSeekBarAccessibilityDelegate().g(this, i10, bundle)) {
-            return false;
-        }
-        return true;
     }
 }

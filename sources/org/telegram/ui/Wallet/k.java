@@ -5,15 +5,15 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.w90;
-import org.telegram.ui.r80;
+import org.telegram.ui.Components.z90;
+import org.telegram.ui.q80;
 public final class k implements Utilities.Callback {
-    public final int f34687a;
-    public final Object f34688b;
+    public final int f36756a;
+    public final Object f36757b;
 
     public k(Object obj, int i10) {
-        this.f34687a = i10;
-        this.f34688b = obj;
+        this.f36756a = i10;
+        this.f36757b = obj;
     }
 
     @Override
@@ -21,16 +21,16 @@ public final class k implements Utilities.Callback {
         String str;
         int i10;
         CharSequence formatSpannable;
-        int i11 = this.f34687a;
+        int i11 = this.f36756a;
         boolean z10 = false;
-        Object obj2 = this.f34688b;
+        Object obj2 = this.f36757b;
         switch (i11) {
             case 0:
-                ai.y8 y8Var = (ai.y8) obj2;
+                bi.t8 t8Var = (bi.t8) obj2;
                 if (((String) obj) == null) {
                     z10 = true;
                 }
-                y8Var.run(Boolean.valueOf(z10));
+                t8Var.run(Boolean.valueOf(z10));
                 return;
             case 1:
                 Utilities.Callback2 callback2 = (Utilities.Callback2) obj2;
@@ -45,7 +45,7 @@ public final class k implements Utilities.Callback {
             case 2:
                 String str2 = (String) obj;
                 e2.k("approve session", str2);
-                ((r80) obj2).run(str2);
+                ((q80) obj2).run(str2);
                 return;
             case 3:
                 String str3 = (String) obj;
@@ -53,7 +53,7 @@ public final class k implements Utilities.Callback {
                 ((Utilities.Callback) obj2).run(str3);
                 return;
             case 4:
-                AndroidUtilities.runOnUIThread(new y3(11, (t7) obj2, (TLRPC.UserFull) obj));
+                AndroidUtilities.runOnUIThread(new q6(1, (t7) obj2, (TLRPC.UserFull) obj));
                 return;
             default:
                 w7 w7Var = (w7) obj2;
@@ -63,17 +63,17 @@ public final class k implements Utilities.Callback {
                 } else {
                     i10 = 24;
                 }
-                if (w7Var.f35352a != i10) {
-                    w7Var.f35352a = i10;
-                    w7Var.W(w7Var.getParentActivity());
-                    w7Var.Y();
-                    w90 w90Var = w7Var.h;
-                    if (w7Var.f35358s != null) {
+                if (w7Var.f37439a != i10) {
+                    w7Var.f37439a = i10;
+                    w7Var.X(w7Var.getParentActivity());
+                    w7Var.Z();
+                    z90 z90Var = w7Var.h;
+                    if (w7Var.f37445s != null) {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportCurrentPhraseInfo, Integer.valueOf(i10));
                     } else {
                         formatSpannable = LocaleController.formatSpannable(R.string.WalletImportPhraseInfo, Integer.valueOf(i10));
                     }
-                    w90Var.setText(formatSpannable);
+                    z90Var.setText(formatSpannable);
                     return;
                 }
                 return;

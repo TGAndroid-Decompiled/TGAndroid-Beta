@@ -1,19 +1,77 @@
 package ni;
 
-import android.graphics.RectF;
-import android.view.View;
-public final class d {
-    public final View f17540a;
-    public final dh.d f17541b;
-    public final RectF f17542c = new RectF();
-    public final RectF d = new RectF();
-    public final RectF e = new RectF();
-    public final RectF f17543f = new RectF();
-    public boolean f17544g;
-    public boolean h;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import java.util.HashMap;
+import org.telegram.ui.ActionBar.y6;
+public final class d extends CharacterStyle {
+    public final int f18874a;
 
-    public d(View view, dh.d dVar) {
-        this.f17540a = view;
-        this.f17541b = dVar;
+    public d(int i10) {
+        this.f18874a = i10;
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        int i10;
+        HashMap hashMap = r.f18907b;
+        int i11 = this.f18874a & 255;
+        switch (i11) {
+            case 8:
+            case 18:
+                i11 = 1;
+                break;
+            case 9:
+            case 10:
+            case 14:
+            case 15:
+                i11 = 3;
+                break;
+            case 11:
+            case 13:
+                i11 = 7;
+                break;
+            case 12:
+            case 16:
+            case 17:
+            case 19:
+                i11 = 4;
+                break;
+            case 20:
+                i11 = 6;
+                break;
+            case 21:
+                i11 = 2;
+                break;
+        }
+        switch (i11) {
+            case 1:
+                i10 = y6.Ik;
+                break;
+            case 2:
+                i10 = y6.Jk;
+                break;
+            case 3:
+                i10 = y6.Kk;
+                break;
+            case 4:
+                i10 = y6.Lk;
+                break;
+            case 5:
+                i10 = y6.Mk;
+                break;
+            case 6:
+                i10 = y6.Nk;
+                break;
+            case 7:
+                i10 = y6.Ok;
+                break;
+            default:
+                i10 = -1;
+                break;
+        }
+        if (i10 >= 0) {
+            textPaint.setColor(y6.x0(null, i10, false));
+        }
     }
 }

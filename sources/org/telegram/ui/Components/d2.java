@@ -1,251 +1,82 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
+import android.view.KeyEvent;
 import android.view.View;
-import java.util.Calendar;
-import java.util.regex.Pattern;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-public final class d2 implements kd0, org.telegram.ui.ActionBar.z1, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6, b5, ImageReceiver.ImageReceiverDelegate, GenericProvider, p.a, hh.b, ew0, fw0 {
-    public final int f25514a;
+import org.telegram.messenger.UserConfig;
+public final class d2 implements View.OnClickListener {
+    public final int f27330a = 0;
+    public final int[] f27331b;
+    public final Object f27332c;
+    public final ViewGroup d;
+    public final Object e;
+    public final KeyEvent.Callback f27333f;
+    public final Object h;
+    public final Object f27334n;
+    public final Object f27335r;
 
-    public d2(int i10) {
-        this.f25514a = i10;
+    public d2(FrameLayout frameLayout, org.telegram.ui.ActionBar.u6 u6Var, org.telegram.ui.ActionBar.k3 k3Var, FrameLayout frameLayout2, int[] iArr, String[] strArr, int[] iArr2, m4.v0 v0Var) {
+        this.f27332c = frameLayout;
+        this.e = u6Var;
+        this.f27333f = k3Var;
+        this.d = frameLayout2;
+        this.f27331b = iArr;
+        this.f27334n = strArr;
+        this.h = iArr2;
+        this.f27335r = v0Var;
     }
 
     @Override
-    public void C(int i10, int i11, boolean z10) {
-        switch (this.f25514a) {
-            case 16:
-                MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
-                return;
-            default:
-                MediaController.getInstance().stopRecording(1, z10, i10, false, 0L);
-                return;
-        }
-    }
-
-    @Override
-    public Object a(Bitmap bitmap) {
-        if (bitmap.getConfig() == Bitmap.Config.ALPHA_8) {
-            return bitmap;
-        }
-        return bitmap.extractAlpha();
-    }
-
-    @Override
-    public void b(Object obj, float f7) {
-        td0 td0Var = (td0) obj;
-        switch (this.f25514a) {
-            case 26:
-                td0Var.f30799f = f7;
-                if (!td0Var.f30805y || td0Var.F) {
-                    td0Var.f30798c.setStrokeWidth(AndroidUtilities.lerp(td0Var.v, td0Var.f30803w, f7));
-                    td0Var.f();
-                }
-                td0Var.invalidate();
-                return;
-            default:
-                td0Var.f30800n = f7;
-                if (!td0Var.f30805y || td0Var.F) {
-                    td0Var.f();
-                }
-                td0Var.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public oc c(vc vcVar) {
-        return vcVar.k(false);
-    }
-
-    @Override
-    public void d(int i10, View view) {
-        ((org.telegram.ui.ActionBar.e1) view).d(i10, i10);
-    }
-
-    @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        Drawable drawable = imageReceiver.getDrawable();
-        if (drawable instanceof xj0) {
-            xj0 xj0Var = (xj0) drawable;
-            xj0Var.P(0);
-            xj0Var.stop();
-            xj0Var.T(0.0f, false);
-        }
-    }
-
-    @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        org.telegram.messenger.n5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public String e(int i10) {
-        int i11;
-        switch (this.f25514a) {
+    public final void onClick(View view) {
+        Runnable runnable;
+        switch (this.f27330a) {
             case 0:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 1:
-            case 11:
+                FrameLayout frameLayout = (FrameLayout) this.f27332c;
+                org.telegram.ui.ActionBar.u6 u6Var = (org.telegram.ui.ActionBar.u6) this.e;
+                org.telegram.ui.ActionBar.k3 k3Var = (org.telegram.ui.ActionBar.k3) this.f27333f;
+                FrameLayout frameLayout2 = (FrameLayout) this.d;
+                String[] strArr = (String[]) this.f27334n;
+                int[] iArr = (int[]) this.h;
+                Runnable runnable2 = (Runnable) this.f27335r;
+                if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+                    new wc(frameLayout, u6Var).R(R.raw.star_premium_2, 36, AndroidUtilities.premiumText(LocaleController.getString(R.string.MessageScheduledRepeatPremium), new ag.c(29))).j();
+                    return;
+                }
+                k80 F = k80.F(k3Var.container, u6Var, frameLayout2);
+                int i10 = 0;
+                while (true) {
+                    int[] iArr2 = this.f27331b;
+                    if (i10 < iArr2.length) {
+                        F.c(0, strArr[i10], new f3(iArr, runnable2, iArr2[i10]), false);
+                        i10++;
+                    } else {
+                        F.f29848i = 1;
+                        F.Z();
+                        return;
+                    }
+                }
             default:
-                switch (i10) {
-                    case 0:
-                        return LocaleController.getString(R.string.January);
-                    case 1:
-                        return LocaleController.getString(R.string.February);
-                    case 2:
-                        return LocaleController.getString(R.string.March);
-                    case 3:
-                        return LocaleController.getString(R.string.April);
-                    case 4:
-                        return LocaleController.getString(R.string.May);
-                    case 5:
-                        return LocaleController.getString(R.string.June);
-                    case 6:
-                        return LocaleController.getString(R.string.July);
-                    case 7:
-                        return LocaleController.getString(R.string.August);
-                    case 8:
-                        return LocaleController.getString(R.string.September);
-                    case 9:
-                        return LocaleController.getString(R.string.October);
-                    case 10:
-                        return LocaleController.getString(R.string.November);
-                    default:
-                        return LocaleController.getString(R.string.December);
-                }
-            case 2:
-                boolean z10 = LocaleController.is24HourFormat;
-                int i12 = 12;
-                if (z10) {
-                    i11 = 24;
-                } else {
-                    i11 = 12;
-                }
-                int i13 = i10 % i11;
-                if (i10 % 12 != 0 || z10) {
-                    i12 = i13;
-                }
-                String format = String.format("%02d", Integer.valueOf(i12));
-                if (i10 >= 24) {
-                    return LocaleController.formatString(R.string.BusinessHoursNextDayPicker, format);
-                }
-                return format;
-            case 3:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 4:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.MessageScheduleToday);
-                }
-                Calendar calendar = Calendar.getInstance();
-                int i14 = calendar.get(1);
-                calendar.add(6, i10);
-                long timeInMillis = calendar.getTimeInMillis();
-                if (calendar.get(1) == i14) {
-                    return LocaleController.getInstance().getFormatterWeek().format(timeInMillis) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(timeInMillis);
-                }
-                return LocaleController.getInstance().getFormatterScheduleYear().format(timeInMillis);
-            case 5:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 6:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 7:
-                return i2.o1.k(i10, "");
-            case 8:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 9:
-                return String.format("%02d", Integer.valueOf(i10));
-            case 10:
-                if (i10 == 0) {
-                    return LocaleController.getString(R.string.ShortMessageLifetimeForever);
-                }
-                if (i10 >= 1 && i10 < 16) {
-                    return LocaleController.formatTTLString(i10);
-                }
-                if (i10 == 16) {
-                    return LocaleController.formatTTLString(30);
-                }
-                if (i10 == 17) {
-                    return LocaleController.formatTTLString(60);
-                }
-                if (i10 == 18) {
-                    return LocaleController.formatTTLString(3600);
-                }
-                if (i10 == 19) {
-                    return LocaleController.formatTTLString(86400);
-                }
-                if (i10 != 20) {
-                    return "";
-                }
-                return LocaleController.formatTTLString(604800);
-            case 12:
-                return i2.o1.k(i10, "");
-        }
-    }
-
-    @Override
-    public int f(View view) {
-        org.telegram.ui.ActionBar.e1 e1Var = (org.telegram.ui.ActionBar.e1) view;
-        if (e1Var.getTextView() != null) {
-            return e1Var.getTextView().getCurrentTextColor();
-        }
-        return 0;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f25514a) {
-            case 1:
-                c2Var.dismiss();
-                return;
-            case 11:
-                Pattern pattern = d5.f25562a;
-                return;
-            case 19:
-                c2Var.dismiss();
-                return;
-            default:
-                c2Var.dismiss();
+                bi.r0 r0Var = (bi.r0) this.f27334n;
+                ((boolean[]) this.f27332c)[0] = false;
+                ju.j((ju) r0Var.f5314c, r0Var.f5312a, r0Var.f5313b, (int) (g5.c(null, (md0) this.d, (md0) this.e, (md0) this.f27333f, (md0) this.h) / 1000), this.f27331b[0]);
+                runnable = ((org.telegram.ui.ActionBar.e3) this.f27335r).f22599a.dismissRunnable;
+                runnable.run();
                 return;
         }
     }
 
-    @Override
-    public float get(Object obj) {
-        td0 td0Var = (td0) obj;
-        switch (this.f25514a) {
-            case 25:
-                return td0Var.f30799f;
-            case 26:
-            default:
-                return td0Var.f30802s;
-            case 27:
-                return td0Var.f30800n;
-        }
-    }
-
-    @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        org.telegram.messenger.n5.b(this, imageReceiver);
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        switch (this.f25514a) {
-            case 20:
-                Void r22 = (Void) obj;
-                return CheckBoxBase.I;
-            default:
-                Integer num = (Integer) obj;
-                int i10 = rz.U2;
-                return 0;
-        }
+    public d2(boolean[] zArr, md0 md0Var, md0 md0Var2, md0 md0Var3, md0 md0Var4, bi.r0 r0Var, int[] iArr, org.telegram.ui.ActionBar.e3 e3Var) {
+        this.f27332c = zArr;
+        this.d = md0Var;
+        this.e = md0Var2;
+        this.f27333f = md0Var3;
+        this.h = md0Var4;
+        this.f27334n = r0Var;
+        this.f27331b = iArr;
+        this.f27335r = e3Var;
     }
 }

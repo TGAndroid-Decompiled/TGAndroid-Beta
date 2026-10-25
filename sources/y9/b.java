@@ -1,60 +1,41 @@
 package y9;
-public final class b extends l {
-    public final String f50532b;
-    public final String f50533c;
-    public final String d;
-    public final String e;
-    public final long f50534f;
 
-    public b(String str, String str2, String str3, String str4, long j10) {
+import aa.a0;
+import java.io.File;
+public final class b {
+    public final a0 f52412a;
+    public final String f52413b;
+    public final File f52414c;
+
+    public b(a0 a0Var, String str, File file) {
+        this.f52412a = a0Var;
         if (str != null) {
-            this.f50532b = str;
-            if (str2 != null) {
-                this.f50533c = str2;
-                if (str3 != null) {
-                    this.d = str3;
-                    if (str4 != null) {
-                        this.e = str4;
-                        this.f50534f = j10;
-                        return;
-                    }
-                    throw new NullPointerException("Null variantId");
-                }
-                throw new NullPointerException("Null parameterValue");
-            }
-            throw new NullPointerException("Null parameterKey");
+            this.f52413b = str;
+            this.f52414c = file;
+            return;
         }
-        throw new NullPointerException("Null rolloutId");
+        throw new NullPointerException("Null sessionId");
     }
 
     public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (obj instanceof l) {
-            b bVar = (b) ((l) obj);
-            if (this.f50532b.equals(bVar.f50532b) && this.f50533c.equals(bVar.f50533c) && this.d.equals(bVar.d) && this.e.equals(bVar.e) && this.f50534f == bVar.f50534f) {
-                return true;
+        if (obj != this) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                if (this.f52412a.equals(bVar.f52412a) && this.f52413b.equals(bVar.f52413b) && this.f52414c.equals(bVar.f52414c)) {
+                    return true;
+                }
+                return false;
             }
+            return false;
         }
-        return false;
+        return true;
     }
 
     public final int hashCode() {
-        long j10 = this.f50534f;
-        return ((((((((this.f50532b.hashCode() ^ 1000003) * 1000003) ^ this.f50533c.hashCode()) * 1000003) ^ this.d.hashCode()) * 1000003) ^ this.e.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
+        return ((((this.f52412a.hashCode() ^ 1000003) * 1000003) ^ this.f52413b.hashCode()) * 1000003) ^ this.f52414c.hashCode();
     }
 
     public final String toString() {
-        StringBuilder sb2 = new StringBuilder("RolloutAssignment{rolloutId=");
-        sb2.append(this.f50532b);
-        sb2.append(", parameterKey=");
-        sb2.append(this.f50533c);
-        sb2.append(", parameterValue=");
-        sb2.append(this.d);
-        sb2.append(", variantId=");
-        sb2.append(this.e);
-        sb2.append(", templateVersion=");
-        return a1.g.r(sb2, this.f50534f, "}");
+        return "CrashlyticsReportWithSessionId{report=" + this.f52412a + ", sessionId=" + this.f52413b + ", reportFile=" + this.f52414c + "}";
     }
 }

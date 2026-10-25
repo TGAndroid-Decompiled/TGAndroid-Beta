@@ -1,34 +1,33 @@
 package i2;
 
-import e9.x1;
+import a8.yb;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.util.Map;
-import v7.u6;
-public final class i implements s0 {
-    public static final x1 f12460r;
-    public final b2.n1 f12461a;
-    public final b2.l1 f12462b;
-    public final y2.d f12463c;
+public final class i implements u0 {
+    public static final f9.s1 f13558r;
+    public final b2.o1 f13559a;
+    public final b2.m1 f13560b;
+    public final y2.d f13561c;
     public final long d;
     public final long e;
-    public final long f12464f;
-    public final long f12465g;
+    public final long f13562f;
+    public final long f13563g;
     public final long h;
-    public final long f12466i;
-    public final long f12467j;
-    public final long f12468k;
-    public final int f12469l;
-    public final boolean f12470m;
-    public final long f12471n;
-    public final e9.q0 f12472o;
-    public final ConcurrentHashMap f12473p;
-    public long f12474q;
+    public final long f13564i;
+    public final long f13565j;
+    public final long f13566k;
+    public final int f13567l;
+    public final boolean f13568m;
+    public final long f13569n;
+    public final f9.l0 f13570o;
+    public final ConcurrentHashMap f13571p;
+    public long f13572q;
 
     static {
-        e9.l0 l0Var = e9.n0.f8481b;
+        f9.g0 g0Var = f9.i0.f10287b;
         Object[] objArr = {"file", "content", "data", "android.resource", "rawresource", "asset"};
-        e9.s.d(6, objArr);
-        f12460r = e9.n0.s(6, objArr);
+        f9.o.d(6, objArr);
+        f13558r = f9.i0.s(6, objArr);
     }
 
     public i(y2.d dVar, int i10, int i11, int i12, int i13, int i14, boolean z10, Map map) {
@@ -43,24 +42,24 @@ public final class i implements s0 {
         a(50000, 50000, "maxBufferMs", "minBufferMs");
         a(50000, i10, "maxBufferForLocalPlaybackMs", "minBufferForLocalPlaybackMs");
         a(0, 0, "backBufferDurationMs", "0");
-        this.f12461a = new b2.n1();
-        this.f12462b = new b2.l1();
-        this.f12463c = dVar;
+        this.f13559a = new b2.o1();
+        this.f13560b = new b2.m1();
+        this.f13561c = dVar;
         long j10 = 50000;
-        this.d = e2.m0.S(j10);
-        this.e = e2.m0.S(i10);
-        this.f12464f = e2.m0.S(j10);
-        this.f12465g = e2.m0.S(j10);
-        this.h = e2.m0.S(i11);
-        this.f12466i = e2.m0.S(i12);
-        this.f12467j = e2.m0.S(i13);
-        this.f12468k = e2.m0.S(i14);
-        this.f12469l = -1;
-        this.f12470m = z10;
-        this.f12471n = e2.m0.S(0);
-        this.f12473p = new ConcurrentHashMap();
-        this.f12472o = e9.q0.a(map);
-        this.f12474q = -1L;
+        this.d = e2.n0.S(j10);
+        this.e = e2.n0.S(i10);
+        this.f13562f = e2.n0.S(j10);
+        this.f13563g = e2.n0.S(j10);
+        this.h = e2.n0.S(i11);
+        this.f13564i = e2.n0.S(i12);
+        this.f13565j = e2.n0.S(i13);
+        this.f13566k = e2.n0.S(i14);
+        this.f13567l = -1;
+        this.f13568m = z10;
+        this.f13569n = e2.n0.S(0);
+        this.f13571p = new ConcurrentHashMap();
+        this.f13570o = f9.l0.a(map);
+        this.f13572q = -1L;
     }
 
     public static void a(int i10, int i11, String str, String str2) {
@@ -70,27 +69,27 @@ public final class i implements s0 {
         } else {
             z10 = false;
         }
-        u6.i(z10, "%s cannot be less than %s", str, str2);
+        yb.i(z10, "%s cannot be less than %s", str, str2);
     }
 
-    public final boolean b(i2.r0 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.i.b(i2.r0):boolean");
+    public final boolean b(i2.t0 r15) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.i.b(i2.t0):boolean");
     }
 
     public final void c() {
         int i10 = 0;
-        if (this.f12473p.isEmpty()) {
-            y2.d dVar = this.f12463c;
+        if (this.f13571p.isEmpty()) {
+            y2.d dVar = this.f13561c;
             synchronized (dVar) {
-                if (dVar.f50343a) {
+                if (dVar.f51930a) {
                     dVar.d(0);
                 }
             }
             return;
         }
-        y2.d dVar2 = this.f12463c;
-        for (h hVar : this.f12473p.values()) {
-            i10 += hVar.f12410c;
+        y2.d dVar2 = this.f13561c;
+        for (h hVar : this.f13571p.values()) {
+            i10 += hVar.f13552c;
         }
         dVar2.d(i10);
     }

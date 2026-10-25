@@ -1,57 +1,41 @@
 package h7;
 
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import g7.l;
-import g7.q;
-import kotlin.jvm.internal.i;
-import v7.h5;
-public final class f extends b8.b implements a {
-    public final int f11707b;
-    public final TaskCompletionSource f11708c;
+import a8.df;
+import android.os.Bundle;
+import android.os.Parcel;
+import android.os.Parcelable;
+import android.os.ResultReceiver;
+public final class f extends p6.a {
+    public static final Parcelable.Creator<f> CREATOR = new f6.i(17);
+    public final String f12685a;
+    public final Bundle f12686b;
+    public final Bundle f12687c;
+    public final String d;
+    public final String e;
+    public final ResultReceiver f12688f;
 
-    public f(int i10, TaskCompletionSource taskCompletionSource) {
-        super(8);
-        this.f11707b = i10;
-        this.f11708c = taskCompletionSource;
-        attachInterface(this, "com.google.android.gms.identitycredentials.internal.IIdentityCredentialCallbacks");
+    public f(String type, Bundle credentialData, Bundle candidateQueryData, String str, String str2, ResultReceiver resultReceiver) {
+        kotlin.jvm.internal.i.e(type, "type");
+        kotlin.jvm.internal.i.e(credentialData, "credentialData");
+        kotlin.jvm.internal.i.e(candidateQueryData, "candidateQueryData");
+        this.f12685a = type;
+        this.f12686b = credentialData;
+        this.f12687c = candidateQueryData;
+        this.d = str;
+        this.e = str2;
+        this.f12688f = resultReceiver;
     }
 
     @Override
-    public void D0(Status status, l lVar) {
-        switch (this.f11707b) {
-            case 1:
-                i.e(status, "status");
-                h5.a(status, lVar, this.f11708c);
-                return;
-            default:
-                i.e(status, "status");
-                throw new UnsupportedOperationException();
-        }
-    }
-
-    @Override
-    public void b0(Status status, g7.b bVar) {
-        i.e(status, "status");
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public void o0(Status status, g7.e eVar) {
-        switch (this.f11707b) {
-            case 0:
-                i.e(status, "status");
-                h5.a(status, eVar, this.f11708c);
-                return;
-            default:
-                i.e(status, "status");
-                throw new UnsupportedOperationException();
-        }
-    }
-
-    @Override
-    public void r(Status status, q qVar) {
-        i.e(status, "status");
-        throw new UnsupportedOperationException();
+    public final void writeToParcel(Parcel dest, int i10) {
+        kotlin.jvm.internal.i.e(dest, "dest");
+        int q5 = df.q(dest, 20293);
+        df.l(dest, 1, this.f12685a);
+        df.b(dest, 2, this.f12686b);
+        df.b(dest, 3, this.f12687c);
+        df.l(dest, 4, this.d);
+        df.l(dest, 5, this.e);
+        df.k(dest, 6, this.f12688f, i10);
+        df.r(dest, q5);
     }
 }

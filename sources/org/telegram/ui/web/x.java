@@ -1,36 +1,36 @@
 package org.telegram.ui.web;
 
-import ci.y7;
+import di.x7;
 import org.json.JSONObject;
 import org.telegram.messenger.FileLog;
 public final class x implements Runnable {
-    public final int f43306a;
-    public final String[] f43307b;
-    public final int f43308c;
-    public final y0 d;
-    public final y7 e;
+    public final int f45436a;
+    public final String[] f45437b;
+    public final int f45438c;
+    public final x0 d;
+    public final x7 e;
 
-    public x(String[] strArr, int i10, y0 y0Var, y7 y7Var, int i11) {
-        this.f43306a = i11;
-        this.f43307b = strArr;
-        this.f43308c = i10;
-        this.d = y0Var;
-        this.e = y7Var;
+    public x(String[] strArr, int i10, x0 x0Var, x7 x7Var, int i11) {
+        this.f45436a = i11;
+        this.f45437b = strArr;
+        this.f45438c = i10;
+        this.d = x0Var;
+        this.e = x7Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f43306a) {
+        switch (this.f45436a) {
             case 0:
-                int i10 = this.f43308c;
-                y0 y0Var = this.d;
-                y7 y7Var = this.e;
-                String[] strArr = this.f43307b;
+                int i10 = this.f45438c;
+                x0 x0Var = this.d;
+                x7 x7Var = this.e;
+                String[] strArr = this.f45437b;
                 if (strArr[0] != null) {
                     try {
                         JSONObject jSONObject = new JSONObject();
                         jSONObject.put("status", strArr[0]);
-                        b1.w(i10, y0Var, y7Var, "phone_requested", jSONObject);
+                        a1.w(i10, x0Var, x7Var, "phone_requested", jSONObject);
                         return;
                     } catch (Exception e) {
                         FileLog.e(e);
@@ -39,17 +39,17 @@ public final class x implements Runnable {
                 }
                 return;
             default:
-                String[] strArr2 = this.f43307b;
-                int i11 = this.f43308c;
-                y0 y0Var2 = this.d;
-                y7 y7Var2 = this.e;
+                String[] strArr2 = this.f45437b;
+                int i11 = this.f45438c;
+                x0 x0Var2 = this.d;
+                x7 x7Var2 = this.e;
                 try {
                     JSONObject jSONObject2 = new JSONObject();
                     jSONObject2.put("status", strArr2[0]);
-                    b1.w(i11, y0Var2, y7Var2, "write_access_requested", jSONObject2);
+                    a1.w(i11, x0Var2, x7Var2, "write_access_requested", jSONObject2);
                     return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
+                } catch (Exception e10) {
+                    FileLog.e(e10);
                     return;
                 }
         }

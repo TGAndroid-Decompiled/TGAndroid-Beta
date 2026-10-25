@@ -1,36 +1,15 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class s3 extends View {
-    public final int f23242a;
-    public final int f23243b;
+import java.util.ArrayList;
+import java.util.HashSet;
+public final class s3 {
+    public final ArrayList f25386a;
+    public final HashSet f25387b;
+    public final org.telegram.ui.t3 f25388c;
 
-    public s3(Context context, int i10, int i11) {
-        super(context);
-        this.f23242a = i11;
-        this.f23243b = i10;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f23242a) {
-            case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f23243b), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f23243b), 1073741824));
-                return;
-            default:
-                super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(this.f23243b, 1073741824));
-                return;
-        }
-    }
-
-    public s3(Context context, int i10) {
-        super(context);
-        this.f23242a = 0;
-        this.f23243b = i10;
+    public s3(ArrayList arrayList, HashSet hashSet, org.telegram.ui.t3 t3Var) {
+        this.f25386a = new ArrayList(arrayList);
+        this.f25387b = new HashSet(hashSet);
+        this.f25388c = t3Var;
     }
 }

@@ -7,10 +7,10 @@ public class KeepAliveJob extends JobIntentService {
     private static volatile CountDownLatch countDownLatch;
     private static volatile boolean startingJob;
     private static final Object sync = new Object();
-    private static Runnable finishJobByTimeoutRunnable = new z1(10);
+    private static Runnable finishJobByTimeoutRunnable = new a2(10);
 
     public static void finishJob() {
-        Utilities.globalQueue.postRunnable(new z1(10));
+        Utilities.globalQueue.postRunnable(new a2(10));
     }
 
     public static void finishJobInternal() {
@@ -50,7 +50,7 @@ public class KeepAliveJob extends JobIntentService {
     }
 
     public static void startJob() {
-        Utilities.globalQueue.postRunnable(new z1(11));
+        Utilities.globalQueue.postRunnable(new a2(11));
     }
 
     @Override

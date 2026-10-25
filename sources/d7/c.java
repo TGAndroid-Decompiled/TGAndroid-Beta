@@ -1,14 +1,40 @@
 package d7;
 
-import a4.l;
-public final class c {
-    public static final c f7888b;
-    public final l f7889a = new l(13);
+import android.os.Parcel;
+import android.os.Parcelable;
+public enum c implements Parcelable {
+    PLATFORM("platform"),
+    CROSS_PLATFORM("cross-platform");
+    
+    public static final Parcelable.Creator<c> CREATOR = new w.a(17);
+    public final String f8162a;
 
-    static {
-        c cVar = new c();
-        synchronized (c.class) {
-            f7888b = cVar;
+    c(String str) {
+        this.f8162a = str;
+    }
+
+    public static c a(String str) {
+        c[] values;
+        for (c cVar : values()) {
+            if (str.equals(cVar.f8162a)) {
+                return cVar;
+            }
         }
+        throw new Exception(a1.g.p("Attachment ", str, " not supported"));
+    }
+
+    @Override
+    public final int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public final String toString() {
+        return this.f8162a;
+    }
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeString(this.f8162a);
     }
 }

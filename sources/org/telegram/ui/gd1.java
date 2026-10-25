@@ -1,93 +1,62 @@
 package org.telegram.ui;
 
-import androidx.recyclerview.widget.RecyclerView;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import org.telegram.messenger.AndroidUtilities;
-public final class gd1 extends s4.r0 {
-    public final int f37543a;
-    public final Object f37544b;
+public final class gd1 extends org.telegram.ui.Cells.s1 {
+    public final Path He;
+    public final Paint Ie;
+    public final int Je;
+    public final int Ke;
+    public final int Le;
+    public final id1 Me;
 
-    public gd1(Object obj, int i10) {
-        this.f37543a = i10;
-        this.f37544b = obj;
+    public gd1(id1 id1Var, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11, int i12, int i13) {
+        super(context, i10, false, null, u6Var);
+        this.Me = id1Var;
+        this.Je = i11;
+        this.Ke = i12;
+        this.Le = i13;
+        this.He = new Path();
+        this.Ie = new Paint(1);
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        switch (this.f37543a) {
-            case 0:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((ld1) this.f37544b).getParentActivity().getCurrentFocus());
-                    return;
-                }
-                return;
-            case 1:
-            default:
-                return;
-            case 2:
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(((UsersSelectActivity) this.f37544b).f34261c);
-                    return;
-                }
-                return;
-            case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f37544b;
-                boolean z10 = true;
-                if (i10 == 1) {
-                    AndroidUtilities.hideKeyboard(wallpapersListActivity.getParentActivity().getCurrentFocus());
-                }
-                if (i10 == 0) {
-                    z10 = false;
-                }
-                wallpapersListActivity.f35534j0 = z10;
-                return;
-        }
+    public final void Y1(Canvas canvas) {
+        this.f25132i6 = 0;
+        this.f25145j6 = this.Y5.size() - 1;
+        super.Y1(canvas);
     }
 
     @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        int abs;
-        switch (this.f37543a) {
-            case 1:
-                se1 se1Var = (se1) this.f37544b;
-                if (se1Var.m0 && se1Var.V.N0() + 5 >= se1Var.f41376k0) {
-                    se1Var.J(se1Var.f41367b0);
-                }
-                xe1 xe1Var = se1Var.f41384t0;
-                if (xe1Var.f43584s0) {
-                    if (i10 != 0 || i11 != 0) {
-                        AndroidUtilities.hideKeyboard(xe1Var.f43578p0.getSearchField());
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 2:
-            default:
-                return;
-            case 3:
-                WallpapersListActivity wallpapersListActivity = (WallpapersListActivity) this.f37544b;
-                if (wallpapersListActivity.H.getAdapter() == wallpapersListActivity.J) {
-                    int L0 = wallpapersListActivity.K.L0();
-                    if (L0 == -1) {
-                        abs = 0;
-                    } else {
-                        abs = Math.abs(wallpapersListActivity.K.N0() - L0) + 1;
-                    }
-                    if (abs > 0) {
-                        int B = wallpapersListActivity.K.B();
-                        if (abs != 0 && L0 + abs > B - 2) {
-                            bi1 bi1Var = wallpapersListActivity.J;
-                            if (!bi1Var.f36080f && bi1Var.f36083s == 0) {
-                                bi1Var.F(bi1Var.h, bi1Var.f36082r, true);
-                                return;
-                            }
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-        }
+    public final void onDraw(Canvas canvas) {
+        canvas.save();
+        int O2 = O2(this.Je);
+        float H2 = H2(O2);
+        float G2 = G2(O2);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getPollButtonsLeft(), H2, getPollButtonsRight(), G2);
+        Path path = this.He;
+        path.rewind();
+        path.addRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), Path.Direction.CW);
+        Paint paint = this.Ie;
+        paint.setColor(0);
+        paint.setShadowLayer(AndroidUtilities.dp(2.0f), 0.0f, AndroidUtilities.dp(0.66f), org.telegram.ui.ActionBar.y6.o1(this.Me.f40225x * 0.2f, -16777216));
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), paint);
+        canvas.clipPath(path);
+        S1(canvas);
+        canvas.restore();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(this.Ke, this.Le);
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
     }
 }

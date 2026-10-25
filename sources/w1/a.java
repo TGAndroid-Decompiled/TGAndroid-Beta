@@ -1,18 +1,19 @@
 package w1;
 
-import a6.d;
 import androidx.lifecycle.a0;
 import androidx.lifecycle.t;
 import androidx.lifecycle.z;
+import b2.u;
+import b6.d;
 public final class a extends z {
-    public final d f48901l;
-    public t f48902m;
-    public b2.t f48903n;
+    public final d f50645l;
+    public t f50646m;
+    public u f50647n;
 
     public a(d dVar) {
-        this.f48901l = dVar;
-        if (dVar.f294a == null) {
-            dVar.f294a = this;
+        this.f50645l = dVar;
+        if (dVar.f3657a == null) {
+            dVar.f3657a = this;
             return;
         }
         throw new IllegalStateException("There is already a listener registered");
@@ -20,32 +21,32 @@ public final class a extends z {
 
     @Override
     public final void f() {
-        d dVar = this.f48901l;
-        dVar.f295b = true;
+        d dVar = this.f50645l;
+        dVar.f3658b = true;
         dVar.d = false;
-        dVar.f296c = false;
-        dVar.f299i.drainPermits();
+        dVar.f3659c = false;
+        dVar.f3662i.drainPermits();
         dVar.c();
     }
 
     @Override
     public final void g() {
-        this.f48901l.f295b = false;
+        this.f50645l.f3658b = false;
     }
 
     @Override
     public final void i(a0 a0Var) {
         super.i(a0Var);
-        this.f48902m = null;
-        this.f48903n = null;
+        this.f50646m = null;
+        this.f50647n = null;
     }
 
     public final void k() {
-        t tVar = this.f48902m;
-        b2.t tVar2 = this.f48903n;
-        if (tVar != null && tVar2 != null) {
-            super.i(tVar2);
-            d(tVar, tVar2);
+        t tVar = this.f50646m;
+        u uVar = this.f50647n;
+        if (tVar != null && uVar != null) {
+            super.i(uVar);
+            d(tVar, uVar);
         }
     }
 
@@ -54,7 +55,7 @@ public final class a extends z {
         sb2.append("LoaderInfo{");
         sb2.append(Integer.toHexString(System.identityHashCode(this)));
         sb2.append(" #0 : ");
-        Class<?> cls = this.f48901l.getClass();
+        Class<?> cls = this.f50645l.getClass();
         sb2.append(cls.getSimpleName());
         sb2.append("{");
         sb2.append(Integer.toHexString(System.identityHashCode(cls)));

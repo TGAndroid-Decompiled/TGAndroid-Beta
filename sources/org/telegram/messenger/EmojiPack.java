@@ -11,6 +11,7 @@ import java.nio.channels.FileChannel;
 import java.util.Arrays;
 import java.util.zip.DataFormatException;
 import java.util.zip.Inflater;
+import org.telegram.ui.Components.b10;
 public final class EmojiPack {
     private static final String ASSET_NAME = "emoji.pack";
     private static final int DEFLATE = 0;
@@ -57,7 +58,7 @@ public final class EmojiPack {
     }
 
     private static IllegalStateException damaged(String str) {
-        return new IllegalStateException(si.o0.h("Damaged emoji.pack: ", str));
+        return new IllegalStateException(b10.j("Damaged emoji.pack: ", str));
     }
 
     private Bitmap decode(int i10) {

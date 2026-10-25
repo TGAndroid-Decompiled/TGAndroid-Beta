@@ -1,14 +1,14 @@
 package k2;
 public final class w extends Exception {
-    public final b2.w f14872a;
+    public final b2.x f16308a;
 
-    public w(Exception exc, b2.w wVar) {
+    public w(Exception exc, b2.x xVar) {
         super(exc);
-        this.f14872a = wVar;
+        this.f16308a = xVar;
     }
 
-    public w(String str, b2.w wVar) {
+    public w(String str, b2.x xVar) {
         super(str);
-        this.f14872a = wVar;
+        this.f16308a = xVar;
     }
 }

@@ -1,47 +1,12 @@
 package hi;
-
-import android.view.View;
-import org.telegram.ui.Components.d91;
-public final class c0 extends d91 {
-    public final k0 f12164a;
-
-    public c0(k0 k0Var) {
-        this.f12164a = k0Var;
-    }
-
-    @Override
-    public final void b(View view, int i10, int i11) {
-        ((h0) view).getClass();
-    }
-
-    @Override
-    public final View d(int i10) {
-        k0 k0Var = this.f12164a;
-        if (i10 == 2) {
-            return k0Var.f12206x;
-        }
-        if (i10 == 0) {
-            return k0Var.v;
-        }
-        return k0Var.f12205w;
-    }
-
-    @Override
-    public final int e() {
-        if (this.f12164a.N) {
-            return 1;
-        }
-        return 3;
-    }
-
-    @Override
-    public final int h(int i10) {
-        if (this.f12164a.N || i10 == 2) {
-            return 2;
-        }
-        if (i10 == 0) {
-            return 0;
-        }
-        return 1;
-    }
+public final class c0 {
+    public boolean f12902a;
+    public boolean f12903b;
+    public boolean f12904c;
+    public boolean d;
+    public String e;
+    public long f12905f;
+    public int f12906g;
+    public int h;
+    public String f12907i;
 }

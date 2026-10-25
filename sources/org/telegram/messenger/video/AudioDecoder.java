@@ -150,8 +150,8 @@ public class AudioDecoder {
             FileLog.e(e);
             try {
                 return getInputMediaFormat().getInteger("channel-count");
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
                 return -1;
             }
         }
@@ -164,8 +164,8 @@ public class AudioDecoder {
             FileLog.e(e);
             try {
                 return getInputMediaFormat().getLong("durationUs");
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
                 return -1L;
             }
         }
@@ -212,8 +212,8 @@ public class AudioDecoder {
             FileLog.e(e);
             try {
                 return getInputMediaFormat().getInteger("sample-rate");
-            } catch (Exception e7) {
-                FileLog.e(e7);
+            } catch (Exception e10) {
+                FileLog.e(e10);
                 return -1;
             }
         }

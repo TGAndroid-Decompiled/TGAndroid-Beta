@@ -1,53 +1,29 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-public final class ue implements Runnable {
-    public final int f19757a;
-    public final MessagesStorage f19758b;
-    public final ArrayList f19759c;
-    public final long d;
+import java.util.Comparator;
+import org.telegram.messenger.support.LongSparseIntArray;
+public final class ue implements Comparator {
+    public final int f21436a;
+    public final LongSparseIntArray f21437b;
 
-    public ue(MessagesStorage messagesStorage, long j10, ArrayList arrayList, int i10) {
-        this.f19757a = i10;
-        this.f19758b = messagesStorage;
-        this.d = j10;
-        this.f19759c = arrayList;
+    public ue(LongSparseIntArray longSparseIntArray, int i10) {
+        this.f21436a = i10;
+        this.f21437b = longSparseIntArray;
     }
 
     @Override
-    public final void run() {
-        switch (this.f19757a) {
+    public final int compare(Object obj, Object obj2) {
+        int lambda$checkLoadedRemoteFilters$71;
+        int lambda$resetDialogs$97;
+        Long l4 = (Long) obj;
+        Long l10 = (Long) obj2;
+        switch (this.f21436a) {
             case 0:
-                this.f19758b.lambda$deleteUserChatHistory$86(this.f19759c, this.d);
-                return;
-            case 1:
-                this.f19758b.lambda$emptyMessagesMedia$99(this.f19759c, this.d);
-                return;
-            case 2:
-                this.f19758b.lambda$deleteSavedDialog$54(this.d, this.f19759c);
-                return;
-            case 3:
-                this.f19758b.lambda$updateChannelUsers$125(this.d, this.f19759c);
-                return;
-            case 4:
-                this.f19758b.lambda$markVoiceMessageContentAsRead$217(this.f19759c, this.d);
-                return;
-            case 5:
-                this.f19758b.lambda$markMessagesAsDeletedInternal$226(this.f19759c, this.d);
-                return;
-            case 6:
-                this.f19758b.lambda$removeTopics$58(this.f19759c, this.d);
-                return;
+                lambda$checkLoadedRemoteFilters$71 = MessagesStorage.lambda$checkLoadedRemoteFilters$71(this.f21437b, l4, l10);
+                return lambda$checkLoadedRemoteFilters$71;
             default:
-                this.f19758b.lambda$createTaskForSecretChat$117(this.d, this.f19759c);
-                return;
+                lambda$resetDialogs$97 = MessagesStorage.lambda$resetDialogs$97(this.f21437b, l4, l10);
+                return lambda$resetDialogs$97;
         }
-    }
-
-    public ue(MessagesStorage messagesStorage, ArrayList arrayList, long j10, int i10) {
-        this.f19757a = i10;
-        this.f19758b = messagesStorage;
-        this.f19759c = arrayList;
-        this.d = j10;
     }
 }

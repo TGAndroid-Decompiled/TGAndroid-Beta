@@ -2,31 +2,40 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.MediaController;
 public final class z6 implements Runnable {
-    public final int f20272a;
-    public final MediaController.MediaLoader f20273b;
-    public final int f20274c;
+    public final int f21969a;
+    public final int f21970b;
+    public final int f21971c;
+    public final Object d;
 
-    public z6(MediaController.MediaLoader mediaLoader, int i10, int i11) {
-        this.f20272a = i11;
-        this.f20273b = mediaLoader;
-        this.f20274c = i10;
+    public z6(int i10, int i11, String str) {
+        this.f21969a = 3;
+        this.f21970b = i10;
+        this.f21971c = i11;
+        this.d = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f20272a) {
+        switch (this.f21969a) {
             case 0:
-                this.f20273b.lambda$didReceivedNotification$11(this.f20274c);
+                ((MediaController.AnonymousClass8) this.d).lambda$onStateChanged$0(this.f21970b, this.f21971c);
                 return;
             case 1:
-                this.f20273b.lambda$copyFile$9(this.f20274c);
+                ((MediaDataController) this.d).lambda$processLoadedStickers$106(this.f21970b, this.f21971c);
                 return;
             case 2:
-                this.f20273b.lambda$copyFile$10(this.f20274c);
+                ((NotificationsController) this.d).lambda$deleteNotificationChannelGlobal$44(this.f21970b, this.f21971c);
                 return;
             default:
-                this.f20273b.lambda$processLivePhotoMessage$6(this.f20274c);
+                PushListenerController.lambda$sendRegistrationToServer$0(this.f21970b, this.f21971c, (String) this.d);
                 return;
         }
+    }
+
+    public z6(Object obj, int i10, int i11, int i12) {
+        this.f21969a = i12;
+        this.d = obj;
+        this.f21970b = i10;
+        this.f21971c = i11;
     }
 }

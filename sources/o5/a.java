@@ -1,23 +1,43 @@
 package o5;
+public final class a implements id.a {
+    public static final Object f19092c = new Object();
+    public volatile b f19093a;
+    public volatile Object f19094b;
 
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-public final class a {
-    public static final int e = 0;
-    public final g f17745a;
-    public final List f17746b;
-    public final b f17747c;
-    public final String d;
-
-    static {
-        DesugarCollections.unmodifiableList(new ArrayList());
+    public static id.a a(b bVar) {
+        if (bVar instanceof a) {
+            return bVar;
+        }
+        ?? obj = new Object();
+        obj.f19094b = f19092c;
+        obj.f19093a = bVar;
+        return obj;
     }
 
-    public a(g gVar, List list, b bVar, String str) {
-        this.f17745a = gVar;
-        this.f17746b = list;
-        this.f17747c = bVar;
-        this.d = str;
+    @Override
+    public final Object mo27get() {
+        Object obj;
+        Object obj2 = this.f19094b;
+        Object obj3 = f19092c;
+        if (obj2 == obj3) {
+            synchronized (this) {
+                try {
+                    obj = this.f19094b;
+                    if (obj == obj3) {
+                        obj = this.f19093a.mo27get();
+                        Object obj4 = this.f19094b;
+                        if (obj4 != obj3 && obj4 != obj) {
+                            throw new IllegalStateException("Scoped provider was invoked recursively returning different results: " + obj4 + " & " + obj + ". This is likely due to a circular dependency.");
+                        }
+                        this.f19094b = obj;
+                        this.f19093a = null;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
+            }
+            return obj;
+        }
+        return obj2;
     }
 }

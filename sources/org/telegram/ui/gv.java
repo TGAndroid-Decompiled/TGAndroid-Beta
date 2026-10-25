@@ -1,30 +1,27 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-public final class gv implements ValueAnimator.AnimatorUpdateListener {
-    public final int f37667a;
-    public final ey f37668b;
+import org.telegram.tgnet.TLRPC;
+public final class gv implements Runnable {
+    public final int f39782a;
+    public final cy f39783b;
+    public final TLRPC.TL_attachMenuBot f39784c;
+    public final LaunchActivity d;
 
-    public gv(ey eyVar, int i10) {
-        this.f37667a = i10;
-        this.f37668b = eyVar;
+    public gv(cy cyVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, LaunchActivity launchActivity, int i10) {
+        this.f39782a = i10;
+        this.f39783b = cyVar;
+        this.f39784c = tL_attachMenuBot;
+        this.d = launchActivity;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f37667a) {
+    public final void run() {
+        switch (this.f39782a) {
             case 0:
-                ey eyVar = this.f37668b;
-                eyVar.getClass();
-                eyVar.x4(((Float) valueAnimator.getAnimatedValue()).floatValue());
-                return;
-            case 1:
-                this.f37668b.B4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                cy.A0(this.f39783b, this.f39784c, this.d);
                 return;
             default:
-                ey eyVar2 = this.f37668b;
-                eyVar2.getClass();
-                eyVar2.D4(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                cy.v0(this.f39783b, this.f39784c, this.d);
                 return;
         }
     }

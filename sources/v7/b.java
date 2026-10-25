@@ -1,36 +1,83 @@
 package v7;
 
-import java.util.Iterator;
-public final class b extends i9 {
-    public final transient d f48415c;
-    public final transient c d;
+import a8.y;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import w7.v;
+public final class b extends y implements ListIterator {
+    public final int f50082b;
+    public int f50083c;
+    public final d d;
 
-    public b(d dVar, c cVar) {
-        this.f48415c = dVar;
-        this.d = cVar;
+    public b(d dVar, int i10) {
+        super(6);
+        int size = dVar.size();
+        if (i10 >= 0 && i10 <= size) {
+            this.f50082b = size;
+            this.f50083c = i10;
+            this.d = dVar;
+            return;
+        }
+        throw new IndexOutOfBoundsException(v.c(i10, size, "index"));
+    }
+
+    public final Object a(int i10) {
+        return this.d.get(i10);
     }
 
     @Override
-    public final boolean contains(Object obj) {
-        if (this.f48415c.get(obj) != null) {
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.f50083c < this.f50082b) {
             return true;
         }
         return false;
     }
 
     @Override
-    public final int h(Object[] objArr) {
-        return this.d.h(objArr);
+    public final boolean hasPrevious() {
+        if (this.f50083c > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final Iterator iterator() {
-        return this.d.listIterator(0);
+    public final Object next() {
+        if (hasNext()) {
+            int i10 = this.f50083c;
+            this.f50083c = i10 + 1;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final int size() {
-        this.f48415c.getClass();
-        return 1;
+    public final int nextIndex() {
+        return this.f50083c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f50083c - 1;
+            this.f50083c = i10;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f50083c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

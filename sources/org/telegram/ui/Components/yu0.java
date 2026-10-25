@@ -1,10 +1,8 @@
 package org.telegram.ui.Components;
+public interface yu0 {
+    org.telegram.ui.ActionBar.g1 Z(int i10, Runnable runnable, String str, boolean z10, boolean z11);
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class yu0 extends MessageObject {
-    @Override
-    public final boolean canDeleteMessage(boolean z10, TLRPC.Chat chat) {
-        return false;
-    }
+    void v();
+
+    org.telegram.ui.ActionBar.g1 x(String str);
 }

@@ -1,5 +1,54 @@
 package x7;
 
-import android.os.IInterface;
-public interface ma extends IInterface {
+import a8.gg;
+import a8.hg;
+import android.content.Context;
+import com.google.android.gms.tasks.Task;
+import java.util.HashMap;
+public final class ma {
+    public static va f51578j;
+    public static final ab f51579k;
+    public final String f51580a;
+    public final String f51581b;
+    public final la f51582c;
+    public final sb.k d;
+    public final Task e;
+    public final Task f51583f;
+    public final String f51584g;
+    public final int h;
+    public final HashMap f51585i = new HashMap();
+
+    static {
+        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
+        objArr[0].getClass();
+        objArr[1].getClass();
+        f51579k = new ab(objArr);
+    }
+
+    public ma(Context context, sb.k kVar, la laVar) {
+        int i10;
+        new HashMap();
+        this.f51580a = context.getPackageName();
+        this.f51581b = sb.c.a(context);
+        this.d = kVar;
+        this.f51582c = laVar;
+        qa.b();
+        this.f51584g = "vision-common";
+        sb.f a2 = sb.f.a();
+        gg ggVar = new gg(this, 8);
+        a2.getClass();
+        this.e = sb.f.b(ggVar);
+        sb.f a10 = sb.f.a();
+        kVar.getClass();
+        hg hgVar = new hg(kVar, 3);
+        a10.getClass();
+        this.f51583f = sb.f.b(hgVar);
+        ab abVar = f51579k;
+        if (abVar.containsKey("vision-common")) {
+            i10 = z6.e.d(context, (String) abVar.get("vision-common"), false);
+        } else {
+            i10 = -1;
+        }
+        this.h = i10;
+    }
 }

@@ -1,7 +1,7 @@
 package org.telegram.messenger.time;
 
 import a1.g;
-import com.google.android.gms.internal.play_billing.k3;
+import c3.h0;
 import j$.util.DesugarTimeZone;
 import j$.util.concurrent.ConcurrentHashMap;
 import java.io.ObjectInputStream;
@@ -318,7 +318,7 @@ public class FastDateParser implements DateParser, Serializable {
                 switch (charAt) {
                     case '\'':
                         if (str.length() > 2) {
-                            return new CopyQuotedStrategy(k3.i(1, 1, str));
+                            return new CopyQuotedStrategy(h0.l(1, 1, str));
                         }
                         return new CopyQuotedStrategy(str);
                     case 'S':

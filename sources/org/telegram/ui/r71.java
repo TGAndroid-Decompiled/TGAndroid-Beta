@@ -1,39 +1,30 @@
 package org.telegram.ui;
 
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class r71 implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final b81 f41050a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class r71 implements RequestDelegate {
+    public final int f43044a;
+    public final d81 f43045b;
 
-    public r71(b81 b81Var) {
-        this.f41050a = b81Var;
+    public r71(d81 d81Var, int i10) {
+        this.f43044a = i10;
+        this.f43045b = d81Var;
     }
 
     @Override
-    public r0.k1 B0(View view, r0.k1 k1Var) {
-        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
-        int i10 = defaultWindowInsets.d;
-        b81 b81Var = this.f41050a;
-        b81Var.T = i10;
-        b81Var.f35956c.setPadding(0, AndroidUtilities.dp(12.0f) + defaultWindowInsets.f12316b, 0, b81Var.T + b81Var.U);
-        return r0.k1.f45249b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        return Boolean.valueOf(b81.U(this.f41050a, (org.telegram.ui.Components.l61) obj, (View) obj2));
-    }
-
-    @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        b81.f0(this.f41050a, (org.telegram.ui.Components.l61) obj);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f43044a) {
+            case 0:
+                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
+                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
+                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
+                d81 d81Var = this.f43045b;
+                d81Var.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new r71(d81Var, 1));
+                return;
+            default:
+                this.f43045b.getMessagesController().loadAppConfig();
+                return;
+        }
     }
 }

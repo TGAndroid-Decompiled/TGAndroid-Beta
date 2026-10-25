@@ -1,29 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class n31 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28772a;
-    public final q31 f28773b;
+import org.telegram.messenger.AndroidUtilities;
+public final class n31 implements Runnable {
+    public final int f30828a;
+    public final e41 f30829b;
 
-    public n31(q31 q31Var, int i10) {
-        this.f28772a = i10;
-        this.f28773b = q31Var;
+    public n31(e41 e41Var, int i10) {
+        this.f30828a = i10;
+        this.f30829b = e41Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28772a) {
+    public final void run() {
+        switch (this.f30828a) {
             case 0:
-                ci.h3 h3Var = this.f28773b.f29786f;
-                h3Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                h3Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
-                h3Var.invalidate();
+                e41 e41Var = this.f30829b;
+                u31 u31Var = e41Var.G;
+                u31Var.C1(true);
+                s31 s31Var = e41Var.f27737s;
+                s31Var.C1(true);
+                e41Var.J.a(true, true);
+                AndroidUtilities.updateVisibleRows(s31Var);
+                AndroidUtilities.updateVisibleRows(u31Var);
                 return;
             default:
-                q31 q31Var = this.f28773b;
-                q31Var.getClass();
-                q31Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                q31Var.h();
+                e41 e41Var2 = this.f30829b;
+                if (e41Var2.l()) {
+                    e41Var2.m();
+                    return;
+                }
                 return;
         }
     }

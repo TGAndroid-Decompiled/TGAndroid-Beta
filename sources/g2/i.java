@@ -1,40 +1,40 @@
 package g2;
 
+import a8.ac;
 import android.content.Context;
 import android.net.Uri;
-import b2.r0;
-import v7.w6;
+import b2.s0;
 public final class i implements e2.d {
-    public static final d9.u e = w6.a(new a3.s(2));
-    public final j9.z f10797a;
-    public final qf.b f10798b;
-    public final int f10799c;
+    public static final e9.t e = ac.a(new a3.s(2));
+    public final k9.z f12245a;
+    public final rf.b f12246b;
+    public final int f12247c;
     public final boolean d;
 
-    public i(c5.f fVar) {
-        this.f10798b = new qf.b((Context) fVar.f4735c, 18);
-        j9.z zVar = (j9.z) e.get();
+    public i(d5.f fVar) {
+        this.f12246b = new rf.b((Context) fVar.f7972c, 19);
+        k9.z zVar = (k9.z) e.get();
         zVar.getClass();
-        this.f10797a = zVar;
-        this.f10799c = fVar.f4733a;
-        this.d = fVar.f4734b;
+        this.f12245a = zVar;
+        this.f12247c = fVar.f7970a;
+        this.d = fVar.f7971b;
     }
 
     @Override
-    public final j9.y g(r0 r0Var) {
-        byte[] bArr = r0Var.f3966k;
+    public final k9.y H(byte[] bArr) {
+        return ((k9.a0) this.f12245a).a(new com.google.firebase.messaging.h(1, this, bArr));
+    }
+
+    @Override
+    public final k9.y t(s0 s0Var) {
+        byte[] bArr = s0Var.f3417k;
         if (bArr != null) {
-            return v(bArr);
+            return H(bArr);
         }
-        Uri uri = r0Var.f3969n;
+        Uri uri = s0Var.f3420n;
         if (uri != null) {
-            return ((j9.a0) this.f10797a).a(new com.google.firebase.messaging.h(2, this, uri));
+            return ((k9.a0) this.f12245a).a(new com.google.firebase.messaging.h(2, this, uri));
         }
         return null;
-    }
-
-    @Override
-    public final j9.y v(byte[] bArr) {
-        return ((j9.a0) this.f10797a).a(new com.google.firebase.messaging.h(1, this, bArr));
     }
 }

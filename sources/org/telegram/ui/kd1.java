@@ -1,46 +1,65 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class kd1 extends org.telegram.ui.Components.km0 {
-    public final ArrayList f38898c = new ArrayList();
-    public final ArrayList d = new ArrayList();
-    public jd1 e;
-    public int f38899f;
-    public final ld1 h;
+import android.text.TextUtils;
+import android.widget.EditText;
+import org.telegram.messenger.DispatchQueue2;
+import org.telegram.messenger.Utilities;
+public final class kd1 extends org.telegram.ui.ActionBar.s0 {
+    public boolean f40886a = false;
+    public final pd1 f40887b;
 
-    public kd1(ld1 ld1Var) {
-        this.h = ld1Var;
+    public kd1(pd1 pd1Var) {
+        this.f40887b = pd1Var;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.f38898c.size();
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        ArrayList arrayList = this.f38898c;
-        TLRPC.Chat chat = (TLRPC.Chat) arrayList.get(i10);
-        String str = (String) this.d.get(i10);
-        org.telegram.ui.Cells.f4 f4Var = (org.telegram.ui.Cells.f4) b1Var.f46342a;
-        String str2 = chat.title;
-        boolean z10 = true;
-        if (i10 == arrayList.size() - 1) {
-            z10 = false;
+    public final void h() {
+        pd1 pd1Var = this.f40887b;
+        if (pd1Var.f42468a.getVisibility() != 0) {
+            pd1Var.f42468a.setVisibility(0);
+            pd1Var.f42468a.setAlpha(0.0f);
         }
-        f4Var.e(chat, str2, str, z10);
-        f4Var.c(this.h.f39209w.contains(Long.valueOf(chat.f20344id)), false);
+        pd1Var.f42473r.setVisibility(8);
+        pd1Var.d.l();
+        pd1Var.f42468a.animate().alpha(1.0f).setDuration(150L).setListener(null).start();
+        pd1Var.f42474s.animate().alpha(0.0f).setDuration(150L).setListener(new jd1(this, 0)).start();
+        this.f40886a = false;
     }
 
     @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        return new s4.b1(new org.telegram.ui.Cells.f4(viewGroup.getContext(), 1, 0, false));
+    public final void l(EditText editText) {
+        String obj = editText.getText().toString();
+        od1 od1Var = this.f40887b.e;
+        if (od1Var.e != null) {
+            Utilities.searchQueue.cancelRunnable(od1Var.e);
+            od1Var.e = null;
+        }
+        if (TextUtils.isEmpty(obj)) {
+            od1Var.f42161c.clear();
+            od1Var.d.clear();
+            od1Var.l();
+            od1Var.h.f42473r.setVisibility(8);
+        } else {
+            int i10 = od1Var.f42162f + 1;
+            od1Var.f42162f = i10;
+            DispatchQueue2 dispatchQueue2 = Utilities.searchQueue;
+            nd1 nd1Var = new nd1(od1Var, obj, i10, 0);
+            od1Var.e = nd1Var;
+            dispatchQueue2.postRunnable(nd1Var, 300L);
+        }
+        if (!this.f40886a && !TextUtils.isEmpty(obj)) {
+            if (this.f40887b.f42474s.getVisibility() != 0) {
+                this.f40887b.f42474s.setVisibility(0);
+                this.f40887b.f42474s.setAlpha(0.0f);
+            }
+            this.f40887b.f42468a.animate().alpha(0.0f).setDuration(150L).setListener(new jd1(this, 1)).start();
+            this.f40887b.e.d.clear();
+            this.f40887b.e.f42161c.clear();
+            this.f40887b.e.l();
+            this.f40887b.f42474s.animate().setListener(null).alpha(1.0f).setDuration(150L).start();
+            this.f40886a = true;
+        } else if (this.f40886a && TextUtils.isEmpty(obj)) {
+            h();
+        }
     }
 }

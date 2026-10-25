@@ -1,93 +1,31 @@
 package h8;
 
-import a9.w;
-import android.content.Context;
-import android.os.Bundle;
+import a8.df;
 import android.os.Parcel;
-import android.os.RemoteException;
-import android.util.Log;
+import android.os.Parcelable;
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
-import n6.l;
-import v7.a8;
-import v7.o8;
-import v7.s7;
-public abstract class e {
-    public static boolean f11713a = false;
-    public static int f11714b = 1;
+import java.util.List;
+public final class e extends p6.a {
+    public static final Parcelable.Creator<e> CREATOR = new j(7);
+    public final List f12704a;
+    public final boolean f12705b;
+    public final boolean f12706c;
 
-    public static final ArrayList a(ArrayList arrayList) {
-        ArrayList arrayList2 = new ArrayList();
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            w wVar = (w) obj;
-            Bundle bundle = new Bundle();
-            bundle.putInt("event_type", wVar.f357a);
-            bundle.putLong("event_timestamp", wVar.f358b);
-            arrayList2.add(bundle);
-        }
-        return arrayList2;
+    public e(ArrayList arrayList, boolean z10, boolean z11) {
+        this.f12704a = arrayList;
+        this.f12705b = z10;
+        this.f12706c = z11;
     }
 
-    public static synchronized int b(Context context) {
-        String str;
-        synchronized (e.class) {
-            try {
-                l.i(context, "Context is null");
-                Log.d("e", "preferredRenderer: ".concat("null"));
-                if (f11713a) {
-                    return 0;
-                }
-                try {
-                    i8.e a2 = a8.a(context);
-                    try {
-                        i8.a V0 = a2.V0();
-                        l.h(V0);
-                        s7.f48581a = V0;
-                        s7.e X0 = a2.X0();
-                        if (o8.f48550a == null) {
-                            l.i(X0, "delegate must not be null");
-                            o8.f48550a = X0;
-                        }
-                        f11713a = true;
-                        try {
-                            Parcel M0 = a2.M0(a2.N0(), 9);
-                            int readInt = M0.readInt();
-                            M0.recycle();
-                            if (readInt == 2) {
-                                f11714b = 2;
-                            }
-                            x6.b bVar = new x6.b(context);
-                            Parcel N0 = a2.N0();
-                            s7.b.c(N0, bVar);
-                            N0.writeInt(0);
-                            a2.R0(N0, 10);
-                        } catch (RemoteException e) {
-                            Log.e("e", "Failed to retrieve renderer type or log initialization.", e);
-                        }
-                        int i10 = f11714b;
-                        if (i10 != 1) {
-                            if (i10 != 2) {
-                                str = "null";
-                            } else {
-                                str = "LATEST";
-                            }
-                        } else {
-                            str = "LEGACY";
-                        }
-                        Log.d("e", "loadedRenderer: ".concat(str));
-                        return 0;
-                    } catch (RemoteException e7) {
-                        throw new RuntimeException(e7);
-                    }
-                } catch (k6.f e10) {
-                    return e10.f15020a;
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q5 = df.q(parcel, 20293);
+        df.p(parcel, 1, DesugarCollections.unmodifiableList(this.f12704a));
+        df.s(parcel, 2, 4);
+        parcel.writeInt(this.f12705b ? 1 : 0);
+        df.s(parcel, 3, 4);
+        parcel.writeInt(this.f12706c ? 1 : 0);
+        df.r(parcel, q5);
     }
 }

@@ -3,8 +3,8 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import org.telegram.ui.Components.nw0;
-public final class d extends y {
+import org.telegram.ui.Components.vw0;
+public final class d extends z {
     public final k h;
 
     public d(k kVar, Context context, k kVar2) {
@@ -16,12 +16,12 @@ public final class d extends y {
     public final void dispatchDraw(Canvas canvas) {
         Canvas canvas2;
         k kVar = this.h;
-        Paint paint = kVar.L0;
-        if (kVar.K0 && this.f21964a && kVar.f21088w != 0) {
-            kVar.M0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
-            paint.setColor(kVar.f21088w);
+        Paint paint = kVar.M0;
+        if (kVar.L0 && this.f23775a && kVar.f22792w != 0) {
+            kVar.N0.set(0, 0, getMeasuredWidth(), getMeasuredHeight());
+            paint.setColor(kVar.f22792w);
             canvas2 = canvas;
-            kVar.J0.I(canvas2, 0.0f, kVar.M0, paint, true);
+            kVar.K0.H(canvas2, 0.0f, kVar.N0, paint, true);
         } else {
             canvas2 = canvas;
         }
@@ -31,18 +31,18 @@ public final class d extends y {
     @Override
     public final void onAttachedToWindow() {
         super.onAttachedToWindow();
-        nw0 nw0Var = this.h.J0;
-        if (nw0Var != null) {
-            nw0Var.T.add(this);
+        vw0 vw0Var = this.h.K0;
+        if (vw0Var != null) {
+            vw0Var.O.add(this);
         }
     }
 
     @Override
     public final void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        nw0 nw0Var = this.h.J0;
-        if (nw0Var != null) {
-            nw0Var.T.remove(this);
+        vw0 vw0Var = this.h.K0;
+        if (vw0Var != null) {
+            vw0Var.O.remove(this);
         }
     }
 
@@ -51,7 +51,7 @@ public final class d extends y {
         super.setAlpha(f7);
         k kVar = this.h;
         kVar.invalidate();
-        Runnable runnable = kVar.T0;
+        Runnable runnable = kVar.V0;
         if (runnable != null) {
             runnable.run();
         }
@@ -60,8 +60,8 @@ public final class d extends y {
     @Override
     public final void setBackgroundColor(int i10) {
         k kVar = this.h;
-        kVar.f21088w = i10;
-        if (!kVar.K0) {
+        kVar.f22792w = i10;
+        if (!kVar.L0) {
             super.setBackgroundColor(i10);
         }
     }

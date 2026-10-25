@@ -1,29 +1,18 @@
 package org.telegram.ui.Components;
 
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class k11 extends MetricAffectingSpan {
-    public TextPaint f27831a;
+import org.telegram.tgnet.TLRPC;
+public final class k11 {
+    public final long f29774a;
+    public final TLRPC.InputFile f29775b;
+    public final TLRPC.InputEncryptedFile f29776c;
+    public final byte[] d;
+    public final byte[] e;
 
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f27831a;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
-        textPaint.baselineShift = textPaint2.baselineShift;
-        textPaint.bgColor = textPaint2.bgColor;
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-        TextPaint textPaint2 = this.f27831a;
-        textPaint.setColor(textPaint2.getColor());
-        textPaint.setTypeface(textPaint2.getTypeface());
-        textPaint.setFlags(textPaint2.getFlags());
-        textPaint.setTextSize(textPaint2.getTextSize());
-        textPaint.baselineShift = textPaint2.baselineShift;
-        textPaint.bgColor = textPaint2.bgColor;
+    public k11(long j10, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2) {
+        this.f29774a = j10;
+        this.f29775b = inputFile;
+        this.f29776c = inputEncryptedFile;
+        this.d = bArr;
+        this.e = bArr2;
     }
 }

@@ -1,18 +1,24 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.NotificationCenter;
-public final class c5 implements NotificationCenter.NotificationCenterDelegate {
-    public final d5 f36219a;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLObject;
+public abstract class c5 {
+    public final b5 f38261a = new b5(this);
+    public final NotificationCenter f38262b = NotificationCenter.getInstance(UserConfig.selectedAccount);
+    public final Object f38263c;
+    public final int d;
+    public final int e;
+    public bi.y7 f38264f;
+    public boolean f38265g;
 
-    public c5(d5 d5Var) {
-        this.f36219a = d5Var;
+    public c5(int i10, TLObject tLObject, int i11) {
+        this.f38263c = tLObject;
+        this.d = i10;
+        this.e = i11;
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        d5 d5Var = this.f36219a;
-        if (d5Var.f36471g && i10 == d5Var.e) {
-            d5Var.b(objArr);
-        }
-    }
+    public abstract void a();
+
+    public abstract void b(Object... objArr);
 }

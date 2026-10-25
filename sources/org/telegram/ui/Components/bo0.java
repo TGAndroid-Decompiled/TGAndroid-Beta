@@ -1,40 +1,197 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
-public final class bo0 extends s4.k {
-    @Override
-    public final boolean r(s4.b1 b1Var, b2.u0 u0Var, int i10, int i11, int i12, int i13) {
-        ho0 ho0Var;
-        go0 go0Var;
-        View view = b1Var.f46342a;
-        if ((view instanceof ho0) && (go0Var = (ho0Var = (ho0) view).f27088a) != null) {
-            go0Var.f753i = go0Var.N;
-            go0Var.f751g = go0Var.O;
-            go0Var.h = go0Var.P;
-            ho0Var.f27089b.d(0.0f, true);
-            ho0Var.invalidate();
-        }
-        int translationX = i10 + ((int) view.getTranslationX());
-        int translationY = i11 + ((int) view.getTranslationY());
-        R(b1Var);
-        int i14 = i12 - translationX;
-        int i15 = i13 - translationY;
-        if (i14 == 0 && i15 == 0) {
-            v(b1Var);
-            return false;
-        }
-        if (i14 != 0) {
-            view.setTranslationX(-i14);
-        }
-        if (i15 != 0) {
-            view.setTranslationY(-i15);
-        }
-        this.f46408r.add(new s4.j(b1Var, translationX, translationY, i12, i13));
-        return true;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+public final class bo0 extends lm0 {
+    public final co0 f26921c;
+
+    public bo0(co0 co0Var) {
+        this.f26921c = co0Var;
     }
 
     @Override
-    public final boolean t(s4.b1 b1Var) {
-        return true;
+    public final boolean D(s4.e1 e1Var) {
+        int i10 = e1Var.f47738f;
+        if (i10 == 1 || i10 == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public final MessageObject E(int i10) {
+        co0 co0Var = this.f26921c;
+        int i11 = co0Var.v;
+        if (i10 >= i11 && i10 < co0Var.f27222w) {
+            return (MessageObject) co0Var.e.get(i10 - i11);
+        }
+        int i12 = co0Var.f27224y;
+        if (i10 >= i12 && i10 < co0Var.E) {
+            return (MessageObject) co0Var.f27218f.get(i10 - i12);
+        }
+        return null;
+    }
+
+    @Override
+    public final int h() {
+        return this.f26921c.f27220r;
+    }
+
+    @Override
+    public final int j(int i10) {
+        co0 co0Var = this.f26921c;
+        if (i10 != co0Var.f27221s && i10 != co0Var.f27223x) {
+            MessageObject E = E(i10);
+            if (E == null || !E.isMusic()) {
+                return 1;
+            }
+            return 2;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        boolean z10;
+        int id2;
+        boolean z11;
+        int id3;
+        boolean z12;
+        int i11;
+        int i12;
+        co0 co0Var = this.f26921c;
+        org.telegram.ui.z00 z00Var = co0Var.J;
+        int i13 = e1Var.f47738f;
+        View view = e1Var.f47735a;
+        boolean z13 = false;
+        if (i13 == 0) {
+            org.telegram.ui.Cells.z3 z3Var = (org.telegram.ui.Cells.z3) view;
+            if (i10 == co0Var.f27221s) {
+                String string = LocaleController.getString(R.string.Downloading);
+                if (z3Var.getText().equals(string)) {
+                    if (co0Var.H) {
+                        i12 = R.string.PauseAll;
+                    } else {
+                        i12 = R.string.ResumeAll;
+                    }
+                    String string2 = LocaleController.getString(i12);
+                    boolean z14 = co0Var.H;
+                    org.telegram.ui.Cells.y3 y3Var = z3Var.f25780b;
+                    y3Var.c(string2, true, z14);
+                    y3Var.setVisibility(0);
+                    return;
+                }
+                if (co0Var.H) {
+                    i11 = R.string.PauseAll;
+                } else {
+                    i11 = R.string.ResumeAll;
+                }
+                z3Var.b(string, LocaleController.getString(i11), new ao0(this));
+                return;
+            } else if (i10 == co0Var.f27223x) {
+                z3Var.b(LocaleController.getString(R.string.RecentlyDownloaded), LocaleController.getString(R.string.Settings), new w80(this, 9));
+                return;
+            } else {
+                return;
+            }
+        }
+        MessageObject E = E(i10);
+        if (E != null) {
+            if (co0Var.I.g() && i10 >= co0Var.v && i10 < co0Var.f27222w) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            float f7 = 0.0f;
+            if (i13 == 1) {
+                yn0 yn0Var = (yn0) view;
+                org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, yn0Var, null);
+                org.telegram.ui.Cells.o7 o7Var = yn0Var.f35081a;
+                if (o7Var.getMessage() == null) {
+                    id3 = 0;
+                } else {
+                    id3 = o7Var.getMessage().getId();
+                }
+                o7Var.c(E, true);
+                int id4 = o7Var.getMessage().getId();
+                z00Var.f46145a = o7Var.getMessage().getDialogId();
+                z00Var.f46146b = id4;
+                boolean c10 = co0Var.I.c(z00Var);
+                if (id3 == E.getId()) {
+                    z12 = true;
+                } else {
+                    z12 = false;
+                }
+                o7Var.b(c10, z12);
+                if (id3 == E.getId()) {
+                    z13 = true;
+                }
+                if (o7Var.O != z10) {
+                    o7Var.O = z10;
+                    if (!z13) {
+                        if (z10) {
+                            f7 = 1.0f;
+                        }
+                        o7Var.P = f7;
+                    }
+                    o7Var.invalidate();
+                }
+            } else if (i13 == 2) {
+                org.telegram.ui.Cells.n7 n7Var = (org.telegram.ui.Cells.n7) view;
+                if (n7Var.getMessage() == null) {
+                    id2 = 0;
+                } else {
+                    id2 = n7Var.getMessage().getId();
+                }
+                n7Var.f(E, true);
+                int id5 = n7Var.getMessage().getId();
+                z00Var.f46145a = n7Var.getMessage().getDialogId();
+                z00Var.f46146b = id5;
+                boolean c11 = co0Var.I.c(z00Var);
+                if (id2 == E.getId()) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                n7Var.e(c11, z11);
+                if (id2 == E.getId()) {
+                    z13 = true;
+                }
+                if (n7Var.f24547d0 != z10) {
+                    n7Var.f24547d0 = z10;
+                    if (!z13) {
+                        if (z10) {
+                            f7 = 1.0f;
+                        }
+                        n7Var.f24548e0 = f7;
+                    }
+                    n7Var.invalidate();
+                }
+            }
+        }
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout frameLayout;
+        if (i10 == 0) {
+            frameLayout = new org.telegram.ui.Cells.z3(viewGroup.getContext(), null);
+        } else if (i10 == 1) {
+            Context context = viewGroup.getContext();
+            ?? frameLayout2 = new FrameLayout(context);
+            org.telegram.ui.Cells.o7 o7Var = new org.telegram.ui.Cells.o7(context, 2, null);
+            frameLayout2.f35081a = o7Var;
+            o7Var.f24612r.setVisibility(8);
+            frameLayout2.addView(o7Var);
+            frameLayout = frameLayout2;
+        } else {
+            frameLayout = new org.telegram.ui.Cells.n7(viewGroup.getContext());
+        }
+        frameLayout.setLayoutParams(new s4.q0(-1, -2));
+        return new s4.e1(frameLayout);
     }
 }

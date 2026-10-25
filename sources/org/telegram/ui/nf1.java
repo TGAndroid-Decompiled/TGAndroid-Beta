@@ -1,6 +1,12 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLRPC;
-public interface nf1 {
-    void k(TLRPC.TL_inputCheckPasswordSRP tL_inputCheckPasswordSRP);
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.RadialProgressView;
+public final class nf1 extends RadialProgressView {
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = AndroidUtilities.statusBarHeight / 2;
+    }
 }

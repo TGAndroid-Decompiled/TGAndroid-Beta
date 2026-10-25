@@ -12,18 +12,18 @@ public final class zh0 {
     public static final zh0[] L;
     public static final zh0 d;
     public static final zh0 e;
-    public static final zh0 f33264f;
+    public static final zh0 f35329f;
     public static final zh0 h;
-    public static final zh0 f33265n;
-    public static final zh0 f33266r;
-    public static final zh0 f33267s;
+    public static final zh0 f35330n;
+    public static final zh0 f35331r;
+    public static final zh0 f35332s;
     public static final zh0 v;
-    public static final zh0 f33268w;
-    public static final zh0 f33269x;
-    public static final zh0 f33270y;
-    public final int f33271a;
-    public final int f33272b;
-    public final int f33273c;
+    public static final zh0 f35333w;
+    public static final zh0 f35334x;
+    public static final zh0 f35335y;
+    public final int f35336a;
+    public final int f35337b;
+    public final int f35338c;
 
     static {
         int i10 = R.string.ProfileActionsMessage;
@@ -34,25 +34,25 @@ public final class zh0 {
         zh0 zh0Var2 = new zh0("NOTIFICATION_MUTE", 1, R.string.ProfileButtonMute, R.drawable.filled_profile_mute_24, R.drawable.outline_profile_mute_24);
         e = zh0Var2;
         zh0 zh0Var3 = new zh0("NOTIFICATION_UNMUTE", 2, R.string.ProfileButtonUnmute, R.drawable.filled_profile_unmute_24, R.drawable.outline_profile_unmute_24);
-        f33264f = zh0Var3;
+        f35329f = zh0Var3;
         zh0 zh0Var4 = new zh0("DISCUSS", 3, R.string.ProfileActionsDiscuss, i11, i12);
         h = zh0Var4;
         zh0 zh0Var5 = new zh0("GIFT", 4, R.string.ProfileActionsGift, R.drawable.gift, R.drawable.input_gift_s);
-        f33265n = zh0Var5;
+        f35330n = zh0Var5;
         zh0 zh0Var6 = new zh0("SHARE", 5, R.string.ProfileActionsShare, R.drawable.action_share, R.drawable.msg_share);
-        f33266r = zh0Var6;
+        f35331r = zh0Var6;
         zh0 zh0Var7 = new zh0("CALL", 6, R.string.ProfileActionsCall, R.drawable.filled_profile_call_24, R.drawable.outline_profile_call_24);
-        f33267s = zh0Var7;
+        f35332s = zh0Var7;
         zh0 zh0Var8 = new zh0("VIDEO", 7, R.string.ProfileActionsVideo, R.drawable.filled_profile_video_24, R.drawable.outline_profile_video_24);
         v = zh0Var8;
         zh0 zh0Var9 = new zh0("JOIN", 8, R.string.ProfileActionsJoin, R.drawable.filled_profile_member_24, R.drawable.outline_profile_member_24);
-        f33268w = zh0Var9;
+        f35333w = zh0Var9;
         zh0 zh0Var10 = new zh0("REPORT", 9, R.string.ProfileActionsReport, R.drawable.report, R.drawable.msg_report);
-        f33269x = zh0Var10;
+        f35334x = zh0Var10;
         int i13 = R.string.ProfileActionsLeave;
         int i14 = R.drawable.leave;
         zh0 zh0Var11 = new zh0("LEAVE", 10, i13, i14, i14);
-        f33270y = zh0Var11;
+        f35335y = zh0Var11;
         int i15 = R.string.ProfileActionsVoiceChat;
         int i16 = R.drawable.live_stream;
         zh0 zh0Var12 = new zh0("VOICE_CHAT", 11, i15, i16, i16);
@@ -77,9 +77,9 @@ public final class zh0 {
     }
 
     public zh0(String str, int i10, int i11, int i12, int i13) {
-        this.f33271a = i11;
-        this.f33272b = i12;
-        this.f33273c = i13;
+        this.f35336a = i11;
+        this.f35337b = i12;
+        this.f35338c = i13;
     }
 
     public static zh0 valueOf(String str) {

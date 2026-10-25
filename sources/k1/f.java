@@ -1,6 +1,6 @@
 package k1;
 public interface f {
-    Object b(td.p pVar, md.c cVar);
+    fe.b getData();
 
-    ee.b getData();
+    Object w(ud.p pVar, nd.c cVar);
 }

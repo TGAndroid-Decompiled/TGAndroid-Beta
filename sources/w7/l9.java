@@ -1,28 +1,51 @@
 package w7;
-public final class l9 {
-    public final String f49186a;
-    public final String f49187b;
-    public final String f49188c;
-    public final String d;
-    public final ua e;
-    public final String f49189f;
-    public final Boolean f49190g;
-    public final Boolean h;
-    public final Boolean f49191i;
-    public final Integer f49192j;
-    public final Integer f49193k;
 
-    public l9(v7.d8 d8Var) {
-        this.f49186a = d8Var.f48439a;
-        this.f49187b = d8Var.f48440b;
-        this.f49188c = d8Var.f48441c;
-        this.d = d8Var.d;
-        this.e = (ua) d8Var.f48446k;
-        this.f49189f = d8Var.e;
-        this.f49190g = (Boolean) d8Var.f48442f;
-        this.h = (Boolean) d8Var.f48443g;
-        this.f49191i = (Boolean) d8Var.h;
-        this.f49192j = d8Var.f48444i;
-        this.f49193k = (Integer) d8Var.f48445j;
+import java.util.Set;
+public abstract class l9 extends h9 implements Set {
+    public transient k9 f50919b;
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this || obj == this) {
+            return true;
+        }
+        if (obj instanceof Set) {
+            Set set = (Set) obj;
+            try {
+                if (size() == set.size()) {
+                    if (containsAll(set)) {
+                        return true;
+                    }
+                    return false;
+                }
+            } catch (ClassCastException | NullPointerException unused) {
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public final int hashCode() {
+        int i10;
+        int i11 = 0;
+        for (Object obj : this) {
+            if (obj != null) {
+                i10 = obj.hashCode();
+            } else {
+                i10 = 0;
+            }
+            i11 += i10;
+        }
+        return i11;
+    }
+
+    public final k9 p() {
+        k9 k9Var = this.f50919b;
+        if (k9Var == null) {
+            n9 n9Var = new n9((a) this);
+            this.f50919b = n9Var;
+            return n9Var;
+        }
+        return k9Var;
     }
 }

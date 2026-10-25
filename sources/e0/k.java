@@ -7,13 +7,13 @@ import android.os.Build;
 import androidx.core.graphics.drawable.IconCompat;
 public final class k extends y {
     public IconCompat e;
-    public IconCompat f8127f;
-    public boolean f8128g;
+    public IconCompat f9560f;
+    public boolean f9561g;
 
     @Override
-    public final void b(f0 f0Var) {
-        Context context = (Context) f0Var.f8103c;
-        Notification.BigPictureStyle bigContentTitle = new Notification.BigPictureStyle((Notification.Builder) f0Var.d).setBigContentTitle(this.f8178b);
+    public final void b(e0 e0Var) {
+        Context context = (Context) e0Var.f9530c;
+        Notification.BigPictureStyle bigContentTitle = new Notification.BigPictureStyle((Notification.Builder) e0Var.d).setBigContentTitle(this.f9606b);
         IconCompat iconCompat = this.e;
         if (iconCompat != null) {
             if (Build.VERSION.SDK_INT >= 31) {
@@ -22,8 +22,8 @@ public final class k extends y {
                 bigContentTitle = bigContentTitle.bigPicture(this.e.f());
             }
         }
-        if (this.f8128g) {
-            IconCompat iconCompat2 = this.f8127f;
+        if (this.f9561g) {
+            IconCompat iconCompat2 = this.f9560f;
             if (iconCompat2 == null) {
                 bigContentTitle.bigLargeIcon((Bitmap) null);
             } else {
@@ -31,7 +31,7 @@ public final class k extends y {
             }
         }
         if (this.d) {
-            bigContentTitle.setSummaryText(this.f8179c);
+            bigContentTitle.setSummaryText(this.f9607c);
         }
         if (Build.VERSION.SDK_INT >= 31) {
             j.c(bigContentTitle, false);

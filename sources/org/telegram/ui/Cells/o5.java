@@ -1,132 +1,165 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Color;
+import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
+import android.graphics.RectF;
+import android.text.TextUtils;
+import java.io.File;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.qm;
-import org.telegram.ui.Components.zr;
-public final class o5 extends org.telegram.ui.Components.u9 {
-    public final Paint G;
-    public long H;
-    public Drawable I;
-    public Drawable J;
-    public final s5 K;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.RadialProgress2;
+import org.telegram.ui.Components.uc0;
+import org.telegram.ui.qc1;
+public final class o5 extends org.telegram.ui.Components.y9 implements DownloadController.FileDownloadProgressListener {
+    public RectF G;
+    public RadialProgress2 H;
+    public TLRPC.TL_wallPaper I;
+    public int J;
+    public LinearGradient K;
+    public int L;
+    public int M;
+    public int N;
+    public int O;
+    public int P;
+    public Paint Q;
+    public uc0 R;
+    public int S;
+    public qc1 T;
+    public int U;
 
-    public o5(s5 s5Var, Context context) {
-        super(context);
-        this.K = s5Var;
-        this.G = new Paint(1);
+    @Override
+    public int getObserverTag() {
+        return this.S;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        ImageReceiver imageReceiver;
-        Bitmap bitmap;
-        MediaController.PhotoEntry photoEntry;
-        Drawable drawable;
-        float floatValue;
-        org.telegram.ui.Components.p5 p5Var = this.e;
-        if (p5Var != null) {
-            imageReceiver = p5Var.f29484k;
-        } else {
-            imageReceiver = this.f31064a;
-        }
-        if (imageReceiver != null) {
-            if (this.f31066c != -1 && this.d != -1) {
-                int height = getHeight();
-                int i10 = this.d;
-                imageReceiver.setImageCoords((getWidth() - this.f31066c) / 2, (height - i10) / 2, this.f31066c, i10);
-                int height2 = getHeight();
-                int i11 = this.d;
-                this.f31065b.setImageCoords((getWidth() - this.f31066c) / 2, (height2 - i11) / 2, this.f31066c, i11);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        u(false);
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.o5.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final void onFailedDownload(String str, boolean z10) {
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f42807a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f22179id == tL_wallPaper.f22179id)) {
+            if (z10) {
+                this.H.setIcon(4, false, true);
             } else {
-                imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-                this.f31065b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
-            }
-            imageReceiver.draw(canvas);
-            s5 s5Var = this.K;
-            if (s5Var.N) {
-                Rect rect = s5.f23247a0;
-                MediaController.PhotoEntry photoEntry2 = s5Var.G;
-                if (photoEntry2 == null || !photoEntry2.isAttachSpoilerRevealed) {
-                    this.f31065b.draw(canvas);
-                    if (s5Var.M == null) {
-                        if (s5Var.L == null) {
-                            wh.g gVar = new wh.g();
-                            s5Var.L = gVar;
-                            gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
-                        }
-                        s5Var.L.setBounds(0, 0, getWidth(), getHeight());
-                        s5Var.L.draw(canvas);
-                    }
-                    invalidate();
-                }
-            }
-            float f7 = s5Var.T;
-            int i12 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-            if (i12 != 0 && s5Var.R != null) {
-                Paint paint = this.G;
-                paint.setAlpha((int) (zr.f33337f.getInterpolation(1.0f - f7) * 255.0f));
-                canvas.drawBitmap(s5Var.R, 0.0f, 0.0f, paint);
-                long min = Math.min(16L, System.currentTimeMillis() - this.H);
-                Float f10 = s5Var.S;
-                if (f10 == null) {
-                    floatValue = 250.0f;
-                } else {
-                    floatValue = f10.floatValue();
-                }
-                s5Var.T = b1.c((float) min, floatValue, s5Var.T, 1.0f);
-                this.H = System.currentTimeMillis();
-                invalidate();
-                if (s5Var.M != null) {
-                    s5Var.f23249b.invalidate();
-                }
-            } else if (i12 == 0 && (bitmap = s5Var.R) != null) {
-                bitmap.recycle();
-                s5Var.R = null;
-                s5Var.S = null;
-                invalidate();
-            }
-            if (s5Var.f23254s) {
-                q5 q5Var = s5Var.U;
-                if ((q5Var == null || !((qm) ((org.telegram.ui.Components.s) q5Var).f30389b).f29957s) && (photoEntry = s5Var.G) != null && photoEntry.isLivePhoto()) {
-                    if (s5Var.G.isUnalivePhoto()) {
-                        if (this.J == null) {
-                            this.J = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
-                        }
-                        drawable = this.J;
-                    } else {
-                        if (this.I == null) {
-                            this.I = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
-                        }
-                        drawable = this.I;
-                    }
-                    drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
-                    drawable.draw(canvas);
-                }
+                t(tL_wallPaper2, true, z10);
             }
         }
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        boolean z10;
-        super.onMeasure(i10, i11);
-        s5 s5Var = this.K;
-        MediaController.PhotoEntry photoEntry = s5Var.G;
-        if (photoEntry != null && photoEntry.hasSpoiler) {
-            z10 = true;
-        } else {
-            z10 = false;
+        setMeasuredDimension(AndroidUtilities.dp(100.0f), AndroidUtilities.dp(100.0f));
+    }
+
+    @Override
+    public final void onProgressDownload(String str, long j10, long j11) {
+        RadialProgress2 radialProgress2 = this.H;
+        radialProgress2.p(Math.min(1.0f, ((float) j10) / ((float) j11)), true);
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f42807a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if (((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f22179id == tL_wallPaper.f22179id)) && radialProgress2.f26246i.f31505q != 10) {
+            t(tL_wallPaper2, false, true);
         }
-        s5Var.h(z10);
+    }
+
+    @Override
+    public final void onSuccessDownload(String str) {
+        this.H.p(1.0f, true);
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f42807a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f22179id == tL_wallPaper.f22179id)) {
+            t(tL_wallPaper2, false, true);
+        }
+    }
+
+    public void setPattern(TLRPC.TL_wallPaper tL_wallPaper) {
+        this.I = tL_wallPaper;
+        if (tL_wallPaper != null) {
+            k(ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(tL_wallPaper.document.thumbs, AndroidUtilities.dp(100.0f)), tL_wallPaper.document), "100_100", null, null, 0L, "png", tL_wallPaper, 1);
+        } else {
+            setImageDrawable(null);
+        }
+        u(false);
+    }
+
+    public final void t(Object obj, boolean z10, boolean z11) {
+        File httpFilePath;
+        String name;
+        int i10 = this.J;
+        RadialProgress2 radialProgress2 = this.H;
+        boolean z12 = obj instanceof TLRPC.TL_wallPaper;
+        if (!z12 && !(obj instanceof MediaController.SearchImage)) {
+            radialProgress2.setIcon(6, z10, z11);
+            return;
+        }
+        if (z12) {
+            TLRPC.TL_wallPaper tL_wallPaper = (TLRPC.TL_wallPaper) obj;
+            name = FileLoader.getAttachFileName(tL_wallPaper.document);
+            if (!TextUtils.isEmpty(name)) {
+                httpFilePath = FileLoader.getInstance(i10).getPathToAttach(tL_wallPaper.document, true);
+            } else {
+                return;
+            }
+        } else {
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+            TLRPC.Photo photo = searchImage.photo;
+            if (photo != null) {
+                TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(photo.sizes, this.U, true);
+                File pathToAttach = FileLoader.getInstance(i10).getPathToAttach(closestPhotoSizeWithSize, true);
+                name = FileLoader.getAttachFileName(closestPhotoSizeWithSize);
+                httpFilePath = pathToAttach;
+            } else {
+                httpFilePath = ImageLoader.getHttpFilePath(searchImage.imageUrl, "jpg");
+                name = httpFilePath.getName();
+            }
+            if (TextUtils.isEmpty(name)) {
+                return;
+            }
+        }
+        if (httpFilePath.exists()) {
+            DownloadController.getInstance(i10).removeLoadingFileObserver(this);
+            radialProgress2.p(1.0f, z11);
+            radialProgress2.setIcon(6, z10, z11);
+            return;
+        }
+        DownloadController.getInstance(i10).addLoadingFileObserver(name, null, this);
+        FileLoader.getInstance(i10).isLoadingFile(name);
+        Float fileProgress = ImageLoader.getInstance().getFileProgress(name);
+        if (fileProgress != null) {
+            radialProgress2.p(fileProgress.floatValue(), z11);
+        } else {
+            radialProgress2.p(0.0f, z11);
+        }
+        radialProgress2.setIcon(10, z10, z11);
+    }
+
+    public final void u(boolean z10) {
+        TLRPC.TL_wallPaper tL_wallPaper = this.T.f42807a.d.X0;
+        TLRPC.TL_wallPaper tL_wallPaper2 = this.I;
+        if ((tL_wallPaper2 == null && tL_wallPaper == null) || (tL_wallPaper != null && tL_wallPaper2 != null && tL_wallPaper2.f22179id == tL_wallPaper.f22179id)) {
+            t(tL_wallPaper, false, z10);
+        } else {
+            this.H.setIcon(4, false, z10);
+        }
+        super.invalidate();
+    }
+
+    @Override
+    public final void onProgressUpload(String str, long j10, long j11, boolean z10) {
     }
 }

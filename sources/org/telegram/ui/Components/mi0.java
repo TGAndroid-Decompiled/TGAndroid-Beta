@@ -6,53 +6,53 @@ import android.graphics.drawable.Drawable;
 import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.MessagesController;
-public final class mi0 extends eq {
-    public final ArrayList f28604c = new ArrayList();
+public final class mi0 extends iq {
+    public final ArrayList f30590c = new ArrayList();
     public final ArrayList d = new ArrayList();
     public final Context e;
-    public final Paint f28605f;
-    public u9 f28606g;
+    public final Paint f30591f;
+    public y9 f30592g;
     public final ni0 h;
 
-    public mi0(ni0 ni0Var, Context context, org.telegram.ui.rz0 rz0Var) {
+    public mi0(ni0 ni0Var, Context context, org.telegram.ui.wz0 wz0Var) {
         this.h = ni0Var;
         this.e = context;
-        this.f28606g = rz0Var;
+        this.f30592g = wz0Var;
         Paint paint = new Paint(1);
-        this.f28605f = paint;
+        this.f30591f = paint;
         paint.setColor(-16777216);
     }
 
     @Override
-    public final void a(z4.h hVar, Object obj) {
+    public final void a(a5.m mVar, Object obj) {
         ji0 ji0Var = (ji0) obj;
-        View view = ji0Var.f27708b;
+        View view = ji0Var.f29652b;
         if (view != null) {
-            hVar.removeView(view);
+            mVar.removeView(view);
         }
-        if (ji0Var.f27707a) {
+        if (ji0Var.f29651a) {
             return;
         }
-        hi0 hi0Var = ji0Var.f27709c;
+        hi0 hi0Var = ji0Var.f29653c;
         if (hi0Var.getImageReceiver().hasStaticThumb()) {
             Drawable drawable = hi0Var.getImageReceiver().getDrawable();
-            if (drawable instanceof c6) {
-                ((c6) drawable).w(hi0Var);
+            if (drawable instanceof g6) {
+                ((g6) drawable).w(hi0Var);
             }
         }
         hi0Var.setRoundRadius(0);
-        hVar.removeView(hi0Var);
+        mVar.removeView(hi0Var);
         hi0Var.getImageReceiver().cancelLoadImage();
     }
 
     @Override
     public final int b() {
-        return this.f28604c.size();
+        return this.f30590c.size();
     }
 
     @Override
     public final int c(Object obj) {
-        int indexOf = this.f28604c.indexOf((ji0) obj);
+        int indexOf = this.f30590c.indexOf((ji0) obj);
         if (indexOf == -1) {
             return -2;
         }
@@ -76,19 +76,19 @@ public final class mi0 extends eq {
     }
 
     @Override
-    public final java.lang.Object e(z4.h r42, int r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mi0.e(z4.h, int):java.lang.Object");
+    public final java.lang.Object e(a5.m r42, int r43) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.mi0.e(a5.m, int):java.lang.Object");
     }
 
     @Override
     public final boolean f(View view, Object obj) {
         ji0 ji0Var = (ji0) obj;
-        if (ji0Var.f27707a) {
-            if (view == ji0Var.f27708b) {
+        if (ji0Var.f29651a) {
+            if (view == ji0Var.f29652b) {
                 return true;
             }
             return false;
-        } else if (view == ji0Var.f27709c) {
+        } else if (view == ji0Var.f29653c) {
             return true;
         } else {
             return false;
@@ -106,16 +106,16 @@ public final class mi0 extends eq {
                 break;
             }
             if (arrayList.get(i10) != null) {
-                ((u9) arrayList.get(i10)).getImageReceiver().cancelLoadImage();
+                ((y9) arrayList.get(i10)).getImageReceiver().cancelLoadImage();
             }
             i10++;
         }
-        ArrayList arrayList2 = this.f28604c;
+        ArrayList arrayList2 = this.f30590c;
         arrayList2.clear();
         arrayList.clear();
         ni0 ni0Var = this.h;
         int size = ni0Var.X0.size();
-        if (ni0Var.f28927i1) {
+        if (ni0Var.f30992i1) {
             size++;
         }
         MessagesController.DialogPhotos dialogPhotos = ni0Var.S0;
@@ -136,7 +136,7 @@ public final class mi0 extends eq {
     public final int j() {
         ni0 ni0Var = this.h;
         int size = ni0Var.X0.size();
-        if (ni0Var.f28927i1) {
+        if (ni0Var.f30992i1) {
             size++;
         }
         if (size >= 2) {

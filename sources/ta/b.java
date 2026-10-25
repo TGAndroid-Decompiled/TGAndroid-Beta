@@ -1,98 +1,56 @@
 package ta;
 
-import m1.j;
+import android.content.SharedPreferences;
+import android.util.Base64;
+import android.util.Log;
+import java.security.KeyFactory;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.security.PublicKey;
+import java.security.spec.InvalidKeySpecException;
+import java.security.spec.X509EncodedKeySpec;
 public final class b {
-    public final String f47360a;
-    public final long f47361b;
-    public final int f47362c;
+    public static final String[] f48760c = {"*", "FCM", "GCM", ""};
+    public final SharedPreferences f48761a;
+    public final String f48762b;
 
-    public b(String str, long j10, int i10) {
-        this.f47360a = str;
-        this.f47361b = j10;
-        this.f47362c = i10;
+    public b(m9.h r4) {
+        throw new UnsupportedOperationException("Method not decompiled: ta.b.<init>(m9.h):void");
     }
 
-    public static a5.a a() {
-        a5.a aVar = new a5.a((char) 0, 20);
-        aVar.d = 0L;
-        return aVar;
+    public final String a() {
+        String string;
+        synchronized (this.f48761a) {
+            string = this.f48761a.getString("|S|id", null);
+        }
+        return string;
     }
 
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof b) {
-                b bVar = (b) obj;
-                int i10 = bVar.f47362c;
-                String str = bVar.f47360a;
-                String str2 = this.f47360a;
-                if (str2 == null) {
-                    if (str != null) {
-                        return false;
-                    }
-                } else if (!str2.equals(str)) {
-                    return false;
-                }
-                if (this.f47361b == bVar.f47361b) {
-                    int i11 = this.f47362c;
-                    if (i11 == 0) {
-                        if (i10 == 0) {
-                            return true;
-                        }
-                        return false;
-                    } else if (j.b(i11, i10)) {
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-                return false;
+    public final String b() {
+        PublicKey publicKey;
+        synchronized (this.f48761a) {
+            String str = null;
+            String string = this.f48761a.getString("|S||P|", null);
+            if (string == null) {
+                return null;
             }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        int hashCode;
-        int i10 = 0;
-        String str = this.f47360a;
-        if (str == null) {
-            hashCode = 0;
-        } else {
-            hashCode = str.hashCode();
-        }
-        long j10 = this.f47361b;
-        int i11 = (((hashCode ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003;
-        int i12 = this.f47362c;
-        if (i12 != 0) {
-            i10 = j.c(i12);
-        }
-        return i10 ^ i11;
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("TokenResult{token=");
-        sb2.append(this.f47360a);
-        sb2.append(", tokenExpirationTimestamp=");
-        sb2.append(this.f47361b);
-        sb2.append(", responseCode=");
-        int i10 = this.f47362c;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    str = "null";
-                } else {
-                    str = "AUTH_ERROR";
-                }
-            } else {
-                str = "BAD_CONFIG";
+            try {
+                publicKey = KeyFactory.getInstance("RSA").generatePublic(new X509EncodedKeySpec(Base64.decode(string, 8)));
+            } catch (IllegalArgumentException | NoSuchAlgorithmException | InvalidKeySpecException e) {
+                Log.w("ContentValues", "Invalid key stored " + e);
+                publicKey = null;
             }
-        } else {
-            str = "OK";
+            if (publicKey == null) {
+                return null;
+            }
+            try {
+                byte[] digest = MessageDigest.getInstance("SHA1").digest(publicKey.getEncoded());
+                digest[0] = (byte) (((digest[0] & 15) + 112) & 255);
+                str = Base64.encodeToString(digest, 0, 8, 11);
+            } catch (NoSuchAlgorithmException unused) {
+                Log.w("ContentValues", "Unexpected error, device missing required algorithms");
+            }
+            return str;
         }
-        sb2.append(str);
-        sb2.append("}");
-        return sb2.toString();
     }
 }

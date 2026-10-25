@@ -1,53 +1,44 @@
 package org.telegram.messenger;
 
+import java.util.ArrayList;
 import org.telegram.messenger.FileLoader;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.messenger.MessagesController;
 public final class h3 implements Runnable {
-    public final int f18548a = 0;
-    public final String f18549b;
-    public final boolean f18550c;
-    public final boolean d;
+    public final int f20221a;
+    public final boolean f20222b;
+    public final boolean f20223c;
+    public final Object d;
     public final Object e;
-    public final Object f18551f;
-    public final Object h;
-    public final Object f18552n;
-    public final Object f18553r;
-    public final Object f18554s;
 
-    public h3(FileLoader.AnonymousClass1 anonymousClass1, boolean z10, String str, boolean z11, TLRPC.InputFile inputFile, TLRPC.InputEncryptedFile inputEncryptedFile, byte[] bArr, byte[] bArr2, FileUploadOperation fileUploadOperation) {
-        this.e = anonymousClass1;
-        this.f18550c = z10;
-        this.f18549b = str;
-        this.d = z11;
-        this.f18551f = inputFile;
-        this.h = inputEncryptedFile;
-        this.f18552n = bArr;
-        this.f18553r = bArr2;
-        this.f18554s = fileUploadOperation;
+    public h3(FileLoader.AnonymousClass1 anonymousClass1, boolean z10, String str, boolean z11) {
+        this.f20221a = 0;
+        this.d = anonymousClass1;
+        this.f20222b = z10;
+        this.e = str;
+        this.f20223c = z11;
     }
 
     @Override
     public final void run() {
-        switch (this.f18548a) {
+        switch (this.f20221a) {
             case 0:
-                ((FileLoader.AnonymousClass1) this.e).lambda$didFinishUploadingFile$0(this.f18550c, this.f18549b, this.d, (TLRPC.InputFile) this.f18551f, (TLRPC.InputEncryptedFile) this.h, (byte[]) this.f18552n, (byte[]) this.f18553r, (FileUploadOperation) this.f18554s);
+                boolean z10 = this.f20223c;
+                ((FileLoader.AnonymousClass1) this.d).lambda$didFailedUploadingFile$1(this.f20222b, (String) this.e, z10);
+                return;
+            case 1:
+                ((MessagesStorage) this.d).lambda$saveDialogFilter$77((MessagesController.DialogFilter) this.e, this.f20222b, this.f20223c);
                 return;
             default:
-                ((MessagesController) this.e).lambda$openApp$501((org.telegram.ui.ActionBar.o2) this.f18551f, (pf.c) this.h, (boolean[]) this.f18552n, (TLRPC.User) this.f18553r, this.f18549b, this.f18550c, this.d, (TL_bots.BotInfo[]) this.f18554s);
+                ((MessagesStorage) this.d).lambda$updateUsers$218((ArrayList) this.e, this.f20222b, this.f20223c);
                 return;
         }
     }
 
-    public h3(MessagesController messagesController, org.telegram.ui.ActionBar.o2 o2Var, pf.c cVar, boolean[] zArr, TLRPC.User user, String str, boolean z10, boolean z11, TL_bots.BotInfo[] botInfoArr) {
-        this.e = messagesController;
-        this.f18551f = o2Var;
-        this.h = cVar;
-        this.f18552n = zArr;
-        this.f18553r = user;
-        this.f18549b = str;
-        this.f18550c = z10;
-        this.d = z11;
-        this.f18554s = botInfoArr;
+    public h3(MessagesStorage messagesStorage, Object obj, boolean z10, boolean z11, int i10) {
+        this.f20221a = i10;
+        this.d = messagesStorage;
+        this.e = obj;
+        this.f20222b = z10;
+        this.f20223c = z11;
     }
 }

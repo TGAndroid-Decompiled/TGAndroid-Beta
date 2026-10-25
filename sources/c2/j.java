@@ -1,126 +1,115 @@
 package c2;
 
-import e9.n0;
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import v7.u6;
-public final class j {
-    public final n0 f4514a;
-    public final ArrayList f4515b = new ArrayList();
-    public ByteBuffer[] f4516c = new ByteBuffer[0];
-    public boolean d;
+import android.app.Notification;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.drawable.Icon;
+import android.hardware.display.DisplayManager;
+import android.media.AudioFocusRequest;
+import android.media.AudioManager;
+import android.os.Build;
+import android.os.Looper;
+import android.view.Display;
+import android.view.ViewConfiguration;
+import bi.f2;
+public abstract class j {
+    public static AudioManager f5950a;
 
-    public j(n0 n0Var) {
-        this.f4514a = n0Var;
-        k kVar = k.e;
-        this.d = false;
-    }
-
-    public final void a() {
-        boolean z10;
-        l lVar = l.f4520b;
-        ArrayList arrayList = this.f4515b;
-        arrayList.clear();
-        this.d = false;
-        long j10 = lVar.f4521a;
-        int i10 = 0;
-        while (true) {
-            n0 n0Var = this.f4514a;
-            if (i10 >= n0Var.size()) {
-                break;
-            }
-            n nVar = (n) n0Var.get(i10);
-            nVar.d(new l(j10));
-            if (nVar.isActive()) {
-                j10 = nVar.g(j10);
-                if (j10 >= 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                u6.p(z10);
-                arrayList.add(nVar);
-            }
-            i10++;
+    public static void a(AudioManager audioManager, h hVar) {
+        if (Build.VERSION.SDK_INT >= 26) {
+            Object obj = hVar.f5948f;
+            obj.getClass();
+            audioManager.abandonAudioFocusRequest((AudioFocusRequest) obj);
+            return;
         }
-        this.f4516c = new ByteBuffer[arrayList.size()];
-        for (int i11 = 0; i11 <= b(); i11++) {
-            this.f4516c[i11] = ((n) arrayList.get(i11)).a();
+        audioManager.abandonAudioFocus(hVar.f5946b);
+    }
+
+    public static Notification.Builder b(Context context, String str) {
+        return new Notification.Builder(context, str);
+    }
+
+    public static Icon c(Bitmap bitmap) {
+        return Icon.createWithAdaptiveBitmap(bitmap);
+    }
+
+    public static boolean d(Context context) {
+        Display display;
+        Display.HdrCapabilities hdrCapabilities;
+        DisplayManager displayManager = (DisplayManager) context.getSystemService("display");
+        if (displayManager != null) {
+            display = displayManager.getDisplay(0);
+        } else {
+            display = null;
         }
-    }
-
-    public final int b() {
-        return this.f4516c.length - 1;
-    }
-
-    public final boolean c() {
-        if (this.d && ((n) this.f4515b.get(b())).b() && !this.f4516c[b()].hasRemaining()) {
-            return true;
+        if (display == null || !display.isHdr() || (hdrCapabilities = display.getHdrCapabilities()) == null) {
+            return false;
+        }
+        for (int i10 : hdrCapabilities.getSupportedHdrTypes()) {
+            if (i10 == 1) {
+                return true;
+            }
         }
         return false;
     }
 
-    public final boolean d() {
-        return !this.f4515b.isEmpty();
-    }
-
-    public final void e(ByteBuffer byteBuffer) {
-        boolean z10;
-        ByteBuffer byteBuffer2;
-        boolean z11;
-        for (boolean z12 = true; z12; z12 = z10) {
-            z10 = false;
-            for (int i10 = 0; i10 <= b(); i10++) {
-                if (!this.f4516c[i10].hasRemaining()) {
-                    ArrayList arrayList = this.f4515b;
-                    n nVar = (n) arrayList.get(i10);
-                    if (nVar.b()) {
-                        if (!this.f4516c[i10].hasRemaining() && i10 < b()) {
-                            ((n) arrayList.get(i10 + 1)).f();
-                        }
-                    } else {
-                        if (i10 > 0) {
-                            byteBuffer2 = this.f4516c[i10 - 1];
-                        } else if (byteBuffer.hasRemaining()) {
-                            byteBuffer2 = byteBuffer;
-                        } else {
-                            byteBuffer2 = n.f4522a;
-                        }
-                        nVar.c(byteBuffer2);
-                        this.f4516c[i10] = nVar.a();
-                        if (byteBuffer2.remaining() - byteBuffer2.remaining() <= 0 && !this.f4516c[i10].hasRemaining()) {
-                            z11 = false;
-                        } else {
-                            z11 = true;
-                        }
-                        z10 |= z11;
-                    }
+    public static synchronized AudioManager e(Context context) {
+        synchronized (j.class) {
+            synchronized (j.class) {
+                Context applicationContext = context.getApplicationContext();
+                if (applicationContext != null) {
+                    f5950a = null;
                 }
+                AudioManager audioManager = f5950a;
+                if (audioManager != null) {
+                    return audioManager;
+                }
+                Looper myLooper = Looper.myLooper();
+                if (myLooper != null && myLooper != Looper.getMainLooper()) {
+                    e2.i iVar = new e2.i();
+                    e2.a.e().execute(new f2(19, applicationContext, iVar));
+                    iVar.b();
+                    AudioManager audioManager2 = f5950a;
+                    audioManager2.getClass();
+                    return audioManager2;
+                }
+                AudioManager audioManager3 = (AudioManager) applicationContext.getSystemService("audio");
+                f5950a = audioManager3;
+                audioManager3.getClass();
+                return audioManager3;
             }
         }
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (!(obj instanceof j)) {
-            return false;
-        }
-        n0 n0Var = ((j) obj).f4514a;
-        n0 n0Var2 = this.f4514a;
-        if (n0Var2.size() != n0Var.size()) {
-            return false;
-        }
-        for (int i10 = 0; i10 < n0Var2.size(); i10++) {
-            if (n0Var2.get(i10) != n0Var.get(i10)) {
-                return false;
-            }
-        }
-        return true;
+    public static float f(ViewConfiguration viewConfiguration) {
+        return viewConfiguration.getScaledHorizontalScrollFactor();
     }
 
-    public final int hashCode() {
-        return this.f4514a.hashCode();
+    public static float g(ViewConfiguration viewConfiguration) {
+        return viewConfiguration.getScaledVerticalScrollFactor();
+    }
+
+    public static int h(android.media.AudioManager r4, c2.h r5) {
+        throw new UnsupportedOperationException("Method not decompiled: c2.j.h(android.media.AudioManager, c2.h):int");
+    }
+
+    public static void i(Notification.Builder builder) {
+        builder.setBadgeIconType(0);
+    }
+
+    public static void j(Notification.Builder builder, int i10) {
+        builder.setGroupAlertBehavior(i10);
+    }
+
+    public static void k(Notification.Builder builder) {
+        builder.setSettingsText(null);
+    }
+
+    public static void l(Notification.Builder builder, String str) {
+        builder.setShortcutId(str);
+    }
+
+    public static void m(Notification.Builder builder, long j10) {
+        builder.setTimeoutAfter(j10);
     }
 }

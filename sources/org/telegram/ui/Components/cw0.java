@@ -1,22 +1,80 @@
 package org.telegram.ui.Components;
-public final class cw0 {
-    public static final cw0 f25479a;
-    public static final cw0 f25480b;
-    public static final cw0[] f25481c;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f25479a = r02;
-        ?? r12 = new Enum("RECORDING", 1);
-        f25480b = r12;
-        f25481c = new cw0[]{r02, r12};
+import android.content.Context;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.LocationController;
+import org.telegram.messenger.R;
+public final class cw0 extends lm0 {
+    public final Context f27273c;
+    public final ew0 d;
+
+    public cw0(ew0 ew0Var, Context context) {
+        this.d = ew0Var;
+        this.f27273c = context;
     }
 
-    public static cw0 valueOf(String str) {
-        return (cw0) Enum.valueOf(cw0.class, str);
+    @Override
+    public final boolean D(s4.e1 e1Var) {
+        if (e1Var.f47738f == 0) {
+            return true;
+        }
+        return false;
     }
 
-    public static cw0[] values() {
-        return (cw0[]) f25481c.clone();
+    @Override
+    public final int h() {
+        return LocationController.getLocationsCount() + 1;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 == 0) {
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        TextView textView;
+        int i11 = e1Var.f47738f;
+        if (i11 != 0) {
+            if (i11 == 1 && (textView = this.d.e) != null) {
+                textView.setText(LocaleController.formatString("SharingLiveLocationTitle", R.string.SharingLiveLocationTitle, LocaleController.formatPluralString("Chats", LocationController.getLocationsCount(), new Object[0])));
+                return;
+            }
+            return;
+        }
+        ((org.telegram.ui.Cells.z7) e1Var.f47735a).setDialog(ew0.q(i10 - 1));
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        FrameLayout z7Var;
+        org.telegram.ui.ActionBar.u6 u6Var;
+        org.telegram.ui.ActionBar.u6 u6Var2;
+        Context context = this.f27273c;
+        ew0 ew0Var = this.d;
+        if (i10 == 0) {
+            u6Var = ((org.telegram.ui.ActionBar.k3) ew0Var).resourcesProvider;
+            z7Var = new org.telegram.ui.Cells.z7(54, context, u6Var, false);
+        } else {
+            z7Var = new di.i4(context, 17);
+            z7Var.setWillNotDraw(false);
+            TextView textView = new TextView(context);
+            ew0Var.e = textView;
+            int i11 = org.telegram.ui.ActionBar.y6.J5;
+            u6Var2 = ((org.telegram.ui.ActionBar.k3) ew0Var).resourcesProvider;
+            org.telegram.ui.ActionBar.f7.V(textView, i11, u6Var2);
+            ew0Var.e.setTextSize(1, 14.0f);
+            ew0Var.e.setGravity(17);
+            ew0Var.e.setPadding(0, 0, 0, AndroidUtilities.dp(8.0f));
+            z7Var.addView(ew0Var.e, gb1.g(40.0f, -1));
+        }
+        return new s4.e1(z7Var);
     }
 }

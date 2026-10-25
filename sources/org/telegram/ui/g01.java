@@ -1,42 +1,60 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class g01 implements z4.f {
-    public int f37416a;
-    public final h01 f37417b;
+public final class g01 extends View {
+    public int f39512a;
+    public int f39513b;
+    public final j01 f39514c;
 
-    public g01(h01 h01Var) {
-        this.f37417b = h01Var;
+    public g01(j01 j01Var, Context context) {
+        super(context);
+        this.f39514c = j01Var;
+        this.f39512a = 0;
+        this.f39513b = 0;
     }
 
     @Override
-    public final void a(int i10) {
-        boolean z10;
-        h01 h01Var = this.f37417b;
-        ProfileActivity profileActivity = h01Var.f37712n;
-        int k10 = profileActivity.f33983o0.D0.k(i10);
-        if (this.f37416a != k10) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onMeasure(int i10, int i11) {
+        int measuredHeight;
+        int i12 = this.f39513b;
+        ProfileActivity profileActivity = this.f39514c.e;
+        int i13 = 0;
+        if (i12 != profileActivity.f35945a.getMeasuredHeight()) {
+            this.f39512a = 0;
         }
-        h01Var.a(z10);
-        this.f37416a = k10;
-        if (profileActivity.f34003r0 == null) {
+        this.f39513b = profileActivity.f35945a.getMeasuredHeight();
+        int childCount = profileActivity.f35945a.getChildCount();
+        if (childCount == profileActivity.d.e.N2) {
+            int i14 = 0;
+            for (int i15 = 0; i15 < childCount; i15++) {
+                View childAt = profileActivity.f35945a.getChildAt(i15);
+                profileActivity.f35945a.getClass();
+                int R = RecyclerView.R(childAt);
+                if (R >= 0 && R != profileActivity.C3) {
+                    i14 += profileActivity.f35945a.getChildAt(i15).getMeasuredHeight();
+                }
+            }
+            View view = profileActivity.fragmentView;
+            if (view == null) {
+                measuredHeight = 0;
+            } else {
+                measuredHeight = view.getMeasuredHeight();
+            }
+            int currentActionBarHeight = ((measuredHeight - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.statusBarHeight) - i14;
+            if (currentActionBarHeight > profileActivity.c4()) {
+                currentActionBarHeight = 0;
+            }
+            if (currentActionBarHeight > 0) {
+                i13 = currentActionBarHeight;
+            }
+            int measuredWidth = profileActivity.f35945a.getMeasuredWidth();
+            this.f39512a = i13;
+            setMeasuredDimension(measuredWidth, i13);
             return;
         }
-        if (profileActivity.U0.t()) {
-            AndroidUtilities.runOnUIThread(new ly0(h01Var, 4), 500L);
-        } else {
-            h01Var.c();
-        }
-    }
-
-    @Override
-    public final void c(int i10) {
-    }
-
-    @Override
-    public final void b(float f7, int i10, int i11) {
+        setMeasuredDimension(profileActivity.f35945a.getMeasuredWidth(), this.f39512a);
     }
 }

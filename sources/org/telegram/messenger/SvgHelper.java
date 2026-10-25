@@ -38,27 +38,27 @@ public class SvgHelper {
 
     public static class Circle {
         float rad;
-        float f17875x1;
-        float f17876y1;
+        float f19562x1;
+        float f19563y1;
 
         public Circle(float f7, float f10, float f11) {
-            this.f17875x1 = f7;
-            this.f17876y1 = f10;
+            this.f19562x1 = f7;
+            this.f19563y1 = f10;
             this.rad = f11;
         }
     }
 
     public static class Line {
-        float f17877x1;
-        float f17878x2;
-        float f17879y1;
-        float f17880y2;
+        float f19564x1;
+        float f19565x2;
+        float f19566y1;
+        float f19567y2;
 
         public Line(float f7, float f10, float f11, float f12) {
-            this.f17877x1 = f7;
-            this.f17879y1 = f10;
-            this.f17878x2 = f11;
-            this.f17880y2 = f12;
+            this.f19564x1 = f7;
+            this.f19566y1 = f10;
+            this.f19565x2 = f11;
+            this.f19567y2 = f12;
         }
     }
 
@@ -90,20 +90,20 @@ public class SvgHelper {
 
     public static class ParserHelper {
         private char current;
-        private int f17881n;
+        private int f19568n;
         public int pos;
-        private CharSequence f17882s;
+        private CharSequence f19569s;
 
         public ParserHelper(CharSequence charSequence, int i10) {
-            this.f17882s = charSequence;
+            this.f19569s = charSequence;
             this.pos = i10;
-            this.f17881n = charSequence.length();
+            this.f19568n = charSequence.length();
             this.current = charSequence.charAt(i10);
         }
 
         private char read() {
             int i10 = this.pos;
-            int i11 = this.f17881n;
+            int i11 = this.f19568n;
             if (i10 < i11) {
                 this.pos = i10 + 1;
             }
@@ -111,7 +111,7 @@ public class SvgHelper {
             if (i12 == i11) {
                 return (char) 0;
             }
-            return this.f17882s.charAt(i12);
+            return this.f19569s.charAt(i12);
         }
 
         private void reportUnexpectedCharacterError(char c10) {
@@ -163,8 +163,8 @@ public class SvgHelper {
         public void skipNumberSeparator() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f17881n) {
-                    char charAt = this.f17882s.charAt(i10);
+                if (i10 < this.f19568n) {
+                    char charAt = this.f19569s.charAt(i10);
                     if (charAt == '\t' || charAt == '\n' || charAt == ' ' || charAt == ',') {
                         advance();
                     } else {
@@ -179,7 +179,7 @@ public class SvgHelper {
         public void skipWhitespace() {
             while (true) {
                 int i10 = this.pos;
-                if (i10 < this.f17881n && Character.isWhitespace(this.f17882s.charAt(i10))) {
+                if (i10 < this.f19568n && Character.isWhitespace(this.f19569s.charAt(i10))) {
                     advance();
                 } else {
                     return;
@@ -314,7 +314,7 @@ public class SvgHelper {
         private Paint backgroundPaint;
         private float colorAlpha;
         private int currentColorKey;
-        private org.telegram.ui.ActionBar.g6 currentResourcesProvider;
+        private org.telegram.ui.ActionBar.u6 currentResourcesProvider;
         protected int height;
         private Integer overrideColor;
         private Paint overridePaint;
@@ -373,7 +373,7 @@ public class SvgHelper {
                         }
                         if (j12 > 0) {
                             lastUpdateTime = j10;
-                            totalTranslation = a1.g.B((float) j12, f13, 1800.0f, totalTranslation);
+                            totalTranslation = a1.g.C((float) j12, f13, 1800.0f, totalTranslation);
                             while (true) {
                                 float f14 = totalTranslation;
                                 float f15 = gradientWidth;
@@ -392,7 +392,7 @@ public class SvgHelper {
                             j11 = j12;
                         }
                         lastUpdateTime = j10;
-                        totalTranslation = a1.g.B((float) j11, gradientWidth, 1800.0f, totalTranslation);
+                        totalTranslation = a1.g.C((float) j11, gradientWidth, 1800.0f, totalTranslation);
                         while (true) {
                             float f16 = totalTranslation;
                             float f17 = gradientWidth;
@@ -406,9 +406,9 @@ public class SvgHelper {
                         if (runnable != null) {
                             AndroidUtilities.cancelRunOnUIThread(runnable);
                         }
-                        z1 z1Var = new z1(25);
-                        shiftRunnable = z1Var;
-                        AndroidUtilities.runOnUIThread(z1Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
+                        a2 a2Var = new a2(25);
+                        shiftRunnable = a2Var;
+                        AndroidUtilities.runOnUIThread(a2Var, ((int) (1000.0f / AndroidUtilities.screenRefreshRate)) - 1);
                     }
                     ImageReceiver imageReceiver = this.parentImageReceiver;
                     if (imageReceiver != null && !z10) {
@@ -444,7 +444,7 @@ public class SvgHelper {
             canvas.save();
             canvas.translate(f7, f10);
             if (!this.aspectFill || this.aspectCenter) {
-                canvas.translate(com.google.android.gms.internal.play_billing.k3.c(this.width, scale, f11, 2.0f), com.google.android.gms.internal.play_billing.k3.c(this.height, scale, f12, 2.0f));
+                canvas.translate(c3.h0.f(this.width, scale, f11, 2.0f), c3.h0.f(this.height, scale, f12, 2.0f));
             }
             canvas.scale(scale, scale);
             int size = this.commands.size();
@@ -475,10 +475,10 @@ public class SvgHelper {
                         canvas.drawRect((RectF) obj, paint);
                     } else if (obj instanceof Line) {
                         Line line = (Line) obj;
-                        canvas.drawLine(line.f17877x1, line.f17879y1, line.f17878x2, line.f17880y2, paint);
+                        canvas.drawLine(line.f19564x1, line.f19566y1, line.f19565x2, line.f19567y2, paint);
                     } else if (obj instanceof Circle) {
                         Circle circle = (Circle) obj;
-                        canvas.drawCircle(circle.f17875x1, circle.f17876y1, circle.rad, paint);
+                        canvas.drawCircle(circle.f19562x1, circle.f19563y1, circle.rad, paint);
                     } else if (obj instanceof Oval) {
                         canvas.drawOval(((Oval) obj).rect, paint);
                     } else if (obj instanceof RoundRect) {
@@ -575,20 +575,20 @@ public class SvgHelper {
             return svgDrawable;
         }
 
-        public void setColorKey(int i10, org.telegram.ui.ActionBar.g6 g6Var) {
+        public void setColorKey(int i10, org.telegram.ui.ActionBar.u6 u6Var) {
             this.currentColorKey = i10;
-            this.currentResourcesProvider = g6Var;
+            this.currentResourcesProvider = u6Var;
         }
 
         public void setPaint(Paint paint, int i10) {
             this.overridePaintByPosition.put(i10, paint);
         }
 
-        public void setupGradient(int i10, org.telegram.ui.ActionBar.g6 g6Var, float f7, boolean z10) {
+        public void setupGradient(int i10, org.telegram.ui.ActionBar.u6 u6Var, float f7, boolean z10) {
             BitmapShader bitmapShader;
             Integer num = this.overrideColor;
-            int w02 = num == null ? org.telegram.ui.ActionBar.k6.w0(i10, g6Var) : num.intValue();
-            this.currentResourcesProvider = g6Var;
+            int w02 = num == null ? org.telegram.ui.ActionBar.y6.w0(i10, u6Var) : num.intValue();
+            this.currentResourcesProvider = u6Var;
             int[] iArr = this.currentColor;
             if (iArr[z10 ? 1 : 0] != w02) {
                 this.colorAlpha = f7;
@@ -658,7 +658,7 @@ public class SvgHelper {
 
         SvgDrawable getDrawable();
 
-        List<eg.c> getGiftPatternPositions();
+        List<fg.c> getGiftPatternPositions();
     }
 
     static {
@@ -1501,7 +1501,7 @@ public class SvgHelper {
         private HashMap<String, StyleSet> globalStyles;
         private boolean insideGiftRect;
         private int insideGiftRectDepth;
-        private List<eg.c> insideGiftRectPositions;
+        private List<fg.c> insideGiftRectPositions;
         private Paint paint;
         private Integer paintColor;
         boolean pushed;
@@ -1710,7 +1710,7 @@ public class SvgHelper {
         }
 
         @Override
-        public List<eg.c> getGiftPatternPositions() {
+        public List<fg.c> getGiftPatternPositions() {
             return this.insideGiftRectPositions;
         }
 
@@ -1721,7 +1721,7 @@ public class SvgHelper {
             int i10;
             char c10;
             Float valueOf = Float.valueOf(0.0f);
-            eg.c cVar = null;
+            fg.c cVar = null;
             if ("g".equals(str3) && !this.insideGiftRect) {
                 if ("GiftPatterns".equals(attributes.getValue("id"))) {
                     this.insideGiftRect = true;
@@ -1738,7 +1738,7 @@ public class SvgHelper {
                         RectF rectF = new RectF(parseFloat, parseFloat2, Float.parseFloat(attributes.getValue("width")) + parseFloat, Float.parseFloat(attributes.getValue("height")) + parseFloat2);
                         Matrix parseTransform = SvgHelper.parseTransform(attributes.getValue("transform"));
                         parseTransform.postScale(f7, f7);
-                        cVar = new eg.c(rectF, parseTransform);
+                        cVar = new fg.c(rectF, parseTransform);
                     } catch (Exception e) {
                         FileLog.e(e);
                     }
@@ -2134,7 +2134,7 @@ public class SvgHelper {
             return f7;
         }
         if (stringAttr.endsWith("px")) {
-            stringAttr = com.google.android.gms.internal.play_billing.k3.i(2, 0, stringAttr);
+            stringAttr = c3.h0.l(2, 0, stringAttr);
         } else if (stringAttr.endsWith("mm")) {
             return null;
         }

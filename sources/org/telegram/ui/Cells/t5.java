@@ -1,93 +1,132 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.RadioButton;
-public final class t5 extends FrameLayout {
-    public final TextView f23692a;
-    public final LinearLayout f23693b;
-    public View.OnClickListener f23694c;
-    public int d;
-    public final int[] e;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.ds;
+import org.telegram.ui.Components.tm;
+public final class t5 extends org.telegram.ui.Components.y9 {
+    public final Paint G;
+    public long H;
+    public Drawable I;
+    public Drawable J;
+    public final x5 K;
 
-    public t5(Context context) {
+    public t5(x5 x5Var, Context context) {
         super(context);
-        this.e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
-        TextView textView = new TextView(context);
-        this.f23692a = textView;
-        textView.setGravity(5);
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 12.0f);
-        textView.setMaxLines(1);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        addView(textView, w7.z5.d(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
-        LinearLayout linearLayout = new LinearLayout(context);
-        this.f23693b = linearLayout;
-        linearLayout.setOrientation(0);
-        for (int i10 = 0; i10 < this.e.length; i10++) {
-            RadioButton radioButton = new RadioButton(context);
-            radioButton.setSize(AndroidUtilities.dp(20.0f));
-            radioButton.setTag(Integer.valueOf(i10));
-            this.f23693b.addView(radioButton, w7.z5.l(1.0f / this.e.length, 0, -1));
-            radioButton.setOnClickListener(new a(this, 8));
+        this.K = x5Var;
+        this.G = new Paint(1);
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        ImageReceiver imageReceiver;
+        Bitmap bitmap;
+        MediaController.PhotoEntry photoEntry;
+        Drawable drawable;
+        float floatValue;
+        org.telegram.ui.Components.t5 t5Var = this.e;
+        if (t5Var != null) {
+            imageReceiver = t5Var.f32849k;
+        } else {
+            imageReceiver = this.f34981a;
         }
-        addView(this.f23693b, w7.z5.d(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
-    }
-
-    public final void a(int i10, String str) {
-        this.d = i10;
-        this.f23692a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
-        b(false);
-    }
-
-    public final void b(boolean z10) {
-        boolean z11;
-        int i10;
-        LinearLayout linearLayout = this.f23693b;
-        int childCount = linearLayout.getChildCount();
-        for (int i11 = 0; i11 < childCount; i11++) {
-            View childAt = linearLayout.getChildAt(i11);
-            if (childAt instanceof RadioButton) {
-                RadioButton radioButton = (RadioButton) childAt;
-                int intValue = ((Integer) radioButton.getTag()).intValue();
-                int[] iArr = this.e;
-                if (this.d == iArr[intValue]) {
-                    z11 = true;
+        if (imageReceiver != null) {
+            if (this.f34983c != -1 && this.d != -1) {
+                int height = getHeight();
+                int i10 = this.d;
+                imageReceiver.setImageCoords((getWidth() - this.f34983c) / 2, (height - i10) / 2, this.f34983c, i10);
+                int height2 = getHeight();
+                int i11 = this.d;
+                this.f34982b.setImageCoords((getWidth() - this.f34983c) / 2, (height2 - i11) / 2, this.f34983c, i11);
+            } else {
+                imageReceiver.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
+                this.f34982b.setImageCoords(0.0f, 0.0f, getWidth(), getHeight());
+            }
+            imageReceiver.draw(canvas);
+            x5 x5Var = this.K;
+            if (x5Var.N) {
+                Rect rect = x5.f25696a0;
+                MediaController.PhotoEntry photoEntry2 = x5Var.G;
+                if (photoEntry2 == null || !photoEntry2.isAttachSpoilerRevealed) {
+                    this.f34982b.draw(canvas);
+                    if (x5Var.M == null) {
+                        if (x5Var.L == null) {
+                            xh.g gVar = new xh.g();
+                            x5Var.L = gVar;
+                            gVar.h(i0.a.o(-1, (int) (Color.alpha(-1) * 0.325f)));
+                        }
+                        x5Var.L.setBounds(0, 0, getWidth(), getHeight());
+                        x5Var.L.draw(canvas);
+                    }
+                    invalidate();
+                }
+            }
+            float f7 = x5Var.T;
+            int i12 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
+            if (i12 != 0 && x5Var.R != null) {
+                Paint paint = this.G;
+                paint.setAlpha((int) (ds.f27584f.getInterpolation(1.0f - f7) * 255.0f));
+                canvas.drawBitmap(x5Var.R, 0.0f, 0.0f, paint);
+                long min = Math.min(16L, System.currentTimeMillis() - this.H);
+                Float f10 = x5Var.S;
+                if (f10 == null) {
+                    floatValue = 250.0f;
                 } else {
-                    z11 = false;
+                    floatValue = f10.floatValue();
                 }
-                radioButton.a(z11, z10);
-                int i12 = -1;
-                if (intValue == 0) {
-                    i10 = -1;
-                } else {
-                    i10 = iArr[intValue];
+                x5Var.T = org.telegram.ui.d3.d((float) min, floatValue, x5Var.T, 1.0f);
+                this.H = System.currentTimeMillis();
+                invalidate();
+                if (x5Var.M != null) {
+                    x5Var.f25698b.invalidate();
                 }
-                if (intValue != 0) {
-                    i12 = iArr[intValue];
+            } else if (i12 == 0 && (bitmap = x5Var.R) != null) {
+                bitmap.recycle();
+                x5Var.R = null;
+                x5Var.S = null;
+                invalidate();
+            }
+            if (x5Var.f25703s) {
+                v5 v5Var = x5Var.U;
+                if ((v5Var == null || !((tm) ((org.telegram.ui.Components.s) v5Var).f32350b).f33102s) && (photoEntry = x5Var.G) != null && photoEntry.isLivePhoto()) {
+                    if (x5Var.G.isUnalivePhoto()) {
+                        if (this.J == null) {
+                            this.J = getContext().getResources().getDrawable(R.drawable.media_live_off).mutate();
+                        }
+                        drawable = this.J;
+                    } else {
+                        if (this.I == null) {
+                            this.I = getContext().getResources().getDrawable(R.drawable.media_live_on).mutate();
+                        }
+                        drawable = this.I;
+                    }
+                    drawable.setBounds((int) (imageReceiver.getImageX() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(8.0f)), (int) (imageReceiver.getImageX() + AndroidUtilities.dp(30.0f)), (int) (imageReceiver.getImageY() + AndroidUtilities.dp(26.0f)));
+                    drawable.draw(canvas);
                 }
-                radioButton.b(i10, i12);
             }
         }
     }
 
-    public int getCurrentColor() {
-        return this.d;
-    }
-
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
-    }
-
-    @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f23694c = onClickListener;
+        boolean z10;
+        super.onMeasure(i10, i11);
+        x5 x5Var = this.K;
+        MediaController.PhotoEntry photoEntry = x5Var.G;
+        if (photoEntry != null && photoEntry.hasSpoiler) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        x5Var.h(z10);
     }
 }

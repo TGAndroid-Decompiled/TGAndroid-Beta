@@ -2,25 +2,25 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 import org.telegram.tgnet.TLRPC;
-public final class ra0 implements iu0 {
-    public final va0 f30106a;
+public final class ra0 implements mu0 {
+    public final ta0 f32202a;
 
-    public ra0(va0 va0Var) {
-        this.f30106a = va0Var;
+    public ra0(ta0 ta0Var) {
+        this.f32202a = ta0Var;
     }
 
     @Override
-    public final void R() {
-        this.f30106a.a0();
+    public final void S() {
+        this.f32202a.c0();
     }
 
     @Override
-    public final boolean T() {
+    public final boolean U() {
         return false;
     }
 
     @Override
-    public final lm0 f() {
+    public final mm0 f() {
         return null;
     }
 
@@ -35,11 +35,11 @@ public final class ra0 implements iu0 {
     }
 
     @Override
-    public final boolean r() {
+    public final boolean q() {
         return true;
     }
 
     @Override
-    public final void C() {
+    public final void G() {
     }
 }

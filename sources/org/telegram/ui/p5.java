@@ -1,48 +1,26 @@
 package org.telegram.ui;
 
-import java.util.concurrent.CountDownLatch;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-public final class p5 implements Runnable {
-    public final int f40328a;
-    public final y5 f40329b;
+import org.telegram.messenger.ChannelBoostsController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
+public final class p5 implements Utilities.Callback {
+    public final int f42350a;
+    public final x5 f42351b;
 
-    public p5(y5 y5Var, int i10) {
-        this.f40328a = i10;
-        this.f40329b = y5Var;
+    public p5(x5 x5Var, int i10) {
+        this.f42350a = i10;
+        this.f42351b = x5Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40328a) {
+    public final void run(Object obj) {
+        switch (this.f42350a) {
             case 0:
-                y5 y5Var = this.f40329b;
-                y5Var.f43754g0 = false;
-                y5Var.H0(true);
-                return;
-            case 1:
-                CountDownLatch countDownLatch = new CountDownLatch(2);
-                y5 y5Var2 = this.f40329b;
-                y5Var2.D0(countDownLatch, null);
-                y5Var2.E0(countDownLatch, null);
-                try {
-                    countDownLatch.await();
-                } catch (InterruptedException unused) {
-                }
-                NotificationCenter.getInstance(y5Var2.S).doOnIdle(new p5(y5Var2, 4));
-                return;
-            case 2:
-                y5 y5Var3 = this.f40329b;
-                y5Var3.f43754g0 = false;
-                y5Var3.H0(true);
-                return;
-            case 3:
-                y5 y5Var4 = this.f40329b;
-                y5Var4.f43754g0 = false;
-                y5Var4.H0(true);
+                this.f42351b.U = (ChannelBoostsController.CanApplyBoost) obj;
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new p5(this.f40329b, 0));
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.m0(14, this.f42351b, (TL_stories.TL_premium_boostsStatus) obj));
                 return;
         }
     }

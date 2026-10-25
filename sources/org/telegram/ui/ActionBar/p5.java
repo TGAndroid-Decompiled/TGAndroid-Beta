@@ -1,25 +1,22 @@
 package org.telegram.ui.ActionBar;
-
-import org.telegram.tgnet.TLObject;
 public final class p5 implements Runnable {
-    public final int f21779a;
-    public final TLObject f21780b;
-    public final int f21781c;
+    public final int f22954a;
+    public final b6 f22955b;
 
-    public p5(int i10, TLObject tLObject) {
-        this.f21779a = 0;
-        this.f21781c = i10;
-        this.f21780b = tLObject;
+    public p5(b6 b6Var, int i10) {
+        this.f22954a = i10;
+        this.f22955b = b6Var;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ActionBar.p5.run():void");
-    }
-
-    public p5(int i10, TLObject tLObject, int i11) {
-        this.f21779a = i11;
-        this.f21780b = tLObject;
-        this.f21781c = i10;
+        switch (this.f22954a) {
+            case 0:
+                this.f22955b.setVisibility(8);
+                return;
+            default:
+                this.f22955b.setVisibility(8);
+                return;
+        }
     }
 }

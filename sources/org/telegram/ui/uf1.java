@@ -1,30 +1,34 @@
 package org.telegram.ui;
-public final class uf1 implements Runnable {
-    public final int f42416a;
-    public final ag1 f42417b;
-    public final byte[] f42418c;
+public final class uf1 implements org.telegram.ui.ActionBar.b2 {
+    public final int f44122a;
+    public final dg1 f44123b;
 
-    public uf1(ag1 ag1Var, byte[] bArr, int i10) {
-        this.f42416a = i10;
-        this.f42417b = ag1Var;
-        this.f42418c = bArr;
+    public uf1(dg1 dg1Var, int i10) {
+        this.f44122a = i10;
+        this.f44123b = dg1Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f42416a) {
+    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f44122a) {
             case 0:
-                ag1.Y(this.f42417b, this.f42418c);
+                this.f44123b.finishFragment();
+                return;
+            case 1:
+                dg1 dg1Var = this.f44123b;
+                dg1Var.C0();
+                dg1Var.finishFragment();
+                return;
+            case 2:
+                dg1 dg1Var2 = this.f44123b;
+                dg1Var2.R = "";
+                dg1Var2.F0(false);
+                return;
+            case 3:
+                dg1.b0(this.f44123b);
                 return;
             default:
-                ag1 ag1Var = this.f42417b;
-                ag1Var.w0();
-                ag1Var.V = this.f42418c;
-                ag1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
-                ag1 ag1Var2 = new ag1(9, ag1Var.U);
-                ag1Var2.H = ag1Var.H;
-                ag1Var2.G = ag1Var.G;
-                ag1Var.presentFragment(ag1Var2, true);
+                dg1.Y(this.f44123b);
                 return;
         }
     }

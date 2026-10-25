@@ -1,18 +1,39 @@
 package org.telegram.ui.Components;
+public final class hq implements a5.i {
+    public int f29034a;
+    public final ni0 f29035b;
 
-import android.content.Context;
-import android.widget.LinearLayout;
-public final class hq extends LinearLayout {
-    public final kq f27103a;
-
-    public hq(kq kqVar, Context context) {
-        super(context);
-        this.f27103a = kqVar;
+    public hq(ni0 ni0Var) {
+        this.f29035b = ni0Var;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        kq.m(this.f27103a);
+    public final void b(float f7, int i10, int i11) {
+        if (i10 == this.f29035b.getCurrentItem() && f7 == 0.0f && this.f29034a == 1) {
+            d();
+        }
+    }
+
+    @Override
+    public final void c(int i10) {
+        if (i10 == 0) {
+            d();
+        }
+        this.f29034a = i10;
+    }
+
+    public final void d() {
+        ni0 ni0Var = this.f29035b;
+        if (ni0Var.f29690w0 != null) {
+            int currentItem = ni0Var.getCurrentItem();
+            int k10 = ni0Var.f29690w0.k(currentItem) + ni0Var.f29690w0.j();
+            if (currentItem != k10) {
+                ni0Var.x(k10, false);
+            }
+        }
+    }
+
+    @Override
+    public final void a(int i10) {
     }
 }

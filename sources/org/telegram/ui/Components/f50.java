@@ -1,23 +1,20 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-public final class f50 {
-    public long f26198a;
-    public float f26199b;
-    public float f26200c;
-    public boolean d;
-    public float e;
-    public final RectF f26201f = new RectF();
-    public int f26202g;
-    public final Paint h;
-    public final int f26203i;
+import org.telegram.tgnet.TLRPC;
+public interface f50 {
+    void F(float f7);
 
-    public f50(int i10) {
-        this.f26203i = i10;
-        Paint paint = new Paint(1);
-        this.h = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeCap(Paint.Cap.ROUND);
-    }
+    void L(boolean z10, boolean z11);
+
+    void Q();
+
+    void R(TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, boolean z10, TLRPC.VideoSize videoSize);
+
+    boolean e();
+
+    org.telegram.ui.qu0 getCloseIntoObject();
+
+    String getInitialSearchString();
+
+    boolean u();
 }

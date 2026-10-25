@@ -1,118 +1,159 @@
 package b2;
 
-import v7.u6;
-public final class m1 extends o1 {
-    public final e9.n0 e;
-    public final e9.n0 f3841f;
-    public final int[] f3842g;
-    public final int[] h;
+import j$.util.Objects;
+public final class m1 {
+    public static final String h;
+    public static final String f3274i;
+    public static final String f3275j;
+    public static final String f3276k;
+    public static final String f3277l;
+    public Object f3278a;
+    public Object f3279b;
+    public int f3280c;
+    public long d;
+    public long e;
+    public boolean f3281f;
+    public c f3282g = c.f3153c;
 
-    public m1(e9.x1 x1Var, e9.x1 x1Var2, int[] iArr) {
-        boolean z10;
-        if (x1Var.d == iArr.length) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        u6.g(z10);
-        this.e = x1Var;
-        this.f3841f = x1Var2;
-        this.f3842g = iArr;
-        this.h = new int[iArr.length];
-        for (int i10 = 0; i10 < iArr.length; i10++) {
-            this.h[iArr[i10]] = i10;
-        }
+    static {
+        String str = e2.n0.f9692a;
+        h = Integer.toString(0, 36);
+        f3274i = Integer.toString(1, 36);
+        f3275j = Integer.toString(2, 36);
+        f3276k = Integer.toString(3, 36);
+        f3277l = Integer.toString(4, 36);
     }
 
-    @Override
-    public final int a(boolean z10) {
-        if (p()) {
-            return -1;
+    public final long a(int i10, int i11) {
+        a a2 = this.f3282g.a(i10);
+        if (a2.f3134a != -1) {
+            return a2.f3137f[i11];
         }
-        if (!z10) {
-            return 0;
-        }
-        return this.f3842g[0];
+        return -9223372036854775807L;
     }
 
-    @Override
-    public final int b(Object obj) {
-        throw new UnsupportedOperationException();
-    }
-
-    @Override
-    public final int c(boolean z10) {
-        if (p()) {
-            return -1;
-        }
-        e9.n0 n0Var = this.e;
-        if (z10) {
-            return this.f3842g[n0Var.size() - 1];
-        }
-        return n0Var.size() - 1;
-    }
-
-    @Override
-    public final int e(int i10, int i11, boolean z10) {
-        if (i11 == 1) {
-            return i10;
-        }
-        if (i10 == c(z10)) {
-            if (i11 == 2) {
-                return a(z10);
+    public final int b(long j10) {
+        int i10;
+        a a2;
+        int i11;
+        c cVar = this.f3282g;
+        long j11 = this.d;
+        int i12 = cVar.f3154a;
+        if (j10 != Long.MIN_VALUE && (j11 == -9223372036854775807L || j10 < j11)) {
+            int i13 = 0;
+            while (i13 < i12) {
+                cVar.a(i13).getClass();
+                cVar.a(i13).getClass();
+                if (0 > j10 && ((i11 = (a2 = cVar.a(i13)).f3134a) == -1 || a2.a(-1) < i11)) {
+                    break;
+                }
+                i13++;
             }
-            return -1;
-        } else if (z10) {
-            return this.f3842g[this.h[i10] + 1];
-        } else {
-            return i10 + 1;
-        }
-    }
-
-    @Override
-    public final l1 f(int i10, l1 l1Var, boolean z10) {
-        l1 l1Var2 = (l1) this.f3841f.get(i10);
-        l1Var.h(l1Var2.f3827a, l1Var2.f3828b, l1Var2.f3829c, l1Var2.d, l1Var2.e, l1Var2.f3831g, l1Var2.f3830f);
-        return l1Var;
-    }
-
-    @Override
-    public final int h() {
-        return this.f3841f.size();
-    }
-
-    @Override
-    public final int k(int i10, int i11, boolean z10) {
-        if (i11 == 1) {
-            return i10;
-        }
-        if (i10 == a(z10)) {
-            if (i11 == 2) {
-                return c(z10);
+            if (i13 < i12) {
+                if (i10 != 0) {
+                    cVar.a(i13).getClass();
+                    if (0 <= j11) {
+                    }
+                }
+                return i13;
             }
-            return -1;
-        } else if (z10) {
-            return this.f3842g[this.h[i10] - 1];
-        } else {
-            return i10 - 1;
         }
+        return -1;
     }
 
-    @Override
-    public final Object l(int i10) {
-        throw new UnsupportedOperationException();
+    public final int c(long j10) {
+        c cVar = this.f3282g;
+        int i10 = cVar.f3154a;
+        int i11 = i10 - 1;
+        if (i11 == i10 - 1) {
+            cVar.a(i11).getClass();
+        }
+        while (i11 >= 0 && j10 != Long.MIN_VALUE) {
+            cVar.a(i11).getClass();
+            if (j10 >= 0) {
+                break;
+            }
+            i11--;
+        }
+        if (i11 >= 0) {
+            a a2 = cVar.a(i11);
+            int i12 = a2.f3134a;
+            if (i12 != -1) {
+                for (int i13 = 0; i13 < i12; i13++) {
+                    int i14 = a2.e[i13];
+                    if (i14 != 0 && i14 != 1) {
+                    }
+                }
+            }
+            return i11;
+        }
+        return -1;
     }
 
-    @Override
-    public final n1 m(int i10, n1 n1Var, long j10) {
-        n1 n1Var2 = (n1) this.e.get(i10);
-        n1Var.b(n1Var2.f3874a, n1Var2.f3876c, n1Var2.d, n1Var2.e, n1Var2.f3877f, n1Var2.f3878g, n1Var2.h, n1Var2.f3879i, n1Var2.f3880j, n1Var2.f3882l, n1Var2.f3883m, n1Var2.f3884n, n1Var2.f3885o, n1Var2.f3886p);
-        n1Var.f3881k = n1Var2.f3881k;
-        return n1Var;
+    public final long d(int i10) {
+        this.f3282g.a(i10).getClass();
+        return 0L;
     }
 
-    @Override
-    public final int o() {
-        return this.e.size();
+    public final int e(int i10) {
+        return this.f3282g.a(i10).a(-1);
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && m1.class.equals(obj.getClass())) {
+                m1 m1Var = (m1) obj;
+                if (Objects.equals(this.f3278a, m1Var.f3278a) && Objects.equals(this.f3279b, m1Var.f3279b) && this.f3280c == m1Var.f3280c && this.d == m1Var.d && this.e == m1Var.e && this.f3281f == m1Var.f3281f && Objects.equals(this.f3282g, m1Var.f3282g)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean f(int i10) {
+        c cVar = this.f3282g;
+        int i11 = cVar.f3154a;
+        if (i10 == i11 - 1 && i10 == i11 - 1) {
+            cVar.a(i10).getClass();
+            return false;
+        }
+        return false;
+    }
+
+    public final boolean g(int i10) {
+        this.f3282g.a(i10).getClass();
+        return false;
+    }
+
+    public final void h(Object obj, Object obj2, int i10, long j10, long j11, c cVar, boolean z10) {
+        this.f3278a = obj;
+        this.f3279b = obj2;
+        this.f3280c = i10;
+        this.d = j10;
+        this.e = j11;
+        this.f3282g = cVar;
+        this.f3281f = z10;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        Object obj = this.f3278a;
+        int i10 = 0;
+        if (obj == null) {
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
+        }
+        int i11 = (217 + hashCode) * 31;
+        Object obj2 = this.f3279b;
+        if (obj2 != null) {
+            i10 = obj2.hashCode();
+        }
+        long j10 = this.d;
+        long j11 = this.e;
+        return this.f3282g.hashCode() + ((((((((((i11 + i10) * 31) + this.f3280c) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31) + (this.f3281f ? 1 : 0)) * 31);
     }
 }

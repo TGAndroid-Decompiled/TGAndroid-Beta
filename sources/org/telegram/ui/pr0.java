@@ -1,48 +1,34 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.SurfaceView;
-import android.view.View;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class pr0 extends AnimatorListenerAdapter {
-    public final int f40624a;
-    public final View f40625b;
-    public final PhotoViewer f40626c;
+import android.graphics.drawable.Drawable;
+public final class pr0 implements Runnable {
+    public final int f42644a;
+    public final PhotoViewer f42645b;
 
-    public pr0(PhotoViewer photoViewer, View view, int i10) {
-        this.f40624a = i10;
-        this.f40626c = photoViewer;
-        this.f40625b = view;
+    public pr0(PhotoViewer photoViewer, int i10) {
+        this.f42644a = i10;
+        this.f42645b = photoViewer;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f40624a) {
+    public final void run() {
+        int i10 = this.f42644a;
+        PhotoViewer photoViewer = this.f42645b;
+        switch (i10) {
             case 0:
-                PhotoViewer photoViewer = this.f40626c;
-                photoViewer.B3 = false;
-                this.f40625b.setOutlineProvider(null);
-                ImageView imageView = photoViewer.f33755x3;
-                if (imageView != null) {
-                    imageView.setOutlineProvider(null);
-                }
-                cu0 cu0Var = photoViewer.E2;
-                if (cu0Var != null) {
-                    cu0Var.setOutlineProvider(null);
-                }
-                SurfaceView surfaceView = photoViewer.C2;
-                if (surfaceView != null) {
-                    surfaceView.setVisibility(0);
-                    return;
-                }
+                Drawable[] drawableArr = PhotoViewer.U8;
+                photoViewer.H0(true, false);
+                return;
+            case 1:
+                Drawable[] drawableArr2 = PhotoViewer.U8;
+                photoViewer.h3(1, false);
+                return;
+            case 2:
+                Drawable[] drawableArr3 = PhotoViewer.U8;
+                photoViewer.h3(-1, false);
                 return;
             default:
-                PhotoViewer photoViewer2 = this.f40626c;
-                photoViewer2.B3 = false;
-                photoViewer2.f33621i4.run();
-                AndroidUtilities.runOnUIThread(new ah0(23, this, this.f40625b), 100L);
+                PhotoViewer.T(photoViewer);
                 return;
         }
     }

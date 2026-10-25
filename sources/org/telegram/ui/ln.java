@@ -1,44 +1,48 @@
 package org.telegram.ui;
 
-import android.util.SparseIntArray;
-public final class ln implements Runnable {
-    public final int f39319a;
-    public final qn f39320b;
+import android.animation.ValueAnimator;
+import android.view.View;
+public final class ln implements ValueAnimator.AnimatorUpdateListener {
+    public final int f41300a;
+    public final mn f41301b;
 
-    public ln(qn qnVar, int i10) {
-        this.f39319a = i10;
-        this.f39320b = qnVar;
+    public ln(mn mnVar, int i10) {
+        this.f41300a = i10;
+        this.f41301b = mnVar;
     }
 
     @Override
-    public final void run() {
-        org.telegram.ui.ActionBar.h5 h5Var;
-        org.telegram.ui.ActionBar.h5 h5Var2;
-        switch (this.f39319a) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f41300a) {
             case 0:
-                SparseIntArray sparseIntArray = new SparseIntArray();
-                qn qnVar = this.f39320b;
-                qnVar.e = sparseIntArray;
-                sn snVar = qnVar.F;
-                org.telegram.ui.ActionBar.j5 j5Var = (org.telegram.ui.ActionBar.j5) snVar.getThemedDrawable("drawableMsgOut");
-                qnVar.f40894s = j5Var;
-                h5Var = ((org.telegram.ui.ActionBar.o2) snVar).parentLayout;
-                j5Var.J = h5Var.getMessageDrawableOutStart();
-                org.telegram.ui.ActionBar.j5 j5Var2 = (org.telegram.ui.ActionBar.j5) snVar.getThemedDrawable("drawableMsgOutMedia");
-                qnVar.f40895t = j5Var2;
-                h5Var2 = ((org.telegram.ui.ActionBar.o2) snVar).parentLayout;
-                j5Var2.J = h5Var2.getMessageDrawableOutMediaStart();
-                qnVar.f40894s.K = 0.0f;
-                qnVar.f40895t.K = 0.0f;
-                snVar.Bc();
-                qnVar.s(0.0f);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mn mnVar = this.f41301b;
+                mnVar.f41590a = floatValue;
+                View view = mnVar.f41591b.fragmentView;
+                if (view != null) {
+                    view.invalidate();
+                    return;
+                }
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mn mnVar2 = this.f41301b;
+                mnVar2.f41590a = floatValue2;
+                View view2 = mnVar2.f41591b.fragmentView;
+                if (view2 != null) {
+                    view2.invalidate();
+                    return;
+                }
                 return;
             default:
-                qn qnVar2 = this.f39320b;
-                qnVar2.f40894s.J = null;
-                qnVar2.f40895t.J = null;
-                qnVar2.e = null;
-                qnVar2.s(1.0f);
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                mn mnVar3 = this.f41301b;
+                mnVar3.f41590a = floatValue3;
+                View view3 = mnVar3.f41591b.fragmentView;
+                if (view3 != null) {
+                    view3.invalidate();
+                    return;
+                }
                 return;
         }
     }

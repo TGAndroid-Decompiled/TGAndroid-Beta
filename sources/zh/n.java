@@ -1,44 +1,69 @@
 package zh;
 
 import android.content.Context;
-import android.graphics.drawable.GradientDrawable;
-import android.text.TextUtils;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import w7.z5;
-public final class n extends FrameLayout {
-    public final TextView f52499a;
-    public final TextView f52500b;
-    public final k0 f52501c;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.GiftAuctionController;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.bb;
+public final class n implements View.OnClickListener {
+    public final int f53152a;
+    public final long f53153b;
+    public final Context f53154c;
+    public final Object d;
+    public final Object e;
+    public final Object f53155f;
 
-    public n(k0 k0Var, Context context) {
-        super(context);
-        this.f52501c = k0Var;
-        TextView textView = new TextView(context);
-        this.f52499a = textView;
-        textView.setTextColor(k0Var.f52556x);
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setSingleLine();
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity(16);
-        addView(textView, z5.d(-1, -1.0f, 51, 15.0f, 8.0f, 15.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f52500b = textView2;
-        textView2.setTextColor(-1);
-        textView2.setTextSize(1, 13.0f);
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setGravity(17);
-        textView2.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(10.0f), 0);
-        textView2.setText(LocaleController.getString(R.string.Unlock));
-        GradientDrawable gradientDrawable = new GradientDrawable();
-        gradientDrawable.setColor(620756991);
-        gradientDrawable.setCornerRadius(AndroidUtilities.dp(13.0f));
-        textView2.setBackground(gradientDrawable);
-        textView2.setOnClickListener(new hg.r0(this, 29));
-        addView(textView2, z5.d(-2, 26.0f, 21, 0.0f, 4.0f, 12.0f, 0.0f));
+    public n(Context context, u6 u6Var, long j10, TL_stars.StarGift starGift, ArrayList arrayList) {
+        this.f53152a = 2;
+        this.f53154c = context;
+        this.d = u6Var;
+        this.f53153b = j10;
+        this.f53155f = starGift;
+        this.e = arrayList;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        switch (this.f53152a) {
+            case 0:
+                v.Q((v) this.f53155f, this.f53153b, this.f53154c, (u6) this.d, (Runnable) this.e);
+                return;
+            case 1:
+                c0 c0Var = (c0) this.f53155f;
+                c0Var.getClass();
+                l lVar = new l(this.f53153b, true, null);
+                GiftAuctionController.Auction auction = c0Var.f52914d0;
+                m mVar = new m(this.f53154c, (u6) this.d, lVar, auction);
+                mVar.show();
+                mVar.f53121n0 = (Runnable) this.e;
+                c0Var.dismiss();
+                return;
+            case 2:
+                new c0(this.f53154c, (u6) this.d, this.f53153b, (TL_stars.StarGift) this.f53155f, (ArrayList) this.e, null, true).show();
+                return;
+            default:
+                y4.S((y4) this.f53155f, this.f53153b, this.f53154c, (Runnable) this.e, (TL_stars.StarGift) this.d);
+                return;
+        }
+    }
+
+    public n(bb bbVar, long j10, Context context, u6 u6Var, Runnable runnable, int i10) {
+        this.f53152a = i10;
+        this.f53155f = bbVar;
+        this.f53153b = j10;
+        this.f53154c = context;
+        this.d = u6Var;
+        this.e = runnable;
+    }
+
+    public n(y4 y4Var, long j10, Context context, Runnable runnable, TL_stars.StarGift starGift) {
+        this.f53152a = 3;
+        this.f53155f = y4Var;
+        this.f53153b = j10;
+        this.f53154c = context;
+        this.e = runnable;
+        this.d = starGift;
     }
 }

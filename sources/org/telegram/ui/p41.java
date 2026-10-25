@@ -1,23 +1,16 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import org.telegram.tgnet.tl.TL_stars;
-public final class p41 extends w51 {
-    public final View Q;
-    public final TL_stars.TL_starGiftUnique R;
-    public final q41 S;
+public final class p41 extends e51 {
+    public final c61 f42349n3;
 
-    public p41(q41 q41Var, Context context, Runnable runnable, View view, j51 j51Var, org.telegram.ui.ActionBar.g6 g6Var, View view2, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        super(q41Var.e, context, runnable, view, j51Var, g6Var);
-        this.S = q41Var;
-        this.Q = view2;
-        this.R = tL_starGiftUnique;
+    public p41(c61 c61Var, Context context) {
+        super(c61Var, context);
+        this.f42349n3 = c61Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.S.e.X0 = null;
+    public final void l0(int i10) {
+        this.f42349n3.h();
     }
 }

@@ -1,54 +1,54 @@
 package org.telegram.ui;
 public final class hg implements q0.a {
-    public final int f37830a;
-    public final sn f37831b;
+    public final int f40001a;
+    public final un f40002b;
 
-    public hg(sn snVar, int i10) {
-        this.f37830a = i10;
-        this.f37831b = snVar;
+    public hg(un unVar, int i10) {
+        this.f40001a = i10;
+        this.f40002b = unVar;
     }
 
     @Override
     public final void accept(Object obj) {
-        switch (this.f37830a) {
+        switch (this.f40001a) {
             case 0:
                 Integer num = (Integer) obj;
-                sn snVar = this.f37831b;
-                snVar.getClass();
+                un unVar = this.f40002b;
+                unVar.getClass();
                 if (num.intValue() == 0) {
-                    snVar.f41735x1 = 0;
-                    snVar.Ic(true);
-                    snVar.getMessagesController().markReactionsAsRead(snVar.f41516f6, snVar.d());
+                    unVar.f44469x1 = 0;
+                    unVar.Oc(true);
+                    unVar.getMessagesController().markReactionsAsRead(unVar.f44249f6, unVar.b());
                     return;
                 }
-                snVar.Ic(true);
-                snVar.j(num.intValue(), 0, false, 0, true, 0);
+                unVar.Oc(true);
+                unVar.j(num.intValue(), 0, false, 0, true, 0);
                 return;
             case 1:
                 Integer num2 = (Integer) obj;
-                sn snVar2 = this.f37831b;
-                snVar2.getClass();
+                un unVar2 = this.f40002b;
+                unVar2.getClass();
                 if (num2.intValue() == 0) {
-                    snVar2.f41749y1 = 0;
-                    snVar2.Hc(true);
-                    snVar2.getMessagesController().markPollVotesAsRead(snVar2.f41516f6, snVar2.d());
+                    unVar2.f44482y1 = 0;
+                    unVar2.Nc(true);
+                    unVar2.getMessagesController().markPollVotesAsRead(unVar2.f44249f6, unVar2.b());
                     return;
                 }
-                int i10 = snVar2.f41749y1 - 1;
-                snVar2.f41749y1 = i10;
+                int i10 = unVar2.f44482y1 - 1;
+                unVar2.f44482y1 = i10;
                 if (i10 <= 0) {
-                    snVar2.getMessagesController().markPollVotesAsRead(snVar2.f41516f6, snVar2.d());
+                    unVar2.getMessagesController().markPollVotesAsRead(unVar2.f44249f6, unVar2.b());
                 }
-                snVar2.Hc(true);
-                snVar2.j(num2.intValue(), 0, false, 0, true, 0);
+                unVar2.Nc(true);
+                unVar2.j(num2.intValue(), 0, false, 0, true, 0);
                 return;
             default:
-                sn snVar3 = this.f37831b;
-                snVar3.getClass();
+                un unVar3 = this.f40002b;
+                unVar3.getClass();
                 boolean booleanValue = ((Boolean) obj).booleanValue();
-                snVar3.f41662r7 = booleanValue;
+                unVar3.f44395r7 = booleanValue;
                 if (!booleanValue) {
-                    snVar3.v8();
+                    unVar3.z8();
                     return;
                 }
                 return;

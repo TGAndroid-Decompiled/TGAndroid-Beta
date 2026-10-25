@@ -1,10 +1,46 @@
 package b8;
-public final class g extends b {
-    public final e f4229b;
 
-    public g(e eVar) {
-        super(0);
-        this.f4229b = eVar;
-        attachInterface(this, "com.google.android.gms.safetynet.internal.ISafetyNetCallbacks");
+import android.os.IBinder;
+import android.os.IInterface;
+import kotlin.jvm.internal.i;
+public final class g extends o6.g {
+    @Override
+    public final boolean C() {
+        return false;
+    }
+
+    @Override
+    public final int l() {
+        return 17895000;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        i.e(iBinder, "iBinder");
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService");
+        if (queryLocalInterface instanceof c) {
+            return (c) queryLocalInterface;
+        }
+        return new c(iBinder);
+    }
+
+    @Override
+    public final l6.c[] r() {
+        return m8.f.f18367c;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.recaptchabase.service.START";
+    }
+
+    @Override
+    public final boolean y() {
+        return true;
     }
 }

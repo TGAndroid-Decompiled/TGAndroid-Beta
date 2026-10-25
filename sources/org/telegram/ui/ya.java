@@ -1,30 +1,83 @@
 package org.telegram.ui;
-public final class ya implements Runnable {
-    public final int f43809a;
-    public final vb f43810b;
 
-    public ya(vb vbVar, int i10) {
-        this.f43809a = i10;
-        this.f43810b = vbVar;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
+public final class ya implements RequestDelegate {
+    public final int f46011a;
+    public final wb f46012b;
+
+    public ya(wb wbVar, int i10) {
+        this.f46011a = i10;
+        this.f46012b = wbVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f43809a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f46011a) {
             case 0:
-                vb vbVar = this.f43810b;
-                vbVar.G0 = Integer.MAX_VALUE;
-                vbVar.H0 = -1;
-                vbVar.d1();
-                vbVar.I0 = null;
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final wb wbVar = this.f46012b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    wb.V(wbVar, tL_channels_adminLogResults);
+                                    return;
+                                default:
+                                    wb.Z(wbVar, tL_channels_adminLogResults);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
                 return;
             case 1:
-                vb vbVar2 = this.f43810b;
-                vbVar2.W0(false);
-                vbVar2.E.l();
+                wb wbVar2 = this.f46012b;
+                wbVar2.getClass();
+                if (tLObject instanceof Vector) {
+                    ArrayList<T> arrayList = ((Vector) tLObject).objects;
+                    ArrayList<TLRPC.User> arrayList2 = new ArrayList<>();
+                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
+                        if (arrayList.get(i10) instanceof TLRPC.User) {
+                            arrayList2.add((TLRPC.User) arrayList.get(i10));
+                        }
+                    }
+                    wbVar2.getMessagesController().putUsers(arrayList2, false);
+                    return;
+                }
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new org.telegram.messenger.voip.m0(24, this.f46012b, tLObject));
+                return;
+            case 3:
+                if (tLObject != null) {
+                    final TLRPC.TL_channels_adminLogResults tL_channels_adminLogResults2 = (TLRPC.TL_channels_adminLogResults) tLObject;
+                    final wb wbVar3 = this.f46012b;
+                    AndroidUtilities.runOnUIThread(new Runnable() {
+                        @Override
+                        public final void run() {
+                            switch (r3) {
+                                case 0:
+                                    wb.V(wbVar3, tL_channels_adminLogResults2);
+                                    return;
+                                default:
+                                    wb.Z(wbVar3, tL_channels_adminLogResults2);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                }
                 return;
             default:
-                this.f43810b.V0();
+                AndroidUtilities.runOnUIThread(new q1(this.f46012b, tL_error, tLObject, 9));
                 return;
         }
     }

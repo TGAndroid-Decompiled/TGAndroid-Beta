@@ -1,51 +1,24 @@
 package org.telegram.ui.Components;
+public final class s30 implements a5.i {
+    public final org.telegram.ui.u40 f32419a;
 
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public abstract class s30 extends org.telegram.ui.ActionBar.h3 {
-    public z4.h f30429b;
-    public p30 f30430c;
-    public LinearLayout d;
-    public TextView[] e;
-    public float f30431f;
-    public int h;
+    public s30(org.telegram.ui.u40 u40Var) {
+        this.f32419a = u40Var;
+    }
 
-    public static void m(org.telegram.ui.s40 s40Var) {
-        TextView textView;
-        TextView[] textViewArr = s40Var.e;
-        int i10 = s40Var.h;
-        TextView textView2 = textViewArr[i10];
-        if (i10 < textViewArr.length - 1) {
-            textView = textViewArr[i10 + 1];
-        } else {
-            textView = null;
-        }
-        s40Var.containerView.getMeasuredWidth();
-        float measuredWidth = (textView2.getMeasuredWidth() / 2) + textView2.getLeft();
-        float measuredWidth2 = (s40Var.containerView.getMeasuredWidth() / 2) - measuredWidth;
-        if (textView != null) {
-            measuredWidth2 -= (((textView.getMeasuredWidth() / 2) + textView.getLeft()) - measuredWidth) * s40Var.f30431f;
-        }
-        for (int i11 = 0; i11 < textViewArr.length; i11++) {
-            int i12 = s40Var.h;
-            float f7 = 0.9f;
-            float f10 = 0.7f;
-            if (i11 >= i12 && i11 <= i12 + 1) {
-                if (i11 == i12) {
-                    float f11 = s40Var.f30431f;
-                    f10 = 1.0f - (0.3f * f11);
-                    f7 = 1.0f - (f11 * 0.1f);
-                } else {
-                    float f12 = s40Var.f30431f;
-                    f10 = 0.7f + (0.3f * f12);
-                    f7 = 0.9f + (f12 * 0.1f);
-                }
-            }
-            textViewArr[i11].setAlpha(f10);
-            textViewArr[i11].setScaleX(f7);
-            textViewArr[i11].setScaleY(f7);
-        }
-        s40Var.d.setTranslationX(measuredWidth2);
-        s40Var.f30430c.invalidate();
+    @Override
+    public final void b(float f7, int i10, int i11) {
+        org.telegram.ui.u40 u40Var = this.f32419a;
+        u40Var.h = i10;
+        u40Var.f34351f = f7;
+        w30.m(u40Var);
+    }
+
+    @Override
+    public final void a(int i10) {
+    }
+
+    @Override
+    public final void c(int i10) {
     }
 }

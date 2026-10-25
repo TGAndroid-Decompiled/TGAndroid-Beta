@@ -1,41 +1,51 @@
 package l5;
 
-import java.util.Arrays;
+import android.util.JsonReader;
+import android.util.JsonToken;
+import java.io.BufferedReader;
+import java.io.IOException;
 public final class m {
-    public final i5.c f15991a;
-    public final byte[] f15992b;
+    public final long f16910a;
 
-    public m(i5.c cVar, byte[] bArr) {
-        if (cVar != null) {
-            if (bArr != null) {
-                this.f15991a = cVar;
-                this.f15992b = bArr;
-                return;
+    public m(long j10) {
+        this.f16910a = j10;
+    }
+
+    public static m a(BufferedReader bufferedReader) {
+        JsonReader jsonReader = new JsonReader(bufferedReader);
+        try {
+            jsonReader.beginObject();
+            while (jsonReader.hasNext()) {
+                if (jsonReader.nextName().equals("nextRequestWaitMillis")) {
+                    if (jsonReader.peek() == JsonToken.STRING) {
+                        return new m(Long.parseLong(jsonReader.nextString()));
+                    }
+                    return new m(jsonReader.nextLong());
+                }
+                jsonReader.skipValue();
             }
-            throw new NullPointerException("bytes is null");
+            throw new IOException("Response is missing nextRequestWaitMillis field.");
+        } finally {
+            jsonReader.close();
         }
-        throw new NullPointerException("encoding is null");
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
+        if (obj == this) {
             return true;
         }
-        if (!(obj instanceof m)) {
-            return false;
+        if ((obj instanceof m) && this.f16910a == ((m) obj).f16910a) {
+            return true;
         }
-        m mVar = (m) obj;
-        if (!this.f15991a.equals(mVar.f15991a)) {
-            return false;
-        }
-        return Arrays.equals(this.f15992b, mVar.f15992b);
+        return false;
     }
 
     public final int hashCode() {
-        return ((this.f15991a.hashCode() ^ 1000003) * 1000003) ^ Arrays.hashCode(this.f15992b);
+        long j10 = this.f16910a;
+        return ((int) (j10 ^ (j10 >>> 32))) ^ 1000003;
     }
 
     public final String toString() {
-        return "EncodedPayload{encoding=" + this.f15991a + ", bytes=[...]}";
+        return a1.g.r(new StringBuilder("LogResponse{nextRequestWaitMillis="), this.f16910a, "}");
     }
 }

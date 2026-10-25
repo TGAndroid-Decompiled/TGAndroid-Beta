@@ -1,19 +1,21 @@
 package org.telegram.ui;
 
-import android.view.animation.OvershootInterpolator;
-public final class x20 extends lh.b {
-    public final OvershootInterpolator d;
-    public int e;
-    public final u50 f43457f;
+import android.view.ViewGroup;
+public final class x20 extends s4.l {
+    public final v50 F;
 
-    public x20(u50 u50Var, LaunchActivity launchActivity) {
-        super(launchActivity);
-        this.f43457f = u50Var;
-        this.d = new OvershootInterpolator(1.5f);
+    public x20(v50 v50Var) {
+        this.F = v50Var;
     }
 
     @Override
-    public final void dispatchDraw(android.graphics.Canvas r41) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.x20.dispatchDraw(android.graphics.Canvas):void");
+    public final void P(s4.e1 e1Var) {
+        ViewGroup viewGroup;
+        v50 v50Var = this.F;
+        v50Var.Q.invalidate();
+        v50Var.a2.invalidate();
+        viewGroup = ((org.telegram.ui.ActionBar.k3) v50Var).containerView;
+        viewGroup.invalidate();
+        v50.J0(v50Var);
     }
 }

@@ -1,44 +1,39 @@
 package org.telegram.ui.Components;
+public final class xs implements Runnable {
+    public final int f34808a;
+    public final org.telegram.ui.ActionBar.e2[] f34809b;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_bots;
-public final class xs {
-    public final int f32693a;
-    public final us f32694b;
-    public boolean f32695c;
-    public boolean d;
-    public boolean e;
-    public long f32696f;
-    public String f32697g;
-    public final ArrayList h = new ArrayList();
-    public boolean f32698i = false;
-
-    public xs(int i10, us usVar) {
-        this.f32693a = i10;
-        this.f32694b = usVar;
+    public xs(org.telegram.ui.ActionBar.e2[] e2VarArr, int i10) {
+        this.f34808a = i10;
+        this.f34809b = e2VarArr;
     }
 
-    public final void a() {
-        if (!this.f32695c && !this.e) {
-            this.f32695c = true;
-            boolean z10 = this.d;
-            int i10 = this.f32693a;
-            if (!z10) {
-                ws wsVar = new ws(this, 0);
-                MessagesStorage messagesStorage = MessagesStorage.getInstance(i10);
-                messagesStorage.getStorageQueue().postRunnable(new jg(this, messagesStorage, wsVar, 5));
+    @Override
+    public final void run() {
+        switch (this.f34808a) {
+            case 0:
+                org.telegram.ui.ActionBar.e2 e2Var = this.f34809b[0];
+                if (e2Var != null) {
+                    e2Var.dismiss();
+                    return;
+                }
                 return;
-            }
-            TL_bots.getPopularAppBots getpopularappbots = new TL_bots.getPopularAppBots();
-            getpopularappbots.limit = 20;
-            String str = this.f32697g;
-            if (str == null) {
-                str = "";
-            }
-            getpopularappbots.offset = str;
-            ConnectionsManager.getInstance(i10).sendRequest(getpopularappbots, new x1(this, 3));
+            case 1:
+                org.telegram.ui.ActionBar.e2[] e2VarArr = this.f34809b;
+                try {
+                    e2VarArr[0].dismiss();
+                } catch (Throwable unused) {
+                }
+                e2VarArr[0] = null;
+                return;
+            default:
+                org.telegram.ui.ActionBar.e2[] e2VarArr2 = this.f34809b;
+                try {
+                    e2VarArr2[0].dismiss();
+                } catch (Throwable unused2) {
+                }
+                e2VarArr2[0] = null;
+                return;
         }
     }
 }

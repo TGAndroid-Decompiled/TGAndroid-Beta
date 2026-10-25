@@ -1,25 +1,26 @@
 package org.telegram.ui;
+public final class cf implements Runnable {
+    public final int f38438a;
+    public final un f38439b;
+    public final long f38440c;
+    public final long d;
 
-import android.view.View;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.function.ToIntFunction;
-public final class cf implements ToIntFunction {
-    public final int f36321a;
-    public final Object f36322b;
-
-    public cf(Object obj, int i10) {
-        this.f36321a = i10;
-        this.f36322b = obj;
+    public cf(un unVar, long j10, long j11, int i10) {
+        this.f38438a = i10;
+        this.f38439b = unVar;
+        this.f38440c = j10;
+        this.d = j11;
     }
 
     @Override
-    public final int applyAsInt(Object obj) {
-        switch (this.f36321a) {
+    public final void run() {
+        switch (this.f38438a) {
             case 0:
-                return ((Integer) ((HashMap) this.f36322b).get((View) obj)).intValue();
+                un.E0(this.f38439b, this.f38440c, this.d);
+                return;
             default:
-                return ((Integer) ((ArrayList) this.f36322b).get(((Integer) obj).intValue())).intValue();
+                un.A1(this.f38439b, this.f38440c, this.d);
+                return;
         }
     }
 }

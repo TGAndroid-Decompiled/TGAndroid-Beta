@@ -1,0 +1,27 @@
+package ce;
+public final class m1 extends m {
+    public final v1 f6243r;
+
+    public m1(v1 v1Var, ld.c cVar) {
+        super(1, cVar);
+        this.f6243r = v1Var;
+    }
+
+    @Override
+    public final Throwable q(v1 v1Var) {
+        Throwable b10;
+        Object u10 = this.f6243r.u();
+        if ((u10 instanceof o1) && (b10 = ((o1) u10).b()) != null) {
+            return b10;
+        }
+        if (u10 instanceof v) {
+            return ((v) u10).f6271a;
+        }
+        return v1Var.getCancellationException();
+    }
+
+    @Override
+    public final String z() {
+        return "AwaitContinuation";
+    }
+}

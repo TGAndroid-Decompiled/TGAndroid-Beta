@@ -22,7 +22,7 @@ public class TLParseException extends RuntimeException {
         }
         FileLog.e(tLParseException, z11);
         if (i10 != -847714938 && i10 != -779361553 && i10 != -212046591) {
-            AndroidUtilities.runOnUIThread(new ki.u(tLParseException, 12));
+            AndroidUtilities.runOnUIThread(new k2.c(tLParseException, 15));
         }
         if (!z10) {
             return;

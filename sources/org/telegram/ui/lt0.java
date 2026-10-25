@@ -2,57 +2,44 @@ package org.telegram.ui;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
-import android.view.ViewGroup;
-import java.lang.reflect.Method;
-import org.telegram.messenger.FileLog;
+import android.view.ViewPropertyAnimator;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
 public final class lt0 extends AnimatorListenerAdapter {
-    public final int f39378a;
-    public final org.telegram.ui.Components.fn0 f39379b;
+    public final int f41357a;
+    public final int f41358b;
+    public final PhotoViewer f41359c;
 
-    public lt0(org.telegram.ui.Components.fn0 fn0Var, int i10) {
-        this.f39378a = i10;
-        this.f39379b = fn0Var;
+    public lt0(PhotoViewer photoViewer, int i10, int i11) {
+        this.f41357a = i11;
+        this.f41359c = photoViewer;
+        this.f41358b = i10;
     }
 
     @Override
     public final void onAnimationEnd(Animator animator) {
-        switch (this.f39378a) {
+        switch (this.f41357a) {
             case 0:
-                PhotoViewer photoViewer = (PhotoViewer) this.f39379b.f26397b;
-                photoViewer.Q1.getNextView().setText((CharSequence) null);
-                jt0 jt0Var = photoViewer.T1;
-                jt0Var.f43409l0 = false;
-                if (jt0Var.m0 >= 0) {
-                    ((ViewGroup.MarginLayoutParams) jt0Var.f43411o0.getLayoutParams()).topMargin = jt0Var.m0;
-                    jt0Var.m0 = -1;
-                    jt0Var.requestLayout();
-                    return;
-                }
+                PhotoViewer photoViewer = this.f41359c;
+                mt0 mt0Var = photoViewer.N1;
+                mt0Var.e.setVisibility(0);
+                FrameLayout frameLayout = mt0Var.f48555r;
+                frameLayout.setVisibility(0);
+                frameLayout.setTranslationY(AndroidUtilities.dp(18.0f));
+                ViewPropertyAnimator translationY = frameLayout.animate().alpha(1.0f).translationY(0.0f);
+                org.telegram.ui.Components.ds dsVar = org.telegram.ui.Components.ds.h;
+                org.telegram.messenger.vh.q(translationY, dsVar, 320L);
+                mt0Var.f48557w.animate().alpha(1.0f).translationX(0.0f).setInterpolator(dsVar).setDuration(320L).start();
+                photoViewer.f35788u4 = this.f41358b;
+                photoViewer.f35753q6 = null;
+                photoViewer.f35736o6 = -1;
                 return;
             default:
-                ((PhotoViewer) this.f39379b.f26397b).Q1.setTranslationY(0.0f);
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f39378a) {
-            case 0:
-                jt0 jt0Var = ((PhotoViewer) this.f39379b.f26397b).T1;
-                Method method = jt0Var.f43403f0;
-                if (method != null) {
-                    try {
-                        method.invoke(jt0Var, null);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
+                int i10 = this.f41358b;
+                PhotoViewer photoViewer2 = this.f41359c;
+                photoViewer2.f35788u4 = i10;
+                photoViewer2.f35753q6 = null;
+                photoViewer2.f35736o6 = -1;
                 return;
         }
     }

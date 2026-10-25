@@ -1,72 +1,81 @@
 package c3;
 
-import v7.u6;
+import a8.yb;
+import java.nio.ByteBuffer;
 public final class m0 {
-    public final byte[] f4650a = new byte[10];
-    public boolean f4651b;
-    public int f4652c;
-    public long d;
-    public int e;
-    public int f4653f;
-    public int f4654g;
+    public boolean f6089a;
 
-    public final void a(l0 l0Var, k0 k0Var) {
-        if (this.f4652c > 0) {
-            l0Var.c(this.d, this.e, this.f4653f, this.f4654g, k0Var);
-            this.f4652c = 0;
-        }
-    }
-
-    public final void b(l0 l0Var, long j10, int i10, int i11, int i12, k0 k0Var) {
+    public m0(f2.t tVar, f2.s sVar) {
         boolean z10;
-        if (this.f4654g <= i11 + i12) {
-            z10 = true;
-        } else {
+        boolean z11;
+        int i10;
+        int i11 = sVar.f10114a;
+        ByteBuffer byteBuffer = sVar.f10115b;
+        if (i11 != 6 && i11 != 3) {
             z10 = false;
+        } else {
+            z10 = true;
         }
-        u6.o("TrueHD chunk samples must be contiguous in the sample queue.", z10);
-        if (this.f4651b) {
-            int i13 = this.f4652c;
-            int i14 = i13 + 1;
-            this.f4652c = i14;
-            if (i13 == 0) {
-                this.d = j10;
-                this.e = i10;
-                this.f4653f = 0;
-            }
-            this.f4653f += i11;
-            this.f4654g = i12;
-            if (i14 >= 16) {
-                a(l0Var, k0Var);
-            }
-        }
-    }
-
-    public final void c(r rVar) {
-        char c10;
-        if (!this.f4651b) {
-            int i10 = 0;
-            byte[] bArr = this.f4650a;
-            rVar.a(0, 10, bArr);
-            rVar.q();
-            if (bArr[4] == -8 && bArr[5] == 114 && bArr[6] == 111) {
-                byte b10 = bArr[7];
-                if ((b10 & 254) == 186) {
-                    if ((b10 & 255) == 187) {
-                        i10 = 1;
-                    }
-                    if (i10 != 0) {
-                        c10 = '\t';
-                    } else {
-                        c10 = '\b';
-                    }
-                    i10 = 40 << ((bArr[c10] >> 4) & 7);
-                }
-            }
-            if (i10 == 0) {
+        yb.g(z10);
+        int min = Math.min(4, byteBuffer.remaining());
+        byte[] bArr = new byte[min];
+        byteBuffer.asReadOnlyBuffer().get(bArr);
+        a4.g gVar = new a4.g(bArr, min);
+        if (!tVar.f10116a) {
+            if (gVar.f()) {
+                this.f6089a = false;
                 return;
             }
-            this.f4651b = true;
+            int g7 = gVar.g(2);
+            boolean f7 = gVar.f();
+            if (!tVar.f10117b) {
+                if (!f7) {
+                    this.f6089a = true;
+                    return;
+                }
+                if (g7 != 3 && g7 != 0) {
+                    z11 = gVar.f();
+                } else {
+                    z11 = true;
+                }
+                gVar.n();
+                if (tVar.d) {
+                    if (gVar.f()) {
+                        if (tVar.e) {
+                            gVar.n();
+                        } else {
+                            throw new Exception();
+                        }
+                    }
+                    if (!tVar.f10118c) {
+                        if (g7 != 3) {
+                            gVar.n();
+                        }
+                        gVar.o(tVar.f10119f);
+                        if (g7 != 2 && g7 != 0 && !z11) {
+                            gVar.o(3);
+                        }
+                        if (g7 != 3 && g7 != 0) {
+                            i10 = gVar.g(8);
+                        } else {
+                            i10 = 255;
+                        }
+                        this.f6089a = i10 != 0;
+                        return;
+                    }
+                    throw new Exception();
+                }
+                throw new Exception();
+            }
+            throw new Exception();
         }
+        throw new Exception();
+    }
+
+    public void a(boolean z10) {
+        if (this.f6089a == z10) {
+            return;
+        }
+        this.f6089a = z10;
     }
 }

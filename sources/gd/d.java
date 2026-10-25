@@ -1,51 +1,15 @@
 package gd;
-
-import df.p;
-import df.s;
-public final class d extends h {
-    public final int e;
+public class d extends f2.f {
+    public String f12446c;
 
     @Override
-    public final p b() {
-        switch (this.e) {
-            case 0:
-                int i10 = this.d + 1;
-                this.d = i10;
-                if (c() == '[') {
-                    this.d++;
-                    s f7 = f("![");
-                    i iVar = this.f11013a;
-                    af.e eVar = iVar.f11026i;
-                    af.e eVar2 = new af.e(f7, i10, eVar, iVar.h, true);
-                    if (eVar != null) {
-                        eVar.d = true;
-                    }
-                    iVar.f11026i = eVar2;
-                    return f7;
-                }
-                return null;
-            default:
-                int i11 = this.d;
-                this.d = i11 + 1;
-                s f10 = f("[");
-                i iVar2 = this.f11013a;
-                af.e eVar3 = iVar2.f11026i;
-                af.e eVar4 = new af.e(f10, i11, eVar3, iVar2.h, false);
-                if (eVar3 != null) {
-                    eVar3.d = true;
-                }
-                iVar2.f11026i = eVar4;
-                return f10;
-        }
+    public final f2.f b() {
+        this.f12446c = null;
+        return this;
     }
 
     @Override
-    public final char d() {
-        switch (this.e) {
-            case 0:
-                return '!';
-            default:
-                return '[';
-        }
+    public String toString() {
+        return this.f12446c;
     }
 }

@@ -1,273 +1,73 @@
 package w7;
-
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.Parcel;
-import android.os.Parcelable;
-import java.util.ArrayList;
 public abstract class e0 {
-    public static void A(Parcel parcel, int i10, int i11) {
-        if (i10 == i11) {
-            return;
-        }
-        throw new androidx.car.app.j(a1.g.s(com.google.android.gms.internal.play_billing.k3.k("Expected size ", i11, " got ", i10, " (0x"), Integer.toHexString(i10), ")"), parcel);
-    }
-
-    public static void B(Parcel parcel, int i10, int i11) {
-        int x10 = x(parcel, i10);
-        if (x10 == i11) {
-            return;
-        }
-        throw new androidx.car.app.j(a1.g.s(com.google.android.gms.internal.play_billing.k3.k("Expected size ", i11, " got ", x10, " (0x"), Integer.toHexString(x10), ")"), parcel);
-    }
-
-    public static Bundle a(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        Bundle readBundle = parcel.readBundle();
-        parcel.setDataPosition(dataPosition + x10);
-        return readBundle;
-    }
-
-    public static byte[] b(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        byte[] createByteArray = parcel.createByteArray();
-        parcel.setDataPosition(dataPosition + x10);
-        return createByteArray;
-    }
-
-    public static byte[][] c(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        int readInt = parcel.readInt();
-        byte[][] bArr = new byte[readInt];
-        for (int i11 = 0; i11 < readInt; i11++) {
-            bArr[i11] = parcel.createByteArray();
-        }
-        parcel.setDataPosition(dataPosition + x10);
-        return bArr;
-    }
-
-    public static int[] d(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        int[] createIntArray = parcel.createIntArray();
-        parcel.setDataPosition(dataPosition + x10);
-        return createIntArray;
-    }
-
-    public static ArrayList e(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        ArrayList arrayList = new ArrayList();
-        int readInt = parcel.readInt();
-        for (int i11 = 0; i11 < readInt; i11++) {
-            arrayList.add(Integer.valueOf(parcel.readInt()));
-        }
-        parcel.setDataPosition(dataPosition + x10);
-        return arrayList;
-    }
-
-    public static long[] f(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        long[] createLongArray = parcel.createLongArray();
-        parcel.setDataPosition(dataPosition + x10);
-        return createLongArray;
-    }
-
-    public static Parcelable g(Parcel parcel, int i10, Parcelable.Creator creator) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        Parcelable parcelable = (Parcelable) creator.createFromParcel(parcel);
-        parcel.setDataPosition(dataPosition + x10);
-        return parcelable;
-    }
-
-    public static String h(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        String readString = parcel.readString();
-        parcel.setDataPosition(dataPosition + x10);
-        return readString;
-    }
-
-    public static String[] i(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        String[] createStringArray = parcel.createStringArray();
-        parcel.setDataPosition(dataPosition + x10);
-        return createStringArray;
-    }
-
-    public static ArrayList j(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        ArrayList<String> createStringArrayList = parcel.createStringArrayList();
-        parcel.setDataPosition(dataPosition + x10);
-        return createStringArrayList;
-    }
-
-    public static Object[] k(Parcel parcel, int i10, Parcelable.Creator creator) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        Object[] createTypedArray = parcel.createTypedArray(creator);
-        parcel.setDataPosition(dataPosition + x10);
-        return createTypedArray;
-    }
-
-    public static ArrayList l(Parcel parcel, int i10, Parcelable.Creator creator) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        ArrayList createTypedArrayList = parcel.createTypedArrayList(creator);
-        parcel.setDataPosition(dataPosition + x10);
-        return createTypedArrayList;
-    }
-
-    public static void m(Parcel parcel, int i10) {
-        if (parcel.dataPosition() == i10) {
-            return;
-        }
-        throw new androidx.car.app.j(i2.o1.k(i10, "Overread allowed size end="), parcel);
-    }
-
-    public static boolean n(Parcel parcel, int i10) {
-        B(parcel, i10, 4);
-        if (parcel.readInt() != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public static Boolean o(Parcel parcel, int i10) {
-        boolean z10;
-        int x10 = x(parcel, i10);
-        if (x10 == 0) {
-            return null;
-        }
-        A(parcel, x10, 4);
-        if (parcel.readInt() != 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        return Boolean.valueOf(z10);
-    }
-
-    public static byte p(Parcel parcel, int i10) {
-        B(parcel, i10, 4);
-        return (byte) parcel.readInt();
-    }
-
-    public static double q(Parcel parcel, int i10) {
-        B(parcel, i10, 8);
-        return parcel.readDouble();
-    }
-
-    public static float r(Parcel parcel, int i10) {
-        B(parcel, i10, 4);
-        return parcel.readFloat();
-    }
-
-    public static Float s(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        if (x10 == 0) {
-            return null;
-        }
-        A(parcel, x10, 4);
-        return Float.valueOf(parcel.readFloat());
-    }
-
-    public static IBinder t(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        int dataPosition = parcel.dataPosition();
-        if (x10 == 0) {
-            return null;
-        }
-        IBinder readStrongBinder = parcel.readStrongBinder();
-        parcel.setDataPosition(dataPosition + x10);
-        return readStrongBinder;
-    }
-
-    public static int u(Parcel parcel, int i10) {
-        B(parcel, i10, 4);
-        return parcel.readInt();
-    }
-
-    public static Integer v(Parcel parcel, int i10) {
-        int x10 = x(parcel, i10);
-        if (x10 == 0) {
-            return null;
-        }
-        A(parcel, x10, 4);
-        return Integer.valueOf(parcel.readInt());
-    }
-
-    public static long w(Parcel parcel, int i10) {
-        B(parcel, i10, 8);
-        return parcel.readLong();
-    }
-
-    public static int x(Parcel parcel, int i10) {
-        if ((i10 & (-65536)) != -65536) {
-            return (char) (i10 >> 16);
-        }
-        return parcel.readInt();
-    }
-
-    public static void y(Parcel parcel, int i10) {
-        parcel.setDataPosition(parcel.dataPosition() + x(parcel, i10));
-    }
-
-    public static int z(Parcel parcel) {
-        int readInt = parcel.readInt();
-        int x10 = x(parcel, readInt);
-        char c10 = (char) readInt;
-        int dataPosition = parcel.dataPosition();
-        if (c10 == 20293) {
-            int i10 = x10 + dataPosition;
-            if (i10 >= dataPosition && i10 <= parcel.dataSize()) {
-                return i10;
+    public static w0.d a(String str, String str2) {
+        Exception a2;
+        try {
+            y0.a aVar = new y0.a(new x0.a(26), null);
+            if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_ABORT_ERROR")) {
+                a2 = f0.a(new x0.a(0), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_CONSTRAINT_ERROR")) {
+                a2 = f0.a(new x0.a(1), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_DATA_CLONE_ERROR")) {
+                a2 = f0.a(new x0.a(2), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_DATA_ERROR")) {
+                a2 = f0.a(new x0.a(3), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_ENCODING_ERROR")) {
+                a2 = f0.a(new x0.a(4), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_HIERARCHY_REQUEST_ERROR")) {
+                a2 = f0.a(new x0.a(5), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_IN_USE_ATTRIBUTE_ERROR")) {
+                a2 = f0.a(new x0.a(6), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_CHARACTER_ERROR")) {
+                a2 = f0.a(new x0.a(7), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_MODIFICATION_ERROR")) {
+                a2 = f0.a(new x0.a(8), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_NODE_TYPE_ERROR")) {
+                a2 = f0.a(new x0.a(9), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_INVALID_STATE_ERROR")) {
+                a2 = f0.a(new x0.a(10), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NAMESPACE_ERROR")) {
+                a2 = f0.a(new x0.a(11), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NETWORK_ERROR")) {
+                a2 = f0.a(new x0.a(12), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NO_MODIFICATION_ALLOWED_ERROR")) {
+                a2 = f0.a(new x0.a(13), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_ALLOWED_ERROR")) {
+                a2 = f0.a(new x0.a(14), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_FOUND_ERROR")) {
+                a2 = f0.a(new x0.a(15), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_READABLE_ERROR")) {
+                a2 = f0.a(new x0.a(16), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_NOT_SUPPORTED_ERROR")) {
+                a2 = f0.a(new x0.a(17), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_OPERATION_ERROR")) {
+                a2 = f0.a(new x0.a(18), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_OPT_OUT_ERROR")) {
+                a2 = f0.a(new x0.a(19), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_QUOTA_EXCEEDED_ERROR")) {
+                a2 = f0.a(new x0.a(20), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_READ_ONLY_ERROR")) {
+                a2 = f0.a(new x0.a(21), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_SECURITY_ERROR")) {
+                a2 = f0.a(new x0.a(22), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_SYNTAX_ERROR")) {
+                a2 = f0.a(new x0.a(23), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_TIMEOUT_ERROR")) {
+                a2 = f0.a(new x0.a(24), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_TRANSACTION_INACTIVE_ERROR")) {
+                a2 = f0.a(new x0.a(25), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_UNKNOWN_ERROR")) {
+                a2 = f0.a(new x0.a(26), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_VERSION_ERROR")) {
+                a2 = f0.a(new x0.a(27), str2, aVar);
+            } else if (str.equals("androidx.credentials.TYPE_CREATE_PUBLIC_KEY_CREDENTIAL_DOM_EXCEPTION/androidx.credentials.TYPE_WRONG_DOCUMENT_ERROR")) {
+                a2 = f0.a(new x0.a(28), str2, aVar);
+            } else {
+                throw new Exception();
             }
-            throw new androidx.car.app.j(a1.g.l(dataPosition, i10, "Size read is invalid start=", " end="), parcel);
+            return (w0.d) a2;
+        } catch (z0.a unused) {
+            return new w0.c(str2, str);
         }
-        throw new androidx.car.app.j("Expected object header. Got 0x".concat(String.valueOf(Integer.toHexString(readInt))), parcel);
     }
 }

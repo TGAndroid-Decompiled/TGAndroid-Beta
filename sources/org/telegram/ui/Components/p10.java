@@ -1,75 +1,31 @@
 package org.telegram.ui.Components;
 
-import java.util.Iterator;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.MediaController;
-public final class p10 implements org.telegram.ui.ActionBar.q0, ne.k, org.telegram.ui.ActionBar.z1, zv0 {
-    public final FragmentContextView f29447a;
+import android.text.TextPaint;
+import android.text.style.CharacterStyle;
+import android.text.style.UpdateAppearance;
+public class p10 extends CharacterStyle implements UpdateAppearance {
+    public int f31407a;
+    public int f31408b;
+    public float f31409c;
+    public final org.telegram.ui.ActionBar.u6 d;
 
-    public p10(FragmentContextView fragmentContextView) {
-        this.f29447a = fragmentContextView;
+    public p10(int i10) {
+        this(i10, null);
     }
 
     @Override
-    public void b(LocationController.SharingLocationInfo sharingLocationInfo) {
-        float[] fArr = FragmentContextView.W0;
-        this.f29447a.k(sharingLocationInfo);
-    }
-
-    @Override
-    public void e(ne.l lVar) {
-        FragmentContextView fragmentContextView = this.f29447a;
-        ne.l lVar2 = fragmentContextView.U0;
-        float f7 = 1.0f - lVar2.f17469a.d.f17462c.f17470a;
-        fragmentContextView.d.setAlpha(f7);
-        fragmentContextView.d.setScaleX(AndroidUtilities.lerp(0.7f, 1.0f, f7));
-        fragmentContextView.d.setScaleY(AndroidUtilities.lerp(0.7f, 1.0f, f7));
-        Iterator it = lVar2.iterator();
-        while (it.hasNext()) {
-            ne.g gVar = (ne.g) it.next();
-            float c10 = gVar.c();
-            Object obj = gVar.f17456a;
-            float lerp = AndroidUtilities.lerp(0.7f, 1.0f, c10);
-            mh.c cVar = ((b20) obj).f24879b;
-            cVar.setAlpha(gVar.c());
-            cVar.setScaleX(lerp);
-            cVar.setScaleY(lerp);
+    public void updateDrawState(TextPaint textPaint) {
+        this.f31407a = org.telegram.ui.ActionBar.y6.o1(this.f31409c, org.telegram.ui.ActionBar.y6.w0(this.f31408b, this.d));
+        int color = textPaint.getColor();
+        int i10 = this.f31407a;
+        if (color != i10) {
+            textPaint.setColor(i10);
         }
     }
 
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        FragmentContextView fragmentContextView = this.f29447a;
-        org.telegram.ui.ActionBar.o2 o2Var = fragmentContextView.h;
-        if (o2Var instanceof org.telegram.ui.ey) {
-            for (int i11 = 0; i11 < 4; i11++) {
-                LocationController.getInstance(i11).removeAllLocationSharings();
-            }
-            return;
-        }
-        LocationController.getInstance(o2Var.getCurrentAccount()).removeSharingLocation(fragmentContextView.f24374n.a());
-    }
-
-    @Override
-    public void h(int i10) {
-        float[] fArr = FragmentContextView.W0;
-        if (i10 >= 0) {
-            float[] fArr2 = FragmentContextView.W0;
-            if (i10 < 6) {
-                MediaController mediaController = MediaController.getInstance();
-                FragmentContextView fragmentContextView = this.f29447a;
-                float playbackSpeed = mediaController.getPlaybackSpeed(fragmentContextView.W);
-                float f7 = fArr2[i10];
-                MediaController.getInstance().setPlaybackSpeed(fragmentContextView.W, f7);
-                if (playbackSpeed != f7) {
-                    fragmentContextView.l(playbackSpeed, f7, false);
-                }
-            }
-        }
-    }
-
-    @Override
-    public void a() {
+    public p10(int i10, org.telegram.ui.ActionBar.u6 u6Var) {
+        this.f31409c = 1.0f;
+        this.f31408b = i10;
+        this.d = u6Var;
     }
 }

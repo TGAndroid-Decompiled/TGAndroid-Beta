@@ -1,110 +1,45 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class r70 extends km0 {
-    public ArrayList f30085c = new ArrayList();
-    public ArrayList d = new ArrayList();
-    public final hg.a2 e;
-    public int f30086f;
-    public Runnable h;
-    public final v70 f30087n;
+public final class r70 extends ey0 {
+    public final int K;
 
-    public r70(v70 v70Var) {
-        this.f30087n = v70Var;
-        hg.a2 a2Var = new hg.a2(false);
-        this.e = a2Var;
-        a2Var.f11819a = new rv(this, 8);
+    public r70(int i10, int i11, Context context, View view, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, view, i10, u6Var);
+        this.K = i11;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f46345f == 1) {
-            return true;
+    public void onAttachedToWindow() {
+        switch (this.K) {
+            case 0:
+                super.onAttachedToWindow();
+                this.f28013b.getImageReceiver().startAnimation();
+                return;
+            case 1:
+                super.onAttachedToWindow();
+                this.f28013b.getImageReceiver().startAnimation();
+                return;
+            default:
+                super.onAttachedToWindow();
+                return;
         }
-        return false;
     }
 
     @Override
-    public final int h() {
-        int size = this.f30085c.size();
-        hg.a2 a2Var = this.e;
-        int size2 = a2Var.d.size();
-        int size3 = a2Var.e.size();
-        int i10 = size + size2;
-        if (size3 != 0) {
-            i10 += size3 + 1;
-        }
-        int i11 = i10 + 2;
-        this.f30086f = i11;
-        return i11;
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 == 0) {
-            return 2;
-        }
-        if (i10 == this.f30086f - 1) {
-            return 4;
-        }
-        if (i10 - 1 != this.e.d.size() + this.f30085c.size()) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 r12, int r13) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r70.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View view;
-        int i11;
-        Context context = viewGroup.getContext();
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 4) {
-                    ?? frameLayout = new FrameLayout(context);
-                    org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.e7, frameLayout, null);
-                    Drawable drawable = frameLayout.getResources().getDrawable(R.drawable.shadowdown);
-                    frameLayout.f22324a = drawable;
-                    org.telegram.ui.ActionBar.r6.z(frameLayout, drawable, org.telegram.ui.ActionBar.k6.Zh, null, PorterDuff.Mode.MULTIPLY);
-                    TextView textView = new TextView(frameLayout.getContext());
-                    frameLayout.f22325b = textView;
-                    com.google.android.gms.internal.play_billing.k3.m(14.0f, 1, textView);
-                    org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21137ai, null);
-                    int i12 = 3;
-                    if (LocaleController.isRTL) {
-                        i11 = 5;
-                    } else {
-                        i11 = 3;
-                    }
-                    textView.setGravity(i11 | 16);
-                    if (LocaleController.isRTL) {
-                        i12 = 5;
-                    }
-                    frameLayout.addView(textView, w7.z5.d(-1, -1.0f, i12 | 48, 16.0f, 0.0f, 16.0f, 0.0f));
-                    view = frameLayout;
-                } else {
-                    view = new View(context);
+    public void setVisibility(int i10) {
+        switch (this.K) {
+            case 2:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    e(false, false);
+                    return;
                 }
-            } else {
-                view = new ai.jc(this, context, 19);
-            }
-        } else {
-            view = new org.telegram.ui.Cells.f4(context, 1, 0, false);
+                return;
+            default:
+                super.setVisibility(i10);
+                return;
         }
-        return new s4.b1(view);
     }
 }

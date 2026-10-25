@@ -1,21 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class n41 extends x41 {
-    public final Runnable Z;
+import org.telegram.messenger.LanguageDetector;
+import org.telegram.messenger.Utilities;
+public final class n41 implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
+    public final String f30831a;
+    public final String f30832b;
+    public final Utilities.Callback2 f30833c;
 
-    public n41(Context context, String str, String str2, CharSequence charSequence, TLRPC.InputPeer inputPeer, int i10, boolean z10, Runnable runnable) {
-        super(context, str, str2, charSequence, inputPeer, i10, z10, null);
-        this.Z = runnable;
+    public n41(String str, String str2, Utilities.Callback2 callback2) {
+        this.f30831a = str;
+        this.f30832b = str2;
+        this.f30833c = callback2;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        Runnable runnable = this.Z;
-        if (runnable != null) {
-            runnable.run();
-        }
+    public void run(String str) {
+        f51.I(this.f30831a, str, this.f30832b, this.f30833c);
+    }
+
+    @Override
+    public void run(Exception exc) {
+        f51.I(this.f30831a, "en", this.f30832b, this.f30833c);
     }
 }

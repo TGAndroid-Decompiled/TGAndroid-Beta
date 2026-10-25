@@ -1,15 +1,10 @@
 package sg;
 
-import android.widget.LinearLayout;
-import android.widget.TextView;
-public final class i0 extends LinearLayout {
-    public TextView f46698a;
-    public TextView f46699b;
-    public final ug.b f46700c;
-    public LinearLayout d;
-    public final j0 e;
-
-    public i0(sg.j0 r50, android.content.Context r51) {
-        throw new UnsupportedOperationException("Method not decompiled: sg.i0.<init>(sg.j0, android.content.Context):void");
+import android.view.MotionEvent;
+import android.widget.FrameLayout;
+public final class i0 extends FrameLayout {
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 }

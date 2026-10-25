@@ -1,49 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class cx0 extends za {
-    public ys X;
+public final class cx0 implements Runnable {
+    public final int f27274a;
+    public final TLRPC.Document f27275b;
+    public final int f27276c;
+    public final MessageObject d;
+    public final org.telegram.ui.Cells.s1 e;
+    public final TLRPC.TL_messages_stickerSet f27277f;
 
-    public cx0(Context context) {
-        super(context, null, true, false, null);
-        fixNavigationBar();
-        this.E = true;
-        this.f33217y = true;
-        K();
-        lm0 lm0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        lm0Var.setPadding(i10, 0, i10, 0);
-        this.d.j(new iv(this, 10));
-        this.d.setOnItemClickListener(new j(this, 14));
-    }
-
-    public static void P(cx0 cx0Var, int i10) {
-        Object obj;
-        l61 G = cx0Var.X.G(i10 - 1);
-        if (G != null) {
-            obj = G.G;
-        } else {
-            obj = null;
-        }
-        if (obj instanceof TLRPC.User) {
-            MessagesController.getInstance(cx0Var.currentAccount).openApp(cx0Var.attachedFragment, (TLRPC.User) obj, null, 0, null);
-        }
+    public cx0(TLRPC.Document document, int i10, MessageObject messageObject, org.telegram.ui.Cells.s1 s1Var, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i11) {
+        this.f27274a = i11;
+        this.f27275b = document;
+        this.f27276c = i10;
+        this.d = messageObject;
+        this.e = s1Var;
+        this.f27277f = tL_messages_stickerSet;
     }
 
     @Override
-    public final km0 w(lm0 lm0Var) {
-        ys ysVar = new ys(lm0Var, getContext(), this.currentAccount, 0, true, this.resourcesProvider);
-        this.X = ysVar;
-        ysVar.f24646r = false;
-        return ysVar;
-    }
-
-    @Override
-    public final CharSequence z() {
-        return LocaleController.getString(R.string.SearchAppsExamples);
+    public final void run() {
+        switch (this.f27274a) {
+            case 0:
+                TLRPC.Document document = this.f27275b;
+                String attachFileName = FileLoader.getAttachFileName(document);
+                int i10 = this.f27276c;
+                DownloadController.getInstance(i10).addLoadingFileObserver(attachFileName, this.d, this.e);
+                FileLoader.getInstance(i10).loadFile(document, this.f27277f, 1, 1);
+                return;
+            default:
+                TLRPC.Document document2 = this.f27275b;
+                String attachFileName2 = FileLoader.getAttachFileName(document2);
+                int i11 = this.f27276c;
+                DownloadController.getInstance(i11).addLoadingFileObserver(attachFileName2, this.d, this.e);
+                FileLoader.getInstance(i11).loadFile(document2, this.f27277f, 1, 1);
+                return;
+        }
     }
 }

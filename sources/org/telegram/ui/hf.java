@@ -2,22 +2,22 @@ package org.telegram.ui;
 
 import android.content.DialogInterface;
 public final class hf implements DialogInterface.OnShowListener {
-    public final int f37824a;
-    public final sn f37825b;
+    public final int f39996a;
+    public final un f39997b;
 
-    public hf(sn snVar, int i10) {
-        this.f37824a = i10;
-        this.f37825b = snVar;
+    public hf(un unVar, int i10) {
+        this.f39996a = i10;
+        this.f39997b = unVar;
     }
 
     @Override
     public final void onShow(DialogInterface dialogInterface) {
-        switch (this.f37824a) {
+        switch (this.f39996a) {
             case 0:
-                this.f37825b.Tb(false);
+                this.f39997b.Zb(false);
                 return;
             default:
-                this.f37825b.Tb(false);
+                this.f39997b.Zb(false);
                 return;
         }
     }

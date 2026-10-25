@@ -1,43 +1,20 @@
 package ig;
 
-import android.content.SharedPreferences;
+import java.util.Comparator;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_account;
-public final class d implements Runnable {
-    public final int f12890a;
-    public final e f12891b;
+public final class d implements Comparator {
+    public final int f14021a;
+    public final MessagesController f14022b;
+    public final int f14023c;
 
-    public d(e eVar, int i10) {
-        this.f12890a = i10;
-        this.f12891b = eVar;
+    public d(MessagesController messagesController, int i10, int i11) {
+        this.f14021a = i11;
+        this.f14022b = messagesController;
+        this.f14023c = i10;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f12890a;
-        e eVar = this.f12891b;
-        switch (i10) {
-            case 0:
-                eVar.a();
-                return;
-            case 1:
-                eVar.getClass();
-                TL_account.disablePeerConnectedBot disablepeerconnectedbot = new TL_account.disablePeerConnectedBot();
-                int i11 = eVar.f12897a;
-                disablepeerconnectedbot.peer = MessagesController.getInstance(i11).getInputPeer(eVar.f12903s);
-                ConnectionsManager.getInstance(i11).sendRequest(disablepeerconnectedbot, null);
-                SharedPreferences.Editor edit = MessagesController.getNotificationsSettings(i11).edit();
-                SharedPreferences.Editor remove = edit.remove("dialog_botid" + eVar.f12903s);
-                SharedPreferences.Editor remove2 = remove.remove("dialog_boturl" + eVar.f12903s);
-                remove2.remove("dialog_botflags" + eVar.f12903s).apply();
-                NotificationCenter.getInstance(i11).lambda$postNotificationNameOnUIThread$1(NotificationCenter.peerSettingsDidLoad, Long.valueOf(eVar.f12903s));
-                f.a(i11).f12925f = false;
-                return;
-            default:
-                pf.d.r(eVar.getContext(), eVar.f12905x);
-                return;
-        }
+    public final int compare(java.lang.Object r6, java.lang.Object r7) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.d.compare(java.lang.Object, java.lang.Object):int");
     }
 }

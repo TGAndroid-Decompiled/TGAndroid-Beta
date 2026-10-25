@@ -1,24 +1,63 @@
 package rg;
 
-import org.telegram.ui.it0;
-public final class m implements q0.a {
-    public final int f45880a;
-    public final it0 f45881b;
+import java.util.Arrays;
+import java.util.List;
+import org.telegram.messenger.R;
+public abstract class m {
+    public static final List f47462a = Arrays.asList(new Object(), new Object(), new Object(), new Object(), new Object(), new Object());
 
-    public m(it0 it0Var, int i10) {
-        this.f45880a = i10;
-        this.f45881b = it0Var;
+    public float a() {
+        return 0.85f;
     }
 
-    @Override
-    public final void accept(Object obj) {
-        switch (this.f45880a) {
-            case 0:
-                m0.Y(this.f45881b, (Integer) obj);
-                return;
-            default:
-                m0.b0(this.f45881b, (Integer) obj);
-                return;
+    public float b() {
+        return 0.0f;
+    }
+
+    public int c() {
+        return -16777216;
+    }
+
+    public float d() {
+        return 0.25f;
+    }
+
+    public abstract int e();
+
+    public float f() {
+        return 1.0f;
+    }
+
+    public float g() {
+        return 0.4f;
+    }
+
+    public float h() {
+        return 1.0f;
+    }
+
+    public String i(int i10) {
+        if (i10 != 0) {
+            if (i10 != 1) {
+                if (i10 != 2) {
+                    return null;
+                }
+                return "brush";
+            }
+            return "compositeWithMask";
         }
+        return "blitWithMask";
+    }
+
+    public float j() {
+        return 1.0f;
+    }
+
+    public float k() {
+        return 0.15f;
+    }
+
+    public int l() {
+        return R.drawable.paint_radial_brush;
     }
 }

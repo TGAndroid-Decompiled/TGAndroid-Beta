@@ -1,5 +1,6 @@
 package ig;
 
-import android.widget.FrameLayout;
-public abstract class g0 extends FrameLayout {
+import java.util.ArrayList;
+public interface g0 {
+    void a(a0.h hVar, ArrayList arrayList);
 }

@@ -1,30 +1,78 @@
 package org.telegram.ui;
-public final class ff implements Runnable {
-    public final int f37322a;
-    public final sn f37323b;
-    public final boolean f37324c;
 
-    public ff(sn snVar, boolean z10, int i10) {
-        this.f37322a = i10;
-        this.f37323b = snVar;
-        this.f37324c = z10;
+import java.util.regex.Pattern;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+public final class ff implements org.telegram.ui.ActionBar.b2, MessagesController.ErrorDelegate, oo0 {
+    public final int f39351a;
+    public final Runnable f39352b;
+
+    public ff(int i10, Runnable runnable) {
+        this.f39351a = i10;
+        this.f39352b = runnable;
     }
 
     @Override
-    public final void run() {
-        String str;
-        switch (this.f37322a) {
-            case 0:
-                if (this.f37324c) {
-                    str = "upload_speed";
-                } else {
-                    str = "download_speed";
+    public void a(int i10) {
+        int i11 = this.f39351a;
+        Runnable runnable = this.f39352b;
+        switch (i11) {
+            case 9:
+                Pattern pattern = LaunchActivity.D1;
+                if (i10 == 1) {
+                    runnable.run();
+                    return;
                 }
-                this.f37323b.presentFragment(new PremiumPreviewFragment(0, str));
                 return;
             default:
-                this.f37323b.Fc(0, this.f37324c);
+                if (i10 == 1) {
+                    runnable.run();
+                    return;
+                }
                 return;
+        }
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f39351a) {
+            case 0:
+                this.f39352b.run();
+                return;
+            case 1:
+                this.f39352b.run();
+                return;
+            default:
+                Runnable runnable = this.f39352b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        switch (this.f39351a) {
+            case 3:
+                this.f39352b.run();
+                return true;
+            case 4:
+                this.f39352b.run();
+                return true;
+            case 5:
+                this.f39352b.run();
+                return true;
+            case 6:
+                this.f39352b.run();
+                return true;
+            case 7:
+                this.f39352b.run();
+                return true;
+            default:
+                this.f39352b.run();
+                return true;
         }
     }
 }

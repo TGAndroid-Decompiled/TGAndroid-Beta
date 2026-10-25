@@ -1,26 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.FrameLayout;
-public final class it0 extends FragmentContextView {
-    public final wv0 X0;
+import android.os.Bundle;
+public final class it0 extends org.telegram.ui.un {
+    public boolean f29373kd;
+    public final int f29374ld;
+    public final aw0 f29375md;
 
-    public it0(wv0 wv0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, wv0 wv0Var2, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, o2Var, wv0Var2, false, g6Var);
-        this.X0 = wv0Var;
+    public it0(aw0 aw0Var, Bundle bundle, int i10) {
+        super(bundle);
+        this.f29375md = aw0Var;
+        this.f29374ld = i10;
+        this.f29373kd = true;
     }
 
     @Override
-    public final void setVisibility(int i10) {
-        boolean z10;
-        wv0 wv0Var = this.X0;
-        ss ssVar = wv0Var.P0;
-        FrameLayout frameLayout = wv0Var.Q0;
-        if (i10 == 0) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void onTransitionAnimationStart(boolean z10, boolean z11) {
+        aw0 aw0Var = this.f29375md;
+        mv0 mv0Var = aw0Var.U;
+        if (this.f29373kd) {
+            if (this.f44291j0 != null) {
+                va("");
+                this.f44291j0.P(mv0Var.f30757w, false);
+            }
+            org.telegram.ui.sk skVar = this.A1;
+            if (skVar != null) {
+                skVar.e(mv0Var.f30758x, false);
+            }
+            aw0Var.f26702x1.getMediaDataController().portSavedSearchResults(getClassGuid(), mv0Var.f30758x, mv0Var.f30757w, mv0Var.f30754n, mv0Var.h, this.f29374ld, mv0Var.v, mv0Var.f30756s);
+            this.f29373kd = false;
         }
-        ssVar.i(frameLayout, z10, true);
+        super.onTransitionAnimationStart(z10, z11);
     }
 }

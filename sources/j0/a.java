@@ -14,63 +14,63 @@ import android.graphics.Shader;
 import android.graphics.drawable.Drawable;
 import android.view.Gravity;
 public final class a extends Drawable {
-    public final Bitmap f13955a;
-    public final int f13956b;
+    public final Bitmap f15168a;
+    public final int f15169b;
     public final BitmapShader e;
-    public float f13959g;
-    public final int f13962k;
-    public final int f13963l;
-    public final int f13957c = 119;
+    public float f15172g;
+    public final int f15175k;
+    public final int f15176l;
+    public final int f15170c = 119;
     public final Paint d = new Paint(3);
-    public final Matrix f13958f = new Matrix();
+    public final Matrix f15171f = new Matrix();
     public final Rect h = new Rect();
-    public final RectF f13960i = new RectF();
-    public boolean f13961j = true;
+    public final RectF f15173i = new RectF();
+    public boolean f15174j = true;
 
     public a(Resources resources, Bitmap bitmap) {
-        this.f13956b = 160;
+        this.f15169b = 160;
         if (resources != null) {
-            this.f13956b = resources.getDisplayMetrics().densityDpi;
+            this.f15169b = resources.getDisplayMetrics().densityDpi;
         }
-        this.f13955a = bitmap;
+        this.f15168a = bitmap;
         if (bitmap != null) {
-            int i10 = this.f13956b;
-            this.f13962k = bitmap.getScaledWidth(i10);
-            this.f13963l = bitmap.getScaledHeight(i10);
+            int i10 = this.f15169b;
+            this.f15175k = bitmap.getScaledWidth(i10);
+            this.f15176l = bitmap.getScaledHeight(i10);
             Shader.TileMode tileMode = Shader.TileMode.CLAMP;
             this.e = new BitmapShader(bitmap, tileMode, tileMode);
             return;
         }
-        this.f13963l = -1;
-        this.f13962k = -1;
+        this.f15176l = -1;
+        this.f15175k = -1;
         this.e = null;
     }
 
     public final void a() {
-        if (this.f13961j) {
-            Gravity.apply(this.f13957c, this.f13962k, this.f13963l, getBounds(), this.h, 0);
+        if (this.f15174j) {
+            Gravity.apply(this.f15170c, this.f15175k, this.f15176l, getBounds(), this.h, 0);
             Rect rect = this.h;
-            RectF rectF = this.f13960i;
+            RectF rectF = this.f15173i;
             rectF.set(rect);
             BitmapShader bitmapShader = this.e;
             if (bitmapShader != null) {
                 float f7 = rectF.left;
                 float f10 = rectF.top;
-                Matrix matrix = this.f13958f;
+                Matrix matrix = this.f15171f;
                 matrix.setTranslate(f7, f10);
                 float width = rectF.width();
-                Bitmap bitmap = this.f13955a;
+                Bitmap bitmap = this.f15168a;
                 matrix.preScale(width / bitmap.getWidth(), rectF.height() / bitmap.getHeight());
                 bitmapShader.setLocalMatrix(matrix);
                 this.d.setShader(bitmapShader);
             }
-            this.f13961j = false;
+            this.f15174j = false;
         }
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        Bitmap bitmap = this.f13955a;
+        Bitmap bitmap = this.f15168a;
         if (bitmap == null) {
             return;
         }
@@ -80,8 +80,8 @@ public final class a extends Drawable {
             canvas.drawBitmap(bitmap, (Rect) null, this.h, paint);
             return;
         }
-        RectF rectF = this.f13960i;
-        float f7 = this.f13959g;
+        RectF rectF = this.f15173i;
+        float f7 = this.f15172g;
         canvas.drawRoundRect(rectF, f7, f7, paint);
     }
 
@@ -97,18 +97,18 @@ public final class a extends Drawable {
 
     @Override
     public final int getIntrinsicHeight() {
-        return this.f13963l;
+        return this.f15176l;
     }
 
     @Override
     public final int getIntrinsicWidth() {
-        return this.f13962k;
+        return this.f15175k;
     }
 
     @Override
     public final int getOpacity() {
         Bitmap bitmap;
-        if (this.f13957c != 119 || (bitmap = this.f13955a) == null || bitmap.hasAlpha() || this.d.getAlpha() < 255 || this.f13959g > 0.05f) {
+        if (this.f15170c != 119 || (bitmap = this.f15168a) == null || bitmap.hasAlpha() || this.d.getAlpha() < 255 || this.f15172g > 0.05f) {
             return -3;
         }
         return -1;
@@ -117,13 +117,13 @@ public final class a extends Drawable {
     @Override
     public final void getOutline(Outline outline) {
         a();
-        outline.setRoundRect(this.h, this.f13959g);
+        outline.setRoundRect(this.h, this.f15172g);
     }
 
     @Override
     public final void onBoundsChange(Rect rect) {
         super.onBoundsChange(rect);
-        this.f13961j = true;
+        this.f15174j = true;
     }
 
     @Override

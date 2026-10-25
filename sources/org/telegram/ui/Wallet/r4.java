@@ -1,41 +1,53 @@
 package org.telegram.ui.Wallet;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import org.telegram.messenger.AndroidUtilities;
-public final class r4 implements TextWatcher {
-    public final String[] f35103a;
-    public final y3 f35104b;
-    public final Runnable[] f35105c;
-    public final org.telegram.messenger.c6 d;
+import android.view.View;
+import java.io.Serializable;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_wallet;
+public final class r4 implements View.OnAttachStateChangeListener {
+    public final di.s f37157a;
+    public final TL_wallet.walletTransaction[] f37158b;
+    public final NotificationCenter.NotificationCenterDelegate f37159c;
+    public final int d;
+    public final Utilities.Callback2 e;
+    public final j2[] f37160f;
+    public final String[] h;
+    public final boolean[] f37161n;
 
-    public r4(String[] strArr, y3 y3Var, Runnable[] runnableArr, org.telegram.messenger.c6 c6Var) {
-        this.f35103a = strArr;
-        this.f35104b = y3Var;
-        this.f35105c = runnableArr;
-        this.d = c6Var;
+    public r4(di.s sVar, TL_wallet.walletTransaction[] wallettransactionArr, q4 q4Var, int i10, Utilities.Callback2 callback2, j2[] j2VarArr, String[] strArr, boolean[] zArr) {
+        this.f37157a = sVar;
+        this.f37158b = wallettransactionArr;
+        this.f37159c = q4Var;
+        this.d = i10;
+        this.e = callback2;
+        this.f37160f = j2VarArr;
+        this.h = strArr;
+        this.f37161n = zArr;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f35103a[0] = editable.toString();
-        this.f35104b.run();
-        Runnable[] runnableArr = this.f35105c;
-        Runnable runnable = runnableArr[0];
-        if (runnable != null) {
-            runnable.run();
-            runnableArr[0] = null;
+    public final void onViewAttachedToWindow(View view) {
+        this.f37157a.run(this.f37158b[0]);
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f37159c;
+        if (notificationCenterDelegate != null) {
+            int i10 = this.d;
+            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
+            NotificationCenter.getInstance(i10).addObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
         }
-        org.telegram.messenger.c6 c6Var = this.d;
-        AndroidUtilities.cancelRunOnUIThread(c6Var);
-        AndroidUtilities.runOnUIThread(c6Var, 1000L);
+        Utilities.Callback2 callback2 = this.e;
+        if (callback2 != null) {
+            this.f37160f[0].setOnDismissListener(new h(callback2, (Serializable) this.h, (Serializable) this.f37161n, 12));
+        }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void onViewDetachedFromWindow(View view) {
+        NotificationCenter.NotificationCenterDelegate notificationCenterDelegate = this.f37159c;
+        if (notificationCenterDelegate != null) {
+            int i10 = this.d;
+            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletUpdate);
+            NotificationCenter.getInstance(i10).removeObserver(notificationCenterDelegate, NotificationCenter.walletTransactionsUpdate);
+        }
     }
 }

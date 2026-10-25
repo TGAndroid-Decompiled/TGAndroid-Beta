@@ -1,61 +1,28 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class w8 extends org.telegram.ui.a61 {
-    public boolean f32144e2;
-    public final c9 f32145f2;
+import org.telegram.messenger.AndroidUtilities;
+public final class w8 extends yq {
+    public final int f34384g0;
 
-    public w8(c9 c9Var, c9 c9Var2, Activity activity, int i10) {
-        super(c9Var2, activity, false, null, 4, true, null, 16, i10);
-        this.f32145f2 = c9Var;
-        this.f32144e2 = true;
+    public w8(Context context, boolean z10, xq xqVar, int i10) {
+        super(context, z10, xqVar);
+        this.f34384g0 = i10;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (this.f32144e2) {
-            this.f32144e2 = false;
-            this.f32145f2.f25258b.s(null);
+    public final void onMeasure(int i10, int i11) {
+        switch (this.f34384g0) {
+            case 0:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            case 1:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                return;
         }
-    }
-
-    @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        TLRPC.TL_emojiList tL_emojiList;
-        boolean z10;
-        long j10;
-        int i11;
-        boolean z11 = this.R;
-        c9 c9Var = this.f32145f2;
-        if (z11) {
-            i11 = ((org.telegram.ui.ActionBar.o2) c9Var).currentAccount;
-            tL_emojiList = MediaDataController.getInstance(i11).profileAvatarConstructorDefault;
-        } else {
-            i10 = ((org.telegram.ui.ActionBar.o2) c9Var).currentAccount;
-            tL_emojiList = MediaDataController.getInstance(i10).groupAvatarConstructorDefault;
-        }
-        long j11 = 0;
-        if (tL_emojiList != null) {
-            if (document != null) {
-                j10 = document.f20350id;
-            } else if (l4 != null) {
-                j10 = l4.longValue();
-            } else {
-                j10 = 0;
-            }
-            z10 = tL_emojiList.document_id.contains(Long.valueOf(j10));
-        } else {
-            z10 = false;
-        }
-        if (l4 != null) {
-            j11 = l4.longValue();
-        }
-        c9Var.h0(z10, j11, document);
     }
 }

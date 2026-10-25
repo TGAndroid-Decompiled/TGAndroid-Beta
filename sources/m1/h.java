@@ -27,7 +27,7 @@ public final class h extends w {
     public static void i(h hVar, Set set) {
         int i10;
         y yVar = hVar.strings_;
-        if (!((androidx.datastore.preferences.protobuf.b) yVar).f2972a) {
+        if (!((androidx.datastore.preferences.protobuf.b) yVar).f2418a) {
             int size = yVar.size();
             if (size == 0) {
                 i10 = 10;
@@ -37,12 +37,12 @@ public final class h extends w {
             hVar.strings_ = yVar.b(i10);
         }
         y yVar2 = hVar.strings_;
-        Charset charset = z.f3085a;
+        Charset charset = z.f2531a;
         if (set instanceof e0) {
-            List g10 = ((e0) set).g();
+            List g7 = ((e0) set).g();
             e0 e0Var = (e0) yVar2;
             int size2 = yVar2.size();
-            for (Object obj : g10) {
+            for (Object obj : g7) {
                 if (obj == null) {
                     String str = "Element at index " + (e0Var.size() - size2) + " is null.";
                     for (int size3 = e0Var.size() - 1; size3 >= size2; size3--) {

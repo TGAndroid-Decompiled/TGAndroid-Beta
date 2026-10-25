@@ -1,82 +1,116 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.MotionEvent;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
 import android.view.View;
-import android.view.ViewParent;
-import android.widget.FrameLayout;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-public final class rc extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.ActionBar.g6 f41089a;
-    public final wa1 f41090b;
-    public final s4.b0 f41091c;
-    public final int d;
-    public int e;
+public final class rc extends View {
+    public final Paint f43103a;
+    public final Paint f43104b;
+    public final Paint f43105c;
+    public final Paint d;
+    public final Path e;
+    public final Path f43106f;
+    public boolean h;
+    public boolean f43107n;
+    public final org.telegram.ui.Components.xc f43108r;
+    public boolean f43109s;
+    public final org.telegram.ui.Components.h6 v;
+    public final sc f43110w;
 
-    public rc(int i10, Activity activity, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(activity);
-        this.d = i10;
-        this.f41089a = g6Var;
-        wa1 wa1Var = new wa1(activity, 3, g6Var);
-        this.f41090b = wa1Var;
-        wa1Var.setPadding(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(6.0f), 0);
-        wa1Var.setClipToPadding(false);
-        wa1Var.setAdapter(new pc(this, activity, g6Var, i10));
-        s4.b0 b0Var = new s4.b0();
-        this.f41091c = b0Var;
-        b0Var.j1(0);
-        wa1Var.setLayoutManager(b0Var);
-        addView(wa1Var, w7.z5.c(-1.0f, -1));
+    public rc(sc scVar, Context context) {
+        super(context);
+        this.f43110w = scVar;
+        Paint paint = new Paint(1);
+        this.f43103a = paint;
+        this.f43104b = new Paint(1);
+        this.f43105c = new Paint(1);
+        this.d = new Paint(1);
+        this.e = new Path();
+        this.f43106f = new Path();
+        this.f43108r = new org.telegram.ui.Components.xc(this);
+        this.v = new org.telegram.ui.Components.h6(this, 0L, 320L, org.telegram.ui.Components.ds.h);
+        paint.setStyle(Paint.Style.STROKE);
     }
 
-    public final void a(int i10, boolean z10) {
-        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.d).peerColors;
-        int i11 = 0;
-        if (peerColors != null) {
-            int i12 = 0;
-            while (true) {
-                if (i12 >= peerColors.colors.size()) {
-                    break;
-                } else if (peerColors.colors.get(i12).f17864id == i10) {
-                    i11 = i12;
-                    break;
-                } else {
-                    i12++;
-                }
-            }
+    public final void a(MessagesController.PeerColor peerColor) {
+        boolean q5;
+        org.telegram.ui.ActionBar.u6 u6Var = this.f43110w.f43462a;
+        if (u6Var != null) {
+            q5 = u6Var.a();
+        } else {
+            q5 = org.telegram.ui.ActionBar.y6.I.q();
         }
-        if (i11 != this.e) {
-            this.e = i11;
-            if (!z10) {
-                this.f41091c.h1(i11, (AndroidUtilities.displaySize.x - AndroidUtilities.dp(56.0f)) / 2);
-            }
-            AndroidUtilities.forEachViews((RecyclerView) this.f41090b, (Utilities.Callback<View>) new ai.y8(4, this, z10));
+        Paint paint = this.f43105c;
+        Paint paint2 = this.f43104b;
+        if (q5 && peerColor.hasColor2() && !peerColor.hasColor3()) {
+            paint2.setColor(peerColor.getColor(1, u6Var));
+            paint.setColor(peerColor.getColor(0, u6Var));
+        } else {
+            paint2.setColor(peerColor.getColor(0, u6Var));
+            paint.setColor(peerColor.getColor(1, u6Var));
         }
+        this.d.setColor(peerColor.getColor(2, u6Var));
+        this.h = peerColor.hasColor2();
+        this.f43107n = peerColor.hasColor3();
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        if (getParent() != null) {
-            ViewParent parent = getParent();
-            boolean z10 = true;
-            if (!canScrollHorizontally(-1) && !canScrollHorizontally(1)) {
-                z10 = false;
-            }
-            parent.requestDisallowInterceptTouchEvent(z10);
+    public final void dispatchDraw(Canvas canvas) {
+        canvas.save();
+        float a2 = this.f43108r.a(0.05f);
+        canvas.scale(a2, a2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+        canvas.save();
+        canvas.clipPath(this.e);
+        canvas.drawPaint(this.f43104b);
+        if (this.h) {
+            canvas.drawPath(this.f43106f, this.f43105c);
         }
-        return super.onInterceptTouchEvent(motionEvent);
+        canvas.restore();
+        if (this.f43107n) {
+            canvas.save();
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() - AndroidUtilities.dp(12.4f)) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredWidth()) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredHeight()) / 2.0f);
+            canvas.rotate(45.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.d);
+            canvas.restore();
+        }
+        float e = this.v.e(this.f43109s);
+        if (e > 0.0f) {
+            float dpf2 = AndroidUtilities.dpf2(2.0f);
+            Paint paint = this.f43103a;
+            paint.setStrokeWidth(dpf2);
+            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.lerp((paint.getStrokeWidth() * 0.5f) + AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f) - (paint.getStrokeWidth() * 2.0f), e), paint);
+        }
+        canvas.restore();
     }
 
     @Override
-    public final void updateColors() {
-        AndroidUtilities.forEachViews((RecyclerView) this.f41090b, (Utilities.Callback<View>) new org.telegram.ui.ActionBar.m3(6, this, MessagesController.getInstance(this.d).peerColors));
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
+        Path path = this.e;
+        path.rewind();
+        path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(20.0f), Path.Direction.CW);
+        Path path2 = this.f43106f;
+        path2.rewind();
+        path2.moveTo(getMeasuredWidth(), 0.0f);
+        path2.lineTo(getMeasuredWidth(), getMeasuredHeight());
+        path2.lineTo(0.0f, getMeasuredHeight());
+        path2.close();
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void setBackgroundColor(int i10) {
+        this.f43103a.setColor(i10);
+    }
+
+    @Override
+    public final void setPressed(boolean z10) {
+        super.setPressed(z10);
+        this.f43108r.c(z10);
     }
 }

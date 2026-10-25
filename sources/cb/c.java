@@ -1,30 +1,24 @@
 package cb;
 
-import android.util.Log;
-import td.p;
-import v7.i8;
-public final class c extends md.i implements p {
-    public Object f5061a;
+import j$.util.DesugarCollections;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import kotlin.jvm.internal.i;
+public final class c {
+    public static final c f6179a = new Object();
+    public static final Map f6180b = DesugarCollections.synchronizedMap(new LinkedHashMap());
 
-    @Override
-    public final kd.c create(Object obj, kd.c cVar) {
-        ?? iVar = new md.i(2, cVar);
-        iVar.f5061a = obj;
-        return iVar;
+    public static a a(d dVar) {
+        Map dependencies = f6180b;
+        i.d(dependencies, "dependencies");
+        Object obj = dependencies.get(dVar);
+        if (obj != null) {
+            return (a) obj;
+        }
+        throw new IllegalStateException("Cannot get dependency " + dVar + ". Dependencies should be added at class load time.");
     }
 
-    @Override
-    public final Object invoke(Object obj, Object obj2) {
-        id.i iVar = id.i.f12807a;
-        ((c) create((String) obj, (kd.c) obj2)).invokeSuspend(iVar);
-        return iVar;
-    }
-
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        ld.a aVar = ld.a.f16062a;
-        i8.b(obj);
-        Log.e("SessionConfigFetcher", "Error failing to fetch the remote configs: " + ((String) this.f5061a));
-        return id.i.f12807a;
+    public final java.lang.Object b(nd.c r11) {
+        throw new UnsupportedOperationException("Method not decompiled: cb.c.b(nd.c):java.lang.Object");
     }
 }

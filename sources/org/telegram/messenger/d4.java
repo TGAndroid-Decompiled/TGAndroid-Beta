@@ -1,29 +1,24 @@
 package org.telegram.messenger;
-public final class d4 implements Runnable {
-    public final int f18200a;
-    public final boolean f18201b;
 
-    public d4(int i10, boolean z10) {
-        this.f18200a = i10;
-        this.f18201b = z10;
+import android.view.View;
+import org.telegram.messenger.FilesMigrationService;
+public final class d4 implements View.OnClickListener {
+    public final int f19869a;
+    public final Object f19870b;
+
+    public d4(Object obj, int i10) {
+        this.f19869a = i10;
+        this.f19870b = obj;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f18200a;
-        boolean z10 = this.f18201b;
-        switch (i10) {
+    public final void onClick(View view) {
+        switch (this.f19869a) {
             case 0:
-                FingerprintController.b(z10);
-                return;
-            case 1:
-                FingerprintController.a(z10);
-                return;
-            case 2:
-                LiteMode.lambda$onPowerSaverApplied$1(z10);
+                FilesMigrationService.FilesMigrationBottomSheet.m((FilesMigrationService.FilesMigrationBottomSheet) this.f19870b, view);
                 return;
             default:
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
+                MessagesController.lambda$checkSensitive$450((boolean[]) this.f19870b, view);
                 return;
         }
     }

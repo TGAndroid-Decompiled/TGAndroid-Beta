@@ -1,16 +1,19 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-public final class qs0 {
-    public final Context f29988a;
-    public final org.telegram.ui.ActionBar.o2 f29989b;
-    public final org.telegram.ui.ActionBar.g6 f29990c;
-    public final wv0 d;
+import android.view.animation.Interpolator;
+public final class qs0 implements Interpolator {
+    public final int f32020a;
 
-    public qs0(wv0 wv0Var, Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.d = wv0Var;
-        this.f29988a = context;
-        this.f29989b = o2Var;
-        this.f29990c = g6Var;
+    @Override
+    public final float getInterpolation(float f7) {
+        switch (this.f32020a) {
+            case 0:
+            case 1:
+            case 2:
+            case 3:
+            default:
+                float f10 = f7 - 1.0f;
+                return (f10 * f10 * f10 * f10 * f10) + 1.0f;
+        }
     }
 }

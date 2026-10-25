@@ -1,0 +1,63 @@
+package g5;
+
+import c3.h0;
+import java.nio.ByteBuffer;
+import java.util.LinkedList;
+import li.e3;
+public final class i extends com.googlecode.mp4parser.a {
+    public static final e3 d;
+    public static final e3 e;
+    public String f12302a;
+    public long f12303b;
+    public LinkedList f12304c;
+
+    static {
+        ue.a aVar = new ue.a(i.class, "FileTypeBox.java");
+        d = aVar.e(aVar.d("getMajorBrand", "com.coremedia.iso.boxes.FileTypeBox", "", "", "java.lang.String"));
+        aVar.e(aVar.d("setMajorBrand", "com.coremedia.iso.boxes.FileTypeBox", "java.lang.String", "majorBrand", "void"));
+        aVar.e(aVar.d("setMinorVersion", "com.coremedia.iso.boxes.FileTypeBox", "long", "minorVersion", "void"));
+        e = aVar.e(aVar.d("getMinorVersion", "com.coremedia.iso.boxes.FileTypeBox", "", "", "long"));
+        aVar.e(aVar.d("getCompatibleBrands", "com.coremedia.iso.boxes.FileTypeBox", "", "", "java.util.List"));
+        aVar.e(aVar.d("setCompatibleBrands", "com.coremedia.iso.boxes.FileTypeBox", "java.util.List", "compatibleBrands", "void"));
+    }
+
+    @Override
+    public final void _parseDetails(ByteBuffer byteBuffer) {
+        this.f12302a = f5.b.d(byteBuffer);
+        this.f12303b = f5.b.i(byteBuffer);
+        int remaining = byteBuffer.remaining() / 4;
+        this.f12304c = new LinkedList();
+        for (int i10 = 0; i10 < remaining; i10++) {
+            this.f12304c.add(f5.b.d(byteBuffer));
+        }
+    }
+
+    @Override
+    public final void getContent(ByteBuffer byteBuffer) {
+        byteBuffer.put(f5.c.d(this.f12302a));
+        byteBuffer.putInt((int) this.f12303b);
+        for (String str : this.f12304c) {
+            byteBuffer.put(f5.c.d(str));
+        }
+    }
+
+    @Override
+    public final long getContentSize() {
+        return (this.f12304c.size() * 4) + 8;
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("FileTypeBox[majorBrand=");
+        h0.s(ue.a.b(d, this, this));
+        sb2.append(this.f12302a);
+        sb2.append(";minorVersion=");
+        h0.s(ue.a.b(e, this, this));
+        sb2.append(this.f12303b);
+        for (String str : this.f12304c) {
+            sb2.append(";compatibleBrand=");
+            sb2.append(str);
+        }
+        sb2.append("]");
+        return sb2.toString();
+    }
+}

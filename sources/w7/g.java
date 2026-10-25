@@ -1,12 +1,15 @@
 package w7;
-public abstract class g {
-    public static boolean a(Object obj, Object obj2) {
-        if (obj != obj2) {
-            if (obj == null || !obj.equals(obj2)) {
-                return false;
-            }
-            return true;
-        }
-        return true;
+public final class g {
+    public static final g f50852a;
+    public static final g[] f50853b;
+
+    static {
+        ?? r02 = new Enum("DEFAULT", 0);
+        f50852a = r02;
+        f50853b = new g[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+    }
+
+    public static g[] values() {
+        return (g[]) f50853b.clone();
     }
 }

@@ -1,42 +1,45 @@
 package ug;
 
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class m implements Runnable {
-    public final int f48171a;
-    public final TLRPC.Chat f48172b;
-    public final int f48173c;
-    public final ArrayList d;
-    public final Utilities.Callback e;
+import android.graphics.SurfaceTexture;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+public final class m extends Thread {
+    public final SurfaceTexture f49808a;
+    public volatile boolean f49809b;
+    public boolean f49810c;
+    public final n d;
 
-    public m(TLRPC.Chat chat, int i10, ArrayList arrayList, Utilities.Callback callback, int i11) {
-        this.f48171a = i11;
-        this.f48172b = chat;
-        this.f48173c = i10;
-        this.d = arrayList;
-        this.e = callback;
+    public m(n nVar, SurfaceTexture surfaceTexture) {
+        this.d = nVar;
+        this.f49808a = surfaceTexture;
+    }
+
+    public final void a() {
+        throw new UnsupportedOperationException("Method not decompiled: ug.m.a():void");
     }
 
     @Override
     public final void run() {
-        switch (this.f48171a) {
-            case 0:
-                TLRPC.Chat chat = this.f48172b;
-                ArrayList arrayList = this.d;
-                if (chat == null) {
-                    q.m(this.f48173c, arrayList);
+        synchronized (this.d.d) {
+            try {
+                if (this.f49809b) {
+                    return;
                 }
-                this.e.run(arrayList);
-                return;
-            default:
-                TLRPC.Chat chat2 = this.f48172b;
-                ArrayList arrayList2 = this.d;
-                if (chat2 == null) {
-                    q.m(this.f48173c, arrayList2);
+                n nVar = this.d;
+                nVar.f49815c = this.f49808a;
+                nVar.H = true;
+                try {
+                    a();
+                } catch (Exception e) {
+                    if (!this.f49809b) {
+                        FileLog.e(e);
+                        AndroidUtilities.runOnUIThread(new l(this, 0));
+                    }
                 }
-                this.e.run(arrayList2);
-                return;
+                n.b(this.d);
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 }

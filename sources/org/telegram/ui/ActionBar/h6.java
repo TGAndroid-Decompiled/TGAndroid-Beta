@@ -1,52 +1,25 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.graphics.Point;
 import org.telegram.messenger.AndroidUtilities;
-public final class h6 extends Drawable {
-    public float[] f20944b;
-    public Path f20943a = new Path();
-    public boolean f20945c = true;
-
-    public h6(float f7, float f10) {
-        this.f20944b = r0;
-        float dp = AndroidUtilities.dp(f7);
-        float dp2 = AndroidUtilities.dp(f10);
-        float[] fArr = {dp, dp, dp, dp, dp2, dp2, dp2, dp2};
-    }
-
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.gb1;
+public final class h6 extends gb1 {
     @Override
-    public final void draw(Canvas canvas) {
-        Path path = this.f20943a;
-        if (this.f20945c) {
-            this.f20945c = false;
-            path.reset();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(getBounds());
-            path.addRoundRect(rectF, this.f20944b, Path.Direction.CW);
+    public final void P(int i10, int i11) {
+        boolean z10;
+        Point point = AndroidUtilities.displaySize;
+        boolean z11 = true;
+        if (point.x <= point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        canvas.drawPath(path, k6.f21582z);
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        this.f20945c = true;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+        if (i10 > i11) {
+            z11 = false;
+        }
+        if (z10 == z11) {
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
+        }
     }
 }

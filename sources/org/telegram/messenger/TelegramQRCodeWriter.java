@@ -17,7 +17,7 @@ public final class TelegramQRCodeWriter {
     private int imageBlockX;
     private int imageBloks;
     private int imageSize;
-    private kc.b input;
+    private lc.b input;
     private int sideQuadSize;
     private float[] radii = new float[8];
     public boolean includeSideQuads = true;
@@ -149,19 +149,19 @@ public final class TelegramQRCodeWriter {
             }
         }
         int i14 = this.sideQuadSize;
-        if ((i10 < i14 || i10 >= this.input.f15057b - i14) && i11 < i14) {
+        if ((i10 < i14 || i10 >= this.input.f16970b - i14) && i11 < i14) {
             return false;
         }
-        if ((i10 >= i14 || i11 < this.input.f15058c - i14) && i10 >= 0 && i11 >= 0) {
-            kc.b bVar = this.input;
-            if (i10 < bVar.f15057b && i11 < bVar.f15058c && bVar.a(i10, i11) == 1) {
+        if ((i10 >= i14 || i11 < this.input.f16971c - i14) && i10 >= 0 && i11 >= 0) {
+            lc.b bVar = this.input;
+            if (i10 < bVar.f16970b && i11 < bVar.f16971c && bVar.a(i10, i11) == 1) {
                 return true;
             }
         }
         return false;
     }
 
-    public Bitmap encode(String str, int i10, int i11, Map<dc.b, ?> map, Bitmap bitmap) {
+    public Bitmap encode(String str, int i10, int i11, Map<ec.b, ?> map, Bitmap bitmap) {
         return encode(str, i10, i11, map, bitmap, 1.0f, -1, -16777216);
     }
 
@@ -177,7 +177,7 @@ public final class TelegramQRCodeWriter {
         this.centerDrawable = drawable;
     }
 
-    public android.graphics.Bitmap encode(java.lang.String r28, int r29, int r30, java.util.Map<dc.b, ?> r31, android.graphics.Bitmap r32, float r33, int r34, int r35) {
+    public android.graphics.Bitmap encode(java.lang.String r28, int r29, int r30, java.util.Map<ec.b, ?> r31, android.graphics.Bitmap r32, float r33, int r34, int r35) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.TelegramQRCodeWriter.encode(java.lang.String, int, int, java.util.Map, android.graphics.Bitmap, float, int, int):android.graphics.Bitmap");
     }
 }

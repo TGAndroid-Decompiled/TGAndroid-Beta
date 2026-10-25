@@ -1,166 +1,170 @@
 package o2;
 
+import a8.ed;
+import a8.h0;
+import a8.ng;
+import a8.yb;
 import android.net.Uri;
 import android.util.SparseArray;
-import b2.p1;
-import b2.t0;
-import b2.v0;
+import b2.q1;
+import b2.u0;
 import b2.w;
-import e2.m0;
-import e9.l0;
-import e9.n0;
-import e9.x1;
+import b2.w0;
+import b2.x;
+import b2.x0;
+import d5.z;
+import e2.n0;
+import f9.g0;
+import f9.i0;
+import f9.s1;
 import g2.c0;
-import i2.o1;
-import i2.s1;
-import i2.u0;
+import i2.t1;
+import i2.v0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.IdentityHashMap;
 import java.util.List;
 import java.util.Map;
-import k2.w0;
-import m4.z;
-import p2.v;
-import p2.x;
-import si.o0;
+import jg.s0;
+import li.e3;
+import org.telegram.ui.Components.b10;
+import p2.u;
+import u2.d0;
 import u2.e0;
-import u2.f0;
-import u2.t1;
-import v7.b8;
-import v7.u6;
-public final class k implements f0, v {
+import u2.r1;
+import vi.y;
+public final class k implements e0, u {
     public final j2.j E;
-    public final le.b F = new le.b(this, 6);
-    public e0 G;
+    public final jg.i F = new jg.i(this);
+    public d0 G;
     public int H;
-    public t1 I;
+    public r1 I;
     public q[] J;
     public q[] K;
     public int L;
-    public u2.o M;
+    public u2.n M;
     public final long N;
-    public final c f17669a;
-    public final p2.e f17670b;
-    public final l2.f f17671c;
+    public final c f19016a;
+    public final p2.d f19017b;
+    public final e3 f19018c;
     public final c0 d;
-    public final n2.n e;
-    public final n2.k f17672f;
-    public final oa.d h;
-    public final a5.a f17673n;
-    public final androidx.biometric.e f17674r;
-    public final IdentityHashMap f17675s;
-    public final w0 v;
-    public final oa.d f17676w;
-    public final boolean f17677x;
-    public final int f17678y;
+    public final n2.m e;
+    public final n2.j f19019f;
+    public final u7.s h;
+    public final ng f19020n;
+    public final h0 f19021r;
+    public final IdentityHashMap f19022s;
+    public final s0 v;
+    public final pa.d f19023w;
+    public final boolean f19024x;
+    public final int f19025y;
 
-    public k(c cVar, p2.e eVar, l2.f fVar, c0 c0Var, n2.n nVar, n2.k kVar, oa.d dVar, a5.a aVar, androidx.biometric.e eVar2, oa.d dVar2, boolean z10, int i10, j2.j jVar) {
-        this.f17669a = cVar;
-        this.f17670b = eVar;
-        this.f17671c = fVar;
+    public k(c cVar, p2.d dVar, e3 e3Var, c0 c0Var, n2.m mVar, n2.j jVar, u7.s sVar, ng ngVar, h0 h0Var, pa.d dVar2, boolean z10, int i10, j2.j jVar2) {
+        this.f19016a = cVar;
+        this.f19017b = dVar;
+        this.f19018c = e3Var;
         this.d = c0Var;
-        this.e = nVar;
-        this.f17672f = kVar;
-        this.h = dVar;
-        this.f17673n = aVar;
-        this.f17674r = eVar2;
-        this.f17676w = dVar2;
-        this.f17677x = z10;
-        this.f17678y = i10;
-        this.E = jVar;
+        this.e = mVar;
+        this.f19019f = jVar;
+        this.h = sVar;
+        this.f19020n = ngVar;
+        this.f19021r = h0Var;
+        this.f19023w = dVar2;
+        this.f19024x = z10;
+        this.f19025y = i10;
+        this.E = jVar2;
         dVar2.getClass();
-        l0 l0Var = n0.f8481b;
-        x1 x1Var = x1.e;
-        this.M = new u2.o(x1Var, x1Var);
-        this.f17675s = new IdentityHashMap();
-        this.v = new w0(9);
+        g0 g0Var = i0.f10287b;
+        s1 s1Var = s1.e;
+        this.M = new u2.n(s1Var, s1Var);
+        this.f19022s = new IdentityHashMap();
+        this.v = new s0();
         this.J = new q[0];
         this.K = new q[0];
         this.N = Long.MIN_VALUE;
     }
 
-    public static w f(w wVar, w wVar2, boolean z10) {
-        t0 t0Var;
+    public static x f(x xVar, x xVar2, boolean z10) {
+        u0 u0Var;
         int i10;
         String str;
         String str2;
-        n0 n0Var;
+        i0 i0Var;
         int i11;
         int i12;
         String str3;
         int i13;
-        l0 l0Var = n0.f8481b;
-        x1 x1Var = x1.e;
+        g0 g0Var = i0.f10287b;
+        s1 s1Var = s1.e;
         int i14 = -1;
-        if (wVar2 != null) {
-            str2 = wVar2.f4127k;
-            t0Var = wVar2.f4128l;
-            i11 = wVar2.K;
-            i10 = wVar2.e;
-            i12 = wVar2.f4123f;
-            str = wVar2.d;
-            str3 = wVar2.f4121b;
-            n0Var = wVar2.f4122c;
+        if (xVar2 != null) {
+            str2 = xVar2.f3578k;
+            u0Var = xVar2.f3579l;
+            i11 = xVar2.K;
+            i10 = xVar2.e;
+            i12 = xVar2.f3574f;
+            str = xVar2.d;
+            str3 = xVar2.f3572b;
+            i0Var = xVar2.f3573c;
         } else {
-            String w9 = m0.w(1, wVar.f4127k);
-            t0Var = wVar.f4128l;
+            String w10 = n0.w(1, xVar.f3578k);
+            u0Var = xVar.f3579l;
             if (z10) {
-                i11 = wVar.K;
-                i10 = wVar.e;
-                i12 = wVar.f4123f;
-                str = wVar.d;
-                str3 = wVar.f4121b;
-                str2 = w9;
-                n0Var = wVar.f4122c;
+                i11 = xVar.K;
+                i10 = xVar.e;
+                i12 = xVar.f3574f;
+                str = xVar.d;
+                str3 = xVar.f3572b;
+                str2 = w10;
+                i0Var = xVar.f3573c;
             } else {
                 i10 = 0;
                 str = null;
-                str2 = w9;
-                n0Var = x1Var;
+                str2 = w10;
+                i0Var = s1Var;
                 i11 = -1;
                 i12 = 0;
                 str3 = null;
             }
         }
-        String d = v0.d(str2);
+        String d = w0.d(str2);
         if (z10) {
-            i13 = wVar.h;
+            i13 = xVar.h;
         } else {
             i13 = -1;
         }
         if (z10) {
-            i14 = wVar.f4125i;
+            i14 = xVar.f3576i;
         }
-        b2.v vVar = new b2.v();
-        vVar.f4068a = wVar.f4120a;
-        vVar.f4069b = str3;
-        vVar.f4070c = n0.u(n0Var);
-        vVar.f4081q = v0.n(wVar.f4134r);
-        vVar.f4082r = v0.n(d);
-        vVar.f4074j = str2;
-        vVar.f4075k = t0Var;
-        vVar.h = i13;
-        vVar.f4073i = i14;
-        vVar.J = i11;
-        vVar.e = i10;
-        vVar.f4071f = i12;
-        vVar.d = str;
-        return new w(vVar);
+        w wVar = new w();
+        wVar.f3519a = xVar.f3571a;
+        wVar.f3520b = str3;
+        wVar.f3521c = i0.u(i0Var);
+        wVar.f3532q = w0.n(xVar.f3585r);
+        wVar.f3533r = w0.n(d);
+        wVar.f3525j = str2;
+        wVar.f3526k = u0Var;
+        wVar.h = i13;
+        wVar.f3524i = i14;
+        wVar.J = i11;
+        wVar.e = i10;
+        wVar.f3522f = i12;
+        wVar.d = str;
+        return new x(wVar);
     }
 
     @Override
     public final void a() {
         q[] qVarArr;
-        n0 n0Var;
+        i0 i0Var;
         long j10;
         for (q qVar : this.J) {
-            y2.l lVar = qVar.f17721s;
+            y2.l lVar = qVar.f19068s;
             i iVar = qVar.d;
-            ArrayList arrayList = qVar.f17724y;
+            ArrayList arrayList = qVar.f19071y;
             if (!arrayList.isEmpty()) {
-                j jVar = (j) e9.s.m(arrayList);
+                j jVar = (j) f9.o.m(arrayList);
                 int c10 = iVar.c(jVar);
                 int i10 = jVar.E;
                 boolean z10 = true;
@@ -169,42 +173,52 @@ public final class k implements f0, v {
                         if (i10 == -1) {
                             z10 = false;
                         }
-                        u6.p(z10);
-                        p2.n b10 = iVar.f17651g.b(jVar.f17667x, false);
+                        yb.p(z10);
+                        p2.m b10 = iVar.f18998g.b(jVar.f19014x, false);
                         b10.getClass();
-                        n0 n0Var2 = b10.f44431r;
-                        int i11 = (int) (jVar.f48354s - b10.f44424k);
+                        i0 i0Var2 = b10.f46571r;
+                        int i11 = (int) (jVar.f50025s - b10.f46564k);
                         if (i11 < 0) {
                             j10 = 0;
                         } else {
-                            if (i11 < n0Var2.size()) {
-                                n0Var = ((p2.k) n0Var2.get(i11)).f44409x;
+                            if (i11 < i0Var2.size()) {
+                                i0Var = ((p2.j) i0Var2.get(i11)).f46549x;
                             } else {
-                                n0Var = b10.f44432s;
+                                i0Var = b10.f46572s;
                             }
-                            j10 = ((p2.i) n0Var.get(i10)).f44412c;
+                            j10 = ((p2.h) i0Var.get(i10)).f46552c;
                         }
-                        jVar.f17664a0 = j10;
+                        jVar.f19011a0 = j10;
                     }
                 } else if (c10 == 0) {
-                    qVar.H.post(new z(7, qVar, jVar));
-                } else if (c10 == 2 && !qVar.f17714j0 && lVar.d()) {
-                    lVar.b();
+                    qVar.H.post(new k2.e0(19, qVar, jVar));
+                } else if (c10 == 2 && !qVar.f19061j0 && lVar.c()) {
+                    lVar.a();
                 }
             }
         }
-        this.G.b(this);
+        this.G.u(this);
     }
 
     @Override
-    public final boolean b(Uri uri, c5.c0 c0Var, boolean z10) {
+    public final long b() {
+        return this.M.b();
+    }
+
+    @Override
+    public final boolean c() {
+        return this.M.c();
+    }
+
+    @Override
+    public final boolean d(Uri uri, z zVar, boolean z10) {
         int i10;
         boolean z11;
-        x xVar;
+        p2.w wVar;
         k4.d dVar;
         int u10;
         boolean z12;
-        x xVar2;
+        p2.w wVar2;
         q[] qVarArr = this.J;
         int length = qVarArr.length;
         int i11 = 0;
@@ -212,47 +226,47 @@ public final class k implements f0, v {
         while (i11 < length) {
             q qVar = qVarArr[i11];
             i iVar = qVar.d;
-            x[] xVarArr = iVar.e;
-            p2.e eVar = iVar.f17651g;
-            int length2 = xVarArr.length;
+            p2.w[] wVarArr = iVar.e;
+            p2.d dVar2 = iVar.f18998g;
+            int length2 = wVarArr.length;
             int i12 = 0;
             while (true) {
                 if (i12 >= length2) {
                     break;
                 }
-                x xVar3 = xVarArr[i12];
-                p2.d dVar2 = (p2.d) eVar.d.get(uri);
-                if (dVar2 != null) {
-                    xVar = dVar2.f44353a;
+                p2.w wVar3 = wVarArr[i12];
+                p2.c cVar = (p2.c) dVar2.d.get(uri);
+                if (cVar != null) {
+                    wVar = cVar.f46493a;
                 } else {
-                    xVar = null;
+                    wVar = null;
                 }
-                if (xVar3.equals(xVar)) {
+                if (wVar3.equals(wVar)) {
                     if (!z10) {
-                        si.z a2 = iVar.a(uri);
-                        qVar.f17720r.getClass();
-                        dVar = oa.d.x3(a2, c0Var);
+                        y a2 = iVar.a(uri);
+                        qVar.f19067r.getClass();
+                        dVar = u7.s.z0(a2, zVar);
                     } else {
                         dVar = null;
                     }
-                    iVar.f17658o = uri;
+                    iVar.f19005o = uri;
                     if (dVar != null) {
-                        int i13 = dVar.f14942a;
+                        int i13 = dVar.f16377a;
                         i10 = i11;
-                        long j10 = dVar.f14943b;
+                        long j10 = dVar.f16378b;
                         if (i13 != 1) {
                             if (i13 == 2) {
                                 int i14 = 0;
                                 while (true) {
-                                    if (i14 < xVarArr.length) {
-                                        x xVar4 = xVarArr[i14];
-                                        p2.d dVar3 = (p2.d) eVar.d.get(uri);
-                                        if (dVar3 != null) {
-                                            xVar2 = dVar3.f44353a;
+                                    if (i14 < wVarArr.length) {
+                                        p2.w wVar4 = wVarArr[i14];
+                                        p2.c cVar2 = (p2.c) dVar2.d.get(uri);
+                                        if (cVar2 != null) {
+                                            wVar2 = cVar2.f46493a;
                                         } else {
-                                            xVar2 = null;
+                                            wVar2 = null;
                                         }
-                                        if (xVar4.equals(xVar2)) {
+                                        if (wVar4.equals(wVar2)) {
                                             break;
                                         }
                                         i14++;
@@ -261,10 +275,10 @@ public final class k implements f0, v {
                                         break;
                                     }
                                 }
-                                if (i14 != -1 && (u10 = iVar.f17661r.u(i14)) != -1 && iVar.f17661r.o(u10, j10)) {
-                                    p2.d dVar4 = (p2.d) eVar.d.get(uri);
-                                    if (dVar4 != null) {
-                                        z12 = p2.d.c(dVar4, uri, j10);
+                                if (i14 != -1 && (u10 = iVar.f19008r.u(i14)) != -1 && iVar.f19008r.o(u10, j10)) {
+                                    p2.c cVar3 = (p2.c) dVar2.d.get(uri);
+                                    if (cVar3 != null) {
+                                        z12 = p2.c.c(cVar3, uri, j10);
                                     } else {
                                         z12 = false;
                                     }
@@ -273,12 +287,12 @@ public final class k implements f0, v {
                                     }
                                 }
                             } else {
-                                throw new IllegalStateException(o1.k(i13, "Invalid fallback selection type: "));
+                                throw new IllegalStateException(ic.a.i(i13, "Invalid fallback selection type: "));
                             }
                         } else {
-                            p2.d dVar5 = (p2.d) eVar.d.get(uri);
-                            if (dVar5 != null) {
-                                z11 = p2.d.c(dVar5, uri, j10);
+                            p2.c cVar4 = (p2.c) dVar2.d.get(uri);
+                            if (cVar4 != null) {
+                                z11 = p2.c.c(cVar4, uri, j10);
                             }
                         }
                     }
@@ -291,24 +305,14 @@ public final class k implements f0, v {
             z13 |= z11;
             i11 = i10 + 1;
         }
-        this.G.b(this);
+        this.G.u(this);
         return z13;
     }
 
-    @Override
-    public final boolean c() {
-        return this.M.c();
-    }
-
-    @Override
-    public final long d() {
-        return this.M.d();
-    }
-
-    public final q e(String str, int i10, x[] xVarArr, w[] wVarArr, w wVar, List list, Map map, long j10) {
-        q qVar = new q(str, i10, this.F, new i(this.f17669a, this.f17670b, xVarArr, wVarArr, this.f17671c, this.d, this.v, list, this.E), map, this.f17674r, j10, wVar, this.e, this.f17672f, this.h, this.f17673n, this.f17678y, null);
+    public final q e(String str, int i10, p2.w[] wVarArr, x[] xVarArr, x xVar, List list, Map map, long j10) {
+        q qVar = new q(str, i10, this.F, new i(this.f19016a, this.f19017b, wVarArr, xVarArr, this.f19018c, this.d, this.v, list, this.E), map, this.f19021r, j10, xVar, this.e, this.f19019f, this.h, this.f19020n, this.f19025y, null);
         long j11 = this.N;
-        qVar.f17715k0 = j11;
+        qVar.f19062k0 = j11;
         if (qVar.S) {
             for (p pVar : qVar.L) {
                 pVar.K(j11);
@@ -318,63 +322,63 @@ public final class k implements f0, v {
     }
 
     @Override
-    public final void h() {
+    public final void g() {
         q[] qVarArr;
         for (q qVar : this.J) {
-            qVar.E();
-            if (qVar.f17714j0 && !qVar.T) {
-                throw b2.w0.a(null, "Loading finished before preparation is complete.");
+            qVar.C();
+            if (qVar.f19061j0 && !qVar.T) {
+                throw x0.a(null, "Loading finished before preparation is complete.");
             }
         }
     }
 
     @Override
-    public final long i(long j10) {
+    public final long h(long j10) {
         q[] qVarArr = this.K;
         if (qVarArr.length > 0) {
-            boolean H = qVarArr[0].H(j10, false);
+            boolean F = qVarArr[0].F(j10, false);
             int i10 = 1;
             while (true) {
                 q[] qVarArr2 = this.K;
                 if (i10 >= qVarArr2.length) {
                     break;
                 }
-                qVarArr2[i10].H(j10, H);
+                qVarArr2[i10].F(j10, F);
                 i10++;
             }
-            if (H) {
-                ((SparseArray) this.v.f14874b).clear();
+            if (F) {
+                ((SparseArray) this.v.f15828b).clear();
             }
         }
         return j10;
     }
 
     @Override
-    public final void l(long j10) {
+    public final void i(long j10) {
         q[] qVarArr;
         for (q qVar : this.K) {
-            if (qVar.S && !qVar.B()) {
+            if (qVar.S && !qVar.y()) {
                 int length = qVar.L.length;
                 for (int i10 = 0; i10 < length; i10++) {
-                    qVar.L[i10].k(j10, qVar.f17707d0[i10]);
+                    qVar.L[i10].k(j10, qVar.f19054d0[i10]);
                 }
             }
         }
     }
 
     @Override
-    public final void n(e0 e0Var, long j10) {
+    public final void k(d0 d0Var, long j10) {
         String str;
         c cVar;
         boolean z10;
         Map map;
-        n0 n0Var;
+        i0 i0Var;
         q[] qVarArr;
         int i10;
         HashSet hashSet;
         int i11;
         HashSet hashSet2;
-        n0 n0Var2;
+        i0 i0Var2;
         Map map2;
         ArrayList arrayList;
         ArrayList arrayList2;
@@ -385,48 +389,48 @@ public final class k implements f0, v {
         boolean z14;
         boolean z15;
         List list;
-        this.G = e0Var;
-        p2.e eVar = this.f17670b;
-        eVar.getClass();
-        eVar.e.add(this);
-        p2.q qVar = eVar.f44362s;
-        qVar.getClass();
+        this.G = d0Var;
+        p2.d dVar = this.f19017b;
+        dVar.getClass();
+        dVar.e.add(this);
+        p2.p pVar = dVar.f46502s;
+        pVar.getClass();
         Map map3 = Collections.EMPTY_MAP;
-        n0 c10 = eVar.c(0);
+        i0 c10 = dVar.c(0);
         c10.getClass();
-        n0 c11 = eVar.c(2);
+        i0 c11 = dVar.c(2);
         c11.getClass();
-        n0 c12 = eVar.c(3);
+        i0 c12 = dVar.c(3);
         c12.getClass();
         boolean isEmpty = c10.isEmpty();
         this.H = 0;
         ArrayList arrayList3 = new ArrayList();
         ArrayList arrayList4 = new ArrayList();
-        c cVar2 = this.f17669a;
-        boolean z16 = this.f17677x;
+        c cVar2 = this.f19016a;
+        boolean z16 = this.f19024x;
         if (isEmpty) {
             str = "ID3";
             cVar = cVar2;
             z10 = z16;
             map = map3;
-            n0Var = c12;
+            i0Var = c12;
         } else {
-            w wVar = qVar.f44449j;
-            List list2 = qVar.f44450k;
+            x xVar = pVar.f46589j;
+            List list2 = pVar.f46590k;
             int size = c10.size();
             int[] iArr = new int[size];
             int i13 = 0;
             int i14 = 0;
             for (int i15 = 0; i15 < c10.size(); i15++) {
-                w wVar2 = ((x) c10.get(i15)).f44494a.f44491a;
-                int i16 = wVar2.A;
-                String str2 = wVar2.f4127k;
-                if (i16 > 0 || m0.w(2, str2) != null) {
+                x xVar2 = ((p2.w) c10.get(i15)).f46634a.f46631a;
+                int i16 = xVar2.A;
+                String str2 = xVar2.f3578k;
+                if (i16 > 0 || n0.w(2, str2) != null) {
                     int i17 = i14;
                     iArr[i15] = 2;
                     i13++;
                     i14 = i17;
-                } else if (m0.w(1, str2) != null) {
+                } else if (n0.w(1, str2) != null) {
                     iArr[i15] = 1;
                     i14++;
                 } else {
@@ -448,8 +452,8 @@ public final class k implements f0, v {
                 z13 = false;
                 i12 = size;
             }
+            p2.w[] wVarArr = new p2.w[i12];
             x[] xVarArr = new x[i12];
-            w[] wVarArr = new w[i12];
             int[] iArr2 = new int[i12];
             int i20 = 0;
             boolean z17 = z12;
@@ -465,9 +469,9 @@ public final class k implements f0, v {
                     list = list2;
                 }
                 if (!z13 || iArr[i21] != 1) {
-                    x xVar = (x) c10.get(i21);
-                    xVarArr[i20] = xVar;
-                    wVarArr[i20] = xVar.f44494a.f44491a;
+                    p2.w wVar = (p2.w) c10.get(i21);
+                    wVarArr[i20] = wVar;
+                    xVarArr[i20] = wVar.f46634a.f46631a;
                     iArr2[i20] = i21;
                     i20++;
                 }
@@ -475,10 +479,10 @@ public final class k implements f0, v {
                 list2 = list;
             }
             List list3 = list2;
-            String str3 = wVarArr[0].f4127k;
-            int v = m0.v(2, str3);
+            String str3 = xVarArr[0].f3578k;
+            int v = n0.v(2, str3);
             int i22 = 1;
-            int v10 = m0.v(1, str3);
+            int v10 = n0.v(1, str3);
             if ((v10 == 1 || (v10 == 0 && c11.isEmpty())) && v <= 1 && v10 + v > 0) {
                 z14 = true;
             } else {
@@ -491,75 +495,75 @@ public final class k implements f0, v {
                 i22 = 0;
             }
             z10 = z16;
-            n0Var = c12;
-            q e = e("main", i22, xVarArr, wVarArr, wVar, list3, map3, j10);
+            i0Var = c12;
+            q e = e("main", i22, wVarArr, xVarArr, xVar, list3, map3, j10);
             arrayList3.add(e);
             arrayList4.add(iArr2);
             if (z10 && z14) {
                 ArrayList arrayList5 = new ArrayList();
                 if (v > 0) {
-                    w[] wVarArr2 = new w[i12];
+                    x[] xVarArr2 = new x[i12];
                     int i23 = 0;
                     while (i23 < i12) {
-                        w wVar3 = wVarArr[i23];
-                        String w9 = m0.w(2, wVar3.f4127k);
-                        String d = v0.d(w9);
-                        w[] wVarArr3 = wVarArr;
-                        b2.v vVar = new b2.v();
-                        vVar.f4068a = wVar3.f4120a;
-                        vVar.f4069b = wVar3.f4121b;
-                        vVar.f4070c = n0.u(wVar3.f4122c);
-                        vVar.f4081q = v0.n(wVar3.f4134r);
-                        vVar.f4082r = v0.n(d);
-                        vVar.f4074j = w9;
-                        vVar.f4075k = wVar3.f4128l;
-                        vVar.h = wVar3.h;
-                        vVar.f4073i = wVar3.f4125i;
-                        vVar.f4088y = wVar3.f4141z;
-                        vVar.f4089z = wVar3.A;
-                        vVar.C = wVar3.D;
-                        vVar.e = wVar3.e;
-                        vVar.f4071f = wVar3.f4123f;
-                        vVar.H = wVar3.I;
-                        wVarArr2[i23] = new w(vVar);
+                        x xVar3 = xVarArr[i23];
+                        String w10 = n0.w(2, xVar3.f3578k);
+                        String d = w0.d(w10);
+                        x[] xVarArr3 = xVarArr;
+                        w wVar2 = new w();
+                        wVar2.f3519a = xVar3.f3571a;
+                        wVar2.f3520b = xVar3.f3572b;
+                        wVar2.f3521c = i0.u(xVar3.f3573c);
+                        wVar2.f3532q = w0.n(xVar3.f3585r);
+                        wVar2.f3533r = w0.n(d);
+                        wVar2.f3525j = w10;
+                        wVar2.f3526k = xVar3.f3579l;
+                        wVar2.h = xVar3.h;
+                        wVar2.f3524i = xVar3.f3576i;
+                        wVar2.f3539y = xVar3.f3592z;
+                        wVar2.f3540z = xVar3.A;
+                        wVar2.C = xVar3.D;
+                        wVar2.e = xVar3.e;
+                        wVar2.f3522f = xVar3.f3574f;
+                        wVar2.H = xVar3.I;
+                        xVarArr2[i23] = new x(wVar2);
                         i23++;
-                        wVarArr = wVarArr3;
+                        xVarArr = xVarArr3;
                         map3 = map3;
                     }
-                    w[] wVarArr4 = wVarArr;
+                    x[] xVarArr4 = xVarArr;
                     map = map3;
-                    arrayList5.add(new p1("main", wVarArr2));
-                    if (v10 > 0 && (wVar != null || c11.isEmpty())) {
-                        b2.v a2 = f(wVarArr4[0], wVar, false).a();
-                        a2.f4076l = "main";
-                        arrayList5.add(new p1("main:audio", new w(a2)));
+                    arrayList5.add(new q1("main", xVarArr2));
+                    if (v10 > 0 && (xVar != null || c11.isEmpty())) {
+                        w a2 = f(xVarArr4[0], xVar, false).a();
+                        a2.f3527l = "main";
+                        arrayList5.add(new q1("main:audio", new x(a2)));
                     }
                     if (list3 != null) {
                         for (int i24 = 0; i24 < list3.size(); i24++) {
-                            String k10 = o1.k(i24, "main:cc:");
-                            b2.v a10 = cVar2.b((w) list3.get(i24)).a();
-                            a10.f4076l = "main";
-                            arrayList5.add(new p1(k10, new w(a10)));
+                            String i25 = ic.a.i(i24, "main:cc:");
+                            w a10 = cVar2.b((x) list3.get(i24)).a();
+                            a10.f3527l = "main";
+                            arrayList5.add(new q1(i25, new x(a10)));
                         }
                     }
                     cVar = cVar2;
                 } else {
                     map = map3;
                     cVar = cVar2;
-                    w[] wVarArr5 = new w[i12];
-                    for (int i25 = 0; i25 < i12; i25++) {
-                        wVarArr5[i25] = f(wVarArr[i25], wVar, true);
+                    x[] xVarArr5 = new x[i12];
+                    for (int i26 = 0; i26 < i12; i26++) {
+                        xVarArr5[i26] = f(xVarArr[i26], xVar, true);
                     }
-                    arrayList5.add(new p1("main", wVarArr5));
+                    arrayList5.add(new q1("main", xVarArr5));
                 }
-                b2.v vVar2 = new b2.v();
+                w wVar3 = new w();
                 str = "ID3";
-                vVar2.f4068a = str;
-                vVar2.f4082r = v0.n("application/id3");
-                vVar2.f4076l = "main";
-                p1 p1Var = new p1("main:id3", new w(vVar2));
-                arrayList5.add(p1Var);
-                e.F((p1[]) arrayList5.toArray(new p1[0]), arrayList5.indexOf(p1Var));
+                wVar3.f3519a = str;
+                wVar3.f3533r = w0.n("application/id3");
+                wVar3.f3527l = "main";
+                q1 q1Var = new q1("main:id3", new x(wVar3));
+                arrayList5.add(q1Var);
+                e.D((q1[]) arrayList5.toArray(new q1[0]), arrayList5.indexOf(q1Var));
             } else {
                 map = map3;
                 str = "ID3";
@@ -570,14 +574,14 @@ public final class k implements f0, v {
         ArrayList arrayList7 = new ArrayList(c11.size());
         ArrayList arrayList8 = new ArrayList(c11.size());
         HashSet hashSet3 = new HashSet();
-        int i26 = 0;
-        while (i26 < c11.size()) {
-            String str4 = ((x) c11.get(i26)).f44494a.f44493c;
+        int i27 = 0;
+        while (i27 < c11.size()) {
+            String str4 = ((p2.w) c11.get(i27)).f46634a.f46633c;
             str4.getClass();
             if (!hashSet3.add(str4)) {
                 hashSet2 = hashSet3;
-                i11 = i26;
-                n0Var2 = c11;
+                i11 = i27;
+                i0Var2 = c11;
                 map2 = map;
                 arrayList = arrayList7;
                 arrayList2 = arrayList8;
@@ -586,14 +590,14 @@ public final class k implements f0, v {
                 arrayList7.clear();
                 arrayList8.clear();
                 boolean z18 = true;
-                for (int i27 = 0; i27 < c11.size(); i27++) {
-                    if (str4.equals(((x) c11.get(i27)).f44494a.f44493c)) {
-                        x xVar2 = (x) c11.get(i27);
-                        w wVar4 = xVar2.f44494a.f44491a;
-                        arrayList8.add(Integer.valueOf(i27));
-                        arrayList6.add(xVar2);
-                        arrayList7.add(wVar4);
-                        if (m0.v(1, wVar4.f4127k) == 1) {
+                for (int i28 = 0; i28 < c11.size(); i28++) {
+                    if (str4.equals(((p2.w) c11.get(i28)).f46634a.f46633c)) {
+                        p2.w wVar4 = (p2.w) c11.get(i28);
+                        x xVar4 = wVar4.f46634a.f46631a;
+                        arrayList8.add(Integer.valueOf(i28));
+                        arrayList6.add(wVar4);
+                        arrayList7.add(xVar4);
+                        if (n0.v(1, xVar4.f3578k) == 1) {
                             z11 = true;
                         } else {
                             z11 = false;
@@ -602,136 +606,136 @@ public final class k implements f0, v {
                     }
                 }
                 String concat = "audio:".concat(str4);
-                String str5 = m0.f8259a;
-                i11 = i26;
+                String str5 = n0.f9692a;
+                i11 = i27;
                 hashSet2 = hashSet3;
-                n0Var2 = c11;
+                i0Var2 = c11;
                 map2 = map;
                 arrayList = arrayList7;
                 arrayList2 = arrayList8;
-                q e7 = e(concat, 1, (x[]) arrayList6.toArray(new x[0]), (w[]) arrayList7.toArray(new w[0]), null, Collections.EMPTY_LIST, map2, j10);
-                arrayList4.add(b8.f(arrayList2));
-                arrayList3.add(e7);
+                q e10 = e(concat, 1, (p2.w[]) arrayList6.toArray(new p2.w[0]), (x[]) arrayList7.toArray(new x[0]), null, Collections.EMPTY_LIST, map2, j10);
+                arrayList4.add(ed.f(arrayList2));
+                arrayList3.add(e10);
                 if (z10 && z18) {
-                    String u10 = o0.u(concat, ":id3");
-                    b2.v vVar3 = new b2.v();
-                    vVar3.f4068a = str;
-                    vVar3.f4082r = v0.n("application/id3");
-                    vVar3.f4076l = concat;
-                    e7.F(new p1[]{new p1(concat, (w[]) arrayList.toArray(new w[0])), new p1(u10, new w(vVar3))}, 1);
+                    String u10 = b10.u(concat, ":id3");
+                    w wVar5 = new w();
+                    wVar5.f3519a = str;
+                    wVar5.f3533r = w0.n("application/id3");
+                    wVar5.f3527l = concat;
+                    e10.D(new q1[]{new q1(concat, (x[]) arrayList.toArray(new x[0])), new q1(u10, new x(wVar5))}, 1);
                 }
             }
-            i26 = i11 + 1;
+            i27 = i11 + 1;
             arrayList7 = arrayList;
-            c11 = n0Var2;
+            c11 = i0Var2;
             arrayList8 = arrayList2;
             hashSet3 = hashSet2;
             map = map2;
         }
         Map map4 = map;
         this.L = arrayList3.size();
-        ArrayList arrayList9 = new ArrayList(n0Var.size());
-        ArrayList arrayList10 = new ArrayList(n0Var.size());
-        ArrayList arrayList11 = new ArrayList(n0Var.size());
+        ArrayList arrayList9 = new ArrayList(i0Var.size());
+        ArrayList arrayList10 = new ArrayList(i0Var.size());
+        ArrayList arrayList11 = new ArrayList(i0Var.size());
         HashSet hashSet4 = new HashSet();
-        int i28 = 0;
-        while (i28 < n0Var.size()) {
-            n0 n0Var3 = n0Var;
-            String str6 = ((x) n0Var3.get(i28)).f44494a.f44493c;
+        int i29 = 0;
+        while (i29 < i0Var.size()) {
+            i0 i0Var3 = i0Var;
+            String str6 = ((p2.w) i0Var3.get(i29)).f46634a.f46633c;
             str6.getClass();
             if (!hashSet4.add(str6)) {
                 hashSet = hashSet4;
-                i10 = i28;
-                n0Var = n0Var3;
+                i10 = i29;
+                i0Var = i0Var3;
             } else {
                 arrayList9.clear();
                 arrayList10.clear();
                 arrayList11.clear();
-                for (int i29 = 0; i29 < n0Var3.size(); i29++) {
-                    if (str6.equals(((x) n0Var3.get(i29)).f44494a.f44493c)) {
-                        x xVar3 = (x) n0Var3.get(i29);
-                        arrayList11.add(Integer.valueOf(i29));
-                        arrayList9.add(xVar3);
-                        arrayList10.add(xVar3.f44494a.f44491a);
+                for (int i30 = 0; i30 < i0Var3.size(); i30++) {
+                    if (str6.equals(((p2.w) i0Var3.get(i30)).f46634a.f46633c)) {
+                        p2.w wVar6 = (p2.w) i0Var3.get(i30);
+                        arrayList11.add(Integer.valueOf(i30));
+                        arrayList9.add(wVar6);
+                        arrayList10.add(wVar6.f46634a.f46631a);
                     }
                 }
                 String concat2 = "subtitle:".concat(str6);
-                w[] wVarArr6 = (w[]) arrayList10.toArray(new w[0]);
-                String str7 = m0.f8259a;
-                l0 l0Var = n0.f8481b;
-                n0Var = n0Var3;
-                i10 = i28;
+                x[] xVarArr6 = (x[]) arrayList10.toArray(new x[0]);
+                String str7 = n0.f9692a;
+                g0 g0Var = i0.f10287b;
+                i0Var = i0Var3;
+                i10 = i29;
                 hashSet = hashSet4;
-                q e10 = e(concat2, 3, (x[]) arrayList9.toArray(new x[0]), wVarArr6, null, x1.e, map4, j10);
-                arrayList4.add(b8.f(arrayList11));
-                arrayList3.add(e10);
-                int length = wVarArr6.length;
-                w[] wVarArr7 = new w[length];
-                for (int i30 = 0; i30 < length; i30++) {
-                    wVarArr7[i30] = cVar.b(wVarArr6[i30]);
+                q e11 = e(concat2, 3, (p2.w[]) arrayList9.toArray(new p2.w[0]), xVarArr6, null, s1.e, map4, j10);
+                arrayList4.add(ed.f(arrayList11));
+                arrayList3.add(e11);
+                int length = xVarArr6.length;
+                x[] xVarArr7 = new x[length];
+                for (int i31 = 0; i31 < length; i31++) {
+                    xVarArr7[i31] = cVar.b(xVarArr6[i31]);
                 }
-                e10.F(new p1[]{new p1(concat2, wVarArr7)}, new int[0]);
+                e11.D(new q1[]{new q1(concat2, xVarArr7)}, new int[0]);
             }
-            i28 = i10 + 1;
+            i29 = i10 + 1;
             hashSet4 = hashSet;
         }
         this.J = (q[]) arrayList3.toArray(new q[0]);
         int[][] iArr3 = (int[][]) arrayList4.toArray(new int[0]);
         this.H = this.J.length;
-        for (int i31 = 0; i31 < this.L; i31++) {
-            this.J[i31].d.f17655l = true;
+        for (int i32 = 0; i32 < this.L; i32++) {
+            this.J[i32].d.f19002l = true;
         }
-        for (q qVar2 : this.J) {
-            if (!qVar2.T) {
-                i2.t0 t0Var = new i2.t0();
-                t0Var.f12617a = qVar2.f17710f0;
-                qVar2.p(new u0(t0Var));
+        for (q qVar : this.J) {
+            if (!qVar.T) {
+                v0 v0Var = new v0();
+                v0Var.f13778a = qVar.f19057f0;
+                qVar.m(new i2.w0(v0Var));
             }
         }
         this.K = this.J;
     }
 
     @Override
-    public final long o() {
+    public final long l() {
         return -9223372036854775807L;
     }
 
     @Override
-    public final boolean p(u0 u0Var) {
+    public final boolean m(i2.w0 w0Var) {
         q[] qVarArr;
         if (this.I == null) {
             for (q qVar : this.J) {
                 if (!qVar.T) {
-                    i2.t0 t0Var = new i2.t0();
-                    t0Var.f12617a = qVar.f17710f0;
-                    qVar.p(new u0(t0Var));
+                    v0 v0Var = new v0();
+                    v0Var.f13778a = qVar.f19057f0;
+                    qVar.m(new i2.w0(v0Var));
                 }
             }
             return false;
         }
-        return this.M.p(u0Var);
+        return this.M.m(w0Var);
     }
 
     @Override
-    public final long q(x2.p[] r40, boolean[] r41, u2.f1[] r42, boolean[] r43, long r44) {
-        throw new UnsupportedOperationException("Method not decompiled: o2.k.q(x2.p[], boolean[], u2.f1[], boolean[], long):long");
+    public final long o(x2.q[] r40, boolean[] r41, u2.d1[] r42, boolean[] r43, long r44) {
+        throw new UnsupportedOperationException("Method not decompiled: o2.k.o(x2.q[], boolean[], u2.d1[], boolean[], long):long");
     }
 
     @Override
-    public final t1 r() {
-        t1 t1Var = this.I;
-        t1Var.getClass();
-        return t1Var;
+    public final r1 p() {
+        r1 r1Var = this.I;
+        r1Var.getClass();
+        return r1Var;
     }
 
     @Override
-    public final long s() {
-        return this.M.s();
+    public final long q() {
+        return this.M.q();
     }
 
     @Override
-    public final long t(long j10, s1 s1Var) {
-        p2.n nVar;
+    public final long r(long j10, t1 t1Var) {
+        p2.m mVar;
         long j11;
         q[] qVarArr = this.K;
         int length = qVarArr.length;
@@ -743,27 +747,27 @@ public final class k implements f0, v {
             q qVar = qVarArr[i10];
             if (qVar.Q == 2) {
                 i iVar = qVar.d;
-                p2.e eVar = iVar.f17651g;
-                int c10 = iVar.f17661r.c();
-                x[] xVarArr = iVar.e;
-                if (c10 < xVarArr.length && c10 != -1) {
-                    nVar = eVar.b(xVarArr[iVar.f17661r.l()].c(), true);
+                p2.d dVar = iVar.f18998g;
+                int c10 = iVar.f19008r.c();
+                p2.w[] wVarArr = iVar.e;
+                if (c10 < wVarArr.length && c10 != -1) {
+                    mVar = dVar.b(wVarArr[iVar.f19008r.l()].c(), true);
                 } else {
-                    nVar = null;
+                    mVar = null;
                 }
-                if (nVar != null) {
-                    n0 n0Var = nVar.f44431r;
-                    if (!n0Var.isEmpty()) {
-                        long j12 = nVar.h - eVar.I;
+                if (mVar != null) {
+                    i0 i0Var = mVar.f46571r;
+                    if (!i0Var.isEmpty()) {
+                        long j12 = mVar.h - dVar.I;
                         long j13 = j10 - j12;
-                        int d = m0.d(n0Var, Long.valueOf(j13), true);
-                        long j14 = ((p2.k) n0Var.get(d)).e;
-                        if (nVar.f44455c && d != n0Var.size() - 1) {
-                            j11 = ((p2.k) n0Var.get(d + 1)).e;
+                        int d = n0.d(i0Var, Long.valueOf(j13), true);
+                        long j14 = ((p2.j) i0Var.get(d)).e;
+                        if (mVar.f46595c && d != i0Var.size() - 1) {
+                            j11 = ((p2.j) i0Var.get(d + 1)).e;
                         } else {
                             j11 = j14;
                         }
-                        return s1Var.a(j13, j14, j11) + j12;
+                        return t1Var.a(j13, j14, j11) + j12;
                     }
                 }
             } else {
@@ -774,7 +778,7 @@ public final class k implements f0, v {
     }
 
     @Override
-    public final void u(long j10) {
-        this.M.u(j10);
+    public final void s(long j10) {
+        this.M.s(j10);
     }
 }

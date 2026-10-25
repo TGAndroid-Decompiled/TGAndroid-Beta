@@ -1,64 +1,84 @@
 package kc;
-public final class e {
-    public final ic.e f15064a;
-    public final int f15065b;
-    public final int f15066c;
-    public final int d;
-    public final e e;
-    public final int f15067f;
 
-    public e(c2.b bVar, ic.e eVar, int i10, int i11, int i12, e eVar2, ic.f fVar) {
-        int i13;
-        int i14;
-        this.f15064a = eVar;
-        this.f15065b = i10;
-        ic.e eVar3 = ic.e.BYTE;
-        if (eVar != eVar3 && eVar2 != null) {
-            i13 = eVar2.f15066c;
-        } else {
-            i13 = i11;
-        }
-        this.f15066c = i13;
-        this.d = i12;
-        this.e = eVar2;
-        boolean z10 = false;
-        if (eVar2 != null) {
-            i14 = eVar2.f15067f;
-        } else {
-            i14 = 0;
-        }
-        if ((eVar == eVar3 && eVar2 == null && i13 != 0) || (eVar2 != null && i13 != eVar2.f15066c)) {
-            z10 = true;
-        }
-        int i15 = 4;
-        i14 = (eVar2 == null || eVar != eVar2.f15064a || z10) ? i14 + eVar.a(fVar) + 4 : i14;
-        int ordinal = eVar.ordinal();
-        if (ordinal != 1) {
-            if (ordinal != 2) {
-                if (ordinal != 4) {
-                    if (ordinal == 6) {
-                        i14 += 13;
-                    }
-                } else {
-                    i14 += ((String) bVar.f4494b).substring(i10, i12 + i10).getBytes(((ec.d) bVar.f4495c).f8596a[i11].charset()).length * 8;
-                    if (z10) {
-                        i14 += 12;
-                    }
+import java.util.ArrayList;
+public final class e {
+    public static final d e = new Object();
+    public final fc.b f16513a;
+    public boolean f16515c;
+    public final ArrayList f16514b = new ArrayList();
+    public final int[] d = new int[5];
+
+    public e(fc.b bVar) {
+        this.f16513a = bVar;
+    }
+
+    public static float a(int i10, int[] iArr) {
+        return ((i10 - iArr[4]) - iArr[3]) - (iArr[2] / 2.0f);
+    }
+
+    public static boolean b(int[] iArr) {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            if (i10 < 5) {
+                int i12 = iArr[i10];
+                if (i12 == 0) {
+                    break;
                 }
-                this.f15067f = i14;
-            } else if (i12 == 1) {
-                i15 = 6;
-            } else {
-                i15 = 11;
-            }
-        } else if (i12 != 1) {
-            if (i12 == 2) {
-                i15 = 7;
-            } else {
-                i15 = 10;
+                i11 += i12;
+                i10++;
+            } else if (i11 >= 7) {
+                float f7 = i11 / 7.0f;
+                float f10 = f7 / 2.0f;
+                if (Math.abs(f7 - iArr[0]) >= f10 || Math.abs(f7 - iArr[1]) >= f10 || Math.abs((f7 * 3.0f) - iArr[2]) >= 3.0f * f10 || Math.abs(f7 - iArr[3]) >= f10 || Math.abs(f7 - iArr[4]) >= f10) {
+                    break;
+                }
+                return true;
             }
         }
-        i14 += i15;
-        this.f15067f = i14;
+        return false;
+    }
+
+    public static double e(c cVar, c cVar2) {
+        double d = cVar.f9892a - cVar2.f9892a;
+        double d10 = cVar.f9893b - cVar2.f9893b;
+        return (d10 * d10) + (d * d);
+    }
+
+    public final boolean c(int r20, int r21, int[] r22) {
+        throw new UnsupportedOperationException("Method not decompiled: kc.e.c(int, int, int[]):boolean");
+    }
+
+    public final boolean d() {
+        ArrayList arrayList = this.f16514b;
+        int size = arrayList.size();
+        int size2 = arrayList.size();
+        float f7 = 0.0f;
+        int i10 = 0;
+        int i11 = 0;
+        float f10 = 0.0f;
+        while (i11 < size2) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            c cVar = (c) obj;
+            if (cVar.d >= 2) {
+                i10++;
+                f10 += cVar.f16512c;
+            }
+        }
+        if (i10 >= 3) {
+            float f11 = f10 / size;
+            int size3 = arrayList.size();
+            int i12 = 0;
+            while (i12 < size3) {
+                Object obj2 = arrayList.get(i12);
+                i12++;
+                f7 += Math.abs(((c) obj2).f16512c - f11);
+            }
+            if (f7 <= f10 * 0.05f) {
+                return true;
+            }
+        }
+        return false;
     }
 }

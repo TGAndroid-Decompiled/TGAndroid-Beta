@@ -1,4 +1,3 @@
 package u5;
-public interface a {
-    long d();
+public final class a extends RuntimeException {
 }

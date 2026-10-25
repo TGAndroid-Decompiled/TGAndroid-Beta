@@ -1,67 +1,35 @@
 package org.telegram.messenger;
 
-import java.nio.ByteBuffer;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.ConnectionsManager;
 public final class u6 implements Runnable {
-    public final int f19724a;
-    public final boolean f19725b;
-    public final Object f19726c;
-    public final Object d;
+    public final int f21390a;
+    public final int f21391b;
+    public final int f21392c;
 
-    public u6(Object obj, Object obj2, boolean z10, int i10) {
-        this.f19724a = i10;
-        this.f19726c = obj;
-        this.d = obj2;
-        this.f19725b = z10;
+    public u6(int i10, int i11, int i12) {
+        this.f21390a = i12;
+        this.f21391b = i10;
+        this.f21392c = i11;
     }
 
     @Override
     public final void run() {
-        switch (this.f19724a) {
+        switch (this.f21390a) {
             case 0:
-                ((MediaController.AnonymousClass2) this.f19726c).lambda$run$1((ByteBuffer) this.d, this.f19725b);
+                MediaController.lambda$startRecording$35(this.f21391b, this.f21392c);
                 return;
             case 1:
-                ((FileLoader) this.f19726c).lambda$cancelFileUpload$2(this.f19725b, (String) this.d);
+                PasskeysController.f(this.f21391b, this.f21392c);
                 return;
             case 2:
-                ((ImageLoader) this.f19726c).lambda$cancelLoadingForImageReceiver$4(this.f19725b, (ImageReceiver) this.d);
+                ConnectionsManager.B(this.f21391b, this.f21392c);
                 return;
             case 3:
-                ((MediaDataController) this.f19726c).lambda$loadBotKeyboard$197((MessagesStorage.TopicKey) this.d, this.f19725b);
-                return;
-            case 4:
-                ((MediaDataController) this.f19726c).lambda$buildShortcuts$143(this.f19725b, (ArrayList) this.d);
-                return;
-            case 5:
-                ((MessagesController) this.f19726c).lambda$processDialogsUpdate$228((TLRPC.messages_Dialogs) this.d, this.f19725b);
-                return;
-            case 6:
-                ((MessagesStorage) this.f19726c).lambda$updateUserInfo$130((TLRPC.UserFull) this.d, this.f19725b);
-                return;
-            case 7:
-                ((MessagesStorage) this.f19726c).lambda$putCachedPhoneBook$149((HashMap) this.d, this.f19725b);
-                return;
-            case 8:
-                ((MessagesStorage) this.f19726c).lambda$updateEncryptedChatSeq$171((TLRPC.EncryptedChat) this.d, this.f19725b);
-                return;
-            case 9:
-                ((MessagesStorage) this.f19726c).lambda$updateChatInfo$134((TLRPC.ChatFull) this.d, this.f19725b);
+                ConnectionsManager.r(this.f21391b, this.f21392c);
                 return;
             default:
-                ((MessagesStorage) this.f19726c).lambda$deleteEphemeralMessages$206((a0.h) this.d, this.f19725b);
+                ConnectionsManager.getInstance(this.f21391b).cancelRequest(this.f21392c, true);
                 return;
         }
-    }
-
-    public u6(Object obj, boolean z10, Object obj2, int i10) {
-        this.f19724a = i10;
-        this.f19726c = obj;
-        this.f19725b = z10;
-        this.d = obj2;
     }
 }

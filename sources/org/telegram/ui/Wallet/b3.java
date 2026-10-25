@@ -3,17 +3,17 @@ package org.telegram.ui.Wallet;
 import android.graphics.LinearGradient;
 import android.graphics.Shader;
 import android.graphics.drawable.ShapeDrawable;
-import org.telegram.ui.Components.t40;
+import org.telegram.ui.Components.x40;
 public final class b3 extends ShapeDrawable.ShaderFactory {
-    public final t40 f34329a;
+    public final x40 f36387a;
 
-    public b3(t40 t40Var) {
-        this.f34329a = t40Var;
+    public b3(x40 x40Var) {
+        this.f36387a = x40Var;
     }
 
     @Override
     public final Shader resize(int i10, int i11) {
-        t40 t40Var = this.f34329a;
-        return new LinearGradient(0.0f, 0.0f, 0.0f, i11, t40Var.f30720a, t40Var.f30721b, Shader.TileMode.CLAMP);
+        x40 x40Var = this.f36387a;
+        return new LinearGradient(0.0f, 0.0f, 0.0f, i11, x40Var.f34618a, x40Var.f34619b, Shader.TileMode.CLAMP);
     }
 }

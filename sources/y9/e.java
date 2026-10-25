@@ -1,29 +1,12 @@
 package y9;
+public final class e {
+    public final String f52417a;
+    public final String f52418b;
+    public final String f52419c;
 
-import t7.u;
-public final class e implements i {
-    public static final u f50538c = new u(27);
-    public final Object f50539a;
-    public Object f50540b;
-
-    public e(ca.c cVar) {
-        this.f50539a = cVar;
-        this.f50540b = f50538c;
-    }
-
-    @Override
-    public void a(h hVar, int i10) {
-        int[] iArr = (int[]) this.f50540b;
-        try {
-            hVar.read((byte[]) this.f50539a, iArr[0], i10);
-            iArr[0] = iArr[0] + i10;
-        } finally {
-            hVar.close();
-        }
-    }
-
-    public e(byte[] bArr, int[] iArr) {
-        this.f50539a = bArr;
-        this.f50540b = iArr;
+    public e(String str, String str2, String str3) {
+        this.f52417a = str;
+        this.f52418b = str2;
+        this.f52419c = str3;
     }
 }

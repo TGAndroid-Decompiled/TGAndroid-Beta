@@ -1,27 +1,48 @@
 package bb;
 
-import java.util.Iterator;
-import java.util.Map;
-public final class b extends md.c {
-    public Map f4237a;
-    public Iterator f4238b;
-    public d f4239c;
-    public ke.d d;
-    public Map e;
-    public Object f4240f;
-    public Object h;
-    public final c f4241n;
-    public int f4242r;
+import android.os.Build;
+public final class b {
+    public final String f3725a;
+    public final a f3726b;
 
-    public b(c cVar, md.c cVar2) {
-        super(cVar2);
-        this.f4241n = cVar;
+    public b(String appId, a aVar) {
+        String deviceModel = Build.MODEL;
+        String osVersion = Build.VERSION.RELEASE;
+        kotlin.jvm.internal.i.e(appId, "appId");
+        kotlin.jvm.internal.i.e(deviceModel, "deviceModel");
+        kotlin.jvm.internal.i.e(osVersion, "osVersion");
+        this.f3725a = appId;
+        this.f3726b = aVar;
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.h = obj;
-        this.f4242r |= Integer.MIN_VALUE;
-        return this.f4241n.b(this);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof b) {
+                b bVar = (b) obj;
+                if (kotlin.jvm.internal.i.a(this.f3725a, bVar.f3725a)) {
+                    String str = Build.MODEL;
+                    if (kotlin.jvm.internal.i.a(str, str)) {
+                        String str2 = Build.VERSION.RELEASE;
+                        if (!kotlin.jvm.internal.i.a(str2, str2) || !this.f3726b.equals(bVar.f3726b)) {
+                            return false;
+                        }
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int f7 = a1.g.f((((Build.MODEL.hashCode() + (this.f3725a.hashCode() * 31)) * 31) + 46672439) * 31, 31, Build.VERSION.RELEASE);
+        return this.f3726b.hashCode() + ((p.LOG_ENVIRONMENT_PROD.hashCode() + f7) * 31);
+    }
+
+    public final String toString() {
+        return "ApplicationInfo(appId=" + this.f3725a + ", deviceModel=" + Build.MODEL + ", sessionSdkVersion=1.2.0, osVersion=" + Build.VERSION.RELEASE + ", logEnvironment=" + p.LOG_ENVIRONMENT_PROD + ", androidAppInfo=" + this.f3726b + ')';
     }
 }

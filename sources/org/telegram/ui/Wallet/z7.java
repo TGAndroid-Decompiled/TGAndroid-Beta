@@ -2,74 +2,74 @@ package org.telegram.ui.Wallet;
 
 import java.util.ArrayList;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.wc;
 public final class z7 implements Utilities.Callback2 {
-    public final int f35509a;
-    public final i8 f35510b;
-    public final pf.c f35511c;
+    public final int f37564a;
+    public final h8 f37565b;
+    public final qf.c f37566c;
     public final l0 d;
 
-    public z7(i8 i8Var, pf.c cVar, l0 l0Var, int i10) {
-        this.f35509a = i10;
-        this.f35510b = i8Var;
-        this.f35511c = cVar;
+    public z7(h8 h8Var, qf.c cVar, l0 l0Var, int i10) {
+        this.f37564a = i10;
+        this.f37565b = h8Var;
+        this.f37566c = cVar;
         this.d = l0Var;
     }
 
     @Override
     public final void run(Object obj, Object obj2) {
-        switch (this.f35509a) {
+        switch (this.f37564a) {
             case 0:
                 i0 i0Var = (i0) obj;
                 String str = (String) obj2;
-                this.f35511c.c(false);
-                i8 i8Var = this.f35510b;
+                this.f37566c.c(false);
+                h8 h8Var = this.f37565b;
                 if (i0Var == null) {
-                    vc a02 = vc.a0(i8Var);
+                    wc b02 = wc.b0(h8Var);
                     if (str == null) {
                         str = "NULL_ERROR";
                     }
-                    a02.e0(str, false);
+                    b02.f0(str, false);
                     return;
                 }
-                q8 q8Var = new q8();
-                q8Var.h = true;
-                ArrayList arrayList = q8Var.f35081a;
+                p8 p8Var = new p8();
+                p8Var.h = true;
+                ArrayList arrayList = p8Var.f37103a;
                 arrayList.clear();
                 if (!i0Var.e()) {
                     arrayList.addAll(i0Var.g());
                 }
-                q8Var.V();
-                q8Var.f35084f = new y3(14, i8Var, this.d);
-                i8Var.presentFragment(q8Var);
+                p8Var.W();
+                p8Var.f37106f = new q6(4, h8Var, this.d);
+                h8Var.presentFragment(p8Var);
                 return;
             default:
                 g0 g0Var = (g0) obj;
                 String str2 = (String) obj2;
-                this.f35511c.c(false);
-                i8 i8Var2 = this.f35510b;
+                this.f37566c.c(false);
+                h8 h8Var2 = this.f37565b;
                 if (g0Var == null) {
-                    vc a03 = vc.a0(i8Var2);
+                    wc b03 = wc.b0(h8Var2);
                     if (str2 == null) {
                         str2 = "NULL_ERROR";
                     }
-                    a03.e0(str2, false);
+                    b03.f0(str2, false);
                     return;
-                } else if (i8Var2.e) {
+                } else if (h8Var2.f36637f) {
                     g0Var.close();
                     return;
                 } else {
-                    i8Var2.d.add(g0Var);
-                    q8 q8Var2 = new q8();
-                    i0 i0Var2 = g0Var.f34530b;
-                    ArrayList arrayList2 = q8Var2.f35081a;
+                    h8Var2.e.add(g0Var);
+                    p8 p8Var2 = new p8();
+                    i0 i0Var2 = g0Var.f36582b;
+                    ArrayList arrayList2 = p8Var2.f37103a;
                     arrayList2.clear();
                     if (!i0Var2.e()) {
                         arrayList2.addAll(i0Var2.g());
                     }
-                    q8Var2.V();
-                    q8Var2.f35084f = new h(i8Var2, this.d, g0Var, 19);
-                    i8Var2.presentFragment(q8Var2);
+                    p8Var2.W();
+                    p8Var2.f37106f = new h(h8Var2, this.d, g0Var, 19);
+                    h8Var2.presentFragment(p8Var2);
                     return;
                 }
         }

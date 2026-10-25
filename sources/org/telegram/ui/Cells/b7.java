@@ -1,69 +1,82 @@
 package org.telegram.ui.Cells;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class b7 extends View {
-    public int f22142a;
-    public final int f22143b;
-    public boolean f22144c;
-    public boolean d;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.text.TextPaint;
+import android.text.style.ImageSpan;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.k41;
+public final class b7 extends ImageSpan {
+    public static k41 f23902b;
+    public final int f23903a = 1;
 
-    public b7(Context context) {
-        this(context, (b1) null);
-    }
-
-    private int getBackgroundResId() {
-        boolean z10 = this.f22144c;
-        if (z10 && this.d) {
-            return R.drawable.greydivider;
-        }
-        if (z10) {
-            return R.drawable.greydivider_bottom;
-        }
-        if (this.d) {
-            return R.drawable.greydivider_top;
-        }
-        return R.drawable.transparent;
+    public b7(Drawable drawable) {
+        super(drawable);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(this.f22142a), 1073741824));
-    }
-
-    public void setSize(int i10) {
-        this.f22142a = i10;
-    }
-
-    public b7(Context context, Object obj) {
-        this(context, (b1) null);
-    }
-
-    public b7(Context context, b1 b1Var) {
-        super(context);
-        this.f22144c = true;
-        this.d = true;
-        this.f22142a = 12;
-        int i10 = this.f22143b;
-        if (i10 == 0) {
-            setBackground(null);
-        } else {
-            setBackgroundColor(i10);
+    public void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
+        switch (this.f23903a) {
+            case 0:
+                Drawable drawable = getDrawable();
+                canvas.save();
+                Paint.FontMetricsInt fontMetricsInt = paint.getFontMetricsInt();
+                int i15 = fontMetricsInt.descent;
+                canvas.translate(f7, ((i13 + i15) - ((i15 - fontMetricsInt.ascent) / 2)) - ((drawable.getBounds().bottom - drawable.getBounds().top) / 2));
+                if (LocaleController.isRTL) {
+                    canvas.scale(-1.0f, 1.0f, drawable.getIntrinsicWidth() / 2, drawable.getIntrinsicHeight() / 2);
+                }
+                drawable.draw(canvas);
+                canvas.restore();
+                return;
+            default:
+                super.draw(canvas, charSequence, i10, i11, f7, i12, i13, i14, paint);
+                return;
         }
     }
 
-    public b7(Context context, int i10, int i11) {
-        super(context);
-        this.f22144c = true;
-        this.d = true;
-        this.f22143b = i10;
-        this.f22142a = 12;
-        if (i10 == 0) {
-            setBackground(null);
-        } else {
-            setBackgroundColor(i10);
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        switch (this.f23903a) {
+            case 0:
+                Rect bounds = getDrawable().getBounds();
+                if (fontMetricsInt != null) {
+                    Paint.FontMetricsInt fontMetricsInt2 = paint.getFontMetricsInt();
+                    int i12 = fontMetricsInt2.descent;
+                    int i13 = fontMetricsInt2.ascent;
+                    int i14 = ((i12 - i13) / 2) + i13;
+                    int i15 = (bounds.bottom - bounds.top) / 2;
+                    int i16 = i14 - i15;
+                    fontMetricsInt.ascent = i16;
+                    fontMetricsInt.top = i16;
+                    int i17 = i14 + i15;
+                    fontMetricsInt.bottom = i17;
+                    fontMetricsInt.descent = i17;
+                }
+                return bounds.right;
+            default:
+                return super.getSize(paint, charSequence, i10, i11, fontMetricsInt);
         }
+    }
+
+    @Override
+    public void updateDrawState(TextPaint textPaint) {
+        switch (this.f23903a) {
+            case 1:
+                float textSize = textPaint.getTextSize() * 0.89f;
+                int i10 = (int) (0.02f * textSize);
+                getDrawable().setBounds(0, i10, (int) textSize, ((int) (textSize * 1.25f)) + i10);
+                super.updateDrawState(textPaint);
+                return;
+            default:
+                super.updateDrawState(textPaint);
+                return;
+        }
+    }
+
+    public b7() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.b7.<init>():void");
     }
 }

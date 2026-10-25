@@ -1,95 +1,35 @@
 package org.telegram.ui;
+public final class bl implements Runnable {
+    public final int f38113a;
+    public final cl f38114b;
 
-import android.content.Context;
-import android.os.Bundle;
-import org.telegram.messenger.DialogObject;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.tgnet.TLRPC;
-public final class bl extends org.telegram.ui.Components.pc0 {
-    public final sn H;
-
-    public bl(sn snVar, Context context, sn snVar2, bh.b bVar, MessagePreviewParams messagePreviewParams, TLRPC.User user, TLRPC.Chat chat, int i10, org.telegram.ui.Components.lc0 lc0Var, int i11, boolean z10) {
-        super(context, snVar2, bVar, messagePreviewParams, user, chat, i10, lc0Var, i11, z10);
-        this.H = snVar;
+    public bl(cl clVar, int i10) {
+        this.f38113a = i10;
+        this.f38114b = clVar;
     }
 
     @Override
-    public final void b() {
-        MessageObject messageObject;
-        in inVar;
-        sn snVar = this.H;
-        in inVar2 = snVar.f41739x5;
-        if (inVar2 != null && (messageObject = inVar2.f38332a) != null && ((inVar = snVar.f41660r5.quote) == null || inVar.f38332a == null || messageObject.getId() == snVar.f41660r5.quote.f38332a.getId())) {
-            return;
-        }
-        snVar.f41739x5 = snVar.f41660r5.quote;
-    }
-
-    @Override
-    public final void c(boolean z10) {
-        int i10;
-        boolean z11;
-        boolean z12;
-        long peerDialogId;
-        int i11;
-        MessagePreviewParams.Messages messages;
-        int i12 = 0;
-        a(false);
-        sn snVar = this.H;
-        MessagePreviewParams messagePreviewParams = snVar.f41660r5;
-        if (messagePreviewParams != null) {
-            if (!z10) {
-                snVar.f41752y5 = true;
-            }
-            MessagePreviewParams.Messages messages2 = messagePreviewParams.forwardMessages;
-            if (messages2 != null) {
-                int size = messages2.messages.size();
-                i10 = 0;
-                z11 = false;
-                for (int i13 = 0; i13 < size; i13++) {
-                    MessageObject messageObject = snVar.f41660r5.forwardMessages.messages.get(i13);
-                    if (messageObject.isTodo()) {
-                        i10 = 3;
-                    } else if (messageObject.isPoll()) {
-                        if (i10 != 2) {
-                            if (messageObject.isPublicPoll()) {
-                                i10 = 2;
-                            } else {
-                                i10 = 1;
-                            }
-                        }
-                    } else if (messageObject.isInvoice()) {
-                        z11 = true;
+    public final void run() {
+        switch (this.f38113a) {
+            case 0:
+                hk hkVar = this.f38114b.H.Y;
+                if (hkVar != null) {
+                    hkVar.T0 = false;
+                    org.telegram.ui.Components.dg dgVar = hkVar.U0;
+                    if (dgVar != null) {
+                        dgVar.u(false);
+                        return;
                     }
-                    snVar.f41551i6[0].put(messageObject.getId(), messageObject);
+                    return;
                 }
-            } else {
-                i10 = 0;
-                z11 = false;
-            }
-            Bundle e = org.telegram.messenger.v0.e(3, "onlySelect", "dialogsType", true);
-            e.putBoolean("quote", !z10);
-            if (!z10 && (messages = snVar.f41660r5.replyMessage) != null && !messages.messages.isEmpty() && snVar.f41660r5.quote == null) {
-                z12 = true;
-            } else {
-                z12 = false;
-            }
-            e.putBoolean("reply_to", z12);
-            if (z12 && (DialogObject.getPeerDialogId(snVar.f41660r5.replyMessage.messages.get(0).getFromPeer())) != 0 && peerDialogId != snVar.a() && peerDialogId != snVar.getUserConfig().getClientUserId() && i11 > 0) {
-                e.putLong("reply_to_author", peerDialogId);
-            }
-            e.putInt("hasPoll", i10);
-            e.putBoolean("hasInvoice", z11);
-            MessagePreviewParams.Messages messages3 = snVar.f41660r5.forwardMessages;
-            if (messages3 != null) {
-                i12 = messages3.messages.size();
-            }
-            e.putInt("messagesCount", i12);
-            e.putBoolean("canSelectTopics", true);
-            ey eyVar = new ey(e);
-            eyVar.C2 = snVar;
-            snVar.presentFragment(eyVar);
+                return;
+            default:
+                hk hkVar2 = this.f38114b.H.Y;
+                if (hkVar2 != null) {
+                    hkVar2.F0();
+                    return;
+                }
+                return;
         }
     }
 }

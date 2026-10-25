@@ -1,27 +1,10 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-public final class o4 implements View.OnClickListener {
-    public final int f21741a;
-    public final y4 f21742b;
-
-    public o4(y4 y4Var, int i10) {
-        this.f21741a = i10;
-        this.f21742b = y4Var;
-    }
-
+import android.view.MenuItem;
+public final class o4 implements MenuItem.OnMenuItemClickListener {
     @Override
-    public final void onClick(View view) {
-        switch (this.f21741a) {
-            case 0:
-                this.f21742b.g();
-                return;
-            case 1:
-                this.f21742b.g();
-                return;
-            default:
-                this.f21742b.g();
-                return;
-        }
+    public final boolean onMenuItemClick(MenuItem menuItem) {
+        o4 o4Var = c5.f22500p;
+        return false;
     }
 }

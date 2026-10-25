@@ -1,22 +1,26 @@
 package org.telegram.ui;
-public final class q51 implements Runnable {
-    public final int f40717a;
-    public final r51 f40718b;
 
-    public q51(r51 r51Var, int i10) {
-        this.f40717a = i10;
-        this.f40718b = r51Var;
+import android.content.Context;
+import org.telegram.messenger.LiteMode;
+public final class q51 extends org.telegram.ui.Components.by0 {
+    public final r51 H3;
+
+    public q51(r51 r51Var, Context context, int i10, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, i10, u6Var);
+        this.H3 = r51Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40717a) {
-            case 0:
-                r51.a(this.f40718b);
-                return;
-            default:
-                this.f40718b.dismiss();
-                return;
+    public final boolean G1() {
+        if (!LiteMode.isEnabled(16388) && this.H3.F.W != 4) {
+            return false;
         }
+        return true;
+    }
+
+    @Override
+    public final void K1(int i10) {
+        super.K1(i10);
+        this.H3.d(false);
     }
 }

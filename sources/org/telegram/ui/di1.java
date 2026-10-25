@@ -1,27 +1,63 @@
 package org.telegram.ui;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import org.telegram.messenger.FileLog;
-public final class di1 implements OnFailureListener {
-    public final int f36633a;
-    public final ei.d f36634b;
+import android.content.Context;
+import android.view.View;
+import android.view.ViewGroup;
+public final class di1 extends org.telegram.ui.Components.lm0 {
+    public final Context f38894c;
+    public final WallpapersListActivity d;
 
-    public di1(ei.d dVar, int i10) {
-        this.f36633a = i10;
-        this.f36634b = dVar;
+    public di1(WallpapersListActivity wallpapersListActivity, Context context) {
+        this.d = wallpapersListActivity;
+        this.f38894c = context;
     }
 
     @Override
-    public final void onFailure(Exception exc) {
-        switch (this.f36633a) {
-            case 0:
-                FileLog.e("wear-auth: /answer send failed: " + exc.getMessage());
-                this.f36634b.setLoading(false);
-                return;
-            default:
-                FileLog.e("wear-auth: /token send failed: " + exc.getMessage());
-                this.f36634b.setLoading(false);
-                return;
+    public final boolean D(s4.e1 e1Var) {
+        if (e1Var.f47738f == 0) {
+            return true;
         }
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.d.f37584a;
+    }
+
+    @Override
+    public final int j(int i10) {
+        int i11;
+        WallpapersListActivity wallpapersListActivity = this.d;
+        i11 = wallpapersListActivity.uploadImageRow;
+        if (i10 != i11 && i10 != wallpapersListActivity.h && i10 != wallpapersListActivity.f37586b && i10 != wallpapersListActivity.e) {
+            if (i10 != wallpapersListActivity.f37592f && i10 != wallpapersListActivity.f37594n) {
+                return 2;
+            }
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 r17, int r18) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.di1.v(s4.e1, int):void");
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        View v8Var;
+        Context context = this.f38894c;
+        if (i10 != 0) {
+            if (i10 != 3) {
+                v8Var = new org.telegram.ui.Components.hj(this, context, 1);
+                v8Var.setTag(-33024);
+            } else {
+                v8Var = new org.telegram.ui.Cells.i9(context);
+            }
+        } else {
+            v8Var = new org.telegram.ui.Cells.v8(context);
+        }
+        return new s4.e1(v8Var);
     }
 }

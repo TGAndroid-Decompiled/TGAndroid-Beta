@@ -1,57 +1,81 @@
 package w7;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-public abstract class i9 {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String l4;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i11 >= length) {
-                break;
-            }
-            Object obj = objArr[i11];
-            if (obj == null) {
-                l4 = "null";
-            } else {
-                try {
-                    l4 = obj.toString();
-                } catch (Exception e) {
-                    String D = a1.g.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
-                    l4 = org.telegram.ui.Cells.b1.l("<", D, " threw ", e.getClass().getName(), ">");
-                }
-            }
-            objArr[i11] = l4;
-            i11++;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+public final class i9 extends a8.y implements ListIterator {
+    public final int f50886b;
+    public int f50887c;
+    public final k9 d;
+
+    public i9(k9 k9Var, int i10) {
+        super(7);
+        int size = k9Var.size();
+        if (i10 >= 0 && i10 <= size) {
+            this.f50886b = size;
+            this.f50887c = i10;
+            this.d = k9Var;
+            return;
         }
-        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
-        int i12 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
-                break;
-            }
-            sb2.append((CharSequence) str, i12, indexOf);
-            sb2.append(objArr[i10]);
-            i10++;
-            i12 = indexOf + 2;
+        throw new IndexOutOfBoundsException(y.c(i10, size, "index"));
+    }
+
+    public final Object a(int i10) {
+        return this.d.get(i10);
+    }
+
+    @Override
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (this.f50887c < this.f50886b) {
+            return true;
         }
-        sb2.append((CharSequence) str, i12, str.length());
-        if (i10 < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i10]);
-            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
-                sb2.append(", ");
-                sb2.append(objArr[i13]);
-            }
-            sb2.append(']');
+        return false;
+    }
+
+    @Override
+    public final boolean hasPrevious() {
+        if (this.f50887c > 0) {
+            return true;
         }
-        return sb2.toString();
+        return false;
+    }
+
+    @Override
+    public final Object next() {
+        if (hasNext()) {
+            int i10 = this.f50887c;
+            this.f50887c = i10 + 1;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int nextIndex() {
+        return this.f50887c;
+    }
+
+    @Override
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f50887c - 1;
+            this.f50887c = i10;
+            return a(i10);
+        }
+        throw new NoSuchElementException();
+    }
+
+    @Override
+    public final int previousIndex() {
+        return this.f50887c - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException();
     }
 }

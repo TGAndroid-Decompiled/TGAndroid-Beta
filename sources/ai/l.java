@@ -1,72 +1,126 @@
 package ai;
 
+import bi.x1;
+import fi.z1;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.z80;
-import org.telegram.ui.TwoStepVerificationActivity;
-import org.telegram.ui.ob0;
-public final class l implements RequestDelegate {
-    public final int f1664a;
-    public final boolean f1665b;
-    public final long f1666c;
+import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
+import org.telegram.ui.Components.cz0;
+import org.telegram.ui.Components.ij;
+import org.telegram.ui.Components.sz;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.vz;
+import org.telegram.ui.Components.xy;
+import org.telegram.ui.Components.yy;
+import org.telegram.ui.lp0;
+import zh.g4;
+public final class l extends g.o {
+    public final int f1565c;
     public final Object d;
-    public final Object e;
 
-    public l(MessagesController messagesController, boolean z10, TLRPC.User user, long j10) {
-        this.f1664a = 1;
-        this.d = messagesController;
-        this.f1665b = z10;
-        this.e = user;
-        this.f1666c = j10;
+    public l(Object obj, int i10) {
+        this.f1565c = i10;
+        this.d = obj;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1664a) {
+    public final int i(int i10) {
+        int i11;
+        int i12;
+        int i13;
+        int i14;
+        switch (this.f1565c) {
             case 0:
-                AndroidUtilities.runOnUIThread(new m((x) this.d, tL_error, tLObject, (TwoStepVerificationActivity) this.e, this.f1665b, this.f1666c));
-                return;
+                x0 x0Var = (x0) this.d;
+                if (x0Var.e.j(i10) == 0) {
+                    return x0Var.f1975r;
+                }
+                return 1;
             case 1:
-                long j10 = this.f1666c;
-                ((MessagesController) this.d).lambda$deleteParticipantFromChat$315(this.f1665b, (TLRPC.User) this.e, j10, tLObject, tL_error);
-                return;
+                x1 x1Var = (x1) this.d;
+                vz vzVar = x1Var.f5649h0;
+                bi.q1 q1Var = x1Var.f5652k0;
+                if (q1Var != null && i10 != 0) {
+                    t61 G = q1Var.G(i10 - 1);
+                    if (G == null || (i11 = G.f32881u) == -1) {
+                        return vzVar.J;
+                    }
+                    return i11;
+                }
+                return vzVar.J;
             case 2:
-                ((MessagesController) this.d).lambda$checkChatInviter$374((TLRPC.Chat) this.e, this.f1665b, this.f1666c, tLObject, tL_error);
-                return;
+                fi.t1 t1Var = (fi.t1) this.d;
+                if (t1Var.Y.f11743c.F(i10) == null) {
+                    return t1Var.J;
+                }
+                t1Var.C1();
+                return t1Var.R.get(i10);
             case 3:
-                z80.t((z80) this.d, this.f1666c, this.f1665b, (TLRPC.TL_messages_importChatInvite) this.e, tLObject, tL_error);
-                return;
+                z1 z1Var = (z1) this.d;
+                if (z1Var.f12051c.j(i10) != 2) {
+                    return z1Var.h;
+                }
+                return 1;
+            case 4:
+                ij ijVar = (ij) this.d;
+                int i15 = ijVar.f29296r;
+                int i16 = ijVar.f29298w;
+                if (i10 % i16 != i16 - 1) {
+                    i12 = AndroidUtilities.dp(5.0f);
+                } else {
+                    i12 = 0;
+                }
+                return i15 + i12;
+            case 5:
+                ChatAttachAlertPhotoLayout chatAttachAlertPhotoLayout = (ChatAttachAlertPhotoLayout) this.d;
+                if (i10 != chatAttachAlertPhotoLayout.G.f33100n - 1 && ((!chatAttachAlertPhotoLayout.P0 && !chatAttachAlertPhotoLayout.O0) || i10 != 0)) {
+                    if (chatAttachAlertPhotoLayout.O0) {
+                        i10--;
+                    }
+                    int i17 = chatAttachAlertPhotoLayout.K0;
+                    int i18 = chatAttachAlertPhotoLayout.M0;
+                    if (i10 % i18 != i18 - 1) {
+                        i13 = AndroidUtilities.dp(2.0f);
+                    } else {
+                        i13 = 0;
+                    }
+                    return i17 + i13;
+                }
+                return chatAttachAlertPhotoLayout.F.J;
+            case 6:
+                yy yyVar = (yy) this.d;
+                sz szVar = yyVar.Y;
+                if (i10 == 0) {
+                    szVar.f32748n0.getClass();
+                }
+                s4.h0 adapter = szVar.f32731h0.getAdapter();
+                xy xyVar = szVar.f32737j0;
+                if (adapter == xyVar && xyVar.f34851x.isEmpty()) {
+                    return yyVar.J;
+                }
+                szVar.f32748n0.getClass();
+                yyVar.C1();
+                return yyVar.R.get(i10);
+            case 7:
+                cz0 cz0Var = (cz0) this.d;
+                if ((cz0Var.W != null && (cz0Var.d.e.get(i10) instanceof Integer)) || i10 == cz0Var.d.h) {
+                    return cz0Var.d.d;
+                }
+                return 1;
+            case 8:
+                lp0 lp0Var = (lp0) this.d;
+                if (i10 >= lp0Var.f41314b0 && i10 < lp0Var.f41316c0) {
+                    return 1;
+                }
+                if (i10 >= lp0Var.f41317d0 && i10 < lp0Var.f41318e0) {
+                    return 1;
+                }
+                return 3;
             default:
-                AndroidUtilities.runOnUIThread(new m((ob0) this.d, tLObject, this.f1666c, (String) this.e, this.f1665b, tL_error));
-                return;
+                t61 G2 = ((g4) this.d).f53018i0.G(i10 - 1);
+                if (G2 == null || (i14 = G2.f32881u) == -1) {
+                    return 3;
+                }
+                return i14;
         }
-    }
-
-    public l(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Object obj, boolean z10, long j10, int i10) {
-        this.f1664a = i10;
-        this.d = notificationCenterDelegate;
-        this.e = obj;
-        this.f1665b = z10;
-        this.f1666c = j10;
-    }
-
-    public l(z80 z80Var, long j10, boolean z10, TLRPC.TL_messages_importChatInvite tL_messages_importChatInvite) {
-        this.f1664a = 3;
-        this.d = z80Var;
-        this.f1666c = j10;
-        this.f1665b = z10;
-        this.e = tL_messages_importChatInvite;
-    }
-
-    public l(ob0 ob0Var, long j10, String str, boolean z10) {
-        this.f1664a = 4;
-        this.d = ob0Var;
-        this.f1666c = j10;
-        this.e = str;
-        this.f1665b = z10;
     }
 }

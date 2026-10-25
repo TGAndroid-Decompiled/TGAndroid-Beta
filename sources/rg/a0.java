@@ -1,27 +1,27 @@
 package rg;
+public final class a0 implements Runnable {
+    public final int f47354a;
+    public final e0 f47355b;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class a0 extends AnimatorListenerAdapter {
-    public final int f45697a;
-    public final m0 f45698b;
-
-    public a0(m0 m0Var, int i10) {
-        this.f45697a = i10;
-        this.f45698b = m0Var;
+    public a0(e0 e0Var, int i10) {
+        this.f47354a = i10;
+        this.f47355b = e0Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f45697a) {
+    public final void run() {
+        switch (this.f47354a) {
             case 0:
-                this.f45698b.f45892f2.setTranslationY(0.0f);
+                e0 e0Var = this.f47355b;
+                m mVar = e0Var.A;
+                if (mVar != null) {
+                    e0Var.f47388a.g(mVar);
+                    e0Var.A = null;
+                    return;
+                }
                 return;
             default:
-                m0 m0Var = this.f45698b;
-                m0Var.f45898i2 = false;
-                m0Var.f45892f2.setTranslationY(0.0f);
-                m0Var.m0();
+                this.f47355b.a(null, true, null);
                 return;
         }
     }

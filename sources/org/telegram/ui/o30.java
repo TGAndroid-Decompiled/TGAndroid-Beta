@@ -1,28 +1,19 @@
 package org.telegram.ui;
-public final class o30 implements z4.f {
-    public final u50 f40068a;
 
-    public o30(u50 u50Var) {
-        this.f40068a = u50Var;
+import android.view.ViewGroup;
+public final class o30 extends org.telegram.ui.Components.ni0 {
+    public final v50 f42081s1;
+
+    public o30(v50 v50Var, LaunchActivity launchActivity, r40 r40Var, b50 b50Var, n30 n30Var) {
+        super(launchActivity, r40Var, b50Var, n30Var);
+        this.f42081s1 = v50Var;
     }
 
     @Override
-    public final void a(int i10) {
-        u50 u50Var = this.f40068a;
-        u50Var.f42219b.D0.k(i10);
-        l30 l30Var = u50Var.D2;
-        l30Var.J = l30Var.L;
-        l30Var.K = l30Var.M;
-        l30Var.N = 0.0f;
-        l30Var.O = 1;
-        l30Var.invalidate();
-    }
-
-    @Override
-    public final void c(int i10) {
-    }
-
-    @Override
-    public final void b(float f7, int i10, int i11) {
+    public final void invalidate() {
+        ViewGroup viewGroup;
+        super.invalidate();
+        viewGroup = ((org.telegram.ui.ActionBar.k3) this.f42081s1).containerView;
+        viewGroup.invalidate();
     }
 }

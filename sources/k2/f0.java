@@ -1,25 +1,47 @@
 package k2;
 
-import m4.m1;
-public final class f0 implements e2.o, e2.j {
-    public final long f14727a;
+import android.media.AudioDeviceInfo;
+import android.media.AudioRouting;
+import android.media.AudioTrack;
+import android.os.Handler;
+import hi.u2;
+public final class f0 {
+    public final AudioTrack f16161a;
+    public final jg.s0 f16162b;
+    public final Handler f16163c;
+    public d0 d;
 
-    public f0(long j10) {
-        this.f14727a = j10;
+    public f0(AudioTrack audioTrack, jg.s0 s0Var) {
+        this.f16161a = audioTrack;
+        this.f16162b = s0Var;
+        Handler q5 = e2.n0.q(null);
+        this.f16163c = q5;
+        ?? r02 = new AudioRouting.OnRoutingChangedListener() {
+            @Override
+            public final void onRoutingChanged(AudioRouting audioRouting) {
+                f0 f0Var = f0.this;
+                if (f0Var.d == null) {
+                    return;
+                }
+                e2.a.e().execute(new u2(29, f0Var, audioRouting));
+            }
+        };
+        this.d = r02;
+        audioTrack.addOnRoutingChangedListener((AudioRouting.OnRoutingChangedListener) r02, q5);
     }
 
-    @Override
-    public void accept(Object obj) {
-        ((m1) obj).g(this.f14727a);
-    }
-
-    @Override
-    public void invoke(Object obj) {
-        y yVar;
-        p0 p0Var = (p0) obj;
-        t0 t0Var = p0Var.f14822b;
-        if (p0Var.equals(t0Var.f14851j) && (yVar = t0Var.f14855n) != null) {
-            yVar.a(this.f14727a);
+    public static void a(f0 f0Var, AudioRouting audioRouting) {
+        AudioDeviceInfo routedDevice = audioRouting.getRoutedDevice();
+        if (routedDevice != null) {
+            f0Var.f16163c.post(new e0(0, f0Var, routedDevice));
         }
+    }
+
+    public static void b(f0 f0Var) {
+        AudioTrack audioTrack = f0Var.f16161a;
+        d0 d0Var = f0Var.d;
+        d0Var.getClass();
+        audioTrack.removeOnRoutingChangedListener(d0Var);
+        f0Var.d = null;
     }
 }

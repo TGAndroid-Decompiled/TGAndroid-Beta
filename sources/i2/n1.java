@@ -1,93 +1,36 @@
 package i2;
 
-import java.util.HashMap;
-public final class n1 extends a {
-    public final int h;
-    public final int f12525i;
-    public final int[] f12526j;
-    public final int[] f12527k;
-    public final b2.o1[] f12528l;
-    public final Object[] f12529m;
-    public final HashMap f12530n;
+import a8.yb;
+import android.os.Looper;
+public final class n1 {
+    public final m1 f13666a;
+    public final l1 f13667b;
+    public int f13668c;
+    public Object d;
+    public final Looper e;
+    public boolean f13669f;
 
-    public n1(b2.o1[] o1VarArr, Object[] objArr, u2.k1 k1Var) {
-        super(k1Var);
-        int length = o1VarArr.length;
-        this.f12528l = o1VarArr;
-        this.f12526j = new int[length];
-        this.f12527k = new int[length];
-        this.f12529m = objArr;
-        this.f12530n = new HashMap();
-        int length2 = o1VarArr.length;
-        int i10 = 0;
-        int i11 = 0;
-        int i12 = 0;
-        int i13 = 0;
-        while (i10 < length2) {
-            b2.o1 o1Var = o1VarArr[i10];
-            this.f12528l[i13] = o1Var;
-            this.f12527k[i13] = i11;
-            this.f12526j[i13] = i12;
-            i11 += o1Var.o();
-            i12 += this.f12528l[i13].h();
-            this.f12530n.put(objArr[i13], Integer.valueOf(i13));
-            i10++;
-            i13++;
+    public n1(l1 l1Var, m1 m1Var, b2.p1 p1Var, int i10, Looper looper) {
+        this.f13667b = l1Var;
+        this.f13666a = m1Var;
+        this.e = looper;
+    }
+
+    public final synchronized void a(boolean z10) {
+        synchronized (this) {
+            notifyAll();
         }
-        this.h = i11;
-        this.f12525i = i12;
     }
 
-    @Override
-    public final int h() {
-        return this.f12525i;
-    }
-
-    @Override
-    public final int o() {
-        return this.h;
-    }
-
-    @Override
-    public final int q(Object obj) {
-        Integer num = (Integer) this.f12530n.get(obj);
-        if (num == null) {
-            return -1;
+    public final void b() {
+        yb.p(!this.f13669f);
+        this.f13669f = true;
+        s0 s0Var = (s0) this.f13667b;
+        if (!s0Var.Z && s0Var.f13751s.getThread().isAlive()) {
+            s0Var.f13744n.b(14, this).b();
+            return;
         }
-        return num.intValue();
-    }
-
-    @Override
-    public final int r(int i10) {
-        return e2.m0.e(this.f12526j, i10 + 1, false, false);
-    }
-
-    @Override
-    public final int s(int i10) {
-        return e2.m0.e(this.f12527k, i10 + 1, false, false);
-    }
-
-    @Override
-    public final Object t(int i10) {
-        return this.f12529m[i10];
-    }
-
-    @Override
-    public final int u(int i10) {
-        return this.f12526j[i10];
-    }
-
-    @Override
-    public final int v(int i10) {
-        return this.f12527k[i10];
-    }
-
-    @Override
-    public final b2.o1 x(int i10) {
-        return this.f12528l[i10];
-    }
-
-    public n1(java.util.ArrayList r8, u2.k1 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: i2.n1.<init>(java.util.ArrayList, u2.k1):void");
+        e2.a.l("ExoPlayerImplInternal", "Ignoring messages sent after release.");
+        a(false);
     }
 }

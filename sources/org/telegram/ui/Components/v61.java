@@ -1,39 +1,29 @@
 package org.telegram.ui.Components;
 
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
 import android.view.View;
-import android.widget.FrameLayout;
-public final class v61 extends FrameLayout {
-    public int f31342a;
-    public boolean f31343b;
+public final class v61 extends URLSpan {
+    public final y11 f33583a;
+
+    public v61(String str, y11 y11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f33583a = y11Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View view;
-        int i12 = this.f31342a;
-        if (getParent() instanceof View) {
-            view = (View) getParent();
-        } else {
-            view = null;
+    public final void onClick(View view) {
+        qf.d.o(view.getContext(), Uri.parse(getURL()), true, true);
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        super.updateDrawState(textPaint);
+        y11 y11Var = this.f33583a;
+        if (y11Var != null) {
+            y11Var.a(textPaint);
         }
-        if (this.f31343b && view != null) {
-            i12 = view.getPaddingBottom() + view.getPaddingTop() + i12;
-        }
-        if (view != null && view.getMeasuredHeight() > 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(view.getMeasuredHeight() - i12, 1073741824));
-        } else if (View.MeasureSpec.getMode(i11) != 0) {
-            super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11) - i12, 1073741824));
-        } else {
-            int size = View.MeasureSpec.getSize(i11);
-            int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-            measureChildren(makeMeasureSpec, i11);
-            int i13 = 0;
-            for (int i14 = 0; i14 < getChildCount(); i14++) {
-                i13 = Math.max(i13, getChildAt(i14).getMeasuredHeight());
-            }
-            if (size > 0) {
-                i13 = Math.min(i13, size - i12);
-            }
-            super.onMeasure(makeMeasureSpec, View.MeasureSpec.makeMeasureSpec(i13, 1073741824));
-        }
+        textPaint.setUnderlineText(true);
     }
 }

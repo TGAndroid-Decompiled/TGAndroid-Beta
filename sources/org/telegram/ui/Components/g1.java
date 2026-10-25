@@ -1,28 +1,40 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.AndroidUtilities;
-public final class g1 implements Runnable {
-    public final int f26514a;
-    public final c5 f26515b;
-    public final org.telegram.ui.ActionBar.c2 f26516c;
-    public final org.telegram.ui.ActionBar.o2 d;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.ui.LanguageSelectActivity;
+import org.telegram.ui.LaunchActivity;
+public final class g1 implements org.telegram.ui.ActionBar.b2 {
+    public final int f28380a;
+    public final LaunchActivity f28381b;
 
-    public g1(c5 c5Var, org.telegram.ui.ActionBar.c2 c2Var, org.telegram.ui.ActionBar.o2 o2Var, int i10) {
-        this.f26514a = i10;
-        this.f26515b = c5Var;
-        this.f26516c = c2Var;
-        this.d = o2Var;
+    public g1(LaunchActivity launchActivity, int i10) {
+        this.f28380a = i10;
+        this.f28381b = launchActivity;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26514a) {
+    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f28380a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new g1(this.f26515b, this.f26516c, this.d, 1));
+                this.f28381b.u0(new LanguageSelectActivity());
+                return;
+            case 1:
+                this.f28381b.u0(new org.telegram.ui.c7());
                 return;
             default:
-                d5.d0(this.f26515b, this.f26516c, this.d);
-                return;
+                LaunchActivity launchActivity = this.f28381b;
+                try {
+                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                    launchActivity.startActivity(intent);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
         }
     }
 }

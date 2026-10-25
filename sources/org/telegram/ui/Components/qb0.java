@@ -1,35 +1,113 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.view.View;
-public final class qb0 extends d91 {
-    public final Context f29875a;
-    public final pc0 f29876b;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+public final class qb0 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public final org.telegram.ui.ActionBar.u6 f31875a;
+    public final r6 f31876b;
+    public final r6 f31877c;
 
-    public qb0(pc0 pc0Var, Context context) {
-        this.f29876b = pc0Var;
-        this.f29875a = context;
+    public qb0(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context);
+        this.f31875a = u6Var;
+        r6 r6Var = new r6(true, true, true);
+        this.f31876b = r6Var;
+        ds dsVar = ds.h;
+        r6Var.n(0.3f, 430L, dsVar);
+        r6Var.x(AndroidUtilities.bold());
+        r6Var.u(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.A8, u6Var));
+        r6Var.w(AndroidUtilities.dp(18.0f));
+        r6Var.q(!LocaleController.isRTL);
+        r6Var.setCallback(this);
+        r6Var.M = AndroidUtilities.displaySize.x;
+        r6 r6Var2 = new r6(true, true, true);
+        this.f31877c = r6Var2;
+        r6Var2.n(0.3f, 430L, dsVar);
+        r6Var2.u(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.B8, u6Var));
+        r6Var2.w(AndroidUtilities.dp(14.0f));
+        r6Var2.q(!LocaleController.isRTL);
+        r6Var2.setCallback(this);
+        r6Var2.M = AndroidUtilities.displaySize.x;
+    }
+
+    public final void a(CharSequence charSequence, boolean z10) {
+        boolean z11;
+        if (z10 && !LocaleController.isRTL) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f31877c.t(charSequence, z11, true);
     }
 
     @Override
-    public final void b(View view, int i10, int i11) {
-        jc0 jc0Var = (jc0) view;
-        jc0Var.i();
-        jc0Var.l(false);
+    public final void addColorKeys(HashSet hashSet) {
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.A8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.B8));
+    }
+
+    public final void b(CharSequence charSequence, boolean z10) {
+        boolean z11;
+        if (z10 && !LocaleController.isRTL) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f31876b.t(charSequence, z11, true);
     }
 
     @Override
-    public final View d(int i10) {
-        return new jc0(this.f29876b, this.f29875a, i10);
+    public final void dispatchDraw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(29.0f);
+        int dp2 = AndroidUtilities.dp(18.83f);
+        r6 r6Var = this.f31877c;
+        int paddingLeft = getPaddingLeft();
+        int dp3 = r0 - AndroidUtilities.dp(32.0f);
+        int measuredWidth = getMeasuredWidth() - getPaddingRight();
+        int dp4 = AndroidUtilities.dp(32.0f) + r0;
+        r6 r6Var2 = this.f31876b;
+        r6Var2.setBounds(paddingLeft, dp3, measuredWidth, dp4);
+        r6Var2.draw(canvas);
+        r6Var.setBounds(getPaddingLeft(), r0 - AndroidUtilities.dp(32.0f), getMeasuredWidth() - getPaddingRight(), AndroidUtilities.dp(32.0f) + r0);
+        r6Var.draw(canvas);
     }
 
     @Override
-    public final int e() {
-        return this.f29876b.e.f28867a.size();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
+        setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
     }
 
     @Override
-    public final int h(int i10) {
-        return ((mc0) this.f29876b.e.f28867a.get(i10)).f28578a;
+    public final void updateColors() {
+        try {
+            r6 r6Var = this.f31876b;
+            org.telegram.ui.ActionBar.u6 u6Var = this.f31875a;
+            if (r6Var != null) {
+                r6Var.u(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.A8, u6Var));
+            }
+            r6 r6Var2 = this.f31877c;
+            if (r6Var2 != null) {
+                r6Var2.u(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.B8, u6Var));
+            }
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final boolean verifyDrawable(Drawable drawable) {
+        if (this.f31876b != drawable && this.f31877c != drawable && !super.verifyDrawable(drawable)) {
+            return false;
+        }
+        return true;
     }
 }

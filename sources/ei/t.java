@@ -1,81 +1,54 @@
 package ei;
 
-import android.text.TextUtils;
-import java.util.ArrayList;
-import org.telegram.messenger.BuildVars;
-public final class t {
-    public static ArrayList f9841f;
-    public final String f9842a;
-    public final int f9843b;
-    public final int f9844c;
-    public final int[] d;
-    public final ArrayList e = new ArrayList();
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Components.gb1;
+public final class t extends LinearLayout {
+    public final TextView f10012a;
+    public final TextView f10013b;
+    public boolean f10014c;
 
-    public t(String str) {
-        str = str == null ? "." : str;
-        this.f9842a = str;
-        String[] split = str.split("/");
-        int length = split.length;
-        this.f9844c = length;
-        this.d = new int[length];
-        int i10 = 0;
-        for (int i11 = 0; i11 < split.length; i11++) {
-            this.d[i11] = split[i11].length();
-            i10 = Math.max(i10, split[i11].length());
+    public t(Context context) {
+        super(context);
+        int i10;
+        setPadding(AndroidUtilities.dp(22.0f), 0, AndroidUtilities.dp(22.0f), 0);
+        setOrientation(1);
+        TextView textView = new TextView(context);
+        this.f10012a = textView;
+        textView.setTextSize(1, 16.0f);
+        f7.V(textView, y6.f23462j5, null);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        this.f9843b = i10;
-        for (int i12 = 0; i12 < split.length; i12++) {
-            for (int i13 = 0; i13 < split[i12].length(); i13++) {
-                this.e.add(new s(this, i13, i12));
-            }
+        textView.setGravity(i10);
+        addView(textView, gb1.x(-1, -2, 51, 0, 7, 0, 0));
+        TextView textView2 = new TextView(context);
+        this.f10013b = textView2;
+        textView2.setTextSize(1, 13.0f);
+        f7.V(textView2, y6.q5, null);
+        textView2.setGravity(LocaleController.isRTL ? 5 : 3);
+        addView(textView2, gb1.x(-1, -2, 51, 0, 4, 0, 0));
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.f10014c) {
+            canvas.drawRect(getPaddingLeft(), getHeight() - 1, getWidth(), getHeight(), y6.f23476k0);
         }
     }
 
-    public static ArrayList a() {
-        if (f9841f == null) {
-            ArrayList arrayList = new ArrayList();
-            f9841f = arrayList;
-            arrayList.add(new t("./."));
-            f9841f.add(new t(".."));
-            f9841f.add(new t("../."));
-            f9841f.add(new t("./.."));
-            f9841f.add(new t("././."));
-            f9841f.add(new t("..."));
-            f9841f.add(new t("../.."));
-            f9841f.add(new t("./../.."));
-            f9841f.add(new t("../../."));
-            f9841f.add(new t("../../.."));
-            if (BuildVars.DEBUG_PRIVATE_VERSION) {
-                f9841f.add(new t("../../../.."));
-                f9841f.add(new t(".../.../..."));
-                f9841f.add(new t("..../..../...."));
-                f9841f.add(new t(".../.../.../..."));
-            }
-        }
-        return f9841f;
-    }
-
-    public static int b() {
-        ArrayList a2 = a();
-        int size = a2.size();
-        int i10 = 0;
-        int i11 = 0;
-        while (i11 < size) {
-            Object obj = a2.get(i11);
-            i11++;
-            i10 = Math.max(i10, ((t) obj).e.size());
-        }
-        return i10;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof t) {
-            return TextUtils.equals(this.f9842a, ((t) obj).f9842a);
-        }
-        return false;
-    }
-
-    public final String toString() {
-        return this.f9842a;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(56.0f), 1073741824));
     }
 }

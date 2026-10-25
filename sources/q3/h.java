@@ -1,26 +1,27 @@
 package q3;
 
-import b2.t0;
-import b2.v0;
-import e2.m0;
+import a8.wb;
+import a8.wd;
+import b2.u0;
+import b2.w0;
+import e2.n0;
 import e2.x;
-import e9.k0;
-import e9.n0;
-import e9.x1;
+import f9.f0;
+import f9.i0;
+import f9.s1;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
-import org.telegram.ui.web.d0;
-import v7.s6;
-public final class h extends w7.m {
-    public static final d0 f44789b = new d0(4);
-    public final g f44790a;
+import org.telegram.ui.ji1;
+public final class h extends wd {
+    public static final ji1 f46938b = new ji1(6);
+    public final g f46939a;
 
     public h(g gVar) {
-        this.f44790a = gVar;
+        this.f46939a = gVar;
     }
 
     public static a d(x xVar, int i10, int i11) {
@@ -33,14 +34,14 @@ public final class h extends w7.m {
         byte[] bArr = new byte[i12];
         xVar.k(0, i12, bArr);
         if (i11 == 2) {
-            str = "image/" + s6.c(new String(bArr, 0, 3, StandardCharsets.ISO_8859_1));
+            str = "image/" + wb.c(new String(bArr, 0, 3, StandardCharsets.ISO_8859_1));
             if ("image/jpg".equals(str)) {
                 str = "image/jpeg";
             }
             v = 2;
         } else {
             v = v(0, bArr);
-            String c10 = s6.c(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
+            String c10 = wb.c(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
             if (c10.indexOf(47) == -1) {
                 str = "image/".concat(c10);
             } else {
@@ -51,20 +52,20 @@ public final class h extends w7.m {
         int i14 = v + 2;
         int u10 = u(i14, A, bArr);
         String str2 = new String(bArr, i14, u10 - i14, s10);
-        int r10 = r(A) + u10;
-        if (i12 <= r10) {
-            copyOfRange = m0.f8260b;
+        int r6 = r(A) + u10;
+        if (i12 <= r6) {
+            copyOfRange = n0.f9693b;
         } else {
-            copyOfRange = Arrays.copyOfRange(bArr, r10, i12);
+            copyOfRange = Arrays.copyOfRange(bArr, r6, i12);
         }
         return new a(i13, str, str2, copyOfRange);
     }
 
     public static c e(x xVar, int i10, int i11, boolean z10, int i12, g gVar) {
         long j10;
-        int i13 = xVar.f8299b;
-        int v = v(i13, xVar.f8298a);
-        String str = new String(xVar.f8298a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = xVar.f9733b;
+        int v = v(i13, xVar.f9732a);
+        String str = new String(xVar.f9732a, i13, v - i13, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int m10 = xVar.m();
         int m11 = xVar.m();
@@ -80,7 +81,7 @@ public final class h extends w7.m {
         }
         ArrayList arrayList = new ArrayList();
         int i14 = i13 + i10;
-        while (xVar.f8299b < i14) {
+        while (xVar.f9733b < i14) {
             i h = h(i11, xVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -92,9 +93,9 @@ public final class h extends w7.m {
     public static d f(x xVar, int i10, int i11, boolean z10, int i12, g gVar) {
         boolean z11;
         boolean z12;
-        int i13 = xVar.f8299b;
-        int v = v(i13, xVar.f8298a);
-        String str = new String(xVar.f8298a, i13, v - i13, StandardCharsets.ISO_8859_1);
+        int i13 = xVar.f9733b;
+        int v = v(i13, xVar.f9732a);
+        String str = new String(xVar.f9732a, i13, v - i13, StandardCharsets.ISO_8859_1);
         xVar.N(v + 1);
         int A = xVar.A();
         if ((A & 2) != 0) {
@@ -110,14 +111,14 @@ public final class h extends w7.m {
         int A2 = xVar.A();
         String[] strArr = new String[A2];
         for (int i14 = 0; i14 < A2; i14++) {
-            int i15 = xVar.f8299b;
-            int v10 = v(i15, xVar.f8298a);
-            strArr[i14] = new String(xVar.f8298a, i15, v10 - i15, StandardCharsets.ISO_8859_1);
+            int i15 = xVar.f9733b;
+            int v10 = v(i15, xVar.f9732a);
+            strArr[i14] = new String(xVar.f9732a, i15, v10 - i15, StandardCharsets.ISO_8859_1);
             xVar.N(v10 + 1);
         }
         ArrayList arrayList = new ArrayList();
         int i16 = i13 + i10;
-        while (xVar.f8299b < i16) {
+        while (xVar.f9733b < i16) {
             i h = h(i11, xVar, z10, i12, gVar);
             if (h != null) {
                 arrayList.add(h);
@@ -140,8 +141,8 @@ public final class h extends w7.m {
         xVar.k(0, i11, bArr2);
         int u10 = u(0, A, bArr2);
         String str2 = new String(bArr2, 0, u10, s10);
-        int r10 = r(A) + u10;
-        return new e(str, str2, l(bArr2, r10, u(r10, A, bArr2), s10));
+        int r6 = r(A) + u10;
+        return new e(str, str2, l(bArr2, r6, u(r6, A, bArr2), s10));
     }
 
     public static q3.i h(int r19, e2.x r20, boolean r21, int r22, q3.g r23) {
@@ -156,18 +157,18 @@ public final class h extends w7.m {
         byte[] bArr = new byte[i11];
         xVar.k(0, i11, bArr);
         int v = v(0, bArr);
-        String n10 = v0.n(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
+        String n10 = w0.n(new String(bArr, 0, v, StandardCharsets.ISO_8859_1));
         int i12 = v + 1;
         int u10 = u(i12, A, bArr);
         String l4 = l(bArr, i12, u10, s10);
-        int r10 = r(A) + u10;
-        int u11 = u(r10, A, bArr);
-        String l10 = l(bArr, r10, u11, s10);
-        int r11 = r(A) + u11;
-        if (i11 <= r11) {
-            copyOfRange = m0.f8260b;
+        int r6 = r(A) + u10;
+        int u11 = u(r6, A, bArr);
+        String l10 = l(bArr, r6, u11, s10);
+        int r10 = r(A) + u11;
+        if (i11 <= r10) {
+            copyOfRange = n0.f9693b;
         } else {
-            copyOfRange = Arrays.copyOfRange(bArr, r11, i11);
+            copyOfRange = Arrays.copyOfRange(bArr, r10, i11);
         }
         return new f(n10, copyOfRange, l4, l10);
     }
@@ -184,10 +185,10 @@ public final class h extends w7.m {
         int[] iArr = new int[i11];
         int[] iArr2 = new int[i11];
         for (int i12 = 0; i12 < i11; i12++) {
-            int g10 = gVar.g(A);
-            int g11 = gVar.g(A2);
-            iArr[i12] = g10;
-            iArr2[i12] = g11;
+            int g7 = gVar.g(A);
+            int g10 = gVar.g(A2);
+            iArr[i12] = g7;
+            iArr2[i12] = g10;
         }
         return new l(H, D, D2, iArr, iArr2);
     }
@@ -200,7 +201,7 @@ public final class h extends w7.m {
         String str = new String(bArr, 0, v, StandardCharsets.ISO_8859_1);
         int i11 = v + 1;
         if (i10 <= i11) {
-            copyOfRange = m0.f8260b;
+            copyOfRange = n0.f9693b;
         } else {
             copyOfRange = Arrays.copyOfRange(bArr, i11, i10);
         }
@@ -225,20 +226,20 @@ public final class h extends w7.m {
         return new n(str, null, n(A, 0, bArr));
     }
 
-    public static x1 n(int i10, int i11, byte[] bArr) {
+    public static s1 n(int i10, int i11, byte[] bArr) {
         if (i11 >= bArr.length) {
-            return n0.y("");
+            return i0.y("");
         }
-        k0 t10 = n0.t();
+        f0 t10 = i0.t();
         int u10 = u(i11, i10, bArr);
         while (i11 < u10) {
             t10.c(new String(bArr, i11, u10 - i11, s(i10)));
             i11 = r(i10) + u10;
             u10 = u(i11, i10, bArr);
         }
-        x1 f7 = t10.f();
+        s1 f7 = t10.f();
         if (f7.isEmpty()) {
-            return n0.y("");
+            return i0.y("");
         }
         return f7;
     }
@@ -271,8 +272,8 @@ public final class h extends w7.m {
         xVar.k(0, i11, bArr);
         int u10 = u(0, A, bArr);
         String str = new String(bArr, 0, u10, s(A));
-        int r10 = r(A) + u10;
-        return new o("WXXX", str, l(bArr, r10, v(r10, bArr), StandardCharsets.ISO_8859_1));
+        int r6 = r(A) + u10;
+        return new o("WXXX", str, l(bArr, r6, v(r6, bArr), StandardCharsets.ISO_8859_1));
     }
 
     public static int r(int i10) {
@@ -327,8 +328,8 @@ public final class h extends w7.m {
     }
 
     public static int w(int i10, x xVar) {
-        byte[] bArr = xVar.f8298a;
-        int i11 = xVar.f8299b;
+        byte[] bArr = xVar.f9732a;
+        int i11 = xVar.f9733b;
         int i12 = i11;
         while (true) {
             int i13 = i12 + 1;
@@ -349,11 +350,11 @@ public final class h extends w7.m {
     }
 
     @Override
-    public final t0 b(l3.a aVar, ByteBuffer byteBuffer) {
+    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
         return c(byteBuffer.limit(), byteBuffer.array());
     }
 
-    public final b2.t0 c(int r13, byte[] r14) {
-        throw new UnsupportedOperationException("Method not decompiled: q3.h.c(int, byte[]):b2.t0");
+    public final b2.u0 c(int r13, byte[] r14) {
+        throw new UnsupportedOperationException("Method not decompiled: q3.h.c(int, byte[]):b2.u0");
     }
 }

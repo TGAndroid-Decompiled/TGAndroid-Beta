@@ -1,82 +1,117 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class hz0 extends AnimatorListenerAdapter {
-    public final int f38082a;
-    public final ProfileActivity f38083b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.UndoView;
+public final class hz0 implements dq {
+    public final int f40106a;
+    public final TLRPC.ChatParticipant f40107b;
+    public final boolean f40108c;
+    public final boolean[] d;
+    public final ProfileActivity e;
 
-    public hz0(ProfileActivity profileActivity, int i10) {
-        this.f38082a = i10;
-        this.f38083b = profileActivity;
+    public hz0(ProfileActivity profileActivity, int i10, TLRPC.ChatParticipant chatParticipant, boolean z10, boolean[] zArr) {
+        this.e = profileActivity;
+        this.f40106a = i10;
+        this.f40107b = chatParticipant;
+        this.f40108c = z10;
+        this.d = zArr;
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f38082a) {
-            case 2:
-                ProfileActivity profileActivity = this.f38083b;
-                profileActivity.P1 = false;
-                profileActivity.f33884a.O0 = true;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
+    public final void a(TLRPC.User user) {
+        int i10;
+        ProfileActivity profileActivity = this.e;
+        UndoView undoView = profileActivity.L;
+        long j10 = -profileActivity.f35984f1;
+        if (profileActivity.E2.megagroup) {
+            i10 = 10;
+        } else {
+            i10 = 9;
         }
+        undoView.m(j10, user, i10);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f38082a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f38083b.m4(true);
-                return;
-            case 1:
-                ProfileActivity profileActivity = this.f38083b;
-                AnimatorSet animatorSet = profileActivity.f34039w;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    profileActivity.f34039w = null;
-                    return;
+    public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
+        TLRPC.ChatFull chatFull;
+        boolean z10;
+        TLRPC.ChatParticipant tL_chatParticipant;
+        int i11 = 0;
+        TLRPC.ChatParticipant chatParticipant = this.f40107b;
+        ProfileActivity profileActivity = this.e;
+        int i12 = this.f40106a;
+        if (i12 == 0) {
+            if (chatParticipant instanceof TLRPC.TL_chatChannelParticipant) {
+                TLRPC.TL_chatChannelParticipant tL_chatChannelParticipant = (TLRPC.TL_chatChannelParticipant) chatParticipant;
+                if (i10 == 1) {
+                    TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
+                    tL_chatChannelParticipant.channelParticipant = tL_channelParticipantAdmin;
+                    tL_channelParticipantAdmin.flags |= 4;
+                } else {
+                    tL_chatChannelParticipant.channelParticipant = new TLRPC.TL_channelParticipant();
                 }
-                return;
-            case 2:
-                ProfileActivity profileActivity2 = this.f38083b;
-                profileActivity2.P1 = false;
-                profileActivity2.f33884a.O0 = true;
-                profileActivity2.f33959k2.removeListener(this);
-                profileActivity2.f33915e1.setBackgroundColor(-16777216);
-                profileActivity2.Y.setVisibility(8);
-                profileActivity2.f33983o0.setVisibility(0);
-                profileActivity2.f33983o0.setAlpha(1.0f);
-                return;
-            case 3:
-                ProfileActivity profileActivity3 = this.f38083b;
-                profileActivity3.f33959k2.removeListener(this);
-                profileActivity3.f33983o0.setVisibility(8);
-                profileActivity3.f33983o0.setAlpha(1.0f);
-                return;
-            default:
-                ProfileActivity profileActivity4 = this.f38083b;
-                profileActivity4.f34048x0 = null;
-                profileActivity4.fragmentView.invalidate();
-                return;
-        }
-    }
-
-    @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f38082a) {
-            case 2:
-                ProfileActivity profileActivity = this.f38083b;
-                ProfileActivity.t3(profileActivity, false);
-                profileActivity.f33983o0.setAnimatedFileMaybe(profileActivity.f33922f0.getImageReceiver().getAnimation());
-                profileActivity.f33983o0.L();
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
+                tL_chatChannelParticipant.channelParticipant.inviter_id = profileActivity.getUserConfig().getClientUserId();
+                tL_chatChannelParticipant.channelParticipant.peer = new TLRPC.TL_peerUser();
+                TLRPC.ChannelParticipant channelParticipant = tL_chatChannelParticipant.channelParticipant;
+                channelParticipant.peer.user_id = chatParticipant.user_id;
+                channelParticipant.date = chatParticipant.date;
+                channelParticipant.banned_rights = tL_chatBannedRights;
+                channelParticipant.admin_rights = tL_chatAdminRights;
+                channelParticipant.rank = str;
+            } else if (chatParticipant != null) {
+                if (i10 == 1) {
+                    tL_chatParticipant = new TLRPC.TL_chatParticipantAdmin();
+                } else {
+                    tL_chatParticipant = new TLRPC.TL_chatParticipant();
+                }
+                tL_chatParticipant.user_id = chatParticipant.user_id;
+                tL_chatParticipant.date = chatParticipant.date;
+                tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
+                int indexOf = profileActivity.f36088u2.participants.participants.indexOf(chatParticipant);
+                if (indexOf >= 0) {
+                    profileActivity.f36088u2.participants.participants.set(indexOf, tL_chatParticipant);
+                }
+            }
+            if (i10 == 1 && !this.f40108c) {
+                this.d[0] = true;
+            }
+        } else if (i12 == 1 && i10 == 0 && profileActivity.E2.megagroup && (chatFull = profileActivity.f36088u2) != null && chatFull.participants != null) {
+            int i13 = 0;
+            while (true) {
+                if (i13 < profileActivity.f36088u2.participants.participants.size()) {
+                    if (MessageObject.getPeerId(((TLRPC.TL_chatChannelParticipant) profileActivity.f36088u2.participants.participants.get(i13)).channelParticipant.peer) == chatParticipant.user_id) {
+                        TLRPC.ChatFull chatFull2 = profileActivity.f36088u2;
+                        chatFull2.participants_count--;
+                        chatFull2.participants.participants.remove(i13);
+                        z10 = true;
+                        break;
+                    }
+                    i13++;
+                } else {
+                    z10 = false;
+                    break;
+                }
+            }
+            TLRPC.ChatFull chatFull3 = profileActivity.f36088u2;
+            if (chatFull3 != null && chatFull3.participants != null) {
+                while (true) {
+                    if (i11 >= profileActivity.f36088u2.participants.participants.size()) {
+                        break;
+                    } else if (profileActivity.f36088u2.participants.participants.get(i11).user_id == chatParticipant.user_id) {
+                        profileActivity.f36088u2.participants.participants.remove(i11);
+                        z10 = true;
+                        break;
+                    } else {
+                        i11++;
+                    }
+                }
+            }
+            if (z10) {
+                profileActivity.s5(true);
+                profileActivity.v5();
+                profileActivity.d.l();
+            }
         }
     }
 }

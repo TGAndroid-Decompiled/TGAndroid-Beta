@@ -1,23 +1,23 @@
 package v3;
 
 import android.util.Pair;
-import c3.d0;
-import c3.f0;
-import e2.m0;
+import c3.a0;
+import c3.c0;
+import e2.n0;
 public final class c implements h {
-    public final long[] f48360a;
-    public final long[] f48361b;
-    public final long f48362c;
+    public final long[] f50031a;
+    public final long[] f50032b;
+    public final long f50033c;
 
     public c(long j10, long[] jArr, long[] jArr2) {
-        this.f48360a = jArr;
-        this.f48361b = jArr2;
-        this.f48362c = j10 == -9223372036854775807L ? m0.S(jArr2[jArr2.length - 1]) : j10;
+        this.f50031a = jArr;
+        this.f50032b = jArr2;
+        this.f50033c = j10 == -9223372036854775807L ? n0.S(jArr2[jArr2.length - 1]) : j10;
     }
 
     public static Pair i(long j10, long[] jArr, long[] jArr2) {
         double d;
-        int f7 = m0.f(jArr, j10, true);
+        int f7 = n0.f(jArr, j10, true);
         long j11 = jArr[f7];
         long j12 = jArr2[f7];
         int i10 = f7 + 1;
@@ -35,13 +35,13 @@ public final class c implements h {
     }
 
     @Override
-    public final long a() {
-        return -1L;
+    public final long a(long j10) {
+        return n0.S(((Long) i(j10, this.f50031a, this.f50032b).second).longValue());
     }
 
     @Override
-    public final long b(long j10) {
-        return m0.S(((Long) i(j10, this.f48360a, this.f48361b).second).longValue());
+    public final long b() {
+        return -1L;
     }
 
     @Override
@@ -60,10 +60,10 @@ public final class c implements h {
     }
 
     @Override
-    public final d0 f(long j10) {
-        Pair i10 = i(m0.h0(m0.j(j10, 0L, this.f48362c)), this.f48361b, this.f48360a);
-        f0 f0Var = new f0(m0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
-        return new d0(f0Var, f0Var);
+    public final a0 f(long j10) {
+        Pair i10 = i(n0.h0(n0.j(j10, 0L, this.f50033c)), this.f50032b, this.f50031a);
+        c0 c0Var = new c0(n0.S(((Long) i10.first).longValue()), ((Long) i10.second).longValue());
+        return new a0(c0Var, c0Var);
     }
 
     @Override
@@ -73,6 +73,6 @@ public final class c implements h {
 
     @Override
     public final long h() {
-        return this.f48362c;
+        return this.f50033c;
     }
 }

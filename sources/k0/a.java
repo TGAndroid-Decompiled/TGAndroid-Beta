@@ -1,45 +1,45 @@
 package k0;
 
+import a8.h0;
 import android.hardware.fingerprint.FingerprintManager;
-import androidx.biometric.e;
-import androidx.biometric.w;
-import androidx.biometric.y;
+import androidx.biometric.v;
+import androidx.biometric.x;
 import androidx.lifecycle.z;
 import java.lang.ref.WeakReference;
-import qb.c;
+import rb.c;
 public final class a extends FingerprintManager.AuthenticationCallback {
-    public final c f14608a;
+    public final c f16042a;
 
     public a(c cVar) {
-        this.f14608a = cVar;
+        this.f16042a = cVar;
     }
 
     @Override
     public final void onAuthenticationError(int i10, CharSequence charSequence) {
-        ((w) ((e) this.f14608a.f44851b).d).a(i10, charSequence);
+        ((v) ((h0) this.f16042a.f47320b).d).a(i10, charSequence);
     }
 
     @Override
     public final void onAuthenticationFailed() {
-        WeakReference weakReference = ((w) ((e) this.f14608a.f44851b).d).f2846a;
-        if (weakReference.get() != null && ((y) weakReference.get()).f2856n) {
-            y yVar = (y) weakReference.get();
-            if (yVar.f2863u == null) {
-                yVar.f2863u = new z();
+        WeakReference weakReference = ((v) ((h0) this.f16042a.f47320b).d).f2289a;
+        if (weakReference.get() != null && ((x) weakReference.get()).f2299n) {
+            x xVar = (x) weakReference.get();
+            if (xVar.f2306u == null) {
+                xVar.f2306u = new z();
             }
-            y.h(yVar.f2863u, Boolean.TRUE);
+            x.h(xVar.f2306u, Boolean.TRUE);
         }
     }
 
     @Override
     public final void onAuthenticationHelp(int i10, CharSequence charSequence) {
-        WeakReference weakReference = ((w) ((e) this.f14608a.f44851b).d).f2846a;
+        WeakReference weakReference = ((v) ((h0) this.f16042a.f47320b).d).f2289a;
         if (weakReference.get() != null) {
-            y yVar = (y) weakReference.get();
-            if (yVar.f2862t == null) {
-                yVar.f2862t = new z();
+            x xVar = (x) weakReference.get();
+            if (xVar.f2305t == null) {
+                xVar.f2305t = new z();
             }
-            y.h(yVar.f2862t, charSequence);
+            x.h(xVar.f2305t, charSequence);
         }
     }
 

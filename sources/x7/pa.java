@@ -1,10 +1,10 @@
 package x7;
 
-import java.util.logging.Logger;
+import java.util.HashMap;
 public abstract class pa {
-    public static final int f49966a = 0;
+    public static final int f51607a = 0;
 
     static {
-        Logger.getLogger(pa.class.getName());
+        new HashMap();
     }
 }

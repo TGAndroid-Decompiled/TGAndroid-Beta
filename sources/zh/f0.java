@@ -1,38 +1,26 @@
 package zh;
 
-import android.net.Uri;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-public final class f0 implements Utilities.Callback {
-    public final int f52476a;
-    public final n0 f52477b;
+import android.app.Activity;
+import android.view.Menu;
+import org.telegram.ui.Components.ChatActivityEnterView;
+import org.telegram.ui.un;
+public final class f0 extends ChatActivityEnterView {
+    public final i0 f52965s5;
 
-    public f0(n0 n0Var, int i10) {
-        this.f52476a = i10;
-        this.f52477b = n0Var;
+    public f0(i0 i0Var, Activity activity, e0 e0Var) {
+        super(activity, e0Var, null, false, null);
+        this.f52965s5 = i0Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f52476a) {
-            case 0:
-                String str = (String) obj;
-                n0 n0Var = this.f52477b;
-                if (n0Var.getParentActivity() != null) {
-                    pf.d.r(n0Var.getParentActivity(), str);
-                    return;
-                }
-                return;
-            default:
-                Uri uri = (Uri) obj;
-                n0 n0Var2 = this.f52477b;
-                c1 c1Var = n0Var2.d;
-                if (c1Var != null && !n0Var2.isFinished) {
-                    c1Var.d1(R.drawable.msg_download, LocaleController.getString(R.string.QrSavedToGallery), null);
-                    return;
-                }
-                return;
-        }
+    public final void e0(Menu menu) {
+        un.r8(menu, null, false, false, false, false);
+    }
+
+    @Override
+    public final void y0(float f7) {
+        i0 i0Var = this.f52965s5;
+        i0Var.f53036f.setInputBubbleHeight(f7);
+        i0Var.q();
     }
 }

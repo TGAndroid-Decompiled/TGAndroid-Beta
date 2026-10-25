@@ -1,58 +1,89 @@
 package jg;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
+import java.util.ArrayList;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
 public final class f {
-    public Bitmap f14470a;
-    public Canvas f14471b;
-    public final RectF f14472c = new RectF();
-    public final Paint d;
-    public final g6 e;
-    public int f14473f;
-    public boolean f14474g;
-    public int h;
+    public static volatile f[] f15693g = new f[4];
+    public static final Object[] h = new Object[4];
+    public final int f15694a;
+    public long f15695b;
+    public TL_account.connectedBots f15696c;
+    public final ArrayList d = new ArrayList();
+    public boolean e;
+    public boolean f15697f;
 
-    public f(g6 g6Var) {
-        Paint paint = new Paint(1);
-        this.d = paint;
-        this.f14473f = 0;
-        this.f14474g = true;
-        paint.setColor(0);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        this.e = g6Var;
+    static {
+        for (int i10 = 0; i10 < 4; i10++) {
+            h[i10] = new Object();
+        }
     }
 
-    public final Bitmap a(int i10, int i11) {
-        Canvas canvas;
-        int w02 = k6.w0(k6.f21184d6, this.e);
-        int i12 = (i10 + i11) << 10;
-        int i13 = this.f14473f;
-        Paint paint = this.d;
-        RectF rectF = this.f14472c;
-        if (i12 == i13 && !this.f14474g) {
-            if (w02 != this.h && (canvas = this.f14471b) != null && this.f14470a != null) {
-                this.h = w02;
-                canvas.drawColor(w02, PorterDuff.Mode.SRC);
-                this.f14471b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
+    public f(int i10) {
+        this.f15694a = i10;
+    }
+
+    public static f a(int i10) {
+        f fVar;
+        f fVar2 = f15693g[i10];
+        if (fVar2 == null) {
+            synchronized (h[i10]) {
+                try {
+                    fVar = f15693g[i10];
+                    if (fVar == null) {
+                        f[] fVarArr = f15693g;
+                        f fVar3 = new f(i10);
+                        fVarArr[i10] = fVar3;
+                        fVar = fVar3;
+                    }
+                } catch (Throwable th2) {
+                    throw th2;
+                }
             }
-        } else {
-            this.f14474g = false;
-            this.f14473f = i12;
-            this.f14470a = Bitmap.createBitmap(i11, i10, Bitmap.Config.ARGB_8888);
-            this.f14471b = new Canvas(this.f14470a);
-            rectF.set(0.0f, 0.0f, i11, i10);
-            Canvas canvas2 = this.f14471b;
-            this.h = w02;
-            canvas2.drawColor(w02);
-            this.f14471b.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), paint);
+            return fVar;
         }
-        return this.f14470a;
+        return fVar2;
+    }
+
+    public final void b() {
+        this.f15697f = false;
+        c(null);
+    }
+
+    public final void c(Utilities.Callback callback) {
+        boolean z10;
+        if (callback != null) {
+            this.d.add(callback);
+        }
+        if (!this.e) {
+            if (System.currentTimeMillis() - this.f15695b <= 60000 && (z10 = this.f15697f)) {
+                if (z10) {
+                    d();
+                    return;
+                }
+                return;
+            }
+            this.e = true;
+            ConnectionsManager.getInstance(this.f15694a).sendRequest(new TL_account.getConnectedBots(), new bi.i0(this, 16));
+        }
+    }
+
+    public final void d() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.d;
+            if (i10 < arrayList.size()) {
+                if (arrayList.get(i10) != null) {
+                    ((Utilities.Callback) arrayList.get(i10)).run(this.f15696c);
+                }
+                i10++;
+            } else {
+                arrayList.clear();
+                NotificationCenter.getInstance(this.f15694a).lambda$postNotificationNameOnUIThread$1(NotificationCenter.updatedChatbot, new Object[0]);
+                return;
+            }
+        }
     }
 }

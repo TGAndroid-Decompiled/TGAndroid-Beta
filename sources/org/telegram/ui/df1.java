@@ -1,94 +1,55 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.FrameLayout;
+import android.widget.TextView;
 import java.util.ArrayList;
-import java.util.HashSet;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class df1 extends org.telegram.ui.ActionBar.o2 {
-    public bf1 f36619a;
-    public org.telegram.ui.Components.lm0 f36620b;
-    public long f36621c;
-    public ArrayList d;
-    public HashSet e;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class df1 implements org.telegram.ui.Components.zl0 {
+    public final gf1 f38855a;
 
-    public static void U(df1 df1Var, int i10) {
-        df1Var.getNotificationsController().getNotificationsSettingsFacade().clearPreference(df1Var.f36621c, i10);
-        TL_account.updateNotifySettings updatenotifysettings = new TL_account.updateNotifySettings();
-        updatenotifysettings.settings = new TLRPC.TL_inputPeerNotifySettings();
-        TLRPC.TL_inputNotifyForumTopic tL_inputNotifyForumTopic = new TLRPC.TL_inputNotifyForumTopic();
-        tL_inputNotifyForumTopic.peer = df1Var.getMessagesController().getInputPeer(df1Var.f36621c);
-        tL_inputNotifyForumTopic.top_msg_id = i10;
-        updatenotifysettings.peer = tL_inputNotifyForumTopic;
-        df1Var.getConnectionsManager().sendRequest(updatenotifysettings, new ci.d6(8));
+    public df1(gf1 gf1Var) {
+        this.f38855a = gf1Var;
     }
 
-    public final void V() {
-        ArrayList arrayList;
-        ArrayList arrayList2 = this.d;
-        if (!this.isPaused && this.f36619a != null) {
-            arrayList = new ArrayList();
-            arrayList.addAll(arrayList2);
-        } else {
-            arrayList = null;
+    @Override
+    public final void c(int i10, View view) {
+        gf1 gf1Var = this.f38855a;
+        ArrayList arrayList = gf1Var.d;
+        if (((ff1) arrayList.get(i10)).f47037a == 1) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -gf1Var.f39643c);
+            bundle.putBoolean("for_select", true);
+            af1 af1Var = new af1(bundle);
+            af1Var.A0 = gf1Var.e;
+            af1Var.v = new bf1(this);
+            gf1Var.presentFragment(af1Var);
         }
-        arrayList2.clear();
-        arrayList2.add(new cf1(1, null));
-        ArrayList<TLRPC.TL_forumTopic> topics = getMessagesController().getTopicsController().getTopics(-this.f36621c);
-        int i10 = 0;
-        if (topics != null) {
-            int i11 = 0;
-            while (i10 < topics.size()) {
-                if (this.e.contains(Integer.valueOf(topics.get(i10).f20396id))) {
-                    arrayList2.add(new cf1(2, topics.get(i10)));
-                    i11 = 1;
-                }
-                i10++;
+        if (((ff1) arrayList.get(i10)).f47037a == 2) {
+            TLRPC.TL_forumTopic tL_forumTopic = ((ff1) arrayList.get(i10)).f39355c;
+            Bundle bundle2 = new Bundle();
+            bundle2.putLong("dialog_id", gf1Var.f39643c);
+            bundle2.putLong("topic_id", tL_forumTopic.f22079id);
+            bundle2.putBoolean("exception", false);
+            h11 h11Var = new h11(bundle2, null);
+            h11Var.f39858s = new cf1(this, tL_forumTopic);
+            gf1Var.presentFragment(h11Var);
+        }
+        if (((ff1) arrayList.get(i10)).f47037a == 4) {
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(gf1Var.getParentActivity());
+            alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.NotificationsDeleteAllExceptionTitle);
+            alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.NotificationsDeleteAllExceptionAlert);
+            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new bf1(this));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+            gf1Var.showDialog(e2Var);
+            TextView textView = (TextView) e2Var.d(-1);
+            if (textView != null) {
+                org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23596q7, null);
             }
-            i10 = i11;
         }
-        if (i10 != 0) {
-            arrayList2.add(new cf1(3, null));
-            arrayList2.add(new cf1(4, null));
-        }
-        arrayList2.add(new cf1(3, null));
-        bf1 bf1Var = this.f36619a;
-        if (bf1Var != null) {
-            bf1Var.E(arrayList, arrayList2);
-        }
-    }
-
-    @Override
-    public final View createView(Context context) {
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.fragmentView = frameLayout;
-        i2.o1.y(false, this.actionBar);
-        this.actionBar.setActionBarMenuOnItemClick(new b31(this, 9));
-        this.actionBar.setTitle(LocaleController.getString(R.string.NotificationsExceptions));
-        this.f36620b = new org.telegram.ui.Components.lm0(context, null);
-        s4.k kVar = new s4.k();
-        kVar.C = false;
-        kVar.f46376m = false;
-        this.f36620b.setItemAnimator(kVar);
-        this.f36620b.setLayoutManager(new s4.b0());
-        org.telegram.ui.Components.lm0 lm0Var = this.f36620b;
-        bf1 bf1Var = new bf1(this);
-        this.f36619a = bf1Var;
-        lm0Var.setAdapter(bf1Var);
-        this.f36620b.setOnItemClickListener(new af1(this));
-        frameLayout.addView(this.f36620b);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21126a7, frameLayout, null);
-        return this.fragmentView;
-    }
-
-    @Override
-    public final boolean onFragmentCreate() {
-        this.f36621c = this.arguments.getLong("dialog_id");
-        V();
-        return super.onFragmentCreate();
     }
 }

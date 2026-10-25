@@ -1,40 +1,40 @@
 package x3;
 
-import c3.l0;
-import c3.s;
+import c3.j0;
+import c3.q;
 import e2.x;
 public abstract class i {
-    public l0 f49658b;
-    public s f49659c;
+    public j0 f51387b;
+    public q f51388c;
     public g d;
     public long e;
-    public long f49660f;
-    public long f49661g;
+    public long f51389f;
+    public long f51390g;
     public int h;
-    public int f49662i;
-    public long f49664k;
-    public boolean f49665l;
-    public boolean f49666m;
-    public final e f49657a = new e();
-    public n2.e f49663j = new n2.e(23, false);
+    public int f51391i;
+    public long f51393k;
+    public boolean f51394l;
+    public boolean f51395m;
+    public final e f51386a = new e();
+    public m4.c f51392j = new m4.c(25, false);
 
     public void a(long j10) {
-        this.f49661g = j10;
+        this.f51390g = j10;
     }
 
     public abstract long b(x xVar);
 
-    public abstract boolean c(x xVar, long j10, n2.e eVar);
+    public abstract boolean c(x xVar, long j10, m4.c cVar);
 
     public void d(boolean z10) {
         if (z10) {
-            this.f49663j = new n2.e(23, false);
-            this.f49660f = 0L;
+            this.f51392j = new m4.c(25, false);
+            this.f51389f = 0L;
             this.h = 0;
         } else {
             this.h = 1;
         }
         this.e = -1L;
-        this.f49661g = 0L;
+        this.f51390g = 0L;
     }
 }

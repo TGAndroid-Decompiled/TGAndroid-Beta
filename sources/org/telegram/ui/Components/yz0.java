@@ -1,36 +1,29 @@
 package org.telegram.ui.Components;
-public class yz0 {
-    public int f33092a;
-    public int f33093b;
-    public int f33094c;
 
-    public yz0() {
-        c();
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+public final class yz0 extends md0 {
+    public final zz0 f35152y0;
+
+    public yz0(zz0 zz0Var, Context context) {
+        super(context, 13, null);
+        this.f35152y0 = zz0Var;
     }
 
-    public int a(h01 h01Var, a01 a01Var, tz0 tz0Var, int i10, boolean z10) {
-        return this.f33092a - tz0Var.a(a01Var, i10);
-    }
-
-    public void b(int i10, int i11) {
-        this.f33092a = Math.max(this.f33092a, i10);
-        this.f33093b = Math.max(this.f33093b, i11);
-    }
-
-    public void c() {
-        this.f33092a = Integer.MIN_VALUE;
-        this.f33093b = Integer.MIN_VALUE;
-        this.f33094c = 2;
-    }
-
-    public int d(boolean z10) {
-        if (!z10) {
-            int i10 = this.f33094c;
-            tz0 tz0Var = h01.R;
-            if ((i10 & 2) != 0) {
-                return 100000;
-            }
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23462j5, false);
+        zz0 zz0Var = this.f35152y0;
+        if (x02 != zz0Var.f35442a) {
+            zz0Var.f35442a = x02;
+            setTextColor(x02);
         }
-        return this.f33092a + this.f33093b;
+        super.onDraw(canvas);
+        float dp = AndroidUtilities.dp(31.0f);
+        zz0Var.e.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23427h7, false));
+        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, zz0Var.e);
+        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
+        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, zz0Var.e);
     }
 }

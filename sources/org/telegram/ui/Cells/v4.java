@@ -1,43 +1,30 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.RadialProgressView;
 public final class v4 extends FrameLayout {
-    public RadialProgressView f23842a;
-    public TextView f23843b;
-    public ImageView f23844c;
+    public TextView f25582a;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec((int) (AndroidUtilities.dp(56.0f) * 2.5f), 1073741824));
+    public void setCellHeight(int i10) {
+        setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(54.0f), i10));
     }
 
-    public void setLoading(boolean z10) {
-        int i10;
-        int i11;
-        RadialProgressView radialProgressView = this.f23842a;
-        int i12 = 4;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        radialProgressView.setVisibility(i10);
-        TextView textView = this.f23843b;
-        if (z10) {
-            i11 = 4;
-        } else {
-            i11 = 0;
-        }
-        textView.setVisibility(i11);
-        ImageView imageView = this.f23844c;
-        if (!z10) {
-            i12 = 0;
-        }
-        imageView.setVisibility(i12);
+    public void setLetter(String str) {
+        this.f25582a.setText(str.toUpperCase());
+    }
+
+    public void setLetterProgress(float f7) {
+        TextView textView = this.f25582a;
+        textView.setAlpha(f7);
+        float f10 = (0.4f * f7) + 0.6f;
+        textView.setScaleX(f10);
+        textView.setScaleY(f10);
+        textView.setTranslationX((1.0f - f7) * (-AndroidUtilities.dp(10.0f)));
+    }
+
+    public void setLetterTextSize(float f7) {
+        this.f25582a.setTextSize(1, f7);
     }
 }

@@ -1,6 +1,6 @@
 package org.telegram.messenger.video;
 
-import c5.c0;
+import d5.z;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 public class SequenceParameterSetRbsp {
@@ -21,12 +21,12 @@ public class SequenceParameterSetRbsp {
     public SequenceParameterSetRbsp(InputStream inputStream) {
         int i10;
         ?? obj = new Object();
-        c0 c0Var = new c0(8, false, false);
-        c0Var.f4729c = new char[50];
-        obj.e = c0Var;
-        obj.f44853a = inputStream;
-        obj.f44854b = inputStream.read();
-        obj.f44855c = inputStream.read();
+        z zVar = new z(8, false, false);
+        zVar.f8027c = new char[50];
+        obj.e = zVar;
+        obj.f47322a = inputStream;
+        obj.f47323b = inputStream.read();
+        obj.f47324c = inputStream.read();
         obj.d(4, "sps_video_parameter_set_id");
         this.sps_max_sub_layers_minus1 = (int) obj.d(3, "sps_max_sub_layers_minus1");
         obj.b("sps_temporal_id_nesting_flag");
@@ -47,7 +47,7 @@ public class SequenceParameterSetRbsp {
         }
         this.bit_depth_luma_minus8 = obj.e("bit_depth_luma_minus8");
         this.bit_depth_chroma_minus8 = obj.e("bit_depth_chroma_minus8");
-        int e7 = obj.e("log2_max_pic_order_cnt_lsb_minus4");
+        int e10 = obj.e("log2_max_pic_order_cnt_lsb_minus4");
         boolean b10 = obj.b("sps_sub_layer_ordering_info_present_flag");
         int i11 = this.sps_max_sub_layers_minus1;
         if (b10) {
@@ -84,11 +84,11 @@ public class SequenceParameterSetRbsp {
         }
         parse_short_term_ref_pic_sets(obj.e("num_short_term_ref_pic_sets"), obj);
         if (obj.b("long_term_ref_pics_present_flag")) {
-            int e10 = obj.e("num_long_term_ref_pics_sps");
-            int[] iArr4 = new int[e10];
-            boolean[] zArr = new boolean[e10];
-            for (int i13 = 0; i13 < e10; i13++) {
-                iArr4[i13] = (int) obj.d(e7 + 4, "lt_ref_pic_poc_lsb_sps[" + i13 + "]");
+            int e11 = obj.e("num_long_term_ref_pics_sps");
+            int[] iArr4 = new int[e11];
+            boolean[] zArr = new boolean[e11];
+            for (int i13 = 0; i13 < e11; i13++) {
+                iArr4[i13] = (int) obj.d(e10 + 4, "lt_ref_pic_poc_lsb_sps[" + i13 + "]");
                 zArr[i13] = obj.b("used_by_curr_pic_lt_sps_flag[" + i13 + "]");
             }
         }
@@ -96,7 +96,7 @@ public class SequenceParameterSetRbsp {
         obj.b("strong_intra_smoothing_enabled_flag");
     }
 
-    private void parse_short_term_ref_pic_sets(int i10, qc.a aVar) {
+    private void parse_short_term_ref_pic_sets(int i10, rc.a aVar) {
         boolean z10;
         boolean z11;
         long[] jArr = new long[i10];
@@ -131,27 +131,27 @@ public class SequenceParameterSetRbsp {
         }
     }
 
-    private void profile_tier_level(int i10, qc.a aVar) {
+    private void profile_tier_level(int i10, rc.a aVar) {
         boolean[] zArr;
         int[] iArr;
         boolean[] zArr2;
         long[] jArr;
         int i11 = i10;
         long d = aVar.d(2, "general_profile_space");
-        InputStream inputStream = aVar.f44853a;
+        InputStream inputStream = aVar.f47322a;
         this.general_profile_space = (int) d;
         this.general_tier_flag = aVar.b("general_tier_flag");
         this.general_profile_idc = (int) aVar.d(5, "general_profile_idc");
         this.general_profile_compatibility_flags = aVar.c(32);
         this.general_constraint_indicator_flags = aVar.c(48);
         if (aVar.d > 0) {
-            aVar.f44854b = aVar.f44855c;
-            aVar.f44855c = inputStream.read();
+            aVar.f47323b = aVar.f47324c;
+            aVar.f47324c = inputStream.read();
             aVar.d = 0;
         }
-        int i12 = aVar.f44854b;
-        aVar.f44854b = aVar.f44855c;
-        aVar.f44855c = inputStream.read();
+        int i12 = aVar.f47323b;
+        aVar.f47323b = aVar.f47324c;
+        aVar.f47324c = inputStream.read();
         aVar.d = 0;
         this.general_level_idc = (byte) i12;
         boolean[] zArr3 = new boolean[i11];
@@ -212,7 +212,7 @@ public class SequenceParameterSetRbsp {
         }
     }
 
-    private static void skip_scaling_list_data(qc.a aVar) {
+    private static void skip_scaling_list_data(rc.a aVar) {
         int i10;
         for (int i11 = 0; i11 < 4; i11++) {
             int i12 = 0;

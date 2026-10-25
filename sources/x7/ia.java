@@ -1,155 +1,60 @@
 package x7;
-public final class ia implements i5.e {
-    public static ia f49873b;
-    public static final ia f49874c = new ia(1);
-    public static final ia d = new ia(2);
-    public static final ia e = new ia(3);
-    public final int f49875a;
 
-    public ia(int i10) {
-        this.f49875a = i10;
+import android.os.SystemClock;
+import java.io.Closeable;
+import java.util.HashMap;
+import java.util.Locale;
+public class ia implements Closeable {
+    public static final HashMap f51524f = new HashMap();
+    public int f51525a;
+    public long f51526b;
+    public long f51527c;
+    public long d = 2147483647L;
+    public long e = -2147483648L;
+
+    public ia(String str) {
     }
 
-    public static synchronized void b() {
-        synchronized (ia.class) {
-            if (f49873b == null) {
-                f49873b = new ia(0);
-            }
+    public void a() {
+        this.f51526b = SystemClock.elapsedRealtimeNanos() / 1000;
+    }
+
+    public void b(long j10) {
+        long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos() / 1000;
+        long j11 = this.f51527c;
+        if (j11 != 0 && elapsedRealtimeNanos - j11 >= 1000000) {
+            this.f51525a = 0;
+            this.f51526b = 0L;
+            this.d = 2147483647L;
+            this.e = -2147483648L;
+        }
+        this.f51527c = elapsedRealtimeNanos;
+        this.f51525a++;
+        this.d = Math.min(this.d, j10);
+        this.e = Math.max(this.e, j10);
+        if (this.f51525a % 50 == 0) {
+            Locale locale = Locale.US;
+            qa.b();
+        }
+        if (this.f51525a % 500 == 0) {
+            this.f51525a = 0;
+            this.f51526b = 0L;
+            this.d = 2147483647L;
+            this.e = -2147483648L;
         }
     }
 
-    public void a(ka.a aVar) {
-        aVar.a(p7.class, u3.f50003a);
-        aVar.a(i9.class, v5.f50056a);
-        aVar.a(q7.class, v3.f50054a);
-        aVar.a(t7.class, x3.f50076a);
-        aVar.a(r7.class, w3.f50071a);
-        aVar.a(s7.class, y3.f50082a);
-        aVar.a(x6.class, c3.f49780a);
-        aVar.a(w6.class, b3.f49775a);
-        aVar.a(g7.class, n3.f49917a);
-        aVar.a(e9.class, m5.f49910a);
-        aVar.a(v6.class, a3.f49764a);
-        aVar.a(u6.class, z2.f50087a);
-        aVar.a(c8.class, j4.f49885a);
-        aVar.a(aa.class, i3.f49862a);
-        aVar.a(e7.class, k3.f49890a);
-        aVar.a(c7.class, h3.f49853a);
-        aVar.a(d8.class, k4.f49893a);
-        aVar.a(b9.class, j5.f49886a);
-        aVar.a(c9.class, k5.f49894a);
-        aVar.a(a9.class, i5.f49864a);
-        aVar.a(x7.class, e4.f49811a);
-        aVar.a(z9.class, i2.f49861a);
-        aVar.a(y7.class, f4.f49822a);
-        aVar.a(e8.class, l4.f49899a);
-        aVar.a(h8.class, p4.f49958a);
-        aVar.a(g8.class, o4.f49943a);
-        aVar.a(f8.class, n4.f49925a);
-        aVar.a(m8.class, u4.f50049a);
-        aVar.a(n8.class, v4.f50055a);
-        aVar.a(p8.class, x4.f50077a);
-        aVar.a(o8.class, w4.f50072a);
-        aVar.a(w7.class, d4.f49791a);
-        aVar.a(q8.class, y4.f50083a);
-        aVar.a(r8.class, z4.f50089a);
-        aVar.a(s8.class, a5.f49766a);
-        aVar.a(t8.class, b5.f49777a);
-        aVar.a(z8.class, g5.f49841a);
-        aVar.a(y8.class, h5.f49855a);
-        aVar.a(l8.class, q4.f49970a);
-        aVar.a(k7.class, s3.f49989a);
-        aVar.a(j8.class, s4.f49990a);
-        aVar.a(i8.class, r4.f49979a);
-        aVar.a(k8.class, t4.f49998a);
-        aVar.a(d9.class, l5.f49900a);
-        aVar.a(m9.class, z5.f50090a);
-        aVar.a(i6.class, o2.f49941a);
-        aVar.a(g6.class, m2.f49905a);
-        aVar.a(f6.class, l2.f49898a);
-        aVar.a(h6.class, n2.f49916a);
-        aVar.a(k6.class, q2.f49968a);
-        aVar.a(j6.class, p2.f49956a);
-        aVar.a(l6.class, r2.f49977a);
-        aVar.a(m6.class, s2.f49988a);
-        aVar.a(o6.class, t2.f49996a);
-        aVar.a(p6.class, u2.f50002a);
-        aVar.a(q6.class, v2.f50053a);
-        aVar.a(d1.class, e2.f49809a);
-        aVar.a(f1.class, g2.f49838a);
-        aVar.a(e1.class, f2.f49816a);
-        aVar.a(i7.class, q3.f49969a);
-        aVar.a(y6.class, d3.f49790a);
-        aVar.a(h0.class, h1.f49851a);
-        aVar.a(g0.class, i1.f49860a);
-        aVar.a(a7.class, f3.f49817a);
-        aVar.a(j0.class, k1.f49888a);
-        aVar.a(i0.class, l1.f49897a);
-        aVar.a(q0.class, q1.f49967a);
-        aVar.a(p0.class, r1.f49976a);
-        aVar.a(l0.class, m1.f49904a);
-        aVar.a(k0.class, n1.f49915a);
-        aVar.a(s0.class, s1.f49985a);
-        aVar.a(r0.class, t1.f49993a);
-        aVar.a(u0.class, u1.f50001a);
-        aVar.a(t0.class, v1.f50052a);
-        aVar.a(c1.class, c2.f49779a);
-        aVar.a(b1.class, d2.f49789a);
-        aVar.a(w0.class, w1.f50069a);
-        aVar.a(v0.class, x1.f50074a);
-        aVar.a(y0.class, y1.f50080a);
-        aVar.a(x0.class, z1.f50086a);
-        aVar.a(u9.class, q5.f49971a);
-        aVar.a(n9.class, e3.f49810a);
-        aVar.a(r9.class, c4.f49781a);
-        aVar.a(q9.class, b4.f49776a);
-        aVar.a(o9.class, j3.f49884a);
-        aVar.a(t9.class, p5.f49961a);
-        aVar.a(s9.class, o5.f49947a);
-        aVar.a(v9.class, r5.f49980a);
-        aVar.a(p9.class, o3.f49942a);
-        aVar.a(y9.class, b6.f49778a);
-        aVar.a(x9.class, c6.f49783a);
-        aVar.a(w9.class, a6.f49767a);
-        aVar.a(f9.class, s5.f49991a);
-        aVar.a(h7.class, p3.f49957a);
-        aVar.a(l7.class, t3.f49997a);
-        aVar.a(e6.class, j2.f49883a);
-        aVar.a(f7.class, m3.f49906a);
-        aVar.a(j7.class, r3.f49978a);
-        aVar.a(b7.class, g3.f49839a);
-        aVar.a(v7.class, a4.f49765a);
-        aVar.a(u7.class, z3.f50088a);
-        aVar.a(f0.class, g1.f49837a);
-        aVar.a(j9.class, w5.f50073a);
-        aVar.a(l9.class, y5.f50084a);
-        aVar.a(k9.class, x5.f50078a);
-        aVar.a(d6.class, h2.f49852a);
-        aVar.a(t6.class, y2.f50081a);
-        aVar.a(s6.class, x2.f50075a);
-        aVar.a(r6.class, w2.f50070a);
-        aVar.a(z7.class, g4.f49840a);
-        aVar.a(b8.class, i4.f49863a);
-        aVar.a(a8.class, h4.f49854a);
-        aVar.a(o0.class, o1.f49940a);
-        aVar.a(n0.class, p1.f49955a);
-        aVar.a(u8.class, c5.f49782a);
-        aVar.a(x8.class, f5.f49823a);
-        aVar.a(v8.class, d5.f49792a);
-        aVar.a(w8.class, e5.f49812a);
-        aVar.a(a1.class, a2.f49763a);
-        aVar.a(z0.class, b2.f49774a);
-        aVar.a(h9.class, u5.f50050a);
-        aVar.a(g9.class, t5.f49999a);
+    public void c(long j10) {
+        b((SystemClock.elapsedRealtimeNanos() / 1000) - j10);
     }
 
     @Override
-    public Object apply(Object obj) {
-        switch (this.f49875a) {
-            case 2:
-                return (byte[]) obj;
-            default:
-                return (byte[]) obj;
+    public void close() {
+        long j10 = this.f51526b;
+        if (j10 != 0) {
+            c(j10);
+            return;
         }
+        throw new IllegalStateException("Did you forget to call start()?");
     }
 }

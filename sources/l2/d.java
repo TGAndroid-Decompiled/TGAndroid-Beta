@@ -1,22 +1,33 @@
 package l2;
 
+import a8.ng;
 import g2.b0;
 import java.io.IOException;
-import u2.v;
+import u2.u;
 public final class d implements y2.g {
-    public final h f15896a;
+    public final g f16799a;
 
-    public d(h hVar) {
-        this.f15896a = hVar;
+    @Override
+    public void B(y2.i iVar, long j10, long j11) {
+        y2.o oVar = (y2.o) iVar;
+        g gVar = this.f16799a;
+        long j12 = oVar.f51964a;
+        g2.m mVar = oVar.f51965b;
+        b0 b0Var = oVar.d;
+        u uVar = new u(mVar, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b);
+        gVar.f16813m.getClass();
+        gVar.f16817q.q(uVar, oVar.f51966c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
+        gVar.K = ((Long) oVar.f51967f).longValue() - j10;
+        gVar.z(true);
     }
 
     public void a() {
         long j10;
-        h hVar = this.f15896a;
-        synchronized (z2.c.f51097b) {
+        g gVar = this.f16799a;
+        synchronized (z2.b.f52633b) {
             try {
-                if (z2.c.f51098c) {
-                    j10 = z2.c.d;
+                if (z2.b.f52634c) {
+                    j10 = z2.b.d;
                 } else {
                     j10 = -9223372036854775807L;
                 }
@@ -24,44 +35,30 @@ public final class d implements y2.g {
                 throw th2;
             }
         }
-        hVar.K = j10;
-        hVar.z(true);
+        gVar.K = j10;
+        gVar.z(true);
     }
 
     @Override
-    public k4.d e(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
+    public void l0(y2.i iVar, long j10, long j11, boolean z10) {
+        this.f16799a.x((y2.o) iVar, j10, j11);
+    }
+
+    @Override
+    public k4.d w(y2.i iVar, long j10, long j11, IOException iOException, int i10) {
         y2.o oVar = (y2.o) iVar;
-        h hVar = this.f15896a;
-        a5.a aVar = hVar.f15916q;
-        long j12 = oVar.f50377a;
-        g2.m mVar = oVar.f50378b;
+        g gVar = this.f16799a;
+        ng ngVar = gVar.f16817q;
+        long j12 = oVar.f51964a;
+        g2.m mVar = oVar.f51965b;
         b0 b0Var = oVar.d;
-        aVar.t(new v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b), oVar.f50379c, iOException, true);
-        hVar.f15912m.getClass();
-        hVar.y(iOException);
+        ngVar.s(new u(mVar, b0Var.f12231c, b0Var.d, j10, j11, b0Var.f12230b), oVar.f51966c, iOException, true);
+        gVar.f16813m.getClass();
+        gVar.y(iOException);
         return y2.l.e;
     }
 
     @Override
-    public void k(y2.i iVar, long j10, long j11) {
-        y2.o oVar = (y2.o) iVar;
-        h hVar = this.f15896a;
-        long j12 = oVar.f50377a;
-        g2.m mVar = oVar.f50378b;
-        b0 b0Var = oVar.d;
-        v vVar = new v(mVar, b0Var.f10783c, b0Var.d, j10, j11, b0Var.f10782b);
-        hVar.f15912m.getClass();
-        hVar.f15916q.r(vVar, oVar.f50379c, -1, null, 0, null, -9223372036854775807L, -9223372036854775807L);
-        hVar.K = ((Long) oVar.f50380f).longValue() - j10;
-        hVar.z(true);
-    }
-
-    @Override
-    public void z(y2.i iVar, long j10, long j11, boolean z10) {
-        this.f15896a.x((y2.o) iVar, j10, j11);
-    }
-
-    @Override
-    public void j(y2.i iVar, long j10, long j11, int i10) {
+    public void z(y2.i iVar, long j10, long j11, int i10) {
     }
 }

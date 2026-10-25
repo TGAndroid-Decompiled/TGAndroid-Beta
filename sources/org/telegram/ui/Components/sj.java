@@ -1,30 +1,40 @@
 package org.telegram.ui.Components;
 
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.Utilities;
 public final class sj implements Runnable {
-    public final int f30523a;
-    public final uj f30524b;
+    public final int f32573a;
+    public final tj f32574b;
+    public final String f32575c;
+    public final int d;
 
-    public sj(uj ujVar, int i10) {
-        this.f30523a = i10;
-        this.f30524b = ujVar;
+    public sj(tj tjVar, String str, int i10, int i11) {
+        this.f32573a = i11;
+        this.f32574b = tjVar;
+        this.f32575c = str;
+        this.d = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f30523a) {
+        switch (this.f32573a) {
             case 0:
-                uj ujVar = this.f30524b;
-                if (ujVar.f31143f != null) {
-                    ujVar.v = org.telegram.messenger.tl.h(new StringBuilder("+"), ujVar.f31143f.phone, jf.b.c());
-                    ujVar.f31146s = ujVar.f31143f;
-                    AndroidUtilities.runOnUIThread(new sj(ujVar, 1));
-                    return;
-                }
+                tj tjVar = this.f32574b;
+                String str = this.f32575c;
+                int i10 = this.d;
+                tjVar.getClass();
+                AndroidUtilities.runOnUIThread(new sj(tjVar, str, i10, 1));
                 return;
             default:
-                uj ujVar2 = this.f30524b;
-                ujVar2.f31142c.l(ujVar2.v, false);
+                tj tjVar2 = this.f32574b;
+                String str2 = this.f32575c;
+                int i11 = this.d;
+                tjVar2.getClass();
+                int i12 = UserConfig.selectedAccount;
+                Utilities.searchQueue.postRunnable(new li.g0(tjVar2, str2, new ArrayList(ContactsController.getInstance(i12).contactsBook.values()), new ArrayList(ContactsController.getInstance(i12).contacts), i12, i11));
                 return;
         }
     }

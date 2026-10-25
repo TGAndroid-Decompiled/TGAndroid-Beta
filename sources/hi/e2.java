@@ -1,0 +1,84 @@
+package hi;
+
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.GiftAuctionController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.t61;
+public final class e2 implements Utilities.Callback2 {
+    public final int f12956a;
+    public final Object f12957b;
+
+    public e2(Object obj, int i10) {
+        this.f12956a = i10;
+        this.f12957b = obj;
+    }
+
+    private final void a(Object obj, Object obj2) {
+        vh.f fVar = (vh.f) this.f12957b;
+        ArrayList arrayList = (ArrayList) obj;
+        j71 j71Var = (j71) obj2;
+        ArrayList arrayList2 = fVar.f50310a0;
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            int dp = AndroidUtilities.dp(13.0f) + ((AndroidUtilities.displaySize.y - org.telegram.ui.ActionBar.k.getCurrentActionBarHeight()) - AndroidUtilities.dp(68.0f));
+            int dp2 = AndroidUtilities.dp(88.0f) + fVar.f50321l0;
+            arrayList.add(t61.E(0, dp2));
+            int i10 = dp - dp2;
+            int size = arrayList2.size();
+            int i11 = 0;
+            while (i11 < size) {
+                Object obj3 = arrayList2.get(i11);
+                i11++;
+                for (TLRPC.TL_help_country tL_help_country : (List) fVar.Z.get((String) obj3)) {
+                    if (TextUtils.isEmpty(fVar.f50312c0) || vg.z0.U(tL_help_country, AndroidUtilities.translitSafe(fVar.f50312c0).toLowerCase())) {
+                        i10 -= AndroidUtilities.dp(44.0f);
+                        boolean containsKey = fVar.f50319j0.containsKey(tL_help_country.iso2);
+                        int i12 = vh.e.f50308a;
+                        t61 K = t61.K(vh.e.class);
+                        K.f32872l = tL_help_country.iso2;
+                        K.G = tL_help_country;
+                        K.e = containsKey;
+                        arrayList.add(K);
+                    }
+                }
+            }
+            arrayList.add(t61.E(1, Math.max(0, i10)));
+        }
+    }
+
+    private final void b(Object obj, Object obj2) {
+        zh.c cVar = (zh.c) this.f12957b;
+        ArrayList arrayList = (ArrayList) obj;
+        j71 j71Var = (j71) obj2;
+        List<TL_stars.TL_StarGiftAuctionAcquiredGift> list = cVar.X;
+        if (list == null) {
+            return;
+        }
+        for (TL_stars.TL_StarGiftAuctionAcquiredGift tL_StarGiftAuctionAcquiredGift : list) {
+            GiftAuctionController.Auction auction = cVar.Y;
+            org.telegram.ui.web.c cVar2 = new org.telegram.ui.web.c(12, cVar, tL_StarGiftAuctionAcquiredGift);
+            int i10 = zh.a.f52890a;
+            t61 K = t61.K(zh.a.class);
+            K.G = tL_StarGiftAuctionAcquiredGift;
+            K.H = auction;
+            K.D = cVar2;
+            arrayList.add(K);
+        }
+        arrayList.add(t61.D(AndroidUtilities.dp(16.0f)));
+    }
+
+    private final void c(Object obj, Object obj2) {
+        j71 j71Var = (j71) obj2;
+        ((ArrayList) obj).add(t61.j(-1, ((zh.v) this.f12957b).Z));
+    }
+
+    @Override
+    public final void run(java.lang.Object r24, java.lang.Object r25) {
+        throw new UnsupportedOperationException("Method not decompiled: hi.e2.run(java.lang.Object, java.lang.Object):void");
+    }
+}

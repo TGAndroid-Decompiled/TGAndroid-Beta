@@ -1,73 +1,25 @@
 package rg;
+public abstract class o1 {
+    public final boolean f47479a;
+    public boolean f47480b;
+    public boolean f47481c;
+    public float d;
+    public float e;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.tl;
-import org.telegram.ui.ActionBar.a6;
-public final class o1 extends TextView {
-    public boolean f45982a;
-    public Drawable f45983b;
-
-    public o1(Context context) {
-        super(context);
-        setTextColor(-1);
-        setTextSize(1, 14.0f);
-        setCurrent(false);
-        setEllipsize(TextUtils.TruncateAt.END);
-        setSingleLine();
+    public o1() {
+        this.f47480b = true;
+        this.f47481c = true;
+        a();
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        canvas.save();
-        canvas.translate(0.0f, AndroidUtilities.dp(-1.0f));
-        super.onDraw(canvas);
-        canvas.restore();
-        if (this.f45982a) {
-            int A = tl.A(16.0f, getHeight(), 2);
-            if (LocaleController.isRTL) {
-                this.f45983b.setBounds(AndroidUtilities.dp(7.0f), A, AndroidUtilities.dp(23.0f), AndroidUtilities.dp(16.0f) + A);
-            } else {
-                this.f45983b.setBounds(getWidth() - AndroidUtilities.dp(23.0f), A, getWidth() - AndroidUtilities.dp(7.0f), AndroidUtilities.dp(16.0f) + A);
-            }
-            this.f45983b.draw(canvas);
-        }
-    }
+    public abstract void a();
 
-    public void setCurrent(boolean z10) {
-        float f7;
-        this.f45982a = z10;
-        if (z10) {
-            float f10 = 12.0f;
-            if (LocaleController.isRTL) {
-                f7 = 27.0f;
-            } else {
-                f7 = 12.0f;
-            }
-            int dp = AndroidUtilities.dp(f7);
-            int dp2 = AndroidUtilities.dp(6.0f);
-            if (!LocaleController.isRTL) {
-                f10 = 27.0f;
-            }
-            setPadding(dp, dp2, AndroidUtilities.dp(f10), AndroidUtilities.dp(6.0f));
-            setBackground(a6.d(new float[]{AndroidUtilities.dp(32.0f)}, 0, a6.b(1090519039)));
-        } else {
-            setPadding(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(14.0f));
-            setBackground(a6.d(new float[]{0.0f}, 0, a6.b(-14145495)));
-        }
-        if (this.f45982a && this.f45983b == null) {
-            Drawable drawable = getContext().getDrawable(R.drawable.photo_expand);
-            this.f45983b = drawable;
-            drawable.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        }
-        invalidate();
+    public abstract void b(float f7, float f10);
+
+    public o1(int i10) {
+        this.f47480b = true;
+        this.f47481c = true;
+        this.f47479a = true;
+        a();
     }
 }

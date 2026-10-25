@@ -18,7 +18,7 @@ public final class t0 extends u0 {
         return i0.b.c(bounds.getLowerBound());
     }
 
-    public static void g(ViewGroup viewGroup, qh.e eVar) {
+    public static void g(ViewGroup viewGroup, rh.e eVar) {
         viewGroup.setWindowInsetsAnimationCallback(new s0(eVar));
     }
 

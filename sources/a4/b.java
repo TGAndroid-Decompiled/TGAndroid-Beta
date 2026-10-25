@@ -91,9 +91,9 @@ public final class b {
         }
         if (i11 != 1) {
             if (i11 != 2) {
-                f7 = a1.g.d(i13, 32.0f, 0.8f, 0.1f);
+                f7 = a1.g.c(i13, 32.0f, 0.8f, 0.1f);
             } else {
-                f7 = a1.g.d(32 - length, 32.0f, 0.8f, 0.1f);
+                f7 = a1.g.c(32 - length, 32.0f, 0.8f, 0.1f);
             }
         } else {
             f7 = 0.5f;

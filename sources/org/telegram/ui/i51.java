@@ -1,21 +1,36 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-public final class i51 extends sg.c1 {
-    public final j51 M;
+import android.animation.ValueAnimator;
+public final class i51 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f40148a;
+    public final l51 f40149b;
 
-    public i51(j51 j51Var, Context context) {
-        super(context, 2, null);
-        this.M = j51Var;
+    public i51(l51 l51Var, int i10) {
+        this.f40148a = i10;
+        this.f40149b = l51Var;
     }
 
     @Override
-    public final void invalidate() {
-        super.invalidate();
-        j51 j51Var = this.M;
-        if (j51Var.getParent() instanceof View) {
-            ((View) j51Var.getParent()).invalidate();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f40148a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l51 l51Var = this.f40149b;
+                l51Var.N = floatValue;
+                l51Var.V.f38296h0.invalidate();
+                return;
+            case 1:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l51 l51Var2 = this.f40149b;
+                l51Var2.N = floatValue2;
+                l51Var2.V.f38296h0.invalidate();
+                return;
+            default:
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                l51 l51Var3 = this.f40149b;
+                l51Var3.N = floatValue3;
+                l51Var3.V.f38296h0.invalidate();
+                return;
         }
     }
 }

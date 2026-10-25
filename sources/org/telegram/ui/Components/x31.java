@@ -1,36 +1,29 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-public final class x31 implements Runnable {
-    public final int f32508a;
-    public final MessageObject f32509b;
-    public final long f32510c;
-    public final String d;
+import android.animation.ValueAnimator;
+public final class x31 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34607a;
+    public final z31 f34608b;
 
-    public x31(String str, MessageObject messageObject, long j10, int i10) {
-        this.f32508a = i10;
-        this.f32509b = messageObject;
-        this.f32510c = j10;
-        this.d = str;
+    public x31(z31 z31Var, int i10) {
+        this.f34607a = i10;
+        this.f34608b = z31Var;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f32508a;
-        String str = this.d;
-        long j10 = this.f32510c;
-        MessageObject messageObject = this.f32509b;
-        switch (i10) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34607a) {
             case 0:
-                NotificationCenter notificationCenter = NotificationCenter.getInstance(messageObject.currentAccount);
-                int i11 = NotificationCenter.voiceTranscriptionUpdate;
-                Long valueOf = Long.valueOf(j10);
-                Boolean bool = Boolean.TRUE;
-                notificationCenter.lambda$postNotificationNameOnUIThread$1(i11, messageObject, valueOf, str, bool, bool);
+                di.h3 h3Var = this.f34608b.f35198f;
+                h3Var.setScaleX(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                h3Var.setScaleY(Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue()));
+                h3Var.invalidate();
                 return;
             default:
-                d41.g(messageObject, j10, str);
+                z31 z31Var = this.f34608b;
+                z31Var.getClass();
+                z31Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                z31Var.h();
                 return;
         }
     }

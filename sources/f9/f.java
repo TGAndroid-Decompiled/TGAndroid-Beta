@@ -1,63 +1,103 @@
 package f9;
 
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayDeque;
-import java.util.Arrays;
-import v7.b8;
-public abstract class f {
-    static {
-        new OutputStream();
+import a8.ta;
+import java.util.Iterator;
+import java.util.NavigableMap;
+import java.util.NavigableSet;
+import java.util.SortedMap;
+import java.util.SortedSet;
+public final class f extends i implements NavigableSet {
+    public final k1 e;
+
+    public f(k1 k1Var, NavigableMap navigableMap) {
+        super(k1Var, navigableMap);
+        this.e = k1Var;
     }
 
-    public static byte[] a(ArrayDeque arrayDeque, int i10) {
-        if (arrayDeque.isEmpty()) {
-            return new byte[0];
-        }
-        byte[] bArr = (byte[]) arrayDeque.remove();
-        if (bArr.length == i10) {
-            return bArr;
-        }
-        int length = i10 - bArr.length;
-        byte[] copyOf = Arrays.copyOf(bArr, i10);
-        while (length > 0) {
-            byte[] bArr2 = (byte[]) arrayDeque.remove();
-            int min = Math.min(length, bArr2.length);
-            System.arraycopy(bArr2, 0, copyOf, i10 - length, min);
-            length -= min;
-        }
-        return copyOf;
+    @Override
+    public final Object ceiling(Object obj) {
+        return h().ceilingKey(obj);
     }
 
-    public static byte[] b(InputStream inputStream) {
-        int i10;
-        inputStream.getClass();
-        ArrayDeque arrayDeque = new ArrayDeque(20);
-        int min = Math.min(8192, Math.max(128, Integer.highestOneBit(0) * 2));
-        int i11 = 0;
-        while (i11 < 2147483639) {
-            int min2 = Math.min(min, 2147483639 - i11);
-            byte[] bArr = new byte[min2];
-            arrayDeque.add(bArr);
-            int i12 = 0;
-            while (i12 < min2) {
-                int read = inputStream.read(bArr, i12, min2 - i12);
-                if (read == -1) {
-                    return a(arrayDeque, i11);
-                }
-                i12 += read;
-                i11 += read;
-            }
-            if (min < 4096) {
-                i10 = 4;
-            } else {
-                i10 = 2;
-            }
-            min = b8.e(min * i10);
+    @Override
+    public final Iterator descendingIterator() {
+        return ((d) descendingSet()).iterator();
+    }
+
+    @Override
+    public final NavigableSet descendingSet() {
+        return new f(this.e, h().descendingMap());
+    }
+
+    @Override
+    public final Object floor(Object obj) {
+        return h().floorKey(obj);
+    }
+
+    @Override
+    public final SortedSet headSet(Object obj) {
+        return headSet(obj, false);
+    }
+
+    @Override
+    public final Object higher(Object obj) {
+        return h().higherKey(obj);
+    }
+
+    @Override
+    public final Object lower(Object obj) {
+        return h().lowerKey(obj);
+    }
+
+    @Override
+    public final NavigableMap h() {
+        return (NavigableMap) ((SortedMap) this.f10271b);
+    }
+
+    @Override
+    public final Object pollFirst() {
+        ta taVar = (ta) iterator();
+        if (taVar.hasNext()) {
+            Object next = taVar.next();
+            taVar.remove();
+            return next;
         }
-        if (inputStream.read() == -1) {
-            return a(arrayDeque, 2147483639);
+        return null;
+    }
+
+    @Override
+    public final Object pollLast() {
+        Iterator descendingIterator = descendingIterator();
+        if (descendingIterator.hasNext()) {
+            Object next = descendingIterator.next();
+            descendingIterator.remove();
+            return next;
         }
-        throw new OutOfMemoryError("input is too large to fit in a byte array");
+        return null;
+    }
+
+    @Override
+    public final SortedSet subSet(Object obj, Object obj2) {
+        return subSet(obj, true, obj2, false);
+    }
+
+    @Override
+    public final SortedSet tailSet(Object obj) {
+        return tailSet(obj, true);
+    }
+
+    @Override
+    public final NavigableSet headSet(Object obj, boolean z10) {
+        return new f(this.e, h().headMap(obj, z10));
+    }
+
+    @Override
+    public final NavigableSet subSet(Object obj, boolean z10, Object obj2, boolean z11) {
+        return new f(this.e, h().subMap(obj, z10, obj2, z11));
+    }
+
+    @Override
+    public final NavigableSet tailSet(Object obj, boolean z10) {
+        return new f(this.e, h().tailMap(obj, z10));
     }
 }

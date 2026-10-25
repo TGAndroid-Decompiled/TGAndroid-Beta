@@ -51,7 +51,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             stopForeground(true);
         } catch (Throwable unused) {
         }
-        new e0.k0(ApplicationLoader.applicationContext).b(5, null);
+        new e0.j0(ApplicationLoader.applicationContext).b(5, null);
         for (int i10 = 0; i10 < 4; i10++) {
             NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.historyImportProgressChanged);
             NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.stickersImportProgressChanged);
@@ -77,7 +77,7 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             qVar.F.icon = 17301640;
             qVar.F.when = System.currentTimeMillis();
             e0.q qVar2 = this.builder;
-            qVar2.f8168y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+            qVar2.f9596y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
             qVar2.g(LocaleController.getString(R.string.AppName));
             if (hasImportingHistory()) {
                 this.builder.p(LocaleController.getString(R.string.ImporImportingService));
@@ -88,11 +88,24 @@ public class ImportingService extends Service implements NotificationCenter.Noti
             }
         }
         e0.q qVar3 = this.builder;
-        qVar3.f8158n = 100;
-        qVar3.f8159o = 0;
-        qVar3.f8160p = true;
-        startForeground(5, qVar3.b());
-        new e0.k0(ApplicationLoader.applicationContext).e(null, 5, this.builder.b());
+        qVar3.f9586n = 100;
+        qVar3.f9587o = 0;
+        qVar3.f9588p = true;
+        try {
+            startForeground(5, qVar3.b());
+        } catch (Throwable th2) {
+            FileLog.e(th2);
+        }
+        new e0.j0(ApplicationLoader.applicationContext).e(null, 5, this.builder.b());
         return 2;
+    }
+
+    public void onTimeout(int i10, int i11) {
+        FileLog.d("ImportingService timeout, type = " + i11);
+        try {
+            stopForeground(true);
+        } catch (Throwable unused) {
+        }
+        stopSelf();
     }
 }

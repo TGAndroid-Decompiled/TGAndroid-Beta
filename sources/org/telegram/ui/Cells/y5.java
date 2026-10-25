@@ -1,87 +1,94 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Paint;
+import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.tl;
+import org.telegram.ui.Components.RadioButton;
+import org.telegram.ui.Components.gb1;
 public final class y5 extends FrameLayout {
-    public w5[] f23977a;
-    public MediaController.AlbumEntry[] f23978b;
-    public int f23979c;
-    public x5 d;
-    public Paint e;
+    public final TextView f25756a;
+    public final LinearLayout f25757b;
+    public View.OnClickListener f25758c;
+    public int d;
+    public final int[] e;
 
-    public final void a(int i10, MediaController.AlbumEntry albumEntry) {
-        w5[] w5VarArr = this.f23977a;
-        this.f23978b[i10] = albumEntry;
-        if (albumEntry != null) {
-            w5 w5Var = w5VarArr[i10];
-            org.telegram.ui.Components.u9 u9Var = w5Var.f23910a;
-            org.telegram.ui.Components.u9 u9Var2 = w5Var.f23910a;
-            u9Var.q(0, true);
-            MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
-            if (photoEntry != null && photoEntry.path != null) {
-                u9Var2.p(photoEntry.orientation, photoEntry.invert, true);
-                if (albumEntry.coverPhoto.isVideo) {
-                    u9Var2.g("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.k6.R4);
-                } else {
-                    u9Var2.g("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.k6.R4);
-                }
-            } else {
-                u9Var2.setImageDrawable(org.telegram.ui.ActionBar.k6.R4);
-            }
-            w5Var.f23911b.setText(albumEntry.bucketName);
-            w5Var.f23912c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
-            return;
+    public y5(Context context) {
+        super(context);
+        this.e = new int[]{0, -45747, -753630, -13056, -8269183, -9321002, -16747844, -10080879};
+        TextView textView = new TextView(context);
+        this.f25756a = textView;
+        textView.setGravity(5);
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 12.0f);
+        textView.setMaxLines(1);
+        textView.setSingleLine(true);
+        textView.setEllipsize(TextUtils.TruncateAt.END);
+        addView(textView, gb1.h(80, -2.0f, 19, 0.0f, 0.0f, 0.0f, 0.0f));
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f25757b = linearLayout;
+        linearLayout.setOrientation(0);
+        for (int i10 = 0; i10 < this.e.length; i10++) {
+            RadioButton radioButton = new RadioButton(context);
+            radioButton.setSize(AndroidUtilities.dp(20.0f));
+            radioButton.setTag(Integer.valueOf(i10));
+            this.f25757b.addView(radioButton, gb1.p(1.0f / this.e.length, 0, -1));
+            radioButton.setOnClickListener(new a(this, 8));
         }
-        w5VarArr[i10].setVisibility(4);
+        addView(this.f25757b, gb1.h(-1, 40.0f, 51, 96.0f, 0.0f, 24.0f, 0.0f));
+    }
+
+    public final void a(int i10, String str) {
+        this.d = i10;
+        this.f25756a.setText(str.substring(0, 1).toUpperCase() + str.substring(1).toLowerCase());
+        b(false);
+    }
+
+    public final void b(boolean z10) {
+        boolean z11;
+        int i10;
+        LinearLayout linearLayout = this.f25757b;
+        int childCount = linearLayout.getChildCount();
+        for (int i11 = 0; i11 < childCount; i11++) {
+            View childAt = linearLayout.getChildAt(i11);
+            if (childAt instanceof RadioButton) {
+                RadioButton radioButton = (RadioButton) childAt;
+                int intValue = ((Integer) radioButton.getTag()).intValue();
+                int[] iArr = this.e;
+                if (this.d == iArr[intValue]) {
+                    z11 = true;
+                } else {
+                    z11 = false;
+                }
+                radioButton.a(z11, z10);
+                int i12 = -1;
+                if (intValue == 0) {
+                    i10 = -1;
+                } else {
+                    i10 = iArr[intValue];
+                }
+                if (intValue != 0) {
+                    i12 = iArr[intValue];
+                }
+                radioButton.b(i10, i12);
+            }
+        }
+    }
+
+    public int getCurrentColor() {
+        return this.d;
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        int B;
-        View[] viewArr = this.f23977a;
-        if (AndroidUtilities.isTablet()) {
-            B = tl.B(4.0f, this.f23979c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f23979c;
-        } else {
-            B = tl.B(4.0f, this.f23979c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f23979c;
-        }
-        for (int i12 = 0; i12 < this.f23979c; i12++) {
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
-            layoutParams.topMargin = AndroidUtilities.dp(4.0f);
-            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + B) * i12;
-            layoutParams.width = B;
-            layoutParams.height = B;
-            layoutParams.gravity = 51;
-            viewArr[i12].setLayoutParams(layoutParams);
-        }
-        super.onMeasure(i10, tl.C(4.0f, B, 1073741824));
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
     }
 
-    public void setAlbumsCount(int i10) {
-        int i11;
-        int i12 = 0;
-        while (true) {
-            w5[] w5VarArr = this.f23977a;
-            if (i12 < w5VarArr.length) {
-                w5 w5Var = w5VarArr[i12];
-                if (i12 < i10) {
-                    i11 = 0;
-                } else {
-                    i11 = 4;
-                }
-                w5Var.setVisibility(i11);
-                i12++;
-            } else {
-                this.f23979c = i10;
-                return;
-            }
-        }
-    }
-
-    public void setDelegate(x5 x5Var) {
-        this.d = x5Var;
+    @Override
+    public void setOnClickListener(View.OnClickListener onClickListener) {
+        this.f25758c = onClickListener;
     }
 }

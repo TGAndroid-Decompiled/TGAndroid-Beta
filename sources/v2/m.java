@@ -1,10 +1,10 @@
 package v2;
 public interface m {
-    public static final pb.a B = new pb.a(25);
+    public static final tb.a B = new tb.a(24);
 
-    long b();
+    long k();
 
     boolean next();
 
-    long r();
+    long y();
 }

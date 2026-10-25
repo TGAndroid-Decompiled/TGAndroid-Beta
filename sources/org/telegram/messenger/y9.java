@@ -1,52 +1,45 @@
 package org.telegram.messenger;
+public final class y9 implements Runnable {
+    public final int f21897a;
+    public final MessagesController f21898b;
+    public final int f21899c;
+    public final long d;
+    public final long e;
 
-import android.content.Context;
-import android.os.Bundle;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class y9 implements RequestDelegate {
-    public final int f20206a;
-    public final BaseController f20207b;
-    public final Object f20208c;
-    public final Object d;
-    public final Object e;
-    public final Object f20209f;
-
-    public y9(BaseController baseController, Object obj, Object obj2, Object obj3, Object obj4, int i10) {
-        this.f20206a = i10;
-        this.f20207b = baseController;
-        this.f20208c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f20209f = obj4;
+    public y9(int i10, long j10, long j11, MessagesController messagesController) {
+        this.f21897a = 2;
+        this.f21898b = messagesController;
+        this.d = j10;
+        this.e = j11;
+        this.f21899c = i10;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20206a) {
+    public final void run() {
+        switch (this.f21897a) {
             case 0:
-                ((MessagesController) this.f20207b).lambda$checkCanOpenChat$455((org.telegram.ui.ActionBar.c2) this.f20208c, (pf.c) this.d, (org.telegram.ui.ActionBar.o2) this.e, (Bundle) this.f20209f, tLObject, tL_error);
+                long j10 = this.d;
+                long j11 = this.e;
+                this.f21898b.lambda$sendTyping$170(this.f21899c, j10, j11);
                 return;
             case 1:
-                ((MessagesController) this.f20207b).lambda$didReceivedNotification$50((TLRPC.TL_theme) this.f20208c, (org.telegram.ui.ActionBar.j6) this.d, (TLRPC.TL_inputThemeSettings) this.e, (org.telegram.ui.ActionBar.i6) this.f20209f, tLObject, tL_error);
-                return;
-            case 2:
-                ((SecretChatHelper) this.f20207b).lambda$startSecretChat$28((Context) this.d, (org.telegram.ui.ActionBar.c2) this.f20208c, (byte[]) this.e, (TLRPC.User) this.f20209f, tLObject, tL_error);
+                long j12 = this.d;
+                long j13 = this.e;
+                this.f21898b.lambda$sendTyping$172(this.f21899c, j12, j13);
                 return;
             default:
-                ((SendMessagesHelper) this.f20207b).lambda$performSendDelayedMessage$59((TLRPC.InputMedia) this.f20208c, (SendMessagesHelper.DelayedMessage) this.d, (String) this.e, (MessageObject) this.f20209f, tLObject, tL_error);
+                long j14 = this.e;
+                int i10 = this.f21899c;
+                this.f21898b.lambda$checkDeletingTask$83(this.d, j14, i10);
                 return;
         }
     }
 
-    public y9(SecretChatHelper secretChatHelper, Context context, org.telegram.ui.ActionBar.c2 c2Var, byte[] bArr, TLRPC.User user) {
-        this.f20206a = 2;
-        this.f20207b = secretChatHelper;
-        this.d = context;
-        this.f20208c = c2Var;
-        this.e = bArr;
-        this.f20209f = user;
+    public y9(MessagesController messagesController, int i10, long j10, long j11, int i11) {
+        this.f21897a = i11;
+        this.f21898b = messagesController;
+        this.f21899c = i10;
+        this.d = j10;
+        this.e = j11;
     }
 }

@@ -1,271 +1,150 @@
 package m;
 
+import a8.nf;
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.RectF;
-import android.os.Build;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.method.TransformationMethod;
-import android.util.Log;
-import android.util.TypedValue;
-import android.widget.TextView;
-import j$.util.concurrent.ConcurrentHashMap;
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-public final class h1 {
-    public static final RectF f16267l = new RectF();
-    public static final ConcurrentHashMap f16268m = new ConcurrentHashMap();
-    public int f16269a = 0;
-    public boolean f16270b = false;
-    public float f16271c = -1.0f;
-    public float d = -1.0f;
-    public float e = -1.0f;
-    public int[] f16272f = new int[0];
-    public boolean f16273g = false;
-    public TextPaint h;
-    public final TextView f16274i;
-    public final Context f16275j;
-    public final e1 f16276k;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.text.InputFilter;
+import android.util.AttributeSet;
+import android.widget.ToggleButton;
+public final class h1 extends ToggleButton implements u0.k {
+    public final e2.c f17736a;
+    public final w0 f17737b;
+    public t f17738c;
 
-    static {
-        new ConcurrentHashMap();
+    public h1(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 16842827);
+        b3.a(this, getContext());
+        e2.c cVar = new e2.c(this);
+        this.f17736a = cVar;
+        cVar.f(attributeSet, 16842827);
+        w0 w0Var = new w0(this);
+        this.f17737b = w0Var;
+        w0Var.f(attributeSet, 16842827);
+        getEmojiTextViewHelper().a(attributeSet, 16842827);
     }
 
-    public h1(TextView textView) {
-        this.f16274i = textView;
-        this.f16275j = textView.getContext();
-        if (Build.VERSION.SDK_INT >= 29) {
-            this.f16276k = new f1();
-        } else {
-            this.f16276k = new e1();
+    private t getEmojiTextViewHelper() {
+        if (this.f17738c == null) {
+            this.f17738c = new t(this);
         }
+        return this.f17738c;
     }
 
-    public static int[] b(int[] iArr) {
-        int length = iArr.length;
-        if (length != 0) {
-            Arrays.sort(iArr);
-            ArrayList arrayList = new ArrayList();
-            for (int i10 : iArr) {
-                if (i10 > 0 && Collections.binarySearch(arrayList, Integer.valueOf(i10)) < 0) {
-                    arrayList.add(Integer.valueOf(i10));
-                }
-            }
-            if (length != arrayList.size()) {
-                int size = arrayList.size();
-                int[] iArr2 = new int[size];
-                for (int i11 = 0; i11 < size; i11++) {
-                    iArr2[i11] = ((Integer) arrayList.get(i11)).intValue();
-                }
-                return iArr2;
-            }
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        e2.c cVar = this.f17736a;
+        if (cVar != null) {
+            cVar.b();
         }
-        return iArr;
-    }
-
-    public static Method d(String str) {
-        try {
-            ConcurrentHashMap concurrentHashMap = f16268m;
-            Method method = (Method) concurrentHashMap.get(str);
-            if (method == null && (method = TextView.class.getDeclaredMethod(str, null)) != null) {
-                method.setAccessible(true);
-                concurrentHashMap.put(str, method);
-                return method;
-            }
-            return method;
-        } catch (Exception e) {
-            Log.w("ACTVAutoSizeHelper", "Failed to retrieve TextView#" + str + "() method", e);
-            return null;
+        w0 w0Var = this.f17737b;
+        if (w0Var != null) {
+            w0Var.b();
         }
     }
 
-    public static Object e(Object obj, String str, Object obj2) {
-        try {
-            return d(str).invoke(obj, null);
-        } catch (Exception e) {
-            Log.w("ACTVAutoSizeHelper", "Failed to invoke TextView#" + str + "() method", e);
-            return obj2;
+    public ColorStateList getSupportBackgroundTintList() {
+        e2.c cVar = this.f17736a;
+        if (cVar != null) {
+            return cVar.d();
+        }
+        return null;
+    }
+
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        e2.c cVar = this.f17736a;
+        if (cVar != null) {
+            return cVar.e();
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.f17737b.d();
+    }
+
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.f17737b.e();
+    }
+
+    @Override
+    public void setAllCaps(boolean z10) {
+        super.setAllCaps(z10);
+        getEmojiTextViewHelper().b(z10);
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        e2.c cVar = this.f17736a;
+        if (cVar != null) {
+            cVar.g();
         }
     }
 
-    public final void a() {
-        int measuredWidth;
-        if (f()) {
-            if (this.f16270b) {
-                if (this.f16274i.getMeasuredHeight() > 0 && this.f16274i.getMeasuredWidth() > 0) {
-                    if (this.f16276k.b(this.f16274i)) {
-                        measuredWidth = 1048576;
-                    } else {
-                        measuredWidth = (this.f16274i.getMeasuredWidth() - this.f16274i.getTotalPaddingLeft()) - this.f16274i.getTotalPaddingRight();
-                    }
-                    int height = (this.f16274i.getHeight() - this.f16274i.getCompoundPaddingBottom()) - this.f16274i.getCompoundPaddingTop();
-                    if (measuredWidth > 0 && height > 0) {
-                        RectF rectF = f16267l;
-                        synchronized (rectF) {
-                            try {
-                                rectF.setEmpty();
-                                rectF.right = measuredWidth;
-                                rectF.bottom = height;
-                                float c10 = c(rectF);
-                                if (c10 != this.f16274i.getTextSize()) {
-                                    g(c10, 0);
-                                }
-                            } finally {
-                            }
-                        }
-                    } else {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-            this.f16270b = true;
+    @Override
+    public void setBackgroundResource(int i10) {
+        super.setBackgroundResource(i10);
+        e2.c cVar = this.f17736a;
+        if (cVar != null) {
+            cVar.h(i10);
         }
     }
 
-    public final int c(RectF rectF) {
-        CharSequence charSequence;
-        CharSequence transformation;
-        int length = this.f16272f.length;
-        if (length != 0) {
-            int i10 = length - 1;
-            int i11 = 0;
-            int i12 = 1;
-            while (i12 <= i10) {
-                int i13 = (i12 + i10) / 2;
-                int i14 = this.f16272f[i13];
-                TextView textView = this.f16274i;
-                CharSequence text = textView.getText();
-                TransformationMethod transformationMethod = textView.getTransformationMethod();
-                if (transformationMethod != null && (transformation = transformationMethod.getTransformation(text, textView)) != null) {
-                    charSequence = transformation;
-                } else {
-                    charSequence = text;
-                }
-                int b10 = b1.b(textView);
-                TextPaint textPaint = this.h;
-                if (textPaint == null) {
-                    this.h = new TextPaint();
-                } else {
-                    textPaint.reset();
-                }
-                this.h.set(textView.getPaint());
-                this.h.setTextSize(i14);
-                StaticLayout a2 = d1.a(charSequence, (Layout.Alignment) e(textView, "getLayoutAlignment", Layout.Alignment.ALIGN_NORMAL), Math.round(rectF.right), b10, this.f16274i, this.h, this.f16276k);
-                if ((b10 != -1 && (a2.getLineCount() > b10 || a2.getLineEnd(a2.getLineCount() - 1) != charSequence.length())) || a2.getHeight() > rectF.bottom) {
-                    i11 = i13 - 1;
-                    i10 = i11;
-                } else {
-                    int i15 = i13 + 1;
-                    i11 = i12;
-                    i12 = i15;
-                }
-            }
-            return this.f16272f[i11];
-        }
-        throw new IllegalStateException("No available text sizes to choose from.");
-    }
-
-    public final boolean f() {
-        if (j() && this.f16269a != 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void g(float f7, int i10) {
-        Resources resources;
-        Context context = this.f16275j;
-        if (context == null) {
-            resources = Resources.getSystem();
-        } else {
-            resources = context.getResources();
-        }
-        float applyDimension = TypedValue.applyDimension(i10, f7, resources.getDisplayMetrics());
-        TextView textView = this.f16274i;
-        if (applyDimension != textView.getPaint().getTextSize()) {
-            textView.getPaint().setTextSize(applyDimension);
-            boolean a2 = c1.a(textView);
-            if (textView.getLayout() != null) {
-                this.f16270b = false;
-                try {
-                    Method d = d("nullLayouts");
-                    if (d != null) {
-                        d.invoke(textView, null);
-                    }
-                } catch (Exception e) {
-                    Log.w("ACTVAutoSizeHelper", "Failed to invoke TextView#nullLayouts() method", e);
-                }
-                if (!a2) {
-                    textView.requestLayout();
-                } else {
-                    textView.forceLayout();
-                }
-                textView.invalidate();
-            }
+    @Override
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        w0 w0Var = this.f17737b;
+        if (w0Var != null) {
+            w0Var.b();
         }
     }
 
-    public final boolean h() {
-        if (j() && this.f16269a == 1) {
-            if (!this.f16273g || this.f16272f.length == 0) {
-                int floor = ((int) Math.floor((this.e - this.d) / this.f16271c)) + 1;
-                int[] iArr = new int[floor];
-                for (int i10 = 0; i10 < floor; i10++) {
-                    iArr[i10] = Math.round((i10 * this.f16271c) + this.d);
-                }
-                this.f16272f = b(iArr);
-            }
-            this.f16270b = true;
-        } else {
-            this.f16270b = false;
+    @Override
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        w0 w0Var = this.f17737b;
+        if (w0Var != null) {
+            w0Var.b();
         }
-        return this.f16270b;
     }
 
-    public final boolean i() {
-        int[] iArr;
-        int length;
-        boolean z10;
-        if (this.f16272f.length > 0) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.f16273g = z10;
-        if (z10) {
-            this.f16269a = 1;
-            this.d = iArr[0];
-            this.e = iArr[length - 1];
-            this.f16271c = -1.0f;
-        }
-        return z10;
+    public void setEmojiCompatEnabled(boolean z10) {
+        getEmojiTextViewHelper().c(z10);
     }
 
-    public final boolean j() {
-        return !(this.f16274i instanceof t);
+    @Override
+    public void setFilters(InputFilter[] inputFilterArr) {
+        super.setFilters(((nf) getEmojiTextViewHelper().f17856b.f17210b).a(inputFilterArr));
     }
 
-    public final void k(float f7, float f10, float f11) {
-        if (f7 > 0.0f) {
-            if (f10 > f7) {
-                if (f11 > 0.0f) {
-                    this.f16269a = 1;
-                    this.d = f7;
-                    this.e = f10;
-                    this.f16271c = f11;
-                    this.f16273g = false;
-                    return;
-                }
-                throw new IllegalArgumentException("The auto-size step granularity (" + f11 + "px) is less or equal to (0px)");
-            }
-            throw new IllegalArgumentException("Maximum auto-size text size (" + f10 + "px) is less or equal to minimum auto-size text size (" + f7 + "px)");
+    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
+        e2.c cVar = this.f17736a;
+        if (cVar != null) {
+            cVar.l(colorStateList);
         }
-        throw new IllegalArgumentException("Minimum auto-size text size (" + f7 + "px) is less or equal to (0px)");
+    }
+
+    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+        e2.c cVar = this.f17736a;
+        if (cVar != null) {
+            cVar.m(mode);
+        }
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
+        w0 w0Var = this.f17737b;
+        w0Var.l(colorStateList);
+        w0Var.b();
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
+        w0 w0Var = this.f17737b;
+        w0Var.m(mode);
+        w0Var.b();
     }
 }

@@ -1,117 +1,104 @@
 package hi;
 
-import android.view.View;
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.h80;
-import org.telegram.ui.Components.l61;
-import r0.h1;
-import r0.k1;
-public final class u implements Utilities.Callback5, r0.n, Utilities.Callback5Return {
-    public final int f12268a;
-    public final k0 f12269b;
+import org.telegram.ui.ActionBar.b7;
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.y9;
+import org.telegram.ui.Components.z90;
+public final class u extends FrameLayout {
+    public static final int f13297n = 0;
+    public final u6 f13298a;
+    public final y9 f13299b;
+    public final ImageView f13300c;
+    public final TextView d;
+    public final TextView e;
+    public final TextView f13301f;
+    public final z90 h;
 
-    public u(k0 k0Var, int i10) {
-        this.f12268a = i10;
-        this.f12269b = k0Var;
+    public u(Activity activity, u6 u6Var) {
+        super(activity);
+        this.f13298a = u6Var;
+        LinearLayout f7 = org.telegram.messenger.t.f(activity, 0);
+        f7.setPadding(AndroidUtilities.dp(16.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f));
+        gb1.c(f7, 0.025f, 1.4f);
+        addView(f7, gb1.i(-1, -1, 119));
+        int i10 = y6.Oh;
+        Drawable Z = y6.Z(y6.o1(0.1f, y6.w0(i10, u6Var)), 0, 0);
+        b7 L = f7.L(0.1f, i10);
+        setBackground(Z);
+        f7.k(this, Z, null, L, u6Var);
+        LinearLayout f10 = org.telegram.messenger.t.f(activity, 1);
+        f7.addView(f10, gb1.s(-1, -2, 1.0f, 3));
+        LinearLayout linearLayout = new LinearLayout(activity);
+        linearLayout.setOrientation(0);
+        f10.addView(linearLayout, gb1.t(-1, -2, 0.0f, 51, 0, 0, 0, 0));
+        TextView textView = new TextView(activity);
+        this.d = textView;
+        textView.setTextSize(1, 14.0f);
+        int i11 = y6.G6;
+        f7.V(textView, i11, u6Var);
+        textView.setTypeface(AndroidUtilities.bold());
+        linearLayout.addView(textView, gb1.s(-2, -2, 0.0f, 16));
+        NotificationCenter.listenEmojiLoading(textView);
+        TextView textView2 = new TextView(activity);
+        this.f13301f = textView2;
+        textView2.setTextSize(1, 11.0f);
+        f7.V(textView2, i10, u6Var);
+        gb1.c(textView2, 0.1f, 1.5f);
+        textView2.setPadding(AndroidUtilities.dp(6.33f), 0, AndroidUtilities.dp(6.33f), 0);
+        ShapeDrawable c02 = y6.c0(AndroidUtilities.dp(9.0f), y6.o1(0.1f, y6.w0(i10, u6Var)));
+        b7 L2 = f7.L(0.1f, i10);
+        textView2.setBackground(c02);
+        f7.k(textView2, c02, L2, null, u6Var);
+        textView2.setText(LocaleController.getString(R.string.BotAdWhat));
+        linearLayout.addView(textView2, gb1.t(-2, 17, 0.0f, 19, 5, 1, 0, 0));
+        TextView textView3 = new TextView(activity);
+        this.e = textView3;
+        textView3.setVisibility(8);
+        textView3.setTextSize(1, 14.0f);
+        f7.V(textView3, i11, u6Var);
+        textView3.setTypeface(AndroidUtilities.bold());
+        f10.addView(textView3, gb1.o(0.0f, 0.0f, 0.0f, 2.0f, -1, -2));
+        NotificationCenter.listenEmojiLoading(textView3);
+        z90 z90Var = new z90(activity, null);
+        this.h = z90Var;
+        z90Var.setTextSize(1, 13.0f);
+        f7.H(z90Var, y6.gc, u6Var);
+        f7.V(z90Var, i11, u6Var);
+        f10.addView(z90Var, gb1.o(0.0f, 0.0f, 0.0f, 0.0f, -1, -2));
+        NotificationCenter.listenEmojiLoading(z90Var);
+        y9 y9Var = new y9(activity);
+        this.f13299b = y9Var;
+        y9Var.setRoundRadius(AndroidUtilities.dp(4.0f));
+        y9Var.setVisibility(8);
+        f7.addView(y9Var, gb1.x(48, 48, 53, 10, 0, 2, 2));
+        ImageView imageView = new ImageView(activity);
+        this.f13300c = imageView;
+        imageView.setBackground(y6.g0(5, y6.o1(0.2f, y6.w0(y6.W5, u6Var)), -1));
+        gb1.b(imageView);
+        imageView.setImageResource(R.drawable.msg_close);
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        f7.t(imageView, y6.f23362de, u6Var, PorterDuff.Mode.SRC_IN);
+        imageView.setOnClickListener(new bh.f(5));
+        imageView.setVisibility(8);
+        f7.addView(imageView, gb1.x(32, 32, 53, 10, 3, 0, 2));
     }
 
-    @Override
-    public k1 B0(View view, k1 k1Var) {
-        h1 h1Var = k1Var.f45250a;
-        i0.b f7 = h1Var.f(527);
-        k0 k0Var = this.f12269b;
-        k0Var.T = f7;
-        k0Var.U = h1Var.f(519);
-        k0Var.F.j(AndroidUtilities.dp(56.0f) + k0Var.T.f12316b, k0Var.T.d, false);
-        k0Var.H.invalidate();
-        return k1.f45249b;
-    }
-
-    @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean canRemoveBotFromCommunity;
-        long j10;
-        boolean z10;
-        boolean z11;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        int i10 = k0.V;
-        Object obj6 = ((l61) obj).G;
-        boolean z12 = obj6 instanceof TLRPC.Chat;
-        k0 k0Var = this.f12269b;
-        boolean z13 = false;
-        if (z12) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj6;
-            boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-            canRemoveBotFromCommunity = ChatObject.canRemoveChatFromCommunity(chat, k0Var.f12201f);
-            j10 = -chat.f20344id;
-            z11 = isChannelAndNotMegaGroup;
-            z10 = false;
-        } else {
-            if (obj6 instanceof TLRPC.User) {
-                TLRPC.User user = (TLRPC.User) obj6;
-                long j11 = user.f20491id;
-                boolean isBot = UserObject.isBot(user);
-                canRemoveBotFromCommunity = ChatObject.canRemoveBotFromCommunity(user, k0Var.f12201f);
-                j10 = j11;
-                z10 = isBot;
-                z11 = false;
-            }
-            return Boolean.valueOf(z13);
-        }
-        if (canRemoveBotFromCommunity) {
-            h80 F = h80.F(k0Var.container, null, view);
-            F.c(R.drawable.msg_cancel, LocaleController.getString(R.string.CommunityMenuRemoveFromCommunity), new l(k0Var, z10, z11, j10, 1), true);
-            F.W(k0Var.v.d.W0(view, true));
-            F.Z();
-            z13 = true;
-        }
-        return Boolean.valueOf(z13);
-    }
-
-    @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        int i10 = this.f12268a;
-        k0 k0Var = this.f12269b;
-        l61 l61Var = (l61) obj;
-        View view = (View) obj2;
-        Integer num = (Integer) obj3;
-        switch (i10) {
-            case 0:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                k0Var.g0(l61Var);
-                return;
-            case 1:
-            default:
-                num.intValue();
-                ((Float) obj4).floatValue();
-                ((Float) obj5).floatValue();
-                int i11 = k0.V;
-                k0Var.d0(l61Var);
-                return;
-            case 2:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                int i12 = k0.V;
-                k0Var.g0(l61Var);
-                return;
-            case 3:
-                num.getClass();
-                ((Float) obj4).getClass();
-                ((Float) obj5).getClass();
-                k0.C(k0Var, l61Var, view);
-                return;
-        }
+    public final void a(final org.telegram.ui.un r25, final org.telegram.messenger.MessageObject r26, org.telegram.ui.kf r27, org.telegram.ui.kf r28) {
+        throw new UnsupportedOperationException("Method not decompiled: hi.u.a(org.telegram.ui.un, org.telegram.messenger.MessageObject, org.telegram.ui.kf, org.telegram.ui.kf):void");
     }
 }

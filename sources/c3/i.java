@@ -1,6 +1,6 @@
 package c3;
 public interface i {
-    h b(r rVar, long j10);
+    h f(p pVar, long j10);
 
-    void d();
+    void z();
 }

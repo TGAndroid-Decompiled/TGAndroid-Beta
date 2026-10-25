@@ -1,36 +1,35 @@
 package org.telegram.messenger;
 
-import android.content.Intent;
-import org.telegram.messenger.NotificationBadge;
+import java.util.ArrayList;
 public final class i implements Runnable {
-    public final int f18635a;
-    public final Intent f18636b;
+    public final int f20295a;
+    public final ArrayList f20296b;
 
-    public i(Intent intent, int i10) {
-        this.f18635a = i10;
-        this.f18636b = intent;
+    public i(ArrayList arrayList, int i10) {
+        this.f20295a = i10;
+        this.f20296b = arrayList;
     }
 
     @Override
     public final void run() {
-        switch (this.f18635a) {
+        switch (this.f20295a) {
             case 0:
-                AndroidUtilities.lambda$googleVoiceClientService_performAction$2(this.f18636b);
+                AndroidUtilities.B(this.f20296b);
                 return;
             case 1:
-                NotificationBadge.AdwHomeBadger.a(this.f18636b);
+                AndroidUtilities.j(this.f20296b);
                 return;
             case 2:
-                NotificationBadge.ApexHomeBadger.a(this.f18636b);
+                DispatchQueuePoolBackground.d(this.f20296b);
                 return;
             case 3:
-                NotificationBadge.AsusHomeBadger.a(this.f18636b);
+                DispatchQueuePoolBackground.b(this.f20296b);
                 return;
             case 4:
-                NotificationBadge.DefaultBadger.a(this.f18636b);
+                MessagesStorage.lambda$updateWidgets$168(this.f20296b);
                 return;
             default:
-                NotificationBadge.SonyHomeBadger.a(this.f18636b);
+                MessagesStorage.lambda$getWallpapers$83(this.f20296b);
                 return;
         }
     }

@@ -1,23 +1,24 @@
 package org.telegram.messenger;
 
-import android.os.Handler;
-import android.os.Message;
-public final class b2 implements Handler.Callback {
-    public final int f17966a;
-    public final Thread f17967b;
+import org.telegram.messenger.NotificationCenter;
+public final class b2 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f19676a;
+    public final Object f19677b;
 
-    public b2(Thread thread, int i10) {
-        this.f17966a = i10;
-        this.f17967b = thread;
+    public b2(Object obj, int i10) {
+        this.f19676a = i10;
+        this.f19677b = obj;
     }
 
     @Override
-    public final boolean handleMessage(Message message) {
-        switch (this.f17966a) {
+    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
+        switch (this.f19676a) {
             case 0:
-                return DispatchQueue.a((DispatchQueue) this.f17967b, message);
+                ContactsLoadingObserver.a((ContactsLoadingObserver) this.f19677b, i10, i11, objArr);
+                return;
             default:
-                return DispatchQueue2.a((DispatchQueue2) this.f17967b, message);
+                ((TelegramMediaSession) this.f19677b).lambda$new$0(i10, i11, objArr);
+                return;
         }
     }
 }

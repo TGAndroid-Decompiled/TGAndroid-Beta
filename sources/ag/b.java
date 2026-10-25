@@ -1,22 +1,57 @@
 package ag;
-public final class b {
-    public static final b f633a;
-    public static final b f634b;
-    public static final b[] f635c;
 
-    static {
-        ?? r02 = new Enum("STARS", 0);
-        f633a = r02;
-        ?? r12 = new Enum("TON", 1);
-        f634b = r12;
-        f635c = new b[]{r02, r12};
+import java.io.InputStream;
+import java.util.Iterator;
+import java.util.Map;
+import org.json.JSONObject;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.SerializedData;
+import org.telegram.tgnet.TLRPC;
+public abstract class b {
+    public static void a(Map map) {
+        if (!map.isEmpty()) {
+            return;
+        }
+        try {
+            InputStream open = ApplicationLoader.applicationContext.getAssets().open("currencies.json");
+            String str = e2.n0.f9692a;
+            JSONObject jSONObject = new JSONObject(new String(g9.f.b(open), e9.j.f9845a));
+            Iterator<String> keys = jSONObject.keys();
+            while (keys.hasNext()) {
+                String next = keys.next();
+                map.put(next, Integer.valueOf(jSONObject.optJSONObject(next).optInt("exp")));
+            }
+            open.close();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
-    public static b valueOf(String str) {
-        return (b) Enum.valueOf(b.class, str);
-    }
-
-    public static b[] values() {
-        return (b[]) f635c.clone();
+    public static TLRPC.InputStorePaymentPurpose b(String str) {
+        FileLog.d("BillingUtilities.getPurpose " + str);
+        SerializedData serializedData = new SerializedData(Utilities.hexToBytes(str));
+        a a2 = a.a(serializedData, serializedData.readInt32(true));
+        serializedData.cleanup();
+        if (a2.f1251c != null) {
+            FileLog.d("BillingUtilities.getPurpose: got purpose from received obfuscated profile id");
+            return a2.f1251c;
+        }
+        SerializedData serializedData2 = new SerializedData(8);
+        serializedData2.writeInt64(a2.f1250b);
+        String bytesToHex = Utilities.bytesToHex(serializedData2.toByteArray());
+        serializedData2.cleanup();
+        FileLog.d("BillingUtilities.getPurpose: searching purpose under " + bytesToHex);
+        String string = ApplicationLoader.applicationContext.getSharedPreferences("purchases", 0).getString(bytesToHex, null);
+        if (string != null) {
+            FileLog.d("BillingUtilities.getPurpose: got {" + string + "} under " + bytesToHex);
+            SerializedData serializedData3 = new SerializedData(Utilities.hexToBytes(string));
+            a a10 = a.a(serializedData3, serializedData3.readInt32(true));
+            serializedData3.cleanup();
+            return a10.f1251c;
+        }
+        FileLog.d("BillingUtilities.getPurpose: purpose under " + bytesToHex + " not found");
+        throw new RuntimeException(a1.g.p("no purpose under ", bytesToHex, " found :("));
     }
 }

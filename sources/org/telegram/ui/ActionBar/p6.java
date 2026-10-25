@@ -1,6 +1,8 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
+import java.util.HashSet;
 public interface p6 {
-    void d(int i10, View view);
+    void addColorKeys(HashSet hashSet);
+
+    void updateColors();
 }

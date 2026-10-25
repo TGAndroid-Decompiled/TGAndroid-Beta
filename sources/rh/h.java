@@ -1,111 +1,41 @@
 package rh;
 
-import android.text.TextUtils;
-import android.util.SparseArray;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class h {
-    public final f f46198a;
-    public final TLRPC.TL_messageMediaPoll f46199b;
-    public final TLRPC.TL_inputMediaPoll f46200c;
-    public final long d;
-    public final String e;
-    public final ArrayList f46201f;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.WeakHashMap;
+import r0.b0;
+import r0.i0;
+public final class h implements Runnable {
+    public final int f47614a;
+    public final i f47615b;
 
-    public h(f fVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, long j10, String str, ArrayList arrayList, ArrayList arrayList2) {
-        this.f46198a = fVar;
-        this.d = j10;
-        this.e = str;
-        this.f46201f = arrayList;
-        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
-        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
-        tL_inputMediaPoll.poll = tL_poll;
-        TLRPC.Poll poll = tL_messageMediaPoll.poll;
-        tL_poll.f20370id = poll.f20370id;
-        tL_poll.flags = poll.flags;
-        tL_poll.closed = poll.closed;
-        tL_poll.public_voters = poll.public_voters;
-        tL_poll.multiple_choice = poll.multiple_choice;
-        tL_poll.open_answers = poll.open_answers;
-        tL_poll.revoting_disabled = poll.revoting_disabled;
-        tL_poll.shuffle_answers = poll.shuffle_answers;
-        tL_poll.subscribers_only = poll.subscribers_only;
-        tL_poll.countries_iso2 = poll.countries_iso2;
-        tL_poll.hide_results_until_close = poll.hide_results_until_close;
-        tL_poll.creator = poll.creator;
-        tL_poll.quiz = poll.quiz;
-        tL_poll.answers = new ArrayList<>(tL_messageMediaPoll.poll.answers);
-        ArrayList<TLRPC.PollAnswer> arrayList3 = tL_messageMediaPoll.poll.answers;
-        int size = arrayList3.size();
-        int i10 = 0;
-        while (i10 < size) {
-            TLRPC.PollAnswer pollAnswer = arrayList3.get(i10);
-            i10++;
-            new TLRPC.TL_inputPollAnswer().text = pollAnswer.text;
-        }
-        TLRPC.Poll poll2 = tL_inputMediaPoll.poll;
-        TLRPC.Poll poll3 = tL_messageMediaPoll.poll;
-        poll2.question = poll3.question;
-        poll2.close_period = poll3.close_period;
-        poll2.close_date = poll3.close_date;
-        poll2.hash = poll3.hash;
-        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
-        if (pollResults != null && !TextUtils.isEmpty(pollResults.solution)) {
-            TLRPC.PollResults pollResults2 = tL_messageMediaPoll.results;
-            tL_inputMediaPoll.solution = pollResults2.solution;
-            tL_inputMediaPoll.solution_entities = pollResults2.solution_entities;
-            tL_inputMediaPoll.flags |= 2;
-        }
-        if (arrayList2 != null && !arrayList2.isEmpty()) {
-            tL_inputMediaPoll.correct_answers = new ArrayList<>(arrayList2);
-            tL_inputMediaPoll.flags |= 1;
-        }
-        if (fVar != null) {
-            SparseArray sparseArray = fVar.f46180a;
-            int size2 = sparseArray.size();
-            for (int i11 = 0; i11 < size2; i11++) {
-                int keyAt = sparseArray.keyAt(i11);
-                e eVar = (e) sparseArray.valueAt(i11);
-                if (eVar instanceof sh.e) {
-                    TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
-                    tL_inputMediaWebPage.url = ((sh.e) eVar).f46976b;
-                    tL_inputMediaWebPage.optional = true;
-                    f.k(tL_inputMediaPoll, keyAt, tL_inputMediaWebPage);
-                } else if (eVar instanceof sh.f) {
-                    f.k(tL_inputMediaPoll, keyAt, ag.d.h(((sh.f) eVar).f46982b));
-                } else if (eVar instanceof sh.h) {
-                    TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
-                    TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
-                    TLRPC.Document document = ((sh.h) eVar).f46985b;
-                    tL_inputDocument.f20356id = document.f20350id;
-                    tL_inputDocument.access_hash = document.access_hash;
-                    tL_inputDocument.file_reference = document.file_reference;
-                    tL_inputMediaDocument.f20405id = tL_inputDocument;
-                    f.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
+    public h(i iVar, int i10) {
+        this.f47614a = i10;
+        this.f47615b = iVar;
+    }
+
+    @Override
+    public final void run() {
+        int i10 = this.f47614a;
+        i iVar = this.f47615b;
+        switch (i10) {
+            case 0:
+                if (iVar.v != 0) {
+                    iVar.i(false);
+                    return;
                 }
-            }
-            int size3 = sparseArray.size();
-            for (int i12 = 0; i12 < size3; i12++) {
-                int keyAt2 = sparseArray.keyAt(i12);
-                e eVar2 = (e) sparseArray.valueAt(i12);
-                if (eVar2 instanceof sh.e) {
-                    TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
-                    TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
-                    tL_messageMediaWebPage.webpage = tL_webPage;
-                    String str2 = ((sh.e) eVar2).f46976b;
-                    tL_webPage.display_url = str2;
-                    tL_webPage.url = str2;
-                    f.l(tL_messageMediaPoll, keyAt2, tL_messageMediaWebPage);
-                } else if (eVar2 instanceof sh.f) {
-                    f.l(tL_messageMediaPoll, keyAt2, ((sh.f) eVar2).f46982b);
-                } else if (eVar2 instanceof sh.h) {
-                    TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
-                    tL_messageMediaDocument.document = ((sh.h) eVar2).f46985b;
-                    f.l(tL_messageMediaPoll, keyAt2, tL_messageMediaDocument);
+                return;
+            default:
+                int i11 = iVar.G - 1;
+                iVar.G = i11;
+                if (i11 == 0) {
+                    View view = iVar.E;
+                    RectF rectF = e.e;
+                    WeakHashMap weakHashMap = i0.f47105a;
+                    iVar.l(e.e1(b0.a(view), view, view.getRootView()), false);
+                    return;
                 }
-            }
+                return;
         }
-        this.f46199b = tL_messageMediaPoll;
-        this.f46200c = tL_inputMediaPoll;
     }
 }

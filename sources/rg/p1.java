@@ -1,413 +1,118 @@
 package rg;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.List;
+import android.graphics.Canvas;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.ak0;
-import org.telegram.ui.Components.xj0;
-import org.telegram.ui.Components.yg;
-import w7.z5;
-public final class p1 extends FrameLayout implements NotificationCenter.NotificationCenterDelegate {
-    public static final List f46017w = Arrays.asList(new m1(0, 1, 20, 0), new m1(0, 2, 20, 40), new m1(1, 0, 0, 20), new m1(1, 2, 60, 40), new m1(2, 0, 40, 20), new m1(2, 1, 40, 60));
-    public int f46018a;
-    public final ak0 f46019b;
-    public final ImageView f46020c;
-    public final ImageView d;
-    public final View e;
-    public final o1 f46021f;
-    public n1 h;
-    public int f46022n;
-    public int f46023r;
-    public int f46024s;
-    public String v;
+import org.telegram.ui.Components.qw0;
+import org.telegram.ui.yx;
+public final class p1 {
+    public c1 f47487a;
+    public w0 f47488b;
+    public Paint f47489c;
+    public Paint d;
+    public Paint e;
+    public Paint f47490f;
+    public Paint f47491g;
+    public f1 h;
+    public float f47492i;
+    public float f47493j;
+    public o1 f47494k;
+    public l1 f47495l;
+    public ArrayList f47496m;
+    public ArrayList f47497n;
+    public Matrix f47498o;
+    public float[] f47499p;
 
-    public p1(Context context) {
-        super(context);
-        this.f46018a = 0;
-        setWillNotDraw(false);
-        View view = new View(context);
-        this.e = view;
-        view.setOnClickListener(new View.OnClickListener(this) {
-            public final p1 f45862b;
-
-            {
-                this.f45862b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f45862b.h.a();
-                        return;
-                    case 1:
-                        p1 p1Var = this.f45862b;
-                        p1Var.d((p1Var.f46018a + 1) % 3, true);
-                        return;
-                    case 2:
-                        this.f45862b.h.c();
-                        return;
-                    case 3:
-                        this.f45862b.h.s();
-                        return;
-                    default:
-                        this.f45862b.h.C();
-                        return;
-                }
-            }
-        });
-        addView(view, z5.d(24, 24.0f, 48, 0.0f, 0.0f, 16.0f, 0.0f));
-        ?? imageView = new ImageView(context);
-        this.f46019b = imageView;
-        imageView.f(R.raw.photo_text_allign, 24, 24, null);
-        xj0 animatedDrawable = imageView.getAnimatedDrawable();
-        animatedDrawable.h = true;
-        animatedDrawable.P(20);
-        animatedDrawable.M(20);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView.setOnClickListener(new View.OnClickListener(this) {
-            public final p1 f45862b;
-
-            {
-                this.f45862b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f45862b.h.a();
-                        return;
-                    case 1:
-                        p1 p1Var = this.f45862b;
-                        p1Var.d((p1Var.f46018a + 1) % 3, true);
-                        return;
-                    case 2:
-                        this.f45862b.h.c();
-                        return;
-                    case 3:
-                        this.f45862b.h.s();
-                        return;
-                    default:
-                        this.f45862b.h.C();
-                        return;
-                }
-            }
-        });
-        imageView.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-        addView((View) imageView, z5.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f46020c = imageView2;
-        imageView2.setImageResource(R.drawable.msg_text_outlined);
-        imageView2.setPadding(AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f), AndroidUtilities.dp(1.0f));
-        imageView2.setOnClickListener(new View.OnClickListener(this) {
-            public final p1 f45862b;
-
-            {
-                this.f45862b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f45862b.h.a();
-                        return;
-                    case 1:
-                        p1 p1Var = this.f45862b;
-                        p1Var.d((p1Var.f46018a + 1) % 3, true);
-                        return;
-                    case 2:
-                        this.f45862b.h.c();
-                        return;
-                    case 3:
-                        this.f45862b.h.s();
-                        return;
-                    default:
-                        this.f45862b.h.C();
-                        return;
-                }
-            }
-        });
-        addView(imageView2, z5.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
-        ImageView imageView3 = new ImageView(context);
-        this.d = imageView3;
-        imageView3.setImageResource(R.drawable.msg_add);
-        imageView3.setColorFilter(new PorterDuffColorFilter(-1, mode));
-        imageView3.setBackground(k6.g0(1090519039, 1, -1));
-        imageView3.setOnClickListener(new View.OnClickListener(this) {
-            public final p1 f45862b;
-
-            {
-                this.f45862b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f45862b.h.a();
-                        return;
-                    case 1:
-                        p1 p1Var = this.f45862b;
-                        p1Var.d((p1Var.f46018a + 1) % 3, true);
-                        return;
-                    case 2:
-                        this.f45862b.h.c();
-                        return;
-                    case 3:
-                        this.f45862b.h.s();
-                        return;
-                    default:
-                        this.f45862b.h.C();
-                        return;
-                }
-            }
-        });
-        imageView3.setPadding(AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(2.0f));
-        addView(imageView3, z5.d(28, 28.0f, 16, 0.0f, 0.0f, 16.0f, 0.0f));
-        o1 o1Var = new o1(context);
-        this.f46021f = o1Var;
-        o1Var.setCurrent(true);
-        o1Var.setOnClickListener(new View.OnClickListener(this) {
-            public final p1 f45862b;
-
-            {
-                this.f45862b = this;
-            }
-
-            @Override
-            public final void onClick(View view2) {
-                switch (r2) {
-                    case 0:
-                        this.f45862b.h.a();
-                        return;
-                    case 1:
-                        p1 p1Var = this.f45862b;
-                        p1Var.d((p1Var.f46018a + 1) % 3, true);
-                        return;
-                    case 2:
-                        this.f45862b.h.c();
-                        return;
-                    case 3:
-                        this.f45862b.h.s();
-                        return;
-                    default:
-                        this.f45862b.h.C();
-                        return;
-                }
-            }
-        });
-        addView(o1Var, z5.o(-2, -2, 0.0f, 21));
+    public static float a(float f7, float f10, float f11, float f12, float f13, float f14) {
+        float f15 = f13 - f11;
+        float f16 = f14 - f12;
+        float max = Math.max(Math.min((((f10 - f12) * f16) + ((f7 - f11) * f15)) / ((f16 * f16) + (f15 * f15)), 1.0f), 0.0f);
+        float f17 = ((f15 * max) + f11) - f7;
+        float f18 = ((max * f16) + f12) - f10;
+        return (float) Math.sqrt((f18 * f18) + (f17 * f17));
     }
 
-    public final void a(int i10) {
-        if (i10 == 0) {
-            i10 = R.drawable.msg_add;
-        }
-        if (this.f46024s != i10) {
-            this.f46024s = i10;
-            AndroidUtilities.updateImageViewImageAnimated(this.d, i10);
-        }
-    }
-
-    public final void b(RectF rectF) {
-        o1 o1Var = this.f46021f;
-        rectF.set(AndroidUtilities.dp(8.0f) + o1Var.getLeft(), o1Var.getTop(), AndroidUtilities.dp(8.0f) + o1Var.getRight(), o1Var.getBottom());
-    }
-
-    public final void c(View view) {
-        if (view.getVisibility() != 8) {
-            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) view.getLayoutParams();
-            int i10 = this.f46023r + layoutParams.leftMargin;
-            this.f46023r = i10;
-            view.layout(i10, (getMeasuredHeight() - layoutParams.height) / 2, this.f46023r + layoutParams.width, (getMeasuredHeight() + layoutParams.height) / 2);
-            this.f46023r = layoutParams.width + layoutParams.rightMargin + this.f46023r;
-        }
-    }
-
-    public final void d(int i10, boolean z10) {
-        int i11 = this.f46018a;
-        this.f46018a = i10;
-        List list = f46017w;
-        ak0 ak0Var = this.f46019b;
-        if (i11 == i10) {
-            xj0 animatedDrawable = ak0Var.getAnimatedDrawable();
-            m1 m1Var = (m1) list.get(0);
-            Iterator it = list.iterator();
-            while (true) {
-                if (!it.hasNext()) {
-                    break;
-                }
-                m1 m1Var2 = (m1) it.next();
-                if (this.f46018a == m1Var2.f45921b) {
-                    m1Var = m1Var2;
-                    break;
-                }
-            }
-            animatedDrawable.M(m1Var.d);
-            animatedDrawable.P(m1Var.d);
-            if (z10) {
-                this.h.d(i10);
-                return;
-            }
-            return;
-        }
-        m1 m1Var3 = (m1) list.get(0);
-        Iterator it2 = list.iterator();
-        while (true) {
-            if (!it2.hasNext()) {
-                break;
-            }
-            m1 m1Var4 = (m1) it2.next();
-            if (i11 == m1Var4.f45920a && this.f46018a == m1Var4.f45921b) {
-                m1Var3 = m1Var4;
-                break;
-            }
-        }
-        xj0 animatedDrawable2 = ak0Var.getAnimatedDrawable();
-        animatedDrawable2.M(m1Var3.f45922c);
-        animatedDrawable2.P(m1Var3.d);
-        animatedDrawable2.start();
+    public final void b(Canvas canvas, qw0 qw0Var, o1 o1Var) {
+        Paint paint;
+        Paint paint2;
+        float width = (o1Var.d / qw0Var.f32052a) * canvas.getWidth();
+        float height = (o1Var.e / qw0Var.f32053b) * canvas.getHeight();
+        float dp = AndroidUtilities.dp(5.0f);
+        boolean z10 = o1Var.f47479a;
         if (z10) {
-            this.h.d(i10);
+            paint = this.d;
+        } else {
+            paint = this.f47490f;
         }
+        canvas.drawCircle(width, height, dp, paint);
+        float width2 = (o1Var.d / qw0Var.f32052a) * canvas.getWidth();
+        float height2 = (o1Var.e / qw0Var.f32053b) * canvas.getHeight();
+        float dp2 = AndroidUtilities.dp(5.0f);
+        if (z10) {
+            paint2 = this.e;
+        } else {
+            paint2 = this.f47491g;
+        }
+        canvas.drawCircle(width2, height2, dp2, paint2);
     }
 
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        String str;
-        if (i10 == NotificationCenter.customTypefacesLoaded && (str = this.v) != null) {
-            setTypeface(str);
-            this.v = null;
-        }
+    public final void c(float f7, float f10, boolean z10) {
+        float[] fArr = this.f47499p;
+        fArr[0] = f7;
+        fArr[1] = f10;
+        d(z10);
     }
 
-    public final void e(int i10, boolean z10) {
-        int i11;
-        if (this.f46022n == i10) {
-            return;
-        }
-        this.f46022n = i10;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    i11 = R.drawable.msg_photo_text_framed;
+    public final void d(boolean z10) {
+        int i10;
+        float[] fArr = this.f47499p;
+        f1 f1Var = this.h;
+        if (f1Var != null) {
+            float f7 = f1Var.h;
+            if (f7 != 0.0f) {
+                float f10 = fArr[0] - f1Var.f47413b;
+                fArr[0] = f10;
+                fArr[1] = fArr[1] - f1Var.f47414c;
+                if (z10) {
+                    i10 = -1;
                 } else {
-                    i11 = R.drawable.msg_photo_text_regular;
+                    i10 = 1;
+                }
+                double d = f7 * i10;
+                float cos = (float) ((Math.cos(d) * f10) - (Math.sin(d) * fArr[1]));
+                double sin = Math.sin(d) * fArr[0];
+                f1 f1Var2 = this.h;
+                fArr[0] = cos + f1Var2.f47413b;
+                fArr[1] = ((float) org.telegram.messenger.t.a(d, fArr[1], sin)) + f1Var2.f47414c;
+            }
+        }
+    }
+
+    public final void e() {
+        f1 f1Var;
+        c1 c1Var = this.f47487a;
+        if (c1Var != null && c1Var.getPainting() != null && (f1Var = this.h) != null) {
+            f1Var.f47415f = c1Var.getCurrentWeight();
+            q0 painting = c1Var.getPainting();
+            f1 f1Var2 = this.h;
+            int currentColor = c1Var.getCurrentColor();
+            if (f1Var2 != null) {
+                if (painting.f47514r != null) {
+                    painting.f47503f.f(new yx(painting, f1Var2, currentColor, 23));
                 }
             } else {
-                i11 = R.drawable.msg_photo_text_framed3;
+                painting.getClass();
             }
-        } else {
-            i11 = R.drawable.msg_photo_text_framed2;
-        }
-        ImageView imageView = this.f46020c;
-        if (z10) {
-            AndroidUtilities.updateImageViewImageAnimated(imageView, i11);
-        } else {
-            imageView.setImageResource(i11);
-        }
-    }
-
-    public View getColorClickableView() {
-        return this.e;
-    }
-
-    public yg getEmojiButton() {
-        return null;
-    }
-
-    public o1 getTypefaceCell() {
-        return this.f46021f;
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getGlobalInstance().addObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.customTypefacesLoaded);
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        this.f46023r = getPaddingLeft();
-        c(this.e);
-        c(this.f46019b);
-        c(this.f46020c);
-        c(this.d);
-        int measuredWidth = getMeasuredWidth() - getPaddingRight();
-        o1 o1Var = this.f46021f;
-        o1Var.layout(measuredWidth - o1Var.getMeasuredWidth(), (getMeasuredHeight() - o1Var.getMeasuredHeight()) / 2, getMeasuredWidth() - getPaddingRight(), (o1Var.getMeasuredHeight() + getMeasuredHeight()) / 2);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        int size2 = View.MeasureSpec.getSize(i11);
-        int paddingLeft = (size - getPaddingLeft()) - getPaddingRight();
-        for (int i12 = 0; i12 < getChildCount(); i12++) {
-            View childAt = getChildAt(i12);
-            o1 o1Var = this.f46021f;
-            if (childAt == o1Var) {
-                o1Var.measure(View.MeasureSpec.makeMeasureSpec(paddingLeft, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(size2, Integer.MIN_VALUE));
-            } else {
-                FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) childAt.getLayoutParams();
-                childAt.measure(View.MeasureSpec.makeMeasureSpec(layoutParams.width, 1073741824), View.MeasureSpec.makeMeasureSpec(layoutParams.height, 1073741824));
-                paddingLeft -= (childAt.getMeasuredWidth() + layoutParams.leftMargin) + layoutParams.rightMargin;
+            this.f47496m.clear();
+            this.f47497n.clear();
+            this.h = null;
+            b1 b1Var = c1Var.f47372a;
+            if (b1Var != null) {
+                b1Var.c();
             }
+            c1Var.e.f47409z = true;
         }
-        setMeasuredDimension(size, size2);
-    }
-
-    public void setAlignment(int i10) {
-        d(i10, false);
-    }
-
-    public void setDelegate(n1 n1Var) {
-        this.h = n1Var;
-    }
-
-    public void setOutlineType(int i10) {
-        e(i10, false);
-    }
-
-    public void setTypeface(String str) {
-        this.v = str;
-        o1 o1Var = this.f46021f;
-        if (o1Var != null) {
-            for (qg.l0 l0Var : qg.l0.c()) {
-                if (l0Var.f44977a.equals(str)) {
-                    o1Var.setTypeface(l0Var.d());
-                    String str2 = l0Var.f44979c;
-                    if (str2 == null) {
-                        str2 = LocaleController.getString(l0Var.f44978b);
-                    }
-                    o1Var.setText(str2);
-                    return;
-                }
-            }
-        }
-    }
-
-    public void setTypefaceListView(u1 u1Var) {
     }
 }

@@ -1,198 +1,171 @@
 package b2;
 
-import android.os.Looper;
-import android.view.SurfaceHolder;
-import java.util.List;
-public interface f1 {
-    int A();
-
-    Looper A0();
-
-    void B(r0 r0Var);
-
-    void B0();
-
-    void C(d1 d1Var);
-
-    void C0();
-
-    a2 D();
-
-    boolean D0();
-
-    void E();
-
-    t1 E0();
-
-    float F();
-
-    long F0();
-
-    void G();
-
-    void G0(int i10);
-
-    f H();
-
-    void H0();
-
-    void I(int i10, boolean z10);
-
-    void I0();
-
-    p J();
-
-    void J0();
-
-    void K();
-
-    r0 K0();
-
-    void L(int i10, int i11);
-
-    void L0(List list);
-
-    void M(int i10);
-
-    long M0();
-
-    int N();
-
-    void N0(f fVar, boolean z10);
-
-    void O(int i10, int i11, List list);
-
-    long O0();
-
-    boolean P();
-
-    boolean P0();
-
-    void Q(int i10);
-
-    void R(int i10, int i11);
-
-    void S(long j10, int i10, List list);
-
-    void T(SurfaceHolder surfaceHolder);
-
-    void U(float f7);
-
-    void V();
-
-    y0 W();
-
-    void X(boolean z10);
-
-    void Y(int i10);
-
-    long Z();
-
-    void a(float f7);
-
-    long a0();
-
-    void b();
-
-    void b0(int i10, List list);
-
-    boolean c();
-
-    void c0();
-
-    int d();
-
-    long d0();
-
-    void e();
-
-    boolean e0();
-
-    void f(z0 z0Var);
-
-    void f0();
-
-    void g(long j10);
-
-    void g0(int i10);
-
-    long getDuration();
-
-    z0 h();
-
-    v1 h0();
-
-    void i();
-
-    r0 i0();
-
-    void j(int i10);
-
-    boolean j0();
-
-    void k(o0 o0Var, long j10);
-
-    d2.c k0();
-
-    int l();
-
-    void l0(o0 o0Var);
-
-    int m();
-
-    int m0();
-
-    boolean n();
-
-    int n0();
-
-    long o();
-
-    boolean o0(int i10);
-
-    void p(t1 t1Var);
-
-    void p0(d1 d1Var);
-
-    long q();
-
-    void q0(boolean z10);
-
-    void r(int i10, long j10);
-
-    void r0(o0 o0Var);
-
-    b1 s();
-
-    void s0(int i10, int i11);
-
-    void stop();
-
-    boolean t();
-
-    void t0(int i10, int i11, int i12);
-
-    void u();
-
-    void u0(o0 o0Var, int i10);
-
-    o0 v();
-
-    boolean v0();
-
-    void w(boolean z10);
-
-    int w0();
-
-    int x();
-
-    void x0(List list);
-
-    long y();
-
-    o1 y0();
-
-    long z();
-
-    boolean z0();
+import a8.yb;
+import android.os.Bundle;
+import j$.util.Objects;
+import org.telegram.ui.Components.b10;
+public final class f1 {
+    public static final String f3194j;
+    public static final String f3195k;
+    public static final String f3196l;
+    public static final String f3197m;
+    public static final String f3198n;
+    public static final String f3199o;
+    public static final String f3200p;
+    public final Object f3201a;
+    public final int f3202b;
+    public final p0 f3203c;
+    public final Object d;
+    public final int e;
+    public final long f3204f;
+    public final long f3205g;
+    public final int h;
+    public final int f3206i;
+
+    static {
+        String str = e2.n0.f9692a;
+        f3194j = Integer.toString(0, 36);
+        f3195k = Integer.toString(1, 36);
+        f3196l = Integer.toString(2, 36);
+        f3197m = Integer.toString(3, 36);
+        f3198n = Integer.toString(4, 36);
+        f3199o = Integer.toString(5, 36);
+        f3200p = Integer.toString(6, 36);
+    }
+
+    public f1(Object obj, int i10, p0 p0Var, Object obj2, int i11, long j10, long j11, int i12, int i13) {
+        boolean z10;
+        if (i10 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        yb.g(z10);
+        yb.g(i11 >= 0);
+        this.f3201a = obj;
+        this.f3202b = i10;
+        this.f3203c = p0Var;
+        this.d = obj2;
+        this.e = i11;
+        this.f3204f = j10;
+        this.f3205g = j11;
+        this.h = i12;
+        this.f3206i = i13;
+    }
+
+    public final boolean a(f1 f1Var) {
+        if (this.f3202b == f1Var.f3202b && this.e == f1Var.e && this.f3204f == f1Var.f3204f && this.f3205g == f1Var.f3205g && this.h == f1Var.h && this.f3206i == f1Var.f3206i && Objects.equals(this.f3203c, f1Var.f3203c)) {
+            return true;
+        }
+        return false;
+    }
+
+    public final f1 b(boolean z10, boolean z11) {
+        int i10;
+        p0 p0Var;
+        long j10;
+        int i11;
+        if (z10 && z11) {
+            return this;
+        }
+        int i12 = 0;
+        if (z11) {
+            i10 = this.f3202b;
+        } else {
+            i10 = 0;
+        }
+        if (z10) {
+            p0Var = this.f3203c;
+        } else {
+            p0Var = null;
+        }
+        if (z11) {
+            i12 = this.e;
+        }
+        int i13 = i12;
+        long j11 = 0;
+        if (z10) {
+            j10 = this.f3204f;
+        } else {
+            j10 = 0;
+        }
+        if (z10) {
+            j11 = this.f3205g;
+        }
+        int i14 = -1;
+        if (z10) {
+            i11 = this.h;
+        } else {
+            i11 = -1;
+        }
+        if (z10) {
+            i14 = this.f3206i;
+        }
+        return new f1(this.f3201a, i10, p0Var, this.d, i13, j10, j11, i11, i14);
+    }
+
+    public final Bundle c(int i10) {
+        Bundle bundle = new Bundle();
+        int i11 = this.f3202b;
+        if (i10 < 3 || i11 != 0) {
+            bundle.putInt(f3194j, i11);
+        }
+        p0 p0Var = this.f3203c;
+        if (p0Var != null) {
+            bundle.putBundle(f3195k, p0Var.c(i10, false));
+        }
+        int i12 = this.e;
+        if (i10 < 3 || i12 != 0) {
+            bundle.putInt(f3196l, i12);
+        }
+        long j10 = this.f3204f;
+        if (i10 < 3 || j10 != 0) {
+            bundle.putLong(f3197m, j10);
+        }
+        long j11 = this.f3205g;
+        if (i10 < 3 || j11 != 0) {
+            bundle.putLong(f3198n, j11);
+        }
+        int i13 = this.h;
+        if (i13 != -1) {
+            bundle.putInt(f3199o, i13);
+        }
+        int i14 = this.f3206i;
+        if (i14 != -1) {
+            bundle.putInt(f3200p, i14);
+        }
+        return bundle;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && f1.class == obj.getClass()) {
+            f1 f1Var = (f1) obj;
+            if (a(f1Var) && Objects.equals(this.f3201a, f1Var.f3201a) && Objects.equals(this.d, f1Var.d)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f3201a, Integer.valueOf(this.f3202b), this.f3203c, this.d, Integer.valueOf(this.e), Long.valueOf(this.f3204f), Long.valueOf(this.f3205g), Integer.valueOf(this.h), Integer.valueOf(this.f3206i));
+    }
+
+    public final String toString() {
+        String str = "mediaItem=" + this.f3202b + ", period=" + this.e + ", pos=" + this.f3204f;
+        int i10 = this.h;
+        if (i10 == -1) {
+            return str;
+        }
+        StringBuilder l4 = b10.l(str, ", contentPos=");
+        l4.append(this.f3205g);
+        l4.append(", adGroup=");
+        l4.append(i10);
+        l4.append(", ad=");
+        l4.append(this.f3206i);
+        return l4.toString();
+    }
 }

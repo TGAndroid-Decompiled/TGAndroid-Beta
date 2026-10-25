@@ -1,34 +1,43 @@
 package org.telegram.ui;
 
-import java.util.Comparator;
-import org.telegram.messenger.MessagesController;
-public final class ew0 implements Comparator {
-    public final int f37004a;
-    public final MessagesController f37005b;
+import android.view.View;
+import org.telegram.messenger.Utilities;
+public final class ew0 implements org.telegram.ui.ActionBar.b2, Utilities.Callback5 {
+    public final int f39188a;
+    public final fw0 f39189b;
 
-    public ew0(MessagesController messagesController, int i10) {
-        this.f37004a = i10;
-        this.f37005b = messagesController;
+    public ew0(fw0 fw0Var, int i10) {
+        this.f39188a = i10;
+        this.f39189b = fw0Var;
     }
 
     @Override
-    public final int compare(Object obj, Object obj2) {
-        int i10;
-        int i11;
-        rw0 rw0Var = (rw0) obj;
-        rw0 rw0Var2 = (rw0) obj2;
-        switch (this.f37004a) {
+    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f39188a) {
             case 0:
-                MessagesController messagesController = this.f37005b;
-                i10 = messagesController.businessFeaturesTypesToPosition.get(rw0Var.f41244a, Integer.MAX_VALUE);
-                i11 = messagesController.businessFeaturesTypesToPosition.get(rw0Var2.f41244a, Integer.MAX_VALUE);
-                break;
+                this.f39189b.Z();
+                return;
             default:
-                MessagesController messagesController2 = this.f37005b;
-                i10 = messagesController2.premiumFeaturesTypesToPosition.get(rw0Var.f41244a, Integer.MAX_VALUE);
-                i11 = messagesController2.premiumFeaturesTypesToPosition.get(rw0Var2.f41244a, Integer.MAX_VALUE);
-                break;
+                this.f39189b.finishFragment();
+                return;
         }
-        return i10 - i11;
+    }
+
+    @Override
+    public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).intValue();
+        ((Float) obj4).floatValue();
+        ((Float) obj5).floatValue();
+        fw0 fw0Var = this.f39189b;
+        fw0Var.getClass();
+        if (((org.telegram.ui.Components.t61) obj).d == 1) {
+            org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) view;
+            boolean z10 = !a9Var.e.h;
+            fw0Var.f39485n = z10;
+            a9Var.setChecked(z10);
+            fw0Var.d.f32150g3.O(true);
+            fw0Var.W(true);
+        }
     }
 }

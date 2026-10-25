@@ -1,223 +1,122 @@
 package org.telegram.ui;
 
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
-import android.view.View;
-import java.util.ArrayList;
-import java.util.Stack;
-import java.util.concurrent.atomic.AtomicReference;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.tl.TL_iv;
-public final class c3 implements org.telegram.ui.Cells.z9, fj0, org.telegram.ui.Components.zz0 {
-    public int E = -1;
-    public int F = -1;
-    public int G = -1;
-    public org.telegram.ui.Components.u5 H;
-    public ArrayList I;
-    public Stack J;
-    public AtomicReference K;
-    public View L;
-    public final f70 f36202a;
-    public View f36203b;
-    public boolean f36204c;
-    public StaticLayout d;
-    public org.telegram.ui.Components.q90 e;
-    public org.telegram.ui.Components.q90 f36205f;
-    public org.telegram.ui.Components.q90 h;
-    public TL_iv.PageBlock f36206n;
-    public TL_iv.RichText f36207r;
-    public int f36208s;
-    public int v;
-    public int f36209w;
-    public CharSequence f36210x;
-    public SpannableStringBuilder f36211y;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+public final class c3 extends FrameLayout {
+    public final LinearLayout f38232a;
+    public boolean f38233b;
+    public final org.telegram.ui.Components.y9 f38234c;
+    public final TextView d;
+    public final TextView e;
+    public final TextView f38235f;
+    public final fi.d h;
+    public ValueAnimator f38236n;
+    public boolean f38237r;
 
-    public c3(f70 f70Var) {
-        this.f36202a = f70Var;
+    public c3(Context context) {
+        super(context);
+        this.f38237r = true;
+        setVisibility(8);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.f38232a = linearLayout;
+        linearLayout.setPadding(AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f), AndroidUtilities.dp(32.0f), AndroidUtilities.dp(24.0f));
+        linearLayout.setOrientation(1);
+        linearLayout.setGravity(3);
+        addView(linearLayout, org.telegram.ui.Components.gb1.i(-2, -2, 17));
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        this.f38234c = y9Var;
+        linearLayout.addView(y9Var, org.telegram.ui.Components.gb1.r(100, 100));
+        TextView textView = new TextView(context);
+        this.d = textView;
+        textView.setTextSize(1, 19.0f);
+        textView.setTypeface(AndroidUtilities.bold());
+        textView.setTextColor(-1);
+        TextView e = org.telegram.messenger.vh.e(linearLayout, textView, org.telegram.ui.Components.gb1.x(-2, -2, 3, 0, 4, 0, 2), context);
+        this.e = e;
+        e.setTextSize(1, 15.0f);
+        e.setTextColor(-1);
+        e.setSingleLine(false);
+        e.setMaxLines(3);
+        TextView e10 = org.telegram.messenger.vh.e(linearLayout, e, org.telegram.ui.Components.gb1.x(-2, -2, 3, 0, 0, 0, 1), context);
+        this.f38235f = e10;
+        e10.setTextSize(1, 12.0f);
+        e10.setTextColor(-1);
+        e10.setAlpha(0.4f);
+        linearLayout.addView(e10, org.telegram.ui.Components.gb1.u(-2, -2, 3));
+        fi.d dVar = new fi.d(context, null, true);
+        this.h = dVar;
+        dVar.setMinWidth(AndroidUtilities.dp(140.0f));
+        dVar.i(LocaleController.getString(R.string.Refresh), false, true);
+        linearLayout.addView(dVar, org.telegram.ui.Components.gb1.x(-2, 40, 3, 0, 12, 0, 0));
     }
 
-    public final int a() {
-        int i10 = this.E;
-        if (i10 != -1) {
-            return i10;
-        }
-        this.E = this.d.getWidth();
-        for (int i11 = 0; i11 < this.d.getLineCount(); i11++) {
-            this.E = Math.min(this.E, (int) this.d.getLineLeft(i11));
-        }
-        return this.E;
+    public final void a(String str, String str2) {
+        this.d.setText(LocaleController.getString(R.string.WebErrorTitle));
+        org.telegram.messenger.vh.o(R.string.WebErrorInfoBot, new Object[]{str}, this.e);
+        this.f38235f.setText(str2);
     }
 
-    @Override
-    public final void attach(View view) {
-        this.L = view;
-        StaticLayout staticLayout = this.d;
-        if (staticLayout != null) {
-            this.H = org.telegram.ui.Components.y5.update(0, view, false, this.H, staticLayout);
+    public final void b(boolean z10, boolean z11) {
+        int i10;
+        int i11;
+        float f7;
+        if (this.f38237r == z10) {
+            return;
         }
-    }
-
-    public final int b() {
-        int i10 = this.F;
-        if (i10 != -1) {
-            return i10;
+        this.f38237r = z10;
+        ValueAnimator valueAnimator = this.f38236n;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
         }
-        this.F = 0;
-        for (int i11 = 0; i11 < this.d.getLineCount(); i11++) {
-            this.F = Math.max(this.F, (int) this.d.getLineRight(i11));
-        }
-        return this.F;
-    }
-
-    public final int c() {
-        int i10 = this.G;
-        if (i10 != -1) {
-            return i10;
-        }
-        this.G = 0;
-        if (this.d.getLineCount() > 0) {
-            int i11 = this.G;
-            StaticLayout staticLayout = this.d;
-            this.G = Math.max(i11, (int) staticLayout.getLineRight(staticLayout.getLineCount() - 1));
-        }
-        return this.G;
-    }
-
-    @Override
-    public final void detach(View view) {
-        if (view == null) {
-            view = this.L;
-        }
-        org.telegram.ui.Components.y5.release(view, this.H);
-        this.L = null;
-    }
-
-    @Override
-    public final void draw(Canvas canvas, View view) {
-        float width;
-        Object obj;
-        TL_iv.RichText richText;
-        this.f36204c = true;
-        this.f36203b = view;
-        f70 f70Var = this.f36202a;
-        float f7 = 0.0f;
-        if (!f70Var.E.isEmpty()) {
-            s3 s3Var = (s3) f70Var.E.get(f70Var.G);
-            if (s3Var.f41295c == this.f36206n && ((obj = s3Var.f41294b) == (richText = this.f36207r) || ((obj instanceof String) && richText == null))) {
-                if (-1 != s3Var.f41293a) {
-                    org.telegram.ui.Components.q90 q90Var = new org.telegram.ui.Components.q90(0);
-                    this.h = q90Var;
-                    q90Var.f29857n = false;
-                    q90Var.d(this.d, s3Var.f41293a, 0.0f);
-                    this.h.f29858o = 0;
-                    StaticLayout staticLayout = this.d;
-                    int i10 = s3Var.f41293a;
-                    staticLayout.getSelectionPath(i10, f70Var.F.length() + i10, this.h);
-                    this.h.f29857n = true;
-                }
+        if (z11) {
+            float f10 = 1.0f;
+            if (z10) {
+                f7 = 0.0f;
             } else {
-                this.h = null;
+                f7 = 1.0f;
             }
-        } else {
-            this.h = null;
-        }
-        org.telegram.ui.Components.q90 q90Var2 = this.h;
-        if (q90Var2 != null) {
-            canvas.drawPath(q90Var2, k4.f38752z1);
-        }
-        org.telegram.ui.Components.q90 q90Var3 = this.e;
-        if (q90Var3 != null) {
-            canvas.drawPath(q90Var3, k4.f38751y1);
-        }
-        org.telegram.ui.Components.q90 q90Var4 = this.f36205f;
-        if (q90Var4 != null) {
-            canvas.drawPath(q90Var4, k4.A1);
-        }
-        if (f70Var.f37216c.g(canvas, this)) {
-            view.invalidate();
-        }
-        if (f70Var.d == this && f70Var.f37215b == null && f70Var.h) {
-            if (this.d.getLineCount() == 1) {
-                width = this.d.getLineWidth(0);
-                f7 = this.d.getLineLeft(0);
-            } else {
-                width = this.d.getWidth();
+            if (!z10) {
+                f10 = 0.0f;
             }
-            canvas.drawRect((-AndroidUtilities.dp(2.0f)) + f7, 0.0f, f7 + width + AndroidUtilities.dp(2.0f), this.d.getHeight(), k4.f38750x1);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(f7, f10);
+            this.f38236n = ofFloat;
+            ofFloat.addUpdateListener(new b3(this, 0));
+            this.f38236n.start();
+            return;
         }
-        ArrayList arrayList = this.I;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            wh.g.g(view, false, this.d.getPaint().getColor(), 0, this.K, 0, this.d, this.I, canvas, false);
+        int i12 = -1;
+        if (!z10) {
+            i10 = -16777216;
         } else {
-            this.d.draw(canvas);
+            i10 = -1;
         }
-        this.f36204c = false;
-    }
-
-    @Override
-    public final int getEmojiOnlyCount() {
-        return 0;
-    }
-
-    @Override
-    public final Layout getLayout() {
-        return this.d;
-    }
-
-    @Override
-    public final View getParentView() {
-        View view = this.L;
-        if (view != null) {
-            return view;
+        this.d.setTextColor(i10);
+        if (!z10) {
+            i11 = -16777216;
+        } else {
+            i11 = -1;
         }
-        return this.f36203b;
+        this.e.setTextColor(i11);
+        if (!z10) {
+            i12 = -16777216;
+        }
+        this.f38235f.setTextColor(i12);
     }
 
     @Override
-    public final CharSequence getPrefix() {
-        return this.f36210x;
-    }
-
-    @Override
-    public final int getRow() {
-        return this.f36209w;
-    }
-
-    @Override
-    public final Rect getSelectionBounds() {
-        return null;
-    }
-
-    @Override
-    public final CharSequence getText() {
-        return this.d.getText();
-    }
-
-    @Override
-    public final int getX() {
-        return this.f36208s;
-    }
-
-    @Override
-    public final int getY() {
-        return this.v;
-    }
-
-    @Override
-    public final void setRow(int i10) {
-        this.f36209w = i10;
-    }
-
-    @Override
-    public final void setX(int i10) {
-        this.f36208s = i10;
-    }
-
-    @Override
-    public final void setY(int i10) {
-        this.v = i10;
+    public void setVisibility(int i10) {
+        super.setVisibility(i10);
+        if (i10 == 0 && !this.f38233b) {
+            this.f38233b = true;
+            MediaDataController.getInstance(UserConfig.selectedAccount).setPlaceholderImage(this.f38234c, "tg_placeholders_android", "🧐", "100_100");
+        }
     }
 }

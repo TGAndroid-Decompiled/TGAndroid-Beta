@@ -1,59 +1,59 @@
 package i3;
 
-import ai.c1;
+import b2.h;
 import c3.l;
+import c3.n;
+import c3.o;
 import c3.p;
 import c3.q;
-import c3.r;
-import c3.s;
 import e2.x;
-import e9.l0;
-import e9.n0;
-import e9.x1;
+import f9.g0;
+import f9.i0;
+import f9.s1;
 import java.util.List;
-public final class b implements q {
-    public final x f12676a = new x(4);
-    public final x f12677b = new x(9);
-    public final x f12678c = new x(11);
+public final class b implements o {
+    public final x f13816a = new x(4);
+    public final x f13817b = new x(9);
+    public final x f13818c = new x(11);
     public final x d = new x();
     public final c e;
-    public s f12679f;
-    public int f12680g;
+    public q f13819f;
+    public int f13820g;
     public boolean h;
-    public long f12681i;
-    public int f12682j;
-    public int f12683k;
-    public int f12684l;
-    public long f12685m;
-    public boolean f12686n;
-    public a f12687o;
-    public e f12688p;
+    public long f13821i;
+    public int f13822j;
+    public int f13823k;
+    public int f13824l;
+    public long f13825m;
+    public boolean f13826n;
+    public a f13827o;
+    public e f13828p;
 
     public b() {
-        ?? c1Var = new c1(new p());
-        c1Var.f12689b = -9223372036854775807L;
-        c1Var.f12690c = new long[0];
-        c1Var.d = new long[0];
-        this.e = c1Var;
-        this.f12680g = 1;
+        ?? hVar = new h(new n());
+        hVar.f13829b = -9223372036854775807L;
+        hVar.f13830c = new long[0];
+        hVar.d = new long[0];
+        this.e = hVar;
+        this.f13820g = 1;
     }
 
     @Override
-    public final boolean a(r rVar) {
-        x xVar = this.f12676a;
-        l lVar = (l) rVar;
-        lVar.j(xVar.f8298a, 0, 3, false);
+    public final boolean a(p pVar) {
+        x xVar = this.f13816a;
+        l lVar = (l) pVar;
+        lVar.h(xVar.f9732a, 0, 3, false);
         xVar.N(0);
         if (xVar.D() == 4607062) {
-            lVar.j(xVar.f8298a, 0, 2, false);
+            lVar.h(xVar.f9732a, 0, 2, false);
             xVar.N(0);
             if ((xVar.H() & 250) == 0) {
-                lVar.j(xVar.f8298a, 0, 4, false);
+                lVar.h(xVar.f9732a, 0, 4, false);
                 xVar.N(0);
                 int m10 = xVar.m();
-                lVar.f4648f = 0;
-                lVar.u(m10, false);
-                lVar.j(xVar.f8298a, 0, 4, false);
+                lVar.f6081f = 0;
+                lVar.s(m10, false);
+                lVar.h(xVar.f9732a, 0, 4, false);
                 xVar.N(0);
                 if (xVar.m() == 0) {
                     return true;
@@ -64,48 +64,48 @@ public final class b implements q {
     }
 
     @Override
-    public final void c(s sVar) {
-        this.f12679f = sVar;
+    public final void c(q qVar) {
+        this.f13819f = qVar;
     }
 
     @Override
     public final void d(long j10, long j11) {
         if (j10 == 0) {
-            this.f12680g = 1;
+            this.f13820g = 1;
             this.h = false;
         } else {
-            this.f12680g = 3;
+            this.f13820g = 3;
         }
-        this.f12682j = 0;
+        this.f13822j = 0;
     }
 
     @Override
     public final List e() {
-        l0 l0Var = n0.f8481b;
-        return x1.e;
+        g0 g0Var = i0.f10287b;
+        return s1.e;
     }
 
     @Override
-    public final int f(c3.r r30, c3.u r31) {
-        throw new UnsupportedOperationException("Method not decompiled: i3.b.f(c3.r, c3.u):int");
+    public final int f(c3.p r30, c3.s r31) {
+        throw new UnsupportedOperationException("Method not decompiled: i3.b.f(c3.p, c3.s):int");
     }
 
-    public final x g(r rVar) {
-        int i10 = this.f12684l;
+    public final x g(p pVar) {
+        int i10 = this.f13824l;
         x xVar = this.d;
-        byte[] bArr = xVar.f8298a;
+        byte[] bArr = xVar.f9732a;
         if (i10 > bArr.length) {
             xVar.L(0, new byte[Math.max(bArr.length * 2, i10)]);
         } else {
             xVar.N(0);
         }
-        xVar.M(this.f12684l);
-        rVar.readFully(xVar.f8298a, 0, this.f12684l);
+        xVar.M(this.f13824l);
+        pVar.readFully(xVar.f9732a, 0, this.f13824l);
         return xVar;
     }
 
     @Override
-    public final q b() {
+    public final o b() {
         return this;
     }
 

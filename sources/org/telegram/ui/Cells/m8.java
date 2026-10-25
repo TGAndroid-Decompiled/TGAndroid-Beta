@@ -1,29 +1,51 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class m8 extends LinearLayout {
-    public TextView f22732a;
-    public boolean f22733b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class m8 extends AnimatorListenerAdapter {
+    public final int f24483a;
+    public final boolean f24484b;
+    public final p8 f24485c;
+
+    public m8(p8 p8Var, boolean z10, int i10) {
+        this.f24483a = i10;
+        this.f24485c = p8Var;
+        this.f24484b = z10;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        View view;
-        int measuredHeight;
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
-        if (this.f22733b && (view = (View) getParent()) != null && getMeasuredHeight() < (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - AndroidUtilities.dp(24.0f))) {
-            setMeasuredDimension(getMeasuredWidth(), measuredHeight);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f24483a) {
+            case 0:
+                if (!this.f24484b) {
+                    this.f24485c.h.setVisibility(4);
+                    return;
+                }
+                return;
+            default:
+                if (!this.f24484b) {
+                    this.f24485c.f24776x.setVisibility(4);
+                    return;
+                }
+                return;
         }
     }
 
-    public void setAddOnClickListener(View.OnClickListener onClickListener) {
-        this.f22732a.setOnClickListener(onClickListener);
-    }
-
-    public void setIsLast(boolean z10) {
-        this.f22733b = z10;
-        requestLayout();
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f24483a) {
+            case 0:
+                if (this.f24484b) {
+                    this.f24485c.h.setVisibility(0);
+                    return;
+                }
+                return;
+            default:
+                if (this.f24484b) {
+                    this.f24485c.f24776x.setVisibility(0);
+                    return;
+                }
+                return;
+        }
     }
 }

@@ -1,10 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.widget.TextView;
-import org.telegram.messenger.Emoji;
-public final class q4 extends w90 {
+import android.content.Context;
+import android.graphics.Point;
+import android.widget.LinearLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class q4 extends LinearLayout {
+    public boolean f31828a;
+    public final md0 f31829b;
+    public final md0 f31830c;
+    public final md0 d;
+
+    public q4(Context context, md0 md0Var, md0 md0Var2, md0 md0Var3) {
+        super(context);
+        this.f31829b = md0Var;
+        this.f31830c = md0Var2;
+        this.d = md0Var3;
+        this.f31828a = false;
+    }
+
     @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(Emoji.replaceEmoji(charSequence, getPaint().getFontMetricsInt(), false), bufferType);
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        this.f31828a = true;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            i12 = 3;
+        } else {
+            i12 = 5;
+        }
+        md0 md0Var = this.f31829b;
+        md0Var.setItemCount(i12);
+        md0 md0Var2 = this.f31830c;
+        md0Var2.setItemCount(i12);
+        md0 md0Var3 = this.d;
+        md0Var3.setItemCount(i12);
+        md0Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        md0Var2.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        md0Var3.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+        this.f31828a = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f31828a) {
+            return;
+        }
+        super.requestLayout();
     }
 }

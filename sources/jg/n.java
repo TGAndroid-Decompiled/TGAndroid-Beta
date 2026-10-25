@@ -1,523 +1,574 @@
 package jg;
 
-import ah.l0;
-import android.animation.ValueAnimator;
-import android.graphics.Canvas;
+import android.animation.AnimatorSet;
+import android.content.Context;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Typeface;
-import android.text.TextPaint;
+import android.graphics.drawable.ColorDrawable;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import com.google.android.gms.internal.play_billing.k3;
+import android.view.ViewGroup;
+import android.widget.ImageView;
+import androidx.recyclerview.widget.RecyclerView;
+import di.a3;
+import fi.l2;
+import fi.o6;
+import fi.z3;
+import hi.x2;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class n extends q {
-    public float[] I1;
-    public float[] J1;
-    public float K1;
-    public boolean L1;
-    public int M1;
-    public RectF N1;
-    public TextPaint O1;
-    public float P1;
-    public float Q1;
-    public String[] R1;
-    public lg.g S1;
-    public float T1;
-    public int U1;
-    public int V1;
-    public int W1;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.l6;
+import org.telegram.ui.ActionBar.u5;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.l71;
+import org.telegram.ui.Components.m71;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.ro;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.to;
+import org.telegram.ui.Components.vo;
+import org.telegram.ui.ft;
+public final class n extends m71 implements NotificationCenter.NotificationCenterDelegate {
+    public TLRPC.InputDocument E;
+    public boolean F;
+    public String G;
+    public String H;
+    public long I;
+    public boolean J;
+    public a3 L;
+    public u5 f15780f;
+    public k h;
+    public j f15781n;
+    public l6 f15782r;
+    public m f15783s;
+    public m v;
+    public String f15786y;
+    public final g e = new g(this, 1);
+    public boolean f15784w = true;
+    public TLRPC.Document f15785x = getMediaDataController().getGreetingsSticker();
+    public boolean K = h0();
 
-    @Override
-    public final void A(boolean z10, boolean z11, boolean z12) {
-        super.A(z10, z11, z12);
-        kg.b bVar = this.f14508h0;
-        if (bVar != null && ((kg.e) bVar).f15099b != null) {
-            j jVar = this.f14506g0;
-            N(jVar.f14547k, jVar.f14548l, z11);
-        }
-    }
-
-    @Override
-    public final void C(int i10, int i11) {
-        ArrayList arrayList;
-        double d;
-        double d10;
-        RectF rectF = this.N1;
-        if (this.f14508h0 != null && !this.L1) {
-            RectF rectF2 = this.H0;
-            float degrees = (float) (Math.toDegrees(Math.atan2((rectF2.centerY() + AndroidUtilities.dp(16.0f)) - i11, rectF2.centerX() - i10)) - 90.0d);
-            float f7 = 0.0f;
-            if (degrees < 0.0f) {
-                degrees = (float) (degrees + 360.0d);
-            }
-            float f10 = degrees / 360.0f;
-            int i12 = 0;
-            float f11 = 0.0f;
-            int i13 = 0;
-            while (true) {
-                arrayList = this.d;
-                if (i13 < arrayList.size()) {
-                    if (((o) arrayList.get(i13)).f16126n || ((o) arrayList.get(i13)).f16127o != 0.0f) {
-                        if (f10 > f11) {
-                            float f12 = this.J1[i13] + f11;
-                            if (f10 < f12) {
-                                f7 = f12;
-                                break;
-                            }
-                        }
-                        f11 += this.J1[i13];
-                    }
-                    i13++;
-                } else {
-                    i13 = -1;
-                    f11 = 0.0f;
-                    break;
-                }
-            }
-            if (this.M1 != i13 && i13 >= 0) {
-                this.M1 = i13;
-                invalidate();
-                this.S1.setVisibility(0);
-                lg.f fVar = (lg.f) arrayList.get(i13);
-                lg.g gVar = this.S1;
-                String str = fVar.f16116a.d;
-                int i14 = fVar.f16125m;
-                gVar.M.setText(str);
-                TextView textView = gVar.N;
-                textView.setText(Integer.toString((int) this.I1[this.M1]));
-                textView.setTextColor(i14);
-                this.S1.measure(View.MeasureSpec.makeMeasureSpec(getMeasuredWidth(), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), Integer.MIN_VALUE));
-                double width = rectF.width() / 2.0f;
-                int min = (int) Math.min(rectF.centerX() + (Math.cos(Math.toRadians((f7 * 360.0f) - 90.0f)) * width), rectF.centerX() + (Math.cos(Math.toRadians((f11 * 360.0f) - 90.0f)) * width));
-                if (min >= 0) {
-                    i12 = min;
-                }
-                if (this.S1.getMeasuredWidth() + i12 > getMeasuredWidth() - AndroidUtilities.dp(16.0f)) {
-                    i12 -= (this.S1.getMeasuredWidth() + i12) - (getMeasuredWidth() - AndroidUtilities.dp(16.0f));
-                }
-                int min2 = ((int) Math.min(rectF.centerY(), (int) Math.min((Math.sin(Math.toRadians(d10)) * width) + rectF.centerY(), (Math.sin(Math.toRadians(d)) * width) + rectF.centerY()))) - AndroidUtilities.dp(50.0f);
-                this.S1.setTranslationX(i12);
-                this.S1.setTranslationY(min2);
-                AndroidUtilities.vibrateCursor(this);
-            }
-            x((this.G0 * this.f14506g0.f14547k) - g.f14475k1);
-        }
-    }
-
-    @Override
-    public final boolean D(kg.b bVar) {
-        kg.e eVar = (kg.e) bVar;
-        boolean D = super.D(eVar);
-        if (eVar != null) {
-            this.I1 = new float[eVar.d.size()];
-            this.J1 = new float[eVar.d.size()];
-            A(false, true, false);
-        }
-        return D;
-    }
-
-    @Override
-    public final void J(kg.b bVar, long j10) {
-        float length;
-        int length2 = bVar.f15098a.length;
-        long j11 = j10 - (j10 % 86400000);
-        int i10 = 0;
-        for (int i11 = 0; i11 < length2; i11++) {
-            if (j11 >= bVar.f15098a[i11]) {
-                i10 = i11;
-            }
-        }
-        if (bVar.f15099b.length < 2) {
-            length = 0.5f;
-        } else {
-            length = 1.0f / bVar.f15098a.length;
-        }
-        j jVar = this.f14506g0;
-        if (i10 == 0) {
-            jVar.f14547k = 0.0f;
-            jVar.f14548l = length;
-        } else if (i10 >= bVar.f15098a.length - 1) {
-            jVar.f14547k = 1.0f - length;
-            jVar.f14548l = 1.0f;
-        } else {
-            float f7 = i10 * length;
-            jVar.f14547k = f7;
-            float f10 = f7 + length;
-            jVar.f14548l = f10;
-            if (f10 > 1.0f) {
-                jVar.f14548l = 1.0f;
-            }
-            A(true, true, false);
-        }
-    }
-
-    @Override
-    public final lg.i L(kg.a aVar) {
-        return new lg.i(aVar);
-    }
-
-    public final void N(float f7, float f10, boolean z10) {
-        float f11;
-        if (this.I1 != null) {
-            int length = ((kg.e) this.f14508h0).f15099b.length;
-            ArrayList arrayList = this.d;
-            int size = arrayList.size();
-            int i10 = 0;
-            int i11 = -1;
-            int i12 = -1;
-            for (int i13 = 0; i13 < length; i13++) {
-                float f12 = ((kg.e) this.f14508h0).f15099b[i13];
-                if (f12 >= f7 && i12 == -1) {
-                    i12 = i13;
-                }
-                if (f12 <= f10) {
-                    i11 = i13;
-                }
-            }
-            if (i11 < i12) {
-                i12 = i11;
-            }
-            if (z10 || this.W1 != i11 || this.V1 != i12) {
-                this.W1 = i11;
-                this.V1 = i12;
-                this.L1 = true;
-                this.K1 = 0.0f;
-                for (int i14 = 0; i14 < size; i14++) {
-                    this.I1[i14] = 0.0f;
-                }
-                while (i12 <= i11) {
-                    for (int i15 = 0; i15 < size; i15++) {
-                        float[] fArr = this.I1;
-                        fArr[i15] = fArr[i15] + ((float) ((kg.a) ((kg.e) this.f14508h0).d.get(i15)).f15092a[i12]);
-                        this.K1 += (float) ((kg.a) ((kg.e) this.f14508h0).d.get(i15)).f15092a[i12];
-                        if (this.L1 && ((o) arrayList.get(i15)).f16126n && ((kg.a) ((kg.e) this.f14508h0).d.get(i15)).f15092a[i12] > 0) {
-                            this.L1 = false;
-                        }
-                    }
-                    i12++;
-                }
-                if (!z10) {
-                    while (i10 < size) {
-                        o oVar = (o) arrayList.get(i10);
-                        ValueAnimator valueAnimator = oVar.f14553s;
-                        if (valueAnimator != null) {
-                            valueAnimator.cancel();
-                        }
-                        float f13 = this.K1;
-                        if (f13 == 0.0f) {
-                            f11 = 0.0f;
-                        } else {
-                            f11 = this.I1[i10] / f13;
-                        }
-                        ValueAnimator e = g.e(oVar.f14552r, f11, new l0(7, this, oVar));
-                        oVar.f14553s = e;
-                        e.start();
-                        i10++;
-                    }
-                    return;
-                }
-                while (i10 < size) {
-                    if (this.K1 == 0.0f) {
-                        ((o) arrayList.get(i10)).f14552r = 0.0f;
-                    } else {
-                        ((o) arrayList.get(i10)).f14552r = this.I1[i10] / this.K1;
-                    }
-                    i10++;
-                }
-            }
-        }
-    }
-
-    @Override
-    public final void a(float f7, float f10, boolean z10) {
-        if (this.f14508h0 == null) {
+    public static void Z(n nVar) {
+        n nVar2;
+        ft.o().T = null;
+        if (nVar.getParentActivity() == null) {
             return;
         }
-        if (z10) {
-            N(f7, f10, false);
-            return;
+        if (nVar.getParentActivity() == null || nVar.getParentActivity() == null || nVar.L != null) {
+            nVar2 = nVar;
+        } else {
+            nVar2 = nVar;
+            a3 a3Var = new a3(nVar2, nVar.getParentActivity(), nVar, nVar.resourceProvider, 1);
+            nVar2.L = a3Var;
+            a3Var.f33010c2 = new i(nVar2);
         }
-        H();
-        invalidate();
-    }
-
-    @Override
-    public final lg.e g() {
-        ?? eVar = new lg.e(getContext(), null);
-        LinearLayout linearLayout = new LinearLayout(eVar.getContext());
-        linearLayout.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(2.0f));
-        TextView textView = new TextView(eVar.getContext());
-        eVar.M = textView;
-        linearLayout.addView(textView);
-        textView.getLayoutParams().width = AndroidUtilities.dp(96.0f);
-        TextView textView2 = new TextView(eVar.getContext());
-        eVar.N = textView2;
-        linearLayout.addView(textView2);
-        eVar.addView(linearLayout);
-        textView2.setTypeface(Typeface.create("sans-serif-medium", 0));
-        eVar.setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f));
-        eVar.f16109f.setVisibility(8);
-        eVar.F = false;
-        this.S1 = eVar;
-        return eVar;
-    }
-
-    @Override
-    public final lg.f h(kg.a aVar) {
-        return new lg.i(aVar);
-    }
-
-    @Override
-    public final void k(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.n.k(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void n(Canvas canvas) {
-        float f7;
-        float f10;
-        float f11;
-        int i10;
-        n nVar = this;
-        kg.b bVar = nVar.f14508h0;
-        if (bVar != null) {
-            int length = ((kg.e) bVar).f15099b.length;
-            ArrayList arrayList = nVar.d;
-            int size = arrayList.size();
-            int i11 = 0;
-            for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                ((lg.f) arrayList.get(i12)).f16122j = 0;
-            }
-            float length2 = (1.0f / ((kg.e) nVar.f14508h0).f15099b.length) * nVar.C0;
-            int i13 = 0;
-            while (i13 < length) {
-                float y3 = k3.y(nVar.C0, length2, ((kg.e) nVar.f14508h0).f15099b[i13], length2 / 2.0f);
-                int i14 = 1;
-                int i15 = i11;
-                int i16 = i15;
-                boolean z10 = true;
-                float f12 = 0.0f;
-                while (i15 < size) {
-                    lg.f fVar = (lg.f) arrayList.get(i15);
-                    boolean z11 = fVar.f16126n;
-                    if (!z11 && fVar.f16127o == 0.0f) {
-                        i10 = i13;
-                    } else {
-                        i10 = i13;
-                        float f13 = ((float) fVar.f16116a.f15092a[i10]) * fVar.f16127o;
-                        f12 += f13;
-                        if (f13 > 0.0f) {
-                            i16++;
-                            if (z11) {
-                                z10 = false;
-                            }
-                        }
-                    }
-                    i15++;
-                    i13 = i10;
-                }
-                int i17 = i13;
-                float f14 = 0.0f;
-                int i18 = 0;
-                while (i18 < size) {
-                    lg.f fVar2 = (lg.f) arrayList.get(i18);
-                    if (fVar2.f16126n || fVar2.f16127o != 0.0f) {
-                        long[] jArr = fVar2.f16116a.f15092a;
-                        if (i16 == i14) {
-                            if (jArr[i17] != 0) {
-                                f11 = fVar2.f16127o;
-                                int i19 = nVar.B0;
-                                float f15 = f11 * i19;
-                                float[] fArr = fVar2.f16123k;
-                                int i20 = fVar2.f16122j;
-                                int i21 = i20 + 1;
-                                fVar2.f16122j = i21;
-                                fArr[i20] = y3;
-                                int i22 = i20 + 2;
-                                fVar2.f16122j = i22;
-                                fArr[i21] = (i19 - f15) - f14;
-                                int i23 = i20 + 3;
-                                fVar2.f16122j = i23;
-                                fArr[i22] = y3;
-                                fVar2.f16122j = i20 + 4;
-                                fArr[i23] = i19 - f14;
-                                f14 += f15;
-                            }
-                            f11 = 0.0f;
-                            int i192 = nVar.B0;
-                            float f152 = f11 * i192;
-                            float[] fArr2 = fVar2.f16123k;
-                            int i202 = fVar2.f16122j;
-                            int i212 = i202 + 1;
-                            fVar2.f16122j = i212;
-                            fArr2[i202] = y3;
-                            int i222 = i202 + 2;
-                            fVar2.f16122j = i222;
-                            fArr2[i212] = (i192 - f152) - f14;
-                            int i232 = i202 + 3;
-                            fVar2.f16122j = i232;
-                            fArr2[i222] = y3;
-                            fVar2.f16122j = i202 + 4;
-                            fArr2[i232] = i192 - f14;
-                            f14 += f152;
-                        } else {
-                            if (f12 != 0.0f) {
-                                if (z10) {
-                                    f10 = fVar2.f16127o;
-                                    f7 = (((float) jArr[i17]) / f12) * f10;
-                                } else {
-                                    f7 = ((float) jArr[i17]) / f12;
-                                    f10 = fVar2.f16127o;
-                                }
-                                f11 = f7 * f10;
-                                int i1922 = nVar.B0;
-                                float f1522 = f11 * i1922;
-                                float[] fArr22 = fVar2.f16123k;
-                                int i2022 = fVar2.f16122j;
-                                int i2122 = i2022 + 1;
-                                fVar2.f16122j = i2122;
-                                fArr22[i2022] = y3;
-                                int i2222 = i2022 + 2;
-                                fVar2.f16122j = i2222;
-                                fArr22[i2122] = (i1922 - f1522) - f14;
-                                int i2322 = i2022 + 3;
-                                fVar2.f16122j = i2322;
-                                fArr22[i2222] = y3;
-                                fVar2.f16122j = i2022 + 4;
-                                fArr22[i2322] = i1922 - f14;
-                                f14 += f1522;
-                            }
-                            f11 = 0.0f;
-                            int i19222 = nVar.B0;
-                            float f15222 = f11 * i19222;
-                            float[] fArr222 = fVar2.f16123k;
-                            int i20222 = fVar2.f16122j;
-                            int i21222 = i20222 + 1;
-                            fVar2.f16122j = i21222;
-                            fArr222[i20222] = y3;
-                            int i22222 = i20222 + 2;
-                            fVar2.f16122j = i22222;
-                            fArr222[i21222] = (i19222 - f15222) - f14;
-                            int i23222 = i20222 + 3;
-                            fVar2.f16122j = i23222;
-                            fArr222[i22222] = y3;
-                            fVar2.f16122j = i20222 + 4;
-                            fArr222[i23222] = i19222 - f14;
-                            f14 += f15222;
-                        }
-                    }
-                    i18++;
-                    i14 = 1;
-                    nVar = this;
-                }
-                i13 = i17 + 1;
-                nVar = this;
-                i11 = 0;
-            }
-            for (int i24 = 0; i24 < size; i24++) {
-                lg.f fVar3 = (lg.f) arrayList.get(i24);
-                Paint paint = fVar3.f16118c;
-                Paint paint2 = fVar3.f16118c;
-                paint.setStrokeWidth(length2);
-                paint2.setAlpha(255);
-                paint2.setAntiAlias(false);
-                canvas.drawLines(fVar3.f16123k, 0, fVar3.f16122j, paint2);
-            }
+        nVar2.L.f33030j0.f0();
+        nVar2.L.Q1(1, false);
+        a3 a3Var2 = nVar2.L;
+        a3Var2.X1 = true;
+        a3Var2.n1(new hi.e2(nVar2, 6));
+        nVar2.L.v1();
+        a3 a3Var3 = nVar2.L;
+        a3Var3.f33053r = null;
+        if (nVar2.visibleDialog != null) {
+            a3Var3.show();
+        } else {
+            nVar2.showDialog(a3Var3);
         }
     }
 
-    @Override
-    public final void onDraw(Canvas canvas) {
-        if (this.f14508h0 != null) {
-            int i10 = 0;
-            while (true) {
-                ArrayList arrayList = this.d;
-                if (i10 >= arrayList.size()) {
-                    break;
-                }
-                if (i10 == this.M1) {
-                    if (((o) arrayList.get(i10)).f14551q < 1.0f) {
-                        ((o) arrayList.get(i10)).f14551q += 0.1f;
-                        if (((o) arrayList.get(i10)).f14551q > 1.0f) {
-                            ((o) arrayList.get(i10)).f14551q = 1.0f;
-                        }
-                        invalidate();
-                    }
-                } else if (((o) arrayList.get(i10)).f14551q > 0.0f) {
-                    ((o) arrayList.get(i10)).f14551q -= 0.1f;
-                    if (((o) arrayList.get(i10)).f14551q < 0.0f) {
-                        ((o) arrayList.get(i10)).f14551q = 0.0f;
-                    }
-                    invalidate();
-                }
-                i10++;
-            }
-        }
-        super.onDraw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        float width;
-        super.onMeasure(i10, i11);
-        if (getMeasuredWidth() != this.U1) {
-            this.U1 = getMeasuredWidth();
-            RectF rectF = this.H0;
-            if (rectF.width() > rectF.height()) {
-                width = rectF.height();
-            } else {
-                width = rectF.width();
-            }
-            int i12 = (int) (width * 0.45f);
-            this.P1 = i12 / 13;
-            this.Q1 = i12 / 7;
-        }
-    }
-
-    @Override
-    public final void q(lg.j jVar) {
-        k(null);
-        float f7 = 0.0f;
-        int i10 = 0;
-        while (true) {
-            float[] fArr = this.J1;
-            if (i10 < fArr.length) {
-                f7 += fArr[i10];
-                jVar.f16139k[i10] = (360.0f * f7) - 180.0f;
-                i10++;
-            } else {
+    public static void a0(n nVar) {
+        j jVar = nVar.f15781n;
+        if (jVar != null && jVar.isAttachedToWindow() && nVar.f15784w) {
+            j jVar2 = nVar.f15781n;
+            TLRPC.Document greetingsSticker = MediaDataController.getInstance(nVar.currentAccount).getGreetingsSticker();
+            g gVar = new g(nVar, 2);
+            if (greetingsSticker == null) {
+                jVar2.getClass();
                 return;
             }
+            AnimatorSet animatorSet = jVar2.F;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            jVar2.f33697n.getImageReceiver().setDelegate(new to(jVar2, gVar));
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(greetingsSticker, y6.f23506lc, 1.0f);
+            if (svgThumb != null) {
+                jVar2.f33697n.n(ImageLocation.getForDocument(greetingsSticker), vo.b(greetingsSticker), svgThumb, greetingsSticker);
+            } else {
+                jVar2.f33697n.j(ImageLocation.getForDocument(greetingsSticker), vo.b(greetingsSticker), ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(greetingsSticker.thumbs, 90), greetingsSticker), null, 0, greetingsSticker);
+            }
+            jVar2.f33697n.setOnClickListener(new ro(jVar2, greetingsSticker, 1));
+        }
+    }
+
+    public static void c0(n nVar) {
+        if (!(nVar.h.getParent() instanceof View)) {
+            return;
+        }
+        int top = ((View) nVar.h.getParent()).getTop();
+        int measuredHeight = nVar.h.getMeasuredHeight() - AndroidUtilities.dp(36.0f);
+        float clamp = Utilities.clamp((top + measuredHeight) / measuredHeight, 1.0f, 0.65f);
+        nVar.f15781n.setScaleX(clamp);
+        nVar.f15781n.setScaleY(clamp);
+        nVar.f15781n.setAlpha(Utilities.clamp(clamp * 2.0f, 1.0f, 0.0f));
+        nVar.h.invalidate();
+    }
+
+    public static int d0(n nVar) {
+        return nVar.classGuid;
+    }
+
+    public static int e0(n nVar) {
+        return nVar.classGuid;
+    }
+
+    @Override
+    public final void V(ArrayList arrayList, j71 j71Var) {
+        arrayList.add(t61.k(this.h));
+        ic.a.p(R.string.BusinessIntroHeader, arrayList);
+        arrayList.add(t61.k(this.f15783s));
+        arrayList.add(t61.k(this.v));
+        if (this.f15784w) {
+            arrayList.add(t61.f(LocaleController.getString(R.string.BusinessIntroSticker), LocaleController.getString(R.string.BusinessIntroStickerRandom), 1));
+        } else if (this.f15786y != null) {
+            String string = LocaleController.getString(R.string.BusinessIntroSticker);
+            String str = this.f15786y;
+            t61 t61Var = new t61(3);
+            t61Var.d = 1;
+            t61Var.f32872l = string;
+            t61Var.G = str;
+            arrayList.add(t61Var);
+        } else {
+            String string2 = LocaleController.getString(R.string.BusinessIntroSticker);
+            TLRPC.Document document = this.f15785x;
+            t61 t61Var2 = new t61(3);
+            t61Var2.d = 1;
+            t61Var2.f32872l = string2;
+            t61Var2.G = document;
+            arrayList.add(t61Var2);
+        }
+        arrayList.add(t61.C(LocaleController.getString(R.string.BusinessIntroInfo)));
+        boolean h02 = h0();
+        this.K = !h02;
+        if (!h02) {
+            arrayList.add(t61.C(null));
+            t61 e = t61.e(2, LocaleController.getString(R.string.BusinessIntroReset));
+            e.f32878r = true;
+            arrayList.add(e);
+        }
+        t61 t61Var3 = new t61(8);
+        t61Var3.f32872l = null;
+        arrayList.add(t61Var3);
+    }
+
+    @Override
+    public final CharSequence W() {
+        return LocaleController.getString(R.string.BusinessIntro);
+    }
+
+    @Override
+    public final void X(t61 t61Var, View view) {
+        View[] viewPages;
+        int i10 = t61Var.d;
+        if (i10 == 1) {
+            l2 l2Var = new l2(getParentActivity(), getResourceProvider(), true, true);
+            l2Var.E = new ai.f0(21, this, view);
+            l2Var.F = new g(this, 0);
+            for (View view2 : l2Var.f11158f.getViewPages()) {
+                if (view2 instanceof fi.z1) {
+                    fi.y1 y1Var = ((fi.z1) view2).f12051c;
+                    if (y1Var.H == null) {
+                        y1Var.D(null);
+                    }
+                }
+            }
+            showDialog(l2Var);
+        } else if (i10 == 2) {
+            this.f15783s.setText("");
+            this.v.setText("");
+            AndroidUtilities.hideKeyboard(this.f15783s.d);
+            AndroidUtilities.hideKeyboard(this.v.d);
+            this.f15784w = true;
+            this.f15781n.d("", "");
+            j jVar = this.f15781n;
+            TLRPC.Document greetingsSticker = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
+            this.f15785x = greetingsSticker;
+            jVar.setSticker(greetingsSticker);
+            g gVar = this.e;
+            AndroidUtilities.cancelRunOnUIThread(gVar);
+            AndroidUtilities.runOnUIThread(gVar, 5000L);
+            f0(true);
         }
     }
 
     @Override
-    public final void y() {
-        this.M1 = -1;
-        this.S1.setVisibility(8);
-        invalidate();
+    public final boolean Y(t61 t61Var, View view) {
+        return false;
     }
 
     @Override
-    public final void i(Canvas canvas) {
+    public final View createView(Context context) {
+        setHasOwnBackground(true);
+        AndroidUtilities.requestAdjustResize(getParentActivity(), this.classGuid);
+        getUserConfig().getCurrentUser();
+        this.f15781n = new vo(context, this.currentAccount, this.f15785x, getResourceProvider());
+        k kVar = new k(this, context);
+        this.h = kVar;
+        kVar.setWillNotDraw(false);
+        int dp = AndroidUtilities.dp(16.0f);
+        j jVar = this.f15781n;
+        k kVar2 = this.h;
+        Paint themedPaint = getThemedPaint("paintChatActionBackground");
+        int i10 = y6.f23290a;
+        this.f15782r = new l6(jVar, kVar2, dp, themedPaint);
+        this.f15781n.setBackground(new ColorDrawable(0));
+        l lVar = new l(context, 0);
+        lVar.setScaleType(ImageView.ScaleType.MATRIX);
+        lVar.setImageDrawable(o6.e(null, this.currentAccount, getUserConfig().getClientUserId(), y6.I.q()));
+        this.h.addView(lVar, gb1.i(-1, -1, 119));
+        this.h.addView(this.f15781n, gb1.h(-2, -2.0f, 17, 42.0f, 18.0f, 42.0f, 18.0f));
+        m mVar = new m(this, context, LocaleController.getString(R.string.BusinessIntroTitleHint), getMessagesController().introTitleLengthLimit, this.resourceProvider, 0);
+        this.f15783s = mVar;
+        mVar.f24148r = true;
+        mVar.setShowLimitOnFocus(true);
+        m mVar2 = this.f15783s;
+        int i11 = y6.f23354d6;
+        f7.i(i11, mVar2, getResourceProvider());
+        this.f15783s.setDivider(true);
+        m mVar3 = this.f15783s;
+        mVar3.getClass();
+        mVar3.d(new org.telegram.ui.Cells.g(mVar3, 4));
+        m mVar4 = new m(this, context, LocaleController.getString(R.string.BusinessIntroMessageHint), getMessagesController().introDescriptionLengthLimit, this.resourceProvider, 1);
+        this.v = mVar4;
+        mVar4.setShowLimitOnFocus(true);
+        f7.i(i11, this.v, getResourceProvider());
+        this.v.setDivider(true);
+        m mVar5 = this.v;
+        mVar5.getClass();
+        mVar5.d(new org.telegram.ui.Cells.g(mVar5, 4));
+        this.f15781n.d("", "");
+        super.createView(context);
+        this.f30418b.setBackground(null);
+        this.f30417a.u1();
+        this.f30417a.setSectionsDrawBackground(true);
+        this.f30417a.f32150g3.f29505r = false;
+        this.simpleActionBar.setActionBarMenuOnItemClick(new bh.m(this, 12));
+        this.f15780f = this.simpleActionBar.i(LocaleController.getString(R.string.Save));
+        f0(false);
+        this.f30417a.addOnLayoutChangeListener(new x2(this, 1));
+        this.f30417a.j(new ai.b(this, 17));
+        l71 l71Var = this.f30417a;
+        l71Var.f32152i3 = true;
+        l71Var.setClipChildren(false);
+        View view = this.fragmentView;
+        if (view instanceof ViewGroup) {
+            ((ViewGroup) view).setClipChildren(false);
+        }
+        j0();
+        new z3(this.fragmentView, false, new ig.o(this, 2));
+        return this.fragmentView;
     }
 
     @Override
-    public final void j(Canvas canvas) {
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.userInfoDidLoad) {
+            j0();
+        }
+    }
+
+    public final void f0(boolean z10) {
+        if (this.f15780f != null) {
+            this.f15780f.a(g0(), z10);
+            l71 l71Var = this.f30417a;
+            if (l71Var != null && l71Var.f32150g3 != null && this.K != (!h0())) {
+                l71 l71Var2 = this.f30417a;
+                if (l71Var2 != null && l71Var2.getChildCount() > 0) {
+                    View view = null;
+                    int i10 = Integer.MAX_VALUE;
+                    int i11 = -1;
+                    for (int i12 = 0; i12 < this.f30417a.getChildCount(); i12++) {
+                        int R = RecyclerView.R(this.f30417a.getChildAt(i12));
+                        View childAt = this.f30417a.getChildAt(i12);
+                        if (R != -1 && childAt.getTop() < i10) {
+                            i10 = childAt.getTop();
+                            i11 = R;
+                            view = childAt;
+                        }
+                    }
+                    if (view != null) {
+                        this.f30419c = i11;
+                        int top = view.getTop();
+                        this.d = top;
+                        if (this.f30419c == 0 && top > AndroidUtilities.dp(88.0f)) {
+                            this.d = AndroidUtilities.dp(88.0f);
+                        }
+                        this.f30417a.f32149f3.h1(i11, view.getTop() - this.f30417a.getPaddingTop());
+                    }
+                }
+                this.f30417a.f32150g3.O(true);
+                int i13 = this.f30419c;
+                if (i13 >= 0) {
+                    l71 l71Var3 = this.f30417a;
+                    l71Var3.f32149f3.h1(i13, this.d - l71Var3.getPaddingTop());
+                }
+            }
+        }
+    }
+
+    public final boolean g0() {
+        long j10;
+        TLRPC.Document document;
+        String charSequence = this.f15783s.getText().toString();
+        String str = this.G;
+        String str2 = "";
+        if (str == null) {
+            str = "";
+        }
+        if (TextUtils.equals(charSequence, str)) {
+            String charSequence2 = this.v.getText().toString();
+            String str3 = this.H;
+            if (str3 != null) {
+                str2 = str3;
+            }
+            if (TextUtils.equals(charSequence2, str2)) {
+                boolean z10 = this.f15784w;
+                if (!z10 && (document = this.f15785x) != null) {
+                    j10 = document.f22033id;
+                } else {
+                    j10 = 0;
+                }
+                if (j10 == this.I) {
+                    if (z10 || this.E == null) {
+                        return false;
+                    }
+                    return true;
+                }
+                return true;
+            }
+            return true;
+        }
+        return true;
     }
 
     @Override
-    public final void o(Canvas canvas) {
+    public final mm0 getListViewForSimpleGlass() {
+        return this.f30417a;
+    }
+
+    public final boolean h0() {
+        m mVar = this.f15783s;
+        if (mVar != null && this.v != null) {
+            if (!TextUtils.isEmpty(mVar.getText()) || !TextUtils.isEmpty(this.v.getText()) || !this.f15784w) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public final void i0() {
+        TLRPC.Document document;
+        u5 u5Var = this.f15780f;
+        if (u5Var.f23137x.f19327f) {
+            return;
+        }
+        u5Var.b(true);
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        TL_account.updateBusinessIntro updatebusinessintro = new TL_account.updateBusinessIntro();
+        if (!h0()) {
+            updatebusinessintro.flags |= 1;
+            TL_account.TL_inputBusinessIntro tL_inputBusinessIntro = new TL_account.TL_inputBusinessIntro();
+            updatebusinessintro.intro = tL_inputBusinessIntro;
+            tL_inputBusinessIntro.title = this.f15783s.getText().toString();
+            updatebusinessintro.intro.description = this.v.getText().toString();
+            if (!this.f15784w && (this.f15785x != null || this.E != null)) {
+                TL_account.TL_inputBusinessIntro tL_inputBusinessIntro2 = updatebusinessintro.intro;
+                tL_inputBusinessIntro2.flags |= 1;
+                TLRPC.InputDocument inputDocument = this.E;
+                if (inputDocument != null) {
+                    tL_inputBusinessIntro2.sticker = inputDocument;
+                } else {
+                    tL_inputBusinessIntro2.sticker = getMessagesController().getInputDocument(this.f15785x);
+                }
+            }
+            if (userFull != null) {
+                userFull.flags2 |= 16;
+                TL_account.TL_businessIntro tL_businessIntro = new TL_account.TL_businessIntro();
+                userFull.business_intro = tL_businessIntro;
+                TL_account.TL_inputBusinessIntro tL_inputBusinessIntro3 = updatebusinessintro.intro;
+                tL_businessIntro.title = tL_inputBusinessIntro3.title;
+                tL_businessIntro.description = tL_inputBusinessIntro3.description;
+                if (!this.f15784w && (document = this.f15785x) != null) {
+                    tL_businessIntro.flags = 1 | tL_businessIntro.flags;
+                    tL_businessIntro.sticker = document;
+                }
+            }
+        } else if (userFull != null) {
+            userFull.flags2 &= -17;
+            userFull.business_intro = null;
+        }
+        getConnectionsManager().sendRequest(updatebusinessintro, new bi.i0(this, 17));
+        getMessagesStorage().updateUserInfo(userFull, false);
     }
 
     @Override
-    public final void l(Canvas canvas, lg.d dVar) {
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    public final void j0() {
+        long j10;
+        boolean z10;
+        j71 j71Var;
+        if (this.J) {
+            return;
+        }
+        TLRPC.UserFull userFull = getMessagesController().getUserFull(getUserConfig().getClientUserId());
+        if (userFull == null) {
+            getMessagesController().loadUserInfo(getUserConfig().getCurrentUser(), true, getClassGuid());
+            return;
+        }
+        TL_account.TL_businessIntro tL_businessIntro = userFull.business_intro;
+        if (tL_businessIntro != null) {
+            m mVar = this.f15783s;
+            String str = tL_businessIntro.title;
+            this.G = str;
+            mVar.setText(str);
+            m mVar2 = this.v;
+            String str2 = userFull.business_intro.description;
+            this.H = str2;
+            mVar2.setText(str2);
+            this.f15785x = userFull.business_intro.sticker;
+        } else {
+            m mVar3 = this.f15783s;
+            this.G = "";
+            mVar3.setText("");
+            m mVar4 = this.v;
+            this.H = "";
+            mVar4.setText("");
+            this.E = null;
+            this.f15785x = null;
+        }
+        TLRPC.Document document = this.f15785x;
+        if (document == null) {
+            j10 = 0;
+        } else {
+            j10 = document.f22033id;
+        }
+        this.I = j10;
+        if (document == null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f15784w = z10;
+        j jVar = this.f15781n;
+        if (jVar != null) {
+            jVar.d(this.f15783s.getText().toString(), this.v.getText().toString());
+            j jVar2 = this.f15781n;
+            TLRPC.Document document2 = this.f15785x;
+            if (document2 == null || this.f15784w) {
+                document2 = MediaDataController.getInstance(this.currentAccount).getGreetingsSticker();
+            }
+            jVar2.setSticker(document2);
+        }
+        if (this.f15784w) {
+            g gVar = this.e;
+            AndroidUtilities.cancelRunOnUIThread(gVar);
+            AndroidUtilities.runOnUIThread(gVar, 5000L);
+        }
+        l71 l71Var = this.f30417a;
+        if (l71Var != null && (j71Var = l71Var.f32150g3) != null) {
+            j71Var.O(true);
+        }
+        this.J = true;
     }
 
     @Override
-    public final void p(Canvas canvas, lg.d dVar) {
+    public final boolean onBackPressed(boolean z10) {
+        if (g0()) {
+            if (z10) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.UnsavedChanges);
+                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.BusinessIntroUnsavedChanges);
+                alertDialog$Builder.k(LocaleController.getString(R.string.ApplyTheme), new org.telegram.ui.ActionBar.b2(this) {
+                    public final n f15720b;
+
+                    {
+                        this.f15720b = this;
+                    }
+
+                    @Override
+                    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+                        switch (r2) {
+                            case 0:
+                                this.f15720b.i0();
+                                return;
+                            default:
+                                this.f15720b.finishFragment();
+                                return;
+                        }
+                    }
+                });
+                alertDialog$Builder.h(LocaleController.getString(R.string.PassportDiscard), new org.telegram.ui.ActionBar.b2(this) {
+                    public final n f15720b;
+
+                    {
+                        this.f15720b = this;
+                    }
+
+                    @Override
+                    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+                        switch (r2) {
+                            case 0:
+                                this.f15720b.i0();
+                                return;
+                            default:
+                                this.f15720b.finishFragment();
+                                return;
+                        }
+                    }
+                });
+                showDialog(alertDialog$Builder.f22366a);
+                return false;
+            }
+            return false;
+        }
+        return super.onBackPressed(z10);
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        getNotificationCenter().addObserver(this, NotificationCenter.userInfoDidLoad);
+        MediaDataController.getInstance(this.currentAccount).checkStickers(0);
+        MediaDataController.getInstance(this.currentAccount).loadRecents(0, false, true, false);
+        MediaDataController.getInstance(this.currentAccount).loadRecents(2, false, true, false);
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        getNotificationCenter().removeObserver(this, NotificationCenter.userInfoDidLoad);
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

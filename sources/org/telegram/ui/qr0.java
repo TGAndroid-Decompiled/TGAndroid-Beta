@@ -1,17 +1,15 @@
 package org.telegram.ui;
 
-import android.util.FloatProperty;
-public final class qr0 extends FloatProperty {
-    public qr0() {
-        super("progress");
-    }
-
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+public final class qr0 implements ValueAnimator.AnimatorUpdateListener {
     @Override
-    public final Object get(Object obj) {
-        return Float.valueOf(((su0) obj).f41804a);
-    }
-
-    public final void setValue(Object obj, float f7) {
-        ((su0) obj).b(f7);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        org.telegram.ui.Components.ub ubVar;
+        Drawable[] drawableArr = PhotoViewer.U8;
+        org.telegram.ui.Components.qc qcVar = org.telegram.ui.Components.qc.f31880x;
+        if (qcVar != null && (ubVar = qcVar.e) != null) {
+            ubVar.updatePosition();
+        }
     }
 }

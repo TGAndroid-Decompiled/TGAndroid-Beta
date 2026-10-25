@@ -1,67 +1,78 @@
 package org.telegram.ui;
 
-import android.content.Context;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
-public final class wy0 extends org.telegram.ui.Components.r90 {
-    public final ProfileActivity P0;
+public final class wy0 extends s4.u0 {
+    public final int f45586a;
+    public final ProfileActivity f45587b;
 
-    public wy0(ProfileActivity profileActivity, Context context) {
-        super(context);
-        this.P0 = profileActivity;
+    public wy0(ProfileActivity profileActivity, int i10) {
+        this.f45586a = i10;
+        this.f45587b = profileActivity;
     }
 
     @Override
-    public final void setAlpha(float f7) {
-        super.setAlpha(f7);
-        this.P0.D3();
+    public final void a(RecyclerView recyclerView, int i10) {
+        boolean z10;
+        switch (this.f45586a) {
+            case 0:
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(this.f45587b.getParentActivity().getCurrentFocus());
+                    return;
+                }
+                return;
+            default:
+                ProfileActivity profileActivity = this.f45587b;
+                boolean z11 = true;
+                if (i10 == 1) {
+                    AndroidUtilities.hideKeyboard(profileActivity.getParentActivity().getCurrentFocus());
+                }
+                if (profileActivity.F0 && i10 != 2) {
+                    profileActivity.F0 = false;
+                }
+                org.telegram.ui.ActionBar.w0 w0Var = profileActivity.U0;
+                if (w0Var != null) {
+                    if (i10 != 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    profileActivity.f36124z1 = z10;
+                    if (z10 || profileActivity.f36053p2) {
+                        z11 = false;
+                    }
+                    w0Var.setEnabled(z11);
+                }
+                vz0 vz0Var = profileActivity.N;
+                boolean z12 = profileActivity.f35945a.I1;
+                vz0Var.getClass();
+                return;
+        }
     }
 
     @Override
-    public final void setTextColor(int i10) {
-        int o12;
-        super.setTextColor(i10);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.n5[] n5VarArr = profileActivity.f34002r;
-        org.telegram.ui.ActionBar.n5 n5Var = n5VarArr[2];
-        if (n5Var != null) {
-            n5Var.setTextColor(i10);
-            n5VarArr[3].setTextColor(i10);
-        }
-        q01 q01Var = profileActivity.f33942h6;
-        if (q01Var != null && q01Var.f40683c != (o12 = org.telegram.ui.ActionBar.k6.o1(1.4f, org.telegram.ui.ActionBar.k6.b(-0.02f, 0.15f, i10)))) {
-            q01Var.f40683c = o12;
-            q01Var.invalidateSelf();
-        }
-    }
-
-    @Override
-    public final void setTranslationX(float f7) {
-        super.setTranslationX(f7);
-        ProfileActivity profileActivity = this.P0;
-        profileActivity.b4();
-        profileActivity.getClass();
-        profileActivity.f34002r[2].setTranslationX(f7);
-        profileActivity.f34002r[3].setTranslationX(f7);
-        org.telegram.ui.Components.gx0 gx0Var = profileActivity.T;
-        if (gx0Var != null) {
-            gx0Var.setTranslationX(f7 - profileActivity.b4());
-        }
-    }
-
-    @Override
-    public final void setTranslationY(float f7) {
-        super.setTranslationY(f7);
-        ProfileActivity profileActivity = this.P0;
-        org.telegram.ui.ActionBar.n5[] n5VarArr = profileActivity.f34002r;
-        if (profileActivity.T != null) {
-            AndroidUtilities.dp(3.0f);
-            profileActivity.T.getVisibilityFactor();
-        }
-        n5VarArr[2].setTranslationY(f7);
-        n5VarArr[3].setTranslationY(f7);
-        org.telegram.ui.Components.gx0 gx0Var = profileActivity.T;
-        if (gx0Var != null) {
-            gx0Var.setTranslationY(f7 - AndroidUtilities.dp(5.0f));
+    public void b(RecyclerView recyclerView, int i10, int i11) {
+        switch (this.f45586a) {
+            case 1:
+                ProfileActivity profileActivity = this.f45587b;
+                org.telegram.ui.Components.t40 t40Var = profileActivity.W;
+                boolean z10 = true;
+                if (t40Var != null) {
+                    t40Var.b(true);
+                }
+                profileActivity.I3();
+                if (profileActivity.C1 != null && !profileActivity.D1 && profileActivity.f35960c.N0() > profileActivity.A4 - 8) {
+                    profileActivity.a4(false);
+                }
+                vz0 vz0Var = profileActivity.N;
+                if (vz0Var.getY() > 0.0f) {
+                    z10 = false;
+                }
+                vz0Var.setPinnedToTop(z10);
+                profileActivity.g5();
+                return;
+            default:
+                return;
         }
     }
 }

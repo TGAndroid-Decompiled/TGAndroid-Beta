@@ -1,63 +1,147 @@
 package s4;
 
+import a8.pe;
 import android.content.Context;
-import android.graphics.Rect;
-import android.util.AttributeSet;
+import android.os.CancellationSignal;
+import android.os.Parcel;
+import android.util.Log;
+import android.view.View;
 import android.view.ViewGroup;
-public class o0 extends ViewGroup.MarginLayoutParams {
-    public b1 f46446a;
-    public final Rect f46447b;
-    public boolean f46448c;
-    public boolean d;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.TreeMap;
+import sg.p2;
+import sg.x1;
+public final class o0 implements j1, com.google.android.gms.common.api.internal.o, x1, com.google.android.gms.common.api.internal.r, v0.h, OnCompleteListener {
+    public Object f47813a;
 
-    public o0(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet);
-        this.f46447b = new Rect();
-        this.f46448c = true;
-        this.d = false;
+    public o0(Object obj) {
+        this.f47813a = obj;
     }
 
-    public final int a() {
-        b1 b1Var = this.f46446a;
-        if (b1Var == null) {
-            return -1;
+    public static void b(String str, TreeMap treeMap) {
+        String[] split = str.split(":", 2);
+        if (split.length < 2) {
+            return;
         }
-        return b1Var.b();
-    }
-
-    public final int b() {
-        b1 b1Var = this.f46446a;
-        if (b1Var == null) {
-            return -1;
+        String trim = split[0].trim();
+        String trim2 = split[1].trim();
+        List list = (List) treeMap.get(trim);
+        if (list == null) {
+            list = new ArrayList();
+            treeMap.put(trim, list);
         }
-        return b1Var.c();
+        list.add(trim2);
     }
 
-    public o0(int i10, int i11) {
-        super(i10, i11);
-        this.f46447b = new Rect();
-        this.f46448c = true;
-        this.d = false;
+    @Override
+    public int J() {
+        p0 p0Var = (p0) this.f47813a;
+        return p0Var.f47825n - p0Var.C();
     }
 
-    public o0(ViewGroup.MarginLayoutParams marginLayoutParams) {
-        super(marginLayoutParams);
-        this.f46447b = new Rect();
-        this.f46448c = true;
-        this.d = false;
+    @Override
+    public void V(float f7) {
+        ((p2) this.f47813a).setOutlineWidth(f7);
     }
 
-    public o0(ViewGroup.LayoutParams layoutParams) {
-        super(layoutParams);
-        this.f46447b = new Rect();
-        this.f46448c = true;
-        this.d = false;
+    @Override
+    public View W(int i10) {
+        return ((p0) this.f47813a).q(i10);
     }
 
-    public o0(o0 o0Var) {
-        super((ViewGroup.LayoutParams) o0Var);
-        this.f46447b = new Rect();
-        this.f46448c = true;
-        this.d = false;
+    @Override
+    public int X(View view) {
+        return p0.v(view) + ((ViewGroup.MarginLayoutParams) ((q0) view.getLayoutParams())).bottomMargin;
+    }
+
+    public Object a(Context context, v0.e eVar, ld.c cVar) {
+        ce.m mVar = new ce.m(1, pe.b(cVar));
+        mVar.s();
+        CancellationSignal cancellationSignal = new CancellationSignal();
+        mVar.u(new v0.g(cancellationSignal));
+        me.b bVar = new me.b(mVar);
+        a3.b bVar2 = new a3.b(2);
+        kotlin.jvm.internal.i.e(context, "context");
+        v0.j b10 = m5.j.b(new m5.j((Context) this.f47813a, 2), eVar);
+        if (b10 == null) {
+            bVar.onError(new w0.c("createCredentialAsync no provider dependencies found - please ensure the desired provider dependencies are added", 1));
+        } else if (context.getPackageManager().hasSystemFeature("android.hardware.type.watch")) {
+            bVar.onError(new w0.c("createCredential is not supported on this device", 3));
+        } else {
+            b10.onCreateCredential(context, eVar, cancellationSignal, bVar2, bVar);
+        }
+        Object r6 = mVar.r();
+        md.a aVar = md.a.f18412a;
+        return r6;
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        t6.g gVar = new t6.g(1, (TaskCompletionSource) obj2);
+        t6.e eVar = (t6.e) ((t6.i) obj).u();
+        Parcel H0 = eVar.H0();
+        l7.a.d(H0, gVar);
+        l7.a.c(H0, (t6.a) this.f47813a);
+        H0.writeStrongBinder(null);
+        eVar.I0(H0, 2);
+    }
+
+    public void c(ca.a aVar, TreeMap treeMap) {
+        String str;
+        List list = (List) treeMap.get("Sec-WebSocket-Protocol");
+        if (list != null && (str = (String) list.get(0)) != null && str.length() != 0) {
+            synchronized (((uc.u) this.f47813a).f49682c) {
+            }
+            throw new uc.n(19, "The protocol contained in the Sec-WebSocket-Protocol header is not supported: ".concat(str), aVar);
+        }
+    }
+
+    @Override
+    public float get() {
+        return ((p2) this.f47813a).F;
+    }
+
+    @Override
+    public int m(View view) {
+        return p0.z(view) - ((ViewGroup.MarginLayoutParams) ((q0) view.getLayoutParams())).topMargin;
+    }
+
+    @Override
+    public void onComplete(Task task) {
+        z8.f0 f0Var = (z8.f0) this.f47813a;
+        if (task.isSuccessful()) {
+            y8.m.L0(f0Var, true, (byte[]) task.getResult());
+            return;
+        }
+        Log.e("WearableLS", "Failed to resolve future, sending null response", task.getException());
+        y8.m.L0(f0Var, false, null);
+    }
+
+    @Override
+    public void p(Object obj) {
+        com.google.android.gms.common.api.internal.n nVar;
+        h8.c cVar = (h8.c) obj;
+        androidx.activity.n nVar2 = ((s7.i) this.f47813a).f47902b;
+        synchronized (nVar2) {
+            nVar2.f2120a = false;
+            nVar = ((com.google.android.gms.common.api.internal.p) nVar2.f2121b).f6599c;
+        }
+        if (nVar != null) {
+            ((s7.c) nVar2.f2122c).c(nVar, 2441);
+        }
+    }
+
+    @Override
+    public int s() {
+        return ((p0) this.f47813a).G();
+    }
+
+    public o0(Context context) {
+        kotlin.jvm.internal.i.e(context, "context");
+        this.f47813a = context;
     }
 }

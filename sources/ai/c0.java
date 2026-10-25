@@ -1,84 +1,71 @@
 package ai;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatMessagesMetadataController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.th0;
-public final class c0 implements RequestDelegate {
-    public final int f1066a;
-    public final int f1067b;
-    public final long f1068c;
-    public final Object d;
-    public final Object e;
+import android.content.Context;
+import android.graphics.Bitmap;
+import com.google.android.gms.internal.vision.t2;
+import com.google.android.gms.internal.vision.x1;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.camera.CameraController;
+import org.telegram.messenger.camera.CameraView;
+import org.telegram.ui.Components.gb1;
+public final class c0 implements Runnable {
+    public final int f1444a;
+    public final o0 f1445b;
 
-    public c0(int i10, ei.d dVar, org.telegram.ui.ActionBar.h3 h3Var, long j10) {
-        this.f1066a = 6;
-        this.f1067b = i10;
-        this.d = dVar;
-        this.e = h3Var;
-        this.f1068c = j10;
+    public c0(o0 o0Var, int i10) {
+        this.f1444a = i10;
+        this.f1445b = o0Var;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f1066a) {
+    public final void run() {
+        switch (this.f1444a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new g0((k0) this.d, (j0) this.e, this.f1067b, tLObject, this.f1068c, 0));
+                o0 o0Var = this.f1445b;
+                o0Var.g();
+                o0Var.f1581a.a(o0Var);
                 return;
             case 1:
-                AndroidUtilities.runOnUIThread(new yb((ei.d) this.d, (org.telegram.ui.ActionBar.h3[]) this.e, this.f1067b, this.f1068c, 0));
+                o0 o0Var2 = this.f1445b;
+                s8.n nVar = o0Var2.f1593i0;
+                if (nVar != null) {
+                    nVar.X0();
+                    o0Var2.f1593i0 = null;
+                }
+                Bitmap bitmap = o0Var2.f1595k0;
+                if (bitmap != null) {
+                    bitmap.recycle();
+                    o0Var2.f1595k0 = null;
+                }
+                o0Var2.f1590f0.quitSafely();
                 return;
             case 2:
-                AndroidUtilities.runOnUIThread(new g0((Object) ((ci.h7) this.d), tLObject, this.f1067b, (Object) ((String) this.e), this.f1068c, 2));
-                return;
-            case 3:
-                long j10 = this.f1068c;
-                ((ChatMessagesMetadataController) this.d).lambda$loadStoriesForMessages$2(this.f1067b, (MessageObject) this.e, j10, tLObject, tL_error);
-                return;
-            case 4:
-                long j11 = this.f1068c;
-                ((MediaDataController) this.d).lambda$loadStickers$101(this.f1067b, (Utilities.Callback) this.e, j11, tLObject, tL_error);
-                return;
-            case 5:
-                long j12 = this.f1068c;
-                ((MessagesController) this.d).lambda$checkPromoInfoInternal$166(this.f1067b, (TLRPC.TL_help_promoData) this.e, j12, tLObject, tL_error);
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new f9(tLObject, this.f1067b, (ei.d) this.d, (org.telegram.ui.ActionBar.h3) this.e, this.f1068c, tL_error));
+                o0 o0Var3 = this.f1445b;
+                try {
+                    Context context = ApplicationLoader.applicationContext;
+                    ?? obj = new Object();
+                    obj.f7500a = 256;
+                    o0Var3.f1593i0 = new s8.n(new t2(context, (x1) obj));
+                } catch (Throwable th2) {
+                    FileLog.e(th2);
+                }
+                o0Var3.f1594j0 = new za.c(28);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new f9((th0) this.d, tL_error, tLObject, this.f1068c, this.f1067b, (TLRPC.Chat) this.e));
+                o0 o0Var4 = this.f1445b;
+                if (!o0Var4.V && !o0Var4.U && o0Var4.f1583b == null && CameraView.isCameraAllowed()) {
+                    CameraController.getInstance().initCamera(null);
+                    CameraView cameraView = new CameraView(o0Var4.getContext(), false);
+                    cameraView.setUseMaxPreview(true);
+                    cameraView.setOptimizeForBarcode(true);
+                    cameraView.setAlpha(0.0f);
+                    cameraView.setDelegate(new f0(0, o0Var4, cameraView));
+                    o0Var4.f1583b = cameraView;
+                    o0Var4.addView(cameraView, 0, gb1.g(-1.0f, -1));
+                    return;
+                }
                 return;
         }
-    }
-
-    public c0(Object obj, int i10, Object obj2, long j10, int i11) {
-        this.f1066a = i11;
-        this.d = obj;
-        this.f1067b = i10;
-        this.e = obj2;
-        this.f1068c = j10;
-    }
-
-    public c0(Object obj, Object obj2, int i10, long j10, int i11) {
-        this.f1066a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f1067b = i10;
-        this.f1068c = j10;
-    }
-
-    public c0(th0 th0Var, long j10, int i10, TLRPC.Chat chat) {
-        this.f1066a = 7;
-        this.d = th0Var;
-        this.f1068c = j10;
-        this.f1067b = i10;
-        this.e = chat;
     }
 }

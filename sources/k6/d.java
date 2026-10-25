@@ -1,185 +1,112 @@
 package k6;
 
-import android.app.Activity;
-import android.app.AlertDialog;
-import android.app.DialogFragment;
-import android.app.FragmentManager;
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.content.pm.PackageManager;
-import android.content.res.Resources;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Looper;
+import android.os.Message;
+import android.os.Messenger;
+import android.os.Parcelable;
 import android.util.Log;
-import android.util.TypedValue;
-import androidx.fragment.app.k0;
-import androidx.fragment.app.v;
-import com.google.android.gms.common.api.GoogleApiActivity;
-import i2.o1;
-import n6.q;
-import n6.r;
-public final class d extends e {
-    public static final Object f15017c = new Object();
-    public static final d d = new Object();
+import com.google.android.gms.internal.cast.y;
+import java.util.regex.Matcher;
+public final class d extends y {
+    public final a f16408a;
 
-    public static AlertDialog f(Activity activity, int i10, r rVar, DialogInterface.OnCancelListener onCancelListener) {
-        AlertDialog.Builder builder = null;
-        if (i10 == 0) {
-            return null;
-        }
-        TypedValue typedValue = new TypedValue();
-        activity.getTheme().resolveAttribute(16843529, typedValue, true);
-        if ("Theme.Dialog.Alert".equals(activity.getResources().getResourceEntryName(typedValue.resourceId))) {
-            builder = new AlertDialog.Builder(activity, 5);
-        }
-        if (builder == null) {
-            builder = new AlertDialog.Builder(activity);
-        }
-        builder.setMessage(q.c(activity, i10));
-        builder.setOnCancelListener(onCancelListener);
-        String b10 = q.b(activity, i10);
-        if (b10 != null) {
-            builder.setPositiveButton(b10, rVar);
-        }
-        String d10 = q.d(activity, i10);
-        if (d10 != null) {
-            builder.setTitle(d10);
-        }
-        Log.w("GoogleApiAvailability", o1.k(i10, "Creating dialog for Google Play services availability issue. ConnectionResult="), new IllegalArgumentException());
-        return builder.create();
-    }
-
-    public static void g(Activity activity, AlertDialog alertDialog, String str, DialogInterface.OnCancelListener onCancelListener) {
-        try {
-            if (activity instanceof v) {
-                k0 s10 = ((v) activity).s();
-                i iVar = new i();
-                n6.l.i(alertDialog, "Cannot display null dialog");
-                alertDialog.setOnCancelListener(null);
-                alertDialog.setOnDismissListener(null);
-                iVar.A0 = alertDialog;
-                iVar.B0 = onCancelListener;
-                iVar.f3256x0 = false;
-                iVar.f3257y0 = true;
-                s10.getClass();
-                androidx.fragment.app.a aVar = new androidx.fragment.app.a(s10);
-                aVar.f3153o = true;
-                aVar.f(0, iVar, str);
-                aVar.e(false, true);
-                return;
-            }
-        } catch (NoClassDefFoundError unused) {
-        }
-        FragmentManager fragmentManager = activity.getFragmentManager();
-        ?? dialogFragment = new DialogFragment();
-        n6.l.i(alertDialog, "Cannot display null dialog");
-        alertDialog.setOnCancelListener(null);
-        alertDialog.setOnDismissListener(null);
-        dialogFragment.f15011a = alertDialog;
-        dialogFragment.f15012b = onCancelListener;
-        dialogFragment.show(fragmentManager, str);
+    public d(a aVar, Looper looper) {
+        super(looper);
+        this.f16408a = aVar;
+        Looper.getMainLooper();
     }
 
     @Override
-    public final int c(Context context) {
-        return d(context, e.f15018a);
-    }
-
-    public final void e(GoogleApiActivity googleApiActivity, int i10, GoogleApiActivity googleApiActivity2) {
-        AlertDialog f7 = f(googleApiActivity, i10, new r(super.b(googleApiActivity, "d", i10), googleApiActivity, 0), googleApiActivity2);
-        if (f7 == null) {
-            return;
-        }
-        g(googleApiActivity, f7, "GooglePlayServicesErrorDialog", googleApiActivity2);
-    }
-
-    public final void h(Context context, int i10, PendingIntent pendingIntent) {
-        String d10;
-        String e;
-        int i11;
-        Log.w("GoogleApiAvailability", o1.l(i10, "GMS core API Availability. ConnectionResult=", ", tag=null"), new IllegalArgumentException());
-        if (i10 == 18) {
-            new j(this, context).sendEmptyMessageDelayed(1, 120000L);
-        } else if (pendingIntent == null) {
-            if (i10 == 6) {
-                Log.w("GoogleApiAvailability", "Missing resolution for ConnectionResult.RESOLUTION_REQUIRED. Call GoogleApiAvailability#showErrorNotification(Context, ConnectionResult) instead.");
-            }
-        } else {
-            if (i10 == 6) {
-                d10 = q.f(context, "common_google_play_services_resolution_required_title");
-            } else {
-                d10 = q.d(context, i10);
-            }
-            if (d10 == null) {
-                d10 = context.getResources().getString(2131689565);
-            }
-            if (i10 != 6 && i10 != 19) {
-                e = q.c(context, i10);
-            } else {
-                e = q.e(context, "common_google_play_services_resolution_required_text", q.a(context));
-            }
-            Resources resources = context.getResources();
-            Object systemService = context.getSystemService("notification");
-            n6.l.h(systemService);
-            NotificationManager notificationManager = (NotificationManager) systemService;
-            e0.q qVar = new e0.q(context, null);
-            qVar.f8164t = true;
-            qVar.h(16, true);
-            qVar.e = e0.q.d(d10);
-            e0.l lVar = new e0.l(false);
-            lVar.f8134f = e0.q.d(e);
-            qVar.n(lVar);
-            PackageManager packageManager = context.getPackageManager();
-            if (u6.b.f48047b == null) {
-                u6.b.f48047b = Boolean.valueOf(packageManager.hasSystemFeature("android.hardware.type.watch"));
-            }
-            if (u6.b.f48047b.booleanValue()) {
-                qVar.F.icon = context.getApplicationInfo().icon;
-                qVar.f8154j = 2;
-                if (u6.b.f(context)) {
-                    qVar.a(2131231009, resources.getString(2131689573), pendingIntent);
-                } else {
-                    qVar.f8152g = pendingIntent;
+    public final void handleMessage(Message message) {
+        String str;
+        a aVar = this.f16408a;
+        if (message != null) {
+            Object obj = message.obj;
+            if (obj instanceof Intent) {
+                Intent intent = (Intent) obj;
+                intent.setExtrasClassLoader(new f());
+                if (intent.hasExtra("google.messenger")) {
+                    Parcelable parcelableExtra = intent.getParcelableExtra("google.messenger");
+                    if (parcelableExtra instanceof g) {
+                        aVar.f16402g = (g) parcelableExtra;
+                    }
+                    if (parcelableExtra instanceof Messenger) {
+                        aVar.f16401f = (Messenger) parcelableExtra;
+                    }
                 }
-            } else {
-                qVar.F.icon = 17301642;
-                qVar.p(resources.getString(2131689565));
-                qVar.F.when = System.currentTimeMillis();
-                qVar.f8152g = pendingIntent;
-                qVar.f(e);
-            }
-            if (u6.b.d()) {
-                n6.l.k(u6.b.d());
-                synchronized (f15017c) {
+                Intent intent2 = (Intent) message.obj;
+                String action = intent2.getAction();
+                if (action != "com.google.android.c2dm.intent.REGISTRATION" && (action == null || !action.equals("com.google.android.c2dm.intent.REGISTRATION"))) {
+                    if (Log.isLoggable("Rpc", 3)) {
+                        Log.d("Rpc", "Unexpected response action: ".concat(String.valueOf(action)));
+                        return;
+                    }
+                    return;
                 }
-                NotificationChannel notificationChannel = notificationManager.getNotificationChannel("com.google.android.gms.availability");
-                String string = context.getResources().getString(2131689564);
-                if (notificationChannel == null) {
-                    notificationManager.createNotificationChannel(new NotificationChannel("com.google.android.gms.availability", string, 4));
-                } else if (!string.contentEquals(notificationChannel.getName())) {
-                    notificationChannel.setName(string);
-                    notificationManager.createNotificationChannel(notificationChannel);
+                String stringExtra = intent2.getStringExtra("registration_id");
+                if (stringExtra == null) {
+                    stringExtra = intent2.getStringExtra("unregistered");
                 }
-                qVar.f8168y = "com.google.android.gms.availability";
+                if (stringExtra == null) {
+                    String stringExtra2 = intent2.getStringExtra("error");
+                    if (stringExtra2 == null) {
+                        Log.w("Rpc", "Unexpected response, no error or registration id ".concat(String.valueOf(intent2.getExtras())));
+                        return;
+                    }
+                    if (Log.isLoggable("Rpc", 3)) {
+                        Log.d("Rpc", "Received InstanceID error ".concat(stringExtra2));
+                    }
+                    if (stringExtra2.startsWith("|")) {
+                        String[] split = stringExtra2.split("\\|");
+                        if (split.length > 2 && ((str = split[1]) == "ID" || (str != null && str.equals("ID")))) {
+                            String str2 = split[2];
+                            String str3 = split[3];
+                            if (str3.startsWith(":")) {
+                                str3 = str3.substring(1);
+                            }
+                            aVar.d(str2, intent2.putExtra("error", str3).getExtras());
+                            return;
+                        }
+                        Log.w("Rpc", "Unexpected structured response ".concat(stringExtra2));
+                        return;
+                    }
+                    synchronized (aVar.f16398a) {
+                        int i10 = 0;
+                        while (true) {
+                            try {
+                                a0.l lVar = aVar.f16398a;
+                                if (i10 < lVar.f27c) {
+                                    aVar.d((String) lVar.e(i10), intent2.getExtras());
+                                    i10++;
+                                }
+                            } catch (Throwable th2) {
+                                throw th2;
+                            }
+                        }
+                    }
+                    return;
+                }
+                Matcher matcher = a.f16397j.matcher(stringExtra);
+                if (!matcher.matches()) {
+                    if (Log.isLoggable("Rpc", 3)) {
+                        Log.d("Rpc", "Unexpected response string: ".concat(stringExtra));
+                        return;
+                    }
+                    return;
+                }
+                String group = matcher.group(1);
+                String group2 = matcher.group(2);
+                if (group != null) {
+                    Bundle extras = intent2.getExtras();
+                    extras.putString("registration_id", group2);
+                    aVar.d(group, extras);
+                    return;
+                }
+                return;
             }
-            Notification b10 = qVar.b();
-            if (i10 != 1 && i10 != 2 && i10 != 3) {
-                i11 = 39789;
-            } else {
-                g.f15021a.set(false);
-                i11 = 10436;
-            }
-            notificationManager.notify(i11, b10);
         }
-    }
-
-    public final void i(Activity activity, com.google.android.gms.common.api.internal.m mVar, int i10, DialogInterface.OnCancelListener onCancelListener) {
-        AlertDialog f7 = f(activity, i10, new r(super.b(activity, "d", i10), mVar, 1), onCancelListener);
-        if (f7 == null) {
-            return;
-        }
-        g(activity, f7, "GooglePlayServicesErrorDialog", onCancelListener);
+        Log.w("Rpc", "Dropping invalid message");
     }
 }

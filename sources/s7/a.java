@@ -1,5 +1,122 @@
 package s7;
 
-import android.os.IInterface;
-public interface a extends IInterface {
+import android.location.Location;
+import android.os.Parcel;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class a implements Continuation, com.google.android.gms.common.api.internal.r {
+    public static final a f47889a = new Object();
+    public static final a f47890b = new Object();
+    public static final a f47891c = new Object();
+
+    public void a(k kVar, com.google.android.gms.common.api.internal.n nVar, boolean z10, TaskCompletionSource taskCompletionSource) {
+        l6.c cVar;
+        synchronized (kVar.V) {
+            try {
+                i iVar = (i) kVar.V.remove(nVar);
+                if (iVar == null) {
+                    taskCompletionSource.setResult(Boolean.FALSE);
+                    return;
+                }
+                com.google.android.gms.common.api.internal.p e = iVar.f47902b.e();
+                e.f6598b = null;
+                e.f6599c = null;
+                if (z10) {
+                    l6.c[] m10 = kVar.m();
+                    if (m10 != null) {
+                        int length = m10.length;
+                        int i10 = 0;
+                        while (true) {
+                            if (i10 < length) {
+                                cVar = m10[i10];
+                                if ("location_updates_with_callback".equals(cVar.f16927a)) {
+                                    break;
+                                }
+                                i10++;
+                            } else {
+                                cVar = null;
+                                break;
+                            }
+                        }
+                        if (cVar != null && cVar.b() >= 1) {
+                            z zVar = (z) kVar.u();
+                            l lVar = new l(2, null, iVar, null, null, null);
+                            e eVar = new e(Boolean.TRUE, taskCompletionSource);
+                            Parcel N0 = zVar.N0();
+                            d.c(N0, lVar);
+                            d.d(N0, eVar);
+                            zVar.R0(N0, 89);
+                        }
+                    }
+                    z zVar2 = (z) kVar.u();
+                    o oVar = new o(2, null, null, iVar, null, new g(taskCompletionSource), null);
+                    Parcel N02 = zVar2.N0();
+                    d.c(N02, oVar);
+                    zVar2.R0(N02, 59);
+                } else {
+                    taskCompletionSource.setResult(Boolean.TRUE);
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+    }
+
+    @Override
+    public void accept(Object obj, Object obj2) {
+        l6.c cVar;
+        k kVar = (k) obj;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
+        h8.b bVar = new h8.b(Long.MAX_VALUE, 0, false, null, null);
+        l6.c[] m10 = kVar.m();
+        if (m10 != null) {
+            int length = m10.length;
+            int i10 = 0;
+            while (true) {
+                if (i10 < length) {
+                    cVar = m10[i10];
+                    if ("get_last_location_with_request".equals(cVar.f16927a)) {
+                        break;
+                    }
+                    i10++;
+                } else {
+                    cVar = null;
+                    break;
+                }
+            }
+            if (cVar != null && cVar.b() >= 1) {
+                z zVar = (z) kVar.u();
+                f fVar = new f(0, taskCompletionSource);
+                Parcel N0 = zVar.N0();
+                d.c(N0, bVar);
+                d.d(N0, fVar);
+                zVar.R0(N0, 82);
+                return;
+            }
+        }
+        z zVar2 = (z) kVar.u();
+        Parcel N02 = zVar2.N0();
+        Parcel obtain = Parcel.obtain();
+        try {
+            try {
+                zVar2.f343b.transact(7, N02, obtain, 0);
+                obtain.readException();
+                N02.recycle();
+                obtain.recycle();
+                taskCompletionSource.setResult((Location) d.a(obtain, Location.CREATOR));
+            } catch (RuntimeException e) {
+                obtain.recycle();
+                throw e;
+            }
+        } catch (Throwable th2) {
+            N02.recycle();
+            throw th2;
+        }
+    }
+
+    @Override
+    public Object then(Task task) {
+        return null;
+    }
 }

@@ -122,8 +122,8 @@ public class WebRtcAudioTrack {
                 try {
                     WebRtcAudioTrack.this.audioTrack.stop();
                     Logging.d("WebRtcAudioTrack", "AudioTrack.stop is done.");
-                } catch (Exception e7) {
-                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e7.getMessage());
+                } catch (Exception e10) {
+                    Logging.e("WebRtcAudioTrack", "AudioTrack.stop failed: " + e10.getMessage());
                 }
             }
         }

@@ -1,34 +1,83 @@
 package org.telegram.ui.Components;
 
+import android.content.Intent;
 import java.util.ArrayList;
-import java.util.HashMap;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class di implements mj {
-    public final ri f25739a;
+public final class di implements ek {
+    public final ti f27526a;
 
-    public di(ri riVar) {
-        this.f25739a = riVar;
+    public di(ti tiVar) {
+        this.f27526a = tiVar;
     }
 
     @Override
-    public final void a(TLRPC.User user, boolean z10, int i10, long j10) {
-        org.telegram.ui.sn snVar = (org.telegram.ui.sn) this.f25739a.f30146f0;
-        if (snVar.i7()) {
-            SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(user, snVar.f41516f6, snVar.f41764z5, snVar.f41561j4, (TLRPC.ReplyMarkup) null, (HashMap<String, String>) null, z10, i10, 0);
-            of2.sendMessageChatArguments = snVar.H8();
-            of2.effect_id = 0L;
-            of2.invert_media = false;
-            of2.payStars = j10;
-            of2.monoForumPeer = snVar.S8();
-            of2.suggestionParams = snVar.f41674s5;
-            snVar.getSendMessagesHelper().sendMessage(of2);
-            snVar.B6();
+    public final void P() {
+        this.f27526a.G1(true);
+    }
+
+    @Override
+    public final void l(ArrayList arrayList, String str, ArrayList arrayList2, ArrayList arrayList3, boolean z10, int i10, long j10, boolean z11, long j11) {
+        ti tiVar = this.f27526a;
+        ek ekVar = tiVar.X;
+        if (ekVar != null) {
+            ekVar.l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
+            return;
+        }
+        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33018f0;
+        if (r2Var instanceof ek) {
+            ((ek) r2Var).l(arrayList, str, arrayList2, arrayList3, z10, i10, j10, z11, j11);
+        } else if (r2Var instanceof org.telegram.ui.in0) {
+            org.telegram.ui.in0 in0Var = (org.telegram.ui.in0) r2Var;
+            ArrayList arrayList4 = new ArrayList();
+            int size = arrayList.size();
+            for (int i11 = 0; i11 < size; i11++) {
+                SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
+                sendingMediaInfo.path = (String) arrayList.get(i11);
+                arrayList4.add(sendingMediaInfo);
+            }
+            in0Var.G1(arrayList4);
         }
     }
 
     @Override
-    public final void b(ArrayList arrayList, String str, boolean z10, int i10, long j10, boolean z11) {
-        ((org.telegram.ui.sn) this.f25739a.f30146f0).jb(arrayList, str, z10, i10, j10, z11);
+    public final void m(long j10, ArrayList arrayList, boolean z10, int i10) {
+        ti tiVar = this.f27526a;
+        ek ekVar = tiVar.X;
+        if (ekVar != null) {
+            ekVar.m(j10, arrayList, z10, i10);
+            return;
+        }
+        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33018f0;
+        if (r2Var instanceof org.telegram.ui.un) {
+            ((org.telegram.ui.un) r2Var).m(j10, arrayList, z10, i10);
+        } else if (r2Var instanceof org.telegram.ui.in0) {
+            ((org.telegram.ui.in0) r2Var).G1(arrayList);
+        }
+    }
+
+    @Override
+    public final void x() {
+        ti tiVar = this.f27526a;
+        ek ekVar = tiVar.X;
+        if (ekVar != null) {
+            ekVar.x();
+            return;
+        }
+        org.telegram.ui.ActionBar.r2 r2Var = tiVar.f33018f0;
+        if (r2Var instanceof ek) {
+            ((ek) r2Var).x();
+        } else if (r2Var instanceof org.telegram.ui.in0) {
+            org.telegram.ui.in0 in0Var = (org.telegram.ui.in0) r2Var;
+            in0Var.getClass();
+            try {
+                Intent intent = new Intent("android.intent.action.GET_CONTENT");
+                intent.putExtra("android.intent.extra.ALLOW_MULTIPLE", true);
+                intent.setType("*/*");
+                in0Var.startActivityForResult(intent, 21);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+        }
     }
 }

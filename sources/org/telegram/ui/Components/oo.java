@@ -1,34 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class oo implements View.OnClickListener {
-    public final int f29351a;
-    public final ro f29352b;
-    public final TLRPC.Document f29353c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class oo extends AnimatorListenerAdapter {
+    public final int f31332a;
+    public final po f31333b;
 
-    public oo(ro roVar, TLRPC.Document document, int i10) {
-        this.f29351a = i10;
-        this.f29352b = roVar;
-        this.f29353c = document;
+    public oo(po poVar, int i10) {
+        this.f31332a = i10;
+        this.f31333b = poVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f29351a) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f31332a) {
             case 0:
-                qo qoVar = this.f29352b.d;
-                if (qoVar != null) {
-                    qoVar.c(this.f29353c);
+                this.f31333b.Q = null;
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f31332a) {
+            case 0:
+                po poVar = this.f31333b;
+                if (poVar.Q == animator) {
+                    poVar.getSubtitleTextView().setVisibility(4);
+                    poVar.Q = null;
                     return;
                 }
                 return;
             default:
-                qo qoVar2 = this.f29352b.d;
-                if (qoVar2 != null) {
-                    qoVar2.c(this.f29353c);
-                    return;
-                }
+                this.f31333b.Q = null;
                 return;
         }
     }

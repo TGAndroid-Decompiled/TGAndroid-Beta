@@ -1,111 +1,86 @@
 package f9;
 
-import j$.util.Objects;
-import v7.u6;
-public class d {
-    public static final b d;
-    public final a f10528a;
-    public final Character f10529b;
-    public volatile d f10530c;
+import a8.ta;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+public class d extends a8.x {
+    public final Map f10271b;
+    public final k1 f10272c;
 
-    static {
-        new c("base64()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
-        new c("base64Url()", "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_");
-        new d("base32()", "ABCDEFGHIJKLMNOPQRSTUVWXYZ234567");
-        new d("base32Hex()", "0123456789ABCDEFGHIJKLMNOPQRSTUV");
-        d = new b(new a("base16()", "0123456789ABCDEF".toCharArray()));
+    public d(k1 k1Var, Map map) {
+        super(1);
+        this.f10272c = k1Var;
+        map.getClass();
+        this.f10271b = map;
     }
 
-    public d(a aVar, Character ch2) {
-        boolean z10;
-        this.f10528a = aVar;
-        if (ch2 != null) {
-            char charValue = ch2.charValue();
-            byte[] bArr = aVar.f10527g;
-            if (charValue < bArr.length && bArr[charValue] != -1) {
-                z10 = false;
-                u6.h(z10, "Padding character %s was already in alphabet", ch2);
-                this.f10529b = ch2;
-            }
-        }
-        z10 = true;
-        u6.h(z10, "Padding character %s was already in alphabet", ch2);
-        this.f10529b = ch2;
-    }
-
-    public final void a(StringBuilder sb2, byte[] bArr, int i10, int i11) {
-        boolean z10;
-        u6.n(i10, i10 + i11, bArr.length);
-        a aVar = this.f10528a;
-        int i12 = aVar.f10526f;
-        int i13 = aVar.d;
-        int i14 = 0;
-        if (i11 <= i12) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        u6.g(z10);
-        long j10 = 0;
-        for (int i15 = 0; i15 < i11; i15++) {
-            j10 = (j10 | (bArr[i10 + i15] & 255)) << 8;
-        }
-        int i16 = ((i11 + 1) * 8) - i13;
-        while (i14 < i11 * 8) {
-            sb2.append(aVar.f10524b[((int) (j10 >>> (i16 - i14))) & aVar.f10525c]);
-            i14 += i13;
-        }
-        Character ch2 = this.f10529b;
-        if (ch2 != null) {
-            while (i14 < aVar.f10526f * 8) {
-                sb2.append(ch2.charValue());
-                i14 += i13;
-            }
-        }
-    }
-
-    public void b(StringBuilder sb2, byte[] bArr, int i10) {
-        int i11 = 0;
-        u6.n(0, i10, bArr.length);
-        while (i11 < i10) {
-            a aVar = this.f10528a;
-            a(sb2, bArr, i11, Math.min(aVar.f10526f, i10 - i11));
-            i11 += aVar.f10526f;
-        }
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj instanceof d) {
-            d dVar = (d) obj;
-            if (this.f10528a.equals(dVar.f10528a) && Objects.equals(this.f10529b, dVar.f10529b)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    public final int hashCode() {
-        return this.f10528a.hashCode() ^ Objects.hashCode(this.f10529b);
-    }
-
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("BaseEncoding.");
-        a aVar = this.f10528a;
-        sb2.append(aVar);
-        if (8 % aVar.d != 0) {
-            Character ch2 = this.f10529b;
-            if (ch2 == null) {
-                sb2.append(".omitPadding()");
+    @Override
+    public final void clear() {
+        Iterator it = iterator();
+        while (true) {
+            ta taVar = (ta) it;
+            if (taVar.hasNext()) {
+                taVar.next();
+                taVar.remove();
             } else {
-                sb2.append(".withPadChar('");
-                sb2.append(ch2);
-                sb2.append("')");
+                return;
             }
         }
-        return sb2.toString();
     }
 
-    public d(String str, String str2) {
-        this(new a(str, str2.toCharArray()), (Character) '=');
+    @Override
+    public final boolean contains(Object obj) {
+        return this.f10271b.containsKey(obj);
+    }
+
+    @Override
+    public final boolean containsAll(Collection collection) {
+        return this.f10271b.keySet().containsAll(collection);
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (this != obj && !this.f10271b.keySet().equals(obj)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int hashCode() {
+        return this.f10271b.keySet().hashCode();
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return this.f10271b.isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new ta(this, this.f10271b.entrySet().iterator(), 4);
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        int i10;
+        Collection collection = (Collection) this.f10271b.remove(obj);
+        if (collection != null) {
+            i10 = collection.size();
+            collection.clear();
+            this.f10272c.f10293f -= i10;
+        } else {
+            i10 = 0;
+        }
+        if (i10 <= 0) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int size() {
+        return this.f10271b.size();
     }
 }

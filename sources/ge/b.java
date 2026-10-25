@@ -1,35 +1,26 @@
 package ge;
 
-import java.util.concurrent.atomic.AtomicReferenceFieldUpdater;
-public abstract class b extends p {
-    public static final AtomicReferenceFieldUpdater f11034a = AtomicReferenceFieldUpdater.newUpdater(b.class, Object.class, "_consensus$volatile");
-    private volatile Object _consensus$volatile = a.f11030a;
+import fe.m;
+import fe.o;
+public abstract class b {
+    public o[] f12472a;
+    public int f12473b;
+    public int f12474c;
 
-    @Override
-    public final Object a(Object obj) {
-        AtomicReferenceFieldUpdater atomicReferenceFieldUpdater = f11034a;
-        Object obj2 = atomicReferenceFieldUpdater.get(this);
-        com.google.android.gms.internal.clearcut.e eVar = a.f11030a;
-        if (obj2 == eVar) {
-            com.google.android.gms.internal.clearcut.e c10 = c(obj);
-            obj2 = atomicReferenceFieldUpdater.get(this);
-            if (obj2 == eVar) {
-                while (true) {
-                    if (atomicReferenceFieldUpdater.compareAndSet(this, eVar, c10)) {
-                        obj2 = c10;
-                        break;
-                    } else if (atomicReferenceFieldUpdater.get(this) != eVar) {
-                        obj2 = atomicReferenceFieldUpdater.get(this);
-                        break;
-                    }
+    public final void a(o oVar) {
+        synchronized (this) {
+            try {
+                int i10 = this.f12473b - 1;
+                this.f12473b = i10;
+                if (i10 == 0) {
+                    this.f12474c = 0;
                 }
+                kotlin.jvm.internal.i.c(oVar, "null cannot be cast to non-null type kotlinx.coroutines.flow.internal.AbstractSharedFlowSlot<kotlin.Any>");
+                m mVar = (m) this;
+                oVar.f10466a.set(null);
+            } catch (Throwable th2) {
+                throw th2;
             }
         }
-        b(obj, obj2);
-        return obj2;
     }
-
-    public abstract void b(Object obj, Object obj2);
-
-    public abstract com.google.android.gms.internal.clearcut.e c(Object obj);
 }

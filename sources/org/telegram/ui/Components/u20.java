@@ -1,107 +1,83 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public abstract class u20 extends org.telegram.ui.ActionBar.h3 {
-    public u20(Context context, org.telegram.ui.ActionBar.o2 o2Var) {
-        super(context, true);
-        int i10;
-        setApplyBottomPadding(false);
-        setApplyTopPadding(false);
-        LinearLayout linearLayout = new LinearLayout(context);
-        linearLayout.setOrientation(1);
-        setCustomView(linearLayout);
-        ?? imageView = new ImageView(context);
-        imageView.setAutoRepeat(true);
-        imageView.f(R.raw.utyan_gigagroup, 120, 120, null);
-        imageView.d();
-        linearLayout.addView((View) imageView, w7.z5.t(160, 160, 49, 17, 30, 17, 0));
-        TextView textView = new TextView(context);
-        org.telegram.messenger.tl.k(24.0f, 1, textView);
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21290j5, null);
-        textView.setText(LocaleController.getString(R.string.GigagroupConvertTitle));
-        linearLayout.addView(textView, w7.z5.t(-2, -2, 49, 17, 18, 17, 0));
-        LinearLayout linearLayout2 = new LinearLayout(context);
-        linearLayout2.setOrientation(1);
-        linearLayout.addView(linearLayout2, w7.z5.t(-2, -2, 1, 0, 12, 0, 0));
-        int i11 = 0;
-        while (true) {
-            if (i11 < 3) {
-                LinearLayout e = org.telegram.messenger.tl.e(context, 0);
-                if (LocaleController.isRTL) {
-                    i10 = 5;
-                } else {
-                    i10 = 3;
-                }
-                linearLayout2.addView(e, w7.z5.t(-2, -2, i10, 0, 8, 0, 0));
-                ImageView imageView2 = new ImageView(context);
-                int i12 = org.telegram.ui.ActionBar.k6.f21440r5;
-                org.telegram.ui.ActionBar.r6.t(imageView2, i12, null, PorterDuff.Mode.MULTIPLY);
-                imageView2.setImageResource(R.drawable.list_circle);
-                TextView textView2 = new TextView(context);
-                textView2.setTextSize(1, 15.0f);
-                org.telegram.ui.ActionBar.r6.W(textView2, i12, null);
-                textView2.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-                textView2.setMaxWidth(AndroidUtilities.dp(260.0f));
-                if (i11 != 0) {
-                    if (i11 != 1) {
-                        if (i11 == 2) {
-                            textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo3));
-                        }
-                    } else {
-                        textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo2));
-                    }
-                } else {
-                    textView2.setText(LocaleController.getString(R.string.GigagroupConvertInfo1));
-                }
-                if (LocaleController.isRTL) {
-                    e.addView(textView2, w7.z5.n(-2, -2));
-                    e.addView(imageView2, w7.z5.k(8.0f, 7.0f, 0.0f, 0.0f, -2, -2));
-                } else {
-                    e.addView(imageView2, w7.z5.k(0.0f, 8.0f, 8.0f, 0.0f, -2, -2));
-                    e.addView(textView2, w7.z5.n(-2, -2));
-                }
-                i11++;
-            } else {
-                ?? frameLayout = new FrameLayout(context);
-                View view = new View(context);
-                frameLayout.f30696a = view;
-                view.setBackground(org.telegram.ui.ActionBar.a6.f(new float[]{4.0f}, org.telegram.ui.ActionBar.k6.Oh));
-                frameLayout.addView(view, w7.z5.d(-1, -1.0f, 0, 16.0f, 16.0f, 16.0f, 16.0f));
-                TextView textView3 = new TextView(context);
-                frameLayout.f30697b = textView3;
-                textView3.setLines(1);
-                textView3.setSingleLine(true);
-                textView3.setGravity(1);
-                textView3.setEllipsize(TextUtils.TruncateAt.END);
-                textView3.setGravity(17);
-                org.telegram.messenger.v0.q(textView3, org.telegram.ui.ActionBar.k6.Sh, null, 1, 14.0f);
-                frameLayout.addView(textView3, w7.z5.e(-2, -2, 17));
-                frameLayout.setBackground(null);
-                frameLayout.setText(LocaleController.getString(R.string.GigagroupConvertProcessButton));
-                view.setOnClickListener(new ai.v0(this, context, o2Var, 25));
-                linearLayout.addView((View) frameLayout, w7.z5.t(-1, 50, 51, 0, 29, 0, 0));
-                TextView textView4 = new TextView(context);
-                textView4.setTextSize(1, 14.0f);
-                org.telegram.ui.ActionBar.r6.W(textView4, org.telegram.ui.ActionBar.k6.f21366n5, null);
-                org.telegram.messenger.tl.m(R.string.GigagroupConvertCancelButton, textView4, 17);
-                linearLayout.addView(textView4, w7.z5.t(-2, 48, 49, 17, 0, 17, 16));
-                textView4.setOnClickListener(new f0(this, 19));
-                return;
-            }
-        }
+import android.view.MotionEvent;
+import android.view.VelocityTracker;
+import android.view.ViewConfiguration;
+import org.telegram.ui.PhotoViewer;
+public final class u20 {
+    public static final int f33206x;
+    public static final int f33207y;
+    public final int f33208a;
+    public final int f33209b;
+    public final int f33210c;
+    public final int d;
+    public final int e;
+    public final androidx.mediarouter.app.c f33211f;
+    public final t20 f33212g;
+    public s20 h;
+    public boolean f33213i;
+    public boolean f33214j;
+    public boolean f33215k;
+    public boolean f33216l;
+    public boolean f33217m;
+    public MotionEvent f33218n;
+    public MotionEvent f33219o;
+    public MotionEvent f33220p;
+    public boolean f33221q;
+    public float f33222r;
+    public float f33223s;
+    public float f33224t;
+    public float f33225u;
+    public boolean v;
+    public VelocityTracker f33226w;
+
+    static {
+        ViewConfiguration.getLongPressTimeout();
+        f33206x = ViewConfiguration.getTapTimeout();
+        f33207y = ViewConfiguration.getDoubleTapTimeout();
     }
 
-    public abstract void m();
+    public u20(Context context, PhotoViewer photoViewer) {
+        this(context, (t20) photoViewer);
+    }
 
-    public abstract void n();
+    public final boolean a(android.view.MotionEvent r30) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u20.a(android.view.MotionEvent):boolean");
+    }
+
+    public final void b() {
+        this.v = false;
+    }
+
+    public u20(Context context, t20 t20Var) {
+        int scaledTouchSlop;
+        int i10;
+        int i11;
+        this.f33211f = new androidx.mediarouter.app.c(this, 8);
+        this.f33212g = t20Var;
+        if (t20Var instanceof s20) {
+            this.h = (s20) t20Var;
+        }
+        this.v = true;
+        if (context == null) {
+            i10 = ViewConfiguration.getTouchSlop();
+            this.d = ViewConfiguration.getMinimumFlingVelocity();
+            this.e = ViewConfiguration.getMaximumFlingVelocity();
+            i11 = 100;
+            scaledTouchSlop = i10;
+        } else {
+            ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
+            int scaledTouchSlop2 = viewConfiguration.getScaledTouchSlop();
+            scaledTouchSlop = viewConfiguration.getScaledTouchSlop();
+            int scaledDoubleTapSlop = viewConfiguration.getScaledDoubleTapSlop();
+            this.d = viewConfiguration.getScaledMinimumFlingVelocity();
+            this.e = viewConfiguration.getScaledMaximumFlingVelocity();
+            i10 = scaledTouchSlop2;
+            i11 = scaledDoubleTapSlop;
+        }
+        this.f33208a = i10 * i10;
+        this.f33209b = scaledTouchSlop * scaledTouchSlop;
+        this.f33210c = i11 * i11;
+    }
 }

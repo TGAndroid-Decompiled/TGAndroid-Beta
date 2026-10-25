@@ -1,12 +1,19 @@
 package x7;
-public final class s0 {
-    public final r0 f49982a;
-    public final Integer f49983b;
-    public final a7 f49984c;
 
-    public s0(u2.c cVar) {
-        this.f49982a = (r0) cVar.f47711b;
-        this.f49983b = (Integer) cVar.f47712c;
-        this.f49984c = (a7) cVar.d;
+import org.telegram.ui.Components.b10;
+public final class s0 implements ka.d {
+    public static final s0 f51625a = new Object();
+
+    static {
+        b10.s(b10.n(d.class, b10.q(3, b10.n(d.class, b10.q(2, b10.n(d.class, new a(1)))))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ka.e eVar = (ka.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
     }
 }

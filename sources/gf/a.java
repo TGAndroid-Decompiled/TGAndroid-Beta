@@ -1,15 +1,30 @@
 package gf;
 
-import af.f;
-import df.s;
-public interface a {
-    char a();
+import bf.b;
+import bf.g;
+public abstract class a {
+    public boolean b(ef.a aVar) {
+        return this instanceof b;
+    }
 
-    void b(s sVar, s sVar2, int i10);
+    public boolean c() {
+        return this instanceof af.b;
+    }
 
-    int c();
+    public abstract ef.a e();
 
-    int d(f fVar, f fVar2);
+    public boolean f() {
+        return this instanceof b;
+    }
 
-    char e();
+    public abstract bf.a h(g gVar);
+
+    public void d() {
+    }
+
+    public void a(CharSequence charSequence) {
+    }
+
+    public void g(ff.a aVar) {
+    }
 }

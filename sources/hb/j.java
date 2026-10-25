@@ -1,66 +1,68 @@
 package hb;
 
-import j$.util.concurrent.ConcurrentHashMap;
-public final class j implements eb.v {
-    public static final i f11771c = new i(0);
-    public static final i d = new i(0);
-    public final qf.b f11772a;
-    public final ConcurrentHashMap f11773b = new ConcurrentHashMap();
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+public final class j implements Iterator {
+    public l f12741a;
+    public l f12742b = null;
+    public int f12743c;
+    public final m d;
+    public final int e;
 
-    public j(qf.b bVar) {
-        this.f11772a = bVar;
+    public j(m mVar, int i10) {
+        this.e = i10;
+        this.d = mVar;
+        this.f12741a = mVar.f12756f.d;
+        this.f12743c = mVar.e;
     }
 
-    public final eb.u a(qf.b bVar, eb.g gVar, lb.a aVar, fb.a aVar2, boolean z10) {
-        eb.o oVar;
-        i iVar;
-        eb.u uVar;
-        Object f22 = bVar.W(new lb.a(aVar2.value())).f2();
-        boolean nullSafe = aVar2.nullSafe();
-        if (f22 instanceof eb.u) {
-            uVar = (eb.u) f22;
-        } else if (f22 instanceof eb.v) {
-            eb.v vVar = (eb.v) f22;
-            if (z10) {
-                eb.v vVar2 = (eb.v) this.f11773b.putIfAbsent(aVar.f16057a, vVar);
-                if (vVar2 != null) {
-                    vVar = vVar2;
-                }
+    public final Object a() {
+        return b();
+    }
+
+    public final l b() {
+        l lVar = this.f12741a;
+        m mVar = this.d;
+        if (lVar != mVar.f12756f) {
+            if (mVar.e == this.f12743c) {
+                this.f12741a = lVar.d;
+                this.f12742b = lVar;
+                return lVar;
             }
-            uVar = vVar.create(gVar, aVar);
-        } else {
-            boolean z11 = f22 instanceof eb.o;
-            if (z11) {
-                if (z11) {
-                    oVar = (eb.o) f22;
-                } else {
-                    oVar = null;
-                }
-                eb.o oVar2 = oVar;
-                if (z10) {
-                    iVar = f11771c;
-                } else {
-                    iVar = d;
-                }
-                a0 a0Var = new a0(oVar2, gVar, aVar, iVar, nullSafe);
-                nullSafe = false;
-                uVar = a0Var;
-            } else {
-                throw new IllegalArgumentException("Invalid attempt to bind an instance of " + f22.getClass().getName() + " as a @JsonAdapter for " + gb.d.k(aVar.f16058b) + ". @JsonAdapter value must be a TypeAdapter, TypeAdapterFactory, JsonSerializer or JsonDeserializer.");
-            }
+            throw new ConcurrentModificationException();
         }
-        if (uVar != null && nullSafe) {
-            return uVar.nullSafe();
-        }
-        return uVar;
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final eb.u create(eb.g gVar, lb.a aVar) {
-        fb.a aVar2 = (fb.a) aVar.f16057a.getAnnotation(fb.a.class);
-        if (aVar2 == null) {
-            return null;
+    public final boolean hasNext() {
+        if (this.f12741a != this.d.f12756f) {
+            return true;
         }
-        return a(this.f11772a, gVar, aVar, aVar2, true);
+        return false;
+    }
+
+    @Override
+    public Object next() {
+        switch (this.e) {
+            case 1:
+                return b().f12749f;
+            default:
+                return a();
+        }
+    }
+
+    @Override
+    public final void remove() {
+        l lVar = this.f12742b;
+        if (lVar != null) {
+            m mVar = this.d;
+            mVar.c(lVar, true);
+            this.f12742b = null;
+            this.f12743c = mVar.e;
+            return;
+        }
+        throw new IllegalStateException();
     }
 }

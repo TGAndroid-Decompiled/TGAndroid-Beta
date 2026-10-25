@@ -1,53 +1,26 @@
 package org.telegram.ui.Components;
 
 import android.content.DialogInterface;
-import java.util.regex.Pattern;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.ui.LaunchActivity;
-public final class q1 implements DialogInterface.OnCancelListener {
-    public final int f29747a = 1;
-    public final int f29748b;
-    public final int[] f29749c;
-    public final Runnable d;
+import android.widget.EditText;
+import org.telegram.messenger.AndroidUtilities;
+public final class q1 implements DialogInterface.OnDismissListener {
+    public final int f31784a;
+    public final EditText f31785b;
 
-    public q1(int i10, int[] iArr, org.telegram.ui.f80 f80Var) {
-        this.f29748b = i10;
-        this.f29749c = iArr;
-        this.d = f80Var;
+    public q1(EditText editText, int i10) {
+        this.f31784a = i10;
+        this.f31785b = editText;
     }
 
     @Override
-    public final void onCancel(DialogInterface dialogInterface) {
-        int i10 = this.f29747a;
-        Runnable runnable = this.d;
-        int[] iArr = this.f29749c;
-        int i11 = this.f29748b;
-        switch (i10) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f31784a) {
             case 0:
-                for (int i12 : iArr) {
-                    if (i12 != 0) {
-                        ConnectionsManager.getInstance(i11).cancelRequest(i12, true);
-                    }
-                }
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                AndroidUtilities.hideKeyboard(this.f31785b);
                 return;
             default:
-                Pattern pattern = LaunchActivity.D1;
-                ConnectionsManager.getInstance(i11).cancelRequest(iArr[0], true);
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                AndroidUtilities.hideKeyboard(this.f31785b);
                 return;
         }
-    }
-
-    public q1(int[] iArr, Runnable runnable, int i10) {
-        this.f29749c = iArr;
-        this.f29748b = i10;
-        this.d = runnable;
     }
 }

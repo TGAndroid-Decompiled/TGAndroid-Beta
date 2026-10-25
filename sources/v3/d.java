@@ -1,42 +1,42 @@
 package v3;
 
-import b2.t0;
-import c3.a0;
-import c3.c0;
+import b2.u0;
+import c3.j0;
 import c3.k;
-import c3.l0;
+import c3.n;
+import c3.o;
 import c3.p;
 import c3.q;
-import c3.r;
-import c3.s;
-import c3.y;
+import c3.w;
+import c3.z;
 import e2.x;
-import e9.n0;
-import e9.x1;
+import f9.g0;
+import f9.i0;
+import f9.s1;
 import java.io.EOFException;
 import java.util.List;
-public final class d implements q {
-    public final int f48363a;
-    public final long f48364b;
-    public final x f48365c;
-    public final c0 d;
-    public final y e;
-    public final a0 f48366f;
-    public final p f48367g;
-    public s h;
-    public l0 f48368i;
-    public l0 f48369j;
-    public int f48370k;
-    public t0 f48371l;
-    public t0 f48372m;
-    public long f48373n;
-    public long f48374o;
-    public long f48375p;
-    public long f48376q;
-    public int f48377r;
-    public h f48378s;
-    public boolean f48379t;
-    public boolean f48380u;
+public final class d implements o {
+    public final int f50034a;
+    public final long f50035b;
+    public final x f50036c;
+    public final z d;
+    public final w e;
+    public final b6.i f50037f;
+    public final n f50038g;
+    public q h;
+    public j0 f50039i;
+    public j0 f50040j;
+    public int f50041k;
+    public u0 f50042l;
+    public u0 f50043m;
+    public long f50044n;
+    public long f50045o;
+    public long f50046p;
+    public long f50047q;
+    public int f50048r;
+    public h f50049s;
+    public boolean f50050t;
+    public boolean f50051u;
     public long v;
 
     public d(int i10) {
@@ -44,28 +44,28 @@ public final class d implements q {
     }
 
     @Override
-    public final boolean a(r rVar) {
-        return j(rVar, true);
+    public final boolean a(p pVar) {
+        return j(pVar, true);
     }
 
     @Override
-    public final void c(s sVar) {
-        this.h = sVar;
-        l0 j02 = sVar.j0(0, 1);
-        this.f48368i = j02;
-        this.f48369j = j02;
-        this.h.C();
+    public final void c(q qVar) {
+        this.h = qVar;
+        j0 F1 = qVar.F1(0, 1);
+        this.f50039i = F1;
+        this.f50040j = F1;
+        this.h.Q0();
     }
 
     @Override
     public final void d(long j10, long j11) {
-        this.f48370k = 0;
-        this.f48373n = -9223372036854775807L;
-        this.f48374o = 0L;
-        this.f48377r = 0;
-        this.f48376q = -1L;
+        this.f50041k = 0;
+        this.f50044n = -9223372036854775807L;
+        this.f50045o = 0L;
+        this.f50048r = 0;
+        this.f50047q = -1L;
         this.v = j11;
-        if (!(this.f48378s instanceof b)) {
+        if (!(this.f50049s instanceof b)) {
             return;
         }
         throw null;
@@ -73,60 +73,60 @@ public final class d implements q {
 
     @Override
     public final List e() {
-        e9.l0 l0Var = n0.f8481b;
-        return x1.e;
+        g0 g0Var = i0.f10287b;
+        return s1.e;
     }
 
     @Override
-    public final int f(c3.r r52, c3.u r53) {
-        throw new UnsupportedOperationException("Method not decompiled: v3.d.f(c3.r, c3.u):int");
+    public final int f(c3.p r52, c3.s r53) {
+        throw new UnsupportedOperationException("Method not decompiled: v3.d.f(c3.p, c3.s):int");
     }
 
-    public final a g(r rVar, boolean z10) {
-        x xVar = this.f48365c;
-        rVar.a(0, 4, xVar.f8298a);
+    public final a g(p pVar, boolean z10) {
+        x xVar = this.f50036c;
+        pVar.b(0, 4, xVar.f9732a);
         xVar.N(0);
         int m10 = xVar.m();
-        c0 c0Var = this.d;
-        c0Var.a(m10);
-        return new a(rVar.getLength(), rVar.getPosition(), c0Var.e, c0Var.f4596b, z10, true);
+        z zVar = this.d;
+        zVar.a(m10);
+        return new a(pVar.getLength(), pVar.getPosition(), zVar.e, zVar.f6125b, z10, true);
     }
 
     public final void h() {
-        h hVar = this.f48378s;
+        h hVar = this.f50049s;
         if ((hVar instanceof a) && ((k) hVar).d()) {
-            long j10 = this.f48376q;
-            if (j10 != -1 && j10 != this.f48378s.a()) {
-                a aVar = (a) this.f48378s;
-                this.f48378s = new a(this.f48376q, aVar.f48355i, aVar.f48356j, aVar.f48357k, aVar.f48358l, false);
-                s sVar = this.h;
-                sVar.getClass();
-                sVar.g0(this.f48378s);
-                l0 l0Var = this.f48368i;
-                l0Var.getClass();
-                l0Var.e(this.f48378s.h());
+            long j10 = this.f50047q;
+            if (j10 != -1 && j10 != this.f50049s.b()) {
+                a aVar = (a) this.f50049s;
+                this.f50049s = new a(this.f50047q, aVar.f50026i, aVar.f50027j, aVar.f50028k, aVar.f50029l, false);
+                q qVar = this.h;
+                qVar.getClass();
+                qVar.D1(this.f50049s);
+                j0 j0Var = this.f50039i;
+                j0Var.getClass();
+                j0Var.e(this.f50049s.h());
             }
         }
     }
 
-    public final boolean i(c3.r r9) {
-        throw new UnsupportedOperationException("Method not decompiled: v3.d.i(c3.r):boolean");
+    public final boolean i(c3.p r9) {
+        throw new UnsupportedOperationException("Method not decompiled: v3.d.i(c3.p):boolean");
     }
 
-    public final boolean j(r rVar, boolean z10) {
+    public final boolean j(p pVar, boolean z10) {
         int i10;
         int i11;
         int h;
-        rVar.q();
-        if (rVar.getPosition() == 0) {
-            t0 b10 = this.f48366f.b(rVar, null, 131072);
-            this.f48371l = b10;
-            if (b10 != null) {
-                this.e.b(b10);
+        pVar.p();
+        if (pVar.getPosition() == 0) {
+            u0 c02 = this.f50037f.c0(pVar, null, 131072);
+            this.f50042l = c02;
+            if (c02 != null) {
+                this.e.b(c02);
             }
-            i10 = (int) rVar.k();
+            i10 = (int) pVar.i();
             if (!z10) {
-                rVar.r(i10);
+                pVar.q(i10);
             }
             i11 = 0;
         } else {
@@ -136,13 +136,13 @@ public final class d implements q {
         int i12 = i11;
         int i13 = i12;
         while (true) {
-            if (i(rVar)) {
+            if (i(pVar)) {
                 if (i12 <= 0) {
                     h();
                     throw new EOFException();
                 }
             } else {
-                x xVar = this.f48365c;
+                x xVar = this.f50036c;
                 xVar.N(0);
                 int m10 = xVar.m();
                 if ((i11 != 0 && ((-128000) & m10) != (i11 & (-128000))) || (h = c3.b.h(m10)) == -1) {
@@ -155,10 +155,10 @@ public final class d implements q {
                         throw new EOFException();
                     }
                     if (z10) {
-                        rVar.q();
-                        rVar.l(i10 + i14);
+                        pVar.p();
+                        pVar.j(i10 + i14);
                     } else {
-                        rVar.r(1);
+                        pVar.q(1);
                     }
                     i12 = 0;
                     i13 = i14;
@@ -171,35 +171,35 @@ public final class d implements q {
                     } else if (i12 == 4) {
                         break;
                     }
-                    rVar.l(h - 4);
+                    pVar.j(h - 4);
                 }
             }
         }
         if (z10) {
-            rVar.r(i10 + i13);
+            pVar.q(i10 + i13);
         } else {
-            rVar.q();
+            pVar.p();
         }
-        this.f48370k = i11;
+        this.f50041k = i11;
         return true;
     }
 
     public d(int i10, long j10) {
-        this.f48363a = i10;
-        this.f48364b = j10;
-        this.f48365c = new x(10);
+        this.f50034a = i10;
+        this.f50035b = j10;
+        this.f50036c = new x(10);
         this.d = new Object();
-        this.e = new y();
-        this.f48373n = -9223372036854775807L;
-        this.f48366f = new a0(0);
-        p pVar = new p();
-        this.f48367g = pVar;
-        this.f48369j = pVar;
-        this.f48376q = -1L;
+        this.e = new w();
+        this.f50044n = -9223372036854775807L;
+        this.f50037f = new b6.i(8);
+        n nVar = new n();
+        this.f50038g = nVar;
+        this.f50040j = nVar;
+        this.f50047q = -1L;
     }
 
     @Override
-    public final q b() {
+    public final o b() {
         return this;
     }
 

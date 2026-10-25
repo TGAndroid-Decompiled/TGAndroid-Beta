@@ -1,21 +1,34 @@
 package hb;
 
+import j$.util.Objects;
+import java.io.Serializable;
 import java.lang.reflect.GenericArrayType;
 import java.lang.reflect.Type;
-public class a implements eb.v {
+public final class a implements GenericArrayType, Serializable {
+    public final Type f12724a;
+
+    public a(Type type) {
+        Objects.requireNonNull(type);
+        this.f12724a = d.a(type);
+    }
+
+    public final boolean equals(Object obj) {
+        if ((obj instanceof GenericArrayType) && d.e(this, (GenericArrayType) obj)) {
+            return true;
+        }
+        return false;
+    }
+
     @Override
-    public final eb.u create(eb.g gVar, lb.a aVar) {
-        Type componentType;
-        Type type = aVar.f16058b;
-        boolean z10 = type instanceof GenericArrayType;
-        if (!z10 && (!(type instanceof Class) || !((Class) type).isArray())) {
-            return null;
-        }
-        if (z10) {
-            componentType = ((GenericArrayType) type).getGenericComponentType();
-        } else {
-            componentType = ((Class) type).getComponentType();
-        }
-        return new b(gVar, gVar.b(new lb.a(componentType)), gb.d.h(componentType));
+    public final Type getGenericComponentType() {
+        return this.f12724a;
+    }
+
+    public final int hashCode() {
+        return this.f12724a.hashCode();
+    }
+
+    public final String toString() {
+        return d.k(this.f12724a) + "[]";
     }
 }

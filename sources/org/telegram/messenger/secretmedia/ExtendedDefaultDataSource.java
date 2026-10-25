@@ -1,11 +1,12 @@
 package org.telegram.messenger.secretmedia;
 
+import a8.yb;
 import android.content.Context;
 import android.net.Uri;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LongSparseArray;
-import e2.m0;
+import e2.n0;
 import g2.a0;
 import g2.b;
 import g2.c;
@@ -22,7 +23,6 @@ import java.util.List;
 import java.util.Map;
 import n4.s;
 import org.telegram.messenger.FileStreamLoadOperation;
-import v7.u6;
 public final class ExtendedDefaultDataSource implements h {
     private static final String SCHEME_ASSET = "asset";
     private static final String SCHEME_CONTENT = "content";
@@ -190,16 +190,16 @@ public final class ExtendedDefaultDataSource implements h {
         } else {
             z10 = false;
         }
-        u6.p(z10);
-        Uri uri = mVar.f10810a;
+        yb.p(z10);
+        Uri uri = mVar.f12258a;
         if ("mtproto".equals(uri.getScheme())) {
-            uri = this.mtprotoUris.get(Long.parseLong(mVar.f10810a.toString().substring(8)));
+            uri = this.mtprotoUris.get(Long.parseLong(mVar.f12258a.toString().substring(8)));
             l a2 = mVar.a();
             a2.e = uri;
             mVar = a2.d();
         }
         String scheme = uri.getScheme();
-        String str = m0.f8259a;
+        String str = n0.f9692a;
         String scheme2 = uri.getScheme();
         if (!TextUtils.isEmpty(scheme2) && !Objects.equals(scheme2, "file")) {
             if ("tg".equals(scheme)) {

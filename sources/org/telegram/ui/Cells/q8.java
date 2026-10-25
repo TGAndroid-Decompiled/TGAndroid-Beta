@@ -1,37 +1,29 @@
 package org.telegram.ui.Cells;
 
 import android.view.View;
-import org.telegram.messenger.ImageReceiver;
-public final class q8 implements View.OnAttachStateChangeListener {
-    public final int f23052a;
-    public final ImageReceiver f23053b;
-
-    public q8(ImageReceiver imageReceiver, int i10) {
-        this.f23052a = i10;
-        this.f23053b = imageReceiver;
-    }
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class q8 extends LinearLayout {
+    public TextView f24833a;
+    public boolean f24834b;
 
     @Override
-    public final void onViewAttachedToWindow(View view) {
-        switch (this.f23052a) {
-            case 0:
-                this.f23053b.onAttachedToWindow();
-                return;
-            default:
-                this.f23053b.onAttachedToWindow();
-                return;
+    public final void onMeasure(int i10, int i11) {
+        View view;
+        int measuredHeight;
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+        if (this.f24834b && (view = (View) getParent()) != null && getMeasuredHeight() < (measuredHeight = ((view.getMeasuredHeight() - view.getPaddingBottom()) - view.getPaddingTop()) - AndroidUtilities.dp(24.0f))) {
+            setMeasuredDimension(getMeasuredWidth(), measuredHeight);
         }
     }
 
-    @Override
-    public final void onViewDetachedFromWindow(View view) {
-        switch (this.f23052a) {
-            case 0:
-                this.f23053b.onDetachedFromWindow();
-                return;
-            default:
-                this.f23053b.onDetachedFromWindow();
-                return;
-        }
+    public void setAddOnClickListener(View.OnClickListener onClickListener) {
+        this.f24833a.setOnClickListener(onClickListener);
+    }
+
+    public void setIsLast(boolean z10) {
+        this.f24834b = z10;
+        requestLayout();
     }
 }

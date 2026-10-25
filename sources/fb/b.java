@@ -1,10 +1,16 @@
 package fb;
 
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-@Retention(RetentionPolicy.RUNTIME)
-public @interface b {
-    String[] alternate() default {};
+import j$.util.Objects;
+import java.lang.reflect.Field;
+public final class b {
+    public final Field f10380a;
 
-    String value();
+    public b(Field field) {
+        Objects.requireNonNull(field);
+        this.f10380a = field;
+    }
+
+    public final String toString() {
+        return this.f10380a.toString();
+    }
 }

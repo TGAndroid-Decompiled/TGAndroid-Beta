@@ -2,24 +2,36 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public final class za implements Runnable {
-    public final int f20287a;
-    public final MessagesController f20288b;
-    public final TLRPC.TL_help_peerColors f20289c;
+    public final int f21983a;
+    public final MessagesController f21984b;
+    public final TLRPC.Chat f21985c;
 
-    public za(MessagesController messagesController, TLRPC.TL_help_peerColors tL_help_peerColors, int i10) {
-        this.f20287a = i10;
-        this.f20288b = messagesController;
-        this.f20289c = tL_help_peerColors;
+    public za(MessagesController messagesController, TLRPC.Chat chat, int i10) {
+        this.f21983a = i10;
+        this.f21984b = messagesController;
+        this.f21985c = chat;
     }
 
     @Override
     public final void run() {
-        switch (this.f20287a) {
+        switch (this.f21983a) {
             case 0:
-                this.f20288b.lambda$checkPeerColors$493(this.f20289c);
+                this.f21984b.lambda$processLoadedDialogs$217(this.f21985c);
+                return;
+            case 1:
+                this.f21984b.lambda$addOrRemoveActiveVoiceChat$60(this.f21985c);
+                return;
+            case 2:
+                this.f21984b.lambda$processUpdateArray$418(this.f21985c);
+                return;
+            case 3:
+                this.f21984b.lambda$putChat$57(this.f21985c);
+                return;
+            case 4:
+                this.f21984b.lambda$putChat$58(this.f21985c);
                 return;
             default:
-                this.f20288b.lambda$checkPeerColors$495(this.f20289c);
+                this.f21984b.lambda$putChat$59(this.f21985c);
                 return;
         }
     }

@@ -1,33 +1,36 @@
 package org.telegram.ui.Cells;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class u8 extends AnimatorListenerAdapter {
-    public final int f23743a;
-    public final int f23744b;
-    public final w8 f23745c;
+import android.view.View;
+import org.telegram.messenger.ImageReceiver;
+public final class u8 implements View.OnAttachStateChangeListener {
+    public final int f25484a;
+    public final ImageReceiver f25485b;
 
-    public u8(w8 w8Var, int i10, int i11) {
-        this.f23743a = i11;
-        this.f23745c = w8Var;
-        this.f23744b = i10;
+    public u8(ImageReceiver imageReceiver, int i10) {
+        this.f25484a = i10;
+        this.f25485b = imageReceiver;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f23743a) {
+    public final void onViewAttachedToWindow(View view) {
+        switch (this.f25484a) {
             case 0:
-                w8 w8Var = this.f23745c;
-                w8Var.f23920r = 0;
-                w8Var.setBackgroundColor(this.f23744b);
-                w8Var.invalidate();
+                this.f25485b.onAttachedToWindow();
                 return;
             default:
-                int i10 = this.f23744b;
-                w8 w8Var2 = this.f23745c;
-                w8Var2.setBackgroundColor(i10);
-                w8Var2.f23920r = 0;
-                w8Var2.invalidate();
+                this.f25485b.onAttachedToWindow();
+                return;
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f25484a) {
+            case 0:
+                this.f25485b.onDetachedFromWindow();
+                return;
+            default:
+                this.f25485b.onDetachedFromWindow();
                 return;
         }
     }

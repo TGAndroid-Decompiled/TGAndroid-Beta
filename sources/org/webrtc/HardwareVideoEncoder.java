@@ -6,7 +6,6 @@ import android.media.MediaFormat;
 import android.opengl.GLES20;
 import android.os.Bundle;
 import android.view.Surface;
-import i2.o1;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.Map;
@@ -174,12 +173,12 @@ public class HardwareVideoEncoder implements VideoEncoder {
                     Logging.e("HardwareVideoEncoder", "queueInputBuffer failed", e);
                     return VideoCodecStatus.ERROR;
                 }
-            } catch (IllegalStateException e7) {
-                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e7);
+            } catch (IllegalStateException e10) {
+                Logging.e("HardwareVideoEncoder", "getInputBuffer with index=" + dequeueInputBuffer + " failed", e10);
                 return VideoCodecStatus.ERROR;
             }
-        } catch (IllegalStateException e10) {
-            Logging.e("HardwareVideoEncoder", "dequeueInputBuffer failed", e10);
+        } catch (IllegalStateException e11) {
+            Logging.e("HardwareVideoEncoder", "dequeueInputBuffer failed", e11);
             return VideoCodecStatus.ERROR;
         }
     }
@@ -266,8 +265,8 @@ public class HardwareVideoEncoder implements VideoEncoder {
                 Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
-            } catch (IllegalStateException e7) {
-                e = e7;
+            } catch (IllegalStateException e10) {
+                e = e10;
                 Logging.e("HardwareVideoEncoder", "initEncodeInternal failed", e);
                 release();
                 return VideoCodecStatus.FALLBACK_SOFTWARE;
@@ -298,9 +297,9 @@ public class HardwareVideoEncoder implements VideoEncoder {
         }
         try {
             this.codec.release();
-        } catch (Exception e7) {
-            Logging.e("HardwareVideoEncoder", "Media encoder release failed", e7);
-            this.shutdownException = e7;
+        } catch (Exception e10) {
+            Logging.e("HardwareVideoEncoder", "Media encoder release failed", e10);
+            this.shutdownException = e10;
         }
         this.configBuffer = null;
         Logging.d("HardwareVideoEncoder", "Release on output thread done");
@@ -593,7 +592,7 @@ public class HardwareVideoEncoder implements VideoEncoder {
     public boolean isSemiPlanar(int i10) {
         if (i10 != 19) {
             if (i10 != 21 && i10 != 2141391872 && i10 != 2141391876) {
-                throw new IllegalArgumentException(o1.k(i10, "Unsupported colorFormat: "));
+                throw new IllegalArgumentException(ic.a.i(i10, "Unsupported colorFormat: "));
             }
             return true;
         }

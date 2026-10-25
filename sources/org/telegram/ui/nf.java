@@ -4,39 +4,39 @@ import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
 public final class nf implements View.OnLongClickListener {
-    public final int f39814a;
-    public final sn f39815b;
+    public final int f41881a;
+    public final un f41882b;
 
-    public nf(sn snVar, int i10) {
-        this.f39814a = i10;
-        this.f39815b = snVar;
+    public nf(un unVar, int i10) {
+        this.f41881a = i10;
+        this.f41882b = unVar;
     }
 
     @Override
     public final boolean onLongClick(View view) {
         MessageObject messageObject;
         MessageObject messageObject2;
-        switch (this.f39814a) {
+        switch (this.f41881a) {
             case 0:
-                sn snVar = this.f39815b;
-                MessageObject messageObject3 = snVar.p5;
+                un unVar = this.f41882b;
+                MessageObject messageObject3 = unVar.f44371p5;
                 if (messageObject3 == null) {
                     return false;
                 }
                 if (AndroidUtilities.addToClipboard(messageObject3.sponsoredUrl)) {
-                    new org.telegram.ui.Components.vc(org.telegram.ui.Components.jb.a(snVar.getParentActivity()), snVar.f41651qa).k(false).j();
+                    new org.telegram.ui.Components.wc(org.telegram.ui.Components.lb.a(unVar.getParentActivity()), unVar.f44385qa).k(false).j();
                 }
                 return true;
             case 1:
-                return sn.W(this.f39815b);
+                return un.g1(this.f41882b);
             default:
-                sn snVar2 = this.f39815b;
-                int i10 = snVar2.Bb;
-                if (i10 == 1 && (messageObject2 = snVar2.B5) != null) {
-                    snVar2.j(messageObject2.getId(), 0, true, 0, true, 0);
+                un unVar2 = this.f41882b;
+                int i10 = unVar2.Kb;
+                if (i10 == 1 && (messageObject2 = unVar2.B5) != null) {
+                    unVar2.j(messageObject2.getId(), 0, true, 0, true, 0);
                     return true;
-                } else if (snVar2.f41660r5 != null && i10 == 2 && (messageObject = snVar2.f41764z5) != null) {
-                    snVar2.j(messageObject.getId(), 0, true, 0, true, 0);
+                } else if (unVar2.f44394r5 != null && i10 == 2 && (messageObject = unVar2.f44498z5) != null) {
+                    unVar2.j(messageObject.getId(), 0, true, 0, true, 0);
                     return true;
                 } else {
                     return false;

@@ -1,46 +1,269 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public final class xg {
-    public static final xg d;
-    public static final xg e;
-    public static final xg[] f32574f;
-    public final wg f32575a;
-    public final wg f32576b;
-    public final int f32577c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.os.SystemClock;
+import android.text.Layout;
+import android.text.SpannableStringBuilder;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class xg extends View {
+    public float E;
+    public TextPaint F;
+    public final float G;
+    public float H;
+    public final ChatActivityEnterView I;
+    public boolean f34704a;
+    public boolean f34705b;
+    public String f34706c;
+    public long d;
+    public long e;
+    public long f34707f;
+    public long h;
+    public long f34708n;
+    public boolean f34709r;
+    public final SpannableStringBuilder f34710s;
+    public final SpannableStringBuilder v;
+    public SpannableStringBuilder f34711w;
+    public StaticLayout f34712x;
+    public StaticLayout f34713y;
 
-    static {
-        int i10 = R.raw.voice_and_video;
-        wg wgVar = wg.f32230a;
-        wg wgVar2 = wg.f32231b;
-        xg xgVar = new xg("VOICE_TO_VIDEO", 0, wgVar, wgVar2, i10);
-        d = xgVar;
-        int i11 = R.raw.sticker_to_keyboard;
-        wg wgVar3 = wg.f32232c;
-        wg wgVar4 = wg.d;
-        xg xgVar2 = new xg("STICKER_TO_KEYBOARD", 1, wgVar3, wgVar4, i11);
-        int i12 = R.raw.smile_to_keyboard;
-        wg wgVar5 = wg.e;
-        xg xgVar3 = new xg("SMILE_TO_KEYBOARD", 2, wgVar5, wgVar4, i12);
-        xg xgVar4 = new xg("VIDEO_TO_VOICE", 3, wgVar2, wgVar, i10);
-        e = xgVar4;
-        xg xgVar5 = new xg("KEYBOARD_TO_STICKER", 4, wgVar4, wgVar3, R.raw.keyboard_to_sticker);
-        int i13 = R.raw.keyboard_to_gif;
-        wg wgVar6 = wg.f32233f;
-        f32574f = new xg[]{xgVar, xgVar2, xgVar3, xgVar4, xgVar5, new xg("KEYBOARD_TO_GIF", 5, wgVar4, wgVar6, i13), new xg("KEYBOARD_TO_SMILE", 6, wgVar4, wgVar5, R.raw.keyboard_to_smile), new xg("GIF_TO_KEYBOARD", 7, wgVar6, wgVar4, R.raw.gif_to_keyboard), new xg("GIF_TO_SMILE", 8, wgVar6, wgVar5, R.raw.gif_to_smile), new xg("SMILE_TO_GIF", 9, wgVar5, wgVar6, R.raw.smile_to_gif), new xg("SMILE_TO_STICKER", 10, wgVar5, wgVar3, R.raw.smile_to_sticker), new xg("STICKER_TO_SMILE", 11, wgVar3, wgVar5, R.raw.sticker_to_smile)};
+    public xg(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.I = chatActivityEnterView;
+        this.f34710s = new SpannableStringBuilder();
+        this.v = new SpannableStringBuilder();
+        this.f34711w = new SpannableStringBuilder();
+        this.G = AndroidUtilities.dp(15.0f);
     }
 
-    public xg(String str, int i10, wg wgVar, wg wgVar2, int i11) {
-        this.f32575a = wgVar;
-        this.f32576b = wgVar2;
-        this.f32577c = i11;
+    public final void a(long j10) {
+        this.f34704a = true;
+        long currentTimeMillis = System.currentTimeMillis() - j10;
+        this.d = currentTimeMillis;
+        this.h = j10;
+        this.f34707f = currentTimeMillis;
+        invalidate();
     }
 
-    public static xg valueOf(String str) {
-        return (xg) Enum.valueOf(xg.class, str);
+    public final void b() {
+        if (this.f34704a) {
+            this.f34704a = false;
+            if (this.d > 0) {
+                this.e = System.currentTimeMillis();
+            }
+            invalidate();
+        }
+        this.f34707f = 0L;
     }
 
-    public static xg[] values() {
-        return (xg[]) f32574f.clone();
+    public float getLeftProperty() {
+        return this.H;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        long j10;
+        long j11;
+        SpannableStringBuilder spannableStringBuilder;
+        long min;
+        String str;
+        int threadMessageId;
+        int i10;
+        int i11;
+        TextPaint textPaint = this.F;
+        ChatActivityEnterView chatActivityEnterView = this.I;
+        boolean z10 = true;
+        if (textPaint == null) {
+            TextPaint textPaint2 = new TextPaint(1);
+            this.F = textPaint2;
+            textPaint2.setTextSize(AndroidUtilities.dp(15.0f));
+            this.F.setTypeface(AndroidUtilities.bold());
+            TextPaint textPaint3 = this.F;
+            int i12 = org.telegram.ui.ActionBar.y6.f23547nf;
+            int i13 = ChatActivityEnterView.f25841r5;
+            textPaint3.setColor(chatActivityEnterView.f0(i12));
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        if (this.f34704a) {
+            if (this.f34709r) {
+                j10 = this.h;
+            } else {
+                j10 = currentTimeMillis - this.d;
+            }
+        } else {
+            j10 = this.e - this.d;
+        }
+        long j12 = j10 / 1000;
+        int i14 = ((int) (j10 % 1000)) / 10;
+        long j13 = 0;
+        if (chatActivityEnterView.f25857c1 && j10 >= 59500 && !this.f34705b) {
+            chatActivityEnterView.D2 = -1.0f;
+            og ogVar = chatActivityEnterView.Z2;
+            if (chatActivityEnterView.O) {
+                i11 = Integer.MAX_VALUE;
+            } else {
+                i11 = 0;
+            }
+            ogVar.P1(3, 0, i11, chatActivityEnterView.S4, 0L, true);
+            xe xeVar = chatActivityEnterView.J0;
+            chatActivityEnterView.S4 = 0L;
+            xeVar.setEffect(0L);
+            this.f34705b = true;
+        }
+        if (this.f34704a && currentTimeMillis > this.f34707f + 5000) {
+            this.f34707f = currentTimeMillis;
+            MessagesController messagesController = MessagesController.getInstance(chatActivityEnterView.Q);
+            long j14 = chatActivityEnterView.Q2;
+            threadMessageId = chatActivityEnterView.getThreadMessageId();
+            long j15 = threadMessageId;
+            if (chatActivityEnterView.f25857c1) {
+                i10 = 7;
+            } else {
+                i10 = 1;
+            }
+            messagesController.sendTyping(j14, j15, i10, 0);
+        }
+        String formatTimerDurationFast = AndroidUtilities.formatTimerDurationFast((int) j12, i14);
+        if (formatTimerDurationFast.length() >= 3 && (str = this.f34706c) != null && str.length() >= 3 && formatTimerDurationFast.length() == this.f34706c.length() && formatTimerDurationFast.charAt(formatTimerDurationFast.length() - 3) != this.f34706c.charAt(formatTimerDurationFast.length() - 3)) {
+            int length = formatTimerDurationFast.length();
+            SpannableStringBuilder spannableStringBuilder2 = this.f34710s;
+            spannableStringBuilder2.clear();
+            SpannableStringBuilder spannableStringBuilder3 = this.v;
+            spannableStringBuilder3.clear();
+            this.f34711w.clear();
+            spannableStringBuilder2.append((CharSequence) formatTimerDurationFast);
+            spannableStringBuilder3.append((CharSequence) this.f34706c);
+            this.f34711w.append((CharSequence) formatTimerDurationFast);
+            int i15 = -1;
+            int i16 = -1;
+            int i17 = 0;
+            int i18 = 0;
+            int i19 = 0;
+            while (true) {
+                boolean z11 = z10;
+                j11 = j13;
+                if (i17 >= length - 1) {
+                    break;
+                }
+                if (this.f34706c.charAt(i17) != formatTimerDurationFast.charAt(i17)) {
+                    if (i19 == 0) {
+                        i16 = i17;
+                    }
+                    i19++;
+                    if (i18 != 0) {
+                        tz tzVar = new tz(0);
+                        if (i17 == length - 2) {
+                            i18++;
+                        }
+                        int i20 = i18 + i15;
+                        spannableStringBuilder2.setSpan(tzVar, i15, i20, 33);
+                        spannableStringBuilder3.setSpan(tzVar, i15, i20, 33);
+                        i18 = 0;
+                    }
+                } else {
+                    if (i18 == 0) {
+                        i15 = i17;
+                    }
+                    i18++;
+                    if (i19 != 0) {
+                        this.f34711w.setSpan(new tz(0), i16, i19 + i16, 33);
+                        i19 = 0;
+                    }
+                }
+                i17++;
+                z10 = z11;
+                j13 = j11;
+            }
+            if (i18 != 0) {
+                tz tzVar2 = new tz(0);
+                int i21 = i18 + i15 + 1;
+                spannableStringBuilder2.setSpan(tzVar2, i15, i21, 33);
+                spannableStringBuilder3.setSpan(tzVar2, i15, i21, 33);
+            }
+            if (i19 != 0) {
+                this.f34711w.setSpan(new tz(0), i16, i19 + i16, 33);
+            }
+            TextPaint textPaint4 = this.F;
+            int measuredWidth = getMeasuredWidth();
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            this.f34712x = new StaticLayout(spannableStringBuilder2, textPaint4, measuredWidth, alignment, 1.0f, 0.0f, false);
+            this.f34713y = new StaticLayout(spannableStringBuilder3, this.F, getMeasuredWidth(), alignment, 1.0f, 0.0f, false);
+            this.E = 1.0f;
+        } else {
+            j11 = 0;
+            if (this.f34711w == null) {
+                this.f34711w = new SpannableStringBuilder(formatTimerDurationFast);
+            }
+            if (this.f34711w.length() != 0 && this.f34711w.length() == formatTimerDurationFast.length()) {
+                this.f34711w.replace(spannableStringBuilder.length() - 1, this.f34711w.length(), (CharSequence) formatTimerDurationFast, (formatTimerDurationFast.length() - 1) - (formatTimerDurationFast.length() - this.f34711w.length()), formatTimerDurationFast.length());
+            } else {
+                this.f34711w.clear();
+                this.f34711w.append((CharSequence) formatTimerDurationFast);
+            }
+        }
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        long j16 = this.f34708n;
+        if (j16 == j11) {
+            min = 16;
+        } else {
+            min = Math.min(50L, elapsedRealtime - j16);
+        }
+        this.f34708n = elapsedRealtime;
+        float f7 = this.E;
+        if (f7 != 0.0f) {
+            float f10 = f7 - (((float) min) / 116.0f);
+            this.E = f10;
+            if (f10 < 0.0f) {
+                this.E = 0.0f;
+            }
+        }
+        float measuredHeight = getMeasuredHeight() / 2;
+        if (this.E == 0.0f) {
+            this.f34711w.clearSpans();
+            StaticLayout staticLayout = new StaticLayout(this.f34711w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            canvas.save();
+            canvas.translate(0.0f, measuredHeight - (staticLayout.getHeight() / 2.0f));
+            staticLayout.draw(canvas);
+            canvas.restore();
+            this.H = staticLayout.getLineWidth(0) + 0.0f;
+        } else {
+            StaticLayout staticLayout2 = this.f34712x;
+            float f11 = this.G;
+            if (staticLayout2 != null) {
+                canvas.save();
+                this.F.setAlpha((int) ((1.0f - this.E) * 255.0f));
+                canvas.translate(0.0f, (measuredHeight - (this.f34712x.getHeight() / 2.0f)) - (this.E * f11));
+                this.f34712x.draw(canvas);
+                canvas.restore();
+            }
+            if (this.f34713y != null) {
+                canvas.save();
+                this.F.setAlpha((int) (this.E * 255.0f));
+                canvas.translate(0.0f, c3.h0.z(1.0f, this.E, f11, measuredHeight - (this.f34713y.getHeight() / 2.0f)));
+                this.f34713y.draw(canvas);
+                canvas.restore();
+            }
+            canvas.save();
+            this.F.setAlpha(255);
+            StaticLayout staticLayout3 = new StaticLayout(this.f34711w, this.F, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            canvas.translate(0.0f, measuredHeight - (staticLayout3.getHeight() / 2.0f));
+            staticLayout3.draw(canvas);
+            canvas.restore();
+            this.H = staticLayout3.getLineWidth(0) + 0.0f;
+        }
+        this.f34706c = formatTimerDurationFast;
+        if ((this.f34704a || this.E != 0.0f) && !this.f34709r) {
+            invalidate();
+        }
+    }
+
+    public void setExternalFrameClock(boolean z10) {
+        this.f34709r = z10;
+        this.f34708n = SystemClock.elapsedRealtime();
+        invalidate();
     }
 }

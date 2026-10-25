@@ -1,19 +1,20 @@
 package ee;
-public final class a extends md.c {
-    public fe.g f8620a;
-    public Object f8621b;
-    public final qb.c f8622c;
-    public int d;
 
-    public a(qb.c cVar, md.c cVar2) {
-        super(cVar2);
-        this.f8622c = cVar;
+import a8.we;
+public final class a {
+    public static final a[] f9894a;
+
+    static {
+        a[] aVarArr = {new Enum("SUSPEND", 0), new Enum("DROP_OLDEST", 1), new Enum("DROP_LATEST", 2)};
+        f9894a = aVarArr;
+        we.a(aVarArr);
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f8621b = obj;
-        this.d |= Integer.MIN_VALUE;
-        return this.f8622c.q(null, this);
+    public static a valueOf(String str) {
+        return (a) Enum.valueOf(a.class, str);
+    }
+
+    public static a[] values() {
+        return (a[]) f9894a.clone();
     }
 }

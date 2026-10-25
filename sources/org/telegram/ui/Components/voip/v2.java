@@ -1,51 +1,30 @@
 package org.telegram.ui.Components.voip;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.TextPaint;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class v2 extends View {
-    public final TextPaint f31951a;
-    public final Paint f31952b;
-    public final float f31953c;
-    public final String d;
-    public volatile Bitmap e;
+import android.animation.ValueAnimator;
+public final class v2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34167a;
+    public final w2 f34168b;
 
-    public v2(Context context, String str) {
-        super(context);
-        TextPaint textPaint = new TextPaint(1);
-        this.f31951a = textPaint;
-        this.f31952b = new Paint(1);
-        textPaint.setTextAlign(Paint.Align.CENTER);
-        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
-        textPaint.setColor(-1);
-        textPaint.setTypeface(AndroidUtilities.bold());
-        this.f31953c = textPaint.measureText(str);
-        this.d = str;
+    public v2(w2 w2Var, int i10) {
+        this.f34167a = i10;
+        this.f34168b = w2Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.e != null) {
-            canvas.drawBitmap(this.e, 0.0f, 0.0f, this.f31952b);
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34167a) {
+            case 0:
+                w2 w2Var = this.f34168b;
+                w2Var.getClass();
+                w2Var.Q = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w2Var.a(w2Var.R, w2Var.S);
+                return;
+            default:
+                w2 w2Var2 = this.f34168b;
+                w2Var2.getClass();
+                w2Var2.W = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w2Var2.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        if (z10) {
-            Utilities.globalQueue.postRunnable(new ki.u(this, 21));
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f31953c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

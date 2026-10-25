@@ -1,45 +1,44 @@
 package i2;
 
-import com.google.android.gms.internal.play_billing.k3;
 import java.util.Locale;
 public final class e {
-    public int f12371a;
-    public int f12372b;
-    public int f12373c;
+    public int f13513a;
+    public int f13514b;
+    public int f13515c;
     public int d;
     public int e;
-    public int f12374f;
-    public int f12375g;
+    public int f13516f;
+    public int f13517g;
     public int h;
-    public int f12376i;
-    public int f12377j;
-    public long f12378k;
-    public int f12379l;
+    public int f13518i;
+    public int f13519j;
+    public long f13520k;
+    public int f13521l;
 
     public final String toString() {
-        int i10 = this.f12371a;
-        int i11 = this.f12372b;
-        int i12 = this.f12373c;
+        int i10 = this.f13513a;
+        int i11 = this.f13514b;
+        int i12 = this.f13515c;
         int i13 = this.d;
         int i14 = this.e;
-        int i15 = this.f12374f;
-        int i16 = this.f12375g;
+        int i15 = this.f13516f;
+        int i16 = this.f13517g;
         int i17 = this.h;
-        int i18 = this.f12376i;
-        int i19 = this.f12377j;
-        long j10 = this.f12378k;
-        int i20 = this.f12379l;
-        String str = e2.m0.f8259a;
+        int i18 = this.f13518i;
+        int i19 = this.f13519j;
+        long j10 = this.f13520k;
+        int i20 = this.f13521l;
+        String str = e2.n0.f9692a;
         Locale locale = Locale.US;
-        StringBuilder k10 = k3.k("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
-        k3.r(k10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
-        k3.r(k10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
-        k3.r(k10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
-        k3.r(k10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
-        k10.append(j10);
-        k10.append("\n videoFrameProcessingOffsetCount=");
-        k10.append(i20);
-        k10.append("\n}");
-        return k10.toString();
+        StringBuilder n10 = c3.h0.n("DecoderCounters {\n decoderInits=", i10, ",\n decoderReleases=", i11, "\n queuedInputBuffers=");
+        c3.h0.q(n10, i12, "\n skippedInputBuffers=", i13, "\n renderedOutputBuffers=");
+        c3.h0.q(n10, i14, "\n skippedOutputBuffers=", i15, "\n droppedBuffers=");
+        c3.h0.q(n10, i16, "\n droppedInputBuffers=", i17, "\n maxConsecutiveDroppedBuffers=");
+        c3.h0.q(n10, i18, "\n droppedToKeyframeEvents=", i19, "\n totalVideoFrameProcessingOffsetUs=");
+        n10.append(j10);
+        n10.append("\n videoFrameProcessingOffsetCount=");
+        n10.append(i20);
+        n10.append("\n}");
+        return n10.toString();
     }
 }

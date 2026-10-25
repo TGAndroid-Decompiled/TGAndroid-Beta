@@ -1,30 +1,19 @@
 package hb;
 
-import i2.o1;
-public final class q extends eb.u {
-    public static final p f11779b = new p(new q(eb.t.f8584b), 0);
-    public final eb.t f11780a;
+import java.lang.reflect.Method;
+public final class q extends s {
+    public final Method f12762b;
 
-    public q(eb.t tVar) {
-        this.f11780a = tVar;
+    public q(Method method) {
+        this.f12762b = method;
     }
 
     @Override
-    public final Object read(mb.a aVar) {
-        int x10 = aVar.x();
-        int c10 = m1.j.c(x10);
-        if (c10 != 5 && c10 != 6) {
-            if (c10 == 8) {
-                aVar.t();
-                return null;
-            }
-            throw new RuntimeException("Expecting number, got: " + o1.E(x10) + "; at path " + aVar.h());
+    public final Object a(Class cls) {
+        String F = rf.b.F(cls);
+        if (F == null) {
+            return this.f12762b.invoke(null, cls, Object.class);
         }
-        return this.f11780a.a(aVar);
-    }
-
-    @Override
-    public final void write(mb.b bVar, Object obj) {
-        bVar.q((Number) obj);
+        throw new AssertionError("UnsafeAllocator is used for non-instantiable type: ".concat(F));
     }
 }

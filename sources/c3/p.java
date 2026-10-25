@@ -1,46 +1,30 @@
 package c3;
+public interface p extends b2.p {
+    void b(int i10, int i11, byte[] bArr);
 
-import java.io.EOFException;
-public final class p implements l0 {
-    public final byte[] f4662a = new byte[4096];
+    boolean c(byte[] bArr, int i10, int i11, boolean z10);
 
-    @Override
-    public final int a(b2.o oVar, int i10, boolean z10) {
-        return f(oVar, i10, z10);
-    }
+    int d(int i10, int i11, byte[] bArr);
 
-    @Override
-    public final void d(int i10, e2.x xVar) {
-        a1.g.a(this, xVar, i10);
-    }
+    boolean f(int i10, boolean z10);
 
-    @Override
-    public final int f(b2.o oVar, int i10, boolean z10) {
-        byte[] bArr = this.f4662a;
-        int read = oVar.read(bArr, 0, Math.min(bArr.length, i10));
-        if (read == -1) {
-            if (z10) {
-                return -1;
-            }
-            throw new EOFException();
-        }
-        return read;
-    }
+    long getLength();
 
-    @Override
-    public final void g(e2.x xVar, int i10, int i11) {
-        xVar.O(i10);
-    }
+    long getPosition();
 
-    @Override
-    public final void b(b2.w wVar) {
-    }
+    boolean h(byte[] bArr, int i10, int i11, boolean z10);
 
-    @Override
-    public final void e(long j10) {
-    }
+    long i();
 
-    @Override
-    public final void c(long j10, int i10, int i11, int i12, k0 k0Var) {
-    }
+    void j(int i10);
+
+    void p();
+
+    void q(int i10);
+
+    void readFully(byte[] bArr, int i10, int i11);
+
+    boolean s(int i10, boolean z10);
+
+    int skip(int i10);
 }

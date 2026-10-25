@@ -1,10 +1,15 @@
 package rb;
 
-import j$.util.DesugarCollections;
-import java.lang.ref.ReferenceQueue;
-import java.util.HashSet;
-import java.util.Set;
-public final class a {
-    public final ReferenceQueue f45598a = new ReferenceQueue();
-    public final Set f45599b = DesugarCollections.synchronizedSet(new HashSet());
+import java.lang.ref.Reference;
+import java.util.ArrayList;
+public abstract class a {
+    public static void a(ArrayList arrayList, Object obj) {
+        for (int size = arrayList.size() - 1; size >= 0; size--) {
+            Object obj2 = ((Reference) arrayList.get(size)).get();
+            if (obj2 == null || obj2 == obj) {
+                arrayList.remove(size);
+                return;
+            }
+        }
+    }
 }

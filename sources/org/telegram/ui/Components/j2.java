@@ -1,29 +1,31 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class j2 implements View.OnClickListener {
-    public final int f27537a;
-    public final org.telegram.ui.ActionBar.h3[] f27538b;
+import android.content.DialogInterface;
+public final class j2 implements DialogInterface.OnDismissListener {
+    public final int f29451a;
+    public final boolean[] f29452b;
 
-    public j2(org.telegram.ui.ActionBar.h3[] h3VarArr, int i10) {
-        this.f27537a = i10;
-        this.f27538b = h3VarArr;
+    public j2(int i10, Runnable runnable, boolean[] zArr) {
+        this.f29451a = i10;
+        this.f29452b = zArr;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f27537a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        int i10 = this.f29451a;
+        boolean[] zArr = this.f29452b;
+        switch (i10) {
             case 0:
-                this.f27538b[0].dismiss();
-                return;
-            case 1:
-                this.f27538b[0].dismiss();
-                return;
-            case 2:
-                this.f27538b[0].dismiss();
+                if (zArr[0]) {
+                    int i11 = go.f28611r1;
+                    return;
+                }
                 return;
             default:
-                this.f27538b[0].dismiss();
+                if (zArr[0]) {
+                    int i12 = ju.f29721b;
+                    return;
+                }
                 return;
         }
     }

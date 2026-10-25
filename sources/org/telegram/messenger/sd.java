@@ -4,88 +4,88 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class sd implements RequestDelegate {
-    public final int f19566a;
-    public final MessagesController f19567b;
-    public final int f19568c;
+    public final int f21227a;
+    public final MessagesController f21228b;
+    public final int f21229c;
     public final int d;
     public final int e;
-    public final int f19569f;
-    public final int f19570g;
+    public final int f21230f;
+    public final int f21231g;
     public final long h;
-    public final long f19571i;
-    public final int f19572j;
-    public final int f19573k;
-    public final int f19574l;
-    public final int f19575m;
-    public final int f19576n;
-    public final long f19577o;
-    public final int f19578p;
-    public final boolean f19579q;
-    public final int f19580r;
-    public final boolean f19581s;
-    public final boolean f19582t;
-    public final TLObject f19583u;
+    public final long f21232i;
+    public final int f21233j;
+    public final int f21234k;
+    public final int f21235l;
+    public final int f21236m;
+    public final int f21237n;
+    public final long f21238o;
+    public final int f21239p;
+    public final boolean f21240q;
+    public final int f21241r;
+    public final boolean f21242s;
+    public final boolean f21243t;
+    public final TLObject f21244u;
 
     public sd(MessagesController messagesController, int i10, int i11, int i12, int i13, int i14, long j10, long j11, int i15, int i16, int i17, int i18, int i19, long j12, int i20, boolean z10, int i21, boolean z11, boolean z12, TLRPC.TL_messages_getReplies tL_messages_getReplies) {
-        this.f19566a = 1;
-        this.f19567b = messagesController;
-        this.f19568c = i10;
+        this.f21227a = 1;
+        this.f21228b = messagesController;
+        this.f21229c = i10;
         this.d = i11;
         this.e = i12;
-        this.f19569f = i13;
-        this.f19570g = i14;
+        this.f21230f = i13;
+        this.f21231g = i14;
         this.h = j10;
-        this.f19571i = j11;
-        this.f19572j = i15;
-        this.f19573k = i16;
-        this.f19574l = i17;
-        this.f19575m = i18;
-        this.f19576n = i19;
-        this.f19577o = j12;
-        this.f19578p = i20;
-        this.f19579q = z10;
-        this.f19580r = i21;
-        this.f19581s = z11;
-        this.f19582t = z12;
-        this.f19583u = tL_messages_getReplies;
+        this.f21232i = j11;
+        this.f21233j = i15;
+        this.f21234k = i16;
+        this.f21235l = i17;
+        this.f21236m = i18;
+        this.f21237n = i19;
+        this.f21238o = j12;
+        this.f21239p = i20;
+        this.f21240q = z10;
+        this.f21241r = i21;
+        this.f21242s = z11;
+        this.f21243t = z12;
+        this.f21244u = tL_messages_getReplies;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f19566a) {
+        switch (this.f21227a) {
             case 0:
-                this.f19567b.lambda$loadMessagesInternal$177(this.h, this.f19568c, this.d, this.e, this.f19571i, this.f19569f, this.f19570g, this.f19572j, this.f19573k, this.f19574l, this.f19575m, this.f19576n, this.f19577o, this.f19578p, this.f19579q, this.f19580r, this.f19581s, this.f19582t, (TLRPC.TL_messages_getSavedHistory) this.f19583u, tLObject, tL_error);
+                this.f21228b.lambda$loadMessagesInternal$177(this.h, this.f21229c, this.d, this.e, this.f21232i, this.f21230f, this.f21231g, this.f21233j, this.f21234k, this.f21235l, this.f21236m, this.f21237n, this.f21238o, this.f21239p, this.f21240q, this.f21241r, this.f21242s, this.f21243t, (TLRPC.TL_messages_getSavedHistory) this.f21244u, tLObject, tL_error);
                 return;
             case 1:
-                this.f19567b.lambda$loadMessagesInternal$179(this.f19568c, this.d, this.e, this.f19569f, this.f19570g, this.h, this.f19571i, this.f19572j, this.f19573k, this.f19574l, this.f19575m, this.f19576n, this.f19577o, this.f19578p, this.f19579q, this.f19580r, this.f19581s, this.f19582t, (TLRPC.TL_messages_getReplies) this.f19583u, tLObject, tL_error);
+                this.f21228b.lambda$loadMessagesInternal$179(this.f21229c, this.d, this.e, this.f21230f, this.f21231g, this.h, this.f21232i, this.f21233j, this.f21234k, this.f21235l, this.f21236m, this.f21237n, this.f21238o, this.f21239p, this.f21240q, this.f21241r, this.f21242s, this.f21243t, (TLRPC.TL_messages_getReplies) this.f21244u, tLObject, tL_error);
                 return;
             default:
-                this.f19567b.lambda$loadMessagesInternal$184(this.h, this.f19568c, this.d, this.e, this.f19571i, this.f19569f, this.f19570g, this.f19572j, this.f19573k, this.f19574l, this.f19575m, this.f19576n, this.f19577o, this.f19578p, this.f19579q, this.f19580r, this.f19581s, this.f19582t, (TLRPC.TL_messages_getHistory) this.f19583u, tLObject, tL_error);
+                this.f21228b.lambda$loadMessagesInternal$184(this.h, this.f21229c, this.d, this.e, this.f21232i, this.f21230f, this.f21231g, this.f21233j, this.f21234k, this.f21235l, this.f21236m, this.f21237n, this.f21238o, this.f21239p, this.f21240q, this.f21241r, this.f21242s, this.f21243t, (TLRPC.TL_messages_getHistory) this.f21244u, tLObject, tL_error);
                 return;
         }
     }
 
     public sd(MessagesController messagesController, long j10, int i10, int i11, int i12, long j11, int i13, int i14, int i15, int i16, int i17, int i18, int i19, long j12, int i20, boolean z10, int i21, boolean z11, boolean z12, TLObject tLObject, int i22) {
-        this.f19566a = i22;
-        this.f19567b = messagesController;
+        this.f21227a = i22;
+        this.f21228b = messagesController;
         this.h = j10;
-        this.f19568c = i10;
+        this.f21229c = i10;
         this.d = i11;
         this.e = i12;
-        this.f19571i = j11;
-        this.f19569f = i13;
-        this.f19570g = i14;
-        this.f19572j = i15;
-        this.f19573k = i16;
-        this.f19574l = i17;
-        this.f19575m = i18;
-        this.f19576n = i19;
-        this.f19577o = j12;
-        this.f19578p = i20;
-        this.f19579q = z10;
-        this.f19580r = i21;
-        this.f19581s = z11;
-        this.f19582t = z12;
-        this.f19583u = tLObject;
+        this.f21232i = j11;
+        this.f21230f = i13;
+        this.f21231g = i14;
+        this.f21233j = i15;
+        this.f21234k = i16;
+        this.f21235l = i17;
+        this.f21236m = i18;
+        this.f21237n = i19;
+        this.f21238o = j12;
+        this.f21239p = i20;
+        this.f21240q = z10;
+        this.f21241r = i21;
+        this.f21242s = z11;
+        this.f21243t = z12;
+        this.f21244u = tLObject;
     }
 }

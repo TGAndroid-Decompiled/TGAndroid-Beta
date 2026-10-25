@@ -1,17 +1,97 @@
 package org.telegram.ui;
-public final class hm0 extends org.telegram.ui.ActionBar.j {
-    public final zm0 f37903a;
 
-    public hm0(zm0 zm0Var) {
-        this.f37903a = zm0Var;
+import java.util.HashMap;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SecureDocument;
+import org.telegram.tgnet.TLRPC;
+public final class hm0 extends gu0 {
+    public final in0 f40035a;
+
+    public hm0(in0 in0Var) {
+        this.f40035a = in0Var;
     }
 
     @Override
-    public final void b(int r23) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hm0.b(int):void");
+    public final void B(int i10) {
+        SecureDocument secureDocument;
+        in0 in0Var = this.f40035a;
+        int i11 = in0Var.S0;
+        if (i11 == 1) {
+            secureDocument = in0Var.f40292j1;
+        } else if (i11 == 4) {
+            secureDocument = (SecureDocument) in0Var.f40294k1.get(i10);
+        } else if (i11 == 2) {
+            secureDocument = in0Var.l1;
+        } else if (i11 == 3) {
+            secureDocument = in0Var.f40296m1;
+        } else {
+            secureDocument = (SecureDocument) in0Var.f40290i1.get(i10);
+        }
+        gn0 gn0Var = (gn0) in0Var.f40299n1.remove(secureDocument);
+        if (gn0Var == null) {
+            return;
+        }
+        String n12 = in0.n1(secureDocument);
+        int i12 = in0Var.S0;
+        String str = null;
+        if (i12 == 1) {
+            in0Var.f40292j1 = null;
+            str = org.telegram.ui.Components.b10.j("selfie", n12);
+        } else if (i12 == 4) {
+            str = org.telegram.ui.Components.b10.j("translation", n12);
+        } else if (i12 == 2) {
+            in0Var.l1 = null;
+            str = org.telegram.ui.Components.b10.j("front", n12);
+        } else if (i12 == 3) {
+            in0Var.f40296m1 = null;
+            str = org.telegram.ui.Components.b10.j("reverse", n12);
+        } else if (i12 == 0) {
+            str = org.telegram.ui.Components.b10.j("files", n12);
+        }
+        if (str != null) {
+            HashMap hashMap = in0Var.f40323x1;
+            if (hashMap != null) {
+                hashMap.remove(str);
+            }
+            HashMap hashMap2 = in0Var.f40326y1;
+            if (hashMap2 != null) {
+                hashMap2.remove(str);
+            }
+        }
+        in0Var.T1(in0Var.S0);
+        in0Var.f40289i0.removeView(gn0Var);
     }
 
-    public final boolean c(org.telegram.ui.nj0 r33, n2.e r34) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.hm0.c(org.telegram.ui.nj0, n2.e):boolean");
+    @Override
+    public final qu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        if (i10 >= 0) {
+            in0 in0Var = this.f40035a;
+            if (i10 < in0Var.f40289i0.getChildCount()) {
+                gn0 gn0Var = (gn0) in0Var.f40289i0.getChildAt(i10);
+                int[] iArr = new int[2];
+                gn0Var.f39724c.getLocationInWindow(iArr);
+                qu0 qu0Var = new qu0();
+                qu0Var.f42917b = iArr[0];
+                qu0Var.f42918c = iArr[1];
+                qu0Var.d = in0Var.f40289i0;
+                ImageReceiver imageReceiver = gn0Var.f39724c.getImageReceiver();
+                qu0Var.f42916a = imageReceiver;
+                qu0Var.e = imageReceiver.getBitmapSafe();
+                return qu0Var;
+            }
+            return null;
+        }
+        return null;
+    }
+
+    @Override
+    public final String b0() {
+        if (this.f40035a.S0 == 1) {
+            return LocaleController.formatString("PassportDeleteSelfieAlert", R.string.PassportDeleteSelfieAlert, new Object[0]);
+        }
+        return LocaleController.formatString("PassportDeleteScanAlert", R.string.PassportDeleteScanAlert, new Object[0]);
     }
 }

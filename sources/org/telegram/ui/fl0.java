@@ -1,54 +1,71 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.tl.TL_account;
-public final class fl0 implements Utilities.Callback2 {
-    public final int f37351a;
-    public final PasskeysActivity f37352b;
+public final class fl0 implements Runnable {
+    public final int f39411a;
+    public final PasscodeActivity f39412b;
 
-    public fl0(PasskeysActivity passkeysActivity, int i10) {
-        this.f37351a = i10;
-        this.f37352b = passkeysActivity;
+    public fl0(PasscodeActivity passcodeActivity, int i10) {
+        this.f39411a = i10;
+        this.f39412b = passcodeActivity;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f37351a;
-        PasskeysActivity passkeysActivity = this.f37352b;
-        switch (i10) {
+    public final void run() {
+        long j10;
+        switch (this.f39411a) {
             case 0:
-                ArrayList arrayList = (ArrayList) obj;
-                org.telegram.ui.Components.a71 a71Var = (org.telegram.ui.Components.a71) obj2;
-                ArrayList arrayList2 = passkeysActivity.f33540b;
-                passkeysActivity.addPasskeyRow = -1;
-                String string = LocaleController.getString(R.string.PasskeyTopInfo);
-                int i11 = R.raw.passkey;
-                org.telegram.ui.Components.l61 l61Var = new org.telegram.ui.Components.l61(2);
-                l61Var.f28227l = string;
-                l61Var.f28226k = i11;
-                arrayList.add(l61Var);
-                for (int i12 = 0; i12 < arrayList2.size(); i12++) {
-                    w50 w50Var = new w50(passkeysActivity, 15);
-                    int i13 = gl0.f37606a;
-                    org.telegram.ui.Components.l61 J = org.telegram.ui.Components.l61.J(gl0.class);
-                    J.G = (TL_account.Passkey) arrayList2.get(i12);
-                    J.D = w50Var;
-                    arrayList.add(J);
+                PasscodeActivity passcodeActivity = this.f39412b;
+                passcodeActivity.f35594n.postDelayed(passcodeActivity.S, 3000L);
+                passcodeActivity.R = true;
+                return;
+            case 1:
+                PasscodeActivity passcodeActivity2 = this.f39412b;
+                zc1 zc1Var = passcodeActivity2.V;
+                if (zc1Var != null) {
+                    AndroidUtilities.runOnUIThread(zc1Var);
+                    passcodeActivity2.V = null;
                 }
-                if (arrayList2.size() + 1 <= passkeysActivity.getMessagesController().config.passkeysAccountPasskeysMax.get()) {
-                    passkeysActivity.addPasskeyRow = arrayList.size();
-                    org.telegram.ui.Components.l61 c10 = org.telegram.ui.Components.l61.c(-1, R.drawable.menu_passkey_add, LocaleController.getString(R.string.PasskeyAdd));
-                    c10.f28232q = true;
-                    arrayList.add(c10);
+                passcodeActivity2.finishFragment();
+                return;
+            case 2:
+                PasscodeActivity passcodeActivity3 = new PasscodeActivity(0);
+                PasscodeActivity passcodeActivity4 = this.f39412b;
+                passcodeActivity4.presentFragment(passcodeActivity3, true);
+                hb0 hb0Var = passcodeActivity4.U;
+                if (hb0Var != null) {
+                    AndroidUtilities.runOnUIThread(hb0Var);
+                    passcodeActivity4.U = null;
+                    return;
                 }
-                arrayList.add(org.telegram.ui.Components.l61.B(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.PasskeyInfo), new nj0(passkeysActivity, 3)), true)));
+                return;
+            case 3:
+                PasscodeActivity passcodeActivity5 = this.f39412b;
+                fl0 fl0Var = new fl0(passcodeActivity5, 4);
+                if (passcodeActivity5.o0()) {
+                    j10 = 150;
+                } else {
+                    j10 = 1000;
+                }
+                AndroidUtilities.runOnUIThread(fl0Var, j10);
+                return;
+            case 4:
+                PasscodeActivity passcodeActivity6 = this.f39412b;
+                if (passcodeActivity6.o0()) {
+                    for (xr xrVar : passcodeActivity6.f35594n.f44894f) {
+                        xrVar.i(0.0f);
+                    }
+                    return;
+                }
+                passcodeActivity6.f35593f.a(0.0f);
+                return;
+            case 5:
+                PasscodeActivity passcodeActivity7 = this.f39412b;
+                passcodeActivity7.R = false;
+                AndroidUtilities.updateViewVisibilityAnimated(passcodeActivity7.f35595r, false);
                 return;
             default:
-                PasskeysActivity.U(passkeysActivity, (TL_account.Passkey) obj, (String) obj2);
+                this.f39412b.u0();
                 return;
         }
     }

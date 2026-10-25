@@ -7,24 +7,24 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 public final class w0 extends a1 {
     public static Field e = null;
-    public static boolean f45275f = false;
-    public static Constructor f45276g = null;
+    public static boolean f47140f = false;
+    public static Constructor f47141g = null;
     public static boolean h = false;
-    public WindowInsets f45277c;
+    public WindowInsets f47142c;
     public i0.b d;
 
     public w0() {
-        this.f45277c = j();
+        this.f47142c = j();
     }
 
     private static WindowInsets j() {
-        if (!f45275f) {
+        if (!f47140f) {
             try {
                 e = WindowInsets.class.getDeclaredField("CONSUMED");
-            } catch (ReflectiveOperationException e7) {
-                Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets.CONSUMED field", e7);
+            } catch (ReflectiveOperationException e10) {
+                Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets.CONSUMED field", e10);
             }
-            f45275f = true;
+            f47140f = true;
         }
         Field field = e;
         if (field != null) {
@@ -33,24 +33,24 @@ public final class w0 extends a1 {
                 if (windowInsets != null) {
                     return new WindowInsets(windowInsets);
                 }
-            } catch (ReflectiveOperationException e10) {
-                Log.i("WindowInsetsCompat", "Could not get value from WindowInsets.CONSUMED field", e10);
+            } catch (ReflectiveOperationException e11) {
+                Log.i("WindowInsetsCompat", "Could not get value from WindowInsets.CONSUMED field", e11);
             }
         }
         if (!h) {
             try {
-                f45276g = WindowInsets.class.getConstructor(Rect.class);
-            } catch (ReflectiveOperationException e11) {
-                Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets(Rect) constructor", e11);
+                f47141g = WindowInsets.class.getConstructor(Rect.class);
+            } catch (ReflectiveOperationException e12) {
+                Log.i("WindowInsetsCompat", "Could not retrieve WindowInsets(Rect) constructor", e12);
             }
             h = true;
         }
-        Constructor constructor = f45276g;
+        Constructor constructor = f47141g;
         if (constructor != null) {
             try {
                 return (WindowInsets) constructor.newInstance(new Rect());
-            } catch (ReflectiveOperationException e12) {
-                Log.i("WindowInsetsCompat", "Could not invoke WindowInsets(Rect) constructor", e12);
+            } catch (ReflectiveOperationException e13) {
+                Log.i("WindowInsetsCompat", "Could not invoke WindowInsets(Rect) constructor", e13);
             }
         }
         return null;
@@ -59,9 +59,9 @@ public final class w0 extends a1 {
     @Override
     public k1 b() {
         a();
-        k1 h10 = k1.h(null, this.f45277c);
-        i0.b[] bVarArr = this.f45207b;
-        h1 h1Var = h10.f45250a;
+        k1 h10 = k1.h(null, this.f47142c);
+        i0.b[] bVarArr = this.f47071b;
+        h1 h1Var = h10.f47115a;
         h1Var.q(bVarArr);
         h1Var.s(this.d);
         return h10;
@@ -74,14 +74,14 @@ public final class w0 extends a1 {
 
     @Override
     public void g(i0.b bVar) {
-        WindowInsets windowInsets = this.f45277c;
+        WindowInsets windowInsets = this.f47142c;
         if (windowInsets != null) {
-            this.f45277c = windowInsets.replaceSystemWindowInsets(bVar.f12315a, bVar.f12316b, bVar.f12317c, bVar.d);
+            this.f47142c = windowInsets.replaceSystemWindowInsets(bVar.f13450a, bVar.f13451b, bVar.f13452c, bVar.d);
         }
     }
 
     public w0(k1 k1Var) {
         super(k1Var);
-        this.f45277c = k1Var.g();
+        this.f47142c = k1Var.g();
     }
 }

@@ -1,58 +1,48 @@
 package li;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
 import android.view.View;
-import org.telegram.messenger.MessageObject;
-import org.telegram.ui.Cells.t1;
-import s4.b1;
-public final class i extends AnimatorListenerAdapter {
-    public final b1 f16176a;
-    public final int f16177b;
-    public final View f16178c;
-    public final m d;
+import android.view.ViewTreeObserver;
+public final class i implements ViewTreeObserver.OnGlobalFocusChangeListener {
+    public final int f17291a;
+    public final Object f17292b;
 
-    public i(m mVar, b1 b1Var, int i10, View view) {
-        this.d = mVar;
-        this.f16176a = b1Var;
-        this.f16177b = i10;
-        this.f16178c = view;
+    public i(Object obj, int i10) {
+        this.f17291a = i10;
+        this.f17292b = obj;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        if (this.f16177b != 0) {
-            this.f16178c.setTranslationY(0.0f);
+    public final void onGlobalFocusChanged(View view, View view2) {
+        boolean z10;
+        switch (this.f17291a) {
+            case 0:
+                ((q) this.f17292b).c0();
+                return;
+            case 1:
+                ((b2) this.f17292b).x0();
+                return;
+            case 2:
+                v3 v3Var = (v3) this.f17292b;
+                if (view2 != null && v3Var.F(view2) != null) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                v3Var.f32152i3 = z10;
+                if (view2 instanceof g1) {
+                    v3Var.T3 = (g1) view2;
+                    return;
+                }
+                return;
+            default:
+                p5 p5Var = (p5) this.f17292b;
+                p5Var.w();
+                r5 r5Var = p5Var.v;
+                if (r5Var != null) {
+                    r5Var.invalidate();
+                    return;
+                }
+                return;
         }
-    }
-
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        animator.removeAllListeners();
-        b1 b1Var = this.f16176a;
-        View view = b1Var.f46342a;
-        m mVar = this.d;
-        mVar.X(view);
-        View view2 = b1Var.f46342a;
-        if (view2 instanceof t1) {
-            t1 t1Var = (t1) view2;
-            if (t1Var.f23392fd) {
-                t1Var.f23392fd = false;
-                t1Var.setVisibility(0);
-            }
-            MessageObject.GroupedMessages currentMessagesGroup = t1Var.getCurrentMessagesGroup();
-            if (currentMessagesGroup != null) {
-                currentMessagesGroup.transitionParams.reset();
-            }
-        }
-        if (mVar.f46415z.remove(b1Var)) {
-            mVar.v(b1Var);
-            mVar.G();
-        }
-    }
-
-    @Override
-    public final void onAnimationStart(Animator animator) {
-        this.d.getClass();
     }
 }

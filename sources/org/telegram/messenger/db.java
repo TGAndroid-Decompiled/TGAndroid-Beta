@@ -1,37 +1,51 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
+import android.content.Context;
+import org.telegram.messenger.voip.VoIPGroupNotification;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class db implements Runnable {
-    public final int f18226a;
-    public final MessagesController f18227b;
-    public final int f18228c;
-    public final ArrayList d;
-    public final boolean e;
-    public final TLRPC.TL_messages_peerDialogs f18229f;
-    public final a0.h h;
-    public final TLRPC.TL_messages_dialogs f18230n;
+    public final int f19899a = 0;
+    public final int f19900b;
+    public final long f19901c;
+    public final long d;
+    public final int e;
+    public final boolean f19902f;
+    public final Object h;
+    public final Object f19903n;
+    public final Object f19904r;
 
-    public db(MessagesController messagesController, int i10, ArrayList arrayList, boolean z10, TLRPC.TL_messages_peerDialogs tL_messages_peerDialogs, a0.h hVar, TLRPC.TL_messages_dialogs tL_messages_dialogs, int i11) {
-        this.f18226a = i11;
-        this.f18227b = messagesController;
-        this.f18228c = i10;
-        this.d = arrayList;
-        this.e = z10;
-        this.f18229f = tL_messages_peerDialogs;
-        this.h = hVar;
-        this.f18230n = tL_messages_dialogs;
+    public db(MessagesController messagesController, long j10, int i10, int i11, long j11, TLRPC.TL_messages_affectedHistory tL_messages_affectedHistory, boolean z10, Runnable runnable) {
+        this.h = messagesController;
+        this.f19901c = j10;
+        this.f19900b = i10;
+        this.e = i11;
+        this.d = j11;
+        this.f19903n = tL_messages_affectedHistory;
+        this.f19902f = z10;
+        this.f19904r = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f18226a) {
+        switch (this.f19899a) {
             case 0:
-                this.f18227b.lambda$loadPinnedDialogs$365(this.f18228c, this.d, this.e, this.f18229f, this.h, this.f18230n);
+                ((MessagesController) this.h).lambda$deleteMessagesRange$469(this.f19901c, this.f19900b, this.e, this.d, (TLRPC.TL_messages_affectedHistory) this.f19903n, this.f19902f, (Runnable) this.f19904r);
                 return;
             default:
-                this.f18227b.lambda$loadPinnedDialogs$364(this.f18228c, this.d, this.e, this.f18229f, this.h, this.f18230n);
+                VoIPGroupNotification.b((TLObject) this.h, this.f19900b, this.f19901c, this.d, this.e, this.f19902f, (Context) this.f19903n, (String) this.f19904r);
                 return;
         }
+    }
+
+    public db(TLObject tLObject, int i10, long j10, long j11, int i11, boolean z10, Context context, String str) {
+        this.h = tLObject;
+        this.f19900b = i10;
+        this.f19901c = j10;
+        this.d = j11;
+        this.e = i11;
+        this.f19902f = z10;
+        this.f19903n = context;
+        this.f19904r = str;
     }
 }

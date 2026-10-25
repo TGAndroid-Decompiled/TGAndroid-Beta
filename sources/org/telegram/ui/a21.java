@@ -1,15 +1,31 @@
 package org.telegram.ui;
-public final class a21 extends r51 {
-    public final c21 e;
 
-    public a21(c21 c21Var, z11 z11Var) {
-        super(z11Var);
-        this.e = c21Var;
+import android.transition.Transition;
+public final class a21 implements Transition.TransitionListener {
+    public final Runnable f37624a;
+
+    public a21(Runnable runnable) {
+        this.f37624a = runnable;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.e.f36201n = null;
+    public final void onTransitionEnd(Transition transition) {
+        this.f37624a.run();
+    }
+
+    @Override
+    public final void onTransitionCancel(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionPause(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionResume(Transition transition) {
+    }
+
+    @Override
+    public final void onTransitionStart(Transition transition) {
     }
 }

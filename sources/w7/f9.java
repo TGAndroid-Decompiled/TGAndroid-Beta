@@ -1,28 +1,21 @@
 package w7;
 
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.Set;
+import a8.qg;
 public abstract class f9 {
-    public static boolean a(e9.j2 j2Var, Collection collection) {
-        collection.getClass();
-        if (collection instanceof z7.l) {
-            collection = ((z7.l) collection).zza();
-        }
-        boolean z10 = false;
-        if ((collection instanceof Set) && collection.size() > j2Var.size()) {
-            Iterator<E> it = j2Var.iterator();
-            while (it.hasNext()) {
-                if (collection.contains(it.next())) {
-                    it.remove();
-                    z10 = true;
+    public static qg f50851a;
+
+    public static synchronized d9 a(a9 a9Var) {
+        d9 d9Var;
+        synchronized (f9.class) {
+            try {
+                if (f50851a == null) {
+                    f50851a = new qg(2);
                 }
+                d9Var = (d9) f50851a.R0(a9Var);
+            } catch (Throwable th2) {
+                throw th2;
             }
-            return z10;
         }
-        for (Object obj : collection) {
-            z10 |= j2Var.remove(obj);
-        }
-        return z10;
+        return d9Var;
     }
 }

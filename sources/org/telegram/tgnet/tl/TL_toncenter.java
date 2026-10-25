@@ -254,7 +254,7 @@ public class TL_toncenter {
 
         @Override
         public Vector<onrampProviderInfo> deserializeResponseT(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i10, z10, new d(14));
+            return Vector.TLDeserialize(inputSerializedData, i10, z10, new d(18));
         }
     }
 
@@ -356,7 +356,7 @@ public class TL_toncenter {
             if (TLObject.hasFlag(this.flags, 4)) {
                 this.state = inputSerializedData.readString(z10);
             }
-            this.methods = Vector.deserialize(inputSerializedData, new d(15), z10);
+            this.methods = Vector.deserialize(inputSerializedData, new d(19), z10);
         }
 
         @Override
@@ -484,7 +484,7 @@ public class TL_toncenter {
         public static final int constructor = 230847874;
         public ArrayList<String> crypto_currencies = new ArrayList<>();
         public int flags;
-        public String f20593id;
+        public String f22279id;
         public String name;
         public boolean supports_base_currencies;
         public boolean supports_limits;
@@ -507,7 +507,7 @@ public class TL_toncenter {
             this.supports_base_currencies = TLObject.hasFlag(readInt32, 1);
             this.supports_limits = TLObject.hasFlag(this.flags, 2);
             this.supports_quote = TLObject.hasFlag(this.flags, 4);
-            this.f20593id = inputSerializedData.readString(z10);
+            this.f22279id = inputSerializedData.readString(z10);
             this.name = inputSerializedData.readString(z10);
             this.crypto_currencies = Vector.deserializeString(inputSerializedData, z10);
         }
@@ -522,7 +522,7 @@ public class TL_toncenter {
             int flag3 = TLObject.setFlag(flag2, 4, this.supports_quote);
             this.flags = flag3;
             outputSerializedData.writeInt32(flag3);
-            outputSerializedData.writeString(this.f20593id);
+            outputSerializedData.writeString(this.f22279id);
             outputSerializedData.writeString(this.name);
             Vector.serializeString(outputSerializedData, this.crypto_currencies);
         }

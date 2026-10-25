@@ -1,78 +1,128 @@
 package hi;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.u9;
-import w7.z5;
-public final class e extends FrameLayout implements b6 {
-    public final u9 f12168a;
-    public final g6 f12169b;
-    public final TextView f12170c;
-    public final TextView d;
+import org.telegram.ui.ActionBar.y6;
+public final class e extends tg.x1 {
+    public final int f12946r;
 
-    public e(Context context, g6 g6Var) {
+    public e(Context context, int i10) {
         super(context);
-        this.f12169b = g6Var;
-        u9 u9Var = new u9(context);
-        this.f12168a = u9Var;
-        u9Var.setRoundRadius(AndroidUtilities.dp(20.0f));
-        addView(u9Var, z5.d(72, 72.0f, 49, 0.0f, 36.0f, 0.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f12170c = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextSize(1, 20.0f);
-        textView.setGravity(17);
-        addView(textView, z5.d(-1, -2.0f, 49, 24.0f, 123.0f, 24.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.d = textView2;
-        textView2.setTextSize(1, 14.0f);
-        textView2.setGravity(17);
-        textView2.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView2, z5.d(-1, -2.0f, 49, 32.0f, 157.0f, 32.0f, 0.0f));
-        updateColors();
+        this.f12946r = i10;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
-        hashSet.add(Integer.valueOf(k6.G6));
-        hashSet.add(Integer.valueOf(k6.f21589z6));
+    public final void a() {
+        switch (this.f12946r) {
+            case 0:
+                super.a();
+                tg.w1 w1Var = this.f49116a;
+                w1Var.f49100q = true;
+                w1Var.K = false;
+                w1Var.L = true;
+                w1Var.H = true;
+                w1Var.c();
+                return;
+            case 1:
+                super.a();
+                tg.w1 w1Var2 = this.f49116a;
+                w1Var2.f49100q = true;
+                w1Var2.K = false;
+                w1Var2.L = true;
+                w1Var2.H = true;
+                w1Var2.c();
+                return;
+            case 2:
+                tg.w1 w1Var3 = new tg.w1(50);
+                this.f49116a = w1Var3;
+                w1Var3.O = 100;
+                w1Var3.M = false;
+                w1Var3.G = false;
+                w1Var3.K = true;
+                w1Var3.H = true;
+                w1Var3.J = false;
+                w1Var3.f49101r = 4;
+                w1Var3.f49105w = 0.98f;
+                w1Var3.v = 0.98f;
+                w1Var3.f49104u = 0.98f;
+                w1Var3.c();
+                return;
+            case 3:
+                tg.w1 w1Var4 = this.f49116a;
+                w1Var4.f49100q = true;
+                w1Var4.K = false;
+                w1Var4.H = true;
+                w1Var4.J = true;
+                w1Var4.f49094k = AndroidUtilities.dp(-14.0f);
+                tg.w1 w1Var5 = this.f49116a;
+                w1Var5.f49106x = 2000L;
+                w1Var5.f49107y = 3000;
+                w1Var5.f49101r = 16;
+                w1Var5.G = false;
+                w1Var5.O = 28;
+                w1Var5.Q = y6.Mj;
+                w1Var5.c();
+                return;
+            case 4:
+                tg.w1 w1Var6 = this.f49116a;
+                w1Var6.f49100q = true;
+                w1Var6.K = false;
+                w1Var6.H = true;
+                w1Var6.J = true;
+                w1Var6.f49094k = AndroidUtilities.dp(-14.0f);
+                tg.w1 w1Var7 = this.f49116a;
+                w1Var7.f49106x = 2000L;
+                w1Var7.f49107y = 3000;
+                w1Var7.f49101r = 16;
+                w1Var7.G = false;
+                w1Var7.O = 28;
+                w1Var7.Q = y6.Mj;
+                w1Var7.c();
+                return;
+            default:
+                super.a();
+                tg.w1 w1Var8 = this.f49116a;
+                w1Var8.f49100q = true;
+                w1Var8.K = false;
+                w1Var8.L = true;
+                w1Var8.H = true;
+                w1Var8.c();
+                return;
+        }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        Drawable drawable = k6.S0;
-        u9 u9Var = this.f12168a;
-        zf.p.a(canvas, drawable, (u9Var.getWidth() / 2.0f) + u9Var.getLeft(), (u9Var.getHeight() / 2.0f) + u9Var.getTop(), u9Var.getHeight());
+    public int getStarsRectWidth() {
+        switch (this.f12946r) {
+            case 0:
+                return getMeasuredWidth();
+            case 1:
+                return getMeasuredWidth();
+            case 2:
+                return getMeasuredWidth();
+            default:
+                return super.getStarsRectWidth();
+        }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(218.0f), 1073741824));
-    }
-
-    public void setSubtitle(CharSequence charSequence) {
-        this.d.setText(charSequence);
-    }
-
-    public void setTitle(CharSequence charSequence) {
-        this.f12170c.setText(charSequence);
-    }
-
-    @Override
-    public final void updateColors() {
-        int i10 = k6.G6;
-        g6 g6Var = this.f12169b;
-        this.f12170c.setTextColor(k6.w0(i10, g6Var));
-        this.d.setTextColor(k6.w0(k6.f21589z6, g6Var));
+    public void onMeasure(int i10, int i11) {
+        switch (this.f12946r) {
+            case 3:
+                super.onMeasure(i10, i11);
+                this.f49116a.f49088b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 4:
+                super.onMeasure(i10, i11);
+                this.f49116a.f49088b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            case 5:
+                super.onMeasure(i10, i11);
+                this.f49116a.f49088b.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - AndroidUtilities.dp(52.0f));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
     }
 }

@@ -1,35 +1,56 @@
 package kd;
 
-import td.p;
-public abstract class a implements f {
-    public final g f15071a;
+import java.util.ListIterator;
+import java.util.NoSuchElementException;
+public final class a extends fd.b implements ListIterator {
+    public final c d;
 
-    public a(g gVar) {
-        this.f15071a = gVar;
+    public a(c cVar, int i10) {
+        super(cVar);
+        this.d = cVar;
+        int h = cVar.h();
+        if (i10 >= 0 && i10 <= h) {
+            this.f10430b = i10;
+            return;
+        }
+        throw new IndexOutOfBoundsException(a1.g.l(i10, h, "index: ", ", size: "));
     }
 
     @Override
-    public final Object fold(Object obj, p pVar) {
-        return pVar.invoke(obj, this);
+    public final void add(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 
     @Override
-    public f get(g gVar) {
-        return w7.h.a(this, gVar);
+    public final boolean hasPrevious() {
+        if (this.f10430b > 0) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final g getKey() {
-        return this.f15071a;
+    public final int nextIndex() {
+        return this.f10430b;
     }
 
     @Override
-    public h minusKey(g gVar) {
-        return w7.h.b(this, gVar);
+    public final Object previous() {
+        if (hasPrevious()) {
+            int i10 = this.f10430b - 1;
+            this.f10430b = i10;
+            return this.d.get(i10);
+        }
+        throw new NoSuchElementException();
     }
 
     @Override
-    public final h plus(h hVar) {
-        return w7.h.c(this, hVar);
+    public final int previousIndex() {
+        return this.f10430b - 1;
+    }
+
+    @Override
+    public final void set(Object obj) {
+        throw new UnsupportedOperationException("Operation is not supported for read-only collection");
     }
 }

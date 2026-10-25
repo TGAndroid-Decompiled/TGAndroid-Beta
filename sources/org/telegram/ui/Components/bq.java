@@ -1,103 +1,363 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import java.util.Random;
-public final class bq {
-    public float f25070g;
-    public float f25073k;
-    public final Path f25066a = new Path();
-    public final float[] f25067b = new float[4];
-    public final float[] f25068c = new float[4];
-    public final Matrix d = new Matrix();
-    public final float h = 1.0f;
-    public final Random f25071i = new Random();
-    public final int f25069f = 6;
-    public final float e = (float) (Math.tan(3.141592653589793d / 12) * 1.3333333333333333d);
-    public final float[] f25072j = new float[6];
+import android.app.Activity;
+import android.content.SharedPreferences;
+import android.os.SystemClock;
+import android.text.style.ClickableSpan;
+import android.util.SparseIntArray;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DispatchQueue;
+import org.telegram.messenger.EmojiData;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.VideoEditedInfo;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class bq implements Runnable {
+    public final int f26936a;
+    public final Object f26937b;
 
-    public bq() {
-        for (int i10 = 0; i10 < this.f25069f; i10++) {
-            this.f25072j[i10] = (this.f25071i.nextInt() % 100) / 100.0f;
+    public bq(Object obj, int i10) {
+        this.f26936a = i10;
+        this.f26937b = obj;
+    }
+
+    @Override
+    public final void run() {
+        boolean z10;
+        oe.b bVar;
+        int i10;
+        int i11;
+        VideoEditedInfo videoEditedInfo;
+        int i12 = this.f26936a;
+        long j10 = 0;
+        Object obj = this.f26937b;
+        switch (i12) {
+            case 0:
+                ((cq) obj).f27233b.a();
+                return;
+            case 1:
+                ((oq) obj).dismiss();
+                return;
+            case 2:
+                ((cr) obj).a();
+                return;
+            case 3:
+                ((org.telegram.ui.ActionBar.k3) obj).dismiss();
+                org.telegram.ui.ActionBar.r2 U = LaunchActivity.U();
+                if (U != null) {
+                    U.presentFragment(new PremiumPreviewFragment(0, "create_bot"));
+                    return;
+                }
+                return;
+            case 4:
+                tr trVar = ((rr) obj).f32288c;
+                TLRPC.Peer peer = trVar.f33128d0;
+                org.telegram.ui.ActionBar.r2 r2Var = trVar.f33130f0;
+                long j11 = trVar.f33131g0;
+                if (trVar.Y.size() > 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                zr zrVar = new zr(r2Var, peer, j11, z10, trVar.X);
+                if (r2Var.getParentActivity() != null) {
+                    r2Var.showDialog(zrVar);
+                    return;
+                } else {
+                    zrVar.show();
+                    return;
+                }
+            case 5:
+                ((fi.d) obj).setLoading(true);
+                return;
+            case 6:
+                us usVar = (us) obj;
+                usVar.f33484a.a(!bVar.f19327f, true);
+                AndroidUtilities.runOnUIThread(usVar.f33487f, 3000L);
+                return;
+            case 7:
+                ((yo0) obj).W(false);
+                return;
+            case 8:
+                ((xt) obj).a();
+                return;
+            case 9:
+                ((ViewTreeObserver.OnPreDrawListener) obj).onPreDraw();
+                return;
+            case 10:
+                ((su) obj).getClass();
+                return;
+            case 11:
+                qf.d.r(((yu) obj).f35139a.getContext(), "https://play.google.com/store/apps/details?id=com.google.android.webview");
+                return;
+            case 12:
+                dv dvVar = ((cv) obj).f27266a;
+                dvVar.f27608n.setVisibility(4);
+                dvVar.h.setVisibility(4);
+                ImageView imageView = dvVar.f27612x;
+                imageView.setEnabled(true);
+                imageView.setAlpha(1.0f);
+                return;
+            case 13:
+                ((vv) obj).a(true, true);
+                return;
+            case 14:
+                ox oxVar = (ox) obj;
+                if (oxVar.Y.getEmojiView() != null) {
+                    sz emojiView = oxVar.Y.getEmojiView();
+                    if (!emojiView.f32725f0) {
+                        try {
+                            int i13 = emojiView.R.f35428s.get(EmojiData.dataColored.length);
+                            if (i13 > 0) {
+                                emojiView.P.C0();
+                                emojiView.U(i13);
+                                emojiView.G(i13, AndroidUtilities.dp(-9.0f));
+                                emojiView.n(0, null);
+                            } else {
+                                return;
+                            }
+                        } catch (Exception unused) {
+                            return;
+                        }
+                    }
+                    return;
+                }
+                return;
+            case 15:
+                iy iyVar = (iy) obj;
+                iyVar.f29399w.f28008f = true;
+                iyVar.a(true);
+                return;
+            case 16:
+                AndroidUtilities.updateViewShow(((fz) obj).h, true);
+                return;
+            case 17:
+                lz lzVar = (lz) obj;
+                ArrayList arrayList = lzVar.f30331r;
+                ArrayList arrayList2 = lzVar.h;
+                nz nzVar = lzVar.f30333w;
+                int i14 = nzVar.M;
+                sz szVar = nzVar.Q;
+                zw zwVar = szVar.D0;
+                if (i14 == lzVar.f30327b) {
+                    arrayList2.remove(arrayList);
+                    nzVar.E = lzVar.f30328c;
+                    nzVar.F = lzVar.d;
+                    nzVar.G = lzVar.e;
+                    nzVar.H = lzVar.f30329f;
+                    nzVar.I = arrayList2;
+                    nzVar.J = lzVar.f30330n;
+                    nzVar.K = new ArrayList(arrayList);
+                    szVar.G0.e(false);
+                    s4.h0 adapter = zwVar.getAdapter();
+                    nz nzVar2 = szVar.f32789z0;
+                    if (adapter != nzVar2) {
+                        zwVar.setAdapter(nzVar2);
+                    }
+                    nzVar.l();
+                    return;
+                }
+                return;
+            case 18:
+                ((wz) obj).b();
+                return;
+            case 19:
+                s00 s00Var = ((r00) obj).e;
+                ArrayList arrayList3 = s00Var.h;
+                if (!UserConfig.getInstance(UserConfig.selectedAccount).isPremium()) {
+                    for (int i15 = 0; i15 < arrayList3.size(); i15++) {
+                        if (((p00) arrayList3.get(i15)).e && i15 != 0) {
+                            o00 o00Var = s00Var.I;
+                            s00 s00Var2 = o00Var.d;
+                            ArrayList arrayList4 = s00Var2.h;
+                            SparseIntArray sparseIntArray = s00Var2.f32373k0;
+                            int size = arrayList4.size();
+                            if (i15 >= 0 && i15 < size) {
+                                ArrayList<MessagesController.DialogFilter> dialogFilters = MessagesController.getInstance(UserConfig.selectedAccount).getDialogFilters();
+                                int i16 = sparseIntArray.get(i15);
+                                int i17 = ((p00) arrayList4.get(i15)).f31399a;
+                                for (int i18 = i15 - 1; i18 >= 0; i18--) {
+                                    sparseIntArray.put(i18 + 1, sparseIntArray.get(i18));
+                                }
+                                MessagesController.DialogFilter remove = dialogFilters.remove(i15);
+                                remove.order = 0;
+                                dialogFilters.add(0, remove);
+                                sparseIntArray.put(0, i16);
+                                arrayList4.add(0, (p00) arrayList4.remove(i15));
+                                ((p00) arrayList4.get(0)).f31399a = i17;
+                                for (int i19 = 0; i19 <= i15; i19++) {
+                                    ((p00) arrayList4.get(i19)).f31399a = i19;
+                                    dialogFilters.get(i19).order = i19;
+                                }
+                                for (int i20 = 0; i20 <= i15; i20++) {
+                                    if (s00Var2.K == i20) {
+                                        if (i20 == i15) {
+                                            i11 = 0;
+                                        } else {
+                                            i11 = i20 + 1;
+                                        }
+                                        s00Var2.L = i11;
+                                        s00Var2.K = i11;
+                                    }
+                                    if (s00Var2.f32379q0 == i20) {
+                                        if (i20 == i15) {
+                                            i10 = 0;
+                                        } else {
+                                            i10 = i20 + 1;
+                                        }
+                                        s00Var2.f32381r0 = i10;
+                                        s00Var2.f32379q0 = i10;
+                                    }
+                                }
+                                o00Var.p(i15, 0);
+                                n00 n00Var = s00Var2.J;
+                                int i21 = ((p00) arrayList4.get(i15)).f31399a;
+                                org.telegram.ui.rx rxVar = (org.telegram.ui.rx) n00Var;
+                                int i22 = 0;
+                                while (true) {
+                                    org.telegram.ui.ay[] ayVarArr = rxVar.f43307b.f38583e0;
+                                    if (i22 < ayVarArr.length) {
+                                        org.telegram.ui.ay ayVar = ayVarArr[i22];
+                                        int i23 = ayVar.h;
+                                        if (i23 == i21) {
+                                            ayVar.h = i17;
+                                        } else if (i23 == i17) {
+                                            ayVar.h = i21;
+                                        }
+                                        i22++;
+                                    } else {
+                                        s00Var2.j();
+                                        s00Var2.f32391y = true;
+                                        s00Var2.F.setItemAnimator(s00Var2.f32383s0);
+                                    }
+                                }
+                            }
+                            s00Var.F.v0(0);
+                            org.telegram.ui.qx qxVar = (org.telegram.ui.qx) s00Var;
+                            org.telegram.ui.cy cyVar = qxVar.B0;
+                            if (!cyVar.getMessagesController().premiumFeaturesBlocked()) {
+                                try {
+                                    qxVar.performHapticFeedback(3, 1);
+                                } catch (Exception unused2) {
+                                }
+                                qc I = wc.b0(cyVar).I(R.raw.filter_reorder, AndroidUtilities.replaceTags(LocaleController.formatString(R.string.LimitReachedReorderFolder, LocaleController.getString(R.string.FilterAllChats))), LocaleController.getString(R.string.PremiumMore), 5000, false, new org.telegram.ui.ui(qxVar, 24));
+                                I.k(true);
+                                cyVar.f38635o3 = I;
+                                return;
+                            }
+                            return;
+                        }
+                    }
+                    return;
+                }
+                return;
+            case 20:
+                z00 z00Var = (z00) obj;
+                if (!z00Var.f35161c) {
+                    z00Var.setLayerType(0, null);
+                    return;
+                }
+                return;
+            case 21:
+                ((k30) obj).g(true);
+                return;
+            case 22:
+                org.telegram.ui.jx jxVar = ((uo0) ((p40) obj)).f33467e0;
+                if (!jxVar.f27952w0.canScrollVertically(-1)) {
+                    jxVar.f27951v0.h1(0, 0);
+                    return;
+                }
+                return;
+            case 23:
+                ((r40) obj).f32090b.b(true);
+                return;
+            case 24:
+                ((r40) obj).f32090b.b(true);
+                return;
+            case 25:
+                i50 i50Var = (i50) obj;
+                ak0 ak0Var = i50Var.f29189f;
+                if (i50Var.f29190n) {
+                    ak0Var.getAnimatedDrawable().K(0);
+                    ak0Var.setAnimation(i50Var.f29191r);
+                    ak0Var.d();
+                    return;
+                }
+                return;
+            case 26:
+                o60 o60Var = (o60) ((f6.r) obj).f10238b;
+                try {
+                    s81 s81Var = o60Var.T;
+                    if (s81Var != null && (videoEditedInfo = o60Var.S) != null && videoEditedInfo.endTime > 0) {
+                        long n10 = s81Var.n();
+                        VideoEditedInfo videoEditedInfo2 = o60Var.S;
+                        if (n10 >= videoEditedInfo2.endTime) {
+                            s81 s81Var2 = o60Var.T;
+                            long j12 = videoEditedInfo2.startTime;
+                            if (j12 > 0) {
+                                j10 = j12;
+                            }
+                            s81Var2.K(j10);
+                            return;
+                        }
+                        return;
+                    }
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 27:
+                n60 n60Var = (n60) obj;
+                vi.r0 r0Var = n60Var.R;
+                if (r0Var != null && r0Var.f50531a == 3) {
+                    long elapsedRealtimeNanos = SystemClock.elapsedRealtimeNanos();
+                    long j13 = n60Var.F0;
+                    if (j13 == 0 || elapsedRealtimeNanos - j13 >= 70000000) {
+                        n60Var.A();
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 28:
+                oa0 oa0Var = (oa0) obj;
+                if (oa0Var.d) {
+                    oa0Var.e = true;
+                    oa0Var.f31245r = false;
+                    oa0Var.f31243f = 0.0f;
+                    oa0Var.h = SystemClock.uptimeMillis();
+                    oa0Var.invalidate();
+                    return;
+                }
+                return;
+            default:
+                ta0 ta0Var = (ta0) obj;
+                Activity parentActivity = ta0Var.getParentActivity();
+                Activity parentActivity2 = ta0Var.getParentActivity();
+                DispatchQueue dispatchQueue = rg.k1.f47446m;
+                boolean z11 = parentActivity2.getSharedPreferences("shapedetector_conf", 0).getBoolean("learning", false);
+                SharedPreferences.Editor edit = parentActivity.getSharedPreferences("shapedetector_conf", 0).edit();
+                if (z11) {
+                    edit.clear();
+                } else {
+                    edit.putBoolean("learning", true);
+                }
+                edit.apply();
+                return;
         }
     }
 
-    public final void a(float f7, float f10, Canvas canvas, Paint paint) {
-        float f11;
-        int i10;
-        float f12;
-        bq bqVar = this;
-        float f13 = bqVar.f25070g;
-        float f14 = (f13 - 0.0f) - 0.0f;
-        float f15 = f13 + 0.0f + 0.0f;
-        float max = Math.max(f14, f15);
-        float f16 = bqVar.e;
-        float f17 = max * f16 * bqVar.h;
-        Path path = bqVar.f25066a;
-        path.reset();
-        int i11 = 0;
-        while (true) {
-            int i12 = bqVar.f25069f;
-            if (i11 < i12) {
-                Matrix matrix = bqVar.d;
-                matrix.reset();
-                float f18 = 360.0f / i12;
-                matrix.setRotate(i11 * f18, f7, f10);
-                if (i11 % 2 == 0) {
-                    f11 = f14;
-                } else {
-                    f11 = f15;
-                }
-                float f19 = bqVar.f25073k;
-                float[] fArr = bqVar.f25072j;
-                float f20 = (fArr[i11] * f19) + f11;
-                float[] fArr2 = bqVar.f25067b;
-                fArr2[0] = f7;
-                float f21 = f10 - f20;
-                fArr2[1] = f21;
-                float f22 = f15;
-                fArr2[2] = com.google.android.gms.internal.play_billing.k3.t(f19, fArr[i11], f16, f7 + f17);
-                fArr2[3] = f21;
-                matrix.mapPoints(fArr2);
-                int i13 = i11 + 1;
-                if (i13 >= i12) {
-                    i10 = 0;
-                } else {
-                    i10 = i13;
-                }
-                if (i10 % 2 == 0) {
-                    f12 = f14;
-                } else {
-                    f12 = f22;
-                }
-                float f23 = bqVar.f25073k;
-                float[] fArr3 = bqVar.f25068c;
-                fArr3[0] = f7;
-                float f24 = f10 - ((fArr[i10] * f23) + f12);
-                fArr3[1] = f24;
-                float f25 = f14;
-                fArr3[2] = com.google.android.gms.internal.play_billing.k3.t(f23, fArr[i10], f16, f7 - f17);
-                fArr3[3] = f24;
-                matrix.reset();
-                matrix.setRotate(f18 * i10, f7, f10);
-                matrix.mapPoints(fArr3);
-                if (i11 == 0) {
-                    path.moveTo(fArr2[0], fArr2[1]);
-                }
-                path.cubicTo(fArr2[2], fArr2[3], fArr3[2], fArr3[3], fArr3[0], fArr3[1]);
-                i11 = i13;
-                f15 = f22;
-                f14 = f25;
-                bqVar = this;
-            } else {
-                canvas.save();
-                canvas.rotate(0.0f, f7, f10);
-                canvas.drawPath(path, paint);
-                canvas.restore();
-                return;
-            }
-        }
+    public bq(su suVar, aa0 aa0Var, ClickableSpan clickableSpan) {
+        this.f26936a = 10;
+        this.f26937b = suVar;
     }
 }

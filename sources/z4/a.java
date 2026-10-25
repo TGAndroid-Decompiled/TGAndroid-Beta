@@ -1,48 +1,23 @@
 package z4;
 
-import android.database.DataSetObservable;
-import android.database.DataSetObserver;
-import android.view.View;
+import android.os.Bundle;
+import android.os.Parcelable;
+import androidx.versionedparcelable.ParcelImpl;
 public abstract class a {
-    public final DataSetObservable f51131a = new DataSetObservable();
-    public DataSetObserver f51132b;
-
-    public abstract void a(h hVar, Object obj);
-
-    public abstract int b();
-
-    public int c(Object obj) {
-        return -1;
-    }
-
-    public CharSequence d(int i10) {
-        return null;
-    }
-
-    public abstract Object e(h hVar, int i10);
-
-    public abstract boolean f(View view, Object obj);
-
-    public void g() {
-        synchronized (this) {
-            try {
-                DataSetObserver dataSetObserver = this.f51132b;
-                if (dataSetObserver != null) {
-                    dataSetObserver.onChanged();
+    public static d a(Bundle bundle) {
+        try {
+            Bundle bundle2 = (Bundle) bundle.getParcelable("android.support.v4.media.session.SESSION_TOKEN2");
+            if (bundle2 != null) {
+                bundle2.setClassLoader(a.class.getClassLoader());
+                Parcelable parcelable = bundle2.getParcelable("a");
+                if (parcelable instanceof ParcelImpl) {
+                    return ((ParcelImpl) parcelable).f3096a;
                 }
-            } catch (Throwable th2) {
-                throw th2;
+                throw new IllegalArgumentException("Invalid parcel");
             }
+            return null;
+        } catch (RuntimeException unused) {
+            return null;
         }
-        this.f51131a.notifyChanged();
-    }
-
-    public final void i(DataSetObserver dataSetObserver) {
-        synchronized (this) {
-            this.f51132b = dataSetObserver;
-        }
-    }
-
-    public void h(int i10) {
     }
 }

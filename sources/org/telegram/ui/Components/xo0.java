@@ -1,9 +1,13 @@
 package org.telegram.ui.Components;
-public final class xo0 {
-    public final int f32677a;
-    public int f32678b;
+public final class xo0 extends s4.l {
+    public final org.telegram.ui.jx F;
 
-    public xo0(int i10) {
-        this.f32677a = i10;
+    public xo0(org.telegram.ui.jx jxVar) {
+        this.F = jxVar;
+    }
+
+    @Override
+    public final void P(s4.e1 e1Var) {
+        this.F.invalidate();
     }
 }

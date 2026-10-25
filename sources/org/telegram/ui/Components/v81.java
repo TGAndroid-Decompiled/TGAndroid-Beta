@@ -1,68 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Rect;
-import android.os.AsyncTask;
-import org.telegram.messenger.FileLog;
-public final class v81 extends AsyncTask {
-    public int f31379a = 0;
-    public final y81 f31380b;
+import org.telegram.ui.PhotoViewer;
+public final class v81 implements Runnable {
+    public final int f33597a;
+    public final z81 f33598b;
 
-    public v81(y81 y81Var) {
-        this.f31380b = y81Var;
+    public v81(z81 z81Var, int i10) {
+        this.f33597a = i10;
+        this.f33598b = z81Var;
     }
 
     @Override
-    public final Object doInBackground(Object[] objArr) {
-        Bitmap frameAtTime;
-        y81 y81Var = this.f31380b;
-        this.f31379a = ((Integer[]) objArr)[0].intValue();
-        Bitmap bitmap = null;
-        if (!isCancelled()) {
-            try {
-                frameAtTime = y81Var.f32853r.getFrameAtTime(y81Var.f32856x * this.f31379a * 1000, 2);
-            } catch (Exception e) {
-                e = e;
-            }
-            try {
-                if (!isCancelled()) {
-                    if (frameAtTime != null) {
-                        Bitmap createBitmap = Bitmap.createBitmap(y81Var.f32857y, y81Var.E, frameAtTime.getConfig());
-                        Canvas canvas = new Canvas(createBitmap);
-                        float max = Math.max(y81Var.f32857y / frameAtTime.getWidth(), y81Var.E / frameAtTime.getHeight());
-                        int width = (int) (frameAtTime.getWidth() * max);
-                        int height = (int) (frameAtTime.getHeight() * max);
-                        canvas.drawBitmap(frameAtTime, new Rect(0, 0, frameAtTime.getWidth(), frameAtTime.getHeight()), new Rect((y81Var.f32857y - width) / 2, (y81Var.E - height) / 2, width, height), (Paint) null);
-                        frameAtTime.recycle();
-                        return createBitmap;
-                    }
-                    return frameAtTime;
+    public final void run() {
+        switch (this.f33597a) {
+            case 0:
+                z81 z81Var = this.f33598b;
+                z81Var.h = 0.0f;
+                g6 g6Var = z81Var.f35244b;
+                if (g6Var != null) {
+                    g6Var.u();
+                    z81Var.f35244b = null;
+                    return;
                 }
-            } catch (Exception e7) {
-                e = e7;
-                bitmap = frameAtTime;
-                FileLog.e(e);
-                return bitmap;
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final void onPostExecute(Object obj) {
-        Bitmap bitmap = (Bitmap) obj;
-        if (!isCancelled()) {
-            y81 y81Var = this.f31380b;
-            y81Var.v.add(bitmap);
-            y81Var.invalidate();
-            int i10 = this.f31379a;
-            if (i10 < y81Var.F) {
-                y81Var.b(i10 + 1);
-            } else {
-                y81Var.O = true;
-            }
+                return;
+            case 1:
+                z81 z81Var2 = this.f33598b;
+                z81Var2.f35242a = true;
+                z81Var2.e = null;
+                if (z81Var2.f35244b != null) {
+                    z81Var2.f35255s = true;
+                    PhotoViewer photoViewer = z81Var2.M.f39437a;
+                    if (photoViewer.f35787u3) {
+                        photoViewer.d3(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                z81 z81Var3 = this.f33598b;
+                z81Var3.f35242a = true;
+                z81Var3.e = null;
+                if (z81Var3.f35244b != null) {
+                    z81Var3.f35255s = true;
+                    PhotoViewer photoViewer2 = z81Var3.M.f39437a;
+                    if (photoViewer2.f35787u3) {
+                        photoViewer2.d3(true);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
     }
 }

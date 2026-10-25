@@ -1,42 +1,47 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-public final class e3 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31556a;
-    public final h3 f31557b;
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Shader;
+import fi.v3;
+public final class e3 extends v3 {
+    public final Paint L0;
+    public final r1 M0;
 
-    public e3(h3 h3Var, int i10) {
-        this.f31556a = i10;
-        this.f31557b = h3Var;
+    public e3(Activity activity, int i10, r1 r1Var, boolean z10) {
+        super(activity, i10);
+        Paint paint = new Paint(1);
+        this.L0 = paint;
+        this.M0 = r1Var;
+        r1Var.a(this);
+        paint.setPathEffect(new CornerPathEffect(this.v));
+        if (z10) {
+            i(true);
+        }
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31556a) {
-            case 0:
-                h3 h3Var = this.f31557b;
-                h3Var.getClass();
-                h3Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                h3Var.invalidate();
-                return;
-            case 1:
-                h3 h3Var2 = this.f31557b;
-                h3Var2.getClass();
-                h3Var2.f31616w = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                h3Var2.invalidate();
-                return;
-            case 2:
-                h3 h3Var3 = this.f31557b;
-                h3Var3.getClass();
-                h3Var3.f31615s = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                h3Var3.invalidate();
-                return;
-            default:
-                h3 h3Var4 = this.f31557b;
-                h3Var4.getClass();
-                h3Var4.f31614r = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                h3Var4.invalidate();
-                return;
+    public final void c(Canvas canvas, float f7) {
+        r1 r1Var = this.M0;
+        Shader shader = r1Var.b().getShader();
+        Paint paint = this.L0;
+        paint.setShader(shader);
+        canvas.saveLayerAlpha(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight(), (int) (Math.min(this.F.getAlpha(), r1Var.b().getAlpha()) * f7), 31);
+        Path path = this.f11808t0;
+        canvas.drawPath(path, paint);
+        if (r1Var.e) {
+            paint.setShader(((Paint) r1Var.d.f1150a).getShader());
+            canvas.drawPath(path, paint);
         }
+        canvas.restore();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        this.M0.d(getX(), getY());
+        super.dispatchDraw(canvas);
     }
 }

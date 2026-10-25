@@ -1,27 +1,7 @@
 package hi;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class x implements TextWatcher {
-    public final k0 f12273a;
-
-    public x(k0 k0Var) {
-        this.f12273a = k0Var;
-    }
-
-    @Override
-    public final void afterTextChanged(Editable editable) {
-        String obj = editable.toString();
-        k0 k0Var = this.f12273a;
-        k0Var.S = obj;
-        k0Var.G.Z2.N(true);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
+import org.telegram.tgnet.TLRPC;
+public final class x {
+    public TLRPC.User f13351a;
+    public boolean f13352b;
 }

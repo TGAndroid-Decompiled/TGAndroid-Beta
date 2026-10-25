@@ -1,57 +1,85 @@
 package org.telegram.ui.Components;
 
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-public final class cg0 {
-    public final dg0 f25305a = new dg0();
-    public final dg0 f25306b = new dg0();
-    public final dg0 f25307c = new dg0();
-    public final dg0 d = new dg0();
-    public final ByteBuffer e;
-    public int f25308f;
+import android.graphics.Canvas;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class cg0 extends View {
+    public long E;
+    public float F;
+    public float G;
+    public float H;
+    public wa0 I;
+    public TextPaint f27142a;
+    public TextPaint f27143b;
+    public StaticLayout f27144c;
+    public float d;
+    public float e;
+    public StaticLayout f27145f;
+    public float h;
+    public float f27146n;
+    public boolean f27147r;
+    public h6 f27148s;
+    public boolean v;
+    public eg0 f27149w;
+    public fi.p9 f27150x;
+    public boolean f27151y;
 
-    public cg0() {
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(800);
-        this.e = allocateDirect;
-        allocateDirect.order(ByteOrder.LITTLE_ENDIAN);
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float e = this.f27148s.e(this.f27147r);
+        if (e > 0.0f && this.f27144c != null && this.f27145f != null) {
+            canvas.saveLayerAlpha(0.0f, 0.0f, getWidth(), getHeight(), (int) (e * 255.0f), 31);
+            canvas.save();
+            canvas.translate(((getWidth() - this.d) / 2.0f) - this.e, getHeight() * 0.22f);
+            this.f27144c.draw(canvas);
+            canvas.restore();
+            canvas.save();
+            canvas.translate(((getWidth() - this.h) / 2.0f) - this.f27146n, (getHeight() * 0.22f) + AndroidUtilities.dp(60.0f));
+            this.f27145f.draw(canvas);
+            canvas.restore();
+            canvas.restore();
+        }
     }
 
-    public final void a() {
-        ByteBuffer byteBuffer = this.e;
-        byteBuffer.position(0);
-        dg0 dg0Var = this.f25305a;
-        if (dg0Var.f25730f == null) {
-            dg0Var.a();
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        float f7;
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
+        TextPaint textPaint = this.f27142a;
+        textPaint.setColor(-1);
+        float f10 = 0.0f;
+        textPaint.setShadowLayer(AndroidUtilities.dp(8.0f), 0.0f, 0.0f, 805306368);
+        textPaint.setTextSize(AndroidUtilities.dp(34.0f));
+        TextPaint textPaint2 = this.f27143b;
+        textPaint2.setColor(-1);
+        textPaint2.setShadowLayer(AndroidUtilities.dp(12.0f), 0.0f, 0.0f, 805306368);
+        textPaint2.setTextSize(AndroidUtilities.dp(58.0f));
+        if (this.f27144c == null) {
+            StaticLayout staticLayout = new StaticLayout(LocaleController.getString(R.string.Enhance), textPaint, getMeasuredWidth(), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+            this.f27144c = staticLayout;
+            if (staticLayout.getLineCount() > 0) {
+                f7 = this.f27144c.getLineWidth(0);
+            } else {
+                f7 = 0.0f;
+            }
+            this.d = f7;
+            if (this.f27144c.getLineCount() > 0) {
+                f10 = this.f27144c.getLineLeft(0);
+            }
+            this.e = f10;
         }
-        float[] fArr = dg0Var.f25730f;
-        dg0 dg0Var2 = this.f25306b;
-        if (dg0Var2.f25730f == null) {
-            dg0Var2.a();
-        }
-        float[] fArr2 = dg0Var2.f25730f;
-        dg0 dg0Var3 = this.f25307c;
-        if (dg0Var3.f25730f == null) {
-            dg0Var3.a();
-        }
-        float[] fArr3 = dg0Var3.f25730f;
-        dg0 dg0Var4 = this.d;
-        if (dg0Var4.f25730f == null) {
-            dg0Var4.a();
-        }
-        float[] fArr4 = dg0Var4.f25730f;
-        for (int i10 = 0; i10 < 200; i10++) {
-            byteBuffer.put((byte) (fArr2[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr3[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr4[i10] * 255.0f));
-            byteBuffer.put((byte) (fArr[i10] * 255.0f));
-        }
-        byteBuffer.position(0);
     }
 
-    public final boolean b() {
-        if (this.f25305a.b() && this.f25306b.b() && this.f25307c.b() && this.d.b()) {
-            return true;
-        }
-        return false;
+    public void setAllowTouch(boolean z10) {
+        this.v = z10;
+    }
+
+    public void setFilterView(eg0 eg0Var) {
+        this.f27149w = eg0Var;
     }
 }

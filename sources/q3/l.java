@@ -2,19 +2,19 @@ package q3;
 
 import java.util.Arrays;
 public final class l extends i {
-    public final int f44795b;
-    public final int f44796c;
+    public final int f46944b;
+    public final int f46945c;
     public final int d;
     public final int[] e;
-    public final int[] f44797f;
+    public final int[] f46946f;
 
     public l(int i10, int i11, int i12, int[] iArr, int[] iArr2) {
         super("MLLT");
-        this.f44795b = i10;
-        this.f44796c = i11;
+        this.f46944b = i10;
+        this.f46945c = i11;
         this.d = i12;
         this.e = iArr;
-        this.f44797f = iArr2;
+        this.f46946f = iArr2;
     }
 
     public final boolean equals(Object obj) {
@@ -23,7 +23,7 @@ public final class l extends i {
         }
         if (obj != null && l.class == obj.getClass()) {
             l lVar = (l) obj;
-            if (this.f44795b == lVar.f44795b && this.f44796c == lVar.f44796c && this.d == lVar.d && Arrays.equals(this.e, lVar.e) && Arrays.equals(this.f44797f, lVar.f44797f)) {
+            if (this.f46944b == lVar.f46944b && this.f46945c == lVar.f46945c && this.d == lVar.d && Arrays.equals(this.e, lVar.e) && Arrays.equals(this.f46946f, lVar.f46946f)) {
                 return true;
             }
         }
@@ -32,6 +32,6 @@ public final class l extends i {
 
     public final int hashCode() {
         int hashCode = Arrays.hashCode(this.e);
-        return Arrays.hashCode(this.f44797f) + ((hashCode + ((((((527 + this.f44795b) * 31) + this.f44796c) * 31) + this.d) * 31)) * 31);
+        return Arrays.hashCode(this.f46946f) + ((hashCode + ((((((527 + this.f46944b) * 31) + this.f46945c) * 31) + this.d) * 31)) * 31);
     }
 }

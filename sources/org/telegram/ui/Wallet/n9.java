@@ -1,36 +1,25 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class n9 implements Utilities.Callback {
-    public final int f34914a;
-    public final s9 f34915b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.wc;
+public final class n9 implements Runnable {
+    public final int f37038a;
+    public final r9 f37039b;
 
-    public n9(s9 s9Var, int i10) {
-        this.f34914a = i10;
-        this.f34915b = s9Var;
+    public n9(r9 r9Var, int i10) {
+        this.f37038a = i10;
+        this.f37039b = r9Var;
     }
 
     @Override
-    public final void run(Object obj) {
-        ei.e2 e2Var;
-        switch (this.f34914a) {
+    public final void run() {
+        switch (this.f37038a) {
             case 0:
-                s9.Z(this.f34915b, (String) obj);
+                this.f37039b.f37196d0 = null;
                 return;
             default:
-                TLRPC.User user = (TLRPC.User) obj;
-                s9 s9Var = this.f34915b;
-                if (!s9Var.isFinished && (e2Var = s9Var.M) != null) {
-                    if (user == null) {
-                        AndroidUtilities.runOnUIThread(new o9(s9Var, 1));
-                        return;
-                    }
-                    AndroidUtilities.hideKeyboard(e2Var);
-                    s9Var.h0(null, user);
-                    return;
-                }
+                wc.b0(this.f37039b).N(LocaleController.getString(R.string.ScanQrCode), LocaleController.getString(R.string.ErrorOccurred)).j();
                 return;
         }
     }

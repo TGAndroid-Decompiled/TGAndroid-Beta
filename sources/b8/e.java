@@ -1,125 +1,88 @@
 package b8;
 
-import android.content.Context;
-import android.content.pm.ApplicationInfo;
-import android.content.pm.PackageManager;
-import android.os.Bundle;
+import a8.aa;
+import android.os.BadParcelableException;
+import android.os.Binder;
+import android.os.IBinder;
+import android.os.IInterface;
 import android.os.Parcel;
-import android.text.TextUtils;
 import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.internal.s0;
-import com.google.android.gms.common.api.m;
-import com.google.android.gms.common.api.q;
-import x8.j;
-import y8.h0;
-import y8.i0;
-import y8.y0;
-public final class e extends com.google.android.gms.common.api.internal.e {
-    public final int f4223q = 1;
-    public final String f4224r;
-    public final byte[] f4225s;
-    public final Object f4226t;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import kotlin.jvm.internal.i;
+public final class e extends Binder implements b, IInterface {
+    public final int f3676a;
+    public final TaskCompletionSource f3677b;
 
-    public e(m mVar, byte[] bArr, String str) {
-        super(m8.c.f16865a, mVar);
-        this.f4225s = bArr;
-        this.f4224r = str;
-        this.f4226t = new g(this);
+    public e(int i10, TaskCompletionSource taskCompletionSource) {
+        this.f3676a = i10;
+        this.f3677b = taskCompletionSource;
+        attachInterface(this, "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseCallbacks");
     }
 
     @Override
-    public final void a(q qVar) {
-        switch (this.f4223q) {
+    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
+        if (i10 > 16777215) {
+            if (super.onTransact(i10, parcel, parcel2, i11)) {
+                return true;
+            }
+        } else {
+            parcel.enforceInterface(getInterfaceDescriptor());
+        }
+        if (i10 != 1) {
+            if (i10 != 2) {
+                return false;
+            }
+            Status status = (Status) a.a(parcel, Status.CREATOR);
+            m8.b bVar = (m8.b) a.a(parcel, m8.b.CREATOR);
+            int dataAvail = parcel.dataAvail();
+            if (dataAvail <= 0) {
+                w(status, bVar);
+                return true;
+            }
+            throw new BadParcelableException(ic.a.i(dataAvail, "Parcel data not fully consumed, unread size: "));
+        }
+        Status status2 = (Status) a.a(parcel, Status.CREATOR);
+        m8.d dVar = (m8.d) a.a(parcel, m8.d.CREATOR);
+        int dataAvail2 = parcel.dataAvail();
+        if (dataAvail2 <= 0) {
+            w0(status2, dVar);
+            return true;
+        }
+        throw new BadParcelableException(ic.a.i(dataAvail2, "Parcel data not fully consumed, unread size: "));
+    }
+
+    @Override
+    public final void w(Status status, m8.b bVar) {
+        switch (this.f3676a) {
             case 0:
-                a(qVar);
+                i.e(status, "status");
+                aa.a(status, bVar, this.f3677b);
                 return;
             default:
-                a(qVar);
                 return;
         }
     }
 
     @Override
-    public final q d(Status status) {
-        switch (this.f4223q) {
+    public final void w0(Status status, m8.d dVar) {
+        switch (this.f3676a) {
             case 0:
-                return new f(status, null);
+                return;
             default:
-                return new i0(status, -1);
+                i.e(status, "status");
+                aa.a(status, dVar, this.f3677b);
+                return;
         }
     }
 
     @Override
-    public final void n(com.google.android.gms.common.api.c cVar) {
-        Parcel obtain;
-        Parcel obtain2;
-        ApplicationInfo applicationInfo;
-        Bundle bundle;
-        int i10 = this.f4223q;
-        byte[] bArr = this.f4225s;
-        Object obj = this.f4226t;
-        String str = this.f4224r;
-        switch (i10) {
-            case 0:
-                a aVar = (a) cVar;
-                g gVar = (g) obj;
-                if (TextUtils.isEmpty(str)) {
-                    Context context = aVar.U;
-                    try {
-                        PackageManager packageManager = context.getPackageManager();
-                        if (packageManager != null && (applicationInfo = packageManager.getApplicationInfo(context.getPackageName(), 128)) != null && (bundle = applicationInfo.metaData) != null) {
-                            String str2 = (String) bundle.get("com.google.android.safetynet.ATTEST_API_KEY");
-                            if (str2 != null) {
-                                str = str2;
-                            }
-                        }
-                    } catch (PackageManager.NameNotFoundException unused) {
-                    }
-                    str = "";
-                }
-                d dVar = (d) aVar.u();
-                obtain = Parcel.obtain();
-                obtain.writeInterfaceToken("com.google.android.gms.safetynet.internal.ISafetyNetService");
-                int i11 = c.f4221a;
-                if (gVar == null) {
-                    obtain.writeStrongBinder(null);
-                } else {
-                    obtain.writeStrongBinder(gVar);
-                }
-                obtain.writeByteArray(bArr);
-                obtain.writeString(str);
-                obtain2 = Parcel.obtain();
-                try {
-                    dVar.f4222a.transact(7, obtain, obtain2, 0);
-                    obtain2.readException();
-                    return;
-                } finally {
-                }
-            default:
-                h0 h0Var = (h0) ((y0) cVar).u();
-                ?? aVar2 = new y8.a();
-                aVar2.f50514b = this;
-                obtain = Parcel.obtain();
-                obtain.writeInterfaceToken(h0Var.f318c);
-                int i12 = f8.a.f10521a;
-                obtain.writeStrongBinder(aVar2);
-                obtain.writeString(str);
-                obtain.writeString((String) obj);
-                obtain.writeByteArray(bArr);
-                obtain2 = Parcel.obtain();
-                try {
-                    h0Var.f317b.transact(12, obtain, obtain2, 0);
-                    obtain2.readException();
-                    return;
-                } finally {
-                }
-        }
+    public final IBinder asBinder() {
+        return this;
     }
 
-    public e(s0 s0Var, String str, String str2, byte[] bArr) {
-        super(j.f50099a, s0Var);
-        this.f4224r = str;
-        this.f4226t = str2;
-        this.f4225s = bArr;
+    private final void F0(Status status, m8.b bVar) {
+    }
+
+    private final void G0(Status status, m8.d dVar) {
     }
 }

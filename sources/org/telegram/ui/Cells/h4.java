@@ -1,24 +1,67 @@
 package org.telegram.ui.Cells;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class h4 {
-    public ArrayList f22461a;
-    public ArrayList f22462b;
-    public HashMap f22463c;
-    public int d;
-    public int e;
-    public int f22464f;
-    public float f22465g;
-    public int h;
-    public float f22466i;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.R;
+public final class h4 extends Drawable {
+    public final Drawable[] f24191a;
 
-    public final float a(float[] fArr, int i10, int i11) {
-        float f7 = 0.0f;
-        while (i10 < i11) {
-            f7 += fArr[i10];
-            i10++;
+    public h4(Context context) {
+        this.f24191a = r0;
+        Drawable mutate = context.getResources().getDrawable(R.drawable.verified_area).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(-9063442, PorterDuff.Mode.MULTIPLY));
+        Drawable[] drawableArr = {mutate, context.getResources().getDrawable(R.drawable.verified_check).mutate()};
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int i10 = 0;
+        while (true) {
+            Drawable[] drawableArr = this.f24191a;
+            if (i10 < drawableArr.length) {
+                drawableArr[i10].setBounds(getBounds());
+                drawableArr[i10].draw(canvas);
+                i10++;
+            } else {
+                return;
+            }
         }
-        return this.h / f7;
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f24191a[0].getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f24191a[0].getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        int i11 = 0;
+        while (true) {
+            Drawable[] drawableArr = this.f24191a;
+            if (i11 < drawableArr.length) {
+                drawableArr[i11].setAlpha(i10);
+                i11++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

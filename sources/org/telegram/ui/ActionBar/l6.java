@@ -1,66 +1,53 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.PorterDuff;
-import java.lang.ref.WeakReference;
-public final class l6 {
-    public int f21610a;
-    public int f21611b = -1;
-    public int f21612c;
-    public float d;
-    public WeakReference e;
-    public g6 f21613f;
-    public int f21614g;
-    public PorterDuff.Mode h;
-    public Object f21615i;
-    public WeakReference f21616j;
-    public boolean f21617k;
-    public int f21618l;
-    public boolean f21619m;
-    public o6 f21620n;
-    public p6 f21621o;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+public final class l6 extends Drawable {
+    public final RectF f22852a = new RectF();
+    public final View f22853b;
+    public final View f22854c;
+    public final int d;
+    public final Paint e;
 
-    public final boolean a() {
-        WeakReference weakReference = this.e;
-        if (weakReference != null && weakReference.get() == null) {
-            return true;
-        }
-        return false;
+    public l6(View view, View view2, int i10, Paint paint) {
+        this.f22853b = view;
+        this.f22854c = view2;
+        this.d = i10;
+        this.e = paint;
     }
 
-    public final int b() {
-        int i10 = this.f21610a;
-        int i11 = this.f21611b;
-        int i12 = this.f21612c;
+    @Override
+    public final void draw(Canvas canvas) {
+        Rect bounds = getBounds();
+        RectF rectF = this.f22852a;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        y6.s(this.f22853b, this.f22854c, null);
         float f7 = this.d;
-        g6 g6Var = this.f21613f;
-        if (g6Var == null) {
-            WeakReference weakReference = this.e;
-            if (weakReference != null) {
-                g6Var = (g6) weakReference.get();
-            } else {
-                g6Var = null;
-            }
+        Paint paint = this.e;
+        if (paint == null) {
+            paint = y6.U0("paintChatActionBackground");
         }
-        return r6.R(i10, i11, i12, f7, g6Var);
+        canvas.drawRoundRect(rectF, f7, f7, paint);
+        if (y6.c1()) {
+            canvas.drawRoundRect(rectF, f7, f7, y6.U0("paintChatActionBackgroundDarken"));
+        }
     }
 
-    public final void c(int i10, int i11, int i12, float f7, g6 g6Var) {
-        this.f21610a = i10;
-        this.f21611b = i11;
-        this.f21612c = i12;
-        this.d = f7;
-        if (g6Var == null) {
-            this.e = null;
-            this.f21613f = null;
-            return;
-        }
-        Class<?> cls = g6Var.getClass();
-        if (!cls.isSynthetic() && !cls.getName().contains("$$Lambda") && !cls.getName().contains("$$ExternalSynthetic")) {
-            this.e = new WeakReference(g6Var);
-            this.f21613f = null;
-            return;
-        }
-        this.e = null;
-        this.f21613f = g6Var;
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

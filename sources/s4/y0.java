@@ -1,35 +1,19 @@
 package s4;
-public final class y0 {
-    public int f46498a;
-    public int f46499b;
-    public int f46500c;
-    public int d;
-    public int e;
-    public boolean f46501f;
-    public boolean f46502g;
-    public boolean h;
-    public boolean f46503i;
-    public boolean f46504j;
-    public boolean f46505k;
-    public int f46506l;
-    public long f46507m;
-    public int f46508n;
 
-    public final void a(int i10) {
-        if ((this.d & i10) != 0) {
-            return;
-        }
-        throw new IllegalStateException("Layout state should be one of " + Integer.toBinaryString(i10) + " but it is " + Integer.toBinaryString(this.d));
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class y0 extends i1.b {
+    public static final Parcelable.Creator<y0> CREATOR = new a5.k(4);
+    public Parcelable f47857c;
+
+    public y0(Parcel parcel, ClassLoader classLoader) {
+        super(parcel, classLoader);
+        this.f47857c = parcel.readParcelable(classLoader == null ? p0.class.getClassLoader() : classLoader);
     }
 
-    public final int b() {
-        if (this.f46502g) {
-            return this.f46499b - this.f46500c;
-        }
-        return this.e;
-    }
-
-    public final String toString() {
-        return "State{mTargetPosition=" + this.f46498a + ", mData=null, mItemCount=" + this.e + ", mIsMeasuring=" + this.f46503i + ", mPreviousLayoutItemCount=" + this.f46499b + ", mDeletedInvisibleItemCountSincePreviousLayout=" + this.f46500c + ", mStructureChanged=" + this.f46501f + ", mInPreLayout=" + this.f46502g + ", mRunSimpleAnimations=" + this.f46504j + ", mRunPredictiveAnimations=" + this.f46505k + '}';
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        super.writeToParcel(parcel, i10);
+        parcel.writeParcelable(this.f47857c, 0);
     }
 }

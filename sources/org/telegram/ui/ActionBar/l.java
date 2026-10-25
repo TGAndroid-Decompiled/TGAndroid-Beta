@@ -3,17 +3,17 @@ package org.telegram.ui.ActionBar;
 import android.content.Context;
 import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class l extends TextView implements qe.a {
-    public final m f21600a;
+public final class l extends TextView implements re.a {
+    public final m f22819a;
 
     public l(m mVar, Context context) {
         super(context);
-        this.f21600a = mVar;
+        this.f22819a = mVar;
     }
 
     @Override
     public final void a() {
         AndroidUtilities.removeFromParent(this);
-        this.f21600a.f21623b.v(this);
+        this.f22819a.f22856b.v(this);
     }
 }

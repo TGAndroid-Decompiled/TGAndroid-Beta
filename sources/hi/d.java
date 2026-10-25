@@ -1,39 +1,68 @@
 package hi;
 
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.ActionBar.c2;
-public final class d implements MessagesStorage.LongCallback {
-    public final int f12165a;
-    public final c2 f12166b;
-    public final long f12167c;
-    public final boolean d;
-    public final NotificationCenter.NotificationCenterDelegate e;
+import android.app.Activity;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.tl.TL_bots;
+import org.telegram.tgnet.tl.TL_payments;
+public final class d implements Runnable {
+    public final int f12930a;
+    public final k f12931b;
 
-    public d(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, c2 c2Var, long j10, boolean z10, int i10) {
-        this.f12165a = i10;
-        this.e = notificationCenterDelegate;
-        this.f12166b = c2Var;
-        this.f12167c = j10;
-        this.d = z10;
+    public d(k kVar, int i10) {
+        this.f12930a = i10;
+        this.f12931b = kVar;
     }
 
     @Override
-    public final void run(long j10) {
-        switch (this.f12165a) {
+    public final void run() {
+        int i10;
+        String f7;
+        int i11;
+        switch (this.f12930a) {
             case 0:
-                f fVar = (f) this.e;
-                fVar.getClass();
-                this.f12166b.dismiss();
-                if (j10 != 0) {
-                    fVar.f12172b = -j10;
-                    fVar.f12173c = fVar.getMessagesController().getChat(Long.valueOf(j10));
-                    fVar.W(this.f12167c, this.d);
+                k kVar = this.f12931b;
+                bi.v vVar = kVar.V;
+                if (kVar.f13053a0.end_date == 0) {
+                    f7 = null;
+                } else {
+                    f7 = zg.l.f((i10 - kVar.getConnectionsManager().getCurrentTime()) * 1000);
+                }
+                vVar.g(f7, true);
+                if (kVar.f13053a0.end_date != 0 && kVar.f13056d0) {
+                    AndroidUtilities.runOnUIThread(kVar.X, 1000L);
                     return;
                 }
                 return;
+            case 1:
+                TL_bots.updateStarRefProgram updatestarrefprogram = new TL_bots.updateStarRefProgram();
+                k kVar2 = this.f12931b;
+                updatestarrefprogram.bot = kVar2.getMessagesController().getInputUser(kVar2.R);
+                TL_payments.starRefProgram starrefprogram = kVar2.f13053a0;
+                updatestarrefprogram.commission_permille = starrefprogram.commission_permille;
+                int i12 = starrefprogram.duration_months;
+                updatestarrefprogram.duration_months = i12;
+                if (i12 > 0) {
+                    updatestarrefprogram.flags |= 1;
+                    starrefprogram.duration_months = i12 | 1;
+                } else {
+                    updatestarrefprogram.flags &= -2;
+                    starrefprogram.duration_months = i12 & (-2);
+                }
+                org.telegram.ui.ActionBar.e2 e2Var = new org.telegram.ui.ActionBar.e2(kVar2.getParentActivity(), 3, null);
+                e2Var.r(150L);
+                kVar2.getConnectionsManager().sendRequest(updatestarrefprogram, new b(kVar2, e2Var, 1));
+                return;
             default:
-                k0.q((k0) this.e, this.f12166b, this.f12167c, this.d, j10);
+                k kVar3 = this.f12931b;
+                Activity parentActivity = kVar3.getParentActivity();
+                if (!kVar3.Y && kVar3.f13053a0.end_date == 0) {
+                    i11 = R.string.AffiliateProgramStartInfoLink;
+                } else {
+                    i11 = R.string.AffiliateProgramUpdateInfoLink;
+                }
+                qf.d.r(parentActivity, LocaleController.getString(i11));
                 return;
         }
     }

@@ -1,15 +1,4 @@
 package org.telegram.ui.Components;
-
-import android.text.TextPaint;
-import android.text.style.MetricAffectingSpan;
-public final class e5 extends MetricAffectingSpan {
-    public String f25957a;
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-    }
-
-    @Override
-    public final void updateMeasureState(TextPaint textPaint) {
-    }
+public interface e5 {
+    void G(int i10, int i11, boolean z10);
 }

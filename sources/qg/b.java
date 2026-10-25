@@ -1,38 +1,19 @@
 package qg;
 
-import org.telegram.messenger.R;
-public final class b extends m {
-    @Override
-    public final float a() {
-        return 1.0f;
-    }
+import ig.h;
+import java.util.ArrayList;
+import org.telegram.ui.Components.lm0;
+import s4.p;
+public abstract class b extends lm0 {
+    public final h f47039c = new h();
 
-    @Override
-    public final float d() {
-        return 1.0f;
-    }
-
-    @Override
-    public final int e() {
-        return R.raw.photo_blur;
-    }
-
-    @Override
-    public final float g() {
-        return 0.35f;
-    }
-
-    @Override
-    public final String i(int i10) {
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    return null;
-                }
-                return "brush";
-            }
-            return "compositeWithMaskBlurer";
+    public final void E(ArrayList arrayList, ArrayList arrayList2) {
+        if (arrayList2 == null) {
+            arrayList2 = new ArrayList();
         }
-        return "blitWithMaskBlurer";
+        h hVar = this.f47039c;
+        hVar.f14063c = arrayList;
+        hVar.d = arrayList2;
+        p.c(hVar, true).c(this);
     }
 }

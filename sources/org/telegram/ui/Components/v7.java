@@ -1,45 +1,30 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class v7 extends AnimatorListenerAdapter {
-    public final int f31344a;
-    public final i8 f31345b;
+import android.content.Context;
+import android.view.accessibility.AccessibilityNodeInfo;
+public final class v7 extends ak0 {
+    public float f33584r;
+    public float f33585s;
+    public boolean v;
+    public final m.g3 f33586w;
+    public final float f33587x;
+    public final m8 f33588y;
 
-    public v7(i8 i8Var, int i10) {
-        this.f31344a = i10;
-        this.f31345b = i8Var;
+    public v7(m8 m8Var, Context context, float f7) {
+        super(context);
+        this.f33588y = m8Var;
+        this.f33587x = f7;
+        this.f33586w = new m.g3(this, 8);
     }
 
     @Override
-    public void onAnimationCancel(Animator animator) {
-        switch (this.f31344a) {
-            case 2:
-                this.f31345b.B0 = null;
-                return;
-            default:
-                super.onAnimationCancel(animator);
-                return;
-        }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        accessibilityNodeInfo.addAction(16);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f31344a) {
-            case 0:
-                this.f31345b.f27339l0 = false;
-                return;
-            case 1:
-                i8 i8Var = this.f31345b;
-                i8Var.f27335h0.setVisibility(4);
-                i8Var.f27336i0.setImageBitmap(null);
-                i8Var.f27339l0 = false;
-                return;
-            default:
-                return;
-        }
-    }
-
-    private final void a(Animator animator) {
+    public final boolean onTouchEvent(android.view.MotionEvent r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.v7.onTouchEvent(android.view.MotionEvent):boolean");
     }
 }

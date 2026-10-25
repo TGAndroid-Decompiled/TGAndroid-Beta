@@ -1,122 +1,27 @@
 package r7;
 
-import android.location.Location;
 import android.os.Parcel;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import com.google.android.gms.tasks.TaskCompletionSource;
-public final class a implements Continuation, com.google.android.gms.common.api.internal.r {
-    public static final a f45450a = new Object();
-    public static final a f45451b = new Object();
-    public static final a f45452c = new Object();
+import android.os.Parcelable;
+public abstract class a {
+    public static final int f47301a = 0;
 
-    public void a(k kVar, com.google.android.gms.common.api.internal.n nVar, boolean z10, TaskCompletionSource taskCompletionSource) {
-        k6.c cVar;
-        synchronized (kVar.V) {
-            try {
-                i iVar = (i) kVar.V.remove(nVar);
-                if (iVar == null) {
-                    taskCompletionSource.setResult(Boolean.FALSE);
-                    return;
-                }
-                com.google.android.gms.common.api.internal.p e = iVar.f45463b.e();
-                e.f6488b = null;
-                e.f6489c = null;
-                if (z10) {
-                    k6.c[] m10 = kVar.m();
-                    if (m10 != null) {
-                        int length = m10.length;
-                        int i10 = 0;
-                        while (true) {
-                            if (i10 < length) {
-                                cVar = m10[i10];
-                                if ("location_updates_with_callback".equals(cVar.f15014a)) {
-                                    break;
-                                }
-                                i10++;
-                            } else {
-                                cVar = null;
-                                break;
-                            }
-                        }
-                        if (cVar != null && cVar.b() >= 1) {
-                            z zVar = (z) kVar.u();
-                            l lVar = new l(2, null, iVar, null, null, null);
-                            e eVar = new e(Boolean.TRUE, taskCompletionSource);
-                            Parcel N0 = zVar.N0();
-                            d.c(N0, lVar);
-                            d.d(N0, eVar);
-                            zVar.R0(N0, 89);
-                        }
-                    }
-                    z zVar2 = (z) kVar.u();
-                    o oVar = new o(2, null, null, iVar, null, new g(taskCompletionSource), null);
-                    Parcel N02 = zVar2.N0();
-                    d.c(N02, oVar);
-                    zVar2.R0(N02, 59);
-                } else {
-                    taskCompletionSource.setResult(Boolean.TRUE);
-                }
-            } catch (Throwable th2) {
-                throw th2;
-            }
-        }
+    static {
+        a.class.getClassLoader();
     }
 
-    @Override
-    public void accept(Object obj, Object obj2) {
-        k6.c cVar;
-        k kVar = (k) obj;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) obj2;
-        g8.b bVar = new g8.b(Long.MAX_VALUE, 0, false, null, null);
-        k6.c[] m10 = kVar.m();
-        if (m10 != null) {
-            int length = m10.length;
-            int i10 = 0;
-            while (true) {
-                if (i10 < length) {
-                    cVar = m10[i10];
-                    if ("get_last_location_with_request".equals(cVar.f15014a)) {
-                        break;
-                    }
-                    i10++;
-                } else {
-                    cVar = null;
-                    break;
-                }
-            }
-            if (cVar != null && cVar.b() >= 1) {
-                z zVar = (z) kVar.u();
-                f fVar = new f(0, taskCompletionSource);
-                Parcel N0 = zVar.N0();
-                d.c(N0, bVar);
-                d.d(N0, fVar);
-                zVar.R0(N0, 82);
-                return;
-            }
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
+            return null;
         }
-        z zVar2 = (z) kVar.u();
-        Parcel N02 = zVar2.N0();
-        Parcel obtain = Parcel.obtain();
-        try {
-            try {
-                zVar2.f317b.transact(7, N02, obtain, 0);
-                obtain.readException();
-                N02.recycle();
-                obtain.recycle();
-                taskCompletionSource.setResult((Location) d.a(obtain, Location.CREATOR));
-            } catch (RuntimeException e) {
-                obtain.recycle();
-                throw e;
-            }
-        } catch (Throwable th2) {
-            N02.recycle();
-            throw th2;
-        }
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 
-    @Override
-    public Object then(Task task) {
-        return null;
+    public static void b(Parcel parcel, Parcelable parcelable) {
+        if (parcelable == null) {
+            parcel.writeInt(0);
+            return;
+        }
+        parcel.writeInt(1);
+        parcelable.writeToParcel(parcel, 0);
     }
 }

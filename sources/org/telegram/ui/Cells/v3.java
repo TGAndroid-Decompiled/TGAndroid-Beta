@@ -1,103 +1,48 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
+import android.content.Context;
 import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.tgnet.TLRPC;
-public abstract class v3 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public org.telegram.ui.Components.u9 f23835a;
-    public org.telegram.ui.ActionBar.n5 f23836b;
-    public org.telegram.ui.ActionBar.n5 f23837c;
-    public ImageView d;
-    public org.telegram.ui.Components.f9 e;
-    public TLRPC.User f23838f;
-    public Paint h;
-    public int f23839n;
-    public boolean f23840r;
-    public int f23841s;
+import j$.util.Objects;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
+public final class v3 extends s61 {
+    public static final int f25581a = 0;
 
-    public final void a(int i10, int i11) {
-        this.f23839n = i10;
-        ImageView imageView = this.d;
-        imageView.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.MULTIPLY));
-        this.f23837c.setTextColor(i11);
-        org.telegram.ui.ActionBar.k6.E1(imageView.getDrawable(), i11 & 620756991, true);
+    static {
+        s61.setup(new s61());
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        Canvas canvas2;
-        float dp;
-        int i10;
-        if (this.f23840r) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(68.0f);
-            }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(68.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas2 = canvas;
-            canvas2.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, this.h);
-        } else {
-            canvas2 = canvas;
+    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+        w3 w3Var = (w3) view;
+        w3Var.f25628w = z10;
+        w3Var.b((MessageObject) t61Var.G, (ArrayList) t61Var.H);
+        w3Var.invalidate();
+    }
+
+    @Override
+    public final boolean contentsEquals(t61 t61Var, t61 t61Var2) {
+        if (t61Var.G == t61Var2.G && Objects.equals(t61Var.H, t61Var2.H) && t61Var.f32870j == t61Var2.f32870j) {
+            return true;
         }
-        super.dispatchDraw(canvas2);
-    }
-
-    public CharSequence getName() {
-        return this.f23836b.getText();
-    }
-
-    public TLRPC.User getUser() {
-        return this.f23838f;
-    }
-
-    @Override
-    public final boolean hasOverlappingRendering() {
         return false;
     }
 
     @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(58.0f), 1073741824));
-    }
-
-    public void setDrawDivider(boolean z10) {
-        this.f23840r = z10;
-        invalidate();
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+        return new w3(context, i10, u6Var);
     }
 
     @Override
-    public final void updateColors() {
-        int x02;
-        try {
-            this.h.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21247gg, false));
-            if (this.d != null && this.f23837c != null && (x02 = org.telegram.ui.ActionBar.k6.x0(null, this.f23839n, false)) != this.f23841s) {
-                this.f23841s = x02;
-                a(this.f23839n, x02);
-            }
-            invalidate();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final boolean equals(t61 t61Var, t61 t61Var2) {
+        if (t61Var.d == t61Var2.d && t61Var.B == t61Var2.B) {
+            return true;
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+        return false;
     }
 }

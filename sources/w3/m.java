@@ -1,8 +1,8 @@
 package w3;
 
-import c3.i0;
-public final class m implements i0 {
-    public static final m f48988a = new Object();
+import c3.f0;
+public final class m implements f0 {
+    public static final m f50732a = new Object();
 
     public final String toString() {
         return "NoDeclaredBrand";

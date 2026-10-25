@@ -6,11 +6,11 @@ import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 import android.view.inputmethod.InputContentInfo;
 public final class c extends InputConnectionWrapper {
-    public final e f47305a;
+    public final e f48683a;
 
     public c(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f47305a = eVar;
+        this.f48683a = eVar;
     }
 
     @Override
@@ -19,7 +19,7 @@ public final class c extends InputConnectionWrapper {
         if (inputContentInfo != null && Build.VERSION.SDK_INT >= 25) {
             iVar = new i(new g(inputContentInfo));
         }
-        if (this.f47305a.f(iVar, i10, bundle)) {
+        if (this.f48683a.d(iVar, i10, bundle)) {
             return true;
         }
         return super.commitContent(inputContentInfo, i10, bundle);

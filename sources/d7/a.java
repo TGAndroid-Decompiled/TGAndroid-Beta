@@ -1,3 +1,4 @@
 package d7;
-public final class a extends b {
+public interface a {
+    int a();
 }

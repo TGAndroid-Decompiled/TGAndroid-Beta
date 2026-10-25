@@ -1,54 +1,65 @@
 package org.telegram.ui;
 
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ImageReceiver;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.ui.Components.UndoView;
-public final class pm implements Runnable {
-    public final int f40597a;
-    public final dn f40598b;
-    public final MessageObject f40599c;
+import org.telegram.messenger.RichMessageLayout;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+public final class pm extends gu0 {
+    public final ArrayList f42570a;
+    public final int[] f42571b = new int[2];
+    public final un f42572c;
 
-    public pm(dn dnVar, MessageObject messageObject, int i10) {
-        this.f40597a = i10;
-        this.f40598b = dnVar;
-        this.f40599c = messageObject;
+    public pm(un unVar, ArrayList arrayList) {
+        this.f42572c = unVar;
+        this.f42570a = arrayList;
     }
 
     @Override
-    public final void run() {
-        int i10;
-        switch (this.f40597a) {
-            case 0:
-                dn dnVar = this.f40598b;
-                sn snVar = dnVar.f36651a;
-                snVar.T7();
-                UndoView undoView = snVar.K3;
-                if (undoView != null) {
-                    if (snVar.Y.getVisibility() == 0 && snVar.R.getVisibility() != 0) {
-                        i10 = 16;
+    public final qu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        ImageReceiver imageReceiver;
+        org.telegram.ui.Cells.s1 s1Var;
+        MessageObject messageObject2;
+        RichMessageLayout richMessageLayout;
+        un unVar = this.f42572c;
+        if (unVar.f44468x0 != null && i10 >= 0) {
+            ArrayList arrayList = this.f42570a;
+            if (i10 < arrayList.size()) {
+                TL_iv.PageBlock pageBlock = (TL_iv.PageBlock) arrayList.get(i10);
+                int childCount = unVar.f44468x0.getChildCount();
+                for (int i11 = 0; i11 < childCount; i11++) {
+                    View childAt = unVar.f44468x0.getChildAt(i11);
+                    boolean z12 = childAt instanceof org.telegram.ui.Cells.s1;
+                    int[] iArr = this.f42571b;
+                    if (z12 && (messageObject2 = (s1Var = (org.telegram.ui.Cells.s1) childAt).getMessageObject()) != null && (richMessageLayout = messageObject2.richLayout) != null) {
+                        int[] iArr2 = new int[2];
+                        imageReceiver = richMessageLayout.findMediaImageReceiver(pageBlock, iArr2);
+                        if (imageReceiver != null) {
+                            childAt.getLocationInWindow(iArr);
+                            iArr[0] = s1Var.getTextX() + iArr2[0] + iArr[0];
+                            iArr[1] = s1Var.getTextY() + iArr2[1] + iArr[1];
+                        }
                     } else {
-                        i10 = 17;
+                        imageReceiver = null;
                     }
-                    int i11 = i10;
-                    MessageObject messageObject = this.f40599c;
-                    undoView.k(0L, i11, messageObject.getDiceEmoji(), null, null, new pm(dnVar, messageObject, 2));
-                    return;
+                    if (imageReceiver != null) {
+                        qu0 qu0Var = new qu0();
+                        qu0Var.f42917b = iArr[0];
+                        qu0Var.f42918c = iArr[1];
+                        qu0Var.d = unVar.f44468x0;
+                        qu0Var.f42916a = imageReceiver;
+                        qu0Var.e = imageReceiver.getBitmapSafe();
+                        qu0Var.h = imageReceiver.getRoundRadius(true);
+                        qu0Var.f42922j = (int) ((unVar.E9 - unVar.G9) - AndroidUtilities.dp(4.0f));
+                        qu0Var.f42921i = (int) (unVar.g9(org.telegram.ui.Components.a41.f26408c) + unVar.v.d() + AndroidUtilities.dp(9.0f) + unVar.Na + unVar.Pc);
+                        return qu0Var;
+                    }
                 }
-                return;
-            case 1:
-                sn snVar2 = this.f40598b.f36651a;
-                snVar2.Jb = this.f40599c.getId();
-                snVar2.Kb = 0;
-                return;
-            default:
-                sn snVar3 = this.f40598b.f36651a;
-                if (snVar3.i7()) {
-                    SendMessagesHelper.SendMessageParams of2 = SendMessagesHelper.SendMessageParams.of(this.f40599c.getDiceEmoji(), snVar3.f41516f6, snVar3.f41764z5, snVar3.f41561j4, null, false, null, null, null, true, 0, 0, null, false);
-                    of2.sendMessageChatArguments = snVar3.H8();
-                    snVar3.getSendMessagesHelper().sendMessage(of2);
-                    return;
-                }
-                return;
+            }
         }
+        return null;
     }
 }

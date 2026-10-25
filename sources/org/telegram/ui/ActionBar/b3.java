@@ -1,32 +1,78 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
-import android.view.ViewGroup;
-import org.telegram.ui.Components.u6;
-public final class b3 {
-    public final h3 f20729a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+public final class b3 extends AnimatorListenerAdapter {
+    public final int f22425a;
+    public final int f22426b;
+    public final Dialog f22427c;
 
-    public b3(Context context, g6 g6Var) {
-        h3 h3Var = new h3(1, context, g6Var, false);
-        this.f20729a = h3Var;
-        h3Var.fixNavigationBar();
+    public b3(Dialog dialog, int i10, int i11) {
+        this.f22425a = i11;
+        this.f22427c = dialog;
+        this.f22426b = i10;
     }
 
-    public final void a() {
-        this.f20729a.applyBottomPadding = false;
+    @Override
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f22425a) {
+            case 0:
+                k3 k3Var = (k3) this.f22427c;
+                AnimatorSet animatorSet = k3Var.currentSheetAnimation;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    k3Var.currentSheetAnimation = null;
+                    k3Var.currentSheetAnimationType = 0;
+                    return;
+                }
+                return;
+            default:
+                AnimatorSet[] animatorSetArr = ((e2) this.f22427c).F;
+                int i10 = this.f22426b;
+                AnimatorSet animatorSet2 = animatorSetArr[i10];
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    animatorSetArr[i10] = null;
+                    return;
+                }
+                return;
+        }
     }
 
-    public final void b(ViewGroup viewGroup) {
-        this.f20729a.customView = viewGroup;
-    }
-
-    public final void c(u6 u6Var) {
-        h3 h3Var = this.f20729a;
-        h3Var.customView = u6Var;
-        h3Var.customViewGravity = 49;
-    }
-
-    public final void d() {
-        this.f20729a.dimBehind = false;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        DialogInterface.OnClickListener onClickListener;
+        DialogInterface.OnClickListener onClickListener2;
+        int i10 = this.f22425a;
+        int i11 = this.f22426b;
+        Dialog dialog = this.f22427c;
+        switch (i10) {
+            case 0:
+                k3 k3Var = (k3) dialog;
+                AnimatorSet animatorSet = k3Var.currentSheetAnimation;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    k3Var.currentSheetAnimation = null;
+                    k3Var.currentSheetAnimationType = 0;
+                    onClickListener = k3Var.onClickListener;
+                    if (onClickListener != null) {
+                        onClickListener2 = k3Var.onClickListener;
+                        onClickListener2.onClick(k3Var, i11);
+                    }
+                    AndroidUtilities.runOnUIThread(new q(this, 8));
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
+            default:
+                AnimatorSet[] animatorSetArr = ((e2) dialog).F;
+                AnimatorSet animatorSet2 = animatorSetArr[i11];
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    animatorSetArr[i11] = null;
+                    return;
+                }
+                return;
+        }
     }
 }

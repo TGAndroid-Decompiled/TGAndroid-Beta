@@ -1,40 +1,83 @@
 package org.telegram.ui.Wallet;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
+import a8.ee;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.BitmapDrawable;
+import android.view.KeyEvent;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class c9 implements TextWatcher {
-    public boolean f34380a;
-    public final TextView f34381b;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+import org.telegram.ui.Components.ds;
+public final class c9 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f36432a;
+    public final float f36433b;
+    public final float f36434c;
+    public final float d;
+    public final float e;
+    public final int f36435f;
+    public final KeyEvent.Callback f36436g;
 
-    public c9(ig.z0 z0Var, TextView textView) {
-        this.f34381b = textView;
-        this.f34380a = TextUtils.isEmpty(z0Var.getText());
+    public c9(KeyEvent.Callback callback, float f7, float f10, float f11, float f12, int i10, int i11) {
+        this.f36432a = i11;
+        this.f36436g = callback;
+        this.f36433b = f7;
+        this.f36434c = f10;
+        this.d = f11;
+        this.e = f12;
+        this.f36435f = i10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        int i10;
-        boolean isEmpty = TextUtils.isEmpty(editable);
-        if (isEmpty != this.f34380a) {
-            this.f34380a = isEmpty;
-            if (isEmpty) {
-                i10 = R.string.Remove;
-            } else {
-                i10 = R.string.Add;
-            }
-            this.f34381b.setText(LocaleController.getString(i10));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f36432a) {
+            case 0:
+                h9 h9Var = (h9) this.f36436g;
+                h9Var.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ds dsVar = ds.h;
+                float interpolation = dsVar.getInterpolation(floatValue);
+                float interpolation2 = dsVar.getInterpolation(Math.min(1.0f, (floatValue * 320.0f) / 120.0f));
+                l6 l6Var = h9Var.d;
+                float f7 = this.f36434c;
+                float f10 = this.f36433b;
+                l6Var.setAlpha(((f7 - f10) * interpolation2) + f10);
+                TextView textView = h9Var.f36641f;
+                float f11 = this.e;
+                float f12 = this.d;
+                textView.setAlpha(((f11 - f12) * interpolation2) + f12);
+                FrameLayout frameLayout = h9Var.e;
+                ViewGroup.LayoutParams layoutParams = frameLayout.getLayoutParams();
+                int i10 = this.f36435f;
+                layoutParams.width = Math.round(((h9Var.f36647y - i10) * interpolation) + i10);
+                frameLayout.requestLayout();
+                return;
+            default:
+                yh.j jVar = (yh.j) this.f36436g;
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                jVar.f52605x = floatValue2;
+                float f13 = this.f36433b;
+                float z10 = c3.h0.z(1.0f, f13, floatValue2, f13);
+                yh.i iVar = jVar.f52606y;
+                iVar.setScaleX(z10);
+                iVar.setScaleY(z10);
+                iVar.setTranslationX((1.0f - jVar.f52605x) * this.f36434c);
+                iVar.setTranslationY((1.0f - jVar.f52605x) * this.d);
+                int i11 = (int) ((1.0f - jVar.f52605x) * this.e);
+                jVar.h.N(i11, i11);
+                float a2 = ee.a((jVar.f52605x * 2.0f) - 1.0f, 0.0f, 1.0f);
+                jVar.f52599c.setAlpha((int) (a2 * 255.0f));
+                jVar.d.setAlpha(a2);
+                jVar.e.setAlpha(a2);
+                ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout = jVar.f52600f;
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setTranslationY((1.0f - jVar.f52605x) * this.f36435f);
+                actionBarPopupWindow$ActionBarPopupWindowLayout.setAlpha(a2);
+                BitmapDrawable bitmapDrawable = jVar.f52604w;
+                if (bitmapDrawable != null) {
+                    bitmapDrawable.setAlpha((int) (jVar.f52605x * 255.0f));
+                }
+                jVar.f52601n.setAlpha(a2);
+                return;
         }
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

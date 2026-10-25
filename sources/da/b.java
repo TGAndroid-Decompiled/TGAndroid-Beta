@@ -1,267 +1,138 @@
 package da;
 
-import ai.a4;
-import ai.x9;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.text.TextUtils;
-import b2.p1;
-import ci.u7;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import e9.k0;
-import e9.n0;
-import e9.x1;
-import hi.f;
-import i5.g;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-import ki.t3;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BotWebViewVibrationEffect;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-import org.telegram.tgnet.tl.TL_keyboard;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.vy0;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.sn;
-import x2.d;
-import x2.e;
-import x2.i;
-import x2.k;
-import x2.n;
-import x9.w;
-public final class b implements g, MessagesStorage.LongCallback, z1, MessagesController.ErrorDelegate, k {
-    public final int f7921a;
-    public final boolean f7922b;
-    public final Object f7923c;
-    public final Object d;
-    public final Object e;
+import a1.g;
+import a4.d;
+import aa.b0;
+import aa.c2;
+import android.util.Log;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.nio.charset.Charset;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Locale;
+import java.util.NavigableSet;
+import java.util.TreeSet;
+import java.util.concurrent.atomic.AtomicInteger;
+import y9.j;
+public final class b {
+    public static final Charset e = Charset.forName("UTF-8");
+    public static final int f8267f = 15;
+    public static final ba.a f8268g = new Object();
+    public static final d h = new d(7);
+    public static final a f8269i = new a(0);
+    public final AtomicInteger f8270a = new AtomicInteger(0);
+    public final c f8271b;
+    public final b0 f8272c;
+    public final j d;
 
-    public b(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
-        this.f7921a = i10;
-        this.f7923c = obj;
-        this.d = obj2;
-        this.e = obj3;
-        this.f7922b = z10;
+    public b(c cVar, b0 b0Var, j jVar) {
+        this.f8271b = cVar;
+        this.f8272c = b0Var;
+        this.d = jVar;
     }
 
-    @Override
-    public x1 b(int i10, p1 p1Var, int[] iArr) {
-        n nVar = (n) this.f7923c;
-        i iVar = (i) this.d;
-        nVar.getClass();
-        d dVar = new d(nVar, iVar);
-        int i11 = ((int[]) this.e)[i10];
-        k0 t10 = n0.t();
-        for (int i12 = 0; i12 < p1Var.f3907a; i12++) {
-            t10.c(new e(i10, p1Var, i12, iVar, iArr[i12], this.f7922b, dVar, i11));
+    public static void a(List list) {
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            ((File) it.next()).delete();
         }
-        return t10.f();
     }
 
-    @Override
-    public void c(Exception exc) {
-        c cVar = (c) this.f7923c;
-        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.d;
-        x9.b bVar = (x9.b) this.e;
-        if (exc != null) {
-            taskCompletionSource.trySetException(exc);
-            return;
-        }
-        if (this.f7922b) {
-            boolean z10 = true;
-            CountDownLatch countDownLatch = new CountDownLatch(1);
-            new Thread(new u7(11, cVar, countDownLatch)).start();
-            TimeUnit timeUnit = TimeUnit.SECONDS;
-            ExecutorService executorService = w.f50191a;
-            boolean z11 = false;
+    public static String e(File file) {
+        byte[] bArr = new byte[8192];
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        FileInputStream fileInputStream = new FileInputStream(file);
+        while (true) {
             try {
-                long nanos = timeUnit.toNanos(2L);
-                long nanoTime = System.nanoTime() + nanos;
-                while (true) {
-                    try {
-                        try {
-                            countDownLatch.await(nanos, TimeUnit.NANOSECONDS);
-                            break;
-                        } catch (Throwable th2) {
-                            th = th2;
-                            if (z10) {
-                                Thread.currentThread().interrupt();
-                            }
-                            throw th;
-                        }
-                    } catch (InterruptedException unused) {
-                        nanos = nanoTime - System.nanoTime();
-                        z11 = true;
-                    }
+                int read = fileInputStream.read(bArr);
+                if (read > 0) {
+                    byteArrayOutputStream.write(bArr, 0, read);
+                } else {
+                    String str = new String(byteArrayOutputStream.toByteArray(), e);
+                    fileInputStream.close();
+                    return str;
                 }
-                if (z11) {
-                    Thread.currentThread().interrupt();
+            } catch (Throwable th2) {
+                try {
+                    fileInputStream.close();
+                } catch (Throwable th3) {
+                    th2.addSuppressed(th3);
                 }
-            } catch (Throwable th3) {
-                th = th3;
-                z10 = z11;
+                throw th2;
             }
         }
-        taskCompletionSource.trySetResult(bVar);
     }
 
-    @Override
-    public void g(c2 c2Var, int i10) {
-        TL_keyboard.PageButton pageButton;
-        TL_keyboard.InlineButtonType inlineButtonType;
-        long j10;
-        TL_keyboard.PageButton pageButton2;
-        ci.b bVar;
-        switch (this.f7921a) {
-            case 2:
-                boolean z10 = this.f7922b;
-                x9 x9Var = (x9) this.f7923c;
-                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
-                t3 t3Var = (t3) this.e;
-                int i11 = t3Var.f15588b;
-                if (!z10) {
-                    x9Var.run();
-                    return;
-                }
-                String trim = editTextBoldCursor.getText().toString().trim();
-                if (!TextUtils.isEmpty(trim)) {
-                    TL_iv.pageBlockButtonRow d = t3Var.d();
-                    TL_keyboard.InlineButtonType inlineButtonType2 = null;
-                    if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
-                        pageButton = d.buttons.get(i11);
-                    } else {
-                        pageButton = null;
-                    }
-                    if (pageButton == null) {
-                        inlineButtonType = null;
-                    } else {
-                        inlineButtonType = pageButton.type;
-                    }
-                    long j11 = 0;
-                    if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                        j10 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
-                    } else {
-                        j10 = 0;
-                    }
-                    if (j10 > 0) {
-                        TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
-                        TL_iv.pageBlockButtonRow d10 = t3Var.d();
-                        if (d10 != null && i11 >= 0 && i11 < d10.buttons.size()) {
-                            pageButton2 = d10.buttons.get(i11);
-                        } else {
-                            pageButton2 = null;
-                        }
-                        if (pageButton2 != null) {
-                            inlineButtonType2 = pageButton2.type;
-                        }
-                        if (inlineButtonType2 instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
-                            j11 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType2).user_id;
-                        }
-                        tL_inlineButtonTypeUserProfile.user_id = j11;
-                        t3Var.a(trim, tL_inlineButtonTypeUserProfile);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                sn snVar = (sn) this.f7923c;
-                boolean z11 = this.f7922b;
-                ((MessagesController) this.d).secretWebpagePreview = 1;
-                MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", snVar.getMessagesController().secretWebpagePreview).commit();
-                snVar.T5 = null;
-                snVar.cb((CharSequence) this.e, z11);
-                return;
-            case 4:
-                boolean z12 = this.f7922b;
-                Context context = (Context) this.f7923c;
-                AtomicBoolean atomicBoolean = (AtomicBoolean) this.d;
-                q0.a aVar = (q0.a) this.e;
-                if (z12) {
-                    try {
-                        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                        intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                        context.startActivity(intent);
-                        return;
-                    } catch (Exception e) {
-                        FileLog.e(e);
-                        return;
-                    }
-                }
-                atomicBoolean.set(true);
-                aVar.accept(Boolean.TRUE);
-                return;
-            default:
-                vy0 vy0Var = (vy0) this.f7923c;
-                Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
-                Context context2 = (Context) this.e;
-                boolean z13 = this.f7922b;
-                String trim2 = vy0Var.getText().toString().trim();
-                if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(AndroidUtilities.translitSafe(trim2.toString()))) {
-                    AndroidUtilities.hideKeyboard(vy0Var);
-                    if (z13) {
-                        bVar = null;
-                    } else {
-                        bVar = new ci.b();
-                    }
-                    c2 c2Var2 = new c2(context2, 3, bVar);
-                    c2Var2.r(250L);
-                    callback2.run(trim2, new a4(c2Var2, c2Var, vy0Var, 9));
-                    return;
-                }
-                vy0Var.setErrorText(".");
-                AndroidUtilities.shakeViewSpring(vy0Var, -6.0f);
-                BotWebViewVibrationEffect.APP_ERROR.vibrate();
-                AndroidUtilities.showKeyboard(vy0Var);
-                return;
+    public static void f(File file, String str) {
+        OutputStreamWriter outputStreamWriter = new OutputStreamWriter(new FileOutputStream(file), e);
+        try {
+            outputStreamWriter.write(str);
+            outputStreamWriter.close();
+        } catch (Throwable th2) {
+            try {
+                outputStreamWriter.close();
+            } catch (Throwable th3) {
+                th2.addSuppressed(th3);
+            }
+            throw th2;
         }
     }
 
-    @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        return ProfileActivity.j0((ProfileActivity) this.f7923c, (boolean[]) this.d, this.f7922b, (o2) this.e, tL_error);
+    public final ArrayList b() {
+        ArrayList arrayList = new ArrayList();
+        c cVar = this.f8271b;
+        arrayList.addAll(c.e(cVar.e.listFiles()));
+        arrayList.addAll(c.e(cVar.f8276f.listFiles()));
+        d dVar = h;
+        Collections.sort(arrayList, dVar);
+        List e10 = c.e(cVar.d.listFiles());
+        Collections.sort(e10, dVar);
+        arrayList.addAll(e10);
+        return arrayList;
     }
 
-    public b(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
-        this.f7921a = i10;
-        this.f7923c = obj;
-        this.d = obj2;
-        this.f7922b = z10;
-        this.e = obj3;
+    public final NavigableSet c() {
+        return new TreeSet(c.e(this.f8271b.f8275c.list())).descendingSet();
     }
 
-    @Override
-    public void run(long j10) {
-        f fVar = (f) this.f7923c;
-        String str = (String) this.e;
-        fVar.getClass();
-        ((c2) this.d).dismiss();
-        if (j10 == 0) {
-            return;
+    public final void d(c2 c2Var, String str, boolean z10) {
+        String str2;
+        c cVar = this.f8271b;
+        int i10 = this.f8272c.d().f10370a.f1303a;
+        f8268g.getClass();
+        String c10 = ba.a.f3719a.c(c2Var);
+        String format = String.format(Locale.US, "%010d", Integer.valueOf(this.f8270a.getAndIncrement()));
+        if (z10) {
+            str2 = "_";
+        } else {
+            str2 = "";
         }
-        fVar.f12172b = -j10;
-        fVar.f12173c = fVar.getMessagesController().getChat(Long.valueOf(j10));
-        fVar.V(str, this.f7922b);
-    }
-
-    public b(boolean z10, Object obj, Object obj2, Object obj3, int i10) {
-        this.f7921a = i10;
-        this.f7922b = z10;
-        this.f7923c = obj;
-        this.d = obj2;
-        this.e = obj3;
+        try {
+            f(cVar.b(str, g.p("event", format, str2)), c10);
+        } catch (IOException e10) {
+            Log.w("FirebaseCrashlytics", "Could not persist event for session " + str, e10);
+        }
+        a aVar = new a(1);
+        cVar.getClass();
+        File file = new File(cVar.f8275c, str);
+        file.mkdirs();
+        List<File> e11 = c.e(file.listFiles(aVar));
+        Collections.sort(e11, new d(8));
+        int size = e11.size();
+        for (File file2 : e11) {
+            if (size > i10) {
+                c.d(file2);
+                size--;
+            } else {
+                return;
+            }
+        }
     }
 }

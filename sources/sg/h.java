@@ -1,20 +1,30 @@
 package sg;
-public final class h {
-    public final int f46691a;
-    public final int f46692b;
-    public final String f46693c;
-    public final String d;
-    public final int e;
+public interface h {
+    void A(boolean z10);
 
-    public h(int i10) {
-        this.f46691a = i10;
-    }
+    void B();
 
-    public h(int i10, int i11, String str, String str2) {
-        this.f46691a = 1;
-        this.f46692b = i10;
-        this.f46693c = str;
-        this.d = str2;
-        this.e = i11;
-    }
+    boolean D(j jVar);
+
+    int[] b(j jVar);
+
+    void e(boolean z10);
+
+    void f(boolean z10);
+
+    void g();
+
+    void h();
+
+    void k(j jVar);
+
+    void l(boolean z10);
+
+    boolean q();
+
+    boolean r();
+
+    void v(float f7, float f10, float[] fArr);
+
+    void x();
 }

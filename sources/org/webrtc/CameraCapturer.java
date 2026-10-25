@@ -4,12 +4,12 @@ import android.content.Context;
 import android.media.MediaRecorder;
 import android.os.Handler;
 import android.os.Looper;
-import com.google.android.gms.internal.play_billing.k3;
+import c3.h0;
 import java.util.Arrays;
 import java.util.List;
+import org.telegram.ui.Components.b10;
 import org.webrtc.CameraSession;
 import org.webrtc.CameraVideoCapturer;
-import si.o0;
 abstract class CameraCapturer implements CameraVideoCapturer {
     private static final int MAX_OPEN_CAMERA_ATTEMPTS = 3;
     private static final int OPEN_CAMERA_DELAY_MS = 500;
@@ -280,7 +280,7 @@ abstract class CameraCapturer implements CameraVideoCapturer {
     public void switchCameraInternal(CameraVideoCapturer.CameraSwitchHandler cameraSwitchHandler, String str) {
         Logging.d("CameraCapturer", "switchCamera internal");
         if (!Arrays.asList(this.cameraEnumerator.getDeviceNames()).contains(str)) {
-            reportCameraSwitchError(o0.h("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
+            reportCameraSwitchError(b10.j("Attempted to switch to unknown camera device ", str), cameraSwitchHandler);
             return;
         }
         synchronized (this.stateLock) {
@@ -330,9 +330,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void changeCaptureFormat(int i10, int i11, int i12) {
-        StringBuilder k10 = k3.k("changeCaptureFormat: ", i10, "x", i11, "@");
-        k10.append(i12);
-        Logging.d("CameraCapturer", k10.toString());
+        StringBuilder n10 = h0.n("changeCaptureFormat: ", i10, "x", i11, "@");
+        n10.append(i12);
+        Logging.d("CameraCapturer", n10.toString());
         synchronized (this.stateLock) {
             stopCapture();
             startCapture(i10, i11, i12);
@@ -394,9 +394,9 @@ abstract class CameraCapturer implements CameraVideoCapturer {
 
     @Override
     public void startCapture(int i10, int i11, int i12) {
-        StringBuilder k10 = k3.k("startCapture: ", i10, "x", i11, "@");
-        k10.append(i12);
-        Logging.d("CameraCapturer", k10.toString());
+        StringBuilder n10 = h0.n("startCapture: ", i10, "x", i11, "@");
+        n10.append(i12);
+        Logging.d("CameraCapturer", n10.toString());
         if (this.applicationContext != null) {
             synchronized (this.stateLock) {
                 try {

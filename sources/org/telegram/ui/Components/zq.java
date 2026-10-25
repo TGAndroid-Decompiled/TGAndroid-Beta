@@ -1,52 +1,170 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.SpannableStringBuilder;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.text.style.ReplacementSpan;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class zq extends LinearLayout {
-    public final u9 f33334a;
+import org.telegram.messenger.ApplicationLoader;
+public class zq extends ReplacementSpan {
+    public static final int ALIGN_BASELINE = 1;
+    public static final int ALIGN_CENTER = 2;
+    public static final int ALIGN_DEFAULT = 0;
+    private float alpha;
+    private Runnable checkColorDelegate;
+    int colorKey;
+    public boolean draw;
+    public Drawable drawable;
+    int drawableColor;
+    private Paint.FontMetricsInt fontMetrics;
+    private boolean isRelativeSize;
+    private int overrideColor;
+    public boolean recolorDrawable;
+    public float rotate;
+    private float scaleX;
+    private float scaleY;
+    private int size;
+    private int sizeWidth;
+    public float spaceScaleX;
+    private int topOffset;
+    public float translateX;
+    public float translateY;
+    public boolean useLinkPaintColor;
+    boolean usePaintColor;
+    private final int verticalAlignment;
 
-    public zq(Context context) {
-        super(context);
-        setOrientation(1);
-        u9 u9Var = new u9(context);
-        this.f33334a = u9Var;
-        u9Var.setImageDrawable(new ca0(u9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
-        if (!AndroidUtilities.isTablet()) {
-            addView(u9Var, w7.z5.q(110, 110, 49));
-        }
-        TextView g10 = org.telegram.messenger.v0.g(context, 1, 20.0f);
-        org.telegram.ui.ActionBar.r6.W(g10, org.telegram.ui.ActionBar.k6.G6, null);
-        g10.setGravity(1);
-        g10.setText(LocaleController.getString(R.string.NoContactsYet3));
-        g10.setTypeface(AndroidUtilities.bold());
-        addView(g10, w7.z5.t(-2, -2, 49, 0, 15, 0, 7));
-        TextView textView = new TextView(context);
-        textView.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21166c7, null);
-        textView.setGravity(1);
-        textView.setText(LocaleController.getString(R.string.NoContactsYet3Sub));
-        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
-        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        addView(textView, w7.z5.t(-2, -2, 49, 0, 0, 0, 19));
-        ei.d dVar = new ei.d(context, null, true);
-        dVar.setUseWrapContent(true);
-        dVar.f();
-        dVar.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
-        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
-        spannableStringBuilder.setSpan(new vq(R.drawable.filled_new_contact_24, 0), 0, 1, 33);
-        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.NewContact));
-        dVar.i(spannableStringBuilder, false, true);
-        addView(dVar, w7.z5.q(-2, 44, 49));
+    public zq(int i10) {
+        this(i10, 0);
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f33334a.setImageDrawable(new xj0(R.raw.utyan_empty, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
+    public void draw(android.graphics.Canvas r4, java.lang.CharSequence r5, int r6, int r7, float r8, int r9, int r10, int r11, android.graphics.Paint r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.zq.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        if (this.isRelativeSize && this.fontMetrics != null) {
+            if (fontMetricsInt == null) {
+                fontMetricsInt = new Paint.FontMetricsInt();
+            }
+            Paint.FontMetricsInt fontMetricsInt2 = this.fontMetrics;
+            fontMetricsInt.ascent = fontMetricsInt2.ascent;
+            fontMetricsInt.descent = fontMetricsInt2.descent;
+            fontMetricsInt.top = fontMetricsInt2.top;
+            fontMetricsInt.bottom = fontMetricsInt2.bottom;
+            return (int) (Math.abs(this.spaceScaleX) * Math.abs(this.scaleX) * this.size);
+        } else if (this.sizeWidth != 0) {
+            return (int) (Math.abs(this.scaleX) * this.sizeWidth);
+        } else {
+            float abs = Math.abs(this.spaceScaleX) * Math.abs(this.scaleX);
+            int i12 = this.size;
+            if (i12 == 0) {
+                i12 = this.drawable.getIntrinsicWidth();
+            }
+            return (int) (abs * i12);
+        }
+    }
+
+    public void rotate(float f7) {
+        this.rotate = f7;
+    }
+
+    public void setAlpha(float f7) {
+        this.alpha = f7;
+    }
+
+    public void setCheckColorDelegate(Runnable runnable) {
+        this.checkColorDelegate = runnable;
+    }
+
+    public zq setColorKey(int i10) {
+        boolean z10;
+        this.colorKey = i10;
+        if (i10 < 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.usePaintColor = z10;
+        return this;
+    }
+
+    public zq setOverrideColor(int i10) {
+        this.overrideColor = i10;
+        return this;
+    }
+
+    public void setRelativeSize(Paint.FontMetricsInt fontMetricsInt) {
+        this.isRelativeSize = true;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            setSize(Math.abs(this.fontMetrics.ascent) + Math.abs(fontMetricsInt.descent));
+            if (this.size == 0) {
+                setSize(AndroidUtilities.dp(20.0f));
+            }
+        }
+    }
+
+    public zq setScale(float f7) {
+        this.scaleX = f7;
+        return this;
+    }
+
+    public void setSize(int i10) {
+        this.size = i10;
+        this.drawable.setBounds(0, 0, i10, i10);
+    }
+
+    public void setTopOffset(int i10) {
+        this.topOffset = i10;
+    }
+
+    public void setTranslateX(float f7) {
+        this.translateX = f7;
+    }
+
+    public void setTranslateY(float f7) {
+        this.translateY = f7;
+    }
+
+    public void setWidth(int i10) {
+        this.sizeWidth = i10;
+    }
+
+    public zq translate(float f7, float f10) {
+        this.translateX = f7;
+        this.translateY = f10;
+        return this;
+    }
+
+    public zq(Drawable drawable) {
+        this(0, drawable);
+    }
+
+    public zq setScale(float f7, float f10) {
+        this.scaleX = f7;
+        this.scaleY = f10;
+        return this;
+    }
+
+    public zq(int i10, int i11) {
+        this(i11, ApplicationLoader.applicationContext.getDrawable(i10).mutate());
+    }
+
+    public zq(int i10, Drawable drawable) {
+        this.draw = true;
+        this.recolorDrawable = true;
+        this.usePaintColor = true;
+        this.useLinkPaintColor = false;
+        this.topOffset = 0;
+        this.alpha = 1.0f;
+        this.spaceScaleX = 1.0f;
+        this.scaleX = 1.0f;
+        this.scaleY = 1.0f;
+        this.drawable = drawable;
+        if (drawable != null) {
+            drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        }
+        this.verticalAlignment = i10;
     }
 }

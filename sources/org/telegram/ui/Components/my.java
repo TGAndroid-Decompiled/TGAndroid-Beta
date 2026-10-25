@@ -1,72 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
 public final class my implements View.OnClickListener {
-    public final ry f28718a;
+    public final boolean[] f30772a;
+    public final org.telegram.ui.ActionBar.e3 f30773b;
+    public final ny f30774c;
 
-    public my(ry ryVar) {
-        this.f28718a = ryVar;
+    public my(ny nyVar, boolean[] zArr, org.telegram.ui.ActionBar.e3 e3Var) {
+        this.f30774c = nyVar;
+        this.f30772a = zArr;
+        this.f30773b = e3Var;
     }
 
     @Override
     public final void onClick(View view) {
-        int i10;
-        int i11;
-        boolean[] zArr = new boolean[1];
-        ry ryVar = this.f28718a;
-        rz rzVar = ryVar.F;
-        org.telegram.ui.ActionBar.b3 b3Var = new org.telegram.ui.ActionBar.b3(rzVar.getContext(), null);
-        LinearLayout linearLayout = new LinearLayout(rzVar.getContext());
-        linearLayout.setOrientation(1);
-        linearLayout.setPadding(AndroidUtilities.dp(21.0f), 0, AndroidUtilities.dp(21.0f), 0);
-        ImageView imageView = new ImageView(rzVar.getContext());
-        imageView.setImageResource(R.drawable.smiles_info);
-        linearLayout.addView(imageView, w7.z5.t(-2, -2, 49, 0, 15, 0, 0));
-        TextView textView = new TextView(rzVar.getContext());
-        org.telegram.messenger.tl.n(R.string.EmojiSuggestions, textView, 1, 15.0f);
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21366n5, rzVar.Z1);
-        int i12 = 3;
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
+        sy syVar = this.f30774c.f31088a;
+        boolean[] zArr = this.f30772a;
+        if (zArr[0]) {
+            return;
         }
-        textView.setGravity(i10);
-        textView.setTypeface(AndroidUtilities.bold());
-        linearLayout.addView(textView, w7.z5.t(-2, -2, 51, 0, 24, 0, 0));
-        TextView textView2 = new TextView(rzVar.getContext());
-        textView2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.EmojiSuggestionsInfo)));
-        textView2.setTextSize(1, 15.0f);
-        org.telegram.ui.ActionBar.r6.W(textView2, org.telegram.ui.ActionBar.k6.f21290j5, rzVar.Z1);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
+        zArr[0] = true;
+        org.telegram.ui.ActionBar.e2[] e2VarArr = {new org.telegram.ui.ActionBar.e2(syVar.F.getContext(), 3, null)};
+        TLRPC.TL_messages_getEmojiURL tL_messages_getEmojiURL = new TLRPC.TL_messages_getEmojiURL();
+        sz szVar = syVar.F;
+        String str = syVar.f32704w;
+        if (str == null) {
+            str = szVar.W0[0];
         }
-        textView2.setGravity(i11);
-        linearLayout.addView(textView2, w7.z5.t(-2, -2, 51, 0, 11, 0, 0));
-        TextView textView3 = new TextView(rzVar.getContext());
-        int i13 = R.string.EmojiSuggestionsUrl;
-        Object obj = ryVar.f30295w;
-        if (obj == null) {
-            obj = rzVar.W0;
-        }
-        textView3.setText(LocaleController.formatString("EmojiSuggestionsUrl", i13, obj));
-        textView3.setTextSize(1, 15.0f);
-        org.telegram.ui.ActionBar.r6.W(textView3, org.telegram.ui.ActionBar.k6.f21310k5, rzVar.Z1);
-        if (LocaleController.isRTL) {
-            i12 = 5;
-        }
-        textView3.setGravity(i12);
-        linearLayout.addView(textView3, w7.z5.t(-2, -2, 51, 0, 18, 0, 16));
-        textView3.setOnClickListener(new ly(this, zArr, b3Var));
-        b3Var.b(linearLayout);
-        b3Var.f20729a.show();
+        tL_messages_getEmojiURL.lang_code = str;
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.g4(this, e2VarArr, ConnectionsManager.getInstance(szVar.f32716c1).sendRequest(tL_messages_getEmojiURL, new bi.h2(this, e2VarArr, this.f30773b, 13)), 8), 1000L);
     }
 }

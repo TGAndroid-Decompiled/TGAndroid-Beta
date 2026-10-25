@@ -1,56 +1,48 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Rect;
-import android.view.MotionEvent;
 import android.view.View;
-public final class pq0 implements View.OnTouchListener {
-    public final int f29639a;
-    public final Rect f29640b;
-    public final hr0 f29641c;
+import androidx.recyclerview.widget.RecyclerView;
+public final class pq0 extends s4.u0 {
+    public final int f31697a;
+    public final mr0 f31698b;
 
-    public pq0(hr0 hr0Var, int i10) {
-        this.f29639a = i10;
-        switch (i10) {
-            case 1:
-                this.f29641c = hr0Var;
-                this.f29640b = new Rect();
-                return;
-            default:
-                this.f29641c = hr0Var;
-                this.f29640b = new Rect();
-                return;
-        }
+    public pq0(mr0 mr0Var, int i10) {
+        this.f31697a = i10;
+        this.f31698b = mr0Var;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        hr0 hr0Var;
-        org.telegram.ui.ActionBar.m1 m1Var;
-        hr0 hr0Var2;
-        org.telegram.ui.ActionBar.m1 m1Var2;
-        switch (this.f29639a) {
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ub ubVar;
+        switch (this.f31697a) {
             case 0:
-                if (motionEvent.getActionMasked() == 0 && (m1Var = (hr0Var = this.f29641c).K0) != null && m1Var.isShowing()) {
-                    Rect rect = this.f29640b;
-                    view.getHitRect(rect);
-                    if (!rect.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        hr0Var.K0.d(true);
-                        return false;
-                    }
-                    return false;
+                mr0 mr0Var = this.f31698b;
+                if (i11 != 0) {
+                    mr0.r0(mr0Var);
+                    mr0Var.f30718r0 = mr0Var.f30716q0;
                 }
-                return false;
+                qc qcVar = qc.f31880x;
+                if (qcVar != null && (ubVar = qcVar.e) != null && (ubVar.getParent() instanceof View) && ((View) qc.f31880x.e.getParent()).getParent() == mr0Var.f30726x) {
+                    qc.e();
+                    return;
+                }
+                return;
+            case 1:
+                if (i11 != 0) {
+                    mr0 mr0Var2 = this.f31698b;
+                    mr0.r0(mr0Var2);
+                    mr0Var2.f30718r0 = mr0Var2.f30716q0;
+                    return;
+                }
+                return;
             default:
-                if (motionEvent.getActionMasked() == 0 && (m1Var2 = (hr0Var2 = this.f29641c).K0) != null && m1Var2.isShowing()) {
-                    Rect rect2 = this.f29640b;
-                    view.getHitRect(rect2);
-                    if (!rect2.contains((int) motionEvent.getX(), (int) motionEvent.getY())) {
-                        hr0Var2.K0.d(true);
-                        return false;
-                    }
-                    return false;
+                if (i11 != 0) {
+                    mr0 mr0Var3 = this.f31698b;
+                    mr0.r0(mr0Var3);
+                    mr0Var3.f30718r0 = mr0Var3.f30716q0;
+                    return;
                 }
-                return false;
+                return;
         }
     }
 }

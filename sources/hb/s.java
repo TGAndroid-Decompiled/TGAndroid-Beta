@@ -1,45 +1,39 @@
 package hb;
 
+import java.io.ObjectInputStream;
+import java.io.ObjectStreamClass;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-public final class s {
-    public final String f11784a;
-    public final Field f11785b;
-    public final String f11786c;
-    public final Method d;
-    public final eb.u e;
-    public final eb.u f11787f;
-    public final boolean f11788g;
-    public final boolean h;
+public abstract class s {
+    public static final s f12763a;
 
-    public s(String str, Field field, Method method, eb.u uVar, eb.u uVar2, boolean z10, boolean z11) {
-        this.d = method;
-        this.e = uVar;
-        this.f11787f = uVar2;
-        this.f11788g = z10;
-        this.h = z11;
-        this.f11784a = str;
-        this.f11785b = field;
-        this.f11786c = field.getName();
-    }
-
-    public final void a(mb.b bVar, Object obj) {
-        Object obj2;
-        Method method = this.d;
-        if (method != null) {
+    static {
+        o oVar;
+        try {
+            Class<?> cls = Class.forName("sun.misc.Unsafe");
+            Field declaredField = cls.getDeclaredField("theUnsafe");
+            declaredField.setAccessible(true);
+            oVar = new o(cls.getMethod("allocateInstance", Class.class), declaredField.get(null));
+        } catch (Exception unused) {
             try {
-                obj2 = method.invoke(obj, null);
-            } catch (InvocationTargetException e) {
-                throw new RuntimeException(a1.g.p("Accessor ", jb.c.d(method, false), " threw exception"), e.getCause());
+                try {
+                    Method declaredMethod = ObjectStreamClass.class.getDeclaredMethod("getConstructorId", Class.class);
+                    declaredMethod.setAccessible(true);
+                    int intValue = ((Integer) declaredMethod.invoke(null, Object.class)).intValue();
+                    Method declaredMethod2 = ObjectStreamClass.class.getDeclaredMethod("newInstance", Class.class, Integer.TYPE);
+                    declaredMethod2.setAccessible(true);
+                    oVar = new p(intValue, declaredMethod2);
+                } catch (Exception unused2) {
+                    oVar = new Object();
+                }
+            } catch (Exception unused3) {
+                Method declaredMethod3 = ObjectInputStream.class.getDeclaredMethod("newInstance", Class.class, Class.class);
+                declaredMethod3.setAccessible(true);
+                oVar = new q(declaredMethod3);
             }
-        } else {
-            obj2 = this.f11785b.get(obj);
         }
-        if (obj2 == obj) {
-            return;
-        }
-        bVar.g(this.f11784a);
-        this.e.write(bVar, obj2);
+        f12763a = oVar;
     }
+
+    public abstract Object a(Class cls);
 }

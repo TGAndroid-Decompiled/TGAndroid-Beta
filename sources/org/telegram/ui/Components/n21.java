@@ -1,28 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.ui.Components.ThemeEditorView;
-public final class n21 extends EditTextBoldCursor {
-    public final p21 f28768b;
+public final class n21 extends s4.u0 {
+    public final ThemeEditorView.EditorAlert f30827a;
 
-    public n21(p21 p21Var, Context context) {
-        super(context);
-        this.f28768b = p21Var;
+    public n21(ThemeEditorView.EditorAlert editorAlert) {
+        this.f30827a = editorAlert;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        ViewGroup viewGroup;
-        MotionEvent obtain = MotionEvent.obtain(motionEvent);
-        float rawX = obtain.getRawX();
-        float rawY = obtain.getRawY();
-        ThemeEditorView.EditorAlert editorAlert = this.f28768b.f29457c;
-        viewGroup = ((org.telegram.ui.ActionBar.h3) editorAlert).containerView;
-        obtain.setLocation(rawX, rawY - viewGroup.getTranslationY());
-        editorAlert.f24547c.dispatchTouchEvent(obtain);
-        obtain.recycle();
-        return super.dispatchTouchEvent(motionEvent);
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ThemeEditorView.EditorAlert.s(this.f30827a);
     }
 }

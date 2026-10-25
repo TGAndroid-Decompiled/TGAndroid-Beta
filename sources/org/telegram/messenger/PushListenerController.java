@@ -43,15 +43,15 @@ public class PushListenerController {
             FirebaseMessaging firebaseMessaging;
             try {
                 SharedConfig.pushStringGetTimeStart = SystemClock.elapsedRealtime();
-                l9.h.f(ApplicationLoader.applicationContext);
-                a6.i iVar = FirebaseMessaging.f7602l;
+                m9.h.f(ApplicationLoader.applicationContext);
+                a4.l lVar = FirebaseMessaging.f7701l;
                 synchronized (FirebaseMessaging.class) {
-                    firebaseMessaging = FirebaseMessaging.getInstance(l9.h.c());
+                    firebaseMessaging = FirebaseMessaging.getInstance(m9.h.c());
                 }
                 firebaseMessaging.getClass();
                 TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
-                firebaseMessaging.f7608f.execute(new ci.u7(8, firebaseMessaging, taskCompletionSource));
-                taskCompletionSource.getTask().addOnCompleteListener(new d0(this, 11));
+                firebaseMessaging.f7707f.execute(new bi.f2(20, firebaseMessaging, taskCompletionSource));
+                taskCompletionSource.getTask().addOnCompleteListener(new g0(this, 11));
             } catch (Throwable th2) {
                 FileLog.e(th2);
             }
@@ -72,7 +72,7 @@ public class PushListenerController {
             boolean z10;
             if (this.hasServices == null) {
                 try {
-                    if (k6.d.d.d(ApplicationLoader.applicationContext, k6.e.f15018a) == 0) {
+                    if (l6.d.d.d(ApplicationLoader.applicationContext, l6.e.f16931a) == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
@@ -96,7 +96,7 @@ public class PushListenerController {
             } else if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("FCM Registration not found.");
             }
-            Utilities.globalQueue.postRunnable(new gh(this, 3));
+            Utilities.globalQueue.postRunnable(new hh(this, 3));
         }
     }
 
@@ -705,7 +705,7 @@ public class PushListenerController {
     }
 
     public static void lambda$processRemoteMessage$2(int i10, TLRPC.TL_updates tL_updates) {
-        MessagesController.getInstance(i10).lambda$processUpdates$377(tL_updates, false);
+        MessagesController.getInstance(i10).lambda$processUpdates$379(tL_updates, false);
     }
 
     public static void lambda$processRemoteMessage$3(int i10) {
@@ -735,7 +735,7 @@ public class PushListenerController {
         if (BuildVars.LOGS_ENABLED) {
             FileLog.d(str + " POST INIT APP");
         }
-        Utilities.stageQueue.postRunnable(new rh(0, j10, str, str2));
+        Utilities.stageQueue.postRunnable(new sh(0, j10, str, str2));
     }
 
     public static void lambda$sendRegistrationToServer$0(int i10, int i11, String str) {
@@ -784,7 +784,7 @@ public class PushListenerController {
                         ConnectionsManager.getInstance(i11).sendRequest(tL_help_saveAppLog, null);
                         z10 = false;
                     }
-                    AndroidUtilities.runOnUIThread(new y6(i11, i10, str));
+                    AndroidUtilities.runOnUIThread(new z6(i11, i10, str));
                 }
             }
         }
@@ -812,7 +812,7 @@ public class PushListenerController {
             FileLog.d(str3.concat(" PRE START PROCESSING"));
         }
         long elapsedRealtime = SystemClock.elapsedRealtime();
-        AndroidUtilities.runOnUIThread(new rh(1, j10, str3, str));
+        AndroidUtilities.runOnUIThread(new sh(1, j10, str3, str));
         try {
             countDownLatch.await();
         } catch (Throwable unused) {
@@ -825,6 +825,6 @@ public class PushListenerController {
     }
 
     public static void sendRegistrationToServer(int i10, String str) {
-        Utilities.stageQueue.postRunnable(new w6(str, i10, 8));
+        Utilities.stageQueue.postRunnable(new x6(str, i10, 8));
     }
 }

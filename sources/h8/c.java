@@ -1,27 +1,10 @@
 package h8;
 
-import android.os.Parcel;
-import android.os.RemoteException;
-import java.util.HashMap;
-import n6.l;
-public final class c {
-    public final i8.f f11711a;
-    public h f11712b;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationResult;
+public abstract class c {
+    public abstract void onLocationResult(LocationResult locationResult);
 
-    public c(i8.f fVar) {
-        new HashMap();
-        l.h(fVar);
-        this.f11711a = fVar;
-    }
-
-    public final void a(int i10) {
-        try {
-            i8.f fVar = this.f11711a;
-            Parcel N0 = fVar.N0();
-            N0.writeInt(i10);
-            fVar.R0(N0, 16);
-        } catch (RemoteException e) {
-            throw new RuntimeException(e);
-        }
+    public void onLocationAvailability(LocationAvailability locationAvailability) {
     }
 }

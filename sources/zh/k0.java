@@ -1,43 +1,73 @@
 package zh;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.view.MotionEvent;
-public final class k0 extends r {
-    public final n0 M;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.tgnet.TLObject;
+import org.telegram.ui.Components.c6;
+public final class k0 extends View {
+    public final j0 f53079a;
 
-    public k0(n0 n0Var, Activity activity, int i10, j0 j0Var) {
-        super(activity, i10, j0Var);
-        this.M = n0Var;
+    public k0(Context context) {
+        super(context);
+        j0 j0Var = new j0();
+        this.f53079a = j0Var;
+        j0Var.f53063r = this;
+        j0Var.d.setParentView(this);
+    }
+
+    public j0 getDrawable() {
+        return this.f53079a;
+    }
+
+    public TextPaint getTextPaint() {
+        return this.f53079a.f53051c;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        n0 n0Var = this.M;
-        float min = Math.min(getHeight(), n0Var.v - (getTranslationY() + getTop()));
-        c cVar = n0Var.f52527x;
-        if (cVar != null) {
-            cVar.G = min;
-        }
-        n0Var.K = min;
-        if (cVar != null) {
-            cVar.U = n0Var.f52525s - cVar.getLeft();
-        }
-        super.dispatchDraw(canvas);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f53079a.d.onAttachedToWindow();
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        n0 n0Var = this.M;
-        c1 c1Var = n0Var.d;
-        if (c1Var != null && (c1Var.l1 > 0.5f || c1Var.f52271k1 > 0.5f)) {
-            if (motionEvent.getActionMasked() == 1) {
-                c1 c1Var2 = n0Var.d;
-                c1Var2.l1 = 0.0f;
-                c1Var2.invalidate();
-            }
-            return true;
-        }
-        return super.dispatchTouchEvent(motionEvent);
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        j0 j0Var = this.f53079a;
+        j0Var.d.onDetachedFromWindow();
+        c6.release((View) null, j0Var.f53062q);
+        j0Var.f53062q = null;
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        int paddingLeft = getPaddingLeft();
+        int paddingTop = getPaddingTop();
+        int width = getWidth() - getPaddingRight();
+        int height = getHeight() - getPaddingBottom();
+        j0 j0Var = this.f53079a;
+        j0Var.setBounds(paddingLeft, paddingTop, width, height);
+        j0Var.draw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int size = (View.MeasureSpec.getSize(i10) - getPaddingLeft()) - getPaddingRight();
+        j0 j0Var = this.f53079a;
+        j0Var.b(size);
+        setMeasuredDimension(getPaddingRight() + getPaddingLeft() + j0Var.f53065t, getPaddingBottom() + getPaddingTop() + j0Var.f53066u);
+    }
+
+    public void setMessage(CharSequence charSequence) {
+        j0 j0Var = this.f53079a;
+        j0Var.f53058m = charSequence;
+        j0Var.f53064s = -1;
+        requestLayout();
+    }
+
+    public void setUser(TLObject tLObject) {
+        this.f53079a.c(tLObject);
+        invalidate();
     }
 }

@@ -1,10 +1,11 @@
 package w3;
 
+import a8.ng;
 import java.util.ArrayList;
 public final class o {
-    public static final a5.a d = new a5.a(new a6.i(new d9.e(':', 0), 15));
-    public static final a5.a e = new a5.a(new a6.i(new d9.e('*', 0), 15));
-    public final ArrayList f48991a = new ArrayList();
-    public int f48992b = 0;
-    public int f48993c;
+    public static final ng d = new ng(new za.c(new e9.e(':', 0), 18));
+    public static final ng e = new ng(new za.c(new e9.e('*', 0), 18));
+    public final ArrayList f50735a = new ArrayList();
+    public int f50736b = 0;
+    public int f50737c;
 }

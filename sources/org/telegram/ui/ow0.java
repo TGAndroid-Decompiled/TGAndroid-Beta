@@ -1,28 +1,99 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.RectF;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class ow0 extends sg.r1 {
-    public final pw0 N;
+import android.view.View;
+import android.view.ViewGroup;
+public final class ow0 extends org.telegram.ui.Components.lm0 {
+    public final PremiumPreviewFragment f42299c;
 
-    public ow0(pw0 pw0Var, Context context) {
-        super(context);
-        this.N = pw0Var;
+    public ow0(PremiumPreviewFragment premiumPreviewFragment) {
+        this.f42299c = premiumPreviewFragment;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        TextView textView = this.f46847r;
-        if (textView.getVisibility() == 0) {
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set(textView.getLeft(), textView.getTop(), textView.getRight(), textView.getBottom());
-            pw0 pw0Var = this.N;
-            pw0Var.d.f40941n.f33818n0.d(0, 0.0f, 0, getMeasuredWidth(), -this.f46846n.h, pw0Var.d.f40941n.O);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), pw0Var.d.f40941n.f33818n0.f46618f);
+    public final boolean D(s4.e1 e1Var) {
+        int i10 = e1Var.f47738f;
+        if (i10 == 1 || i10 == 8) {
+            return true;
         }
-        super.dispatchDraw(canvas);
+        return false;
+    }
+
+    @Override
+    public final int h() {
+        return this.f42299c.h;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 != 0) {
+            PremiumPreviewFragment premiumPreviewFragment = this.f42299c;
+            if (i10 < premiumPreviewFragment.f35878n || i10 >= premiumPreviewFragment.f35883r) {
+                if (i10 >= premiumPreviewFragment.v && i10 < premiumPreviewFragment.f35890w) {
+                    return 1;
+                }
+                if (i10 == 0) {
+                    return 4;
+                }
+                if (i10 != premiumPreviewFragment.f35892x && i10 != premiumPreviewFragment.f35894y && i10 != premiumPreviewFragment.E && i10 != premiumPreviewFragment.H) {
+                    if (i10 == premiumPreviewFragment.F) {
+                        return 6;
+                    }
+                    if (i10 != premiumPreviewFragment.f35885s && i10 != premiumPreviewFragment.G) {
+                        if (i10 == premiumPreviewFragment.showAdsRow) {
+                            return 8;
+                        }
+                        return 0;
+                    }
+                    return 7;
+                }
+                return 5;
+            }
+            return 1;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 r18, int r19) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ow0.v(s4.e1, int):void");
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        View nw0Var;
+        org.telegram.ui.ActionBar.u6 u6Var;
+        Context context = viewGroup.getContext();
+        switch (i10) {
+            case 1:
+                nw0Var = new nw0(this, context);
+                break;
+            case 2:
+                nw0Var = new org.telegram.ui.Cells.f7(context, 0, 0);
+                break;
+            case 3:
+            default:
+                nw0Var = new z10(this, context, 6);
+                nw0Var.setTag(-33024);
+                break;
+            case 4:
+                nw0Var = new tg.a(context);
+                break;
+            case 5:
+                nw0Var = new org.telegram.ui.Cells.i9(context);
+                break;
+            case 6:
+                nw0Var = new View(context);
+                nw0Var.setTag(-33024);
+                break;
+            case 7:
+                nw0Var = new org.telegram.ui.Cells.q4(context);
+                break;
+            case 8:
+                u6Var = ((org.telegram.ui.ActionBar.r2) this.f42299c).resourceProvider;
+                nw0Var = new org.telegram.ui.Cells.v8(23, context, u6Var, false, true);
+                break;
+        }
+        return ic.a.n(nw0Var, nw0Var, -1, -2);
     }
 }

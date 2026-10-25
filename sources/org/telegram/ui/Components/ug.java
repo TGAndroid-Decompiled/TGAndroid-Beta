@@ -1,79 +1,123 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.LinearGradient;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-public final class ug extends FrameLayout {
-    public final org.telegram.ui.ActionBar.n5 f31117a;
-    public final RectF f31118b;
-    public final Paint f31119c;
-    public final Drawable d;
+public final class ug extends View {
+    public float f33393a;
+    public long f33394b;
+    public boolean f33395c;
+    public boolean d;
     public boolean e;
+    public final xj0 f33396f;
+    public boolean h;
+    public boolean f33397n;
+    public long f33398r;
+    public final ChatActivityEnterView f33399s;
 
-    public ug(Activity activity) {
-        super(activity);
-        this.f31118b = new RectF();
-        this.f31119c = new Paint(1);
-        this.e = false;
-        org.telegram.ui.ActionBar.n5 n5Var = new org.telegram.ui.ActionBar.n5(activity);
-        this.f31117a = n5Var;
-        addView(n5Var, w7.z5.c(-1.0f, -1));
-        setWillNotDraw(false);
-        Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
-        this.d = drawable;
-        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
-        setClipToPadding(false);
-        setClipChildren(false);
-        w7.b6.a(this);
+    public ug(ChatActivityEnterView chatActivityEnterView, Context context) {
+        super(context);
+        this.f33399s = chatActivityEnterView;
+        this.f33398r = -1L;
+        xj0 xj0Var = new xj0(R.raw.chat_audio_record_delete_2, AndroidUtilities.dp(28.0f), AndroidUtilities.dp(28.0f), false, null);
+        this.f33396f = xj0Var;
+        xj0Var.f34750o0 = true;
+        a();
+    }
+
+    public final void a() {
+        int i10 = org.telegram.ui.ActionBar.y6.f23471jf;
+        int i11 = ChatActivityEnterView.f25841r5;
+        ChatActivityEnterView chatActivityEnterView = this.f33399s;
+        int f02 = chatActivityEnterView.f0(i10);
+        int f03 = chatActivityEnterView.f0(org.telegram.ui.ActionBar.y6.Sd);
+        int f04 = chatActivityEnterView.f0(org.telegram.ui.ActionBar.y6.f23363df);
+        chatActivityEnterView.f25975w3.setColor(f02);
+        xj0 xj0Var = this.f33396f;
+        xj0Var.Z = true;
+        xj0Var.Q(f02, "Cup Red");
+        xj0Var.Q(f02, "Box Red");
+        xj0Var.Q(f04, "Cup Grey");
+        xj0Var.Q(f04, "Box Grey");
+        xj0Var.Q(f04, "Box_Grey 2");
+        xj0Var.Q(f04, "Line 1");
+        xj0Var.Q(f04, "Line 2");
+        xj0Var.Q(f04, "Line 3");
+        xj0Var.Q(f03, "Line 1 Dup");
+        xj0Var.Q(f03, "Line 2 Dup");
+        xj0Var.Q(f03, "Line 3 Dup");
+        xj0Var.o();
     }
 
     @Override
-    public final boolean drawChild(Canvas canvas, View view, long j10) {
-        if ((view instanceof org.telegram.ui.ActionBar.n5) && this.e) {
-            org.telegram.ui.ActionBar.n5 n5Var = (org.telegram.ui.ActionBar.n5) view;
-            canvas.save();
-            canvas.scale(0.8f, 0.8f);
-            canvas.translate(-AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-            int color = n5Var.getTextPaint().getColor();
-            n5Var.getTextPaint().setColor(-1);
-            boolean drawChild = super.drawChild(canvas, view, j10);
-            n5Var.getTextPaint().setColor(color);
-            canvas.restore();
-            return drawChild;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.d = true;
+        boolean z10 = this.e;
+        xj0 xj0Var = this.f33396f;
+        if (z10) {
+            xj0Var.start();
         }
-        return super.drawChild(canvas, view, j10);
+        xj0Var.R(this);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.d = false;
+        xj0 xj0Var = this.f33396f;
+        xj0Var.stop();
+        xj0Var.R(null);
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
+        Paint paint = this.f33399s.f25975w3;
+        boolean z10 = this.e;
+        xj0 xj0Var = this.f33396f;
+        if (z10) {
+            xj0Var.setAlpha((int) (this.f33393a * 255.0f));
+        }
+        paint.setAlpha((int) (this.f33393a * 255.0f));
+        if (!this.f33397n) {
+            long currentTimeMillis = System.currentTimeMillis();
+            long j10 = currentTimeMillis - this.f33394b;
+            if (this.h) {
+                this.f33393a = 1.0f;
+            } else if (!this.f33395c && !this.e) {
+                float f7 = this.f33393a - (((float) j10) / 600.0f);
+                this.f33393a = f7;
+                if (f7 <= 0.0f) {
+                    this.f33393a = 0.0f;
+                    this.f33395c = true;
+                }
+            } else {
+                float f10 = (((float) j10) / 600.0f) + this.f33393a;
+                this.f33393a = f10;
+                if (f10 >= 1.0f) {
+                    this.f33393a = 1.0f;
+                    this.f33395c = false;
+                }
+            }
+            this.f33394b = currentTimeMillis;
+        }
         if (this.e) {
-            canvas.save();
-            int dp = AndroidUtilities.dp(26.0f);
-            canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
-            float f7 = dp;
-            RectF rectF = this.f31118b;
-            rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f7);
-            float f10 = f7 / 2.0f;
-            canvas.drawRoundRect(rectF, f10, f10, this.f31119c);
-            int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
-            Drawable drawable = this.d;
-            canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
-            drawable.draw(canvas);
-            canvas.restore();
+            xj0Var.draw(canvas);
+        }
+        if (!this.e || !xj0Var.u()) {
+            canvas.drawCircle(getMeasuredWidth() >> 1, getMeasuredHeight() >> 1, AndroidUtilities.dp(5.0f), paint);
+        }
+        if (!this.f33397n) {
+            invalidate();
         }
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        this.f31119c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        this.f33396f.setBounds(0, 0, getMeasuredWidth(), getMeasuredHeight());
     }
 }

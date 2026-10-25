@@ -1,20 +1,58 @@
 package ee;
-public final class h extends md.c {
-    public i f8634a;
-    public Object f8635b;
-    public Object f8636c;
-    public final i d;
-    public int e;
 
-    public h(i iVar, md.c cVar) {
-        super(cVar);
-        this.d = iVar;
+import he.t;
+import java.util.concurrent.atomic.AtomicReferenceArray;
+import k1.k;
+public final class h extends t {
+    public final b e;
+    public final AtomicReferenceArray f9920f;
+
+    public h(long j10, h hVar, b bVar, int i10) {
+        super(j10, hVar, i10);
+        this.e = bVar;
+        this.f9920f = new AtomicReferenceArray(d.f9904b * 2);
     }
 
     @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f8636c = obj;
-        this.e |= Integer.MIN_VALUE;
-        return this.d.a(null, this);
+    public final int g() {
+        return d.f9904b;
+    }
+
+    @Override
+    public final void h(int r5, ld.h r6) {
+        throw new UnsupportedOperationException("Method not decompiled: ee.h.h(int, ld.h):void");
+    }
+
+    public final boolean k(int i10, Object obj, Object obj2) {
+        AtomicReferenceArray atomicReferenceArray;
+        int i11 = (i10 * 2) + 1;
+        do {
+            atomicReferenceArray = this.f9920f;
+            if (atomicReferenceArray.compareAndSet(i11, obj, obj2)) {
+                return true;
+            }
+        } while (atomicReferenceArray.get(i11) == obj);
+        return false;
+    }
+
+    public final Object l(int i10) {
+        return this.f9920f.get((i10 * 2) + 1);
+    }
+
+    public final void m(int i10, boolean z10) {
+        if (z10) {
+            b bVar = this.e;
+            kotlin.jvm.internal.i.b(bVar);
+            bVar.q((this.f12818c * d.f9904b) + i10);
+        }
+        i();
+    }
+
+    public final void n(int i10, k kVar) {
+        this.f9920f.set(i10 * 2, kVar);
+    }
+
+    public final void o(int i10, Object obj) {
+        this.f9920f.set((i10 * 2) + 1, obj);
     }
 }

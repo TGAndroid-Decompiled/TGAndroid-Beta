@@ -1,26 +1,26 @@
 package w3;
 
-import b2.w;
-import c3.l0;
-import c3.m0;
+import b2.x;
+import c3.j0;
+import c3.k0;
 public final class k {
-    public final q f48962a;
-    public final t f48963b;
-    public final l0 f48964c;
-    public final m0 d;
+    public final q f50706a;
+    public final t f50707b;
+    public final j0 f50708c;
+    public final k0 d;
     public int e;
-    public w f48965f;
+    public x f50709f;
 
-    public k(q qVar, t tVar, l0 l0Var) {
-        m0 m0Var;
-        this.f48962a = qVar;
-        this.f48963b = tVar;
-        this.f48964c = l0Var;
-        if ("audio/true-hd".equals(qVar.f48999g.f4135s)) {
-            m0Var = new m0();
+    public k(q qVar, t tVar, j0 j0Var) {
+        k0 k0Var;
+        this.f50706a = qVar;
+        this.f50707b = tVar;
+        this.f50708c = j0Var;
+        if ("audio/true-hd".equals(qVar.f50743g.f3586s)) {
+            k0Var = new k0();
         } else {
-            m0Var = null;
+            k0Var = null;
         }
-        this.d = m0Var;
+        this.d = k0Var;
     }
 }

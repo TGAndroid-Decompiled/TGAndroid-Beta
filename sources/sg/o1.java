@@ -1,17 +1,12 @@
 package sg;
+public interface o1 {
+    void C();
 
-import android.content.Context;
-import android.view.View;
-public final class o1 extends View {
-    public final p1 f46795a;
+    void a();
 
-    public o1(p1 p1Var, Context context) {
-        super(context);
-        this.f46795a = p1Var;
-    }
+    void c();
 
-    @Override
-    public final void draw(android.graphics.Canvas r12) {
-        throw new UnsupportedOperationException("Method not decompiled: sg.o1.draw(android.graphics.Canvas):void");
-    }
+    void d(int i10);
+
+    void u();
 }

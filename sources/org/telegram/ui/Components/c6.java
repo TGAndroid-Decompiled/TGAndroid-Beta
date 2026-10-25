@@ -1,836 +1,923 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
+import android.animation.ValueAnimator;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
+import android.graphics.ColorFilter;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.drawable.Animatable;
-import android.graphics.drawable.BitmapDrawable;
+import android.text.Layout;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.text.style.CharacterStyle;
+import android.text.style.ReplacementSpan;
+import android.util.LongSparseArray;
 import android.view.View;
-import java.io.File;
-import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.concurrent.ScheduledThreadPoolExecutor;
-import java.util.concurrent.ThreadPoolExecutor;
+import java.util.HashMap;
+import java.util.List;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimatedFileDrawableStream;
-import org.telegram.messenger.DispatchQueue;
-import org.telegram.messenger.DispatchQueuePoolBackground;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.Emoji;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
 import org.telegram.tgnet.TLRPC;
-public final class c6 extends BitmapDrawable implements Animatable, zf.c {
-    public static final float[] V0 = new float[8];
-    public static final ScheduledThreadPoolExecutor W0 = new ScheduledThreadPoolExecutor(8, new ThreadPoolExecutor.DiscardPolicy());
-    public static final PorterDuffXfermode X0 = new PorterDuffXfermode(PorterDuff.Mode.SRC);
-    public com.google.android.gms.internal.cast.a A0;
-    public final a6 B0;
-    public boolean C0;
-    public a6 D0;
-    public boolean E;
-    public final a6 E0;
-    public boolean F;
-    public final a6 F0;
-    public final File G;
-    public int G0;
-    public final long H;
-    public final a6 H0;
-    public final int I;
-    public final a6 I0;
-    public final int J;
-    public a6 J0;
-    public boolean K;
-    public boolean K0;
-    public volatile long L;
-    public long L0;
-    public volatile long M;
-    public Bitmap M0;
-    public boolean N;
-    public AnimatedFileNative N0;
-    public int O;
-    public int O0;
-    public boolean P;
-    public int P0;
-    public final Object Q;
-    public int Q0;
-    public boolean R;
-    public volatile boolean R0;
-    public final RectF S;
-    public final b6 S0;
-    public final int[] T;
-    public boolean T0;
-    public int[] U;
-    public boolean U0;
-    public final Matrix[] V;
-    public final Path[] W;
-    public float X;
-    public float Y;
-    public boolean Z;
-    public boolean f25198a;
-    public final RectF f25199a0;
-    public boolean f25200b;
-    public volatile boolean f25201b0;
-    public int f25202c;
-    public volatile boolean f25203c0;
-    public final int[] d;
-    public volatile AnimatedFileNative f25204d0;
-    public a6 e;
-    public boolean f25205e0;
-    public boolean f25206f;
-    public DispatchQueue f25207f0;
-    public float f25208g0;
-    public final ArrayList h;
-    public float f25209h0;
-    public int f25210i0;
-    public int f25211j0;
-    public final boolean f25212k0;
-    public final boolean f25213l0;
-    public float m0;
-    public z5 f25214n;
-    public boolean f25215n0;
-    public final TLRPC.Document f25216o0;
-    public final RectF[] f25217p0;
-    public final Paint[] f25218q0;
-    public z5 f25219r;
-    public WeakReference f25220r0;
-    public z5 f25221s;
-    public final re.b f25222s0;
-    public final re.b f25223t0;
-    public AnimatedFileDrawableStream f25224u0;
-    public z5 v;
-    public boolean f25225v0;
-    public boolean f25226w;
-    public boolean f25227w0;
-    public boolean f25228x;
-    public boolean f25229x0;
-    public boolean f25230y;
-    public int f25231y0;
-    public final zf.e f25232z0;
+public class c6 extends ReplacementSpan {
+    private static boolean lockPositionChanging;
+    private boolean animateChanges;
+    public int cacheType;
+    public TLRPC.Document document;
+    public String documentAbsolutePath;
+    public long documentId;
+    public String emoji;
+    public float extraScale;
+    private Paint.FontMetricsInt fontMetrics;
+    public boolean fromEmojiKeyboard;
+    public boolean full;
+    public boolean invert;
+    private boolean isAdded;
+    private boolean isRemoved;
+    float lastDrawnCx;
+    float lastDrawnCy;
+    protected int measuredSize;
+    private int minimumLineHeight;
+    private ValueAnimator moveAnimator;
+    boolean positionChanged;
+    private boolean preserveFontMetrics;
+    private boolean recordPositions;
+    private Runnable removedAction;
+    private float scale;
+    private ValueAnimator scaleAnimator;
+    public float size;
+    boolean spanDrawn;
+    public boolean standard;
+    public boolean top;
 
-    public c6(File file, boolean z10, long j10, int i10, TLRPC.Document document, ImageLocation imageLocation, Object obj, long j11, int i11, boolean z11) {
-        this(file, z10, j10, i10, document, imageLocation, obj, j11, i11, z11, 0, 0, null, document != null ? 1 : 0, true);
+    public c6(TLRPC.Document document, Paint.FontMetricsInt fontMetricsInt) {
+        this(document.f22033id, 1.2f, fontMetricsInt);
+        this.document = document;
     }
 
-    public final void A(boolean z10) {
-        this.f25229x0 = z10;
-        if (z10) {
-            this.f25200b = false;
-        }
+    public static void a(c6 c6Var, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        c6Var.extraScale = floatValue;
+        c6Var.scale = AndroidUtilities.lerp(0.0f, 1.0f, floatValue);
     }
 
-    public final void B(int[] iArr) {
-        boolean isEmpty = this.f25222s0.isEmpty();
-        int[] iArr2 = this.T;
-        if (!isEmpty) {
-            if (this.U == null) {
-                this.U = new int[4];
-            }
-            int[] iArr3 = this.U;
-            System.arraycopy(iArr2, 0, iArr3, 0, iArr3.length);
-        }
-        for (int i10 = 0; i10 < 4; i10++) {
-            if (!this.f25227w0 && iArr[i10] != iArr2[i10]) {
-                this.f25227w0 = true;
-            }
-            iArr2[i10] = iArr[i10];
-        }
-    }
-
-    public final void C(long j10, long j11) {
-        this.f25208g0 = ((float) j10) / 1000.0f;
-        this.f25209h0 = ((float) j11) / 1000.0f;
-        if (j10 >= 0 && o() < j10) {
-            y(j10, true, false);
-        }
-    }
-
-    public final void D(long j10) {
-        boolean z10;
-        this.Q0 = 0;
-        if (this.R0) {
-            this.R0 = false;
-            AndroidUtilities.executeOnUIThread(new a6(this, 0));
-        }
-        if (!this.T0 && (this.f25201b0 || !this.f25230y)) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        if (this.f25201b0) {
-            z5 z5Var = this.f25214n;
-            if (z5Var == null && this.f25219r == null) {
-                x(false);
-            } else if (this.f25219r != null) {
-                if (z5Var == null || (z10 && !this.f25198a && this.M < 0)) {
-                    z5 z5Var2 = this.f25214n;
-                    if (z5Var2 != null) {
-                        this.h.add(z5Var2);
-                    }
-                    this.f25214n = this.f25219r;
-                    this.f25219r = this.f25221s;
-                    this.f25221s = null;
-                    this.T0 = false;
-                    x(false);
-                }
-            }
-        } else if (!this.f25201b0 && this.f25230y && z10 && this.f25219r != null) {
-            z5 z5Var3 = this.f25214n;
-            if (z5Var3 != null) {
-                this.h.add(z5Var3);
-            }
-            this.f25214n = this.f25219r;
-            this.f25219r = this.f25221s;
-            this.f25221s = null;
-            this.T0 = false;
-            x(false);
-        }
-    }
-
-    public final void E() {
-        int i10;
-        int i11;
-        int[] iArr;
-        int i12;
-        int i13;
-        if (!this.f25215n0 && (i10 = this.f25210i0) > 0 && (i11 = this.f25211j0) > 0 && (i12 = (iArr = this.d)[0]) > 0 && (i13 = iArr[1]) > 0) {
-            float max = Math.max(i11 / i12, i10 / i13);
-            this.m0 = max;
-            if (max > 0.0f && max <= 0.7d) {
-                return;
-            }
-            this.m0 = 1.0f;
-            return;
-        }
-        this.m0 = 1.0f;
-    }
-
-    @Override
-    public final int a(Bitmap bitmap) {
-        int i10;
-        if (this.N0 == null) {
-            return -1;
-        }
-        Canvas canvas = new Canvas(bitmap);
-        Bitmap bitmap2 = this.M0;
-        int[] iArr = this.d;
-        if (bitmap2 == null) {
-            this.M0 = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
-        }
-        this.N0.c(this.M0, false, this.f25208g0, this.f25209h0, this.f25212k0);
-        long j10 = this.L0;
-        if (j10 != 0 && ((i10 = iArr[3]) == 0 || j10 > i10)) {
-            return 0;
-        }
-        int i11 = this.P0;
-        int i12 = iArr[3];
-        if (i11 == i12) {
-            int i13 = this.O0 + 1;
-            this.O0 = i13;
-            if (i13 > 5) {
-                return 0;
-            }
-        }
-        this.P0 = i12;
-        bitmap.eraseColor(0);
-        canvas.save();
-        float width = this.f25211j0 / this.M0.getWidth();
-        canvas.scale(width, width);
-        canvas.drawBitmap(this.M0, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
-        this.L0 = iArr[3];
-        return 1;
-    }
-
-    @Override
-    public final void b() {
-        this.N0 = AnimatedFileNative.a(this.G.getAbsolutePath(), this.d, this.J, this.H, this.f25224u0, false);
-    }
-
-    @Override
-    public final void c() {
-        AnimatedFileNative animatedFileNative = this.N0;
-        if (animatedFileNative != null) {
-            animatedFileNative.f();
-            this.N0 = null;
-        }
-    }
-
-    public final void d() {
-        int i10;
-        if (this.f25211j0 == 0 && this.f25210i0 == 0) {
-            int[] iArr = this.d;
-            int i11 = iArr[0];
-            if (i11 <= 3000 && (i10 = iArr[1]) <= 3000) {
-                if (i11 > 2200 || i10 > 2200) {
-                    this.f25211j0 = i11 / 2;
-                    this.f25210i0 = i10 / 2;
-                    return;
-                }
-                return;
-            }
-            this.f25211j0 = i11 / 4;
-            this.f25210i0 = iArr[1] / 4;
-        }
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        l(canvas, false, System.currentTimeMillis(), 0);
-    }
-
-    public final void e(ImageReceiver imageReceiver) {
-        if (this.f25223t0.add(imageReceiver) && this.f25201b0) {
-            x(false);
-        }
-        h();
-    }
-
-    public final void f(View view) {
-        if (view != null) {
-            this.f25222s0.add(view);
-        }
-    }
-
-    public final void finalize() {
-        try {
-            this.f25222s0.clear();
-            u();
-        } finally {
-            super.finalize();
-        }
-    }
-
-    public final boolean g() {
-        if (this.f25213l0) {
-            if (this.f25232z0 == null) {
-                return false;
-            }
-            return true;
-        } else if (this.f25204d0 == null && this.f25228x) {
+    public static boolean access$400(c6 c6Var) {
+        if (c6Var.moveAnimator == null && c6Var.scaleAnimator == null) {
             return false;
-        } else {
-            return true;
         }
+        return true;
     }
 
-    @Override
-    public final int getIntrinsicHeight() {
-        int i10 = 0;
-        if (this.f25228x) {
-            int[] iArr = this.d;
-            int i11 = iArr[2];
-            if (i11 != 90 && i11 != 270) {
-                i10 = iArr[1];
-            } else {
-                i10 = iArr[0];
-            }
-        }
-        if (i10 == 0) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        return (int) (i10 * this.m0);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        int i10 = 0;
-        if (this.f25228x) {
-            int[] iArr = this.d;
-            int i11 = iArr[2];
-            if (i11 != 90 && i11 != 270) {
-                i10 = iArr[0];
-            } else {
-                i10 = iArr[1];
-            }
-        }
-        if (i10 == 0) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        return (int) (i10 * this.m0);
-    }
-
-    @Override
-    public final int getMinimumHeight() {
-        int i10 = 0;
-        if (this.f25228x) {
-            int[] iArr = this.d;
-            int i11 = iArr[2];
-            if (i11 != 90 && i11 != 270) {
-                i10 = iArr[1];
-            } else {
-                i10 = iArr[0];
-            }
-        }
-        if (i10 == 0) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        return i10;
-    }
-
-    @Override
-    public final int getMinimumWidth() {
-        int i10 = 0;
-        if (this.f25228x) {
-            int[] iArr = this.d;
-            int i11 = iArr[2];
-            if (i11 != 90 && i11 != 270) {
-                i10 = iArr[0];
-            } else {
-                i10 = iArr[1];
-            }
-        }
-        if (i10 == 0) {
-            return AndroidUtilities.dp(100.0f);
-        }
-        return i10;
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    public final void h() {
-        a6 a6Var;
-        if (this.f25232z0 != null) {
-            boolean isEmpty = this.f25223t0.isEmpty();
-            if (isEmpty && this.J0 == null) {
-                a6 a6Var2 = new a6(this, 3);
-                this.J0 = a6Var2;
-                AndroidUtilities.runOnUIThread(a6Var2, 600L);
-            } else if (!isEmpty && (a6Var = this.J0) != null) {
-                AndroidUtilities.cancelRunOnUIThread(a6Var);
-                this.J0 = null;
-            }
-        }
-    }
-
-    public final void i() {
-        int i10;
-        if (this.f25201b0 && !this.R0 && !this.f25206f) {
-            if (!this.U0 && (i10 = this.d[5]) > 0) {
-                this.U0 = true;
-                this.Q0 = 0;
-                zf.h.d().b(this.S0, i10);
-            }
-        } else if (this.U0) {
-            this.U0 = false;
-            this.Q0 = 0;
-            zf.h.d().g(this.S0);
-        }
-    }
-
-    @Override
-    public final boolean isRunning() {
-        return this.f25201b0;
-    }
-
-    public final void j() {
-        re.b bVar = this.f25223t0;
-        Iterator it = bVar.iterator();
-        int i10 = 0;
-        int i11 = 0;
-        while (it.hasNext()) {
-            ImageReceiver imageReceiver = (ImageReceiver) it.next();
-            if (!imageReceiver.isAttachedToWindow()) {
-                bVar.remove(imageReceiver);
-            } else {
-                i10++;
-            }
-            int i12 = imageReceiver.animatedFileDrawableRepeatMaxCount;
-            if (i12 > 0 && this.f25231y0 >= i12) {
-                i11++;
-            }
-        }
-        if (i10 == i11) {
-            stop();
-        } else {
-            start();
-        }
-    }
-
-    public final void k() {
-        if (!g()) {
-            z5 z5Var = this.f25214n;
-            if (z5Var != null) {
-                z5Var.f33153b.recycle();
-                Arrays.fill(z5Var.f33152a, (Object) null);
-                this.f25214n = null;
-            }
-            z5 z5Var2 = this.v;
-            if (z5Var2 != null) {
-                z5Var2.f33153b.recycle();
-                Arrays.fill(z5Var2.f33152a, (Object) null);
-                this.v = null;
-            }
-            DispatchQueue dispatchQueue = this.f25207f0;
-            if (dispatchQueue != null) {
-                dispatchQueue.recycle();
-                this.f25207f0 = null;
-            }
-            int i10 = 0;
-            while (true) {
-                ArrayList arrayList = this.h;
-                if (i10 < arrayList.size()) {
-                    z5 z5Var3 = (z5) arrayList.get(i10);
-                    z5Var3.f33153b.recycle();
-                    Arrays.fill(z5Var3.f33152a, (Object) null);
-                    i10++;
-                } else {
-                    arrayList.clear();
-                    t();
-                    return;
+    public static void applyFontMetricsForString(CharSequence charSequence, Paint paint) {
+        if (charSequence instanceof Spannable) {
+            c6[] c6VarArr = (c6[]) ((Spannable) charSequence).getSpans(0, charSequence.length(), c6.class);
+            if (c6VarArr != null) {
+                for (c6 c6Var : c6VarArr) {
+                    c6Var.applyFontMetrics(paint.getFontMetricsInt());
                 }
             }
         }
     }
 
-    public final void l(android.graphics.Canvas r20, boolean r21, long r22, int r24) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c6.l(android.graphics.Canvas, boolean, long, int):void");
+    public static void b(c6 c6Var, ValueAnimator valueAnimator) {
+        float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+        c6Var.extraScale = floatValue;
+        c6Var.scale = AndroidUtilities.lerp(0.2f, 1.0f, floatValue);
+        lockPositionChanging = false;
     }
 
-    public final Bitmap m() {
-        z5 z5Var = this.f25214n;
-        if (z5Var != null) {
-            return z5Var.f33153b;
-        }
-        z5 z5Var2 = this.f25219r;
-        if (z5Var2 != null) {
-            return z5Var2.f33153b;
-        }
-        z5 z5Var3 = this.f25221s;
-        if (z5Var3 != null) {
-            return z5Var3.f33153b;
-        }
-        return null;
-    }
-
-    public final float n() {
-        if (this.d[4] == 0) {
-            return 0.0f;
-        }
-        if (this.M >= 0) {
-            return ((float) this.M) / this.d[4];
-        }
-        int[] iArr = this.d;
-        return iArr[3] / iArr[4];
-    }
-
-    public final int o() {
-        int i10;
-        if (this.M >= 0) {
-            return (int) this.M;
-        }
-        z5 z5Var = this.f25219r;
-        if (z5Var != null && (i10 = z5Var.e) != 0) {
-            return i10;
-        }
-        z5 z5Var2 = this.f25214n;
-        if (z5Var2 != null) {
-            return z5Var2.e;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        this.Z = true;
-    }
-
-    public final Bitmap p() {
-        int i10 = this.f25211j0;
-        int i11 = this.f25210i0;
-        Bitmap.Config config = Bitmap.Config.ARGB_8888;
-        Bitmap createBitmap = Bitmap.createBitmap(i10, i11, config);
-        Canvas canvas = new Canvas(createBitmap);
-        AnimatedFileNative a2 = AnimatedFileNative.a(this.G.getAbsolutePath(), this.d, this.J, this.H, this.f25224u0, false);
-        if (a2 == null) {
-            return createBitmap;
-        }
-        if (this.M0 == null) {
-            int[] iArr = this.d;
-            this.M0 = Bitmap.createBitmap(Math.max(1, iArr[0]), Math.max(1, iArr[1]), config);
-        }
-        a2.c(this.M0, false, this.f25208g0, this.f25209h0, true);
-        a2.f();
-        createBitmap.eraseColor(0);
-        canvas.save();
-        float width = this.f25211j0 / this.M0.getWidth();
-        canvas.scale(width, width);
-        canvas.drawBitmap(this.M0, 0.0f, 0.0f, (Paint) null);
-        canvas.restore();
-        return createBitmap;
-    }
-
-    public final Bitmap q(long j10, boolean z10) {
-        int c10;
-        if (this.f25228x && this.f25204d0 != null) {
-            AnimatedFileDrawableStream animatedFileDrawableStream = this.f25224u0;
-            if (animatedFileDrawableStream != null) {
-                animatedFileDrawableStream.cancel(false);
-                this.f25224u0.reset();
+    public static boolean c(Layout layout, int i10, int i11) {
+        if (layout.getText() instanceof Spanned) {
+            z11[] z11VarArr = (z11[]) ((Spanned) layout.getText()).getSpans(Math.max(0, i10), Math.min(layout.getText().length() - 1, i11), z11.class);
+            for (int i12 = 0; z11VarArr != null && i12 < z11VarArr.length; i12++) {
+                z11 z11Var = z11VarArr[i12];
+                if (z11Var != null && z11Var.c()) {
+                    return true;
+                }
             }
-            if (!z10) {
-                this.f25204d0.g(j10, z10);
-            }
-            int[] iArr = this.d;
-            Bitmap createBitmap = Bitmap.createBitmap(iArr[0], iArr[1], Bitmap.Config.ARGB_8888);
-            if (z10) {
-                c10 = this.f25204d0.b(createBitmap, j10);
-            } else {
-                c10 = this.f25204d0.c(createBitmap, true, 0.0f, 0.0f, true);
-            }
-            if (c10 != 0) {
-                return createBitmap;
-            }
-            createBitmap.recycle();
-        }
-        return null;
-    }
-
-    public final Bitmap r(boolean z10) {
-        if (this.f25204d0 == null) {
-            z5 z5Var = this.v;
-            if (z5Var != null) {
-                return z5Var.f33153b;
-            }
-            return null;
-        }
-        if (this.v == null) {
-            if (!this.h.isEmpty()) {
-                this.v = (z5) this.h.remove(0);
-            } else {
-                int[] iArr = this.d;
-                float f7 = this.m0;
-                this.v = new z5(Bitmap.createBitmap((int) (iArr[0] * f7), (int) (iArr[1] * f7), Bitmap.Config.ARGB_8888));
-            }
-        }
-        this.f25204d0.c(this.v.f33153b, false, this.f25208g0, this.f25209h0, z10);
-        return this.v.f33153b;
-    }
-
-    public final boolean s() {
-        if (g()) {
-            if (this.f25214n != null || this.f25219r != null) {
-                return true;
-            }
-            return false;
         }
         return false;
     }
 
-    @Override
-    public final void start() {
-        if (!this.f25201b0 && !this.f25223t0.isEmpty()) {
-            this.f25201b0 = true;
-            this.R0 = false;
-            x(false);
-            AndroidUtilities.runOnUIThread(this.I0);
-            AndroidUtilities.executeOnUIThread(new a6(this, 0));
+    public static c6 cloneSpan(c6 c6Var, Paint.FontMetricsInt fontMetricsInt) {
+        c6 c6Var2;
+        Paint.FontMetricsInt fontMetricsInt2;
+        Paint.FontMetricsInt fontMetricsInt3;
+        TLRPC.Document document = c6Var.document;
+        if (document != null) {
+            float f7 = c6Var.scale;
+            if (fontMetricsInt != null) {
+                fontMetricsInt3 = fontMetricsInt;
+            } else {
+                fontMetricsInt3 = c6Var.fontMetrics;
+            }
+            c6Var2 = new c6(document, f7, fontMetricsInt3);
+        } else {
+            long j10 = c6Var.documentId;
+            float f10 = c6Var.scale;
+            if (fontMetricsInt != null) {
+                fontMetricsInt2 = fontMetricsInt;
+            } else {
+                fontMetricsInt2 = c6Var.fontMetrics;
+            }
+            c6Var2 = new c6(j10, f10, fontMetricsInt2);
         }
-    }
-
-    @Override
-    public final void stop() {
-        this.f25201b0 = false;
-        AndroidUtilities.executeOnUIThread(new a6(this, 0));
-    }
-
-    public final void t() {
-        Iterator it = this.f25223t0.iterator();
-        while (it.hasNext()) {
-            ((ImageReceiver) it.next()).invalidate();
+        if (fontMetricsInt != null) {
+            c6Var2.size = c6Var.size;
         }
+        c6Var2.fromEmojiKeyboard = c6Var.fromEmojiKeyboard;
+        c6Var2.isAdded = c6Var.isAdded;
+        c6Var2.isRemoved = c6Var.isRemoved;
+        return c6Var2;
     }
 
-    public final void u() {
-        if (!this.f25222s0.isEmpty()) {
-            this.K = true;
+    public static CharSequence cloneSpans(CharSequence charSequence) {
+        return cloneSpans(charSequence, -1, null);
+    }
+
+    public static void drawAnimatedEmojis(Canvas canvas, Layout layout, y5 y5Var, float f7, List<xh.g> list, float f10, float f11, float f12, float f13) {
+        drawAnimatedEmojis(canvas, layout, y5Var, f7, list, f10, f11, f12, f13, null);
+    }
+
+    public static CharSequence onlyEmojiSpans(CharSequence charSequence) {
+        CharacterStyle[] characterStyleArr;
+        if (charSequence == null) {
+            return null;
+        }
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(charSequence);
+        for (CharacterStyle characterStyle : (CharacterStyle[]) spannableStringBuilder.getSpans(0, spannableStringBuilder.length(), CharacterStyle.class)) {
+            if (!(characterStyle instanceof c6) && !(characterStyle instanceof Emoji.EmojiSpan)) {
+                spannableStringBuilder.removeSpan(characterStyle);
+            }
+        }
+        return spannableStringBuilder;
+    }
+
+    public static void release(View view, LongSparseArray<t5> longSparseArray) {
+        if (longSparseArray == null) {
             return;
         }
-        int i10 = 0;
-        this.f25201b0 = false;
-        this.f25203c0 = true;
-        AndroidUtilities.executeOnUIThread(new a6(this, 0));
-        if (this.D0 != null) {
-            zf.e.c();
-            xj0.T0.cancelRunnable(this.D0);
-            this.D0 = null;
+        for (int i10 = 0; i10 < longSparseArray.size(); i10++) {
+            t5 valueAt = longSparseArray.valueAt(i10);
+            if (valueAt != null) {
+                valueAt.o(view);
+            }
         }
-        if (this.e == null) {
-            if (this.f25204d0 != null) {
-                this.f25204d0.f();
-                this.f25204d0 = null;
+        longSparseArray.clear();
+    }
+
+    public static y5 update(int i10, View view, y5 y5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList) {
+        return update(i10, view, y5Var, arrayList, false);
+    }
+
+    public void applyFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i10) {
+        this.fontMetrics = fontMetricsInt;
+        this.cacheType = i10;
+    }
+
+    @Override
+    public void draw(android.graphics.Canvas r8, java.lang.CharSequence r9, int r10, int r11, float r12, int r13, int r14, int r15, android.graphics.Paint r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c6.draw(android.graphics.Canvas, java.lang.CharSequence, int, int, float, int, int, int, android.graphics.Paint):void");
+    }
+
+    public long getDocumentId() {
+        TLRPC.Document document = this.document;
+        if (document != null) {
+            return document.f22033id;
+        }
+        return this.documentId;
+    }
+
+    public float getExtraScale() {
+        if (this.isAdded) {
+            lockPositionChanging = true;
+            this.isAdded = false;
+            this.extraScale = 0.0f;
+            ValueAnimator valueAnimator = this.scaleAnimator;
+            if (valueAnimator != null) {
+                valueAnimator.removeAllListeners();
+                this.scaleAnimator.cancel();
             }
-            ArrayList arrayList = new ArrayList();
-            z5 z5Var = this.f25214n;
-            if (z5Var != null) {
-                arrayList.add(z5Var.f33153b);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(this.extraScale, 1.0f);
+            this.scaleAnimator = ofFloat;
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final c6 f33252b;
+
+                {
+                    this.f33252b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator2) {
+                    switch (r2) {
+                        case 0:
+                            c6.b(this.f33252b, valueAnimator2);
+                            return;
+                        default:
+                            c6.a(this.f33252b, valueAnimator2);
+                            return;
+                    }
+                }
+            });
+            this.scaleAnimator.addListener(new w5(this, 0));
+            this.scaleAnimator.setDuration(130L);
+            this.scaleAnimator.setInterpolator(ds.f27584f);
+            this.scaleAnimator.start();
+        } else if (this.isRemoved) {
+            this.isRemoved = false;
+            this.extraScale = 1.0f;
+            ValueAnimator valueAnimator2 = this.scaleAnimator;
+            if (valueAnimator2 != null) {
+                valueAnimator2.removeAllListeners();
+                this.scaleAnimator.cancel();
             }
-            z5 z5Var2 = this.f25219r;
-            if (z5Var2 != null) {
-                arrayList.add(z5Var2.f33153b);
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(this.extraScale, 0.0f);
+            this.scaleAnimator = ofFloat2;
+            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final c6 f33252b;
+
+                {
+                    this.f33252b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator22) {
+                    switch (r2) {
+                        case 0:
+                            c6.b(this.f33252b, valueAnimator22);
+                            return;
+                        default:
+                            c6.a(this.f33252b, valueAnimator22);
+                            return;
+                    }
+                }
+            });
+            this.scaleAnimator.addListener(new w5(this, 1));
+            this.scaleAnimator.setInterpolator(ds.f27584f);
+            this.scaleAnimator.setDuration(130L);
+            this.scaleAnimator.start();
+        }
+        return this.extraScale;
+    }
+
+    @Override
+    public int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
+        boolean z10;
+        int i12;
+        int i13;
+        int i14;
+        int i15;
+        int i16;
+        int i17;
+        int i18;
+        Paint.FontMetricsInt fontMetricsInt2 = fontMetricsInt;
+        if (this.preserveFontMetrics && fontMetricsInt2 != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (z10) {
+            i12 = fontMetricsInt2.top;
+        } else {
+            i12 = 0;
+        }
+        if (z10) {
+            i13 = fontMetricsInt2.ascent;
+        } else {
+            i13 = 0;
+        }
+        if (z10) {
+            i14 = fontMetricsInt2.descent;
+        } else {
+            i14 = 0;
+        }
+        if (z10) {
+            i15 = fontMetricsInt2.bottom;
+        } else {
+            i15 = 0;
+        }
+        if (z10) {
+            i16 = fontMetricsInt2.leading;
+        } else {
+            i16 = 0;
+        }
+        if (fontMetricsInt2 == null && this.top) {
+            fontMetricsInt2 = paint.getFontMetricsInt();
+        }
+        if (fontMetricsInt2 == null) {
+            i17 = 0;
+        } else {
+            i17 = fontMetricsInt2.ascent;
+        }
+        if (fontMetricsInt2 == null) {
+            i18 = 0;
+        } else {
+            i18 = fontMetricsInt2.descent;
+        }
+        Paint.FontMetricsInt fontMetricsInt3 = this.fontMetrics;
+        if (fontMetricsInt3 == null) {
+            int i19 = (int) this.size;
+            int dp = AndroidUtilities.dp(8.0f);
+            int dp2 = AndroidUtilities.dp(10.0f);
+            if (fontMetricsInt2 != null) {
+                float f7 = (-dp2) - dp;
+                float f10 = this.scale;
+                fontMetricsInt2.top = (int) (f7 * f10);
+                float f11 = dp2 - dp;
+                fontMetricsInt2.bottom = (int) (f11 * f10);
+                fontMetricsInt2.ascent = (int) (f7 * f10);
+                fontMetricsInt2.descent = (int) (f11 * f10);
+                fontMetricsInt2.leading = 0;
             }
-            z5 z5Var3 = this.f25221s;
-            if (z5Var3 != null) {
-                arrayList.add(z5Var3.f33153b);
-            }
-            z5 z5Var4 = this.v;
-            if (z5Var4 != null) {
-                arrayList.add(z5Var4.f33153b);
-            }
-            ArrayList arrayList2 = this.h;
-            int size = arrayList2.size();
-            while (i10 < size) {
-                Object obj = arrayList2.get(i10);
-                i10++;
-                z5 z5Var5 = (z5) obj;
-                if (z5Var5 != null) {
-                    arrayList.add(z5Var5.f33153b);
+            this.measuredSize = (int) (i19 * this.scale);
+        } else {
+            this.measuredSize = (int) (this.size * this.scale);
+            if (fontMetricsInt2 != null) {
+                if (!this.full) {
+                    fontMetricsInt2.ascent = fontMetricsInt3.ascent;
+                    fontMetricsInt2.descent = fontMetricsInt3.descent;
+                    fontMetricsInt2.top = fontMetricsInt3.top;
+                    fontMetricsInt2.bottom = fontMetricsInt3.bottom;
+                } else {
+                    float abs = Math.abs(this.fontMetrics.top) + Math.abs(fontMetricsInt3.bottom);
+                    fontMetricsInt2.ascent = (int) Math.ceil((this.fontMetrics.top / abs) * this.measuredSize);
+                    fontMetricsInt2.descent = (int) Math.ceil((this.fontMetrics.bottom / abs) * this.measuredSize);
+                    fontMetricsInt2.top = (int) Math.ceil((this.fontMetrics.top / abs) * this.measuredSize);
+                    fontMetricsInt2.bottom = (int) Math.ceil((this.fontMetrics.bottom / abs) * this.measuredSize);
                 }
             }
-            this.h.clear();
-            this.f25214n = null;
-            this.f25219r = null;
-            this.f25221s = null;
-            this.v = null;
-            DispatchQueue dispatchQueue = this.f25207f0;
-            if (dispatchQueue != null) {
-                dispatchQueue.recycle();
-                this.f25207f0 = null;
+        }
+        if (fontMetricsInt2 != null && this.top) {
+            int i20 = fontMetricsInt2.ascent;
+            int i21 = fontMetricsInt2.descent;
+            int i22 = ((i18 - i21) + (i17 - i20)) / 2;
+            fontMetricsInt2.ascent = i20 + i22;
+            fontMetricsInt2.descent = i21 - i22;
+        }
+        if (z10) {
+            fontMetricsInt2.top = i12;
+            fontMetricsInt2.ascent = i13;
+            fontMetricsInt2.descent = i14;
+            fontMetricsInt2.bottom = i15;
+            fontMetricsInt2.leading = i16;
+            int i23 = this.minimumLineHeight;
+            int i24 = i14 - i13;
+            if (i23 > i24) {
+                int i25 = i23 - i24;
+                int i26 = (i25 + 1) / 2;
+                int i27 = i13 - i26;
+                fontMetricsInt2.ascent = i27;
+                fontMetricsInt2.descent = i14 + (i25 - i26);
+                fontMetricsInt2.top = Math.min(i12, i27);
+                fontMetricsInt2.bottom = Math.max(fontMetricsInt2.bottom, fontMetricsInt2.descent);
             }
-            getPaint().setShader(null);
-            AndroidUtilities.recycleBitmaps(arrayList);
+        }
+        return Math.max(0, this.measuredSize - 1);
+    }
+
+    public void replaceFontMetrics(Paint.FontMetricsInt fontMetricsInt) {
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            float abs = Math.abs(this.fontMetrics.ascent) + Math.abs(fontMetricsInt.descent);
+            this.size = abs;
+            if (abs == 0.0f) {
+                this.size = AndroidUtilities.dp(20.0f);
+            }
+        }
+    }
+
+    public void setAdded() {
+        this.isAdded = true;
+        this.extraScale = 0.0f;
+    }
+
+    public void setAnimateChanges() {
+        this.animateChanges = true;
+    }
+
+    public c6 setMinimumLineHeight(int i10) {
+        this.minimumLineHeight = i10;
+        return this;
+    }
+
+    public c6 setPreserveFontMetrics(boolean z10) {
+        this.preserveFontMetrics = z10;
+        return this;
+    }
+
+    public void setRemoved(Runnable runnable) {
+        this.removedAction = runnable;
+        this.isRemoved = true;
+        this.extraScale = 1.0f;
+    }
+
+    public c6 setSize(int i10) {
+        this.size = i10;
+        return this;
+    }
+
+    public static CharSequence cloneSpans(CharSequence charSequence, int i10) {
+        return cloneSpans(charSequence, i10, null);
+    }
+
+    public static void drawAnimatedEmojis(Canvas canvas, Layout layout, y5 y5Var, float f7, List<xh.g> list, float f10, float f11, float f12, float f13, ColorFilter colorFilter) {
+        boolean z10;
+        if (canvas == null || layout == null || y5Var == null) {
+            return;
+        }
+        ArrayList arrayList = y5Var.f34927c;
+        int i10 = 0;
+        if (Emoji.emojiDrawingYOffset == 0.0f && f7 == 0.0f) {
+            z10 = false;
         } else {
-            this.f25226w = true;
+            canvas.save();
+            canvas.translate(0.0f, Emoji.emojiDrawingYOffset + AndroidUtilities.dp(20.0f * f7));
+            z10 = true;
         }
-        AnimatedFileDrawableStream animatedFileDrawableStream = this.f25224u0;
-        if (animatedFileDrawableStream != null) {
-            animatedFileDrawableStream.cancel(true);
-            this.f25224u0 = null;
-        }
-        AndroidUtilities.executeOnUIThread(new a6(this, 2));
-    }
-
-    public final void v(ImageReceiver imageReceiver) {
-        re.b bVar = this.f25223t0;
-        bVar.remove(imageReceiver);
-        if (bVar.isEmpty()) {
-            this.f25231y0 = 0;
-        }
-        h();
-    }
-
-    public final void w(View view) {
-        re.b bVar = this.f25222s0;
-        bVar.remove(view);
-        if (bVar.isEmpty()) {
-            if (this.K) {
-                u();
-                return;
+        long currentTimeMillis = System.currentTimeMillis();
+        int i11 = 0;
+        while (true) {
+            if (i11 >= arrayList.size()) {
+                break;
             }
-            int[] iArr = this.U;
-            if (iArr != null) {
-                B(iArr);
-            }
-        }
-    }
-
-    public final void x(boolean z10) {
-        a6 a6Var;
-        a6 a6Var2;
-        if (this.e == null || z10) {
-            if ((this.f25200b && (this.f25221s == null || (!this.K0 && this.M >= 0))) || this.f25219r == null) {
-                if ((this.f25214n == null || !this.f25206f) && g() && !this.f25226w) {
-                    if ((this.f25201b0 || (this.f25230y && !this.E)) && !this.f25223t0.isEmpty() && !this.C0) {
-                        if (this.f25225v0) {
-                            if (this.f25229x0) {
-                                a6 a6Var3 = this.H0;
-                                this.e = a6Var3;
-                                DispatchQueuePoolBackground.execute(a6Var3);
-                            } else {
-                                if (z10 && (a6Var2 = this.e) != null) {
-                                    W0.remove(a6Var2);
+            a6 a6Var = (a6) arrayList.get(i11);
+            if (a6Var.f26415a == layout) {
+                ArrayList arrayList2 = a6Var.f26416b;
+                int i12 = i10;
+                while (i12 < arrayList2.size()) {
+                    x5 x5Var = (x5) arrayList2.get(i12);
+                    if (x5Var != null) {
+                        t5 t5Var = x5Var.f34623f;
+                        if (t5Var != null) {
+                            t5Var.setColorFilter(colorFilter);
+                        }
+                        c6 c6Var = x5Var.d;
+                        if (c6Var.spanDrawn) {
+                            float f14 = c6Var.measuredSize / 2.0f;
+                            float f15 = c6Var.lastDrawnCx;
+                            float f16 = c6Var.lastDrawnCy;
+                            x5Var.e.set((int) (f15 - f14), (int) (f16 - f14), (int) (f15 + f14), (int) (f16 + f14));
+                            float max = (list == null || list.isEmpty() || !x5Var.v) ? 1.0f : Math.max(0.0f, list.get(i10).f51867n);
+                            x5Var.f34625r = f12;
+                            x5Var.f34626s = max;
+                            x5Var.getClass();
+                            if (f10 != 0.0f || f11 != 0.0f) {
+                                Rect rect = x5Var.e;
+                                if (rect.bottom < f10 || rect.top > f11) {
+                                    x5Var.f34624n = true;
+                                    i12++;
+                                    i10 = 0;
                                 }
-                                ScheduledThreadPoolExecutor scheduledThreadPoolExecutor = W0;
-                                a6 a6Var4 = this.H0;
-                                this.e = a6Var4;
-                                scheduledThreadPoolExecutor.execute(a6Var4);
+                            }
+                            x5Var.f34624n = false;
+                            t5 t5Var2 = x5Var.f34623f;
+                            if (t5Var2 == null) {
+                                if (x5Var.h != null) {
+                                    float extraScale = x5Var.d.getExtraScale();
+                                    x5Var.h.setAlpha((int) (x5Var.f34626s * 255.0f * f13));
+                                    x5Var.h.setBounds(x5Var.e);
+                                    if (extraScale == 1.0f && !x5Var.d.invert) {
+                                        x5Var.h.draw(canvas);
+                                    } else {
+                                        canvas.save();
+                                        canvas.scale((x5Var.d.invert ? -1 : 1) * extraScale, extraScale, x5Var.e.centerX(), x5Var.e.centerY());
+                                        x5Var.h.draw(canvas);
+                                        canvas.restore();
+                                    }
+                                }
+                            } else if (t5Var2.f32849k != null) {
+                                t5Var2.setColorFilter(colorFilter == null ? org.telegram.ui.ActionBar.y6.f23687v3 : colorFilter);
+                                x5Var.f34623f.q(currentTimeMillis);
+                                float extraScale2 = x5Var.d.getExtraScale();
+                                if (extraScale2 == 1.0f && !x5Var.d.invert) {
+                                    t5 t5Var3 = x5Var.f34623f;
+                                    Rect rect2 = x5Var.e;
+                                    float f17 = x5Var.f34626s * f13;
+                                    di.f3 f3Var = t5Var3.f32849k;
+                                    if (f3Var != null) {
+                                        f3Var.setImageCoords(rect2);
+                                        t5Var3.f32849k.setAlpha(f17);
+                                        t5Var3.f32849k.draw(canvas);
+                                    }
+                                } else {
+                                    canvas.save();
+                                    canvas.scale((x5Var.d.invert ? -1 : 1) * extraScale2, extraScale2, x5Var.e.centerX(), x5Var.e.centerY());
+                                    t5 t5Var4 = x5Var.f34623f;
+                                    Rect rect3 = x5Var.e;
+                                    float f18 = x5Var.f34626s * f13;
+                                    di.f3 f3Var2 = t5Var4.f32849k;
+                                    if (f3Var2 != null) {
+                                        f3Var2.setImageCoords(rect3);
+                                        t5Var4.f32849k.setAlpha(f18);
+                                        t5Var4.f32849k.draw(canvas);
+                                    }
+                                    canvas.restore();
+                                }
+                                if (access$400(x5Var.d)) {
+                                    x5Var.invalidate();
+                                }
+                            }
+                            i12++;
+                            i10 = 0;
+                        }
+                    }
+                    i12++;
+                    i10 = 0;
+                }
+            } else {
+                i11++;
+                i10 = 0;
+            }
+        }
+        if (z10) {
+            canvas.restore();
+        }
+    }
+
+    public static y5 update(int i10, View view, y5 y5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList, boolean z10) {
+        return update(i10, view, false, y5Var, arrayList, z10);
+    }
+
+    public c6(TLRPC.Document document, float f7, Paint.FontMetricsInt fontMetricsInt) {
+        this(document.f22033id, f7, fontMetricsInt);
+        this.document = document;
+    }
+
+    public static CharSequence cloneSpans(CharSequence charSequence, int i10, Paint.FontMetricsInt fontMetricsInt) {
+        return cloneSpans(charSequence, i10, fontMetricsInt, 1.0f);
+    }
+
+    public static y5 update(int i10, View view, boolean z10, y5 y5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList) {
+        return update(i10, view, z10, y5Var, arrayList, false);
+    }
+
+    public void applyFontMetrics(Paint.FontMetricsInt fontMetricsInt) {
+        this.fontMetrics = fontMetricsInt;
+    }
+
+    public static CharSequence cloneSpans(CharSequence charSequence, int i10, Paint.FontMetricsInt fontMetricsInt, float f7) {
+        c6[] c6VarArr;
+        if (charSequence instanceof Spanned) {
+            Spanned spanned = (Spanned) charSequence;
+            CharacterStyle[] characterStyleArr = (CharacterStyle[]) spanned.getSpans(0, spanned.length(), CharacterStyle.class);
+            if (characterStyleArr != null && characterStyleArr.length > 0 && ((c6VarArr = (c6[]) spanned.getSpans(0, spanned.length(), c6.class)) == null || c6VarArr.length > 0)) {
+                charSequence = new SpannableString(spanned);
+                for (int i11 = 0; i11 < characterStyleArr.length; i11++) {
+                    CharacterStyle characterStyle = characterStyleArr[i11];
+                    if (characterStyle != null && (characterStyle instanceof c6)) {
+                        int spanStart = spanned.getSpanStart(characterStyle);
+                        int spanEnd = spanned.getSpanEnd(characterStyleArr[i11]);
+                        c6 c6Var = (c6) characterStyleArr[i11];
+                        charSequence.removeSpan(c6Var);
+                        c6 cloneSpan = cloneSpan(c6Var, fontMetricsInt);
+                        if (i10 != -1) {
+                            cloneSpan.cacheType = i10;
+                        }
+                        cloneSpan.scale = c6Var.scale * f7;
+                        charSequence.setSpan(cloneSpan, spanStart, spanEnd, 33);
+                    }
+                }
+            }
+            return charSequence;
+        }
+        return charSequence;
+    }
+
+    public static y5 update(int i10, View view, boolean z10, y5 y5Var, ArrayList<MessageObject.TextLayoutBlock> arrayList, boolean z11) {
+        Layout[] layoutArr = new Layout[arrayList == null ? 0 : arrayList.size()];
+        if (arrayList != null) {
+            for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                layoutArr[i11] = arrayList.get(i11).textLayout;
+            }
+        }
+        return update(i10, view, z10, y5Var, z11, layoutArr);
+    }
+
+    public void replaceFontMetrics(Paint.FontMetricsInt fontMetricsInt, int i10, int i11) {
+        this.fontMetrics = fontMetricsInt;
+        this.size = i10;
+        this.cacheType = i11;
+    }
+
+    public c6(long j10, Paint.FontMetricsInt fontMetricsInt) {
+        this(j10, 1.2f, fontMetricsInt);
+    }
+
+    public static void release(View view, y5 y5Var) {
+        if (y5Var == null) {
+            return;
+        }
+        while (y5Var.f34925a.size() > 0) {
+            y5Var.b(0);
+        }
+    }
+
+    public c6(long j10, float f7, Paint.FontMetricsInt fontMetricsInt) {
+        this.extraScale = 1.0f;
+        this.full = false;
+        this.top = false;
+        this.invert = false;
+        this.size = AndroidUtilities.dp(20.0f);
+        this.cacheType = -1;
+        this.recordPositions = true;
+        this.documentId = j10;
+        this.scale = f7;
+        this.fontMetrics = fontMetricsInt;
+        if (fontMetricsInt != null) {
+            float abs = Math.abs(fontMetricsInt.ascent) + Math.abs(fontMetricsInt.descent);
+            this.size = abs;
+            if (abs == 0.0f) {
+                this.size = AndroidUtilities.dp(20.0f);
+            }
+        }
+    }
+
+    public static y5 update(int i10, View view, y5 y5Var, Layout... layoutArr) {
+        return update(i10, view, false, y5Var, layoutArr);
+    }
+
+    public static y5 update(int i10, View view, boolean z10, y5 y5Var, Layout... layoutArr) {
+        return update(i10, view, z10, y5Var, false, layoutArr);
+    }
+
+    public static y5 update(int i10, View view, boolean z10, y5 y5Var, boolean z11, Layout... layoutArr) {
+        int i11;
+        c6[] c6VarArr;
+        x5 x5Var;
+        int i12;
+        int i13;
+        y5 y5Var2 = y5Var;
+        Paint.FontMetricsInt fontMetricsInt = null;
+        int i14 = 0;
+        if (layoutArr == null || layoutArr.length <= 0) {
+            if (y5Var2 != null) {
+                ArrayList arrayList = y5Var2.f34925a;
+                arrayList.clear();
+                while (arrayList.size() > 0) {
+                    y5Var2.b(0);
+                }
+                return null;
+            }
+            return null;
+        }
+        int i15 = 0;
+        while (i15 < layoutArr.length) {
+            Layout layout = layoutArr[i15];
+            if (layout == null || !(layout.getText() instanceof Spanned)) {
+                i11 = i15;
+                c6VarArr = null;
+                y5Var2 = y5Var2;
+            } else {
+                Spanned spanned = (Spanned) layout.getText();
+                c6VarArr = (c6[]) spanned.getSpans(i14, spanned.length(), c6.class);
+                int i16 = i14;
+                ?? r02 = y5Var2;
+                while (c6VarArr != null && i16 < c6VarArr.length) {
+                    c6 c6Var = c6VarArr[i16];
+                    if (c6Var == null) {
+                        i12 = i15;
+                    } else {
+                        if (z11 && (layout.getText() instanceof Spannable)) {
+                            int spanStart = spanned.getSpanStart(c6Var);
+                            int spanEnd = spanned.getSpanEnd(c6Var);
+                            Spannable spannable = (Spannable) spanned;
+                            spannable.removeSpan(c6Var);
+                            c6Var = cloneSpan(c6Var, fontMetricsInt);
+                            c6VarArr[i16] = c6Var;
+                            spannable.setSpan(c6Var, spanStart, spanEnd, 33);
+                        }
+                        if (r02 == 0) {
+                            r02 = new Object();
+                            r02.f34925a = new ArrayList();
+                            r02.f34926b = new HashMap();
+                            r02.f34927c = new ArrayList();
+                        }
+                        ArrayList arrayList2 = r02.f34925a;
+                        int i17 = i14;
+                        while (true) {
+                            if (i17 >= arrayList2.size()) {
+                                x5Var = fontMetricsInt;
+                                break;
+                            } else if (((x5) arrayList2.get(i17)).d == c6Var && ((x5) arrayList2.get(i17)).f34622c == layout) {
+                                x5Var = (x5) arrayList2.get(i17);
+                                break;
+                            } else {
+                                i17++;
+                            }
+                        }
+                        if (x5Var == 0) {
+                            x5 x5Var2 = new x5(view, z10);
+                            x5Var2.f34622c = layout;
+                            if (c6Var.standard) {
+                                i13 = 8;
+                            } else {
+                                i13 = c6Var.cacheType;
+                                if (i13 < 0) {
+                                    i13 = i10;
+                                }
+                            }
+                            if (c6Var.documentAbsolutePath != null) {
+                                i12 = i15;
+                                x5Var2.f34623f = t5.n(UserConfig.selectedAccount, c6Var.getDocumentId(), c6Var.documentAbsolutePath, i13);
+                            } else {
+                                i12 = i15;
+                                TLRPC.Document document = c6Var.document;
+                                if (document != null) {
+                                    x5Var2.f34623f = t5.m(UserConfig.selectedAccount, i13, document);
+                                } else {
+                                    long j10 = c6Var.documentId;
+                                    if (j10 != 0) {
+                                        x5Var2.f34623f = t5.n(UserConfig.selectedAccount, j10, null, i13);
+                                    }
+                                }
+                            }
+                            int i18 = c6Var.cacheType;
+                            if ((i18 == 20 || i18 == 21) && !TextUtils.isEmpty(c6Var.emoji)) {
+                                t5 t5Var = x5Var2.f34623f;
+                                if (t5Var != null) {
+                                    t5Var.r(c6Var.emoji);
+                                } else {
+                                    x5Var2.h = Emoji.getEmojiDrawable(c6Var.emoji);
+                                }
+                            }
+                            x5Var2.v = c(layout, spanned.getSpanStart(c6Var), spanned.getSpanEnd(c6Var));
+                            x5Var2.e = new Rect();
+                            x5Var2.d = c6Var;
+                            arrayList2.add(x5Var2);
+                            HashMap hashMap = r02.f34926b;
+                            a6 a6Var = (a6) hashMap.get(layout);
+                            if (a6Var == null) {
+                                a6Var = new a6(x5Var2.f34620a, layout);
+                                hashMap.put(layout, a6Var);
+                                r02.f34927c.add(a6Var);
+                            }
+                            a6Var.f26416b.add(x5Var2);
+                            a6Var.a();
+                            t5 t5Var2 = x5Var2.f34623f;
+                            if (t5Var2 != null) {
+                                t5Var2.b(x5Var2);
                             }
                         } else {
-                            if (this.f25207f0 == null) {
-                                this.f25207f0 = new DispatchQueue("decodeQueue" + this);
-                            }
-                            if (z10 && (a6Var = this.e) != null) {
-                                this.f25207f0.cancelRunnable(a6Var);
-                            }
-                            DispatchQueue dispatchQueue = this.f25207f0;
-                            a6 a6Var5 = this.H0;
-                            this.e = a6Var5;
-                            dispatchQueue.postRunnable(a6Var5, 0L);
+                            i12 = i15;
+                            x5Var.v = c(layout, spanned.getSpanStart(c6Var), spanned.getSpanEnd(c6Var));
                         }
-                        this.K0 = true;
                     }
+                    i16++;
+                    i15 = i12;
+                    fontMetricsInt = null;
+                    i14 = 0;
+                    r02 = r02;
+                }
+                i11 = i15;
+                y5Var2 = r02;
+            }
+            if (y5Var2 != null) {
+                ArrayList arrayList3 = y5Var2.f34925a;
+                int i19 = 0;
+                while (i19 < arrayList3.size()) {
+                    if (((x5) arrayList3.get(i19)).f34622c == layout) {
+                        c6 c6Var2 = ((x5) arrayList3.get(i19)).d;
+                        for (int i20 = 0; c6VarArr != null && i20 < c6VarArr.length; i20++) {
+                            if (c6VarArr[i20] == c6Var2) {
+                                break;
+                            }
+                        }
+                        y5Var2.b(i19);
+                        i19--;
+                    }
+                    i19++;
                 }
             }
+            i15 = i11 + 1;
+            fontMetricsInt = null;
+            i14 = 0;
         }
-    }
-
-    public final void y(long j10, boolean z10, boolean z11) {
-        AnimatedFileDrawableStream animatedFileDrawableStream;
-        int i10;
-        synchronized (this.Q) {
-            try {
-                this.L = j10;
-                this.M = j10;
-                this.K0 = false;
-                if (this.f25204d0 != null) {
-                    this.f25204d0.e();
-                }
-                if (this.f25228x && (animatedFileDrawableStream = this.f25224u0) != null) {
-                    animatedFileDrawableStream.cancel(z10);
-                    this.N = z10;
-                    if (z10) {
-                        i10 = 0;
+        if (y5Var2 != null) {
+            ArrayList arrayList4 = y5Var2.f34925a;
+            int i21 = 0;
+            while (i21 < arrayList4.size()) {
+                Layout layout2 = ((x5) arrayList4.get(i21)).f34622c;
+                int i22 = 0;
+                while (true) {
+                    if (i22 < layoutArr.length) {
+                        if (layoutArr[i22] == layout2) {
+                            break;
+                        }
+                        i22++;
                     } else {
-                        i10 = 10;
-                    }
-                    this.O = i10;
-                }
-                if (z11 && this.f25230y) {
-                    this.E = false;
-                    if (this.e == null) {
-                        x(true);
-                    } else {
-                        this.F = true;
+                        y5Var2.b(i21);
+                        i21--;
+                        break;
                     }
                 }
-            } catch (Throwable th2) {
-                throw th2;
+                i21++;
             }
         }
+        return y5Var2;
     }
 
-    public final void z(float f7, float f10, float f11, float f12) {
-        float f13 = f12 + f10;
-        float f14 = f11 + f7;
-        RectF rectF = this.S;
-        if (rectF.left == f7 && rectF.top == f10 && rectF.right == f14 && rectF.bottom == f13) {
-            return;
+    public static LongSparseArray<t5> update(View view, c6[] c6VarArr, LongSparseArray<t5> longSparseArray) {
+        return update(0, view, c6VarArr, longSparseArray);
+    }
+
+    public static LongSparseArray<t5> update(int i10, View view, c6[] c6VarArr, LongSparseArray<t5> longSparseArray) {
+        int i11;
+        t5 n10;
+        int i12;
+        if (c6VarArr == null) {
+            return longSparseArray;
         }
-        rectF.set(f7, f10, f14, f13);
-        this.f25227w0 = true;
+        if (longSparseArray == null) {
+            longSparseArray = new LongSparseArray<>();
+        }
+        int i13 = 0;
+        while (i13 < longSparseArray.size()) {
+            long keyAt = longSparseArray.keyAt(i13);
+            t5 t5Var = longSparseArray.get(keyAt);
+            if (t5Var == null) {
+                longSparseArray.remove(keyAt);
+            } else {
+                for (c6 c6Var : c6VarArr) {
+                    i12 = (c6Var == null || c6Var.getDocumentId() != keyAt) ? i12 + 1 : 0;
+                }
+                t5Var.o(view);
+                longSparseArray.remove(keyAt);
+            }
+            i13--;
+            i13++;
+        }
+        for (c6 c6Var2 : c6VarArr) {
+            if (c6Var2 != null && longSparseArray.get(c6Var2.getDocumentId()) == null) {
+                if (c6Var2.standard) {
+                    i11 = 8;
+                } else {
+                    i11 = c6Var2.cacheType;
+                    if (i11 < 0) {
+                        i11 = i10;
+                    }
+                }
+                TLRPC.Document document = c6Var2.document;
+                if (document != null) {
+                    n10 = t5.m(UserConfig.selectedAccount, i11, document);
+                } else {
+                    n10 = t5.n(UserConfig.selectedAccount, c6Var2.documentId, null, i11);
+                }
+                n10.a(view);
+                longSparseArray.put(c6Var2.getDocumentId(), n10);
+            }
+        }
+        return longSparseArray;
     }
 
-    public c6(java.io.File r19, boolean r20, long r21, int r23, org.telegram.tgnet.TLRPC.Document r24, org.telegram.messenger.ImageLocation r25, java.lang.Object r26, long r27, int r29, boolean r30, int r31, int r32, af.l r33, int r34, boolean r35) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c6.<init>(java.io.File, boolean, long, int, org.telegram.tgnet.TLRPC$Document, org.telegram.messenger.ImageLocation, java.lang.Object, long, int, boolean, int, int, af.l, int, boolean):void");
+    public static LongSparseArray<t5> update(View view, ArrayList<c6> arrayList, LongSparseArray<t5> longSparseArray) {
+        return update(0, view, arrayList, longSparseArray);
+    }
+
+    public static LongSparseArray<t5> update(int i10, View view, ArrayList<c6> arrayList, LongSparseArray<t5> longSparseArray) {
+        int i11;
+        int i12;
+        if (arrayList == null) {
+            return longSparseArray;
+        }
+        if (longSparseArray == null) {
+            longSparseArray = new LongSparseArray<>();
+        }
+        int i13 = 0;
+        while (i13 < longSparseArray.size()) {
+            long keyAt = longSparseArray.keyAt(i13);
+            t5 t5Var = longSparseArray.get(keyAt);
+            if (t5Var == null) {
+                longSparseArray.remove(keyAt);
+            } else {
+                for (i12 = 0; i12 < arrayList.size(); i12 = i12 + 1) {
+                    i12 = (arrayList.get(i12) == null || arrayList.get(i12).getDocumentId() != keyAt) ? i12 + 1 : 0;
+                }
+                t5Var.a(view);
+                longSparseArray.remove(keyAt);
+            }
+            i13--;
+            i13++;
+        }
+        for (int i14 = 0; i14 < arrayList.size(); i14++) {
+            c6 c6Var = arrayList.get(i14);
+            if (c6Var != null && longSparseArray.get(c6Var.getDocumentId()) == null) {
+                if (c6Var.standard) {
+                    i11 = 8;
+                } else {
+                    i11 = c6Var.cacheType;
+                    if (i11 < 0) {
+                        i11 = i10;
+                    }
+                }
+                t5 n10 = t5.n(UserConfig.selectedAccount, c6Var.documentId, null, i11);
+                n10.a(view);
+                longSparseArray.put(c6Var.getDocumentId(), n10);
+            }
+        }
+        return longSparseArray;
     }
 }

@@ -1,47 +1,62 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class q3 extends FrameLayout {
-    public final TextView f40700a;
-    public final TextView f40701b;
-    public boolean f40702c;
-    public final boolean d;
-    public final k4 e;
+import android.graphics.Typeface;
+import android.text.TextPaint;
+import android.util.SparseArray;
+public final class q3 {
+    public TextPaint f42712a;
+    public final SparseArray f42713b = new SparseArray();
+    public final SparseArray f42714c = new SparseArray();
+    public final SparseArray d = new SparseArray();
+    public final SparseArray e = new SparseArray();
+    public final SparseArray f42715f = new SparseArray();
+    public final SparseArray f42716g = new SparseArray();
+    public final SparseArray h = new SparseArray();
+    public final SparseArray f42717i = new SparseArray();
+    public final SparseArray f42718j = new SparseArray();
+    public final SparseArray f42719k = new SparseArray();
+    public final SparseArray f42720l = new SparseArray();
+    public final SparseArray f42721m = new SparseArray();
+    public final SparseArray f42722n = new SparseArray();
+    public final SparseArray f42723o = new SparseArray();
+    public final SparseArray f42724p = new SparseArray();
+    public final SparseArray f42725q = new SparseArray();
+    public final SparseArray f42726r = new SparseArray();
+    public final SparseArray f42727s = new SparseArray();
+    public final SparseArray f42728t = new SparseArray();
+    public final SparseArray f42729u = new SparseArray();
+    public final SparseArray v = new SparseArray();
+    public final SparseArray f42730w = new SparseArray();
+    public final SparseArray f42731x = new SparseArray();
+    public final SparseArray f42732y = new SparseArray();
+    public final SparseArray f42733z = new SparseArray();
+    public final SparseArray A = new SparseArray();
 
-    public q3(k4 k4Var, Context context, boolean z10) {
-        super(context);
-        int i10;
-        this.e = k4Var;
-        this.d = z10;
-        setTag(90);
-        TextView textView = new TextView(context);
-        this.f40700a = textView;
-        if (z10) {
-            i10 = R.string.PreviewFeedbackAuto;
-        } else {
-            i10 = R.string.PreviewFeedback2;
+    public static void a(h70 h70Var, SparseArray sparseArray) {
+        for (int i10 = 0; i10 < sparseArray.size(); i10++) {
+            int keyAt = sparseArray.keyAt(i10);
+            TextPaint textPaint = (TextPaint) sparseArray.valueAt(i10);
+            if (textPaint != null) {
+                if ((keyAt & 8) == 0 && (keyAt & 512) == 0) {
+                    textPaint.setColor(h70Var.b());
+                } else {
+                    textPaint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.J6, false));
+                }
+            }
         }
-        textView.setText(LocaleController.getString(i10));
-        textView.setTextSize(1, 12.0f);
-        textView.setGravity(17);
-        textView.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        addView(textView, w7.z5.d(-1, 34.0f, 51, 0.0f, 10.0f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f40701b = textView2;
-        textView2.setTextSize(1, 12.0f);
-        textView2.setGravity(19);
-        textView2.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        addView(textView2, w7.z5.d(-1, 34.0f, 51, 0.0f, 10.0f, 0.0f, 0.0f));
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(44.0f), 1073741824));
+    public static void b(int i10, TextPaint textPaint, Typeface typeface, Typeface typeface2, Typeface typeface3, Typeface typeface4) {
+        int i11 = i10 & 1;
+        if (i11 != 0 && (i10 & 2) != 0) {
+            textPaint.setTypeface(typeface2);
+        } else if (i11 != 0) {
+            textPaint.setTypeface(typeface3);
+        } else if ((i10 & 2) != 0) {
+            textPaint.setTypeface(typeface4);
+        } else if ((i10 & 4) != 0) {
+        } else {
+            textPaint.setTypeface(typeface);
+        }
     }
 }

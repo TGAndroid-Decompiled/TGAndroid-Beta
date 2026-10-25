@@ -1,60 +1,56 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Rect;
-import android.graphics.drawable.GradientDrawable;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class n9 implements Runnable {
-    public final int f28830a = 0;
-    public final t9 f28831b;
-    public final Runnable[] f28832c;
-    public final s60 d;
-    public final int e;
-    public final w7.w5[] f28833f;
+import org.telegram.messenger.ImageReceiver;
+public final class n9 implements oe.h, re.a {
+    public final ImageReceiver f30923a;
+    public final j9 f30924b;
+    public long f30925c;
+    public boolean d;
+    public final o9 e;
 
-    public n9(t9 t9Var, s60 s60Var, Runnable[] runnableArr, int i10, w7.w5[] w5VarArr) {
-        this.f28831b = t9Var;
-        this.d = s60Var;
-        this.f28832c = runnableArr;
-        this.e = i10;
-        this.f28833f = w5VarArr;
+    public n9(o9 o9Var, ViewGroup viewGroup) {
+        this.e = o9Var;
+        ImageReceiver imageReceiver = new ImageReceiver(viewGroup);
+        this.f30923a = imageReceiver;
+        imageReceiver.setRoundRadius(o9Var.e / 2);
+        j9 j9Var = new j9((org.telegram.ui.ActionBar.u6) null);
+        this.f30924b = j9Var;
+        j9Var.u(AndroidUtilities.dp(22.0f));
     }
 
     @Override
-    public final void run() {
-        switch (this.f28830a) {
-            case 0:
-                t9 t9Var = this.f28831b;
-                s60 s60Var = this.d;
-                Runnable[] runnableArr = this.f28832c;
-                int i10 = this.e;
-                w7.w5[] w5VarArr = this.f28833f;
-                try {
-                    GradientDrawable.Orientation orientation = t9Var.getOrientation();
-                    int[] iArr = t9Var.f30758a;
-                    int i11 = s60Var.f30454a;
-                    int i12 = s60Var.f30455b;
-                    Rect e = t9.e(orientation, i11, i12);
-                    Bitmap createBitmap = Bitmap.createBitmap(i11, i12, Bitmap.Config.ARGB_8888);
-                    Utilities.drawDitheredGradient(createBitmap, iArr, e.left, e.top, e.right, e.bottom);
-                    AndroidUtilities.runOnUIThread(new ai.wb(t9Var, runnableArr, createBitmap, s60Var, i10, w5VarArr, 9));
-                    return;
-                } catch (Throwable th2) {
-                    AndroidUtilities.runOnUIThread(new n9(t9Var, runnableArr, s60Var, i10, w5VarArr));
-                    throw th2;
-                }
-            default:
-                t9.a(this.f28831b, this.f28832c, null, this.d, this.e, this.f28833f);
-                return;
+    public final void a() {
+        if (this.d) {
+            this.d = false;
+            this.f30923a.onDetachedFromWindow();
         }
+        this.f30925c = 0L;
     }
 
-    public n9(t9 t9Var, Runnable[] runnableArr, s60 s60Var, int i10, w7.w5[] w5VarArr) {
-        this.f28831b = t9Var;
-        this.f28832c = runnableArr;
-        this.d = s60Var;
-        this.e = i10;
-        this.f28833f = w5VarArr;
+    @Override
+    public final int b(boolean z10) {
+        if (z10) {
+            return 0;
+        }
+        return -this.e.f31229f;
+    }
+
+    public final boolean equals(Object obj) {
+        if (!(obj instanceof n9) || this.f30925c != ((n9) obj).f30925c) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public final int getHeight() {
+        return this.e.e;
+    }
+
+    @Override
+    public final int getWidth() {
+        return this.e.e;
     }
 }

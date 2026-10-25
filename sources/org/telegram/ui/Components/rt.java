@@ -1,31 +1,17 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-public final class rt implements st {
-    public final int f30268a;
-    public final Object f30269b;
+import android.graphics.LinearGradient;
+import android.graphics.Shader;
+public final class rt {
+    public int f32321a;
+    public Object f32322b;
 
-    public rt(Object obj, int i10) {
-        this.f30268a = i10;
-        this.f30269b = obj;
-    }
-
-    @Override
-    public final void a(int i10, boolean z10) {
-        switch (this.f30268a) {
-            case 0:
-                ArrayList arrayList = ((ut) this.f30269b).f31221b;
-                int size = arrayList.size();
-                int i11 = 0;
-                while (i11 < size) {
-                    Object obj = arrayList.get(i11);
-                    i11++;
-                    ((st) obj).a(i10, z10);
-                }
-                return;
-            default:
-                ((Runnable) this.f30269b).run();
-                return;
+    public boolean a(int i10) {
+        if (((ag.o) this.f32322b) != null && this.f32321a == i10) {
+            return false;
         }
+        this.f32321a = i10;
+        this.f32322b = new LinearGradient(0.0f, 0.0f, 1.0f, 0.0f, new int[]{i10, i10}, (float[]) null, Shader.TileMode.CLAMP);
+        return true;
     }
 }

@@ -1,136 +1,151 @@
 package org.telegram.ui.Cells;
 
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.util.Property;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.TextView;
+import j$.util.Comparator$CC;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.tl;
-import org.telegram.ui.Components.RadioButton;
-public class k6 extends FrameLayout {
-    public final TextView f22636a;
-    public final RadioButton f22637b;
-    public boolean f22638c;
+import java.util.Collections;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.jd;
+import org.telegram.messenger.lf;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class k6 {
+    public final int f24333a;
+    public boolean f24334b;
+    public boolean f24335c;
+    public int e;
+    public long f24336f;
+    public int f24337g;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList h = new ArrayList();
 
-    public k6(Context context) {
-        this(context, null);
+    public k6(int i10) {
+        this.f24333a = i10;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        this.f22637b.a(z10, z11);
+    public static void a(k6 k6Var, TLObject tLObject, MessagesStorage messagesStorage, long j10, int i10, ArrayList arrayList) {
+        ArrayList arrayList2 = k6Var.d;
+        int i11 = k6Var.f24333a;
+        if (tLObject instanceof TLRPC.messages_Messages) {
+            TLRPC.messages_Messages messages_messages = (TLRPC.messages_Messages) tLObject;
+            MessagesController.getInstance(i11).putUsers(messages_messages.users, false);
+            MessagesController.getInstance(i11).putChats(messages_messages.chats, false);
+            messagesStorage.putUsersAndChats(messages_messages.users, messages_messages.chats, true, true);
+            messagesStorage.putMessages(messages_messages, -j10, 3, 0, false, 0, 0L);
+            if (i10 == k6Var.e && !messages_messages.messages.isEmpty()) {
+                arrayList2.clear();
+                Collections.sort(arrayList, Comparator$CC.comparingInt(new ag.e(14)));
+                TLRPC.Message message = (TLRPC.Message) ic.a.g(1, messages_messages.messages);
+                long j11 = message.grouped_id;
+                if (j11 != 0) {
+                    ArrayList<TLRPC.Message> arrayList3 = messages_messages.messages;
+                    int size = arrayList3.size();
+                    int i12 = 0;
+                    while (i12 < size) {
+                        TLRPC.Message message2 = arrayList3.get(i12);
+                        i12++;
+                        TLRPC.Message message3 = message2;
+                        if (message3.grouped_id == j11) {
+                            arrayList2.add(new MessageObject(i11, message3, false, true));
+                        }
+                    }
+                } else {
+                    arrayList2.add(new MessageObject(i11, message, false, true));
+                }
+                if (!arrayList2.isEmpty()) {
+                    k6Var.c();
+                }
+            }
+        } else if (i10 != k6Var.e) {
+        } else {
+            k6Var.c();
+        }
     }
 
-    public final void b(ArrayList arrayList, boolean z10) {
-        float f7;
-        float f10;
-        super.setEnabled(z10);
-        RadioButton radioButton = this.f22637b;
-        TextView textView = this.f22636a;
-        float f11 = 0.5f;
-        if (arrayList != null) {
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.5f;
-            }
-            float[] fArr = {f10};
-            Property property = View.ALPHA;
-            arrayList.add(ObjectAnimator.ofFloat(textView, property, fArr));
-            if (z10) {
-                f11 = 1.0f;
-            }
-            arrayList.add(ObjectAnimator.ofFloat(radioButton, property, f11));
+    public static void b(k6 k6Var, int i10, ArrayList arrayList, long j10, int i11, MessagesStorage messagesStorage) {
+        int i12 = k6Var.f24333a;
+        ArrayList arrayList2 = k6Var.d;
+        if (i10 != k6Var.e) {
             return;
         }
-        if (z10) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.5f;
-        }
-        textView.setAlpha(f7);
-        if (z10) {
-            f11 = 1.0f;
-        }
-        radioButton.setAlpha(f11);
-    }
-
-    public final void c(String str, boolean z10, boolean z11) {
-        this.f22636a.setText(str);
-        this.f22637b.a(z10, false);
-        this.f22638c = z11;
-        setWillNotDraw(!z11);
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.f22638c) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
+        if (!arrayList.isEmpty()) {
+            arrayList2.clear();
+            Collections.sort(arrayList, Comparator$CC.comparingInt(new ag.e(13)));
+            TLRPC.Message message = (TLRPC.Message) arrayList.get(arrayList.size() - 1);
+            long j11 = message.grouped_id;
+            if (j11 != 0) {
+                int size = arrayList.size();
+                int i13 = 0;
+                while (i13 < size) {
+                    Object obj = arrayList.get(i13);
+                    i13++;
+                    TLRPC.Message message2 = (TLRPC.Message) obj;
+                    if (message2.grouped_id == j11) {
+                        arrayList2.add(new MessageObject(i12, message2, false, true));
+                    }
+                }
             } else {
-                dp = AndroidUtilities.dp(20.0f);
+                arrayList2.add(new MessageObject(i12, message, false, true));
             }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
+            if (!arrayList2.isEmpty()) {
+                k6Var.c();
+                return;
             }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21305k0);
         }
+        TLRPC.TL_channels_getMessages tL_channels_getMessages = new TLRPC.TL_channels_getMessages();
+        tL_channels_getMessages.channel = MessagesController.getInstance(i12).getInputChannel(j10);
+        for (int i14 = 10; i14 >= 0; i14--) {
+            int i15 = i11 - i14;
+            if (i15 >= 0) {
+                tL_channels_getMessages.f22065id.add(Integer.valueOf(i15));
+            }
+        }
+        ConnectionsManager.getInstance(i12).sendRequest(tL_channels_getMessages, new jd(k6Var, messagesStorage, j10, i10, arrayList));
     }
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.RadioButton");
-        accessibilityNodeInfo.setCheckable(true);
-        accessibilityNodeInfo.setChecked(this.f22637b.f24488f);
+    public final void c() {
+        int i10 = 0;
+        this.f24334b = false;
+        this.f24335c = true;
+        ArrayList arrayList = this.h;
+        int size = arrayList.size();
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((Runnable) obj).run();
+        }
+        arrayList.clear();
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(50.0f) + (this.f22638c ? 1 : 0));
-        int measuredWidth = ((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - AndroidUtilities.dp(34.0f);
-        this.f22637b.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(22.0f), 1073741824));
-        this.f22636a.measure(View.MeasureSpec.makeMeasureSpec(measuredWidth, 1073741824), View.MeasureSpec.makeMeasureSpec(getMeasuredHeight(), 1073741824));
-    }
-
-    public void setRadioIcon(Drawable drawable) {
-        this.f22637b.setIcon(drawable);
-    }
-
-    public void setTextColor(int i10) {
-        this.f22636a.setTextColor(i10);
-    }
-
-    public k6(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        TextView textView = new TextView(context);
-        this.f22636a = textView;
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.G6, g6Var);
-        tl.u(textView, 1, 16.0f, 1, 1);
-        textView.setSingleLine(true);
-        textView.setEllipsize(TextUtils.TruncateAt.END);
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 16);
-        float f7 = 21;
-        addView(textView, w7.z5.d(-1, -1.0f, (LocaleController.isRTL ? 5 : 3) | 48, f7, 0.0f, f7, 0.0f));
-        RadioButton radioButton = new RadioButton(context);
-        this.f22637b = radioButton;
-        radioButton.setSize(AndroidUtilities.dp(20.0f));
-        org.telegram.ui.ActionBar.r6.Q(radioButton, org.telegram.ui.ActionBar.k6.f21238g7, org.telegram.ui.ActionBar.k6.f21257h7, g6Var);
-        boolean z10 = LocaleController.isRTL;
-        addView(radioButton, w7.z5.d(22, 22.0f, (z10 ? 3 : 5) | 48, z10 ? 22 : 0, 14.0f, z10 ? 0 : 22, 0.0f));
+    public final void d(TLRPC.UserFull userFull) {
+        ArrayList arrayList = this.d;
+        if (userFull != null && (userFull.flags2 & 64) != 0) {
+            long j10 = userFull.personal_channel_id;
+            int i10 = userFull.personal_channel_message;
+            if (this.f24335c || this.f24334b) {
+                if (this.f24336f == j10 && this.f24337g == i10) {
+                    return;
+                }
+                this.f24335c = false;
+                arrayList.clear();
+            }
+            int i11 = this.e + 1;
+            this.e = i11;
+            this.f24334b = true;
+            this.f24336f = j10;
+            this.f24337g = i10;
+            int i12 = this.f24333a;
+            long clientUserId = UserConfig.getInstance(i12).getClientUserId();
+            MessagesStorage messagesStorage = MessagesStorage.getInstance(i12);
+            messagesStorage.getStorageQueue().postRunnable(new lf(this, i10, messagesStorage, j10, clientUserId, i11));
+            return;
+        }
+        this.e++;
+        this.f24335c = true;
+        arrayList.clear();
+        c();
     }
 }

@@ -1,44 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import android.content.Intent;
-import android.net.Uri;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.FileLog;
-public final class we0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f32220a;
-    public final Activity f32221b;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.Utilities;
+public final class we0 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f34425a;
+    public final Utilities.Callback f34426b;
+    public final NotificationCenter.NotificationCenterDelegate[] f34427c;
 
-    public we0(Activity activity, int i10) {
-        this.f32220a = i10;
-        this.f32221b = activity;
+    public we0(int i10, Utilities.Callback callback, NotificationCenter.NotificationCenterDelegate[] notificationCenterDelegateArr) {
+        this.f34425a = i10;
+        this.f34426b = callback;
+        this.f34427c = notificationCenterDelegateArr;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f32220a) {
-            case 0:
-                Activity activity = this.f32221b;
-                try {
-                    Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    activity.startActivity(intent);
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        int i12 = NotificationCenter.activityPermissionsGranted;
+        if (i10 == i12) {
+            int intValue = ((Integer) objArr[0]).intValue();
+            String[] strArr = (String[]) objArr[1];
+            int[] iArr = (int[]) objArr[2];
+            if (intValue == this.f34425a) {
+                Utilities.Callback callback = this.f34426b;
+                if (callback != null) {
+                    callback.run(iArr);
                 }
-            default:
-                Activity activity2 = this.f32221b;
-                try {
-                    Intent intent2 = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
-                    intent2.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
-                    activity2.startActivity(intent2);
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
+                NotificationCenter.getGlobalInstance().removeObserver(this.f34427c[0], i12);
+            }
         }
     }
 }

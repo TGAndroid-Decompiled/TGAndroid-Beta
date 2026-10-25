@@ -1,5 +1,7 @@
 package i0;
 
+import a8.sc;
+import a8.tc;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Typeface;
@@ -15,21 +17,19 @@ import java.lang.reflect.Array;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import v7.y7;
-import v7.z7;
-public class f extends y7 {
-    public static Class f12323a = null;
-    public static Constructor f12324b = null;
-    public static Method f12325c = null;
+public class f extends sc {
+    public static Class f13458a = null;
+    public static Constructor f13459b = null;
+    public static Method f13460c = null;
     public static Method d = null;
     public static boolean e = false;
 
     public static boolean g(Object obj, String str, int i10, boolean z10) {
         h();
         try {
-            return ((Boolean) f12325c.invoke(obj, str, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
-        } catch (IllegalAccessException | InvocationTargetException e7) {
-            throw new RuntimeException(e7);
+            return ((Boolean) f13460c.invoke(obj, str, Integer.valueOf(i10), Boolean.valueOf(z10))).booleanValue();
+        } catch (IllegalAccessException | InvocationTargetException e10) {
+            throw new RuntimeException(e10);
         }
     }
 
@@ -48,15 +48,15 @@ public class f extends y7 {
             method2 = cls.getMethod("addFontWeightStyle", String.class, Integer.TYPE, Boolean.TYPE);
             method = Typeface.class.getMethod("createFromFamiliesWithDefault", Array.newInstance(cls, 1).getClass());
             constructor = constructor2;
-        } catch (ClassNotFoundException | NoSuchMethodException e7) {
-            Log.e("TypefaceCompatApi21Impl", e7.getClass().getName(), e7);
+        } catch (ClassNotFoundException | NoSuchMethodException e10) {
+            Log.e("TypefaceCompatApi21Impl", e10.getClass().getName(), e10);
             method = null;
             cls = null;
             method2 = null;
         }
-        f12324b = constructor;
-        f12323a = cls;
-        f12325c = method2;
+        f13459b = constructor;
+        f13458a = cls;
+        f13460c = method2;
         d = method;
     }
 
@@ -65,17 +65,17 @@ public class f extends y7 {
         h0.f[] fVarArr;
         h();
         try {
-            Object newInstance = f12324b.newInstance(null);
-            for (h0.f fVar : eVar.f11619a) {
-                File d10 = z7.d(context);
+            Object newInstance = f13459b.newInstance(null);
+            for (h0.f fVar : eVar.f12530a) {
+                File d10 = tc.d(context);
                 if (d10 == null) {
                     return null;
                 }
                 try {
-                    if (!z7.b(d10, resources, fVar.f11623f)) {
+                    if (!tc.b(d10, resources, fVar.f12534f)) {
                         return null;
                     }
-                    if (!g(newInstance, d10.getPath(), fVar.f11621b, fVar.f11622c)) {
+                    if (!g(newInstance, d10.getPath(), fVar.f12532b, fVar.f12533c)) {
                         return null;
                     }
                     d10.delete();
@@ -87,14 +87,14 @@ public class f extends y7 {
             }
             h();
             try {
-                Object newInstance2 = Array.newInstance(f12323a, 1);
+                Object newInstance2 = Array.newInstance(f13458a, 1);
                 Array.set(newInstance2, 0, newInstance);
                 return (Typeface) d.invoke(null, newInstance2);
-            } catch (IllegalAccessException | InvocationTargetException e7) {
-                throw new RuntimeException(e7);
+            } catch (IllegalAccessException | InvocationTargetException e10) {
+                throw new RuntimeException(e10);
             }
-        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e10) {
-            throw new RuntimeException(e10);
+        } catch (IllegalAccessException | InstantiationException | InvocationTargetException e11) {
+            throw new RuntimeException(e11);
         }
     }
 
@@ -105,7 +105,7 @@ public class f extends y7 {
         String readlink;
         if (hVarArr.length >= 1) {
             try {
-                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(hVarArr, i10).f17589a, "r", null);
+                ParcelFileDescriptor openFileDescriptor = context.getContentResolver().openFileDescriptor(f(hVarArr, i10).f18937a, "r", null);
                 if (openFileDescriptor == null) {
                     if (openFileDescriptor != null) {
                         openFileDescriptor.close();

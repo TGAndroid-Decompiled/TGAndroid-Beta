@@ -1,150 +1,36 @@
 package org.telegram.ui.Wallet;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PathMeasure;
-import android.graphics.RectF;
 import android.view.View;
-import android.view.animation.LinearInterpolator;
-import org.telegram.messenger.AndroidUtilities;
-public final class c5 extends View {
-    public final Paint f34366a;
-    public final Path f34367b;
-    public final PathMeasure f34368c;
-    public final String d;
-    public final RectF e;
-    public final float[] f34369f;
-    public final float[] h;
-    public String f34370n;
-    public float[] f34371r;
-    public float f34372s;
-    public float v;
-    public float f34373w;
-    public float f34374x;
-    public ValueAnimator f34375y;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
+public final class c5 extends s61 {
+    public static final int f36425a = 0;
 
-    public c5(Context context, String str) {
-        super(context);
-        Paint paint = new Paint(1);
-        this.f34366a = paint;
-        this.f34367b = new Path();
-        this.f34368c = new PathMeasure();
-        this.e = new RectF();
-        this.f34369f = new float[2];
-        this.h = new float[2];
-        this.d = a1.g.s(new StringBuilder(), o5.q0(str.toUpperCase().replace('_', ' ').replace('-', ' ')), "   ·   ");
-        paint.setColor(-16747826);
-        paint.setTextSize(AndroidUtilities.dp(12.0f));
-        paint.setTypeface(AndroidUtilities.getTypeface("fonts/rmono.ttf"));
-    }
-
-    public final void a() {
-        if (isAttachedToWindow() && this.f34373w > 0.0f) {
-            ValueAnimator valueAnimator = this.f34375y;
-            if (valueAnimator != null) {
-                valueAnimator.cancel();
-            }
-            ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, this.f34373w);
-            this.f34375y = ofFloat;
-            ofFloat.setDuration(Math.max(1L, (this.f34373w / AndroidUtilities.dp(24.0f)) * 1000.0f));
-            this.f34375y.setInterpolator(new LinearInterpolator());
-            this.f34375y.setRepeatCount(-1);
-            this.f34375y.addUpdateListener(new a3(this, 1));
-            this.f34375y.start();
-        }
+    static {
+        s61.setup(new s61());
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a();
+    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+        ((d5) view).a(t61Var.f32872l, t61Var.f32873m, t61Var.f32871k);
     }
 
     @Override
-    public final void onDetachedFromWindow() {
-        ValueAnimator valueAnimator = this.f34375y;
-        if (valueAnimator != null) {
-            valueAnimator.cancel();
-            this.f34375y = null;
-        }
-        super.onDetachedFromWindow();
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+        return new d5(context, u6Var);
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float[] fArr;
-        super.onDraw(canvas);
-        if (this.f34371r != null && this.v > 0.0f && this.f34373w > 0.0f) {
-            int i10 = 0;
-            float f7 = 0.0f;
-            while (i10 < this.f34370n.length()) {
-                float f10 = this.f34371r[i10] * this.f34372s;
-                float f11 = ((f10 / 2.0f) + f7) - this.f34374x;
-                float f12 = this.v;
-                float f13 = f11 % f12;
-                if (f13 < 0.0f) {
-                    f13 += f12;
-                }
-                if (this.f34370n.charAt(i10) != ' ') {
-                    PathMeasure pathMeasure = this.f34368c;
-                    float[] fArr2 = this.f34369f;
-                    if (pathMeasure.getPosTan(f13, fArr2, this.h)) {
-                        canvas.save();
-                        canvas.translate(fArr2[0], fArr2[1]);
-                        canvas.rotate((float) Math.toDegrees(Math.atan2(fArr[1], fArr[0])));
-                        canvas2 = canvas;
-                        canvas2.drawText(this.f34370n, i10, i10 + 1, (-this.f34371r[i10]) / 2.0f, AndroidUtilities.dp(3.0f), this.f34366a);
-                        canvas2.restore();
-                        f7 += f10;
-                        i10++;
-                        canvas = canvas2;
-                    }
-                }
-                canvas2 = canvas;
-                f7 += f10;
-                i10++;
-                canvas = canvas2;
-            }
-        }
+    public final boolean isClickable() {
+        return false;
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        float dp = AndroidUtilities.dp(12.0f) + AndroidUtilities.dp(266.0f);
-        RectF rectF = this.e;
-        rectF.set(((i10 - AndroidUtilities.dp(212.0f)) / 2.0f) - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(22.0f) - AndroidUtilities.dp(12.0f), ((AndroidUtilities.dp(212.0f) + i10) / 2.0f) + AndroidUtilities.dp(12.0f), dp);
-        Path path = this.f34367b;
-        path.reset();
-        path.addRoundRect(rectF, AndroidUtilities.dp(32.0f), AndroidUtilities.dp(32.0f), Path.Direction.CW);
-        PathMeasure pathMeasure = this.f34368c;
-        pathMeasure.setPath(path, true);
-        this.v = pathMeasure.getLength();
-        Paint paint = this.f34366a;
-        String str = this.d;
-        int max = Math.max(1, Math.round(this.v / paint.measureText(str)));
-        StringBuilder sb2 = new StringBuilder(str.length() * max);
-        int i14 = 0;
-        for (int i15 = 0; i15 < max; i15++) {
-            sb2.append(str);
-        }
-        String sb3 = sb2.toString();
-        this.f34370n = sb3;
-        this.f34371r = new float[sb3.length()];
-        float f7 = 0.0f;
-        while (i14 < this.f34370n.length()) {
-            int i16 = i14 + 1;
-            this.f34371r[i14] = paint.measureText(this.f34370n, i14, i16);
-            f7 += this.f34371r[i14];
-            i14 = i16;
-        }
-        float f10 = this.v;
-        this.f34372s = f10 / f7;
-        this.f34373w = f10 / max;
-        a();
+    public final boolean isShadow() {
+        return true;
     }
 }

@@ -1,25 +1,28 @@
 package bh;
 
-import org.telegram.messenger.MediaDataController;
-public final class a {
-    public boolean f4360a;
-    public long f4361b;
+import android.animation.ValueAnimator;
+public final class a implements ValueAnimator.AnimatorUpdateListener {
+    public final int f3983a;
+    public final c f3984b;
+    public final l0 f3985c;
 
-    public void a(long j10) {
-        this.f4361b = MediaDataController.calcHash(this.f4361b, j10);
+    public a(c cVar, l0 l0Var, int i10) {
+        this.f3983a = i10;
+        this.f3984b = cVar;
+        this.f3985c = l0Var;
     }
 
-    public void b(boolean z10) {
-        long j10;
-        if (z10) {
-            j10 = 1;
-        } else {
-            j10 = 0;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f3983a) {
+            case 0:
+                this.f3984b.f3998f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f3985c.invalidate();
+                return;
+            default:
+                this.f3984b.f3998f = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                this.f3985c.invalidate();
+                return;
         }
-        a(j10);
-    }
-
-    public void c(float f7) {
-        a(Float.floatToIntBits(f7));
     }
 }

@@ -1,22 +1,22 @@
 package m4;
 public final class g0 implements Runnable {
-    public final int f16603a;
-    public final p0 f16604b;
+    public final int f18065a;
+    public final p0 f18066b;
 
     public g0(p0 p0Var, int i10) {
-        this.f16603a = i10;
-        this.f16604b = p0Var;
+        this.f18065a = i10;
+        this.f18066b = p0Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f16603a) {
+        switch (this.f18065a) {
             case 0:
-                p0 p0Var = this.f16604b;
-                e2.m0.W(p0Var.f16724g.f16589l, new g0(p0Var, 1));
+                p0 p0Var = this.f18066b;
+                e2.n0.W(p0Var.f18181g.f18049l, new g0(p0Var, 1));
                 return;
             default:
-                this.f16604b.N();
+                this.f18066b.N();
                 return;
         }
     }

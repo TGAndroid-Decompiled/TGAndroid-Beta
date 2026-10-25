@@ -2,5 +2,5 @@ package org.telegram.ui.Components;
 
 import android.view.View;
 public interface bm0 {
-    boolean d(int i10, View view);
+    boolean c(int i10, View view);
 }

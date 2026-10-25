@@ -1,71 +1,69 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.AndroidUtilities;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.Locale;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class g31 implements org.telegram.ui.Components.fp0 {
-    public final org.telegram.ui.Components.gp0 f37432a;
-    public final j31 f37433b;
-    public final j31 f37434c;
-    public final j31 d;
-    public final h31 e;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class g31 extends org.telegram.ui.ActionBar.r2 {
+    public static final int[] f39532c = {750000, 1000000, 1200000, 2000000};
+    public org.telegram.ui.Components.mm0 f39533a;
+    public f31 f39534b;
 
-    public g31(h31 h31Var, org.telegram.ui.Components.gp0 gp0Var, j31 j31Var, j31 j31Var2, j31 j31Var3) {
-        this.e = h31Var;
-        this.f37432a = gp0Var;
-        this.f37433b = j31Var;
-        this.f37434c = j31Var2;
-        this.d = j31Var3;
-    }
-
-    @Override
-    public final void L(float f7, boolean z10) {
-        long j10;
-        SaveToGallerySettingsActivity saveToGallerySettingsActivity = this.e.d;
-        boolean isAttachedToWindow = this.f37432a.isAttachedToWindow();
-        if (f7 > 0.7f) {
-            j10 = (((float) 4089446400L) * ((f7 - 0.7f) / 0.3f)) + ((float) 104857600);
+    public static String V(int i10) {
+        if (i10 % 1000000 == 0) {
+            return (i10 / 1000000) + " Mbps";
+        } else if (i10 > 1000000) {
+            return String.format(Locale.US, "%.1f Mbps", Float.valueOf(i10 / 1000000.0f));
         } else {
-            j10 = (((float) 104333312) * (f7 / 0.7f)) + 524288.0f;
-        }
-        int i10 = (f7 > 1.0f ? 1 : (f7 == 1.0f ? 0 : -1));
-        j31 j31Var = this.d;
-        j31 j31Var2 = this.f37433b;
-        j31 j31Var3 = this.f37434c;
-        if (i10 >= 0) {
-            j31Var2.e(false, isAttachedToWindow);
-            j31Var3.e(false, isAttachedToWindow);
-            j31Var.e(true, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(j31Var3, false, 0.8f, isAttachedToWindow);
-        } else if (f7 == 0.0f) {
-            j31Var2.e(true, isAttachedToWindow);
-            j31Var3.e(false, isAttachedToWindow);
-            j31Var.e(false, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(j31Var3, false, 0.8f, isAttachedToWindow);
-        } else {
-            j31Var3.c(LocaleController.formatString("UpToFileSize", R.string.UpToFileSize, AndroidUtilities.formatFileSize(j10, true, false)), false, true);
-            j31Var2.e(false, isAttachedToWindow);
-            j31Var3.e(true, isAttachedToWindow);
-            j31Var.e(false, isAttachedToWindow);
-            AndroidUtilities.updateViewVisibilityAnimated(j31Var3, true, 0.8f, isAttachedToWindow);
-        }
-        if (z10) {
-            saveToGallerySettingsActivity.Y().limitVideo = j10;
-            saveToGallerySettingsActivity.Z();
+            return (i10 / 1000) + " kbps";
         }
     }
 
-    @Override
-    public final int Y() {
-        return 0;
+    public final void W(int i10, CharSequence[] charSequenceArr, org.telegram.ui.Components.voip.c1 c1Var) {
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(getParentActivity());
+        alertDialog$Builder.f22366a.R = LocaleController.getString(i10);
+        alertDialog$Builder.f(charSequenceArr, new ng.j(11, this, c1Var));
+        showDialog(alertDialog$Builder.f22366a);
     }
 
     @Override
-    public final CharSequence getContentDescription() {
-        return null;
+    public final View createView(Context context) {
+        setHasOwnBackground(true);
+        this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.simpleActionBar.setTitle(LocaleController.getString(R.string.RoundVideoSettings));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new p11(this, 3));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
+        this.f39533a = mm0Var;
+        mm0Var.u1();
+        this.f39533a.setSectionsDrawBackground(true);
+        this.f39533a.setLayoutManager(new s4.c0());
+        this.f39533a.setVerticalScrollBarEnabled(false);
+        org.telegram.ui.Components.mm0 mm0Var2 = this.f39533a;
+        f31 f31Var = new f31(context);
+        this.f39534b = f31Var;
+        mm0Var2.setAdapter(f31Var);
+        this.f39533a.setOnItemClickListener(new m11(this, 3));
+        frameLayout.addView(this.f39533a, org.telegram.ui.Components.gb1.g(-1.0f, -1));
+        return this.fragmentView;
     }
 
     @Override
-    public final void v() {
+    public final org.telegram.ui.Components.mm0 getListViewForSimpleGlass() {
+        return this.f39533a;
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

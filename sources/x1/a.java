@@ -1,21 +1,21 @@
 package x1;
 
-import a6.d;
+import a8.gg;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import c5.y;
+import b6.d;
 import com.google.android.gms.common.api.m;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
-import s9.i;
+import t9.i;
 public final class a implements Runnable {
-    public static Handler f49556f;
+    public static Handler f51283f;
     public final d e;
-    public volatile int f49558b = 1;
-    public final AtomicBoolean f49559c = new AtomicBoolean();
+    public volatile int f51285b = 1;
+    public final AtomicBoolean f51286c = new AtomicBoolean();
     public final AtomicBoolean d = new AtomicBoolean();
-    public final b f49557a = new b(this, new y(this, 7));
+    public final b f51284a = new b(this, new gg(this, 7));
 
     public a(d dVar) {
         this.e = dVar;
@@ -24,13 +24,13 @@ public final class a implements Runnable {
     public final void a() {
         d dVar = this.e;
         int i10 = 0;
-        for (m mVar : dVar.f300j) {
+        for (m mVar : dVar.f3663j) {
             if (mVar.d(dVar)) {
                 i10++;
             }
         }
         try {
-            dVar.f299i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
+            dVar.f3662i.tryAcquire(i10, 5L, TimeUnit.SECONDS);
         } catch (InterruptedException e) {
             Log.i("GACSignInLoader", "Unexpected InterruptedException", e);
             Thread.currentThread().interrupt();
@@ -41,10 +41,10 @@ public final class a implements Runnable {
         Handler handler;
         synchronized (a.class) {
             try {
-                if (f49556f == null) {
-                    f49556f = new Handler(Looper.getMainLooper());
+                if (f51283f == null) {
+                    f51283f = new Handler(Looper.getMainLooper());
                 }
-                handler = f49556f;
+                handler = f51283f;
             } catch (Throwable th2) {
                 throw th2;
             }

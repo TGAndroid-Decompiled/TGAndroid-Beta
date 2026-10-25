@@ -1,34 +1,31 @@
 package org.telegram.messenger;
 
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class g7 implements Runnable {
-    public final int f18477a;
-    public final MediaDataController f18478b;
-    public final TLRPC.TL_messages_stickerSet f18479c;
+public final class g7 implements RequestDelegate {
+    public final int f20146a;
+    public final int f20147b;
+    public final String f20148c;
+    public final String d;
+    public final BaseController e;
 
-    public g7(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, int i10) {
-        this.f18477a = i10;
-        this.f18478b = mediaDataController;
-        this.f18479c = tL_messages_stickerSet;
+    public g7(BaseController baseController, int i10, String str, String str2, int i11) {
+        this.f20146a = i11;
+        this.e = baseController;
+        this.f20147b = i10;
+        this.f20148c = str;
+        this.d = str2;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18477a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f20146a) {
             case 0:
-                this.f18478b.lambda$saveStickerSetIntoCache$40(this.f18479c);
-                return;
-            case 1:
-                this.f18478b.lambda$loadGroupStickerSet$45(this.f18479c);
-                return;
-            case 2:
-                this.f18478b.lambda$loadGroupStickerSet$43(this.f18479c);
-                return;
-            case 3:
-                this.f18478b.lambda$putSetToCache$47(this.f18479c);
+                ((MediaDataController) this.e).lambda$fetchNewEmojiKeywords$213(this.f20147b, this.f20148c, this.d, tLObject, tL_error);
                 return;
             default:
-                this.f18478b.lambda$replaceStickerSet$28(this.f18479c);
+                ((MessagesController) this.e).lambda$checkPromoInfoInternal$168(this.f20147b, this.f20148c, this.d, tLObject, tL_error);
                 return;
         }
     }

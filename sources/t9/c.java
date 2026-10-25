@@ -1,101 +1,34 @@
 package t9;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.util.Log;
-import b5.g;
-import c5.y;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import com.google.firebase.messaging.r;
-import com.google.firebase.messaging.u;
-import java.util.concurrent.atomic.AtomicMarkableReference;
-import m.s3;
-import x9.m;
-import x9.o;
-public final class c {
-    public final o f47356a;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+import li.e3;
+public final class c implements g {
+    public final int f48732a;
+    public final f f48733b;
+    public final Runnable f48734c;
+    public final long d;
+    public final long e;
+    public final TimeUnit f48735f;
 
-    public c(o oVar) {
-        this.f47356a = oVar;
+    public c(f fVar, Runnable runnable, long j10, long j11, TimeUnit timeUnit, int i10) {
+        this.f48732a = i10;
+        this.f48733b = fVar;
+        this.f48734c = runnable;
+        this.d = j10;
+        this.e = j11;
+        this.f48735f = timeUnit;
     }
 
-    public final void a(Throwable th2) {
-        if (th2 == null) {
-            Log.w("FirebaseCrashlytics", "A null value was passed to recordException. Ignoring.", null);
-            return;
-        }
-        m mVar = this.f47356a.f50159f;
-        Thread currentThread = Thread.currentThread();
-        mVar.getClass();
-        long currentTimeMillis = System.currentTimeMillis();
-        r rVar = mVar.e;
-        u uVar = new u(mVar, currentTimeMillis, th2, currentThread);
-        rVar.getClass();
-        rVar.v(new y(uVar, 9));
-    }
-
-    public final void b() {
-        o oVar = this.f47356a;
-        Boolean bool = Boolean.TRUE;
-        x9.r rVar = oVar.f50157b;
-        synchronized (rVar) {
-            rVar.f50179f = false;
-            rVar.f50180g = bool;
-            SharedPreferences.Editor edit = rVar.f50176a.edit();
-            edit.putBoolean("firebase_crashlytics_collection_enabled", true);
-            edit.apply();
-            synchronized (rVar.f50178c) {
-                if (rVar.a()) {
-                    if (!rVar.e) {
-                        rVar.d.trySetResult(null);
-                        rVar.e = true;
-                    }
-                } else if (rVar.e) {
-                    rVar.d = new TaskCompletionSource();
-                    rVar.e = false;
-                }
-            }
-        }
-    }
-
-    public final void c(String str, String str2) {
-        m mVar = this.f47356a.f50159f;
-        mVar.getClass();
-        try {
-            ((c2.b) mVar.d.d).x(str, str2);
-        } catch (IllegalArgumentException e) {
-            Context context = mVar.f50140a;
-            if (context != null && (context.getApplicationInfo().flags & 2) != 0) {
-                throw e;
-            }
-            Log.e("FirebaseCrashlytics", "Attempting to set custom attribute with null key, ignoring.", null);
-        }
-    }
-
-    public final void d(String str) {
-        boolean equals;
-        s3 s3Var = this.f47356a.f50159f.d;
-        s3Var.getClass();
-        String b10 = y9.d.b(1024, str);
-        synchronized (((AtomicMarkableReference) s3Var.h)) {
-            try {
-                String str2 = (String) ((AtomicMarkableReference) s3Var.h).getReference();
-                if (b10 == null) {
-                    if (str2 == null) {
-                        equals = true;
-                    } else {
-                        equals = false;
-                    }
-                } else {
-                    equals = b10.equals(str2);
-                }
-                if (equals) {
-                    return;
-                }
-                ((AtomicMarkableReference) s3Var.h).set(b10, true);
-                ((r) s3Var.f16398b).v(new g(s3Var, 1));
-            } finally {
-            }
+    @Override
+    public final ScheduledFuture a(e3 e3Var) {
+        switch (this.f48732a) {
+            case 0:
+                f fVar = this.f48733b;
+                return fVar.f48743b.scheduleAtFixedRate(new d(fVar, this.f48734c, e3Var, 0), this.d, this.e, this.f48735f);
+            default:
+                f fVar2 = this.f48733b;
+                return fVar2.f48743b.scheduleWithFixedDelay(new d(fVar2, this.f48734c, e3Var, 2), this.d, this.e, this.f48735f);
         }
     }
 }

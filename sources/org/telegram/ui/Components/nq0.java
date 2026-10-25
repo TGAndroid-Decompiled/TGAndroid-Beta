@@ -1,47 +1,91 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class nq0 implements hg.f0 {
-    public final hr0 f28997a;
+import android.content.Context;
+import android.graphics.Canvas;
+import org.telegram.messenger.AndroidUtilities;
+public final class nq0 extends mm0 {
+    public final int f31062f3;
+    public final mr0 f31063g3;
 
-    public nq0(hr0 hr0Var) {
-        this.f28997a = hr0Var;
+    public nq0(mr0 mr0Var, Context context, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
+        super(context, u6Var);
+        this.f31062f3 = i10;
+        this.f31063g3 = mr0Var;
     }
 
     @Override
-    public final void a(a0.h hVar, ArrayList arrayList) {
-        int i10;
-        int i11;
-        int i12;
-        int i13 = 0;
-        while (i13 < arrayList.size()) {
-            TLObject tLObject = ((hg.g0) arrayList.get(i13)).f11893a;
-            if ((tLObject instanceof TLRPC.Chat) && !ChatObject.canWriteToChat((TLRPC.Chat) tLObject)) {
-                arrayList.remove(i13);
-                i13--;
-            }
-            i13++;
+    public final boolean E0(float f7) {
+        float f10;
+        float f11;
+        switch (this.f31062f3) {
+            case 0:
+                mr0 mr0Var = this.f31063g3;
+                if (mr0Var.f30708i0 && mr0Var.f30715p0[1] != null) {
+                    f10 = 111.0f;
+                } else {
+                    f10 = 58.0f;
+                }
+                if (f7 >= AndroidUtilities.dp(f10) + mr0Var.H0.f13451b) {
+                    return true;
+                }
+                return false;
+            default:
+                mr0 mr0Var2 = this.f31063g3;
+                if (mr0Var2.f30708i0 && mr0Var2.f30715p0[1] != null) {
+                    f11 = 111.0f;
+                } else {
+                    f11 = 58.0f;
+                }
+                if (f7 >= AndroidUtilities.dp(f11) + mr0Var2.H0.f13451b) {
+                    return true;
+                }
+                return false;
         }
-        hr0 hr0Var = this.f28997a;
-        hr0Var.F0 = arrayList;
-        for (int i14 = 0; i14 < hr0Var.F0.size(); i14++) {
-            hg.g0 g0Var = (hg.g0) hr0Var.F0.get(i14);
-            TLObject tLObject2 = g0Var.f11893a;
-            if (tLObject2 instanceof TLRPC.User) {
-                i12 = ((org.telegram.ui.ActionBar.h3) hr0Var).currentAccount;
-                MessagesController.getInstance(i12).putUser((TLRPC.User) g0Var.f11893a, true);
-            } else if (tLObject2 instanceof TLRPC.Chat) {
-                i11 = ((org.telegram.ui.ActionBar.h3) hr0Var).currentAccount;
-                MessagesController.getInstance(i11).putChat((TLRPC.Chat) g0Var.f11893a, true);
-            } else if (tLObject2 instanceof TLRPC.EncryptedChat) {
-                i10 = ((org.telegram.ui.ActionBar.h3) hr0Var).currentAccount;
-                MessagesController.getInstance(i10).putEncryptedChat((TLRPC.EncryptedChat) g0Var.f11893a, true);
-            }
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7;
+        float f10;
+        switch (this.f31062f3) {
+            case 0:
+                mr0 mr0Var = this.f31063g3;
+                mm0 mm0Var = mr0Var.F;
+                if (mm0Var.getVisibility() != 8) {
+                    canvas.save();
+                    int i10 = mr0Var.f30716q0;
+                    if (mr0Var.f30708i0 && mr0Var.f30715p0[1] != null) {
+                        f7 = 111.0f;
+                    } else {
+                        f7 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f7) + i10, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (mm0Var.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                mr0 mr0Var2 = this.f31063g3;
+                mm0 mm0Var2 = mr0Var2.F;
+                if (mm0Var2.getVisibility() != 8) {
+                    canvas.save();
+                    int i11 = mr0Var2.f30716q0;
+                    if (mr0Var2.f30708i0 && mr0Var2.f30715p0[1] != null) {
+                        f10 = 111.0f;
+                    } else {
+                        f10 = 58.0f;
+                    }
+                    canvas.clipRect(0, AndroidUtilities.dp(f10) + i11, getWidth(), getHeight());
+                }
+                super.draw(canvas);
+                if (mm0Var2.getVisibility() != 8) {
+                    canvas.restore();
+                    return;
+                }
+                return;
         }
-        hr0Var.N.l();
     }
 }

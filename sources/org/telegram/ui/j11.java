@@ -1,25 +1,32 @@
 package org.telegram.ui;
+public final class j11 implements Runnable {
+    public final int f40389a;
+    public final l11 f40390b;
+    public final int f40391c;
 
-import android.view.View;
-public final class j11 implements org.telegram.ui.Components.bm0, org.telegram.ui.ActionBar.z1 {
-    public final ProxyListActivity f38432a;
-
-    public j11(ProxyListActivity proxyListActivity) {
-        this.f38432a = proxyListActivity;
+    public j11(l11 l11Var, int i10, int i11) {
+        this.f40389a = i11;
+        this.f40390b = l11Var;
+        this.f40391c = i10;
     }
 
     @Override
-    public boolean d(int i10, View view) {
-        ProxyListActivity proxyListActivity = this.f38432a;
-        if (i10 >= proxyListActivity.f34073n && i10 < proxyListActivity.f34074r) {
-            proxyListActivity.f34069a.G(i10);
-            return true;
+    public final void run() {
+        switch (this.f40389a) {
+            case 0:
+                l11 l11Var = this.f40390b;
+                org.telegram.ui.Components.t91 t91Var = l11Var.f41109b;
+                k11 k11Var = l11Var.d;
+                int i10 = this.f40391c;
+                t91Var.d(i10, k11Var.i(i10));
+                return;
+            default:
+                l11 l11Var2 = this.f40390b;
+                org.telegram.ui.Components.t91 t91Var2 = l11Var2.f41109b;
+                k11 k11Var2 = l11Var2.d;
+                int i11 = this.f40391c;
+                t91Var2.d(i11, k11Var2.i(i11));
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        ProxyListActivity.V(this.f38432a);
     }
 }

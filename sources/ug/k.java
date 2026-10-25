@@ -1,14 +1,47 @@
 package ug;
 
-import org.telegram.ui.ActionBar.g6;
-public final class k {
-    public final y f48137a;
-    public final g6 f48138b;
-    public final l f48139c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class k extends AnimatorListenerAdapter {
+    public final int f49804a;
+    public final n f49805b;
 
-    public k(l lVar, y yVar, g6 g6Var) {
-        this.f48139c = lVar;
-        this.f48137a = yVar;
-        this.f48138b = g6Var;
+    public k(n nVar, int i10) {
+        this.f49804a = i10;
+        this.f49805b = nVar;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f49804a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                n nVar = this.f49805b;
+                nVar.f49813b.d = 0.0f;
+                nVar.f49817d0 = null;
+                nVar.j(nVar.L);
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                n nVar2 = this.f49805b;
+                nVar2.f49813b.d = 0.0f;
+                nVar2.f49817d0 = null;
+                nVar2.j(nVar2.L);
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                n nVar3 = this.f49805b;
+                nVar3.f49813b.d = 0.0f;
+                nVar3.f49817d0 = null;
+                nVar3.j(nVar3.L);
+                return;
+            default:
+                super.onAnimationEnd(animator);
+                n nVar4 = this.f49805b;
+                nVar4.f49813b.d = 0.0f;
+                nVar4.f49817d0 = null;
+                nVar4.j(nVar4.L);
+                return;
+        }
     }
 }

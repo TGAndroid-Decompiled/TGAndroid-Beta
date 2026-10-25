@@ -27,49 +27,49 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import r0.j0;
 public class k implements Menu {
-    public static final int[] f15815y = {1, 4, 5, 3, 2, 0};
-    public final Context f15816a;
-    public final Resources f15817b;
-    public boolean f15818c;
+    public static final int[] f16718y = {1, 4, 5, 3, 2, 0};
+    public final Context f16719a;
+    public final Resources f16720b;
+    public boolean f16721c;
     public final boolean d;
     public i e;
-    public final ArrayList f15819f;
-    public final ArrayList f15820g;
+    public final ArrayList f16722f;
+    public final ArrayList f16723g;
     public boolean h;
-    public final ArrayList f15821i;
-    public final ArrayList f15822j;
-    public boolean f15823k;
-    public CharSequence f15825m;
-    public Drawable f15826n;
-    public View f15827o;
+    public final ArrayList f16724i;
+    public final ArrayList f16725j;
+    public boolean f16726k;
+    public CharSequence f16728m;
+    public Drawable f16729n;
+    public View f16730o;
     public m v;
-    public boolean f15835x;
-    public int f15824l = 0;
-    public boolean f15828p = false;
-    public boolean f15829q = false;
-    public boolean f15830r = false;
-    public boolean f15831s = false;
-    public final ArrayList f15832t = new ArrayList();
-    public final CopyOnWriteArrayList f15833u = new CopyOnWriteArrayList();
-    public boolean f15834w = false;
+    public boolean f16738x;
+    public int f16727l = 0;
+    public boolean f16731p = false;
+    public boolean f16732q = false;
+    public boolean f16733r = false;
+    public boolean f16734s = false;
+    public final ArrayList f16735t = new ArrayList();
+    public final CopyOnWriteArrayList f16736u = new CopyOnWriteArrayList();
+    public boolean f16737w = false;
 
     public k(Context context) {
         boolean z10;
         boolean z11 = false;
-        this.f15816a = context;
+        this.f16719a = context;
         Resources resources = context.getResources();
-        this.f15817b = resources;
-        this.f15819f = new ArrayList();
-        this.f15820g = new ArrayList();
+        this.f16720b = resources;
+        this.f16722f = new ArrayList();
+        this.f16723g = new ArrayList();
         this.h = true;
-        this.f15821i = new ArrayList();
-        this.f15822j = new ArrayList();
-        this.f15823k = true;
+        this.f16724i = new ArrayList();
+        this.f16725j = new ArrayList();
+        this.f16726k = true;
         if (resources.getConfiguration().keyboard != 1) {
             ViewConfiguration viewConfiguration = ViewConfiguration.get(context);
-            Method method = j0.f45244a;
+            Method method = j0.f47109a;
             if (Build.VERSION.SDK_INT >= 28) {
-                z10 = b5.d.B(viewConfiguration);
+                z10 = c5.d.B(viewConfiguration);
             } else {
                 Resources resources2 = context.getResources();
                 int identifier = resources2.getIdentifier("config_showMenuShortcutsWhenKeyboardPresent", "bool", "android");
@@ -90,9 +90,9 @@ public class k implements Menu {
         int i13;
         int i14 = ((-65536) & i12) >> 16;
         if (i14 >= 0 && i14 < 6) {
-            int i15 = (f15815y[i14] << 16) | (65535 & i12);
-            m mVar = new m(this, i10, i11, i12, i15, charSequence, this.f15824l);
-            ArrayList arrayList = this.f15819f;
+            int i15 = (f16718y[i14] << 16) | (65535 & i12);
+            m mVar = new m(this, i10, i11, i12, i15, charSequence, this.f16727l);
+            ArrayList arrayList = this.f16722f;
             int size = arrayList.size() - 1;
             while (true) {
                 if (size >= 0) {
@@ -123,7 +123,7 @@ public class k implements Menu {
         int i14;
         Intent intent2;
         int i15;
-        PackageManager packageManager = this.f15816a.getPackageManager();
+        PackageManager packageManager = this.f16719a.getPackageManager();
         List<ResolveInfo> queryIntentActivityOptions = packageManager.queryIntentActivityOptions(componentName, intentArr, intent, 0);
         if (queryIntentActivityOptions != null) {
             i14 = queryIntentActivityOptions.size();
@@ -146,7 +146,7 @@ public class k implements Menu {
             intent3.setComponent(new ComponentName(activityInfo.applicationInfo.packageName, activityInfo.name));
             m a2 = a(i10, i11, i12, resolveInfo.loadLabel(packageManager));
             a2.setIcon(resolveInfo.loadIcon(packageManager));
-            a2.f15843g = intent3;
+            a2.f16746g = intent3;
             if (menuItemArr != null && (i15 = resolveInfo.specificIndex) >= 0) {
                 menuItemArr[i15] = a2;
             }
@@ -160,17 +160,17 @@ public class k implements Menu {
     }
 
     public final void b(x xVar, Context context) {
-        this.f15833u.add(new WeakReference(xVar));
+        this.f16736u.add(new WeakReference(xVar));
         xVar.i(context, this);
-        this.f15823k = true;
+        this.f16726k = true;
     }
 
     public final void c(boolean z10) {
-        if (this.f15831s) {
+        if (this.f16734s) {
             return;
         }
-        this.f15831s = true;
-        CopyOnWriteArrayList copyOnWriteArrayList = this.f15833u;
+        this.f16734s = true;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.f16736u;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             WeakReference weakReference = (WeakReference) it.next();
@@ -178,10 +178,10 @@ public class k implements Menu {
             if (xVar == null) {
                 copyOnWriteArrayList.remove(weakReference);
             } else {
-                xVar.d(this, z10);
+                xVar.g(this, z10);
             }
         }
-        this.f15831s = false;
+        this.f16734s = false;
     }
 
     @Override
@@ -190,14 +190,14 @@ public class k implements Menu {
         if (mVar != null) {
             d(mVar);
         }
-        this.f15819f.clear();
+        this.f16722f.clear();
         p(true);
     }
 
     public final void clearHeader() {
-        this.f15826n = null;
-        this.f15825m = null;
-        this.f15827o = null;
+        this.f16729n = null;
+        this.f16728m = null;
+        this.f16730o = null;
         p(false);
     }
 
@@ -207,7 +207,7 @@ public class k implements Menu {
     }
 
     public boolean d(m mVar) {
-        CopyOnWriteArrayList copyOnWriteArrayList = this.f15833u;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.f16736u;
         boolean z10 = false;
         if (!copyOnWriteArrayList.isEmpty() && this.v == mVar) {
             w();
@@ -234,14 +234,14 @@ public class k implements Menu {
 
     public boolean e(k kVar, MenuItem menuItem) {
         i iVar = this.e;
-        if (iVar != null && iVar.p(kVar, menuItem)) {
+        if (iVar != null && iVar.F(kVar, menuItem)) {
             return true;
         }
         return false;
     }
 
     public boolean f(m mVar) {
-        CopyOnWriteArrayList copyOnWriteArrayList = this.f15833u;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.f16736u;
         boolean z10 = false;
         if (copyOnWriteArrayList.isEmpty()) {
             return false;
@@ -270,14 +270,14 @@ public class k implements Menu {
     @Override
     public final MenuItem findItem(int i10) {
         MenuItem findItem;
-        ArrayList arrayList = this.f15819f;
+        ArrayList arrayList = this.f16722f;
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             m mVar = (m) arrayList.get(i11);
-            if (mVar.f15839a == i10) {
+            if (mVar.f16742a == i10) {
                 return mVar;
             }
-            if (mVar.hasSubMenu() && (findItem = mVar.f15850o.findItem(i10)) != null) {
+            if (mVar.hasSubMenu() && (findItem = mVar.f16753o.findItem(i10)) != null) {
                 return findItem;
             }
         }
@@ -286,7 +286,7 @@ public class k implements Menu {
 
     public final m g(int i10, KeyEvent keyEvent) {
         char c10;
-        ArrayList arrayList = this.f15832t;
+        ArrayList arrayList = this.f16735t;
         arrayList.clear();
         h(arrayList, i10, keyEvent);
         if (arrayList.isEmpty()) {
@@ -303,7 +303,7 @@ public class k implements Menu {
         for (int i11 = 0; i11 < size; i11++) {
             m mVar = (m) arrayList.get(i11);
             if (n10) {
-                c10 = mVar.f15845j;
+                c10 = mVar.f16748j;
             } else {
                 c10 = mVar.h;
             }
@@ -317,7 +317,7 @@ public class k implements Menu {
 
     @Override
     public final MenuItem getItem(int i10) {
-        return (MenuItem) this.f15819f.get(i10);
+        return (MenuItem) this.f16722f.get(i10);
     }
 
     public final void h(List list, int i10, KeyEvent keyEvent) {
@@ -327,22 +327,22 @@ public class k implements Menu {
         int modifiers = keyEvent.getModifiers();
         KeyCharacterMap.KeyData keyData = new KeyCharacterMap.KeyData();
         if (keyEvent.getKeyData(keyData) || i10 == 67) {
-            ArrayList arrayList = this.f15819f;
+            ArrayList arrayList = this.f16722f;
             int size = arrayList.size();
             for (int i12 = 0; i12 < size; i12++) {
                 m mVar = (m) arrayList.get(i12);
                 if (mVar.hasSubMenu()) {
-                    mVar.f15850o.h(list, i10, keyEvent);
+                    mVar.f16753o.h(list, i10, keyEvent);
                 }
                 if (n10) {
-                    c10 = mVar.f15845j;
+                    c10 = mVar.f16748j;
                 } else {
                     c10 = mVar.h;
                 }
                 if (n10) {
-                    i11 = mVar.f15846k;
+                    i11 = mVar.f16749k;
                 } else {
-                    i11 = mVar.f15844i;
+                    i11 = mVar.f16747i;
                 }
                 if ((modifiers & 69647) == (i11 & 69647) && c10 != 0) {
                     char[] cArr = keyData.meta;
@@ -356,8 +356,8 @@ public class k implements Menu {
 
     @Override
     public final boolean hasVisibleItems() {
-        if (!this.f15835x) {
-            ArrayList arrayList = this.f15819f;
+        if (!this.f16738x) {
+            ArrayList arrayList = this.f16722f;
             int size = arrayList.size();
             for (int i10 = 0; i10 < size; i10++) {
                 if (((m) arrayList.get(i10)).isVisible()) {
@@ -371,10 +371,10 @@ public class k implements Menu {
 
     public final void i() {
         ArrayList l4 = l();
-        if (!this.f15823k) {
+        if (!this.f16726k) {
             return;
         }
-        CopyOnWriteArrayList copyOnWriteArrayList = this.f15833u;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.f16736u;
         Iterator it = copyOnWriteArrayList.iterator();
         boolean z10 = false;
         while (it.hasNext()) {
@@ -386,15 +386,15 @@ public class k implements Menu {
                 z10 |= xVar.c();
             }
         }
-        ArrayList arrayList = this.f15821i;
-        ArrayList arrayList2 = this.f15822j;
+        ArrayList arrayList = this.f16724i;
+        ArrayList arrayList2 = this.f16725j;
         if (z10) {
             arrayList.clear();
             arrayList2.clear();
             int size = l4.size();
             for (int i10 = 0; i10 < size; i10++) {
                 m mVar = (m) l4.get(i10);
-                if ((mVar.f15858x & 32) == 32) {
+                if ((mVar.f16761x & 32) == 32) {
                     arrayList.add(mVar);
                 } else {
                     arrayList2.add(mVar);
@@ -405,7 +405,7 @@ public class k implements Menu {
             arrayList2.clear();
             arrayList2.addAll(l());
         }
-        this.f15823k = false;
+        this.f16726k = false;
     }
 
     @Override
@@ -422,12 +422,12 @@ public class k implements Menu {
 
     public final ArrayList l() {
         boolean z10 = this.h;
-        ArrayList arrayList = this.f15820g;
+        ArrayList arrayList = this.f16723g;
         if (!z10) {
             return arrayList;
         }
         arrayList.clear();
-        ArrayList arrayList2 = this.f15819f;
+        ArrayList arrayList2 = this.f16722f;
         int size = arrayList2.size();
         for (int i10 = 0; i10 < size; i10++) {
             m mVar = (m) arrayList2.get(i10);
@@ -436,16 +436,16 @@ public class k implements Menu {
             }
         }
         this.h = false;
-        this.f15823k = true;
+        this.f16726k = true;
         return arrayList;
     }
 
     public boolean m() {
-        return this.f15834w;
+        return this.f16737w;
     }
 
     public boolean n() {
-        return this.f15818c;
+        return this.f16721c;
     }
 
     public boolean o() {
@@ -453,12 +453,12 @@ public class k implements Menu {
     }
 
     public final void p(boolean z10) {
-        if (!this.f15828p) {
+        if (!this.f16731p) {
             if (z10) {
                 this.h = true;
-                this.f15823k = true;
+                this.f16726k = true;
             }
-            CopyOnWriteArrayList copyOnWriteArrayList = this.f15833u;
+            CopyOnWriteArrayList copyOnWriteArrayList = this.f16736u;
             if (!copyOnWriteArrayList.isEmpty()) {
                 w();
                 Iterator it = copyOnWriteArrayList.iterator();
@@ -468,7 +468,7 @@ public class k implements Menu {
                     if (xVar == null) {
                         copyOnWriteArrayList.remove(weakReference);
                     } else {
-                        xVar.e();
+                        xVar.d();
                     }
                 }
                 v();
@@ -476,9 +476,9 @@ public class k implements Menu {
             }
             return;
         }
-        this.f15829q = true;
+        this.f16732q = true;
         if (z10) {
-            this.f15830r = true;
+            this.f16733r = true;
         }
     }
 
@@ -490,9 +490,9 @@ public class k implements Menu {
     @Override
     public final boolean performShortcut(int i10, KeyEvent keyEvent, int i11) {
         boolean z10;
-        m g10 = g(i10, keyEvent);
-        if (g10 != null) {
-            z10 = q(g10, null, i11);
+        m g7 = g(i10, keyEvent);
+        if (g7 != null) {
+            z10 = q(g7, null, i11);
         } else {
             z10 = false;
         }
@@ -507,7 +507,7 @@ public class k implements Menu {
     }
 
     public final void r(x xVar) {
-        CopyOnWriteArrayList copyOnWriteArrayList = this.f15833u;
+        CopyOnWriteArrayList copyOnWriteArrayList = this.f16736u;
         Iterator it = copyOnWriteArrayList.iterator();
         while (it.hasNext()) {
             WeakReference weakReference = (WeakReference) it.next();
@@ -520,13 +520,13 @@ public class k implements Menu {
 
     @Override
     public final void removeGroup(int i10) {
-        ArrayList arrayList = this.f15819f;
+        ArrayList arrayList = this.f16722f;
         int size = arrayList.size();
         int i11 = 0;
         int i12 = 0;
         while (true) {
             if (i12 < size) {
-                if (((m) arrayList.get(i12)).f15840b == i10) {
+                if (((m) arrayList.get(i12)).f16743b == i10) {
                     break;
                 }
                 i12++;
@@ -539,7 +539,7 @@ public class k implements Menu {
             int size2 = arrayList.size() - i12;
             while (true) {
                 int i13 = i11 + 1;
-                if (i11 >= size2 || ((m) arrayList.get(i12)).f15840b != i10) {
+                if (i11 >= size2 || ((m) arrayList.get(i12)).f16743b != i10) {
                     break;
                 }
                 if (i12 >= 0 && i12 < arrayList.size()) {
@@ -553,12 +553,12 @@ public class k implements Menu {
 
     @Override
     public final void removeItem(int i10) {
-        ArrayList arrayList = this.f15819f;
+        ArrayList arrayList = this.f16722f;
         int size = arrayList.size();
         int i11 = 0;
         while (true) {
             if (i11 < size) {
-                if (((m) arrayList.get(i11)).f15839a == i10) {
+                if (((m) arrayList.get(i11)).f16742a == i10) {
                     break;
                 }
                 i11++;
@@ -577,7 +577,7 @@ public class k implements Menu {
         MenuItem findItem;
         if (bundle != null) {
             SparseArray<Parcelable> sparseParcelableArray = bundle.getSparseParcelableArray(j());
-            int size = this.f15819f.size();
+            int size = this.f16722f.size();
             for (int i10 = 0; i10 < size; i10++) {
                 MenuItem item = getItem(i10);
                 View actionView = item.getActionView();
@@ -598,18 +598,18 @@ public class k implements Menu {
     @Override
     public final void setGroupCheckable(int i10, boolean z10, boolean z11) {
         int i11;
-        ArrayList arrayList = this.f15819f;
+        ArrayList arrayList = this.f16722f;
         int size = arrayList.size();
         for (int i12 = 0; i12 < size; i12++) {
             m mVar = (m) arrayList.get(i12);
-            if (mVar.f15840b == i10) {
-                int i13 = mVar.f15858x & (-5);
+            if (mVar.f16743b == i10) {
+                int i13 = mVar.f16761x & (-5);
                 if (z11) {
                     i11 = 4;
                 } else {
                     i11 = 0;
                 }
-                mVar.f15858x = i13 | i11;
+                mVar.f16761x = i13 | i11;
                 mVar.setCheckable(z10);
             }
         }
@@ -617,16 +617,16 @@ public class k implements Menu {
 
     @Override
     public void setGroupDividerEnabled(boolean z10) {
-        this.f15834w = z10;
+        this.f16737w = z10;
     }
 
     @Override
     public final void setGroupEnabled(int i10, boolean z10) {
-        ArrayList arrayList = this.f15819f;
+        ArrayList arrayList = this.f16722f;
         int size = arrayList.size();
         for (int i11 = 0; i11 < size; i11++) {
             m mVar = (m) arrayList.get(i11);
-            if (mVar.f15840b == i10) {
+            if (mVar.f16743b == i10) {
                 mVar.setEnabled(z10);
             }
         }
@@ -635,13 +635,13 @@ public class k implements Menu {
     @Override
     public final void setGroupVisible(int i10, boolean z10) {
         int i11;
-        ArrayList arrayList = this.f15819f;
+        ArrayList arrayList = this.f16722f;
         int size = arrayList.size();
         boolean z11 = false;
         for (int i12 = 0; i12 < size; i12++) {
             m mVar = (m) arrayList.get(i12);
-            if (mVar.f15840b == i10) {
-                int i13 = mVar.f15858x;
+            if (mVar.f16743b == i10) {
+                int i13 = mVar.f16761x;
                 int i14 = i13 & (-9);
                 if (z10) {
                     i11 = 0;
@@ -649,7 +649,7 @@ public class k implements Menu {
                     i11 = 8;
                 }
                 int i15 = i14 | i11;
-                mVar.f15858x = i15;
+                mVar.f16761x = i15;
                 if (i13 != i15) {
                     z11 = true;
                 }
@@ -662,17 +662,17 @@ public class k implements Menu {
 
     @Override
     public void setQwertyMode(boolean z10) {
-        this.f15818c = z10;
+        this.f16721c = z10;
         p(false);
     }
 
     @Override
     public final int size() {
-        return this.f15819f.size();
+        return this.f16722f.size();
     }
 
     public final void t(Bundle bundle) {
-        int size = this.f15819f.size();
+        int size = this.f16722f.size();
         SparseArray<? extends Parcelable> sparseArray = null;
         for (int i10 = 0; i10 < size; i10++) {
             MenuItem item = getItem(i10);
@@ -697,49 +697,49 @@ public class k implements Menu {
 
     public final void u(int i10, CharSequence charSequence, int i11, Drawable drawable, View view) {
         if (view != null) {
-            this.f15827o = view;
-            this.f15825m = null;
-            this.f15826n = null;
+            this.f16730o = view;
+            this.f16728m = null;
+            this.f16729n = null;
         } else {
             if (i10 > 0) {
-                this.f15825m = this.f15817b.getText(i10);
+                this.f16728m = this.f16720b.getText(i10);
             } else if (charSequence != null) {
-                this.f15825m = charSequence;
+                this.f16728m = charSequence;
             }
             if (i11 > 0) {
-                this.f15826n = this.f15816a.getDrawable(i11);
+                this.f16729n = this.f16719a.getDrawable(i11);
             } else if (drawable != null) {
-                this.f15826n = drawable;
+                this.f16729n = drawable;
             }
-            this.f15827o = null;
+            this.f16730o = null;
         }
         p(false);
     }
 
     public final void v() {
-        this.f15828p = false;
-        if (this.f15829q) {
-            this.f15829q = false;
-            p(this.f15830r);
+        this.f16731p = false;
+        if (this.f16732q) {
+            this.f16732q = false;
+            p(this.f16733r);
         }
     }
 
     public final void w() {
-        if (!this.f15828p) {
-            this.f15828p = true;
-            this.f15829q = false;
-            this.f15830r = false;
+        if (!this.f16731p) {
+            this.f16731p = true;
+            this.f16732q = false;
+            this.f16733r = false;
         }
     }
 
     @Override
     public final MenuItem add(int i10) {
-        return a(0, 0, 0, this.f15817b.getString(i10));
+        return a(0, 0, 0, this.f16720b.getString(i10));
     }
 
     @Override
     public final SubMenu addSubMenu(int i10) {
-        return addSubMenu(0, 0, 0, this.f15817b.getString(i10));
+        return addSubMenu(0, 0, 0, this.f16720b.getString(i10));
     }
 
     @Override
@@ -750,20 +750,20 @@ public class k implements Menu {
     @Override
     public final SubMenu addSubMenu(int i10, int i11, int i12, CharSequence charSequence) {
         m a2 = a(i10, i11, i12, charSequence);
-        d0 d0Var = new d0(this.f15816a, this, a2);
-        a2.f15850o = d0Var;
+        d0 d0Var = new d0(this.f16719a, this, a2);
+        a2.f16753o = d0Var;
         d0Var.setHeaderTitle(a2.e);
         return d0Var;
     }
 
     @Override
     public final MenuItem add(int i10, int i11, int i12, int i13) {
-        return a(i10, i11, i12, this.f15817b.getString(i13));
+        return a(i10, i11, i12, this.f16720b.getString(i13));
     }
 
     @Override
     public final SubMenu addSubMenu(int i10, int i11, int i12, int i13) {
-        return addSubMenu(i10, i11, i12, this.f15817b.getString(i13));
+        return addSubMenu(i10, i11, i12, this.f16720b.getString(i13));
     }
 
     public k k() {

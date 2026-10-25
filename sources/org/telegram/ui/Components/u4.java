@@ -1,31 +1,23 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.widget.LinearLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class u4 extends LinearLayout {
-    public boolean f31014a;
-    public final od0 f31015b;
+import android.os.Vibrator;
+import android.text.Spanned;
+public final class u4 extends sq {
+    public final Context f33239b;
 
-    public u4(Context context, od0 od0Var) {
-        super(context);
-        this.f31015b = od0Var;
-        this.f31014a = false;
+    public u4(Context context) {
+        super(255);
+        this.f33239b = context;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        this.f31014a = true;
-        this.f31015b.getLayoutParams().height = AndroidUtilities.dp(42.0f) * 8;
-        this.f31014a = false;
-        super.onMeasure(i10, i11);
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f31014a) {
-            return;
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        Vibrator vibrator;
+        CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length() && (vibrator = (Vibrator) this.f33239b.getSystemService("vibrator")) != null) {
+            vibrator.vibrate(200L);
         }
-        super.requestLayout();
+        return filter;
     }
 }

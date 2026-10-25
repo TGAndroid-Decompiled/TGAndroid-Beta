@@ -1,47 +1,29 @@
 package org.telegram.ui.Components;
-public final class a1 implements org.telegram.ui.ActionBar.z1 {
-    public final int f24599a;
-    public final Runnable f24600b;
 
-    public a1(int i10, Runnable runnable) {
-        this.f24599a = i10;
-        this.f24600b = runnable;
+import android.view.View;
+public final class a1 implements View.OnClickListener {
+    public final int f26375a;
+    public final org.telegram.ui.Cells.y1[] f26376b;
+
+    public a1(org.telegram.ui.Cells.y1[] y1VarArr, int i10) {
+        this.f26375a = i10;
+        this.f26376b = y1VarArr;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f24599a) {
+    public final void onClick(View view) {
+        switch (this.f26375a) {
             case 0:
-                Runnable runnable = this.f24600b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
-                return;
-            case 1:
-                this.f24600b.run();
-                return;
-            case 2:
-                this.f24600b.run();
-                return;
-            case 3:
-                this.f24600b.run();
-                c2Var.dismiss();
-                return;
-            case 4:
-                Runnable runnable2 = this.f24600b;
-                if (runnable2 != null) {
-                    runnable2.run();
-                    return;
-                }
+                Integer num = (Integer) view.getTag();
+                int intValue = num.intValue();
+                org.telegram.ui.Cells.y1[] y1VarArr = this.f26376b;
+                y1VarArr[intValue].c(!y1VarArr[num.intValue()].b(), true);
                 return;
             default:
-                c2Var.dismiss();
-                Runnable runnable3 = this.f24600b;
-                if (runnable3 != null) {
-                    runnable3.run();
-                    return;
-                }
+                Integer num2 = (Integer) view.getTag();
+                int intValue2 = num2.intValue();
+                org.telegram.ui.Cells.y1[] y1VarArr2 = this.f26376b;
+                y1VarArr2[intValue2].c(!y1VarArr2[num2.intValue()].b(), true);
                 return;
         }
     }

@@ -1,44 +1,22 @@
 package zh;
 
-import android.graphics.Bitmap;
-import android.graphics.Paint;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.p5;
-public final class z0 {
-    public TLRPC.Document A;
-    public TL_stars.TL_starGiftUnique B;
-    public long C;
-    public Bitmap D;
-    public long E;
-    public s F;
-    public boolean G;
-    public int f52621a;
-    public Drawable[] f52622b;
-    public p5 f52623c;
-    public p5 d;
-    public Bitmap e;
-    public Bitmap f52624f;
-    public long f52625g;
-    public boolean h;
-    public int f52627j;
-    public Bitmap f52628k;
-    public Bitmap f52629l;
-    public Bitmap f52630m;
-    public Bitmap f52631n;
-    public int f52632o;
-    public int f52633p;
-    public int f52635r;
-    public PorterDuffColorFilter f52638u;
-    public long[] f52639w;
-    public boolean[] f52640x;
-    public long[] f52641y;
-    public TLRPC.Document f52642z;
-    public final Paint f52626i = new Paint(2);
-    public int f52634q = -1;
-    public int f52636s = -1;
-    public int f52637t = -1;
-    public final Paint v = new Paint(2);
+import android.content.Context;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.wc;
+public final class z0 extends y4 {
+    public final p1 f53360z0;
+
+    public z0(p1 p1Var, Context context, int i10, tg.k kVar, long j10, l0 l0Var) {
+        super(context, i10, null, kVar, j10, l0Var, false, false);
+        this.f53360z0 = p1Var;
+    }
+
+    @Override
+    public final wc X() {
+        u6 u6Var;
+        p1 p1Var = this.f53360z0;
+        org.telegram.ui.ActionBar.h3 h3Var = p1Var.container;
+        u6Var = p1Var.resourcesProvider;
+        return new wc(h3Var, u6Var);
+    }
 }

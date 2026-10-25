@@ -1,191 +1,172 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.drawable.Drawable;
+import android.app.Dialog;
+import android.content.Context;
+import android.content.ContextWrapper;
+import android.os.Build;
+import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.LanguageDetector;
-public final class sd0 implements fw0, ImageReceiver.ImageReceiverDelegate, eh.d, r0.n, ew0, org.telegram.ui.ActionBar.z1, org.telegram.ui.ActionBar.o6, org.telegram.ui.ActionBar.p6, GenericProvider, LanguageDetector.ExceptionCallback {
-    public final int f30481a;
+import org.telegram.messenger.R;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.LaunchActivity;
+public final class sd0 extends Dialog implements org.telegram.ui.ActionBar.f5 {
+    public final ActionBarLayout f32518a;
+    public final FrameLayout f32519b;
+    public final le0 f32520c;
 
-    public sd0(int i10) {
-        this.f30481a = i10;
+    public sd0(Context context) {
+        super(context, R.style.TransparentDialog);
+        ActionBarLayout actionBarLayout = new ActionBarLayout(context, false);
+        this.f32518a = actionBarLayout;
+        actionBarLayout.setFragmentStack(new ArrayList());
+        org.telegram.ui.ActionBar.g5 g5Var = new org.telegram.ui.ActionBar.g5(new bi.v4(this, 8));
+        g5Var.f22662c = true;
+        actionBarLayout.T(g5Var);
+        actionBarLayout.setDelegate(this);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f32519b = frameLayout;
+        frameLayout.setLayoutParams(new ViewGroup.LayoutParams(-1, -1));
+        frameLayout.addView(actionBarLayout.getView(), new FrameLayout.LayoutParams(-1, -1, 17));
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+            frameLayout.setBackgroundColor(-1728053248);
+            frameLayout.setOnClickListener(new w80(this, 2));
+            actionBarLayout.setRemoveActionBarExtraHeight(true);
+            k6.c.h(actionBarLayout.getView());
+        }
+        le0 le0Var = new le0(context);
+        this.f32520c = le0Var;
+        frameLayout.addView(le0Var, gb1.g(-1.0f, -1));
+        setContentView(frameLayout);
+    }
+
+    public final void c(org.telegram.ui.ActionBar.r2 r2Var) {
+        boolean z10;
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f32518a.S(r2Var, z10);
     }
 
     @Override
-    public r0.k1 B0(View view, r0.k1 k1Var) {
-        return r0.k1.f45249b;
-    }
-
-    @Override
-    public void b(Object obj, float f7) {
-        switch (this.f30481a) {
-            case 0:
-                td0 td0Var = (td0) obj;
-                td0Var.f30802s = f7;
-                td0Var.f();
-                return;
-            case 5:
-                ch0 ch0Var = (ch0) obj;
-                WindowManager.LayoutParams layoutParams = ch0Var.f25318c;
-                ch0Var.K = f7;
-                layoutParams.x = (int) f7;
-                try {
-                    AndroidUtilities.updateViewLayout(ch0Var.f25316b, ch0Var.d, layoutParams);
-                    return;
-                } catch (IllegalArgumentException unused) {
-                    ch0Var.M.c();
-                    return;
-                }
-            case 7:
-                ch0 ch0Var2 = (ch0) obj;
-                WindowManager.LayoutParams layoutParams2 = ch0Var2.f25318c;
-                ch0Var2.L = f7;
-                layoutParams2.y = (int) f7;
-                try {
-                    AndroidUtilities.updateViewLayout(ch0Var2.f25316b, ch0Var2.d, layoutParams2);
-                    return;
-                } catch (IllegalArgumentException unused2) {
-                    ch0Var2.N.c();
-                    return;
-                }
-            case 14:
-                wp0 wp0Var = (wp0) obj;
-                wp0Var.f32319n = f7;
-                wp0Var.invalidate();
-                return;
-            case 25:
-                org.telegram.ui.Components.voip.h1 h1Var = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams3 = h1Var.f31600c;
-                h1Var.Q = f7;
-                layoutParams3.x = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var.f31599b, h1Var.d, layoutParams3);
-                return;
-            default:
-                org.telegram.ui.Components.voip.h1 h1Var2 = (org.telegram.ui.Components.voip.h1) obj;
-                WindowManager.LayoutParams layoutParams4 = h1Var2.f31600c;
-                h1Var2.R = f7;
-                layoutParams4.y = (int) f7;
-                AndroidUtilities.updateViewLayout(h1Var2.f31599b, h1Var2.d, layoutParams4);
-                return;
+    public final void e(int[] iArr) {
+        if (AndroidUtilities.isTablet() && !AndroidUtilities.isInMultiwindow && !AndroidUtilities.isSmallTablet()) {
+            iArr[0] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(530.0f), View.MeasureSpec.getSize(iArr[0])), 1073741824);
+            iArr[1] = View.MeasureSpec.makeMeasureSpec(Math.min(AndroidUtilities.dp(528.0f), View.MeasureSpec.getSize(iArr[1])), 1073741824);
         }
     }
 
     @Override
-    public void d(int i10, View view) {
-        ((vo0) view).setTextColor(i10);
+    public final boolean h(org.telegram.ui.ActionBar.r2 r2Var, ActionBarLayout actionBarLayout) {
+        return true;
     }
 
     @Override
-    public void didSetImage(ImageReceiver imageReceiver, boolean z10, boolean z11, boolean z12) {
-        xj0 lottieAnimation;
-        switch (this.f30481a) {
-            case 1:
-                if (z10 && !z11 && (lottieAnimation = imageReceiver.getLottieAnimation()) != null) {
-                    lottieAnimation.start();
-                    return;
-                }
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k(ActionBarLayout actionBarLayout) {
+        if (actionBarLayout.getFragmentStack().size() <= 1) {
+            dismiss();
+        }
+        return true;
+    }
+
+    @Override
+    public final boolean l(ActionBarLayout actionBarLayout, org.telegram.ui.ActionBar.g5 g5Var) {
+        org.telegram.ui.ActionBar.r2 r2Var = g5Var.f22660a;
+        return true;
+    }
+
+    @Override
+    public final void onBackPressed() {
+        if (this.f32520c.getVisibility() == 0) {
+            if (getOwnerActivity() != null) {
+                getOwnerActivity().finish();
                 return;
-            default:
-                if (imageReceiver.canInvertBitmap()) {
-                    imageReceiver.setColorFilter(new ColorMatrixColorFilter(new float[]{-1.0f, 0.0f, 0.0f, 0.0f, 255.0f, 0.0f, -1.0f, 0.0f, 0.0f, 255.0f, 0.0f, 0.0f, -1.0f, 0.0f, 255.0f, 0.0f, 0.0f, 0.0f, 1.0f, 0.0f}));
-                    return;
-                }
-                return;
+            }
+            return;
+        }
+        ActionBarLayout actionBarLayout = this.f32518a;
+        actionBarLayout.H();
+        if (actionBarLayout.getFragmentStack().size() <= 1) {
+            dismiss();
         }
     }
 
     @Override
-    public void didSetImageBitmap(int i10, String str, Drawable drawable) {
-        int i11 = this.f30481a;
-        org.telegram.messenger.n5.a(this, i10, str, drawable);
-    }
-
-    @Override
-    public int f(View view) {
-        return ((vo0) view).v;
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f30481a) {
-            case 9:
-                c2Var.dismiss();
-                return;
-            case 10:
-                c2Var.dismiss();
-                return;
-            case 16:
-                c2Var.dismiss();
-                return;
-            case 17:
-                c2Var.dismiss();
-                return;
-            case 18:
-                c2Var.dismiss();
-                return;
-            case 19:
-                int i11 = sy0.f30633w0;
-                return;
-            case 20:
-                c2Var.dismiss();
-                return;
-            case 22:
-                c2Var.dismiss();
-                return;
-            case 28:
-                c2Var.dismiss();
-                return;
-            default:
-                return;
+    public final void onCreate(Bundle bundle) {
+        super.onCreate(bundle);
+        Window window = getWindow();
+        int i10 = Build.VERSION.SDK_INT;
+        if (i10 >= 30) {
+            window.addFlags(-2147483392);
+        } else {
+            window.addFlags(-2147417856);
+        }
+        window.setWindowAnimations(R.style.DialogNoAnimation);
+        WindowManager.LayoutParams attributes = window.getAttributes();
+        attributes.width = -1;
+        attributes.gravity = 51;
+        attributes.dimAmount = 0.0f;
+        attributes.flags &= -3;
+        attributes.softInputMode = 16;
+        attributes.height = -1;
+        boolean z10 = true;
+        if (i10 >= 28) {
+            attributes.layoutInDisplayCutoutMode = 1;
+        }
+        window.setAttributes(attributes);
+        window.setStatusBarColor(0);
+        FrameLayout frameLayout = this.f32519b;
+        frameLayout.setSystemUiVisibility(1280);
+        frameLayout.setOnApplyWindowInsetsListener(new org.telegram.ui.ActionBar.l3(2));
+        if (i10 >= 26) {
+            if (i0.a.h(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, true)) < 0.9d) {
+                z10 = false;
+            }
+            AndroidUtilities.setLightNavigationBar(this, z10);
         }
     }
 
     @Override
-    public float get(Object obj) {
-        switch (this.f30481a) {
-            case 4:
-                return ((ch0) obj).K;
-            case 6:
-                return ((ch0) obj).L;
-            case 13:
-                return ((wp0) obj).f32319n;
-            case 24:
-                return ((org.telegram.ui.Components.voip.h1) obj).Q;
-            default:
-                return ((org.telegram.ui.Components.voip.h1) obj).R;
+    public final void onStart() {
+        super.onStart();
+        Context context = getContext();
+        if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        if (context instanceof LaunchActivity) {
+            ((LaunchActivity) context).B0.add(this.f32520c);
         }
     }
 
     @Override
-    public int i(org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
-        Bitmap bitmap = zh.t.f52575a;
-        return (((int) a1.g.B(zh.d1.f52436b[3], 255.0f, 100.0f, 0.5f)) << 24) | 16777215;
+    public final void onStop() {
+        super.onStop();
+        Context context = getContext();
+        if ((context instanceof ContextWrapper) && !(context instanceof LaunchActivity)) {
+            context = ((ContextWrapper) context).getBaseContext();
+        }
+        if (context instanceof LaunchActivity) {
+            ((LaunchActivity) context).B0.remove(this.f32520c);
+        }
     }
 
     @Override
-    public void onAnimationReady(ImageReceiver imageReceiver) {
-        int i10 = this.f30481a;
-        org.telegram.messenger.n5.b(this, imageReceiver);
+    public final void a(float f7) {
     }
 
     @Override
-    public Object provide(Object obj) {
-        Integer num = (Integer) obj;
-        int i10 = hr0.f27117d1;
-        return 0;
-    }
-
-    @Override
-    public void run(Exception exc) {
-        FileLog.e(exc);
-    }
-
-    private final void a(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
+    public final void b(ActionBarLayout actionBarLayout, boolean z10) {
     }
 }

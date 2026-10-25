@@ -1,29 +1,44 @@
 package vh;
 
-import android.view.animation.Interpolator;
-import w7.r;
-public final class e implements Interpolator {
-    public final boolean f48850a;
-    public final float f48851b;
-    public final float f48852c;
-    public final Interpolator d;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
+public final class e extends s61 {
+    public static final int f50308a = 0;
 
-    public e(boolean z10, float f7, float f10, Interpolator interpolator) {
-        this.f48850a = z10;
-        this.f48851b = f7;
-        this.f48852c = f10;
-        this.d = interpolator;
+    static {
+        s61.setup(new s61());
     }
 
     @Override
-    public final float getInterpolation(float f7) {
-        boolean z10 = this.f48850a;
-        float f10 = this.f48851b;
-        float f11 = this.f48852c;
-        Interpolator interpolator = this.d;
-        if (z10) {
-            return 1.0f - interpolator.getInterpolation(1.0f - r.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
-        }
-        return interpolator.getInterpolation(r.a((f7 - f10) / (f11 - f10), 0.0f, 1.0f));
+    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+        zg.b bVar = (zg.b) view;
+        bVar.v = (TLRPC.TL_help_country) t61Var.G;
+        bVar.f();
+        bVar.setDivider(z10);
+        bVar.c(t61Var.e, false);
+    }
+
+    @Override
+    public final boolean contentsEquals(t61 t61Var, t61 t61Var2) {
+        return t61Var.I(t61Var2);
+    }
+
+    @Override
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
+        zg.b bVar = new zg.b(context, u6Var);
+        bVar.setBackground(null);
+        return bVar;
+    }
+
+    @Override
+    public final boolean equals(t61 t61Var, t61 t61Var2) {
+        return t61Var.J(t61Var2);
     }
 }

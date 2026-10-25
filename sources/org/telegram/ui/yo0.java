@@ -1,43 +1,39 @@
 package org.telegram.ui;
 
-import android.os.Build;
-import androidx.recyclerview.widget.RecyclerView;
-public final class yo0 extends s4.r0 {
-    public final int f43929a;
-    public final ep0 f43930b;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_stars;
+public final class yo0 extends org.telegram.ui.Components.s61 {
+    public static final int f46086a = 0;
 
-    public yo0(ep0 ep0Var, int i10) {
-        this.f43930b = ep0Var;
-        this.f43929a = i10;
+    static {
+        org.telegram.ui.Components.s61.setup(new org.telegram.ui.Components.s61());
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        ai.y9 y9Var;
-        bh.f fVar;
-        ep0 ep0Var = this.f43930b;
-        kp0 kp0Var = ep0Var.f36983p0;
-        if (i11 != 0) {
-            kp0Var.D0(1);
+    public final void bindView(View view, org.telegram.ui.Components.t61 t61Var, boolean z10, org.telegram.ui.Components.j71 j71Var, org.telegram.ui.Components.r71 r71Var) {
+        zo0 zo0Var = (zo0) view;
+        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) t61Var.G;
+        zh.h1 h1Var = zo0Var.h;
+        zh.d1 d1Var = zo0Var.e;
+        zo0Var.f46339a = savedStarGift.gift.f22254id;
+        zo0Var.setPadding(0, 0, 0, 0);
+        zo0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
+        zo0Var.f46340b = (TL_stars.starGiftAttributeBackdrop) bi.ca.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
+        zo0Var.f46341c = (TL_stars.starGiftAttributePattern) bi.ca.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
+        d1Var.d(zo0Var.f46340b);
+        d1Var.e(zo0Var.f46341c);
+        if (h1Var != null) {
+            h1Var.setBackdrop(zo0Var.f46340b);
+            String i10 = org.telegram.messenger.t.i(savedStarGift.gift.num, ',', new StringBuilder("#"));
+            h1Var.f53021b = i10;
+            h1Var.f53020a.f(9, i10, false);
         }
-        if (Build.VERSION.SDK_INT >= 31 && (fVar = kp0Var.f39007f0) != null) {
-            fVar.f(i10, i11);
-        }
-        ep0Var.h();
-        if (ep0Var.K != null) {
-            if (ep0Var.J != null && ep0Var.c()) {
-                ep0Var.J.g(false);
-                return;
-            }
-            return;
-        }
-        if (this.f43929a == 1) {
-            y9Var = kp0Var.f39002c;
-        } else {
-            y9Var = kp0Var.f39000b;
-        }
-        if (y9Var != null && ep0Var.c()) {
-            y9Var.a();
-        }
+        zo0Var.b(t61Var.e, false);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+        return new zo0(context, u6Var, true);
     }
 }

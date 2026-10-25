@@ -1,119 +1,137 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.VideoEditedInfo;
-import org.telegram.tgnet.TLRPC;
-public interface ju0 {
-    boolean A();
+import android.content.Context;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+public final class ju0 extends org.telegram.ui.Components.lm0 {
+    public final Context f40748c;
+    public final PhotoViewer d;
 
-    void B(int i10);
+    public ju0(Context context, PhotoViewer photoViewer) {
+        this.d = photoViewer;
+        this.f40748c = context;
+    }
 
-    CharSequence C(int i10);
+    @Override
+    public final boolean D(s4.e1 e1Var) {
+        return false;
+    }
 
-    void D();
+    @Override
+    public final int h() {
+        PhotoViewer photoViewer = this.d;
+        ou0 ou0Var = photoViewer.d;
+        if (ou0Var != null && ou0Var.c() != null) {
+            return photoViewer.d.c().size();
+        }
+        return 0;
+    }
 
-    lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11);
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
 
-    void F(boolean z10);
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        int i11;
+        org.telegram.ui.Cells.d6 d6Var = (org.telegram.ui.Cells.d6) e1Var.f47735a;
+        int dp = AndroidUtilities.dp(85.0f);
+        if (i10 != 0) {
+            i11 = AndroidUtilities.dp(6.0f);
+        } else {
+            i11 = 0;
+        }
+        d6Var.f24010f = dp;
+        org.telegram.ui.Components.zp zpVar = d6Var.f24009c;
+        org.telegram.ui.Components.y9 y9Var = d6Var.f24007a;
+        bi.j5 j5Var = d6Var.e;
+        d6Var.h = i11;
+        ((FrameLayout.LayoutParams) d6Var.f24008b.getLayoutParams()).rightMargin = i11;
+        ((FrameLayout.LayoutParams) y9Var.getLayoutParams()).rightMargin = i11;
+        ((FrameLayout.LayoutParams) j5Var.getLayoutParams()).rightMargin = i11;
+        y9Var.q(0, true);
+        PhotoViewer photoViewer = this.d;
+        Object obj = photoViewer.d.v().get(photoViewer.d.c().get(i10));
+        if (obj instanceof MediaController.PhotoEntry) {
+            MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) obj;
+            d6Var.setTag(photoEntry);
+            j5Var.setVisibility(4);
+            String str = photoEntry.thumbPath;
+            Context context = this.f40748c;
+            if (str != null) {
+                y9Var.g(str, null, context.getResources().getDrawable(R.drawable.nophotos));
+            } else if (photoEntry.path != null) {
+                y9Var.p(photoEntry.orientation, photoEntry.invert, true);
+                if (photoEntry.isVideo && !photoEntry.isLivePhoto()) {
+                    j5Var.setVisibility(0);
+                    d6Var.d.setText(AndroidUtilities.formatShortDuration(photoEntry.duration));
+                    y9Var.g("vthumb://" + photoEntry.imageId + ":" + photoEntry.path, null, context.getResources().getDrawable(R.drawable.nophotos));
+                } else {
+                    y9Var.g("thumb://" + photoEntry.imageId + ":" + photoEntry.path, null, context.getResources().getDrawable(R.drawable.nophotos));
+                }
+            } else {
+                y9Var.setImageResource(R.drawable.nophotos);
+            }
+            zpVar.f35379a.f(-1, true, false);
+            zpVar.setVisibility(0);
+        } else if (obj instanceof MediaController.SearchImage) {
+            MediaController.SearchImage searchImage = (MediaController.SearchImage) obj;
+            d6Var.setTag(searchImage);
+            d6Var.setImage(searchImage);
+            j5Var.setVisibility(4);
+            zpVar.f35379a.f(-1, true, false);
+            zpVar.setVisibility(0);
+        }
+    }
 
-    void G();
-
-    int H();
-
-    boolean I();
-
-    void J();
-
-    boolean K();
-
-    boolean L();
-
-    void M(VideoEditedInfo videoEditedInfo);
-
-    boolean N();
-
-    boolean O();
-
-    boolean P();
-
-    boolean Q();
-
-    int R(Object obj);
-
-    int S(int i10);
-
-    boolean T();
-
-    boolean U();
-
-    MessageObject V();
-
-    void W();
-
-    void X(int i10);
-
-    void Y(int i10);
-
-    boolean Z();
-
-    long a();
-
-    void a0(int i10);
-
-    boolean b();
-
-    String b0();
-
-    ArrayList c();
-
-    CharSequence c0(int i10);
-
-    void d();
-
-    void e(CharSequence charSequence);
-
-    void f(String str, String str2, boolean z10);
-
-    boolean g();
-
-    boolean h();
-
-    void i();
-
-    ImageReceiver.BitmapHolder j(int i10);
-
-    int k(int i10, VideoEditedInfo videoEditedInfo);
-
-    boolean l();
-
-    void m();
-
-    void n();
-
-    void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11);
-
-    boolean p();
-
-    boolean q();
-
-    boolean r();
-
-    void s();
-
-    boolean t();
-
-    boolean u();
-
-    HashMap v();
-
-    boolean w();
-
-    boolean x(int i10);
-
-    int y();
-
-    boolean z();
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        Context context = this.f40748c;
+        ?? frameLayout = new FrameLayout(context);
+        new Paint();
+        frameLayout.setWillNotDraw(false);
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(context);
+        frameLayout.f24007a = y9Var;
+        y9Var.setRoundRadius(AndroidUtilities.dp(4.0f));
+        frameLayout.addView(y9Var, org.telegram.ui.Components.gb1.g(-1.0f, -1));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        frameLayout.f24008b = frameLayout2;
+        frameLayout.addView(frameLayout2, org.telegram.ui.Components.gb1.i(42, 42, 53));
+        bi.j5 j5Var = new bi.j5(context);
+        j5Var.d = new Path();
+        j5Var.e = new float[8];
+        j5Var.f4871b = new RectF();
+        j5Var.f4872c = new Paint(1);
+        frameLayout.e = j5Var;
+        j5Var.setWillNotDraw(false);
+        j5Var.setPadding(AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f), 0);
+        frameLayout.addView(j5Var, org.telegram.ui.Components.gb1.i(-1, 16, 83));
+        ImageView imageView = new ImageView(context);
+        imageView.setImageResource(R.drawable.ic_video);
+        j5Var.addView(imageView, org.telegram.ui.Components.gb1.i(-2, -2, 19));
+        TextView textView = new TextView(context);
+        frameLayout.d = textView;
+        textView.setTextColor(-1);
+        textView.setTextSize(1, 12.0f);
+        textView.setImportantForAccessibility(2);
+        j5Var.addView(textView, org.telegram.ui.Components.gb1.h(-2, -2.0f, 19, 18.0f, -0.7f, 0.0f, 0.0f));
+        org.telegram.ui.Components.zp zpVar = new org.telegram.ui.Components.zp(context, 24, null);
+        frameLayout.f24009c = zpVar;
+        zpVar.setDrawBackgroundAsArc(11);
+        zpVar.b(org.telegram.ui.ActionBar.y6.W9, org.telegram.ui.ActionBar.y6.X9, org.telegram.ui.ActionBar.y6.V9);
+        frameLayout.addView(zpVar, org.telegram.ui.Components.gb1.h(26, 26.0f, 51, 55.0f, 4.0f, 0.0f, 0.0f));
+        zpVar.setVisibility(0);
+        frameLayout.setFocusable(true);
+        frameLayout2.setOnClickListener(new x50(this, 22));
+        return new s4.e1(frameLayout);
+    }
 }

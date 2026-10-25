@@ -1,120 +1,44 @@
 package e9;
 
-import j$.util.Objects;
-import java.util.AbstractSet;
-import java.util.Iterator;
-import java.util.Map;
-import v7.t6;
-public final class u extends AbstractSet {
-    public final int f8514a;
-    public final x f8515b;
+import java.io.Serializable;
+public final class u implements t, Serializable {
+    public final transient Object f9853a = new Object();
+    public final t f9854b;
+    public volatile transient boolean f9855c;
+    public transient Object d;
 
-    public u(x xVar, int i10) {
-        this.f8514a = i10;
-        this.f8515b = xVar;
+    public u(t tVar) {
+        this.f9854b = tVar;
     }
 
     @Override
-    public final void clear() {
-        switch (this.f8514a) {
-            case 0:
-                this.f8515b.clear();
-                return;
-            default:
-                this.f8515b.clear();
-                return;
-        }
-    }
-
-    @Override
-    public final boolean contains(Object obj) {
-        switch (this.f8514a) {
-            case 0:
-                x xVar = this.f8515b;
-                Map c10 = xVar.c();
-                if (c10 != null) {
-                    return c10.entrySet().contains(obj);
-                }
-                if (obj instanceof Map.Entry) {
-                    Map.Entry entry = (Map.Entry) obj;
-                    int e = xVar.e(entry.getKey());
-                    if (e != -1 && t6.a(xVar.k()[e], entry.getValue())) {
-                        return true;
+    public final Object get() {
+        if (!this.f9855c) {
+            synchronized (this.f9853a) {
+                try {
+                    if (!this.f9855c) {
+                        Object obj = this.f9854b.get();
+                        this.d = obj;
+                        this.f9855c = true;
+                        return obj;
                     }
+                } finally {
                 }
-                return false;
-            default:
-                return this.f8515b.containsKey(obj);
+            }
         }
+        return this.d;
     }
 
-    @Override
-    public final Iterator iterator() {
-        switch (this.f8514a) {
-            case 0:
-                x xVar = this.f8515b;
-                Map c10 = xVar.c();
-                if (c10 != null) {
-                    return c10.entrySet().iterator();
-                }
-                return new t(xVar, 1);
-            default:
-                x xVar2 = this.f8515b;
-                Map c11 = xVar2.c();
-                if (c11 != null) {
-                    return c11.keySet().iterator();
-                }
-                return new t(xVar2, 0);
+    public final String toString() {
+        Object obj;
+        StringBuilder sb2 = new StringBuilder("Suppliers.memoize(");
+        if (this.f9855c) {
+            obj = "<supplier that returned " + this.d + ">";
+        } else {
+            obj = this.f9854b;
         }
-    }
-
-    @Override
-    public final boolean remove(Object obj) {
-        switch (this.f8514a) {
-            case 0:
-                x xVar = this.f8515b;
-                Map c10 = xVar.c();
-                if (c10 != null) {
-                    return c10.entrySet().remove(obj);
-                }
-                if (obj instanceof Map.Entry) {
-                    Map.Entry entry = (Map.Entry) obj;
-                    if (!xVar.g()) {
-                        int d = xVar.d();
-                        Object key = entry.getKey();
-                        Object value = entry.getValue();
-                        Object obj2 = xVar.f8535a;
-                        Objects.requireNonNull(obj2);
-                        int r10 = s.r(key, value, d, obj2, xVar.i(), xVar.j(), xVar.k());
-                        if (r10 != -1) {
-                            xVar.f(r10, d);
-                            xVar.f8538f--;
-                            xVar.e += 32;
-                            return true;
-                        }
-                    }
-                }
-                return false;
-            default:
-                x xVar2 = this.f8515b;
-                Map c11 = xVar2.c();
-                if (c11 != null) {
-                    return c11.keySet().remove(obj);
-                }
-                if (xVar2.h(obj) != x.f8534s) {
-                    return true;
-                }
-                return false;
-        }
-    }
-
-    @Override
-    public final int size() {
-        switch (this.f8514a) {
-            case 0:
-                return this.f8515b.size();
-            default:
-                return this.f8515b.size();
-        }
+        sb2.append(obj);
+        sb2.append(")");
+        return sb2.toString();
     }
 }

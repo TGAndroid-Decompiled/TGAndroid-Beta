@@ -3,32 +3,32 @@ package org.telegram.ui;
 import android.view.View;
 import java.util.ArrayList;
 public final class sf implements View.OnClickListener {
-    public final int f41385a;
-    public final sn f41386b;
-    public final ArrayList f41387c;
+    public final int f43490a;
+    public final un f43491b;
+    public final ArrayList f43492c;
 
-    public sf(sn snVar, ArrayList arrayList, int i10) {
-        this.f41385a = i10;
-        this.f41386b = snVar;
-        this.f41387c = arrayList;
+    public sf(un unVar, ArrayList arrayList, int i10) {
+        this.f43490a = i10;
+        this.f43491b = unVar;
+        this.f43492c = arrayList;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f41385a) {
+        switch (this.f43490a) {
             case 0:
-                sn snVar = this.f41386b;
-                hi hiVar = new hi(snVar, snVar, snVar.getParentActivity(), snVar.f41651qa, this.f41387c);
-                hiVar.setCalcMandatoryInsets(snVar.C9());
-                hiVar.setDimBehind(false);
-                snVar.D7(false);
-                snVar.showDialog(hiVar);
+                un unVar = this.f43491b;
+                ii iiVar = new ii(unVar, unVar, unVar.getParentActivity(), unVar.f44385qa, this.f43492c);
+                iiVar.setCalcMandatoryInsets(unVar.F9());
+                iiVar.setDimBehind(false);
+                unVar.H7(false);
+                unVar.showDialog(iiVar);
                 return;
             default:
-                sn snVar2 = this.f41386b;
-                if (snVar2.getParentActivity() != null && snVar2.getParentActivity() != null) {
-                    new org.telegram.ui.Components.yv(snVar2, snVar2.getParentActivity(), snVar2.f41651qa, this.f41387c).show();
-                    snVar2.D7(true);
+                un unVar2 = this.f43491b;
+                if (unVar2.getParentActivity() != null && unVar2.getParentActivity() != null) {
+                    new org.telegram.ui.Components.aw(unVar2, unVar2.getParentActivity(), unVar2.f44385qa, this.f43492c).show();
+                    unVar2.H7(true);
                     return;
                 }
                 return;

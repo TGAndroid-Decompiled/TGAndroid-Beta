@@ -1,60 +1,63 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.PhotoViewer;
-public final class s7 extends jd {
-    public final int f30457b;
-    public final NotificationCenter.NotificationCenterDelegate f30458c;
+import android.view.MotionEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class s7 extends FrameLayout {
+    public final int f32444a;
+    public final m8 f32445b;
 
-    public s7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
+    public s7(m8 m8Var, Context context, int i10) {
         super(context);
-        this.f30457b = i10;
-        this.f30458c = notificationCenterDelegate;
+        this.f32444a = i10;
+        this.f32445b = m8Var;
     }
 
     @Override
-    public final void c(boolean z10) {
-        boolean z11;
-        int i10;
-        switch (this.f30457b) {
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        TextView textView;
+        switch (this.f32444a) {
             case 0:
-                i8 i8Var = (i8) this.f30458c;
-                i8Var.updateColors();
-                org.telegram.ui.nr nrVar = i8Var.N;
-                if (nrVar != null) {
-                    nrVar.a(b5.d.u());
-                    return;
+                int B = org.telegram.messenger.vh.B(248.0f, i12 - i10, 4);
+                for (int i14 = 0; i14 < 5; i14++) {
+                    int dp = (B * i14) + AndroidUtilities.dp((i14 * 48) + 4);
+                    int dp2 = AndroidUtilities.dp(9.0f);
+                    m8 m8Var = this.f32445b;
+                    View view = m8Var.m0[i14];
+                    view.layout(dp, dp2, view.getMeasuredWidth() + dp, m8Var.m0[i14].getMeasuredHeight() + dp2);
                 }
                 return;
+            case 1:
             default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f30458c;
-                org.telegram.ui.ActionBar.e1 e1Var = photoViewer.F0;
-                if (e1Var != null) {
-                    e1Var.f(z10);
-                    org.telegram.ui.ActionBar.e1 e1Var2 = photoViewer.F0;
-                    if (z10) {
-                        i10 = 259241196;
-                    } else {
-                        i10 = 268435455;
-                    }
-                    e1Var2.setSelectorColor(i10);
-                }
-                j81 j81Var = photoViewer.F2;
-                if (j81Var != null) {
-                    if (!b5.d.u() && !photoViewer.f33694r) {
-                        z11 = false;
-                    } else {
-                        z11 = true;
-                    }
-                    j81Var.O(z11);
-                }
-                org.telegram.ui.nr nrVar2 = photoViewer.f33742w0;
-                if (nrVar2 != null) {
-                    nrVar2.a(b5.d.u());
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+            case 2:
+                super.onLayout(z10, i10, i11, i12, i13);
+                m8 m8Var2 = this.f32445b;
+                if (m8Var2.U != null && (textView = m8Var2.Z) != null) {
+                    int left = (textView.getLeft() - AndroidUtilities.dp(4.0f)) - m8Var2.U.getMeasuredWidth();
+                    org.telegram.ui.ActionBar.w0 w0Var = m8Var2.U;
+                    w0Var.layout(left, w0Var.getTop(), m8Var2.U.getMeasuredWidth() + left, m8Var2.U.getBottom());
                     return;
                 }
                 return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f32444a) {
+            case 1:
+                m8 m8Var = this.f32445b;
+                if (m8Var.f30430h0.getTag() != null) {
+                    m8Var.H0(false, true);
+                }
+                return true;
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

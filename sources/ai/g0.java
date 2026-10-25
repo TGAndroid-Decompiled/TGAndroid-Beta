@@ -1,266 +1,248 @@
 package ai;
 
-import android.content.Context;
-import java.io.Serializable;
+import android.animation.ValueAnimator;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import bi.h7;
+import bi.m7;
+import bi.qc;
+import bi.r5;
+import bi.rc;
+import bi.s5;
+import bi.yd;
+import bi.z5;
+import di.b6;
+import di.i5;
+import di.k7;
+import di.l7;
+import di.m2;
+import di.m4;
+import di.o8;
+import fi.q2;
+import fi.s3;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.concurrent.CountDownLatch;
-import org.telegram.messenger.BotForumHelper;
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.TelegramMediaSession;
-import org.telegram.messenger.TopicsController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_stories;
-public final class g0 implements Runnable {
-    public final int f1333a;
-    public final int f1334b;
-    public final long f1335c;
-    public final Object d;
-    public final Object e;
-    public final Object f1336f;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Stories.ProfileStoriesView;
+import org.telegram.ui.wz0;
+public final class g0 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f1512a;
+    public final Object f1513b;
 
-    public g0(Context context, int i10, GiftAuctionController.Auction auction, long j10, Runnable runnable) {
-        this.f1333a = 14;
-        this.d = context;
-        this.f1334b = i10;
-        this.e = auction;
-        this.f1335c = j10;
-        this.f1336f = runnable;
+    public g0(Object obj, int i10) {
+        this.f1512a = i10;
+        this.f1513b = obj;
     }
 
     @Override
-    public final void run() {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        r5 r5Var;
         boolean z10;
-        boolean z11;
-        int i10 = this.f1333a;
-        String str = null;
-        r2 = null;
-        TL_stories.StoryItem storyItem = null;
-        int i11 = 0;
-        long j10 = this.f1335c;
-        int i12 = this.f1334b;
-        Object obj = this.f1336f;
-        Object obj2 = this.e;
-        Object obj3 = this.d;
-        switch (i10) {
+        switch (this.f1512a) {
             case 0:
-                j0 j0Var = (j0) obj2;
-                TLObject tLObject = (TLObject) obj;
-                int i13 = ((k0) obj3).f1598a;
-                boolean[] zArr = j0Var.d;
-                boolean[] zArr2 = j0Var.f1522b;
-                ArrayList[] arrayListArr = j0Var.f1521a;
-                zArr[i12] = false;
-                if (tLObject instanceof TL_stars.StarsStatus) {
-                    TL_stars.StarsStatus starsStatus = (TL_stars.StarsStatus) tLObject;
-                    MessagesController.getInstance(i13).putUsers(starsStatus.users, false);
-                    MessagesController.getInstance(i13).putChats(starsStatus.chats, false);
-                    arrayListArr[i12].addAll(starsStatus.history);
-                    if (arrayListArr[i12].isEmpty() && !zArr2[i12]) {
-                        z10 = false;
-                    } else {
-                        z10 = true;
-                    }
-                    zArr2[i12] = z10;
-                    boolean[] zArr3 = j0Var.e;
-                    if ((starsStatus.flags & 1) == 0) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    zArr3[i12] = z11;
-                    String[] strArr = j0Var.f1523c;
-                    if (!z11) {
-                        str = starsStatus.next_offset;
-                    }
-                    strArr[i12] = str;
-                    NotificationCenter.getInstance(i13).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botStarsTransactionsLoaded, Long.valueOf(j10));
-                    return;
-                }
+                o0 o0Var = (o0) this.f1513b;
+                o0Var.getClass();
+                o0Var.S = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o0Var.invalidate();
                 return;
             case 1:
-                ei.d dVar = (ei.d) obj3;
-                dVar.setLoading(true);
-                TL_stars.TL_fulfillStarsSubscription tL_fulfillStarsSubscription = new TL_stars.TL_fulfillStarsSubscription();
-                tL_fulfillStarsSubscription.subscription_id = ((TL_stars.StarsSubscription) obj2).f20569id;
-                tL_fulfillStarsSubscription.peer = new TLRPC.TL_inputPeerSelf();
-                int i14 = this.f1334b;
-                ConnectionsManager.getInstance(i14).sendRequest(tL_fulfillStarsSubscription, new c0(dVar, (org.telegram.ui.ActionBar.h3[]) obj, i14, this.f1335c, 1));
+                ((z0) this.f1513b).d.setReveal(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
             case 2:
-                ci.h7 h7Var = (ci.h7) obj3;
-                TLObject tLObject2 = (TLObject) obj;
-                String str2 = (String) obj2;
-                int i15 = h7Var.f5399a;
-                HashSet hashSet = h7Var.f5415t;
-                if (tLObject2 != null) {
-                    TL_stories.TL_stories_stories tL_stories_stories = (TL_stories.TL_stories_stories) tLObject2;
-                    MessagesController.getInstance(i15).putUsers(tL_stories_stories.users, false);
-                    MessagesController.getInstance(i15).putChats(tL_stories_stories.chats, false);
-                    while (true) {
-                        if (i11 < tL_stories_stories.stories.size()) {
-                            if (tL_stories_stories.stories.get(i11).f20578id == i12) {
-                                storyItem = tL_stories_stories.stories.get(i11);
-                            } else {
-                                i11++;
-                            }
-                        }
-                    }
-                }
-                h7Var.W.remove(str2);
-                if (storyItem != null) {
-                    storyItem.dialogId = j10;
-                    TL_stories.TL_updateStory tL_updateStory = new TL_stories.TL_updateStory();
-                    tL_updateStory.peer = MessagesController.getInstance(i15).getPeer(j10);
-                    tL_updateStory.story = storyItem;
-                    h7Var.Z(tL_updateStory);
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                bh.w wVar = ((bh.x) this.f1513b).f4196b;
+                if (wVar != null) {
+                    wVar.setAlpha(floatValue);
                     return;
                 }
-                Iterator it = hashSet.iterator();
-                while (true) {
-                    if (it.hasNext()) {
-                        String str3 = (String) it.next();
-                        if (str3.endsWith(":" + j10 + ":" + i12)) {
-                            hashSet.remove(str3);
-                        }
-                    }
-                }
-                hashSet.add(str2);
-                h7Var.f5407l.edit().putStringSet("unsupported_stories_checked", hashSet).apply();
                 return;
             case 3:
-                ((BotForumHelper) obj3).lambda$beforeSendingFinalRequest$3((long[]) obj2, this.f1335c, this.f1334b, (Runnable) obj);
+                h7 h7Var = (h7) this.f1513b;
+                h7Var.f4730b1.f4430a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                h7Var.n2();
                 return;
             case 4:
-                ((MediaDataController) obj3).lambda$loadStickers$100((TLObject) obj, this.f1334b, (Utilities.Callback) obj2, this.f1335c);
+                ((z5) this.f1513b).h.invalidate();
                 return;
             case 5:
-                ((MessagesStorage) obj3).lambda$checkMessageId$154(this.f1335c, this.f1334b, (boolean[]) obj2, (CountDownLatch) obj);
+                s5 s5Var = (s5) this.f1513b;
+                s5Var.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                s5Var.E = floatValue2;
+                if (floatValue2 >= 0.8f && (r5Var = s5Var.H) != null && (z10 = r5Var.f5335l) && z10) {
+                    r5Var.f5335l = false;
+                    r5Var.b();
+                }
+                s5Var.invalidate();
                 return;
             case 6:
-                ((MessagesStorage) obj3).lambda$overwriteChannel$190(this.f1335c, this.f1334b, (TLRPC.TL_updates_channelDifferenceTooLong) obj2, (Runnable) obj);
+                View view = (View) this.f1513b;
+                float sin = (((float) Math.sin(((Float) valueAnimator.getAnimatedValue()).floatValue() * 3.141592653589793d)) * 0.03f) + 1.0f;
+                view.setScaleX(sin);
+                view.setScaleY(sin);
                 return;
             case 7:
-                ((MessagesStorage) obj3).lambda$updateMessageVoiceTranscription$109(this.f1334b, this.f1335c, (TLRPC.Message) obj2, (String) obj);
+                m7 m7Var = (m7) this.f1513b;
+                m7Var.getClass();
+                m7Var.f5096y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m7Var.invalidate();
                 return;
             case 8:
-                ((MessagesStorage) obj3).lambda$setDialogsFolderId$244((ArrayList) obj2, (ArrayList) obj, this.f1334b, this.f1335c);
+                float floatValue3 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                qc qcVar = ((rc) this.f1513b).f5373c;
+                qcVar.setScaleX(floatValue3);
+                qcVar.setScaleY(floatValue3);
                 return;
             case 9:
-                ((SendMessagesHelper) obj3).lambda$completeSendingGramTransfer$6((MessageObject) obj2, (TLRPC.Message) obj, this.f1335c, this.f1334b);
+                yd ydVar = (yd) this.f1513b;
+                ydVar.getClass();
+                ydVar.f5796c0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ydVar.invalidate();
                 return;
             case 10:
-                ((TelegramMediaSession) obj3).lambda$loadMusicForDialog$6(this.f1334b, this.f1335c, (ArrayList) obj2, (ArrayList) obj);
+                di.a aVar = (di.a) this.f1513b;
+                aVar.getClass();
+                aVar.h = Math.max(1.0f, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                aVar.invalidate();
                 return;
             case 11:
-                ((TopicsController) obj3).lambda$loadTopics$2((TLRPC.TL_messages_savedDialogs) obj2, this.f1335c, (a0.h) obj, this.f1334b);
+                di.q qVar = (di.q) this.f1513b;
+                qVar.O.e = AndroidUtilities.lerp(0.0f, 1.0f - qVar.f8938b0.f9077d0, ((Float) valueAnimator.getAnimatedValue()).floatValue());
+                qVar.invalidate();
                 return;
             case 12:
-                ((TopicsController) obj3).lambda$loadTopics$3((TLRPC.TL_messages_savedDialogsSlice) obj2, this.f1335c, (a0.h) obj, this.f1334b);
+                ((di.x0) this.f1513b).invalidate();
                 return;
             case 13:
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) obj3;
-                TLRPC.User user = (TLRPC.User) obj2;
-                TLRPC.Chat chat = (TLRPC.Chat) obj;
-                int i16 = t1Var.I7;
-                if (user != null) {
-                    t1Var.X8[i12].m(i16, user);
-                    t1Var.W8[i12].setForUserOrChat(user, t1Var.X8[i12]);
-                    return;
-                } else if (chat != null) {
-                    t1Var.X8[i12].k(i16, chat);
-                    t1Var.W8[i12].setForUserOrChat(chat, t1Var.X8[i12]);
-                    return;
-                } else {
-                    t1Var.X8[i12].n(j10, "", "");
+                m2 m2Var = (m2) this.f1513b;
+                float floatValue4 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                m2Var.f9344c.setAlpha(floatValue4);
+                m2Var.f9340a.setAlpha(AndroidUtilities.lerp(0.0f, 0.5f, floatValue4));
+                m2Var.invalidate();
+                return;
+            case 14:
+                di.q0 q0Var = (di.q0) this.f1513b;
+                float floatValue5 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                Drawable drawable = q0Var.e;
+                if (drawable != null) {
+                    drawable.setAlpha((int) (AndroidUtilities.lerp(q0Var.f8950f, 1.0f, floatValue5) * 255.0f));
+                    q0Var.h.invalidate();
                     return;
                 }
+                return;
+            case 15:
+                float floatValue6 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                di.q0 q0Var2 = (di.q0) ((bh.b) this.f1513b).f3990b;
+                Drawable drawable2 = q0Var2.e;
+                if (drawable2 != null) {
+                    drawable2.setAlpha((int) (AndroidUtilities.lerp(1.0f, q0Var2.f8950f, floatValue6) * 255.0f));
+                    q0Var2.h.invalidate();
+                    return;
+                }
+                return;
+            case 16:
+                di.o1 o1Var = (di.o1) this.f1513b;
+                o1Var.getClass();
+                o1Var.h.setAlpha(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                return;
+            case 17:
+                di.w1 w1Var = (di.w1) this.f1513b;
+                w1Var.getClass();
+                w1Var.f9292n = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                w1Var.invalidate();
+                return;
+            case 18:
+                m4 m4Var = (m4) this.f1513b;
+                m4Var.getClass();
+                float floatValue7 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                TextView[] textViewArr = m4Var.f8778c;
+                textViewArr[0].setAlpha(floatValue7);
+                float f7 = 1.0f - floatValue7;
+                textViewArr[0].setTranslationY((-AndroidUtilities.dp(4.0f)) * f7);
+                textViewArr[1].setAlpha(f7);
+                textViewArr[1].setTranslationY(floatValue7 * AndroidUtilities.dp(4.0f));
+                return;
+            case 19:
+                ProfileStoriesView profileStoriesView = (ProfileStoriesView) this.f1513b;
+                wz0 wz0Var = profileStoriesView.h;
+                float floatValue8 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                profileStoriesView.G = floatValue8;
+                wz0Var.R = floatValue8;
+                wz0Var.invalidate();
+                profileStoriesView.invalidate();
+                return;
+            case 20:
+                i5 i5Var = (i5) this.f1513b;
+                i5Var.f8677r = ((Float) i5Var.f8679w.getAnimatedValue()).floatValue();
+                i5Var.invalidate();
+                return;
+            case 21:
+                b6 b6Var = (b6) this.f1513b;
+                b6Var.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                b6Var.e.setTranslationY(((-b6Var.d) + b6Var.getMeasuredHeight()) - b6Var.v);
+                return;
+            case 22:
+                l7 l7Var = (l7) this.f1513b;
+                float floatValue9 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ArrayList arrayList = l7Var.f8762a;
+                k7 k7Var = (k7) arrayList.get(l7Var.d);
+                k7Var.f8725n = floatValue9;
+                k7Var.invalidate();
+                int i10 = l7Var.f8764c;
+                if (i10 != -1) {
+                    k7 k7Var2 = (k7) arrayList.get(i10);
+                    k7Var2.f8725n = 1.0f - floatValue9;
+                    k7Var2.invalidate();
+                    return;
+                }
+                return;
+            case 23:
+                o8 o8Var = (o8) this.f1513b;
+                o8Var.getClass();
+                o8Var.G = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                o8Var.invalidate();
+                o8Var.requestLayout();
+                o8Var.J.requestLayout();
+                return;
+            case 24:
+                ei.v vVar = (ei.v) this.f1513b;
+                vVar.f10022w = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                vVar.f10020r.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(42.0f), 0, vVar.f10022w));
+                vVar.f10019n.setTranslationY(AndroidUtilities.lerp(0, AndroidUtilities.dp(42.0f), vVar.f10022w));
+                return;
+            case 25:
+                fi.m mVar = (fi.m) this.f1513b;
+                mVar.f11209o0 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                fi.g gVar = mVar.f11199f;
+                gVar.getEditText().setTranslationX(AndroidUtilities.lerp(mVar.getEditTextLeft() + AndroidUtilities.dp(-26.0f), AndroidUtilities.dp(2.0f), mVar.f11209o0));
+                FrameLayout frameLayout = mVar.f11214s;
+                frameLayout.setTranslationX(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), AndroidUtilities.dp(2.0f), mVar.f11209o0));
+                frameLayout.setTranslationY(AndroidUtilities.lerp(-AndroidUtilities.dp(8.0f), 0, mVar.f11209o0));
+                gVar.getEmojiButton().setAlpha(mVar.f11209o0);
+                mVar.f11212r.setAlpha((float) Math.pow(mVar.f11209o0, 16.0d));
+                mVar.u(mVar.f11209o0);
+                fi.i iVar = mVar.M;
+                if (iVar != null) {
+                    iVar.setAlpha((float) Math.pow(mVar.f11209o0, 4.0d));
+                }
+                gVar.getEditText().invalidate();
+                mVar.invalidate();
+                return;
+            case 26:
+                fi.y yVar = (fi.y) this.f1513b;
+                yVar.d = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                yVar.f11977a.invalidate();
+                return;
+            case 27:
+                q2 q2Var = (q2) this.f1513b;
+                q2Var.getClass();
+                q2Var.h = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                q2Var.i();
+                return;
             default:
-                new yh.x4((Context) obj3, this.f1334b, ((GiftAuctionController.Auction) obj2).gift, null, this.f1335c, (Runnable) obj, false, false).show();
+                ((s3) this.f1513b).f11581b.setTranslationY(((Float) valueAnimator.getAnimatedValue()).floatValue());
                 return;
         }
-    }
-
-    public g0(Object obj, int i10, long j10, Object obj2, Serializable serializable, int i11) {
-        this.f1333a = i11;
-        this.d = obj;
-        this.f1334b = i10;
-        this.f1335c = j10;
-        this.e = obj2;
-        this.f1336f = serializable;
-    }
-
-    public g0(Object obj, Object obj2, int i10, Object obj3, long j10, int i11) {
-        this.f1333a = i11;
-        this.d = obj;
-        this.e = obj2;
-        this.f1334b = i10;
-        this.f1336f = obj3;
-        this.f1335c = j10;
-    }
-
-    public g0(Object obj, TLObject tLObject, int i10, Object obj2, long j10, int i11) {
-        this.f1333a = i11;
-        this.d = obj;
-        this.f1336f = tLObject;
-        this.f1334b = i10;
-        this.e = obj2;
-        this.f1335c = j10;
-    }
-
-    public g0(BotForumHelper botForumHelper, long[] jArr, long j10, int i10, Runnable runnable) {
-        this.f1333a = 3;
-        this.d = botForumHelper;
-        this.e = jArr;
-        this.f1335c = j10;
-        this.f1334b = i10;
-        this.f1336f = runnable;
-    }
-
-    public g0(MessagesStorage messagesStorage, long j10, int i10, Object obj, Object obj2, int i11) {
-        this.f1333a = i11;
-        this.d = messagesStorage;
-        this.f1335c = j10;
-        this.f1334b = i10;
-        this.e = obj;
-        this.f1336f = obj2;
-    }
-
-    public g0(MessagesStorage messagesStorage, ArrayList arrayList, ArrayList arrayList2, int i10, long j10) {
-        this.f1333a = 8;
-        this.d = messagesStorage;
-        this.e = arrayList;
-        this.f1336f = arrayList2;
-        this.f1334b = i10;
-        this.f1335c = j10;
-    }
-
-    public g0(SendMessagesHelper sendMessagesHelper, MessageObject messageObject, TLRPC.Message message, long j10, int i10) {
-        this.f1333a = 9;
-        this.d = sendMessagesHelper;
-        this.e = messageObject;
-        this.f1336f = message;
-        this.f1335c = j10;
-        this.f1334b = i10;
-    }
-
-    public g0(TopicsController topicsController, TLRPC.messages_SavedDialogs messages_saveddialogs, long j10, a0.h hVar, int i10, int i11) {
-        this.f1333a = i11;
-        this.d = topicsController;
-        this.e = messages_saveddialogs;
-        this.f1335c = j10;
-        this.f1336f = hVar;
-        this.f1334b = i10;
     }
 }

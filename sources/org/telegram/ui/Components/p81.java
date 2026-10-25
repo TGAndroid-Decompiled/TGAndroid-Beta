@@ -1,12 +1,22 @@
 package org.telegram.ui.Components;
-public final class p81 {
-    public final double f29510a;
-    public final int f29511b;
-    public final int f29512c;
 
-    public p81(int i10, int i11, double d) {
-        this.f29510a = d;
-        this.f29511b = i10;
-        this.f29512c = i11;
-    }
+import android.graphics.SurfaceTexture;
+public interface p81 {
+    void onError(s81 s81Var, Exception exc);
+
+    void onRenderedFirstFrame();
+
+    void onRenderedFirstFrame(j2.a aVar);
+
+    void onSeekFinished(j2.a aVar);
+
+    void onSeekStarted(j2.a aVar);
+
+    void onStateChanged(boolean z10, int i10);
+
+    boolean onSurfaceDestroyed(SurfaceTexture surfaceTexture);
+
+    void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture);
+
+    void onVideoSizeChanged(int i10, int i11, int i12, float f7);
 }

@@ -1,12 +1,12 @@
 package z3;
 
-import b2.w;
+import b2.x;
 public interface k {
-    public static final oa.d D = new oa.d(29);
+    public static final sb.b D = new sb.b(28);
 
-    int L(w wVar);
+    int B0(x xVar);
 
-    boolean a0(w wVar);
+    m f0(x xVar);
 
-    m y(w wVar);
+    boolean i1(x xVar);
 }

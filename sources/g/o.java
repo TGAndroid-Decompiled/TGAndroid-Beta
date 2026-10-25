@@ -5,21 +5,21 @@ import android.content.IntentFilter;
 import android.util.SparseIntArray;
 import android.view.MenuItem;
 public abstract class o {
-    public Object f10703a;
-    public Object f10704b;
+    public Object f12151a;
+    public Object f12152b;
 
     public o(Context context) {
-        this.f10703a = context;
+        this.f12151a = context;
     }
 
     public void c() {
-        androidx.mediarouter.app.f fVar = (androidx.mediarouter.app.f) this.f10703a;
-        if (fVar != null) {
+        androidx.mediarouter.app.g gVar = (androidx.mediarouter.app.g) this.f12151a;
+        if (gVar != null) {
             try {
-                ((r) this.f10704b).e.unregisterReceiver(fVar);
+                ((r) this.f12152b).e.unregisterReceiver(gVar);
             } catch (IllegalArgumentException unused) {
             }
-            this.f10703a = null;
+            this.f12151a = null;
         }
     }
 
@@ -30,13 +30,13 @@ public abstract class o {
     public MenuItem f(MenuItem menuItem) {
         if (menuItem instanceof l0.a) {
             l0.a aVar = (l0.a) menuItem;
-            if (((a0.l) this.f10704b) == null) {
-                this.f10704b = new a0.l(0);
+            if (((a0.l) this.f12152b) == null) {
+                this.f12152b = new a0.l(0);
             }
-            MenuItem menuItem2 = (MenuItem) ((a0.l) this.f10704b).get(aVar);
+            MenuItem menuItem2 = (MenuItem) ((a0.l) this.f12152b).get(aVar);
             if (menuItem2 == null) {
-                l.r rVar = new l.r((Context) this.f10703a, aVar);
-                ((a0.l) this.f10704b).put(aVar, rVar);
+                l.r rVar = new l.r((Context) this.f12151a, aVar);
+                ((a0.l) this.f12152b).put(aVar, rVar);
                 return rVar;
             }
             return menuItem2;
@@ -89,7 +89,7 @@ public abstract class o {
     public abstract int i(int i10);
 
     public void j() {
-        ((SparseIntArray) this.f10703a).clear();
+        ((SparseIntArray) this.f12151a).clear();
     }
 
     public abstract void k();
@@ -100,18 +100,18 @@ public abstract class o {
         if (d.countActions() == 0) {
             return;
         }
-        if (((androidx.mediarouter.app.f) this.f10703a) == null) {
-            this.f10703a = new androidx.mediarouter.app.f(this, 3);
+        if (((androidx.mediarouter.app.g) this.f12151a) == null) {
+            this.f12151a = new androidx.mediarouter.app.g(this, 3);
         }
-        ((r) this.f10704b).e.registerReceiver((androidx.mediarouter.app.f) this.f10703a, d);
+        ((r) this.f12152b).e.registerReceiver((androidx.mediarouter.app.g) this.f12151a, d);
     }
 
     public o() {
-        this.f10703a = new SparseIntArray();
-        this.f10704b = new SparseIntArray();
+        this.f12151a = new SparseIntArray();
+        this.f12152b = new SparseIntArray();
     }
 
     public o(r rVar) {
-        this.f10704b = rVar;
+        this.f12152b = rVar;
     }
 }

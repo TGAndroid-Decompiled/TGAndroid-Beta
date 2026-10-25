@@ -1,15 +1,22 @@
 package h7;
 
-import android.os.IInterface;
-import com.google.android.gms.common.api.Status;
-import g7.l;
-import g7.q;
-public interface a extends IInterface {
-    void D0(Status status, l lVar);
+import a8.df;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class a extends p6.a {
+    public static final Parcelable.Creator<a> CREATOR = new f6.i(12);
+    public final boolean f12680a;
 
-    void b0(Status status, g7.b bVar);
+    public a(boolean z10) {
+        this.f12680a = z10;
+    }
 
-    void o0(Status status, g7.e eVar);
-
-    void r(Status status, q qVar);
+    @Override
+    public final void writeToParcel(Parcel dest, int i10) {
+        kotlin.jvm.internal.i.e(dest, "dest");
+        int q5 = df.q(dest, 20293);
+        df.s(dest, 1, 4);
+        dest.writeInt(this.f12680a ? 1 : 0);
+        df.r(dest, q5);
+    }
 }

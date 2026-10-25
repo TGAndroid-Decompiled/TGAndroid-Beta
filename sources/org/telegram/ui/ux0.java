@@ -1,114 +1,97 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import java.util.HashSet;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Intent;
+import android.net.Uri;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class ux0 implements View.OnClickListener {
-    public final int f42508a;
-    public final ProfileActivity f42509b;
+public final class ux0 implements Runnable {
+    public final int f44542a;
+    public final ProfileActivity f44543b;
+    public final TLRPC.User f44544c;
 
-    public ux0(ProfileActivity profileActivity, int i10) {
-        this.f42508a = i10;
-        this.f42509b = profileActivity;
+    public ux0(ProfileActivity profileActivity, TLRPC.User user, int i10) {
+        this.f44542a = i10;
+        this.f44543b = profileActivity;
+        this.f44544c = user;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10 = this.f42508a;
-        ProfileActivity profileActivity = this.f42509b;
-        switch (i10) {
+    public final void run() {
+        boolean z10;
+        boolean z11;
+        switch (this.f44542a) {
             case 0:
-                ProfileActivity.c0(profileActivity);
+                ProfileActivity profileActivity = this.f44543b;
+                TLRPC.User user = this.f44544c;
+                int i10 = ProfileActivity.R6;
+                profileActivity.getClass();
+                profileActivity.presentFragment(un.ba(user.f22174id));
                 return;
             case 1:
-                if (profileActivity.v.getTag() == null) {
-                    profileActivity.w4();
+                ProfileActivity profileActivity2 = this.f44543b;
+                TLRPC.User user2 = this.f44544c;
+                int i11 = ProfileActivity.R6;
+                if (profileActivity2.getParentActivity() != null) {
+                    TLRPC.UserFull userFull = profileActivity2.f36095v2;
+                    if (userFull != null && userFull.video_calls_available) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    org.telegram.ui.Components.voip.g2.m(user2, false, z10, profileActivity2.getParentActivity(), profileActivity2.f36095v2, profileActivity2.getAccountInstance());
                     return;
                 }
                 return;
             case 2:
-                profileActivity.finishPreviewFragment();
-                return;
-            case 3:
-                profileActivity.U4();
-                return;
-            case 4:
-                TLRPC.UserFull userFull = profileActivity.f34042w2;
-                if (userFull != null && userFull.wallet_card != null && profileActivity.getParentActivity() != null) {
-                    profileActivity.showDialog(new org.telegram.ui.Wallet.y2(profileActivity, profileActivity.f33907d0, profileActivity.getMessagesController().getUser(Long.valueOf(profileActivity.f33923f1)), profileActivity.f34042w2.wallet_card));
+                ProfileActivity profileActivity3 = this.f44543b;
+                TLRPC.User user3 = this.f44544c;
+                int i12 = ProfileActivity.R6;
+                if (profileActivity3.getParentActivity() != null) {
+                    TLRPC.UserFull userFull2 = profileActivity3.f36095v2;
+                    if (userFull2 != null && userFull2.video_calls_available) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    org.telegram.ui.Components.voip.g2.m(user3, true, z11, profileActivity3.getParentActivity(), profileActivity3.f36095v2, profileActivity3.getAccountInstance());
                     return;
                 }
                 return;
-            case 5:
-                ProfileActivity.e0(profileActivity);
-                return;
-            case 6:
-                profileActivity.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("chat_id", profileActivity.f33930g1);
-                bundle.putLong("user_id", profileActivity.f33923f1);
-                profileActivity.presentFragment(new zh.n0(bundle));
-                return;
-            case 7:
-                ProfileActivity.f0(profileActivity);
-                return;
-            case 8:
-                profileActivity.T4();
-                return;
-            case 9:
-                profileActivity.T4();
-                return;
-            case 10:
-                if (profileActivity.getParentLayout() != null && profileActivity.getParentLayout().getFragmentStack() != null) {
-                    int i11 = 0;
-                    while (i11 < profileActivity.getParentLayout().getFragmentStack().size()) {
-                        org.telegram.ui.ActionBar.o2 o2Var = (org.telegram.ui.ActionBar.o2) profileActivity.getParentLayout().getFragmentStack().get(i11);
-                        if (o2Var instanceof ey) {
-                            ey eyVar = (ey) o2Var;
-                            yw ywVar = eyVar.G3;
-                            if (ywVar != null) {
-                                org.telegram.ui.ActionBar.o2 fragment = ywVar.getFragment();
-                                if ((fragment instanceof xe1) && (-((xe1) fragment).f43545a) == profileActivity.a()) {
-                                    eyVar.G3.a();
-                                }
-                            }
-                        } else if (o2Var instanceof sn) {
-                            if (((sn) o2Var).a() == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).b0(o2Var, false);
-                                i11--;
-                            }
-                        } else if (o2Var instanceof xe1) {
-                            if ((-((xe1) o2Var).f43545a) == profileActivity.a()) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).b0(o2Var, false);
-                                i11--;
-                            }
-                        } else if ((o2Var instanceof ProfileActivity) && o2Var != profileActivity) {
-                            ProfileActivity profileActivity2 = (ProfileActivity) o2Var;
-                            if (profileActivity2.a() == profileActivity.a() && profileActivity2.f34004r1) {
-                                ((ActionBarLayout) profileActivity.getParentLayout()).b0(o2Var, false);
-                                i11--;
-                            }
-                        }
-                        i11++;
-                    }
+            case 3:
+                ProfileActivity profileActivity4 = this.f44543b;
+                TLRPC.User user4 = this.f44544c;
+                int i13 = ProfileActivity.R6;
+                profileActivity4.getClass();
+                try {
+                    Intent intent = new Intent("android.intent.action.DIAL", Uri.parse("tel:+" + user4.phone));
+                    intent.addFlags(268435456);
+                    profileActivity4.getParentActivity().startActivityForResult(intent, 500);
+                    return;
+                } catch (Exception e) {
+                    FileLog.e(e);
+                    return;
                 }
-                profileActivity.K1 = 0;
-                Bundle bundle2 = new Bundle();
-                bundle2.putLong("chat_id", profileActivity.f33930g1);
-                HashSet hashSet = xe1.f43544q1;
-                profileActivity.presentFragment(xe1.D0(profileActivity.getMessagesController(), profileActivity.getMessagesStorage(), bundle2));
-                return;
-            case 11:
-                ProfileActivity.U(profileActivity);
-                return;
-            case 12:
-                profileActivity.v4(view);
-                return;
             default:
-                profileActivity.v4(view);
-                return;
+                ProfileActivity profileActivity5 = this.f44543b;
+                TLRPC.User user5 = this.f44544c;
+                int i14 = ProfileActivity.R6;
+                try {
+                    ((ClipboardManager) ApplicationLoader.applicationContext.getSystemService("clipboard")).setPrimaryClip(ClipData.newPlainText("label", "+" + user5.phone));
+                    if (AndroidUtilities.shouldShowClipboardToast()) {
+                        org.telegram.ui.Components.wc.b0(profileActivity5).i(LocaleController.getString(R.string.PhoneCopied)).j();
+                        return;
+                    }
+                    return;
+                } catch (Exception e10) {
+                    FileLog.e(e10);
+                    return;
+                }
         }
     }
 }

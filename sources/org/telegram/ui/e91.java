@@ -1,73 +1,64 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public abstract class e91 extends d91 {
-    public final int v;
-    public final t91 f36862w;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.Window;
+public final class e91 extends AnimatorListenerAdapter {
+    public final int f39034a;
+    public final g91 f39035b;
 
-    public e91(t91 t91Var, Context context, int i10, int i11, jg.f fVar) {
-        super(context, i11, fVar, null);
-        this.f36862w = t91Var;
-        this.v = i10;
+    public e91(g91 g91Var, int i10) {
+        this.f39034a = i10;
+        this.f39035b = g91Var;
     }
 
     @Override
-    public final void b(f91 f91Var) {
-        int i10;
-        t91 t91Var = this.f36862w;
-        i10 = ((org.telegram.ui.ActionBar.o2) t91Var).classGuid;
-        f91Var.a(this.v, i10, t91Var.f41941a.stats_dc, new oh(2, t91Var, this.f36544r));
-    }
-
-    @Override
-    public final void c() {
-        int i10;
-        if (this.f36544r.f37245c <= 0) {
-            performClick();
-            jg.g gVar = this.f36540b;
-            if (gVar.f14525t0.G) {
-                long selectedDate = gVar.getSelectedDate();
-                if (this.f36545s == 4) {
-                    f91 f91Var = this.f36544r;
-                    f91Var.e = new kg.e(f91Var.d, selectedDate);
-                    g(false);
-                } else if (this.f36544r.f37247g == null) {
-                } else {
-                    t91 t91Var = this.f36862w;
-                    t91.Z(t91Var);
-                    String str = this.f36544r.f37247g + "_" + selectedDate;
-                    kg.b bVar = (kg.b) t91Var.V.get(str);
-                    if (bVar != null) {
-                        this.f36544r.e = bVar;
-                        g(false);
-                        return;
-                    }
-                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f36544r.f37247g;
-                    if (selectedDate != 0) {
-                        tL_loadAsyncGraph.f20572x = selectedDate;
-                        tL_loadAsyncGraph.flags |= 1;
-                    }
-                    ?? obj = new Object();
-                    t91Var.Z = obj;
-                    t91Var.S.getClass();
-                    obj.f41324a = RecyclerView.R(this);
-                    gVar.f14525t0.d(true, false);
-                    int i11 = this.v;
-                    int sendRequest = ConnectionsManager.getInstance(i11).sendRequest(tL_loadAsyncGraph, new vr0(this, str, obj, 10), null, null, 0, t91Var.f41941a.stats_dc, 1, true);
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
-                    i10 = ((org.telegram.ui.ActionBar.o2) t91Var).classGuid;
-                    connectionsManager.bindRequestToGuid(sendRequest, i10);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f39034a) {
+            case 0:
+                g91 g91Var = this.f39035b;
+                g91Var.f39569b.setVisibility(4);
+                kg.h hVar = g91Var.f39569b;
+                hVar.J = false;
+                kg.h hVar2 = g91Var.f39570c;
+                hVar2.J = true;
+                hVar.f16626y0 = 0;
+                hVar2.f16626y0 = 0;
+                Window window = g91Var.f39568a;
+                if (window != null) {
+                    window.clearFlags(16);
+                    return;
                 }
-            }
+                return;
+            case 1:
+                g91 g91Var2 = this.f39035b;
+                kg.h hVar3 = g91Var2.f39570c;
+                hVar3.setVisibility(4);
+                kg.h hVar4 = g91Var2.f39569b;
+                hVar4.f16626y0 = 0;
+                hVar3.f16626y0 = 0;
+                hVar4.J = true;
+                hVar3.J = false;
+                if (!(hVar4 instanceof kg.r)) {
+                    hVar4.f16619u0 = true;
+                    hVar4.x((hVar4.G0 * hVar4.f16599g0.f16640k) - kg.h.f16568k1);
+                    hVar4.c(true);
+                    hVar4.invalidate();
+                } else {
+                    hVar4.f16619u0 = false;
+                    hVar4.d();
+                }
+                Window window2 = g91Var2.f39568a;
+                if (window2 != null) {
+                    window2.clearFlags(16);
+                    return;
+                }
+                return;
+            default:
+                g91 g91Var3 = this.f39035b;
+                g91Var3.f39569b.f16626y0 = 0;
+                g91Var3.e.setVisibility(8);
+                return;
         }
-    }
-
-    @Override
-    public final void f() {
-        t91.Z(this.f36862w);
     }
 }

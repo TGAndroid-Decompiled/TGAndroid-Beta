@@ -1,17 +1,12 @@
 package w7;
-public final class d5 implements ja.d {
-    public static final d5 f49063a = new Object();
-
-    static {
-        si.o0.s(si.o0.l(d.class, si.o0.p(8, si.o0.l(d.class, si.o0.p(7, si.o0.l(d.class, si.o0.p(6, si.o0.l(d.class, si.o0.p(5, si.o0.l(d.class, si.o0.p(4, si.o0.l(d.class, si.o0.p(3, si.o0.l(d.class, si.o0.p(2, si.o0.l(d.class, new a(1)))))))))))))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
+public abstract class d5 {
+    public static int a(Object obj) {
+        int hashCode;
         if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+            hashCode = 0;
+        } else {
+            hashCode = obj.hashCode();
         }
-        throw new ClassCastException();
+        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
     }
 }

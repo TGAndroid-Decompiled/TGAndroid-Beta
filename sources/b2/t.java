@@ -1,257 +1,96 @@
 package b2;
 
-import android.os.Bundle;
-import android.os.CancellationSignal;
-import android.util.SparseBooleanArray;
-import com.google.android.gms.auth.api.signin.internal.SignInHubActivity;
-import com.google.android.gms.internal.play_billing.y3;
-import j$.util.DesugarCollections;
+import android.os.Parcel;
+import android.os.Parcelable;
+import j$.util.Objects;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import v7.u6;
-public final class t implements s4.d0, androidx.lifecycle.a0, y9.i {
-    public final int f4011a;
-    public boolean f4012b;
-    public Object f4013c;
+import java.util.Comparator;
+import java.util.UUID;
+public final class t implements Comparator, Parcelable {
+    public static final Parcelable.Creator<t> CREATOR = new r(0);
+    public final s[] f3437a;
+    public int f3438b;
+    public final String f3439c;
+    public final int d;
 
-    public t(int i10) {
-        this.f4011a = i10;
+    public t(String str, ArrayList arrayList) {
+        this(str, false, (s[]) arrayList.toArray(new s[0]));
     }
 
-    public static t g(Bundle bundle) {
-        p4.m mVar;
-        if (bundle == null) {
-            return null;
+    public final t a(String str) {
+        if (Objects.equals(this.f3439c, str)) {
+            return this;
         }
-        ArrayList arrayList = new ArrayList();
-        ArrayList parcelableArrayList = bundle.getParcelableArrayList("routes");
-        if (parcelableArrayList != null) {
-            for (int i10 = 0; i10 < parcelableArrayList.size(); i10++) {
-                Bundle bundle2 = (Bundle) parcelableArrayList.get(i10);
-                if (bundle2 != null) {
-                    mVar = new p4.m(bundle2);
-                } else {
-                    mVar = null;
-                }
-                arrayList.add(mVar);
-            }
-        }
-        return new t(arrayList, bundle.getBoolean("supportsDynamicGroupRoute", false));
+        return new t(str, false, this.f3437a);
     }
 
     @Override
-    public void X(int i10, int i11) {
-        this.f4012b = true;
-        ((s4.g0) this.f4013c).s(i10, i11);
+    public final int compare(Object obj, Object obj2) {
+        s sVar = (s) obj;
+        s sVar2 = (s) obj2;
+        UUID uuid = n.f3284b;
+        if (uuid.equals(sVar.f3388b)) {
+            if (uuid.equals(sVar2.f3388b)) {
+                return 0;
+            }
+            return 1;
+        }
+        return sVar.f3388b.compareTo(sVar2.f3388b);
     }
 
     @Override
-    public void Z(Object obj) {
-        this.f4012b = true;
-        qb.c cVar = (qb.c) this.f4013c;
-        cVar.getClass();
-        Void r32 = (Void) obj;
-        SignInHubActivity signInHubActivity = (SignInHubActivity) cVar.f44851b;
-        signInHubActivity.setResult(signInHubActivity.R, signInHubActivity.S);
-        signInHubActivity.finish();
+    public final int describeContents() {
+        return 0;
     }
 
     @Override
-    public void a(y9.h hVar, int i10) {
-        StringBuilder sb2 = (StringBuilder) this.f4013c;
-        if (this.f4012b) {
-            this.f4012b = false;
-        } else {
-            sb2.append(", ");
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        sb2.append(i10);
-    }
-
-    @Override
-    public void a1(int i10, int i11) {
-        ((s4.g0) this.f4013c).r(i10, i11, null);
-    }
-
-    public void b(int i10) {
-        u6.p(!this.f4012b);
-        ((SparseBooleanArray) this.f4013c).append(i10, true);
-    }
-
-    public void c(u uVar) {
-        for (int i10 = 0; i10 < uVar.f4059a.size(); i10++) {
-            b(uVar.a(i10));
-        }
-    }
-
-    public u d() {
-        u6.p(!this.f4012b);
-        this.f4012b = true;
-        return new u((SparseBooleanArray) this.f4013c);
-    }
-
-    public void e() {
-        synchronized (this) {
-            try {
-                if (this.f4012b) {
-                    return;
-                }
-                this.f4012b = true;
-                CancellationSignal cancellationSignal = (CancellationSignal) this.f4013c;
-                if (cancellationSignal != null) {
-                    try {
-                        cancellationSignal.cancel();
-                    } catch (Throwable th2) {
-                        synchronized (this) {
-                            notifyAll();
-                            throw th2;
-                        }
-                    }
-                }
-                synchronized (this) {
-                    notifyAll();
-                }
-            } catch (Throwable th3) {
-                throw th3;
-            }
-        }
-    }
-
-    public boolean f() {
-        return this.f4012b;
-    }
-
-    public boolean h(int i10, CharSequence charSequence) {
-        if (charSequence != null && i10 >= 0 && charSequence.length() - i10 >= 0) {
-            p0.e eVar = (p0.e) this.f4013c;
-            if (eVar == null) {
-                return f();
-            }
-            eVar.getClass();
-            boolean z10 = true;
-            for (int i11 = 0; i11 < i10 && z10; i11++) {
-                byte directionality = Character.getDirectionality(charSequence.charAt(i11));
-                t tVar = p0.f.f44334a;
-                if (directionality != 0) {
-                    if (directionality != 1 && directionality != 2) {
-                        switch (directionality) {
-                            case 14:
-                            case 15:
-                                break;
-                            case 16:
-                            case 17:
-                                break;
-                            default:
-                                z10 = true;
-                                break;
-                        }
-                    }
-                    z10 = false;
-                }
-                z10 = true;
-            }
-            if (!z10) {
+        if (obj != null && t.class == obj.getClass()) {
+            t tVar = (t) obj;
+            if (Objects.equals(this.f3439c, tVar.f3439c) && Arrays.equals(this.f3437a, tVar.f3437a)) {
                 return true;
             }
-            if (z10) {
-                return false;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        if (this.f3438b == 0) {
+            String str = this.f3439c;
+            if (str == null) {
+                hashCode = 0;
+            } else {
+                hashCode = str.hashCode();
             }
-            return f();
+            this.f3438b = (hashCode * 31) + Arrays.hashCode(this.f3437a);
         }
-        throw new IllegalArgumentException();
-    }
-
-    public void i(y3 y3Var) {
-        if (this.f4012b) {
-            com.google.android.gms.internal.play_billing.u.h("BillingLogger", "Skipping logging since initialization failed.");
-            return;
-        }
-        try {
-            ((l5.s) this.f4013c).a(new i5.a(null, y3Var, i5.d.f12740a, null), new k2.f(8));
-        } catch (Throwable unused) {
-            com.google.android.gms.internal.play_billing.u.h("BillingLogger", "logging failed.");
-        }
+        return this.f3438b;
     }
 
     @Override
-    public void t0(int i10, int i11) {
-        this.f4012b = true;
-        ((s4.g0) this.f4013c).t(i10, i11);
+    public final void writeToParcel(Parcel parcel, int i10) {
+        parcel.writeString(this.f3439c);
+        parcel.writeTypedArray(this.f3437a, 0);
     }
 
-    public String toString() {
-        switch (this.f4011a) {
-            case 5:
-                StringBuilder sb2 = new StringBuilder("MediaRouteProviderDescriptor{ routes=");
-                List list = (List) this.f4013c;
-                sb2.append(Arrays.toString(list.toArray()));
-                sb2.append(", isValid=");
-                int size = list.size();
-                boolean z10 = false;
-                int i10 = 0;
-                while (true) {
-                    if (i10 < size) {
-                        p4.m mVar = (p4.m) list.get(i10);
-                        if (mVar != null && mVar.e()) {
-                            i10++;
-                        }
-                    } else {
-                        z10 = true;
-                    }
-                }
-                sb2.append(z10);
-                sb2.append(" }");
-                return sb2.toString();
-            case 6:
-            default:
-                return super.toString();
-            case 7:
-                return ((qb.c) this.f4013c).toString();
-        }
+    public t(String str, boolean z10, s... sVarArr) {
+        this.f3439c = str;
+        sVarArr = z10 ? (s[]) sVarArr.clone() : sVarArr;
+        this.f3437a = sVarArr;
+        this.d = sVarArr.length;
+        Arrays.sort(sVarArr, this);
     }
 
-    @Override
-    public void y(int i10, int i11) {
-        this.f4012b = true;
-        ((s4.g0) this.f4013c).p(i10, i11);
-    }
-
-    public t(Object obj, int i10) {
-        this.f4011a = i10;
-        this.f4013c = obj;
-    }
-
-    public t() {
-        this.f4011a = 0;
-        this.f4013c = new SparseBooleanArray();
-    }
-
-    public t(ArrayList arrayList, boolean z10) {
-        this.f4011a = 5;
-        if (arrayList.isEmpty()) {
-            this.f4013c = Collections.EMPTY_LIST;
-        } else {
-            this.f4013c = DesugarCollections.unmodifiableList(new ArrayList(arrayList));
-        }
-        this.f4012b = z10;
-    }
-
-    public t(p0.e eVar, boolean z10) {
-        this(eVar, 4);
-        this.f4011a = 4;
-        this.f4012b = z10;
-    }
-
-    public t(a6.d dVar, qb.c cVar) {
-        this.f4011a = 7;
-        this.f4012b = false;
-        this.f4013c = cVar;
-    }
-
-    public t(StringBuilder sb2) {
-        this.f4011a = 8;
-        this.f4013c = sb2;
-        this.f4012b = true;
+    public t(Parcel parcel) {
+        this.f3439c = parcel.readString();
+        s[] sVarArr = (s[]) parcel.createTypedArray(s.CREATOR);
+        String str = e2.n0.f9692a;
+        this.f3437a = sVarArr;
+        this.d = sVarArr.length;
     }
 }

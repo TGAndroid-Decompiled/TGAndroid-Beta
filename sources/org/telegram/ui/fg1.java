@@ -1,37 +1,88 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.text.Editable;
-public final class fg1 extends org.telegram.ui.Cells.h3 {
-    public final int E;
-    public final UserInfoActivity F;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.view.ViewGroup;
+import java.util.WeakHashMap;
+import org.telegram.messenger.AndroidUtilities;
+public final class fg1 extends ViewGroup {
+    public final Paint f39369a;
+    public View f39370b;
+    public boolean f39371c;
 
-    public fg1(UserInfoActivity userInfoActivity, Context context, String str, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, str, false, false, -1, g6Var);
-        this.E = i10;
-        this.F = userInfoActivity;
+    public fg1(Context context) {
+        super(context);
+        this.f39369a = new Paint(1);
+        setClipToPadding(false);
     }
 
     @Override
-    public final void b(Editable editable) {
-        switch (this.E) {
-            case 0:
-                this.F.b0(true);
-                return;
-            case 1:
-                this.F.b0(true);
-                return;
-            default:
-                UserInfoActivity userInfoActivity = this.F;
-                userInfoActivity.b0(true);
-                userInfoActivity.e0();
-                return;
+    public final void dispatchDraw(Canvas canvas) {
+        int paddingBottom = getPaddingBottom();
+        float navigationBarThirdButtonsFactor = AndroidUtilities.getNavigationBarThirdButtonsFactor(0.1f, 0.75f, paddingBottom);
+        int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false);
+        int k10 = i0.a.k(org.telegram.ui.ActionBar.y6.o1(navigationBarThirdButtonsFactor, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false)), x02);
+        Paint paint = this.f39369a;
+        paint.setColor(x02);
+        canvas.drawRect(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight() - paddingBottom, paint);
+        paint.setColor(k10);
+        canvas.drawRect(0.0f, getMeasuredHeight() - paddingBottom, getMeasuredWidth(), getMeasuredHeight(), paint);
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            View childAt = getChildAt(i14);
+            childAt.layout(0, 0, childAt.getMeasuredWidth(), childAt.getMeasuredHeight());
         }
     }
 
-    public fg1(UserInfoActivity userInfoActivity, Context context, String str, int i10, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, str, true, false, i10, g6Var);
-        this.E = 2;
-        this.F = userInfoActivity;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        int i12;
+        View view = this.f39370b;
+        if (view != null && view.getVisibility() == 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int size = View.MeasureSpec.getSize(i10);
+        if (z10) {
+            i12 = getPaddingBottom() + AndroidUtilities.dp(44.0f);
+        } else {
+            i12 = 0;
+        }
+        setMeasuredDimension(size, i12);
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(size, 1073741824);
+        int makeMeasureSpec2 = View.MeasureSpec.makeMeasureSpec(i12, 1073741824);
+        int childCount = getChildCount();
+        for (int i13 = 0; i13 < childCount; i13++) {
+            getChildAt(i13).measure(makeMeasureSpec, makeMeasureSpec2);
+        }
+        if (this.f39371c != z10) {
+            this.f39371c = z10;
+            WeakHashMap weakHashMap = r0.i0.f47105a;
+            r0.y.c(this);
+        }
+    }
+
+    @Override
+    public final void onViewAdded(View view) {
+        super.onViewAdded(view);
+        this.f39370b = view;
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        super.setPadding(i10, i11, i12, i13);
+        int childCount = getChildCount();
+        for (int i14 = 0; i14 < childCount; i14++) {
+            getChildAt(i14).setPadding(i10, i11, i12, i13);
+        }
     }
 }

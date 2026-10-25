@@ -1,79 +1,102 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.util.SparseArray;
 import android.util.SparseIntArray;
-import android.widget.HorizontalScrollView;
-import android.widget.LinearLayout;
-import java.util.concurrent.atomic.AtomicBoolean;
+import android.view.View;
+import java.util.List;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class zh implements z4.f {
-    public final AtomicBoolean f44104a;
-    public final LinearLayout f44105b;
-    public final int f44106c;
-    public final HorizontalScrollView d;
-    public final SparseIntArray e;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f44107f;
-    public final int[] f44108g;
+public final class zh extends a5.a {
+    public final int f46289c;
+    public final SparseArray d;
+    public final boolean e;
+    public final List f46290f;
+    public final MessageObject f46291g;
+    public final org.telegram.ui.Components.fk0 h;
+    public final MessageObject f46292i;
+    public final SparseIntArray f46293j;
+    public final int f46294k;
+    public final a5.m f46295l;
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f46296m;
+    public final int[] f46297n;
+    public final int f46298o;
+    public final un f46299p;
 
-    public zh(AtomicBoolean atomicBoolean, LinearLayout linearLayout, int i10, HorizontalScrollView horizontalScrollView, SparseIntArray sparseIntArray, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f44104a = atomicBoolean;
-        this.f44105b = linearLayout;
-        this.f44106c = i10;
-        this.d = horizontalScrollView;
-        this.e = sparseIntArray;
-        this.f44107f = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.f44108g = iArr;
+    public zh(un unVar, int i10, SparseArray sparseArray, boolean z10, List list, MessageObject messageObject, org.telegram.ui.Components.fk0 fk0Var, MessageObject messageObject2, SparseIntArray sparseIntArray, int i11, a5.m mVar, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr, int i12) {
+        this.f46299p = unVar;
+        this.f46289c = i10;
+        this.d = sparseArray;
+        this.e = z10;
+        this.f46290f = list;
+        this.f46291g = messageObject;
+        this.h = fk0Var;
+        this.f46292i = messageObject2;
+        this.f46293j = sparseIntArray;
+        this.f46294k = i11;
+        this.f46295l = mVar;
+        this.f46296m = actionBarPopupWindow$ActionBarPopupWindowLayout;
+        this.f46297n = iArr;
+        this.f46298o = i12;
     }
 
     @Override
-    public final void a(int i10) {
-        this.f44107f.getSwipeBack().f(this.f44108g[0], this.e.get(i10), true);
+    public final void a(a5.m mVar, Object obj) {
+        mVar.removeView((View) obj);
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        HorizontalScrollView horizontalScrollView;
-        SparseIntArray sparseIntArray;
-        float f10;
-        if (!this.f44104a.get()) {
-            float f11 = -1.0f;
-            float f12 = -1.0f;
-            int i12 = 0;
-            while (true) {
-                LinearLayout linearLayout = this.f44105b;
-                int childCount = linearLayout.getChildCount();
-                horizontalScrollView = this.d;
-                if (i12 >= childCount) {
-                    break;
-                }
-                org.telegram.ui.Components.qk0 qk0Var = (org.telegram.ui.Components.qk0) linearLayout.getChildAt(i12);
-                if (i12 == i10) {
-                    f10 = 1.0f - f7;
-                } else if (i12 == (i10 + 1) % this.f44106c) {
-                    f10 = f7;
-                } else {
-                    f10 = 0.0f;
-                }
-                qk0Var.setOutlineProgress(f10);
-                if (i12 == i10) {
-                    f11 = qk0Var.getX() - ((horizontalScrollView.getWidth() - qk0Var.getWidth()) / 2.0f);
-                }
-                if (i12 == i10 + 1) {
-                    f12 = qk0Var.getX() - ((horizontalScrollView.getWidth() - qk0Var.getWidth()) / 2.0f);
-                }
-                i12++;
-            }
-            if (f11 != -1.0f && f12 != -1.0f) {
-                horizontalScrollView.setScrollX((int) com.google.android.gms.internal.play_billing.k3.y(f12, f11, f7, f11));
-            }
-            int i13 = this.e.get(i10, 0);
-            this.f44107f.getSwipeBack().f(this.f44108g[0], (int) ((sparseIntArray.get(i10 + 1, 0) * f7) + ((1.0f - f7) * i13)), false);
+    public final int b() {
+        return this.f46289c;
+    }
+
+    @Override
+    public final Object e(a5.m mVar, int i10) {
+        int i11;
+        TLRPC.ReactionCount reactionCount;
+        int i12;
+        SparseArray sparseArray = this.d;
+        View view = (View) sparseArray.get(i10);
+        if (view != null) {
+            mVar.addView(view);
+            return view;
         }
+        if (this.e) {
+            i11 = i10 - 1;
+        } else {
+            i11 = i10;
+        }
+        if (i11 >= 0) {
+            reactionCount = (TLRPC.ReactionCount) this.f46290f.get(i11);
+        } else {
+            reactionCount = null;
+        }
+        TLRPC.ReactionCount reactionCount2 = reactionCount;
+        Context context = mVar.getContext();
+        un unVar = this.f46299p;
+        sn snVar = unVar.f44385qa;
+        i12 = ((org.telegram.ui.ActionBar.r2) unVar).currentAccount;
+        org.telegram.ui.Components.pk0 pk0Var = new org.telegram.ui.Components.pk0(context, snVar, i12, this.f46291g, reactionCount2, true);
+        org.telegram.ui.Components.fk0 fk0Var = this.h;
+        pk0Var.h(fk0Var.getSeenUsers());
+        pk0Var.G = new y0(this, 18);
+        pk0Var.E = new m4.s0(18, this, this.f46292i);
+        pk0Var.f31591y = new hi.s4(this.f46293j, i10, this.f46294k, this.f46295l, this.f46296m, this.f46297n);
+        if (i11 < 0) {
+            pk0Var.setPredictiveCount(this.f46298o);
+            fk0Var.setSeenCallback(new h3(pk0Var, 1));
+        }
+        mVar.addView(pk0Var);
+        sparseArray.put(i10, pk0Var);
+        return pk0Var;
     }
 
     @Override
-    public final void c(int i10) {
-        if (i10 == 0) {
-            this.f44104a.set(false);
+    public final boolean f(View view, Object obj) {
+        if (view == obj) {
+            return true;
         }
+        return false;
     }
 }

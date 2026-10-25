@@ -1,93 +1,67 @@
 package pi;
 
-import android.content.Context;
-import android.util.SparseArray;
-import android.util.SparseIntArray;
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import org.telegram.tgnet.SerializedData;
-public final class b {
-    public static SparseIntArray f44739b;
-    public static final b f44740c = new b();
-    public final SparseArray f44741a;
+import a8.lf;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.RenderNode;
+import android.support.v4.media.session.x;
+public final class b extends lf {
+    public final RenderNode f46866a = x.n();
+    public final Paint f46867b = new Paint(1);
+    public final e f46868c;
 
-    public b() {
-        this.f44741a = new SparseArray();
+    public b(e eVar) {
+        this.f46868c = eVar;
     }
 
-    public static SparseArray a(Context context, String str, SparseArray sparseArray) {
-        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getAssets().open(str));
-        try {
-            SerializedData serializedData = new SerializedData(bufferedInputStream);
-            int readInt32 = serializedData.readInt32(true);
-            int i10 = 0;
-            if (sparseArray == null) {
-                sparseArray = new SparseArray(readInt32);
-                while (i10 < readInt32) {
-                    sparseArray.append(serializedData.readInt32(true), serializedData.readString(true));
-                    i10++;
-                }
-            } else {
-                while (i10 < readInt32) {
-                    sparseArray.put(serializedData.readInt32(true), serializedData.readString(true));
-                    i10++;
-                }
-            }
-            bufferedInputStream.close();
-            return sparseArray;
-        } catch (Throwable th2) {
-            try {
-                bufferedInputStream.close();
-            } catch (Throwable th3) {
-                th2.addSuppressed(th3);
-            }
-            throw th2;
+    @Override
+    public final void a(Rect rect, RectF rectF) {
+        float f7;
+        e eVar = this.f46868c;
+        if (!eVar.v && this.f46866a.hasDisplayList()) {
+            return;
         }
-    }
-
-    public final String b(String str) {
-        if (str != null) {
-            return (String) this.f44741a.get(str.hashCode());
-        }
-        return null;
-    }
-
-    public final String c(Context context, String str, int i10) {
-        String str2;
-        if (str != null) {
-            str2 = b(str);
+        int width = rect.width();
+        int height = rect.height();
+        int i10 = eVar.f46886w;
+        if (i10 != 1 && i10 != 4) {
+            f7 = width;
         } else {
-            str2 = null;
+            f7 = height;
         }
-        if (str2 == null && i10 != 0) {
-            if (context != null && i10 != 0) {
-                if (f44739b == null) {
-                    try {
-                        BufferedInputStream bufferedInputStream = new BufferedInputStream(context.getResources().getAssets().open("string_resource_ids.bin"));
-                        SerializedData serializedData = new SerializedData(bufferedInputStream);
-                        int readInt32 = serializedData.readInt32(true);
-                        SparseIntArray sparseIntArray = new SparseIntArray(readInt32);
-                        for (int i11 = 0; i11 < readInt32; i11++) {
-                            sparseIntArray.append(serializedData.readInt32(true), serializedData.readInt32(true));
-                        }
-                        bufferedInputStream.close();
-                        f44739b = sparseIntArray;
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                }
-                int i12 = f44739b.get(i10);
-                if (i12 != 0) {
-                    return (String) this.f44741a.get(i12);
-                }
-            }
-            return null;
-        }
-        return str2;
+        float f10 = f7;
+        f fVar = eVar.E;
+        fVar.getClass();
+        LinearGradient l4 = e.l(eVar, fVar, f10, 0, eVar.I, 1);
+        Paint paint = this.f46867b;
+        paint.setShader(l4);
+        this.f46866a.setPosition(0, 0, width, height);
+        this.f46866a.beginRecording().drawRect(0.0f, 0.0f, width, height, paint);
+        this.f46866a.endRecording();
+        paint.setShader(null);
+        eVar.v = false;
     }
 
-    public b(a aVar) {
-        SparseArray sparseArray = aVar.f44738a;
-        this.f44741a = sparseArray == null ? new SparseArray() : sparseArray;
+    @Override
+    public final void b() {
+        this.f46866a.discardDisplayList();
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        canvas.drawRenderNode(this.f46866a);
+    }
+
+    @Override
+    public final boolean d() {
+        return this.f46866a.hasDisplayList();
+    }
+
+    @Override
+    public final void e(float f7) {
+        this.f46866a.setAlpha(f7);
     }
 }

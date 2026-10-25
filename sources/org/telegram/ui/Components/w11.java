@@ -1,45 +1,53 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.view.View;
-import java.util.ArrayList;
-public final class w11 {
-    public final View f32107a;
-    public final ArrayList f32108b;
-    public final Runnable f32109c;
-    public Runnable d;
-    public final Bitmap e;
-    public final Matrix f32110f;
-    public float f32111g;
+import android.animation.ValueAnimator;
+public final class w11 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34336a;
+    public final x11 f34337b;
 
-    public w11(View view, Runnable runnable) {
-        this.f32111g = 1.0f;
-        this.f32107a = view;
-        this.f32108b = null;
-        this.f32109c = null;
-        this.d = runnable;
-        this.e = null;
-        this.f32110f = null;
+    public w11(x11 x11Var, int i10) {
+        this.f34336a = i10;
+        this.f34337b = x11Var;
     }
 
-    public w11(ArrayList arrayList, ig.d2 d2Var) {
-        this.f32111g = 1.0f;
-        this.f32107a = null;
-        this.f32108b = arrayList;
-        this.f32109c = null;
-        this.d = d2Var;
-        this.e = null;
-        this.f32110f = null;
-    }
-
-    public w11(Matrix matrix, Bitmap bitmap, Runnable runnable, Runnable runnable2) {
-        this.f32111g = 1.0f;
-        this.f32107a = null;
-        this.f32108b = null;
-        this.f32109c = runnable;
-        this.d = runnable2;
-        this.f32110f = matrix;
-        this.e = bitmap;
+    @Override
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34336a) {
+            case 0:
+                x11 x11Var = this.f34337b;
+                x11Var.getClass();
+                x11Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x11Var.invalidate();
+                return;
+            case 1:
+                x11 x11Var2 = this.f34337b;
+                x11Var2.getClass();
+                x11Var2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x11Var2.invalidate();
+                return;
+            case 2:
+                x11 x11Var3 = this.f34337b;
+                x11Var3.getClass();
+                x11Var3.f34583f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x11Var3.invalidate();
+                return;
+            case 3:
+                x11 x11Var4 = this.f34337b;
+                x11Var4.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x11Var4.f34586s = floatValue;
+                x11Var4.f34587w = (int) ((x11Var4.h * floatValue) + 0);
+                x11Var4.invalidate();
+                return;
+            default:
+                x11 x11Var5 = this.f34337b;
+                x11Var5.getClass();
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                x11Var5.v = floatValue2;
+                int i10 = x11Var5.f34585r;
+                x11Var5.f34588x = i10 + ((int) Math.ceil((x11Var5.f34584n - i10) * floatValue2));
+                x11Var5.invalidate();
+                return;
+        }
     }
 }

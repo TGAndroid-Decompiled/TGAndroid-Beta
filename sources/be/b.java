@@ -1,8 +1,11 @@
 package be;
-public final class b implements y1 {
-    public static final b f4267a = new Object();
+public abstract class b {
+    public static final int f3894a = 0;
 
-    public final String toString() {
-        return "Active";
+    static {
+        ThreadLocal[] threadLocalArr = new ThreadLocal[4];
+        for (int i10 = 0; i10 < 4; i10++) {
+            threadLocalArr[i10] = new ThreadLocal();
+        }
     }
 }

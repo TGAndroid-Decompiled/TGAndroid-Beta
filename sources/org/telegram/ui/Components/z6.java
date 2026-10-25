@@ -1,34 +1,90 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.Utilities;
-public final class z6 implements Utilities.Callback2 {
-    public final int f33160a;
-    public final i8 f33161b;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class z6 extends View {
+    public final ImageReceiver f35224a;
+    public final Drawable f35225b;
+    public final Paint f35226c;
+    public final Paint d;
 
-    public z6(i8 i8Var, int i10) {
-        this.f33160a = i10;
-        this.f33161b = i8Var;
+    public z6(Context context) {
+        super(context);
+        Paint paint = new Paint(1);
+        this.f35226c = paint;
+        this.d = new Paint(1);
+        ImageReceiver imageReceiver = new ImageReceiver(this);
+        this.f35224a = imageReceiver;
+        imageReceiver.setAlpha(0.0f);
+        imageReceiver.setDelegate(new s(this, 12));
+        this.f35225b = context.getDrawable(R.drawable.input_attach).mutate().getConstantState().newDrawable();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeWidth(AndroidUtilities.dp(3.0f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f33160a) {
-            case 0:
-                i8 i8Var = this.f33161b;
-                i8Var.X = !((Boolean) obj2).booleanValue();
-                MediaController mediaController = MediaController.getInstance();
-                org.telegram.ui.ActionBar.a1 a1Var = i8Var.W;
-                float floatValue = ((Float) obj).floatValue();
-                a1Var.getClass();
-                mediaController.setPlaybackSpeed(true, (floatValue * 2.8f) + 0.2f);
-                return;
-            default:
-                Bitmap bitmap = (Bitmap) obj2;
-                this.f33161b.f27335h0.setBackground(new BitmapDrawable((Bitmap) obj));
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f35224a.onAttachedToWindow();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f35224a.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), AndroidUtilities.dp(10.0f) + getHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), this.d);
+        ImageReceiver imageReceiver = this.f35224a;
+        imageReceiver.setImageCoords((getWidth() / 2.0f) - AndroidUtilities.dp(66.0f), (getHeight() / 2.0f) - (AndroidUtilities.dp(42.0f) / 2.0f), AndroidUtilities.dp(42.0f), AndroidUtilities.dp(42.0f));
+        imageReceiver.draw(canvas);
+        Paint paint = this.f35226c;
+        canvas.drawLine((getWidth() / 2.0f) - AndroidUtilities.dp(8.0f), getHeight() / 2.0f, (getWidth() / 2.0f) + AndroidUtilities.dp(8.0f), getHeight() / 2.0f, paint);
+        canvas.drawLine(getWidth() / 2.0f, (getHeight() / 2.0f) - AndroidUtilities.dp(8.0f), getWidth() / 2.0f, AndroidUtilities.dp(8.0f) + (getHeight() / 2.0f), paint);
+        int dp = AndroidUtilities.dp(24.0f) + (getWidth() / 2);
+        int height = (getHeight() / 2) - (AndroidUtilities.dp(42.0f) / 2);
+        int dp2 = AndroidUtilities.dp(66.0f) + (getWidth() / 2);
+        int dp3 = (AndroidUtilities.dp(42.0f) / 2) + (getHeight() / 2);
+        Drawable drawable = this.f35225b;
+        drawable.setBounds(dp, height, dp2, dp3);
+        drawable.draw(canvas);
+    }
+
+    public void setAttachBot(TLRPC.TL_attachMenuBot tL_attachMenuBot) {
+        TLRPC.TL_attachMenuBotIcon staticAttachMenuBotIcon = MediaDataController.getStaticAttachMenuBotIcon(tL_attachMenuBot);
+        if (staticAttachMenuBotIcon != null) {
+            this.f35224a.setImage(ImageLocation.getForDocument(staticAttachMenuBotIcon.icon), "42_42", DocumentObject.getSvgThumb(staticAttachMenuBotIcon.icon, org.telegram.ui.ActionBar.y6.q5, 1.0f), "svg", tL_attachMenuBot, 0);
         }
+    }
+
+    @Override
+    public void setBackgroundColor(int i10) {
+        this.d.setColor(i10);
+    }
+
+    public void setColor(int i10) {
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        this.f35225b.setColorFilter(i10, mode);
+        this.f35226c.setColor(i10);
+        this.f35224a.setColorFilter(new PorterDuffColorFilter(i10, mode));
     }
 }

@@ -1,64 +1,29 @@
 package fi;
 
-import ai.kc;
-import android.content.Context;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.k6;
-import sg.w1;
-import sg.x1;
-public final class c extends x1 {
-    public Paint[] f10619r;
-    public final int f10620s;
-    public final int v;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class c extends AnimatorListenerAdapter {
+    public final int f10589a;
+    public final d f10590b;
 
-    public c(Context context, int i10, int i11) {
-        super(context);
-        this.f10620s = i10;
-        this.v = i11;
-        c();
+    public c(d dVar, int i10) {
+        this.f10589a = i10;
+        this.f10590b = dVar;
     }
 
     @Override
-    public final void a() {
-        w1 w1Var = new w1(this.f10620s);
-        this.f46938a = w1Var;
-        w1Var.O = 106;
-        int i10 = 0;
-        w1Var.M = false;
-        w1Var.G = false;
-        w1Var.K = true;
-        w1Var.H = true;
-        w1Var.J = false;
-        w1Var.f46918m = true;
-        w1Var.h = true;
-        if (this.v == 1) {
-            w1Var.f46916k = AndroidUtilities.dp(24.0f);
-        }
-        this.f10619r = new Paint[20];
-        while (true) {
-            Paint[] paintArr = this.f10619r;
-            if (i10 < paintArr.length) {
-                paintArr[i10] = new Paint(1);
-                this.f10619r[i10].setColorFilter(new PorterDuffColorFilter(i0.a.f(i10 / (this.f10619r.length - 1), -13729319, -14238726), PorterDuff.Mode.SRC_IN));
-                i10++;
-            } else {
-                w1 w1Var2 = this.f46938a;
-                w1Var2.f46917l = new kc(this, 2);
-                w1Var2.f46923r = 17;
-                w1Var2.f46924s = 18;
-                w1Var2.f46925t = 19;
-                w1Var2.Q = k6.G6;
-                w1Var2.c();
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f10589a) {
+            case 0:
+                d dVar = this.f10590b;
+                dVar.M = false;
+                dVar.e.t(null, false, true);
                 return;
-            }
+            default:
+                d dVar2 = this.f10590b;
+                dVar2.S = 1.0f;
+                dVar2.invalidate();
+                return;
         }
-    }
-
-    @Override
-    public final int getStarsRectWidth() {
-        return getMeasuredWidth();
     }
 }

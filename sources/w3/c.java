@@ -1,21 +1,21 @@
 package w3;
 
 import android.util.Pair;
-import b2.v0;
-import e2.m0;
+import b2.w0;
+import e2.n0;
 import e2.x;
 import java.nio.charset.StandardCharsets;
-import u2.b1;
+import u2.z0;
 public abstract class c {
-    public static final byte[] f48916a;
+    public static final byte[] f50660a;
 
     static {
-        String str = m0.f8259a;
-        f48916a = "OpusHead".getBytes(StandardCharsets.UTF_8);
+        String str = n0.f9692a;
+        f50660a = "OpusHead".getBytes(StandardCharsets.UTF_8);
     }
 
     public static void a(x xVar) {
-        int i10 = xVar.f8299b;
+        int i10 = xVar.f9733b;
         xVar.O(4);
         if (xVar.m() != 1751411826) {
             i10 += 4;
@@ -23,11 +23,11 @@ public abstract class c {
         xVar.N(i10);
     }
 
-    public static void b(e2.x r49, int r50, int r51, int r52, int r53, java.lang.String r54, boolean r55, b2.s r56, e2.j0 r57, int r58) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.b(e2.x, int, int, int, int, java.lang.String, boolean, b2.s, e2.j0, int):void");
+    public static void b(e2.x r49, int r50, int r51, int r52, int r53, java.lang.String r54, boolean r55, b2.t r56, e2.j0 r57, int r58) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.b(e2.x, int, int, int, int, java.lang.String, boolean, b2.t, e2.j0, int):void");
     }
 
-    public static b1 c(int i10, x xVar) {
+    public static z0 c(int i10, x xVar) {
         long j10;
         xVar.N(i10 + 12);
         xVar.O(1);
@@ -45,7 +45,7 @@ public abstract class c {
         }
         xVar.O(1);
         d(xVar);
-        String e = v0.e(xVar.A());
+        String e = w0.e(xVar.A());
         if (!"audio/mpeg".equals(e) && !"audio/vnd.dts".equals(e) && !"audio/vnd.dts.hd".equals(e)) {
             xVar.O(4);
             long C = xVar.C();
@@ -63,9 +63,9 @@ public abstract class c {
             } else {
                 j10 = -1;
             }
-            return new b1(e, bArr, j11, j10);
+            return new z0(e, bArr, j11, j10);
         }
-        return new b1(e, null, -1L, -1L);
+        return new z0(e, null, -1L, -1L);
     }
 
     public static int d(x xVar) {
@@ -82,8 +82,8 @@ public abstract class c {
         return (i10 >> 24) & 255;
     }
 
-    public static b2.t0 f(f2.d r14) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.f(f2.d):b2.t0");
+    public static b2.u0 f(f2.d r14) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.f(f2.d):b2.u0");
     }
 
     public static f2.h g(x xVar) {
@@ -111,7 +111,7 @@ public abstract class c {
         int i13;
         Integer num2;
         boolean z13;
-        int i14 = xVar.f8299b;
+        int i14 = xVar.f9733b;
         while (i14 - i10 < i11) {
             xVar.N(i14);
             int m10 = xVar.m();
@@ -207,7 +207,7 @@ public abstract class c {
                         z14 = true;
                     }
                     c3.b.b("tenc atom is mandatory", z14);
-                    String str2 = m0.f8259a;
+                    String str2 = n0.f9692a;
                     create = Pair.create(num, rVar);
                 }
                 if (create != null) {
@@ -219,15 +219,15 @@ public abstract class c {
         return null;
     }
 
-    public static java.util.ArrayList i(f2.d r62, c3.y r63, long r64, b2.s r66, boolean r67, boolean r68, d9.k r69, boolean r70) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.i(f2.d, c3.y, long, b2.s, boolean, boolean, d9.k, boolean):java.util.ArrayList");
+    public static java.util.ArrayList i(f2.d r62, c3.w r63, long r64, b2.t r66, boolean r67, boolean r68, e9.k r69, boolean r70) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.i(f2.d, c3.w, long, b2.t, boolean, boolean, e9.k, boolean):java.util.ArrayList");
     }
 
-    public static b2.t0 j(f2.e r17) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.j(f2.e):b2.t0");
+    public static b2.u0 j(f2.e r17) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.j(f2.e):b2.u0");
     }
 
-    public static void k(e2.x r58, int r59, int r60, int r61, int r62, java.lang.String r63, int r64, b2.s r65, e2.j0 r66, int r67) {
-        throw new UnsupportedOperationException("Method not decompiled: w3.c.k(e2.x, int, int, int, int, java.lang.String, int, b2.s, e2.j0, int):void");
+    public static void k(e2.x r58, int r59, int r60, int r61, int r62, java.lang.String r63, int r64, b2.t r65, e2.j0 r66, int r67) {
+        throw new UnsupportedOperationException("Method not decompiled: w3.c.k(e2.x, int, int, int, int, java.lang.String, int, b2.t, e2.j0, int):void");
     }
 }

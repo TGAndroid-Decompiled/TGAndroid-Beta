@@ -1,8 +1,8 @@
 package e2;
 
-import b2.r0;
+import b2.s0;
 public interface d {
-    j9.y g(r0 r0Var);
+    k9.y H(byte[] bArr);
 
-    j9.y v(byte[] bArr);
+    k9.y t(s0 s0Var);
 }

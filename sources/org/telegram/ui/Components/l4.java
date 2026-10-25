@@ -1,70 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
+import android.content.Context;
+import android.graphics.Point;
+import android.widget.LinearLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.StickersActivity;
-public final class l4 extends p61 {
-    public final int e;
-    public Object f28161f;
+public final class l4 extends LinearLayout {
+    public final int f30053a;
+    public boolean f30054b;
+    public final md0 f30055c;
 
-    public l4(Object obj, int i10) {
-        super("@stickers", (p11) null);
-        this.e = i10;
-        this.f28161f = obj;
+    public l4(Context context, md0 md0Var, int i10) {
+        super(context);
+        this.f30053a = i10;
+        this.f30055c = md0Var;
+        this.f30054b = false;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        int i11;
+    public final void onMeasure(int i10, int i11) {
         int i12;
-        switch (this.e) {
+        int i13;
+        switch (this.f30053a) {
             case 0:
-                ((org.telegram.ui.ActionBar.o2) this.f28161f).dismissCurrentDialog();
-                super.onClick(view);
-                return;
-            case 1:
-                sy0 sy0Var = (sy0) this.f28161f;
-                i10 = ((org.telegram.ui.ActionBar.h3) sy0Var).currentAccount;
-                MessagesController.getInstance(i10).openByUserName(getURL(), sy0Var.L, 1);
-                sy0Var.dismiss();
-                return;
-            case 2:
-                AndroidUtilities.addToClipboard(getURL());
-                vc.a0((ig.v) this.f28161f).k(false).j();
-                return;
-            case 3:
-                org.telegram.ui.e70 e70Var = ((org.telegram.ui.c70) this.f28161f).d;
-                i11 = ((org.telegram.ui.ActionBar.o2) e70Var).currentAccount;
-                MessagesController.getInstance(i11).openByUserName("stickers", e70Var, 1);
-                return;
-            case 4:
-                ((org.telegram.ui.hm0) this.f28161f).f37903a.dismissCurrentDialog();
-                super.onClick(view);
+                k4 k4Var = (k4) this.f30055c;
+                this.f30054b = true;
+                Point point = AndroidUtilities.displaySize;
+                if (point.x > point.y) {
+                    i12 = 3;
+                } else {
+                    i12 = 5;
+                }
+                k4Var.setItemCount(i12);
+                k4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i12;
+                this.f30054b = false;
+                super.onMeasure(i10, i11);
                 return;
             default:
-                StickersActivity stickersActivity = (StickersActivity) this.f28161f;
-                i12 = ((org.telegram.ui.ActionBar.o2) stickersActivity).currentAccount;
-                MessagesController.getInstance(i12).openByUserName("stickers", stickersActivity, 3);
+                p4 p4Var = (p4) this.f30055c;
+                this.f30054b = true;
+                Point point2 = AndroidUtilities.displaySize;
+                if (point2.x > point2.y) {
+                    i13 = 3;
+                } else {
+                    i13 = 5;
+                }
+                p4Var.setItemCount(i13);
+                p4Var.getLayoutParams().height = AndroidUtilities.dp(42.0f) * i13;
+                this.f30054b = false;
+                super.onMeasure(i10, i11);
                 return;
         }
     }
 
-    public l4(String str, int i10, Object obj) {
-        super(str, (p11) null);
-        this.e = i10;
-        this.f28161f = obj;
-    }
-
-    public l4(String str, p11 p11Var) {
-        super(str, p11Var);
-        this.e = 2;
-    }
-
-    public l4(org.telegram.ui.ActionBar.o2 o2Var, String str) {
-        super(str, (p11) null);
-        this.e = 0;
-        this.f28161f = o2Var;
+    @Override
+    public final void requestLayout() {
+        switch (this.f30053a) {
+            case 0:
+                if (!this.f30054b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+            default:
+                if (!this.f30054b) {
+                    super.requestLayout();
+                    return;
+                }
+                return;
+        }
     }
 }

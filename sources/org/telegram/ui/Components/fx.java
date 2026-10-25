@@ -1,36 +1,64 @@
 package org.telegram.ui.Components;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.view.MotionEvent;
-import android.widget.ImageView;
-import org.telegram.messenger.AndroidUtilities;
-public final class fx extends ImageView {
-    public final rz f26443a;
+import android.view.ViewGroup;
+public final class fx extends a5.m {
+    public final sz f28322w0;
 
-    public fx(rz rzVar, Context context) {
+    public fx(sz szVar, Context context) {
         super(context);
-        this.f26443a = rzVar;
+        this.f28322w0 = szVar;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        sy syVar;
-        int action = motionEvent.getAction();
-        rz rzVar = this.f26443a;
-        if (action == 0) {
-            rzVar.P1 = true;
-            rzVar.Q1 = false;
-            AndroidUtilities.runOnUIThread(new c2(rzVar, 350, 7), 350);
-        } else if (motionEvent.getAction() == 3 || motionEvent.getAction() == 1) {
-            rzVar.P1 = false;
-            if (!rzVar.Q1 && (syVar = rzVar.f30363t1) != null && syVar.k()) {
-                try {
-                    rzVar.f30375x.performHapticFeedback(3);
-                } catch (Exception unused) {
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f28322w0.f32724f) {
+            return false;
+        }
+        if (getParent() != null) {
+            getParent().requestDisallowInterceptTouchEvent(canScrollHorizontally(-1));
+        }
+        try {
+            return super.onInterceptTouchEvent(motionEvent);
+        } catch (IllegalArgumentException unused) {
+            return false;
+        }
+    }
+
+    @Override
+    public final void x(int i10, boolean z10) {
+        boolean z11;
+        sz szVar = this.f28322w0;
+        ux uxVar = szVar.I;
+        if (i10 == 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        sz.a(szVar, z11);
+        if (i10 == getCurrentItem()) {
+            if (i10 == 0) {
+                szVar.Q0[1] = 0;
+                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(uxVar, ViewGroup.TRANSLATION_Y, 0.0f);
+                ofFloat.setDuration(150L);
+                ofFloat.setInterpolator(ds.h);
+                ofFloat.start();
+                szVar.G(1, 0);
+                if (uxVar != null) {
+                    uxVar.j(0, true);
+                    return;
                 }
+                return;
+            } else if (i10 == 1) {
+                szVar.f32731h0.y0(0);
+                return;
+            } else {
+                szVar.D0.y0(1);
+                return;
             }
         }
-        super.onTouchEvent(motionEvent);
-        return true;
+        super.x(i10, z10);
     }
 }

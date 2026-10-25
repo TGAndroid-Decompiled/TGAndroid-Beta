@@ -1,54 +1,58 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.AndroidUtilities;
-public final class n40 extends AnimatorListenerAdapter {
-    public final int f28777a;
-    public final p40 f28778b;
+import android.view.View;
+import org.telegram.messenger.HashtagSearchController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class n40 implements Utilities.Callback5, Utilities.Callback5Return {
+    public final o40 f30830a;
 
-    public n40(p40 p40Var, int i10) {
-        this.f28777a = i10;
-        this.f28778b = p40Var;
+    public n40(o40 o40Var) {
+        this.f30830a = o40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        long j10;
-        switch (this.f28777a) {
-            case 0:
-                p40 p40Var = this.f28778b;
-                p40Var.f29464f = null;
-                if (!p40Var.H) {
-                    xp xpVar = new xp(this, 22);
-                    p40Var.h = xpVar;
-                    if (p40Var.f29465n == 0) {
-                        j10 = 10000;
-                    } else {
-                        j10 = 2000;
-                    }
-                    AndroidUtilities.runOnUIThread(xpVar, j10);
-                    return;
-                }
-                return;
-            case 1:
-                p40 p40Var2 = this.f28778b;
-                p40Var2.f29464f = null;
-                if (!p40Var2.H) {
-                    xp xpVar2 = new xp(this, 23);
-                    p40Var2.h = xpVar2;
-                    AndroidUtilities.runOnUIThread(xpVar2, p40Var2.E);
-                    return;
-                }
-                return;
-            default:
-                p40 p40Var3 = this.f28778b;
-                p40Var3.setVisibility(4);
-                p40Var3.getClass();
-                p40Var3.e = null;
-                p40Var3.d = null;
-                p40Var3.f29464f = null;
-                return;
+    public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        int i10 = ((t61) obj).d;
+        o40 o40Var = this.f30830a;
+        if (i10 == 0) {
+            HashtagSearchController.getInstance(o40Var.f31150a).clearHistory();
+            o40Var.f31153f.O(true);
+            return;
         }
+        Utilities.Callback callback = o40Var.h;
+        if (callback != null) {
+            callback.run((String) o40Var.f31152c.get(i10 - 1));
+        }
+    }
+
+    @Override
+    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        int i10 = ((t61) obj).d;
+        boolean z10 = false;
+        if (i10 != 0) {
+            o40 o40Var = this.f30830a;
+            String str = (String) o40Var.f31152c.get(i10 - 1);
+            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o40Var.getContext(), 0, o40Var.f31151b);
+            String string = LocaleController.getString(R.string.ClearSearchSingleAlertTitle);
+            org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+            e2Var.R = string;
+            e2Var.T = LocaleController.formatString(R.string.ClearSearchSingleHashtagAlertText, str);
+            alertDialog$Builder.k(LocaleController.getString(R.string.ClearSearchRemove), new p1(22, o40Var, str));
+            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+            e2Var.show();
+            z10 = true;
+        }
+        return Boolean.valueOf(z10);
     }
 }

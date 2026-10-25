@@ -1,29 +1,43 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-public final class pz0 extends od0 {
-    public final qz0 f29692y0;
+import android.view.MotionEvent;
+public final class pz0 extends mm0 {
+    public boolean f31737f3;
+    public boolean f31738g3;
+    public final tz0 f31739h3;
 
-    public pz0(qz0 qz0Var, Context context) {
-        super(context, 13, null);
-        this.f29692y0 = qz0Var;
+    public pz0(tz0 tz0Var, Context context) {
+        super(context, null);
+        this.f31739h3 = tz0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21290j5, false);
-        qz0 qz0Var = this.f29692y0;
-        if (x02 != qz0Var.f30013a) {
-            qz0Var.f30013a = x02;
-            setTextColor(x02);
+    public final void l0(int i10) {
+        boolean canScrollHorizontally = canScrollHorizontally(-1);
+        boolean canScrollHorizontally2 = canScrollHorizontally(1);
+        if (this.f31737f3 == canScrollHorizontally && this.f31738g3 == canScrollHorizontally2) {
+            return;
         }
-        super.onDraw(canvas);
-        float dp = AndroidUtilities.dp(31.0f);
-        qz0Var.e.setColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21257h7, false));
-        canvas.drawLine(AndroidUtilities.dp(2.0f), dp, getMeasuredWidth() - AndroidUtilities.dp(2.0f), dp, qz0Var.e);
-        float measuredHeight = getMeasuredHeight() - AndroidUtilities.dp(31.0f);
-        canvas.drawLine(AndroidUtilities.dp(2.0f), measuredHeight, getMeasuredWidth() - AndroidUtilities.dp(2.0f), measuredHeight, qz0Var.e);
+        bh.r rVar = this.f31739h3.d;
+        if (rVar != null) {
+            rVar.invalidate();
+        }
+        this.f31737f3 = canScrollHorizontally;
+        this.f31738g3 = canScrollHorizontally2;
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        org.telegram.ui.dt previewDelegate;
+        org.telegram.ui.ft o10 = org.telegram.ui.ft.o();
+        tz0 tz0Var = this.f31739h3;
+        pz0 pz0Var = tz0Var.e;
+        previewDelegate = tz0Var.getPreviewDelegate();
+        boolean p10 = o10.p(motionEvent, pz0Var, previewDelegate, this.f30644n2);
+        if (!super.onInterceptTouchEvent(motionEvent) && !p10) {
+            return false;
+        }
+        return true;
     }
 }

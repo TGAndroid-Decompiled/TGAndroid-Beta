@@ -1,10 +1,18 @@
 package c2;
-public final class m extends Exception {
-    public m(k kVar) {
-        this("Unhandled input format:", kVar);
-    }
 
-    public m(String str, k kVar) {
-        super(str + " " + kVar);
+import a8.yb;
+public final class m {
+    public static final m f5957b = new m(0);
+    public final long f5958a;
+
+    public m(long j10) {
+        boolean z10;
+        if (j10 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        yb.g(z10);
+        this.f5958a = j10;
     }
 }

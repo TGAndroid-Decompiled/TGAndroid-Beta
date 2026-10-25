@@ -1,47 +1,95 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class zy {
-    public final ArrayList f33365a = new ArrayList();
-    public final rz f33366b;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.R;
+public final class zy extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public final ImageView f35432a;
+    public final TextView f35433b;
+    public final RadialProgressView f35434c;
+    public boolean d;
+    public final sz e;
 
-    public zy(rz rzVar) {
-        this.f33366b = rzVar;
+    public zy(sz szVar, Context context) {
+        super(context);
+        this.e = szVar;
+        org.telegram.ui.ActionBar.e7 e7Var = org.telegram.ui.ActionBar.f7.f22625a;
+        ImageView imageView = new ImageView(getContext());
+        this.f35432a = imageView;
+        imageView.setScaleType(ImageView.ScaleType.CENTER);
+        imageView.setImageResource(R.drawable.gif_empty);
+        int i10 = org.telegram.ui.ActionBar.y6.Le;
+        org.telegram.ui.ActionBar.u6 u6Var = szVar.Z1;
+        org.telegram.ui.ActionBar.f7.t(imageView, i10, u6Var, PorterDuff.Mode.MULTIPLY);
+        addView(imageView, gb1.h(-2, -2.0f, 17, 0.0f, 8.0f, 0.0f, 0.0f));
+        TextView textView = new TextView(getContext());
+        this.f35433b = textView;
+        org.telegram.ui.d3.o(R.string.NoGIFsFound, textView, 1, 16.0f);
+        org.telegram.ui.ActionBar.f7.V(textView, i10, u6Var);
+        addView(textView, gb1.h(-2, -2.0f, 17, 0.0f, 42.0f, 0.0f, 0.0f));
+        RadialProgressView radialProgressView = new RadialProgressView(context, u6Var);
+        this.f35434c = radialProgressView;
+        radialProgressView.setVisibility(8);
+        radialProgressView.setProgressColor(szVar.A(org.telegram.ui.ActionBar.y6.f23426h6));
+        addView(radialProgressView, gb1.i(-2, -2, 17));
     }
 
-    public final void a(String str, boolean z10) {
-        rz rzVar = this.f33366b;
-        int i10 = rzVar.f30310c1;
-        String p5 = a1.g.p("gif_search_", str, "_");
-        if (!z10 || !rzVar.f30337l0.containsKey(p5)) {
-            String str2 = str;
-            ai.i4 i4Var = new ai.i4(this, str2, z10, p5, 5);
-            ArrayList arrayList = this.f33365a;
+    public final void a(boolean z10) {
+        int i10;
+        int i11;
+        if (this.d != z10) {
+            this.d = z10;
+            int i12 = 0;
             if (z10) {
-                arrayList.add(p5);
-                MessagesStorage.getInstance(i10).getBotCache(p5, i4Var);
-                return;
+                i10 = 8;
+            } else {
+                i10 = 0;
             }
-            MessagesController messagesController = MessagesController.getInstance(i10);
-            TLObject userOrChat = messagesController.getUserOrChat(messagesController.gifSearchBot);
-            if (!(userOrChat instanceof TLRPC.User)) {
-                return;
+            this.f35432a.setVisibility(i10);
+            if (z10) {
+                i11 = 8;
+            } else {
+                i11 = 0;
             }
-            arrayList.add(p5);
-            TLRPC.TL_messages_getInlineBotResults tL_messages_getInlineBotResults = new TLRPC.TL_messages_getInlineBotResults();
-            if (str2 == null) {
-                str2 = "";
+            this.f35433b.setVisibility(i11);
+            if (!z10) {
+                i12 = 8;
             }
-            tL_messages_getInlineBotResults.query = str2;
-            tL_messages_getInlineBotResults.bot = messagesController.getInputUser((TLRPC.User) userOrChat);
-            tL_messages_getInlineBotResults.offset = "";
-            tL_messages_getInlineBotResults.peer = new TLRPC.TL_inputPeerEmpty();
-            ConnectionsManager.getInstance(i10).sendRequest(tL_messages_getInlineBotResults, i4Var, 2);
+            this.f35434c.setVisibility(i12);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int dp;
+        sz szVar = this.e;
+        int measuredHeight = szVar.f32731h0.getMeasuredHeight();
+        if (!this.d) {
+            dp = (int) (org.telegram.messenger.vh.B(8.0f, measuredHeight - szVar.f32712b1, 3) * 1.7f);
+        } else {
+            dp = measuredHeight - AndroidUtilities.dp(80.0f);
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(dp, 1073741824));
+    }
+
+    @Override
+    public final void updateColors() {
+        try {
+            this.f35434c.setProgressColor(this.e.A(org.telegram.ui.ActionBar.y6.f23426h6));
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

@@ -1,17 +1,10 @@
 package w7;
-public final class e5 implements ja.d {
-    public static final e5 f49076a = new Object();
-
-    static {
-        si.o0.s(si.o0.l(d.class, si.o0.p(2, si.o0.l(d.class, new a(1)))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+public abstract class e5 {
+    public static void a(int i10, Object[] objArr) {
+        for (int i11 = 0; i11 < i10; i11++) {
+            if (objArr[i11] == null) {
+                throw new NullPointerException(ic.a.i(i11, "at index "));
+            }
         }
-        throw new ClassCastException();
     }
 }

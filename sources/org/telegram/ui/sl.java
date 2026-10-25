@@ -1,21 +1,47 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class sl extends bu0 {
-    public final sn f41430a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.ImageView;
+import org.telegram.ui.Components.RadialProgressView;
+public final class sl extends AnimatorListenerAdapter {
+    public final boolean f43529a;
+    public final boolean f43530b;
+    public final boolean f43531c;
+    public final un d;
 
-    public sl(sn snVar) {
-        this.f41430a = snVar;
+    public sl(un unVar, boolean z10, boolean z11, boolean z12) {
+        this.d = unVar;
+        this.f43529a = z10;
+        this.f43530b = z11;
+        this.f43531c = z12;
     }
 
     @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        return sn.E1(this.f41430a, messageObject, fileLocation, i10, z10, false);
-    }
-
-    @Override
-    public final boolean L() {
-        return true;
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        un unVar = this.d;
+        unVar.Y2 = null;
+        ImageView imageView = unVar.V2;
+        int i12 = 4;
+        if (this.f43529a) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView.setVisibility(i10);
+        ImageView imageView2 = unVar.X2;
+        if (this.f43530b) {
+            i11 = 0;
+        } else {
+            i11 = 4;
+        }
+        imageView2.setVisibility(i11);
+        RadialProgressView radialProgressView = unVar.W2;
+        if (this.f43531c) {
+            i12 = 0;
+        }
+        radialProgressView.setVisibility(i12);
     }
 }

@@ -1,220 +1,87 @@
 package org.telegram.ui.Cells;
 
-import android.content.ClipData;
-import android.content.ClipboardManager;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.ActionMode;
-import android.view.MotionEvent;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
+import android.graphics.Paint;
+import android.view.View;
 import android.widget.FrameLayout;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.gu;
-import org.telegram.ui.n51;
-import org.telegram.ui.r41;
-public final class c6 extends gu {
-    public final int f22207c;
-    public final Object d;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.vh;
+public final class c6 extends FrameLayout {
+    public a6[] f23927a;
+    public MediaController.AlbumEntry[] f23928b;
+    public int f23929c;
+    public b6 d;
+    public Paint e;
 
-    public c6(FrameLayout frameLayout, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, g6Var);
-        this.f22207c = i10;
-        this.d = frameLayout;
-    }
-
-    @Override
-    public void dispatchDraw(Canvas canvas) {
-        switch (this.f22207c) {
-            case 3:
-                super.dispatchDraw(canvas);
-                Drawable drawable = (Drawable) this.d;
-                drawable.setBounds(0, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(20.0f), AndroidUtilities.dp(28.0f));
-                drawable.draw(canvas);
-                return;
-            default:
-                super.dispatchDraw(canvas);
-                return;
-        }
-    }
-
-    @Override
-    public int emojiCacheType() {
-        switch (this.f22207c) {
-            case 0:
-                return 3;
-            case 1:
-            default:
-                return super.emojiCacheType();
-            case 2:
-                return 3;
-        }
-    }
-
-    @Override
-    public void invalidate() {
-        switch (this.f22207c) {
-            case 1:
-                if (!ah.x0.f902b) {
-                    super.invalidate();
-                    return;
+    public final void a(int i10, MediaController.AlbumEntry albumEntry) {
+        a6[] a6VarArr = this.f23927a;
+        this.f23928b[i10] = albumEntry;
+        if (albumEntry != null) {
+            a6 a6Var = a6VarArr[i10];
+            org.telegram.ui.Components.y9 y9Var = a6Var.f23855a;
+            org.telegram.ui.Components.y9 y9Var2 = a6Var.f23855a;
+            y9Var.q(0, true);
+            MediaController.PhotoEntry photoEntry = albumEntry.coverPhoto;
+            if (photoEntry != null && photoEntry.path != null) {
+                y9Var2.p(photoEntry.orientation, photoEntry.invert, true);
+                if (albumEntry.coverPhoto.isVideo) {
+                    y9Var2.g("vthumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.y6.R4);
+                } else {
+                    y9Var2.g("thumb://" + albumEntry.coverPhoto.imageId + ":" + albumEntry.coverPhoto.path, null, org.telegram.ui.ActionBar.y6.R4);
                 }
-                return;
-            default:
-                super.invalidate();
-                return;
+            } else {
+                y9Var2.setImageDrawable(org.telegram.ui.ActionBar.y6.R4);
+            }
+            a6Var.f23856b.setText(albumEntry.bucketName);
+            a6Var.f23857c.setText(String.format("%d", Integer.valueOf(albumEntry.photos.size())));
+            return;
         }
+        a6VarArr[i10].setVisibility(4);
     }
 
     @Override
-    public InputConnection onCreateInputConnection(EditorInfo editorInfo) {
-        switch (this.f22207c) {
-            case 0:
-                InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
-                if (((d6) this.d).f22284s) {
-                    editorInfo.imeOptions &= -1073741825;
+    public final void onMeasure(int i10, int i11) {
+        int C;
+        View[] viewArr = this.f23927a;
+        if (AndroidUtilities.isTablet()) {
+            C = vh.C(4.0f, this.f23929c - 1, AndroidUtilities.dp(490.0f) - AndroidUtilities.dp(12.0f)) / this.f23929c;
+        } else {
+            C = vh.C(4.0f, this.f23929c - 1, AndroidUtilities.displaySize.x - AndroidUtilities.dp(12.0f)) / this.f23929c;
+        }
+        for (int i12 = 0; i12 < this.f23929c; i12++) {
+            FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) viewArr[i12].getLayoutParams();
+            layoutParams.topMargin = AndroidUtilities.dp(4.0f);
+            layoutParams.leftMargin = (AndroidUtilities.dp(4.0f) + C) * i12;
+            layoutParams.width = C;
+            layoutParams.height = C;
+            layoutParams.gravity = 51;
+            viewArr[i12].setLayoutParams(layoutParams);
+        }
+        super.onMeasure(i10, vh.D(4.0f, C, 1073741824));
+    }
+
+    public void setAlbumsCount(int i10) {
+        int i11;
+        int i12 = 0;
+        while (true) {
+            a6[] a6VarArr = this.f23927a;
+            if (i12 < a6VarArr.length) {
+                a6 a6Var = a6VarArr[i12];
+                if (i12 < i10) {
+                    i11 = 0;
+                } else {
+                    i11 = 4;
                 }
-                return onCreateInputConnection;
-            case 1:
-            default:
-                return super.onCreateInputConnection(editorInfo);
-            case 2:
-                InputConnection onCreateInputConnection2 = super.onCreateInputConnection(editorInfo);
-                editorInfo.imeOptions &= -1073741825;
-                return onCreateInputConnection2;
-        }
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        switch (this.f22207c) {
-            case 0:
-                super.onDraw(canvas);
-                ((d6) this.d).getClass();
+                a6Var.setVisibility(i11);
+                i12++;
+            } else {
+                this.f23929c = i10;
                 return;
-            default:
-                super.onDraw(canvas);
-                return;
+            }
         }
     }
 
-    @Override
-    public void onFocusChanged(boolean z10, int i10, Rect rect) {
-        switch (this.f22207c) {
-            case 0:
-                super.onFocusChanged(z10, i10, rect);
-                ((d6) this.d).i(z10);
-                return;
-            case 1:
-                if (z10) {
-                    ((r41) this.d).F.q();
-                    AndroidUtilities.runOnUIThread(new n51(this, 0), 200L);
-                }
-                super.onFocusChanged(z10, i10, rect);
-                return;
-            default:
-                super.onFocusChanged(z10, i10, rect);
-                return;
-        }
-    }
-
-    @Override
-    public void onSizeChanged(int i10, int i11, int i12, int i13) {
-        switch (this.f22207c) {
-            case 2:
-                super.onSizeChanged(i10, i11, i12, i13);
-                postOnAnimation(new org.telegram.ui.web.a2(this, 17));
-                return;
-            default:
-                super.onSizeChanged(i10, i11, i12, i13);
-                return;
-        }
-    }
-
-    @Override
-    public boolean onTextContextMenuItem(int i10) {
-        ClipData primaryClip;
-        switch (this.f22207c) {
-            case 0:
-                if (i10 == 16908322 && (primaryClip = ((ClipboardManager) getContext().getSystemService("clipboard")).getPrimaryClip()) != null && primaryClip.getItemCount() == 1 && AndroidUtilities.charSequenceIndexOf(primaryClip.getItemAt(0).getText(), "\n") > 0) {
-                    CharSequence text = primaryClip.getItemAt(0).getText();
-                    ArrayList arrayList = new ArrayList();
-                    StringBuilder sb2 = new StringBuilder();
-                    for (int i11 = 0; i11 < text.length(); i11++) {
-                        char charAt = text.charAt(i11);
-                        if (charAt == '\n') {
-                            arrayList.add(sb2.toString());
-                            sb2.setLength(0);
-                        } else {
-                            sb2.append(charAt);
-                        }
-                    }
-                    if (!TextUtils.isEmpty(sb2)) {
-                        arrayList.add(sb2);
-                    }
-                    if (((d6) this.d).l(arrayList)) {
-                        return true;
-                    }
-                }
-                return super.onTextContextMenuItem(i10);
-            default:
-                return super.onTextContextMenuItem(i10);
-        }
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.f22207c) {
-            case 0:
-                if (!isEnabled()) {
-                    return false;
-                }
-                if (motionEvent.getAction() == 1) {
-                    ((d6) this.d).k(this);
-                }
-                return super.onTouchEvent(motionEvent);
-            case 1:
-                if (motionEvent.getAction() == 1 && ((r41) this.d).F.u()) {
-                    AndroidUtilities.runOnUIThread(new n51(this, 1), 200L);
-                    return false;
-                }
-                return super.onTouchEvent(motionEvent);
-            default:
-                return super.onTouchEvent(motionEvent);
-        }
-    }
-
-    @Override
-    public ActionMode startActionMode(ActionMode.Callback callback, int i10) {
-        switch (this.f22207c) {
-            case 0:
-                ActionMode startActionMode = super.startActionMode(callback, i10);
-                ((d6) this.d).g(this, startActionMode);
-                return startActionMode;
-            default:
-                return super.startActionMode(callback, i10);
-        }
-    }
-
-    public c6(Context context, org.telegram.ui.ActionBar.g6 g6Var, Drawable drawable) {
-        super(context, g6Var);
-        this.f22207c = 3;
-        this.d = drawable;
-    }
-
-    @Override
-    public ActionMode startActionMode(ActionMode.Callback callback) {
-        switch (this.f22207c) {
-            case 0:
-                ActionMode startActionMode = super.startActionMode(callback);
-                ((d6) this.d).g(this, startActionMode);
-                return startActionMode;
-            default:
-                return super.startActionMode(callback);
-        }
+    public void setDelegate(b6 b6Var) {
+        this.d = b6Var;
     }
 }

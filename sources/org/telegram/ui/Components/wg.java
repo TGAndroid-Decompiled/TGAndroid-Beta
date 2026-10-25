@@ -1,34 +1,79 @@
 package org.telegram.ui.Components;
-public final class wg {
-    public static final wg f32230a;
-    public static final wg f32231b;
-    public static final wg f32232c;
-    public static final wg d;
-    public static final wg e;
-    public static final wg f32233f;
-    public static final wg[] h;
 
-    static {
-        ?? r02 = new Enum("VOICE", 0);
-        f32230a = r02;
-        ?? r12 = new Enum("VIDEO", 1);
-        f32231b = r12;
-        ?? r32 = new Enum("STICKER", 2);
-        f32232c = r32;
-        ?? r52 = new Enum("KEYBOARD", 3);
-        d = r52;
-        ?? r72 = new Enum("SMILE", 4);
-        e = r72;
-        ?? r92 = new Enum("GIF", 5);
-        f32233f = r92;
-        h = new wg[]{r02, r12, r32, r52, r72, r92};
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.R;
+public final class wg extends FrameLayout {
+    public final org.telegram.ui.ActionBar.b6 f34431a;
+    public final RectF f34432b;
+    public final Paint f34433c;
+    public final Drawable d;
+    public boolean e;
+
+    public wg(Activity activity) {
+        super(activity);
+        this.f34432b = new RectF();
+        this.f34433c = new Paint(1);
+        this.e = false;
+        org.telegram.ui.ActionBar.b6 b6Var = new org.telegram.ui.ActionBar.b6(activity);
+        this.f34431a = b6Var;
+        addView(b6Var, gb1.g(-1.0f, -1));
+        setWillNotDraw(false);
+        Drawable drawable = activity.getDrawable(R.drawable.msg_mini_close_tooltip);
+        this.d = drawable;
+        drawable.setBounds(0, 0, drawable.getIntrinsicWidth(), drawable.getIntrinsicHeight());
+        setClipToPadding(false);
+        setClipChildren(false);
+        gb1.b(this);
     }
 
-    public static wg valueOf(String str) {
-        return (wg) Enum.valueOf(wg.class, str);
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        if ((view instanceof org.telegram.ui.ActionBar.b6) && this.e) {
+            org.telegram.ui.ActionBar.b6 b6Var = (org.telegram.ui.ActionBar.b6) view;
+            canvas.save();
+            canvas.scale(0.8f, 0.8f);
+            canvas.translate(-AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
+            int color = b6Var.getTextPaint().getColor();
+            b6Var.getTextPaint().setColor(-1);
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            b6Var.getTextPaint().setColor(color);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j10);
     }
 
-    public static wg[] values() {
-        return (wg[]) h.clone();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        if (this.e) {
+            canvas.save();
+            int dp = AndroidUtilities.dp(26.0f);
+            canvas.translate(AndroidUtilities.dp(5.0f), (getMeasuredHeight() - dp) / 2.0f);
+            float f7 = dp;
+            RectF rectF = this.f34432b;
+            rectF.set(-AndroidUtilities.dp(5.0f), 0.0f, getMeasuredWidth() - getPaddingEnd(), f7);
+            float f10 = f7 / 2.0f;
+            canvas.drawRoundRect(rectF, f10, f10, this.f34433c);
+            int measuredWidth = (getMeasuredWidth() - getPaddingEnd()) - AndroidUtilities.dp(6.0f);
+            Drawable drawable = this.d;
+            canvas.translate(measuredWidth - drawable.getIntrinsicWidth(), AndroidUtilities.dp(5.0f));
+            drawable.draw(canvas);
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        this.f34433c.setShader(new LinearGradient(0.0f, 0.0f, getMeasuredWidth(), 0.0f, new int[]{-9071617, -5999873}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 }

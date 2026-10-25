@@ -1,45 +1,29 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.widget.LinearLayout;
+import android.os.Vibrator;
+import android.text.Spanned;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class q3 extends LinearLayout {
-    public final h11 f29777a;
-    public boolean f29778b;
-    public h11 f29779c;
-    public final p3 d;
+public final class q3 extends sq {
+    public final Context f31812b;
+    public final NumberTextView f31813c;
 
-    public q3(Context context, p3 p3Var) {
-        super(context);
-        this.d = p3Var;
-        this.f29777a = new h11(":", 18.0f, null);
+    public q3(int i10, Context context, NumberTextView numberTextView) {
+        super(i10);
+        this.f31812b = context;
+        this.f31813c = numberTextView;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        boolean z10;
-        String str;
-        int i10 = org.telegram.ui.ActionBar.k6.G6;
-        this.f29777a.c((getWidth() - this.f29777a.f26843c) / 2.0f, getHeight() / 2.0f, 1.0f, org.telegram.ui.ActionBar.k6.x0(null, i10, false), canvas);
-        if (!LocaleController.is24HourFormat) {
-            if (this.d.getValue() % 24 < 12) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        CharSequence filter = super.filter(charSequence, i10, i11, spanned, i12, i13);
+        if (filter != null && charSequence != null && filter.length() != charSequence.length()) {
+            Vibrator vibrator = (Vibrator) this.f31812b.getSystemService("vibrator");
+            if (vibrator != null) {
+                vibrator.vibrate(200L);
             }
-            if (this.f29778b != z10 || this.f29779c == null) {
-                this.f29778b = z10;
-                if (z10) {
-                    str = "AM";
-                } else {
-                    str = "PM";
-                }
-                this.f29779c = new h11(str, 18.0f, null);
-            }
-            this.f29779c.c((getWidth() / 2.0f) + AndroidUtilities.dp(43.0f), (getHeight() / 2.0f) + AndroidUtilities.dp(1.0f), 1.0f, org.telegram.ui.ActionBar.k6.x0(null, i10, false), canvas);
+            AndroidUtilities.shakeView(this.f31813c);
         }
-        super.dispatchDraw(canvas);
+        return filter;
     }
 }

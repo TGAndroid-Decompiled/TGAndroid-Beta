@@ -1,36 +1,19 @@
 package m4;
 
-import android.os.Bundle;
 import j$.util.Objects;
-import v7.u6;
+import java.util.HashSet;
 public final class q1 {
-    public static final String d;
-    public static final String e;
-    public static final String f16748f;
-    public final int f16749a;
-    public final String f16750b;
-    public final Bundle f16751c;
+    public static final String f18205b;
+    public final f9.t0 f18206a;
 
     static {
-        String str = e2.m0.f8259a;
-        d = Integer.toString(0, 36);
-        e = Integer.toString(1, 36);
-        f16748f = Integer.toString(2, 36);
+        new q1(new HashSet());
+        String str = e2.n0.f9692a;
+        f18205b = Integer.toString(0, 36);
     }
 
-    public q1(int i10) {
-        this("no error message provided", i10, Bundle.EMPTY);
-    }
-
-    public final Bundle a() {
-        Bundle bundle = new Bundle();
-        bundle.putInt(d, this.f16749a);
-        bundle.putString(e, this.f16750b);
-        Bundle bundle2 = this.f16751c;
-        if (!bundle2.isEmpty()) {
-            bundle.putBundle(f16748f, bundle2);
-        }
-        return bundle;
+    public q1(HashSet hashSet) {
+        this.f18206a = f9.t0.u(hashSet);
     }
 
     public final boolean equals(Object obj) {
@@ -40,25 +23,10 @@ public final class q1 {
         if (!(obj instanceof q1)) {
             return false;
         }
-        q1 q1Var = (q1) obj;
-        if (this.f16749a == q1Var.f16749a && Objects.equals(this.f16750b, q1Var.f16750b)) {
-            return true;
-        }
-        return false;
+        return this.f18206a.equals(((q1) obj).f18206a);
     }
 
     public final int hashCode() {
-        return Objects.hash(Integer.valueOf(this.f16749a), this.f16750b);
-    }
-
-    public q1(String str, int i10, Bundle bundle) {
-        boolean z10 = true;
-        if (i10 >= 0 && i10 != 1) {
-            z10 = false;
-        }
-        u6.g(z10);
-        this.f16749a = i10;
-        this.f16750b = str;
-        this.f16751c = bundle;
+        return Objects.hash(this.f18206a);
     }
 }

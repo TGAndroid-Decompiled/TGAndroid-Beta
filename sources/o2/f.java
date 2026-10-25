@@ -12,15 +12,15 @@ public final class f extends v2.b {
     }
 
     @Override
-    public final long b() {
+    public final long k() {
         a();
-        return this.e + ((p2.l) this.d.get((int) this.f48318c)).e;
+        return this.e + ((p2.k) this.d.get((int) this.f49989c)).e;
     }
 
     @Override
-    public final long r() {
+    public final long y() {
         a();
-        p2.l lVar = (p2.l) this.d.get((int) this.f48318c);
-        return this.e + lVar.e + lVar.f44412c;
+        p2.k kVar = (p2.k) this.d.get((int) this.f49989c);
+        return this.e + kVar.e + kVar.f46552c;
     }
 }

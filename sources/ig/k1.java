@@ -1,36 +1,46 @@
 package ig;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l61;
-public final class k1 implements Utilities.Callback5, Utilities.Callback5Return {
-    public final w1 f12983a;
+import di.q7;
+import org.telegram.messenger.MessagesController;
+import org.telegram.ui.Cells.l2;
+import org.telegram.ui.Cells.p2;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.un;
+public final class k1 implements l2 {
+    public final n1 f14149a;
 
-    @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        w1.W(this.f12983a, (l61) obj, (View) obj2);
+    public k1(n1 n1Var) {
+        this.f14149a = n1Var;
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        boolean z10;
-        l61 l61Var = (l61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        if (l61Var.f44712a == 16) {
-            Object obj6 = l61Var.G;
-            if (!(obj6 instanceof y1) || !((y1) obj6).f13133g) {
-                this.f12983a.e0(l61Var, view);
-                z10 = true;
-                return Boolean.valueOf(z10);
-            }
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final void e(p2 p2Var) {
+        n1 n1Var = this.f14149a;
+        un unVar = n1Var.f14182f;
+        if (MessagesController.getInstance(n1Var.f14184r).getStoriesController().I(p2Var.getDialogId())) {
+            unVar.getOrCreateStoryViewer().getClass();
+            unVar.getOrCreateStoryViewer().D(n1Var.f14181c, p2Var.getDialogId(), q7.a((mm0) p2Var.getParent()));
         }
-        z10 = false;
-        return Boolean.valueOf(z10);
+    }
+
+    @Override
+    public final void c() {
+    }
+
+    @Override
+    public final void a(p2 p2Var) {
+    }
+
+    @Override
+    public final void d(p2 p2Var) {
+    }
+
+    @Override
+    public final void f(p2 p2Var) {
     }
 }

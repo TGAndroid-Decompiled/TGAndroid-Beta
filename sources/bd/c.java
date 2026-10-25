@@ -1,25 +1,34 @@
 package bd;
 
-import com.google.android.gms.internal.play_billing.k3;
-import df.p;
-import gd.h;
-import java.util.regex.Pattern;
-public final class c extends h {
-    public static final Pattern e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+public final class c implements Iterable {
+    public final HashMap f3857a = new HashMap();
+    public final ArrayList f3858b = new ArrayList();
 
-    @Override
-    public final p b() {
-        String a2 = a(e);
-        if (a2 == null) {
-            return null;
+    public c(HashMap hashMap) {
+        String str = (String) hashMap.get("cookie");
+        if (str != null) {
+            for (String str2 : str.split(";")) {
+                String[] split = str2.trim().split("=");
+                if (split.length == 2) {
+                    this.f3857a.put(split[0], split[1]);
+                }
+            }
         }
-        ?? pVar = new p();
-        pVar.f4263g = k3.i(2, 2, a2);
-        return pVar;
+    }
+
+    public final void h() {
+        Iterator it = this.f3858b.iterator();
+        if (!it.hasNext()) {
+            return;
+        }
+        throw a1.g.j(it);
     }
 
     @Override
-    public final char d() {
-        return '$';
+    public final Iterator iterator() {
+        return this.f3857a.keySet().iterator();
     }
 }

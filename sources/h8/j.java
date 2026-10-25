@@ -1,105 +1,90 @@
 package h8;
 
-import android.content.Context;
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.RemoteException;
-import android.widget.Button;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import androidx.mediarouter.app.z;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import n6.q;
-import v7.a8;
-public final class j {
-    public androidx.biometric.e f11719a;
-    public Bundle f11720b;
-    public LinkedList f11721c;
-    public final d e;
-    public final Context f11722f;
-    public te.b f11723g;
-    public final te.b d = new te.b(this, 5);
-    public final ArrayList h = new ArrayList();
+import android.os.Parcelable;
+import com.google.android.gms.common.data.DataHolder;
+import com.google.android.gms.location.LocationAvailability;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationResult;
+import com.google.android.gms.maps.model.CameraPosition;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import m.n0;
+import n4.r;
+public final class j implements Parcelable.Creator {
+    public final int f12713a;
 
-    public j(d dVar, Context context) {
-        this.e = dVar;
-        this.f11722f = context;
+    public j(int i10) {
+        this.f12713a = i10;
     }
 
-    public static void a(d dVar) {
-        k6.d dVar2 = k6.d.d;
-        Context context = dVar.getContext();
-        int d = dVar2.d(context, k6.e.f15018a);
-        String c10 = q.c(context, d);
-        String b10 = q.b(context, d);
-        LinearLayout linearLayout = new LinearLayout(dVar.getContext());
-        linearLayout.setOrientation(1);
-        linearLayout.setLayoutParams(new FrameLayout.LayoutParams(-2, -2));
-        dVar.addView(linearLayout);
-        TextView textView = new TextView(dVar.getContext());
-        textView.setLayoutParams(new FrameLayout.LayoutParams(-2, -2));
-        textView.setText(c10);
-        linearLayout.addView(textView);
-        Intent b11 = dVar2.b(context, null, d);
-        if (b11 != null) {
-            Button button = new Button(context);
-            button.setId(16908313);
-            button.setLayoutParams(new FrameLayout.LayoutParams(-2, -2));
-            button.setText(b10);
-            linearLayout.addView(button);
-            button.setOnClickListener(new z(context, b11));
-        }
+    @Override
+    public final java.lang.Object createFromParcel(android.os.Parcel r43) {
+        throw new UnsupportedOperationException("Method not decompiled: h8.j.createFromParcel(android.os.Parcel):java.lang.Object");
     }
 
-    public final void b(int i10) {
-        while (!this.f11721c.isEmpty() && ((x6.e) this.f11721c.getLast()).a() >= i10) {
-            this.f11721c.removeLast();
-        }
-    }
-
-    public final void c(Bundle bundle, x6.e eVar) {
-        if (this.f11719a != null) {
-            eVar.b();
-            return;
-        }
-        if (this.f11721c == null) {
-            this.f11721c = new LinkedList();
-        }
-        this.f11721c.add(eVar);
-        if (bundle != null) {
-            Bundle bundle2 = this.f11720b;
-            if (bundle2 == null) {
-                this.f11720b = (Bundle) bundle.clone();
-            } else {
-                bundle2.putAll(bundle);
-            }
-        }
-        this.f11723g = this.d;
-        ArrayList arrayList = this.h;
-        Context context = this.f11722f;
-        if (this.f11719a == null) {
-            try {
-                synchronized (e.class) {
-                    e.b(context);
-                }
-                i8.g W0 = a8.a(context).W0(new x6.b(context));
-                if (W0 != null) {
-                    this.f11723g.d(new androidx.biometric.e(this.e, W0));
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        this.f11719a.n((f) obj);
-                    }
-                    arrayList.clear();
-                }
-            } catch (RemoteException e) {
-                throw new RuntimeException(e);
-            } catch (k6.f unused) {
-            }
+    @Override
+    public final Object[] newArray(int i10) {
+        switch (this.f12713a) {
+            case 0:
+                return new g[i10];
+            case 1:
+                return new h[i10];
+            case 2:
+                return new k[i10];
+            case 3:
+                return new b[i10];
+            case 4:
+                return new LocationAvailability[i10];
+            case 5:
+                return new LocationRequest[i10];
+            case 6:
+                return new LocationResult[i10];
+            case 7:
+                return new e[i10];
+            case 8:
+                return new j6.b[i10];
+            case 9:
+                return new j6.c[i10];
+            case 10:
+                return new CameraPosition[i10];
+            case 11:
+                return new k8.b[i10];
+            case 12:
+                return new LatLngBounds[i10];
+            case 13:
+                return new LatLng[i10];
+            case 14:
+                return new k8.e[i10];
+            case 15:
+                return new k8.g[i10];
+            case 16:
+                return new k8.h[i10];
+            case 17:
+                return new l6.a[i10];
+            case 18:
+                return new l6.c[i10];
+            case 19:
+                return new l8.a[i10];
+            case 20:
+                return new n0[i10];
+            case 21:
+                return new DataHolder[i10];
+            case 22:
+                return new m8.a[i10];
+            case 23:
+                return new m8.b[i10];
+            case 24:
+                return new m8.c[i10];
+            case 25:
+                return new m8.d[i10];
+            case 26:
+                return new n4.h[i10];
+            case 27:
+                return new n4.i[i10];
+            case 28:
+                return new n4.q[i10];
+            default:
+                return new r[i10];
         }
     }
 }

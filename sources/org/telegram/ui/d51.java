@@ -1,22 +1,219 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.os.SystemClock;
+import android.view.animation.OvershootInterpolator;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public final class d51 extends FrameLayout {
-    public FrameLayout f36478a;
-    public org.telegram.ui.Cells.t3 f36479b;
-    public sg.p0 f36480c;
-    public String d;
-    public ValueAnimator e;
-    public float f36481f;
-    public Boolean h;
-    public ValueAnimator f36482n;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.LiteMode;
+public final class d51 extends org.telegram.ui.Components.st {
+    public int M;
+    public int N;
+    public ArrayList O;
+    public final ArrayList P = new ArrayList();
+    public float Q = 1.0f;
+    public final boolean R = LiteMode.isEnabled(8200);
+    public final OvershootInterpolator S = new OvershootInterpolator(3.0f);
+    public final e51 T;
+
+    public d51(e51 e51Var) {
+        this.T = e51Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        setPadding(AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f), AndroidUtilities.dp(5.0f), AndroidUtilities.dp(8.0f));
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(getPaddingBottom() + getPaddingTop() + AndroidUtilities.dp(44.0f), 1073741824));
+    public final void a(android.graphics.Canvas r12, long r13, int r15, int r16, float r17) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d51.a(android.graphics.Canvas, long, int, int, float):void");
+    }
+
+    @Override
+    public final void b(Canvas canvas, Bitmap bitmap, Paint paint) {
+        canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+    }
+
+    @Override
+    public final void c(Canvas canvas) {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                l51 l51Var = (l51) arrayList.get(i10);
+                if (!l51Var.f41139b) {
+                    if (l51Var.f41138a) {
+                        l51Var.E.setBounds(l51Var.F);
+                        l51Var.E.draw(canvas);
+                    } else {
+                        ImageReceiver imageReceiver = l51Var.f41143r;
+                        if (imageReceiver != null) {
+                            imageReceiver.draw(canvas, l51Var.f41141f[this.K]);
+                        }
+                    }
+                }
+                i10++;
+            } else {
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void d(Canvas canvas, float f7) {
+        float f10;
+        int i10;
+        Drawable drawable;
+        int i11;
+        c61 c61Var = this.T.f39002m3;
+        if (this.O != null) {
+            canvas.save();
+            canvas.translate(-this.N, 0.0f);
+            int i12 = 0;
+            float f11 = f7;
+            int i13 = 0;
+            while (i13 < this.O.size()) {
+                l51 l51Var = (l51) this.O.get(i13);
+                if (!l51Var.f41139b) {
+                    float scaleX = l51Var.getScaleX();
+                    int i14 = c61Var.W;
+                    if (i14 == 13) {
+                        scaleX *= 0.87f;
+                    }
+                    float f12 = l51Var.N;
+                    if (f12 != 0.0f || (l51Var.S > 0.0f && i14 != 3 && i14 != 4)) {
+                        if (i14 != 3 && i14 != 4) {
+                            f10 = l51Var.S * 0.7f;
+                        } else {
+                            f10 = 1.0f;
+                        }
+                        scaleX *= ((1.0f - Math.max(f10, f12)) * 0.2f) + 0.8f;
+                    }
+                    if (c61Var.Q1 > 0 && SystemClock.elapsedRealtime() - c61Var.Q1 < c61Var.g()) {
+                        i10 = 1;
+                    } else {
+                        i10 = i12;
+                    }
+                    if (i10 != 0 && c61Var.O1 >= 0 && c61Var.P1 >= 0 && c61Var.Q1 > 0) {
+                        int R = RecyclerView.R(l51Var);
+                        int i15 = c61Var.O1;
+                        int i16 = R - i15;
+                        int i17 = c61Var.P1 - i15;
+                        if (i16 >= 0 && i16 < i17) {
+                            float a2 = a8.ee.a(((float) (SystemClock.elapsedRealtime() - c61Var.Q1)) / ((float) c61Var.f()), 0.0f, 1.0f);
+                            float f13 = i16;
+                            float f14 = i17;
+                            float f15 = f14 / 4.0f;
+                            float cascade = AndroidUtilities.cascade(a2, f13, f14, f15);
+                            scaleX *= (this.S.getInterpolation(AndroidUtilities.cascade(a2, f13, f14, f15)) * 0.5f) + 0.5f;
+                            f11 = cascade;
+                        }
+                    } else {
+                        f11 *= l51Var.getAlpha();
+                    }
+                    Rect rect = AndroidUtilities.rectTmp2;
+                    rect.set(l51Var.getPaddingLeft() + ((int) l51Var.getX()), l51Var.getPaddingTop(), (l51Var.getWidth() + ((int) l51Var.getX())) - l51Var.getPaddingRight(), l51Var.getHeight() - l51Var.getPaddingBottom());
+                    if (!c61Var.f38332x1 && i10 == 0) {
+                        rect.offset(i12, (int) l51Var.getTranslationY());
+                    }
+                    if (l51Var.f41138a) {
+                        drawable = c61Var.getPremiumStar();
+                        int i18 = c61Var.W;
+                        if (i18 == 5 || i18 == 10 || i18 == 9 || i18 == 7) {
+                            rect.inset((int) ((-rect.width()) * 0.15f), (int) ((-rect.height()) * 0.15f));
+                        }
+                        drawable.setBounds(rect);
+                        drawable.setAlpha(255);
+                    } else if (!l51Var.f41144s && !l51Var.Q) {
+                        if ((l51Var.e != null || c61Var.W == 13) && !l51Var.f41139b && (drawable = l51Var.E) != null) {
+                            drawable.setAlpha(255);
+                            drawable.setBounds(rect);
+                        }
+                    } else {
+                        ImageReceiver imageReceiver = l51Var.h;
+                        if (imageReceiver != null) {
+                            imageReceiver.setImageCoords(rect);
+                        }
+                        drawable = null;
+                    }
+                    PorterDuffColorFilter porterDuffColorFilter = c61Var.f38303k1;
+                    if (porterDuffColorFilter != null) {
+                        Drawable drawable2 = l51Var.E;
+                        if (drawable2 instanceof org.telegram.ui.Components.t5) {
+                            drawable2.setColorFilter(porterDuffColorFilter);
+                        }
+                    }
+                    float f16 = this.Q;
+                    l51Var.O = f16;
+                    l51Var.P = i13;
+                    if (scaleX == 1.0f && f16 >= 1.0f) {
+                        m(canvas, drawable, l51Var, f11);
+                    } else {
+                        canvas.save();
+                        float f17 = l51Var.S;
+                        if (f17 > 1.0f && (i11 = c61Var.W) != 3 && i11 != 4 && i11 != 6) {
+                            float lerp = AndroidUtilities.lerp(1.0f, 0.85f, f17);
+                            canvas.scale(lerp, lerp, rect.centerX(), rect.centerY());
+                        }
+                        int i19 = c61Var.W;
+                        if (i19 != 6 && i19 != 13 && i19 != 14) {
+                            l51Var.getHeight();
+                            float f18 = this.Q;
+                            if (f18 < 1.0f) {
+                                canvas.scale(1.0f, f18, 0.0f, 0.0f);
+                                canvas.skew((1.0f - this.Q) * (1.0f - ((i13 * 2.0f) / this.O.size())), 0.0f);
+                            }
+                        } else {
+                            canvas.scale(scaleX, scaleX, rect.centerX(), rect.centerY());
+                        }
+                        m(canvas, drawable, l51Var, f11);
+                        canvas.restore();
+                    }
+                }
+                i13++;
+                i12 = 0;
+            }
+            canvas.restore();
+        }
+    }
+
+    @Override
+    public final void g() {
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList = this.P;
+            if (i10 < arrayList.size()) {
+                ImageReceiver.BackgroundThreadDrawHolder backgroundThreadDrawHolder = ((l51) arrayList.get(i10)).f41141f[this.K];
+                if (backgroundThreadDrawHolder != null) {
+                    backgroundThreadDrawHolder.release();
+                }
+                i10++;
+            } else {
+                this.T.f39002m3.f38296h0.invalidate();
+                return;
+            }
+        }
+    }
+
+    @Override
+    public final void i(long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.d51.i(long):void");
+    }
+
+    public final void m(Canvas canvas, Drawable drawable, l51 l51Var, float f7) {
+        if (drawable != null) {
+            drawable.setAlpha((int) (f7 * 255.0f));
+            drawable.draw(canvas);
+            drawable.setColorFilter(this.T.f39002m3.f38303k1);
+        } else if ((l51Var.f41144s || l51Var.Q) && l51Var.h != null) {
+            canvas.save();
+            canvas.clipRect(l51Var.h.getImageX(), l51Var.h.getImageY(), l51Var.h.getImageX2(), l51Var.h.getImageY2());
+            l51Var.h.setAlpha(f7);
+            l51Var.h.draw(canvas);
+            canvas.restore();
+        }
     }
 }

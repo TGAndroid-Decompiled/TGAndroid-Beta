@@ -1,147 +1,266 @@
 package ea;
 
-import a1.g;
-import a4.l;
-import android.util.Log;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
-import m1.j;
-import org.json.JSONObject;
-import si.o0;
-import t7.u;
-import z9.b0;
-import z9.k0;
-public final class b {
-    public Object f8552a;
-    public Object f8553b;
-    public Object f8554c;
-    public Object d;
-    public Object e;
-    public Object f8555f;
-    public Object f8556g;
-    public Object h;
-    public Object f8557i;
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
+import android.text.TextUtils;
+import b2.q1;
+import bi.s9;
+import bi.v3;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import e2.q0;
+import f9.f0;
+import f9.i0;
+import f9.s1;
+import j5.g;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import li.s3;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.BotWebViewVibrationEffect;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_iv;
+import org.telegram.tgnet.tl.TL_keyboard;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.e2;
+import org.telegram.ui.ActionBar.r2;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.fz0;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.un;
+import x2.d;
+import x2.f;
+import x2.j;
+import x2.l;
+import x2.o;
+import y9.x;
+public final class b implements g, MessagesStorage.LongCallback, b2, MessagesController.ErrorDelegate, l {
+    public final int f9862a;
+    public final boolean f9863b;
+    public final Object f9864c;
+    public final Object d;
+    public final Object e;
 
-    public static void f(String str, JSONObject jSONObject) {
-        StringBuilder u10 = g.u(str);
-        u10.append(jSONObject.toString());
-        String sb2 = u10.toString();
-        if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-            Log.d("FirebaseCrashlytics", sb2, null);
-        }
+    public b(Object obj, Object obj2, Object obj3, boolean z10, int i10) {
+        this.f9862a = i10;
+        this.f9864c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f9863b = z10;
     }
 
-    public b0 a() {
-        String str;
-        if (((Integer) this.f8552a) == null) {
-            str = " pid";
-        } else {
-            str = "";
+    @Override
+    public s1 a(int i10, q1 q1Var, int[] iArr) {
+        o oVar = (o) this.f9864c;
+        j jVar = (j) this.d;
+        oVar.getClass();
+        d dVar = new d(oVar, jVar);
+        int i11 = ((int[]) this.e)[i10];
+        f0 t10 = i0.t();
+        for (int i12 = 0; i12 < q1Var.f3358a; i12++) {
+            t10.c(new f(i10, q1Var, i12, jVar, iArr[i12], this.f9863b, dVar, i11));
         }
-        if (((String) this.f8553b) == null) {
-            str = str.concat(" processName");
-        }
-        if (((Integer) this.f8554c) == null) {
-            str = o0.u(str, " reasonCode");
-        }
-        if (((Integer) this.d) == null) {
-            str = o0.u(str, " importance");
-        }
-        if (((Long) this.e) == null) {
-            str = o0.u(str, " pss");
-        }
-        if (((Long) this.f8555f) == null) {
-            str = o0.u(str, " rss");
-        }
-        if (((Long) this.f8556g) == null) {
-            str = o0.u(str, " timestamp");
-        }
-        if (str.isEmpty()) {
-            return new b0(((Integer) this.f8552a).intValue(), (String) this.f8553b, ((Integer) this.f8554c).intValue(), ((Integer) this.d).intValue(), ((Long) this.e).longValue(), ((Long) this.f8555f).longValue(), ((Long) this.f8556g).longValue(), (String) this.h, (List) this.f8557i);
-        }
-        throw new IllegalStateException("Missing required properties:".concat(str));
+        return t10.f();
     }
 
-    public k0 b() {
-        String str;
-        if (((Integer) this.f8552a) == null) {
-            str = " arch";
-        } else {
-            str = "";
+    @Override
+    public void d(Exception exc) {
+        c cVar = (c) this.f9864c;
+        TaskCompletionSource taskCompletionSource = (TaskCompletionSource) this.d;
+        y9.b bVar = (y9.b) this.e;
+        if (exc != null) {
+            taskCompletionSource.trySetException(exc);
+            return;
         }
-        if (((String) this.f8553b) == null) {
-            str = str.concat(" model");
-        }
-        if (((Integer) this.f8554c) == null) {
-            str = o0.u(str, " cores");
-        }
-        if (((Long) this.d) == null) {
-            str = o0.u(str, " ram");
-        }
-        if (((Long) this.e) == null) {
-            str = o0.u(str, " diskSpace");
-        }
-        if (((Boolean) this.f8555f) == null) {
-            str = o0.u(str, " simulator");
-        }
-        if (((Integer) this.f8556g) == null) {
-            str = o0.u(str, " state");
-        }
-        if (((String) this.h) == null) {
-            str = o0.u(str, " manufacturer");
-        }
-        if (((String) this.f8557i) == null) {
-            str = o0.u(str, " modelClass");
-        }
-        if (str.isEmpty()) {
-            return new k0(((Integer) this.f8552a).intValue(), (String) this.f8553b, ((Integer) this.f8554c).intValue(), ((Long) this.d).longValue(), ((Long) this.e).longValue(), ((Boolean) this.f8555f).booleanValue(), ((Integer) this.f8556g).intValue(), (String) this.h, (String) this.f8557i);
-        }
-        throw new IllegalStateException("Missing required properties:".concat(str));
-    }
-
-    public a c(int i10) {
-        a aVar = null;
-        try {
-            if (!j.b(2, i10)) {
-                JSONObject v = ((qb.c) this.e).v();
-                if (v != null) {
-                    a Y = ((l) this.f8554c).Y(v);
-                    f("Loaded cached settings: ", v);
-                    ((u) this.d).getClass();
-                    long currentTimeMillis = System.currentTimeMillis();
-                    if (!j.b(3, i10) && Y.f8550c < currentTimeMillis) {
-                        if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                            Log.v("FirebaseCrashlytics", "Cached settings have expired.", null);
-                            return null;
-                        }
-                    } else {
+        if (this.f9863b) {
+            boolean z10 = true;
+            CountDownLatch countDownLatch = new CountDownLatch(1);
+            new Thread(new q0(1, cVar, countDownLatch)).start();
+            TimeUnit timeUnit = TimeUnit.SECONDS;
+            ExecutorService executorService = x.f52490a;
+            boolean z11 = false;
+            try {
+                long nanos = timeUnit.toNanos(2L);
+                long nanoTime = System.nanoTime() + nanos;
+                while (true) {
+                    try {
                         try {
-                            if (Log.isLoggable("FirebaseCrashlytics", 2)) {
-                                Log.v("FirebaseCrashlytics", "Returning cached settings.", null);
+                            countDownLatch.await(nanos, TimeUnit.NANOSECONDS);
+                            break;
+                        } catch (Throwable th2) {
+                            th = th2;
+                            if (z10) {
+                                Thread.currentThread().interrupt();
                             }
-                            return Y;
-                        } catch (Exception e) {
-                            e = e;
-                            aVar = Y;
-                            Log.e("FirebaseCrashlytics", "Failed to get cached settings", e);
-                            return aVar;
+                            throw th;
                         }
+                    } catch (InterruptedException unused) {
+                        nanos = nanoTime - System.nanoTime();
+                        z11 = true;
                     }
-                } else if (Log.isLoggable("FirebaseCrashlytics", 3)) {
-                    Log.d("FirebaseCrashlytics", "No cached settings data found.", null);
                 }
+                if (z11) {
+                    Thread.currentThread().interrupt();
+                }
+            } catch (Throwable th3) {
+                th = th3;
+                z10 = z11;
             }
-            return null;
-        } catch (Exception e7) {
-            e = e7;
+        }
+        taskCompletionSource.trySetResult(bVar);
+    }
+
+    @Override
+    public void h(e2 e2Var, int i10) {
+        TL_keyboard.PageButton pageButton;
+        TL_keyboard.InlineButtonType inlineButtonType;
+        long j10;
+        TL_keyboard.PageButton pageButton2;
+        di.b bVar;
+        switch (this.f9862a) {
+            case 2:
+                boolean z10 = this.f9863b;
+                s9 s9Var = (s9) this.f9864c;
+                EditTextBoldCursor editTextBoldCursor = (EditTextBoldCursor) this.d;
+                s3 s3Var = (s3) this.e;
+                int i11 = s3Var.f17470b;
+                if (!z10) {
+                    s9Var.run();
+                    return;
+                }
+                String trim = editTextBoldCursor.getText().toString().trim();
+                if (!TextUtils.isEmpty(trim)) {
+                    TL_iv.pageBlockButtonRow d = s3Var.d();
+                    TL_keyboard.InlineButtonType inlineButtonType2 = null;
+                    if (d != null && i11 >= 0 && i11 < d.buttons.size()) {
+                        pageButton = d.buttons.get(i11);
+                    } else {
+                        pageButton = null;
+                    }
+                    if (pageButton == null) {
+                        inlineButtonType = null;
+                    } else {
+                        inlineButtonType = pageButton.type;
+                    }
+                    long j11 = 0;
+                    if (inlineButtonType instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                        j10 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType).user_id;
+                    } else {
+                        j10 = 0;
+                    }
+                    if (j10 > 0) {
+                        TL_keyboard.TL_inlineButtonTypeUserProfile tL_inlineButtonTypeUserProfile = new TL_keyboard.TL_inlineButtonTypeUserProfile();
+                        TL_iv.pageBlockButtonRow d10 = s3Var.d();
+                        if (d10 != null && i11 >= 0 && i11 < d10.buttons.size()) {
+                            pageButton2 = d10.buttons.get(i11);
+                        } else {
+                            pageButton2 = null;
+                        }
+                        if (pageButton2 != null) {
+                            inlineButtonType2 = pageButton2.type;
+                        }
+                        if (inlineButtonType2 instanceof TL_keyboard.TL_inlineButtonTypeUserProfile) {
+                            j11 = ((TL_keyboard.TL_inlineButtonTypeUserProfile) inlineButtonType2).user_id;
+                        }
+                        tL_inlineButtonTypeUserProfile.user_id = j11;
+                        s3Var.a(trim, tL_inlineButtonTypeUserProfile);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 3:
+                un unVar = (un) this.f9864c;
+                boolean z11 = this.f9863b;
+                ((MessagesController) this.d).secretWebpagePreview = 1;
+                MessagesController.getGlobalMainSettings().edit().putInt("secretWebpage2", unVar.getMessagesController().secretWebpagePreview).commit();
+                unVar.T5 = null;
+                unVar.hb((CharSequence) this.e, z11);
+                return;
+            case 4:
+                boolean z12 = this.f9863b;
+                Context context = (Context) this.f9864c;
+                AtomicBoolean atomicBoolean = (AtomicBoolean) this.d;
+                q0.a aVar = (q0.a) this.e;
+                if (z12) {
+                    try {
+                        Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
+                        intent.setData(Uri.parse("package:" + ApplicationLoader.applicationContext.getPackageName()));
+                        context.startActivity(intent);
+                        return;
+                    } catch (Exception e) {
+                        FileLog.e(e);
+                        return;
+                    }
+                }
+                atomicBoolean.set(true);
+                aVar.accept(Boolean.TRUE);
+                return;
+            default:
+                fz0 fz0Var = (fz0) this.f9864c;
+                Utilities.Callback2 callback2 = (Utilities.Callback2) this.d;
+                Context context2 = (Context) this.e;
+                boolean z13 = this.f9863b;
+                String trim2 = fz0Var.getText().toString().trim();
+                if (!TextUtils.isEmpty(trim2) && !TextUtils.isEmpty(AndroidUtilities.translitSafe(trim2.toString()))) {
+                    AndroidUtilities.hideKeyboard(fz0Var);
+                    if (z13) {
+                        bVar = null;
+                    } else {
+                        bVar = new di.b();
+                    }
+                    e2 e2Var2 = new e2(context2, 3, bVar);
+                    e2Var2.r(250L);
+                    callback2.run(trim2, new v3(e2Var2, e2Var, fz0Var, 9));
+                    return;
+                }
+                fz0Var.setErrorText(".");
+                AndroidUtilities.shakeViewSpring(fz0Var, -6.0f);
+                BotWebViewVibrationEffect.APP_ERROR.vibrate();
+                AndroidUtilities.showKeyboard(fz0Var);
+                return;
         }
     }
 
-    public a d() {
-        return (a) ((AtomicReference) this.h).get();
+    @Override
+    public boolean run(TLRPC.TL_error tL_error) {
+        return ProfileActivity.i0((ProfileActivity) this.f9864c, (boolean[]) this.d, this.f9863b, (r2) this.e, tL_error);
     }
 
-    public void e(l5.i r46, int r47) {
-        throw new UnsupportedOperationException("Method not decompiled: ea.b.e(l5.i, int):void");
+    public b(Object obj, Object obj2, boolean z10, Object obj3, int i10) {
+        this.f9862a = i10;
+        this.f9864c = obj;
+        this.d = obj2;
+        this.f9863b = z10;
+        this.e = obj3;
+    }
+
+    @Override
+    public void run(long j10) {
+        ii.f fVar = (ii.f) this.f9864c;
+        String str = (String) this.e;
+        fVar.getClass();
+        ((e2) this.d).dismiss();
+        if (j10 == 0) {
+            return;
+        }
+        fVar.f14339b = -j10;
+        fVar.f14340c = fVar.getMessagesController().getChat(Long.valueOf(j10));
+        fVar.W(str, this.f9863b);
+    }
+
+    public b(boolean z10, Object obj, Object obj2, Object obj3, int i10) {
+        this.f9862a = i10;
+        this.f9863b = z10;
+        this.f9864c = obj;
+        this.d = obj2;
+        this.e = obj3;
     }
 }

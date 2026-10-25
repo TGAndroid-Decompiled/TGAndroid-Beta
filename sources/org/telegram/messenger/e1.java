@@ -1,31 +1,26 @@
 package org.telegram.messenger;
 
-import android.view.View;
-import java.util.List;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-public final class e1 implements Utilities.Callback {
-    public final int f18288a;
-    public final Object f18289b;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLObject;
+public final class e1 implements Runnable {
+    public final int f19948a;
+    public final ChatObject.Call f19949b;
+    public final TLObject f19950c;
 
-    public e1(Object obj, int i10) {
-        this.f18288a = i10;
-        this.f18289b = obj;
+    public e1(ChatObject.Call call, TLObject tLObject, int i10) {
+        this.f19948a = i10;
+        this.f19949b = call;
+        this.f19950c = tLObject;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18288a) {
+    public final void run() {
+        switch (this.f19948a) {
             case 0:
-                ChatThemeController.q((ChatThemeController) this.f18289b, (List) obj);
-                return;
-            case 1:
-                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
-                ((Runnable) this.f18289b).run();
+                this.f19949b.lambda$reloadGroupCall$8(this.f19950c);
                 return;
             default:
-                Object[] objArr = (Object[]) obj;
-                ((View) this.f18289b).invalidate();
+                this.f19949b.lambda$loadGroupCall$10(this.f19950c);
                 return;
         }
     }

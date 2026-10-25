@@ -1,30 +1,42 @@
 package org.telegram.ui;
 
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hh implements RequestDelegate {
-    public final int f37867a;
-    public final sn f37868b;
-    public final TLRPC.TL_attachMenuBot f37869c;
-    public final TLRPC.User d;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class hh implements Runnable {
+    public final int f40006a;
+    public final EditTextBoldCursor f40007b;
 
-    public hh(sn snVar, TLRPC.TL_attachMenuBot tL_attachMenuBot, TLRPC.User user, int i10) {
-        this.f37867a = i10;
-        this.f37868b = snVar;
-        this.f37869c = tL_attachMenuBot;
-        this.d = user;
+    public hh(EditTextBoldCursor editTextBoldCursor, int i10) {
+        this.f40006a = i10;
+        this.f40007b = editTextBoldCursor;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37867a) {
+    public final void run() {
+        switch (this.f40006a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new kh(this.f37868b, this.f37869c, tL_error, this.d));
+                AndroidUtilities.showKeyboard(this.f40007b);
+                return;
+            case 1:
+                EditTextBoldCursor editTextBoldCursor = this.f40007b;
+                editTextBoldCursor.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor);
+                return;
+            case 2:
+                EditTextBoldCursor editTextBoldCursor2 = this.f40007b;
+                editTextBoldCursor2.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor2);
+                return;
+            case 3:
+                AndroidUtilities.showKeyboard(this.f40007b);
+                return;
+            case 4:
+                AndroidUtilities.showKeyboard(this.f40007b);
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new kh(this.f37868b, tL_error, this.f37869c, this.d));
+                EditTextBoldCursor editTextBoldCursor3 = this.f40007b;
+                editTextBoldCursor3.requestFocus();
+                AndroidUtilities.showKeyboard(editTextBoldCursor3);
                 return;
         }
     }

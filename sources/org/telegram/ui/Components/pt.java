@@ -1,80 +1,138 @@
 package org.telegram.ui.Components;
 
-import android.hardware.Sensor;
-import android.hardware.SensorEventListener;
-import android.hardware.SensorManager;
-import android.media.AudioManager;
-import android.os.PowerManager;
-import org.telegram.messenger.ApplicationLoader;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class pt implements SensorEventListener {
-    public int E;
-    public int F;
-    public long G;
-    public boolean I;
-    public boolean J;
-    public float L;
-    public final SensorManager f29658a;
-    public final AudioManager f29659b;
-    public final Sensor f29660c;
-    public final Sensor d;
-    public final Sensor e;
-    public final Sensor f29661f;
-    public final PowerManager.WakeLock h;
-    public boolean f29662n;
-    public boolean f29663r;
-    public j81 f29664s;
-    public boolean v;
-    public long f29665w;
-    public int f29666x;
-    public int f29667y;
-    public long H = 0;
-    public float K = -100.0f;
-    public final float[] M = new float[3];
-    public final float[] N = new float[3];
-    public final float[] O = new float[3];
-
-    public pt() {
-        SensorManager sensorManager = (SensorManager) ApplicationLoader.applicationContext.getSystemService("sensor");
-        this.f29658a = sensorManager;
-        this.f29660c = sensorManager.getDefaultSensor(8);
-        Sensor defaultSensor = sensorManager.getDefaultSensor(10);
-        this.e = defaultSensor;
-        Sensor defaultSensor2 = sensorManager.getDefaultSensor(9);
-        this.f29661f = defaultSensor2;
-        if (defaultSensor == null || defaultSensor2 == null) {
-            if (BuildVars.LOGS_ENABLED) {
-                FileLog.d("gravity or linear sensor not found");
-            }
-            this.d = sensorManager.getDefaultSensor(1);
-            this.e = null;
-            this.f29661f = null;
-        }
-        this.h = ((PowerManager) ApplicationLoader.applicationContext.getSystemService("power")).newWakeLock(32, "telegram:proximity_lock2");
-        this.f29659b = (AudioManager) ApplicationLoader.applicationContext.getSystemService("audio");
+import android.app.Activity;
+import android.graphics.PorterDuff;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.core.widget.NestedScrollView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DownloadController;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class pt extends org.telegram.ui.ActionBar.k3 {
+    public static void m(pt ptVar) {
+        ptVar.dismiss();
+        DownloadController.getInstance(ptVar.currentAccount).clearRecentDownloadedFiles();
     }
 
-    public final void a() {
-        int i10;
-        j81 j81Var = this.f29664s;
-        if (j81Var == null) {
-            return;
-        }
-        if (this.f29663r) {
-            i10 = 0;
-        } else {
-            i10 = 3;
-        }
-        j81Var.S(i10);
-    }
+    public static void n(Activity activity, org.telegram.ui.ActionBar.r2 r2Var) {
+        if (r2Var != null && activity != null) {
+            final ?? k3Var = new org.telegram.ui.ActionBar.k3(activity, false);
+            k3Var.setApplyBottomPadding(false);
+            k3Var.setApplyTopPadding(false);
+            int i10 = org.telegram.ui.ActionBar.y6.f23354d6;
+            k3Var.fixNavigationBarKey(i10);
+            LinearLayout linearLayout = new LinearLayout(activity);
+            linearLayout.setOrientation(1);
+            FrameLayout frameLayout = new FrameLayout(activity);
+            frameLayout.addView(linearLayout);
+            ImageView imageView = new ImageView(activity);
+            imageView.setBackground(org.telegram.ui.ActionBar.y6.g0(k3Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23446i6), 1, -1));
+            org.telegram.ui.ActionBar.f7.t(imageView, org.telegram.ui.ActionBar.y6.Ji, k3Var.resourcesProvider, PorterDuff.Mode.SRC_ATOP);
+            imageView.setImageResource(R.drawable.ic_layer_close);
+            imageView.setOnClickListener(new View.OnClickListener(k3Var) {
+                public final pt f31376b;
 
-    @Override
-    public final void onSensorChanged(android.hardware.SensorEvent r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.pt.onSensorChanged(android.hardware.SensorEvent):void");
-    }
+                {
+                    this.f31376b = k3Var;
+                }
 
-    @Override
-    public final void onAccuracyChanged(Sensor sensor, int i10) {
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            this.f31376b.dismiss();
+                            return;
+                        default:
+                            pt.m(this.f31376b);
+                            return;
+                    }
+                }
+            });
+            int dp = AndroidUtilities.dp(8.0f);
+            imageView.setPadding(dp, dp, dp, dp);
+            frameLayout.addView(imageView, gb1.h(36, 36.0f, 8388661, 6.0f, 8.0f, 8.0f, 0.0f));
+            fy0 fy0Var = new fy0(activity, k3Var.currentAccount);
+            fy0Var.setStickerNum(9);
+            fy0Var.getImageReceiver().setAutoRepeat(1);
+            linearLayout.addView(fy0Var, gb1.x(110, 110, 1, 0, 26, 0, 0));
+            TextView textView = new TextView(activity);
+            textView.setGravity(1);
+            int i11 = org.telegram.ui.ActionBar.y6.f23462j5;
+            org.telegram.ui.ActionBar.f7.V(textView, i11, null);
+            textView.setTextSize(1, 20.0f);
+            textView.setText(LocaleController.getString(R.string.DownloadedFiles));
+            linearLayout.addView(textView, gb1.h(-1, -2.0f, 0, 21.0f, 20.0f, 21.0f, 0.0f));
+            TextView textView2 = new TextView(activity);
+            textView2.setGravity(1);
+            textView2.setTextSize(1, 14.0f);
+            org.telegram.ui.ActionBar.f7.V(textView2, i11, null);
+            textView2.setLineSpacing(textView2.getLineSpacingExtra(), textView2.getLineSpacingMultiplier() * 1.1f);
+            textView2.setText(LocaleController.formatString("DownloadedFilesMessage", R.string.DownloadedFilesMessage, new Object[0]));
+            linearLayout.addView(textView2, gb1.h(-1, -2.0f, 0, 28.0f, 7.0f, 28.0f, 0.0f));
+            TextView textView3 = new TextView(activity);
+            textView3.setGravity(17);
+            TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+            textView3.setEllipsize(truncateAt);
+            textView3.setSingleLine(true);
+            textView3.setTextSize(1, 14.0f);
+            textView3.setTypeface(AndroidUtilities.bold());
+            textView3.setText(LocaleController.getString(R.string.ManageDeviceStorage));
+            org.telegram.ui.ActionBar.f7.V(textView3, org.telegram.ui.ActionBar.y6.Sh, null);
+            int dp2 = AndroidUtilities.dp(8.0f);
+            int i12 = org.telegram.ui.ActionBar.y6.Oh;
+            int x02 = org.telegram.ui.ActionBar.y6.x0(null, i12, false);
+            int o10 = i0.a.o(org.telegram.ui.ActionBar.y6.x0(null, i10, false), 120);
+            org.telegram.ui.Cells.y j02 = org.telegram.ui.ActionBar.y6.j0(dp2, dp2, dp2, dp2, x02, o10, o10);
+            org.telegram.ui.ActionBar.b7 N = org.telegram.ui.ActionBar.f7.N(i12);
+            org.telegram.ui.ActionBar.b7 h = org.telegram.ui.ActionBar.f7.h(i10, 120);
+            textView3.setBackground(j02);
+            org.telegram.ui.ActionBar.f7.k(textView3, j02, N, h, null);
+            linearLayout.addView(textView3, gb1.h(-1, 48.0f, 0, 14.0f, 28.0f, 14.0f, 6.0f));
+            TextView textView4 = new TextView(activity);
+            textView4.setGravity(17);
+            textView4.setEllipsize(truncateAt);
+            textView4.setSingleLine(true);
+            textView4.setTextSize(1, 14.0f);
+            textView4.setTypeface(AndroidUtilities.bold());
+            textView4.setText(LocaleController.getString(R.string.ClearDownloadsList));
+            org.telegram.ui.ActionBar.f7.V(textView4, i12, null);
+            int dp3 = AndroidUtilities.dp(8.0f);
+            int o11 = i0.a.o(org.telegram.ui.ActionBar.y6.x0(null, i12, false), 120);
+            org.telegram.ui.Cells.y j03 = org.telegram.ui.ActionBar.y6.j0(dp3, dp3, dp3, dp3, 0, o11, o11);
+            org.telegram.ui.ActionBar.b7 h10 = org.telegram.ui.ActionBar.f7.h(i12, 120);
+            textView4.setBackground(j03);
+            org.telegram.ui.ActionBar.f7.k(textView4, j03, null, h10, null);
+            textView4.setLetterSpacing(0.025f);
+            linearLayout.addView(textView4, gb1.h(-1, 48.0f, 0, 14.0f, 0.0f, 14.0f, 6.0f));
+            NestedScrollView nestedScrollView = new NestedScrollView(activity);
+            nestedScrollView.addView(frameLayout);
+            k3Var.setCustomView(nestedScrollView);
+            textView3.setOnClickListener(new ga(12, k3Var, r2Var));
+            textView4.setOnClickListener(new View.OnClickListener(k3Var) {
+                public final pt f31376b;
+
+                {
+                    this.f31376b = k3Var;
+                }
+
+                @Override
+                public final void onClick(View view) {
+                    switch (r2) {
+                        case 0:
+                            this.f31376b.dismiss();
+                            return;
+                        default:
+                            pt.m(this.f31376b);
+                            return;
+                    }
+                }
+            });
+            k3Var.show();
+        }
     }
 }

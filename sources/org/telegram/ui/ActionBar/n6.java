@@ -1,14 +1,41 @@
 package org.telegram.ui.ActionBar;
-public final class n6 {
-    public final int f21711a;
-    public final int f21712b;
-    public final int f21713c;
-    public final float d;
 
-    public n6(int i10, int i11, float f7, int i12) {
-        this.f21711a = i10;
-        this.f21712b = i11;
-        this.f21713c = i12;
-        this.d = f7;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class n6 extends Drawable {
+    public static Paint f22895c;
+    public Paint f22896a;
+    public float f22897b;
+
+    @Override
+    public final void draw(Canvas canvas) {
+        int dp;
+        Rect bounds = getBounds();
+        float f7 = this.f22897b;
+        if (Math.abs(f7 - (-1.0f)) < 0.01f) {
+            dp = Math.max(bounds.width(), bounds.height()) / 2;
+        } else if (Math.abs(f7 - (-2.0f)) < 0.01f) {
+            dp = (int) Math.ceil(Math.sqrt(((bounds.top - bounds.centerY()) * (bounds.top - bounds.centerY())) + ((bounds.left - bounds.centerX()) * (bounds.left - bounds.centerX()))));
+        } else {
+            dp = AndroidUtilities.dp(f7);
+        }
+        canvas.drawCircle(bounds.centerX(), bounds.centerY(), dp, this.f22896a);
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

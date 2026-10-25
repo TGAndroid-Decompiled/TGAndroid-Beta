@@ -1,62 +1,61 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class ty extends k61 {
-    public static final int f30935a = 0;
+public interface ty {
+    boolean A();
 
-    static {
-        k61.setup(new k61());
-    }
+    long a();
 
-    public static l61 a(TLRPC.StickerSetCovered stickerSetCovered, iy iyVar, boolean z10) {
-        l61 J = l61.J(ty.class);
-        long j10 = stickerSetCovered.set.f20371id;
-        long j11 = 1 + j10;
-        J.d = (int) (j11 ^ (j11 >>> 32));
-        J.B = j10;
-        J.G = stickerSetCovered;
-        J.H = iyVar;
-        J.e = z10;
-        return J;
-    }
+    boolean b();
 
-    @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, a71 a71Var, i71 i71Var) {
-        oh.c cVar = (oh.c) view;
-        Object obj = l61Var.G;
-        if (obj instanceof TLRPC.TL_messages_stickerSet) {
-            cVar.setPack((TLRPC.TL_messages_stickerSet) obj);
-        } else if (obj instanceof TLRPC.StickerSetCovered) {
-            TLRPC.Document document = ((iy) l61Var.H).e;
-            cVar.d.setText(((TLRPC.StickerSetCovered) obj).set.short_name);
-            cVar.f17811c.d(document, null, null, null, false, false);
-        }
-        cVar.a(l61Var.e, false);
-    }
+    boolean c();
 
-    @Override
-    public final boolean contentsEquals(l61 l61Var, l61 l61Var2) {
-        if (l61Var.B == l61Var2.B && l61Var.e == l61Var2.e) {
-            return true;
-        }
-        return false;
-    }
+    void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10);
 
-    @Override
-    public final View createView(Context context, lm0 lm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
-        oh.c cVar = new oh.c(context, g6Var);
-        cVar.setLayoutParams(new s4.o0(AndroidUtilities.dp(64.0f), -1));
-        return cVar;
-    }
+    void e(Object obj, Object obj2);
 
-    @Override
-    public final boolean equals(l61 l61Var, l61 l61Var2) {
-        if (l61Var.B == l61Var2.B) {
-            return true;
-        }
-        return false;
-    }
+    int f();
+
+    boolean g();
+
+    void h(TLRPC.StickerSetCovered stickerSetCovered);
+
+    void i(int i10);
+
+    boolean j();
+
+    boolean k();
+
+    void l(String str);
+
+    void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10);
+
+    void n();
+
+    void o(p61 p61Var);
+
+    float p();
+
+    void q();
+
+    void r(TLRPC.StickerSetCovered stickerSetCovered);
+
+    void s(int i10);
+
+    void t(ArrayList arrayList);
+
+    void u();
+
+    void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11);
+
+    void w();
+
+    void x(long j10, TLRPC.Document document, String str, boolean z10);
+
+    void y(long j10);
+
+    boolean z();
 }

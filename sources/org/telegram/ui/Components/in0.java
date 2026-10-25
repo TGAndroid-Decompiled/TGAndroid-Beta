@@ -1,22 +1,34 @@
 package org.telegram.ui.Components;
-public final class in0 {
-    public static final in0 f27449a;
-    public static final in0 f27450b;
-    public static final in0[] f27451c;
 
-    static {
-        ?? r02 = new Enum("LINE", 0);
-        f27449a = r02;
-        ?? r12 = new Enum("TAB", 1);
-        f27450b = r12;
-        f27451c = new in0[]{r02, r12};
+import android.view.View;
+import org.telegram.messenger.R;
+public final class in0 implements View.OnClickListener {
+    public final int f29320a;
+    public final pn0 f29321b;
+
+    public in0(pn0 pn0Var, int i10) {
+        this.f29320a = i10;
+        this.f29321b = pn0Var;
     }
 
-    public static in0 valueOf(String str) {
-        return (in0) Enum.valueOf(in0.class, str);
-    }
-
-    public static in0[] values() {
-        return (in0[]) f27451c.clone();
+    @Override
+    public final void onClick(View view) {
+        switch (this.f29320a) {
+            case 0:
+                this.f29321b.f31617f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            case 1:
+                this.f29321b.f31617f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            case 2:
+                this.f29321b.f31617f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            case 3:
+                this.f29321b.f31617f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+            default:
+                this.f29321b.f31617f.a(((Integer) view.getTag(R.id.index_tag)).intValue());
+                return;
+        }
     }
 }

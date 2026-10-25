@@ -1,104 +1,81 @@
 package y8;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.util.Log;
-public final class e extends o6.a {
-    public static final Parcelable.Creator<e> CREATOR = new c(1);
-    public final f f50442a;
-    public final int f50443b;
-    public final int f50444c;
-    public final int d;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.data.DataHolder;
+import java.io.Closeable;
+import java.util.ArrayList;
+import java.util.Iterator;
+public final class e implements com.google.android.gms.common.api.q, Iterable, Closeable {
+    public final DataHolder f52392a;
+    public boolean f52393b = false;
+    public ArrayList f52394c;
+    public final Status d;
 
-    public e(f fVar, int i10, int i11, int i12) {
-        this.f50442a = fVar;
-        this.f50443b = i10;
-        this.f50444c = i11;
-        this.d = i12;
-    }
-
-    public final void b(x8.c cVar) {
-        f fVar = this.f50442a;
-        int i10 = this.f50443b;
-        if (i10 != 1) {
-            int i11 = this.d;
-            int i12 = this.f50444c;
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        Log.w("ChannelEventParcelable", "Unknown type: " + i10);
-                        return;
-                    }
-                    cVar.onOutputClosed(fVar, i12, i11);
-                    return;
-                }
-                cVar.onInputClosed(fVar, i12, i11);
-                return;
-            }
-            cVar.onChannelClosed(fVar, i12, i11);
-            return;
-        }
-        cVar.onChannelOpened(fVar);
-    }
-
-    public final String toString() {
-        String str;
-        String str2;
-        String valueOf = String.valueOf(this.f50442a);
-        int i10 = this.f50443b;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        str = Integer.toString(i10);
-                    } else {
-                        str = "OUTPUT_CLOSED";
-                    }
-                } else {
-                    str = "INPUT_CLOSED";
-                }
-            } else {
-                str = "CHANNEL_CLOSED";
-            }
-        } else {
-            str = "CHANNEL_OPENED";
-        }
-        int i11 = this.f50444c;
-        if (i11 != 0) {
-            if (i11 != 1) {
-                if (i11 != 2) {
-                    if (i11 != 3) {
-                        str2 = Integer.toString(i11);
-                    } else {
-                        str2 = "CLOSE_REASON_LOCAL_CLOSE";
-                    }
-                } else {
-                    str2 = "CLOSE_REASON_REMOTE_CLOSE";
-                }
-            } else {
-                str2 = "CLOSE_REASON_DISCONNECTED";
-            }
-        } else {
-            str2 = "CLOSE_REASON_NORMAL";
-        }
-        StringBuilder w9 = a1.g.w("ChannelEventParcelable[, channel=", valueOf, ", type=", str, ", closeReason=");
-        w9.append(str2);
-        w9.append(", appErrorCode=");
-        w9.append(this.d);
-        w9.append("]");
-        return w9.toString();
+    public e(DataHolder dataHolder) {
+        this.f52392a = dataHolder;
+        this.d = new Status(dataHolder.e, null, null, null);
     }
 
     @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.k(parcel, 2, this.f50442a, i10);
-        w7.f0.s(parcel, 3, 4);
-        parcel.writeInt(this.f50443b);
-        w7.f0.s(parcel, 4, 4);
-        parcel.writeInt(this.f50444c);
-        w7.f0.s(parcel, 5, 4);
-        parcel.writeInt(this.d);
-        w7.f0.r(parcel, q6);
+    public final void close() {
+        DataHolder dataHolder = this.f52392a;
+        if (dataHolder != null) {
+            dataHolder.close();
+        }
+    }
+
+    @Override
+    public final Status h() {
+        return this.d;
+    }
+
+    @Override
+    public final Iterator iterator() {
+        return new fd.b(this);
+    }
+
+    public final int m(int i10) {
+        if (i10 >= 0 && i10 < this.f52394c.size()) {
+            return ((Integer) this.f52394c.get(i10)).intValue();
+        }
+        throw new IllegalArgumentException(ic.a.j(i10, "Position ", " is out of bounds for this buffer"));
+    }
+
+    public final void n() {
+        synchronized (this) {
+            try {
+                if (!this.f52393b) {
+                    DataHolder dataHolder = this.f52392a;
+                    o6.l.h(dataHolder);
+                    int i10 = dataHolder.f6668n;
+                    ArrayList arrayList = new ArrayList();
+                    this.f52394c = arrayList;
+                    if (i10 > 0) {
+                        arrayList.add(0);
+                        int b10 = this.f52392a.b(0);
+                        DataHolder dataHolder2 = this.f52392a;
+                        dataHolder2.c(0, "path");
+                        String string = dataHolder2.d[b10].getString(0, dataHolder2.f6666c.getInt("path"));
+                        for (int i11 = 1; i11 < i10; i11++) {
+                            int b11 = this.f52392a.b(i11);
+                            DataHolder dataHolder3 = this.f52392a;
+                            dataHolder3.c(i11, "path");
+                            String string2 = dataHolder3.d[b11].getString(i11, dataHolder3.f6666c.getInt("path"));
+                            if (string2 != null) {
+                                if (!string2.equals(string)) {
+                                    this.f52394c.add(Integer.valueOf(i11));
+                                    string = string2;
+                                }
+                            } else {
+                                throw new NullPointerException("Missing value for markerColumn: path, at row: " + i11 + ", for window: " + b11);
+                            }
+                        }
+                    }
+                    this.f52393b = true;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
     }
 }

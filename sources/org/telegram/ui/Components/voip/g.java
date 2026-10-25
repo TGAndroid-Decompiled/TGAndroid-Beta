@@ -8,39 +8,39 @@ import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.SvgHelper;
 public final class g extends Drawable {
-    public float f31572a;
-    public final SvgHelper.SvgDrawable f31573b;
-    public final h f31574c;
+    public float f33802a;
+    public final SvgHelper.SvgDrawable f33803b;
+    public final h f33804c;
 
     public g(h hVar, SvgHelper.SvgDrawable svgDrawable) {
-        this.f31574c = hVar;
-        this.f31573b = svgDrawable;
+        this.f33804c = hVar;
+        this.f33803b = svgDrawable;
     }
 
     @Override
     public final void draw(Canvas canvas) {
-        h hVar = this.f31574c;
+        h hVar = this.f33804c;
         int i10 = hVar.e;
-        Matrix matrix = hVar.f31585i;
-        hVar.f31583f = getBounds().width();
+        Matrix matrix = hVar.f33819i;
+        hVar.f33817f = getBounds().width();
         RectF rectF = AndroidUtilities.rectTmp;
         rectF.set(getBounds());
-        hVar.a(this.f31572a, canvas, rectF, null);
-        SvgHelper.SvgDrawable svgDrawable = this.f31573b;
+        hVar.a(this.f33802a, canvas, rectF, null);
+        SvgHelper.SvgDrawable svgDrawable = this.f33803b;
         if (svgDrawable != null) {
-            svgDrawable.setPaint(hVar.f31580a);
-            int i11 = hVar.f31583f;
-            float f7 = (((i10 * 2) + i11) * hVar.f31584g) - i10;
+            svgDrawable.setPaint(hVar.f33814a);
+            int i11 = hVar.f33817f;
+            float f7 = (((i10 * 2) + i11) * hVar.f33818g) - i10;
             float scale = svgDrawable.getScale(getBounds().width(), getBounds().height());
             matrix.reset();
             matrix.setScale(1.0f / scale, 0.0f, i10 / 2.0f, 0.0f);
             matrix.setTranslate((f7 - svgDrawable.getBounds().left) - (i10 / scale), 0.0f);
-            hVar.f31581b.setLocalMatrix(matrix);
+            hVar.f33815b.setLocalMatrix(matrix);
             int i12 = ((int) (i11 * 0.5f)) / 2;
             svgDrawable.setBounds(getBounds().centerX() - i12, getBounds().centerY() - i12, getBounds().centerX() + i12, getBounds().centerY() + i12);
             svgDrawable.draw(canvas);
         }
-        hVar.f31591o.invalidate();
+        hVar.f33825o.invalidate();
     }
 
     @Override
@@ -50,9 +50,9 @@ public final class g extends Drawable {
 
     @Override
     public final void setAlpha(int i10) {
-        h hVar = this.f31574c;
-        hVar.f31580a.setAlpha(i10);
-        hVar.f31582c.setAlpha(i10);
+        h hVar = this.f33804c;
+        hVar.f33814a.setAlpha(i10);
+        hVar.f33816c.setAlpha(i10);
     }
 
     @Override

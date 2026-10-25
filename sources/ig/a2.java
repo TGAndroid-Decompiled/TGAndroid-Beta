@@ -1,122 +1,185 @@
 package ig;
 
-import ai.wd;
-import android.app.Activity;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import ei.x3;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import hi.u2;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.telegram.messenger.MessagesStorage;
 import org.telegram.messenger.UserConfig;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import w7.z5;
-public final class a2 extends LinearLayout implements b6 {
-    public final TextView f12853a;
-    public final wd f12854b;
-    public final wd f12855c;
-    public final g6 d;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.ar0;
+public class a2 {
+    public z1 f13988a;
+    public ArrayList f13995k;
+    public ArrayList f13996l;
+    public String f13998n;
+    public final boolean f13999o;
+    public ArrayList f14001q;
+    public HashMap f14002r;
+    public final ArrayList f13989b = new ArrayList();
+    public String f13990c = null;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public final a0.h f13991f = new a0.h();
+    public final ArrayList f13992g = new ArrayList();
+    public final a0.h h = new a0.h();
+    public final a0.h f13993i = new a0.h();
+    public final ArrayList f13994j = new ArrayList();
+    public final int f13997m = UserConfig.selectedAccount;
+    public boolean f14000p = true;
+    public boolean f14003s = false;
 
-    public a2(Activity activity, int i10, long j10, String str, g6 g6Var) {
-        super(activity);
-        String str2;
-        setOrientation(1);
-        this.d = g6Var;
-        TextView textView = new TextView(activity);
-        this.f12853a = textView;
-        textView.setTextSize(1, 14.0f);
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextAlignment(4);
-        textView.setLineSpacing(AndroidUtilities.dp(1.66f), 1.0f);
-        textView.setGravity(17);
-        wd wdVar = new wd(activity, 4);
-        this.f12854b = wdVar;
-        wdVar.setTextAlignment(4);
-        wdVar.setGravity(17);
-        wdVar.setTextSize(1, 12.0f);
-        wdVar.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
-        wdVar.setGravity(1);
-        ImageView imageView = new ImageView(activity);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        wdVar.setMaxWidth(AndroidUtilities.dp(160.0f));
-        int i11 = 22;
-        if (i10 == 9) {
-            imageView.setImageResource(R.drawable.large_greeting);
-            textView.setText(LocaleController.getString(R.string.WelcomeMessageEmptyTitle));
-            wdVar.setText(LocaleController.getString(R.string.WelcomeMessageEmptySubtitle));
-            wdVar.setMaxWidth(Math.min(AndroidUtilities.dp(160.0f), x3.a(wdVar.getText(), wdVar.getPaint())));
-        } else if ("hello".equalsIgnoreCase(str)) {
-            imageView.setImageResource(R.drawable.large_greeting);
-            textView.setText(LocaleController.getString(R.string.BusinessGreetingIntroTitle));
-            wdVar.setText(LocaleController.getString(R.string.BusinessGreetingIntro));
-            wdVar.setMaxWidth(Math.min(AndroidUtilities.dp(160.0f), x3.a(wdVar.getText(), wdVar.getPaint())));
-        } else if ("away".equalsIgnoreCase(str)) {
-            imageView.setImageResource(R.drawable.large_away);
-            textView.setText(LocaleController.getString(R.string.BusinessAwayIntroTitle));
-            wdVar.setText(LocaleController.getString(R.string.BusinessAwayIntro));
-            wdVar.setMaxWidth(Math.min(AndroidUtilities.dp(160.0f), x3.a(wdVar.getText(), wdVar.getPaint())));
-        } else {
-            if (i10 == 5) {
-                imageView.setImageResource(R.drawable.large_quickreplies);
-                y1 c10 = z1.f(UserConfig.selectedAccount).c(j10);
-                if (c10 == null) {
-                    str2 = str;
-                } else {
-                    str2 = c10.f13130b;
+    public a2(boolean z10) {
+        this.f13999o = z10;
+    }
+
+    public final void a(CharSequence charSequence) {
+        if (charSequence != null) {
+            Matcher matcher = Pattern.compile("(^|\\s)#[^0-9][\\w@.]+").matcher(charSequence);
+            boolean z10 = false;
+            while (matcher.find()) {
+                int start = matcher.start();
+                int end = matcher.end();
+                if (charSequence.charAt(start) != '@' && charSequence.charAt(start) != '#') {
+                    start++;
                 }
-                textView.setText(LocaleController.getString(R.string.BusinessRepliesIntroTitle));
-                wdVar.setMaxWidth(AndroidUtilities.dp(208.0f));
-                wdVar.setTextAlignment(2);
-                wdVar.setGravity(3);
-                wdVar.setText(AndroidUtilities.replaceTags(LocaleController.formatString(R.string.BusinessRepliesIntro1, str2)));
-                wdVar.setPadding(AndroidUtilities.dp(28.0f), 0, 0, 0);
-                wd wdVar2 = new wd(activity, 4);
-                this.f12855c = wdVar2;
-                wdVar2.setMaxWidth(AndroidUtilities.dp(208.0f));
-                wdVar2.setTextAlignment(2);
-                wdVar2.setGravity(3);
-                wdVar2.setTextSize(1, 13.0f);
-                wdVar2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.BusinessRepliesIntro2)));
-                wdVar2.setPadding(AndroidUtilities.dp(28.0f), 0, 0, 0);
+                String charSequence2 = charSequence.subSequence(start, end).toString();
+                if (this.f14002r == null) {
+                    this.f14002r = new HashMap();
+                    this.f14001q = new ArrayList();
+                }
+                y1 y1Var = (y1) this.f14002r.get(charSequence2);
+                if (y1Var == 0) {
+                    y1Var = new Object();
+                    y1Var.f14305a = charSequence2;
+                    this.f14002r.put(charSequence2, y1Var);
+                } else {
+                    this.f14001q.remove((Object) y1Var);
+                }
+                y1Var.f14306b = (int) (System.currentTimeMillis() / 1000);
+                this.f14001q.add(0, y1Var);
+                z10 = true;
             }
-            i11 = 12;
-        }
-        int i12 = i11;
-        addView(imageView, z5.t(78, 78, 49, 20, 17, 20, 9));
-        addView(textView, z5.t(-2, -2, 49, 20, 0, 20, 6));
-        addView(wdVar, z5.t(-2, -2, 49, i12, 0, i12, this.f12855c == null ? 19 : 9));
-        View view = this.f12855c;
-        if (view != null) {
-            addView(view, z5.t(-2, -2, 49, 12, 0, 12, 19));
-        }
-        updateColors();
-    }
-
-    @Override
-    public final void updateColors() {
-        wd wdVar;
-        TextView textView = this.f12853a;
-        if (textView != null && (wdVar = this.f12854b) != null) {
-            int i10 = k6.f21278ic;
-            g6 g6Var = this.d;
-            textView.setTextColor(k6.w0(i10, g6Var));
-            wdVar.setTextColor(k6.w0(i10, g6Var));
-            wd wdVar2 = this.f12855c;
-            if (wdVar2 != null) {
-                wdVar2.setTextColor(k6.w0(i10, g6Var));
+            if (z10) {
+                MessagesStorage.getInstance(this.f13997m).getStorageQueue().postRunnable(new u2(12, this, this.f14001q));
             }
         }
     }
 
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void b() {
+        this.e.clear();
+        this.f13991f.b();
+        this.d.clear();
+    }
+
+    public final void c() {
+        this.f14001q = new ArrayList();
+        this.f14002r = new HashMap();
+        MessagesStorage.getInstance(this.f13997m).getStorageQueue().postRunnable(new x1(this, 0));
+    }
+
+    public boolean d(TLObject tLObject) {
+        return true;
+    }
+
+    public final boolean e() {
+        if (this.f13989b.size() > 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void f(ArrayList arrayList, ArrayList arrayList2) {
+        int size;
+        int size2;
+        Object obj;
+        TLRPC.Chat chat;
+        this.f13995k = arrayList;
+        this.f13996l = arrayList2;
+        a0.h hVar = this.f13991f;
+        if (hVar.m() != 0) {
+            if (arrayList != null || arrayList2 != null) {
+                if (arrayList == null) {
+                    size = 0;
+                } else {
+                    size = arrayList.size();
+                }
+                if (arrayList2 == null) {
+                    size2 = 0;
+                } else {
+                    size2 = arrayList2.size();
+                }
+                int i10 = size2 + size;
+                for (int i11 = 0; i11 < i10; i11++) {
+                    if (i11 < size) {
+                        obj = arrayList.get(i11);
+                    } else {
+                        obj = arrayList2.get(i11 - size);
+                    }
+                    if (obj instanceof h0) {
+                        obj = ((h0) obj).f14064a;
+                    }
+                    if (obj instanceof ar0) {
+                        obj = ((ar0) obj).f26600b;
+                    }
+                    boolean z10 = obj instanceof TLRPC.User;
+                    ArrayList arrayList3 = this.d;
+                    ArrayList arrayList4 = this.e;
+                    if (z10) {
+                        TLRPC.User user = (TLRPC.User) obj;
+                        TLRPC.User user2 = (TLRPC.User) hVar.f(user.f22174id);
+                        if (user2 != null) {
+                            arrayList4.remove(user2);
+                            arrayList3.remove(user2);
+                            hVar.l(user2.f22174id);
+                        }
+                        long j10 = user.f22174id;
+                        a0.h hVar2 = this.h;
+                        TLObject tLObject = (TLObject) hVar2.f(j10);
+                        if (tLObject != null) {
+                            this.f13992g.remove(tLObject);
+                            hVar2.l(user.f22174id);
+                        }
+                        long j11 = user.f22174id;
+                        a0.h hVar3 = this.f13993i;
+                        Object f7 = hVar3.f(j11);
+                        if (f7 != null) {
+                            this.f13994j.remove(f7);
+                            hVar3.l(user.f22174id);
+                        }
+                    } else if ((obj instanceof TLRPC.Chat) && (chat = (TLRPC.Chat) hVar.f(-((TLRPC.Chat) obj).f22027id)) != null) {
+                        arrayList4.remove(chat);
+                        arrayList3.remove(chat);
+                        hVar.l(-chat.f22027id);
+                    }
+                }
+            }
+        }
+    }
+
+    public final void g(String str, boolean z10, boolean z11, boolean z12, boolean z13, long j10, boolean z14, int i10, int i11) {
+        h(str, z10, z11, z12, z13, false, j10, z14, i10, i11, 0L, null);
+    }
+
+    public final void h(final java.lang.String r22, boolean r23, final boolean r24, final boolean r25, boolean r26, final boolean r27, long r28, boolean r30, int r31, final int r32, final long r33, final java.lang.Runnable r35) {
+        throw new UnsupportedOperationException("Method not decompiled: ig.a2.h(java.lang.String, boolean, boolean, boolean, boolean, boolean, long, boolean, int, int, long, java.lang.Runnable):void");
+    }
+
+    public final void i() {
+        a0.h hVar = this.f13991f;
+        if (hVar.m() != 0) {
+            a0.h hVar2 = this.h;
+            int m10 = hVar2.m();
+            for (int i10 = 0; i10 < m10; i10++) {
+                TLRPC.User user = (TLRPC.User) hVar.f(hVar2.j(i10));
+                if (user != null) {
+                    this.e.remove(user);
+                    this.d.remove(user);
+                    hVar.l(user.f22174id);
+                }
+            }
+        }
     }
 }

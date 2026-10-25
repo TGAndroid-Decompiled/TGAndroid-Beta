@@ -1,31 +1,26 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class h7 implements Runnable {
-    public final int f26888a;
-    public final i8 f26889b;
-    public final TLRPC.TL_error f26890c;
+import android.net.Uri;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+public final class h7 implements Utilities.Callback {
+    public final int f28851a;
+    public final m8 f28852b;
 
-    public h7(i8 i8Var, TLRPC.TL_error tL_error, int i10) {
-        this.f26888a = i10;
-        this.f26889b = i8Var;
-        this.f26890c = tL_error;
+    public h7(m8 m8Var, int i10) {
+        this.f28851a = i10;
+        this.f28852b = m8Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f26888a) {
+    public final void run(Object obj) {
+        switch (this.f28851a) {
             case 0:
-                i8.u(this.f26889b, this.f26890c);
-                return;
-            case 1:
-                i8.x(this.f26889b, this.f26890c);
-                return;
-            case 2:
-                i8.C(this.f26889b, this.f26890c);
+                m8.v(this.f28852b, (MessageObject) obj);
                 return;
             default:
-                i8.z(this.f26889b, this.f26890c);
+                Uri uri = (Uri) obj;
+                m8.J(this.f28852b);
                 return;
         }
     }

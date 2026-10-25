@@ -1,20 +1,33 @@
 package org.telegram.ui.Components;
+public final class kn extends org.telegram.ui.gu0 {
+    public boolean f29943a;
+    public final int f29944b;
+    public final go f29945c;
 
-import android.content.Context;
-public final class kn extends ri {
-    public final Runnable V2;
-
-    public kn(Context context, org.telegram.ui.ActionBar.o2 o2Var, org.telegram.ui.ActionBar.g6 g6Var, Runnable runnable) {
-        super(context, o2Var, false, false, true, g6Var);
-        this.V2 = runnable;
+    public kn(go goVar, int i10) {
+        this.f29945c = goVar;
+        this.f29944b = i10;
     }
 
     @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        Runnable runnable = this.V2;
-        if (runnable != null) {
-            runnable.run();
+    public final void D() {
+        if (this.f29943a) {
+            this.f29945c.e0(this.f29944b);
         }
+    }
+
+    @Override
+    public final void J() {
+        this.f29945c.h0(this.f29944b, null);
+    }
+
+    @Override
+    public final void W() {
+        this.f29943a = true;
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
     }
 }

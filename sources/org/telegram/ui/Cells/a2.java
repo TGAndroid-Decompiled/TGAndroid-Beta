@@ -1,66 +1,15 @@
 package org.telegram.ui.Cells;
+public final class a2 implements Runnable {
+    public final boolean f23840a;
+    public final d2 f23841b;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class a2 extends FrameLayout {
-    public final org.telegram.ui.Components.o6 f22077a;
-    public final View f22078b;
-    public final org.telegram.ui.ActionBar.g6 f22079c;
-
-    public a2(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        int i10;
-        this.f22079c = g6Var;
-        org.telegram.ui.Components.o6 o6Var = new org.telegram.ui.Components.o6(context, false, false, false);
-        this.f22077a = o6Var;
-        int i11 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.r6.a0(o6Var, i11, g6Var);
-        o6Var.setTextSize(AndroidUtilities.dp(14.0f));
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        o6Var.setGravity(i10);
-        o6Var.setImportantForAccessibility(2);
-        o6Var.setOnWidthUpdatedListener(new g(this, 2));
-        addView(o6Var, w7.z5.i(-2.0f, -2.0f, 8388627, 21.0f, 0.0f, 38.0f, 3.0f));
-        View view = new View(context);
-        this.f22078b = view;
-        Drawable mutate = getContext().getResources().getDrawable(R.drawable.arrow_more).mutate();
-        org.telegram.ui.ActionBar.r6.z(this, mutate, i11, g6Var, PorterDuff.Mode.MULTIPLY);
-        view.setBackground(mutate);
-        addView(view, w7.z5.i(14.0f, 14.0f, 8388627, 21.0f, 1.0f, 0.0f, 3.0f));
-    }
-
-    public final void a() {
-        float c10 = this.f22077a.getDrawable().c() + AndroidUtilities.dp(1.0f);
-        boolean z10 = LocaleController.isRTL;
-        View view = this.f22078b;
-        if (z10) {
-            view.setTranslationX(-c10);
-        } else {
-            view.setTranslationX(c10);
-        }
+    public a2(d2 d2Var, boolean z10) {
+        this.f23841b = d2Var;
+        this.f23840a = z10;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(46.0f), 1073741824));
-        a();
-    }
-
-    public void setColor(int i10) {
-        org.telegram.ui.ActionBar.g6 g6Var = this.f22079c;
-        int w02 = org.telegram.ui.ActionBar.k6.w0(i10, g6Var);
-        org.telegram.ui.ActionBar.r6.a0(this.f22077a, i10, g6Var);
-        this.f22078b.getBackground().setColorFilter(new PorterDuffColorFilter(w02, PorterDuff.Mode.MULTIPLY));
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.a2.run():void");
     }
 }

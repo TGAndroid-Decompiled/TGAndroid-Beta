@@ -1,219 +1,139 @@
 package c3;
 
-import android.view.WindowManager;
-import ci.o1;
-import com.google.android.gms.internal.cast.z5;
-import com.google.android.gms.tasks.Continuation;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.messaging.FirebaseMessagingRegistrar;
-import ei.q3;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.lang.reflect.Constructor;
-import java.nio.charset.Charset;
-import m.g3;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.GenericProvider;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.NativeInstance;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.z1;
-import org.telegram.ui.Components.ew0;
-import org.telegram.ui.Components.fw0;
-import z9.e2;
-public final class m implements n, NativeInstance.AudioLevelsCallback, ew0, fw0, z1, Continuation, r9.d, i5.e, d9.k, GenericProvider, Utilities.Callback2Return, eh.d {
-    public final int f4649a;
+import f9.s1;
+import java.util.ArrayList;
+public final class m implements r {
+    public static final int[] h = {5, 4, 12, 8, 3, 10, 9, 11, 6, 2, 0, 1, 7, 16, 15, 14, 17, 18, 19, 20, 21};
+    public static final n4.s f6083n = new n4.s(new c2.i(1));
+    public static final n4.s f6084r = new n4.s(new c2.i(2));
+    public s1 f6085a;
+    public int e;
+    public int f6088f;
+    public qb.a f6087c = new qb.a(28);
+    public boolean f6086b = true;
+    public int d = 3;
 
-    public m(int i10) {
-        this.f4649a = i10;
-    }
-
-    @Override
-    public Constructor a() {
-        return Class.forName("androidx.media3.decoder.midi.MidiExtractor").asSubclass(q.class).getConstructor(null);
-    }
-
-    @Override
-    public Object apply(Object obj) {
-        switch (this.f4649a) {
-            case 13:
-                xa.e eVar = (xa.e) obj;
-                eVar.getClass();
-                g3 g3Var = com.google.firebase.messaging.o.f7667a;
-                g3Var.getClass();
-                ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-                try {
-                    g3Var.z(eVar, byteArrayOutputStream);
-                } catch (IOException unused) {
-                }
-                return byteArrayOutputStream.toByteArray();
-            case 14:
-                return Integer.valueOf(((d2.b) obj).f7779r);
-            default:
-                da.a.f7918b.getClass();
-                return aa.b.f361a.M((e2) obj).getBytes(Charset.forName("UTF-8"));
-        }
-    }
-
-    @Override
-    public void b(Object obj, float f7) {
-        o1 o1Var = (o1) obj;
-        switch (this.f4649a) {
-            case 3:
-                WindowManager.LayoutParams layoutParams = o1Var.f5619c;
-                o1Var.N = f7;
-                layoutParams.x = (int) f7;
-                AndroidUtilities.updateViewLayout(o1Var.f5618b, o1Var.d, layoutParams);
+    public final void a(int i10, ArrayList arrayList) {
+        int i11;
+        int i12 = 2;
+        int i13 = 0;
+        switch (i10) {
+            case 0:
+                arrayList.add(new j4.a());
                 return;
-            default:
-                WindowManager.LayoutParams layoutParams2 = o1Var.f5619c;
-                o1Var.O = f7;
-                layoutParams2.y = (int) f7;
-                AndroidUtilities.updateViewLayout(o1Var.f5618b, o1Var.d, layoutParams2);
+            case 1:
+                arrayList.add(new j4.c());
                 return;
-        }
-    }
-
-    @Override
-    public void g(c2 c2Var, int i10) {
-        switch (this.f4649a) {
-            case 6:
-                c2Var.dismiss();
-                return;
-            default:
-                c2Var.dismiss();
-                return;
-        }
-    }
-
-    @Override
-    public float get(Object obj) {
-        o1 o1Var = (o1) obj;
-        switch (this.f4649a) {
             case 2:
-                return o1Var.N;
-            default:
-                return o1Var.O;
-        }
-    }
-
-    @Override
-    public int i(g6 g6Var, boolean z10) {
-        float f7;
-        float f10;
-        float f11;
-        float f12;
-        float f13;
-        float f14;
-        float f15;
-        switch (this.f4649a) {
-            case 19:
-                if (LiteMode.isEnabled(262144)) {
-                    f7 = 0.85f;
+                arrayList.add(new j4.d(1));
+                return;
+            case 3:
+                arrayList.add(new d3.a(1));
+                return;
+            case 4:
+                o w10 = f6083n.w(0);
+                if (w10 != null) {
+                    arrayList.add(w10);
+                    return;
                 } else {
-                    f7 = 0.76f;
+                    arrayList.add(new h3.b());
+                    return;
                 }
-                return fh.c.m(f7, k6.w0(k6.f21184d6, g6Var), k6.w0(k6.Sd, g6Var));
-            case 20:
-                if (!LiteMode.isEnabled(256)) {
-                    return k6.x0(null, k6.G8, false);
+            case 5:
+                arrayList.add(new i3.b());
+                return;
+            case 6:
+                qb.a aVar = this.f6087c;
+                if (this.f6086b) {
+                    i12 = 0;
                 }
-                int x02 = k6.x0(null, k6.G8, false);
-                if (z10) {
-                    f10 = 0.85f;
+                arrayList.add(new u3.f(aVar, i12));
+                return;
+            case 7:
+                arrayList.add(new v3.d(1));
+                return;
+            case 8:
+                qb.a aVar2 = this.f6087c;
+                int g7 = w3.h.g(this.d);
+                int i14 = 32;
+                if (this.f6086b) {
+                    i11 = 0;
                 } else {
-                    f10 = 0.825f;
+                    i11 = 32;
                 }
-                return k6.o1(f10, x02);
-            case 21:
-                if (LiteMode.isEnabled(262144)) {
-                    f11 = 0.85f;
-                } else {
-                    f11 = 0.76f;
+                int i15 = g7 | i11;
+                f9.g0 g0Var = f9.i0.f10287b;
+                arrayList.add(new w3.h(aVar2, i15, null, s1.e, null));
+                qb.a aVar3 = this.f6087c;
+                int i16 = this.d;
+                if ((i16 & 1) == 0) {
+                    i14 = 0;
                 }
-                return fh.c.m(f11, k6.w0(k6.f21184d6, g6Var), k6.w0(k6.Zk, g6Var));
-            case 22:
-                if (LiteMode.isEnabled(262144)) {
-                    f12 = 0.85f;
-                } else {
-                    f12 = 0.76f;
+                if ((2 & i16) != 0) {
+                    i14 |= 128;
                 }
-                return k6.o1(f12, k6.w0(k6.Fi, g6Var));
-            case 23:
-                return 855638016;
-            case 24:
-                return 1073741824;
-            case 25:
-                return k6.o1(0.075f, -16777216);
-            case 26:
-                return k6.o1(0.88f, k6.w0(k6.f21184d6, g6Var));
-            case 27:
-                int x03 = k6.x0(null, k6.G8, false);
-                if (z10) {
-                    f13 = 0.85f;
-                } else {
-                    f13 = 0.825f;
+                if (!this.f6086b) {
+                    i13 = 16;
                 }
-                return k6.o1(f13, x03);
-            case 28:
-                if (LiteMode.isEnabled(262144)) {
-                    f14 = 0.85f;
-                } else {
-                    f14 = 0.76f;
-                }
-                return fh.c.m(f14, k6.w0(k6.f21184d6, g6Var), k6.w0(k6.Yk, g6Var));
-            default:
-                if (LiteMode.isEnabled(262144)) {
-                    f15 = 0.85f;
-                } else {
-                    f15 = 0.76f;
-                }
-                return k6.o1(f15, k6.w0(k6.f21184d6, g6Var));
-        }
-    }
-
-    @Override
-    public Object j2(z5 z5Var) {
-        return FirebaseMessagingRegistrar.a(z5Var);
-    }
-
-    @Override
-    public Object provide(Object obj) {
-        Integer num = (Integer) obj;
-        MediaController.AlbumEntry albumEntry = q3.f9636j0;
-        return 0;
-    }
-
-    @Override
-    public void run(int[] iArr, float[] fArr, boolean[] zArr) {
-    }
-
-    @Override
-    public Object then(Task task) {
-        int i10;
-        switch (this.f4649a) {
+                arrayList.add(new w3.l(aVar3, i14 | i13));
+                return;
             case 9:
-                i10 = 403;
-                break;
+                arrayList.add(new Object());
+                return;
+            case 10:
+                arrayList.add(new j4.z());
+                return;
+            case 11:
+                if (this.f6085a == null) {
+                    f9.g0 g0Var2 = f9.i0.f10287b;
+                    this.f6085a = s1.e;
+                }
+                arrayList.add(new j4.d0(1, !this.f6086b ? 1 : 0, this.f6087c, new e2.k0(0L), new j4.f(0, this.f6085a)));
+                return;
+            case 12:
+                ?? obj = new Object();
+                obj.f16374c = 0;
+                obj.d = -1L;
+                obj.f16375f = -1;
+                obj.f16376g = -1L;
+                arrayList.add(obj);
+                return;
+            case 13:
             default:
-                i10 = -1;
-                break;
+                return;
+            case 14:
+                arrayList.add(new k3.a(this.e));
+                return;
+            case 15:
+                o w11 = f6084r.w(new Object[0]);
+                if (w11 != null) {
+                    arrayList.add(w11);
+                    return;
+                }
+                return;
+            case 16:
+                arrayList.add(new e3.b(!this.f6086b ? 1 : 0, this.f6087c));
+                return;
+            case 17:
+                arrayList.add(new g3.a(1));
+                return;
+            case 18:
+                arrayList.add(new f3.a(1));
+                return;
+            case 19:
+                arrayList.add(new g3.a(0));
+                return;
+            case 20:
+                arrayList.add(new j3.b(this.f6088f));
+                return;
+            case 21:
+                arrayList.add(new f3.a(0));
+                return;
         }
-        return Integer.valueOf(i10);
     }
 
     @Override
-    public Object run(Object obj, Object obj2) {
-        Integer num = (Integer) obj2;
-        if (((Integer) obj).intValue() == 0) {
-            return num.intValue() == 0 ? LocaleController.getString(R.string.LiveStoryPricePerCommentFree) : LocaleController.formatPluralStringComma("Stars", num.intValue());
-        }
-        return "" + num;
+    public final synchronized c3.o[] d(android.net.Uri r7, java.util.Map r8) {
+        throw new UnsupportedOperationException("Method not decompiled: c3.m.d(android.net.Uri, java.util.Map):c3.o[]");
     }
 }

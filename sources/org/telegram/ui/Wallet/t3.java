@@ -2,61 +2,61 @@ package org.telegram.ui.Wallet;
 
 import android.text.TextUtils;
 import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.vc;
+import org.telegram.ui.Components.wc;
 public final class t3 implements Utilities.Callback {
-    public final int f35207a;
-    public final ei.d f35208b;
-    public final org.telegram.ui.ActionBar.h3 f35209c;
-    public final org.telegram.ui.ActionBar.g6 d;
+    public final int f37261a;
+    public final fi.d f37262b;
+    public final org.telegram.ui.ActionBar.k3 f37263c;
+    public final org.telegram.ui.ActionBar.u6 d;
 
-    public t3(ei.d dVar, org.telegram.ui.ActionBar.h3 h3Var, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        this.f35207a = i10;
-        this.f35208b = dVar;
-        this.f35209c = h3Var;
-        this.d = g6Var;
+    public t3(fi.d dVar, org.telegram.ui.ActionBar.k3 k3Var, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
+        this.f37261a = i10;
+        this.f37262b = dVar;
+        this.f37263c = k3Var;
+        this.d = u6Var;
     }
 
     @Override
     public final void run(Object obj) {
         String str = (String) obj;
-        switch (this.f35207a) {
+        switch (this.f37261a) {
             case 0:
-                this.f35208b.setLoading(false);
+                this.f37262b.setLoading(false);
                 boolean isEmpty = TextUtils.isEmpty(str);
-                org.telegram.ui.ActionBar.h3 h3Var = this.f35209c;
+                org.telegram.ui.ActionBar.k3 k3Var = this.f37263c;
                 if (!isEmpty) {
-                    new vc(h3Var.topBulletinContainer, this.d).e0(str, false);
+                    new wc(k3Var.topBulletinContainer, this.d).f0(str, false);
                     return;
                 } else {
-                    h3Var.dismiss();
+                    k3Var.dismiss();
                     return;
                 }
             case 1:
-                this.f35208b.setLoading(false);
-                org.telegram.ui.ActionBar.h3 h3Var2 = this.f35209c;
+                this.f37262b.setLoading(false);
+                org.telegram.ui.ActionBar.k3 k3Var2 = this.f37263c;
                 if (str != null) {
-                    new vc(h3Var2.topBulletinContainer, this.d).e0(str, false);
+                    new wc(k3Var2.topBulletinContainer, this.d).f0(str, false);
                     return;
                 } else {
-                    h3Var2.dismiss();
+                    k3Var2.dismiss();
                     return;
                 }
             default:
-                org.telegram.ui.ActionBar.h3 h3Var3 = this.f35209c;
+                org.telegram.ui.ActionBar.k3 k3Var3 = this.f37263c;
                 if (str != null) {
-                    new vc(h3Var3.topBulletinContainer, this.d).e0(str, false);
+                    new wc(k3Var3.topBulletinContainer, this.d).f0(str, false);
                     return;
                 }
-                this.f35208b.setLoading(false);
-                h3Var3.dismiss();
+                this.f37262b.setLoading(false);
+                k3Var3.dismiss();
                 return;
         }
     }
 
-    public t3(org.telegram.ui.ActionBar.h3 h3Var, org.telegram.ui.ActionBar.g6 g6Var, ei.d dVar) {
-        this.f35207a = 2;
-        this.f35209c = h3Var;
-        this.d = g6Var;
-        this.f35208b = dVar;
+    public t3(org.telegram.ui.ActionBar.k3 k3Var, org.telegram.ui.ActionBar.u6 u6Var, fi.d dVar) {
+        this.f37261a = 2;
+        this.f37263c = k3Var;
+        this.d = u6Var;
+        this.f37262b = dVar;
     }
 }

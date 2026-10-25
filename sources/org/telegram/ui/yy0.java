@@ -1,48 +1,34 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.ImageReceiver;
-public final class yy0 extends AnimatorListenerAdapter {
-    public final ProfileActivity f43976a;
-
-    public yy0(ProfileActivity profileActivity) {
-        this.f43976a = profileActivity;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class yy0 extends wz0 {
+    public yy0(Context context) {
+        super(context);
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        org.telegram.ui.ActionBar.k kVar;
-        int w02;
-        ProfileActivity profileActivity = this.f43976a;
-        kVar = ((org.telegram.ui.ActionBar.o2) profileActivity).actionBar;
-        if (profileActivity.f33998q2) {
-            w02 = 1090519039;
-        } else if (profileActivity.S5 != null) {
-            w02 = 553648127;
-        } else {
-            w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21221f8, profileActivity.A0);
+    public final void dispatchDraw(Canvas canvas) {
+        di.f3 f3Var;
+        super.dispatchDraw(canvas);
+        org.telegram.ui.Components.t5 t5Var = this.e;
+        if (t5Var != null && (f3Var = t5Var.f32849k) != null) {
+            f3Var.startAnimation();
         }
-        kVar.A(w02, false);
-        uy0 uy0Var = profileActivity.f33922f0;
-        ImageReceiver imageReceiver = uy0Var.U;
-        org.telegram.ui.Components.c6 animation = imageReceiver.getAnimation();
-        if (animation != null) {
-            animation.w(uy0Var);
-        }
-        imageReceiver.clearImage();
-        ImageReceiver.BitmapHolder bitmapHolder = uy0Var.W;
-        if (bitmapHolder != null) {
-            bitmapHolder.release();
-            uy0Var.W = null;
-        }
-        uy0Var.V = 0.0f;
-        uy0Var.invalidate();
-        profileActivity.I0 = false;
-        profileActivity.p5(false);
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+        if (getImageReceiver().hasNotThumb()) {
+            accessibilityNodeInfo.setText(LocaleController.getString(R.string.AccDescrProfilePicture));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(16, LocaleController.getString(R.string.Open)));
+            accessibilityNodeInfo.addAction(new AccessibilityNodeInfo.AccessibilityAction(32, LocaleController.getString(R.string.AccDescrOpenInPhotoViewer)));
+            return;
+        }
+        accessibilityNodeInfo.setVisibleToUser(false);
     }
 }

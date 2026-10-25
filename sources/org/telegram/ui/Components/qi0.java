@@ -6,7 +6,7 @@ public interface qi0 {
 
     void b(float f7);
 
-    void c(rv rvVar, Canvas canvas);
+    void c(tv tvVar, Canvas canvas);
 
     void d(int i10, int i11);
 }

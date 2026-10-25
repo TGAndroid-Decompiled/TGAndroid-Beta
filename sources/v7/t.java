@@ -1,6 +1,0 @@
-package v7;
-public abstract class t {
-    public abstract void a(Throwable th2);
-
-    public abstract void b(qi.e eVar);
-}

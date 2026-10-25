@@ -1,35 +1,33 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.concurrent.CountDownLatch;
 public final class uf implements Runnable {
-    public final int f19760a = 0;
-    public final int f19761b;
-    public final MessagesStorage f19762c;
-    public final long d;
-    public final long e;
-    public final int f19763f;
-    public final Object h;
+    public final int f21438a;
+    public final MessagesStorage f21439b;
+    public final long f21440c;
+    public final boolean[] d;
+    public final CountDownLatch e;
 
-    public uf(int i10, int i11, long j10, long j11, MessagesStorage messagesStorage, TLRPC.InputChannel inputChannel) {
-        this.f19762c = messagesStorage;
-        this.d = j10;
-        this.f19761b = i10;
-        this.h = inputChannel;
-        this.f19763f = i11;
-        this.e = j11;
+    public uf(int i10, long j10, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
+        this.f21438a = i10;
+        this.f21439b = messagesStorage;
+        this.f21440c = j10;
+        this.d = zArr;
+        this.e = countDownLatch;
     }
 
     @Override
     public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.messenger.uf.run():void");
-    }
-
-    public uf(org.telegram.ui.Cells.g6 g6Var, int i10, MessagesStorage messagesStorage, long j10, long j11, int i11) {
-        this.h = g6Var;
-        this.f19761b = i10;
-        this.f19762c = messagesStorage;
-        this.d = j10;
-        this.e = j11;
-        this.f19763f = i11;
+        switch (this.f21438a) {
+            case 0:
+                this.f21439b.lambda$checkMessageByRandomId$156(this.f21440c, this.d, this.e);
+                return;
+            case 1:
+                this.f21439b.lambda$hasInviteMeMessage$146(this.f21440c, this.d, this.e);
+                return;
+            default:
+                this.f21439b.lambda$isMigratedChat$144(this.f21440c, this.d, this.e);
+                return;
+        }
     }
 }

@@ -3,79 +3,78 @@ package org.telegram.ui.Wallet;
 import android.text.TextUtils;
 import java.nio.charset.StandardCharsets;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.d71;
-import org.telegram.ui.ta0;
-public final class b8 implements org.telegram.ui.ActionBar.z1 {
-    public final int f34340a;
-    public final d71 f34341b;
-    public final Object f34342c;
+import org.telegram.ui.Components.m71;
+public final class b8 implements org.telegram.ui.ActionBar.b2 {
+    public final int f36396a;
+    public final m71 f36397b;
+    public final Object f36398c;
     public final Object d;
 
-    public b8(d71 d71Var, Object obj, Object obj2, int i10) {
-        this.f34340a = i10;
-        this.f34341b = d71Var;
+    public b8(m71 m71Var, Object obj, Object obj2, int i10) {
+        this.f36396a = i10;
+        this.f36397b = m71Var;
         this.d = obj;
-        this.f34342c = obj2;
+        this.f36398c = obj2;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        org.telegram.ui.ActionBar.o2 o2Var;
-        switch (this.f34340a) {
+    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        org.telegram.ui.ActionBar.r2 r2Var;
+        switch (this.f36396a) {
             case 0:
-                i8 i8Var = (i8) this.f34341b;
-                l0 l0Var = (l0) this.f34342c;
+                h8 h8Var = (h8) this.f36397b;
+                l0 l0Var = (l0) this.f36398c;
                 if (!((Boolean) this.d).booleanValue()) {
-                    l0Var.f34745c.B();
+                    l0Var.f36806c.B();
                 }
-                if (i8Var.getParentLayout() != null && i8Var.getParentLayout().getFragmentStack().size() > 1) {
-                    o2Var = (org.telegram.ui.ActionBar.o2) i8Var.getParentLayout().getFragmentStack().get(i8Var.getParentLayout().getFragmentStack().size() - 2);
+                if (h8Var.getParentLayout() != null && h8Var.getParentLayout().getFragmentStack().size() > 1) {
+                    r2Var = (org.telegram.ui.ActionBar.r2) h8Var.getParentLayout().getFragmentStack().get(h8Var.getParentLayout().getFragmentStack().size() - 2);
                 } else {
-                    o2Var = null;
+                    r2Var = null;
                 }
-                r2.a(l0Var.f34743a, new gi.c(9), null, null, null, new ci.c0(5, l0Var, new w(9, i8Var, o2Var)), false, true, new ta0((Object) null, 1));
+                r2.a(l0Var.f36804a, new ai.d0(13), null, null, null, new di.c0(5, l0Var, new s(11, h8Var, r2Var)), false, true, new ag.b1((Object) null, 2));
                 return;
             case 1:
-                l0 l0Var2 = (l0) this.f34342c;
-                pf.c h = c2Var.h(i10, true, true);
+                l0 l0Var2 = (l0) this.f36398c;
+                qf.c h = e2Var.h(i10, true, true);
                 h.d();
-                d8 d8Var = new d8((i8) this.f34341b, h, 2);
+                d8 d8Var = new d8((h8) this.f36397b, h, 2);
                 l0.F("disable backup: getting phrase...");
                 l0Var2.y(new j((Object) l0Var2, (Object) d8Var, (Object) ((g0) this.d), 5), false, true);
                 return;
             default:
-                j9 j9Var = (j9) this.f34341b;
-                ig.z0 z0Var = (ig.z0) this.d;
-                org.telegram.ui.Cells.z1 z1Var = (org.telegram.ui.Cells.z1) this.f34342c;
-                if (z0Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
-                    int i11 = -j9Var.f34673n0;
-                    j9Var.f34673n0 = i11;
-                    AndroidUtilities.shakeViewSpring(z0Var, i11);
+                i9 i9Var = (i9) this.f36397b;
+                jg.a1 a1Var = (jg.a1) this.d;
+                org.telegram.ui.Cells.y1 y1Var = (org.telegram.ui.Cells.y1) this.f36398c;
+                if (a1Var.getText().toString().getBytes(StandardCharsets.UTF_8).length > 960) {
+                    int i11 = -i9Var.f36703o0;
+                    i9Var.f36703o0 = i11;
+                    AndroidUtilities.shakeViewSpring(a1Var, i11);
                     return;
                 }
-                String trim = z0Var.getText().toString().trim();
+                String trim = a1Var.getText().toString().trim();
                 if (TextUtils.isEmpty(trim)) {
                     trim = null;
                 }
-                j9Var.f34665f0 = trim;
-                j9Var.f34666g0 = !z1Var.b();
-                if (TextUtils.isEmpty(j9Var.f34665f0)) {
-                    j9Var.O.setVisibility(8);
+                i9Var.f36695g0 = trim;
+                i9Var.f36696h0 = !y1Var.b();
+                if (TextUtils.isEmpty(i9Var.f36695g0)) {
+                    i9Var.P.setVisibility(8);
                 } else {
-                    j9Var.O.setText(j9Var.f34665f0);
-                    j9Var.O.setVisibility(0);
+                    i9Var.P.setText(i9Var.f36695g0);
+                    i9Var.P.setVisibility(0);
                 }
-                j9Var.z0();
-                c2Var.dismiss();
-                j9Var.o0();
+                i9Var.A0();
+                e2Var.dismiss();
+                i9Var.p0();
                 return;
         }
     }
 
-    public b8(i8 i8Var, l0 l0Var, g0 g0Var) {
-        this.f34340a = 1;
-        this.f34341b = i8Var;
-        this.f34342c = l0Var;
+    public b8(h8 h8Var, l0 l0Var, g0 g0Var) {
+        this.f36396a = 1;
+        this.f36397b = h8Var;
+        this.f36398c = l0Var;
         this.d = g0Var;
     }
 }

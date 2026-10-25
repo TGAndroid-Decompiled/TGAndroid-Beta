@@ -1,55 +1,33 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
+import android.app.Activity;
 import android.view.View;
-import android.view.ViewGroup;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ChatActivityEnterView;
-public final class lw0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f39404a;
-    public final Object f39405b;
-    public final View f39406c;
-    public final Object d;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class lw0 extends c61 {
+    public final bi.m5 f41381e2;
+    public final t51[] f41382f2;
+    public final PremiumPreviewFragment f41383g2;
 
-    public lw0(Object obj, ViewGroup viewGroup, Object obj2, int i10) {
-        this.f39404a = i10;
-        this.f39405b = obj;
-        this.f39406c = viewGroup;
-        this.d = obj2;
+    public lw0(PremiumPreviewFragment premiumPreviewFragment, PremiumPreviewFragment premiumPreviewFragment2, Activity activity, Integer num, int i10, org.telegram.ui.ActionBar.u6 u6Var, int i11, bi.m5 m5Var, t51[] t51VarArr) {
+        super(premiumPreviewFragment2, activity, true, num, i10, true, u6Var, i11);
+        this.f41383g2 = premiumPreviewFragment;
+        this.f41381e2 = m5Var;
+        this.f41382f2 = t51VarArr;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        float dp;
-        switch (this.f39404a) {
-            case 0:
-                qw0 qw0Var = (qw0) this.f39405b;
-                PremiumPreviewFragment premiumPreviewFragment = qw0Var.f40941n;
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                View view = this.f39406c;
-                view.setAlpha(floatValue);
-                view.setScaleX(floatValue);
-                view.setScaleY(floatValue);
-                float animatedFraction = ((ValueAnimator) this.d).getAnimatedFraction();
-                for (int i10 = 0; i10 < premiumPreviewFragment.U.getChildCount(); i10++) {
-                    View childAt = premiumPreviewFragment.U.getChildAt(i10);
-                    if (childAt != qw0Var.e) {
-                        if (childAt == qw0Var.f40939c) {
-                            dp = 0.0f - (AndroidUtilities.dp(15.0f) * animatedFraction);
-                        } else {
-                            dp = 0.0f + (AndroidUtilities.dp(8.0f) * animatedFraction);
-                        }
-                        childAt.setTranslationY((view.getMeasuredHeight() * animatedFraction) + dp);
-                    }
-                }
-                return;
-            default:
-                da1 da1Var = (da1) this.f39405b;
-                da1Var.getClass();
-                da1Var.f36552a = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ((ChatActivityEnterView) this.f39406c).getEditField().setAlpha(da1Var.f36552a);
-                ((org.telegram.ui.Components.qi) this.d).invalidate();
-                return;
+    public final float getScrimDrawableTranslationY() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        this.f41381e2.run(l4, num);
+        t51 t51Var = this.f41382f2[0];
+        if (t51Var != null) {
+            this.f41383g2.f35889v0 = null;
+            t51Var.dismiss();
         }
     }
 }

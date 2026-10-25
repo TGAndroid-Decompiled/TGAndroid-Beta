@@ -1,17 +1,21 @@
 package zd;
 
-import java.nio.charset.Charset;
-public abstract class a {
-    public static final Charset f51979a;
+import ae.j;
+import java.util.Iterator;
+import java.util.concurrent.atomic.AtomicReference;
+public final class a implements b {
+    public final AtomicReference f52846a;
 
-    static {
-        Charset forName = Charset.forName("UTF-8");
-        kotlin.jvm.internal.i.d(forName, "forName(...)");
-        f51979a = forName;
-        kotlin.jvm.internal.i.d(Charset.forName("UTF-16"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("UTF-16BE"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("UTF-16LE"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("US-ASCII"), "forName(...)");
-        kotlin.jvm.internal.i.d(Charset.forName("ISO-8859-1"), "forName(...)");
+    public a(j jVar) {
+        this.f52846a = new AtomicReference(jVar);
+    }
+
+    @Override
+    public final Iterator iterator() {
+        b bVar = (b) this.f52846a.getAndSet(null);
+        if (bVar != null) {
+            return bVar.iterator();
+        }
+        throw new IllegalStateException("This sequence can be consumed only once.");
     }
 }

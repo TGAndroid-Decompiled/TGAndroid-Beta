@@ -1,76 +1,62 @@
 package l5;
 
-import android.content.Context;
-import com.google.android.gms.internal.play_billing.k3;
-import j$.util.DesugarCollections;
-import java.nio.charset.Charset;
-import java.util.Collections;
-import java.util.Set;
-import java.util.concurrent.Executor;
-import org.telegram.ui.web.a2;
+import android.util.SparseArray;
 public final class t {
-    public static volatile k e;
-    public final u5.a f16005a;
-    public final u5.a f16006b;
-    public final q5.b f16007c;
-    public final ea.b d;
+    public static final SparseArray f16915a;
+    public static final t[] f16916b;
+    t EF0;
 
-    public t(u5.a aVar, u5.a aVar2, q5.b bVar, ea.b bVar2, com.google.firebase.messaging.r rVar) {
-        this.f16005a = aVar;
-        this.f16006b = aVar2;
-        this.f16007c = bVar;
-        this.d = bVar2;
-        ((Executor) rVar.f7672b).execute(new a2(rVar, 11));
+    static {
+        Enum r02 = new Enum("UNKNOWN_MOBILE_SUBTYPE", 0);
+        Enum r12 = new Enum("GPRS", 1);
+        Enum r32 = new Enum("EDGE", 2);
+        Enum r52 = new Enum("UMTS", 3);
+        Enum r72 = new Enum("CDMA", 4);
+        Enum r92 = new Enum("EVDO_0", 5);
+        Enum r11 = new Enum("EVDO_A", 6);
+        Enum r13 = new Enum("RTT", 7);
+        Enum r15 = new Enum("HSDPA", 8);
+        Enum r14 = new Enum("HSUPA", 9);
+        Enum r122 = new Enum("HSPA", 10);
+        Enum r10 = new Enum("IDEN", 11);
+        Enum r82 = new Enum("EVDO_B", 12);
+        Enum r6 = new Enum("LTE", 13);
+        Enum r42 = new Enum("EHRPD", 14);
+        Enum r22 = new Enum("HSPAP", 15);
+        Enum r62 = new Enum("GSM", 16);
+        Enum r43 = new Enum("TD_SCDMA", 17);
+        Enum r23 = new Enum("IWLAN", 18);
+        Enum r63 = new Enum("LTE_CA", 19);
+        f16916b = new t[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r14, r122, r10, r82, r6, r42, r22, r62, r43, r23, r63, new Enum("COMBINED", 20)};
+        SparseArray sparseArray = new SparseArray();
+        f16915a = sparseArray;
+        sparseArray.put(0, r02);
+        sparseArray.put(1, r12);
+        sparseArray.put(2, r32);
+        sparseArray.put(3, r52);
+        sparseArray.put(4, r72);
+        sparseArray.put(5, r92);
+        sparseArray.put(6, r11);
+        sparseArray.put(7, r13);
+        sparseArray.put(8, r15);
+        sparseArray.put(9, r14);
+        sparseArray.put(10, r122);
+        sparseArray.put(11, r10);
+        sparseArray.put(12, r82);
+        sparseArray.put(13, r6);
+        sparseArray.put(14, r42);
+        sparseArray.put(15, r22);
+        sparseArray.put(16, r62);
+        sparseArray.put(17, r43);
+        sparseArray.put(18, r23);
+        sparseArray.put(19, r63);
     }
 
-    public static t a() {
-        k kVar = e;
-        if (kVar != null) {
-            return (t) kVar.f15990f.mo27get();
-        }
-        throw new IllegalStateException("Not initialized!");
+    public static t valueOf(String str) {
+        return (t) Enum.valueOf(t.class, str);
     }
 
-    public static void b(Context context) {
-        if (e == null) {
-            synchronized (t.class) {
-                try {
-                    if (e == null) {
-                        ?? obj = new Object();
-                        context.getClass();
-                        obj.f15986a = context;
-                        e = obj.a();
-                    }
-                } catch (Throwable th2) {
-                    throw th2;
-                }
-            }
-        }
-    }
-
-    public final r c(l lVar) {
-        Set singleton;
-        byte[] bytes;
-        if (lVar != null) {
-            singleton = DesugarCollections.unmodifiableSet(j5.a.d);
-        } else {
-            singleton = Collections.singleton(new i5.c("proto"));
-        }
-        androidx.biometric.e a2 = i.a();
-        lVar.getClass();
-        a2.f2822b = "cct";
-        j5.a aVar = (j5.a) lVar;
-        String str = aVar.f14297a;
-        String str2 = aVar.f14298b;
-        if (str2 == null && str == null) {
-            bytes = null;
-        } else {
-            if (str2 == null) {
-                str2 = "";
-            }
-            bytes = k3.j("1$", str, "\\", str2).getBytes(Charset.forName("UTF-8"));
-        }
-        a2.f2823c = bytes;
-        return new r(singleton, a2.e(), this);
+    public static t[] values() {
+        return (t[]) f16916b.clone();
     }
 }

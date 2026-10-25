@@ -1,26 +1,24 @@
 package org.telegram.messenger;
 public final class d2 implements Runnable {
-    public final int f18189a;
-    public final DownloadController f18190b;
-    public final MessageObject f18191c;
+    public final int f19860a;
+    public final DownloadController f19861b;
 
-    public d2(DownloadController downloadController, MessageObject messageObject, int i10) {
-        this.f18189a = i10;
-        this.f18190b = downloadController;
-        this.f18191c = messageObject;
+    public d2(DownloadController downloadController, int i10) {
+        this.f19860a = i10;
+        this.f19861b = downloadController;
     }
 
     @Override
     public final void run() {
-        switch (this.f18189a) {
+        switch (this.f19860a) {
             case 0:
-                this.f18190b.lambda$startDownloadFile$4(this.f18191c);
+                DownloadController.m(this.f19861b);
                 return;
             case 1:
-                this.f18190b.lambda$onDownloadFail$9(this.f18191c);
+                DownloadController.l(this.f19861b);
                 return;
             default:
-                this.f18190b.lambda$onDownloadComplete$6(this.f18191c);
+                DownloadController.a(this.f19861b);
                 return;
         }
     }

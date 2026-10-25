@@ -1,36 +1,38 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
+import android.content.Context;
+import android.graphics.Canvas;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-public final class d8 extends ImageReceiver {
-    public final org.telegram.ui.ActionBar.g6 f22289a;
-    public final e8 f22290b;
+import org.telegram.tgnet.tl.TL_stats;
+import org.telegram.ui.t91;
+public final class d8 extends org.telegram.ui.Components.y9 {
+    public final org.telegram.ui.ActionBar.u6 G;
+    public final f8 H;
 
-    public d8(e8 e8Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f22290b = e8Var;
-        this.f22289a = g6Var;
+    public d8(f8 f8Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context);
+        this.H = f8Var;
+        this.G = u6Var;
     }
 
     @Override
-    public final boolean setImageBitmapByKey(Drawable drawable, String str, int i10, boolean z10, int i11) {
-        if (drawable instanceof BitmapDrawable) {
-            e8 e8Var = this.f22290b;
-            if (e8Var.K == 0) {
-                e8Var.K = AndroidUtilities.getDominantColor(((BitmapDrawable) drawable).getBitmap());
-                int i12 = e8Var.K;
-                if (i12 != -1 && i12 != 0) {
-                    e8Var.J.setBackground(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(12.0f), e8Var.K));
-                } else {
-                    int i13 = org.telegram.ui.ActionBar.k6.f21421q5;
-                    org.telegram.ui.ActionBar.g6 g6Var = this.f22289a;
-                    e8Var.K = org.telegram.ui.ActionBar.k6.w0(i13, g6Var);
-                    org.telegram.ui.ActionBar.r6.D(e8Var.J, org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(12.0f), e8Var.K), org.telegram.ui.ActionBar.r6.O(i13), g6Var);
-                }
-                invalidate();
-            }
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        f8 f8Var = this.H;
+        t91 t91Var = f8Var.v;
+        if (t91Var != null && (t91Var.f43702a instanceof TL_stats.TL_postInteractionCountersStory)) {
+            float dp2 = AndroidUtilities.dp(1.0f);
+            f8Var.f24081r.F.set(dp2, dp2, getMeasuredWidth() - dp, getMeasuredHeight() - dp);
+            di.w7 w7Var = f8Var.f24081r;
+            w7Var.f9312a = false;
+            w7Var.f9313b = false;
+            w7Var.v = true;
+            w7Var.f9323o = false;
+            w7Var.f9333z = 1;
+            w7Var.J = this.G;
+            di.a8.h(0L, canvas, this.f34981a, w7Var);
+            return;
         }
-        return super.setImageBitmapByKey(drawable, str, i10, z10, i11);
+        super.onDraw(canvas);
     }
 }

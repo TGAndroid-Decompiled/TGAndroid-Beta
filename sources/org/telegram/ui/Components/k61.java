@@ -1,83 +1,43 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.util.LongSparseArray;
-import android.view.View;
 import java.util.ArrayList;
-import java.util.HashMap;
-public abstract class k61 {
-    private ArrayList<View> cache;
-    public final int viewType;
+import org.telegram.tgnet.TLRPC;
+public final class k61 implements az0 {
+    public final TLRPC.InputStickerSet f29820a;
+    public final p61 f29821b;
 
-    public k61() {
-        int i10 = l61.J;
-        l61.J = i10 + 1;
-        this.viewType = i10;
+    public k61(p61 p61Var, TLRPC.InputStickerSet inputStickerSet) {
+        this.f29821b = p61Var;
+        this.f29820a = inputStickerSet;
     }
 
-    public static void setup(k61 k61Var) {
-        if (l61.L == null) {
-            l61.L = new HashMap();
-        }
-        if (l61.K == null) {
-            l61.K = new LongSparseArray();
-        }
-        Class<?> cls = k61Var.getClass();
-        if (!l61.L.containsKey(cls)) {
-            l61.L.put(cls, k61Var);
-            l61.K.put(k61Var.viewType, k61Var);
-        }
-    }
-
-    public boolean contentsEquals(l61 l61Var, l61 l61Var2) {
-        return l61Var.H(l61Var2);
-    }
-
-    public abstract View createView(Context context, lm0 lm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var);
-
-    public boolean equals(l61 l61Var, l61 l61Var2) {
-        return l61Var.I(l61Var2);
-    }
-
-    public View getCached() {
-        ArrayList<View> arrayList = this.cache;
-        if (arrayList != null && !arrayList.isEmpty()) {
-            return this.cache.remove(0);
-        }
-        return null;
-    }
-
-    public boolean isClickable() {
-        return !(this instanceof bj);
-    }
-
-    public boolean isShadow() {
-        return false;
-    }
-
-    public void precache(org.telegram.ui.ActionBar.o2 o2Var, int i10) {
-        precache(o2Var.getContext(), o2Var.getCurrentAccount(), o2Var.getClassGuid(), o2Var.getResourceProvider(), i10);
-    }
-
-    public void precache(Context context, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var, int i12) {
-        if (context == null) {
+    @Override
+    public final void a() {
+        p61 p61Var = this.f29821b;
+        s4.h0 adapter = p61Var.f31453n.getAdapter();
+        o61 o61Var = p61Var.f31455s;
+        TLRPC.InputStickerSet inputStickerSet = this.f29820a;
+        int i10 = 0;
+        if (adapter == o61Var) {
+            while (i10 < o61Var.e.size()) {
+                TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) o61Var.e.get(i10);
+                if (stickerSetCovered.set.f22054id == inputStickerSet.f22047id) {
+                    o61Var.F(stickerSetCovered, null);
+                    return;
+                }
+                i10++;
+            }
             return;
         }
-        if (this.cache == null) {
-            this.cache = new ArrayList<>();
+        ig.d2 d2Var = p61Var.v;
+        ArrayList arrayList = d2Var.E;
+        while (i10 < arrayList.size()) {
+            TLRPC.StickerSetCovered stickerSetCovered2 = (TLRPC.StickerSetCovered) arrayList.get(i10);
+            if (stickerSetCovered2.set.f22054id == inputStickerSet.f22047id) {
+                d2Var.F(stickerSetCovered2, null);
+                return;
+            }
+            i10++;
         }
-        int i13 = 0;
-        while (i13 < this.cache.size() - i12) {
-            Context context2 = context;
-            this.cache.add(createView(context2, null, i10, i11, g6Var));
-            i13++;
-            context = context2;
-        }
-    }
-
-    public void attachedView(lm0 lm0Var, View view, l61 l61Var) {
-    }
-
-    public void bindView(View view, l61 l61Var, boolean z10, a71 a71Var, i71 i71Var) {
     }
 }

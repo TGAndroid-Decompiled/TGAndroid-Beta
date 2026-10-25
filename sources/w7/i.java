@@ -1,54 +1,27 @@
 package w7;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.sm0;
-public abstract class i {
-    public static void a(sm0 sm0Var, org.telegram.ui.ActionBar.g6 g6Var) {
-        boolean q6;
-        if (g6Var != null) {
-            q6 = g6Var.a();
-        } else {
-            q6 = org.telegram.ui.ActionBar.k6.I.q();
-        }
-        sm0Var.r(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Oh, g6Var), q6);
+import java.util.Map;
+public final class i implements ka.d {
+    public static final i f50877b = new i(0);
+    public static final i f50878c = new i(1);
+    public final int f50879a;
+
+    public i(int i10) {
+        this.f50879a = i10;
     }
 
-    public static int b(ki.a aVar) {
-        int i10 = 0;
-        if (aVar == null) {
-            return 0;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        switch (this.f50879a) {
+            case 0:
+                Map.Entry entry = (Map.Entry) obj;
+                ka.e eVar = (ka.e) obj2;
+                eVar.a(j.f50889g, entry.getKey());
+                eVar.a(j.h, entry.getValue());
+                return;
+            default:
+                ka.e eVar2 = (ka.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
         }
-        int c10 = c(aVar);
-        int max = Math.max(0, aVar.f15142c);
-        if (max > 0) {
-            i10 = AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(max, 1, 24, 28));
-        }
-        return c10 + i10;
-    }
-
-    public static int c(ki.a aVar) {
-        int size;
-        if (aVar == null) {
-            size = 0;
-        } else {
-            size = aVar.f15147k.size();
-        }
-        if (size <= 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(size, 1, 16, 12));
-    }
-
-    public static int d(ki.a aVar) {
-        int size;
-        if (aVar == null) {
-            size = 0;
-        } else {
-            size = aVar.f15147k.size();
-        }
-        if (size <= 0) {
-            return 0;
-        }
-        return AndroidUtilities.dp(com.google.android.gms.internal.play_billing.k3.v(size, 1, 16, 8));
     }
 }

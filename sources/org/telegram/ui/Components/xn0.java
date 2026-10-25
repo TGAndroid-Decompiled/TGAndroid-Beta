@@ -1,101 +1,83 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-public abstract class xn0 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final View f32662a;
-    public final ImageView f32663b;
-    public final ei.f2 f32664c;
-    public final ei.e2 d;
-    public final org.telegram.ui.ActionBar.g6 e;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+public final class xn0 extends s4.p {
+    public final int f34780b;
+    public final int f34781c;
+    public final int d;
+    public final int e;
+    public final int f34782f;
+    public final ArrayList f34783g;
+    public final int h;
+    public final int f34784i;
+    public final ArrayList f34785j;
+    public final co0 f34786k;
 
-    public xn0(Context context, float f7, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        this.e = g6Var;
-        View view = new View(context);
-        this.f32662a = view;
-        view.setBackgroundDrawable(org.telegram.ui.ActionBar.k6.c0(AndroidUtilities.dp(18.0f), org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, g6Var)));
-        addView(view, w7.z5.i(-1.0f, 36.0f, 8388659, f7, 11.0f, f7, 0.0f));
-        ImageView imageView = new ImageView(context);
-        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
-        imageView.setScaleType(scaleType);
-        imageView.setImageResource(R.drawable.smiles_inputsearch);
-        org.telegram.ui.ActionBar.r6.t(imageView, org.telegram.ui.ActionBar.k6.Q5, g6Var, PorterDuff.Mode.MULTIPLY);
-        addView(imageView, w7.z5.i(36.0f, 36.0f, 8388659, f7 + 2.0f, 11.0f, 0.0f, 0.0f));
-        ImageView imageView2 = new ImageView(context);
-        this.f32663b = imageView2;
-        imageView2.setScaleType(scaleType);
-        ei.f2 f2Var = new ei.f2(3, this);
-        this.f32664c = f2Var;
-        imageView2.setImageDrawable(f2Var);
-        f2Var.f28995f = AndroidUtilities.dp(7.0f);
-        imageView2.setScaleX(0.1f);
-        imageView2.setScaleY(0.1f);
-        imageView2.setAlpha(0.0f);
-        addView(imageView2, w7.z5.i(36.0f, 36.0f, 8388661, f7, 11.0f, f7, 0.0f));
-        imageView2.setOnClickListener(new t80(this, 11));
-        ei.e2 e2Var = new ei.e2(this, context, 6);
-        this.d = e2Var;
-        e2Var.setTextSize(1, 16.0f);
-        org.telegram.ui.ActionBar.r6.F(e2Var, org.telegram.ui.ActionBar.k6.P5, g6Var);
-        org.telegram.ui.ActionBar.r6.W(e2Var, org.telegram.ui.ActionBar.k6.R5, g6Var);
-        e2Var.setBackgroundDrawable(null);
-        e2Var.setPadding(0, 0, 0, 0);
-        e2Var.setMaxLines(1);
-        e2Var.setLines(1);
-        e2Var.setSingleLine(true);
-        e2Var.setGravity(w7.z5.y() | 16);
-        e2Var.setImeOptions(268435459);
-        org.telegram.ui.ActionBar.r6.m(e2Var, 30, org.telegram.ui.ActionBar.k6.Mh, g6Var);
-        e2Var.setCursorSize(AndroidUtilities.dp(20.0f));
-        e2Var.setCursorWidth(1.5f);
-        float f10 = f7 + 2.0f;
-        addView(e2Var, w7.z5.i(-1.0f, 40.0f, 8388659, f10 + 38.0f, 9.0f, f10 + 30.0f, 0.0f));
-        e2Var.addTextChangedListener(new ai.u(this, 12));
-        e2Var.setOnEditorActionListener(new c1(this, 6));
-    }
-
-    public abstract void a(String str);
-
-    public nq getProgressDrawable() {
-        return this.f32664c;
-    }
-
-    public View getSearchBackground() {
-        return this.f32662a;
-    }
-
-    public EditTextBoldCursor getSearchEditText() {
-        return this.d;
-    }
-
-    public void setHint(String str) {
-        this.d.setHint(str);
+    public xn0(co0 co0Var, int i10, int i11, int i12, int i13, int i14, ArrayList arrayList, int i15, int i16, ArrayList arrayList2) {
+        this.f34786k = co0Var;
+        this.f34780b = i10;
+        this.f34781c = i11;
+        this.d = i12;
+        this.e = i13;
+        this.f34782f = i14;
+        this.f34783g = arrayList;
+        this.h = i15;
+        this.f34784i = i16;
+        this.f34785j = arrayList2;
     }
 
     @Override
-    public final void updateColors() {
-        View view = this.f32662a;
-        if (view != null) {
-            try {
-                org.telegram.ui.ActionBar.k6.z1(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.O5, this.e), view.getBackground());
-                view.invalidate();
-            } catch (Exception e) {
-                FileLog.e(e);
-                return;
+    public final boolean a(int i10, int i11) {
+        return b(i10, i11);
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        MessageObject messageObject;
+        co0 co0Var = this.f34786k;
+        if (i10 >= 0 && i11 >= 0) {
+            if (i10 == this.f34781c && i11 == co0Var.f27221s) {
+                return true;
+            }
+            if (i10 == this.d && i11 == co0Var.f27223x) {
+                return true;
             }
         }
-        invalidate();
+        MessageObject messageObject2 = null;
+        int i12 = this.e;
+        if (i10 >= i12 && i10 < this.f34782f) {
+            messageObject = (MessageObject) this.f34783g.get(i10 - i12);
+        } else {
+            int i13 = this.h;
+            if (i10 >= i13 && i10 < this.f34784i) {
+                messageObject = (MessageObject) this.f34785j.get(i10 - i13);
+            } else {
+                messageObject = null;
+            }
+        }
+        int i14 = co0Var.v;
+        if (i11 >= i14 && i11 < co0Var.f27222w) {
+            messageObject2 = (MessageObject) co0Var.e.get(i11 - i14);
+        } else {
+            int i15 = co0Var.f27224y;
+            if (i11 >= i15 && i11 < co0Var.E) {
+                messageObject2 = (MessageObject) co0Var.f27218f.get(i11 - i15);
+            }
+        }
+        if (messageObject2 != null && messageObject != null && messageObject2.getDocument() != null && messageObject.getDocument() != null && messageObject2.getDocument().f22033id == messageObject.getDocument().f22033id) {
+            return true;
+        }
+        return false;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int d() {
+        return this.f34786k.f27220r;
+    }
+
+    @Override
+    public final int e() {
+        return this.f34780b;
     }
 }

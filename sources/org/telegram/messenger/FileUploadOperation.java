@@ -228,7 +228,7 @@ public class FileUploadOperation {
                 StringBuilder sb2 = new StringBuilder("debug_uploading:  response reqId ");
                 sb2.append(iArr[0]);
                 sb2.append(" time");
-                i2.o1.w(this.uploadingFilePath, sb2);
+                ic.a.w(this.uploadingFilePath, sb2);
             }
             if (tLObject != null) {
                 currentNetworkType = tLObject.networkType;
@@ -254,7 +254,7 @@ public class FileUploadOperation {
                 this.freeRequestIvs.add(bArr2);
             }
             this.requestTokens.delete(i13);
-            AndroidUtilities.runOnUIThread(new z3(this, iArr, 1));
+            AndroidUtilities.runOnUIThread(new a4(this, iArr, 1));
             if (tLObject instanceof TLRPC.TL_boolTrue) {
                 if (this.state == 1) {
                     this.uploadedBytesCount += i14;
@@ -277,7 +277,7 @@ public class FileUploadOperation {
                                 tL_inputFile.md5_checksum = "";
                             }
                             tL_inputFile.parts = this.currentPartNum;
-                            tL_inputFile.f20358id = this.currentFileId;
+                            tL_inputFile.f22041id = this.currentFileId;
                             String str2 = this.uploadingFilePath;
                             tL_inputFile.name = str2.substring(str2.lastIndexOf("/") + 1);
                             this.delegate.didFinishUploadingFile(this, tL_inputFile, null, null, null);
@@ -290,7 +290,7 @@ public class FileUploadOperation {
                                 tL_inputEncryptedFileUploaded.md5_checksum = "";
                             }
                             tL_inputEncryptedFileUploaded.parts = this.currentPartNum;
-                            tL_inputEncryptedFileUploaded.f20357id = this.currentFileId;
+                            tL_inputEncryptedFileUploaded.f22040id = this.currentFileId;
                             tL_inputEncryptedFileUploaded.key_fingerprint = this.fingerprint;
                             this.delegate.didFinishUploadingFile(this, null, tL_inputEncryptedFileUploaded, this.key, this.iv);
                             cleanup();
@@ -371,7 +371,7 @@ public class FileUploadOperation {
     }
 
     public void lambda$startUploadRequest$8() {
-        Utilities.stageQueue.postRunnable(new x3(this, 2));
+        Utilities.stageQueue.postRunnable(new y3(this, 2));
     }
 
     public void lambda$startUploadRequest$9(int[] iArr) {
@@ -411,7 +411,7 @@ public class FileUploadOperation {
             return;
         }
         this.state = 2;
-        Utilities.stageQueue.postRunnable(new x3(this, 1));
+        Utilities.stageQueue.postRunnable(new y3(this, 1));
         AutoDeleteMediaTask.unlockFile(this.uploadingFilePath);
         this.delegate.didFailedUploadingFile(this);
         cleanup();
@@ -429,8 +429,8 @@ public class FileUploadOperation {
         if (this.state != 1) {
             return;
         }
-        Utilities.stageQueue.postRunnable(new ah.t(14, this, z10));
-        AndroidUtilities.runOnUIThread(new x3(this, 3));
+        Utilities.stageQueue.postRunnable(new bh.n(14, this, z10));
+        AndroidUtilities.runOnUIThread(new y3(this, 3));
     }
 
     public void setDelegate(FileUploadOperationDelegate fileUploadOperationDelegate) {
@@ -447,6 +447,6 @@ public class FileUploadOperation {
         }
         this.state = 1;
         AutoDeleteMediaTask.lockFile(this.uploadingFilePath);
-        Utilities.stageQueue.postRunnable(new x3(this, 0));
+        Utilities.stageQueue.postRunnable(new y3(this, 0));
     }
 }

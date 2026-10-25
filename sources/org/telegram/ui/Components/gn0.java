@@ -1,103 +1,96 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.KeyEvent;
-import android.view.View;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.CornerPathEffect;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.StaticLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ua1;
-public final class gn0 extends AnimatorListenerAdapter {
-    public final int f26732a;
-    public final boolean f26733b;
-    public final float f26734c;
-    public final KeyEvent.Callback d;
+public final class gn0 extends Drawable {
+    public int f28604a = 255;
+    public final s90 f28605b;
+    public final int[] f28606c;
+    public final org.telegram.ui.Cells.s1 d;
+    public final int[] e;
+    public final Bitmap f28607f;
+    public final RectF f28608g;
+    public final Paint h;
+    public final Paint f28609i;
+    public final StaticLayout f28610j;
 
-    public gn0(KeyEvent.Callback callback, boolean z10, float f7, int i10) {
-        this.f26732a = i10;
-        this.d = callback;
-        this.f26733b = z10;
-        this.f26734c = f7;
+    public gn0(s90 s90Var, int[] iArr, org.telegram.ui.Cells.s1 s1Var, int[] iArr2, Bitmap bitmap, RectF rectF, Paint paint, Paint paint2, StaticLayout staticLayout) {
+        this.f28605b = s90Var;
+        this.f28606c = iArr;
+        this.d = s1Var;
+        this.e = iArr2;
+        this.f28607f = bitmap;
+        this.f28608g = rectF;
+        this.h = paint;
+        this.f28609i = paint2;
+        this.f28610j = staticLayout;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        switch (this.f26732a) {
-            case 0:
-                jn0 jn0Var = (jn0) this.d;
-                ua1 ua1Var = jn0Var.e;
-                jn0Var.f27740h0 = null;
-                boolean z10 = this.f26733b;
-                if (z10) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                jn0Var.f27741i0 = f7;
-                for (int i10 = 0; i10 < ua1Var.getChildCount(); i10++) {
-                    ua1Var.getChildAt(i10).invalidate();
-                }
-                ua1Var.invalidate();
-                jn0Var.p();
-                if (!z10) {
-                    float childCount = jn0Var.f27743k0 * ua1Var.getChildCount();
-                    float f10 = this.f26734c;
-                    float scrollX = (jn0Var.getScrollX() + f10) / (jn0Var.f27742j0 * ua1Var.getChildCount());
-                    float measuredWidth = (childCount - jn0Var.getMeasuredWidth()) / childCount;
-                    if (scrollX > measuredWidth) {
-                        f10 = 0.0f;
-                        scrollX = measuredWidth;
-                    }
-                    float f11 = childCount * scrollX;
-                    if (f11 - f10 < 0.0f) {
-                        f11 = f10;
-                    }
-                    jn0Var.f27744l0 = (jn0Var.getScrollX() + f10) - f11;
-                    int i11 = (int) (f11 - f10);
-                    jn0Var.m0 = i11;
-                    if (i11 < 0) {
-                        jn0Var.m0 = 0;
-                    }
-                    for (int i12 = 0; i12 < ua1Var.getChildCount(); i12++) {
-                        View childAt = ua1Var.getChildAt(i12);
-                        if (childAt instanceof ay0) {
-                            ((ay0) childAt).setExpanded(false);
-                        }
-                        childAt.getLayoutParams().width = AndroidUtilities.dp(33.0f);
-                    }
-                    jn0Var.f27739g0 = false;
-                    jn0Var.getLayoutParams().height = AndroidUtilities.dp(36.0f);
-                    ua1Var.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationEnd(animator);
-                if (!this.f26733b) {
-                    super/*android.app.Dialog*/.dismiss();
-                    return;
-                }
-                return;
+    public final void draw(Canvas canvas) {
+        if (this.f28604a <= 0) {
+            return;
         }
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(getBounds());
+        float f7 = rectF.left;
+        CornerPathEffect cornerPathEffect = s90.f32477w;
+        rectF.left = f7 - (AndroidUtilities.dp(5.0f) / 2.0f);
+        canvas.save();
+        canvas.saveLayerAlpha(rectF, this.f28604a, 31);
+        int[] iArr = this.f28606c;
+        canvas.translate(iArr[0], iArr[1]);
+        s90 s90Var = this.f28605b;
+        org.telegram.ui.Cells.s1 s1Var = this.d;
+        if (s1Var != null && s1Var.C1()) {
+            org.telegram.ui.ActionBar.l5 l5Var = s1Var.f25290t8;
+            if (l5Var != null && l5Var.f22832c != null) {
+                canvas.save();
+                s1Var.setBackgroundTopY(true);
+                canvas.translate(0.0f, -s1Var.f25290t8.f22844r);
+                canvas.drawPaint(s1Var.f25290t8.f22832c);
+                canvas.restore();
+            } else {
+                canvas.translate(-iArr[0], -iArr[1]);
+                int[] iArr2 = this.e;
+                canvas.translate(iArr2[0], s1Var.getPaddingTop() + iArr2[1]);
+                s1Var.D1(canvas, true, false);
+                canvas.translate(-iArr2[0], (-iArr2[1]) - s1Var.getPaddingTop());
+                canvas.translate(iArr[0], iArr[1]);
+            }
+            Bitmap bitmap = this.f28607f;
+            if (bitmap != null) {
+                canvas.save();
+                RectF rectF2 = this.f28608g;
+                canvas.drawBitmap(bitmap, rectF2.left, rectF2.top, this.h);
+                canvas.restore();
+            }
+        } else {
+            canvas.drawPath(s90Var, this.f28609i);
+        }
+        canvas.clipPath(s90Var);
+        this.f28610j.draw(canvas);
+        canvas.restore();
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f26732a) {
-            case 1:
-                super.onAnimationStart(animator);
-                xh.i iVar = ((xh.j) this.d).f50305y;
-                iVar.setVisibility(0);
-                if (this.f26733b) {
-                    float f7 = this.f26734c;
-                    iVar.setScaleX(f7);
-                    iVar.setScaleY(f7);
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f28604a = i10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

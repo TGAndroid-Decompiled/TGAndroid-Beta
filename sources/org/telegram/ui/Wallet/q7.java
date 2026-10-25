@@ -1,11 +1,11 @@
 package org.telegram.ui.Wallet;
 public final class q7 {
-    public float f35076a;
-    public float f35077b;
-    public float f35078c;
+    public float f37134a;
+    public float f37135b;
+    public float f37136c;
     public float d;
     public float e;
-    public float f35079f;
-    public float f35080g;
+    public float f37137f;
+    public float f37138g;
     public float h;
 }

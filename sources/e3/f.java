@@ -1,25 +1,24 @@
 package e3;
 
-import b2.v;
-import b2.v0;
 import b2.w;
-import e2.m0;
+import b2.w0;
+import e2.n0;
 import e2.x;
-import e9.h0;
-import e9.l0;
-import e9.n0;
-import e9.s;
-import e9.x1;
+import f9.c0;
+import f9.g0;
+import f9.i0;
+import f9.o;
+import f9.s1;
 import java.nio.ByteOrder;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 public final class f implements a {
-    public final n0 f8337a;
-    public final int f8338b;
+    public final i0 f9771a;
+    public final int f9772b;
 
-    public f(int i10, x1 x1Var) {
-        this.f8338b = i10;
-        this.f8337a = x1Var;
+    public f(int i10, s1 s1Var) {
+        this.f9772b = i10;
+        this.f9771a = s1Var;
     }
 
     public static f b(int i10, x xVar) {
@@ -28,14 +27,14 @@ public final class f implements a {
         a gVar;
         String str2;
         int i12 = 4;
-        s.f(4, "initialCapacity");
+        o.f(4, "initialCapacity");
         Object[] objArr = new Object[4];
-        int i13 = xVar.f8300c;
+        int i13 = xVar.f9734c;
         int i14 = -2;
         int i15 = 0;
         while (xVar.a() > 8) {
             int o10 = xVar.o();
-            int o11 = xVar.f8299b + xVar.o();
+            int o11 = xVar.f9733b + xVar.o();
             xVar.M(o11);
             if (o10 == 1414744396) {
                 gVar = b(xVar.o(), xVar);
@@ -79,15 +78,15 @@ public final class f implements a {
                                     break;
                             }
                             if (str2 == null) {
-                                a1.g.x(o14, "Ignoring track with unsupported compression ", "StreamFormatChunk");
+                                a1.g.z(o14, "Ignoring track with unsupported compression ", "StreamFormatChunk");
                                 gVar = dVar;
                                 break;
                             } else {
-                                v vVar = new v();
-                                vVar.f4088y = o12;
-                                vVar.f4089z = o13;
-                                vVar.f4082r = v0.n(str2);
-                                gVar = new g(new w(vVar));
+                                w wVar = new w();
+                                wVar.f3539y = o12;
+                                wVar.f3540z = o13;
+                                wVar.f3533r = w0.n(str2);
+                                gVar = new g(new b2.x(wVar));
                                 break;
                             }
                         } else {
@@ -111,36 +110,36 @@ public final class f implements a {
                                     str = "audio/mpeg";
                                 }
                                 if (str == null) {
-                                    a1.g.x(t10, "Ignoring track with unsupported format tag ", "StreamFormatChunk");
+                                    a1.g.z(t10, "Ignoring track with unsupported format tag ", "StreamFormatChunk");
                                 } else {
                                     int t11 = xVar.t();
                                     int o15 = xVar.o();
                                     xVar.O(6);
                                     int t12 = xVar.t();
-                                    String str3 = m0.f8259a;
-                                    int D = m0.D(t12, ByteOrder.LITTLE_ENDIAN);
+                                    String str3 = n0.f9692a;
+                                    int D = n0.D(t12, ByteOrder.LITTLE_ENDIAN);
                                     if (xVar.a() > 0) {
                                         i11 = xVar.t();
                                     } else {
                                         i11 = 0;
                                     }
-                                    v vVar2 = new v();
-                                    vVar2.f4082r = v0.n(str);
-                                    vVar2.J = t11;
-                                    vVar2.K = o15;
+                                    w wVar2 = new w();
+                                    wVar2.f3533r = w0.n(str);
+                                    wVar2.J = t11;
+                                    wVar2.K = o15;
                                     if (str.equals("audio/raw") && D != 0) {
-                                        vVar2.L = D;
+                                        wVar2.L = D;
                                     }
                                     if (str.equals("audio/mp4a-latm") && i11 > 0) {
                                         byte[] bArr = new byte[i11];
                                         xVar.k(0, i11, bArr);
-                                        vVar2.f4085u = n0.y(bArr);
+                                        wVar2.f3536u = i0.y(bArr);
                                     }
-                                    gVar = new g(new w(vVar2));
+                                    gVar = new g(new b2.x(wVar2));
                                     break;
                                 }
                             } else {
-                                e2.a.l("StreamFormatChunk", "Ignoring strf box for unsupported track type: " + m0.I(i14));
+                                e2.a.l("StreamFormatChunk", "Ignoring strf box for unsupported track type: " + n0.I(i14));
                             }
                             gVar = dVar;
                         }
@@ -180,7 +179,7 @@ public final class f implements a {
                     i14 = ((d) gVar).a();
                 }
                 int i16 = i15 + 1;
-                int b10 = h0.b(objArr.length, i16);
+                int b10 = c0.b(objArr.length, i16);
                 if (b10 > objArr.length) {
                     objArr = Arrays.copyOf(objArr, b10);
                 }
@@ -191,11 +190,11 @@ public final class f implements a {
             xVar.M(i13);
             i12 = 4;
         }
-        return new f(i10, n0.s(i15, objArr));
+        return new f(i10, i0.s(i15, objArr));
     }
 
     public final a a(Class cls) {
-        l0 listIterator = this.f8337a.listIterator(0);
+        g0 listIterator = this.f9771a.listIterator(0);
         while (listIterator.hasNext()) {
             a aVar = (a) listIterator.next();
             if (aVar.getClass() == cls) {
@@ -207,6 +206,6 @@ public final class f implements a {
 
     @Override
     public final int getType() {
-        return this.f8338b;
+        return this.f9772b;
     }
 }

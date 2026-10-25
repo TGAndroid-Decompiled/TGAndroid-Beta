@@ -1,32 +1,36 @@
 package a1;
 
+import a8.e0;
+import a8.z;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
-import androidx.fragment.app.j0;
-import c3.l0;
-import com.google.android.gms.internal.cast.y4;
-import e2.x;
+import androidx.fragment.app.i0;
+import j$.util.DesugarCollections;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 import kotlin.jvm.internal.i;
 import m1.j;
+import n4.s;
 public abstract class g {
-    public static void A(StringBuilder sb2, String str, String str2, String str3, String str4) {
-        sb2.append(str);
-        sb2.append(str2);
-        sb2.append(str3);
-        sb2.append(str4);
+    public static void A(int i10, ArrayList arrayList) {
+        arrayList.remove(arrayList.size() - i10);
     }
 
-    public static float B(float f7, float f10, float f11, float f12) {
+    public static void B(Object obj) {
+        if (obj == null) {
+            return;
+        }
+        throw new ClassCastException();
+    }
+
+    public static float C(float f7, float f10, float f11, float f12) {
         return ((f7 * f10) / f11) + f12;
-    }
-
-    public static int C(int i10, int i11, int i12) {
-        return y4.o(i10) + i11 + i12;
     }
 
     public static String D(String str, String str2, String str3) {
@@ -88,14 +92,10 @@ public abstract class g {
         throw new NullPointerException("Name is null");
     }
 
-    public static void a(l0 l0Var, x xVar, int i10) {
-        l0Var.g(xVar, i10, 0);
-    }
-
-    public static final void b(int i10, View view, ViewGroup container) {
+    public static final void a(int i10, View view, ViewGroup container) {
         i.e(view, "view");
         i.e(container, "container");
-        if (j0.K(2)) {
+        if (i0.K(2)) {
             Log.v("FragmentManager", "SpecialEffectsController: Calling apply state");
         }
         int c10 = j.c(i10);
@@ -104,7 +104,7 @@ public abstract class g {
             if (c10 != 1) {
                 if (c10 != 2) {
                     if (c10 == 3) {
-                        if (j0.K(2)) {
+                        if (i0.K(2)) {
                             Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to INVISIBLE");
                         }
                         view.setVisibility(4);
@@ -112,13 +112,13 @@ public abstract class g {
                     }
                     return;
                 }
-                if (j0.K(2)) {
+                if (i0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to GONE");
                 }
                 view.setVisibility(8);
                 return;
             }
-            if (j0.K(2)) {
+            if (i0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Setting view " + view + " to VISIBLE");
             }
             ViewParent parent = view.getParent();
@@ -126,7 +126,7 @@ public abstract class g {
                 viewGroup = (ViewGroup) parent;
             }
             if (viewGroup == null) {
-                if (j0.K(2)) {
+                if (i0.K(2)) {
                     Log.v("FragmentManager", "SpecialEffectsController: Adding view " + view + " to Container " + container);
                 }
                 container.addView(view);
@@ -139,14 +139,14 @@ public abstract class g {
             viewGroup = (ViewGroup) parent2;
         }
         if (viewGroup != null) {
-            if (j0.K(2)) {
+            if (i0.K(2)) {
                 Log.v("FragmentManager", "SpecialEffectsController: Removing view " + view + " from container " + viewGroup);
             }
             viewGroup.removeView(view);
         }
     }
 
-    public static int c(String str) {
+    public static int b(String str) {
         if (str == null) {
             return 0;
         }
@@ -157,31 +157,37 @@ public abstract class g {
         }
     }
 
-    public static float d(float f7, float f10, float f11, float f12) {
+    public static float c(float f7, float f10, float f11, float f12) {
         return ((f7 / f10) * f11) + f12;
     }
 
-    public static int e(int i10, int i11, int i12) {
+    public static int d(int i10, int i11, int i12) {
         return androidx.datastore.preferences.protobuf.j.y(i10) + i11 + i12;
     }
 
-    public static int f(int i10, int i11, int i12, int i13) {
+    public static int e(int i10, int i11, int i12, int i13) {
         return androidx.datastore.preferences.protobuf.j.z(i10) + i11 + i12 + i13;
     }
 
-    public static int g(int i10, int i11, String str) {
+    public static int f(int i10, int i11, String str) {
         return (str.hashCode() + i10) * i11;
     }
 
-    public static Bundle h(String str, boolean z10) {
+    public static z g(int i10, HashMap hashMap) {
+        DesugarCollections.unmodifiableMap(new HashMap(hashMap));
+        return new z(i10);
+    }
+
+    public static Bundle h(long j10, String str) {
         Bundle bundle = new Bundle();
-        bundle.putBoolean(str, z10);
+        bundle.putLong(str, j10);
         return bundle;
     }
 
-    public static ClassCastException i(Object obj) {
-        obj.getClass();
-        return new ClassCastException();
+    public static Bundle i(String str, boolean z10) {
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(str, z10);
+        return bundle;
     }
 
     public static ClassCastException j(Iterator it) {
@@ -263,18 +269,29 @@ public abstract class g {
         return sb2;
     }
 
-    public static void x(int i10, String str, String str2) {
-        e2.a.l(str2, str + i10);
+    public static HashMap x(Class cls, z zVar) {
+        HashMap hashMap = new HashMap();
+        hashMap.put(cls, zVar);
+        return hashMap;
     }
 
-    public static void y(int i10, ArrayList arrayList) {
-        arrayList.remove(arrayList.size() - i10);
-    }
-
-    public static void z(Object obj) {
-        if (obj == null) {
-            return;
+    public static ka.c y(int i10, s sVar) {
+        Map unmodifiableMap;
+        z zVar = new z(i10);
+        if (((HashMap) sVar.f18697c) == null) {
+            sVar.f18697c = new HashMap();
         }
-        throw new ClassCastException();
+        ((HashMap) sVar.f18697c).put(e0.class, zVar);
+        String str = (String) sVar.f18696b;
+        if (((HashMap) sVar.f18697c) == null) {
+            unmodifiableMap = Collections.EMPTY_MAP;
+        } else {
+            unmodifiableMap = DesugarCollections.unmodifiableMap(new HashMap((HashMap) sVar.f18697c));
+        }
+        return new ka.c(str, unmodifiableMap);
+    }
+
+    public static void z(int i10, String str, String str2) {
+        e2.a.l(str2, str + i10);
     }
 }

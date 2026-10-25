@@ -4,20 +4,20 @@ import android.content.Intent;
 import android.net.Uri;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
-public final class c implements org.telegram.ui.ActionBar.z1 {
-    public final int f36164a;
-    public final g f36165b;
+public final class c implements org.telegram.ui.ActionBar.b2 {
+    public final int f38187a;
+    public final g f38188b;
 
     public c(g gVar, int i10) {
-        this.f36164a = i10;
-        this.f36165b = gVar;
+        this.f38187a = i10;
+        this.f38188b = gVar;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f36164a) {
+    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f38187a) {
             case 0:
-                g gVar = this.f36165b;
+                g gVar = this.f38188b;
                 gVar.getClass();
                 try {
                     Intent intent = new Intent("android.settings.APPLICATION_DETAILS_SETTINGS");
@@ -29,11 +29,11 @@ public final class c implements org.telegram.ui.ActionBar.z1 {
                     return;
                 }
             default:
-                g gVar2 = this.f36165b;
+                g gVar2 = this.f38188b;
                 gVar2.getClass();
-                hg0 hg0Var = new hg0();
-                hg0Var.F = 2;
-                gVar2.presentFragment(hg0Var, true);
+                gg0 gg0Var = new gg0();
+                gg0Var.F = 2;
+                gVar2.presentFragment(gg0Var, true);
                 return;
         }
     }

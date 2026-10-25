@@ -1,314 +1,117 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.Matrix;
-import android.opengl.GLES20;
-import java.nio.Buffer;
-import java.nio.ByteBuffer;
-import java.nio.ByteOrder;
-import java.nio.FloatBuffer;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class na {
-    public FloatBuffer e;
-    public FloatBuffer f28837f;
-    public FloatBuffer f28838g;
-    public boolean h;
-    public int f28842l;
-    public int f28843m;
-    public ByteBuffer f28845o;
-    public Bitmap f28846p;
-    public boolean f28847q;
-    public ha f28850t;
-    public int f28834a = 1;
-    public int f28835b = 1;
-    public int f28836c = 0;
-    public final ia[] d = new ia[2];
-    public final float[] f28839i = new float[9];
-    public final float[] f28840j = new float[16];
-    public final Object f28841k = new Object();
-    public final Object f28844n = new Object();
-    public final int[] f28848r = new int[3];
-    public final int[] f28849s = new int[3];
-    public final ng f28851u = new ng(this, 14);
-    public final Matrix v = new Matrix();
+import android.graphics.Paint;
+import android.view.View;
+import java.util.ArrayList;
+import java.util.WeakHashMap;
+import org.telegram.messenger.NotificationCenter;
+public final class na implements View.OnAttachStateChangeListener {
+    public final int f30930a;
+    public final Object f30931b;
+    public final Object f30932c;
 
-    public final void a(float[] fArr, int i10, int i11, int i12) {
-        char c10;
-        float f7;
-        Object obj;
-        if (fArr != null) {
-            c10 = 1;
-        } else {
-            c10 = 0;
-        }
-        ia iaVar = this.d[c10];
-        if (iaVar != null) {
-            GLES20.glBindFramebuffer(36160, this.f28848r[0]);
-            GLES20.glViewport(0, 0, this.f28834a, this.f28835b);
-            GLES20.glClear(16384);
-            GLES20.glUseProgram(iaVar.f27380a);
-            GLES20.glUniform1i(iaVar.e, 0);
-            GLES20.glActiveTexture(33984);
-            if (c10 != 0) {
-                GLES20.glBindTexture(36197, i10);
-            } else {
-                GLES20.glBindTexture(3553, i10);
-            }
-            GLES20.glEnableVertexAttribArray(iaVar.f27382c);
-            GLES20.glVertexAttribPointer(iaVar.f27382c, 2, 5126, false, 8, (Buffer) this.f28838g);
-            GLES20.glEnableVertexAttribArray(iaVar.f27381b);
-            GLES20.glVertexAttribPointer(iaVar.f27381b, 2, 5126, false, 8, (Buffer) this.e);
-            GLES20.glUniform2f(iaVar.f27383f, this.f28834a, this.f28835b);
-            float f10 = i11;
-            float f11 = i12;
-            GLES20.glUniform2f(iaVar.f27384g, f10, f11);
-            GLES20.glUniform1i(iaVar.f27386j, 0);
-            int i13 = iaVar.f27387k;
-            float f12 = 1.0f;
-            if (c10 != 0) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.0f;
-            }
-            GLES20.glUniform1f(i13, f7);
-            if (c10 != 0) {
-                GLES20.glUniformMatrix4fv(iaVar.f27388l, 1, false, fArr, 0);
-            }
-            int i14 = iaVar.f27389m;
-            if (c10 == 0) {
-                f12 = 0.0f;
-            }
-            GLES20.glUniform1f(i14, f12);
-            qg.f1.a(iaVar.h, this.f28842l);
-            qg.f1.a(iaVar.f27385i, this.f28843m);
-            synchronized (this.f28841k) {
-                GLES20.glUniformMatrix4fv(iaVar.d, 1, false, this.f28840j, 0);
-            }
-            GLES20.glDrawArrays(5, 0, 4);
-            if (c10 != 0) {
-                iaVar = this.d[0];
-                if (iaVar == null) {
+    public na(int i10, Object obj, Object obj2) {
+        this.f30930a = i10;
+        this.f30932c = obj;
+        this.f30931b = obj2;
+    }
+
+    @Override
+    public final void onViewAttachedToWindow(View view) {
+        int i10 = this.f30930a;
+        Object obj = this.f30931b;
+        Object obj2 = this.f30932c;
+        switch (i10) {
+            case 0:
+                la laVar = (la) obj;
+                if (laVar != null) {
+                    laVar.d.add((pa) obj2);
                     return;
                 }
-                GLES20.glUseProgram(iaVar.f27380a);
-                GLES20.glEnableVertexAttribArray(iaVar.f27382c);
-                GLES20.glVertexAttribPointer(iaVar.f27382c, 2, 5126, false, 8, (Buffer) this.f28838g);
-                GLES20.glEnableVertexAttribArray(iaVar.f27381b);
-                GLES20.glVertexAttribPointer(iaVar.f27381b, 2, 5126, false, 8, (Buffer) this.e);
-                GLES20.glUniform2f(iaVar.f27383f, this.f28834a, this.f28835b);
-                GLES20.glUniform2f(iaVar.f27384g, f10, f11);
-                GLES20.glUniform1i(iaVar.f27386j, 0);
-                qg.f1.a(iaVar.h, this.f28842l);
-                qg.f1.a(iaVar.f27385i, this.f28843m);
-                GLES20.glUniform1f(iaVar.f27387k, 0.0f);
-                synchronized (this.f28841k) {
-                    GLES20.glUniformMatrix4fv(iaVar.d, 1, false, this.f28840j, 0);
+                return;
+            case 1:
+                q11 q11Var = (q11) obj2;
+                q11Var.f31793k = c6.update(q11Var.f31794l, (View) obj, q11Var.f31793k, q11Var.f31787b);
+                return;
+            default:
+                org.telegram.ui.Wallet.m3 m3Var = (org.telegram.ui.Wallet.m3) obj2;
+                org.telegram.ui.Wallet.l3 l3Var = m3Var.f36905m;
+                if (l3Var != null) {
+                    l3Var.setPaused(!m3Var.f36906n);
                 }
-            }
-            GLES20.glBindFramebuffer(36160, this.f28848r[1]);
-            GLES20.glUniform1i(iaVar.f27386j, 1);
-            GLES20.glUniform1i(iaVar.e, 0);
-            GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(3553, this.f28849s[0]);
-            GLES20.glDrawArrays(5, 0, 4);
-            GLES20.glBindFramebuffer(36160, this.f28848r[2]);
-            int i15 = this.f28834a;
-            int i16 = this.f28836c * 2;
-            GLES20.glViewport(0, 0, i15 + i16, i16 + this.f28835b);
-            GLES20.glClear(16384);
-            GLES20.glEnableVertexAttribArray(iaVar.f27381b);
-            GLES20.glVertexAttribPointer(iaVar.f27381b, 2, 5126, false, 8, (Buffer) this.f28837f);
-            GLES20.glUniform1i(iaVar.f27386j, 2);
-            GLES20.glUniform1i(iaVar.e, 0);
-            GLES20.glActiveTexture(33984);
-            GLES20.glBindTexture(3553, this.f28849s[1]);
-            ha haVar = this.f28850t;
-            if (haVar != null) {
-                obj = haVar.h;
-            } else {
-                obj = null;
-            }
-            if (obj != null) {
-                synchronized (obj) {
-                    GLES20.glDrawArrays(5, 0, 4);
+                m3Var.f36884a.isAttachedToWindow();
+                int i11 = m3Var.f36922v0;
+                if (-1 != i11) {
+                    if (i11 >= 0) {
+                        NotificationCenter.getInstance(i11).removeObserver(m3Var.f36926x0, NotificationCenter.userInfoDidLoad);
+                    }
+                    m3Var.f36922v0 = -1;
+                    return;
                 }
-            } else {
-                GLES20.glDrawArrays(5, 0, 4);
-            }
-            ByteBuffer byteBuffer = this.f28845o;
-            if (byteBuffer != null) {
-                byteBuffer.rewind();
-                int i17 = this.f28834a;
-                int i18 = this.f28836c * 2;
-                GLES20.glReadPixels(0, 0, i18 + i17, i18 + this.f28835b, 6408, 5121, this.f28845o);
-                synchronized (this.f28844n) {
-                    this.f28846p.copyPixelsFromBuffer(this.f28845o);
-                    this.f28847q = true;
-                }
-                GLES20.glBindFramebuffer(36160, 0);
-            }
-            AndroidUtilities.cancelRunOnUIThread(this.f28851u);
-            AndroidUtilities.runOnUIThread(this.f28851u);
+                return;
         }
     }
 
-    public final boolean b(float f7, int i10) {
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        this.f28834a = (int) Math.round(Math.sqrt(f7 * 324.0f));
-        this.f28835b = (int) Math.round(Math.sqrt(324.0f / f7));
-        this.f28836c = i10;
-        if (!this.h) {
-            Matrix matrix = new Matrix();
-            Matrix matrix2 = this.v;
-            matrix.invert(matrix2);
-            float f10 = 1;
-            matrix2.preScale(f10, f10);
-            float f11 = 1.0f / f10;
-            matrix2.postScale(f11, f11);
-            c(matrix2);
-        }
-        float[] fArr = new float[8];
-        fArr[0] = -1.0f;
-        fArr[1] = 1.0f;
-        fArr[2] = 1.0f;
-        fArr[3] = 1.0f;
-        fArr[4] = -1.0f;
-        fArr[5] = -1.0f;
-        fArr[6] = 1.0f;
-        fArr[7] = -1.0f;
-        ByteBuffer allocateDirect = ByteBuffer.allocateDirect(32);
-        allocateDirect.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer = allocateDirect.asFloatBuffer();
-        this.e = asFloatBuffer;
-        asFloatBuffer.put(fArr);
-        this.e.position(0);
-        for (int i15 = 0; i15 < 4; i15++) {
-            int i16 = i15 * 2;
-            fArr[i16] = ((i13 - i10) / this.f28834a) * fArr[i16];
-            int i17 = i16 + 1;
-            fArr[i17] = ((i14 - i10) / this.f28835b) * fArr[i17];
-        }
-        ByteBuffer allocateDirect2 = ByteBuffer.allocateDirect(32);
-        allocateDirect2.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer2 = allocateDirect2.asFloatBuffer();
-        this.f28837f = asFloatBuffer2;
-        asFloatBuffer2.put(fArr);
-        this.f28837f.position(0);
-        ByteBuffer allocateDirect3 = ByteBuffer.allocateDirect(32);
-        allocateDirect3.order(ByteOrder.nativeOrder());
-        FloatBuffer asFloatBuffer3 = allocateDirect3.asFloatBuffer();
-        this.f28838g = asFloatBuffer3;
-        asFloatBuffer3.put(new float[]{0.0f, 1.0f, 1.0f, 1.0f, 0.0f, 0.0f, 1.0f, 0.0f});
-        this.f28838g.position(0);
-        String readRes = AndroidUtilities.readRes(R.raw.blur_vrt);
-        String readRes2 = AndroidUtilities.readRes(R.raw.blur_frg);
-        if (readRes != null && readRes2 != null) {
-            int i18 = 0;
-            while (true) {
-                if (i18 < 2) {
-                    if (i18 == 1) {
-                        readRes2 = "#extension GL_OES_EGL_image_external : require\n" + readRes2.replace("sampler2D tex", "samplerExternalOES tex");
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f30930a) {
+            case 0:
+                pa paVar = (pa) this.f30932c;
+                la laVar = (la) this.f30931b;
+                if (laVar != null) {
+                    ArrayList arrayList = laVar.d;
+                    arrayList.remove(paVar);
+                    if (laVar.e.isEmpty() && arrayList.isEmpty()) {
+                        laVar.f30145n.a();
                     }
-                    int h = g00.h(35633, readRes);
-                    int h10 = g00.h(35632, readRes2);
-                    if (h == 0 || h10 == 0) {
-                        break;
-                    }
-                    int glCreateProgram = GLES20.glCreateProgram();
-                    GLES20.glAttachShader(glCreateProgram, h);
-                    GLES20.glAttachShader(glCreateProgram, h10);
-                    GLES20.glBindAttribLocation(glCreateProgram, 0, "p");
-                    GLES20.glBindAttribLocation(glCreateProgram, 1, "inputuv");
-                    GLES20.glLinkProgram(glCreateProgram);
-                    int[] iArr = new int[1];
-                    GLES20.glGetProgramiv(glCreateProgram, 35714, iArr, 0);
-                    if (iArr[0] == 0) {
-                        GLES20.glDeleteProgram(glCreateProgram);
-                        return false;
-                    }
-                    ?? obj = new Object();
-                    obj.f27380a = glCreateProgram;
-                    obj.f27381b = GLES20.glGetAttribLocation(glCreateProgram, "p");
-                    obj.f27382c = GLES20.glGetAttribLocation(glCreateProgram, "inputuv");
-                    obj.d = GLES20.glGetUniformLocation(glCreateProgram, "matrix");
-                    obj.e = GLES20.glGetUniformLocation(glCreateProgram, "tex");
-                    obj.f27383f = GLES20.glGetUniformLocation(glCreateProgram, "sz");
-                    obj.f27384g = GLES20.glGetUniformLocation(glCreateProgram, "texSz");
-                    obj.h = GLES20.glGetUniformLocation(glCreateProgram, "gtop");
-                    obj.f27385i = GLES20.glGetUniformLocation(glCreateProgram, "gbottom");
-                    obj.f27386j = GLES20.glGetUniformLocation(glCreateProgram, "step");
-                    obj.f27388l = GLES20.glGetUniformLocation(glCreateProgram, "videoMatrix");
-                    obj.f27389m = GLES20.glGetUniformLocation(glCreateProgram, "hasVideoMatrix");
-                    obj.f27387k = GLES20.glGetUniformLocation(glCreateProgram, "flipy");
-                    this.d[i18] = obj;
-                    i18++;
-                } else {
-                    int[] iArr2 = this.f28848r;
-                    GLES20.glGenFramebuffers(3, iArr2, 0);
-                    int[] iArr3 = this.f28849s;
-                    GLES20.glGenTextures(3, iArr3, 0);
-                    for (int i19 = 0; i19 < 3; i19++) {
-                        GLES20.glBindTexture(3553, iArr3[i19]);
-                        int i20 = this.f28834a;
-                        if (i19 == 2) {
-                            i11 = i10 * 2;
-                        } else {
-                            i11 = 0;
-                        }
-                        int i21 = i20 + i11;
-                        int i22 = this.f28835b;
-                        if (i19 == 2) {
-                            i12 = i10 * 2;
-                        } else {
-                            i12 = 0;
-                        }
-                        GLES20.glTexImage2D(3553, 0, 6408, i21, i22 + i12, 0, 6408, 5121, null);
-                        GLES20.glTexParameteri(3553, 10242, 33071);
-                        GLES20.glTexParameteri(3553, 10243, 33071);
-                        GLES20.glTexParameteri(3553, 10241, 9729);
-                        GLES20.glTexParameteri(3553, 10240, 9729);
-                        GLES20.glBindFramebuffer(36160, iArr2[i19]);
-                        GLES20.glFramebufferTexture2D(36160, 36064, 3553, iArr3[i19], 0);
-                        if (GLES20.glCheckFramebufferStatus(36160) == 36053) {
-                        }
-                    }
-                    GLES20.glBindFramebuffer(36160, 0);
-                    int i23 = i10 * 2;
-                    this.f28846p = Bitmap.createBitmap(this.f28834a + i23, this.f28835b + i23, Bitmap.Config.ARGB_8888);
-                    this.f28845o = ByteBuffer.allocateDirect((i23 + this.f28835b) * (this.f28834a + i23) * 4);
-                    return true;
                 }
-            }
-        }
-        return false;
-    }
-
-    public final void c(Matrix matrix) {
-        this.h = true;
-        matrix.getValues(this.f28839i);
-        synchronized (this.f28841k) {
-            float[] fArr = this.f28840j;
-            float[] fArr2 = this.f28839i;
-            fArr[0] = fArr2[0];
-            fArr[1] = fArr2[3];
-            fArr[2] = 0.0f;
-            fArr[3] = fArr2[6];
-            fArr[4] = fArr2[1];
-            fArr[5] = fArr2[4];
-            fArr[6] = 0.0f;
-            fArr[7] = fArr2[7];
-            fArr[8] = 0.0f;
-            fArr[9] = 0.0f;
-            fArr[10] = 1.0f;
-            fArr[11] = 0.0f;
-            fArr[12] = fArr2[2];
-            fArr[13] = fArr2[5];
-            fArr[14] = 0.0f;
-            fArr[15] = fArr2[8];
+                paVar.f31484n = null;
+                Paint paint = paVar.h;
+                paVar.f31485o = null;
+                paint.setShader(null);
+                return;
+            case 1:
+                c6.release((View) this.f30931b, ((q11) this.f30932c).f31793k);
+                return;
+            default:
+                org.telegram.ui.Wallet.m3 m3Var = (org.telegram.ui.Wallet.m3) this.f30932c;
+                org.telegram.ui.Cells.v0 v0Var = m3Var.f36884a;
+                m3Var.f();
+                m3Var.M = false;
+                m3Var.N = 0L;
+                m3Var.k();
+                o1.j jVar = m3Var.Z;
+                if (jVar != null) {
+                    jVar.c();
+                    m3Var.Z = null;
+                }
+                m3Var.f36885a0 = 1.0f;
+                v0Var.invalidate();
+                if (v0Var.getParent() instanceof View) {
+                    ((View) v0Var.getParent()).invalidate();
+                }
+                m3Var.l();
+                org.telegram.ui.Wallet.x5 x5Var = m3Var.f36901k;
+                WeakHashMap weakHashMap = x5Var.e;
+                weakHashMap.remove((org.telegram.ui.Cells.v0) this.f30931b);
+                if (weakHashMap.isEmpty()) {
+                    x5Var.a();
+                }
+                v0Var.isAttachedToWindow();
+                int i10 = m3Var.f36922v0;
+                if (-1 != i10) {
+                    if (i10 >= 0) {
+                        NotificationCenter.getInstance(i10).removeObserver(m3Var.f36926x0, NotificationCenter.userInfoDidLoad);
+                    }
+                    m3Var.f36922v0 = -1;
+                }
+                org.telegram.ui.Wallet.l3 l3Var = m3Var.f36905m;
+                if (l3Var != null) {
+                    l3Var.setPaused(true);
+                }
+                m3Var.f36903l.stop();
+                m3Var.H = false;
+                return;
         }
     }
 }

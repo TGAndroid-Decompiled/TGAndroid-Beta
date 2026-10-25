@@ -1,55 +1,32 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class e1 implements kd0 {
-    public final int f25909a;
-    public final int[] f25910b;
+import android.content.DialogInterface;
+import org.telegram.messenger.AndroidUtilities;
+public final class e1 implements DialogInterface.OnShowListener {
+    public final int f27682a;
+    public final f5 f27683b;
 
-    public e1(int i10, int[] iArr) {
-        this.f25909a = i10;
-        this.f25910b = iArr;
+    public e1(int i10, f5 f5Var) {
+        this.f27682a = i10;
+        this.f27683b = f5Var;
     }
 
     @Override
-    public final String e(int i10) {
-        switch (this.f25909a) {
+    public final void onShow(DialogInterface dialogInterface) {
+        switch (this.f27682a) {
             case 0:
-                int i11 = this.f25910b[i10];
-                if (i11 == 0) {
-                    return LocaleController.getString(R.string.MuteNever);
-                }
-                if (i11 < 60) {
-                    return LocaleController.formatPluralString("Minutes", i11, new Object[0]);
-                }
-                if (i11 < 1440) {
-                    return LocaleController.formatPluralString("Hours", i11 / 60, new Object[0]);
-                }
-                if (i11 < 10080) {
-                    return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
-                }
-                if (i11 < 44640) {
-                    return LocaleController.formatPluralString("Weeks", i11 / 10080, new Object[0]);
-                }
-                if (i11 < 525600) {
-                    return LocaleController.formatPluralString("Months", i11 / 44640, new Object[0]);
-                }
-                return LocaleController.formatPluralString("Years", i11 / 525600, new Object[0]);
+                f5 f5Var = this.f27683b;
+                f5Var.requestFocus();
+                AndroidUtilities.showKeyboard(f5Var);
+                return;
+            case 1:
+                f5 f5Var2 = this.f27683b;
+                f5Var2.requestFocus();
+                AndroidUtilities.showKeyboard(f5Var2);
+                return;
             default:
-                int i12 = this.f25910b[i10];
-                if (i12 == 0) {
-                    return LocaleController.getString(R.string.AutoDeleteNever);
-                }
-                if (i12 < 10080) {
-                    return LocaleController.formatPluralString("Days", i12 / 1440, new Object[0]);
-                }
-                if (i12 < 44640) {
-                    return LocaleController.formatPluralString("Weeks", i12 / 10080, new Object[0]);
-                }
-                if (i12 < 525600) {
-                    return LocaleController.formatPluralString("Months", i12 / 44640, new Object[0]);
-                }
-                return LocaleController.formatPluralString("Years", i12 / 525600, new Object[0]);
+                AndroidUtilities.runOnUIThread(new pg(this.f27683b, 3));
+                return;
         }
     }
 }

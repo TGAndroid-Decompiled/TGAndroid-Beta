@@ -1,24 +1,17 @@
 package org.telegram.ui.Components;
-public final class iq implements qw0 {
-    public final gq f27470a;
-    public final kq f27471b;
+public abstract class iq extends a5.a {
+    public abstract int j();
 
-    public iq(kq kqVar, gq gqVar) {
-        this.f27471b = kqVar;
-        this.f27470a = gqVar;
-    }
-
-    @Override
-    public final void i(int i10) {
-        kq kqVar = this.f27471b;
-        kqVar.f28070s = i10;
-        kqVar.q(true);
-    }
-
-    @Override
-    public final void m() {
-        int measuredHeight = this.f27471b.d.getMeasuredHeight();
-        gq gqVar = this.f27470a;
-        gqVar.y(0 - gqVar.getScrollX(), measuredHeight - gqVar.getScrollY(), false);
+    public final int k(int i10) {
+        int size = ((mi0) this).f30590c.size();
+        int j10 = j();
+        if (i10 < j10) {
+            return ((size - (j10 * 2)) - ((j10 - i10) - 1)) - 1;
+        }
+        int i11 = size - j10;
+        if (i10 >= i11) {
+            return i10 - i11;
+        }
+        return i10 - j10;
     }
 }

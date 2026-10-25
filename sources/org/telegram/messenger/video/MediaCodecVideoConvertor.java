@@ -5,9 +5,9 @@ import android.media.MediaExtractor;
 import android.media.MediaFormat;
 import android.media.MediaMuxer;
 import android.os.Build;
-import com.google.android.gms.internal.play_billing.k3;
-import ei.t;
-import ei.z7;
+import c3.h0;
+import fi.t;
+import fi.v7;
 import java.io.File;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
@@ -55,7 +55,7 @@ public class MediaCodecVideoConvertor {
         int framerate;
         Integer gradientBottomColor;
         Integer gradientTopColor;
-        z7 hdrInfo;
+        v7 hdrInfo;
         boolean isDark;
         boolean isPhoto;
         boolean isRound;
@@ -262,14 +262,14 @@ public class MediaCodecVideoConvertor {
         }
     }
 
-    private static void applyAudioInputs(ArrayList<MixedSoundInfo> arrayList, ArrayList<bg.a> arrayList2) {
+    private static void applyAudioInputs(ArrayList<MixedSoundInfo> arrayList, ArrayList<cg.a> arrayList2) {
         if (arrayList != null) {
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 MixedSoundInfo mixedSoundInfo = arrayList.get(i10);
                 try {
-                    bg.c cVar = new bg.c(mixedSoundInfo.audioFile);
-                    AudioDecoder audioDecoder = cVar.f4354b;
-                    cVar.f4351a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
+                    cg.c cVar = new cg.c(mixedSoundInfo.audioFile);
+                    AudioDecoder audioDecoder = cVar.f6290b;
+                    cVar.f6287a = Math.max(0.0f, Math.min(mixedSoundInfo.volume, 1.0f));
                     long j10 = mixedSoundInfo.startTime;
                     int i11 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
                     if (i11 > 0) {
@@ -367,22 +367,22 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder k10 = k3.k("source size ", i10, "x", i11, "    dest size ");
-        k3.r(k10, i12, "x", i13, "   rotated ");
-        k10.append(z11);
-        k10.append("   ratio ");
-        k10.append(f10);
-        k10.append("x");
-        k10.append(f12);
-        k10.append("   samples ");
-        k10.append(min);
-        k10.append("x");
-        k10.append(min2);
-        k10.append("   kernel scale ");
-        k10.append(f13);
-        k10.append("x");
-        k10.append(f14);
-        FileLog.d(k10.toString());
+        StringBuilder n10 = h0.n("source size ", i10, "x", i11, "    dest size ");
+        h0.q(n10, i12, "x", i13, "   rotated ");
+        n10.append(z11);
+        n10.append("   ratio ");
+        n10.append(f10);
+        n10.append("x");
+        n10.append(f12);
+        n10.append("   samples ");
+        n10.append(min);
+        n10.append("x");
+        n10.append(min2);
+        n10.append("   kernel scale ");
+        n10.append(f13);
+        n10.append("x");
+        n10.append(f14);
+        FileLog.d(n10.toString());
         String glslFloat = glslFloat(f15);
         String glslFloat2 = glslFloat(f16);
         String glslFloat3 = glslFloat(f13);
@@ -401,8 +401,8 @@ public class MediaCodecVideoConvertor {
         sb2.append(glslFloat);
         sb2.append(";\nconst float offsetY = ");
         sb2.append(glslFloat2);
-        a1.g.A(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        a1.g.A(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        h0.r(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        h0.r(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb2.append(";\nconst float pixelSizeY = ");
         sb2.append(glslFloat7);
         sb2.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");
@@ -490,7 +490,7 @@ public class MediaCodecVideoConvertor {
         return sb2.toString();
     }
 
-    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, z7 z7Var, int i14, boolean z11) {
+    private static String hdrFragmentShader(int i10, int i11, int i12, int i13, boolean z10, v7 v7Var, int i14, boolean z11) {
         int i15;
         int i16;
         String readRes;
@@ -529,22 +529,22 @@ public class MediaCodecVideoConvertor {
         if ((min2 & 1) == 0) {
             f16 += 0.01f;
         }
-        StringBuilder k10 = k3.k("HDR source size ", i10, "x", i11, "    dest size ");
-        k3.r(k10, i12, "x", i13, "   rotated ");
-        k10.append(z11);
-        k10.append("   ratio ");
-        k10.append(f10);
-        k10.append("x");
-        k10.append(f12);
-        k10.append("   samples ");
-        k10.append(min);
-        k10.append("x");
-        k10.append(min2);
-        k10.append("   kernel scale ");
-        k10.append(f13);
-        k10.append("x");
-        k10.append(f14);
-        FileLog.d(k10.toString());
+        StringBuilder n10 = h0.n("HDR source size ", i10, "x", i11, "    dest size ");
+        h0.q(n10, i12, "x", i13, "   rotated ");
+        n10.append(z11);
+        n10.append("   ratio ");
+        n10.append(f10);
+        n10.append("x");
+        n10.append(f12);
+        n10.append("   samples ");
+        n10.append(min);
+        n10.append("x");
+        n10.append(min2);
+        n10.append("   kernel scale ");
+        n10.append(f13);
+        n10.append("x");
+        n10.append(f14);
+        FileLog.d(n10.toString());
         String glslFloat = glslFloat(f15);
         String glslFloat2 = glslFloat(f16);
         String glslFloat3 = glslFloat(f13);
@@ -552,7 +552,7 @@ public class MediaCodecVideoConvertor {
         String glslFloat5 = glslFloat(min * min2);
         String glslFloat6 = glslFloat(1.0f / f7);
         String glslFloat7 = glslFloat(1.0f / f11);
-        if (z7Var.a() == 1) {
+        if (v7Var.a() == 1) {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_hlg);
         } else {
             readRes = AndroidUtilities.readRes(R.raw.hdr2sdr_pq);
@@ -563,8 +563,8 @@ public class MediaCodecVideoConvertor {
         sb2.append(glslFloat);
         sb2.append(";\nconst float offsetY = ");
         sb2.append(glslFloat2);
-        a1.g.A(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
-        a1.g.A(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
+        h0.r(sb2, ";\nconst float kernelScaleX = ", glslFloat3, ";\nconst float kernelScaleY = ", glslFloat4);
+        h0.r(sb2, ";\nconst float weightsum = ", glslFloat5, ";\nconst float pixelSizeX = ", glslFloat6);
         sb2.append(";\nconst float pixelSizeY = ");
         sb2.append(glslFloat7);
         sb2.append(";\nvoid main() {\n    vec3 accumulation = vec3(0.0);\n    for (int i = 0; i < ");

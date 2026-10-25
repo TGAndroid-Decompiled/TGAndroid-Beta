@@ -1,84 +1,63 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.os.Parcelable;
-import android.util.SparseArray;
-import android.widget.TextView;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ik0 extends org.telegram.ui.ActionBar.j {
-    public final Context f38321a;
-    public final mk0 f38322b;
+import j$.util.Objects;
+public final class ik0 extends qg.a {
+    public int f40253c;
+    public int d;
+    public CharSequence e;
+    public CharSequence f40254f;
+    public ok0 f40255g;
+    public int h;
+    public boolean f40256i;
 
-    public ik0(mk0 mk0Var, Context context) {
-        this.f38322b = mk0Var;
-        this.f38321a = context;
+    public static ik0 b(int i10, String str, boolean z10) {
+        ?? aVar = new qg.a(1, true);
+        aVar.f40253c = i10;
+        aVar.e = str;
+        aVar.f40256i = z10;
+        return aVar;
+    }
+
+    public static ik0 c(int i10, String str, String str2) {
+        ?? aVar = new qg.a(5, true);
+        aVar.f40253c = i10;
+        aVar.e = str;
+        aVar.f40254f = str2;
+        return aVar;
+    }
+
+    public static ik0 d(int i10, String str) {
+        ?? aVar = new qg.a(4, true);
+        aVar.f40253c = i10;
+        aVar.e = str;
+        return aVar;
     }
 
     @Override
-    public final void b(int i10) {
-        int i11;
-        int i12;
-        org.telegram.ui.ActionBar.k kVar;
-        mk0 mk0Var = this.f38322b;
-        org.telegram.ui.ActionBar.g6 g6Var = mk0Var.h;
-        SparseArray sparseArray = mk0Var.J;
-        if (i10 == -1) {
-            kVar = ((org.telegram.ui.ActionBar.o2) mk0Var).actionBar;
-            if (kVar.s()) {
-                mk0.W(mk0Var);
-                return;
-            } else {
-                mk0Var.finishFragment();
-                return;
+    public final boolean a(qg.a aVar) {
+        if (this != aVar) {
+            if (ik0.class == aVar.getClass()) {
+                ik0 ik0Var = (ik0) aVar;
+                if (this.f40253c == ik0Var.f40253c && this.d == ik0Var.d && this.h == ik0Var.h && this.f40256i == ik0Var.f40256i && Objects.equals(this.e, ik0Var.e) && Objects.equals(this.f40254f, ik0Var.f40254f) && this.f40255g == ik0Var.f40255g) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && ik0.class == obj.getClass()) {
+            ik0 ik0Var = (ik0) obj;
+            if (this.f40253c == ik0Var.f40253c && this.h == ik0Var.h && ((this.f47037a == 8 || (this.d == ik0Var.d && Objects.equals(this.e, ik0Var.e) && (this.f47037a == 6 || Objects.equals(this.f40254f, ik0Var.f40254f)))) && this.f40255g == ik0Var.f40255g)) {
+                return true;
             }
         }
-        if (i10 == 1) {
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(mk0Var.getParentActivity(), 0, g6Var);
-            alertDialog$Builder.f20679a.R = LocaleController.formatPluralString("DeleteTones", sparseArray.size(), new Object[0]);
-            alertDialog$Builder.f20679a.T = AndroidUtilities.replaceTags(LocaleController.formatPluralString("DeleteTonesMessage", sparseArray.size(), new Object[0]));
-            alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), new wv(10));
-            alertDialog$Builder.k(LocaleController.getString(R.string.Delete), new xt(this, 27));
-            TextView textView = (TextView) alertDialog$Builder.p().d(-1);
-            if (textView != null) {
-                org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21422q7, g6Var);
-            }
-        } else if (i10 == 2) {
-            int size = sparseArray.size();
-            Context context = this.f38321a;
-            if (size == 1) {
-                Intent intent = new Intent(context, LaunchActivity.class);
-                intent.setAction("android.intent.action.SEND");
-                i12 = ((org.telegram.ui.ActionBar.o2) mk0Var).currentAccount;
-                Uri a2 = ((kk0) sparseArray.valueAt(0)).a(i12);
-                if (a2 != null) {
-                    intent.putExtra("android.intent.extra.STREAM", a2);
-                    context.startActivity(intent);
-                }
-            } else {
-                Intent intent2 = new Intent(context, LaunchActivity.class);
-                intent2.setAction("android.intent.action.SEND_MULTIPLE");
-                ArrayList<? extends Parcelable> arrayList = new ArrayList<>();
-                for (int i13 = 0; i13 < sparseArray.size(); i13++) {
-                    i11 = ((org.telegram.ui.ActionBar.o2) mk0Var).currentAccount;
-                    Uri a10 = ((kk0) sparseArray.valueAt(i13)).a(i11);
-                    if (a10 != null) {
-                        arrayList.add(a10);
-                    }
-                }
-                if (!arrayList.isEmpty()) {
-                    intent2.putParcelableArrayListExtra("android.intent.extra.STREAM", arrayList);
-                    context.startActivity(intent2);
-                }
-            }
-            mk0.W(mk0Var);
-            mk0Var.d0();
-            mk0Var.f39609f.l();
-        }
+        return false;
     }
 }

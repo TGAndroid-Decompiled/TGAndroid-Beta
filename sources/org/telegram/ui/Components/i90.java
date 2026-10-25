@@ -1,91 +1,128 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class i90 implements View.OnClickListener {
-    public final int f27372a;
-    public final p90 f27373b;
+import android.view.animation.DecelerateInterpolator;
+import org.telegram.messenger.AndroidUtilities;
+public final class i90 extends View {
+    public static DecelerateInterpolator v;
+    public static Paint f29227w;
+    public long f29228a;
+    public float f29229b;
+    public float f29230c;
+    public long d;
+    public float e;
+    public float f29231f;
+    public int h;
+    public int f29232n;
+    public final RectF f29233r;
+    public org.telegram.ui.Components.voip.h f29234s;
 
-    public i90(p90 p90Var, int i10) {
-        this.f27372a = i10;
-        this.f27373b = p90Var;
+    public i90(Context context) {
+        super(context);
+        this.f29231f = 1.0f;
+        this.f29233r = new RectF();
+        if (v == null) {
+            v = new DecelerateInterpolator();
+            Paint paint = new Paint(1);
+            f29227w = paint;
+            paint.setStrokeCap(Paint.Cap.ROUND);
+            f29227w.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        }
+    }
+
+    public final void a(float f7, boolean z10) {
+        if (!z10) {
+            this.e = f7;
+            this.f29230c = f7;
+        } else {
+            this.f29230c = this.e;
+        }
+        if (f7 != 1.0f) {
+            this.f29231f = 1.0f;
+        }
+        this.f29229b = f7;
+        this.d = 0L;
+        this.f29228a = System.currentTimeMillis();
+        invalidate();
+    }
+
+    public float getCurrentProgress() {
+        return this.f29229b;
     }
 
     @Override
-    public final void onClick(View view) {
-        boolean z10;
-        int i10;
-        switch (this.f27372a) {
-            case 0:
-                this.f27373b.f29521r.j();
-                return;
-            case 1:
-                p90 p90Var = this.f27373b;
-                org.telegram.ui.ActionBar.m1 m1Var = p90Var.f29522s;
-                if (m1Var != null) {
-                    m1Var.d(true);
-                }
-                p90Var.f29521r.a();
-                return;
-            case 2:
-                p90 p90Var2 = this.f27373b;
-                String str = p90Var2.f29517b;
-                if (str != null && str.endsWith("?direct")) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                Context context = p90Var2.getContext();
-                String string = LocaleController.getString(R.string.InviteByQRCode);
-                String str2 = p90Var2.f29517b;
-                String str3 = p90Var2.J;
-                if (str3 == null) {
-                    if (p90Var2.H) {
-                        if (z10) {
-                            i10 = R.string.QRCodeLinkHelpChannelDirect;
-                        } else {
-                            i10 = R.string.QRCodeLinkHelpChannel;
-                        }
-                    } else {
-                        i10 = R.string.QRCodeLinkHelpGroup;
-                    }
-                    str3 = LocaleController.getString(i10);
-                }
-                m90 m90Var = new m90(p90Var2, context, string, str2, str3);
-                p90Var2.E = m90Var;
-                m90Var.m(R.raw.qr_code_logo);
-                p90Var2.E.show();
-                org.telegram.ui.ActionBar.m1 m1Var2 = p90Var2.f29522s;
-                if (m1Var2 != null) {
-                    m1Var2.d(true);
-                    return;
-                }
-                return;
-            default:
-                p90 p90Var3 = this.f27373b;
-                org.telegram.ui.ActionBar.m1 m1Var3 = p90Var3.f29522s;
-                if (m1Var3 != null) {
-                    m1Var3.d(true);
-                }
-                org.telegram.ui.ActionBar.o2 o2Var = p90Var3.f29518c;
-                if (o2Var.getParentActivity() != null) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(o2Var.getParentActivity());
-                    alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.RevokeLink);
-                    alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.RevokeAlert);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.RevokeButton), new g90(p90Var3, 1));
-                    alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
-                    TextView textView = (TextView) alertDialog$Builder.f20679a.d(-1);
-                    if (textView != null) {
-                        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.f21422q7, null);
-                    }
-                    alertDialog$Builder.p();
-                    return;
-                }
-                return;
+    public final void onDraw(Canvas canvas) {
+        int i10 = this.h;
+        RectF rectF = this.f29233r;
+        if (i10 != 0 && this.e != 1.0f) {
+            f29227w.setColor(i10);
+            f29227w.setAlpha((int) (this.f29231f * 255.0f));
+            getWidth();
+            rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+            canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f29227w);
         }
+        f29227w.setColor(this.f29232n);
+        f29227w.setAlpha((int) (this.f29231f * 255.0f));
+        rectF.set(0.0f, 0.0f, getWidth() * this.e, getHeight());
+        canvas.drawRoundRect(rectF, getHeight() / 2.0f, getHeight() / 2.0f, f29227w);
+        if (this.f29231f > 0.0f) {
+            if (this.f29234s == null) {
+                org.telegram.ui.Components.voip.h hVar = new org.telegram.ui.Components.voip.h(160, 0);
+                this.f29234s = hVar;
+                hVar.f33821k = false;
+                hVar.f33824n = 0.8f;
+                hVar.f33823m = 1.2f;
+            }
+            this.f29234s.f33817f = getMeasuredWidth();
+            this.f29234s.a(getHeight() / 2.0f, canvas, rectF, null);
+            invalidate();
+        }
+        long currentTimeMillis = System.currentTimeMillis();
+        long j10 = currentTimeMillis - this.f29228a;
+        this.f29228a = currentTimeMillis;
+        float f7 = this.e;
+        if (f7 != 1.0f) {
+            float f10 = this.f29229b;
+            if (f7 != f10) {
+                float f11 = this.f29230c;
+                float f12 = f10 - f11;
+                if (f12 > 0.0f) {
+                    long j11 = this.d + j10;
+                    this.d = j11;
+                    if (j11 >= 300) {
+                        this.e = f10;
+                        this.f29230c = f10;
+                        this.d = 0L;
+                    } else {
+                        this.e = (v.getInterpolation(((float) j11) / 300.0f) * f12) + f11;
+                    }
+                }
+                invalidate();
+            }
+        }
+        int i11 = (this.e > 1.0f ? 1 : (this.e == 1.0f ? 0 : -1));
+        if (i11 >= 0 && i11 == 0) {
+            float f13 = this.f29231f;
+            if (f13 != 0.0f) {
+                float f14 = f13 - (((float) j10) / 200.0f);
+                this.f29231f = f14;
+                if (f14 <= 0.0f) {
+                    this.f29231f = 0.0f;
+                }
+                invalidate();
+            }
+        }
+    }
+
+    public void setBackColor(int i10) {
+        this.h = i10;
+    }
+
+    public void setProgressColor(int i10) {
+        this.f29232n = i10;
     }
 }

@@ -1,113 +1,126 @@
 package org.telegram.ui.Cells;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.R;
-public final class v1 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final TextView f23830a;
-    public final ImageView f23831b;
-    public final FrameLayout f23832c;
-    public final org.telegram.ui.ActionBar.g6 d;
-    public int e;
+import org.telegram.ui.Components.lh0;
+import org.telegram.ui.Components.nh0;
+import org.telegram.ui.Components.y71;
+import org.telegram.ui.rb0;
+public final class v1 extends org.telegram.ui.Components.s6 {
+    public final int f25572s;
+    public Object v;
 
-    public v1(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        Integer num;
-        int x02;
-        this.d = g6Var;
-        FrameLayout frameLayout = new FrameLayout(context);
-        this.f23832c = frameLayout;
-        frameLayout.setBackgroundResource(R.drawable.newmsg_divider);
-        Drawable background = frameLayout.getBackground();
-        int i10 = org.telegram.ui.ActionBar.k6.Fe;
-        PorterDuff.Mode mode = PorterDuff.Mode.MULTIPLY;
-        org.telegram.ui.ActionBar.r6.z(frameLayout, background, i10, g6Var, mode);
-        addView(frameLayout, w7.z5.d(-1, 27.0f, 51, 0.0f, 7.0f, 0.0f, 0.0f));
-        ImageView imageView = new ImageView(context);
-        this.f23831b = imageView;
-        imageView.setImageResource(R.drawable.ic_ab_new);
-        int i11 = org.telegram.ui.ActionBar.k6.De;
-        if (g6Var != null) {
-            num = Integer.valueOf(g6Var.g(i11));
-        } else {
-            num = null;
-        }
-        if (num != null) {
-            x02 = num.intValue();
-        } else {
-            x02 = org.telegram.ui.ActionBar.k6.x0(null, i11, false);
-        }
-        imageView.setColorFilter(new PorterDuffColorFilter(x02, mode));
-        imageView.setPadding(0, AndroidUtilities.dp(2.0f), 0, 0);
-        frameLayout.addView(imageView, w7.z5.d(-2, -2.0f, 21, 0.0f, 0.0f, 10.0f, 0.0f));
-        TextView textView = new TextView(context);
-        this.f23830a = textView;
-        textView.setPadding(0, 0, 0, AndroidUtilities.dp(1.0f));
-        textView.setTextSize(1, 14.0f);
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.Ee, g6Var);
-        textView.setTypeface(AndroidUtilities.bold());
-        addView(textView, w7.z5.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
-    }
-
-    public FrameLayout getBackgroundLayout() {
-        return this.f23832c;
-    }
-
-    public ImageView getImageView() {
-        return this.f23831b;
-    }
-
-    public TextView getTextView() {
-        return this.f23830a;
+    public v1(Context context, boolean z10, boolean z11, boolean z12) {
+        super(context, z10, z11, z12);
+        this.f25572s = 3;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(40.0f), 1073741824));
-    }
-
-    public void setText(String str) {
-        this.f23830a.setText(str);
-    }
-
-    @Override
-    public final void updateColors() {
-        Integer num;
-        int x02;
-        try {
-            int i10 = org.telegram.ui.ActionBar.k6.De;
-            org.telegram.ui.ActionBar.g6 g6Var = this.d;
-            if (g6Var != null) {
-                num = Integer.valueOf(g6Var.g(i10));
-            } else {
-                num = null;
-            }
-            if (num != null) {
-                x02 = num.intValue();
-            } else {
-                x02 = org.telegram.ui.ActionBar.k6.x0(null, i10, false);
-            }
-            ImageView imageView = this.f23831b;
-            if (imageView != null && x02 != this.e) {
-                this.e = x02;
-                imageView.setColorFilter(new PorterDuffColorFilter(x02, PorterDuff.Mode.MULTIPLY));
-            }
-            invalidate();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public void invalidate() {
+        switch (this.f25572s) {
+            case 1:
+                super.invalidate();
+                lh0 lh0Var = (lh0) this.v;
+                nh0 nh0Var = lh0Var.d;
+                if (lh0Var == nh0Var.f30973b.getPinnedHeader()) {
+                    nh0Var.f30973b.invalidate();
+                    return;
+                }
+                return;
+            default:
+                super.invalidate();
+                return;
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public void onDraw(Canvas canvas) {
+        int o12;
+        switch (this.f25572s) {
+            case 0:
+                super.onDraw(canvas);
+                ((y1) this.v).f();
+                return;
+            case 1:
+            default:
+                super.onDraw(canvas);
+                return;
+            case 2:
+                canvas.save();
+                canvas.translate(AndroidUtilities.dp(15.0f), 0.0f);
+                super.onDraw(canvas);
+                canvas.translate(((getMeasuredWidth() - d()) / 2.0f) - AndroidUtilities.dp(30.0f), AndroidUtilities.dp(11.0f));
+                ((y71) this.v).f34967b.draw(canvas);
+                canvas.restore();
+                return;
+            case 3:
+                ShapeDrawable shapeDrawable = (ShapeDrawable) this.v;
+                if (shapeDrawable != null && shapeDrawable.getPaint().getColor() != (o12 = org.telegram.ui.ActionBar.y6.o1(0.15f, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.L6, false)))) {
+                    shapeDrawable.getPaint().setColor(o12);
+                }
+                shapeDrawable.setBounds(0, 0, (int) (getDrawable().c() + getPaddingLeft() + getPaddingRight()), getMeasuredHeight());
+                shapeDrawable.draw(canvas);
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        switch (this.f25572s) {
+            case 4:
+                rb0 rb0Var = (rb0) this.v;
+                int size = View.MeasureSpec.getSize(i10);
+                if (size <= 0) {
+                    size = AndroidUtilities.displaySize.x - AndroidUtilities.dp(20.0f);
+                }
+                super.onMeasure(View.MeasureSpec.makeMeasureSpec((int) ((size - rb0Var.d.getPaint().measureText(rb0Var.d.getText().toString())) - rb0Var.f43093f.getPaint().measureText(rb0Var.f43093f.getText().toString())), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(24.0f), 1073741824));
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                return;
+        }
+    }
+
+    @Override
+    public boolean post(Runnable runnable) {
+        switch (this.f25572s) {
+            case 1:
+                return nh0.p(((lh0) this.v).d).post(runnable);
+            default:
+                return super.post(runnable);
+        }
+    }
+
+    @Override
+    public boolean postDelayed(Runnable runnable, long j10) {
+        switch (this.f25572s) {
+            case 1:
+                return nh0.q(((lh0) this.v).d).postDelayed(runnable, j10);
+            default:
+                return super.postDelayed(runnable, j10);
+        }
+    }
+
+    public v1(FrameLayout frameLayout, Context context, int i10) {
+        super(context, false, false, false);
+        this.f25572s = i10;
+        this.v = frameLayout;
+    }
+
+    public v1(y71 y71Var, Context context) {
+        super(context, true, true, true);
+        this.f25572s = 2;
+        this.v = y71Var;
+    }
+
+    public v1(rb0 rb0Var, Context context) {
+        super(context, false, true, true);
+        this.f25572s = 4;
+        this.v = rb0Var;
     }
 }

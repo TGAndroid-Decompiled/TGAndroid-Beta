@@ -1,71 +1,89 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.support.LongSparseIntArray;
-public final class je implements Runnable {
-    public final int f38543a;
-    public final sn f38544b;
-    public final long f38545c;
+public final class je extends FrameLayout {
+    public final org.telegram.ui.ActionBar.u6 f40568a;
+    public final org.telegram.ui.Components.b6 f40569b;
+    public final TextView f40570c;
+    public final TextView d;
+    public final DecimalFormat e;
+    public boolean f40571f;
 
-    public je(long j10, sn snVar) {
-        this.f38543a = 7;
-        this.f38545c = j10;
-        this.f38544b = snVar;
+    public je(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context);
+        this.f40568a = u6Var;
+        LinearLayout d = org.telegram.messenger.vh.d(context, 1);
+        addView(d, org.telegram.ui.Components.gb1.h(-1, -2.0f, 119, 17.0f, 9.0f, 130.0f, 9.0f));
+        TextView textView = new TextView(context);
+        this.f40570c = textView;
+        textView.setTextSize(1, 16.0f);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.G6, u6Var);
+        d.addView(textView, org.telegram.ui.Components.gb1.r(-1, -2));
+        TextView textView2 = new TextView(context);
+        this.d = textView2;
+        textView2.setTextSize(1, 13.0f);
+        org.telegram.ui.ActionBar.f7.V(textView2, org.telegram.ui.ActionBar.y6.f23746y6, u6Var);
+        d.addView(textView2, org.telegram.ui.Components.gb1.o(0.0f, 4.0f, 0.0f, 0.0f, -1, -2));
+        org.telegram.ui.Components.b6 b6Var = new org.telegram.ui.Components.b6(context);
+        this.f40569b = b6Var;
+        b6Var.setTypeface(AndroidUtilities.bold());
+        b6Var.setTextSize(1, 13.0f);
+        addView(b6Var, org.telegram.ui.Components.gb1.h(-2, -2.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+        DecimalFormatSymbols decimalFormatSymbols = new DecimalFormatSymbols(Locale.US);
+        decimalFormatSymbols.setDecimalSeparator('.');
+        DecimalFormat decimalFormat = new DecimalFormat("#.##", decimalFormatSymbols);
+        this.e = decimalFormat;
+        decimalFormat.setMinimumFractionDigits(2);
+        decimalFormat.setMaximumFractionDigits(12);
+        decimalFormat.setGroupingUsed(false);
     }
 
     @Override
-    public final void run() {
-        switch (this.f38543a) {
-            case 0:
-                r0.getMediaDataController().loadBotInfo(this.f38545c, r1, true, this.f38544b.classGuid);
-                return;
-            case 1:
-                this.f38544b.getMessagesController().loadFullChat(this.f38545c, 0, true);
-                return;
-            case 2:
-                sn snVar = this.f38544b;
-                LongSparseIntArray longSparseIntArray = snVar.Y5;
-                long j10 = this.f38545c;
-                longSparseIntArray.put(j10, 0);
-                org.telegram.ui.Components.v31 v31Var = snVar.f41487d2;
-                if (v31Var != null) {
-                    v31Var.setAllTopicsHidden(false);
+    public final void onDraw(Canvas canvas) {
+        Paint paint;
+        float dp;
+        int i10;
+        super.onDraw(canvas);
+        if (this.f40571f) {
+            org.telegram.ui.ActionBar.u6 u6Var = this.f40568a;
+            if (u6Var != null) {
+                paint = u6Var.d("paintDivider");
+            } else {
+                paint = org.telegram.ui.ActionBar.y6.f23476k0;
+            }
+            Paint paint2 = paint;
+            if (paint2 != null) {
+                if (LocaleController.isRTL) {
+                    dp = 0.0f;
+                } else {
+                    dp = AndroidUtilities.dp(17.0f);
                 }
-                if (j10 == snVar.f41635p4) {
-                    snVar.A0.O(false);
-                    return;
+                float f7 = dp;
+                float measuredHeight = getMeasuredHeight() - 1;
+                int measuredWidth = getMeasuredWidth();
+                if (LocaleController.isRTL) {
+                    i10 = AndroidUtilities.dp(17.0f);
+                } else {
+                    i10 = 0;
                 }
-                return;
-            case 3:
-                sn snVar2 = this.f38544b;
-                org.telegram.ui.Components.oc v = org.telegram.ui.Components.vc.v(snVar2.getParentActivity(), snVar2, null, 1, this.f38545c, 1, snVar2.getThemedColor(org.telegram.ui.ActionBar.k6.Fi), snVar2.getThemedColor(org.telegram.ui.ActionBar.k6.Hi), 5000, true, null);
-                v.f29204k = true;
-                v.k(true);
-                return;
-            case 4:
-                sn snVar3 = this.f38544b;
-                snVar3.getClass();
-                snVar3.presentFragment(sn.W9(this.f38545c));
-                return;
-            case 5:
-                sn snVar4 = this.f38544b;
-                snVar4.getClass();
-                snVar4.presentFragment(ProfileActivity.o4(this.f38545c));
-                return;
-            case 6:
-                org.telegram.ui.Components.vc.a0(this.f38544b).M(LocaleController.getString(R.string.StarsGiveawaySentPopup), AndroidUtilities.replaceTags(LocaleController.formatPluralStringComma("StarsGiveawaySentPopupInfo", (int) this.f38545c)), R.raw.stars_topup).k(true);
-                return;
-            default:
-                this.f38544b.presentFragment(new ProfileActivity(si.o0.e(this.f38545c, "user_id"), null));
-                return;
+                canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, paint2);
+            }
         }
     }
 
-    public je(sn snVar, long j10, int i10) {
-        this.f38543a = i10;
-        this.f38544b = snVar;
-        this.f38545c = j10;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

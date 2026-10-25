@@ -1,38 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.view.MotionEvent;
-import org.telegram.tgnet.TLRPC;
-public abstract class e61 {
-    public String[] f25976a = new String[0];
+import android.content.Context;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class e61 extends do0 {
+    public final p61 f27749f;
 
-    public boolean a() {
-        return false;
+    public e61(p61 p61Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, 14.0f, u6Var);
+        this.f27749f = p61Var;
     }
 
-    public String[] b() {
-        return this.f25976a;
-    }
-
-    public boolean c() {
-        return false;
-    }
-
-    public boolean d(x51 x51Var, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public boolean e(x51 x51Var, j jVar, MotionEvent motionEvent) {
-        return false;
-    }
-
-    public abstract void g(TLRPC.StickerSetCovered stickerSetCovered, boolean z10);
-
-    public abstract void h(TLRPC.StickerSetCovered stickerSetCovered);
-
-    public void i(String[] strArr) {
-        this.f25976a = strArr;
-    }
-
-    public void f(TLRPC.Document document, Object obj, boolean z10, int i10) {
+    @Override
+    public final void a(String str) {
+        ig.d2 d2Var = this.f27749f.v;
+        ig.b2 b2Var = d2Var.S;
+        int i10 = d2Var.f14031c;
+        if (d2Var.N != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(d2Var.N, true);
+            d2Var.N = 0;
+        }
+        if (d2Var.O != 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(d2Var.O, true);
+            d2Var.O = 0;
+        }
+        if (TextUtils.isEmpty(str)) {
+            d2Var.R = null;
+            d2Var.F.clear();
+            d2Var.I.clear();
+            d2Var.E.clear();
+            d2Var.e.b(false);
+            d2Var.l();
+        } else {
+            d2Var.R = str.toLowerCase();
+        }
+        AndroidUtilities.cancelRunOnUIThread(b2Var);
+        AndroidUtilities.runOnUIThread(b2Var, 300L);
     }
 }

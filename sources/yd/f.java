@@ -1,5 +1,5 @@
 package yd;
 
-import w7.x8;
-public abstract class f extends x8 {
+import ud.p;
+public interface f extends g, p {
 }

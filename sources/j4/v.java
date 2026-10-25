@@ -1,28 +1,28 @@
 package j4;
 
-import c3.l0;
-import ci.b7;
+import c3.j0;
+import di.b7;
 public final class v implements i {
     public String e;
-    public l0 f14252f;
-    public boolean f14254i;
-    public int f14256k;
-    public int f14257l;
-    public int f14259n;
-    public int f14260o;
-    public int f14264s;
-    public boolean f14266u;
+    public j0 f15465f;
+    public boolean f15467i;
+    public int f15469k;
+    public int f15470l;
+    public int f15472n;
+    public int f15473o;
+    public int f15477s;
+    public boolean f15479u;
     public int d = 0;
-    public final e2.x f14249a = new e2.x(new byte[15], 2);
-    public final a4.g f14250b = new a4.g();
-    public final e2.x f14251c = new e2.x();
-    public final b7 f14261p = new b7();
-    public int f14262q = -2147483647;
-    public int f14263r = -1;
-    public long f14265t = -1;
-    public boolean f14255j = true;
-    public boolean f14258m = true;
-    public double f14253g = -9.223372036854776E18d;
+    public final e2.x f15462a = new e2.x(new byte[15], 2);
+    public final a4.g f15463b = new a4.g();
+    public final e2.x f15464c = new e2.x();
+    public final b7 f15474p = new b7();
+    public int f15475q = -2147483647;
+    public int f15476r = -1;
+    public long f15478t = -1;
+    public boolean f15468j = true;
+    public boolean f15471m = true;
+    public double f15466g = -9.223372036854776E18d;
     public double h = -9.223372036854776E18d;
 
     @Override
@@ -33,42 +33,42 @@ public final class v implements i {
     @Override
     public final void c() {
         this.d = 0;
-        this.f14257l = 0;
-        this.f14249a.K(2);
-        this.f14259n = 0;
-        this.f14260o = 0;
-        this.f14262q = -2147483647;
-        this.f14263r = -1;
-        this.f14264s = 0;
-        this.f14265t = -1L;
-        this.f14266u = false;
-        this.f14254i = false;
-        this.f14258m = true;
-        this.f14255j = true;
-        this.f14253g = -9.223372036854776E18d;
+        this.f15470l = 0;
+        this.f15462a.K(2);
+        this.f15472n = 0;
+        this.f15473o = 0;
+        this.f15475q = -2147483647;
+        this.f15476r = -1;
+        this.f15477s = 0;
+        this.f15478t = -1L;
+        this.f15479u = false;
+        this.f15467i = false;
+        this.f15471m = true;
+        this.f15468j = true;
+        this.f15466g = -9.223372036854776E18d;
         this.h = -9.223372036854776E18d;
     }
 
     @Override
-    public final void d(c3.s sVar, f0 f0Var) {
+    public final void d(c3.q qVar, f0 f0Var) {
         f0Var.b();
         f0Var.c();
         this.e = (String) f0Var.e;
         f0Var.c();
-        this.f14252f = sVar.j0(f0Var.f14102c, 1);
+        this.f15465f = qVar.F1(f0Var.f15315c, 1);
     }
 
     @Override
     public final void f(int i10, long j10) {
-        this.f14256k = i10;
-        if (!this.f14255j && (this.f14260o != 0 || !this.f14258m)) {
-            this.f14254i = true;
+        this.f15469k = i10;
+        if (!this.f15468j && (this.f15473o != 0 || !this.f15471m)) {
+            this.f15467i = true;
         }
         if (j10 != -9223372036854775807L) {
-            if (this.f14254i) {
+            if (this.f15467i) {
                 this.h = j10;
             } else {
-                this.f14253g = j10;
+                this.f15466g = j10;
             }
         }
     }

@@ -7,33 +7,33 @@ import android.os.Build;
 import java.util.concurrent.Executor;
 import java.util.concurrent.atomic.AtomicBoolean;
 public final class b {
-    public static final Uri f16542g = Uri.parse("content://androidx.car.app.connection");
-    public final Context f16543a;
-    public final g0 f16544b;
-    public final Executor f16545c;
-    public final androidx.mediarouter.app.f d;
+    public static final Uri f18001g = Uri.parse("content://androidx.car.app.connection");
+    public final Context f18002a;
+    public final g0 f18003b;
+    public final Executor f18004c;
+    public final androidx.mediarouter.app.g d;
     public final AtomicBoolean e;
-    public final AtomicBoolean f16546f;
+    public final AtomicBoolean f18005f;
 
     public b(Context context, g0 g0Var) {
-        this.f16543a = context.getApplicationContext();
-        this.f16544b = g0Var;
+        this.f18002a = context.getApplicationContext();
+        this.f18003b = g0Var;
         Executor e = e2.a.e();
-        this.f16545c = e;
-        this.d = new androidx.mediarouter.app.f(this, 6);
+        this.f18004c = e;
+        this.d = new androidx.mediarouter.app.g(this, 6);
         this.e = new AtomicBoolean();
-        this.f16546f = new AtomicBoolean();
+        this.f18005f = new AtomicBoolean();
         e.execute(new a(this, 1));
     }
 
     public static void a(b bVar) {
-        androidx.mediarouter.app.f fVar = bVar.d;
-        Context context = bVar.f16543a;
+        androidx.mediarouter.app.g gVar = bVar.d;
+        Context context = bVar.f18002a;
         IntentFilter intentFilter = new IntentFilter("androidx.car.app.connection.action.CAR_CONNECTION_UPDATED");
         if (Build.VERSION.SDK_INT >= 33) {
-            context.registerReceiver(fVar, intentFilter, 2);
+            context.registerReceiver(gVar, intentFilter, 2);
         } else {
-            context.registerReceiver(fVar, intentFilter);
+            context.registerReceiver(gVar, intentFilter);
         }
         bVar.b();
     }

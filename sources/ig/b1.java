@@ -1,44 +1,61 @@
 package ig;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.f9;
-public final class b1 extends View {
-    public final Drawable f12860a;
-    public final ImageReceiver f12861b;
+import java.util.ArrayList;
+import java.util.Comparator;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class b1 implements Comparator {
+    public final ArrayList f14006a;
+    public final ArrayList f14007b;
 
-    public b1(c1 c1Var, Context context) {
-        super(context);
-        this.f12860a = getContext().getResources().getDrawable(R.drawable.map_pin_photo).mutate();
-        f9 f9Var = new f9((g6) null);
-        ImageReceiver imageReceiver = new ImageReceiver(this);
-        this.f12861b = imageReceiver;
-        f9Var.r(c1Var.getUserConfig().getCurrentUser());
-        imageReceiver.setForUserOrChat(c1Var.getUserConfig().getCurrentUser(), f9Var);
+    public b1(ArrayList arrayList, ArrayList arrayList2) {
+        this.f14006a = arrayList;
+        this.f14007b = arrayList2;
+    }
+
+    public final int a(i1 i1Var) {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            ArrayList arrayList = this.f14006a;
+            if (i11 >= arrayList.size()) {
+                while (true) {
+                    ArrayList arrayList2 = this.f14007b;
+                    if (i10 < Math.min(20, arrayList2.size())) {
+                        if (((TLRPC.Document) arrayList2.get(i10)).f22033id == i1Var.f14105a.f22033id) {
+                            return (arrayList2.size() - i10) + 1000000;
+                        }
+                        i10++;
+                    } else {
+                        return -1;
+                    }
+                }
+            } else if (((TLRPC.Document) arrayList.get(i11)).f22033id == i1Var.f14105a.f22033id) {
+                return i11 + 2000000;
+            } else {
+                i11++;
+            }
+        }
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int dp = AndroidUtilities.dp(62.0f);
-        int dp2 = AndroidUtilities.dp(85.0f);
-        Drawable drawable = this.f12860a;
-        drawable.setBounds(0, 0, dp, dp2);
-        drawable.draw(canvas);
-        int dp3 = AndroidUtilities.dp(62.0f);
-        ImageReceiver imageReceiver = this.f12861b;
-        imageReceiver.setRoundRadius(dp3);
-        imageReceiver.setImageCoords(AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f));
-        imageReceiver.draw(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(62.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(85.0f), 1073741824));
+    public final int compare(Object obj, Object obj2) {
+        i1 i1Var = (i1) obj;
+        i1 i1Var2 = (i1) obj2;
+        boolean isAnimatedStickerDocument = MessageObject.isAnimatedStickerDocument(i1Var.f14105a, true);
+        if (isAnimatedStickerDocument == MessageObject.isAnimatedStickerDocument(i1Var2.f14105a, true)) {
+            int a2 = a(i1Var);
+            int a10 = a(i1Var2);
+            if (a2 <= a10) {
+                if (a2 >= a10) {
+                    return 0;
+                }
+            } else {
+                return -1;
+            }
+        } else if (isAnimatedStickerDocument) {
+            return -1;
+        }
+        return 1;
     }
 }

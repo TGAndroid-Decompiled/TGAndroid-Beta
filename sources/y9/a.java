@@ -1,20 +1,45 @@
 package y9;
-public final class a implements ja.d {
-    public static final a f50528a = new Object();
-    public static final ja.c f50529b = ja.c.c("rolloutId");
-    public static final ja.c f50530c = ja.c.c("parameterKey");
-    public static final ja.c d = ja.c.c("parameterValue");
-    public static final ja.c e = ja.c.c("variantId");
-    public static final ja.c f50531f = ja.c.c("templateVersion");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        b bVar = (b) ((l) obj);
-        eVar.d(f50529b, bVar.f50532b);
-        eVar.d(f50530c, bVar.f50533c);
-        eVar.d(d, bVar.d);
-        eVar.d(e, bVar.e);
-        eVar.f(f50531f, bVar.f50534f);
+import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.os.Build;
+import java.util.ArrayList;
+public final class a {
+    public final String f52407a;
+    public final String f52408b;
+    public final ArrayList f52409c;
+    public final String d;
+    public final String e;
+    public final String f52410f;
+    public final String f52411g;
+    public final m4.c h;
+
+    public a(String str, String str2, ArrayList arrayList, String str3, String str4, String str5, String str6, m4.c cVar) {
+        this.f52407a = str;
+        this.f52408b = str2;
+        this.f52409c = arrayList;
+        this.d = str3;
+        this.e = str4;
+        this.f52410f = str5;
+        this.f52411g = str6;
+        this.h = cVar;
+    }
+
+    public static a a(Context context, v vVar, String str, String str2, ArrayList arrayList, m4.c cVar) {
+        String num;
+        String packageName = context.getPackageName();
+        String c10 = vVar.c();
+        PackageInfo packageInfo = context.getPackageManager().getPackageInfo(packageName, 0);
+        if (Build.VERSION.SDK_INT >= 28) {
+            num = Long.toString(packageInfo.getLongVersionCode());
+        } else {
+            num = Integer.toString(packageInfo.versionCode);
+        }
+        String str3 = num;
+        String str4 = packageInfo.versionName;
+        if (str4 == null) {
+            str4 = "0.0";
+        }
+        return new a(str, str2, arrayList, c10, packageName, str3, str4, cVar);
     }
 }

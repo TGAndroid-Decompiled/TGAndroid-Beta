@@ -1,28 +1,36 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class x5 implements RequestDelegate {
-    public final int f20119a;
-    public final LocationController f20120b;
+public final class x5 implements Runnable {
+    public final int f21801a;
+    public final LocationController f21802b;
 
     public x5(LocationController locationController, int i10) {
-        this.f20119a = i10;
-        this.f20120b = locationController;
+        this.f21801a = i10;
+        this.f21802b = locationController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f20119a) {
+    public final void run() {
+        switch (this.f21801a) {
             case 0:
-                this.f20120b.lambda$removeSharingLocation$19(tLObject, tL_error);
+                this.f21802b.lambda$onConnected$3();
                 return;
             case 1:
-                this.f20120b.lambda$removeAllLocationSharings$22(tLObject, tL_error);
+                this.f21802b.lambda$setProximityLocation$13();
+                return;
+            case 2:
+                this.f21802b.lambda$new$0();
+                return;
+            case 3:
+                this.f21802b.lambda$removeAllLocationSharings$23();
+                return;
+            case 4:
+                this.f21802b.lambda$removeAllLocationSharings$24();
+                return;
+            case 5:
+                this.f21802b.lambda$cleanup$9();
                 return;
             default:
-                this.f20120b.lambda$markLiveLoactionsAsRead$27(tLObject, tL_error);
+                this.f21802b.lambda$loadSharingLocations$17();
                 return;
         }
     }

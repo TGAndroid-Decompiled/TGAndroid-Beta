@@ -1,191 +1,137 @@
 package e6;
 
-import android.os.IBinder;
-import android.os.IInterface;
+import android.content.Context;
 import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.internal.cast.f0;
-import com.google.android.gms.internal.cast.h0;
-import com.google.android.gms.internal.cast.m0;
-import i2.o1;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-public final class f extends o6.a {
-    public static final Parcelable.Creator<f> CREATOR;
-    public static final m0 Y;
-    public static final int[] Z;
-    public final int E;
-    public final int F;
-    public final int G;
-    public final int H;
-    public final int I;
-    public final int J;
-    public final int K;
-    public final int L;
-    public final int M;
-    public final int N;
-    public final int O;
-    public final int P;
-    public final int Q;
-    public final int R;
-    public final int S;
-    public final int T;
-    public final int U;
-    public final p V;
-    public final boolean W;
-    public final boolean X;
-    public final ArrayList f8365a;
-    public final int[] f8366b;
-    public final long f8367c;
-    public final String d;
-    public final int e;
-    public final int f8368f;
-    public final int h;
-    public final int f8369n;
-    public final int f8370r;
-    public final int f8371s;
-    public final int v;
-    public final int f8372w;
-    public final int f8373x;
-    public final int f8374y;
+import android.os.RemoteException;
+public abstract class f {
+    public static final h6.b f9814b = new h6.b("Session", null);
+    public final x f9815a;
 
-    static {
-        f0 f0Var = h0.f6697b;
-        Object[] objArr = {"com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK", "com.google.android.gms.cast.framework.action.STOP_CASTING"};
-        for (int i10 = 0; i10 < 2; i10++) {
-            if (objArr[i10] == null) {
-                throw new NullPointerException(o1.k(i10, "at index "));
-            }
+    public f(Context context, String str, String str2) {
+        x xVar;
+        try {
+            xVar = com.google.android.gms.internal.cast.d.b(context).X0(str, str2, new j(this));
+        } catch (RemoteException | d e) {
+            com.google.android.gms.internal.cast.d.f6761a.a(e, "Unable to call %s on %s.", "newSessionImpl", com.google.android.gms.internal.cast.f.class.getSimpleName());
+            xVar = null;
         }
-        Y = h0.q(2, objArr);
-        Z = new int[]{0, 1};
-        CREATOR = new i(0);
+        this.f9815a = xVar;
     }
 
-    public f(List list, int[] iArr, long j10, String str, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17, int i18, int i19, int i20, int i21, int i22, int i23, int i24, int i25, int i26, int i27, int i28, int i29, int i30, int i31, int i32, int i33, int i34, int i35, int i36, IBinder iBinder, boolean z10, boolean z11) {
-        p aVar;
-        this.f8365a = new ArrayList(list);
-        this.f8366b = Arrays.copyOf(iArr, iArr.length);
-        this.f8367c = j10;
-        this.d = str;
-        this.e = i10;
-        this.f8368f = i11;
-        this.h = i12;
-        this.f8369n = i13;
-        this.f8370r = i14;
-        this.f8371s = i15;
-        this.v = i16;
-        this.f8372w = i17;
-        this.f8373x = i18;
-        this.f8374y = i19;
-        this.E = i20;
-        this.F = i21;
-        this.G = i22;
-        this.H = i23;
-        this.I = i24;
-        this.J = i25;
-        this.K = i26;
-        this.L = i27;
-        this.M = i28;
-        this.N = i29;
-        this.O = i30;
-        this.P = i31;
-        this.Q = i32;
-        this.R = i33;
-        this.S = i34;
-        this.T = i35;
-        this.U = i36;
-        this.W = z10;
-        this.X = z11;
-        if (iBinder == null) {
-            aVar = 0;
-        } else {
-            IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.cast.framework.media.INotificationActionsProvider");
-            if (queryLocalInterface instanceof p) {
-                aVar = (p) queryLocalInterface;
-            } else {
-                aVar = new a9.a(iBinder, "com.google.android.gms.cast.framework.media.INotificationActionsProvider", 1);
+    public final String a() {
+        o6.l.e("Must be called from the main thread.");
+        x xVar = this.f9815a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel P0 = vVar.P0(vVar.N0(), 3);
+                String readString = P0.readString();
+                P0.recycle();
+                return readString;
+            } catch (RemoteException e) {
+                f9814b.a(e, "Unable to call %s on %s.", "getSessionId", x.class.getSimpleName());
             }
         }
-        this.V = aVar;
+        return null;
     }
 
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        IBinder iBinder;
-        int q6 = w7.f0.q(parcel, 20293);
-        w7.f0.n(parcel, 2, this.f8365a);
-        int[] iArr = this.f8366b;
-        w7.f0.g(parcel, 3, Arrays.copyOf(iArr, iArr.length));
-        w7.f0.s(parcel, 4, 8);
-        parcel.writeLong(this.f8367c);
-        w7.f0.l(parcel, 5, this.d);
-        w7.f0.s(parcel, 6, 4);
-        parcel.writeInt(this.e);
-        w7.f0.s(parcel, 7, 4);
-        parcel.writeInt(this.f8368f);
-        w7.f0.s(parcel, 8, 4);
-        parcel.writeInt(this.h);
-        w7.f0.s(parcel, 9, 4);
-        parcel.writeInt(this.f8369n);
-        w7.f0.s(parcel, 10, 4);
-        parcel.writeInt(this.f8370r);
-        w7.f0.s(parcel, 11, 4);
-        parcel.writeInt(this.f8371s);
-        w7.f0.s(parcel, 12, 4);
-        parcel.writeInt(this.v);
-        w7.f0.s(parcel, 13, 4);
-        parcel.writeInt(this.f8372w);
-        w7.f0.s(parcel, 14, 4);
-        parcel.writeInt(this.f8373x);
-        w7.f0.s(parcel, 15, 4);
-        parcel.writeInt(this.f8374y);
-        w7.f0.s(parcel, 16, 4);
-        parcel.writeInt(this.E);
-        w7.f0.s(parcel, 17, 4);
-        parcel.writeInt(this.F);
-        w7.f0.s(parcel, 18, 4);
-        parcel.writeInt(this.G);
-        w7.f0.s(parcel, 19, 4);
-        parcel.writeInt(this.H);
-        w7.f0.s(parcel, 20, 4);
-        parcel.writeInt(this.I);
-        w7.f0.s(parcel, 21, 4);
-        parcel.writeInt(this.J);
-        w7.f0.s(parcel, 22, 4);
-        parcel.writeInt(this.K);
-        w7.f0.s(parcel, 23, 4);
-        parcel.writeInt(this.L);
-        w7.f0.s(parcel, 24, 4);
-        parcel.writeInt(this.M);
-        w7.f0.s(parcel, 25, 4);
-        parcel.writeInt(this.N);
-        w7.f0.s(parcel, 26, 4);
-        parcel.writeInt(this.O);
-        w7.f0.s(parcel, 27, 4);
-        parcel.writeInt(this.P);
-        w7.f0.s(parcel, 28, 4);
-        parcel.writeInt(this.Q);
-        w7.f0.s(parcel, 29, 4);
-        parcel.writeInt(this.R);
-        w7.f0.s(parcel, 30, 4);
-        parcel.writeInt(this.S);
-        w7.f0.s(parcel, 31, 4);
-        parcel.writeInt(this.T);
-        w7.f0.s(parcel, 32, 4);
-        parcel.writeInt(this.U);
-        p pVar = this.V;
-        if (pVar == null) {
-            iBinder = null;
-        } else {
-            iBinder = pVar.f317b;
+    public final boolean b() {
+        boolean z10;
+        o6.l.e("Must be called from the main thread.");
+        x xVar = this.f9815a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel P0 = vVar.P0(vVar.N0(), 5);
+                int i10 = com.google.android.gms.internal.cast.t.f6896a;
+                if (P0.readInt() != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                P0.recycle();
+                return z10;
+            } catch (RemoteException e) {
+                f9814b.a(e, "Unable to call %s on %s.", "isConnected", x.class.getSimpleName());
+            }
         }
-        w7.f0.f(parcel, 33, iBinder);
-        w7.f0.s(parcel, 34, 4);
-        parcel.writeInt(this.W ? 1 : 0);
-        w7.f0.s(parcel, 35, 4);
-        parcel.writeInt(this.X ? 1 : 0);
-        w7.f0.r(parcel, q6);
+        return false;
+    }
+
+    public final boolean c() {
+        boolean z10;
+        o6.l.e("Must be called from the main thread.");
+        x xVar = this.f9815a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel P0 = vVar.P0(vVar.N0(), 6);
+                int i10 = com.google.android.gms.internal.cast.t.f6896a;
+                if (P0.readInt() != 0) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                P0.recycle();
+                return z10;
+            } catch (RemoteException e) {
+                f9814b.a(e, "Unable to call %s on %s.", "isConnecting", x.class.getSimpleName());
+            }
+        }
+        return false;
+    }
+
+    public final void d(int i10) {
+        x xVar = this.f9815a;
+        if (xVar == null) {
+            return;
+        }
+        try {
+            v vVar = (v) xVar;
+            Parcel N0 = vVar.N0();
+            N0.writeInt(i10);
+            vVar.R0(N0, 13);
+        } catch (RemoteException e) {
+            f9814b.a(e, "Unable to call %s on %s.", "notifySessionEnded", x.class.getSimpleName());
+        }
+    }
+
+    public final int e() {
+        o6.l.e("Must be called from the main thread.");
+        x xVar = this.f9815a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel P0 = vVar.P0(vVar.N0(), 17);
+                int readInt = P0.readInt();
+                P0.recycle();
+                if (readInt >= 211100000) {
+                    v vVar2 = (v) xVar;
+                    Parcel P02 = vVar2.P0(vVar2.N0(), 18);
+                    int readInt2 = P02.readInt();
+                    P02.recycle();
+                    return readInt2;
+                }
+            } catch (RemoteException e) {
+                f9814b.a(e, "Unable to call %s on %s.", "getSessionStartType", x.class.getSimpleName());
+            }
+        }
+        return 0;
+    }
+
+    public final y6.a f() {
+        x xVar = this.f9815a;
+        if (xVar != null) {
+            try {
+                v vVar = (v) xVar;
+                Parcel P0 = vVar.P0(vVar.N0(), 1);
+                y6.a K0 = y6.b.K0(P0.readStrongBinder());
+                P0.recycle();
+                return K0;
+            } catch (RemoteException e) {
+                f9814b.a(e, "Unable to call %s on %s.", "getWrappedObject", x.class.getSimpleName());
+            }
+        }
+        return null;
     }
 }

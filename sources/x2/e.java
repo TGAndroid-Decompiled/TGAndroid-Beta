@@ -1,87 +1,118 @@
 package x2;
 
-import android.text.TextUtils;
-import b2.w;
-import e9.b0;
-import e9.s1;
-import e9.v1;
-import j$.util.Objects;
-public final class e extends l implements Comparable {
-    public final boolean E;
-    public final int F;
-    public final int G;
-    public final boolean H;
-    public final int I;
-    public final int J;
-    public final int K;
-    public final int L;
-    public final boolean M;
-    public final boolean N;
-    public final boolean O;
-    public final int e;
-    public final boolean f49583f;
-    public final String h;
-    public final i f49584n;
-    public final boolean f49585r;
-    public final int f49586s;
-    public final int v;
-    public final int f49587w;
-    public final int f49588x;
-    public final boolean f49589y;
+import android.view.View;
+import b2.q1;
+import bi.h0;
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.Task;
+import f9.f0;
+import f9.s1;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.concurrent.CountDownLatch;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.BillingController;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.e2;
+import r0.k1;
+import zh.i0;
+import zh.p1;
+public final class e implements l, Continuation, e2.j, ag.s, b2, r0.n, BillingController.ProductDetailsResponseListenerLegacy {
+    public final int f51310a;
+    public final Object f51311b;
 
-    public e(int r8, b2.p1 r9, int r10, x2.i r11, int r12, boolean r13, x2.d r14, int r15) {
-        throw new UnsupportedOperationException("Method not decompiled: x2.e.<init>(int, b2.p1, int, x2.i, int, boolean, x2.d, int):void");
+    public e(Object obj, int i10) {
+        this.f51310a = i10;
+        this.f51311b = obj;
     }
 
     @Override
-    public final int a() {
-        return this.e;
+    public k1 P0(View view, k1 k1Var) {
+        ((i0) this.f51311b).h.j(k1Var);
+        return k1.f47114b;
     }
 
     @Override
-    public final boolean b(l lVar) {
+    public s1 a(int i10, q1 q1Var, int[] iArr) {
+        j jVar = (j) this.f51311b;
+        f0 t10 = f9.i0.t();
+        for (int i11 = 0; i11 < q1Var.f3358a; i11++) {
+            t10.c(new g(i10, q1Var, i11, jVar, iArr[i11]));
+        }
+        return t10.f();
+    }
+
+    @Override
+    public void accept(Object obj) {
+        switch (this.f51310a) {
+            case 2:
+                z3.h hVar = (z3.h) this.f51311b;
+                z3.a aVar = (z3.a) obj;
+                z3.g gVar = new z3.g(aVar.f52640b, pa.d.f(aVar.f52639a, aVar.f52641c));
+                hVar.f52650c.add(gVar);
+                long j10 = hVar.f52654j;
+                if (j10 == -9223372036854775807L || aVar.d >= j10) {
+                    hVar.g(gVar);
+                    return;
+                }
+                return;
+            default:
+                ((f0) this.f51311b).c((z3.a) obj);
+                return;
+        }
+    }
+
+    @Override
+    public void f(long j10) {
+        ((zh.d) this.f51311b).a(j10, true);
+    }
+
+    @Override
+    public void h(e2 e2Var, int i10) {
+        ((h0) this.f51311b).run();
+    }
+
+    @Override
+    public void onProductDetailsResponse(d5.i iVar, List list) {
         int i10;
-        String str;
-        e eVar = (e) lVar;
-        w wVar = eVar.d;
-        this.f49584n.getClass();
-        w wVar2 = this.d;
-        int i11 = wVar2.K;
-        if (i11 != -1 && i11 == wVar.K) {
-            if ((this.f49589y || ((str = wVar2.f4135s) != null && TextUtils.equals(str, wVar.f4135s))) && (i10 = wVar2.L) != -1 && i10 == wVar.L && this.M == eVar.M && this.N == eVar.N) {
-                return true;
+        p1 p1Var = (p1) this.f51311b;
+        ArrayList arrayList = p1Var.f53198n0;
+        Iterator it = list.iterator();
+        long j10 = 0;
+        while (true) {
+            i10 = 0;
+            if (!it.hasNext()) {
+                break;
             }
-            return false;
+            d5.o oVar = (d5.o) it.next();
+            int size = arrayList.size();
+            while (true) {
+                if (i10 < size) {
+                    Object obj = arrayList.get(i10);
+                    i10++;
+                    tg.k kVar = (tg.k) obj;
+                    if (kVar.h() != null && kVar.h().equals(oVar.f8001c)) {
+                        kVar.h = oVar;
+                        if (kVar.f() > j10) {
+                            j10 = kVar.f();
+                        }
+                    }
+                }
+            }
         }
-        return false;
+        int size2 = arrayList.size();
+        while (i10 < size2) {
+            Object obj2 = arrayList.get(i10);
+            i10++;
+            ((tg.k) obj2).f48912g = j10;
+        }
+        AndroidUtilities.runOnUIThread(new ti.g(p1Var, 19));
     }
 
     @Override
-    public final int compareTo(e eVar) {
-        v1 a2;
-        boolean z10 = this.f49585r;
-        boolean z11 = this.f49583f;
-        if (z11 && z10) {
-            a2 = n.f49614l;
-        } else {
-            a2 = n.f49614l.a();
-        }
-        boolean z12 = eVar.f49585r;
-        int i10 = eVar.K;
-        b0 c10 = b0.f8422a.c(z10, z12);
-        Integer valueOf = Integer.valueOf(this.v);
-        Integer valueOf2 = Integer.valueOf(eVar.v);
-        s1 s1Var = s1.f8505c;
-        b0 b10 = c10.b(valueOf, valueOf2, s1Var).a(this.f49586s, eVar.f49586s).a(this.f49587w, eVar.f49587w).b(Integer.valueOf(this.f49588x), Integer.valueOf(eVar.f49588x), s1Var).c(this.H, eVar.H).c(this.E, eVar.E).b(Integer.valueOf(this.F), Integer.valueOf(eVar.F), s1Var).a(this.G, eVar.G).c(z11, eVar.f49583f).b(Integer.valueOf(this.L), Integer.valueOf(eVar.L), s1Var);
-        boolean z13 = this.f49584n.F;
-        int i11 = this.K;
-        if (z13) {
-            b10 = b10.b(Integer.valueOf(i11), Integer.valueOf(i10), n.f49614l.a());
-        }
-        b0 b11 = b10.c(this.M, eVar.M).c(this.N, eVar.N).c(this.O, eVar.O).b(Integer.valueOf(this.I), Integer.valueOf(eVar.I), a2).b(Integer.valueOf(this.J), Integer.valueOf(eVar.J), a2);
-        if (Objects.equals(this.h, eVar.h)) {
-            b11 = b11.b(Integer.valueOf(i11), Integer.valueOf(i10), a2);
-        }
-        return b11.e();
+    public Object then(Task task) {
+        ((CountDownLatch) this.f51311b).countDown();
+        return null;
     }
 }

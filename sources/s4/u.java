@@ -1,86 +1,79 @@
 package s4;
 
-import android.animation.Animator;
-import android.animation.ValueAnimator;
+import android.graphics.Rect;
 import android.view.View;
-import ci.u4;
-public final class u implements Animator.AnimatorListener {
-    public final b1 E;
-    public final y F;
-    public final float f46462a;
-    public final float f46463b;
-    public final float f46464c;
-    public final float d;
-    public final b1 e;
-    public final int f46465f;
-    public final ValueAnimator h;
-    public boolean f46466n;
-    public float f46467r;
-    public float f46468s;
-    public boolean v = false;
-    public boolean f46469w = false;
-    public float f46470x;
-    public final int f46471y;
+import android.view.ViewGroup;
+import java.util.ArrayList;
+public abstract class u extends t {
+    public final ArrayList Q;
+    public boolean R;
 
-    public u(y yVar, b1 b1Var, int i10, float f7, float f10, float f11, float f12, int i11, b1 b1Var2) {
-        this.F = yVar;
-        this.f46471y = i11;
-        this.E = b1Var2;
-        this.f46465f = i10;
-        this.e = b1Var;
-        this.f46462a = f7;
-        this.f46463b = f10;
-        this.f46464c = f11;
-        this.d = f12;
-        ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
-        this.h = ofFloat;
-        ofFloat.addUpdateListener(new u4(this, 11));
-        ofFloat.setTarget(b1Var.f46342a);
-        ofFloat.addListener(this);
-        this.f46470x = 0.0f;
+    public u(boolean z10) {
+        super(1000, z10);
+        this.Q = new ArrayList(4);
+        this.R = true;
     }
 
-    public final void a(Animator animator) {
-        if (!this.f46469w) {
-            this.e.q(true);
-        }
-        this.f46469w = true;
+    public abstract boolean C1(int i10);
+
+    public abstract boolean D1(View view);
+
+    @Override
+    public final void Z0(rf.e r22, s4.b1 r23, s4.a0 r24, k2.l r25) {
+        throw new UnsupportedOperationException("Method not decompiled: s4.u.Z0(rf.e, s4.b1, s4.a0, k2.l):void");
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        this.f46470x = 1.0f;
+    public final boolean e() {
+        return this.R;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        a(animator);
-        if (!this.v) {
-            int i10 = this.f46471y;
-            b1 b1Var = this.E;
-            y yVar = this.F;
-            if (i10 <= 0) {
-                yVar.f46496x.a(yVar.H, b1Var);
-            } else {
-                yVar.f46488a.add(b1Var.f46342a);
-                this.f46466n = true;
-                if (i10 > 0) {
-                    yVar.H.post(new j9.u(yVar, this, i10));
+    public final void e1(rf.e eVar, int i10, int i11) {
+        if (i10 >= 0) {
+            int r6 = r();
+            if (this.v) {
+                int i12 = r6 - 1;
+                for (int i13 = i12; i13 >= 0; i13--) {
+                    View q5 = q(i13);
+                    if (q5.getBottom() + ((ViewGroup.MarginLayoutParams) ((q0) q5.getLayoutParams())).bottomMargin <= i10) {
+                        if (q5.getHeight() + q5.getTop() <= i10) {
+                        }
+                    }
+                    d1(eVar, i12, i13);
+                    return;
                 }
+                return;
             }
-            View view = yVar.M;
-            View view2 = b1Var.f46342a;
-            if (view == view2) {
-                yVar.o(view2);
+            for (int i14 = 0; i14 < r6; i14++) {
+                View q9 = q(i14);
+                if (q9.getBottom() + ((ViewGroup.MarginLayoutParams) ((q0) q9.getLayoutParams())).bottomMargin <= i10) {
+                    if (q9.getHeight() + q9.getTop() <= i10) {
+                    }
+                }
+                d1(eVar, 0, i14);
+                return;
             }
         }
     }
 
     @Override
-    public final void onAnimationRepeat(Animator animator) {
+    public final int[] r1(int i10, int i11, int[] iArr) {
+        if (iArr == null || iArr.length != i10 + 1 || iArr[iArr.length - 1] != i11) {
+            iArr = new int[i10 + 1];
+        }
+        iArr[0] = 0;
+        for (int i12 = 1; i12 <= i10; i12++) {
+            iArr[i12] = (int) Math.ceil((i12 / i10) * i11);
+        }
+        return iArr;
     }
 
     @Override
-    public final void onAnimationStart(Animator animator) {
+    public final void x1(View view, int i10, boolean z10) {
+        s sVar = (s) view.getLayoutParams();
+        Rect rect = sVar.f47830b;
+        int i11 = rect.top + rect.bottom + ((ViewGroup.MarginLayoutParams) sVar).topMargin + ((ViewGroup.MarginLayoutParams) sVar).bottomMargin;
+        y1(p0.s(false, this.K[sVar.f47836f], i10, rect.left + rect.right + ((ViewGroup.MarginLayoutParams) sVar).leftMargin + ((ViewGroup.MarginLayoutParams) sVar).rightMargin, ((ViewGroup.MarginLayoutParams) sVar).width), p0.s(true, this.f47707q.k(), this.f47823l, i11, ((ViewGroup.MarginLayoutParams) sVar).height), view, z10);
     }
 }

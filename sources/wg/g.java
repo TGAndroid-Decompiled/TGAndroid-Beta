@@ -1,164 +1,148 @@
 package wg;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
-import ci.k4;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
+import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.u9;
-import w7.z5;
-public final class g extends c implements b6 {
-    public final ImageView f49418s;
-    public f v;
-    public TLRPC.Chat f49419w;
-    public boolean f49420x;
-    public int f49421y;
+import vg.c1;
+public final class g extends qg.a {
+    public TLRPC.User f51182c;
+    public TLRPC.InputPeer d;
+    public TLRPC.Chat e;
+    public TLRPC.TL_help_country f51183f;
+    public CharSequence f51184g;
+    public CharSequence h;
+    public int f51185i;
+    public int f51186j;
+    public boolean f51187k;
+    public int f51188l;
+    public org.telegram.ui.web.c f51189m;
+    public org.telegram.ui.web.c f51190n;
+    public c1 f51191o;
+    public c1 f51192p;
+    public View f51193q;
+    public Drawable f51194r;
 
-    public g(Context context, g6 g6Var) {
-        super(context, g6Var);
-        int i10;
-        float f7;
-        float f10;
-        float f11;
-        this.d.setTypeface(AndroidUtilities.bold());
-        ImageView imageView = new ImageView(context);
-        this.f49418s = imageView;
-        imageView.setFocusable(false);
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        int x02 = k6.x0(null, k6.Vh, false);
-        this.f49421y = x02;
-        imageView.setBackground(k6.g0(x02, 1, -1));
-        imageView.setImageResource(R.drawable.poll_remove);
-        r6.t(imageView, k6.f21347m6, null, PorterDuff.Mode.MULTIPLY);
-        imageView.setContentDescription(LocaleController.getString(R.string.Delete));
-        boolean z10 = LocaleController.isRTL;
-        if (z10) {
-            i10 = 3;
-        } else {
-            i10 = 5;
-        }
-        int i11 = i10 | 17;
-        if (z10) {
-            f7 = 3.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        if (z10) {
-            f10 = 0.0f;
-        } else {
-            f10 = 3.0f;
-        }
-        addView(imageView, z5.d(48, 50.0f, i11, f7, 0.0f, f10, 0.0f));
-        k4 k4Var = this.d;
-        if (LocaleController.isRTL) {
-            f11 = 24.0f;
-        } else {
-            f11 = 0.0f;
-        }
-        k4Var.setPadding(AndroidUtilities.dp(f11), 0, AndroidUtilities.dp(LocaleController.isRTL ? 0.0f : 24.0f), 0);
+    public g(int i10, boolean z10) {
+        super(i10, z10);
+        this.f51188l = -1;
+    }
+
+    public static g b(CharSequence charSequence) {
+        g gVar = new g(8, false);
+        gVar.f51184g = charSequence;
+        return gVar;
+    }
+
+    public static g c(TLRPC.User user, boolean z10) {
+        g gVar = new g(3, true);
+        gVar.f51182c = user;
+        gVar.d = null;
+        gVar.e = null;
+        gVar.f51187k = z10;
+        return gVar;
     }
 
     @Override
-    public final boolean b() {
-        return false;
-    }
-
-    public final void f(TLRPC.Chat chat, int i10, boolean z10, int i11) {
-        String str;
-        int i12;
-        String string;
-        String str2;
-        this.f49420x = z10;
-        this.f49419w = chat;
-        f9 f9Var = this.f49399b;
-        f9Var.q(chat);
-        int dp = AndroidUtilities.dp(20.0f);
-        u9 u9Var = this.f49400c;
-        u9Var.setRoundRadius(dp);
-        u9Var.e(chat, f9Var);
-        String str3 = chat.title;
-        k4 k4Var = this.d;
-        k4Var.k(Emoji.replaceEmoji(str3, k4Var.getPaint().getFontMetricsInt(), false));
-        boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(chat);
-        if (z10) {
-            if (i11 >= 1) {
-                if (isChannelAndNotMegaGroup) {
-                    str2 = "Subscribers";
-                } else {
-                    str2 = "Members";
+    public final boolean a(qg.a aVar) {
+        boolean z10;
+        boolean z11;
+        if (this != aVar) {
+            if (g.class == aVar.getClass()) {
+                g gVar = (g) aVar;
+                if (this.f51187k == gVar.f51187k) {
+                    if (this.f47037a == 8) {
+                        if (TextUtils.equals(this.h, gVar.h)) {
+                            if (this.f51189m == null) {
+                                z10 = true;
+                            } else {
+                                z10 = false;
+                            }
+                            if (gVar.f51189m == null) {
+                                z11 = true;
+                            } else {
+                                z11 = false;
+                            }
+                            if (z10 == z11) {
+                            }
+                        }
+                    }
                 }
-                string = LocaleController.formatPluralString(str2, i11, new Object[0]);
-            } else {
-                if (isChannelAndNotMegaGroup) {
-                    i12 = R.string.DiscussChannel;
-                } else {
-                    i12 = R.string.AccDescrGroup;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        long j10;
+        if (this != obj) {
+            if (obj != null && g.class == obj.getClass()) {
+                g gVar = (g) obj;
+                int i10 = this.f47037a;
+                if (i10 == gVar.f47037a) {
+                    if (i10 != -1 || this.f51188l == gVar.f51188l) {
+                        if (i10 == 3) {
+                            TLRPC.User user = this.f51182c;
+                            long j11 = 0;
+                            if (user != null) {
+                                j10 = user.f22174id;
+                            } else {
+                                TLRPC.Chat chat = this.e;
+                                if (chat != null) {
+                                    j10 = -chat.f22027id;
+                                } else {
+                                    TLRPC.InputPeer inputPeer = this.d;
+                                    if (inputPeer != null) {
+                                        j10 = DialogObject.getPeerDialogId(inputPeer);
+                                    } else {
+                                        j10 = 0;
+                                    }
+                                }
+                            }
+                            TLRPC.User user2 = gVar.f51182c;
+                            if (user2 != null) {
+                                j11 = user2.f22174id;
+                            } else {
+                                TLRPC.Chat chat2 = gVar.e;
+                                if (chat2 != null) {
+                                    j11 = -chat2.f22027id;
+                                } else {
+                                    TLRPC.InputPeer inputPeer2 = gVar.d;
+                                    if (inputPeer2 != null) {
+                                        j11 = DialogObject.getPeerDialogId(inputPeer2);
+                                    }
+                                }
+                            }
+                            if (j10 != j11) {
+                                return false;
+                            }
+                        }
+                        int i11 = this.f47037a;
+                        if (i11 != 6 || this.f51183f == gVar.f51183f) {
+                            if (i11 != 7 || TextUtils.equals(this.f51184g, gVar.f51184g)) {
+                                if (this.f47037a != 8 || TextUtils.equals(this.f51184g, gVar.f51184g)) {
+                                    if (this.f47037a != 9 || (TextUtils.equals(this.f51184g, gVar.f51184g) && this.f51185i == gVar.f51185i && this.f51186j == gVar.f51186j)) {
+                                        if (this.f47037a != 10 || this.f51193q == gVar.f51193q) {
+                                            return true;
+                                        }
+                                        return false;
+                                    }
+                                    return false;
+                                }
+                                return false;
+                            }
+                            return false;
+                        }
+                        return false;
+                    }
+                    return false;
                 }
-                string = LocaleController.getString(i12);
+                return false;
             }
-            setSubtitle(string);
-        } else {
-            if (isChannelAndNotMegaGroup) {
-                str = "BoostingChannelWillReceiveBoost";
-            } else {
-                str = "BoostingGroupWillReceiveBoost";
-            }
-            setSubtitle(LocaleController.formatPluralString(str, i10, new Object[0]));
+            return false;
         }
-        r6.Z(this.e, k6.f21440r5, this.f49398a);
-        setDivider(true);
-        ImageView imageView = this.f49418s;
-        if (z10) {
-            imageView.setVisibility(0);
-        } else {
-            imageView.setVisibility(4);
-        }
-        imageView.setOnClickListener(new org.telegram.ui.web.c(9, this, chat));
-    }
-
-    public TLRPC.Chat getChat() {
-        return this.f49419w;
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f49418s.measure(View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(48.0f), 1073741824));
-    }
-
-    public void setChatDeleteListener(f fVar) {
-        this.v = fVar;
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            int x02 = k6.x0(null, k6.Vh, false);
-            ImageView imageView = this.f49418s;
-            if (imageView != null && x02 != this.f49421y) {
-                this.f49421y = x02;
-                k6.E1(imageView.getBackground(), x02, true);
-                imageView.invalidate();
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+        return true;
     }
 }

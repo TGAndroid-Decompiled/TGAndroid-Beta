@@ -1,4 +1,24 @@
 package sg;
-public abstract class m {
-    public static final String[] f46752a = {"Hello", "Привіт", "Привет", "Bonjour", "Hola", "Ciao", "Olá", "여보세요", "你好", "Salve", "Sveiki", "Halo", "გამარჯობა", "Hallå", "Salam", "Tere", "Dia dhuit", "こんにちは", "Сайн уу", "Bongu", "Ahoj", "γεια", "Zdravo", "नमस्ते", "Habari", "Hallo", "ជំរាបសួរ", "مرحبًا", "ನಮಸ್ಕಾರ", "Салам", "Silav li wir", "سڵاو", "Kif inti", "Talofa", "Thobela", "हॅलो", "ሰላም", "Здраво", "ഹലോ", "ہیلو", "ꯍꯦꯜꯂꯣ", "Alô", "வணக்கம்", "Mhoro", "Moni", "Alo", "สวัสดี", "Salom", "Բարեւ"};
+
+import org.telegram.ui.nt0;
+public final class m implements q0.a {
+    public final int f48300a;
+    public final nt0 f48301b;
+
+    public m(nt0 nt0Var, int i10) {
+        this.f48300a = i10;
+        this.f48301b = nt0Var;
+    }
+
+    @Override
+    public final void accept(Object obj) {
+        switch (this.f48300a) {
+            case 0:
+                n0.X(this.f48301b, (Integer) obj);
+                return;
+            default:
+                n0.a0(this.f48301b, (Integer) obj);
+                return;
+        }
+    }
 }

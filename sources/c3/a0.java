@@ -1,106 +1,41 @@
 package c3;
+public final class a0 {
+    public final c0 f6002a;
+    public final c0 f6003b;
 
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.regex.Pattern;
-import si.o0;
-import v7.u6;
-public final class a0 implements z3.m {
-    public final e2.x f4565a;
+    public a0(c0 c0Var, c0 c0Var2) {
+        this.f6002a = c0Var;
+        this.f6003b = c0Var2;
+    }
 
-    public a0(int i10) {
-        switch (i10) {
-            case 1:
-                this.f4565a = new e2.x();
-                return;
-            default:
-                this.f4565a = new e2.x(10);
-                return;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-    }
-
-    @Override
-    public z3.d a(int i10, int i11, byte[] bArr) {
-        return o0.a(this, bArr, i11);
-    }
-
-    public b2.t0 b(c3.r r12, q3.g r13, int r14) {
-        throw new UnsupportedOperationException("Method not decompiled: c3.a0.b(c3.r, q3.g, int):b2.t0");
-    }
-
-    @Override
-    public int c() {
-        return 2;
-    }
-
-    @Override
-    public void f(byte[] bArr, int i10, int i11, z3.l lVar, e2.j jVar) {
-        boolean z10;
-        d2.b a2;
-        boolean z11;
-        e2.x xVar = this.f4565a;
-        xVar.L(i10 + i11, bArr);
-        xVar.N(i10);
-        ArrayList arrayList = new ArrayList();
-        while (xVar.a() > 0) {
-            if (xVar.a() >= 8) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            u6.f("Incomplete Mp4Webvtt Top Level box header found.", z10);
-            int m10 = xVar.m();
-            if (xVar.m() == 1987343459) {
-                int i12 = m10 - 8;
-                CharSequence charSequence = null;
-                d2.a aVar = null;
-                while (i12 > 0) {
-                    if (i12 >= 8) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    u6.f("Incomplete vtt cue box header found.", z11);
-                    int m11 = xVar.m();
-                    int m12 = xVar.m();
-                    int i13 = m11 - 8;
-                    byte[] bArr2 = xVar.f8298a;
-                    int i14 = xVar.f8299b;
-                    String str = e2.m0.f8259a;
-                    String str2 = new String(bArr2, i14, i13, StandardCharsets.UTF_8);
-                    xVar.O(i13);
-                    i12 = (i12 - 8) - i13;
-                    if (m12 == 1937011815) {
-                        i4.g gVar = new i4.g();
-                        i4.h.e(str2, gVar);
-                        aVar = gVar.a();
-                    } else if (m12 == 1885436268) {
-                        charSequence = i4.h.f(null, str2.trim(), Collections.EMPTY_LIST);
-                    }
-                }
-                if (charSequence == null) {
-                    charSequence = "";
-                }
-                if (aVar != null) {
-                    aVar.f7744a = charSequence;
-                    aVar.f7745b = null;
-                    a2 = aVar.a();
-                } else {
-                    Pattern pattern = i4.h.f12731a;
-                    i4.g gVar2 = new i4.g();
-                    gVar2.f12725c = charSequence;
-                    a2 = gVar2.a().a();
-                }
-                arrayList.add(a2);
-            } else {
-                xVar.O(m10 - 8);
+        if (obj != null && a0.class == obj.getClass()) {
+            a0 a0Var = (a0) obj;
+            if (this.f6002a.equals(a0Var.f6002a) && this.f6003b.equals(a0Var.f6003b)) {
+                return true;
             }
         }
-        jVar.accept(new z3.a(-9223372036854775807L, -9223372036854775807L, arrayList));
+        return false;
     }
 
-    @Override
-    public void reset() {
+    public final int hashCode() {
+        return this.f6003b.hashCode() + (this.f6002a.hashCode() * 31);
+    }
+
+    public final String toString() {
+        String str;
+        StringBuilder sb2 = new StringBuilder("[");
+        c0 c0Var = this.f6002a;
+        sb2.append(c0Var);
+        c0 c0Var2 = this.f6003b;
+        if (c0Var.equals(c0Var2)) {
+            str = "";
+        } else {
+            str = ", " + c0Var2;
+        }
+        return a1.g.s(sb2, str, "]");
     }
 }

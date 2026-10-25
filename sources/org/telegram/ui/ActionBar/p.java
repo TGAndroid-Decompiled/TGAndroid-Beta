@@ -1,190 +1,107 @@
 package org.telegram.ui.ActionBar;
 
-import ai.db;
 import android.content.DialogInterface;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
+import android.view.KeyEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
-import android.view.animation.AnimationUtils;
-import java.util.concurrent.CountDownLatch;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.tl;
-import org.telegram.ui.Components.j8;
-public final class p implements Runnable {
-    public final int f21746a;
-    public final Object f21747b;
+public final class p implements r0.n, m1, b2 {
+    public final int f22921a;
+    public final Object f22922b;
 
     public p(Object obj, int i10) {
-        this.f21746a = i10;
-        this.f21747b = obj;
+        this.f22921a = i10;
+        this.f22922b = obj;
     }
 
     @Override
-    public final void run() {
-        int dp;
-        DialogInterface.OnDismissListener onDismissListener;
-        DialogInterface.OnDismissListener onDismissListener2;
-        int i10 = this.f21746a;
-        Object obj = this.f21747b;
+    public r0.k1 P0(View view, r0.k1 k1Var) {
+        int i10 = this.f22921a;
+        int i11 = 0;
+        Object obj = this.f22922b;
         switch (i10) {
             case 0:
-                Drawable drawable = ActionBarLayout.f20611v1;
-                AndroidUtilities.runOnUIThread((db) obj);
-                return;
+                ActionBarLayout actionBarLayout = (ActionBarLayout) obj;
+                Drawable drawable = ActionBarLayout.f22298v1;
+                i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+                i0.b defaultWindowInsets2 = AndroidUtilities.getDefaultWindowInsets(k1Var, true);
+                actionBarLayout.f22345t1 = defaultWindowInsets;
+                actionBarLayout.f22347u1 = defaultWindowInsets2;
+                actionBarLayout.f22343s1 = k1Var;
+                int childCount = actionBarLayout.getChildCount();
+                while (i11 < childCount) {
+                    actionBarLayout.o(actionBarLayout.getChildAt(i11), k1Var);
+                    i11++;
+                }
+                return r0.k1.f47114b;
             case 1:
-                u0 u0Var = (u0) obj;
-                if (u0Var.getParent() != null) {
-                    u0Var.getParent().requestDisallowInterceptTouchEvent(true);
-                }
-                u0Var.M(null, null);
-                return;
             case 2:
-                ((t0) obj).setSelectedForDelete(false);
-                return;
-            case 3:
-                b1 b1Var = (b1) obj;
-                b1Var.W = true;
-                AndroidUtilities.makeGlobalBlurBitmap(new w0(b1Var, 0), 8.0f);
-                return;
             case 4:
-                ((o1) obj).c();
-                return;
-            case 5:
-                View view = (View) obj;
-                if (view instanceof o5) {
-                    o5 o5Var = (o5) view;
-                    if (!o5Var.f21743a) {
-                        o5Var.f21743a = true;
-                        o5Var.invalidate();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 6:
-                y1 y1Var = (y1) obj;
-                c2 c2Var = y1Var.d;
-                int i11 = AndroidUtilities.displaySize.x;
-                c2Var.L = i11;
-                int dp2 = i11 - AndroidUtilities.dp(56.0f);
-                if (AndroidUtilities.isTablet()) {
-                    if (AndroidUtilities.isSmallTablet()) {
-                        dp = AndroidUtilities.dp(446.0f);
-                    } else {
-                        dp = AndroidUtilities.dp(496.0f);
-                    }
-                } else {
-                    dp = AndroidUtilities.dp(356.0f);
-                }
-                int min = Math.min(dp, dp2);
-                Rect rect = c2Var.C0;
-                int i12 = min + rect.left + rect.right;
-                if (c2Var.Z0) {
-                    ViewGroup.LayoutParams layoutParams = y1Var.getLayoutParams();
-                    if (layoutParams != null && layoutParams.width != i12) {
-                        layoutParams.width = i12;
-                        y1Var.requestLayout();
-                        return;
-                    }
-                    return;
-                }
-                Window window = c2Var.getWindow();
-                WindowManager.LayoutParams layoutParams2 = new WindowManager.LayoutParams();
-                layoutParams2.copyFrom(window.getAttributes());
-                layoutParams2.width = i12;
-                try {
-                    window.setAttributes(layoutParams2);
-                    return;
-                } catch (Throwable th2) {
-                    FileLog.e(th2);
-                    return;
-                }
-            case 7:
-                g2 g2Var = (g2) obj;
-                g2Var.f20906o1.setVisibility(0);
-                g2Var.f20908q1.setAlpha(0.0f);
-                g2Var.f20907p1.startAnimation(AnimationUtils.loadAnimation(g2Var.getContext(), g2Var.f20904m1));
-                g2Var.f20908q1.animate().setDuration(300L).alpha(1.0f).setListener(new d2(g2Var, 0)).start();
-                return;
-            case 8:
-                h3 h3Var = (h3) ((y2) obj).f21976c;
-                onDismissListener = h3Var.onHideListener;
-                if (onDismissListener != null) {
-                    onDismissListener2 = h3Var.onHideListener;
-                    onDismissListener2.onDismiss(h3Var);
-                }
-                try {
-                    h3Var.dismissInternal();
-                    return;
-                } catch (Exception e) {
-                    FileLog.e(e);
-                    return;
-                }
-            case 9:
-                x2 x2Var = (x2) obj;
-                x2Var.getClass();
-                try {
-                    x2Var.f21957b.dismissInternal();
-                    return;
-                } catch (Exception e7) {
-                    FileLog.e(e7);
-                    return;
-                }
-            case 10:
-                w3 w3Var = (w3) obj;
-                if (w3Var.mo36getWindowView() != null) {
-                    w3Var.mo36getWindowView().setDrawingFromOverlay(true);
-                    return;
-                }
-                return;
-            case 11:
-                ((z3) obj).f();
-                return;
-            case 12:
-                y4 y4Var = (y4) ((e2) obj).f20847b;
-                y4Var.k();
-                y4Var.j();
-                return;
-            case 13:
-                y4 y4Var2 = ((v4) obj).f21929b;
-                y4Var2.f21994c.dismiss();
-                y4Var2.f21995f.removeAllViews();
-                return;
-            case 14:
-                ((v4) obj).f21929b.f21994c.dismiss();
-                return;
-            case 15:
-                Drawable drawable2 = (Drawable) obj;
-                k6.d = null;
-                k6.O();
-                if (!k6.f21138b) {
-                    k6.i(drawable2);
-                    k6.h(drawable2);
-                }
-                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
-                return;
-            case 16:
-                ((CountDownLatch) obj).countDown();
-                return;
-            case 17:
-                tl.o(1, (o2) obj);
-                return;
-            case 18:
-                j8 j8Var = (j8) k6.f21200e5.remove((MessageObject) obj);
-                if (j8Var != null) {
-                    j8Var.f27609i = null;
-                    return;
-                }
-                return;
             default:
-                ((j6) obj).s();
-                return;
+                d4 d4Var = (d4) obj;
+                d4Var.e = k1Var;
+                i0.b defaultWindowInsets3 = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+                i0.b defaultWindowInsets4 = AndroidUtilities.getDefaultWindowInsets(k1Var, true);
+                if (!d4Var.f22542f.equals(defaultWindowInsets3) || !d4Var.h.equals(defaultWindowInsets4)) {
+                    AndroidUtilities.statusBarHeight = defaultWindowInsets3.f13451b;
+                    AndroidUtilities.navigationBarHeight = defaultWindowInsets3.d;
+                    d4Var.f22542f = defaultWindowInsets3;
+                    d4Var.h = defaultWindowInsets4;
+                    d4Var.requestLayout();
+                }
+                int childCount2 = d4Var.getChildCount();
+                while (i11 < childCount2) {
+                    View childAt = d4Var.getChildAt(i11);
+                    if ((childAt instanceof ActionBarLayout) || childAt.getTag() == null) {
+                        r0.i0.b(childAt, k1Var);
+                    }
+                    i11++;
+                }
+                d4Var.invalidate();
+                return r0.k1.f47114b;
+            case 3:
+                r0.h1 h1Var = k1Var.f47115a;
+                FrameLayout frameLayout = (FrameLayout) obj;
+                Rect rect = new Rect();
+                if (Build.VERSION.SDK_INT >= 30) {
+                    i0.b f7 = h1Var.f(527);
+                    rect.set(f7.f13450a, f7.f13451b, f7.f13452c, f7.d);
+                } else {
+                    rect.set(h1Var.i().f13450a, h1Var.i().f13451b, h1Var.i().f13452c, h1Var.i().d);
+                }
+                frameLayout.setPadding(rect.left, rect.top, rect.right, rect.bottom + AndroidUtilities.navigationBarHeight);
+                frameLayout.requestLayout();
+                return k1Var;
+            case 5:
+                return ((k3) obj).onApplyWindowInsetsToRoot(view, k1Var);
+            case 6:
+                b4 b4Var = (b4) obj;
+                b4Var.f22444s = k1Var.f47115a.f(2).d;
+                b4Var.invalidate();
+                return r0.k1.f47114b;
+        }
+    }
+
+    @Override
+    public void h(e2 e2Var, int i10) {
+        e2 e2Var2 = (e2) this.f22922b;
+        DialogInterface.OnCancelListener onCancelListener = e2Var2.J;
+        if (onCancelListener != null) {
+            onCancelListener.onCancel(e2Var2);
+        }
+        e2Var2.dismiss();
+    }
+
+    @Override
+    public void n(KeyEvent keyEvent) {
+        o1 o1Var;
+        w0 w0Var = (w0) this.f22922b;
+        w0Var.getClass();
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0 && (o1Var = w0Var.d) != null && o1Var.isShowing()) {
+            w0Var.d.d(true);
         }
     }
 }

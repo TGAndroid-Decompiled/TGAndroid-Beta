@@ -1,23 +1,95 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.NotificationCenter;
-public final class a2 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f17894a;
-    public final Object f17895b;
+import org.telegram.messenger.ContactsController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.SvgHelper;
+public final class a2 implements Runnable {
+    public final int f19583a;
 
-    public a2(Object obj, int i10) {
-        this.f17894a = i10;
-        this.f17895b = obj;
+    public a2(int i10) {
+        this.f19583a = i10;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object[] objArr) {
-        switch (this.f17894a) {
+    public final void run() {
+        switch (this.f19583a) {
             case 0:
-                ContactsLoadingObserver.a((ContactsLoadingObserver) this.f17895b, i10, i11, objArr);
+                ContactsController.MyContentObserver.lambda$new$0();
+                return;
+            case 1:
+                MediaController.GalleryObserverExternal.lambda$onChange$0();
+                return;
+            case 2:
+                AppStartReceiver.a();
+                return;
+            case 3:
+                ApplicationLoader.lambda$new$1();
+                return;
+            case 4:
+                NotificationCenter.sanitize();
+                return;
+            case 5:
+                FileLog.dumpANR();
+                return;
+            case 6:
+                ApplicationLoader.startPushService();
+                return;
+            case 7:
+                ApplicationLoader.lambda$initPushServices$2();
+                return;
+            case 8:
+                BotGuardHelper.a();
+                return;
+            case 9:
+                Emoji.lambda$static$0();
+                return;
+            case 10:
+                KeepAliveJob.b();
+                return;
+            case 11:
+                KeepAliveJob.a();
+                return;
+            case 12:
+                LiteMode.getValue(false);
+                return;
+            case 13:
+                LiteMode.queryBatteryLevel();
+                return;
+            case 14:
+                LocaleController.lambda$applyLanguage$9();
+                return;
+            case 15:
+                LocationController.lambda$setLastKnownLocation$10();
+                return;
+            case 16:
+                LocationSharingService.lambda$onCreate$0();
+                return;
+            case 17:
+                MediaDataController.lambda$cleanup$1();
+                return;
+            case 18:
+                org.telegram.ui.ActionBar.y6.E(false);
+                return;
+            case 19:
+                NotificationCenter.lambda$listen$3();
+                return;
+            case 20:
+                NotificationsController.lambda$dismissNotification$38();
+                return;
+            case 21:
+                SharedConfig.saveConfig();
+                return;
+            case 22:
+                SharedConfig.lambda$checkSdCard$0();
+                return;
+            case 23:
+                SharedConfig.lambda$checkSdCard$2();
+                return;
+            case 24:
+                SharedConfig.lambda$checkSaveToGalleryFiles$5();
                 return;
             default:
-                ((TelegramMediaSession) this.f17895b).lambda$new$0(i10, i11, objArr);
+                SvgHelper.SvgDrawable.shiftRunnable = null;
                 return;
         }
     }

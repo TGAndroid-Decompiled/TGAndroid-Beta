@@ -1,35 +1,100 @@
 package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-public final class u01 extends ReplacementSpan {
-    public float f30959a;
-    public final String f30960b;
-    public final int f30961c;
-    public final Paint d;
+public final class u01 extends FrameLayout {
+    public final w01 f33195a;
+    public boolean f33196b;
+    public boolean f33197c;
+    public boolean d;
 
-    public u01(int i10, Paint paint, String str) {
-        this.f30960b = str;
-        this.f30961c = i10;
-        this.d = paint;
+    public u01(w01 w01Var, View view, boolean z10) {
+        super(w01Var.getContext());
+        this.f33195a = w01Var;
+        setWillNotDraw(false);
+        if (!z10) {
+            setPadding(AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f), AndroidUtilities.dp(12.66f), AndroidUtilities.dp(9.33f));
+        }
+        addView(view, gb1.g(-1.0f, -1));
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        float f10 = (i12 + i14) / 2.0f;
-        paint.setColor(this.f30961c);
-        float dp = AndroidUtilities.dp(19.0f) / 2.0f;
-        canvas.drawRoundRect(f7, f10 - dp, f7 + this.f30959a + AndroidUtilities.dp(11.33f), f10 + dp, dp, dp, this.d);
-        canvas.drawText(this.f30960b, AndroidUtilities.dpf2(5.66f) + f7, i14 - AndroidUtilities.dp(6.0f), paint);
+    public final void onDraw(Canvas canvas) {
+        Canvas canvas2;
+        float f7;
+        float f10;
+        float f11;
+        float f12;
+        boolean z10 = this.f33197c;
+        w01 w01Var = this.f33195a;
+        if (z10 || this.d) {
+            canvas2 = canvas;
+            float dp = AndroidUtilities.dp(10.0f);
+            float[] fArr = w01Var.f34320c;
+            boolean z11 = this.f33197c;
+            if (z11) {
+                f7 = dp;
+            } else {
+                f7 = 0.0f;
+            }
+            fArr[1] = f7;
+            fArr[0] = f7;
+            if (z11) {
+                f10 = dp;
+            } else {
+                f10 = 0.0f;
+            }
+            fArr[3] = f10;
+            fArr[2] = f10;
+            boolean z12 = this.d;
+            if (z12) {
+                f11 = dp;
+            } else {
+                f11 = 0.0f;
+            }
+            fArr[5] = f11;
+            fArr[4] = f11;
+            if (!z12) {
+                dp = 0.0f;
+            }
+            fArr[7] = dp;
+            fArr[6] = dp;
+            w01Var.f34319b.rewind();
+            RectF rectF = AndroidUtilities.rectTmp;
+            float f13 = w01Var.h;
+            float width = getWidth() - w01Var.h;
+            float height = getHeight();
+            float f14 = w01Var.h;
+            if (this.d) {
+                f12 = -1.0f;
+            } else {
+                f12 = 1.0f;
+            }
+            rectF.set(f13, f13, width, (f14 * f12) + height);
+            w01Var.f34319b.addRoundRect(rectF, w01Var.f34320c, Path.Direction.CW);
+            if (this.f33196b) {
+                canvas2.drawPath(w01Var.f34319b, w01Var.d);
+            }
+            canvas2.drawPath(w01Var.f34319b, w01Var.e);
+        } else {
+            if (this.f33196b) {
+                float f15 = w01Var.h;
+                canvas2 = canvas;
+                canvas2.drawRect(f15, f15, getWidth() + w01Var.h, getHeight() + w01Var.h, w01Var.d);
+            } else {
+                canvas2 = canvas;
+            }
+            float f16 = w01Var.h;
+            canvas2.drawRect(f16, f16, getWidth() - w01Var.h, getHeight() + w01Var.h, w01Var.e);
+        }
+        super.onDraw(canvas2);
     }
 
-    @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        float dpf2 = AndroidUtilities.dpf2(11.33f);
-        float measureText = paint.measureText(this.f30960b);
-        this.f30959a = measureText;
-        return (int) (dpf2 + measureText);
+    public void setFilled(boolean z10) {
+        this.f33196b = z10;
     }
 }

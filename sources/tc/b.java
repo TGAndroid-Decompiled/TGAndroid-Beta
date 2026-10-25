@@ -1,53 +1,26 @@
 package tc;
 
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.ez0;
-import org.telegram.ui.Wallet.y0;
-import org.telegram.ui.Wallet.z0;
-public final class b extends z {
-    public final int f47376b;
+public final class b {
+    public int f48774a;
+    public int f48775b;
+    public int f48776c;
+    public int d;
+    public int e;
+    public ArrayList f48777f;
+    public ArrayList f48778g;
+    public boolean h;
+    public int f48779i;
+    public int f48780j;
+    public int f48781k;
+    public ArrayList f48782l;
+    public int f48783m;
+    public int f48784n;
+    public int f48785o;
+    public int f48786p;
+    public int f48787q;
 
-    public b(String str, u uVar, int i10, int i11) {
-        super(str, uVar, i10);
-        this.f47376b = i11;
-    }
-
-    @Override
-    public final void a() {
-        switch (this.f47376b) {
-            case 0:
-                u uVar = this.f47437a;
-                try {
-                    uVar.b();
-                    return;
-                } catch (v e) {
-                    c2.b bVar = uVar.d;
-                    bVar.d(e);
-                    ArrayList arrayList = (ArrayList) bVar.n();
-                    int size = arrayList.size();
-                    int i10 = 0;
-                    while (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        y0 y0Var = (y0) obj;
-                        try {
-                            try {
-                                u uVar2 = (u) bVar.f4494b;
-                                z0 z0Var = y0Var.f35429c;
-                                int i11 = y0Var.f35427a;
-                                AndroidUtilities.runOnUIThread(new ez0(z0Var, uVar2, i11, "connect error: " + z0.a(e), 16));
-                            } catch (Throwable unused) {
-                            }
-                        } catch (Throwable unused2) {
-                            y0Var.getClass();
-                        }
-                    }
-                    return;
-                }
-            default:
-                this.f47437a.d();
-                return;
-        }
+    public final String toString() {
+        return "AvcDecoderConfigurationRecord{configurationVersion=" + this.f48774a + ", avcProfileIndication=" + this.f48775b + ", profileCompatibility=" + this.f48776c + ", avcLevelIndication=" + this.d + ", lengthSizeMinusOne=" + this.e + ", hasExts=" + this.h + ", chromaFormat=" + this.f48779i + ", bitDepthLumaMinus8=" + this.f48780j + ", bitDepthChromaMinus8=" + this.f48781k + ", lengthSizeMinusOnePaddingBits=" + this.f48783m + ", numberOfSequenceParameterSetsPaddingBits=" + this.f48784n + ", chromaFormatPaddingBits=" + this.f48785o + ", bitDepthLumaMinus8PaddingBits=" + this.f48786p + ", bitDepthChromaMinus8PaddingBits=" + this.f48787q + '}';
     }
 }

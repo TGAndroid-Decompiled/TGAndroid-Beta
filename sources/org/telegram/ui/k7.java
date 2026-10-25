@@ -1,49 +1,53 @@
 package org.telegram.ui;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.tgnet.TLRPC;
-public final class k7 extends bu0 {
-    public org.telegram.ui.Components.lm0 f38810a;
-    public final v7 f38811b;
+import java.util.ArrayList;
+public abstract class k7 extends j7 {
+    public final ArrayList f40809f;
+    public final x7 h;
 
-    public k7(v7 v7Var) {
-        this.f38811b = v7Var;
+    public k7(x7 x7Var, int i10) {
+        super(i10);
+        this.h = x7Var;
+        this.f40809f = new ArrayList();
     }
 
     @Override
-    public final lu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
-        org.telegram.ui.Cells.s7 s7Var;
-        org.telegram.ui.Components.lm0 listView = this.f38811b.getListView();
-        int i11 = 0;
-        while (true) {
-            if (i11 < listView.getChildCount()) {
-                View childAt = listView.getChildAt(i11);
-                if (RecyclerView.R(childAt) == i10 && (childAt instanceof org.telegram.ui.Cells.s7)) {
-                    s7Var = (org.telegram.ui.Cells.s7) childAt;
-                    break;
-                }
-                i11++;
+    public boolean D(s4.e1 e1Var) {
+        return !(this instanceof s7);
+    }
+
+    @Override
+    public void F() {
+        ArrayList arrayList;
+        ArrayList arrayList2 = this.f40809f;
+        arrayList2.clear();
+        ArrayList arrayList3 = this.e;
+        arrayList2.addAll(arrayList3);
+        arrayList3.clear();
+        ci.b bVar = this.h.h;
+        if (bVar != null) {
+            int i10 = this.d;
+            if (i10 == 1) {
+                arrayList = bVar.d;
+            } else if (i10 == 2) {
+                arrayList = bVar.e;
+            } else if (i10 == 3) {
+                arrayList = bVar.f6372f;
+            } else if (i10 == 5) {
+                arrayList = bVar.f6373g;
+            } else if (i10 == 4) {
+                arrayList = bVar.h;
             } else {
-                s7Var = null;
-                break;
+                arrayList = null;
+            }
+            if (arrayList != null) {
+                for (int i11 = 0; i11 < arrayList.size(); i11++) {
+                    ?? aVar = new qg.a(2, true);
+                    aVar.d = (ci.a) arrayList.get(i11);
+                    arrayList3.add(aVar);
+                }
             }
         }
-        if (s7Var == null) {
-            return null;
-        }
-        int[] iArr = new int[2];
-        s7Var.getLocationInWindow(iArr);
-        lu0 lu0Var = new lu0();
-        lu0Var.f39382b = iArr[0];
-        lu0Var.f39383c = iArr[1];
-        lu0Var.d = this.f38810a;
-        ImageReceiver imageReceiver = s7Var.f23264c;
-        lu0Var.f39381a = imageReceiver;
-        lu0Var.e = imageReceiver.getBitmapSafe();
-        lu0Var.f39388k = s7Var.getScaleX();
-        return lu0Var;
+        E(arrayList2, arrayList3);
     }
 }

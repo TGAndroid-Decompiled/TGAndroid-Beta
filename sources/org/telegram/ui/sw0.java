@@ -1,149 +1,79 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.View;
 import java.util.ArrayList;
-import java.util.Locale;
-import org.telegram.messenger.BillingController;
-import org.telegram.messenger.BuildVars;
-import org.telegram.tgnet.TLRPC;
-public final class sw0 {
-    public final TLRPC.TL_premiumSubscriptionOption f41816a;
-    public int f41817b;
-    public long f41818c;
-    public long d;
-    public long e;
-    public c5.p f41819f;
-    public c5.o f41820g;
-    public int h;
+import org.telegram.messenger.AndroidUtilities;
+public final class sw0 extends org.telegram.ui.Components.mm0 {
+    public final Paint f43608f3;
+    public final Path f43609g3;
+    public final vw0 f43610h3;
 
-    public sw0(TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption) {
-        this.f41816a = tL_premiumSubscriptionOption;
+    public sw0(vw0 vw0Var, Context context) {
+        super(context, null);
+        this.f43610h3 = vw0Var;
+        Paint paint = new Paint(1);
+        this.f43608f3 = paint;
+        paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23425h5, false));
+        this.f43609g3 = new Path();
     }
 
-    public final void a() {
-        c5.p pVar = this.f41819f;
-        if (pVar != null && this.f41820g == null) {
-            ArrayList arrayList = pVar.h;
-            int size = arrayList.size();
-            int i10 = 0;
-            while (i10 < size) {
-                Object obj = arrayList.get(i10);
-                i10++;
-                c5.o oVar = (c5.o) obj;
-                String str = ((c5.m) oVar.f4777b.f4775a.get(0)).d;
-                int i11 = this.f41816a.months;
-                if (i11 == 12) {
-                    if (str.equals("P1Y")) {
-                        this.f41820g = oVar;
-                        return;
-                    }
-                } else {
-                    Locale locale = Locale.ROOT;
-                    if (str.equals("P" + i11 + "M")) {
-                        this.f41820g = oVar;
-                        return;
-                    }
-                }
-            }
-        }
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        Path path = this.f43609g3;
+        path.rewind();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
+        path.addRoundRect(rectF, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f), Path.Direction.CW);
+        int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23425h5, false);
+        Paint paint = this.f43608f3;
+        paint.setColor(x02);
+        canvas.drawPath(path, paint);
+        canvas.save();
+        canvas.clipPath(path);
+        super.dispatchDraw(canvas);
+        canvas.restore();
     }
 
-    public final String b() {
-        boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f41816a;
-        if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f41819f != null) {
-                a();
-                c5.o oVar = this.f41820g;
-                if (oVar == null) {
-                    return "";
-                }
-                return ((c5.m) oVar.f4777b.f4775a.get(0)).f4774c;
-            }
-            return "";
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (this.f43610h3.f44914n.f35882q0 >= 1.0f) {
+            return false;
         }
-        return tL_premiumSubscriptionOption.currency;
+        return super.dispatchTouchEvent(motionEvent);
     }
 
-    public final int c() {
-        if (this.f41817b == 0) {
-            if (h() == 0) {
-                return 0;
-            }
-            if (this.e != 0) {
-                int i10 = (int) ((1.0d - (i() / this.e)) * 100.0d);
-                this.f41817b = i10;
-                if (i10 == 0) {
-                    this.f41817b = -1;
-                }
-            }
+    @Override
+    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        if (this.f43610h3.f44914n.f35882q0 >= 1.0f) {
+            return false;
         }
-        return this.f41817b;
+        return super.onInterceptTouchEvent(motionEvent);
     }
 
-    public final String d() {
-        if (!BuildVars.useInvoiceBilling() && this.f41816a.store_product != null) {
-            if (this.f41819f == null) {
-                return "";
-            }
-            return BillingController.getInstance().formatCurrency(g(), b(), 6);
-        }
-        return BillingController.getInstance().formatCurrency(g(), b());
-    }
-
-    public final String e() {
-        if (!BuildVars.useInvoiceBilling() && this.f41816a.store_product != null) {
-            if (this.f41819f == null) {
-                return "";
-            }
-            return BillingController.getInstance().formatCurrency(h(), b(), 6);
-        }
-        return BillingController.getInstance().formatCurrency(h(), b());
-    }
-
-    public final String f() {
-        if (!BuildVars.useInvoiceBilling() && this.f41816a.store_product != null) {
-            if (this.f41819f == null) {
-                return "";
-            }
-            return BillingController.getInstance().formatCurrency(i(), b(), 6);
-        }
-        return BillingController.getInstance().formatCurrency(i(), b());
-    }
-
-    public final long g() {
-        boolean useInvoiceBilling = BuildVars.useInvoiceBilling();
-        TLRPC.TL_premiumSubscriptionOption tL_premiumSubscriptionOption = this.f41816a;
-        if (!useInvoiceBilling && tL_premiumSubscriptionOption.store_product != null) {
-            if (this.f41819f != null) {
-                a();
-                c5.o oVar = this.f41820g;
-                if (oVar == null) {
-                    return 0L;
-                }
-                return ((c5.m) oVar.f4777b.f4775a.get(0)).f4773b;
-            }
-            return 0L;
-        }
-        return tL_premiumSubscriptionOption.amount;
-    }
-
-    public final long h() {
-        if (this.f41818c == 0) {
-            long g10 = g();
-            if (g10 != 0) {
-                this.f41818c = g10 / this.f41816a.months;
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        PremiumPreviewFragment premiumPreviewFragment = this.f43610h3.f44914n;
+        int i14 = 0;
+        int i15 = 0;
+        while (true) {
+            ArrayList arrayList = premiumPreviewFragment.d;
+            if (i14 < arrayList.size()) {
+                premiumPreviewFragment.M.a((xw0) arrayList.get(i14), false);
+                premiumPreviewFragment.M.measure(View.MeasureSpec.makeMeasureSpec(i10, 1073741824), View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+                ((xw0) arrayList.get(i14)).h = i15;
+                i15 += premiumPreviewFragment.M.getMeasuredHeight();
+                i14++;
+            } else {
+                premiumPreviewFragment.O = i15;
+                return;
             }
         }
-        return this.f41818c;
-    }
-
-    public final long i() {
-        if (this.d == 0) {
-            long g10 = g();
-            if (g10 != 0) {
-                this.d = (long) ((g10 / this.f41816a.months) * 12.0d);
-            }
-        }
-        return this.d;
     }
 }

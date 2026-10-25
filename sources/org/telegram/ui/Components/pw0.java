@@ -1,34 +1,21 @@
 package org.telegram.ui.Components;
-public final class pw0 extends r60 {
-    public final rw0 d;
+public final class pw0 extends o1.i {
+    public final nw0 f31726a;
+    public final ow0 f31727b;
+    public float f31728c = 1.0f;
 
-    public pw0(rw0 rw0Var) {
-        this.d = rw0Var;
+    public pw0(nw0 nw0Var, ow0 ow0Var) {
+        this.f31726a = nw0Var;
+        this.f31727b = ow0Var;
     }
 
     @Override
-    public final CharSequence d() {
-        rw0 rw0Var = this.d;
-        int i10 = rw0Var.I;
-        String[] strArr = rw0Var.F;
-        if (i10 < strArr.length) {
-            return strArr[i10];
-        }
-        return null;
+    public final float a(Object obj) {
+        return this.f31726a.get(obj) * this.f31728c;
     }
 
     @Override
-    public final int i() {
-        return this.d.F.length - 1;
-    }
-
-    @Override
-    public final int j() {
-        return this.d.I;
-    }
-
-    @Override
-    public final void k(int i10) {
-        this.d.setOption(i10);
+    public final void b(Object obj, float f7) {
+        this.f31727b.b(obj, f7 / this.f31728c);
     }
 }

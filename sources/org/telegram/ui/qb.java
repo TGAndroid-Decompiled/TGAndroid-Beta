@@ -1,47 +1,153 @@
 package org.telegram.ui;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class qb implements ViewTreeObserver.OnPreDrawListener {
-    public final View f40759a;
-    public final s4.b1 f40760b;
-    public final rb f40761c;
+import android.content.DialogInterface;
+import android.os.Bundle;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class qb implements org.telegram.ui.Cells.s0 {
+    public final sb f42796a;
 
-    public qb(rb rbVar, View view, s4.b1 b1Var) {
-        this.f40761c = rbVar;
-        this.f40759a = view;
-        this.f40760b = b1Var;
+    public qb(sb sbVar) {
+        this.f42796a = sbVar;
     }
 
     @Override
-    public final boolean onPreDraw() {
-        int i10;
-        View view = this.f40759a;
-        view.getViewTreeObserver().removeOnPreDrawListener(this);
-        vb vbVar = this.f40761c.f41085n;
-        int measuredHeight = vbVar.v.getMeasuredHeight();
-        int top = view.getTop();
-        view.getBottom();
-        if (top >= 0) {
-            i10 = 0;
+    public final boolean M0(org.telegram.ui.Cells.v0 v0Var, float f7, float f10) {
+        wb wbVar = this.f42796a.f43441n;
+        int i10 = wb.Q0;
+        return wbVar.Q0(v0Var, 0.0f, 0.0f);
+    }
+
+    @Override
+    public final long a() {
+        return -this.f42796a.f43441n.f45065f.f22027id;
+    }
+
+    @Override
+    public final long b() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean d() {
+        return true;
+    }
+
+    @Override
+    public final void i0(long j10) {
+        wb wbVar = this.f42796a.f43441n;
+        if (j10 < 0) {
+            Bundle bundle = new Bundle();
+            bundle.putLong("chat_id", -j10);
+            if (MessagesController.getInstance(wb.y0(wbVar)).checkCanOpenChat(bundle, wbVar)) {
+                wbVar.presentFragment(new un(bundle), true);
+            }
+        } else if (j10 != UserConfig.getInstance(wb.z0(wbVar)).getClientUserId()) {
+            Bundle h = a1.g.h(j10, "user_id");
+            wb.q0(wbVar, h, j10);
+            ProfileActivity profileActivity = new ProfileActivity(h, null);
+            profileActivity.X4(0);
+            wbVar.presentFragment(profileActivity);
+        }
+    }
+
+    @Override
+    public final void k(org.telegram.ui.Cells.v0 v0Var) {
+        wb wbVar = this.f42796a.f43441n;
+        MessageObject messageObject = v0Var.getMessageObject();
+        if (messageObject.type == 22) {
+            bd bdVar = new bd(a());
+            bdVar.f38047l0 = wbVar;
+            wbVar.presentFragment(bdVar);
+            return;
+        }
+        PhotoViewer.u1().M2(null, wbVar, null);
+        TLRPC.PhotoSize closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(messageObject.photoThumbs, 640);
+        if (closestPhotoSizeWithSize != null) {
+            PhotoViewer.u1().f2(closestPhotoSizeWithSize.location, ImageLocation.getForPhoto(closestPhotoSizeWithSize, messageObject.messageOwner.action.photo), wbVar.B0);
+            return;
+        }
+        PhotoViewer.u1().h2(messageObject, null, 0L, 0L, 0L, wbVar.B0);
+    }
+
+    @Override
+    public final org.telegram.ui.ActionBar.r2 y() {
+        return this.f42796a.f43441n;
+    }
+
+    @Override
+    public final void z(TLRPC.TL_chatInviteExported tL_chatInviteExported) {
+        Object obj;
+        wb wbVar = this.f42796a.f43441n;
+        if (wbVar.A0) {
+            return;
+        }
+        if (wbVar.f45090y0.containsKey(tL_chatInviteExported.link)) {
+            obj = wbVar.f45090y0.get(tL_chatInviteExported.link);
         } else {
-            i10 = -top;
+            obj = null;
         }
-        int i11 = i10;
-        int measuredHeight2 = view.getMeasuredHeight();
-        if (measuredHeight2 > measuredHeight) {
-            measuredHeight2 = i11 + measuredHeight;
-        }
-        View view2 = this.f40760b.f46342a;
-        if (view2 instanceof org.telegram.ui.Cells.t1) {
-            ((org.telegram.ui.Cells.t1) view).a4(i11, measuredHeight2 - i11, (vbVar.X.getHeightWithKeyboard() - AndroidUtilities.dp(48.0f)) - vbVar.v.getTop(), 0.0f, (view.getY() + vb.G0(vbVar).getMeasuredHeight()) - vbVar.X.getBackgroundTranslationY(), vbVar.X.getMeasuredWidth(), vbVar.X.getBackgroundSizeY(), 0, 0, 0);
-            return true;
-        } else if ((view2 instanceof org.telegram.ui.Cells.v0) && vb.H0(vbVar) != null && vbVar.X != null) {
-            ((org.telegram.ui.Cells.v0) view).Z((view.getY() + vb.I0(vbVar).getMeasuredHeight()) - vbVar.X.getBackgroundTranslationY(), vbVar.X.getBackgroundSizeY());
-            return true;
+        if (obj == null) {
+            TLRPC.TL_messages_getExportedChatInvite tL_messages_getExportedChatInvite = new TLRPC.TL_messages_getExportedChatInvite();
+            tL_messages_getExportedChatInvite.peer = wbVar.getMessagesController().getInputPeer(-wbVar.f45065f.f22027id);
+            tL_messages_getExportedChatInvite.link = tL_chatInviteExported.link;
+            wbVar.A0 = true;
+            final boolean[] zArr = new boolean[1];
+            org.telegram.ui.ActionBar.e2 e2Var = new org.telegram.ui.ActionBar.e2(wbVar.getParentActivity(), 3, null);
+            e2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public final void onCancel(DialogInterface dialogInterface) {
+                    qb.this.f42796a.f43441n.A0 = false;
+                    zArr[0] = true;
+                }
+            });
+            e2Var.r(300L);
+            wbVar.getConnectionsManager().bindRequestToGuid(wbVar.getConnectionsManager().sendRequest(tL_messages_getExportedChatInvite, new bi.i2(this, tL_chatInviteExported, zArr, e2Var, 9)), wb.A0(wbVar));
+        } else if (obj instanceof TLRPC.TL_messages_exportedChatInvite) {
+            wb.B0(wbVar, (TLRPC.TL_messages_exportedChatInvite) obj, wbVar.f45091z0);
         } else {
-            return true;
+            org.telegram.messenger.t.q(R.string.LinkHashExpired, org.telegram.ui.Components.wc.b0(wbVar), R.raw.linkbroken, 36);
         }
+    }
+
+    @Override
+    public final void f(org.telegram.ui.Cells.v0 v0Var) {
+    }
+
+    @Override
+    public final void l0(org.telegram.ui.Cells.v0 v0Var) {
+    }
+
+    @Override
+    public final void t(org.telegram.ui.Cells.v0 v0Var) {
+    }
+
+    @Override
+    public final void H0(org.telegram.ui.Cells.v0 v0Var, String str) {
+    }
+
+    @Override
+    public final void e(org.telegram.ui.Cells.v0 v0Var, int i10) {
+    }
+
+    @Override
+    public final void G(org.telegram.ui.Cells.v0 v0Var, TLRPC.Document document, TLRPC.VideoSize videoSize) {
+    }
+
+    @Override
+    public final void g(org.telegram.ui.Cells.v0 v0Var, int i10, int i11) {
+    }
+
+    @Override
+    public final void v0(org.telegram.ui.Cells.v0 v0Var, TLRPC.TL_premiumGiftOption tL_premiumGiftOption, String str) {
+    }
+
+    @Override
+    public final void P0(org.telegram.ui.Cells.v0 v0Var, TLRPC.ReactionCount reactionCount, boolean z10, float f7, float f10) {
     }
 }

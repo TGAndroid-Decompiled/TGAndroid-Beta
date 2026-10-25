@@ -1,200 +1,46 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import j$.util.Objects;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.regex.Pattern;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.Vector;
-import org.telegram.tgnet.tl.TL_account;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_update;
-public final class a50 implements RequestDelegate {
-    public final int f35591a;
-    public final Object f35592b;
-    public final Object f35593c;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Shader;
+public final class a50 extends org.telegram.ui.ActionBar.b6 {
+    public LinearGradient M0;
+    public int N0;
+    public final Matrix O0;
+    public float P0;
+    public float Q0;
+    public float R0;
+    public float S0;
+    public float T0;
+    public long U0;
+    public final v50 V0;
 
-    public a50(int i10, Object obj, Object obj2) {
-        this.f35591a = i10;
-        this.f35593c = obj;
-        this.f35592b = obj2;
+    public a50(v50 v50Var, LaunchActivity launchActivity) {
+        super(launchActivity);
+        this.V0 = v50Var;
+        this.O0 = new Matrix();
+        this.P0 = -1.0f;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        int i10 = this.f35591a;
-        Object obj = this.f35592b;
-        Object obj2 = this.f35593c;
-        switch (i10) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h90((Object) ((b50) obj2), tL_error, tLObject, (Object) ((String) obj), 14));
-                return;
-            case 1:
-                a70 a70Var = (a70) obj2;
-                if (Objects.equals(a70Var.f35664a.e, (String) obj)) {
-                    AndroidUtilities.runOnUIThread(new ot(26, a70Var, tLObject));
-                    return;
-                }
-                return;
-            case 2:
-                n70 n70Var = (n70) obj2;
-                String str = (String) obj;
-                if (tLObject instanceof Vector) {
-                    Vector vector = (Vector) tLObject;
-                    if (!vector.objects.isEmpty()) {
-                        TLRPC.LangPackString langPackString = (TLRPC.LangPackString) vector.objects.get(0);
-                        if (langPackString instanceof TLRPC.TL_langPackString) {
-                            AndroidUtilities.runOnUIThread(new lq(n70Var, (TLRPC.TL_langPackString) langPackString, str, 11));
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                Pattern pattern = LaunchActivity.D1;
-                AndroidUtilities.runOnUIThread(new lq((LaunchActivity) obj2, tLObject, (org.telegram.ui.ActionBar.j6) obj, 18));
-                return;
-            case 4:
-                Pattern pattern2 = LaunchActivity.D1;
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h90((Object) ((org.telegram.ui.ActionBar.c2) obj2), tLObject, (Object) ((g) obj), tL_error, 18));
-                return;
-            case 5:
-                AndroidUtilities.runOnUIThread(new lq((ob0) obj2, tLObject, (String) obj, 21));
-                return;
-            case 6:
-                AndroidUtilities.runOnUIThread(new lq((lb0) obj2, tLObject, (TLRPC.User) obj, 22));
-                return;
-            case 7:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h90((Object) ((lb0) obj2), tLObject, (Object) ((HashSet) obj), tL_error, 20));
-                return;
-            case 8:
-                hg0 hg0Var = (hg0) obj2;
-                Bundle bundle = (Bundle) obj;
-                if (tLObject != null && !(((TLRPC.auth_SentCode) tLObject).type instanceof TLRPC.TL_auth_sentCodeTypeFirebaseSms)) {
-                    AndroidUtilities.runOnUIThread(new lq(hg0Var, bundle, tLObject, 26));
-                    return;
-                } else {
-                    AndroidUtilities.runOnUIThread(new sc0(hg0Var, 2));
-                    return;
-                }
-            case 9:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h90((Object) ((le0) obj2), tLObject, (Object) ((String) obj), tL_error, 23));
-                return;
-            case 10:
-                AndroidUtilities.runOnUIThread(new qe0((lf0) obj2, tL_error, (TL_account.confirmPhone) obj, 1));
-                return;
-            case 11:
-                AndroidUtilities.runOnUIThread(new qe0((gg0) obj2, tLObject, (HashMap) obj, 6));
-                return;
-            case 12:
-                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.h90((Object) ((gg0) obj2), tL_error, tLObject, (Object) ((String) obj), 27));
-                return;
-            case 13:
-                AndroidUtilities.runOnUIThread(new qe0((qj0) obj2, tLObject, (org.telegram.ui.Components.oy) obj, 9));
-                return;
-            case 14:
-                bm0 bm0Var = (bm0) obj2;
-                bm0Var.getClass();
-                bm0Var.a(tL_error, (TLRPC.TL_secureValue) tLObject, (TLRPC.TL_secureValue) obj);
-                return;
-            case 15:
-                AndroidUtilities.runOnUIThread(new qe0((vm0) obj2, tL_error, (TL_account.verifyPhone) obj, 15));
-                return;
-            case 16:
-                ho0 ho0Var = (ho0) obj2;
-                TLObject tLObject2 = (TLObject) obj;
-                if (tLObject instanceof TLRPC.TL_payments_validatedRequestedInfo) {
-                    AndroidUtilities.runOnUIThread(new ah0(16, ho0Var, (TLRPC.TL_payments_validatedRequestedInfo) tLObject));
-                    return;
-                } else {
-                    AndroidUtilities.runOnUIThread(new gn0(ho0Var, tL_error, tLObject2, 1));
-                    return;
-                }
-            case 17:
-                ho0 ho0Var2 = (ho0) obj2;
-                TLRPC.TL_payments_sendPaymentForm tL_payments_sendPaymentForm = (TLRPC.TL_payments_sendPaymentForm) obj;
-                if (tLObject != null) {
-                    if (tLObject instanceof TLRPC.TL_payments_paymentResult) {
-                        Utilities.Callback callback = ho0Var2.f37922c1;
-                        if (callback != null) {
-                            callback.run((TLRPC.TL_payments_paymentResult) tLObject);
-                            return;
-                        }
-                        TLRPC.Updates updates = ((TLRPC.TL_payments_paymentResult) tLObject).updates;
-                        TLRPC.Message[] messageArr = new TLRPC.Message[1];
-                        int size = updates.updates.size();
-                        int i11 = 0;
-                        while (true) {
-                            if (i11 < size) {
-                                TLRPC.Update update = updates.updates.get(i11);
-                                if (update instanceof TL_update.TL_updateNewMessage) {
-                                    messageArr[0] = ((TL_update.TL_updateNewMessage) update).message;
-                                } else if (update instanceof TL_update.TL_updateNewChannelMessage) {
-                                    messageArr[0] = ((TL_update.TL_updateNewChannelMessage) update).message;
-                                } else {
-                                    i11++;
-                                }
-                            }
-                        }
-                        ho0Var2.getMessagesController().lambda$processUpdates$377(updates, false);
-                        AndroidUtilities.runOnUIThread(new ah0(17, ho0Var2, messageArr));
-                        return;
-                    } else if (tLObject instanceof TLRPC.TL_payments_paymentVerificationNeeded) {
-                        AndroidUtilities.runOnUIThread(new an0(ho0Var2, tLObject, 1));
-                        return;
-                    } else {
-                        return;
-                    }
-                }
-                x10 x10Var = ho0Var2.f37926e1;
-                if (x10Var == null || !((Boolean) x10Var.run(tL_error)).booleanValue()) {
-                    AndroidUtilities.runOnUIThread(new qe0(ho0Var2, tL_error, tL_payments_sendPaymentForm, 17));
-                    return;
-                }
-                return;
-            case 18:
-                AndroidUtilities.runOnUIThread(new in0((ho0) obj2, tLObject, tL_error, (TL_account.getTmpPassword) obj, 1));
-                return;
-            case 19:
-                AndroidUtilities.runOnUIThread(new in0((aw0) obj2, tL_error, tLObject, (TL_stars.updatePaidMessagesPrice) obj, 6));
-                return;
-            case 20:
-                AndroidUtilities.runOnUIThread(new in0((PrivacyControlActivity) obj2, tL_error, tLObject, (boolean[]) obj, 7));
-                return;
-            case 21:
-                AndroidUtilities.runOnUIThread(new lv0(5, (PrivacySettingsActivity) obj2, (org.telegram.ui.Cells.w8) obj));
-                return;
-            case 22:
-                AndroidUtilities.runOnUIThread(new in0((ProfileActivity) obj2, tL_error, tLObject, (String) obj, 13));
-                return;
-            case 23:
-                AndroidUtilities.runOnUIThread(new in0((ProfileActivity) obj2, tLObject, tL_error, (int[]) obj, 10));
-                return;
-            case 24:
-                AndroidUtilities.runOnUIThread(new in0((ProfileActivity) obj2, tLObject, (TLRPC.TL_username) obj, tL_error, 11));
-                return;
-            case 25:
-                AndroidUtilities.runOnUIThread(new in0((xz0) obj2, tLObject, (TLRPC.TL_username) obj, tL_error, 15));
-                return;
-            case 26:
-                AndroidUtilities.runOnUIThread(new qe0((f71) obj2, tL_error, (TLRPC.TL_authorization) obj, 29));
-                return;
-            case 27:
-                AndroidUtilities.runOnUIThread(new g71((h71) obj2, tL_error, (TLRPC.TL_authorization) obj, 0));
-                return;
-            case 28:
-                AndroidUtilities.runOnUIThread(new in0((j71) obj2, tLObject, tL_error, (n9) obj, 18));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new in0((b81) obj2, tL_error, tLObject, (String) obj, 19));
-                return;
+    public final void d(int i10) {
+        super.d(i10);
+        int textWidth = getTextWidth();
+        if (textWidth != this.N0) {
+            float f7 = textWidth;
+            this.T0 = 1.3f * f7;
+            float f10 = f7 * 2.0f;
+            int x02 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23454ih, false);
+            int x03 = org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23493kh, false);
+            int i11 = org.telegram.ui.ActionBar.y6.f23473jh;
+            this.M0 = new LinearGradient(0.0f, getTextHeight(), f10, 0.0f, new int[]{x02, x03, org.telegram.ui.ActionBar.y6.x0(null, i11, false), org.telegram.ui.ActionBar.y6.x0(null, i11, false)}, new float[]{0.0f, 0.38f, 0.76f, 1.0f}, Shader.TileMode.CLAMP);
+            getPaint().setShader(this.M0);
+            this.N0 = textWidth;
         }
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r12) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.a50.onDraw(android.graphics.Canvas):void");
     }
 }

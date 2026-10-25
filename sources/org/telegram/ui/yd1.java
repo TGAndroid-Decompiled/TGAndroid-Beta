@@ -1,64 +1,39 @@
 package org.telegram.ui;
+public final class yd1 implements Runnable {
+    public final int f46042a;
+    public final af1 f46043b;
 
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.BuildVars;
-import org.telegram.messenger.FileLog;
-public final class yd1 extends s4.b0 {
-    public boolean I;
-    public final xe1 J;
-
-    public yd1(xe1 xe1Var) {
-        this.J = xe1Var;
+    public yd1(af1 af1Var, int i10) {
+        this.f46042a = i10;
+        this.f46043b = af1Var;
     }
 
     @Override
-    public final void b0(qf.e eVar, s4.y0 y0Var) {
-        if (BuildVars.DEBUG_PRIVATE_VERSION) {
-            try {
-                super.b0(eVar, y0Var);
+    public final void run() {
+        switch (this.f46042a) {
+            case 0:
+                af1 af1Var = this.f46043b;
+                af1Var.x0();
+                af1Var.B0();
                 return;
-            } catch (IndexOutOfBoundsException unused) {
-                throw new RuntimeException("Inconsistency detected. ");
-            }
+            case 1:
+                this.f46043b.x0();
+                return;
+            case 2:
+                this.f46043b.O0(true);
+                return;
+            case 3:
+                this.f46043b.finishPreviewFragment();
+                return;
+            case 4:
+                af1 af1Var2 = this.f46043b;
+                af1Var2.A0 = null;
+                af1Var2.V0(true, false);
+                return;
+            default:
+                af1 af1Var3 = this.f46043b;
+                af1Var3.N.postOnAnimation(new yd1(af1Var3, 1));
+                return;
         }
-        try {
-            super.b0(eVar, y0Var);
-        } catch (IndexOutOfBoundsException e) {
-            FileLog.e(e);
-            AndroidUtilities.runOnUIThread(new ly0(this, 20));
-        }
-    }
-
-    @Override
-    public final void b1(View view, View view2, int i10, int i11) {
-        this.I = true;
-        super.b1(view, view2, i10, i11);
-        this.I = false;
-    }
-
-    @Override
-    public final void h1(int i10, int i11) {
-        if (this.I) {
-            i11 -= this.J.N.getPaddingTop();
-        }
-        super.h1(i10, i11);
-    }
-
-    @Override
-    public final int o0(int r19, qf.e r20, s4.y0 r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.yd1.o0(int, qf.e, s4.y0):int");
-    }
-
-    @Override
-    public final void v0(RecyclerView recyclerView, s4.y0 y0Var, int i10) {
-        if (this.J.f43590x > 0 && i10 == 1) {
-            super.v0(recyclerView, y0Var, i10);
-            return;
-        }
-        li.n nVar = new li.n(recyclerView.getContext(), 0);
-        nVar.f46483a = i10;
-        w0(nVar);
     }
 }

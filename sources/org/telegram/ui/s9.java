@@ -1,57 +1,33 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.ui.ActionBar.ActionBarLayout;
-public final class s9 extends org.telegram.ui.ActionBar.h3 {
-    public final r9 f41320b;
-    public final org.telegram.ui.ActionBar.h5[] f41321c;
-    public final v9 d;
+import android.animation.ValueAnimator;
+public final class s9 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f43413a;
+    public final y9 f43414b;
 
-    public s9(Activity activity, org.telegram.ui.ActionBar.h5[] h5VarArr, int i10, v9 v9Var) {
-        super(activity, false);
-        this.f41321c = h5VarArr;
-        this.d = v9Var;
-        h5VarArr[0].setFragmentStack(new ArrayList());
-        r9 r9Var = new r9(this, i10);
-        this.f41320b = r9Var;
-        r9Var.f42962x = true;
-        ((ActionBarLayout) h5VarArr[0]).c(-1, r9Var);
-        ((ActionBarLayout) h5VarArr[0]).d0();
-        ViewGroup view = h5VarArr[0].getView();
-        int i11 = this.backgroundPaddingLeft;
-        view.setPadding(i11, 0, i11, 0);
-        r9Var.M = v9Var;
-        if (v9Var.p0() != null) {
-            r9Var.f42952c.setText(v9Var.p0());
-        }
-        this.containerView = h5VarArr[0].getView();
-        setApplyBottomPadding(false);
-        setApplyBottomPadding(false);
-        setOnDismissListener(new v5(this, 1));
+    public s9(y9 y9Var, int i10) {
+        this.f43413a = i10;
+        this.f43414b = y9Var;
     }
 
     @Override
-    public final boolean canDismissWithSwipe() {
-        return false;
-    }
-
-    @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.f41321c[0] = null;
-        this.d.onDismiss();
-    }
-
-    @Override
-    public final void onBackPressed() {
-        org.telegram.ui.ActionBar.h5[] h5VarArr = this.f41321c;
-        org.telegram.ui.ActionBar.h5 h5Var = h5VarArr[0];
-        if (h5Var != null && h5Var.getFragmentStack().size() > 1) {
-            ((ActionBarLayout) h5VarArr[0]).H();
-        } else {
-            super.onBackPressed();
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f43413a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                y9 y9Var = this.f43414b;
+                y9Var.Y = floatValue;
+                y9Var.f45992b.setAlpha(1.0f - floatValue);
+                if (y9Var.W == 3) {
+                    y9Var.f45994c.setAlpha(1.0f - y9Var.Y);
+                }
+                y9Var.f46002s.setAlpha(1.0f - y9Var.Y);
+                y9Var.f46003w = (y9Var.Y * 0.25f) + 0.5f;
+                y9Var.fragmentView.invalidate();
+                return;
+            default:
+                this.f43414b.f46002s.invalidate();
+                return;
         }
     }
 }

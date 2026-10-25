@@ -1,39 +1,26 @@
 package ug;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.UserConfig;
-public final class r implements Runnable {
-    public final int f48195a;
-    public final y f48196b;
+import android.opengl.EGL14;
+import android.opengl.EGLSurface;
+import android.view.Surface;
+public final class r {
+    public final s f49877a;
+    public final Surface f49878b;
+    public volatile boolean d;
+    public volatile q e;
+    public int f49880f;
+    public int f49881g;
+    public boolean f49882i;
+    public boolean f49883j;
+    public volatile boolean f49879c = true;
+    public EGLSurface h = EGL14.EGL_NO_SURFACE;
+    public int f49884k = -1;
+    public float f49885l = -1.0f;
 
-    public r(y yVar, int i10) {
-        this.f48195a = i10;
-        this.f48196b = yVar;
-    }
-
-    @Override
-    public final void run() {
-        int i10 = this.f48195a;
-        y yVar = this.f48196b;
-        switch (i10) {
-            case 0:
-                AndroidUtilities.hideKeyboard(yVar.d);
-                return;
-            case 1:
-                yVar.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, yVar.f48240b0, Boolean.TRUE);
-                return;
-            case 2:
-                yVar.getClass();
-                NotificationCenter.getInstance(UserConfig.selectedAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.boostByChannelCreated, yVar.f48240b0, Boolean.FALSE);
-                return;
-            case 3:
-                y.R(yVar);
-                return;
-            default:
-                y.S(yVar);
-                return;
-        }
+    public r(s sVar, Surface surface, int i10) {
+        this.f49877a = sVar;
+        this.f49878b = surface;
+        this.f49881g = i10;
+        this.f49880f = i10;
     }
 }

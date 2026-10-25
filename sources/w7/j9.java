@@ -1,11 +1,45 @@
 package w7;
+public final class j9 extends k9 {
+    public final transient int f50898c;
+    public final transient int d;
+    public final k9 e;
 
-import java.util.Locale;
-public abstract class j9 {
-    public static int a(int i10) {
-        if (i10 < 100 && i10 >= 0) {
-            return Integer.parseInt(String.format(Locale.US, "%s%02d", com.google.android.gms.internal.play_billing.k3.i(2, 0, String.valueOf(oa.d.w3().get(1))), Integer.valueOf(i10)));
-        }
-        return i10;
+    public j9(k9 k9Var, int i10, int i11) {
+        this.e = k9Var;
+        this.f50898c = i10;
+        this.d = i11;
+    }
+
+    @Override
+    public final Object get(int i10) {
+        y.a(i10, this.d);
+        return this.e.get(i10 + this.f50898c);
+    }
+
+    @Override
+    public final int m() {
+        return this.e.n() + this.f50898c + this.d;
+    }
+
+    @Override
+    public final int n() {
+        return this.e.n() + this.f50898c;
+    }
+
+    @Override
+    public final Object[] o() {
+        return this.e.o();
+    }
+
+    @Override
+    public final k9 subList(int i10, int i11) {
+        y.b(i10, i11, this.d);
+        int i12 = this.f50898c;
+        return this.e.subList(i10 + i12, i11 + i12);
+    }
+
+    @Override
+    public final int size() {
+        return this.d;
     }
 }

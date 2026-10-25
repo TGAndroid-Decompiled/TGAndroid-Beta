@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_update;
 public final class wi implements Runnable {
-    public final int f20069a;
-    public final SendMessagesHelper f20070b;
-    public final TLRPC.Updates f20071c;
+    public final int f21771a;
+    public final SendMessagesHelper f21772b;
+    public final TL_update.TL_updateNewChannelMessage f21773c;
 
-    public wi(SendMessagesHelper sendMessagesHelper, TLRPC.Updates updates, int i10) {
-        this.f20069a = i10;
-        this.f20070b = sendMessagesHelper;
-        this.f20071c = updates;
+    public wi(SendMessagesHelper sendMessagesHelper, TL_update.TL_updateNewChannelMessage tL_updateNewChannelMessage, int i10) {
+        this.f21771a = i10;
+        this.f21772b = sendMessagesHelper;
+        this.f21773c = tL_updateNewChannelMessage;
     }
 
     @Override
     public final void run() {
-        switch (this.f20069a) {
+        switch (this.f21771a) {
             case 0:
-                this.f20070b.lambda$performSendMessageRequest$97(this.f20071c);
+                this.f21772b.lambda$performSendMessageRequest$95(this.f21773c);
                 return;
             default:
-                this.f20070b.lambda$performSendMessageRequestMulti$75(this.f20071c);
+                this.f21772b.lambda$performSendMessageRequestMulti$70(this.f21773c);
                 return;
         }
     }

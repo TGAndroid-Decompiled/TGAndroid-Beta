@@ -1,24 +1,85 @@
 package org.telegram.ui;
-public final class l61 extends g.o {
-    public final n61 f39119c;
 
-    public l61(n61 n61Var) {
-        this.f39119c = n61Var;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class l61 implements NotificationCenter.NotificationCenterDelegate {
+    public final int f41148a;
+    public final TLRPC.Chat f41149b;
+    public TLRPC.ChannelParticipantsFilter f41150c;
+    public boolean f41151f;
+    public boolean h;
+    public boolean f41153r;
+    public boolean f41154s;
+    public final ArrayList d = new ArrayList();
+    public final ArrayList e = new ArrayList();
+    public int f41152n = -1;
+
+    public l61(int i10, long j10, TLRPC.ChannelParticipantsFilter channelParticipantsFilter) {
+        this.f41148a = i10;
+        this.f41149b = MessagesController.getInstance(i10).getChat(Long.valueOf(j10));
+        TLRPC.ChatFull chatFull = MessagesController.getInstance(i10).getChatFull(j10);
+        this.f41150c = channelParticipantsFilter;
+        if (chatFull == null) {
+            if (!this.f41154s) {
+                this.f41154s = true;
+                NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.chatInfoDidLoad);
+            }
+            MessagesController.getInstance(i10).loadFullChat(j10, 0, false);
+        }
+    }
+
+    public final void a() {
+        if (this.f41154s) {
+            return;
+        }
+        this.f41154s = false;
+        int i10 = this.f41148a;
+        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.chatInfoDidLoad);
+        if (this.f41152n >= 0) {
+            ConnectionsManager.getInstance(i10).cancelRequest(this.f41152n, true);
+            this.f41152n = -1;
+        }
+        this.f41151f = false;
+    }
+
+    public final void b() {
+        int size;
+        if (!this.f41151f && !this.h) {
+            TLRPC.ChannelParticipantsFilter channelParticipantsFilter = this.f41150c;
+            if (!(channelParticipantsFilter instanceof TLRPC.TL_channelParticipantsSearch) || !TextUtils.isEmpty(channelParticipantsFilter.f22026q)) {
+                this.f41151f = true;
+                TLRPC.Chat chat = this.f41149b;
+                if (ChatObject.isChannel(chat)) {
+                    TLRPC.TL_channels_getParticipants tL_channels_getParticipants = new TLRPC.TL_channels_getParticipants();
+                    tL_channels_getParticipants.channel = MessagesController.getInputChannel(chat);
+                    tL_channels_getParticipants.filter = this.f41150c;
+                    tL_channels_getParticipants.limit = 30;
+                    if (this.f41153r) {
+                        size = 0;
+                    } else {
+                        size = this.d.size();
+                    }
+                    tL_channels_getParticipants.offset = size;
+                    ConnectionsManager.getInstance(this.f41148a).sendRequestTyped(tL_channels_getParticipants, new Object(), new e5(this, 24));
+                }
+            }
+        }
     }
 
     @Override
-    public final int i(int i10) {
-        int i11;
-        n61 n61Var = this.f39119c;
-        org.telegram.ui.Components.uz uzVar = n61Var.X;
-        org.telegram.ui.Components.a71 a71Var = n61Var.f39748d0;
-        if (a71Var == null) {
-            return uzVar.J;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.chatInfoDidLoad) {
+            long j10 = ((TLRPC.ChatFull) objArr[0]).f22028id;
+            TLRPC.Chat chat = this.f41149b;
+            if (j10 == chat.f22027id && !ChatObject.isChannel(chat) && this.f41151f) {
+                this.f41151f = false;
+                b();
+            }
         }
-        org.telegram.ui.Components.l61 G = a71Var.G(i10 - 1);
-        if (G != null && (i11 = G.f28236u) != -1) {
-            return i11;
-        }
-        return uzVar.J;
     }
 }

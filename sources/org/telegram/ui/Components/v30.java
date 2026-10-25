@@ -1,60 +1,69 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Utilities;
-public final class v30 implements Runnable {
-    public final int f31292a;
-    public final x30 f31293b;
-    public final String f31294c;
-    public final int d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SvgHelper;
+public final class v30 extends a5.a {
+    public final org.telegram.ui.u40 f33558c;
 
-    public v30(x30 x30Var, String str, int i10, int i11) {
-        this.f31292a = i11;
-        this.f31293b = x30Var;
-        this.f31294c = str;
-        this.d = i10;
+    public v30(org.telegram.ui.u40 u40Var) {
+        this.f33558c = u40Var;
     }
 
     @Override
-    public final void run() {
-        long j10;
-        switch (this.f31292a) {
-            case 0:
-                x30 x30Var = this.f31293b;
-                String str = this.f31294c;
-                int i10 = this.d;
-                if (x30Var.e != null) {
-                    x30Var.e = null;
-                    AndroidUtilities.runOnUIThread(new v30(x30Var, str, i10, 1));
-                    return;
-                }
-                return;
-            default:
-                x30 x30Var2 = this.f31293b;
-                String str2 = this.f31294c;
-                int i11 = this.d;
-                ArrayList arrayList = null;
-                x30Var2.e = null;
-                if (!ChatObject.isChannel(x30Var2.f32507w.V) && x30Var2.f32507w.W != null) {
-                    arrayList = new ArrayList(x30Var2.f32507w.W.participants.participants);
-                }
-                ArrayList arrayList2 = arrayList;
-                if (arrayList2 != null) {
-                    Utilities.searchQueue.postRunnable(new ai.db(x30Var2, str2, i11, arrayList2, 22));
-                } else {
-                    x30Var2.h = false;
-                }
-                hg.a2 a2Var = x30Var2.d;
-                boolean canAddUsers = ChatObject.canAddUsers(x30Var2.f32507w.V);
-                if (ChatObject.isChannel(x30Var2.f32507w.V)) {
-                    j10 = x30Var2.f32507w.V.f20344id;
-                } else {
-                    j10 = 0;
-                }
-                a2Var.g(str2, canAddUsers, false, true, false, j10, false, 2, i11);
-                return;
+    public final void a(a5.m mVar, Object obj) {
+        mVar.removeView((View) obj);
+    }
+
+    @Override
+    public final int b() {
+        return this.f33558c.e.length;
+    }
+
+    @Override
+    public final Object e(a5.m mVar, int i10) {
+        int i11;
+        u30 u30Var = new u30(this, this.f33558c.getContext(), i10, 0);
+        u30Var.setOnClickListener(new ai.w(this, i10, 14));
+        u30Var.setFocusable(true);
+        u30Var.setTag(Integer.valueOf(i10));
+        u30Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
+        u30Var.setScaleType(ImageView.ScaleType.FIT_XY);
+        u30Var.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
+        if (i10 == 0) {
+            u30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
+        } else if (i10 == 1) {
+            u30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
+        } else {
+            u30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
         }
+        if (i10 == 0) {
+            i11 = R.raw.record_audio;
+        } else if (i10 == 1) {
+            i11 = R.raw.record_video_p;
+        } else {
+            i11 = R.raw.record_video_l;
+        }
+        SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(AndroidUtilities.readRes(i11));
+        drawable.setAspectFill(false);
+        u30Var.setImageDrawable(drawable);
+        if (u30Var.getParent() != null) {
+            ((ViewGroup) u30Var.getParent()).removeView(u30Var);
+        }
+        mVar.addView(u30Var, 0);
+        return u30Var;
+    }
+
+    @Override
+    public final boolean f(View view, Object obj) {
+        return view.equals(obj);
+    }
+
+    @Override
+    public final void h(int i10) {
     }
 }

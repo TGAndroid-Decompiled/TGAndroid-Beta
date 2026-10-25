@@ -1,19 +1,10 @@
 package org.telegram.ui.Components;
 
-import android.app.Activity;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public final class o41 extends x41 {
-    public final org.telegram.ui.kf Z;
-
-    public o41(Activity activity, String str, String str2, TLRPC.InputPeer inputPeer, int i10, TL_iv.RichMessage richMessage, org.telegram.ui.kf kfVar) {
-        super(activity, str, str2, null, inputPeer, i10, false, richMessage);
-        this.Z = kfVar;
-    }
-
+import android.view.View;
+import android.widget.FrameLayout;
+public final class o41 extends FrameLayout {
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        this.Z.run();
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 }

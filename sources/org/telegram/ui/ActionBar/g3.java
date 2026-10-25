@@ -1,79 +1,48 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.Rect;
-import android.graphics.drawable.Drawable;
-import org.telegram.messenger.AndroidUtilities;
-public final class g3 extends Drawable {
-    public final Paint f20914a;
-    public final Rect f20915b;
-    public final Rect f20916c;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import org.telegram.messenger.NotificationCenter;
+public final class g3 extends AnimatorListenerAdapter {
+    public final int f22646a;
+    public final h3 f22647b;
 
-    public g3() {
-        Paint paint = new Paint(1);
-        this.f20914a = paint;
-        this.f20915b = new Rect();
-        this.f20916c = new Rect();
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
-        paint.setColor(-16777216);
+    public g3(h3 h3Var, int i10) {
+        this.f22646a = i10;
+        this.f22647b = h3Var;
     }
 
-    public final void a(int i10) {
-        Rect rect = this.f20915b;
-        if (rect.left == 0 && rect.top == 0 && rect.right == 0 && rect.bottom == i10) {
-            return;
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        int i10 = this.f22646a;
+        h3 h3Var = this.f22647b;
+        switch (i10) {
+            case 0:
+                h3Var.f22679y = 0.0f;
+                h3Var.G.containerView.setTranslationX(0.0f);
+                h3Var.G.container.invalidate();
+                return;
+            case 1:
+                h3Var.G.skipDismissAnimation = true;
+                h3Var.G.containerView.setTranslationX(h3Var.getMeasuredWidth());
+                h3Var.G.dismiss();
+                h3Var.G.container.invalidate();
+                return;
+            case 2:
+                h3Var.G.containerView.setTranslationY(0.0f);
+                h3Var.G.onContainerViewTranslation();
+                k3 k3Var = h3Var.G;
+                k3Var.onSmoothContainerViewLayout(k3Var.containerView.getTranslationY());
+                h3Var.invalidate();
+                return;
+            default:
+                AnimatorSet animatorSet = h3Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    h3Var.h = null;
+                }
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.startAllHeavyOperations, 512);
+                return;
         }
-        rect.set(0, 0, 0, i10);
-        onBoundsChange(getBounds());
-        invalidateSelf();
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        Rect rect = this.f20916c;
-        if (!rect.isEmpty()) {
-            Paint paint = this.f20914a;
-            if (paint.getAlpha() != 0 && !AndroidUtilities.makingGlobalBlurBitmap) {
-                canvas.drawRect(rect, paint);
-            }
-        }
-    }
-
-    @Override
-    public final int getAlpha() {
-        return this.f20914a.getAlpha();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return 0;
-    }
-
-    @Override
-    public final void onBoundsChange(Rect rect) {
-        super.onBoundsChange(rect);
-        Rect rect2 = this.f20916c;
-        rect2.set(rect);
-        int i10 = rect2.left;
-        Rect rect3 = this.f20915b;
-        rect2.left = Math.max(0, rect3.left) + i10;
-        rect2.top = Math.max(0, rect3.top) + rect2.top;
-        rect2.right -= Math.max(0, rect3.right);
-        rect2.bottom -= Math.max(0, rect3.bottom);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-        this.f20914a.setAlpha(i10);
-        invalidateSelf();
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
-        this.f20914a.setColorFilter(colorFilter);
     }
 }

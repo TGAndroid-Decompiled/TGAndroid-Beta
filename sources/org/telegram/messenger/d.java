@@ -1,56 +1,135 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
-import android.graphics.Canvas;
-import android.view.View;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.tgnet.QuickAckDelegate;
-import org.telegram.tgnet.RequestTimeDelegate;
+import android.graphics.Bitmap;
+import android.graphics.BlendMode;
+import android.graphics.RenderNode;
+import android.icu.text.RelativeDateTimeFormatter;
+import android.os.Build;
+import android.view.WindowManager;
+import com.google.android.gms.tasks.OnSuccessListener;
+import j$.util.stream.Stream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.gj0;
-public final class d implements org.telegram.ui.ActionBar.z1, RequestTimeDelegate, MessagesController.ErrorDelegate, gj0, QuickAckDelegate {
-    public final int f18181a;
-    public final Object f18182b;
-    public final Object f18183c;
+import org.telegram.tgnet.Vector;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_ephemeral;
+public final class d implements OnSuccessListener, GenericProvider, org.telegram.ui.ActionBar.b2, Vector.TLDeserializer {
+    public final int f19852a;
 
-    public d(int i10, Object obj, Object obj2) {
-        this.f18181a = i10;
-        this.f18182b = obj;
-        this.f18183c = obj2;
+    public d(int i10) {
+        this.f19852a = i10;
+    }
+
+    public static Bitmap.CompressFormat a() {
+        return Bitmap.CompressFormat.WEBP_LOSSY;
+    }
+
+    public static BlendMode b(Object obj) {
+        return (BlendMode) obj;
+    }
+
+    public static RenderNode c(Object obj) {
+        return (RenderNode) obj;
+    }
+
+    public static RelativeDateTimeFormatter.Direction d() {
+        return RelativeDateTimeFormatter.Direction.NEXT;
+    }
+
+    public static RelativeDateTimeFormatter.RelativeUnit e() {
+        return RelativeDateTimeFormatter.RelativeUnit.SECONDS;
+    }
+
+    public static String f() {
+        return Build.SOC_MODEL;
+    }
+
+    public static Stream g(Path path) {
+        return Stream.VivifiedWrapper.convert(Files.list(path));
+    }
+
+    public static void i(WindowManager.LayoutParams layoutParams, int i10) {
+        layoutParams.layoutInDisplayCutoutMode = i10;
+    }
+
+    public static RelativeDateTimeFormatter.Direction j() {
+        return RelativeDateTimeFormatter.Direction.LAST;
+    }
+
+    public static RelativeDateTimeFormatter.RelativeUnit k() {
+        return RelativeDateTimeFormatter.RelativeUnit.MINUTES;
+    }
+
+    public static RelativeDateTimeFormatter.RelativeUnit l() {
+        return RelativeDateTimeFormatter.RelativeUnit.HOURS;
+    }
+
+    public static RelativeDateTimeFormatter.RelativeUnit m() {
+        return RelativeDateTimeFormatter.RelativeUnit.DAYS;
+    }
+
+    public static RelativeDateTimeFormatter.RelativeUnit n() {
+        return RelativeDateTimeFormatter.RelativeUnit.MONTHS;
+    }
+
+    public static RelativeDateTimeFormatter.RelativeUnit o() {
+        return RelativeDateTimeFormatter.RelativeUnit.YEARS;
     }
 
     @Override
-    public void a(Canvas canvas) {
-        ((RichMessageLayout.RichThinkingBlock) this.f18182b).lambda$onDrawFaded$0((View) this.f18183c, canvas);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f18181a) {
-            case 0:
-                AndroidUtilities.lambda$isMapsInstalled$11((String) this.f18182b, (org.telegram.ui.ActionBar.o2) this.f18183c, c2Var, i10);
-                return;
+    public TLObject deserialize(InputSerializedData inputSerializedData, int i10, boolean z10) {
+        switch (this.f19852a) {
+            case 26:
+                return TLRPC.Peer.TLdeserialize(inputSerializedData, i10, z10);
+            case 27:
+                return TL_account.WebBrowserSettings.TLdeserialize(inputSerializedData, i10, z10);
+            case 28:
+                return TLRPC.MessageEntity.TLdeserialize(inputSerializedData, i10, z10);
             default:
-                AndroidUtilities.lambda$showProxyAlert$20((SharedPreferences) this.f18182b, (g0) this.f18183c, c2Var, i10);
-                return;
+                return TL_ephemeral.EphemeralMessage.TLdeserialize(inputSerializedData, i10, z10);
         }
     }
 
     @Override
-    public void run() {
-        ((SendMessagesHelper) this.f18182b).lambda$performSendMessageRequest$106((TLRPC.Message) this.f18183c);
+    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        e2Var.dismiss();
     }
 
     @Override
-    public void run(long j10) {
-        AndroidUtilities.lambda$showProxyAlert$18((boolean[]) this.f18182b, (org.telegram.ui.Components.xc[]) this.f18183c, j10);
+    public void onSuccess(Object obj) {
+        AndroidUtilities.lambda$setWaitingForSms$12((Void) obj);
     }
 
     @Override
-    public boolean run(TLRPC.TL_error tL_error) {
-        boolean lambda$addUsersToChat$294;
-        lambda$addUsersToChat$294 = MessagesController.lambda$addUsersToChat$294((q0.a) this.f18182b, (TLRPC.User) this.f18183c, tL_error);
-        return lambda$addUsersToChat$294;
+    public Object provide(Object obj) {
+        String lambda$formatSpannableSimple$15;
+        String lambda$formatSpannable$16;
+        TLRPC.MessageEntity lambda$getEntities$182;
+        TLRPC.MessageEntity lambda$getEntities$183;
+        TLRPC.MessageEntity lambda$getEntities$184;
+        TLRPC.MessageEntity lambda$getEntities$185;
+        switch (this.f19852a) {
+            case 3:
+                lambda$formatSpannableSimple$15 = AndroidUtilities.lambda$formatSpannableSimple$15((Integer) obj);
+                return lambda$formatSpannableSimple$15;
+            case 4:
+                lambda$formatSpannable$16 = AndroidUtilities.lambda$formatSpannable$16((Integer) obj);
+                return lambda$formatSpannable$16;
+            case 22:
+                lambda$getEntities$182 = MediaDataController.lambda$getEntities$182((Void) obj);
+                return lambda$getEntities$182;
+            case 23:
+                lambda$getEntities$183 = MediaDataController.lambda$getEntities$183((Void) obj);
+                return lambda$getEntities$183;
+            case 24:
+                lambda$getEntities$184 = MediaDataController.lambda$getEntities$184((Void) obj);
+                return lambda$getEntities$184;
+            default:
+                lambda$getEntities$185 = MediaDataController.lambda$getEntities$185((Void) obj);
+                return lambda$getEntities$185;
+        }
     }
 }

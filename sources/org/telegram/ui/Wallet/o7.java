@@ -1,9 +1,9 @@
 package org.telegram.ui.Wallet;
 public final class o7 implements Runnable {
-    public final t7 f34969a;
+    public final t7 f37064a;
 
     public o7(t7 t7Var) {
-        this.f34969a = t7Var;
+        this.f37064a = t7Var;
     }
 
     @Override

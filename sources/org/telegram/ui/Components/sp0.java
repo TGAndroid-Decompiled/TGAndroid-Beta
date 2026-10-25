@@ -1,34 +1,28 @@
 package org.telegram.ui.Components;
+public final class sp0 implements o1.g {
+    public final int f32655a;
+    public final bq0 f32656b;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class sp0 extends FrameLayout {
-    public final cf f30607a;
-
-    public sp0(cf cfVar, Context context) {
-        super(context);
-        this.f30607a = cfVar;
+    public sp0(bq0 bq0Var, int i10) {
+        this.f32655a = i10;
+        this.f32656b = bq0Var;
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        cf cfVar = this.f30607a;
-        View contentView = cfVar.getContentView();
-        contentView.getLocationInWindow(r3);
-        int[] iArr = {iArr[0] + cfVar.E, iArr[1] + cfVar.F};
-        int[] iArr2 = new int[2];
-        getLocationInWindow(iArr2);
-        if ((motionEvent.getAction() != 0 || motionEvent.getX() > iArr[0]) && motionEvent.getX() < contentView.getWidth() + iArr[0] && motionEvent.getY() > iArr[1] && motionEvent.getY() < contentView.getHeight() + iArr[1]) {
-            motionEvent.offsetLocation(iArr2[0] - iArr[0], (AndroidUtilities.statusBarHeight + iArr2[1]) - iArr[1]);
-            return contentView.dispatchTouchEvent(motionEvent);
+    public final void a(o1.h hVar, float f7, float f10) {
+        switch (this.f32655a) {
+            case 0:
+                this.f32656b.f26938o.setScaleX(1.0f / f7);
+                return;
+            case 1:
+                this.f32656b.f26938o.setScaleY(1.0f / f7);
+                return;
+            case 2:
+                this.f32656b.f26938o.setScaleX(1.0f / f7);
+                return;
+            default:
+                this.f32656b.f26938o.setScaleY(1.0f / f7);
+                return;
         }
-        if (!cfVar.A && !cfVar.D) {
-            cfVar.D = true;
-            cfVar.l(new o1.k[0]);
-        }
-        return true;
     }
 }

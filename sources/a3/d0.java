@@ -6,7 +6,7 @@ public final class d0 extends c0 implements Choreographer.FrameCallback {
     @Override
     public final void a() {
         long j10;
-        this.f73b.registerDisplayListener(this, e2.m0.q(null));
+        this.f73b.registerDisplayListener(this, e2.n0.q(null));
         this.f72a.postFrameCallback(this);
         Display display = this.f73b.getDisplay(0);
         if (display != null) {

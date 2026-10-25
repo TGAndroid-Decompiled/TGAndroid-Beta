@@ -1,33 +1,34 @@
 package org.telegram.ui.web;
 
 import android.os.Bundle;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vc;
-import org.telegram.ui.nh0;
-import org.telegram.ui.sn;
-public final class f0 extends sn {
-    public boolean f43094ed;
-    public final TLRPC.User f43095fd;
-    public final long f43096gd;
-    public final b1 f43097hd;
+import di.x7;
+import org.json.JSONObject;
+import org.telegram.ui.cy;
+public final class f0 extends cy {
+    public final boolean[] C4;
+    public final x7 D4;
+    public final a1 E4;
 
-    public f0(b1 b1Var, Bundle bundle, TLRPC.User user, long j10) {
+    public f0(a1 a1Var, Bundle bundle, boolean[] zArr, x7 x7Var) {
         super(bundle);
-        this.f43097hd = b1Var;
-        this.f43095fd = user;
-        this.f43096gd = j10;
+        this.E4 = a1Var;
+        this.C4 = zArr;
+        this.D4 = x7Var;
     }
 
     @Override
-    public final void onBecomeFullyVisible() {
-        super.onBecomeFullyVisible();
-        if (!this.f43094ed) {
-            this.f43094ed = true;
-            vc.a0(this).M(LocaleController.formatString(R.string.CreateManagedBotCreatedTitle, UserObject.getUserName(this.f43095fd)), AndroidUtilities.replaceSingleTag(LocaleController.formatString(R.string.CreateManagedBotCreatedText, UserObject.getUserName(this.f43097hd.U)), new nh0(this, this.f43096gd, 2)), R.raw.contact_check).j();
+    public final void onFragmentDestroy() {
+        JSONObject jSONObject;
+        super.onFragmentDestroy();
+        boolean[] zArr = this.C4;
+        if (!zArr[0]) {
+            zArr[0] = true;
+            try {
+                jSONObject = new JSONObject();
+            } catch (Exception unused) {
+                jSONObject = null;
+            }
+            this.E4.x(this.D4, "requested_chat_failed", jSONObject);
         }
     }
 }

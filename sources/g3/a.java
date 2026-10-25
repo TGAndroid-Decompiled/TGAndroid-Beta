@@ -1,93 +1,93 @@
 package g3;
 
-import c3.g0;
+import c3.d0;
+import c3.o;
+import c3.p;
 import c3.q;
-import c3.r;
 import c3.s;
-import c3.u;
-import e9.l0;
-import e9.n0;
-import e9.x1;
+import f9.g0;
+import f9.i0;
+import f9.s1;
 import java.util.List;
-public final class a implements q {
-    public final int f10844a;
-    public final g0 f10845b;
+public final class a implements o {
+    public final int f12292a;
+    public final d0 f12293b;
 
     public a(int i10) {
-        this.f10844a = i10;
+        this.f12292a = i10;
         switch (i10) {
             case 1:
-                this.f10845b = new g0(35152, 2, "image/png");
+                this.f12293b = new d0(35152, 2, "image/png");
                 return;
             default:
-                this.f10845b = new g0(16973, 2, "image/bmp");
+                this.f12293b = new d0(16973, 2, "image/bmp");
                 return;
         }
     }
 
     @Override
-    public final boolean a(r rVar) {
-        switch (this.f10844a) {
+    public final boolean a(p pVar) {
+        switch (this.f12292a) {
             case 0:
-                return this.f10845b.a(rVar);
+                return this.f12293b.a(pVar);
             default:
-                return this.f10845b.a(rVar);
+                return this.f12293b.a(pVar);
         }
     }
 
     @Override
-    public final q b() {
-        int i10 = this.f10844a;
+    public final o b() {
+        int i10 = this.f12292a;
         return this;
     }
 
     @Override
-    public final void c(s sVar) {
-        switch (this.f10844a) {
+    public final void c(q qVar) {
+        switch (this.f12292a) {
             case 0:
-                this.f10845b.c(sVar);
+                this.f12293b.c(qVar);
                 return;
             default:
-                this.f10845b.c(sVar);
+                this.f12293b.c(qVar);
                 return;
         }
     }
 
     @Override
     public final void d(long j10, long j11) {
-        switch (this.f10844a) {
+        switch (this.f12292a) {
             case 0:
-                this.f10845b.d(j10, j11);
+                this.f12293b.d(j10, j11);
                 return;
             default:
-                this.f10845b.d(j10, j11);
+                this.f12293b.d(j10, j11);
                 return;
         }
     }
 
     @Override
     public final List e() {
-        switch (this.f10844a) {
+        switch (this.f12292a) {
             case 0:
             default:
-                l0 l0Var = n0.f8481b;
-                return x1.e;
+                g0 g0Var = i0.f10287b;
+                return s1.e;
         }
     }
 
     @Override
-    public final int f(r rVar, u uVar) {
-        switch (this.f10844a) {
+    public final int f(p pVar, s sVar) {
+        switch (this.f12292a) {
             case 0:
-                return this.f10845b.f(rVar, uVar);
+                return this.f12293b.f(pVar, sVar);
             default:
-                return this.f10845b.f(rVar, uVar);
+                return this.f12293b.f(pVar, sVar);
         }
     }
 
     @Override
     public final void release() {
-        int i10 = this.f10844a;
+        int i10 = this.f12292a;
     }
 
     private final void g() {

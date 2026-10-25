@@ -1,14 +1,8 @@
 package n2;
 
-import u2.h0;
+import m4.x0;
 public interface l {
-    void a(int i10, h0 h0Var, int i11);
+    public static final x0 f18628u = new x0(17);
 
-    void b(int i10, h0 h0Var, Exception exc);
-
-    void c(int i10, h0 h0Var, oa.d dVar);
-
-    void h(int i10, h0 h0Var);
-
-    void j(int i10, h0 h0Var);
+    void release();
 }

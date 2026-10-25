@@ -1,51 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class f5 extends FrameLayout {
-    public boolean f26195a;
-    public int f26196b;
-    public o6 f26197c;
-    public o6 d;
+import java.util.HashSet;
+import org.telegram.messenger.FileLog;
+public class f5 extends EditTextBoldCursor implements org.telegram.ui.ActionBar.p6 {
+    public boolean f28056b;
+    public int f28057c;
+    public org.telegram.ui.ActionBar.u6 d;
+    public int e;
 
-    public o6 getSubtitleTextView() {
-        return this.d;
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
+        if (this.f28056b) {
+            hashSet.add(Integer.valueOf(this.f28057c));
+        }
     }
 
-    public o6 getTitle() {
-        return this.f26197c;
+    public final void i(int i10, org.telegram.ui.ActionBar.u6 u6Var) {
+        this.f28056b = true;
+        this.f28057c = i10;
+        this.d = u6Var;
+        int w02 = org.telegram.ui.ActionBar.y6.w0(i10, u6Var);
+        this.e = w02;
+        setCursorColor(w02);
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int i14;
-        o6 o6Var = this.d;
-        o6 o6Var2 = this.f26197c;
-        int A = org.telegram.messenger.tl.A(42.0f, org.telegram.ui.ActionBar.k.getCurrentActionBarHeight(), 2);
-        if (this.f26195a) {
-            i14 = AndroidUtilities.statusBarHeight;
-        } else {
-            i14 = 0;
+    public final void updateColors() {
+        int w02;
+        try {
+            if (this.f28056b && (w02 = org.telegram.ui.ActionBar.y6.w0(this.f28057c, this.d)) != this.e) {
+                this.e = w02;
+                setCursorColor(w02);
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        int i15 = A + i14;
-        int i16 = this.f26196b;
-        if (o6Var.getVisibility() != 8) {
-            o6Var2.layout(i16, (AndroidUtilities.dp(1.0f) + i15) - o6Var2.getPaddingTop(), o6Var2.getMeasuredWidth() + i16, o6Var2.getPaddingBottom() + ((AndroidUtilities.dp(1.3f) + (o6Var2.getTextHeight() + i15)) - o6Var2.getPaddingTop()));
-        } else {
-            o6Var2.layout(i16, (AndroidUtilities.dp(11.0f) + i15) - o6Var2.getPaddingTop(), o6Var2.getMeasuredWidth() + i16, o6Var2.getPaddingBottom() + ((AndroidUtilities.dp(11.0f) + (o6Var2.getTextHeight() + i15)) - o6Var2.getPaddingTop()));
-        }
-        o6Var.layout(i16, AndroidUtilities.dp(20.0f) + i15, o6Var.getMeasuredWidth() + i16, AndroidUtilities.dp(24.0f) + o6Var.getTextHeight() + i15);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        int size = View.MeasureSpec.getSize(i10);
-        o6 o6Var = this.f26197c;
-        int paddingRight = o6Var.getPaddingRight() + size;
-        int dp = paddingRight - AndroidUtilities.dp(16.0f);
-        o6Var.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(o6Var.getPaddingRight() + AndroidUtilities.dp(32.0f), Integer.MIN_VALUE));
-        this.d.measure(View.MeasureSpec.makeMeasureSpec(dp, Integer.MIN_VALUE), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(20.0f), Integer.MIN_VALUE));
-        setMeasuredDimension(paddingRight, View.MeasureSpec.getSize(i11));
     }
 }

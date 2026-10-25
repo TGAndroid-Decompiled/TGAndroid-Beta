@@ -1,112 +1,97 @@
 package org.telegram.ui;
 
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_iv;
-public abstract class g4 {
-    public static TLRPC.Document a(TLRPC.WebPage webPage, long j10) {
-        if (webPage != null && webPage.cached_page != null) {
-            TLRPC.Document document = webPage.document;
-            if (document != null && document.f20350id == j10) {
-                return document;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.LocaleController;
+public final class g4 implements Runnable {
+    public final int f39535a;
+    public final int f39536b;
+    public final Object f39537c;
+    public final Object d;
+
+    public g4(int i10, Object obj, Object obj2, int i11) {
+        this.f39535a = i11;
+        this.f39536b = i10;
+        this.f39537c = obj;
+        this.d = obj2;
+    }
+
+    private final void a() {
+        int i10;
+        org.telegram.ui.Components.u21 u21Var = (org.telegram.ui.Components.u21) this.f39537c;
+        String str = (String) this.d;
+        int i11 = this.f39536b;
+        org.telegram.ui.Components.t21 t21Var = u21Var.f33230r.f26339n;
+        try {
+            String lowerCase = str.trim().toLowerCase();
+            if (lowerCase.length() == 0) {
+                u21Var.d = -1;
+                AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.zr0(u21Var, u21Var.d, new ArrayList(), new ArrayList(), 4));
+                return;
             }
-            for (int i10 = 0; i10 < webPage.cached_page.documents.size(); i10++) {
-                TLRPC.Document document2 = webPage.cached_page.documents.get(i10);
-                if (document2.f20350id == j10) {
-                    return document2;
+            String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
+            translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
+            if (translitString != null) {
+                i10 = 1;
+            } else {
+                i10 = 0;
+            }
+            int i12 = i10 + 1;
+            String[] strArr = new String[i12];
+            strArr[0] = lowerCase;
+            if (translitString != null) {
+                strArr[1] = translitString;
+            }
+            ArrayList arrayList = new ArrayList();
+            ArrayList arrayList2 = new ArrayList();
+            int size = t21Var.d.size();
+            for (int i13 = 0; i13 < size; i13++) {
+                ArrayList arrayList3 = (ArrayList) t21Var.d.get(i13);
+                String c10 = org.telegram.ui.ActionBar.m5.c(((org.telegram.ui.ActionBar.h7) arrayList3.get(0)).e);
+                String lowerCase2 = c10.toLowerCase();
+                int i14 = 0;
+                while (true) {
+                    if (i14 < i12) {
+                        String str2 = strArr[i14];
+                        if (lowerCase2.contains(str2)) {
+                            arrayList.add(arrayList3);
+                            arrayList2.add(org.telegram.ui.Components.u21.E(c10, str2));
+                            break;
+                        }
+                        i14++;
+                    }
                 }
             }
-        }
-        return null;
-    }
-
-    public static TLRPC.Document b(TL_iv.RichMessage richMessage, long j10) {
-        if (richMessage == null) {
-            return null;
-        }
-        for (int i10 = 0; i10 < richMessage.documents.size(); i10++) {
-            TLRPC.Document document = richMessage.documents.get(i10);
-            if (document.f20350id == j10) {
-                return document;
-            }
-        }
-        return null;
-    }
-
-    public static File c(TLObject tLObject) {
-        FileLoader fileLoader = FileLoader.getInstance(UserConfig.selectedAccount);
-        File pathToAttach = fileLoader.getPathToAttach(tLObject, false);
-        if (pathToAttach != null && pathToAttach.exists()) {
-            return pathToAttach;
-        }
-        File pathToAttach2 = fileLoader.getPathToAttach(tLObject, true);
-        if (pathToAttach2 != null && pathToAttach2.exists()) {
-            return pathToAttach2;
-        }
-        if (pathToAttach != null) {
-            return pathToAttach;
-        }
-        return pathToAttach2;
-    }
-
-    public static TLRPC.Photo d(long j10, TLObject tLObject) {
-        if (tLObject instanceof TL_iv.RichMessage) {
-            return f((TL_iv.RichMessage) tLObject, j10);
-        }
-        if (tLObject instanceof TL_iv.Page) {
-            TL_iv.Page page = (TL_iv.Page) tLObject;
-            for (int i10 = 0; i10 < page.photos.size(); i10++) {
-                TLRPC.Photo photo = page.photos.get(i10);
-                if (photo.f20368id == j10) {
-                    return photo;
-                }
-            }
-            return null;
-        } else if (!(tLObject instanceof TLRPC.WebPage)) {
-            return null;
-        } else {
-            return e((TLRPC.WebPage) tLObject, j10);
+            AndroidUtilities.runOnUIThread(new org.telegram.ui.Components.zr0(u21Var, i11, arrayList, arrayList2, 4));
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
-    public static TLRPC.Photo e(TLRPC.WebPage webPage, long j10) {
-        if (webPage != null && webPage.cached_page != null) {
-            TLRPC.Photo photo = webPage.photo;
-            if (photo != null && photo.f20368id == j10) {
-                return photo;
-            }
-            for (int i10 = 0; i10 < webPage.cached_page.photos.size(); i10++) {
-                TLRPC.Photo photo2 = webPage.cached_page.photos.get(i10);
-                if (photo2.f20368id == j10) {
-                    return photo2;
-                }
-            }
-        }
-        return null;
+    @Override
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.g4.run():void");
     }
 
-    public static TLRPC.Photo f(TL_iv.RichMessage richMessage, long j10) {
-        if (richMessage == null) {
-            return null;
-        }
-        for (int i10 = 0; i10 < richMessage.photos.size(); i10++) {
-            TLRPC.Photo photo = richMessage.photos.get(i10);
-            if (photo.f20368id == j10) {
-                return photo;
-            }
-        }
-        return null;
+    public g4(Object obj, int i10, Object obj2, int i11) {
+        this.f39535a = i11;
+        this.f39537c = obj;
+        this.f39536b = i10;
+        this.d = obj2;
     }
 
-    public static boolean g(TLRPC.WebPage webPage, TL_iv.PageBlock pageBlock) {
-        TLRPC.Document a2;
-        if ((pageBlock instanceof TL_iv.pageBlockVideo) && (a2 = a(webPage, ((TL_iv.pageBlockVideo) pageBlock).video_id)) != null) {
-            return MessageObject.isVideoDocument(a2);
-        }
-        return false;
+    public g4(Object obj, Object obj2, int i10, int i11) {
+        this.f39535a = i11;
+        this.f39537c = obj;
+        this.d = obj2;
+        this.f39536b = i10;
+    }
+
+    public g4(h4 h4Var, int i10, int[] iArr, int[] iArr2) {
+        this.f39535a = 0;
+        this.f39537c = h4Var;
+        this.f39536b = i10;
+        this.d = iArr2;
     }
 }

@@ -1,21 +1,29 @@
 package sg;
 
 import android.content.Context;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Components.Premium.LimitPreviewView;
-public final class h0 extends LimitPreviewView {
-    public final i0 f46694p0;
+import android.graphics.Paint;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.nt0;
+public final class h0 extends d {
+    public final Paint h;
+    public long f48222n;
+    public float f48223r;
+    public float f48224s;
+    public final nt0 v;
 
-    public h0(i0 i0Var, Context context, int i10, int i11, int i12, float f7, g6 g6Var) {
-        super(context, i10, i11, i12, f7, g6Var);
-        this.f46694p0 = i0Var;
+    public h0(nt0 nt0Var, Context context, g0 g0Var) {
+        super(context, g0Var);
+        this.v = nt0Var;
+        Paint paint = new Paint();
+        this.h = paint;
+        setWillNotDraw(false);
+        paint.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setColor(-1);
     }
 
     @Override
-    public final void invalidate() {
-        if (this.f46694p0.e.f46710f0) {
-            return;
-        }
-        super.invalidate();
+    public final void onDraw(android.graphics.Canvas r14) {
+        throw new UnsupportedOperationException("Method not decompiled: sg.h0.onDraw(android.graphics.Canvas):void");
     }
 }

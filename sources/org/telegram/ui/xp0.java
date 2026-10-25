@@ -1,87 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.Point;
-import android.graphics.drawable.BitmapDrawable;
-import android.net.Uri;
-import android.view.MotionEvent;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class xp0 extends org.telegram.ui.ActionBar.o2 {
-    public Bitmap f43655a;
-    public BitmapDrawable f43656b;
-    public wp0 f43657c;
-    public vp0 d;
-    public boolean e;
-    public boolean f43658f;
+import android.text.Editable;
+import java.util.ArrayList;
+import java.util.HashMap;
+public final class xp0 implements qq0 {
+    public final HashMap f45829a;
+    public final ArrayList f45830b;
+    public final aq0 f45831c;
 
-    @Override
-    public final View createView(Context context) {
-        this.actionBar.setBackgroundColor(-13421773);
-        this.actionBar.A(-12763843, false);
-        this.actionBar.setTitleColor(-1);
-        this.actionBar.B(-1, false);
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(LocaleController.getString(R.string.CropImage));
-        this.actionBar.setActionBarMenuOnItemClick(new s60(this, 17));
-        this.actionBar.m().h(1, R.drawable.ic_ab_done, LocaleController.getString(R.string.Done), AndroidUtilities.dp(56.0f));
-        vp0 vp0Var = new vp0(this, context);
-        this.d = vp0Var;
-        this.fragmentView = vp0Var;
-        vp0Var.G = getArguments().getBoolean("freeform", false);
-        this.fragmentView.setLayoutParams(new FrameLayout.LayoutParams(-1, -1));
-        return this.fragmentView;
+    public xp0(aq0 aq0Var, HashMap hashMap, ArrayList arrayList) {
+        this.f45831c = aq0Var;
+        this.f45829a = hashMap;
+        this.f45830b = arrayList;
     }
 
     @Override
-    public final boolean isSwipeBackEnabled(MotionEvent motionEvent) {
-        return false;
+    public final void b(Editable editable) {
+        aq0 aq0Var = this.f45831c;
+        org.telegram.ui.Components.ru ruVar = aq0Var.M;
+        aq0Var.f37872a = editable;
+        ruVar.setText(editable);
     }
 
     @Override
-    public final boolean onFragmentCreate() {
-        int max;
-        if (this.f43655a == null) {
-            String string = getArguments().getString("photoPath");
-            Uri uri = (Uri) getArguments().getParcelable("photoUri");
-            if (string == null && uri == null) {
-                return false;
-            }
-            if (string != null && !si.o0.t(string)) {
-                return false;
-            }
-            if (AndroidUtilities.isTablet()) {
-                max = AndroidUtilities.dp(520.0f);
-            } else {
-                Point point = AndroidUtilities.displaySize;
-                max = Math.max(point.x, point.y);
-            }
-            float f7 = max;
-            Bitmap loadBitmap = ImageLoader.loadBitmap(string, uri, f7, f7, true);
-            this.f43655a = loadBitmap;
-            if (loadBitmap == null) {
-                return false;
-            }
+    public final void d(int i10, boolean z10, boolean z11) {
+        aq0 aq0Var = this.f45831c;
+        aq0Var.removeSelfFromStack();
+        if (!z10) {
+            aq0Var.W(this.f45829a, this.f45830b, z11, i10);
         }
-        this.f43656b = new BitmapDrawable(this.f43655a);
-        super.onFragmentCreate();
+    }
+
+    @Override
+    public final boolean e() {
         return true;
     }
 
     @Override
-    public final void onFragmentDestroy() {
-        super.onFragmentDestroy();
-        Bitmap bitmap = this.f43655a;
-        if (bitmap != null && !this.e) {
-            bitmap.recycle();
-            this.f43655a = null;
-        }
-        this.f43656b = null;
+    public final void a() {
+    }
+
+    @Override
+    public final void c() {
     }
 }

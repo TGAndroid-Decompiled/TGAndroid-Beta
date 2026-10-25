@@ -13,15 +13,15 @@ import android.text.TextPaint;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class oj0 {
-    public final View f29306a;
-    public final int f29307b;
-    public final int f29308c;
+    public final View f31312a;
+    public final int f31313b;
+    public final int f31314c;
     public final int d;
     public final sj0 e;
-    public final TextPaint f29309f;
-    public RectF f29310g;
+    public final TextPaint f31315f;
+    public RectF f31316g;
 
-    public oj0(iu iuVar, Layout layout, Spanned spanned, sj0 sj0Var) {
+    public oj0(lu luVar, Layout layout, Spanned spanned, sj0 sj0Var) {
         boolean z10;
         boolean z11;
         boolean z12;
@@ -31,24 +31,24 @@ public final class oj0 {
         int i13;
         int i14;
         int i15;
-        this.f29306a = iuVar;
+        this.f31312a = luVar;
         this.e = sj0Var;
-        this.f29309f = layout.getPaint();
-        sj0Var.f30527c = spanned.getSpanStart(sj0Var);
-        boolean z13 = sj0Var.f30525a;
+        this.f31315f = layout.getPaint();
+        sj0Var.f32578c = spanned.getSpanStart(sj0Var);
+        boolean z13 = sj0Var.f32576a;
         int spanEnd = spanned.getSpanEnd(sj0Var);
         sj0Var.d = spanEnd;
         if (spanEnd - 1 >= 0 && spanEnd < spanned.length() && spanned.charAt(sj0Var.d) != '\n' && spanned.charAt(sj0Var.d - 1) == '\n') {
             sj0Var.d--;
         }
-        int lineForOffset = layout.getLineForOffset(sj0Var.f30527c);
+        int lineForOffset = layout.getLineForOffset(sj0Var.f32578c);
         int lineForOffset2 = layout.getLineForOffset(sj0Var.d);
         if (lineForOffset2 - lineForOffset < 1) {
             z10 = true;
         } else {
             z10 = false;
         }
-        sj0Var.f30528f = z10;
+        sj0Var.f32579f = z10;
         if (lineForOffset <= 0) {
             z11 = true;
         } else {
@@ -60,10 +60,10 @@ public final class oj0 {
         } else {
             z12 = false;
         }
-        sj0Var.f30529n = z12;
+        sj0Var.f32580n = z12;
         if (z13) {
             int lineTop = layout.getLineTop(lineForOffset);
-            if (sj0Var.f30528f) {
+            if (sj0Var.f32579f) {
                 i13 = 0;
             } else {
                 if (sj0Var.h) {
@@ -73,47 +73,47 @@ public final class oj0 {
                 }
                 i13 = i12 + 3;
             }
-            this.f29307b = AndroidUtilities.dp(3 - i13) + lineTop;
+            this.f31313b = AndroidUtilities.dp(3 - i13) + lineTop;
             int lineBottom = layout.getLineBottom(lineForOffset2);
-            if (sj0Var.f30528f) {
+            if (sj0Var.f32579f) {
                 i15 = 0;
             } else {
-                if (sj0Var.f30529n) {
+                if (sj0Var.f32580n) {
                     i14 = 2;
                 } else {
                     i14 = 0;
                 }
                 i15 = i14 + 3;
             }
-            this.f29308c = lineBottom - AndroidUtilities.dp(2 - i15);
+            this.f31314c = lineBottom - AndroidUtilities.dp(2 - i15);
         } else {
             int lineTop2 = layout.getLineTop(lineForOffset);
-            if (sj0Var.f30528f) {
+            if (sj0Var.f32579f) {
                 i10 = 1;
             } else {
                 i10 = 2;
             }
-            this.f29307b = AndroidUtilities.dp(3 - i10) + lineTop2;
+            this.f31313b = AndroidUtilities.dp(3 - i10) + lineTop2;
             int lineBottom2 = layout.getLineBottom(lineForOffset2);
-            if (sj0Var.f30528f) {
+            if (sj0Var.f32579f) {
                 i11 = 1;
             } else {
                 i11 = 2;
             }
-            this.f29308c = lineBottom2 - AndroidUtilities.dp(2 - i11);
+            this.f31314c = lineBottom2 - AndroidUtilities.dp(2 - i11);
         }
-        sj0Var.f30530r = false;
+        sj0Var.f32581r = false;
         float f7 = 0.0f;
         while (lineForOffset <= lineForOffset2) {
             f7 = Math.max(f7, layout.getLineRight(lineForOffset));
             if (layout.getLineLeft(lineForOffset) > 0.0f) {
-                sj0Var.f30530r = true;
+                sj0Var.f32581r = true;
             }
             lineForOffset++;
         }
         this.d = (int) Math.ceil(f7);
-        if (z13 && iuVar != null && sj0Var.J == null) {
-            sj0Var.J = new jj0(iuVar);
+        if (z13 && luVar != null && sj0Var.J == null) {
+            sj0Var.J = new jj0(luVar);
         }
     }
 
@@ -126,14 +126,14 @@ public final class oj0 {
         Path.Direction direction;
         sj0 sj0Var = this.e;
         int i15 = sj0Var.I;
-        float[] fArr = sj0Var.f30534y;
-        boolean z10 = sj0Var.f30525a;
-        Paint paint = sj0Var.f30533x;
+        float[] fArr = sj0Var.f32585y;
+        boolean z10 = sj0Var.f32576a;
+        Paint paint = sj0Var.f32584x;
         Paint paint2 = sj0Var.F;
         Path path = sj0Var.H;
         float[] fArr2 = sj0Var.G;
         Path path2 = sj0Var.E;
-        Drawable drawable = sj0Var.f30532w;
+        Drawable drawable = sj0Var.f32583w;
         if (i15 != i11) {
             sj0Var.I = i11;
             drawable.setColorFilter(new PorterDuffColorFilter(i11, PorterDuff.Mode.SRC_IN));
@@ -153,11 +153,11 @@ public final class oj0 {
         canvas.save();
         canvas.translate(0.0f, 0.0f);
         RectF rectF2 = AndroidUtilities.rectTmp;
-        int i16 = this.f29307b;
+        int i16 = this.f31313b;
         float f7 = i16;
         float f10 = i12;
         int i17 = i12;
-        int i18 = this.f29308c;
+        int i18 = this.f31314c;
         float f11 = i18;
         rectF2.set(0.0f, f7, f10, f11);
         fArr[7] = 0.0f;
@@ -173,16 +173,16 @@ public final class oj0 {
         Path.Direction direction2 = Path.Direction.CW;
         path2.addRoundRect(rectF2, fArr, direction2);
         canvas.drawPath(path2, paint);
-        if (z10 && this.f29306a != null && sj0Var.J != null) {
-            if (this.f29310g == null) {
-                this.f29310g = new RectF();
+        if (z10 && this.f31312a != null && sj0Var.J != null) {
+            if (this.f31316g == null) {
+                this.f31316g = new RectF();
             }
             int dp3 = AndroidUtilities.dp(3.333f);
             i13 = i16;
             i14 = i18;
             direction = direction2;
             rectF = rectF2;
-            sj0Var.J.a(canvas, this.f29310g, i17 - dp3, i18 - dp3, i11, sj0Var.e, b());
+            sj0Var.J.a(canvas, this.f31316g, i17 - dp3, i18 - dp3, i11, sj0Var.e, b());
         } else {
             rectF = rectF2;
             i13 = i16;
@@ -202,7 +202,7 @@ public final class oj0 {
         path.rewind();
         path.addRoundRect(rectF, fArr2, direction);
         canvas.drawPath(path, paint2);
-        if (!sj0Var.f30530r) {
+        if (!sj0Var.f32581r) {
             int intrinsicHeight = (int) (((i13 + i14) - drawable.getIntrinsicHeight()) / 2.0f);
             if (intrinsicHeight > AndroidUtilities.dp(8.0f) + i13) {
                 intrinsicHeight = AndroidUtilities.dp(4.0f) + i13;
@@ -215,7 +215,7 @@ public final class oj0 {
     }
 
     public final boolean b() {
-        if (this.e.f30525a && this.f29308c - this.f29307b > this.f29309f.getTextSize() * 1.3f * 3) {
+        if (this.e.f32576a && this.f31314c - this.f31313b > this.f31315f.getTextSize() * 1.3f * 3) {
             return true;
         }
         return false;

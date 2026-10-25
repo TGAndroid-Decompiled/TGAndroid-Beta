@@ -1,70 +1,56 @@
 package org.telegram.ui;
 
+import android.widget.EditText;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class iq0 implements org.telegram.ui.Cells.r5 {
-    public final jq0 f38366a;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class iq0 extends org.telegram.ui.ActionBar.s0 {
+    public final lj0 f40340a = new lj0(this, 14);
+    public final rq0 f40341b;
 
-    public iq0(jq0 jq0Var) {
-        this.f38366a = jq0Var;
-    }
-
-    public final void a() {
-        sn snVar;
-        TLRPC.Chat chat;
-        lq0 lq0Var = this.f38366a.d;
-        if (lq0Var.I && (snVar = lq0Var.U) != null && (chat = snVar.e) != null && !ChatObject.hasAdminRights(chat) && chat.slowmode_enabled && lq0Var.W != 2) {
-            org.telegram.ui.Components.d5.t0(lq0Var, LocaleController.getString(R.string.Slowmode), LocaleController.getString(R.string.SlowmodeSelectSendError), null);
-            if (lq0Var.W == 1) {
-                lq0Var.W = 2;
-            }
-        }
+    public iq0(rq0 rq0Var) {
+        this.f40341b = rq0Var;
     }
 
     @Override
-    public final void b(org.telegram.ui.Cells.s5 s5Var) {
-        boolean z10;
-        int intValue = ((Integer) s5Var.getTag()).intValue();
-        lq0 lq0Var = this.f38366a.d;
-        MediaController.AlbumEntry albumEntry = lq0Var.J;
-        int i10 = -1;
-        int i11 = 1;
-        if (albumEntry != null) {
-            MediaController.PhotoEntry photoEntry = albumEntry.photos.get(intValue);
-            boolean containsKey = lq0Var.f39335b.containsKey(Integer.valueOf(photoEntry.imageId));
-            z10 = !containsKey;
-            if (!containsKey && lq0Var.H > 0 && lq0Var.f39335b.size() >= lq0Var.H) {
-                a();
-                return;
+    public final boolean b() {
+        this.f40341b.finishFragment();
+        return false;
+    }
+
+    @Override
+    public final void k(EditTextBoldCursor editTextBoldCursor) {
+        this.f40341b.c0(editTextBoldCursor);
+    }
+
+    @Override
+    public final void l(EditText editText) {
+        int i10;
+        if (editText.getText().length() == 0) {
+            rq0 rq0Var = this.f40341b;
+            rq0Var.f43247f.clear();
+            rq0Var.h.clear();
+            rq0Var.v = null;
+            rq0Var.f43262s = true;
+            rq0Var.f43260r = false;
+            if (rq0Var.f43269x != 0) {
+                i10 = ((org.telegram.ui.ActionBar.r2) rq0Var).currentAccount;
+                ConnectionsManager.getInstance(i10).cancelRequest(rq0Var.f43269x, true);
+                rq0Var.f43269x = 0;
             }
-            if (lq0Var.e && !containsKey) {
-                i10 = lq0Var.f39337c.size();
-            }
-            s5Var.b(i10, z10, true);
-            lq0Var.Y(intValue, photoEntry);
-        } else {
-            AndroidUtilities.hideKeyboard(lq0Var.getParentActivity().getCurrentFocus());
-            MediaController.SearchImage searchImage = (MediaController.SearchImage) lq0Var.f39341f.get(intValue);
-            boolean containsKey2 = lq0Var.f39335b.containsKey(searchImage.f17856id);
-            z10 = !containsKey2;
-            if (!containsKey2 && lq0Var.H > 0 && lq0Var.f39335b.size() >= lq0Var.H) {
-                a();
-                return;
-            }
-            if (lq0Var.e && !containsKey2) {
-                i10 = lq0Var.f39337c.size();
-            }
-            s5Var.b(i10, z10, true);
-            lq0Var.Y(intValue, searchImage);
+            rq0Var.N.d.setText(LocaleController.getString(R.string.NoRecentSearches));
+            rq0Var.N.e(false, true);
+            rq0Var.k0();
+            return;
         }
-        if (!z10) {
-            i11 = 2;
-        }
-        lq0Var.i0(i11);
-        lq0Var.f39357s0.a();
+        lj0 lj0Var = this.f40340a;
+        AndroidUtilities.cancelRunOnUIThread(lj0Var);
+        AndroidUtilities.runOnUIThread(lj0Var, 1200L);
+    }
+
+    @Override
+    public final void i() {
     }
 }

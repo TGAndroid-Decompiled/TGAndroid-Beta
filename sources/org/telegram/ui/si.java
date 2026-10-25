@@ -1,41 +1,68 @@
 package org.telegram.ui;
 
-import android.util.SparseArray;
-import org.telegram.messenger.MessageObject;
-public final class si {
-    public boolean f41409a;
-    public final boolean f41410b;
-    public final SparseArray f41411c;
-    public final sn d;
+import org.telegram.messenger.AndroidUtilities;
+public final class si extends qf.c {
+    public final int d;
+    public final int e;
+    public final org.telegram.ui.Cells.s1 f43521f;
+    public final un f43522g;
 
-    public si(sn snVar, boolean z10, SparseArray sparseArray) {
-        this.d = snVar;
-        this.f41410b = z10;
-        this.f41411c = sparseArray;
+    public si(un unVar, int i10, org.telegram.ui.Cells.s1 s1Var, int i11) {
+        this.d = i11;
+        this.f43522g = unVar;
+        this.e = i10;
+        this.f43521f = s1Var;
     }
 
-    public final boolean a(int i10) {
-        sn snVar = this.d;
-        int i11 = i10 - snVar.A0.J;
-        if (i11 >= 0 && i11 < snVar.G6.size()) {
-            MessageObject messageObject = (MessageObject) snVar.G6.get(i11);
-            if (messageObject.contentType == 0) {
-                SparseArray sparseArray = this.f41411c;
-                boolean z10 = this.f41410b;
-                if (!z10 && sparseArray.get(messageObject.getId(), null) == null) {
-                    return true;
+    @Override
+    public final void c(boolean z10) {
+        switch (this.d) {
+            case 0:
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ag.r0(this, this.e, 23), 240L);
+                    return;
                 }
-                if (z10 && sparseArray.get(messageObject.getId(), null) != null) {
-                    return true;
+                return;
+            case 1:
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ag.r0(this, this.e, 26), 240L);
+                    return;
                 }
-                return false;
-            }
-            return false;
+                return;
+            default:
+                if (!z10) {
+                    AndroidUtilities.runOnUIThread(new ag.r0(this, this.e, 27), 240L);
+                    return;
+                }
+                return;
         }
-        return false;
     }
 
-    public final void b(int r8, boolean r9, float r10, float r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.si.b(int, boolean, float, float):void");
+    @Override
+    public final void d() {
+        switch (this.d) {
+            case 0:
+                int i10 = this.e;
+                un unVar = this.f43522g;
+                unVar.Sb = i10;
+                unVar.Tb = 6;
+                this.f43521f.invalidate();
+                return;
+            case 1:
+                int i11 = this.e;
+                un unVar2 = this.f43522g;
+                unVar2.Sb = i11;
+                unVar2.Tb = 5;
+                unVar2.Vb = null;
+                this.f43521f.invalidate();
+                return;
+            default:
+                int i12 = this.e;
+                un unVar3 = this.f43522g;
+                unVar3.Sb = i12;
+                unVar3.Tb = 7;
+                this.f43521f.invalidate();
+                return;
+        }
     }
 }

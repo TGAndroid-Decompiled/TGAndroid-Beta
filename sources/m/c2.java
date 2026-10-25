@@ -1,25 +1,64 @@
 package m;
 
-import android.widget.AbsListView;
-public final class c2 implements AbsListView.OnScrollListener {
-    public final e2 f16231a;
+import android.os.Handler;
+import android.view.MotionEvent;
+import android.view.View;
+import org.telegram.ui.Components.fz;
+import org.telegram.ui.Components.nz;
+import org.telegram.ui.Components.sy;
+public final class c2 implements View.OnTouchListener {
+    public final int f17686a;
+    public final Object f17687b;
 
-    public c2(e2 e2Var) {
-        this.f16231a = e2Var;
+    public c2(Object obj, int i10) {
+        this.f17686a = i10;
+        this.f17687b = obj;
     }
 
     @Override
-    public final void onScrollStateChanged(AbsListView absListView, int i10) {
-        e2 e2Var = this.f16231a;
-        b2 b2Var = e2Var.G;
-        y yVar = e2Var.O;
-        if (i10 == 1 && yVar.getInputMethodMode() != 2 && yVar.getContentView() != null) {
-            e2Var.K.removeCallbacks(b2Var);
-            b2Var.run();
+    public final boolean onTouch(View view, MotionEvent motionEvent) {
+        switch (this.f17686a) {
+            case 0:
+                d2 d2Var = (d2) this.f17687b;
+                a2 a2Var = d2Var.G;
+                Handler handler = d2Var.K;
+                x xVar = d2Var.O;
+                int action = motionEvent.getAction();
+                int x9 = (int) motionEvent.getX();
+                int y3 = (int) motionEvent.getY();
+                if (action == 0 && xVar != null && xVar.isShowing() && x9 >= 0 && x9 < xVar.getWidth() && y3 >= 0 && y3 < xVar.getHeight()) {
+                    handler.postDelayed(a2Var, 250L);
+                    return false;
+                } else if (action == 1) {
+                    handler.removeCallbacks(a2Var);
+                    return false;
+                } else {
+                    return false;
+                }
+            case 1:
+                sy syVar = (sy) this.f17687b;
+                if (motionEvent.getAction() == 0) {
+                    syVar.F.f32724f = true;
+                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    syVar.F.f32724f = false;
+                }
+                return false;
+            case 2:
+                fz fzVar = (fz) this.f17687b;
+                if (motionEvent.getAction() == 0) {
+                    fzVar.G.f32724f = true;
+                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    fzVar.G.f32724f = false;
+                }
+                return false;
+            default:
+                nz nzVar = (nz) this.f17687b;
+                if (motionEvent.getAction() == 0) {
+                    nzVar.Q.f32724f = true;
+                } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
+                    nzVar.Q.f32724f = false;
+                }
+                return false;
         }
-    }
-
-    @Override
-    public final void onScroll(AbsListView absListView, int i10, int i11, int i12) {
     }
 }

@@ -1,31 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class h4 extends od0 {
-    public final int[] f26867y0;
-
-    public h4(Context context, org.telegram.ui.ActionBar.g6 g6Var, int[] iArr) {
-        super(context, g6Var);
-        this.f26867y0 = iArr;
-    }
-
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
+public final class h4 extends f5 {
     @Override
-    public final CharSequence d(int i10) {
-        int i11 = this.f26867y0[i10];
-        if (i11 == 0) {
-            return LocaleController.getString(R.string.AutoDeleteNever);
-        }
-        if (i11 < 10080) {
-            return LocaleController.formatPluralString("Days", i11 / 1440, new Object[0]);
-        }
-        if (i11 < 44640) {
-            return LocaleController.formatPluralString("Weeks", i11 / 1440, new Object[0]);
-        }
-        if (i11 < 525600) {
-            return LocaleController.formatPluralString("Months", i11 / 10080, new Object[0]);
-        }
-        return LocaleController.formatPluralString("Years", ((i11 * 5) / 31) * 1440, new Object[0]);
+    public final InputConnection onCreateInputConnection(EditorInfo editorInfo) {
+        InputConnection onCreateInputConnection = super.onCreateInputConnection(editorInfo);
+        editorInfo.imeOptions &= -1073741825;
+        return onCreateInputConnection;
     }
 }

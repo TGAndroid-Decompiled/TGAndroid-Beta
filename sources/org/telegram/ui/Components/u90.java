@@ -2,30 +2,77 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.graphics.Canvas;
-public final class u90 extends org.telegram.ui.ActionBar.n5 {
-    public final org.telegram.ui.ActionBar.g6 M0;
-    public final t90 N0;
-    public x90 O0;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.RectF;
+import android.view.MotionEvent;
+import android.view.ViewConfiguration;
+import org.telegram.messenger.AndroidUtilities;
+public abstract class u90 extends org.telegram.ui.ActionBar.b6 {
+    public final w90 M0;
+    public final Paint N0;
+    public aa0 O0;
 
-    public u90(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+    public u90(Context context) {
         super(context);
-        this.N0 = new t90(this);
-        this.M0 = g6Var;
+        this.M0 = new w90(this);
+        this.N0 = new Paint(1);
+    }
+
+    private int getLinkColor() {
+        return i0.a.o(getTextColor(), (int) (Color.alpha(getTextColor()) * 0.1175f));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
+    public void onDraw(Canvas canvas) {
+        if (isClickable()) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight());
+            int linkColor = getLinkColor();
+            Paint paint = this.N0;
+            paint.setColor(linkColor);
+            canvas.drawRoundRect(rectF, AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), paint);
+        }
         super.onDraw(canvas);
-        canvas.save();
-        canvas.translate(getLayoutX(), getLayoutY());
-        if (this.N0.f(canvas)) {
+        if (isClickable() && this.M0.f(canvas)) {
             invalidate();
         }
-        canvas.restore();
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r15) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.u90.onTouchEvent(android.view.MotionEvent):boolean");
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!isClickable()) {
+            return super.onTouchEvent(motionEvent);
+        }
+        w90 w90Var = this.M0;
+        if (w90Var != null) {
+            if (motionEvent.getAction() == 0) {
+                aa0 aa0Var = new aa0(null, null, motionEvent.getX(), motionEvent.getY(), 0);
+                aa0Var.d(getLinkColor());
+                this.O0 = aa0Var;
+                w90Var.a(aa0Var, null);
+                s90 b10 = this.O0.b();
+                b10.e(null, 0, 0.0f, 0.0f);
+                b10.addRect(0.0f, 0.0f, getPaddingRight() + getTextWidth() + getPaddingLeft(), getHeight(), Path.Direction.CW);
+                AndroidUtilities.runOnUIThread(new t90(0, this, aa0Var), ViewConfiguration.getLongPressTimeout());
+                return true;
+            } else if (motionEvent.getAction() == 1) {
+                w90Var.d(true);
+                if (this.O0 != null) {
+                    performClick();
+                }
+                this.O0 = null;
+                return true;
+            } else if (motionEvent.getAction() == 3) {
+                w90Var.d(true);
+                this.O0 = null;
+                return true;
+            }
+        }
+        if (this.O0 == null && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
     }
 }

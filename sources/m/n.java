@@ -1,126 +1,68 @@
 package m;
 
+import a8.kc;
+import a8.nf;
 import android.content.Context;
 import android.content.res.ColorStateList;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.text.InputFilter;
 import android.util.AttributeSet;
-import android.view.ActionMode;
-import android.view.accessibility.AccessibilityEvent;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.Button;
-import w7.l6;
-import w7.w7;
-public final class n extends Button implements u0.k {
-    public final e2.c f16319a;
-    public final x0 f16320b;
-    public u f16321c;
+import android.widget.CheckBox;
+public final class n extends CheckBox implements u0.k {
+    public final p f17778a;
+    public final e2.c f17779b;
+    public final w0 f17780c;
+    public t d;
 
     public n(Context context, AttributeSet attributeSet) {
-        super(context, attributeSet, 2130968648);
-        d3.a(context);
-        c3.a(this, getContext());
+        super(context, attributeSet, 2130968716);
+        c3.a(context);
+        b3.a(this, getContext());
+        p pVar = new p(this);
+        this.f17778a = pVar;
+        pVar.e(attributeSet, 2130968716);
         e2.c cVar = new e2.c(this);
-        this.f16319a = cVar;
-        cVar.f(attributeSet, 2130968648);
-        x0 x0Var = new x0(this);
-        this.f16320b = x0Var;
-        x0Var.f(attributeSet, 2130968648);
-        x0Var.b();
-        getEmojiTextViewHelper().a(attributeSet, 2130968648);
+        this.f17779b = cVar;
+        cVar.f(attributeSet, 2130968716);
+        w0 w0Var = new w0(this);
+        this.f17780c = w0Var;
+        w0Var.f(attributeSet, 2130968716);
+        getEmojiTextViewHelper().a(attributeSet, 2130968716);
     }
 
-    private u getEmojiTextViewHelper() {
-        if (this.f16321c == null) {
-            this.f16321c = new u(this);
+    private t getEmojiTextViewHelper() {
+        if (this.d == null) {
+            this.d = new t(this);
         }
-        return this.f16321c;
+        return this.d;
     }
 
     @Override
     public final void drawableStateChanged() {
         super.drawableStateChanged();
-        e2.c cVar = this.f16319a;
+        e2.c cVar = this.f17779b;
         if (cVar != null) {
             cVar.b();
         }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            x0Var.b();
+        w0 w0Var = this.f17780c;
+        if (w0Var != null) {
+            w0Var.b();
         }
     }
 
     @Override
-    public int getAutoSizeMaxTextSize() {
-        if (v3.f16422b) {
-            return super.getAutoSizeMaxTextSize();
+    public int getCompoundPaddingLeft() {
+        int compoundPaddingLeft = super.getCompoundPaddingLeft();
+        p pVar = this.f17778a;
+        if (pVar != null) {
+            pVar.getClass();
         }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            return Math.round(x0Var.f16434i.e);
-        }
-        return -1;
-    }
-
-    @Override
-    public int getAutoSizeMinTextSize() {
-        if (v3.f16422b) {
-            return super.getAutoSizeMinTextSize();
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            return Math.round(x0Var.f16434i.d);
-        }
-        return -1;
-    }
-
-    @Override
-    public int getAutoSizeStepGranularity() {
-        if (v3.f16422b) {
-            return super.getAutoSizeStepGranularity();
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            return Math.round(x0Var.f16434i.f16271c);
-        }
-        return -1;
-    }
-
-    @Override
-    public int[] getAutoSizeTextAvailableSizes() {
-        if (v3.f16422b) {
-            return super.getAutoSizeTextAvailableSizes();
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            return x0Var.f16434i.f16272f;
-        }
-        return new int[0];
-    }
-
-    @Override
-    public int getAutoSizeTextType() {
-        if (v3.f16422b) {
-            if (super.getAutoSizeTextType() != 1) {
-                return 0;
-            }
-            return 1;
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var == null) {
-            return 0;
-        }
-        return x0Var.f16434i.f16269a;
-    }
-
-    @Override
-    public ActionMode.Callback getCustomSelectionActionModeCallback() {
-        return w7.d(super.getCustomSelectionActionModeCallback());
+        return compoundPaddingLeft;
     }
 
     public ColorStateList getSupportBackgroundTintList() {
-        e2.c cVar = this.f16319a;
+        e2.c cVar = this.f17779b;
         if (cVar != null) {
             return cVar.d();
         }
@@ -128,52 +70,35 @@ public final class n extends Button implements u0.k {
     }
 
     public PorterDuff.Mode getSupportBackgroundTintMode() {
-        e2.c cVar = this.f16319a;
+        e2.c cVar = this.f17779b;
         if (cVar != null) {
             return cVar.e();
         }
         return null;
     }
 
+    public ColorStateList getSupportButtonTintList() {
+        p pVar = this.f17778a;
+        if (pVar != null) {
+            return (ColorStateList) pVar.f17805a;
+        }
+        return null;
+    }
+
+    public PorterDuff.Mode getSupportButtonTintMode() {
+        p pVar = this.f17778a;
+        if (pVar != null) {
+            return (PorterDuff.Mode) pVar.f17806b;
+        }
+        return null;
+    }
+
     public ColorStateList getSupportCompoundDrawablesTintList() {
-        return this.f16320b.d();
+        return this.f17780c.d();
     }
 
     public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
-        return this.f16320b.e();
-    }
-
-    @Override
-    public final void onInitializeAccessibilityEvent(AccessibilityEvent accessibilityEvent) {
-        super.onInitializeAccessibilityEvent(accessibilityEvent);
-        accessibilityEvent.setClassName(Button.class.getName());
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName(Button.class.getName());
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        x0 x0Var = this.f16320b;
-        if (x0Var != null && !v3.f16422b) {
-            x0Var.f16434i.a();
-        }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            h1 h1Var = x0Var.f16434i;
-            if (!v3.f16422b && h1Var.f()) {
-                h1Var.a();
-            }
-        }
+        return this.f17780c.e();
     }
 
     @Override
@@ -183,45 +108,9 @@ public final class n extends Button implements u0.k {
     }
 
     @Override
-    public final void setAutoSizeTextTypeUniformWithConfiguration(int i10, int i11, int i12, int i13) {
-        if (v3.f16422b) {
-            super.setAutoSizeTextTypeUniformWithConfiguration(i10, i11, i12, i13);
-            return;
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            x0Var.i(i10, i11, i12, i13);
-        }
-    }
-
-    @Override
-    public final void setAutoSizeTextTypeUniformWithPresetSizes(int[] iArr, int i10) {
-        if (v3.f16422b) {
-            super.setAutoSizeTextTypeUniformWithPresetSizes(iArr, i10);
-            return;
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            x0Var.j(iArr, i10);
-        }
-    }
-
-    @Override
-    public void setAutoSizeTextTypeWithDefaults(int i10) {
-        if (v3.f16422b) {
-            super.setAutoSizeTextTypeWithDefaults(i10);
-            return;
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            x0Var.k(i10);
-        }
-    }
-
-    @Override
     public void setBackgroundDrawable(Drawable drawable) {
         super.setBackgroundDrawable(drawable);
-        e2.c cVar = this.f16319a;
+        e2.c cVar = this.f17779b;
         if (cVar != null) {
             cVar.g();
         }
@@ -230,15 +119,42 @@ public final class n extends Button implements u0.k {
     @Override
     public void setBackgroundResource(int i10) {
         super.setBackgroundResource(i10);
-        e2.c cVar = this.f16319a;
+        e2.c cVar = this.f17779b;
         if (cVar != null) {
             cVar.h(i10);
         }
     }
 
     @Override
-    public void setCustomSelectionActionModeCallback(ActionMode.Callback callback) {
-        super.setCustomSelectionActionModeCallback(w7.e(callback, this));
+    public void setButtonDrawable(Drawable drawable) {
+        super.setButtonDrawable(drawable);
+        p pVar = this.f17778a;
+        if (pVar != null) {
+            if (pVar.e) {
+                pVar.e = false;
+                return;
+            }
+            pVar.e = true;
+            pVar.a();
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        w0 w0Var = this.f17780c;
+        if (w0Var != null) {
+            w0Var.b();
+        }
+    }
+
+    @Override
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        w0 w0Var = this.f17780c;
+        if (w0Var != null) {
+            w0Var.b();
+        }
     }
 
     public void setEmojiCompatEnabled(boolean z10) {
@@ -247,66 +163,57 @@ public final class n extends Button implements u0.k {
 
     @Override
     public void setFilters(InputFilter[] inputFilterArr) {
-        super.setFilters(((l6) getEmojiTextViewHelper().f16409b.f14874b).a(inputFilterArr));
-    }
-
-    public void setSupportAllCaps(boolean z10) {
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            x0Var.f16429a.setAllCaps(z10);
-        }
+        super.setFilters(((nf) getEmojiTextViewHelper().f17856b.f17210b).a(inputFilterArr));
     }
 
     public void setSupportBackgroundTintList(ColorStateList colorStateList) {
-        e2.c cVar = this.f16319a;
+        e2.c cVar = this.f17779b;
         if (cVar != null) {
             cVar.l(colorStateList);
         }
     }
 
     public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
-        e2.c cVar = this.f16319a;
+        e2.c cVar = this.f17779b;
         if (cVar != null) {
             cVar.m(mode);
         }
     }
 
+    public void setSupportButtonTintList(ColorStateList colorStateList) {
+        p pVar = this.f17778a;
+        if (pVar != null) {
+            pVar.f17805a = colorStateList;
+            pVar.f17807c = true;
+            pVar.a();
+        }
+    }
+
+    public void setSupportButtonTintMode(PorterDuff.Mode mode) {
+        p pVar = this.f17778a;
+        if (pVar != null) {
+            pVar.f17806b = mode;
+            pVar.d = true;
+            pVar.a();
+        }
+    }
+
     @Override
     public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
-        x0 x0Var = this.f16320b;
-        x0Var.l(colorStateList);
-        x0Var.b();
+        w0 w0Var = this.f17780c;
+        w0Var.l(colorStateList);
+        w0Var.b();
     }
 
     @Override
     public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
-        x0 x0Var = this.f16320b;
-        x0Var.m(mode);
-        x0Var.b();
+        w0 w0Var = this.f17780c;
+        w0Var.m(mode);
+        w0Var.b();
     }
 
     @Override
-    public final void setTextAppearance(Context context, int i10) {
-        super.setTextAppearance(context, i10);
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            x0Var.g(context, i10);
-        }
-    }
-
-    @Override
-    public final void setTextSize(int i10, float f7) {
-        boolean z10 = v3.f16422b;
-        if (z10) {
-            super.setTextSize(i10, f7);
-            return;
-        }
-        x0 x0Var = this.f16320b;
-        if (x0Var != null) {
-            h1 h1Var = x0Var.f16434i;
-            if (!z10 && !h1Var.f()) {
-                h1Var.g(f7, i10);
-            }
-        }
+    public void setButtonDrawable(int i10) {
+        setButtonDrawable(kc.b(getContext(), i10));
     }
 }

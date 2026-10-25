@@ -1,92 +1,190 @@
 package org.telegram.ui;
 
-import android.content.ActivityNotFoundException;
-import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.RenderProcessGoneDetail;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class rn0 extends WebViewClient {
-    public final Context f41190a;
-    public final ho0 f41191b;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class rn0 implements TextWatcher {
+    public boolean f43188a;
+    public String f43189b;
+    public boolean f43190c;
+    public int d;
+    public int e;
+    public boolean f43191f;
+    public final char[] h = {',', '.', 1643, 12289, 11841, 65040, 65041, 65104, 65105, 65292, 65380, 699};
+    public final po0 f43192n;
 
-    public rn0(ho0 ho0Var, Context context) {
-        this.f41191b = ho0Var;
-        this.f41190a = context;
+    public rn0(po0 po0Var) {
+        this.f43192n = po0Var;
     }
 
-    @Override
-    public final void onPageFinished(WebView webView, String str) {
-        super.onPageFinished(webView, str);
-        ho0 ho0Var = this.f41191b;
-        ho0Var.f37954z0 = false;
-        ho0Var.H0(true, false);
-        ho0Var.K0();
-    }
-
-    @Override
-    public final boolean onRenderProcessGone(WebView webView, RenderProcessGoneDetail renderProcessGoneDetail) {
-        ho0 ho0Var = this.f41191b;
-        try {
-            if (!AndroidUtilities.isSafeToShow(ho0Var.getParentActivity())) {
-                return true;
+    public final int a(String str) {
+        int i10 = 0;
+        while (true) {
+            char[] cArr = this.h;
+            if (i10 < cArr.length) {
+                int indexOf = str.indexOf(cArr[i10]);
+                if (indexOf >= 0) {
+                    return indexOf;
+                }
+                i10++;
+            } else {
+                return -1;
             }
-            AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(ho0Var.getParentActivity(), 0, ho0Var.Y0);
-            alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.ChromeCrashTitle);
-            alertDialog$Builder.f20679a.T = AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.ChromeCrashMessage), new nj0(this, 9));
-            alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-            alertDialog$Builder.p();
-            return true;
-        } catch (Exception e) {
-            FileLog.e(e);
-            return false;
         }
     }
 
     @Override
-    public final boolean shouldOverrideUrlLoading(WebView webView, String str) {
-        Uri parse;
-        boolean equals;
-        ho0 ho0Var;
+    public final void afterTextChanged(Editable editable) {
+        long j10;
         boolean z10;
-        try {
-            parse = Uri.parse(str);
-            equals = "t.me".equals(parse.getHost());
-            ho0Var = this.f41191b;
-        } catch (Exception unused) {
+        String str;
+        String str2;
+        String substring;
+        po0 po0Var = this.f43192n;
+        if (po0Var.m0) {
+            return;
         }
-        if (equals) {
-            ho0Var.t0();
-            return true;
+        Long l4 = po0Var.H0;
+        if (l4 != null) {
+            j10 = l4.longValue();
+        } else {
+            j10 = 0;
         }
-        if (!ho0.f37913h1.contains(parse.getScheme())) {
-            if (!ho0.f37912g1.contains(parse.getScheme())) {
-                try {
-                    if (ho0Var.getParentActivity() != null) {
-                        z10 = true;
+        String str3 = this.f43189b;
+        if (str3 == null) {
+            str3 = LocaleController.fixNumbers(editable.toString());
+        }
+        int a2 = a(str3);
+        if (a2 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        int currencyExpDivider = LocaleController.getCurrencyExpDivider(po0Var.C0.invoice.currency);
+        if (a2 >= 0) {
+            str = str3.substring(0, a2);
+        } else {
+            str = str3;
+        }
+        String str4 = "";
+        if (a2 < 0) {
+            str2 = "";
+        } else {
+            str2 = str3.substring(a2 + 1);
+        }
+        long longValue = Utilities.parseLong(kf.b.d(str, false)).longValue() * currencyExpDivider;
+        long longValue2 = Utilities.parseLong(kf.b.d(str2, false)).longValue();
+        String o10 = a1.g.o(longValue2, "");
+        String str5 = "" + (currencyExpDivider - 1);
+        if (a2 > 0 && o10.length() > str5.length()) {
+            if (this.e - a2 < o10.length()) {
+                substring = o10.substring(0, str5.length());
+            } else {
+                substring = o10.substring(o10.length() - str5.length());
+            }
+            longValue2 = Utilities.parseLong(substring).longValue();
+        }
+        Long valueOf = Long.valueOf(longValue + longValue2);
+        po0Var.H0 = valueOf;
+        if (po0Var.C0.invoice.max_tip_amount != 0) {
+            long longValue3 = valueOf.longValue();
+            long j11 = po0Var.C0.invoice.max_tip_amount;
+            if (longValue3 > j11) {
+                po0Var.H0 = Long.valueOf(j11);
+            }
+        }
+        int selectionStart = po0Var.f42596f[0].getSelectionStart();
+        po0Var.m0 = true;
+        if (po0Var.H0.longValue() == 0) {
+            po0Var.f42596f[0].setText("");
+        } else {
+            EditTextBoldCursor editTextBoldCursor = po0Var.f42596f[0];
+            str4 = LocaleController.getInstance().formatCurrencyString(po0Var.H0.longValue(), false, z10, true, po0Var.C0.invoice.currency);
+            editTextBoldCursor.setText(str4);
+        }
+        if (j10 < po0Var.H0.longValue() && j10 != 0 && this.f43188a && selectionStart >= 0) {
+            EditTextBoldCursor editTextBoldCursor2 = po0Var.f42596f[0];
+            editTextBoldCursor2.setSelection(Math.min(selectionStart, editTextBoldCursor2.length()));
+        } else if (this.f43190c && this.d != po0Var.f42596f[0].length()) {
+            EditTextBoldCursor editTextBoldCursor3 = po0Var.f42596f[0];
+            editTextBoldCursor3.setSelection(Math.max(0, Math.min(selectionStart, editTextBoldCursor3.length())));
+        } else if (!this.f43191f && z10 && a2 >= 0) {
+            int a10 = a(str4);
+            if (a10 > 0) {
+                po0Var.f42596f[0].setSelection(a10 + 1);
+            } else {
+                EditTextBoldCursor editTextBoldCursor4 = po0Var.f42596f[0];
+                editTextBoldCursor4.setSelection(editTextBoldCursor4.length());
+            }
+        } else {
+            EditTextBoldCursor editTextBoldCursor5 = po0Var.f42596f[0];
+            editTextBoldCursor5.setSelection(editTextBoldCursor5.length());
+        }
+        this.f43191f = z10;
+        po0Var.M0();
+        this.f43189b = null;
+        po0Var.m0 = false;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int length;
+        boolean z10;
+        String str;
+        if (!this.f43192n.m0) {
+            this.f43188a = !TextUtils.isEmpty(charSequence);
+            this.f43189b = null;
+            if (charSequence == null) {
+                length = 0;
+            } else {
+                length = charSequence.length();
+            }
+            this.d = length;
+            this.e = i10;
+            if (i11 == 1 && i12 == 0) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            this.f43190c = z10;
+            if (z10) {
+                String fixNumbers = LocaleController.fixNumbers(charSequence);
+                char charAt = fixNumbers.charAt(i10);
+                int a2 = a(fixNumbers);
+                if (a2 >= 0) {
+                    str = fixNumbers.substring(a2 + 1);
+                } else {
+                    str = "";
+                }
+                long longValue = Utilities.parseLong(kf.b.d(str, false)).longValue();
+                if ((charAt >= '0' && charAt <= '9') || (str.length() != 0 && longValue == 0)) {
+                    if (a2 > 0 && i10 > a2 && longValue == 0) {
+                        this.f43189b = fixNumbers.substring(0, a2 - 1);
+                        return;
+                    }
+                    return;
+                }
+                while (true) {
+                    int i13 = i10 - 1;
+                    if (i13 >= 0) {
+                        char charAt2 = fixNumbers.charAt(i13);
+                        if (charAt2 >= '0' && charAt2 <= '9') {
+                            this.f43189b = fixNumbers.substring(0, i13) + fixNumbers.substring(i10);
+                            return;
+                        }
+                        i10 = i13;
                     } else {
-                        z10 = false;
+                        return;
                     }
-                    if (z10) {
-                        ho0Var.getParentActivity().startActivityForResult(new Intent("android.intent.action.VIEW", parse), 210);
-                        return true;
-                    }
-                } catch (ActivityNotFoundException unused2) {
-                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(this.f41190a);
-                    alertDialog$Builder.f20679a.R = ho0Var.f37939p0;
-                    alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.PaymentAppNotFoundForDeeplink);
-                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
-                    alertDialog$Builder.p();
                 }
             }
-            return false;
         }
-        return true;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

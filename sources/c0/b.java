@@ -1,10 +1,10 @@
 package c0;
 public final class b extends Throwable {
-    public final int f4458a;
+    public final int f5894a;
 
     public b(String str, int i10) {
         super(str);
-        this.f4458a = i10;
+        this.f5894a = i10;
     }
 
     private final synchronized Throwable a() {
@@ -33,7 +33,7 @@ public final class b extends Throwable {
 
     @Override
     public final synchronized Throwable fillInStackTrace() {
-        switch (this.f4458a) {
+        switch (this.f5894a) {
             case 0:
                 a();
                 return this;

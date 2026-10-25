@@ -1,34 +1,33 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class r8 extends AnimatorListenerAdapter {
-    public final int f30097a;
-    public final c9 f30098b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class r8 {
+    public final ActionBarPopupWindow$ActionBarPopupWindowLayout f32157a;
+    public final org.telegram.ui.ActionBar.g1 f32158b;
+    public final q8 f32159c;
+    public long d;
+    public final z90 e;
 
-    public r8(c9 c9Var, int i10) {
-        this.f30097a = i10;
-        this.f30098b = c9Var;
+    public r8(android.content.Context r23, org.telegram.ui.Components.sh0 r24, final org.telegram.ui.Components.q8 r25, boolean r26, int r27, org.telegram.ui.ActionBar.u6 r28) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.r8.<init>(android.content.Context, org.telegram.ui.Components.sh0, org.telegram.ui.Components.q8, boolean, int, org.telegram.ui.ActionBar.u6):void");
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        float f7;
-        switch (this.f30097a) {
-            case 0:
-                super.onAnimationEnd(animator);
-                this.f30098b.f25261f = false;
-                return;
-            default:
-                c9 c9Var = this.f30098b;
-                if (c9Var.F) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                c9Var.i0(f7, false);
-                c9Var.F = false;
-                return;
+    public final void a() {
+        this.f32159c.dismiss();
+        this.d = System.currentTimeMillis();
+    }
+
+    public final void b(int i10) {
+        if (System.currentTimeMillis() - this.d < 200) {
+            AndroidUtilities.runOnUIThread(new h2(this, i10, 2));
+            return;
+        }
+        org.telegram.ui.ActionBar.g1 g1Var = this.f32158b;
+        if (i10 == 0) {
+            g1Var.setVisibility(8);
+        } else {
+            g1Var.setVisibility(0);
         }
     }
 }

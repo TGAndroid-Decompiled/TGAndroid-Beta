@@ -1,24 +1,51 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-public final class qo0 extends s4.r0 {
-    public final int f29968a;
-    public final org.telegram.ui.nx f29969b;
+import android.content.Context;
+public final class qo0 extends ey0 {
+    public final int K;
+    public final org.telegram.ui.jx L;
 
-    public qo0(org.telegram.ui.nx nxVar, int i10) {
-        this.f29968a = i10;
-        this.f29969b = nxVar;
+    public qo0(org.telegram.ui.jx jxVar, Context context, c10 c10Var, int i10) {
+        super(context, c10Var, 1, null);
+        this.K = i10;
+        this.L = jxVar;
     }
 
     @Override
-    public final void b(RecyclerView recyclerView, int i10, int i11) {
-        switch (this.f29968a) {
+    public final void setVisibility(int i10) {
+        switch (this.K) {
             case 0:
-                this.f29969b.R(i10, i11);
-                return;
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
+            case 1:
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
+            case 2:
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
             default:
-                this.f29969b.R(i10, i11);
-                return;
+                if (this.L.O0.getTag() != null) {
+                    super.setVisibility(8);
+                    return;
+                } else {
+                    super.setVisibility(i10);
+                    return;
+                }
         }
     }
 }

@@ -1,4 +1,4 @@
 package r2;
 public interface v {
-    int d(Object obj);
+    int c(Object obj);
 }

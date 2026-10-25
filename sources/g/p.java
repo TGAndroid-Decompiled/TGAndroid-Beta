@@ -1,20 +1,20 @@
 package g;
 
+import a8.kc;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import androidx.appcompat.widget.ContentFrameLayout;
-import v7.q7;
 public final class p extends ContentFrameLayout {
-    public final r f10705r;
+    public final r f12153r;
 
     public p(r rVar, k.c cVar) {
         super(cVar);
-        this.f10705r = rVar;
+        this.f12153r = rVar;
     }
 
     @Override
     public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
-        if (!this.f10705r.j(keyEvent) && !super.dispatchKeyEvent(keyEvent)) {
+        if (!this.f12153r.i(keyEvent) && !super.dispatchKeyEvent(keyEvent)) {
             return false;
         }
         return true;
@@ -23,11 +23,11 @@ public final class p extends ContentFrameLayout {
     @Override
     public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
         if (motionEvent.getAction() == 0) {
-            int x10 = (int) motionEvent.getX();
+            int x9 = (int) motionEvent.getX();
             int y3 = (int) motionEvent.getY();
-            if (x10 < -5 || y3 < -5 || x10 > getWidth() + 5 || y3 > getHeight() + 5) {
-                r rVar = this.f10705r;
-                rVar.h(rVar.q(0), true);
+            if (x9 < -5 || y3 < -5 || x9 > getWidth() + 5 || y3 > getHeight() + 5) {
+                r rVar = this.f12153r;
+                rVar.h(rVar.o(0), true);
                 return true;
             }
         }
@@ -36,6 +36,6 @@ public final class p extends ContentFrameLayout {
 
     @Override
     public final void setBackgroundResource(int i10) {
-        setBackgroundDrawable(q7.b(getContext(), i10));
+        setBackgroundDrawable(kc.b(getContext(), i10));
     }
 }

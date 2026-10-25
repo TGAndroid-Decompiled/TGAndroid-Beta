@@ -13,54 +13,54 @@ import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.b6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.p5;
-import org.telegram.ui.lk;
-import w7.z5;
-public final class x1 extends FrameLayout implements b6 {
-    public final ImageView f43310a;
-    public final TextView f43311b;
-    public final lk f43312c;
-    public p5 d;
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.t5;
+import org.telegram.ui.mk;
+public final class x1 extends FrameLayout implements p6 {
+    public final ImageView f45449a;
+    public final TextView f45450b;
+    public final mk f45451c;
+    public t5 d;
     public String e;
-    public boolean f43313f;
+    public boolean f45452f;
     public ShapeDrawable h;
 
     public x1(Context context) {
         super(context);
         ImageView imageView = new ImageView(context);
-        this.f43310a = imageView;
-        addView(imageView, z5.d(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
+        this.f45449a = imageView;
+        addView(imageView, gb1.h(32, 32.0f, 19, 16.0f, 0.0f, 0.0f, 0.0f));
         TextView textView = new TextView(context);
-        this.f43311b = textView;
-        r6.W(textView, k6.G6, null);
+        this.f45450b = textView;
+        f7.V(textView, y6.G6, null);
         textView.setTextSize(1, 16.0f);
         textView.setMaxLines(1);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        addView(textView, z5.d(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
-        lk lkVar = new lk(this, context, 8);
-        this.f43312c = lkVar;
-        r6.W(lkVar, k6.f21572y6, null);
-        lkVar.setTextSize(1, 13.0f);
-        lkVar.setMaxLines(1);
-        lkVar.setEllipsize(truncateAt);
-        lkVar.setPivotX(0.0f);
-        addView(lkVar, z5.d(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
+        addView(textView, gb1.h(-1, -2.0f, 55, 68.0f, 7.0f, 54.0f, 0.0f));
+        mk mkVar = new mk(this, context, 8);
+        this.f45451c = mkVar;
+        f7.V(mkVar, y6.f23746y6, null);
+        mkVar.setTextSize(1, 13.0f);
+        mkVar.setMaxLines(1);
+        mkVar.setEllipsize(truncateAt);
+        mkVar.setPivotX(0.0f);
+        addView(mkVar, gb1.h(-1, -2.0f, 55, 68.0f, 30.0f, 54.0f, 0.0f));
         ImageView imageView2 = new ImageView(context);
         imageView2.setScaleType(ImageView.ScaleType.CENTER);
         imageView2.setImageResource(R.drawable.ic_ab_other);
-        r6.t(imageView2, k6.A6, null, PorterDuff.Mode.SRC_IN);
-        addView(imageView2, z5.d(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
+        f7.t(imageView2, y6.A6, null, PorterDuff.Mode.SRC_IN);
+        addView(imageView2, gb1.h(32, 32.0f, 21, 0.0f, 0.0f, 18.0f, 0.0f));
     }
 
     @Override
     public final void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
-        if (this.f43313f) {
-            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), k6.f21305k0);
+        if (this.f45452f) {
+            canvas.drawRect(AndroidUtilities.dp(64.0f), getHeight() - 1, getWidth(), getHeight(), y6.f23476k0);
         }
     }
 
@@ -74,8 +74,8 @@ public final class x1 extends FrameLayout implements b6 {
         try {
             ShapeDrawable shapeDrawable = this.h;
             if (shapeDrawable != null) {
-                k6.z1(k6.o1(0.1f, k6.x0(null, k6.G6, false)), shapeDrawable);
-                ImageView imageView = this.f43310a;
+                y6.z1(y6.o1(0.1f, y6.x0(null, y6.G6, false)), shapeDrawable);
+                ImageView imageView = this.f45449a;
                 if (imageView != null) {
                     imageView.invalidate();
                 }

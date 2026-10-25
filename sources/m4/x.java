@@ -1,48 +1,33 @@
 package m4;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Looper;
-import java.util.HashMap;
-import v7.u6;
-public class x {
-    public static final Object f16831b = new Object();
-    public static final HashMap f16832c = new HashMap();
-    public final f0 f16833a;
+import a8.fd;
+import java.util.List;
+public final class x {
+    public final f9.i0 f18295a;
+    public final int f18296b;
+    public final long f18297c;
 
-    public x(Context context, String str, b2.f1 f1Var, e9.n0 n0Var, e9.n0 n0Var2, e9.n0 n0Var3, pb.a aVar, Bundle bundle, Bundle bundle2, e2.d dVar, boolean z10, boolean z11) {
-        synchronized (f16831b) {
-            HashMap hashMap = f16832c;
-            if (!hashMap.containsKey(str)) {
-                hashMap.put(str, this);
-            } else {
-                throw new IllegalStateException("Session ID must be unique. ID=" + str);
-            }
-        }
-        this.f16833a = new f0(this, context, str, f1Var, n0Var, n0Var2, n0Var3, aVar, bundle, bundle2, dVar, z10, z11);
+    public x(long j10, int i10, List list) {
+        this.f18295a = f9.i0.u(list);
+        this.f18296b = i10;
+        this.f18297c = j10;
     }
 
-    public final void a(b2.f1 f1Var) {
-        boolean z10;
-        f1Var.getClass();
-        u6.g(f1Var.P());
-        Looper A0 = f1Var.A0();
-        f0 f0Var = this.f16833a;
-        boolean z11 = false;
-        if (A0 == f0Var.f16597t.f16704a.A0()) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        u6.g(z10);
-        if (f1Var.A0() == Looper.myLooper()) {
-            z11 = true;
+        if (!(obj instanceof x)) {
+            return false;
         }
-        u6.p(z11);
-        m1 m1Var = f0Var.f16597t;
-        if (f1Var == m1Var.f16704a) {
-            return;
+        x xVar = (x) obj;
+        if (this.f18295a.equals(xVar.f18295a) && this.f18296b == xVar.f18296b && this.f18297c == xVar.f18297c) {
+            return true;
         }
-        f0Var.u(m1Var, new m1(f1Var));
+        return false;
+    }
+
+    public final int hashCode() {
+        return fd.b(this.f18297c) + (((this.f18295a.hashCode() * 31) + this.f18296b) * 31);
     }
 }

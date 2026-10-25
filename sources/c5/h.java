@@ -1,17 +1,10 @@
 package c5;
 
-import android.content.Context;
+import org.chromium.support_lib_boundary.JsReplyProxyBoundaryInterface;
 public final class h {
-    public boolean f4740a;
-    public Object f4741b;
-    public Object f4742c;
-    public Object d;
-    public Object e = new i0(this, true);
-    public Object f4743f = new i0(this, false);
+    public final JsReplyProxyBoundaryInterface f6145a;
 
-    public h(Context context, r rVar, n4.s sVar) {
-        this.f4741b = context;
-        this.f4742c = rVar;
-        this.d = sVar;
+    public h(JsReplyProxyBoundaryInterface jsReplyProxyBoundaryInterface) {
+        this.f6145a = jsReplyProxyBoundaryInterface;
     }
 }

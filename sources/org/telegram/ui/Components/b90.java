@@ -1,26 +1,65 @@
 package org.telegram.ui.Components;
 
+import android.app.Activity;
+import android.os.Bundle;
 import org.telegram.messenger.AndroidUtilities;
-public final class b90 implements Runnable {
-    public final int f24938a;
-    public final d90 f24939b;
-    public final boolean f24940c;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLRPC;
+public final class b90 extends org.telegram.ui.un {
+    public boolean f26788kd;
+    public final boolean f26789ld;
+    public final long f26790md;
+    public final c90 f26791nd;
 
-    public b90(d90 d90Var, boolean z10, int i10) {
-        this.f24938a = i10;
-        this.f24939b = d90Var;
-        this.f24940c = z10;
+    public b90(c90 c90Var, Bundle bundle, boolean z10, long j10) {
+        super(bundle);
+        this.f26791nd = c90Var;
+        this.f26789ld = z10;
+        this.f26790md = j10;
+        this.f26788kd = false;
+    }
+
+    public static void kd(b90 b90Var, long j10, TLRPC.Chat chat) {
+        boolean z10;
+        org.telegram.ui.ActionBar.u6 u6Var;
+        if (!AndroidUtilities.isContextSafe(b90Var.getParentActivity())) {
+            return;
+        }
+        Activity parentActivity = b90Var.getParentActivity();
+        int i10 = b90Var.currentAccount;
+        long j11 = -j10;
+        TLRPC.User currentUser = b90Var.getUserConfig().getCurrentUser();
+        if (chat.admin_rights != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        boolean z11 = z10;
+        boolean z12 = chat.creator;
+        u6Var = ((org.telegram.ui.ActionBar.k3) b90Var.f26791nd).resourcesProvider;
+        i11.c(parentActivity, i10, j11, currentUser, null, z11, z12, u6Var);
     }
 
     @Override
-    public final void run() {
-        switch (this.f24938a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new b90(this.f24939b, this.f24940c, 1));
+    public final void onBecomeFullyVisible() {
+        super.onBecomeFullyVisible();
+        if (!this.f26788kd && this.f26789ld) {
+            this.f26788kd = true;
+            MessagesController messagesController = getMessagesController();
+            long j10 = this.f26790md;
+            TLRPC.Chat chat = messagesController.getChat(Long.valueOf(j10));
+            if (ChatObject.canManageMyTag(chat)) {
+                qc J = wc.b0(this).J(R.raw.contact_check, LocaleController.getString(R.string.JoinedGroup), LocaleController.getString(R.string.JoinedGroupAddTag), new a3.i0(this, j10, chat, 23));
+                J.f31896s = false;
+                J.k(true);
                 return;
-            default:
-                this.f24939b.setJoinRequest(this.f24940c);
-                return;
+            }
+            qc R = wc.b0(this).R(R.raw.contact_check, 36, LocaleController.getString(R.string.JoinedGroup));
+            R.f31896s = false;
+            R.k(true);
         }
     }
 }

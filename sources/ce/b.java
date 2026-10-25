@@ -1,15 +1,8 @@
 package ce;
+public final class b implements y1 {
+    public static final b f6203a = new Object();
 
-import be.b0;
-public final class b extends kd.a implements kd.f {
-    private volatile Object _preHandler;
-
-    public b() {
-        super(b0.f4268a);
-        this._preHandler = this;
-    }
-
-    public final void c(java.lang.Throwable r4) {
-        throw new UnsupportedOperationException("Method not decompiled: ce.b.c(java.lang.Throwable):void");
+    public final String toString() {
+        return "Active";
     }
 }

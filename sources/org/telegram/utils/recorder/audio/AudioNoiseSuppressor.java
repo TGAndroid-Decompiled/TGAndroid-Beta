@@ -3,11 +3,11 @@ package org.telegram.utils.recorder.audio;
 import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicBoolean;
 final class AudioNoiseSuppressor {
-    public long f44250a;
-    public final AtomicBoolean f44251b = new AtomicBoolean(false);
+    public long f46393a;
+    public final AtomicBoolean f46394b = new AtomicBoolean(false);
 
     public AudioNoiseSuppressor(long j10) {
-        this.f44250a = j10;
+        this.f46393a = j10;
     }
 
     public static AudioNoiseSuppressor a() {
@@ -25,16 +25,16 @@ final class AudioNoiseSuppressor {
     private static native boolean nProcess(long j10, ByteBuffer byteBuffer, int i10);
 
     public final boolean b(int i10, ByteBuffer byteBuffer) {
-        if (!this.f44251b.get()) {
-            return nProcess(this.f44250a, byteBuffer, i10);
+        if (!this.f46394b.get()) {
+            return nProcess(this.f46393a, byteBuffer, i10);
         }
         throw new IllegalStateException("Native noise suppressor is already released");
     }
 
     public final void c() {
-        if (this.f44251b.compareAndSet(false, true)) {
-            long j10 = this.f44250a;
-            this.f44250a = 0L;
+        if (this.f46394b.compareAndSet(false, true)) {
+            long j10 = this.f46393a;
+            this.f46393a = 0L;
             if (j10 != 0) {
                 nDestroy(j10);
             }

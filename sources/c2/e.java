@@ -1,43 +1,43 @@
 package c2;
 
+import a8.ac;
 import android.content.Context;
 import android.media.AudioManager;
 import android.os.Handler;
 import android.os.Looper;
 import e2.h0;
 import e2.i0;
-import i2.q0;
-import v7.w6;
+import i2.s0;
 public final class e {
-    public final d9.u f4499a;
-    public final Handler f4500b;
-    public q0 f4501c;
+    public final e9.t f5935a;
+    public final Handler f5936b;
+    public s0 f5937c;
     public b2.f d;
-    public int f4502f;
+    public int f5938f;
     public h h;
-    public float f4503g = 1.0f;
+    public float f5939g = 1.0f;
     public int e = 0;
 
-    public e(Context context, Looper looper, q0 q0Var) {
-        this.f4499a = w6.a(new d(context, 0));
-        this.f4501c = q0Var;
-        this.f4500b = new Handler(looper);
+    public e(Context context, Looper looper, s0 s0Var) {
+        this.f5935a = ac.a(new d(context, 0));
+        this.f5937c = s0Var;
+        this.f5936b = new Handler(looper);
     }
 
     public final void a() {
         int i10 = this.e;
         if (i10 != 1 && i10 != 0 && this.h != null) {
-            i.a((AudioManager) this.f4499a.get(), this.h);
+            j.a((AudioManager) this.f5935a.get(), this.h);
         }
     }
 
     public final void b(int i10) {
-        q0 q0Var = this.f4501c;
-        if (q0Var != null) {
-            i0 i0Var = q0Var.f12583n;
+        s0 s0Var = this.f5937c;
+        if (s0Var != null) {
+            i0 i0Var = s0Var.f13744n;
             i0Var.getClass();
             h0 c10 = i0.c();
-            c10.f8240a = i0Var.f8244a.obtainMessage(33, i10, 0);
+            c10.f9668a = i0Var.f9672a.obtainMessage(33, i10, 0);
             c10.b();
         }
     }
@@ -51,11 +51,11 @@ public final class e {
             } else {
                 f7 = 1.0f;
             }
-            if (this.f4503g != f7) {
-                this.f4503g = f7;
-                q0 q0Var = this.f4501c;
-                if (q0Var != null) {
-                    q0Var.f12583n.f(34);
+            if (this.f5939g != f7) {
+                this.f5939g = f7;
+                s0 s0Var = this.f5937c;
+                if (s0Var != null) {
+                    s0Var.f13744n.f(34);
                 }
             }
         }
@@ -65,30 +65,30 @@ public final class e {
         int i11;
         f fVar;
         boolean z11 = false;
-        if (i10 != 1 && (i11 = this.f4502f) == 1) {
+        if (i10 != 1 && (i11 = this.f5938f) == 1) {
             if (z10) {
                 if (this.e != 2) {
                     h hVar = this.h;
                     if (hVar == null) {
                         if (hVar == null) {
                             ?? obj = new Object();
-                            obj.f4505b = b2.f.f3744i;
-                            obj.f4504a = i11;
+                            obj.f5941b = b2.f.f3180i;
+                            obj.f5940a = i11;
                             fVar = obj;
                         } else {
                             ?? obj2 = new Object();
-                            obj2.f4504a = hVar.f4509a;
-                            obj2.f4505b = hVar.d;
-                            obj2.f4506c = hVar.e;
+                            obj2.f5940a = hVar.f5945a;
+                            obj2.f5941b = hVar.d;
+                            obj2.f5942c = hVar.e;
                             fVar = obj2;
                         }
                         b2.f fVar2 = this.d;
-                        if (fVar2 != null && fVar2.f3752a == 1) {
+                        if (fVar2 != null && fVar2.f3188a == 1) {
                             z11 = true;
                         }
                         fVar2.getClass();
-                        fVar.f4505b = fVar2;
-                        fVar.f4506c = z11;
+                        fVar.f5941b = fVar2;
+                        fVar.f5942c = z11;
                         fVar.d = true;
                         AudioManager.OnAudioFocusChangeListener onAudioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
                             @Override
@@ -99,7 +99,7 @@ public final class e {
                                 if (i12 != -3 && i12 != -2) {
                                     if (i12 != -1) {
                                         if (i12 != 1) {
-                                            a1.g.x(i12, "Unknown focus change type: ", "AudioFocusManager");
+                                            a1.g.z(i12, "Unknown focus change type: ", "AudioFocusManager");
                                             return;
                                         }
                                         eVar.c(2);
@@ -109,7 +109,7 @@ public final class e {
                                     eVar.b(-1);
                                     eVar.a();
                                     eVar.c(1);
-                                } else if (i12 != -2 && ((fVar3 = eVar.d) == null || fVar3.f3752a != 1)) {
+                                } else if (i12 != -2 && ((fVar3 = eVar.d) == null || fVar3.f3188a != 1)) {
                                     eVar.c(4);
                                 } else {
                                     eVar.b(0);
@@ -117,11 +117,11 @@ public final class e {
                                 }
                             }
                         };
-                        Handler handler = this.f4500b;
+                        Handler handler = this.f5936b;
                         handler.getClass();
-                        this.h = new h(fVar.f4504a, onAudioFocusChangeListener, handler, fVar.f4505b, fVar.f4506c, fVar.d);
+                        this.h = new h(fVar.f5940a, onAudioFocusChangeListener, handler, fVar.f5941b, fVar.f5942c, fVar.d);
                     }
-                    int h = i.h((AudioManager) this.f4499a.get(), this.h);
+                    int h = j.h((AudioManager) this.f5935a.get(), this.h);
                     if (h != 1 && h != 2) {
                         c(1);
                         return -1;

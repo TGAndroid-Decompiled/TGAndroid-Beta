@@ -1,26 +1,46 @@
 package org.telegram.ui.Components.voip;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-public final class z2 extends Drawable {
-    public final int f32004a = -15130842;
+import android.animation.ValueAnimator;
+import org.telegram.messenger.AndroidUtilities;
+public final class z2 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f34234a;
+    public final a3 f34235b;
 
-    @Override
-    public final void draw(Canvas canvas) {
-        canvas.drawColor(this.f32004a);
+    public z2(a3 a3Var, int i10) {
+        this.f34234a = i10;
+        this.f34235b = a3Var;
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f34234a) {
+            case 0:
+                a3 a3Var = this.f34235b;
+                a3Var.getClass();
+                int intValue = ((Integer) valueAnimator.getAnimatedValue()).intValue();
+                a3Var.d = intValue;
+                a3Var.e = intValue;
+                a3Var.f33720f = intValue;
+                a3Var.h = intValue;
+                a3Var.f33721n = intValue;
+                a3Var.invalidate();
+                return;
+            default:
+                a3 a3Var2 = this.f34235b;
+                a3Var2.getClass();
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                a3Var2.d = AndroidUtilities.lerp(a3Var2.F, AndroidUtilities.dp(56.0f), floatValue);
+                a3Var2.e = AndroidUtilities.lerp(a3Var2.F, AndroidUtilities.dp(36.0f), floatValue);
+                a3Var2.f33720f = AndroidUtilities.lerp(a3Var2.F, AndroidUtilities.dp(60.0f), floatValue);
+                a3Var2.h = AndroidUtilities.lerp(a3Var2.F, AndroidUtilities.dp(36.0f), floatValue);
+                a3Var2.f33721n = AndroidUtilities.lerp(a3Var2.F, AndroidUtilities.dp(64.0f), floatValue);
+                a3Var2.f33722r = AndroidUtilities.lerp(0, AndroidUtilities.dp(50.0f), floatValue);
+                a3Var2.f33723s = AndroidUtilities.lerp(0, AndroidUtilities.dp(20.0f), floatValue);
+                a3Var2.v = AndroidUtilities.lerp(0, 0, floatValue);
+                a3Var2.f33724w = AndroidUtilities.lerp(0, AndroidUtilities.dp(-20.0f), floatValue);
+                a3Var2.f33725x = AndroidUtilities.lerp(0, AndroidUtilities.dp(-40.0f), floatValue);
+                a3Var2.invalidate();
+                return;
+        }
     }
 }

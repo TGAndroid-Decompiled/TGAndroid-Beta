@@ -1,112 +1,38 @@
 package ug;
+public final class l implements Runnable {
+    public final int f49806a;
+    public final m f49807b;
 
-import ai.a5;
-import ai.j5;
-import android.app.Activity;
-import android.content.Context;
-import android.content.res.Configuration;
-import ei.o8;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.tl.TL_stories;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.h3;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.oc;
-public final class l extends h3 {
-    public static l e;
-    public final j f48144b;
-    public final x0 f48145c;
-    public boolean d;
-
-    public l(Activity activity, y yVar, x0 x0Var, g6 g6Var, boolean z10) {
-        super(1, (Context) activity, g6Var, true);
-        boolean z11;
-        this.f48145c = x0Var;
-        setApplyBottomPadding(false);
-        setApplyTopPadding(false);
-        this.useBackgroundTopPadding = false;
-        setBackgroundColor(0);
-        fixNavigationBar();
-        if (i0.a.h(k6.w0(k6.f21255h5, this.resourcesProvider)) > 0.699999988079071d) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        AndroidUtilities.setLightStatusBar(this, z11);
-        this.d = getContext().getResources().getConfiguration().orientation == 2;
-        j jVar = new j(this, getContext(), x0Var, g6Var, yVar);
-        this.f48144b = jVar;
-        jVar.setOverScrollMode(2);
-        jVar.setClipToPadding(false);
-        jVar.setAdapter(new j5(yVar, x0Var));
-        jVar.setPosition(0);
-        setCustomView(jVar);
-        yVar.f48257t0 = new i(this, 0);
-        yVar.f48255r0 = new n2.e(this, x0Var, false, 19);
-        x0Var.f48237u0 = new k(this, yVar, g6Var);
-        x0Var.f48235s0 = new i(this, 1);
-        if (!z10) {
-            MessagesController.getInstance(this.currentAccount).getStoriesController().R();
-        }
-        oc.a(this.container, new o8(13));
-    }
-
-    public static void m(o2 o2Var, g6 g6Var, long j10, TL_stories.PrepaidGiveaway prepaidGiveaway) {
-        o2 o2Var2;
-        if (e != null) {
-            return;
-        }
-        boolean z10 = g6Var instanceof ci.b;
-        if (z10) {
-            o2Var2 = new a5(o2Var);
-        } else {
-            o2Var2 = o2Var;
-        }
-        l lVar = new l(o2Var.getParentActivity(), new y(o2Var2, j10, prepaidGiveaway), new x0(o2Var2, j10), o2Var2.getResourceProvider(), z10);
-        lVar.show();
-        e = lVar;
+    public l(m mVar, int i10) {
+        this.f49806a = i10;
+        this.f49807b = mVar;
     }
 
     @Override
-    public final boolean canDismissWithSwipe() {
-        return false;
-    }
-
-    @Override
-    public final void dismissInternal() {
-        super.dismissInternal();
-        e = null;
-    }
-
-    @Override
-    public final void onBackPressed() {
-        j jVar = this.f48144b;
-        if (jVar.getCurrentPosition() > 0) {
-            x0 x0Var = this.f48145c;
-            if (x0Var.S()) {
+    public final void run() {
+        switch (this.f49806a) {
+            case 0:
+                m mVar = this.f49807b;
+                if (mVar.d.J == mVar) {
+                    mVar.d.W = false;
+                    mVar.d.f49812a0 = null;
+                    mVar.d.i();
+                    return;
+                }
                 return;
-            }
-            if (isKeyboardVisible()) {
-                AndroidUtilities.hideKeyboard(x0Var.getContainerView());
-            }
-            jVar.D(0);
-            return;
+            default:
+                m mVar2 = this.f49807b;
+                if (mVar2.d.J == mVar2 && !mVar2.f49809b) {
+                    mVar2.d.W = true;
+                    Runnable runnable = mVar2.d.f49812a0;
+                    mVar2.d.f49812a0 = null;
+                    if (runnable != null) {
+                        runnable.run();
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        super.onBackPressed();
-    }
-
-    @Override
-    public final void onConfigurationChanged(Configuration configuration) {
-        boolean z10;
-        this.f48145c.onConfigurationChanged(configuration);
-        if (getContext().getResources().getConfiguration().orientation == 2) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        this.d = z10;
-        super.onConfigurationChanged(configuration);
     }
 }

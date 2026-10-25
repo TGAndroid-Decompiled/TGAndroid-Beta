@@ -1,67 +1,26 @@
 package org.telegram.ui;
 
-import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SharedConfig;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.VideoEditedInfo;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
-public final class ci implements View.OnClickListener {
-    public final th0 f36351a;
-    public final org.telegram.ui.Components.lm0 f36352b;
-    public final LinearLayout f36353c;
-    public final ActionBarPopupWindow$ActionBarPopupWindowLayout d;
-    public final int[] e;
-    public final sn f36354f;
+public final class ci extends gu0 {
+    public final un f38463a;
 
-    public ci(sn snVar, th0 th0Var, org.telegram.ui.Components.lm0 lm0Var, LinearLayout linearLayout, ActionBarPopupWindow$ActionBarPopupWindowLayout actionBarPopupWindow$ActionBarPopupWindowLayout, int[] iArr) {
-        this.f36354f = snVar;
-        this.f36351a = th0Var;
-        this.f36352b = lm0Var;
-        this.f36353c = linearLayout;
-        this.d = actionBarPopupWindow$ActionBarPopupWindowLayout;
-        this.e = iArr;
+    public ci(un unVar) {
+        this.f38463a = unVar;
     }
 
     @Override
-    public final void onClick(View view) {
-        th0 th0Var = this.f36351a;
-        ArrayList arrayList = th0Var.f42062b;
-        ArrayList arrayList2 = th0Var.f42063c;
-        sn snVar = this.f36354f;
-        if (snVar.f41481c9 != null && !arrayList2.isEmpty()) {
-            if (arrayList2.size() == 1 && (arrayList.size() <= 0 || ((Integer) arrayList.get(0)).intValue() <= 0)) {
-                TLObject tLObject = (TLObject) arrayList2.get(0);
-                if (tLObject != null) {
-                    Bundle bundle = new Bundle();
-                    if (tLObject instanceof TLRPC.User) {
-                        bundle.putLong("user_id", ((TLRPC.User) tLObject).f20491id);
-                    } else if (tLObject instanceof TLRPC.Chat) {
-                        bundle.putLong("chat_id", ((TLRPC.Chat) tLObject).f20344id);
-                    }
-                    snVar.presentFragment(new ProfileActivity(bundle, null));
-                    snVar.D7(true);
-                    return;
-                }
-                return;
+    public final org.telegram.ui.qu0 E(org.telegram.messenger.MessageObject r5, org.telegram.tgnet.TLRPC.FileLocation r6, int r7, boolean r8, boolean r9) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ci.E(org.telegram.messenger.MessageObject, org.telegram.tgnet.TLRPC$FileLocation, int, boolean, boolean):org.telegram.ui.qu0");
+    }
+
+    @Override
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, boolean z10, int i11, int i12, boolean z11) {
+        if (i10 >= 0) {
+            un unVar = this.f38463a;
+            if (i10 < unVar.Ua.size()) {
+                unVar.mb((TLRPC.BotInlineResult) unVar.Ua.get(i10), z10, i11, 0L);
             }
-            if (SharedConfig.messageSeenHintCount > 0 && snVar.f41558j1.getKeyboardHeight() < AndroidUtilities.dp(20.0f)) {
-                org.telegram.ui.Components.oc t10 = new org.telegram.ui.Components.vc(org.telegram.ui.Components.jb.a(snVar.getParentActivity()), snVar.f41651qa).t(AndroidUtilities.replaceTags(LocaleController.getString(R.string.MessageSeenTooltipMessage)), null);
-                snVar.f41760z1 = t10;
-                t10.f29203j = 4000;
-                t10.j();
-                SharedConfig.updateMessageSeenHintCount(SharedConfig.messageSeenHintCount - 1);
-            }
-            org.telegram.ui.Components.lm0 lm0Var = this.f36352b;
-            lm0Var.requestLayout();
-            this.f36353c.requestLayout();
-            lm0Var.getAdapter().l();
-            this.d.getSwipeBack().e(this.e[0]);
         }
     }
 }

@@ -1,13 +1,12 @@
 package org.telegram.ui.Components;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-public final class sn0 extends FrameLayout {
-    public org.telegram.ui.Cells.k7 f30597a;
+import android.view.View;
+public interface sn0 {
+    void f(int i10, boolean z10);
 
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        this.f30597a.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-    }
+    boolean h1(int i10, View view);
+
+    void z();
+
+    void z0(float f7);
 }

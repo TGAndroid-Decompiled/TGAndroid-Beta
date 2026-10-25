@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-public final class s10 extends s4.v {
-    public final fz d = new fz(this, 5);
+public final class s10 extends s4.w {
+    public final p00 d = new p00(this, 4);
     public final FiltersSetupActivity e;
 
     public s10(FiltersSetupActivity filtersSetupActivity) {
@@ -15,9 +15,9 @@ public final class s10 extends s4.v {
     }
 
     @Override
-    public final void a(RecyclerView recyclerView, s4.b1 b1Var) {
-        super.a(recyclerView, b1Var);
-        View view = b1Var.f46342a;
+    public final void a(RecyclerView recyclerView, s4.e1 e1Var) {
+        super.a(recyclerView, e1Var);
+        View view = e1Var.f47735a;
         view.setPressed(false);
         view.setTag(R.id.dragging, null);
         if (view instanceof l10) {
@@ -26,11 +26,11 @@ public final class s10 extends s4.v {
     }
 
     @Override
-    public final int e(RecyclerView recyclerView, s4.b1 b1Var) {
-        if (b1Var.f46345f != 2) {
-            return s4.v.l(0, 0);
+    public final int e(RecyclerView recyclerView, s4.e1 e1Var) {
+        if (e1Var.f47738f != 2) {
+            return s4.w.l(0, 0);
         }
-        return s4.v.l(3, 0);
+        return s4.w.l(3, 0);
     }
 
     @Override
@@ -39,18 +39,18 @@ public final class s10 extends s4.v {
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
+    public final boolean n(RecyclerView recyclerView, s4.e1 e1Var, s4.e1 e1Var2) {
         MessagesController.DialogFilter dialogFilter;
         MessagesController.DialogFilter dialogFilter2;
-        if (b1Var.f46345f != b1Var2.f46345f) {
+        if (e1Var.f47738f != e1Var2.f47738f) {
             return false;
         }
-        p10 p10Var = this.e.f33445b;
-        int b10 = b1Var.b();
-        int b11 = b1Var2.b();
+        p10 p10Var = this.e.f35506b;
+        int b10 = e1Var.b();
+        int b11 = e1Var2.b();
         FiltersSetupActivity filtersSetupActivity = p10Var.e;
-        int i10 = filtersSetupActivity.f33449r;
-        ArrayList arrayList = filtersSetupActivity.f33448n;
+        int i10 = filtersSetupActivity.f35510r;
+        ArrayList arrayList = filtersSetupActivity.f35509n;
         if (b10 >= i10 && b11 >= i10) {
             n10 n10Var = (n10) arrayList.get(b10);
             n10 n10Var2 = (n10) arrayList.get(b11);
@@ -60,31 +60,31 @@ public final class s10 extends s4.v {
                 dialogFilter2.order = i11;
                 ArrayList<MessagesController.DialogFilter> arrayList2 = filtersSetupActivity.getMessagesController().dialogFilters;
                 try {
-                    arrayList2.set(b10 - filtersSetupActivity.f33449r, n10Var2.d);
-                    arrayList2.set(b11 - filtersSetupActivity.f33449r, n10Var.d);
+                    arrayList2.set(b10 - filtersSetupActivity.f35510r, n10Var2.d);
+                    arrayList2.set(b11 - filtersSetupActivity.f35510r, n10Var.d);
                 } catch (Exception unused) {
                 }
                 filtersSetupActivity.e = true;
-                filtersSetupActivity.b0(true);
+                filtersSetupActivity.c0(true);
             }
         }
         return true;
     }
 
     @Override
-    public final void p(s4.b1 b1Var, int i10) {
+    public final void p(s4.e1 e1Var, int i10) {
         Boolean bool;
         boolean z10 = true;
         if (i10 != 0) {
-            this.e.f33444a.I0(false);
-            b1Var.f46342a.setPressed(true);
+            this.e.f35505a.I0(false);
+            e1Var.f47735a.setPressed(true);
         } else {
-            fz fzVar = this.d;
-            AndroidUtilities.cancelRunOnUIThread(fzVar);
-            AndroidUtilities.runOnUIThread(fzVar, 320L);
+            p00 p00Var = this.d;
+            AndroidUtilities.cancelRunOnUIThread(p00Var);
+            AndroidUtilities.runOnUIThread(p00Var, 320L);
         }
-        if (b1Var != null) {
-            View view = b1Var.f46342a;
+        if (e1Var != null) {
+            View view = e1Var.f47735a;
             int i11 = R.id.dragging;
             if (i10 == 2) {
                 bool = Boolean.TRUE;
@@ -103,6 +103,6 @@ public final class s10 extends s4.v {
     }
 
     @Override
-    public final void q(s4.b1 b1Var) {
+    public final void q(s4.e1 e1Var) {
     }
 }

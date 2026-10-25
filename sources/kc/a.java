@@ -1,10 +1,11 @@
 package kc;
-public final class a {
-    public final byte[] f15054a;
-    public final byte[] f15055b;
 
-    public a(byte[] bArr, byte[] bArr2) {
-        this.f15054a = bArr;
-        this.f15055b = bArr2;
+import ec.j;
+public final class a extends j {
+    public final float f16506c;
+
+    public a(float f7, float f10, float f11) {
+        super(f7, f10);
+        this.f16506c = f11;
     }
 }

@@ -1,69 +1,46 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.SvgHelper;
-public final class r30 extends z4.a {
-    public final org.telegram.ui.s40 f30055c;
+public final class r30 extends FrameLayout {
+    public final org.telegram.ui.u40 f32086a;
 
-    public r30(org.telegram.ui.s40 s40Var) {
-        this.f30055c = s40Var;
+    public r30(org.telegram.ui.u40 u40Var, Context context) {
+        super(context);
+        this.f32086a = u40Var;
     }
 
     @Override
-    public final void a(z4.h hVar, Object obj) {
-        hVar.removeView((View) obj);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        w30.m(this.f32086a);
     }
 
     @Override
-    public final int b() {
-        return this.f30055c.e.length;
-    }
-
-    @Override
-    public final Object e(z4.h hVar, int i10) {
-        int i11;
-        q30 q30Var = new q30(this, this.f30055c.getContext(), i10, 0);
-        q30Var.setOnClickListener(new ai.n1(this, i10, 12));
-        q30Var.setFocusable(true);
-        q30Var.setTag(Integer.valueOf(i10));
-        q30Var.setPadding(AndroidUtilities.dp(18.0f), 0, AndroidUtilities.dp(18.0f), 0);
-        q30Var.setScaleType(ImageView.ScaleType.FIT_XY);
-        q30Var.setLayoutParams(new ViewGroup.LayoutParams(AndroidUtilities.dp(200.0f), -1));
-        if (i10 == 0) {
-            q30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordAudio));
-        } else if (i10 == 1) {
-            q30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordPortrait));
+    public final void onMeasure(int i10, int i11) {
+        boolean z10;
+        if (View.MeasureSpec.getSize(i10) > View.MeasureSpec.getSize(i11)) {
+            z10 = true;
         } else {
-            q30Var.setContentDescription(LocaleController.getString(R.string.VoipRecordLandscape));
+            z10 = false;
         }
-        if (i10 == 0) {
-            i11 = R.raw.record_audio;
-        } else if (i10 == 1) {
-            i11 = R.raw.record_video_p;
+        org.telegram.ui.u40 u40Var = this.f32086a;
+        ViewGroup.MarginLayoutParams marginLayoutParams = (ViewGroup.MarginLayoutParams) u40Var.f34350c.getLayoutParams();
+        if (z10) {
+            int dp = AndroidUtilities.dp(80.0f);
+            marginLayoutParams.leftMargin = dp;
+            marginLayoutParams.rightMargin = dp;
         } else {
-            i11 = R.raw.record_video_l;
+            int dp2 = AndroidUtilities.dp(16.0f);
+            marginLayoutParams.leftMargin = dp2;
+            marginLayoutParams.rightMargin = dp2;
         }
-        SvgHelper.SvgDrawable drawable = SvgHelper.getDrawable(AndroidUtilities.readRes(i11));
-        drawable.setAspectFill(false);
-        q30Var.setImageDrawable(drawable);
-        if (q30Var.getParent() != null) {
-            ((ViewGroup) q30Var.getParent()).removeView(q30Var);
-        }
-        hVar.addView(q30Var, 0);
-        return q30Var;
-    }
-
-    @Override
-    public final boolean f(View view, Object obj) {
-        return view.equals(obj);
-    }
-
-    @Override
-    public final void h(int i10) {
+        int B = org.telegram.messenger.vh.B(200.0f, View.MeasureSpec.getSize(i10), 2);
+        u40Var.f34349b.setPadding(B, 0, B, 0);
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(370.0f), 1073741824));
+        measureChildWithMargins(u40Var.d, View.MeasureSpec.makeMeasureSpec(0, 0), 0, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f), 1073741824), 0);
     }
 }

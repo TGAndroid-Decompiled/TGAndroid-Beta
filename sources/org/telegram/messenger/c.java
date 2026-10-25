@@ -1,29 +1,44 @@
 package org.telegram.messenger;
 
-import com.android.billingclient.api.Purchase;
+import org.telegram.messenger.UnconfirmedAuthController;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ResultCallback;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.wl0;
-public final class c implements wl0, c5.k {
-    public final Object f18050a;
-    public final Object f18051b;
-    public final Object f18052c;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_agent;
+import org.telegram.tgnet.tl.TL_payments;
+public final class c implements Utilities.Callback2 {
+    public final int f19737a;
+    public final Object f19738b;
+    public final Object f19739c;
 
-    public c(Object obj, Object obj2, Object obj3) {
-        this.f18050a = obj;
-        this.f18051b = obj2;
-        this.f18052c = obj3;
+    public c(int i10, Object obj, Object obj2) {
+        this.f19737a = i10;
+        this.f19738b = obj;
+        this.f19739c = obj2;
     }
 
     @Override
-    public void a(c5.i iVar, String str) {
-        BillingController.lambda$consumeGiftPurchase$12((TLRPC.InputStorePaymentPurpose) this.f18050a, (Purchase) this.f18051b, (Runnable) this.f18052c, iVar, str);
-    }
-
-    @Override
-    public int run() {
-        int lambda$scrollToFragmentRow$24;
-        lambda$scrollToFragmentRow$24 = AndroidUtilities.lambda$scrollToFragmentRow$24((org.telegram.ui.ActionBar.o2) this.f18050a, (String) this.f18051b, (lm0) this.f18052c);
-        return lambda$scrollToFragmentRow$24;
+    public final void run(Object obj, Object obj2) {
+        switch (this.f19737a) {
+            case 0:
+                ((AgentController) this.f19738b).lambda$connect$2((Utilities.Callback) this.f19739c, (TL_agent.settings) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 1:
+                ((ChatThemeController) this.f19738b).lambda$requestNextChatThemes$21((ResultCallback) this.f19739c, (TL_account.ChatThemes) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 2:
+                ((GiftAuctionController) this.f19738b).lambda$requestGiftAuctionInternal$4((Utilities.Callback2) this.f19739c, (TL_payments.TL_StarGiftAuctionState) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 3:
+                ((MessagesController) this.f19738b).lambda$fetchJoinedCommunities$250((Utilities.Callback) this.f19739c, (TLRPC.messages_Chats) obj, (TLRPC.TL_error) obj2);
+                return;
+            case 4:
+                PasskeysController.lambda$create$4((org.telegram.ui.ActionBar.e2) this.f19738b, (Utilities.Callback2) this.f19739c, (TL_account.Passkey) obj, (TLRPC.TL_error) obj2);
+                return;
+            default:
+                ((UnconfirmedAuthController.UnconfirmedAuth) this.f19738b).lambda$confirm$0((Utilities.Callback) this.f19739c, (TLRPC.Bool) obj, (TLRPC.TL_error) obj2);
+                return;
+        }
     }
 }

@@ -1,75 +1,70 @@
 package org.telegram.ui;
 
-import android.view.View;
-import j$.util.function.Predicate$CC;
-import java.util.Map;
-import java.util.function.Predicate;
-import org.telegram.messenger.ChatObject;
+import java.util.HashSet;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class s8 implements Predicate {
-    public final int f41313a;
-    public final long f41314b;
+public final class s8 implements RequestDelegate {
+    public final int f43377a;
+    public final o9 f43378b;
+    public final org.telegram.ui.ActionBar.e2 f43379c;
+    public final HashSet d;
+    public final TLRPC.TL_inputGroupCallInviteMessage e;
+    public final boolean f43380f;
 
-    public s8(long j10, int i10) {
-        this.f41313a = i10;
-        this.f41314b = j10;
-    }
-
-    public Predicate and(Predicate predicate) {
-        int i10 = this.f41313a;
-        return Predicate$CC.$default$and(this, predicate);
-    }
-
-    public Predicate negate() {
-        switch (this.f41313a) {
-            case 0:
-                return Predicate$CC.$default$negate(this);
-            case 1:
-                return Predicate$CC.$default$negate(this);
-            case 2:
-                return Predicate$CC.$default$negate(this);
-            default:
-                return Predicate$CC.$default$negate(this);
-        }
-    }
-
-    public Predicate or(Predicate predicate) {
-        int i10 = this.f41313a;
-        return Predicate$CC.$default$or(this, predicate);
+    public s8(o9 o9Var, org.telegram.ui.ActionBar.e2 e2Var, HashSet hashSet, TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage, boolean z10, int i10) {
+        this.f43377a = i10;
+        this.f43378b = o9Var;
+        this.f43379c = e2Var;
+        this.d = hashSet;
+        this.e = tL_inputGroupCallInviteMessage;
+        this.f43380f = z10;
     }
 
     @Override
-    public final boolean test(Object obj) {
-        switch (this.f41313a) {
+    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
+        switch (this.f43377a) {
             case 0:
-                if (((TLRPC.User) obj).f20491id == this.f41314b) {
-                    return true;
-                }
-                return false;
-            case 1:
-                if (((TLRPC.User) obj).f20491id == this.f41314b) {
-                    return true;
-                }
-                return false;
-            case 2:
-                TLObject tLObject = (TLObject) obj;
-                if (tLObject instanceof TLRPC.User) {
-                    if (((TLRPC.User) tLObject).f20491id != this.f41314b) {
-                        return true;
+                final o9 o9Var = this.f43378b;
+                final org.telegram.ui.ActionBar.e2 e2Var = this.f43379c;
+                final HashSet hashSet = this.d;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage = this.e;
+                final boolean z10 = this.f43380f;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r8) {
+                            case 0:
+                                o9.X(o9Var, e2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
+                                return;
+                            default:
+                                o9.Y(o9Var, e2Var, tLObject, hashSet, tL_inputGroupCallInviteMessage, z10, tL_error);
+                                return;
+                        }
                     }
-                } else if (tLObject instanceof TLRPC.Chat) {
-                    return true ^ ChatObject.hasAdminRights((TLRPC.Chat) tLObject);
-                }
-                return false;
+                });
+                return;
             default:
-                Map.Entry entry = (Map.Entry) obj;
-                if (((View) entry.getKey()).isAttachedToWindow() && ((View) entry.getKey()).isShown() && ((View) entry.getKey()).getWindowVisibility() == 0) {
-                    if (this.f41314b - ((Long) entry.getValue()).longValue() <= 300) {
-                        return false;
+                final o9 o9Var2 = this.f43378b;
+                final org.telegram.ui.ActionBar.e2 e2Var2 = this.f43379c;
+                final HashSet hashSet2 = this.d;
+                final TLRPC.TL_inputGroupCallInviteMessage tL_inputGroupCallInviteMessage2 = this.e;
+                final boolean z11 = this.f43380f;
+                AndroidUtilities.runOnUIThread(new Runnable() {
+                    @Override
+                    public final void run() {
+                        switch (r8) {
+                            case 0:
+                                o9.X(o9Var2, e2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
+                                return;
+                            default:
+                                o9.Y(o9Var2, e2Var2, tLObject, hashSet2, tL_inputGroupCallInviteMessage2, z11, tL_error);
+                                return;
+                        }
                     }
-                }
-                return true;
+                });
+                return;
         }
     }
 }

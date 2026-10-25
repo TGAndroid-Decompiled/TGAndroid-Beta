@@ -1,76 +1,113 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Matrix;
-import android.graphics.SurfaceTexture;
-import android.view.TextureView;
-public final class bg0 implements TextureView.SurfaceTextureListener {
-    public final boolean f24997a;
-    public final ha f24998b;
-    public final gg0 f24999c;
+import java.util.ArrayList;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+public final class bg0 {
+    public float f26848a = 0.0f;
+    public float f26849b = 25.0f;
+    public float f26850c = 50.0f;
+    public float d = 75.0f;
+    public float e = 100.0f;
+    public float[] f26851f;
 
-    public bg0(gg0 gg0Var, boolean z10, ha haVar) {
-        this.f24999c = gg0Var;
-        this.f24997a = z10;
-        this.f24998b = haVar;
-    }
-
-    @Override
-    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
-        gg0 gg0Var = this.f24999c;
-        TextureView textureView = gg0Var.f26667i0;
-        if (gg0Var.f26670l0 == null && surfaceTexture != null) {
-            c00 c00Var = new c00(surfaceTexture, gg0Var.C0, gg0Var.H0, gg0Var.f26684w0, this.f24997a, this.f24998b, i10, i11);
-            gg0Var.f26670l0 = c00Var;
-            if (!this.f24997a) {
-                c00Var.i(gg0Var.J0, gg0Var.K0);
-                c00 c00Var2 = gg0Var.f26670l0;
-                Matrix transform = textureView.getTransform(null);
-                int width = textureView.getWidth();
-                int height = textureView.getHeight();
-                na naVar = c00Var2.I;
-                if (naVar != null) {
-                    Matrix matrix = naVar.v;
-                    transform.invert(matrix);
-                    float f7 = width;
-                    float f10 = height;
-                    matrix.preScale(f7, f10);
-                    matrix.postScale(1.0f / f7, 1.0f / f10);
-                    naVar.c(matrix);
-                    c00Var2.d(false, false, false);
+    public final float[] a() {
+        float f7 = this.f26848a;
+        float f10 = this.e;
+        int i10 = 2;
+        int i11 = 5;
+        char c10 = '\f';
+        char c11 = '\r';
+        float[] fArr = {-0.001f, f7 / 100.0f, 0.0f, f7 / 100.0f, 0.25f, this.f26849b / 100.0f, 0.5f, this.f26850c / 100.0f, 0.75f, this.d / 100.0f, 1.0f, f10 / 100.0f, 1.001f, f10 / 100.0f};
+        int i12 = 100;
+        ArrayList arrayList = new ArrayList(100);
+        ArrayList arrayList2 = new ArrayList(100);
+        arrayList2.add(Float.valueOf(fArr[0]));
+        arrayList2.add(Float.valueOf(fArr[1]));
+        int i13 = 1;
+        while (i13 < i11) {
+            int i14 = (i13 - 1) * i10;
+            float f11 = fArr[i14];
+            float f12 = fArr[i14 + 1];
+            int i15 = i13 * 2;
+            float f13 = fArr[i15];
+            float f14 = fArr[i15 + 1];
+            int i16 = i13 + 1;
+            int i17 = i16 * 2;
+            int i18 = i10;
+            float f15 = fArr[i17];
+            char c12 = c10;
+            float f16 = fArr[i17 + 1];
+            int i19 = (i13 + 2) * 2;
+            float f17 = fArr[i19];
+            float f18 = fArr[i19 + 1];
+            char c13 = c11;
+            int i20 = 1;
+            while (i20 < i12) {
+                float f19 = i20 * 0.01f;
+                float f20 = f19 * f19;
+                float f21 = f20 * f19;
+                float z10 = ((((((f13 * 3.0f) - f11) - (f15 * 3.0f)) + f17) * f21) + ((((f15 * 4.0f) + ((f11 * 2.0f) - (f13 * 5.0f))) - f17) * f20) + c3.h0.z(f15, f11, f19, f13 * 2.0f)) * 0.5f;
+                float max = Math.max(0.0f, Math.min(1.0f, ((((((f14 * 3.0f) - f12) - (f16 * 3.0f)) + f18) * f21) + ((((4.0f * f16) + ((2.0f * f12) - (5.0f * f14))) - f18) * f20) + c3.h0.z(f16, f12, f19, f14 * 2.0f)) * 0.5f));
+                if (z10 > f11) {
+                    arrayList2.add(Float.valueOf(z10));
+                    arrayList2.add(Float.valueOf(max));
                 }
+                if ((i20 - 1) % 2 == 0) {
+                    arrayList.add(Float.valueOf(max));
+                }
+                i20++;
+                i12 = 100;
             }
-            gg0Var.f26670l0.f(gg0Var);
-            c00 c00Var3 = gg0Var.f26670l0;
-            c00Var3.getClass();
-            c00Var3.postRunnable(new yz(c00Var3, i10, i11, 1));
-            gg0Var.f26670l0.d(true, true, false);
+            arrayList2.add(Float.valueOf(f15));
+            arrayList2.add(Float.valueOf(f16));
+            i13 = i16;
+            i10 = i18;
+            c10 = c12;
+            c11 = c13;
+            i11 = 5;
+            i12 = 100;
         }
+        arrayList2.add(Float.valueOf(fArr[c10]));
+        arrayList2.add(Float.valueOf(fArr[c11]));
+        this.f26851f = new float[arrayList.size()];
+        int i21 = 0;
+        while (true) {
+            float[] fArr2 = this.f26851f;
+            if (i21 >= fArr2.length) {
+                break;
+            }
+            fArr2[i21] = ((Float) arrayList.get(i21)).floatValue();
+            i21++;
+        }
+        int size = arrayList2.size();
+        float[] fArr3 = new float[size];
+        for (int i22 = 0; i22 < size; i22++) {
+            fArr3[i22] = ((Float) arrayList2.get(i22)).floatValue();
+        }
+        return fArr3;
     }
 
-    @Override
-    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
-        gg0 gg0Var = this.f24999c;
-        c00 c00Var = gg0Var.f26670l0;
-        if (c00Var != null) {
-            c00Var.postRunnable(new zz(c00Var, 0));
-            gg0Var.f26670l0 = null;
+    public final boolean b() {
+        if (Math.abs(this.f26848a - 0.0f) < 1.0E-5d && Math.abs(this.f26849b - 25.0f) < 1.0E-5d && Math.abs(this.f26850c - 50.0f) < 1.0E-5d && Math.abs(this.d - 75.0f) < 1.0E-5d && Math.abs(this.e - 100.0f) < 1.0E-5d) {
             return true;
         }
-        return true;
+        return false;
     }
 
-    @Override
-    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
-        gg0 gg0Var = this.f24999c;
-        c00 c00Var = gg0Var.f26670l0;
-        if (c00Var != null) {
-            c00Var.postRunnable(new yz(c00Var, i10, i11, 1));
-            gg0Var.f26670l0.d(false, true, false);
-            gg0Var.f26670l0.postRunnable(new wb0(this, 7));
-        }
+    public final void c(InputSerializedData inputSerializedData, boolean z10) {
+        this.f26848a = inputSerializedData.readFloat(z10);
+        this.f26849b = inputSerializedData.readFloat(z10);
+        this.f26850c = inputSerializedData.readFloat(z10);
+        this.d = inputSerializedData.readFloat(z10);
+        this.e = inputSerializedData.readFloat(z10);
     }
 
-    @Override
-    public final void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+    public final void d(OutputSerializedData outputSerializedData) {
+        outputSerializedData.writeFloat(this.f26848a);
+        outputSerializedData.writeFloat(this.f26849b);
+        outputSerializedData.writeFloat(this.f26850c);
+        outputSerializedData.writeFloat(this.d);
+        outputSerializedData.writeFloat(this.e);
     }
 }

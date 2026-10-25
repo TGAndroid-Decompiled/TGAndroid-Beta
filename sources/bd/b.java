@@ -1,59 +1,37 @@
 package bd;
 
-import af.h;
-import df.p;
-import v7.f5;
-public final class b extends ff.a {
-    public final a f4260a = new p();
-    public final StringBuilder f4261b = new StringBuilder();
-    public final int f4262c;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+public final class b {
+    public static final Pattern d = Pattern.compile("[ |\t]*([^/^ ^;^,]+/[^ ^;^,]+)", 2);
+    public static final Pattern e = Pattern.compile("[ |\t]*(charset)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public static final Pattern f3853f = Pattern.compile("[ |\t]*(boundary)[ |\t]*=[ |\t]*['|\"]?([^\"^'^;^,]*)['|\"]?", 2);
+    public final String f3854a;
+    public final String f3855b;
+    public final String f3856c;
 
-    public b(int i10) {
-        this.f4262c = i10;
-    }
-
-    @Override
-    public final void a(CharSequence charSequence) {
-        StringBuilder sb2 = this.f4261b;
-        sb2.append(charSequence);
-        sb2.append('\n');
-    }
-
-    @Override
-    public final void d() {
-        this.f4260a.f4259g = this.f4261b.toString();
-    }
-
-    @Override
-    public final df.a e() {
-        return this.f4260a;
-    }
-
-    @Override
-    public final af.a h(h hVar) {
-        int i10;
-        int i11 = hVar.e;
-        CharSequence charSequence = hVar.f571a;
-        int length = charSequence.length();
-        if (hVar.f575g < 4) {
-            int i12 = i11;
-            while (true) {
-                if (i12 < length) {
-                    if ('$' != charSequence.charAt(i12)) {
-                        i10 = i12 - i11;
-                        break;
-                    }
-                    i12++;
-                } else {
-                    i10 = length - i11;
-                    break;
-                }
+    public b(String str) {
+        String str2;
+        this.f3854a = str;
+        if (str != null) {
+            Matcher matcher = d.matcher(str);
+            this.f3855b = matcher.find() ? matcher.group(1) : "";
+            Matcher matcher2 = e.matcher(str);
+            if (matcher2.find()) {
+                str2 = matcher2.group(2);
+            } else {
+                str2 = null;
             }
-            int i13 = this.f4262c;
-            if (i10 == i13 && f5.b(' ', charSequence, i11 + i13, length) == length) {
-                return new af.a(-1, -1, true);
+            this.f3856c = str2;
+        } else {
+            this.f3855b = "";
+            this.f3856c = "UTF-8";
+        }
+        if ("multipart/form-data".equalsIgnoreCase(this.f3855b)) {
+            Matcher matcher3 = f3853f.matcher(str);
+            if (matcher3.find()) {
+                matcher3.group(2);
             }
         }
-        return af.a.a(hVar.f572b);
     }
 }

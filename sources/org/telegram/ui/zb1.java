@@ -1,28 +1,50 @@
 package org.telegram.ui;
-public final class zb1 implements gc1 {
-    public boolean f44059a;
-    public final sn f44060b;
 
-    public zb1(sn snVar, boolean z10) {
-        this.f44060b = snVar;
-        this.f44059a = z10;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.widget.FrameLayout;
+public final class zb1 extends AnimatorListenerAdapter {
+    public final boolean f46246a;
+    public final int f46247b;
+    public final int f46248c;
+    public final boolean d;
+    public final tc1 e;
+
+    public zb1(tc1 tc1Var, boolean z10, int i10, int i11, boolean z11) {
+        this.e = tc1Var;
+        this.f46246a = z10;
+        this.f46247b = i10;
+        this.f46248c = i11;
+        this.d = z11;
     }
 
     @Override
-    public final boolean I0() {
-        return true;
-    }
-
-    @Override
-    public final boolean a() {
-        return this.f44059a;
-    }
-
-    @Override
-    public final void c1(boolean z10) {
-        boolean z11 = !this.f44059a;
-        this.f44059a = z11;
-        qn qnVar = this.f44060b.f41651qa;
-        qnVar.q(qnVar.f40882f, qnVar.f40883g, z10, Boolean.valueOf(z11), false);
+    public final void onAnimationEnd(Animator animator) {
+        tc1 tc1Var = this.e;
+        FrameLayout[] frameLayoutArr = tc1Var.M0;
+        tc1Var.f43785s1 = null;
+        int i10 = this.f46248c;
+        int i11 = this.f46247b;
+        boolean z10 = this.f46246a;
+        if (z10 && frameLayoutArr[i11].getVisibility() == 0) {
+            frameLayoutArr[i11].setAlpha(1.0f);
+            frameLayoutArr[i11].setVisibility(4);
+        } else if (!z10) {
+            frameLayoutArr[i10].setVisibility(4);
+        }
+        int i12 = tc1Var.f43736b;
+        char c10 = 2;
+        if (i12 != 1 && i12 != 2) {
+            if (i10 == 1) {
+                frameLayoutArr[i11].setAlpha(0.0f);
+                return;
+            }
+            return;
+        }
+        org.telegram.ui.Components.v91[] v91VarArr = tc1Var.K0;
+        if (this.d) {
+            c10 = 0;
+        }
+        v91VarArr[c10].setVisibility(4);
     }
 }

@@ -1,121 +1,304 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.text.TextUtils;
+import android.util.Property;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-public final class g8 implements Runnable {
-    public final int f26585a = 0;
-    public final h8 f26586b;
-    public final ArrayList f26587c;
-    public final String d;
+public abstract class g8 extends FrameLayout {
+    public final TextView[] f28474a;
+    public final float[] f28475b;
+    public final int f28476c;
+    public final Matrix d;
+    public final Paint e;
+    public final Paint f28477f;
+    public int h;
+    public AnimatorSet f28478n;
+    public LinearGradient f28479r;
+    public int f28480s;
+    public final RectF v;
+    public int f28481w;
+    public boolean f28482x;
 
-    public g8(h8 h8Var, String str, ArrayList arrayList) {
-        this.f26586b = h8Var;
-        this.d = str;
-        this.f26587c = arrayList;
+    public g8(Context context) {
+        super(context);
+        this.f28474a = new TextView[2];
+        this.f28475b = new float[]{0.0f, 0.75f};
+        this.f28476c = AndroidUtilities.dp(24.0f);
+        this.f28480s = -1;
+        this.v = new RectF();
+        for (int i10 = 0; i10 < 2; i10++) {
+            this.f28474a[i10] = a();
+            if (i10 == 1) {
+                this.f28474a[i10].setAlpha(0.0f);
+                this.f28474a[i10].setVisibility(8);
+            }
+            addView(this.f28474a[i10], gb1.g(-1.0f, -2));
+        }
+        this.d = new Matrix();
+        Paint paint = new Paint(1);
+        this.e = paint;
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.DST_IN));
+        Paint paint2 = new Paint(1);
+        this.f28477f = paint2;
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+    }
+
+    public abstract TextView a();
+
+    public final void b(CharSequence charSequence, boolean z10) {
+        final int i10;
+        int i11 = this.h;
+        TextView[] textViewArr = this.f28474a;
+        CharSequence text = textViewArr[i11].getText();
+        if (!TextUtils.isEmpty(text) && z10) {
+            if (TextUtils.equals(charSequence, text)) {
+                return;
+            }
+            this.f28480s = 0;
+            int min = Math.min(charSequence.length(), text.length());
+            for (int i12 = 0; i12 < min && charSequence.charAt(i12) == text.charAt(i12); i12++) {
+                this.f28480s++;
+            }
+            if (this.f28480s <= 3) {
+                this.f28480s = -1;
+            }
+            final int i13 = this.h;
+            if (i13 == 0) {
+                i10 = 1;
+            } else {
+                i10 = 0;
+            }
+            this.h = i10;
+            AnimatorSet animatorSet = this.f28478n;
+            if (animatorSet != null) {
+                animatorSet.cancel();
+            }
+            AnimatorSet animatorSet2 = new AnimatorSet();
+            this.f28478n = animatorSet2;
+            animatorSet2.addListener(new hi.y2(this, i13, 5));
+            textViewArr[i10].setText(charSequence);
+            textViewArr[i10].bringToFront();
+            textViewArr[i10].setVisibility(0);
+            float[] fArr = this.f28475b;
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(fArr[i13], 0.75f);
+            ofFloat.setDuration(200L);
+            ofFloat.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final g8 f28081b;
+
+                {
+                    this.f28081b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r3) {
+                        case 0:
+                            g8 g8Var = this.f28081b;
+                            g8Var.f28475b[i13] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            g8Var.invalidate();
+                            return;
+                        default:
+                            g8 g8Var2 = this.f28081b;
+                            g8Var2.f28475b[i13] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            g8Var2.invalidate();
+                            return;
+                    }
+                }
+            });
+            ValueAnimator ofFloat2 = ValueAnimator.ofFloat(fArr[i10], 0.0f);
+            ofFloat2.setStartDelay(100L);
+            ofFloat2.setDuration(200L);
+            ofFloat2.addUpdateListener(new ValueAnimator.AnimatorUpdateListener(this) {
+                public final g8 f28081b;
+
+                {
+                    this.f28081b = this;
+                }
+
+                @Override
+                public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+                    switch (r3) {
+                        case 0:
+                            g8 g8Var = this.f28081b;
+                            g8Var.f28475b[i10] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            g8Var.invalidate();
+                            return;
+                        default:
+                            g8 g8Var2 = this.f28081b;
+                            g8Var2.f28475b[i10] = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                            g8Var2.invalidate();
+                            return;
+                    }
+                }
+            });
+            Property property = View.ALPHA;
+            ObjectAnimator ofFloat3 = ObjectAnimator.ofFloat(textViewArr[i13], property, 0.0f);
+            ofFloat3.setStartDelay(75L);
+            ofFloat3.setDuration(150L);
+            ObjectAnimator ofFloat4 = ObjectAnimator.ofFloat(textViewArr[i10], property, 1.0f);
+            ofFloat4.setStartDelay(75L);
+            ofFloat4.setDuration(150L);
+            this.f28478n.playTogether(ofFloat, ofFloat2, ofFloat3, ofFloat4);
+            this.f28478n.start();
+            return;
+        }
+        textViewArr[this.h].setText(charSequence);
     }
 
     @Override
-    public final void run() {
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
         int i10;
-        TLRPC.Document document;
         boolean z10;
-        String str;
-        int i11 = this.f26585a;
-        String str2 = this.d;
-        ArrayList arrayList = this.f26587c;
-        h8 h8Var = this.f26586b;
-        switch (i11) {
-            case 0:
-                h8Var.getClass();
-                String lowerCase = str2.trim().toLowerCase();
-                if (lowerCase.length() == 0) {
-                    AndroidUtilities.runOnUIThread(new g8(h8Var, new ArrayList(), str2));
-                    return;
+        Canvas canvas2;
+        TextView[] textViewArr = this.f28474a;
+        boolean z11 = true;
+        if (view == textViewArr[0]) {
+            i10 = 0;
+        } else {
+            i10 = 1;
+        }
+        if (this.f28482x) {
+            this.f28480s = -1;
+        }
+        if (this.f28480s > 0) {
+            int length = textViewArr.length;
+            int i11 = 0;
+            while (true) {
+                if (i11 >= length) {
+                    break;
                 }
-                String translitString = LocaleController.getInstance().getTranslitString(lowerCase);
-                translitString = (lowerCase.equals(translitString) || translitString.length() == 0) ? null : null;
-                if (translitString != null) {
-                    i10 = 1;
-                } else {
-                    i10 = 0;
+                TextView textView = textViewArr[i11];
+                if ((textView instanceof oa0) && ((oa0) textView).d) {
+                    this.f28480s = -1;
+                    break;
                 }
-                int i12 = i10 + 1;
-                String[] strArr = new String[i12];
-                strArr[0] = lowerCase;
-                if (translitString != null) {
-                    strArr[1] = translitString;
-                }
-                ArrayList arrayList2 = new ArrayList();
-                for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                    MessageObject messageObject = (MessageObject) arrayList.get(i13);
-                    int i14 = 0;
-                    while (true) {
-                        if (i14 < i12) {
-                            String str3 = strArr[i14];
-                            String documentName = messageObject.getDocumentName();
-                            if (documentName != null && documentName.length() != 0) {
-                                if (documentName.toLowerCase().contains(str3)) {
-                                    arrayList2.add(messageObject);
-                                } else {
-                                    if (messageObject.type == 0) {
-                                        document = messageObject.messageOwner.media.webpage.document;
-                                    } else {
-                                        document = messageObject.messageOwner.media.document;
-                                    }
-                                    int i15 = 0;
-                                    while (true) {
-                                        if (i15 < document.attributes.size()) {
-                                            TLRPC.DocumentAttribute documentAttribute = document.attributes.get(i15);
-                                            if (documentAttribute instanceof TLRPC.TL_documentAttributeAudio) {
-                                                String str4 = documentAttribute.performer;
-                                                if (str4 != null) {
-                                                    z10 = str4.toLowerCase().contains(str3);
-                                                } else {
-                                                    z10 = false;
-                                                }
-                                                if (!z10 && (str = documentAttribute.title) != null) {
-                                                    z10 = str.toLowerCase().contains(str3);
-                                                }
-                                            } else {
-                                                i15++;
-                                            }
-                                        } else {
-                                            z10 = false;
-                                        }
-                                    }
-                                    if (z10) {
-                                        arrayList2.add(messageObject);
-                                    }
-                                }
-                            }
-                            i14++;
-                        }
+                i11++;
+            }
+        }
+        int i12 = this.f28480s;
+        RectF rectF = this.v;
+        if (i12 > 0 && textViewArr[this.h].getAlpha() != 1.0f && textViewArr[this.h].getLayout() != null) {
+            float primaryHorizontal = textViewArr[this.h].getLayout().getPrimaryHorizontal(0);
+            float primaryHorizontal2 = textViewArr[this.h].getLayout().getPrimaryHorizontal(this.f28480s);
+            if (primaryHorizontal == primaryHorizontal2) {
+                z11 = false;
+            } else if (primaryHorizontal2 > primaryHorizontal) {
+                rectF.set(primaryHorizontal, 0.0f, primaryHorizontal2, getMeasuredHeight());
+            } else {
+                rectF.set(primaryHorizontal2, 0.0f, primaryHorizontal, getMeasuredHeight());
+            }
+            if (z11 && i10 == this.h) {
+                canvas.save();
+                canvas.clipRect(rectF);
+                textViewArr[0].draw(canvas);
+                canvas.restore();
+            }
+            z10 = z11;
+        } else {
+            z10 = false;
+        }
+        float[] fArr = this.f28475b;
+        if (fArr[i10] <= 0.0f && !z10) {
+            return super.drawChild(canvas, view, j10);
+        }
+        float min = Math.min(view.getWidth(), getWidth());
+        float min2 = Math.min(view.getHeight(), getHeight());
+        int saveLayer = canvas.saveLayer(0.0f, 0.0f, min, min2, null, 31);
+        boolean drawChild = super.drawChild(canvas, view, j10);
+        float f7 = (1.0f - fArr[i10]) * min;
+        float f10 = f7 + this.f28476c;
+        Matrix matrix = this.d;
+        matrix.setTranslate(f7, 0.0f);
+        this.f28479r.setLocalMatrix(matrix);
+        canvas.drawRect(f7, 0.0f, f10, min2, this.e);
+        int i13 = (min > f10 ? 1 : (min == f10 ? 0 : -1));
+        Paint paint = this.f28477f;
+        if (i13 > 0) {
+            canvas2 = canvas;
+            canvas2.drawRect(f10, 0.0f, min, min2, paint);
+        } else {
+            canvas2 = canvas;
+        }
+        if (z10) {
+            canvas2.drawRect(rectF, paint);
+        }
+        canvas2.restoreToCount(saveLayer);
+        return drawChild;
+    }
+
+    public int getCustomPaddingRight() {
+        return this.f28481w;
+    }
+
+    public TextView getNextTextView() {
+        char c10;
+        if (this.h == 0) {
+            c10 = 1;
+        } else {
+            c10 = 0;
+        }
+        return this.f28474a[c10];
+    }
+
+    public TextView getTextView() {
+        return this.f28474a[this.h];
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.f28482x) {
+            int i14 = 0;
+            while (true) {
+                TextView[] textViewArr = this.f28474a;
+                if (i14 < textViewArr.length) {
+                    TextView textView = textViewArr[i14];
+                    if (textView != null && textView.getMeasuredWidth() < getMeasuredWidth()) {
+                        int measuredWidth = (getMeasuredWidth() - textView.getMeasuredWidth()) / 2;
+                        textView.layout(measuredWidth, 0, textView.getMeasuredWidth() + measuredWidth, textView.getMeasuredHeight());
                     }
-                }
-                AndroidUtilities.runOnUIThread(new g8(h8Var, arrayList2, str2));
-                return;
-            default:
-                i8 i8Var = h8Var.f26897n;
-                if (i8Var.h) {
-                    i8Var.f27332f = true;
-                    h8Var.d = arrayList;
-                    h8Var.e = str2;
-                    h8Var.l();
-                    i8Var.f27345r.n0(0);
-                    org.telegram.messenger.tl.r(R.string.NoAudioFoundPlayerInfo, new Object[]{str2}, i8Var.f27354x);
+                    i14++;
+                } else {
                     return;
                 }
-                return;
+            }
         }
     }
 
-    public g8(h8 h8Var, ArrayList arrayList, String str) {
-        this.f26586b = h8Var;
-        this.f26587c = arrayList;
-        this.d = str;
+    @Override
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        LinearGradient linearGradient = new LinearGradient(this.f28476c, 0.0f, 0.0f, 0.0f, 0, -16777216, Shader.TileMode.CLAMP);
+        this.f28479r = linearGradient;
+        this.e.setShader(linearGradient);
+    }
+
+    public void setCustomPaddingRight(int i10) {
+        TextView[] textViewArr;
+        this.f28481w = i10;
+        for (TextView textView : this.f28474a) {
+            if (textView instanceof oa0) {
+                ((oa0) textView).setCustomPaddingRight(i10);
+            }
+        }
+        invalidate();
+    }
+
+    public void setText(CharSequence charSequence) {
+        b(charSequence, true);
     }
 }

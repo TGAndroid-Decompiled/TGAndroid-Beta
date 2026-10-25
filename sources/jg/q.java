@@ -1,98 +1,87 @@
 package jg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Matrix;
-import android.graphics.Path;
-import android.graphics.RectF;
-import java.util.ArrayList;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public class q extends g {
-    public final Matrix D1;
-    public final float[] E1;
-    public final Path F1;
-    public boolean[] G1;
-    public float[] H1;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.Components.EditTextBoldCursor;
+import org.telegram.ui.Components.f5;
+public final class q implements TextView.OnEditorActionListener {
+    public final int f15809a;
+    public final int f15810b;
+    public final org.telegram.ui.ActionBar.e2[] f15811c;
+    public final View d;
+    public final EditTextBoldCursor e;
+    public final Object f15812f;
 
-    public q(Context context) {
-        super(context, null);
-        this.D1 = new Matrix();
-        this.E1 = new float[2];
-        this.F1 = new Path();
-        this.f14529w0 = true;
-        this.f14531x0 = true;
-        this.e = false;
+    public q(EditTextBoldCursor editTextBoldCursor, int i10, Object obj, org.telegram.ui.ActionBar.e2[] e2VarArr, View view, int i11) {
+        this.f15809a = i11;
+        this.e = editTextBoldCursor;
+        this.f15810b = i10;
+        this.f15812f = obj;
+        this.f15811c = e2VarArr;
+        this.d = view;
     }
 
     @Override
-    public lg.i h(kg.a aVar) {
-        return new lg.i(aVar);
-    }
-
-    public final int M(float f7, float f10) {
-        RectF rectF = this.H0;
-        float centerX = rectF.centerX();
-        float centerY = rectF.centerY() + AndroidUtilities.dp(16.0f);
-        int i10 = (f7 > centerX ? 1 : (f7 == centerX ? 0 : -1));
-        if (i10 >= 0 && f10 <= centerY) {
-            return 0;
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f15809a) {
+            case 0:
+                t tVar = (t) this.e;
+                TL_account.TL_businessChatLink tL_businessChatLink = (TL_account.TL_businessChatLink) this.f15812f;
+                if (i10 != 6) {
+                    return false;
+                }
+                String obj = tVar.getText().toString();
+                if (obj.length() > 32) {
+                    AndroidUtilities.shakeView(tVar);
+                } else {
+                    z d = z.d(this.f15810b);
+                    TL_account.TL_businessChatLink c10 = d.c(tL_businessChatLink.link);
+                    if (c10 != null) {
+                        TL_account.TL_inputBusinessChatLink tL_inputBusinessChatLink = new TL_account.TL_inputBusinessChatLink();
+                        tL_inputBusinessChatLink.message = c10.message;
+                        tL_inputBusinessChatLink.entities = c10.entities;
+                        tL_inputBusinessChatLink.title = obj;
+                        d.b(c10, tL_inputBusinessChatLink, null);
+                    }
+                    org.telegram.ui.ActionBar.e2[] e2VarArr = this.f15811c;
+                    org.telegram.ui.ActionBar.e2 e2Var = e2VarArr[0];
+                    if (e2Var != null) {
+                        e2Var.dismiss();
+                    }
+                    if (e2VarArr[0] == w.e) {
+                        w.e = null;
+                    }
+                    View view = this.d;
+                    if (view != null) {
+                        view.requestFocus();
+                    }
+                }
+                return true;
+            default:
+                f5 f5Var = (f5) this.e;
+                MessagesStorage.StringCallback stringCallback = (MessagesStorage.StringCallback) this.f15812f;
+                if (i10 != 6) {
+                    return false;
+                }
+                String obj2 = f5Var.getText().toString();
+                if (obj2.length() > this.f15810b) {
+                    AndroidUtilities.shakeView(f5Var);
+                } else {
+                    stringCallback.run(obj2);
+                    org.telegram.ui.ActionBar.e2 e2Var2 = this.f15811c[0];
+                    if (e2Var2 != null) {
+                        e2Var2.dismiss();
+                    }
+                    View view2 = this.d;
+                    if (view2 != null) {
+                        view2.requestFocus();
+                    }
+                }
+                return true;
         }
-        if (i10 >= 0 && f10 >= centerY) {
-            return 1;
-        }
-        if (f7 < centerX && f10 >= centerY) {
-            return 2;
-        }
-        return 3;
-    }
-
-    @Override
-    public float getMinDistance() {
-        return 0.1f;
-    }
-
-    @Override
-    public void k(android.graphics.Canvas r46) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.q.k(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public void n(android.graphics.Canvas r27) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.q.n(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        F();
-        k(canvas);
-        i(canvas);
-        ArrayList arrayList = this.f14493b;
-        this.m0 = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            this.f14517n0 = i10;
-            int i11 = this.f14517n0;
-            if (i11 < this.m0) {
-                l(canvas, (lg.d) arrayList.get(i11));
-                p(canvas, (lg.d) arrayList.get(this.f14517n0));
-                i10 = this.f14517n0 + 1;
-            } else {
-                j(canvas);
-                m(canvas);
-                o(canvas);
-                super.onDraw(canvas);
-                return;
-            }
-        }
-    }
-
-    @Override
-    public void q(lg.j r21) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.q.q(lg.j):void");
-    }
-
-    @Override
-    public final long r(int i10, int i11) {
-        return 100L;
     }
 }

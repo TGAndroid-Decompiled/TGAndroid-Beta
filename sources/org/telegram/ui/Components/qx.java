@@ -1,26 +1,23 @@
 package org.telegram.ui.Components;
-public final class qx extends g.o {
-    public final rz f30006c;
 
-    public qx(rz rzVar) {
-        this.f30006c = rzVar;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.FileLog;
+public final class qx extends s4.t {
+    public final sz Q;
+
+    public qx(sz szVar) {
+        super(8);
+        this.Q = szVar;
     }
 
     @Override
-    public final int i(int i10) {
-        rz rzVar = this.f30006c;
-        yx yxVar = rzVar.R;
-        px pxVar = rzVar.Q;
-        s4.g0 adapter = rzVar.P.getAdapter();
-        ry ryVar = rzVar.S;
-        if (adapter == ryVar) {
-            int j10 = ryVar.j(i10);
-            if (j10 == 1 || j10 == 3 || j10 == 2 || j10 == 4 || j10 == 5) {
-                return pxVar.J;
-            }
-        } else if ((rzVar.f30312d0 && i10 == 0) || i10 == yxVar.d || i10 == yxVar.f33070c || i10 == yxVar.f33071f || yxVar.f33073r.indexOfKey(i10) >= 0 || yxVar.v.indexOfKey(i10) >= 0) {
-            return pxVar.J;
+    public final void v0(RecyclerView recyclerView, s4.b1 b1Var, int i10) {
+        try {
+            fi.k1 k1Var = new fi.k1(this, recyclerView.getContext(), 2);
+            k1Var.f47677a = i10;
+            w0(k1Var);
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        return 1;
     }
 }

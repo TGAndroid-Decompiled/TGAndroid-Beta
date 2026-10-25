@@ -1,3 +1,3 @@
 package x7;
-public @interface c0 {
+public abstract class c0 {
 }

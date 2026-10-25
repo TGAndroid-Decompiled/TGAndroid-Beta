@@ -1,39 +1,18 @@
 package o8;
 
-import android.content.Intent;
-import android.os.Parcel;
-import android.os.Parcelable;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.common.api.q;
-import w7.f0;
-public final class b extends o6.a implements q {
-    public static final Parcelable.Creator<b> CREATOR = new m8.h(20);
-    public final int f17765a;
-    public final int f17766b;
-    public final Intent f17767c;
+import b8.d;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.api.e;
+public abstract class b {
+    public static final d f19275a;
+    public static final e f19276b;
 
-    public b(int i10, int i11, Intent intent) {
-        this.f17765a = i10;
-        this.f17766b = i11;
-        this.f17767c = intent;
-    }
-
-    @Override
-    public final Status h() {
-        if (this.f17766b == 0) {
-            return Status.e;
-        }
-        return Status.f6355r;
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.s(parcel, 1, 4);
-        parcel.writeInt(this.f17765a);
-        f0.s(parcel, 2, 4);
-        parcel.writeInt(this.f17766b);
-        f0.k(parcel, 3, this.f17767c, i10);
-        f0.r(parcel, q6);
+    static {
+        ?? obj = new Object();
+        d dVar = new d(9);
+        f19275a = dVar;
+        new Scope(1, "profile");
+        new Scope(1, "email");
+        f19276b = new e("SignIn.API", dVar, obj);
     }
 }

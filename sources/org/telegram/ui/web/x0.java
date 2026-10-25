@@ -1,15 +1,470 @@
 package org.telegram.ui.web;
 
-import android.webkit.DownloadListener;
-public final class x0 implements DownloadListener {
-    public final y0 f43309a;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.text.TextUtils;
+import android.view.MotionEvent;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebView;
+import java.util.HashMap;
+import java.util.Map;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.k3;
+import org.telegram.ui.m3;
+public final class x0 extends WebView {
+    public static final int V = 0;
+    public boolean E;
+    public k3 F;
+    public int G;
+    public int H;
+    public Runnable I;
+    public boolean J;
+    public String K;
+    public String L;
+    public boolean M;
+    public boolean N;
+    public Bitmap O;
+    public final HashMap P;
+    public a1 Q;
+    public boolean R;
+    public rb.c S;
+    public z0 T;
+    public Runnable U;
+    public final int f45439a;
+    public boolean f45440b;
+    public final boolean f45441c;
+    public String d;
+    public b1 e;
+    public x0 f45442f;
+    public boolean h;
+    public String f45443n;
+    public String f45444r;
+    public boolean f45445s;
+    public boolean v;
+    public int f45446w;
+    public int f45447x;
+    public String f45448y;
 
-    public x0(y0 y0Var) {
-        this.f43309a = y0Var;
+    public x0(Context context, boolean z10, long j10) {
+        super(context);
+        int i10 = a1.R0;
+        a1.R0 = i10 + 1;
+        this.f45439a = i10;
+        this.f45448y = "about:blank";
+        this.P = new HashMap();
+        this.f45441c = z10;
+        c("created new webview " + this);
+        setOnLongClickListener(new k0(this));
+        setWebViewClient(new m0(this, z10, context));
+        setWebChromeClient(new u0(this, context, z10, j10));
+        setFindListener(new v0(this));
+        if (!z10) {
+            setDownloadListener(new w0(this));
+        }
+    }
+
+    public static void a(x0 x0Var) {
+        if (!x0Var.f45441c) {
+            l2 a2 = l2.a(x0Var);
+            m2 b10 = m2.b();
+            if (a2 == null) {
+                b10.getClass();
+            } else {
+                if (b10.f45322a == null) {
+                    b10.f45322a = new HashMap();
+                }
+                if (!TextUtils.isEmpty(a2.f45311b)) {
+                    b10.f45322a.put(a2.f45311b, a2);
+                    b10.c();
+                    b10.d();
+                }
+            }
+            b1 b1Var = x0Var.e;
+            if (b1Var != null && a2 != null) {
+                b1Var.d = a2;
+                c1.c(b1Var);
+            }
+        }
+    }
+
+    public final void b(l2 l2Var) {
+        g0 g0Var;
+        if (l2Var != null) {
+            a1 a1Var = this.Q;
+            boolean z10 = false;
+            if (a1Var != null && (g0Var = a1Var.f45155c) != null) {
+                int i10 = l2Var.e;
+                if (i10 != 0) {
+                    g0Var.o(i10, true);
+                    this.f45445s = true;
+                }
+                int i11 = l2Var.f45313f;
+                if (i11 != 0) {
+                    this.Q.f45155c.o(i11, false);
+                    this.v = true;
+                } else {
+                    i11 = -1;
+                }
+                Bitmap bitmap = l2Var.f45314i;
+                if (bitmap != null) {
+                    a1 a1Var2 = this.Q;
+                    this.O = bitmap;
+                    a1Var2.getClass();
+                    this.M = true;
+                }
+                if (!TextUtils.isEmpty(l2Var.d)) {
+                    String str = l2Var.d;
+                    this.f45444r = str;
+                    a1 a1Var3 = this.Q;
+                    this.K = str;
+                    a1Var3.H();
+                    z10 = true;
+                }
+                if (SharedConfig.adaptableColorInBrowser) {
+                    setBackgroundColor(i11);
+                }
+            }
+            if (!z10) {
+                setTitle(null);
+                a1 a1Var4 = this.Q;
+                if (a1Var4 != null) {
+                    a1Var4.H();
+                }
+            }
+        }
+    }
+
+    public final void c(String str) {
+        FileLog.d("[webview] #" + this.f45439a + " " + str);
     }
 
     @Override
-    public final void onDownloadStart(java.lang.String r12, java.lang.String r13, java.lang.String r14, java.lang.String r15, long r16) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.x0.onDownloadStart(java.lang.String, java.lang.String, java.lang.String, java.lang.String, long):void");
+    public final void clearHistory() {
+        c("clearHistory");
+        super.clearHistory();
+    }
+
+    public final void d(String str) {
+        evaluateJavascript(str, new h0(0));
+    }
+
+    @Override
+    public final void destroy() {
+        c("destroy");
+        super.destroy();
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+    }
+
+    @Override
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        return super.drawChild(canvas, view, j10);
+    }
+
+    public final void e(String str, l2 l2Var) {
+        k3 k3Var = this.F;
+        if (k3Var != null) {
+            k3Var.dismiss();
+            this.F = null;
+        }
+        b(l2Var);
+        this.d = str;
+        String b10 = a1.b(str);
+        c("loadUrl " + b10 + " with cached meta");
+        super.loadUrl(b10);
+        a1 a1Var = this.Q;
+        if (a1Var != null) {
+            a1Var.I(!super.canGoBack(), !canGoForward());
+        }
+    }
+
+    public final void f(a1 a1Var, z0 z0Var) {
+        boolean z10;
+        c("setContainers(" + a1Var + ", " + z0Var + ")");
+        if (this.Q == null && a1Var != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.Q = a1Var;
+        this.T = z0Var;
+        if (z10) {
+            d("window.__tg__postBackgroundChange()");
+        }
+    }
+
+    @Override
+    public Bitmap getFavicon() {
+        if (this.h) {
+            return null;
+        }
+        return this.O;
+    }
+
+    public String getOpenURL() {
+        return this.d;
+    }
+
+    public float getScrollProgress() {
+        float max = Math.max(1, computeVerticalScrollRange() - computeVerticalScrollExtent());
+        if (max <= getHeight()) {
+            return 0.0f;
+        }
+        return Utilities.clamp01(getScrollY() / max);
+    }
+
+    public int getSearchCount() {
+        return this.H;
+    }
+
+    public int getSearchIndex() {
+        return this.G;
+    }
+
+    @Override
+    public String getTitle() {
+        return this.K;
+    }
+
+    @Override
+    public String getUrl() {
+        if (this.E) {
+            return this.f45448y;
+        }
+        return super.getUrl();
+    }
+
+    @Override
+    public final void goBack() {
+        c("goBack");
+        super.goBack();
+    }
+
+    @Override
+    public final void goForward() {
+        c("goForward");
+        super.goForward();
+    }
+
+    @Override
+    public final void loadData(String str, String str2, String str3) {
+        this.d = null;
+        StringBuilder w10 = a1.g.w("loadData ", str, " ", str2, " ");
+        w10.append(str3);
+        c(w10.toString());
+        super.loadData(str, str2, str3);
+    }
+
+    @Override
+    public final void loadDataWithBaseURL(String str, String str2, String str3, String str4, String str5) {
+        this.d = null;
+        StringBuilder w10 = a1.g.w("loadDataWithBaseURL ", str, " ", str2, " ");
+        c3.h0.r(w10, str3, " ", str4, " ");
+        w10.append(str5);
+        c(w10.toString());
+        super.loadDataWithBaseURL(str, str2, str3, str4, str5);
+    }
+
+    @Override
+    public final void loadUrl(String str) {
+        k3 k3Var = this.F;
+        if (k3Var != null) {
+            k3Var.dismiss();
+            this.F = null;
+        }
+        if (!this.f45441c) {
+            b(m2.b().a(AndroidUtilities.getHostAuthority(str, true)));
+        }
+        this.d = str;
+        String b10 = a1.b(str);
+        c("loadUrl " + b10);
+        super.loadUrl(b10);
+        a1 a1Var = this.Q;
+        if (a1Var != null) {
+            a1Var.I(!super.canGoBack(), true ^ canGoForward());
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        c("attached");
+        AndroidUtilities.checkAndroidTheme(getContext(), true);
+        super.onAttachedToWindow();
+    }
+
+    @Override
+    public final boolean onCheckIsTextEditor() {
+        a1 a1Var = this.Q;
+        if (a1Var == null) {
+            c("onCheckIsTextEditor: no container");
+            return false;
+        }
+        boolean isFocusable = a1Var.isFocusable();
+        c("onCheckIsTextEditor: " + isFocusable);
+        return isFocusable;
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        c("detached");
+        AndroidUtilities.checkAndroidTheme(getContext(), false);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
+    }
+
+    @Override
+    public final void onPause() {
+        c("onPause");
+        super.onPause();
+    }
+
+    @Override
+    public final void onResume() {
+        c("onResume");
+        super.onResume();
+    }
+
+    @Override
+    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
+        super.onScrollChanged(i10, i11, i12, i13);
+        z0 z0Var = this.T;
+        if (z0Var != null) {
+            getScrollX();
+            getScrollY();
+            ((m3) ((org.telegram.ui.f) z0Var).f39221b).L.f0();
+        }
+        getScrollX();
+        getScrollY();
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (this.Q != null && motionEvent.getAction() == 0) {
+            this.Q.P = System.currentTimeMillis();
+            if (!this.Q.r()) {
+                getSettings().setMediaPlaybackRequiresUserGesture(false);
+            }
+        }
+        return super.onTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final void pauseTimers() {
+        c("pauseTimers");
+        super.pauseTimers();
+    }
+
+    @Override
+    public final void postUrl(String str, byte[] bArr) {
+        c("postUrl " + str + " " + bArr);
+        super.postUrl(str, bArr);
+    }
+
+    @Override
+    public final void reload() {
+        CookieManager.getInstance().flush();
+        c("reload");
+        super.reload();
+    }
+
+    @Override
+    public final void resumeTimers() {
+        c("resumeTimers");
+        super.resumeTimers();
+    }
+
+    public void setCloseListener(Runnable runnable) {
+        this.U = runnable;
+    }
+
+    @Override
+    public void setFocusable(int i10) {
+        c("setFocusable " + i10);
+        super.setFocusable(i10);
+    }
+
+    @Override
+    public void setFocusableInTouchMode(boolean z10) {
+        c("setFocusableInTouchMode " + z10);
+        super.setFocusableInTouchMode(z10);
+    }
+
+    @Override
+    public void setFocusedByDefault(boolean z10) {
+        c("setFocusedByDefault " + z10);
+        super.setFocusedByDefault(z10);
+    }
+
+    public void setScrollProgress(float f7) {
+        setScrollY((int) (f7 * Math.max(1, computeVerticalScrollRange() - computeVerticalScrollExtent())));
+    }
+
+    @Override
+    public void setScrollX(int i10) {
+        super.setScrollX(i10);
+    }
+
+    @Override
+    public void setScrollY(int i10) {
+        super.setScrollY(i10);
+    }
+
+    public void setTitle(String str) {
+        this.K = str;
+    }
+
+    @Override
+    public final void stopLoading() {
+        c("stopLoading");
+        super.stopLoading();
+    }
+
+    @Override
+    public final void stopNestedScroll() {
+        c("stopNestedScroll");
+        super.stopNestedScroll();
+    }
+
+    @Override
+    public void setFocusable(boolean z10) {
+        c("setFocusable " + z10);
+        super.setFocusable(z10);
+    }
+
+    @Override
+    public final void loadUrl(String str, Map map) {
+        k3 k3Var = this.F;
+        if (k3Var != null) {
+            k3Var.dismiss();
+            this.F = null;
+        }
+        if (!this.f45441c) {
+            b(m2.b().a(AndroidUtilities.getHostAuthority(str, true)));
+        }
+        this.d = str;
+        String b10 = a1.b(str);
+        c("loadUrl " + b10 + " " + map);
+        super.loadUrl(b10, map);
+        a1 a1Var = this.Q;
+        if (a1Var != null) {
+            a1Var.I(!super.canGoBack(), !canGoForward());
+        }
     }
 }

@@ -1,17 +1,17 @@
 package w3;
 
-import c3.d0;
-import c3.e0;
-import c3.f0;
-public final class j implements e0 {
-    public final long f48959a;
-    public final k[] f48960b;
-    public final int f48961c;
+import c3.a0;
+import c3.b0;
+import c3.c0;
+public final class j implements b0 {
+    public final long f50703a;
+    public final k[] f50704b;
+    public final int f50705c;
 
     public j(long j10, k[] kVarArr, int i10) {
-        this.f48959a = j10;
-        this.f48960b = kVarArr;
-        this.f48961c = i10;
+        this.f50703a = j10;
+        this.f50704b = kVarArr;
+        this.f50705c = i10;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class j implements e0 {
     }
 
     @Override
-    public final d0 f(long j10) {
+    public final a0 f(long j10) {
         long j11;
         long j12;
         long j13;
@@ -33,28 +33,28 @@ public final class j implements e0 {
         long j15;
         int b10;
         long j16 = j10;
-        k[] kVarArr = this.f48960b;
+        k[] kVarArr = this.f50704b;
         int length = kVarArr.length;
-        f0 f0Var = f0.f4620c;
+        c0 c0Var = c0.f6030c;
         if (length == 0) {
-            return new d0(f0Var, f0Var);
+            return new a0(c0Var, c0Var);
         }
-        int i10 = this.f48961c;
+        int i10 = this.f50705c;
         int i11 = -1;
         if (i10 != -1) {
-            t tVar = kVarArr[i10].f48963b;
+            t tVar = kVarArr[i10].f50707b;
             int a2 = tVar.a(j16);
             if (a2 == -1) {
                 a2 = tVar.b(j16);
             }
-            long[] jArr = tVar.f49023c;
-            long[] jArr2 = tVar.f49024f;
+            long[] jArr = tVar.f50767c;
+            long[] jArr2 = tVar.f50768f;
             if (a2 == -1) {
-                return new d0(f0Var, f0Var);
+                return new a0(c0Var, c0Var);
             }
             long j17 = jArr2[a2];
             j11 = jArr[a2];
-            if (j17 < j16 && a2 < tVar.f49022b - 1 && (b10 = tVar.b(j16)) != -1 && b10 != a2) {
+            if (j17 < j16 && a2 < tVar.f50766b - 1 && (b10 = tVar.b(j16)) != -1 && b10 != a2) {
                 j13 = jArr2[b10];
                 j15 = jArr[b10];
             } else {
@@ -72,8 +72,8 @@ public final class j implements e0 {
         long j18 = j11;
         while (i12 < kVarArr.length) {
             if (i12 != i10) {
-                t tVar2 = kVarArr[i12].f48963b;
-                long[] jArr3 = tVar2.f49023c;
+                t tVar2 = kVarArr[i12].f50707b;
+                long[] jArr3 = tVar2.f50767c;
                 int a10 = tVar2.a(j16);
                 if (a10 == i11) {
                     a10 = tVar2.b(j16);
@@ -105,15 +105,15 @@ public final class j implements e0 {
             i11 = -1;
         }
         long j20 = j13;
-        f0 f0Var2 = new f0(j16, j18);
+        c0 c0Var2 = new c0(j16, j18);
         if (j20 == -9223372036854775807L) {
-            return new d0(f0Var2, f0Var2);
+            return new a0(c0Var2, c0Var2);
         }
-        return new d0(f0Var2, new f0(j20, j12));
+        return new a0(c0Var2, new c0(j20, j12));
     }
 
     @Override
     public final long h() {
-        return this.f48959a;
+        return this.f50703a;
     }
 }

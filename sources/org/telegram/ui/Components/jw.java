@@ -1,69 +1,116 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import java.util.ArrayList;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.EmojiData;
-import org.telegram.messenger.UserConfig;
-public final class jw implements Runnable {
-    public final int f27804a;
-    public final rz f27805b;
+public final class jw extends Drawable {
+    public final int f29725a;
+    public RectF f29726b;
+    public Paint f29727c;
 
-    public jw(rz rzVar, int i10) {
-        this.f27804a = i10;
-        this.f27805b = rzVar;
+    public jw(int i10, byte b10) {
+        this.f29725a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f27804a) {
+    public final void draw(Canvas canvas) {
+        switch (this.f29725a) {
             case 0:
-                rz rzVar = this.f27805b;
-                rzVar.X(false);
-                rzVar.D();
+                RectF rectF = this.f29726b;
+                rectF.set(0.0f, 0.0f, AndroidUtilities.dp(30.0f), AndroidUtilities.dp(30.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(8.0f), AndroidUtilities.dpf2(8.0f), this.f29727c);
                 return;
             case 1:
-                yx yxVar = this.f27805b.R;
-                if (yxVar != null) {
-                    yxVar.F(true);
-                    return;
-                }
+                RectF rectF2 = this.f29726b;
+                rectF2.set(getBounds());
+                float height = rectF2.height() * 0.2f;
+                canvas.drawRoundRect(rectF2, height, height, this.f29727c);
                 return;
             case 2:
-                rz rzVar2 = this.f27805b;
-                sy syVar = rzVar2.f30363t1;
-                if (syVar != null) {
-                    syVar.t(rzVar2.R.h);
-                    return;
-                }
-                return;
-            case 3:
-                sy syVar2 = this.f27805b.f30363t1;
-                if (syVar2 != null) {
-                    syVar2.q();
-                    return;
-                }
-                return;
-            case 4:
-                rz rzVar3 = this.f27805b;
-                rzVar3.getClass();
-                Bundle bundle = new Bundle();
-                bundle.putLong("user_id", UserConfig.getInstance(rzVar3.f30310c1).getClientUserId());
-                rzVar3.Y1.presentFragment(new org.telegram.ui.sn(bundle));
+                RectF rectF3 = this.f29726b;
+                rectF3.set(getBounds());
+                rectF3.inset(AndroidUtilities.dp(1.0f), (rectF3.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
+                canvas.drawRoundRect(rectF3, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f29727c);
                 return;
             default:
-                rz rzVar4 = this.f27805b;
-                ArrayList<dy> emojipacks = rzVar4.getEmojipacks();
-                for (int i10 = 0; i10 < emojipacks.size(); i10++) {
-                    if (emojipacks.get(i10).f25860i) {
-                        int i11 = rzVar4.R.f33074s.get(EmojiData.dataColored.length + i10);
-                        rzVar4.P.B0();
-                        rzVar4.U(i11);
-                        rzVar4.F(i11, AndroidUtilities.dp(-9.0f));
-                        rzVar4.n(0, null);
-                    }
-                }
+                RectF rectF4 = this.f29726b;
+                rectF4.set(getBounds());
+                rectF4.inset(0.0f, (rectF4.height() - AndroidUtilities.dp(28.0f)) / 2.0f);
+                canvas.drawRoundRect(rectF4, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f), this.f29727c);
                 return;
         }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f29725a) {
+            case 0:
+                return -3;
+            case 1:
+                return -3;
+            case 2:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f29725a) {
+            case 0:
+                this.f29727c.setAlpha(i10);
+                return;
+            case 1:
+                this.f29727c.setAlpha(i10);
+                return;
+            case 2:
+                this.f29727c.setAlpha(i10);
+                return;
+            default:
+                this.f29727c.setAlpha(i10);
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f29725a) {
+            case 0:
+                return;
+            case 1:
+                this.f29727c.setColorFilter(colorFilter);
+                return;
+            case 2:
+            default:
+                return;
+        }
+    }
+
+    public jw() {
+        this.f29725a = 1;
+        this.f29726b = new RectF();
+        this.f29727c = new Paint(1);
+    }
+
+    public jw(int i10) {
+        this.f29725a = 0;
+        Paint paint = new Paint();
+        this.f29727c = paint;
+        this.f29726b = new RectF();
+        paint.setAlpha(45);
+        paint.setColor(i10);
+    }
+
+    private final void a(ColorFilter colorFilter) {
+    }
+
+    private final void b(ColorFilter colorFilter) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
     }
 }

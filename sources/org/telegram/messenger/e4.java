@@ -1,36 +1,30 @@
 package org.telegram.messenger;
+public final class e4 implements Runnable {
+    public final int f19962a;
+    public final boolean f19963b;
 
-import org.telegram.messenger.GiftAuctionController;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_payments;
-public final class e4 implements Utilities.Callback2 {
-    public final int f18297a = 0;
-    public final GiftAuctionController f18298b;
-    public final GiftAuctionController.AuctionInternal f18299c;
-    public final Object d;
-
-    public e4(GiftAuctionController giftAuctionController, GiftAuctionController.AuctionInternal auctionInternal, Utilities.Callback2 callback2) {
-        this.f18298b = giftAuctionController;
-        this.f18299c = auctionInternal;
-        this.d = callback2;
+    public e4(int i10, boolean z10) {
+        this.f19962a = i10;
+        this.f19963b = z10;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f18297a) {
+    public final void run() {
+        int i10 = this.f19962a;
+        boolean z10 = this.f19963b;
+        switch (i10) {
             case 0:
-                this.f18298b.lambda$sendBid$8(this.f18299c, (Utilities.Callback2) this.d, (TLRPC.payments_PaymentResult) obj, (TLRPC.TL_error) obj2);
+                FingerprintController.b(z10);
+                return;
+            case 1:
+                FingerprintController.a(z10);
+                return;
+            case 2:
+                LiteMode.lambda$onPowerSaverApplied$1(z10);
                 return;
             default:
-                this.f18298b.lambda$getOrRequestAcquiredGifts$11((Utilities.Callback) this.d, this.f18299c, (TL_payments.TL_StarGiftAuctionAcquiredGifts) obj, (TLRPC.TL_error) obj2);
+                NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewTheme, Boolean.FALSE, Boolean.valueOf(z10));
                 return;
         }
-    }
-
-    public e4(GiftAuctionController giftAuctionController, Utilities.Callback callback, GiftAuctionController.AuctionInternal auctionInternal) {
-        this.f18298b = giftAuctionController;
-        this.d = callback;
-        this.f18299c = auctionInternal;
     }
 }

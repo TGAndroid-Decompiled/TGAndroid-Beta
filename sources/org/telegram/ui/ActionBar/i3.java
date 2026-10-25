@@ -1,24 +1,18 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
-import android.view.WindowInsets;
-public final class i3 implements View.OnApplyWindowInsetsListener {
-    public final int f20950a;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.DrawableWrapper;
+public final class i3 extends DrawableWrapper {
+    public ColorFilter f22714a;
 
-    public i3(int i10) {
-        this.f20950a = i10;
+    @Override
+    public final ColorFilter getColorFilter() {
+        return this.f22714a;
     }
 
     @Override
-    public final WindowInsets onApplyWindowInsets(View view, WindowInsets windowInsets) {
-        switch (this.f20950a) {
-            case 0:
-                return l3.a(view, windowInsets);
-            case 1:
-                return org.telegram.ui.k4.e(windowInsets);
-            default:
-                view.setPadding(0, 0, 0, windowInsets.getSystemWindowInsetBottom());
-                return windowInsets;
-        }
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f22714a = colorFilter;
+        super.setColorFilter(colorFilter);
     }
 }

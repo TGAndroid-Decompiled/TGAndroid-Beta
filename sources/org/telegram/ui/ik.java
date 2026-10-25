@@ -1,78 +1,50 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class ik extends org.telegram.ui.Components.ld {
-    public org.telegram.ui.Cells.y e;
-    public int f38319f;
-    public final boolean h;
-    public final sn f38320n;
+import android.view.View;
+import android.widget.FrameLayout;
+public final class ik extends org.telegram.ui.Components.pd {
+    public final un d;
 
-    public ik(sn snVar, Context context, boolean z10) {
+    public ik(un unVar, Context context) {
         super(context);
-        this.f38320n = snVar;
-        this.h = z10;
+        this.d = unVar;
     }
 
     @Override
-    public final void d() {
-        int i10;
-        try {
-            int themedColor = this.f38320n.getThemedColor(org.telegram.ui.ActionBar.k6.f21525ve);
-            if (this.e != null) {
-                Drawable background = getBackground();
-                Drawable drawable = this.e;
-                if (background == drawable) {
-                    if (themedColor != this.f38319f) {
-                        org.telegram.ui.ActionBar.k6.E1(drawable, themedColor & 436207615, true);
-                    }
-                    if (getImageView() != null && (themedColor != this.f38319f || getImageView().getColorFilter() == null)) {
-                        getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-                    }
-                    this.f38319f = themedColor;
-                    if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
-                        getTextView().setTextColor(themedColor);
-                        return;
-                    }
-                }
+    public final boolean hasOverlappingRendering() {
+        return false;
+    }
+
+    @Override
+    public final void setTranslationY(float f7) {
+        super.setTranslationY(f7);
+        un unVar = this.d;
+        hk hkVar = unVar.Y;
+        if (hkVar != null) {
+            hkVar.invalidate();
+        }
+        if (getVisibility() != 8) {
+            unVar.r9(true);
+            FrameLayout frameLayout = unVar.P;
+            if (frameLayout != null) {
+                frameLayout.setTranslationY(f7);
             }
-            if (this.h) {
-                i10 = AndroidUtilities.dp(4.0f);
-            } else {
-                i10 = 0;
+            unVar.x9();
+            unVar.z9();
+            View view = unVar.fragmentView;
+            if (view != null) {
+                view.invalidate();
             }
-            int i11 = i10;
-            org.telegram.ui.Cells.y X = org.telegram.ui.ActionBar.k6.X(AndroidUtilities.dp(19.0f), themedColor & 436207615, i11, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
-            this.e = X;
-            setBackground(X);
-            if (getImageView() != null) {
-                getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
-            }
-            this.f38319f = themedColor;
-            if (getTextView() == null) {
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
         }
     }
 
     @Override
-    public final void setEditButton(boolean z10) {
-        int i10;
-        super.setEditButton(z10);
-        if (this.h) {
-            TextView textView = getTextView();
-            if (z10) {
-                i10 = AndroidUtilities.dp(116.0f);
-            } else {
-                i10 = Integer.MAX_VALUE;
-            }
-            textView.setMaxWidth(i10);
+    public final void setVisibility(int i10) {
+        FrameLayout frameLayout;
+        super.setVisibility(i10);
+        if (i10 == 8 && (frameLayout = this.d.P) != null) {
+            frameLayout.setTranslationY(0.0f);
         }
     }
 }

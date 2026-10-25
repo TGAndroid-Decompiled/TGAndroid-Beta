@@ -1,19 +1,12 @@
 package ge;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.ServiceConfigurationError;
-public abstract class f {
-    public static final Collection f11039a;
+import ud.p;
+public final class f extends kotlin.jvm.internal.j implements p {
+    public static final f f12479b = new kotlin.jvm.internal.j(2);
 
-    static {
-        try {
-            Iterator it = Arrays.asList(new ce.b()).iterator();
-            kotlin.jvm.internal.i.e(it, "<this>");
-            f11039a = yd.d.a(new yd.a(new yd.e(it, 1)));
-        } catch (Throwable th2) {
-            throw new ServiceConfigurationError(th2.getMessage(), th2);
-        }
+    @Override
+    public final Object invoke(Object obj, Object obj2) {
+        ld.f fVar = (ld.f) obj2;
+        return Integer.valueOf(((Number) obj).intValue() + 1);
     }
 }

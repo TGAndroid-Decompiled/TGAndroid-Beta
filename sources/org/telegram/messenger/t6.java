@@ -1,34 +1,23 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.ConnectionsManager;
 public final class t6 implements Runnable {
-    public final int f19634a;
-    public final int f19635b;
-    public final int f19636c;
+    public final int f21300a;
+    public final MediaController f21301b;
+    public final boolean f21302c;
 
-    public t6(int i10, int i11, int i12) {
-        this.f19634a = i12;
-        this.f19635b = i10;
-        this.f19636c = i11;
+    public t6(MediaController mediaController, boolean z10, int i10) {
+        this.f21300a = i10;
+        this.f21301b = mediaController;
+        this.f21302c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19634a) {
+        switch (this.f21300a) {
             case 0:
-                MediaController.lambda$startRecording$35(this.f19635b, this.f19636c);
-                return;
-            case 1:
-                PasskeysController.lambda$login$11(this.f19635b, this.f19636c);
-                return;
-            case 2:
-                ConnectionsManager.B(this.f19635b, this.f19636c);
-                return;
-            case 3:
-                ConnectionsManager.r(this.f19635b, this.f19636c);
+                this.f21301b.lambda$toggleRecordingPause$30(this.f21302c);
                 return;
             default:
-                ConnectionsManager.getInstance(this.f19635b).cancelRequest(this.f19636c, true);
+                this.f21301b.lambda$toggleRecordingPause$34(this.f21302c);
                 return;
         }
     }

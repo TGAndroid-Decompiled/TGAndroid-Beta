@@ -1,4 +1,11 @@
 package k6;
-public abstract class n {
-    public static final l[] f15031a = {o.f15032a, o.f15033b};
+
+import java.util.concurrent.Executor;
+public final class n implements Executor {
+    public static final n f16426a = new Object();
+
+    @Override
+    public final void execute(Runnable runnable) {
+        runnable.run();
+    }
 }

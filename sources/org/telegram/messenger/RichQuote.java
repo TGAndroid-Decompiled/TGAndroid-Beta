@@ -173,7 +173,7 @@ public class RichQuote {
                 }
             } else if (richText instanceof TL_iv.textDiff) {
                 TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
-                if (ki.e6.j(textdiff.text)) {
+                if (li.f6.j(textdiff.text)) {
                     richText2 = textdiff.old_text;
                 } else {
                     richText2 = textdiff.text;
@@ -259,7 +259,7 @@ public class RichQuote {
 
     public static TL_iv.RichText copy(TL_iv.RichText richText) {
         try {
-            return (TL_iv.RichText) TLObject.deepCopy(richText, new xg(2));
+            return (TL_iv.RichText) TLObject.deepCopy(richText, new yg(2));
         } catch (Exception e) {
             FileLog.e(e);
             return null;
@@ -323,7 +323,7 @@ public class RichQuote {
                     RichMessageLayout.RichBlock richBlock = arrayList3.get(i13);
                     i13++;
                     RichMessageLayout.RichBlock richBlock2 = richBlock;
-                    org.telegram.ui.Cells.z9[] text = richBlock2.getText();
+                    org.telegram.ui.Cells.da[] text = richBlock2.getText();
                     if (text != null) {
                         int length2 = text.length;
                         int i14 = i11;
@@ -541,12 +541,12 @@ public class RichQuote {
         return null;
     }
 
-    private static CharSequence getText(org.telegram.ui.Cells.z9 z9Var) {
+    private static CharSequence getText(org.telegram.ui.Cells.da daVar) {
         Layout layout;
-        if (z9Var == null) {
+        if (daVar == null) {
             layout = null;
         } else {
-            layout = z9Var.getLayout();
+            layout = daVar.getLayout();
         }
         if (layout == null) {
             return null;
@@ -855,7 +855,7 @@ public class RichQuote {
                 return -1;
             } else if (richText instanceof TL_iv.textDiff) {
                 TL_iv.textDiff textdiff = (TL_iv.textDiff) richText;
-                return flatToFormatted(ki.e6.j(textdiff.text) ? textdiff.old_text : textdiff.text, identityHashMap, i10, z10, iArr);
+                return flatToFormatted(li.f6.j(textdiff.text) ? textdiff.old_text : textdiff.text, identityHashMap, i10, z10, iArr);
             } else {
                 boolean z11 = richText instanceof TL_iv.textPlain;
                 if (!z11 && !(richText instanceof TL_iv.textMath) && !(richText instanceof TL_iv.textCustomEmoji) && !(richText instanceof TL_iv.textButton)) {

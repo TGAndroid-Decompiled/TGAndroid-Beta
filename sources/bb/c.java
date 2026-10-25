@@ -1,24 +1,24 @@
 package bb;
 
-import j$.util.DesugarCollections;
-import java.util.LinkedHashMap;
-import java.util.Map;
-import kotlin.jvm.internal.i;
-public final class c {
-    public static final c f4243a = new Object();
-    public static final Map f4244b = DesugarCollections.synchronizedMap(new LinkedHashMap());
+import android.os.Build;
+public final class c implements ka.d {
+    public static final c f3730a = new Object();
+    public static final ka.c f3731b = ka.c.c("packageName");
+    public static final ka.c f3732c = ka.c.c("versionName");
+    public static final ka.c d = ka.c.c("appBuildVersion");
+    public static final ka.c e = ka.c.c("deviceManufacturer");
+    public static final ka.c f3733f = ka.c.c("currentProcessDetails");
+    public static final ka.c f3734g = ka.c.c("appProcessDetails");
 
-    public static a a(d dVar) {
-        Map dependencies = f4244b;
-        i.d(dependencies, "dependencies");
-        Object obj = dependencies.get(dVar);
-        if (obj != null) {
-            return (a) obj;
-        }
-        throw new IllegalStateException("Cannot get dependency " + dVar + ". Dependencies should be added at class load time.");
-    }
-
-    public final java.lang.Object b(md.c r11) {
-        throw new UnsupportedOperationException("Method not decompiled: bb.c.b(md.c):java.lang.Object");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        a aVar = (a) obj;
+        ka.e eVar = (ka.e) obj2;
+        eVar.a(f3731b, aVar.f3720a);
+        eVar.a(f3732c, aVar.f3721b);
+        eVar.a(d, aVar.f3722c);
+        eVar.a(e, Build.MANUFACTURER);
+        eVar.a(f3733f, aVar.d);
+        eVar.a(f3734g, aVar.e);
     }
 }

@@ -36,7 +36,7 @@ public class LocationSharingService extends Service implements NotificationCente
     }
 
     public static void hidePausedNotification() {
-        new e0.k0(ApplicationLoader.applicationContext).b(6, "live_location_paused");
+        new e0.j0(ApplicationLoader.applicationContext).b(6, "live_location_paused");
     }
 
     public void lambda$didReceivedNotification$2() {
@@ -55,7 +55,7 @@ public class LocationSharingService extends Service implements NotificationCente
 
     public void lambda$onCreate$1() {
         this.handler.postDelayed(this.runnable, 1000L);
-        Utilities.stageQueue.postRunnable(new z1(16));
+        Utilities.stageQueue.postRunnable(new a2(16));
     }
 
     public static void showPausedNotification() {
@@ -93,15 +93,15 @@ public class LocationSharingService extends Service implements NotificationCente
                     qVar.g(LocaleController.getString(R.string.LiveLocationPausedTitle));
                     qVar.f(string);
                     e0.l lVar = new e0.l(false);
-                    lVar.f8134f = e0.q.d(string);
+                    lVar.f9564f = e0.q.d(string);
                     qVar.n(lVar);
-                    qVar.f8152g = activity;
+                    qVar.f9580g = activity;
                     qVar.h(16, true);
                     qVar.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(context, 2, intent2, 167772160));
                     if (!z11) {
                         qVar.B = j10;
                     }
-                    new e0.k0(context).e("live_location_paused", 6, qVar.b());
+                    new e0.j0(context).e("live_location_paused", 6, qVar.b());
                 } catch (Throwable th2) {
                     FileLog.e(th2);
                 }
@@ -152,7 +152,7 @@ public class LocationSharingService extends Service implements NotificationCente
             this.builder.p(format);
             this.builder.f(format);
             if (z10) {
-                new e0.k0(ApplicationLoader.applicationContext).e(null, 6, this.builder.b());
+                new e0.j0(ApplicationLoader.applicationContext).e(null, 6, this.builder.b());
             }
         }
     }
@@ -161,7 +161,7 @@ public class LocationSharingService extends Service implements NotificationCente
     public void didReceivedNotification(int i10, int i11, Object... objArr) {
         Handler handler;
         if (i10 == NotificationCenter.liveLocationsChanged && (handler = this.handler) != null) {
-            handler.post(new a6(this, 1));
+            handler.post(new b6(this, 1));
         }
     }
 
@@ -175,9 +175,9 @@ public class LocationSharingService extends Service implements NotificationCente
         super.onCreate();
         Handler handler = new Handler();
         this.handler = handler;
-        a6 a6Var = new a6(this, 0);
-        this.runnable = a6Var;
-        handler.postDelayed(a6Var, 1000L);
+        b6 b6Var = new b6(this, 0);
+        this.runnable = b6Var;
+        handler.postDelayed(b6Var, 1000L);
     }
 
     @Override
@@ -188,7 +188,7 @@ public class LocationSharingService extends Service implements NotificationCente
             handler.removeCallbacks(this.runnable);
         }
         stopForeground(true);
-        new e0.k0(ApplicationLoader.applicationContext).b(6, null);
+        new e0.j0(ApplicationLoader.applicationContext).b(6, null);
         NotificationCenter.getGlobalInstance().removeObserver(this, NotificationCenter.liveLocationsChanged);
     }
 
@@ -209,10 +209,10 @@ public class LocationSharingService extends Service implements NotificationCente
                 qVar.F.when = System.currentTimeMillis();
                 e0.q qVar2 = this.builder;
                 qVar2.F.icon = R.drawable.live_loc;
-                qVar2.f8152g = activity;
+                qVar2.f9580g = activity;
                 NotificationsController.checkOtherNotificationsChannel();
                 e0.q qVar3 = this.builder;
-                qVar3.f8168y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
+                qVar3.f9596y = NotificationsController.OTHER_NOTIFICATIONS_CHANNEL;
                 qVar3.g(LocaleController.getString(R.string.AppName));
                 this.builder.a(0, LocaleController.getString(R.string.StopLiveLocation), PendingIntent.getBroadcast(ApplicationLoader.applicationContext, 2, new Intent(ApplicationLoader.applicationContext, StopLiveLocationReceiver.class), 167772160));
             }

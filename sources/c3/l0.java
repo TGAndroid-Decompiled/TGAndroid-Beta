@@ -1,16 +1,25 @@
 package c3;
-public interface l0 {
-    int a(b2.o oVar, int i10, boolean z10);
 
-    void b(b2.w wVar);
+import android.os.Parcel;
+import com.google.android.gms.tasks.TaskCompletionSource;
+public final class l0 implements com.google.android.gms.common.api.internal.r {
+    public final String[] f6082a;
 
-    void c(long j10, int i10, int i11, int i12, k0 k0Var);
+    public l0(h6.r rVar, String[] strArr) {
+        this.f6082a = strArr;
+    }
 
-    void d(int i10, e2.x xVar);
+    @Override
+    public void accept(Object obj, Object obj2) {
+        h6.q qVar = new h6.q(1, (TaskCompletionSource) obj2);
+        h6.i iVar = (h6.i) ((h6.s) obj).u();
+        Parcel N0 = iVar.N0();
+        com.google.android.gms.internal.cast.t.d(N0, qVar);
+        N0.writeStringArray(this.f6082a);
+        iVar.S0(N0, 6);
+    }
 
-    void e(long j10);
-
-    int f(b2.o oVar, int i10, boolean z10);
-
-    void g(e2.x xVar, int i10, int i11);
+    public l0(String[] strArr) {
+        this.f6082a = strArr;
+    }
 }

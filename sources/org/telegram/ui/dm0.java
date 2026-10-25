@@ -1,70 +1,56 @@
 package org.telegram.ui;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
-public final class dm0 extends AnimatorListenerAdapter {
-    public final int f36648a;
-    public final boolean f36649b;
-    public final zm0 f36650c;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class dm0 implements TextWatcher {
+    public boolean f38905a;
+    public final EditTextBoldCursor f38906b;
+    public final String f38907c;
+    public final in0 d;
 
-    public dm0(zm0 zm0Var, boolean z10, int i10) {
-        this.f36648a = i10;
-        this.f36650c = zm0Var;
-        this.f36649b = z10;
+    public dm0(in0 in0Var, EditTextBoldCursor editTextBoldCursor, String str) {
+        this.d = in0Var;
+        this.f38906b = editTextBoldCursor;
+        this.f38907c = str;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f36648a) {
-            case 0:
-                zm0 zm0Var = this.f36650c;
-                AnimatorSet animatorSet = zm0Var.M;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    zm0Var.M = null;
-                    return;
+    public final void afterTextChanged(Editable editable) {
+        if (this.f38905a) {
+            return;
+        }
+        boolean z10 = true;
+        this.f38905a = true;
+        int i10 = 0;
+        while (true) {
+            if (i10 < editable.length()) {
+                char charAt = editable.charAt(i10);
+                if ((charAt < 'a' || charAt > 'z') && ((charAt < 'A' || charAt > 'Z') && !((charAt >= '0' && charAt <= '9') || charAt == '-' || charAt == ' '))) {
+                    break;
                 }
-                return;
-            default:
-                zm0 zm0Var2 = this.f36650c;
-                AnimatorSet animatorSet2 = zm0Var2.M;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    zm0Var2.M = null;
-                    return;
-                }
-                return;
+                i10++;
+            } else {
+                z10 = false;
+                break;
+            }
+        }
+        this.f38905a = false;
+        EditTextBoldCursor editTextBoldCursor = this.f38906b;
+        if (z10) {
+            editTextBoldCursor.setErrorText(LocaleController.getString(R.string.PassportUseLatinOnly));
+        } else {
+            in0.J0(this.d, editTextBoldCursor, this.f38907c, editable, false);
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f36648a) {
-            case 0:
-                zm0 zm0Var = this.f36650c;
-                AnimatorSet animatorSet = zm0Var.M;
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f36649b) {
-                        zm0Var.N.setVisibility(4);
-                        return;
-                    } else {
-                        zm0Var.L.getContentView().setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-            default:
-                zm0 zm0Var2 = this.f36650c;
-                AnimatorSet animatorSet2 = zm0Var2.M;
-                if (animatorSet2 != null && animatorSet2.equals(animator)) {
-                    if (!this.f36649b) {
-                        zm0Var2.P.setVisibility(4);
-                        return;
-                    } else {
-                        zm0Var2.O.setVisibility(4);
-                        return;
-                    }
-                }
-                return;
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

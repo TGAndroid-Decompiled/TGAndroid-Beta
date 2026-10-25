@@ -1,11 +1,11 @@
 package s3;
 
-import b2.q0;
-import b2.s0;
-import b2.w;
-public abstract class b implements s0 {
+import b2.r0;
+import b2.t0;
+import b2.x;
+public abstract class b implements t0 {
     @Override
-    public final w a() {
+    public final x a() {
         return null;
     }
 
@@ -19,6 +19,6 @@ public abstract class b implements s0 {
     }
 
     @Override
-    public final void b(q0 q0Var) {
+    public final void b(r0 r0Var) {
     }
 }

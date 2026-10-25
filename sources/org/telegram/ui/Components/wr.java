@@ -1,93 +1,48 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class wr extends Drawable {
-    public final Drawable f32331a;
-    public final RectF f32332b = new RectF();
-    public final Paint f32333c;
-    public final Paint d;
-    public int e;
-    public final int f32334f;
-    public float f32335g;
-    public boolean h;
-    public float f32336i;
-    public float f32337j;
-    public float f32338k;
+import org.telegram.messenger.MessagesController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+public final class wr implements View.OnClickListener {
+    public final int f34520a;
+    public final long f34521b;
+    public final Object f34522c;
+    public final Object d;
+    public final Object e;
 
-    public wr(Context context, int i10, int i11) {
-        Paint paint = new Paint(1);
-        this.f32333c = paint;
-        Paint paint2 = new Paint(1);
-        this.d = paint2;
-        this.f32331a = context.getDrawable(i10);
-        this.f32334f = i11;
-        Paint.Style style = Paint.Style.STROKE;
-        paint.setStyle(style);
-        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint2.setColor(-16777216);
-        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
-        paint2.setStyle(style);
-        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+    public wr(Object obj, Object obj2, Object obj3, long j10, int i10) {
+        this.f34520a = i10;
+        this.f34522c = obj;
+        this.d = obj2;
+        this.e = obj3;
+        this.f34521b = j10;
     }
 
-    public final void a(boolean z10, boolean z11) {
-        if (this.h != z10) {
-            this.h = z10;
-            float f7 = 0.0f;
-            if (!z11) {
-                if (z10) {
-                    f7 = 1.0f;
-                }
-                this.f32335g = f7;
-            } else {
-                if (!z10) {
-                    f7 = 1.0f;
-                }
-                this.f32335g = f7;
-            }
-            invalidateSelf();
+    @Override
+    public final void onClick(View view) {
+        switch (this.f34520a) {
+            case 0:
+                zr.S((zr) this.f34522c, (Context) this.d, (fi.d) this.e, this.f34521b);
+                return;
+            case 1:
+                org.telegram.ui.cy cyVar = (org.telegram.ui.cy) this.f34522c;
+                cyVar.finishPreviewFragment();
+                AndroidUtilities.runOnUIThread(new bi.y2(cyVar, (MessagesController.DialogFilter) this.d, (TLRPC.Dialog) this.e, this.f34521b, 19), 100L);
+                return;
+            default:
+                vg.a0.P((vg.a0) this.f34522c, (TL_stories.PrepaidGiveaway) this.d, this.f34521b, (org.telegram.ui.ActionBar.r2) this.e);
+                return;
         }
     }
 
-    @Override
-    public final void draw(android.graphics.Canvas r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.wr.draw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return this.f32331a.getIntrinsicHeight();
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return this.f32331a.getIntrinsicWidth();
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setBounds(int i10, int i11, int i12, int i13) {
-        super.setBounds(i10, i11, i12, i13);
-        this.f32331a.setBounds(i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public wr(vg.a0 a0Var, TL_stories.PrepaidGiveaway prepaidGiveaway, long j10, org.telegram.ui.ActionBar.r2 r2Var) {
+        this.f34520a = 2;
+        this.f34522c = a0Var;
+        this.d = prepaidGiveaway;
+        this.f34521b = j10;
+        this.e = r2Var;
     }
 }

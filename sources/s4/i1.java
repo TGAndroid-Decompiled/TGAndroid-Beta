@@ -1,15 +1,71 @@
 package s4;
 public final class i1 {
-    public static final c5.c0 d = new c5.c0(20, 9);
-    public int f46399a;
-    public b2.u0 f46400b;
-    public b2.u0 f46401c;
+    public int f47771a;
+    public int f47772b;
+    public int f47773c;
+    public int d;
+    public int e;
 
-    public static i1 a() {
-        i1 i1Var = (i1) d.b();
-        if (i1Var == null) {
-            return new Object();
+    public final boolean a() {
+        int i10;
+        int i11;
+        int i12;
+        int i13 = this.f47771a;
+        int i14 = 2;
+        if ((i13 & 7) != 0) {
+            int i15 = this.d;
+            int i16 = this.f47772b;
+            if (i15 > i16) {
+                i12 = 1;
+            } else if (i15 == i16) {
+                i12 = 2;
+            } else {
+                i12 = 4;
+            }
+            if ((i12 & i13) == 0) {
+                return false;
+            }
         }
-        return i1Var;
+        if ((i13 & 112) != 0) {
+            int i17 = this.d;
+            int i18 = this.f47773c;
+            if (i17 > i18) {
+                i11 = 1;
+            } else if (i17 == i18) {
+                i11 = 2;
+            } else {
+                i11 = 4;
+            }
+            if (((i11 << 4) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 1792) != 0) {
+            int i19 = this.e;
+            int i20 = this.f47772b;
+            if (i19 > i20) {
+                i10 = 1;
+            } else if (i19 == i20) {
+                i10 = 2;
+            } else {
+                i10 = 4;
+            }
+            if (((i10 << 8) & i13) == 0) {
+                return false;
+            }
+        }
+        if ((i13 & 28672) != 0) {
+            int i21 = this.e;
+            int i22 = this.f47773c;
+            if (i21 > i22) {
+                i14 = 1;
+            } else if (i21 != i22) {
+                i14 = 4;
+            }
+            if ((i13 & (i14 << 12)) == 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }

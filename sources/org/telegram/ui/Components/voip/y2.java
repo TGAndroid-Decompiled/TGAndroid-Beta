@@ -1,57 +1,51 @@
 package org.telegram.ui.Components.voip;
 
-import android.animation.ValueAnimator;
-public final class y2 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f31994a;
-    public final a3 f31995b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.text.TextPaint;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class y2 extends View {
+    public final TextPaint f34219a;
+    public final Paint f34220b;
+    public final float f34221c;
+    public final String d;
+    public volatile Bitmap e;
 
-    public y2(a3 a3Var, int i10) {
-        this.f31994a = i10;
-        this.f31995b = a3Var;
+    public y2(Context context, String str) {
+        super(context);
+        TextPaint textPaint = new TextPaint(1);
+        this.f34219a = textPaint;
+        this.f34220b = new Paint(1);
+        textPaint.setTextAlign(Paint.Align.CENTER);
+        textPaint.setTextSize(AndroidUtilities.dp(13.0f));
+        textPaint.setColor(-1);
+        textPaint.setTypeface(AndroidUtilities.bold());
+        this.f34221c = textPaint.measureText(str);
+        this.d = str;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f31994a) {
-            case 0:
-                a3 a3Var = this.f31995b;
-                a3Var.getClass();
-                a3Var.H = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                a3Var.invalidate();
-                a3Var.T.c();
-                return;
-            case 1:
-                a3 a3Var2 = this.f31995b;
-                a3Var2.getClass();
-                a3Var2.I = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                a3Var2.invalidate();
-                a3Var2.T.c();
-                return;
-            case 2:
-                a3 a3Var3 = this.f31995b;
-                a3Var3.getClass();
-                a3Var3.H = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                a3Var3.invalidate();
-                a3Var3.T.c();
-                return;
-            case 3:
-                a3 a3Var4 = this.f31995b;
-                a3Var4.getClass();
-                a3Var4.E = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                a3Var4.invalidate();
-                return;
-            case 4:
-                a3 a3Var5 = this.f31995b;
-                a3Var5.getClass();
-                a3Var5.F = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                a3Var5.invalidate();
-                return;
-            default:
-                a3 a3Var6 = this.f31995b;
-                a3Var6.getClass();
-                a3Var6.E = ((Integer) valueAnimator.getAnimatedValue()).intValue();
-                a3Var6.invalidate();
-                return;
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        if (this.e != null) {
+            canvas.drawBitmap(this.e, 0.0f, 0.0f, this.f34220b);
         }
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (z10) {
+            Utilities.globalQueue.postRunnable(new k2.c(this, 24));
+        }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(getPaddingRight() + getPaddingLeft() + ((int) this.f34221c), 1073741824), View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i11), 1073741824));
     }
 }

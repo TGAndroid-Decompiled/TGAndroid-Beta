@@ -28,7 +28,7 @@ public class TL_chatlists {
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z10);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(26), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.d(26), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -65,8 +65,8 @@ public class TL_chatlists {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.filter_id = inputSerializedData.readInt32(z10);
-            this.missing_peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(26), z10);
-            this.already_peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(26), z10);
+            this.missing_peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.d(26), z10);
+            this.already_peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.d(26), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -94,7 +94,7 @@ public class TL_chatlists {
             if ((this.flags & 1) > 0) {
                 this.emoticon = inputSerializedData.readString(z10);
             }
-            this.peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(26), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.d(26), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -131,7 +131,7 @@ public class TL_chatlists {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.missing_peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(26), z10);
+            this.missing_peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.d(26), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -277,7 +277,7 @@ public class TL_chatlists {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.invites = Vector.deserialize(inputSerializedData, new c(20), z10);
+            this.invites = Vector.deserialize(inputSerializedData, new c(22), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
@@ -329,7 +329,7 @@ public class TL_chatlists {
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i10, z10, new org.telegram.messenger.b(26));
+            return Vector.TLDeserialize(inputSerializedData, i10, z10, new org.telegram.messenger.d(26));
         }
 
         @Override
@@ -434,7 +434,7 @@ public class TL_chatlists {
             this.revoked = TLObject.hasFlag(readInt32, 1);
             this.title = inputSerializedData.readString(z10);
             this.url = inputSerializedData.readString(z10);
-            this.peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.b(26), z10);
+            this.peers = Vector.deserialize(inputSerializedData, new org.telegram.messenger.d(26), z10);
         }
 
         @Override

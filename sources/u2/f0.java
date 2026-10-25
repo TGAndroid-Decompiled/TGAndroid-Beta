@@ -1,18 +1,10 @@
 package u2;
-public interface f0 extends h1 {
-    void h();
+public interface f0 {
+    a a(b2.p0 p0Var);
 
-    long i(long j10);
+    f0 b(qb.a aVar);
 
-    void l(long j10);
+    f0 c(boolean z10);
 
-    void n(e0 e0Var, long j10);
-
-    long o();
-
-    long q(x2.p[] pVarArr, boolean[] zArr, f1[] f1VarArr, boolean[] zArr2, long j10);
-
-    t1 r();
-
-    long t(long j10, i2.s1 s1Var);
+    f0 d(int i10);
 }

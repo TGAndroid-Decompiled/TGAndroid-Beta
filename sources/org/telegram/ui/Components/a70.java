@@ -2,42 +2,45 @@ package org.telegram.ui.Components;
 
 import android.content.Context;
 import android.view.View;
-import org.telegram.tgnet.TLRPC;
-public final class a70 implements View.OnClickListener {
-    public final int f24640a;
-    public final TLRPC.User f24641b;
-    public final String f24642c;
-    public final boolean d;
-    public final boolean e;
-    public final boolean f24643f;
-    public final km0 h;
+import org.telegram.messenger.AndroidUtilities;
+public final class a70 extends mm0 {
+    public int f26425f3;
+    public final n70 f26426g3;
 
-    public a70(km0 km0Var, TLRPC.User user, String str, boolean z10, boolean z11, boolean z12, int i10) {
-        this.f24640a = i10;
-        this.h = km0Var;
-        this.f24641b = user;
-        this.f24642c = str;
-        this.d = z10;
-        this.e = z11;
-        this.f24643f = z12;
+    public a70(n70 n70Var, Context context) {
+        super(context, null);
+        this.f26426g3 = n70Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        int i10;
-        org.telegram.ui.ActionBar.g6 g6Var;
-        switch (this.f24640a) {
-            case 0:
-                k70 k70Var = ((f70) this.h).f26217c;
-                Context context = k70Var.getContext();
-                i10 = ((org.telegram.ui.ActionBar.h3) k70Var).currentAccount;
-                g6Var = ((org.telegram.ui.ActionBar.h3) k70Var).resourcesProvider;
-                z01.b(context, i10, -k70Var.f27918g0, this.f24641b, this.f24642c, this.d, this.e, this.f24643f, g6Var);
-                return;
-            default:
-                wv0 wv0Var = ((gu0) this.h).f26792f;
-                z01.b(wv0Var.getContext(), wv0Var.f32410v1.getCurrentAccount(), wv0Var.f32385j1, this.f24641b, this.f24642c, this.d, this.e, this.f24643f, wv0Var.F1);
-                return;
+    public final void onMeasure(int i10, int i11) {
+        n70 n70Var = this.f26426g3;
+        a70 a70Var = n70Var.V;
+        if (this.f26425f3 != View.MeasureSpec.getSize(i11)) {
+            this.f26425f3 = View.MeasureSpec.getSize(i11);
+            n70Var.f30883a0 = true;
+            a70Var.setPadding(0, 0, 0, 0);
+            n70Var.f30883a0 = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
+            int measuredHeight = getMeasuredHeight();
+            int i12 = this.f26425f3;
+            int i13 = (int) ((i12 / 5.0f) * 2.0f);
+            if (i13 < AndroidUtilities.dp(60.0f) + (i12 - measuredHeight)) {
+                i13 = this.f26425f3 - measuredHeight;
+            }
+            n70Var.f30883a0 = true;
+            a70Var.setPadding(0, i13, 0, 0);
+            n70Var.f30883a0 = false;
+            measure(i10, View.MeasureSpec.makeMeasureSpec(i11, Integer.MIN_VALUE));
         }
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f26426g3.f30883a0) {
+            return;
+        }
+        super.requestLayout();
     }
 }

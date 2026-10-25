@@ -1,70 +1,71 @@
 package k3;
 
-import b2.v0;
 import b2.w;
-import c3.g0;
-import c3.l0;
+import b2.w0;
+import b2.x;
+import c3.d0;
+import c3.j0;
+import c3.o;
+import c3.p;
 import c3.q;
-import c3.r;
 import c3.s;
-import c3.u;
-import c3.v;
-import e9.n0;
-import e9.x1;
-import i2.o1;
+import c3.t;
+import f9.g0;
+import f9.i0;
+import f9.s1;
 import java.util.List;
-public final class a implements q {
-    public final int f14911a = 0;
-    public final Object f14912b;
+public final class a implements o {
+    public final int f16346a = 0;
+    public final Object f16347b;
 
     public a(int i10) {
         if ((i10 & 1) != 0) {
-            this.f14912b = new g0(65496, 2, "image/jpeg");
+            this.f16347b = new d0(65496, 2, "image/jpeg");
         } else {
-            this.f14912b = new b();
+            this.f16347b = new b();
         }
     }
 
     @Override
-    public final boolean a(r rVar) {
-        switch (this.f14911a) {
+    public final boolean a(p pVar) {
+        switch (this.f16346a) {
             case 0:
-                return ((q) this.f14912b).a(rVar);
+                return ((o) this.f16347b).a(pVar);
             default:
                 return true;
         }
     }
 
     @Override
-    public final q b() {
-        int i10 = this.f14911a;
+    public final o b() {
+        int i10 = this.f16346a;
         return this;
     }
 
     @Override
-    public final void c(s sVar) {
-        switch (this.f14911a) {
+    public final void c(q qVar) {
+        switch (this.f16346a) {
             case 0:
-                ((q) this.f14912b).c(sVar);
+                ((o) this.f16347b).c(qVar);
                 return;
             default:
-                l0 j02 = sVar.j0(0, 3);
-                sVar.g0(new v(-9223372036854775807L));
-                sVar.C();
-                w wVar = (w) this.f14912b;
-                b2.v a2 = wVar.a();
-                a2.f4082r = v0.n("text/x-unknown");
-                a2.f4074j = wVar.f4135s;
-                o1.v(a2, j02);
+                j0 F1 = qVar.F1(0, 3);
+                qVar.D1(new t(-9223372036854775807L));
+                qVar.Q0();
+                x xVar = (x) this.f16347b;
+                w a2 = xVar.a();
+                a2.f3533r = w0.n("text/x-unknown");
+                a2.f3525j = xVar.f3586s;
+                ic.a.u(a2, F1);
                 return;
         }
     }
 
     @Override
     public final void d(long j10, long j11) {
-        switch (this.f14911a) {
+        switch (this.f16346a) {
             case 0:
-                ((q) this.f14912b).d(j10, j11);
+                ((o) this.f16347b).d(j10, j11);
                 return;
             default:
                 return;
@@ -73,21 +74,21 @@ public final class a implements q {
 
     @Override
     public final List e() {
-        switch (this.f14911a) {
+        switch (this.f16346a) {
             case 0:
             default:
-                e9.l0 l0Var = n0.f8481b;
-                return x1.e;
+                g0 g0Var = i0.f10287b;
+                return s1.e;
         }
     }
 
     @Override
-    public final int f(r rVar, u uVar) {
-        switch (this.f14911a) {
+    public final int f(p pVar, s sVar) {
+        switch (this.f16346a) {
             case 0:
-                return ((q) this.f14912b).f(rVar, uVar);
+                return ((o) this.f16347b).f(pVar, sVar);
             default:
-                if (rVar.skip(Integer.MAX_VALUE) == -1) {
+                if (pVar.skip(Integer.MAX_VALUE) == -1) {
                     return -1;
                 }
                 return 0;
@@ -96,17 +97,17 @@ public final class a implements q {
 
     @Override
     public final void release() {
-        switch (this.f14911a) {
+        switch (this.f16346a) {
             case 0:
-                ((q) this.f14912b).release();
+                ((o) this.f16347b).release();
                 return;
             default:
                 return;
         }
     }
 
-    public a(w wVar) {
-        this.f14912b = wVar;
+    public a(x xVar) {
+        this.f16347b = xVar;
     }
 
     private final void g() {

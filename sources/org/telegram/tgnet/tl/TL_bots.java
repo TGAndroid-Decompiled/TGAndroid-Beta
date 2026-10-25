@@ -158,7 +158,7 @@ public class TL_bots {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+                this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -226,7 +226,7 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.user_id = inputSerializedData.readInt32(z10);
             this.description = inputSerializedData.readString(z10);
-            this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+            this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
         }
 
         @Override
@@ -245,7 +245,7 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.user_id = inputSerializedData.readInt64(z10);
             this.description = inputSerializedData.readString(z10);
-            this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+            this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
         }
 
         @Override
@@ -264,7 +264,7 @@ public class TL_bots {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.user_id = inputSerializedData.readInt64(z10);
             this.description = inputSerializedData.readString(z10);
-            this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+            this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
             this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
         }
 
@@ -299,7 +299,7 @@ public class TL_bots {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+                this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -354,7 +354,7 @@ public class TL_bots {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+                this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -415,7 +415,7 @@ public class TL_bots {
                 this.description_document = TLRPC.Document.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             }
             if (TLObject.hasFlag(this.flags, 4)) {
-                this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+                this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
             }
             if (TLObject.hasFlag(this.flags, 8)) {
                 this.menu_button = BotMenuButton.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
@@ -470,7 +470,7 @@ public class TL_bots {
             this.version = inputSerializedData.readInt32(z10);
             inputSerializedData.readString(z10);
             this.description = inputSerializedData.readString(z10);
-            this.commands = Vector.deserialize(inputSerializedData, new c(18), z10);
+            this.commands = Vector.deserialize(inputSerializedData, new c(20), z10);
         }
 
         @Override
@@ -1085,7 +1085,7 @@ public class TL_bots {
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
-            return Vector.TLDeserialize(inputSerializedData, i10, z10, new c(19));
+            return Vector.TLDeserialize(inputSerializedData, i10, z10, new c(21));
         }
 
         @Override
@@ -1187,7 +1187,7 @@ public class TL_bots {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.media = Vector.deserialize(inputSerializedData, new c(19), z10);
+            this.media = Vector.deserialize(inputSerializedData, new c(21), z10);
             this.lang_codes = Vector.deserializeString(inputSerializedData, z10);
         }
 

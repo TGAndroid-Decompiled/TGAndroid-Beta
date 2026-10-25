@@ -1,27 +1,29 @@
 package org.telegram.ui.Components;
-public final class t11 implements Runnable {
-    public final int f30683a;
-    public final v11 f30684b;
-    public final u11 f30685c;
 
-    public t11(v11 v11Var, u11 u11Var, int i10) {
-        this.f30683a = i10;
-        this.f30684b = v11Var;
-        this.f30685c = u11Var;
+import android.text.TextPaint;
+import android.text.style.MetricAffectingSpan;
+public final class t11 extends MetricAffectingSpan {
+    public TextPaint f32812a;
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f32812a;
+        textPaint.setColor(textPaint2.getColor());
+        textPaint.setTypeface(textPaint2.getTypeface());
+        textPaint.setFlags(textPaint2.getFlags());
+        textPaint.setTextSize(textPaint2.getTextSize());
+        textPaint.baselineShift = textPaint2.baselineShift;
+        textPaint.bgColor = textPaint2.bgColor;
     }
 
     @Override
-    public final void run() {
-        switch (this.f30683a) {
-            case 0:
-                this.f30684b.b(this.f30685c);
-                return;
-            case 1:
-                this.f30684b.b(this.f30685c);
-                return;
-            default:
-                this.f30684b.b(this.f30685c);
-                return;
-        }
+    public final void updateMeasureState(TextPaint textPaint) {
+        TextPaint textPaint2 = this.f32812a;
+        textPaint.setColor(textPaint2.getColor());
+        textPaint.setTypeface(textPaint2.getTypeface());
+        textPaint.setFlags(textPaint2.getFlags());
+        textPaint.setTextSize(textPaint2.getTextSize());
+        textPaint.baselineShift = textPaint2.baselineShift;
+        textPaint.bgColor = textPaint2.bgColor;
     }
 }

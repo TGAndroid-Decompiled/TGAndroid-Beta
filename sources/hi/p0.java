@@ -1,111 +1,94 @@
 package hi;
 
-import android.content.Context;
-import android.view.View;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
+import android.app.DownloadManager;
+import android.net.Uri;
+import android.os.Environment;
+import android.text.TextUtils;
+import android.util.Pair;
+import fi.ua;
+import java.io.File;
+import org.json.JSONObject;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
+import org.telegram.messenger.UserObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.Cells.m2;
-import org.telegram.ui.Cells.q2;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.Components.k61;
-import org.telegram.ui.Components.l61;
-import org.telegram.ui.Components.lm0;
-public final class p0 extends k61 {
-    static {
-        k61.setup(new k61());
+public final class p0 {
+    public Long f13189a;
+    public final String f13190b;
+    public final String f13191c;
+    public File d;
+    public final String e;
+    public long f13192f;
+    public long f13193g;
+    public boolean h;
+    public boolean f13194i;
+    public long f13195j;
+    public boolean f13196k;
+    public boolean f13197l;
+    public final Runnable f13198m = new ua(this, 9);
+    public final q0 f13199n;
+
+    public p0(q0 q0Var, String str, String str2) {
+        this.f13199n = q0Var;
+        this.f13190b = str;
+        this.f13191c = str2;
+        TLRPC.User user = MessagesController.getInstance(q0Var.f13226b).getUser(Long.valueOf(q0Var.f13227c));
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(str));
+        request.setTitle(UserObject.getUserName(user));
+        request.setDescription(TextUtils.isEmpty(str2) ? "Downloading file..." : a1.g.p("Downloading ", str2, "..."));
+        request.setNotificationVisibility(0);
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, str2);
+        this.f13189a = Long.valueOf(q0Var.d.enqueue(request));
     }
 
-    public static l61 a(MessagesController.CommunityPeerDialog communityPeerDialog, k0 k0Var) {
-        long j10;
-        TLRPC.User user = communityPeerDialog.user;
-        if (user != null) {
-            l61 J = l61.J(p0.class);
-            long j11 = user.f20491id;
-            J.B = j11;
-            J.d = (int) (j11 ^ (j11 >>> 32));
-            J.G = user;
-            J.H = k0Var;
-            return J;
+    public final void a() {
+        q0 q0Var = this.f13199n;
+        q0Var.getClass();
+        this.f13194i = true;
+        Long l4 = this.f13189a;
+        if (l4 != null) {
+            q0Var.d.remove(l4.longValue());
+            this.f13189a = null;
         }
-        TLRPC.Chat chat = communityPeerDialog.chat;
-        l61 J2 = l61.J(p0.class);
-        if (chat != null) {
-            j10 = -chat.f20344id;
-        } else {
-            j10 = 0;
-        }
-        J2.B = j10;
-        J2.d = (int) (j10 ^ (j10 >>> 32));
-        J2.G = chat;
-        J2.H = k0Var;
-        return J2;
+        q0Var.e.remove(this);
+        q0Var.e();
     }
 
-    @Override
-    public final void bindView(View view, l61 l61Var, boolean z10, a71 a71Var, i71 i71Var) {
-        q2 q2Var = (q2) view;
-        q2Var.setDialogCellDelegate((m2) l61Var.H);
-        Object obj = l61Var.G;
-        boolean z11 = true;
-        if (obj instanceof TLRPC.Chat) {
-            TLRPC.Chat chat = (TLRPC.Chat) obj;
-            q2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, chat);
-            TLRPC.Dialog dialog = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(-chat.f20344id);
-            if (dialog != null) {
-                z11 = false;
-            }
-            q2Var.P0 = z11;
-            if (dialog != null) {
-                q2Var.setCustomMessageWithoutRebuild(null);
-                q2Var.W(dialog, 0, 0);
-                return;
-            }
-            q2Var.setCustomMessageWithoutRebuild(LocaleController.formatPluralString("Members", chat.participants_count, new Object[0]));
-            q2Var.V(-chat.f20344id, null, 0, false, false);
-        } else if (obj instanceof TLRPC.User) {
-            TLRPC.User user = (TLRPC.User) obj;
-            q2Var.Q0 = ChatObject.isHiddenInCommunity(UserConfig.selectedAccount, user);
-            TLRPC.Dialog dialog2 = MessagesController.getInstance(UserConfig.selectedAccount).getDialog(user.f20491id);
-            if (dialog2 != null) {
-                z11 = false;
-            }
-            q2Var.P0 = z11;
-            if (dialog2 != null) {
-                q2Var.setCustomMessageWithoutRebuild(null);
-                q2Var.W(dialog2, 0, 0);
-                return;
-            }
-            q2Var.setCustomMessageWithoutRebuild(LocaleController.getString(R.string.Bot));
-            q2Var.V(user.f20491id, null, 0, false, false);
+    public final Pair b() {
+        if (this.h) {
+            return new Pair(Long.valueOf(this.f13193g), Long.valueOf(this.f13193g));
         }
+        if (this.f13189a != null && !this.f13194i) {
+            if (System.currentTimeMillis() - this.f13195j < 150) {
+                return new Pair(Long.valueOf(this.f13192f), Long.valueOf(this.f13193g));
+            }
+            d();
+            return new Pair(Long.valueOf(this.f13192f), Long.valueOf(this.f13193g));
+        }
+        return new Pair(Long.valueOf(this.f13192f), Long.valueOf(this.f13193g));
     }
 
-    @Override
-    public final boolean contentsEquals(l61 l61Var, l61 l61Var2) {
-        if (l61Var.d == l61Var2.d) {
+    public final boolean c() {
+        if (!this.h && this.f13189a != null) {
             return true;
         }
         return false;
     }
 
-    @Override
-    public final View createView(Context context, lm0 lm0Var, int i10, int i11, g6 g6Var) {
-        q2 q2Var = new q2(null, context, false, i10, g6Var);
-        q2Var.O0 = true;
-        return q2Var;
+    public final void d() {
+        throw new UnsupportedOperationException("Method not decompiled: hi.p0.d():void");
     }
 
-    @Override
-    public final boolean equals(l61 l61Var, l61 l61Var2) {
-        if (l61Var.d == l61Var2.d) {
-            return true;
+    public p0(q0 q0Var, JSONObject jSONObject) {
+        this.f13199n = q0Var;
+        this.f13190b = jSONObject.optString("url");
+        this.f13191c = jSONObject.optString("file_name");
+        this.f13193g = jSONObject.optLong("size");
+        this.h = jSONObject.optBoolean("done");
+        this.e = jSONObject.optString("mime");
+        String optString = jSONObject.optString("path");
+        if (TextUtils.isEmpty(optString)) {
+            return;
         }
-        return false;
+        this.d = new File(optString);
     }
 }

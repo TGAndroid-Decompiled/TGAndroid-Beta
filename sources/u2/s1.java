@@ -1,19 +1,19 @@
 package u2;
-public final class s1 extends t {
-    public final b2.o0 f47883f;
+public final class s1 extends b2.x0 {
+    public final f9.i0 f49418c;
 
-    public s1(b2.o1 o1Var, b2.o0 o0Var) {
-        super(o1Var);
-        this.f47883f = o0Var;
+    public s1(String str, f9.s1 s1Var) {
+        super(str, null, false, 1);
+        this.f49418c = f9.i0.u(s1Var);
     }
 
     @Override
-    public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
-        super.m(i10, n1Var, j10);
-        b2.o0 o0Var = this.f47883f;
-        n1Var.f3876c = o0Var;
-        b2.j0 j0Var = o0Var.f3894b;
-        n1Var.f3875b = null;
-        return n1Var;
+    public final String getMessage() {
+        String message = super.getMessage();
+        f9.i0 i0Var = this.f49418c;
+        if (i0Var.isEmpty()) {
+            return message;
+        }
+        return message + "\nsniff failures: " + i0Var;
     }
 }

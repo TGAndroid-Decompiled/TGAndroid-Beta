@@ -1,61 +1,431 @@
 package o7;
 
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import d7.e;
-public abstract class a extends Binder implements IInterface {
-    @Override
-    public boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        if (i10 > 16777215) {
-            if (super.onTransact(i10, parcel, parcel2, i11)) {
-                return true;
-            }
-        } else {
-            parcel.enforceInterface(getInterfaceDescriptor());
-        }
-        e eVar = (e) this;
-        if (i10 != 1) {
-            boolean z10 = false;
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        if (i10 != 5) {
-                            return false;
+import java.io.IOException;
+import java.math.RoundingMode;
+import java.nio.charset.StandardCharsets;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.telegram.ui.Components.b10;
+public abstract class a {
+    public static volatile com.google.firebase.messaging.p f19197b;
+    public static final Object f19196a = new Object();
+    public static final a1 f19198c = new a1("id");
+    public static final a1 d = new a1("type");
+
+    public static int a(int i10, int i11) {
+        RoundingMode roundingMode = RoundingMode.CEILING;
+        roundingMode.getClass();
+        if (i11 != 0) {
+            int i12 = i10 / i11;
+            int i13 = i10 - (i11 * i12);
+            if (i13 != 0) {
+                int i14 = ((i10 ^ i11) >> 31) | 1;
+                switch (n0.f19242a[roundingMode.ordinal()]) {
+                    case 1:
+                        throw new ArithmeticException("mode was UNNECESSARY, but rounding was necessary");
+                    case 2:
+                        return i12;
+                    case 3:
+                        if (i14 >= 0) {
+                            return i12;
                         }
-                        String stringFlagValue = eVar.getStringFlagValue(parcel.readString(), parcel.readString(), parcel.readInt());
-                        parcel2.writeNoException();
-                        parcel2.writeString(stringFlagValue);
-                        return true;
-                    }
-                    long longFlagValue = eVar.getLongFlagValue(parcel.readString(), parcel.readLong(), parcel.readInt());
-                    parcel2.writeNoException();
-                    parcel2.writeLong(longFlagValue);
-                    return true;
+                        break;
+                    case 4:
+                        break;
+                    case 5:
+                        if (i14 <= 0) {
+                            return i12;
+                        }
+                        break;
+                    case 6:
+                    case 7:
+                    case 8:
+                        int abs = Math.abs(i13);
+                        int abs2 = abs - (Math.abs(i11) - abs);
+                        if (abs2 == 0) {
+                            RoundingMode roundingMode2 = RoundingMode.HALF_UP;
+                            RoundingMode roundingMode3 = RoundingMode.HALF_EVEN;
+                            return i12;
+                        } else if (abs2 <= 0) {
+                            return i12;
+                        }
+                        break;
+                    default:
+                        throw new AssertionError();
                 }
-                int intFlagValue = eVar.getIntFlagValue(parcel.readString(), parcel.readInt(), parcel.readInt());
-                parcel2.writeNoException();
-                parcel2.writeInt(intFlagValue);
-                return true;
+                return i12 + i14;
             }
-            String readString = parcel.readString();
-            int i12 = b.f17764a;
-            if (parcel.readInt() != 0) {
-                z10 = true;
-            }
-            boolean booleanFlagValue = eVar.getBooleanFlagValue(readString, z10, parcel.readInt());
-            parcel2.writeNoException();
-            parcel2.writeInt(booleanFlagValue ? 1 : 0);
-            return true;
+            return i12;
         }
-        eVar.init(x6.b.K0(parcel.readStrongBinder()));
-        parcel2.writeNoException();
-        return true;
+        throw new ArithmeticException("/ by zero");
     }
 
-    @Override
-    public IBinder asBinder() {
-        return this;
+    public static int b(o oVar) {
+        int i10;
+        int i11 = 0;
+        for (Object obj : oVar) {
+            if (obj != null) {
+                i10 = obj.hashCode();
+            } else {
+                i10 = 0;
+            }
+            i11 += i10;
+        }
+        return i11;
+    }
+
+    public static String c(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String k10;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
+            }
+            Object obj = objArr[i11];
+            if (obj == null) {
+                k10 = "null";
+            } else {
+                try {
+                    k10 = obj.toString();
+                } catch (Exception e) {
+                    String D = a1.g.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
+                    k10 = b10.k("<", D, " threw ", e.getClass().getName(), ">");
+                }
+            }
+            objArr[i11] = k10;
+            i11++;
+        }
+        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb2.append((CharSequence) str, i12, indexOf);
+            sb2.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
+        }
+        sb2.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb2.append(" [");
+            sb2.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb2.append(", ");
+                sb2.append(objArr[i13]);
+            }
+            sb2.append(']');
+        }
+        return sb2.toString();
+    }
+
+    public static String d(s0 s0Var) {
+        StringBuilder sb2 = new StringBuilder(s0Var.o());
+        for (int i10 = 0; i10 < s0Var.o(); i10++) {
+            byte h = s0Var.h(i10);
+            if (h != 34) {
+                if (h != 39) {
+                    if (h != 92) {
+                        switch (h) {
+                            case 7:
+                                sb2.append("\\a");
+                                continue;
+                            case 8:
+                                sb2.append("\\b");
+                                continue;
+                            case 9:
+                                sb2.append("\\t");
+                                continue;
+                            case 10:
+                                sb2.append("\\n");
+                                continue;
+                            case 11:
+                                sb2.append("\\v");
+                                continue;
+                            case 12:
+                                sb2.append("\\f");
+                                continue;
+                            case 13:
+                                sb2.append("\\r");
+                                continue;
+                            default:
+                                if (h >= 32 && h <= 126) {
+                                    sb2.append((char) h);
+                                    continue;
+                                } else {
+                                    sb2.append('\\');
+                                    sb2.append((char) (((h >>> 6) & 3) + 48));
+                                    sb2.append((char) (((h >>> 3) & 7) + 48));
+                                    sb2.append((char) ((h & 7) + 48));
+                                    break;
+                                }
+                                break;
+                        }
+                    } else {
+                        sb2.append("\\\\");
+                    }
+                } else {
+                    sb2.append("\\'");
+                }
+            } else {
+                sb2.append("\\\"");
+            }
+        }
+        return sb2.toString();
+    }
+
+    public static void e(int i10, int i11) {
+        String c10;
+        if (i10 >= 0 && i10 < i11) {
+            return;
+        }
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+            }
+            c10 = c("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            c10 = c("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(c10);
+    }
+
+    public static void f(Object obj, Object obj2) {
+        if (obj != null) {
+            if (obj2 != null) {
+                return;
+            }
+            throw new NullPointerException(a1.g.p("null value in entry: ", obj.toString(), "=null"));
+        }
+        throw new NullPointerException("null key in entry: null=".concat(String.valueOf(obj2)));
+    }
+
+    public static final void g(StringBuilder sb2, Iterator it, pa.d dVar) {
+        if (it.hasNext()) {
+            Map.Entry entry = (Map.Entry) it.next();
+            sb2.append(pa.d.B(entry.getKey()));
+            sb2.append(" : ");
+            sb2.append(pa.d.B(entry.getValue()));
+            while (it.hasNext()) {
+                sb2.append(",\n  ");
+                Map.Entry entry2 = (Map.Entry) it.next();
+                sb2.append(pa.d.B(entry2.getKey()));
+                sb2.append(" : ");
+                sb2.append(pa.d.B(entry2.getValue()));
+            }
+        }
+    }
+
+    public static boolean h(Object obj, Object obj2) {
+        if (obj == obj2) {
+            return true;
+        }
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean i(Comparator comparator, Collection collection) {
+        Object obj;
+        comparator.getClass();
+        collection.getClass();
+        if (collection instanceof SortedSet) {
+            obj = ((SortedSet) collection).comparator();
+            if (obj == null) {
+                obj = v.f19260b;
+            }
+        } else if (collection instanceof c0) {
+            obj = ((s) ((c0) collection)).d;
+        } else {
+            return false;
+        }
+        return comparator.equals(obj);
+    }
+
+    public static byte[] j(byte[]... bArr) {
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            if (i10 >= bArr.length) {
+                break;
+            }
+            i11 += bArr[i10].length;
+            i10++;
+        }
+        byte[] bArr2 = new byte[i11];
+        int i12 = 0;
+        for (byte[] bArr3 : bArr) {
+            int length = bArr3.length;
+            System.arraycopy(bArr3, 0, bArr2, i12, length);
+            i12 += length;
+        }
+        return bArr2;
+    }
+
+    public static final c1 k(e1 e1Var) {
+        long j10;
+        try {
+            d1 d10 = e1Var.d();
+            if (d10 != null) {
+                try {
+                    try {
+                        byte b10 = d10.f19202a;
+                        byte b11 = d10.f19203b;
+                        int i10 = 0;
+                        if (b10 != Byte.MIN_VALUE) {
+                            if (b10 != -96) {
+                                if (b10 != -64) {
+                                    if (b10 != -32) {
+                                        if (b10 != 0 && b10 != 32) {
+                                            if (b10 != 64) {
+                                                if (b10 == 96) {
+                                                    e1Var.h((byte) 96);
+                                                    String str = new String(e1Var.j(), StandardCharsets.UTF_8);
+                                                    l(b11, str.length());
+                                                    return new a1(str);
+                                                }
+                                                throw new IOException("Unidentifiable major type: " + ((b10 >> 5) & 7));
+                                            }
+                                            e1Var.h((byte) 64);
+                                            byte[] j11 = e1Var.j();
+                                            int length = j11.length;
+                                            l(b11, length);
+                                            return new w0(s0.s(length, j11));
+                                        }
+                                        long b12 = e1Var.b();
+                                        if (b12 > 0) {
+                                            j10 = b12;
+                                        } else {
+                                            j10 = ~b12;
+                                        }
+                                        l(b11, j10);
+                                        return new y0(b12);
+                                    }
+                                    return new v0(e1Var.e());
+                                }
+                                throw new IOException("Tags are currently unsupported");
+                            }
+                            long c10 = e1Var.c();
+                            if (c10 <= 1000) {
+                                l(b11, c10);
+                                int i11 = (int) c10;
+                                m4.c[] cVarArr = new m4.c[i11];
+                                c1 c1Var = null;
+                                int i12 = 0;
+                                while (i12 < c10) {
+                                    c1 k10 = k(e1Var);
+                                    if (c1Var != null && k10.compareTo(c1Var) <= 0) {
+                                        throw new IOException("Keys in CBOR Map not in strictly ascending natural order:\nPrevious key: " + c1Var.toString() + "\nCurrent key: " + k10.toString());
+                                    }
+                                    cVarArr[i12] = new m4.c(6, k10, k(e1Var));
+                                    i12++;
+                                    c1Var = k10;
+                                }
+                                TreeMap treeMap = new TreeMap();
+                                while (i10 < i11) {
+                                    m4.c cVar = cVarArr[i10];
+                                    if (!treeMap.containsKey((c1) cVar.f18009b)) {
+                                        treeMap.put((c1) cVar.f18009b, (c1) cVar.f18010c);
+                                        i10++;
+                                    } else {
+                                        throw new IOException("Attempted to add duplicate key to canonical CBOR Map.");
+                                    }
+                                }
+                                return new z0(r.b(treeMap));
+                            }
+                            throw new IOException("Parser being asked to read a large CBOR map");
+                        }
+                        long a2 = e1Var.a();
+                        if (a2 <= 1000) {
+                            l(b11, a2);
+                            c1[] c1VarArr = new c1[(int) a2];
+                            while (i10 < a2) {
+                                c1VarArr[i10] = k(e1Var);
+                                i10++;
+                            }
+                            return new u0(m.t(c1VarArr));
+                        }
+                        throw new IOException("Parser being asked to read a large CBOR array");
+                    } catch (IOException | RuntimeException e) {
+                        e = e;
+                        throw new x0(e);
+                    }
+                } catch (RuntimeException e10) {
+                    e = e10;
+                    throw new x0(e);
+                }
+            }
+            throw new IOException("Parser being asked to parse an empty input stream");
+        } catch (IOException e11) {
+            throw new x0(e11);
+        }
+    }
+
+    public static final void l(byte b10, long j10) {
+        switch (b10) {
+            case 24:
+                if (j10 >= 24) {
+                    return;
+                }
+                throw new IOException(b10.i(j10, "Integer value ", " after add info could have been represented in 0 additional bytes, but used 1"));
+            case 25:
+                if (j10 < 256) {
+                    throw new IOException(b10.i(j10, "Integer value ", " after add info could have been represented in 0-1 additional bytes, but used 2"));
+                }
+                return;
+            case 26:
+                if (j10 < 65536) {
+                    throw new IOException(b10.i(j10, "Integer value ", " after add info could have been represented in 0-2 additional bytes, but used 4"));
+                }
+                return;
+            case 27:
+                if (j10 < 4294967296L) {
+                    throw new IOException(b10.i(j10, "Integer value ", " after add info could have been represented in 0-4 additional bytes, but used 8"));
+                }
+                return;
+            default:
+                return;
+        }
+    }
+
+    public static void m(int i10, int i11, int i12) {
+        String n10;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
+        }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                n10 = c("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                n10 = n(i11, i12, "end index");
+            }
+        } else {
+            n10 = n(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(n10);
+    }
+
+    public static String n(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return c("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return c("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
     }
 }

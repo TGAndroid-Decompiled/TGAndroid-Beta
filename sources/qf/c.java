@@ -1,52 +1,42 @@
 package qf;
+public class c {
+    public Runnable f47030a;
+    public Runnable f47031b;
+    public Runnable f47032c;
 
-import g2.h;
-import g2.m;
-import java.io.IOException;
-import java.io.InputStream;
-public final class c extends InputStream {
-    public final h f44865a;
-    public final byte[] f44866b = new byte[1];
-    public long f44867c;
+    public c(Runnable runnable, Runnable runnable2) {
+        this.f47030a = runnable;
+        this.f47032c = runnable2;
+    }
 
-    public c(h hVar, m mVar) {
-        this.f44865a = hVar;
-        try {
-            this.f44867c = hVar.open(mVar);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
+    public final void a(boolean z10) {
+        Runnable runnable = this.f47031b;
+        if (runnable != null) {
+            runnable.run();
+        }
+        c(z10);
+    }
+
+    public void b() {
+        c(false);
+    }
+
+    public void c(boolean z10) {
+        Runnable runnable = this.f47032c;
+        if (runnable != null) {
+            runnable.run();
         }
     }
 
-    @Override
-    public final int available() {
-        return (int) this.f44867c;
-    }
-
-    @Override
-    public final void close() {
-        this.f44865a.close();
-    }
-
-    @Override
-    public final int read() {
-        h hVar = this.f44865a;
-        byte[] bArr = this.f44866b;
-        int read = hVar.read(bArr, 0, 1);
-        this.f44867c--;
-        if (read == -1) {
-            return -1;
+    public void d() {
+        Runnable runnable = this.f47030a;
+        if (runnable != null) {
+            runnable.run();
+            this.f47030a = null;
         }
-        return bArr[0] & 255;
     }
 
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        if (i11 == 0) {
-            return 0;
-        }
-        int read = this.f44865a.read(bArr, i10, i11);
-        this.f44867c -= read;
-        return read;
+    public final void e(Runnable runnable) {
+        this.f47031b = runnable;
     }
 }

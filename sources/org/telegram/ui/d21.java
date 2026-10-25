@@ -1,103 +1,56 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class d21 implements Runnable {
-    public final int f36455a;
-    public final sn f36456b;
-    public final Activity f36457c;
-    public final org.telegram.ui.ActionBar.g6 d;
-    public final MessageObject e;
+import android.view.View;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class d21 extends c61 {
+    public final f21 f38721e2;
+    public final t51[] f38722f2;
+    public final g21 f38723g2;
 
-    public d21(sn snVar, Activity activity, org.telegram.ui.ActionBar.g6 g6Var, MessageObject messageObject, int i10) {
-        this.f36455a = i10;
-        this.f36456b = snVar;
-        this.f36457c = activity;
-        this.d = g6Var;
-        this.e = messageObject;
+    public d21(g21 g21Var, g21 g21Var2, Activity activity, Integer num, f21 f21Var, t51[] t51VarArr) {
+        super(g21Var2, activity, false, num, 2, null);
+        this.f38723g2 = g21Var;
+        this.f38721e2 = f21Var;
+        this.f38722f2 = t51VarArr;
     }
 
     @Override
-    public final void run() {
-        switch (this.f36455a) {
-            case 0:
-                sn snVar = this.f36456b;
-                org.telegram.ui.Components.vc a02 = org.telegram.ui.Components.vc.a0(snVar);
-                String string = LocaleController.getString(R.string.AdReported);
-                final Activity activity = this.f36457c;
-                a02.c(AndroidUtilities.replaceSingleTag(string, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                pf.d.r(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                pf.d.r(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                pf.d.r(activity, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject = this.e;
-                snVar.Ja(messageObject);
-                snVar.La(messageObject);
-                return;
-            case 1:
-                sn snVar2 = this.f36456b;
-                org.telegram.ui.Components.vc a03 = org.telegram.ui.Components.vc.a0(snVar2);
-                String string2 = LocaleController.getString(R.string.AdReported);
-                final Activity activity2 = this.f36457c;
-                a03.c(AndroidUtilities.replaceSingleTag(string2, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                pf.d.r(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                pf.d.r(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                pf.d.r(activity2, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject2 = this.e;
-                snVar2.Ja(messageObject2);
-                snVar2.La(messageObject2);
-                return;
-            default:
-                sn snVar3 = this.f36456b;
-                org.telegram.ui.Components.vc a04 = org.telegram.ui.Components.vc.a0(snVar3);
-                String string3 = LocaleController.getString(R.string.AdReported);
-                final Activity activity3 = this.f36457c;
-                a04.c(AndroidUtilities.replaceSingleTag(string3, -1, 2, new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r2) {
-                            case 0:
-                                pf.d.r(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                            case 1:
-                                pf.d.r(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                            default:
-                                pf.d.r(activity3, "https://promote.telegram.org/guidelines");
-                                return;
-                        }
-                    }
-                }, this.d)).j();
-                MessageObject messageObject3 = this.e;
-                snVar3.Ja(messageObject3);
-                snVar3.La(messageObject3);
-                return;
+    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
+        int i10;
+        if (l4 != null) {
+            g21 g21Var = this.f38723g2;
+            i10 = ((org.telegram.ui.ActionBar.r2) g21Var).currentAccount;
+            MediaDataController mediaDataController = MediaDataController.getInstance(i10);
+            mediaDataController.setDoubleTapReaction("animated_" + l4);
+            f21 f21Var = this.f38721e2;
+            if (f21Var != null) {
+                f21Var.a(true);
+            }
+            t51 t51Var = this.f38722f2[0];
+            if (t51Var != null) {
+                g21Var.f39527n = null;
+                t51Var.dismiss();
+            }
+        }
+    }
+
+    @Override
+    public final void r(l51 l51Var, bh.x0 x0Var) {
+        int i10;
+        g21 g21Var = this.f38723g2;
+        i10 = ((org.telegram.ui.ActionBar.r2) g21Var).currentAccount;
+        MediaDataController.getInstance(i10).setDoubleTapReaction(x0Var.f4208f);
+        f21 f21Var = this.f38721e2;
+        if (f21Var != null) {
+            f21Var.a(true);
+        }
+        t51 t51Var = this.f38722f2[0];
+        if (t51Var != null) {
+            g21Var.f39527n = null;
+            t51Var.dismiss();
         }
     }
 }

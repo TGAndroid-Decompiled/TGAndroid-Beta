@@ -1,18 +1,30 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import org.telegram.messenger.AndroidUtilities;
-public final class ql extends ei.x3 {
-    public final sn L0;
+import org.telegram.ui.Components.UndoView;
+public final class ql extends org.telegram.ui.Components.y20 {
+    public final un f42862b;
 
-    public ql(sn snVar, Activity activity) {
-        super(activity, 3);
-        this.L0 = snVar;
+    public ql(un unVar, Activity activity, org.telegram.ui.ActionBar.r2 r2Var) {
+        super(activity, r2Var);
+        this.f42862b = unVar;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        setTranslationY(((-getTop()) - AndroidUtilities.dp(120.0f)) + this.L0.O1);
+    public final void m() {
+        un unVar = this.f42862b;
+        unVar.X7();
+        UndoView undoView = unVar.K3;
+        if (undoView == null) {
+            return;
+        }
+        undoView.j(75, 0L, null);
+        unVar.getMessagesController().removeSuggestion(unVar.f44249f6, "CONVERT_GIGAGROUP");
+    }
+
+    @Override
+    public final void n() {
+        un unVar = this.f42862b;
+        unVar.getMessagesController().convertToGigaGroup(unVar.getParentActivity(), unVar.e, unVar, new y0(this, 21));
     }
 }

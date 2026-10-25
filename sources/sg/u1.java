@@ -1,18 +1,36 @@
 package sg;
 
-import android.graphics.Paint;
-import android.graphics.RectF;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
-public final class u1 {
-    public int f46880i;
-    public final RectF f46875a = new RectF();
-    public final RectF f46876b = new RectF();
-    public final Paint f46877c = new Paint();
-    public final ArrayList e = new ArrayList();
-    public float f46878f = 1.0f;
-    public final long h = 2000;
-    public final float f46881j = 1000.0f / AndroidUtilities.screenRefreshRate;
-    public final int f46879g = 200;
-    public final float[] d = new float[800];
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.lm0;
+public final class u1 extends lm0 {
+    @Override
+    public final boolean D(s4.e1 e1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return rg.j0.c().size();
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        p1 p1Var = (p1) e1Var.f47735a;
+        rg.j0 j0Var = (rg.j0) rg.j0.c().get(i10);
+        p1Var.getClass();
+        p1Var.setTypeface(j0Var.d());
+        String str = j0Var.f47439c;
+        if (str == null) {
+            str = LocaleController.getString(j0Var.f47438b);
+        }
+        p1Var.setText(str);
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        p1 p1Var = new p1(viewGroup.getContext());
+        p1Var.setLayoutParams(new s4.q0(-1, -2));
+        return new s4.e1(p1Var);
+    }
 }

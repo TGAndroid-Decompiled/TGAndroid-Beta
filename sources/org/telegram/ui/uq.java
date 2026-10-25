@@ -2,29 +2,43 @@ package org.telegram.ui;
 
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class uq implements aq {
-    public final TLObject f42473a;
-    public final jr f42474b;
+public final class uq implements dq {
+    public final TLObject f44511a;
+    public final long f44512b;
+    public final boolean f44513c;
+    public final kr d;
 
-    public uq(jr jrVar, TLObject tLObject) {
-        this.f42474b = jrVar;
-        this.f42473a = tLObject;
+    public uq(kr krVar, TLObject tLObject, long j10, boolean z10) {
+        this.d = krVar;
+        this.f44511a = tLObject;
+        this.f44512b = j10;
+        this.f44513c = z10;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        jr.c0(this.f42474b, user);
+        kr.d0(this.d, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f42473a;
+        TLObject tLObject = this.f44511a;
         if (tLObject instanceof TLRPC.ChannelParticipant) {
             TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
             channelParticipant.admin_rights = tL_chatAdminRights;
             channelParticipant.banned_rights = tL_chatBannedRights;
             channelParticipant.rank = str;
-            jr.W(this.f42474b, channelParticipant, tL_chatAdminRights, tL_chatBannedRights);
+        }
+        kr krVar = this.d;
+        dr drVar = krVar.l1;
+        long j10 = this.f44512b;
+        if (drVar != null && i10 == 1) {
+            drVar.b(j10);
+        } else if (drVar != null) {
+            drVar.c(j10, tLObject);
+        }
+        if (this.f44513c) {
+            krVar.removeSelfFromStack();
         }
     }
 }

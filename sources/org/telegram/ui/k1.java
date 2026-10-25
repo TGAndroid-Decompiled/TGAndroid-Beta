@@ -1,23 +1,16 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-public final class k1 {
-    public final ArrayList f38714a = new ArrayList();
-    public final HashMap f38715b = new HashMap();
-    public final int f38716c = 1000;
-    public final l1 d;
-
-    public k1(l1 l1Var) {
-        this.d = l1Var;
+import android.graphics.Canvas;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class k1 extends View {
+    @Override
+    public final void onDraw(Canvas canvas) {
+        canvas.drawLine(0.0f, 0.0f, getMeasuredWidth(), 0.0f, j4.f40417s1);
     }
 
-    public final float a(float[] fArr, int i10, int i11) {
-        float f7 = 0.0f;
-        while (i10 < i11) {
-            f7 += fArr[i10];
-            i10++;
-        }
-        return this.f38716c / f7;
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(4.0f) + 1);
     }
 }

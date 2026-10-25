@@ -1,72 +1,59 @@
 package org.telegram.ui;
 
-import android.view.MotionEvent;
-import android.view.View;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class ll0 implements View.OnTouchListener {
-    public final int f39313a;
-    public final zm0 f39314b;
+import android.text.Editable;
+import android.text.TextWatcher;
+public final class ll0 implements TextWatcher {
+    public final int f41294a;
+    public final PasscodeActivity f41295b;
 
-    public ll0(zm0 zm0Var, int i10) {
-        this.f39313a = i10;
-        this.f39314b = zm0Var;
+    public ll0(PasscodeActivity passcodeActivity, int i10) {
+        this.f41294a = i10;
+        this.f41295b = passcodeActivity;
     }
 
     @Override
-    public final boolean onTouch(View view, MotionEvent motionEvent) {
-        int i10 = this.f39313a;
-        zm0 zm0Var = this.f39314b;
-        switch (i10) {
+    public final void afterTextChanged(Editable editable) {
+        int i10 = this.f41294a;
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f41294a) {
             case 0:
-                if (zm0Var.getParentActivity() == null) {
-                    return false;
+                PasscodeActivity passcodeActivity = this.f41295b;
+                fl0 fl0Var = passcodeActivity.S;
+                if (passcodeActivity.R) {
+                    passcodeActivity.f35594n.removeCallbacks(fl0Var);
+                    fl0Var.run();
+                    return;
                 }
-                if (motionEvent.getAction() != 1) {
-                    return true;
-                }
-                rt rtVar = new rt(null, false);
-                rtVar.f41228r = new pl0(0, zm0Var, view);
-                zm0Var.presentFragment(rtVar);
-                return true;
-            case 1:
-                if (zm0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() != 1) {
-                    return true;
-                }
-                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(zm0Var.getParentActivity());
-                String string = LocaleController.getString(R.string.PassportSelectGender);
-                org.telegram.ui.ActionBar.c2 c2Var = alertDialog$Builder.f20679a;
-                c2Var.R = string;
-                alertDialog$Builder.f(new CharSequence[]{LocaleController.getString(R.string.PassportMale), LocaleController.getString(R.string.PassportFemale)}, new o4(zm0Var, 3));
-                alertDialog$Builder.k(LocaleController.getString(R.string.Cancel), null);
-                zm0Var.showDialog(c2Var);
-                return true;
-            case 2:
-                if (zm0Var.getParentActivity() == null) {
-                    return false;
-                }
-                if (motionEvent.getAction() != 1) {
-                    return true;
-                }
-                rt rtVar2 = new rt(null, false);
-                rtVar2.f41228r = new ml0(zm0Var, 2);
-                zm0Var.presentFragment(rtVar2);
-                return true;
+                return;
             default:
-                if (zm0Var.getParentActivity() == null) {
-                    return false;
+                PasscodeActivity passcodeActivity2 = this.f41295b;
+                fl0 fl0Var2 = passcodeActivity2.S;
+                if (passcodeActivity2.R) {
+                    passcodeActivity2.f35594n.removeCallbacks(fl0Var2);
+                    fl0Var2.run();
+                    return;
                 }
-                if (motionEvent.getAction() != 1) {
-                    return true;
-                }
-                rt rtVar3 = new rt(null, false);
-                rtVar3.f41228r = new ml0(zm0Var, 3);
-                zm0Var.presentFragment(rtVar3);
-                return true;
+                return;
         }
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f41294a;
+    }
+
+    private final void a(Editable editable) {
+    }
+
+    private final void b(Editable editable) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

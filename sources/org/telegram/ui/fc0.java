@@ -1,52 +1,32 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.UserObject;
-public final class fc0 extends hg.s0 {
-    public boolean m0;
-    public final rc0 f37296n0;
+import org.telegram.tgnet.tl.TL_stories;
+public final class fc0 extends org.telegram.ui.Components.aw0 {
+    public final pc0 f39335r2;
 
-    public fc0(rc0 rc0Var, Context context, int i10, long j10, org.telegram.ui.ActionBar.g6 g6Var, boolean z10, boolean z11) {
-        super(context, i10, j10, false, g6Var, false, z10, z11);
-        this.f37296n0 = rc0Var;
-        this.m0 = true;
+    public fc0(pc0 pc0Var, Context context, org.telegram.ui.Components.sv0 sv0Var, pc0 pc0Var2, ec0 ec0Var, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, 0L, sv0Var, 0, null, null, null, 8, 0, pc0Var2, ec0Var, 0, u6Var, null);
+        this.f39335r2 = pc0Var;
     }
 
     @Override
-    public final void K() {
-        this.f37296n0.r0(null);
+    public final int J0() {
+        return 32;
     }
 
     @Override
-    public final void N(ArrayList arrayList) {
-        int i10;
-        rc0 rc0Var = this.f37296n0;
-        MessageObject messageObject = rc0Var.A0;
-        if (messageObject != null && messageObject.isLiveLocation()) {
-            int i11 = 0;
-            if (arrayList != null) {
-                i10 = 0;
-                for (int i12 = 0; i12 < arrayList.size(); i12++) {
-                    lc0 lc0Var = (lc0) arrayList.get(i12);
-                    if (lc0Var != null && !UserObject.isUserSelf(lc0Var.f39193c)) {
-                        i10++;
-                    }
-                }
-            } else {
-                i10 = 0;
-            }
-            if (this.m0 && i10 == 1) {
-                rc0Var.f41104i0 = ((lc0) arrayList.get(0)).f39191a;
-            }
-            this.m0 = false;
-            org.telegram.ui.ActionBar.u0 u0Var = rc0Var.Z;
-            if (i10 != 1) {
-                i11 = 8;
-            }
-            u0Var.setVisibility(i11);
-        }
-        super.N(arrayList);
+    public final boolean V() {
+        return true;
+    }
+
+    @Override
+    public final int Y0() {
+        return 3;
+    }
+
+    @Override
+    public final TL_stories.MediaArea getStoriesArea() {
+        return this.f39335r2.L0;
     }
 }

@@ -1,106 +1,22 @@
 package o8;
 
-import android.accounts.Account;
-import android.content.Context;
-import android.os.Bundle;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import android.os.Parcel;
-import android.os.RemoteException;
-import android.util.Log;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import m.s3;
-import n6.u;
-public final class a extends n6.g implements com.google.android.gms.common.api.c {
-    public final boolean U;
-    public final s3 V;
-    public final Bundle W;
-    public final Integer X;
+import java.util.Arrays;
+import o6.l;
+public final class a implements com.google.android.gms.common.api.b {
+    public static final a f19274a = new Object();
 
-    public a(Context context, Looper looper, s3 s3Var, Bundle bundle, k kVar, l lVar) {
-        super(context, looper, 44, s3Var, kVar, lVar, 0);
-        this.U = true;
-        this.V = s3Var;
-        this.W = bundle;
-        this.X = (Integer) s3Var.h;
-    }
-
-    public final void G() {
-        e(new n6.c(this));
-    }
-
-    public final void H(c cVar) {
-        GoogleSignInAccount googleSignInAccount;
-        try {
-            this.V.getClass();
-            Account account = new Account("<<default account>>", "com.google");
-            if ("<<default account>>".equals(account.name)) {
-                googleSignInAccount = a6.b.a(this.f17247n).b();
-            } else {
-                googleSignInAccount = null;
-            }
-            Integer num = this.X;
-            n6.l.h(num);
-            u uVar = new u(2, account, num.intValue(), googleSignInAccount);
-            e eVar = (e) u();
-            g gVar = new g(1, uVar);
-            Parcel H0 = eVar.H0();
-            k7.a.c(H0, gVar);
-            k7.a.d(H0, cVar);
-            eVar.I0(H0, 12);
-        } catch (RemoteException e) {
-            Log.w("SignInClientImpl", "Remote service probably died when signIn is called");
-            try {
-                cVar.B(new h(1, new k6.a(8, null), null));
-            } catch (RemoteException unused) {
-                Log.wtf("SignInClientImpl", "ISignInCallbacks#onSignInComplete should be executed from the same process, unexpected RemoteException.", e);
-            }
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
         }
-    }
-
-    @Override
-    public final int l() {
-        return 12451000;
-    }
-
-    @Override
-    public final boolean p() {
-        return this.U;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
-            return null;
+        if ((obj instanceof a) && l.l(null, null) && l.l(null, null) && l.l(null, null) && l.l(null, null) && l.l(null, null)) {
+            return true;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.signin.internal.ISignInService");
-        if (queryLocalInterface instanceof e) {
-            return (e) queryLocalInterface;
-        }
-        return new a9.a(iBinder, "com.google.android.gms.signin.internal.ISignInService", 6);
+        return false;
     }
 
-    @Override
-    public final Bundle t() {
-        s3 s3Var = this.V;
-        boolean equals = this.f17247n.getPackageName().equals((String) s3Var.d);
-        Bundle bundle = this.W;
-        if (!equals) {
-            bundle.putString("com.google.android.gms.signin.internal.realClientPackageName", (String) s3Var.d);
-        }
-        return bundle;
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.signin.internal.ISignInService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.signin.service.START";
+    public final int hashCode() {
+        Boolean bool = Boolean.FALSE;
+        return Arrays.hashCode(new Object[]{bool, bool, null, bool, bool, null, null, null, null});
     }
 }

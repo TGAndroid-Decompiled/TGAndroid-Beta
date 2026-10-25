@@ -1,43 +1,17 @@
 package org.telegram.ui.Cells;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.tl;
-public final class m5 extends FrameLayout {
-    public ImageView f22729a;
-    public ImageView f22730b;
-    public TextView f22731c;
-    public int d;
+import android.content.Context;
+import org.telegram.ui.Components.Switch;
+public final class m5 extends Switch {
+    public final n5 f24449a0;
+
+    public m5(n5 n5Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, u6Var);
+        this.f24449a0 = n5Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(this.d, 1073741824), tl.C(2.0f, this.d, 1073741824));
-    }
-
-    public void setItemSize(int i10) {
-        this.d = i10;
-    }
-
-    public void setType(int i10) {
-        TextView textView = this.f22731c;
-        ImageView imageView = this.f22730b;
-        ImageView imageView2 = this.f22729a;
-        if (i10 == 0) {
-            imageView2.setImageResource(R.drawable.permissions_camera1);
-            imageView.setImageResource(R.drawable.permissions_camera2);
-            textView.setText(LocaleController.getString(R.string.CameraPermissionText));
-            imageView2.setLayoutParams(w7.z5.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
-            imageView.setLayoutParams(w7.z5.d(44, 44.0f, 17, 5.0f, 0.0f, 0.0f, 27.0f));
-            return;
-        }
-        imageView2.setImageResource(R.drawable.permissions_gallery1);
-        imageView.setImageResource(R.drawable.permissions_gallery2);
-        textView.setText(LocaleController.getString(R.string.GalleryPermissionText));
-        imageView2.setLayoutParams(w7.z5.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
-        imageView.setLayoutParams(w7.z5.d(44, 44.0f, 17, 0.0f, 0.0f, 2.0f, 27.0f));
+    public final int a(int i10) {
+        return this.f24449a0.a(i10);
     }
 }

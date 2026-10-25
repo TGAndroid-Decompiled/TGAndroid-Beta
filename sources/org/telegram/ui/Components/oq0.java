@@ -1,24 +1,32 @@
 package org.telegram.ui.Components;
+public final class oq0 extends g.o {
+    public final int f31362c;
+    public final mr0 d;
 
-import android.view.View;
-import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.TLRPC;
-public final class oq0 implements NotificationCenter.NotificationCenterDelegate {
-    public final TLRPC.Dialog f29360a;
-    public final AtomicReference f29361b;
-    public final View f29362c;
-    public final hr0 d;
-
-    public oq0(hr0 hr0Var, TLRPC.Dialog dialog, AtomicReference atomicReference, View view) {
-        this.d = hr0Var;
-        this.f29360a = dialog;
-        this.f29361b = atomicReference;
-        this.f29362c = view;
+    public oq0(mr0 mr0Var, int i10) {
+        this.f31362c = i10;
+        this.d = mr0Var;
     }
 
     @Override
-    public final void didReceivedNotification(int r9, int r10, java.lang.Object... r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.oq0.didReceivedNotification(int, int, java.lang.Object[]):void");
+    public final int i(int i10) {
+        switch (this.f31362c) {
+            case 0:
+                if (i10 == 0) {
+                    return this.d.I.J;
+                }
+                return 1;
+            case 1:
+                ir0 ir0Var = this.d.N;
+                if (i10 != ir0Var.f29367w && i10 != ir0Var.f29368x && i10 != ir0Var.f29369y && i10 != ir0Var.F && ir0Var.j(i10) != 0) {
+                    return 1;
+                }
+                return 4;
+            default:
+                if (i10 == 0) {
+                    return this.d.J.J;
+                }
+                return 1;
+        }
     }
 }

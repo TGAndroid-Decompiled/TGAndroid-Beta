@@ -1,3 +1,3 @@
 package h8;
-public interface f {
+public final class f extends b2.h {
 }

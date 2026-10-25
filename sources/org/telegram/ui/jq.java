@@ -1,56 +1,57 @@
 package org.telegram.ui;
 
 import android.view.View;
-import org.telegram.messenger.MediaController;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class jq implements org.telegram.ui.ActionBar.z1, org.telegram.ui.Components.b5 {
-    public final String f38611a;
-    public final boolean f38612b;
-    public final Object f38613c;
-    public final Object d;
-    public final Object e;
-    public final Object f38614f;
-    public final Object h;
+import org.telegram.messenger.MessagesStorage;
+public final class jq implements MessagesStorage.LongCallback, org.telegram.ui.ActionBar.b2, org.telegram.ui.Components.am0, org.telegram.ui.Components.bm0 {
+    public final int f40714a;
+    public final kr f40715b;
 
-    public jq(jr jrVar, TLRPC.User user, TLObject tLObject, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str, boolean z10) {
-        this.f38613c = jrVar;
-        this.d = user;
-        this.e = tLObject;
-        this.f38614f = tL_chatAdminRights;
-        this.h = tL_chatBannedRights;
-        this.f38611a = str;
-        this.f38612b = z10;
+    public jq(kr krVar, int i10) {
+        this.f40714a = i10;
+        this.f40715b = krVar;
     }
 
     @Override
-    public void C(int i10, int i11, boolean z10) {
-        boolean z11 = this.f38612b;
-        ((org.telegram.ui.Components.eg) this.f38613c).B((View) this.d, this.e, this.f38611a, this.f38614f, z10, i10, i11, (MediaController.PhotoEntry) this.h, z11);
-    }
-
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        jr jrVar = (jr) this.f38613c;
-        TLObject tLObject = (TLObject) this.e;
-        TLRPC.TL_chatAdminRights tL_chatAdminRights = (TLRPC.TL_chatAdminRights) this.f38614f;
-        TLRPC.TL_chatBannedRights tL_chatBannedRights = (TLRPC.TL_chatBannedRights) this.h;
-        jrVar.getClass();
-        long j10 = ((TLRPC.User) this.d).f20491id;
-        int i11 = 1;
-        if (jrVar.f38628e1 == 1) {
-            i11 = 0;
+    public boolean c(int i10, View view) {
+        kr krVar = this.f40715b;
+        if (krVar.getParentActivity() != null) {
+            s4.h0 adapter = krVar.f41007c.getAdapter();
+            gr grVar = krVar.f41001a;
+            if (adapter == grVar) {
+                return krVar.i0(grVar.E(i10), false, view);
+            }
         }
-        jrVar.t0(j10, tLObject, tL_chatAdminRights, tL_chatBannedRights, this.f38611a, this.f38612b, i11, false);
+        return false;
     }
 
-    public jq(org.telegram.ui.Components.eg egVar, View view, Object obj, String str, Object obj2, MediaController.PhotoEntry photoEntry, boolean z10) {
-        this.f38613c = egVar;
-        this.d = view;
-        this.e = obj;
-        this.f38611a = str;
-        this.f38614f = obj2;
-        this.h = photoEntry;
-        this.f38612b = z10;
+    @Override
+    public boolean c1(View view) {
+        return false;
+    }
+
+    @Override
+    public void e(float f7, float f10, int i10, View view) {
+        kr.W(this.f40715b, view, i10);
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f40714a) {
+            case 1:
+                this.f40715b.v0();
+                return;
+            default:
+                this.f40715b.finishFragment();
+                return;
+        }
+    }
+
+    @Override
+    public void run(long j10) {
+        kr.V(this.f40715b, j10);
+    }
+
+    @Override
+    public void l0(View view, float f7, float f10) {
     }
 }

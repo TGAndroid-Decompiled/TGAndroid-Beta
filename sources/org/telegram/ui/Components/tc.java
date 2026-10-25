@@ -1,19 +1,63 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.R;
-public enum tc {
-    SAVED_TO_DOWNLOADS(R.raw.ic_download, 2, "Box", "Arrow"),
-    SAVED_TO_GALLERY(R.raw.ic_save_to_gallery, 0, "Box", "Arrow", "Mask", "Arrow 2", "Splash"),
-    SAVED_TO_MUSIC(R.raw.ic_save_to_music, 2, "Box", "Arrow"),
-    SAVED_TO_GIFS(R.raw.ic_save_to_gifs, 0, "gif");
-    
-    public final int f30779a;
-    public final String[] f30780b;
-    public final int f30781c;
+import android.text.TextPaint;
+import android.text.style.ClickableSpan;
+import android.view.View;
+public final class tc extends ClickableSpan {
+    public final int f32962a;
+    public final Runnable f32963b;
 
-    tc(int i10, int i11, String... strArr) {
-        this.f30779a = i10;
-        this.f30781c = i11;
-        this.f30780b = strArr;
+    public tc(int i10, Runnable runnable) {
+        this.f32962a = i10;
+        this.f32963b = runnable;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        switch (this.f32962a) {
+            case 0:
+                this.f32963b.run();
+                return;
+            case 1:
+                Runnable runnable = this.f32963b;
+                if (runnable != null) {
+                    runnable.run();
+                    return;
+                }
+                return;
+            case 2:
+                Runnable runnable2 = this.f32963b;
+                if (runnable2 != null) {
+                    runnable2.run();
+                    return;
+                }
+                return;
+            default:
+                Runnable runnable3 = this.f32963b;
+                if (runnable3 != null) {
+                    runnable3.run();
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
+        switch (this.f32962a) {
+            case 0:
+                super.updateDrawState(textPaint);
+                textPaint.setUnderlineText(false);
+                return;
+            case 1:
+                textPaint.setUnderlineText(false);
+                return;
+            case 2:
+                textPaint.setUnderlineText(false);
+                return;
+            default:
+                textPaint.setUnderlineText(false);
+                return;
+        }
     }
 }

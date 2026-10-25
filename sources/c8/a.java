@@ -1,10 +1,49 @@
 package c8;
 
-import java.io.Closeable;
-public final class a implements Closeable {
-    public static final a f5040a = new Object();
+import android.content.Context;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import com.google.android.gms.common.api.k;
+import com.google.android.gms.common.api.l;
+import m.r3;
+public final class a extends o6.g {
+    public final Context U;
+
+    public a(Context context, Looper looper, k kVar, l lVar, r3 r3Var) {
+        super(context, looper, 45, r3Var, kVar, lVar, 0);
+        this.U = context;
+    }
 
     @Override
-    public final void close() {
+    public final boolean C() {
+        return true;
+    }
+
+    @Override
+    public final int l() {
+        return 12200000;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.safetynet.internal.ISafetyNetService");
+        if (queryLocalInterface instanceof d) {
+            return (d) queryLocalInterface;
+        }
+        return new d(iBinder);
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.safetynet.internal.ISafetyNetService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.safetynet.service.START";
     }
 }

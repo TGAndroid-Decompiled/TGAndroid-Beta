@@ -1,125 +1,90 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
-import android.content.Context;
-import android.graphics.Rect;
-import android.os.Build;
-import android.util.Property;
-import android.view.View;
-import android.widget.ScrollView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class zf1 extends ScrollView {
-    public final int[] f44094a;
-    public final Rect f44095b;
-    public boolean f44096c;
-    public final ag1 d;
+import android.app.Dialog;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class zf1 implements Runnable {
+    public final int f46280a;
+    public final dg1 f46281b;
+    public final TLRPC.TL_error f46282c;
 
-    public zf1(ag1 ag1Var, Context context) {
-        super(context);
-        this.d = ag1Var;
-        this.f44094a = new int[2];
-        this.f44095b = new Rect();
-        this.f44096c = true;
+    public zf1(dg1 dg1Var, TLRPC.TL_error tL_error, int i10) {
+        this.f46280a = i10;
+        this.f46281b = dg1Var;
+        this.f46282c = tL_error;
     }
 
     @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        this.f44096c = false;
-        super.onLayout(z10, i10, i11, i12, i13);
-    }
-
-    @Override
-    public final void onScrollChanged(int i10, int i11, int i12, int i13) {
-        org.telegram.ui.ActionBar.k kVar;
-        boolean z10;
-        boolean z11;
-        Integer num;
-        float f7;
-        org.telegram.ui.ActionBar.k kVar2;
-        super.onScrollChanged(i10, i11, i12, i13);
-        ag1 ag1Var = this.d;
-        TextView textView = ag1Var.f35762c;
-        if (textView != null) {
-            int[] iArr = this.f44094a;
-            textView.getLocationOnScreen(iArr);
-            int measuredHeight = ag1Var.f35762c.getMeasuredHeight() + iArr[1];
-            kVar = ((org.telegram.ui.ActionBar.o2) ag1Var).actionBar;
-            if (measuredHeight < kVar.getBottom()) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (ag1Var.f35762c.getTag() == null) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            if (z10 != z11) {
-                TextView textView2 = ag1Var.f35762c;
-                if (z10) {
-                    num = null;
+    public final void run() {
+        String formatPluralString;
+        String formatPluralString2;
+        int i10 = this.f46280a;
+        TLRPC.TL_error tL_error = this.f46282c;
+        dg1 dg1Var = this.f46281b;
+        switch (i10) {
+            case 0:
+                dg1Var.x0();
+                if (tL_error == null) {
+                    dg1Var.getMessagesController().removeSuggestion(0L, "VALIDATE_PASSWORD");
+                    AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(dg1Var.getParentActivity());
+                    alertDialog$Builder.k(LocaleController.getString(R.string.OK), new uf1(dg1Var, 3));
+                    String string = LocaleController.getString(R.string.PasswordReset);
+                    org.telegram.ui.ActionBar.e2 e2Var = alertDialog$Builder.f22366a;
+                    e2Var.T = string;
+                    e2Var.R = LocaleController.getString(R.string.TwoStepVerificationTitle);
+                    Dialog showDialog = dg1Var.showDialog(e2Var);
+                    if (showDialog != null) {
+                        showDialog.setCanceledOnTouchOutside(false);
+                        showDialog.setCancelable(false);
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue < 60) {
+                        formatPluralString = LocaleController.formatPluralString("Seconds", intValue, new Object[0]);
+                    } else {
+                        formatPluralString = LocaleController.formatPluralString("Minutes", intValue / 60, new Object[0]);
+                    }
+                    dg1Var.H0(LocaleController.getString(R.string.TwoStepVerificationTitle), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString));
+                    return;
                 } else {
-                    num = 1;
+                    dg1Var.H0(LocaleController.getString(R.string.TwoStepVerificationTitle), tL_error.text);
+                    return;
                 }
-                textView2.setTag(num);
-                AnimatorSet animatorSet = ag1Var.K;
-                if (animatorSet != null) {
-                    animatorSet.cancel();
-                    ag1Var.K = null;
-                }
-                AnimatorSet animatorSet2 = new AnimatorSet();
-                ag1Var.K = animatorSet2;
-                ei.g6 g6Var = ag1Var.f35777y;
-                float f10 = 0.0f;
-                if (z10) {
-                    f7 = 1.0f;
+            case 1:
+                dg1Var.x0();
+                if (tL_error == null) {
+                    if (dg1Var.getParentActivity() != null) {
+                        dg1Var.v0(new vf1(dg1Var, 5));
+                        return;
+                    }
+                    return;
+                } else if (tL_error.text.startsWith("CODE_INVALID")) {
+                    dg1Var.z0();
+                    return;
+                } else if (tL_error.text.startsWith("FLOOD_WAIT")) {
+                    int intValue2 = Utilities.parseInt((CharSequence) tL_error.text).intValue();
+                    if (intValue2 < 60) {
+                        formatPluralString2 = LocaleController.formatPluralString("Seconds", intValue2, new Object[0]);
+                    } else {
+                        formatPluralString2 = LocaleController.formatPluralString("Minutes", intValue2 / 60, new Object[0]);
+                    }
+                    dg1Var.H0(LocaleController.getString(R.string.AppName), LocaleController.formatString("FloodWaitTime", R.string.FloodWaitTime, formatPluralString2));
+                    return;
                 } else {
-                    f7 = 0.0f;
+                    dg1Var.H0(LocaleController.getString(R.string.AppName), tL_error.text);
+                    return;
                 }
-                float[] fArr = {f7};
-                Property property = View.ALPHA;
-                ObjectAnimator ofFloat = ObjectAnimator.ofFloat(g6Var, property, fArr);
-                kVar2 = ((org.telegram.ui.ActionBar.o2) ag1Var).actionBar;
-                org.telegram.ui.ActionBar.n5 titleTextView = kVar2.getTitleTextView();
-                if (z10) {
-                    f10 = 1.0f;
-                }
-                animatorSet2.playTogether(ofFloat, ObjectAnimator.ofFloat(titleTextView, property, f10));
-                ag1Var.K.setDuration(150L);
-                ag1Var.K.addListener(new ue1(this, 1));
-                ag1Var.K.start();
-            }
-        }
-    }
-
-    @Override
-    public final void requestChildFocus(View view, View view2) {
-        if (Build.VERSION.SDK_INT < 29 && view2 != null && !this.f44096c) {
-            scrollToDescendant(view2);
-        }
-        super.requestChildFocus(view, view2);
-    }
-
-    @Override
-    public final void requestLayout() {
-        this.f44096c = true;
-        super.requestLayout();
-    }
-
-    @Override
-    public final void scrollToDescendant(View view) {
-        Rect rect = this.f44095b;
-        view.getDrawingRect(rect);
-        offsetDescendantRectToMyCoords(view, rect);
-        rect.bottom = AndroidUtilities.dp(120.0f) + rect.bottom;
-        int computeScrollDeltaToGetChildRectOnScreen = computeScrollDeltaToGetChildRectOnScreen(rect);
-        if (computeScrollDeltaToGetChildRectOnScreen < 0) {
-            computeScrollDeltaToGetChildRectOnScreen -= (getMeasuredHeight() - view.getMeasuredHeight()) / 2;
-        }
-        if (computeScrollDeltaToGetChildRectOnScreen != 0) {
-            smoothScrollBy(0, computeScrollDeltaToGetChildRectOnScreen);
+            case 2:
+                dg1.f0(dg1Var, tL_error);
+                return;
+            default:
+                dg1.a0(dg1Var, tL_error);
+                return;
         }
     }
 }

@@ -1,16 +1,16 @@
 package v1;
 
-import ai.c1;
+import b2.h;
 import java.util.LinkedHashMap;
 import kotlin.jvm.internal.i;
-public final class b extends c1 {
+public final class b extends h {
     public b() {
-        this(a.f48311b);
+        this(a.f49982b);
     }
 
-    public b(c1 initialExtras) {
+    public b(h initialExtras) {
         super(9);
         i.e(initialExtras, "initialExtras");
-        ((LinkedHashMap) this.f1069a).putAll((LinkedHashMap) initialExtras.f1069a);
+        ((LinkedHashMap) this.f3212a).putAll((LinkedHashMap) initialExtras.f3212a);
     }
 }

@@ -1,69 +1,38 @@
 package org.telegram.ui.Components;
+public final class bx0 implements Runnable {
+    public final int f26976a;
+    public final dx0 f26977b;
 
-import android.animation.TimeAnimator;
-import android.animation.ValueAnimator;
-import org.telegram.messenger.AndroidUtilities;
-public final class bx0 extends TimeAnimator {
-    public int f25109a;
-    public int f25110b;
-    public ValueAnimator.AnimatorUpdateListener f25111c;
-    public Float d;
-    public float[] e;
-
-    @Override
-    public final void addUpdateListener(ValueAnimator.AnimatorUpdateListener animatorUpdateListener) {
-        this.f25111c = animatorUpdateListener;
+    public bx0(dx0 dx0Var, int i10) {
+        this.f26976a = i10;
+        this.f26977b = dx0Var;
     }
 
     @Override
-    public final void end() {
-        this.f25111c = null;
-        super.end();
-    }
-
-    @Override
-    public final Object getAnimatedValue() {
-        return this.d;
-    }
-
-    @Override
-    public final void setFloatValues(float[] fArr) {
-        super.setFloatValues(fArr);
-        this.e = fArr;
-    }
-
-    @Override
-    public final void start() {
-        setTimeListener(new TimeAnimator.TimeListener() {
-            @Override
-            public final void onTimeUpdate(TimeAnimator timeAnimator, long j10, long j11) {
-                int i10;
-                bx0 bx0Var = bx0.this;
-                int i11 = bx0Var.f25109a;
-                if (i11 > 0 && (i10 = bx0Var.f25110b) > 0) {
-                    int i12 = i11 - 1;
-                    bx0Var.f25109a = i12;
-                    if (bx0Var.f25111c != null) {
-                        float[] fArr = bx0Var.e;
-                        if (fArr != null && fArr.length == 2) {
-                            float interpolation = bx0Var.getInterpolator().getInterpolation(1.0f - (i12 / i10));
-                            float[] fArr2 = bx0Var.e;
-                            float f7 = fArr2[0];
-                            bx0Var.d = Float.valueOf(((fArr2[1] - f7) * interpolation) + f7);
-                            bx0Var.f25111c.onAnimationUpdate(bx0Var);
-                            return;
-                        }
-                        bx0Var.end();
-                        return;
-                    }
+    public final void run() {
+        switch (this.f26976a) {
+            case 0:
+                dx0 dx0Var = this.f26977b;
+                dx0Var.V0 = false;
+                if (!dx0Var.Y0 && dx0Var.W0) {
+                    dx0Var.C(true);
                     return;
                 }
-                bx0Var.end();
-            }
-        });
-        int duration = (int) (((float) getDuration()) / AndroidUtilities.screenRefreshTime);
-        this.f25109a = duration;
-        this.f25110b = duration;
-        super.start();
+                return;
+            case 1:
+                this.f26977b.V0 = false;
+                return;
+            case 2:
+                dx0 dx0Var2 = this.f26977b;
+                dx0Var2.Y0 = false;
+                if (!dx0Var2.V0 && dx0Var2.W0) {
+                    dx0Var2.C(true);
+                    return;
+                }
+                return;
+            default:
+                this.f26977b.Y0 = false;
+                return;
+        }
     }
 }

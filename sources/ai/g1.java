@@ -1,44 +1,75 @@
 package ai;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class g1 implements TextWatcher {
-    public final h1 f1337a;
+import android.graphics.Bitmap;
+import android.graphics.BlurMaskFilter;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import java.nio.ByteBuffer;
+import org.telegram.messenger.AndroidUtilities;
+public final class g1 implements Runnable {
+    public final int f1514a;
+    public final t1 f1515b;
+    public final int f1516c;
 
-    public g1(h1 h1Var) {
-        this.f1337a = h1Var;
+    public g1(t1 t1Var, int i10, int i11) {
+        this.f1514a = i11;
+        this.f1515b = t1Var;
+        this.f1516c = i10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        ag.a i10;
-        String obj;
-        int indexOf;
-        if (editable != null && !editable.toString().isEmpty() && !".".equals(editable.toString())) {
-            z10 = false;
-        } else {
-            z10 = true;
+    public final void run() {
+        byte[] bArr;
+        switch (this.f1514a) {
+            case 0:
+                t1 t1Var = this.f1515b;
+                int i10 = this.f1516c;
+                synchronized (t1.class) {
+                    if (t1.O9 != null) {
+                        bArr = t1.O9;
+                    } else {
+                        float x9 = c3.h0.x(AndroidUtilities.dp(24.0f), 0.57735f, 0.5f, 4.0f);
+                        float dp = AndroidUtilities.dp(30.0f) / 4.0f;
+                        int ceil = (int) Math.ceil(3.0f * x9);
+                        int ceil2 = ((int) Math.ceil(dp)) + ceil + 1;
+                        int i11 = (ceil2 * 2) + 2;
+                        Bitmap createBitmap = Bitmap.createBitmap(i11, i11, Bitmap.Config.ARGB_8888);
+                        Paint paint = new Paint(1);
+                        paint.setMaskFilter(new BlurMaskFilter(Math.max(0.1f, (x9 - 0.5f) / 0.57735f), BlurMaskFilter.Blur.NORMAL));
+                        float f7 = ceil;
+                        float f10 = i11 - ceil;
+                        new Canvas(createBitmap).drawRoundRect(f7, f7, f10, f10, dp, dp, paint);
+                        Bitmap extractAlpha = createBitmap.extractAlpha();
+                        createBitmap.recycle();
+                        int rowBytes = extractAlpha.getRowBytes();
+                        byte[] bArr2 = new byte[rowBytes * i11];
+                        byte[] bArr3 = new byte[i11 * i11];
+                        extractAlpha.copyPixelsToBuffer(ByteBuffer.wrap(bArr2));
+                        extractAlpha.recycle();
+                        for (int i12 = 0; i12 < i11; i12++) {
+                            System.arraycopy(bArr2, i12 * rowBytes, bArr3, i12 * i11, i11);
+                        }
+                        t1.P9 = i11;
+                        t1.Q9 = ceil;
+                        t1.R9 = ceil2;
+                        t1.O9 = bArr3;
+                        bArr = bArr3;
+                    }
+                }
+                int i13 = t1.P9;
+                Bitmap createBitmap2 = Bitmap.createBitmap(i13, i13, Bitmap.Config.ARGB_8888);
+                int[] iArr = new int[i13 * i13];
+                t1.s(iArr, bArr, i10);
+                createBitmap2.setPixels(iArr, 0, i13, 0, 0, i13, i13);
+                createBitmap2.prepareToDraw();
+                AndroidUtilities.runOnUIThread(new h1(t1Var, createBitmap2, iArr, i10, 1));
+                return;
+            case 1:
+                this.f1515b.F0(this.f1516c);
+                return;
+            default:
+                this.f1515b.F0(this.f1516c);
+                return;
         }
-        if (!z10 && (indexOf = (obj = editable.toString()).indexOf(46)) >= 0 && (obj.length() - indexOf) - 1 > 2) {
-            editable.delete(indexOf + 3, obj.length());
-        }
-        h1 h1Var = this.f1337a;
-        if (!z10) {
-            i10 = ag.a.h(editable.toString(), h1Var.H.f631a);
-        } else {
-            i10 = ag.a.i(0L, h1Var.H.f631a);
-        }
-        h1Var.r(i10, false, false, true);
-        h1Var.f1385f.c(h1Var.h.isFocused(), true ^ TextUtils.isEmpty(h1Var.h.getText()));
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

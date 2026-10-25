@@ -1,29 +1,38 @@
 package hi;
 
-import android.text.Editable;
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class w implements TextWatcher {
-    public final k0 f12272a;
+import bi.m5;
+import org.telegram.messenger.FileLog;
+public final class w extends a8.a1 {
+    public final y f13341a;
 
-    public w(k0 k0Var) {
-        this.f12272a = k0Var;
+    public w(y yVar) {
+        this.f13341a = yVar;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        String obj = editable.toString();
-        k0 k0Var = this.f12272a;
-        boolean isEmpty = TextUtils.isEmpty(k0Var.R);
-        k0Var.R = obj;
-        k0Var.F.h(0L, k0Var.e, 0L, 0L, null, false, obj, isEmpty);
+    public final void a(int i10, CharSequence charSequence) {
+        FileLog.d("BotBiometry onAuthenticationError " + i10 + " \"" + ((Object) charSequence) + "\"");
+        y yVar = this.f13341a;
+        m5 m5Var = yVar.f13372j;
+        if (m5Var != null) {
+            yVar.f13372j = null;
+            m5Var.run(Boolean.FALSE, null);
+        }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void b() {
+        FileLog.d("BotBiometry onAuthenticationFailed");
     }
 
     @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void c(androidx.biometric.s sVar) {
+        FileLog.d("BotBiometry onAuthenticationSucceeded");
+        y yVar = this.f13341a;
+        m5 m5Var = yVar.f13372j;
+        if (m5Var != null) {
+            yVar.f13372j = null;
+            m5Var.run(Boolean.TRUE, sVar);
+        }
     }
 }

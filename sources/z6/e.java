@@ -1,0 +1,330 @@
+package z6;
+
+import android.content.Context;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ProviderInfo;
+import android.database.Cursor;
+import android.os.Build;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Parcel;
+import android.os.RemoteException;
+import android.os.SystemClock;
+import android.util.Log;
+import com.google.android.gms.common.api.internal.m1;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import o6.l;
+import u7.s;
+public final class e {
+    public static Boolean d = null;
+    public static String e = null;
+    public static boolean f52678f = false;
+    public static int f52679g = -1;
+    public static Boolean h;
+    public static j f52683l;
+    public static k f52684m;
+    public final Context f52685a;
+    public static final ThreadLocal f52680i = new ThreadLocal();
+    public static final m1 f52681j = new m1(3);
+    public static final tb.a f52682k = new tb.a(28);
+    public static final s f52676b = new s(28);
+    public static final pa.d f52677c = new Object();
+
+    public e(Context context) {
+        this.f52685a = context;
+    }
+
+    public static int a(Context context, String str) {
+        try {
+            ClassLoader classLoader = context.getApplicationContext().getClassLoader();
+            Class<?> loadClass = classLoader.loadClass("com.google.android.gms.dynamite.descriptors." + str + ".ModuleDescriptor");
+            Field declaredField = loadClass.getDeclaredField("MODULE_ID");
+            Field declaredField2 = loadClass.getDeclaredField("MODULE_VERSION");
+            if (!l.l(declaredField.get(null), str)) {
+                String valueOf = String.valueOf(declaredField.get(null));
+                Log.e("DynamiteModule", "Module descriptor id '" + valueOf + "' didn't match expected id '" + str + "'");
+                return 0;
+            }
+            return declaredField2.getInt(null);
+        } catch (ClassNotFoundException unused) {
+            Log.w("DynamiteModule", "Local module descriptor class for " + str + " not found.");
+            return 0;
+        } catch (Exception e10) {
+            Log.e("DynamiteModule", "Failed to load module descriptor class: ".concat(String.valueOf(e10.getMessage())));
+            return 0;
+        }
+    }
+
+    public static e c(Context context, d dVar, String str) {
+        long j10;
+        e eVar;
+        Boolean bool;
+        y6.a V0;
+        e eVar2;
+        k kVar;
+        boolean z10;
+        y6.a V02;
+        Context applicationContext = context.getApplicationContext();
+        if (applicationContext != null) {
+            ThreadLocal threadLocal = f52680i;
+            i iVar = (i) threadLocal.get();
+            ?? obj = new Object();
+            threadLocal.set(obj);
+            m1 m1Var = f52681j;
+            Long l4 = (Long) m1Var.get();
+            long longValue = l4.longValue();
+            try {
+                m1Var.set(Long.valueOf(SystemClock.uptimeMillis()));
+                a3.l l02 = dVar.l0(context, str, f52682k);
+                j10 = longValue;
+                try {
+                    Log.i("DynamiteModule", "Considering local module " + str + ":" + l02.f139a + " and remote module " + str + ":" + l02.f140b);
+                    int i10 = l02.f141c;
+                    if (i10 != 0) {
+                        if (i10 == -1) {
+                            if (l02.f139a != 0) {
+                                i10 = -1;
+                            }
+                        }
+                        if (i10 != 1 || l02.f140b != 0) {
+                            if (i10 == -1) {
+                                Log.i("DynamiteModule", "Selected local version of ".concat(String.valueOf(str)));
+                                eVar = new e(applicationContext);
+                            } else if (i10 == 1) {
+                                try {
+                                    int i11 = l02.f140b;
+                                    try {
+                                        synchronized (e.class) {
+                                            if (g(context)) {
+                                                bool = d;
+                                            } else {
+                                                throw new Exception("Remote loading disabled");
+                                            }
+                                        }
+                                        if (bool != null) {
+                                            if (bool.booleanValue()) {
+                                                Log.i("DynamiteModule", "Selected remote version of " + str + ", version >= " + i11);
+                                                synchronized (e.class) {
+                                                    kVar = f52684m;
+                                                }
+                                                if (kVar != null) {
+                                                    i iVar2 = (i) threadLocal.get();
+                                                    if (iVar2 != null && iVar2.f52688a != null) {
+                                                        Context applicationContext2 = context.getApplicationContext();
+                                                        Cursor cursor = iVar2.f52688a;
+                                                        new y6.b(null);
+                                                        synchronized (e.class) {
+                                                            if (f52679g >= 2) {
+                                                                z10 = true;
+                                                            } else {
+                                                                z10 = false;
+                                                            }
+                                                        }
+                                                        if (z10) {
+                                                            Log.v("DynamiteModule", "Dynamite loader version >= 2, using loadModule2NoCrashUtils");
+                                                            V02 = kVar.W0(new y6.b(applicationContext2), str, i11, new y6.b(cursor));
+                                                        } else {
+                                                            Log.w("DynamiteModule", "Dynamite loader version < 2, falling back to loadModule2");
+                                                            V02 = kVar.V0(new y6.b(applicationContext2), str, i11, new y6.b(cursor));
+                                                        }
+                                                        Context context2 = (Context) y6.b.L0(V02);
+                                                        if (context2 != null) {
+                                                            eVar2 = new e(context2);
+                                                        } else {
+                                                            throw new Exception("Failed to get module context");
+                                                        }
+                                                    } else {
+                                                        throw new Exception("No result cursor");
+                                                    }
+                                                } else {
+                                                    throw new Exception("DynamiteLoaderV2 was not cached.");
+                                                }
+                                            } else {
+                                                Log.i("DynamiteModule", "Selected remote version of " + str + ", version >= " + i11);
+                                                j h10 = h(context);
+                                                if (h10 != null) {
+                                                    Parcel L0 = h10.L0(h10.N0(), 6);
+                                                    int readInt = L0.readInt();
+                                                    L0.recycle();
+                                                    if (readInt >= 3) {
+                                                        i iVar3 = (i) threadLocal.get();
+                                                        if (iVar3 != null) {
+                                                            V0 = h10.W0(new y6.b(context), str, i11, new y6.b(iVar3.f52688a));
+                                                        } else {
+                                                            throw new Exception("No cached result cursor holder");
+                                                        }
+                                                    } else if (readInt == 2) {
+                                                        Log.w("DynamiteModule", "IDynamite loader version = 2");
+                                                        V0 = h10.X0(new y6.b(context), str, i11);
+                                                    } else {
+                                                        Log.w("DynamiteModule", "Dynamite loader version < 2, falling back to createModuleContext");
+                                                        V0 = h10.V0(new y6.b(context), str, i11);
+                                                    }
+                                                    Object L02 = y6.b.L0(V0);
+                                                    if (L02 != null) {
+                                                        eVar2 = new e((Context) L02);
+                                                    } else {
+                                                        throw new Exception("Failed to load remote module.");
+                                                    }
+                                                } else {
+                                                    throw new Exception("Failed to create IDynamiteLoader.");
+                                                }
+                                            }
+                                            eVar = eVar2;
+                                        } else {
+                                            throw new Exception("Failed to determine which loading route to use.");
+                                        }
+                                    } catch (RemoteException e10) {
+                                        throw new Exception("Failed to load remote module.", e10);
+                                    } catch (b e11) {
+                                        throw e11;
+                                    } catch (Throwable th2) {
+                                        throw new Exception("Failed to load remote module.", th2);
+                                    }
+                                } catch (b e12) {
+                                    Log.w("DynamiteModule", "Failed to load remote module: " + e12.getMessage());
+                                    int i12 = l02.f139a;
+                                    if (i12 != 0 && dVar.l0(context, str, new ag.j(i12)).f141c == -1) {
+                                        Log.i("DynamiteModule", "Selected local version of ".concat(String.valueOf(str)));
+                                        eVar = new e(applicationContext);
+                                    } else {
+                                        throw new Exception("Remote load failed. No local fallback found.", e12);
+                                    }
+                                }
+                            } else {
+                                throw new Exception("VersionPolicy returned invalid code:" + i10);
+                            }
+                            if (j10 == 0) {
+                                f52681j.remove();
+                            } else {
+                                f52681j.set(l4);
+                            }
+                            Cursor cursor2 = obj.f52688a;
+                            if (cursor2 != null) {
+                                cursor2.close();
+                            }
+                            f52680i.set(iVar);
+                            return eVar;
+                        }
+                    }
+                    throw new Exception("No acceptable module " + str + " found. Local version is " + l02.f139a + " and remote version is " + l02.f140b + ".");
+                } catch (Throwable th3) {
+                    th = th3;
+                    if (j10 == 0) {
+                        f52681j.remove();
+                    } else {
+                        f52681j.set(l4);
+                    }
+                    Cursor cursor3 = obj.f52688a;
+                    if (cursor3 != null) {
+                        cursor3.close();
+                    }
+                    f52680i.set(iVar);
+                    throw th;
+                }
+            } catch (Throwable th4) {
+                th = th4;
+                j10 = longValue;
+            }
+        } else {
+            throw new Exception("null application Context");
+        }
+    }
+
+    public static int d(android.content.Context r11, java.lang.String r12, boolean r13) {
+        throw new UnsupportedOperationException("Method not decompiled: z6.e.d(android.content.Context, java.lang.String, boolean):int");
+    }
+
+    public static int e(android.content.Context r12, java.lang.String r13, boolean r14, boolean r15) {
+        throw new UnsupportedOperationException("Method not decompiled: z6.e.e(android.content.Context, java.lang.String, boolean, boolean):int");
+    }
+
+    public static void f(ClassLoader classLoader) {
+        try {
+            k kVar = null;
+            IBinder iBinder = (IBinder) classLoader.loadClass("com.google.android.gms.dynamiteloader.DynamiteLoaderV2").getConstructor(null).newInstance(null);
+            if (iBinder != null) {
+                IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.dynamite.IDynamiteLoaderV2");
+                if (queryLocalInterface instanceof k) {
+                    kVar = (k) queryLocalInterface;
+                } else {
+                    kVar = new a8.a(iBinder, "com.google.android.gms.dynamite.IDynamiteLoaderV2", 8);
+                }
+            }
+            f52684m = kVar;
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | NoSuchMethodException | InvocationTargetException e10) {
+            throw new Exception("Failed to instantiate dynamite loader", e10);
+        }
+    }
+
+    public static boolean g(Context context) {
+        int i10;
+        ApplicationInfo applicationInfo;
+        Boolean bool = Boolean.TRUE;
+        if (bool.equals(null) || bool.equals(h)) {
+            return true;
+        }
+        boolean z10 = false;
+        if (h == null) {
+            PackageManager packageManager = context.getPackageManager();
+            if (Build.VERSION.SDK_INT >= 29) {
+                i10 = 268435456;
+            } else {
+                i10 = 0;
+            }
+            ProviderInfo resolveContentProvider = packageManager.resolveContentProvider("com.google.android.gms.chimera", i10);
+            if (l6.e.f16932b.d(context, 10000000) == 0 && resolveContentProvider != null && "com.google.android.gms".equals(resolveContentProvider.packageName)) {
+                z10 = true;
+            }
+            h = Boolean.valueOf(z10);
+            if (z10 && (applicationInfo = resolveContentProvider.applicationInfo) != null && (applicationInfo.flags & 129) == 0) {
+                Log.i("DynamiteModule", "Non-system-image GmsCore APK, forcing V1");
+                f52678f = true;
+            }
+        }
+        if (!z10) {
+            Log.e("DynamiteModule", "Invalid GmsCore APK, remote loading disabled.");
+        }
+        return z10;
+    }
+
+    public static j h(Context context) {
+        j jVar;
+        synchronized (e.class) {
+            j jVar2 = f52683l;
+            if (jVar2 != null) {
+                return jVar2;
+            }
+            try {
+                IBinder iBinder = (IBinder) context.createPackageContext("com.google.android.gms", 3).getClassLoader().loadClass("com.google.android.gms.chimera.container.DynamiteLoaderImpl").newInstance();
+                if (iBinder == null) {
+                    jVar = 0;
+                } else {
+                    IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.dynamite.IDynamiteLoader");
+                    if (queryLocalInterface instanceof j) {
+                        jVar = (j) queryLocalInterface;
+                    } else {
+                        jVar = new a8.a(iBinder, "com.google.android.gms.dynamite.IDynamiteLoader", 8);
+                    }
+                }
+                if (jVar != 0) {
+                    f52683l = jVar;
+                    return jVar;
+                }
+            } catch (Exception e10) {
+                Log.e("DynamiteModule", "Failed to load IDynamiteLoader from GmsCore: " + e10.getMessage());
+            }
+            return null;
+        }
+    }
+
+    public final IBinder b(String str) {
+        try {
+            return (IBinder) this.f52685a.getClassLoader().loadClass(str).newInstance();
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException e10) {
+            throw new Exception("Failed to instantiate module class: ".concat(str), e10);
+        }
+    }
+}

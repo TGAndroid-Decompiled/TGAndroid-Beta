@@ -1,9 +1,9 @@
 package i0;
 
 import android.graphics.Color;
-import com.google.android.gms.internal.play_billing.k3;
+import c3.h0;
 public abstract class a {
-    public static final ThreadLocal f12314a = new ThreadLocal();
+    public static final ThreadLocal f13449a = new ThreadLocal();
 
     public static int a(float[] fArr) {
         int round;
@@ -57,7 +57,7 @@ public abstract class a {
 
     public static int b(double d, double d10, double d11) {
         double d12;
-        ThreadLocal threadLocal = f12314a;
+        ThreadLocal threadLocal = f13449a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -89,7 +89,7 @@ public abstract class a {
     }
 
     public static void c(float[] fArr, int i10, int i11, int i12) {
-        float z10;
+        float B;
         float abs;
         float min;
         float min2;
@@ -102,19 +102,19 @@ public abstract class a {
         float f13 = (max + min3) / 2.0f;
         float f14 = 0.0f;
         if (max == min3) {
-            z10 = 0.0f;
+            B = 0.0f;
             abs = 0.0f;
         } else {
             if (max == f7) {
-                z10 = ((f10 - f11) / f12) % 6.0f;
+                B = ((f10 - f11) / f12) % 6.0f;
             } else if (max == f10) {
-                z10 = k3.z(f11, f7, f12, 2.0f);
+                B = h0.B(f11, f7, f12, 2.0f);
             } else {
-                z10 = k3.z(f7, f10, f12, 4.0f);
+                B = h0.B(f7, f10, f12, 4.0f);
             }
             abs = f12 / (1.0f - Math.abs((2.0f * f13) - 1.0f));
         }
-        float f15 = (z10 * 60.0f) % 360.0f;
+        float f15 = (B * 60.0f) % 360.0f;
         if (f15 < 0.0f) {
             f15 += 360.0f;
         }
@@ -211,7 +211,7 @@ public abstract class a {
     }
 
     public static double h(int i10) {
-        ThreadLocal threadLocal = f12314a;
+        ThreadLocal threadLocal = f13449a;
         double[] dArr = (double[]) threadLocal.get();
         if (dArr == null) {
             dArr = new double[3];
@@ -270,7 +270,7 @@ public abstract class a {
         if (i14 == 0) {
             return 0;
         }
-        return k3.v(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
+        return h0.w(255, i11, i12 * i13, (i10 * 255) * i11) / (i14 * 255);
     }
 
     public static int m(int i10) {

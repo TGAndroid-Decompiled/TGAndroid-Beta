@@ -1,3 +1,5 @@
 package zd;
-public abstract class e extends d {
+
+import w7.p5;
+public abstract class e extends p5 {
 }

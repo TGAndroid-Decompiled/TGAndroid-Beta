@@ -1,102 +1,27 @@
 package ig;
 
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-import org.telegram.messenger.tl;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.location.Location;
+import org.telegram.messenger.SendMessagesHelper;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.vc;
-public final class y0 implements RequestDelegate {
-    public final int f13127a;
-    public final c1 f13128b;
+public final class y0 implements SendMessagesHelper.LocationProvider.LocationProviderDelegate {
+    public final j1 f14304a;
 
-    public y0(c1 c1Var, int i10) {
-        this.f13127a = i10;
-        this.f13128b = c1Var;
+    public y0(j1 j1Var) {
+        this.f14304a = j1Var;
     }
 
     @Override
-    public final void run(final TLObject tLObject, final TLRPC.TL_error tL_error) {
-        switch (this.f13127a) {
-            case 0:
-                final c1 c1Var = this.f13128b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                c1 c1Var2 = c1Var;
-                                c1Var2.f12876b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    vc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    tl.q(R.string.UnknownError, vc.a0(c1Var2), null);
-                                    return;
-                                } else {
-                                    c1Var2.finishFragment();
-                                    return;
-                                }
-                            default:
-                                c1 c1Var3 = c1Var;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    c1Var3.f12876b.a(0.0f);
-                                    vc.d0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    c1Var3.f12876b.a(0.0f);
-                                    tl.q(R.string.UnknownError, vc.a0(c1Var3), null);
-                                    return;
-                                } else {
-                                    c1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
-            default:
-                final c1 c1Var2 = this.f13128b;
-                AndroidUtilities.runOnUIThread(new Runnable() {
-                    @Override
-                    public final void run() {
-                        switch (r4) {
-                            case 0:
-                                c1 c1Var22 = c1Var2;
-                                c1Var22.f12876b.a(0.0f);
-                                TLRPC.TL_error tL_error2 = tL_error;
-                                if (tL_error2 != null) {
-                                    vc.d0(tL_error2);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    tl.q(R.string.UnknownError, vc.a0(c1Var22), null);
-                                    return;
-                                } else {
-                                    c1Var22.finishFragment();
-                                    return;
-                                }
-                            default:
-                                c1 c1Var3 = c1Var2;
-                                TLRPC.TL_error tL_error3 = tL_error;
-                                if (tL_error3 != null) {
-                                    c1Var3.f12876b.a(0.0f);
-                                    vc.d0(tL_error3);
-                                    return;
-                                } else if (tLObject instanceof TLRPC.TL_boolFalse) {
-                                    c1Var3.f12876b.a(0.0f);
-                                    tl.q(R.string.UnknownError, vc.a0(c1Var3), null);
-                                    return;
-                                } else {
-                                    c1Var3.finishFragment();
-                                    return;
-                                }
-                        }
-                    }
-                });
-                return;
+    public final void onLocationAcquired(Location location) {
+        j1 j1Var = this.f14304a;
+        TLRPC.User user = j1Var.f14137w0;
+        if (user != null && user.bot_inline_geo) {
+            j1Var.f14142z0 = location;
+            j1Var.T(true, user, j1Var.f14130r0, "");
         }
+    }
+
+    @Override
+    public final void onUnableLocationAcquire() {
+        this.f14304a.Q();
     }
 }

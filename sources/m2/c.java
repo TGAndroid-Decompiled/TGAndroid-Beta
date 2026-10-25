@@ -1,42 +1,42 @@
 package m2;
 
 import android.net.Uri;
-import b2.h0;
-import b2.i1;
-import e2.m0;
+import b2.i0;
+import b2.j1;
+import e2.n0;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 public final class c implements t2.a {
-    public final long f16478a;
-    public final long f16479b;
-    public final long f16480c;
+    public final long f17935a;
+    public final long f17936b;
+    public final long f17937c;
     public final boolean d;
     public final long e;
-    public final long f16481f;
-    public final long f16482g;
+    public final long f17938f;
+    public final long f17939g;
     public final long h;
-    public final t f16483i;
-    public final h0 f16484j;
-    public final Uri f16485k;
-    public final i f16486l;
-    public final List f16487m;
+    public final t f17940i;
+    public final i0 f17941j;
+    public final Uri f17942k;
+    public final i f17943l;
+    public final List f17944m;
 
-    public c(long j10, long j11, long j12, boolean z10, long j13, long j14, long j15, long j16, i iVar, t tVar, h0 h0Var, Uri uri, ArrayList arrayList) {
-        this.f16478a = j10;
-        this.f16479b = j11;
-        this.f16480c = j12;
+    public c(long j10, long j11, long j12, boolean z10, long j13, long j14, long j15, long j16, i iVar, t tVar, i0 i0Var, Uri uri, ArrayList arrayList) {
+        this.f17935a = j10;
+        this.f17936b = j11;
+        this.f17937c = j12;
         this.d = z10;
         this.e = j13;
-        this.f16481f = j14;
-        this.f16482g = j15;
+        this.f17938f = j14;
+        this.f17939g = j15;
         this.h = j16;
-        this.f16486l = iVar;
-        this.f16483i = tVar;
-        this.f16485k = uri;
-        this.f16484j = h0Var;
-        this.f16487m = arrayList;
+        this.f17943l = iVar;
+        this.f17940i = tVar;
+        this.f17942k = uri;
+        this.f17941j = i0Var;
+        this.f17944m = arrayList;
     }
 
     @Override
@@ -45,81 +45,81 @@ public final class c implements t2.a {
         long j11;
         LinkedList linkedList = new LinkedList(list);
         Collections.sort(linkedList);
-        linkedList.add(new i1(-1, -1, -1));
+        linkedList.add(new j1(-1, -1, -1));
         ArrayList arrayList = new ArrayList();
         long j12 = 0;
         int i10 = 0;
         while (true) {
             j10 = -9223372036854775807L;
-            if (i10 >= this.f16487m.size()) {
+            if (i10 >= this.f17944m.size()) {
                 break;
             }
-            if (((i1) linkedList.peek()).f3792a != i10) {
+            if (((j1) linkedList.peek()).f3243a != i10) {
                 long c10 = c(i10);
                 if (c10 != -9223372036854775807L) {
                     j12 += c10;
                 }
             } else {
                 h b10 = b(i10);
-                List list2 = b10.f16505c;
-                i1 i1Var = (i1) linkedList.poll();
-                int i11 = i1Var.f3792a;
+                List list2 = b10.f17962c;
+                j1 j1Var = (j1) linkedList.poll();
+                int i11 = j1Var.f3243a;
                 ArrayList arrayList2 = new ArrayList();
                 while (true) {
-                    int i12 = i1Var.f3793b;
+                    int i12 = j1Var.f3244b;
                     a aVar = (a) list2.get(i12);
-                    List list3 = aVar.f16473c;
+                    List list3 = aVar.f17930c;
                     ArrayList arrayList3 = new ArrayList();
                     do {
-                        arrayList3.add((m) list3.get(i1Var.f3794c));
-                        i1Var = (i1) linkedList.poll();
-                        if (i1Var.f3792a != i11) {
+                        arrayList3.add((m) list3.get(j1Var.f3245c));
+                        j1Var = (j1) linkedList.poll();
+                        if (j1Var.f3243a != i11) {
                             break;
                         }
-                    } while (i1Var.f3793b == i12);
+                    } while (j1Var.f3244b == i12);
                     j11 = j12;
-                    arrayList2.add(new a(aVar.f16471a, aVar.f16472b, arrayList3, aVar.d, aVar.e, aVar.f16474f));
-                    if (i1Var.f3792a != i11) {
+                    arrayList2.add(new a(aVar.f17928a, aVar.f17929b, arrayList3, aVar.d, aVar.e, aVar.f17931f));
+                    if (j1Var.f3243a != i11) {
                         break;
                     }
                     j12 = j11;
                 }
-                linkedList.addFirst(i1Var);
-                arrayList.add(new h(b10.f16503a, b10.f16504b - j11, arrayList2, b10.d));
+                linkedList.addFirst(j1Var);
+                arrayList.add(new h(b10.f17960a, b10.f17961b - j11, arrayList2, b10.d));
                 j12 = j11;
             }
             i10++;
         }
         long j13 = j12;
-        long j14 = this.f16479b;
+        long j14 = this.f17936b;
         if (j14 != -9223372036854775807L) {
             j10 = j14 - j13;
         }
-        return new c(this.f16478a, j10, this.f16480c, this.d, this.e, this.f16481f, this.f16482g, this.h, this.f16486l, this.f16483i, this.f16484j, this.f16485k, arrayList);
+        return new c(this.f17935a, j10, this.f17937c, this.d, this.e, this.f17938f, this.f17939g, this.h, this.f17943l, this.f17940i, this.f17941j, this.f17942k, arrayList);
     }
 
     public final h b(int i10) {
-        return (h) this.f16487m.get(i10);
+        return (h) this.f17944m.get(i10);
     }
 
     public final long c(int i10) {
         long j10;
         long j11;
-        List list = this.f16487m;
+        List list = this.f17944m;
         if (i10 == list.size() - 1) {
-            j10 = this.f16479b;
+            j10 = this.f17936b;
             if (j10 == -9223372036854775807L) {
                 return -9223372036854775807L;
             }
-            j11 = ((h) list.get(i10)).f16504b;
+            j11 = ((h) list.get(i10)).f17961b;
         } else {
-            j10 = ((h) list.get(i10 + 1)).f16504b;
-            j11 = ((h) list.get(i10)).f16504b;
+            j10 = ((h) list.get(i10 + 1)).f17961b;
+            j11 = ((h) list.get(i10)).f17961b;
         }
         return j10 - j11;
     }
 
     public final long d(int i10) {
-        return m0.S(c(i10));
+        return n0.S(c(i10));
     }
 }

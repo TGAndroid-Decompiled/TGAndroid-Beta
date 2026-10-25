@@ -1,135 +1,143 @@
 package jg;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import java.util.ArrayList;
-import org.telegram.messenger.tl;
-public final class a extends g {
-    @Override
-    public float getMinDistance() {
-        return 0.1f;
+import android.os.Bundle;
+import android.view.View;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Cells.a9;
+import org.telegram.ui.Cells.v8;
+import org.telegram.ui.Components.e5;
+import org.telegram.ui.Components.g5;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.un;
+public final class a implements Utilities.Callback5, org.telegram.ui.ActionBar.b2 {
+    public final int f15618a;
+    public final c f15619b;
+
+    public a(c cVar, int i10) {
+        this.f15618a = i10;
+        this.f15619b = cVar;
     }
 
     @Override
-    public final lg.f h(kg.a aVar) {
-        return new lg.a(aVar, this.W0);
-    }
-
-    @Override
-    public final void k(android.graphics.Canvas r29) {
-        throw new UnsupportedOperationException("Method not decompiled: jg.a.k(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void n(Canvas canvas) {
-        float f7;
-        int i10;
-        ArrayList arrayList;
-        int i11;
-        int i12;
-        float f10;
-        ArrayList arrayList2;
-        float f11;
-        int measuredHeight = getMeasuredHeight();
-        int i13 = g.f14480q1;
-        int i14 = measuredHeight - i13;
-        int measuredHeight2 = (getMeasuredHeight() - this.B0) - i13;
-        ArrayList arrayList3 = this.d;
-        int size = arrayList3.size();
-        if (this.f14508h0 != null) {
-            int i15 = 0;
-            while (i15 < size) {
-                lg.a aVar = (lg.a) arrayList3.get(i15);
-                boolean z10 = aVar.f16126n;
-                Paint paint = aVar.f16118c;
-                float[] fArr = aVar.f16123k;
-                if (!z10 && aVar.f16127o == 0.0f) {
-                    i10 = i14;
-                    arrayList = arrayList3;
-                    i11 = i15;
-                } else {
-                    aVar.e.reset();
-                    float[] fArr2 = this.f14508h0.f15099b;
-                    int length = fArr2.length;
-                    if (fArr2.length < 2) {
-                        f7 = 1.0f;
-                    } else {
-                        f7 = fArr2[1] * this.C0;
-                    }
-                    long[] jArr = aVar.f16116a.f15092a;
-                    float f12 = aVar.f16127o;
-                    int i16 = 0;
-                    int i17 = 0;
-                    while (i16 < length) {
-                        int i18 = i15;
-                        long j10 = jArr[i16];
-                        if (j10 < 0) {
-                            i12 = i14;
-                            arrayList2 = arrayList3;
-                        } else {
-                            kg.b bVar = this.f14508h0;
-                            i12 = i14;
-                            float f13 = this.C0 * bVar.f15099b[i16];
-                            if (g.B1) {
-                                f11 = this.f14512j0;
-                                f10 = f13;
-                                arrayList2 = arrayList3;
-                            } else {
-                                f10 = f13;
-                                arrayList2 = arrayList3;
-                                f11 = (float) bVar.e;
-                            }
-                            float x10 = tl.x((float) j10, f11, f12, 1.0f) * (i12 - measuredHeight2);
-                            fArr[i17] = f10;
-                            fArr[i17 + 1] = x10;
-                            int i19 = i17 + 3;
-                            fArr[i17 + 2] = f10;
-                            i17 += 4;
-                            fArr[i19] = getMeasuredHeight() - this.f14523s;
-                        }
-                        i16++;
-                        i15 = i18;
-                        i14 = i12;
-                        arrayList3 = arrayList2;
-                    }
-                    i10 = i14;
-                    arrayList = arrayList3;
-                    i11 = i15;
-                    paint.setStrokeWidth(f7 + 2.0f);
-                    canvas.drawLines(fArr, 0, i17, paint);
-                }
-                i15 = i11 + 1;
-                i14 = i10;
-                arrayList3 = arrayList;
-            }
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        F();
-        k(canvas);
-        i(canvas);
-        ArrayList arrayList = this.f14493b;
-        this.m0 = arrayList.size();
-        int i10 = 0;
-        while (true) {
-            this.f14517n0 = i10;
-            int i11 = this.f14517n0;
-            if (i11 < this.m0) {
-                l(canvas, (lg.d) arrayList.get(i11));
-                p(canvas, (lg.d) arrayList.get(this.f14517n0));
-                i10 = this.f14517n0 + 1;
-            } else {
-                j(canvas);
-                m(canvas);
-                super.onDraw(canvas);
+    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f15618a) {
+            case 1:
+                this.f15619b.Y();
                 return;
-            }
+            default:
+                this.f15619b.finishFragment();
+                return;
         }
     }
 
     @Override
-    public final void o(Canvas canvas) {
+    public void mo5run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
+        t61 t61Var = (t61) obj;
+        final View view = (View) obj2;
+        ((Integer) obj3).getClass();
+        ((Float) obj4).getClass();
+        ((Float) obj5).getClass();
+        final c cVar = this.f15619b;
+        if (!cVar.f15647c.h(t61Var)) {
+            int i10 = t61Var.d;
+            if (i10 != 2 && t61Var.f47037a != 17) {
+                if (i10 == 1) {
+                    cVar.f15650r = !cVar.f15650r;
+                    cVar.f15646b.f32150g3.O(true);
+                    cVar.W(true);
+                    return;
+                } else if (i10 == 6) {
+                    b0 b0Var = cVar.f15647c;
+                    cVar.f15651s = true;
+                    b0Var.h = true;
+                    cVar.f15646b.f32150g3.O(true);
+                    cVar.W(true);
+                    return;
+                } else if (i10 == 7) {
+                    b0 b0Var2 = cVar.f15647c;
+                    cVar.f15651s = false;
+                    b0Var2.h = false;
+                    cVar.f15646b.f32150g3.O(true);
+                    cVar.W(true);
+                    return;
+                } else if (i10 == 3) {
+                    cVar.f15652w = 0;
+                    cVar.f15646b.f32150g3.O(true);
+                    cVar.W(true);
+                    return;
+                } else if (i10 == 4) {
+                    cVar.f15652w = 1;
+                    cVar.f15646b.f32150g3.O(true);
+                    cVar.W(true);
+                    return;
+                } else if (i10 == 5) {
+                    cVar.f15652w = 2;
+                    cVar.f15646b.f32150g3.O(true);
+                    cVar.W(true);
+                    return;
+                } else if (i10 == 8) {
+                    g5.x(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomStartTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.E, new e5() {
+                        @Override
+                        public final void G(int i11, int i12, boolean z10) {
+                            switch (r3) {
+                                case 0:
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.E = i11;
+                                    ((v8) view).w(LocaleController.formatShortDateTime(i11), true);
+                                    cVar2.W(true);
+                                    return;
+                                default:
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.F = i11;
+                                    ((v8) view).w(LocaleController.formatShortDateTime(i11), true);
+                                    cVar3.W(true);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                } else if (i10 == 9) {
+                    g5.x(cVar.getParentActivity(), LocaleController.getString(R.string.BusinessAwayScheduleCustomEndTitle), LocaleController.getString(R.string.BusinessAwayScheduleCustomSetButton), cVar.F, new e5() {
+                        @Override
+                        public final void G(int i11, int i12, boolean z10) {
+                            switch (r3) {
+                                case 0:
+                                    c cVar2 = cVar;
+                                    cVar2.getClass();
+                                    cVar2.E = i11;
+                                    ((v8) view).w(LocaleController.formatShortDateTime(i11), true);
+                                    cVar2.W(true);
+                                    return;
+                                default:
+                                    c cVar3 = cVar;
+                                    cVar3.getClass();
+                                    cVar3.F = i11;
+                                    ((v8) view).w(LocaleController.formatShortDateTime(i11), true);
+                                    cVar3.W(true);
+                                    return;
+                            }
+                        }
+                    });
+                    return;
+                } else if (i10 == 10) {
+                    boolean z10 = !cVar.v;
+                    cVar.v = z10;
+                    ((a9) view).setChecked(z10);
+                    cVar.W(true);
+                    return;
+                } else {
+                    return;
+                }
+            }
+            Bundle bundle = new Bundle();
+            bundle.putLong("user_id", cVar.getUserConfig().getClientUserId());
+            bundle.putInt("chatMode", 5);
+            bundle.putString("quick_reply", "away");
+            cVar.presentFragment(new un(bundle));
+        }
     }
 }

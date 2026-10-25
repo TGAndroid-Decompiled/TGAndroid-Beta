@@ -1,71 +1,60 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.RectF;
-import android.view.MotionEvent;
-import android.widget.FrameLayout;
-public final class w7 extends FrameLayout {
-    public final RectF f32137a;
-    public boolean f32138b;
-    public int f32139c;
-    public int d;
-    public final i8 e;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.PhotoViewer;
+public final class w7 extends kd {
+    public final int f34379b;
+    public final NotificationCenter.NotificationCenterDelegate f34380c;
 
-    public w7(i8 i8Var, Context context) {
+    public w7(NotificationCenter.NotificationCenterDelegate notificationCenterDelegate, Context context, int i10) {
         super(context);
-        this.e = i8Var;
-        this.f32137a = new RectF();
-        this.f32138b = false;
+        this.f34379b = i10;
+        this.f34380c = notificationCenterDelegate;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        oc.a(this, new ah.m0(this, 5));
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        oc.h(this);
-    }
-
-    @Override
-    public final void onDraw(android.graphics.Canvas r21) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final boolean onInterceptTouchEvent(android.view.MotionEvent r5) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onInterceptTouchEvent(android.view.MotionEvent):boolean");
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        i8 i8Var = this.e;
-        i8.P(i8Var);
-        i8Var.K0();
-    }
-
-    @Override
-    public final void onMeasure(int r10, int r11) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.w7.onMeasure(int, int):void");
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
-            return true;
+    public final void c(boolean z10) {
+        boolean z11;
+        int i10;
+        switch (this.f34379b) {
+            case 0:
+                m8 m8Var = (m8) this.f34380c;
+                m8Var.updateColors();
+                org.telegram.ui.qr qrVar = m8Var.N;
+                if (qrVar != null) {
+                    qrVar.a(c5.d.u());
+                    return;
+                }
+                return;
+            default:
+                PhotoViewer photoViewer = (PhotoViewer) this.f34380c;
+                org.telegram.ui.ActionBar.g1 g1Var = photoViewer.F0;
+                if (g1Var != null) {
+                    g1Var.f(z10);
+                    org.telegram.ui.ActionBar.g1 g1Var2 = photoViewer.F0;
+                    if (z10) {
+                        i10 = 259241196;
+                    } else {
+                        i10 = 268435455;
+                    }
+                    g1Var2.setSelectorColor(i10);
+                }
+                s81 s81Var = photoViewer.F2;
+                if (s81Var != null) {
+                    if (!c5.d.u() && !photoViewer.f35756r) {
+                        z11 = false;
+                    } else {
+                        z11 = true;
+                    }
+                    s81Var.O(z11);
+                }
+                org.telegram.ui.qr qrVar2 = photoViewer.f35803w0;
+                if (qrVar2 != null) {
+                    qrVar2.a(c5.d.u());
+                    return;
+                }
+                return;
         }
-        return false;
-    }
-
-    @Override
-    public final void requestLayout() {
-        if (this.f32138b) {
-            return;
-        }
-        super.requestLayout();
     }
 }

@@ -1,50 +1,54 @@
 package u2;
+public final class a0 extends b2.p1 {
+    public final b2.p0 e;
 
-import j$.util.Objects;
-public final class a0 extends t {
-    public static final Object h = new Object();
-    public final Object f47693f;
-    public final Object f47694g;
-
-    public a0(b2.o1 o1Var, Object obj, Object obj2) {
-        super(o1Var);
-        this.f47693f = obj;
-        this.f47694g = obj2;
+    public a0(b2.p0 p0Var) {
+        this.e = p0Var;
     }
 
     @Override
     public final int b(Object obj) {
-        Object obj2;
-        if (h.equals(obj) && (obj2 = this.f47694g) != null) {
-            obj = obj2;
+        if (obj == z.h) {
+            return 0;
         }
-        return this.e.b(obj);
+        return -1;
     }
 
     @Override
-    public final b2.l1 f(int i10, b2.l1 l1Var, boolean z10) {
-        this.e.f(i10, l1Var, z10);
-        if (Objects.equals(l1Var.f3828b, this.f47694g) && z10) {
-            l1Var.f3828b = h;
+    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
+        Integer num;
+        Object obj = null;
+        if (z10) {
+            num = 0;
+        } else {
+            num = null;
         }
-        return l1Var;
+        if (z10) {
+            obj = z.h;
+        }
+        m1Var.h(num, obj, 0, -9223372036854775807L, 0L, b2.c.f3153c, true);
+        return m1Var;
+    }
+
+    @Override
+    public final int h() {
+        return 1;
     }
 
     @Override
     public final Object l(int i10) {
-        Object l4 = this.e.l(i10);
-        if (Objects.equals(l4, this.f47694g)) {
-            return h;
-        }
-        return l4;
+        return z.h;
     }
 
     @Override
-    public final b2.n1 m(int i10, b2.n1 n1Var, long j10) {
-        this.e.m(i10, n1Var, j10);
-        if (Objects.equals(n1Var.f3874a, this.f47693f)) {
-            n1Var.f3874a = b2.n1.f3865q;
-        }
-        return n1Var;
+    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
+        o1Var.b(b2.o1.f3316q, this.e, null, -9223372036854775807L, -9223372036854775807L, -9223372036854775807L, false, true, null, 0L, -9223372036854775807L, 0, 0, 0L);
+        o1Var.f3332k = true;
+        return o1Var;
+    }
+
+    @Override
+    public final int o() {
+        return 1;
     }
 }

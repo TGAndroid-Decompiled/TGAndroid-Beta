@@ -1,61 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.drawable.Drawable;
-public final class z61 implements org.telegram.ui.ActionBar.g6 {
-    public final a71 f33164a;
+import android.net.Uri;
+import android.text.TextPaint;
+import android.text.style.URLSpan;
+import android.view.View;
+import org.telegram.ui.LaunchActivity;
+public final class z61 extends URLSpan {
+    public final y11 f35230a;
+    public boolean f35231b;
 
-    public z61(a71 a71Var) {
-        this.f33164a = a71Var;
+    public z61(String str, y11 y11Var) {
+        super(str != null ? str.replace((char) 8238, ' ') : str);
+        this.f35230a = y11Var;
     }
 
     @Override
-    public final boolean a() {
-        return org.telegram.ui.ActionBar.k6.I.q();
+    public final void onClick(View view) {
+        if (this.f35231b && (view.getContext() instanceof LaunchActivity)) {
+            ((LaunchActivity) view.getContext()).Y0 = true;
+        }
+        qf.d.o(view.getContext(), Uri.parse(getURL()), true, true);
     }
 
     @Override
-    public final void b(float f7, float f10, int i10, int i11) {
-        org.telegram.ui.ActionBar.k6.q(f7, f10, i10, i11);
-    }
-
-    @Override
-    public final ColorFilter c() {
-        return org.telegram.ui.ActionBar.k6.f21514v3;
-    }
-
-    @Override
-    public final Paint d(String str) {
-        return org.telegram.ui.ActionBar.k6.U0(str);
-    }
-
-    @Override
-    public final int e(int i10) {
-        return g(i10);
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final int g(int i10) {
-        return this.f33164a.I(i10);
-    }
-
-    @Override
-    public final Drawable getDrawable(String str) {
-        return null;
-    }
-
-    @Override
-    public final int i(int i10) {
-        return g(i10);
-    }
-
-    @Override
-    public final void h(int i10, int i11) {
+    public final void updateDrawState(TextPaint textPaint) {
+        boolean z10;
+        int color = textPaint.getColor();
+        super.updateDrawState(textPaint);
+        y11 y11Var = this.f35230a;
+        if (y11Var != null) {
+            y11Var.a(textPaint);
+            if (textPaint.linkColor == color) {
+                z10 = true;
+            } else {
+                z10 = false;
+            }
+            textPaint.setUnderlineText(z10);
+        }
     }
 }

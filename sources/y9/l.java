@@ -1,28 +1,30 @@
 package y9;
 
-import ki.t1;
-import org.json.JSONObject;
-public abstract class l {
-    public static final t1 f50556a;
+import android.content.ComponentName;
+import com.google.android.gms.tasks.SuccessContinuation;
+import com.google.android.gms.tasks.Task;
+import java.util.concurrent.atomic.AtomicInteger;
+public final class l implements SuccessContinuation {
+    public final Object f52434a;
+    public final Object f52435b;
 
-    static {
-        la.d dVar = new la.d();
-        a aVar = a.f50528a;
-        dVar.a(l.class, aVar);
-        dVar.a(b.class, aVar);
-        f50556a = new t1(dVar, 4);
+    public l() {
+        this.f52434a = new AtomicInteger();
+        this.f52435b = new AtomicInteger();
     }
 
-    public static b a(String str) {
-        JSONObject jSONObject = new JSONObject(str);
-        String string = jSONObject.getString("rolloutId");
-        String string2 = jSONObject.getString("parameterKey");
-        String string3 = jSONObject.getString("parameterValue");
-        String string4 = jSONObject.getString("variantId");
-        long j10 = jSONObject.getLong("templateVersion");
-        if (string3.length() > 256) {
-            string3 = string3.substring(0, 256);
-        }
-        return new b(string, string2, string3, string4, j10);
+    @Override
+    public Task then(Object obj) {
+        return ((n) this.f52435b).e.G(new u4.f(1, this, (Boolean) obj));
+    }
+
+    public l(yf.b bVar, ComponentName componentName) {
+        this.f52434a = bVar;
+        this.f52435b = componentName;
+    }
+
+    public l(n nVar, Task task) {
+        this.f52435b = nVar;
+        this.f52434a = task;
     }
 }

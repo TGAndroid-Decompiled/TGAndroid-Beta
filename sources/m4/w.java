@@ -1,33 +1,47 @@
 package m4;
 
-import java.util.List;
-import v7.c8;
+import android.os.Bundle;
+import j$.util.Objects;
 public final class w {
-    public final e9.n0 f16825a;
-    public final int f16826b;
-    public final long f16827c;
+    public final n4.t f18286a;
+    public final int f18287b;
+    public final int f18288c;
+    public final v d;
+    public final Bundle e;
 
-    public w(long j10, int i10, List list) {
-        this.f16825a = e9.n0.u(list);
-        this.f16826b = i10;
-        this.f16827c = j10;
+    public w(n4.t tVar, int i10, int i11, boolean z10, v vVar, Bundle bundle) {
+        this.f18286a = tVar;
+        this.f18287b = i10;
+        this.f18288c = i11;
+        this.d = vVar;
+        this.e = bundle;
     }
 
     public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
         if (!(obj instanceof w)) {
             return false;
         }
-        w wVar = (w) obj;
-        if (this.f16825a.equals(wVar.f16825a) && this.f16826b == wVar.f16826b && this.f16827c == wVar.f16827c) {
+        if (this == obj) {
             return true;
         }
-        return false;
+        w wVar = (w) obj;
+        v vVar = wVar.d;
+        v vVar2 = this.d;
+        if (vVar2 == null && vVar == null) {
+            return this.f18286a.equals(wVar.f18286a);
+        }
+        return Objects.equals(vVar2, vVar);
     }
 
     public final int hashCode() {
-        return c8.b(this.f16827c) + (((this.f16825a.hashCode() * 31) + this.f16826b) * 31);
+        return Objects.hash(this.d, this.f18286a);
+    }
+
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
+        n4.t tVar = this.f18286a;
+        sb2.append(tVar.f18698a.f18699a);
+        sb2.append(", uid=");
+        return a1.g.n(tVar.f18698a.f18701c, "}", sb2);
     }
 }

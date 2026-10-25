@@ -1,19 +1,4 @@
 package org.telegram.ui;
-
-import android.os.Bundle;
-public final class y70 extends d6 {
-    public final ey f43775f;
-
-    public y70(Bundle bundle, ey eyVar) {
-        super(bundle);
-        this.f43775f = eyVar;
-    }
-
-    @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        super.onTransitionAnimationEnd(z10, z11);
-        if (z10 && !z11) {
-            this.f43775f.removeSelfFromStack();
-        }
-    }
+public interface y70 {
+    void a(int i10);
 }

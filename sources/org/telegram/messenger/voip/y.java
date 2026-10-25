@@ -1,38 +1,23 @@
 package org.telegram.messenger.voip;
-public final class y implements Runnable {
-    public final int f20009a;
-    public final VoIPService f20010b;
-    public final int f20011c;
 
-    public y(VoIPService voIPService, int i10, int i11) {
-        this.f20009a = i11;
-        this.f20010b = voIPService;
-        this.f20011c = i10;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class y implements RequestDelegate {
+    public final int f21712a;
+
+    public y(int i10) {
+        this.f21712a = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f20009a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f21712a) {
             case 0:
-                this.f20010b.lambda$onSignalBarCountChanged$122(this.f20011c);
-                return;
-            case 1:
-                this.f20010b.lambda$onConnectionStateChanged$119(this.f20011c);
-                return;
-            case 2:
-                this.f20010b.lambda$startConferenceGroupCall$36(this.f20011c);
-                return;
-            case 3:
-                this.f20010b.lambda$startGroupCall$25(this.f20011c);
-                return;
-            case 4:
-                this.f20010b.lambda$createGroupInstance$72(this.f20011c);
-                return;
-            case 5:
-                this.f20010b.lambda$startScreenCapture$57(this.f20011c);
+                VoIPService.lambda$callFailed$114(tLObject, tL_error);
                 return;
             default:
-                this.f20010b.lambda$updateConnectionState$81(this.f20011c);
+                VoIPService.lambda$createGroupInstance$67(tLObject, tL_error);
                 return;
         }
     }

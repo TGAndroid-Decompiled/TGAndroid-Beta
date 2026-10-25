@@ -1,244 +1,150 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextUtils;
-import android.view.View;
-import android.view.ViewGroup;
-import java.util.ArrayList;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagePreviewParams;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.RichMessageLayout;
-import org.telegram.messenger.RichQuote;
-public final class ic0 extends s4.g0 {
-    public final jc0 f27397c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Matrix;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class ic0 extends Drawable {
+    public final int f29275a;
+    public boolean f29276b;
+    public Object f29277c;
+    public Object d;
+    public Object e;
 
-    public ic0(jc0 jc0Var) {
-        this.f27397c = jc0Var;
-    }
-
-    public static int D(org.telegram.ui.Cells.t1 t1Var, int i10, boolean z10) {
-        int i11;
-        ArrayList<MessageObject.TextLayoutBlock> arrayList;
-        CharSequence charSequence;
-        int lineTop;
-        float textYOffset;
-        MessageObject.TextLayoutBlocks textLayoutBlocks;
-        int lineTop2;
-        if (t1Var != null) {
-            org.telegram.ui.Cells.s1 s1Var = t1Var.Zc;
-            MessageObject messageObject = t1Var.getMessageObject();
-            if (messageObject != null) {
-                if (messageObject.richLayout != null) {
-                    t1Var.t3(true);
-                    RichMessageLayout richMessageLayout = messageObject.richLayout;
-                    int size = richMessageLayout.textBlocks.size() - 1;
-                    while (true) {
-                        if (size < 0) {
-                            break;
-                        }
-                        int intValue = richMessageLayout.textBlockCharOffsets.get(size).intValue();
-                        if (i10 < intValue) {
-                            size--;
-                        } else {
-                            Layout layout = richMessageLayout.textBlocks.get(size).getLayout();
-                            if (layout != null) {
-                                int lineForOffset = layout.getLineForOffset(Math.min(i10 - intValue, layout.getText().length()));
-                                int y3 = richMessageLayout.textBlocks.get(size).getY() + t1Var.f23548r0;
-                                if (z10) {
-                                    lineTop2 = layout.getLineBottom(lineForOffset);
-                                } else {
-                                    lineTop2 = layout.getLineTop(lineForOffset);
-                                }
-                                return y3 + lineTop2;
-                            }
-                        }
-                    }
-                } else if (messageObject.getGroupId() == 0) {
-                    if (!TextUtils.isEmpty(messageObject.caption) && (textLayoutBlocks = t1Var.f23342c4) != null) {
-                        i11 = (int) t1Var.f23537q4;
-                        charSequence = messageObject.caption;
-                        arrayList = textLayoutBlocks.textLayoutBlocks;
-                    } else {
-                        t1Var.t3(true);
-                        int i12 = t1Var.f23548r0;
-                        CharSequence charSequence2 = messageObject.messageText;
-                        ArrayList<MessageObject.TextLayoutBlock> arrayList2 = messageObject.textLayoutBlocks;
-                        if (t1Var.f23579t1) {
-                            i11 = org.telegram.messenger.v0.C(10.0f, t1Var.f23479m2, i12);
-                        } else {
-                            i11 = i12;
-                        }
-                        arrayList = arrayList2;
-                        charSequence = charSequence2;
-                    }
-                    if (arrayList != null && charSequence != null) {
-                        for (int i13 = 0; i13 < arrayList.size(); i13++) {
-                            MessageObject.TextLayoutBlock textLayoutBlock = arrayList.get(i13);
-                            StaticLayout staticLayout = textLayoutBlock.textLayout;
-                            String charSequence3 = staticLayout.getText().toString();
-                            int i14 = textLayoutBlock.charactersOffset;
-                            if (i10 > i14) {
-                                if (i10 - i14 > charSequence3.length() - 1) {
-                                    textYOffset = i11 + ((int) (textLayoutBlock.textYOffset(arrayList, s1Var) + textLayoutBlock.padTop + textLayoutBlock.height));
-                                } else {
-                                    int lineForOffset2 = staticLayout.getLineForOffset(i10 - textLayoutBlock.charactersOffset);
-                                    if (z10) {
-                                        lineTop = staticLayout.getLineBottom(lineForOffset2);
-                                    } else {
-                                        lineTop = staticLayout.getLineTop(lineForOffset2);
-                                    }
-                                    textYOffset = lineTop + textLayoutBlock.textYOffset(arrayList, s1Var) + i11 + textLayoutBlock.padTop;
-                                }
-                                return (int) textYOffset;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return 0;
-    }
-
-    @Override
-    public final int h() {
-        MessagePreviewParams.Messages messages = this.f27397c.f27677r;
-        if (messages == null) {
-            return 0;
-        }
-        return messages.previewMessages.size();
-    }
-
-    @Override
-    public final int j(int i10) {
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        int i11;
-        boolean z10;
-        jc0 jc0Var = this.f27397c;
-        cc0 cc0Var = jc0Var.f27675f;
-        int i12 = jc0Var.f27669a;
-        MessagePreviewParams.Messages messages = jc0Var.f27677r;
-        if (messages != null && b1Var.f46345f == 0) {
-            org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) b1Var.f46342a;
-            t1Var.setInvalidateSpoilersParent(messages.hasSpoilers);
-            t1Var.Y3(cc0Var.getMeasuredWidth(), cc0Var.getMeasuredHeight());
-            if (t1Var.getMessageObject() != null) {
-                i11 = t1Var.getMessageObject().getId();
-            } else {
-                i11 = 0;
-            }
-            if (i12 == 2) {
-                jc0Var.f27674c0.d.checkCurrentLink(jc0Var.f27677r.previewMessages.get(i10));
-            }
-            MessageObject messageObject = jc0Var.f27677r.previewMessages.get(i10);
-            MessagePreviewParams.Messages messages2 = jc0Var.f27677r;
-            t1Var.W3(messageObject, messages2.groupedMessagesMap.get(messages2.previewMessages.get(i10).getGroupId()), true, true, false, false);
-            boolean z11 = true;
-            if (i12 == 1) {
-                t1Var.setDelegate(new oa.d(17));
-            }
-            if (jc0Var.f27677r.previewMessages.size() > 1) {
-                if (i12 == 1) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                t1Var.I3(z10, false);
-                if (i11 != jc0Var.f27677r.previewMessages.get(i10).getId()) {
-                    z11 = false;
-                }
-                MessagePreviewParams.Messages messages3 = jc0Var.f27677r;
-                boolean z12 = messages3.selectedIds.get(messages3.previewMessages.get(i10).getId(), false);
-                t1Var.K3(z12, z12, z11);
-            }
+    public ic0(int i10) {
+        this.f29275a = i10;
+        switch (i10) {
+            case 1:
+                this.f29277c = new Paint(1);
+                Paint paint = new Paint(1);
+                this.d = paint;
+                this.e = new Matrix();
+                paint.setStyle(Paint.Style.STROKE);
+                paint.setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{1308622847, 0, 452984831}, new float[]{0.0f, 0.5f, 1.0f}, Shader.TileMode.CLAMP));
+                return;
+            default:
+                return;
         }
     }
 
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        Context context = viewGroup.getContext();
-        jc0 jc0Var = this.f27397c;
-        pc0 pc0Var = jc0Var.f27674c0;
-        gc0 gc0Var = new gc0(this, context, pc0Var.f29544w, jc0Var.J, pc0Var.F);
-        gc0Var.setClipChildren(false);
-        gc0Var.setClipToPadding(false);
-        gc0Var.setDelegate(new hc0(this));
-        return new s4.b1(gc0Var);
+    public void b(int i10, int i11) {
+        ((Paint) this.f29277c).setShader(new LinearGradient(0.0f, 0.0f, 0.0f, AndroidUtilities.dp(28.0f), new int[]{i10, i11}, new float[]{0.0f, 1.0f}, Shader.TileMode.CLAMP));
     }
 
     @Override
-    public final void y(s4.b1 b1Var) {
-        int i10;
-        boolean z10;
-        boolean z11;
-        int i11;
-        int[] findQuote;
-        jc0 jc0Var = this.f27397c;
-        bc0 bc0Var = jc0Var.e;
-        pc0 pc0Var = jc0Var.f27674c0;
-        if (jc0Var.f27677r != null && (i10 = jc0Var.f27669a) != 1) {
-            View view = b1Var.f46342a;
-            if (view instanceof org.telegram.ui.Cells.t1) {
-                org.telegram.ui.Cells.t1 t1Var = (org.telegram.ui.Cells.t1) view;
-                if (i10 == 0) {
-                    MessageObject.GroupedMessages a2 = jc0.a(jc0Var, t1Var.getMessageObject());
-                    if (a2 == null) {
-                        z10 = true;
+    public final void draw(Canvas canvas) {
+        xj0 xj0Var;
+        switch (this.f29275a) {
+            case 0:
+                xj0 xj0Var2 = (xj0) this.d;
+                xj0 xj0Var3 = (xj0) this.f29277c;
+                Rect rect = AndroidUtilities.rectTmp2;
+                rect.set(getBounds().centerX() - AndroidUtilities.dp(12.0f), getBounds().centerY() - AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f) + getBounds().centerX(), AndroidUtilities.dp(12.0f) + getBounds().centerY());
+                if (((xj0) this.e).A()) {
+                    xj0 xj0Var4 = (xj0) this.e;
+                    boolean z10 = this.f29276b;
+                    if (z10) {
+                        xj0Var = xj0Var3;
                     } else {
-                        z10 = false;
+                        xj0Var = xj0Var2;
                     }
-                    t1Var.setDrawSelectionBackground(z10);
-                    if (a2 == null) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    t1Var.K3(true, z11, false);
-                    MessagePreviewParams messagePreviewParams = pc0Var.d;
-                    if (!messagePreviewParams.isSecret && messagePreviewParams.quote != null && jc0Var.e(t1Var)) {
-                        MessageObject messageObject = t1Var.getMessageObject();
-                        MessagePreviewParams messagePreviewParams2 = pc0Var.d;
-                        MessagePreviewParams messagePreviewParams3 = pc0Var.d;
-                        org.telegram.ui.in inVar = messagePreviewParams3.quote;
-                        if (inVar.f38341m && messageObject != null && messageObject.richLayout != null && ((i11 = messagePreviewParams3.quoteStart) < 0 || messagePreviewParams3.quoteEnd <= i11)) {
-                            String str = inVar.f38337i;
-                            if (str == null) {
-                                findQuote = null;
-                            } else {
-                                findQuote = RichQuote.findQuote(messageObject, str, inVar.f38343o);
-                            }
-                            if (findQuote != null) {
-                                messagePreviewParams2.quoteStart = findQuote[0];
-                                messagePreviewParams2.quoteEnd = findQuote[1];
-                            } else {
-                                messagePreviewParams2.quoteStart = 0;
-                                messagePreviewParams2.quoteEnd = Math.min(MessagesController.getInstance(pc0Var.f29544w).quoteLengthMax, org.telegram.ui.in.d(messageObject));
-                            }
+                    if (xj0Var4 != xj0Var) {
+                        if (z10) {
+                            xj0Var2 = xj0Var3;
                         }
+                        this.e = xj0Var2;
+                        xj0Var2.M(xj0Var2.e[0] - 1);
                     }
-                    MessagePreviewParams messagePreviewParams4 = pc0Var.d;
-                    if (!messagePreviewParams4.isSecret && messagePreviewParams4.quote != null && messagePreviewParams4.quoteStart >= 0 && jc0Var.e(t1Var) && !bc0Var.x()) {
-                        MessagePreviewParams messagePreviewParams5 = pc0Var.d;
-                        bc0Var.Z(t1Var, messagePreviewParams5.quoteStart, messagePreviewParams5.quoteEnd);
-                        if (jc0Var.f27672b0) {
-                            jc0Var.L = D(t1Var, pc0Var.d.quoteStart, false);
-                            jc0Var.M = D(t1Var, pc0Var.d.quoteEnd, true);
-                            jc0Var.N = true;
-                            jc0Var.f27672b0 = false;
-                            return;
-                        }
-                        return;
-                    }
+                }
+                ((xj0) this.e).setBounds(rect);
+                ((xj0) this.e).draw(canvas);
+                return;
+            default:
+                Paint paint = (Paint) this.d;
+                float dp = AndroidUtilities.dp(10.0f);
+                RectF rectF = AndroidUtilities.rectTmp;
+                rectF.set(getBounds());
+                Matrix matrix = (Matrix) this.e;
+                matrix.reset();
+                matrix.postTranslate(rectF.left, rectF.top);
+                canvas.drawRoundRect(rectF, dp, dp, (Paint) this.f29277c);
+                if (this.f29276b) {
+                    float dp2 = AndroidUtilities.dp(1.0f);
+                    paint.setStrokeWidth(dp2);
+                    matrix.reset();
+                    matrix.postTranslate(rectF.left, rectF.top);
+                    float f7 = dp2 / 2.0f;
+                    rectF.inset(f7, f7);
+                    canvas.drawRoundRect(rectF, dp, dp, paint);
                     return;
                 }
-                t1Var.setDrawSelectionBackground(false);
-            }
+                return;
         }
+    }
+
+    @Override
+    public int getIntrinsicHeight() {
+        switch (this.f29275a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return super.getIntrinsicHeight();
+        }
+    }
+
+    @Override
+    public int getIntrinsicWidth() {
+        switch (this.f29275a) {
+            case 0:
+                return AndroidUtilities.dp(24.0f);
+            default:
+                return super.getIntrinsicWidth();
+        }
+    }
+
+    @Override
+    public final int getOpacity() {
+        switch (this.f29275a) {
+            case 0:
+                return -2;
+            default:
+                return -2;
+        }
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        switch (this.f29275a) {
+            case 0:
+                ((xj0) this.f29277c).setAlpha(i10);
+                ((xj0) this.d).setAlpha(i10);
+                return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        switch (this.f29275a) {
+            case 0:
+                ((xj0) this.f29277c).setColorFilter(colorFilter);
+                ((xj0) this.d).setColorFilter(colorFilter);
+                return;
+            default:
+                return;
+        }
+    }
+
+    private final void a(int i10) {
+    }
+
+    private final void c(ColorFilter colorFilter) {
     }
 }

@@ -1,19 +1,11 @@
 package org.telegram.ui.Components;
 
 import android.view.View;
-public final class c51 implements View.OnClickListener {
-    public final int f25195a;
-    public final Object f25196b;
-    public final Object f25197c;
-
-    public c51(int i10, Object obj, Object obj2) {
-        this.f25195a = i10;
-        this.f25196b = obj;
-        this.f25197c = obj2;
-    }
-
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ActionBar.ActionBarPopupWindow$ActionBarPopupWindowLayout;
+public final class c51 extends ActionBarPopupWindow$ActionBarPopupWindowLayout {
     @Override
-    public final void onClick(android.view.View r29) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.c51.onClick(android.view.View):void");
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(Math.min((int) (AndroidUtilities.displaySize.y * 0.33f), View.MeasureSpec.getSize(i11)), 1073741824));
     }
 }

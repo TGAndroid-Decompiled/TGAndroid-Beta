@@ -1,23 +1,25 @@
 package k2;
 
-import android.media.AudioTrack;
-import android.media.AudioTrack$StreamEventCallback;
-public final class g0 extends AudioTrack$StreamEventCallback {
-    public final h0 f14729a;
+import m4.n1;
+public final class g0 implements e2.o, e2.j {
+    public final long f16165a;
 
-    public g0(h0 h0Var) {
-        this.f14729a = h0Var;
+    public g0(long j10) {
+        this.f16165a = j10;
     }
 
-    public final void onDataRequest(AudioTrack audioTrack, int i10) {
-        this.f14729a.f14735c.f14746j.e(-1, new f(3));
+    @Override
+    public void accept(Object obj) {
+        ((n1) obj).g(this.f16165a);
     }
 
-    public final void onPresentationEnded(AudioTrack audioTrack) {
-        this.f14729a.f14735c.f14746j.e(-1, new f(4));
-    }
-
-    public final void onTearDown(AudioTrack audioTrack) {
-        this.f14729a.f14735c.f14746j.e(-1, new f(3));
+    @Override
+    public void invoke(Object obj) {
+        y yVar;
+        q0 q0Var = (q0) obj;
+        u0 u0Var = q0Var.f16259b;
+        if (q0Var.equals(u0Var.f16291j) && (yVar = u0Var.f16295n) != null) {
+            yVar.a(this.f16165a);
+        }
     }
 }

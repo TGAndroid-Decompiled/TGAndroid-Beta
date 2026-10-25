@@ -1,27 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.messenger.R;
-public final class sq extends AnimatorListenerAdapter {
-    public final uq f30608a;
+import android.text.InputFilter;
+import android.text.Spanned;
+public abstract class sq implements InputFilter {
+    public final int f32657a;
 
-    public sq(uq uqVar) {
-        this.f30608a = uqVar;
+    public sq(int i10) {
+        this.f32657a = i10;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        uq uqVar = this.f30608a;
-        ColorPicker$RadioButton[] colorPicker$RadioButtonArr = uqVar.v;
-        if (uqVar.K == 1) {
-            uqVar.F.setVisibility(4);
+    public CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
+        int codePointCount = this.f32657a - (Character.codePointCount(spanned, 0, spanned.length()) - Character.codePointCount(spanned, i12, i13));
+        if (codePointCount <= 0) {
+            return "";
         }
-        for (int i10 = 0; i10 < colorPicker$RadioButtonArr.length; i10++) {
-            if (colorPicker$RadioButtonArr[i10].getTag(R.id.index_tag) == null) {
-                colorPicker$RadioButtonArr[i10].setVisibility(4);
-            }
+        if (codePointCount >= Character.codePointCount(charSequence, i10, i11)) {
+            return null;
         }
-        uqVar.f31212y = null;
+        int i14 = codePointCount + i10;
+        if (Character.isHighSurrogate(charSequence.charAt(i14 - 1)) && i14 - 1 == i10) {
+            return "";
+        }
+        return charSequence.subSequence(i10, i14);
     }
 }

@@ -1,90 +1,89 @@
 package z3;
 
-import b2.o;
-import b2.v;
-import b2.v0;
+import a8.yb;
+import b2.p;
 import b2.w;
-import c3.l0;
-import e2.m0;
-import e2.x;
-import i2.o1;
+import b2.w0;
+import b2.x;
+import c3.h0;
+import c3.j0;
+import e2.n0;
 import java.io.EOFException;
-import v7.u6;
-public final class n implements l0 {
-    public final l0 f51125a;
-    public final k f51126b;
-    public m f51129g;
-    public w h;
-    public boolean f51130i;
+public final class n implements j0 {
+    public final j0 f52661a;
+    public final k f52662b;
+    public m f52665g;
+    public x h;
+    public boolean f52666i;
     public int d = 0;
     public int e = 0;
-    public byte[] f51128f = m0.f8260b;
-    public final x f51127c = new x();
+    public byte[] f52664f = n0.f9693b;
+    public final e2.x f52663c = new e2.x();
 
-    public n(l0 l0Var, k kVar) {
-        this.f51125a = l0Var;
-        this.f51126b = kVar;
+    public n(j0 j0Var, k kVar) {
+        this.f52661a = j0Var;
+        this.f52662b = kVar;
     }
 
     @Override
-    public final int a(o oVar, int i10, boolean z10) {
-        return f(oVar, i10, z10);
+    public final int a(p pVar, int i10, boolean z10) {
+        return f(pVar, i10, z10);
     }
 
     @Override
-    public final void b(w wVar) {
+    public final void b(x xVar) {
         boolean z10;
         m mVar;
-        wVar.f4135s.getClass();
-        String str = wVar.f4135s;
-        if (v0.h(str) == 3) {
+        xVar.f3586s.getClass();
+        String str = xVar.f3586s;
+        if (w0.h(str) == 3) {
             z10 = true;
         } else {
             z10 = false;
         }
-        u6.g(z10);
-        boolean equals = wVar.equals(this.h);
-        k kVar = this.f51126b;
+        yb.g(z10);
+        boolean equals = xVar.equals(this.h);
+        k kVar = this.f52662b;
         if (!equals) {
-            this.h = wVar;
-            if (kVar.a0(wVar)) {
-                mVar = kVar.y(wVar);
+            this.h = xVar;
+            if (kVar.i1(xVar)) {
+                mVar = kVar.f0(xVar);
             } else {
                 mVar = null;
             }
-            this.f51129g = mVar;
+            this.f52665g = mVar;
         }
-        m mVar2 = this.f51129g;
-        l0 l0Var = this.f51125a;
+        m mVar2 = this.f52665g;
+        j0 j0Var = this.f52661a;
         if (mVar2 == null) {
-            l0Var.b(wVar);
+            j0Var.b(xVar);
             return;
         }
-        v a2 = wVar.a();
-        a2.f4082r = v0.n("application/x-media3-cues");
-        a2.f4074j = str;
-        a2.f4086w = Long.MAX_VALUE;
-        a2.P = kVar.L(wVar);
-        o1.v(a2, l0Var);
+        w a2 = xVar.a();
+        a2.f3533r = w0.n("application/x-media3-cues");
+        a2.f3525j = str;
+        a2.f3537w = Long.MAX_VALUE;
+        a2.P = kVar.B0(xVar);
+        ic.a.u(a2, j0Var);
     }
 
     @Override
-    public final void c(long r9, int r11, int r12, int r13, c3.k0 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: z3.n.c(long, int, int, int, c3.k0):void");
+    public final void c(long r9, int r11, int r12, int r13, c3.i0 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: z3.n.c(long, int, int, int, c3.i0):void");
     }
 
     @Override
-    public final void d(int i10, x xVar) {
-        a1.g.a(this, xVar, i10);
+    public final void d(int i10, e2.x xVar) {
+        h0.a(this, xVar, i10);
     }
 
     @Override
-    public final int f(o oVar, int i10, boolean z10) {
-        if (this.f51129g == null) {
-            return this.f51125a.f(oVar, i10, z10);
+    public final int f(p pVar, int i10, boolean z10) {
+        if (this.f52665g == null) {
+            return this.f52661a.f(pVar, i10, z10);
         }
         h(i10);
-        int read = oVar.read(this.f51128f, this.e, i10);
+        int read = pVar.read(this.f52664f, this.e, i10);
         if (read == -1) {
             if (z10) {
                 return -1;
@@ -96,26 +95,26 @@ public final class n implements l0 {
     }
 
     @Override
-    public final void g(x xVar, int i10, int i11) {
-        if (this.f51129g == null) {
-            this.f51125a.g(xVar, i10, i11);
+    public final void g(e2.x xVar, int i10, int i11) {
+        if (this.f52665g == null) {
+            this.f52661a.g(xVar, i10, i11);
             return;
         }
         h(i10);
-        xVar.k(this.e, i10, this.f51128f);
+        xVar.k(this.e, i10, this.f52664f);
         this.e += i10;
     }
 
     public final void h(int i10) {
         byte[] bArr;
-        int length = this.f51128f.length;
+        int length = this.f52664f.length;
         int i11 = this.e;
         if (length - i11 >= i10) {
             return;
         }
         int i12 = i11 - this.d;
         int max = Math.max(i12 * 2, i10 + i12);
-        byte[] bArr2 = this.f51128f;
+        byte[] bArr2 = this.f52664f;
         if (max <= bArr2.length) {
             bArr = bArr2;
         } else {
@@ -124,7 +123,7 @@ public final class n implements l0 {
         System.arraycopy(bArr2, this.d, bArr, 0, i12);
         this.d = 0;
         this.e = i12;
-        this.f51128f = bArr;
+        this.f52664f = bArr;
     }
 
     @Override

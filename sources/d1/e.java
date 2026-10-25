@@ -1,5 +1,6 @@
 package d1;
 
+import a8.ib;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -9,68 +10,67 @@ import android.os.CancellationSignal;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Base64;
-import c7.b0;
-import c7.e0;
-import c7.g;
-import c7.i0;
-import c7.j;
-import c7.k;
-import c7.m;
-import c7.o;
-import c7.s;
-import c7.t;
-import c7.u;
-import c7.v;
-import c7.w;
-import c7.x;
-import c7.y;
 import com.google.android.gms.fido.common.Transport;
+import d7.b0;
+import d7.e0;
+import d7.g;
+import d7.i0;
+import d7.j;
+import d7.k;
+import d7.m;
+import d7.o;
+import d7.s;
+import d7.t;
+import d7.u;
+import d7.v;
+import d7.w;
+import d7.x;
+import d7.y;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.concurrent.Executor;
-import n7.s0;
+import o7.s0;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import v0.i;
-import v7.p6;
 public final class e extends b1.d {
     public final Context e;
-    public i f7740f;
-    public Executor f7741g;
+    public i f7832f;
+    public Executor f7833g;
     public CancellationSignal h;
-    public final c1.d f7742i;
+    public final c1.d f7834i;
 
     public e(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
         this.e = context;
-        this.f7742i = new c1.d(this, new Handler(Looper.getMainLooper()), 1);
+        this.f7834i = new c1.d(this, new Handler(Looper.getMainLooper()), 1);
     }
 
     public static v0.f e(u uVar) {
         JSONObject jSONObject;
         try {
-            k kVar = uVar.f5012f;
-            s0 s0Var = uVar.f5011c;
+            k kVar = uVar.f8235f;
+            s0 s0Var = uVar.f8234c;
             try {
                 JSONObject jSONObject2 = new JSONObject();
                 if (s0Var != null && s0Var.t().length > 0) {
-                    jSONObject2.put("rawId", u6.b.c(s0Var.t()));
+                    jSONObject2.put("rawId", v6.b.c(s0Var.t()));
                 }
-                String str = uVar.f5013n;
+                String str = uVar.f8236n;
                 if (str != null) {
                     jSONObject2.put("authenticatorAttachment", str);
                 }
-                String str2 = uVar.f5010b;
+                String str2 = uVar.f8233b;
                 if (str2 != null && kVar == null) {
                     jSONObject2.put("type", str2);
                 }
-                String str3 = uVar.f5009a;
+                String str3 = uVar.f8232a;
                 if (str3 != null) {
                     jSONObject2.put("id", str3);
                 }
                 String str4 = "response";
-                c7.i iVar = uVar.e;
+                d7.i iVar = uVar.e;
                 boolean z10 = true;
                 if (iVar != null) {
                     jSONObject = iVar.b();
@@ -83,8 +83,8 @@ public final class e extends b1.d {
                         if (kVar != null) {
                             try {
                                 JSONObject jSONObject3 = new JSONObject();
-                                jSONObject3.put("code", kVar.f4974a.f5004a);
-                                String str5 = kVar.f4975b;
+                                jSONObject3.put("code", kVar.f8197a.f8227a);
+                                String str5 = kVar.f8198b;
                                 if (str5 != null) {
                                     jSONObject3.put("message", str5);
                                 }
@@ -112,8 +112,8 @@ public final class e extends b1.d {
                 Bundle bundle = new Bundle();
                 bundle.putString("androidx.credentials.BUNDLE_KEY_REGISTRATION_RESPONSE_JSON", jSONObject4);
                 return new v0.f(jSONObject4, bundle);
-            } catch (JSONException e7) {
-                throw new RuntimeException("Error encoding PublicKeyCredential to JSON object", e7);
+            } catch (JSONException e10) {
+                throw new RuntimeException("Error encoding PublicKeyCredential to JSON object", e10);
             }
         } catch (Throwable th2) {
             throw new w0.c("The PublicKeyCredential response json had an unexpected exception when parsing: " + th2.getMessage(), 2);
@@ -122,14 +122,14 @@ public final class e extends b1.d {
 
     public final v d(v0.e request) {
         Double d;
-        c7.f fVar;
+        d7.f fVar;
         m mVar;
-        c7.f fVar2;
+        d7.f fVar2;
         s sVar;
         t tVar;
         i0 i0Var;
         e0 e0Var;
-        c7.c cVar;
+        d7.c cVar;
         String str;
         String str2;
         String str3;
@@ -137,17 +137,17 @@ public final class e extends b1.d {
         ArrayList arrayList;
         long j10;
         kotlin.jvm.internal.i.e(request, "request");
-        LinkedHashMap linkedHashMap = f.f7743a;
+        LinkedHashMap linkedHashMap = f.f7835a;
         String str4 = request.d;
         Context context = this.e;
         kotlin.jvm.internal.i.e(context, "context");
-        if (k6.d.d.d(context, k6.e.f15018a) == 0) {
+        if (l6.d.d.d(context, l6.e.f16931a) == 0) {
             PackageManager packageManager = context.getPackageManager();
             kotlin.jvm.internal.i.d(packageManager, "getPackageManager(...)");
             if (Build.VERSION.SDK_INT >= 28) {
                 PackageInfo packageInfo = packageManager.getPackageInfo("com.google.android.gms", 0);
                 kotlin.jvm.internal.i.d(packageInfo, "getPackageInfo(...)");
-                j10 = b5.d.s(packageInfo);
+                j10 = c5.d.s(packageInfo);
             } else {
                 j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
             }
@@ -156,7 +156,7 @@ public final class e extends b1.d {
             }
         }
         JSONObject jSONObject = new JSONObject(str4);
-        byte[] a2 = p6.a(jSONObject);
+        byte[] a2 = ib.a(jSONObject);
         JSONObject jSONObject2 = jSONObject.getJSONObject("user");
         String str5 = "id";
         String string = jSONObject2.getString("id");
@@ -191,7 +191,7 @@ public final class e extends b1.d {
                             int i10 = 0;
                             while (i10 < length) {
                                 JSONObject jSONObject4 = jSONArray2.getJSONObject(i10);
-                                LinkedHashMap linkedHashMap2 = f.f7743a;
+                                LinkedHashMap linkedHashMap2 = f.f7835a;
                                 byte[] bArr = a2;
                                 int i11 = (int) jSONObject4.getLong("alg");
                                 String optString4 = jSONObject4.optString("type", "");
@@ -211,14 +211,14 @@ public final class e extends b1.d {
                             byte[] bArr2 = a2;
                             y yVar2 = yVar;
                             ArrayList arrayList3 = new ArrayList();
-                            LinkedHashMap linkedHashMap3 = f.f7743a;
+                            LinkedHashMap linkedHashMap3 = f.f7835a;
                             if (jSONObject.has("excludeCredentials")) {
                                 JSONArray jSONArray3 = jSONObject.getJSONArray("excludeCredentials");
                                 int length2 = jSONArray3.length();
                                 int i12 = 0;
                                 while (i12 < length2) {
                                     JSONObject jSONObject5 = jSONArray3.getJSONObject(i12);
-                                    LinkedHashMap linkedHashMap4 = f.f7743a;
+                                    LinkedHashMap linkedHashMap4 = f.f7835a;
                                     String string5 = jSONObject5.getString(str5);
                                     kotlin.jvm.internal.i.d(string5, "getString(...)");
                                     y yVar3 = yVar2;
@@ -241,7 +241,7 @@ public final class e extends b1.d {
                                                         arrayList.add(Transport.a(jSONArray4.getString(i13)));
                                                         i13++;
                                                         jSONArray4 = jSONArray5;
-                                                    } catch (a7.a e) {
+                                                    } catch (b7.a e) {
                                                         throw new y0.a(new x0.a(4), e.getMessage());
                                                     }
                                                 }
@@ -265,14 +265,14 @@ public final class e extends b1.d {
                                 }
                             }
                             y yVar4 = yVar2;
-                            LinkedHashMap linkedHashMap5 = f.f7743a;
+                            LinkedHashMap linkedHashMap5 = f.f7835a;
                             String str6 = "none";
                             String optString5 = jSONObject.optString("attestation", "none");
                             kotlin.jvm.internal.i.b(optString5);
                             if (optString5.length() != 0) {
                                 str6 = optString5;
                             }
-                            c7.e a10 = c7.e.a(str6);
+                            d7.e a10 = d7.e.a(str6);
                             if (jSONObject.has("timeout")) {
                                 d = Double.valueOf(jSONObject.getLong("timeout") / 1000);
                             } else {
@@ -292,19 +292,19 @@ public final class e extends b1.d {
                                 String optString7 = jSONObject6.optString("authenticatorAttachment", "");
                                 kotlin.jvm.internal.i.b(optString7);
                                 if (optString7.length() > 0) {
-                                    cVar = c7.c.a(optString7);
+                                    cVar = d7.c.a(optString7);
                                 } else {
                                     cVar = null;
                                 }
                                 if (cVar == null) {
                                     str = null;
                                 } else {
-                                    str = cVar.f4939a;
+                                    str = cVar.f8162a;
                                 }
                                 if (e0Var == null) {
                                     str2 = null;
                                 } else {
-                                    str2 = e0Var.f4948a;
+                                    str2 = e0Var.f8171a;
                                 }
                                 fVar = null;
                                 mVar = new m(str, valueOf, null, str2);
@@ -331,11 +331,11 @@ public final class e extends b1.d {
                                 } else {
                                     i0Var = fVar;
                                 }
-                                fVar2 = new c7.f(sVar, null, i0Var, null, null, null, null, null, tVar, null, null, null);
+                                fVar2 = new d7.f(sVar, null, i0Var, null, null, null, null, null, tVar, null, null, null);
                             } else {
                                 fVar2 = fVar;
                             }
-                            return new v(yVar4, b0Var, bArr2, arrayList2, d, arrayList3, mVar, null, null, a10.f4945a, fVar2, null, null);
+                            return new v(yVar4, b0Var, bArr2, arrayList2, d, arrayList3, mVar, null, null, a10.f8168a, fVar2, null, null);
                         }
                         throw new JSONException("PublicKeyCredentialCreationOptions rp ID is missing or unexpectedly empty");
                     }

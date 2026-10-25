@@ -1,45 +1,117 @@
 package org.telegram.messenger;
 
+import android.util.SparseArray;
+import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.FactCheckController;
+import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_bots;
-import org.telegram.tgnet.tl.TL_stories;
-public final class k2 implements Utilities.Callback {
-    public final int f18809a;
-    public final Object f18810b;
-    public final Object f18811c;
-    public final Object d;
+import org.telegram.tgnet.tl.TL_update;
+public final class k2 implements Runnable {
+    public final int f20478a;
+    public final Object f20479b;
+    public final Object f20480c;
 
-    public k2(Object obj, Object obj2, Object obj3, int i10) {
-        this.f18809a = i10;
-        this.f18810b = obj;
-        this.f18811c = obj2;
-        this.d = obj3;
+    public k2(int i10, Object obj, Object obj2) {
+        this.f20478a = i10;
+        this.f20479b = obj;
+        this.f20480c = obj2;
     }
 
     @Override
-    public final void run(Object obj) {
-        switch (this.f18809a) {
+    public final void run() {
+        switch (this.f20478a) {
             case 0:
-                ((FactCheckController) this.f18810b).lambda$getFactCheck$0((FactCheckController.Key) this.f18811c, (MessageObject) this.d, (TLRPC.TL_factCheck) obj);
+                ((FactCheckController) this.f20479b).lambda$applyFactCheck$14((TLRPC.Updates) this.f20480c);
                 return;
             case 1:
-                ChannelBoostsController.lambda$userCanBoostChannel$2((ChannelBoostsController.CanApplyBoost) this.f18810b, (TL_stories.TL_premium_boostsStatus) this.f18811c, (Utilities.Callback) this.d, (TL_stories.TL_premium_myBoosts) obj);
+                FactCheckController.lambda$saveToDatabase$6((MessagesStorage) this.f20479b, (TLRPC.TL_factCheck) this.f20480c);
                 return;
             case 2:
-                ((FileRefController) this.f18810b).lambda$requestReferenceFromServer$1((String) this.f18811c, (String) this.d, (ci.r6) obj);
+                ((FileLoadOperation) this.f20479b).lambda$start$12((boolean[]) this.f20480c);
                 return;
             case 3:
-                MediaDataController.lambda$fillWithAnimatedEmoji$227((boolean[]) this.f18810b, (ArrayList[]) this.f18811c, (Runnable) this.d, (ArrayList) obj);
+                ((FileLoadOperation) this.f20479b).lambda$addPart$3((ArrayList) this.f20480c);
                 return;
             case 4:
-                MediaDataController.lambda$setPlaceholderImage$31((String) this.f18810b, (org.telegram.ui.Components.u9) this.f18811c, (String) this.d, (TLRPC.TL_messages_stickerSet) obj);
+                ((FileLoader) this.f20479b).lambda$uploadFile$21((NotificationCenter.NotificationCenterDelegate[]) this.f20480c);
+                return;
+            case 5:
+                ((FileLoader) this.f20479b).lambda$checkCurrentDownloadsFiles$19((ArrayList) this.f20480c);
+                return;
+            case 6:
+                FileLog.lambda$e$3((String) this.f20479b, (Throwable) this.f20480c);
+                return;
+            case 7:
+                ((FilePathDatabase) this.f20479b).lambda$removeFiles$6((List) this.f20480c);
+                return;
+            case 8:
+                ((FileRefController) this.f20479b).lambda$onRequestComplete$47((TLRPC.User) this.f20480c);
+                return;
+            case 9:
+                ((FileRefController) this.f20479b).lambda$onRequestComplete$50((TLRPC.TL_messages_stickerSet) this.f20480c);
+                return;
+            case 10:
+                ((GiftAuctionController) this.f20479b).lambda$sendBid$7((TLRPC.TL_payments_paymentResult) this.f20480c);
+                return;
+            case 11:
+                ((ImageLoader) this.f20479b).lambda$checkMediaPaths$1((Runnable) this.f20480c);
+                return;
+            case 12:
+                ImageLoader.lambda$checkMediaPaths$0((SparseArray) this.f20479b, (Runnable) this.f20480c);
+                return;
+            case 13:
+                ((MediaController) this.f20479b).lambda$playEmojiSound$17((File) this.f20480c);
+                return;
+            case 14:
+                MediaController.lambda$playEmojiSound$18((AccountInstance) this.f20479b, (TLRPC.TL_document) this.f20480c);
+                return;
+            case 15:
+                ((MediaController) this.f20479b).lambda$processMediaObserver$6((ArrayList) this.f20480c);
+                return;
+            case 16:
+                ((MediaController) this.f20479b).lambda$startAudioAgain$7((MessageObject) this.f20480c);
+                return;
+            case 17:
+                MediaDataController.lambda$loadReplyMessagesForMessages$172((AtomicInteger) this.f20479b, (Runnable) this.f20480c);
+                return;
+            case 18:
+                MediaDataController.lambda$fillWithAnimatedEmoji$229((boolean[]) this.f20479b, (c7) this.f20480c);
+                return;
+            case 19:
+                ((MediaDataController) this.f20479b).lambda$loadGroupStickerSet$44((TLRPC.StickerSet) this.f20480c);
+                return;
+            case 20:
+                ((MediaDataController) this.f20479b).lambda$loadHints$147((TLRPC.TL_contacts_topPeers) this.f20480c);
+                return;
+            case 21:
+                ((MessageObject) this.f20479b).lambda$loadAnimatedEmojiDocument$0((TLRPC.Document) this.f20480c);
+                return;
+            case 22:
+                MessagesController.lambda$setCustomChatReactions$473((Utilities.Callback) this.f20479b, (TLRPC.TL_error) this.f20480c);
+                return;
+            case 23:
+                ((MessagesController) this.f20479b).lambda$getSponsoredMessages$443((TLRPC.messages_SponsoredMessages) this.f20480c);
+                return;
+            case 24:
+                ((MessagesController) this.f20479b).lambda$createChat$256((TLRPC.TL_messages_invitedUsers) this.f20480c);
+                return;
+            case 25:
+                ((MessagesController) this.f20479b).lambda$processMessageIDUpdate$378((TL_update.TL_updateMessageID) this.f20480c);
+                return;
+            case 26:
+                ((MessagesController) this.f20479b).lambda$createChat$259((TLRPC.Updates) this.f20480c);
+                return;
+            case 27:
+                ((MessagesController) this.f20479b).lambda$checkTosUpdate$161((TLRPC.TL_help_termsOfServiceUpdate) this.f20480c);
+                return;
+            case 28:
+                ((MessagesController) this.f20479b).lambda$getSendAsPeers$446((TLRPC.TL_channels_sendAsPeers) this.f20480c);
                 return;
             default:
-                MessagesController.lambda$openApp$502((boolean[]) this.f18810b, (TL_bots.BotInfo[]) this.f18811c, (Runnable) this.d, (TLRPC.UserFull) obj);
+                ((MessagesController) this.f20479b).lambda$processUpdateArray$397((TL_update.TL_updateServiceNotification) this.f20480c);
                 return;
         }
     }

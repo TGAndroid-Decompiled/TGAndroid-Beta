@@ -1,302 +1,524 @@
 package hi;
 
-import ci.j4;
-import org.telegram.messenger.AccountInstance;
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import bi.cc;
+import bi.md;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.ImageLocation;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.c2;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.b50;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.xj0;
+import org.telegram.tgnet.tl.TL_payments;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.j5;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Cells.b8;
+import org.telegram.ui.Cells.na;
+import org.telegram.ui.Components.ds;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.Components.w01;
+import org.telegram.ui.Components.wc;
+import org.telegram.ui.Components.z90;
 import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.a50;
-import org.telegram.ui.b81;
-import org.telegram.ui.bo;
-import org.telegram.ui.fz;
-import org.telegram.ui.ko;
-import org.telegram.ui.md;
-import org.telegram.ui.u50;
-import org.telegram.ui.w60;
-public final class k implements Runnable {
-    public final int f12193a;
-    public final TLRPC.InputFile f12194b;
-    public final TLRPC.InputFile f12195c;
-    public final TLRPC.VideoSize d;
-    public final String e;
-    public final double f12196f;
-    public final TLRPC.PhotoSize h;
-    public final TLRPC.PhotoSize f12197n;
-    public final b50 f12198r;
+import org.telegram.ui.d20;
+import org.telegram.ui.z10;
+public final class k extends d20 implements NotificationCenter.NotificationCenterDelegate {
+    public final long R;
+    public FrameLayout S;
+    public ug.n T;
+    public LinearLayout U;
+    public bi.v V;
+    public z90 W;
+    public boolean Y;
+    public TL_payments.starRefProgram Z;
+    public TL_payments.starRefProgram f13053a0;
+    public boolean f13056d0;
+    public f f13057e0;
+    public final d X = new d(this, 0);
+    public String[] f13054b0 = null;
+    public final List f13055c0 = Arrays.asList(1, 3, 6, 12, 24, 36, 0);
 
-    public k(o oVar, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize2) {
-        this.f12193a = 0;
-        this.f12198r = oVar;
-        this.h = photoSize;
-        this.f12194b = inputFile;
-        this.f12195c = inputFile2;
-        this.d = videoSize;
-        this.f12196f = d;
-        this.e = str;
-        this.f12197n = photoSize2;
+    public k(long j10) {
+        this.R = j10;
+        this.M = true;
+        this.L = AndroidUtilities.dp(60.0f);
     }
 
-    @Override
-    public final void run() {
-        boolean z10;
-        boolean z11;
-        switch (this.f12193a) {
-            case 0:
-                o oVar = (o) this.f12198r;
-                oVar.getClass();
-                TLRPC.PhotoSize photoSize = this.h;
-                TLRPC.FileLocation fileLocation = photoSize.location;
-                oVar.G = fileLocation;
-                TLRPC.InputFile inputFile = this.f12194b;
-                TLRPC.InputFile inputFile2 = this.f12195c;
-                TLRPC.VideoSize videoSize = this.d;
-                if (inputFile == null && inputFile2 == null && videoSize == null) {
-                    oVar.f12229w.h(ImageLocation.getForLocal(fileLocation), "50_50", oVar.E, oVar.I);
-                    oVar.a0(true, false);
-                    z10 = true;
-                } else {
-                    z10 = true;
-                    oVar.getMessagesController().changeChatAvatar(oVar.f12224c, null, inputFile, inputFile2, videoSize, this.f12196f, this.e, photoSize.location, this.f12197n.location, null);
-                    oVar.a0(false, true);
-                }
-                oVar.e.Z2.N(z10);
-                return;
-            case 1:
-                md mdVar = (md) this.f12198r;
-                TLRPC.InputFile inputFile3 = this.f12194b;
-                TLRPC.InputFile inputFile4 = this.f12195c;
-                if (inputFile3 == null && inputFile4 == null) {
-                    TLRPC.FileLocation fileLocation2 = this.h.location;
-                    mdVar.f39566y = fileLocation2;
-                    mdVar.E = this.f12197n.location;
-                    mdVar.f39542f.h(ImageLocation.getForLocal(fileLocation2), "50_50", mdVar.v, null);
-                    mdVar.f0(true, false);
-                    return;
-                }
-                mdVar.m0 = inputFile3;
-                mdVar.f39551n0 = inputFile4;
-                mdVar.f39552o0 = this.d;
-                mdVar.f39553p0 = this.e;
-                mdVar.f39554q0 = this.f12196f;
-                if (mdVar.f39556r0) {
-                    c2 c2Var = mdVar.f39561v0;
-                    if (c2Var != null) {
-                        try {
-                            c2Var.dismiss();
-                            mdVar.f39561v0 = null;
-                        } catch (Exception e) {
-                            FileLog.e(e);
-                        }
-                    }
-                    mdVar.h0(false);
-                    mdVar.f39558s0 = false;
-                    mdVar.f39534a.performClick();
-                }
-                mdVar.f0(false, true);
-                mdVar.f39550n.setImageDrawable(null);
-                return;
-            case 2:
-                ko koVar = (ko) this.f12198r;
-                TLRPC.PhotoSize photoSize2 = this.h;
-                TLRPC.FileLocation fileLocation3 = photoSize2.location;
-                koVar.f38977u0 = fileLocation3;
-                TLRPC.InputFile inputFile5 = this.f12194b;
-                TLRPC.InputFile inputFile6 = this.f12195c;
-                TLRPC.VideoSize videoSize2 = this.d;
-                if (inputFile5 == null && inputFile6 == null && videoSize2 == null) {
-                    j4 j4Var = koVar.e;
-                    ImageLocation forLocal = ImageLocation.getForLocal(fileLocation3);
-                    f9 f9Var = koVar.f38972r;
-                    Object obj = koVar.C0;
-                    if (obj == null) {
-                        obj = koVar.f38980w0;
-                    }
-                    j4Var.h(forLocal, "50_50", f9Var, obj);
-                    koVar.f38954b0.o(R.drawable.msg_addphoto, LocaleController.getString("ChatSetNewPhoto", R.string.ChatSetNewPhoto), true);
-                    if (koVar.Q0 == null) {
-                        koVar.Q0 = new xj0(R.raw.camera_outline, AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), false, null);
-                    }
-                    koVar.f38954b0.e.setTranslationX(-AndroidUtilities.dp(8.0f));
-                    koVar.f38954b0.e.setAnimation(koVar.Q0);
-                    koVar.n0(true, false);
-                    return;
-                }
-                int i10 = (koVar.B0 > 0L ? 1 : (koVar.B0 == 0L ? 0 : -1));
-                TLRPC.PhotoSize photoSize3 = this.f12197n;
-                long j10 = 0;
-                double d = this.f12196f;
-                if (i10 != 0) {
-                    TLRPC.User user = koVar.C0;
-                    if (user != null) {
-                        user.photo = new TLRPC.TL_userProfilePhoto();
-                        TLRPC.UserProfilePhoto userProfilePhoto = koVar.C0.photo;
-                        if (inputFile5 != null) {
-                            j10 = inputFile5.f20358id;
-                        } else if (inputFile6 != null) {
-                            j10 = inputFile6.f20358id;
-                        }
-                        userProfilePhoto.photo_id = j10;
-                        userProfilePhoto.photo_big = photoSize3.location;
-                        userProfilePhoto.photo_small = photoSize2.location;
-                        koVar.getMessagesController().putUser(koVar.C0, true);
-                    }
-                    TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto = new TLRPC.TL_photos_uploadProfilePhoto();
-                    if (inputFile5 != null) {
-                        tL_photos_uploadProfilePhoto.file = inputFile5;
-                        tL_photos_uploadProfilePhoto.flags |= 1;
-                    }
-                    if (inputFile6 != null) {
-                        tL_photos_uploadProfilePhoto.video = inputFile6;
-                        int i11 = tL_photos_uploadProfilePhoto.flags;
-                        tL_photos_uploadProfilePhoto.video_start_ts = d;
-                        tL_photos_uploadProfilePhoto.flags = i11 | 6;
-                    }
-                    if (videoSize2 != null) {
-                        tL_photos_uploadProfilePhoto.video_emoji_markup = videoSize2;
-                        tL_photos_uploadProfilePhoto.flags |= 16;
-                    }
-                    tL_photos_uploadProfilePhoto.bot = koVar.getMessagesController().getInputUser(koVar.C0);
-                    tL_photos_uploadProfilePhoto.flags |= 32;
-                    koVar.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto, new bo(koVar, 1));
-                    z11 = false;
-                } else {
-                    z11 = false;
-                    koVar.getMessagesController().changeChatAvatar(koVar.f38978v0, null, inputFile5, inputFile6, videoSize2, d, this.e, photoSize2.location, photoSize3.location, null);
-                }
-                if (koVar.L0) {
-                    try {
-                        c2 c2Var2 = koVar.f38953b;
-                        if (c2Var2 != null && c2Var2.isShowing()) {
-                            koVar.f38953b.dismiss();
-                            koVar.f38953b = null;
-                        }
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
-                    }
-                    koVar.M0 = z11;
-                    koVar.f38951a.performClick();
-                }
-                koVar.n0(z11, true);
-                return;
-            case 3:
-                org.telegram.ui.b50 b50Var = (org.telegram.ui.b50) this.f12198r;
-                long j11 = b50Var.e;
-                u50 u50Var = b50Var.f35930f;
-                AccountInstance accountInstance = u50Var.d;
-                TLRPC.InputFile inputFile7 = this.f12194b;
-                TLRPC.InputFile inputFile8 = this.f12195c;
-                TLRPC.VideoSize videoSize3 = this.d;
-                TLRPC.PhotoSize photoSize4 = this.h;
-                TLRPC.PhotoSize photoSize5 = this.f12197n;
-                if (inputFile7 == null && inputFile8 == null && videoSize3 == null) {
-                    b50Var.f35929c = photoSize4.location;
-                    TLRPC.FileLocation fileLocation4 = photoSize5.location;
-                    b50Var.f35928b = fileLocation4;
-                    ImageLocation forLocal2 = ImageLocation.getForLocal(fileLocation4);
-                    b50Var.d = forLocal2;
-                    u50Var.f42219b.A(forLocal2, ImageLocation.getForLocal(b50Var.f35929c));
-                    AndroidUtilities.updateVisibleRows(u50Var.Q);
-                    return;
-                }
-                int i12 = (j11 > 0L ? 1 : (j11 == 0L ? 0 : -1));
-                double d10 = this.f12196f;
-                String str = this.e;
-                if (i12 > 0) {
-                    TLRPC.TL_photos_uploadProfilePhoto tL_photos_uploadProfilePhoto2 = new TLRPC.TL_photos_uploadProfilePhoto();
-                    if (inputFile7 != null) {
-                        tL_photos_uploadProfilePhoto2.file = inputFile7;
-                        tL_photos_uploadProfilePhoto2.flags |= 1;
-                    }
-                    if (inputFile8 != null) {
-                        tL_photos_uploadProfilePhoto2.video = inputFile8;
-                        int i13 = tL_photos_uploadProfilePhoto2.flags;
-                        tL_photos_uploadProfilePhoto2.video_start_ts = d10;
-                        tL_photos_uploadProfilePhoto2.flags = i13 | 6;
-                    }
-                    if (videoSize3 != null) {
-                        tL_photos_uploadProfilePhoto2.video_emoji_markup = videoSize3;
-                        tL_photos_uploadProfilePhoto2.flags |= 16;
-                    }
-                    accountInstance.getConnectionsManager().sendRequest(tL_photos_uploadProfilePhoto2, new a50(0, b50Var, str));
-                    return;
-                }
-                accountInstance.getMessagesController().changeChatAvatar(-j11, null, inputFile7, inputFile8, videoSize3, d10, str, photoSize4.location, photoSize5.location, new fz(b50Var, 7));
-                return;
-            case 4:
-                w60 w60Var = (w60) this.f12198r;
-                TLRPC.InputFile inputFile9 = this.f12194b;
-                TLRPC.InputFile inputFile10 = this.f12195c;
-                TLRPC.VideoSize videoSize4 = this.d;
-                if (inputFile9 == null && inputFile10 == null && videoSize4 == null) {
-                    TLRPC.FileLocation fileLocation5 = this.h.location;
-                    w60Var.f42925y = fileLocation5;
-                    w60Var.E = this.f12197n.location;
-                    w60Var.d.h(ImageLocation.getForLocal(fileLocation5), "50_50", w60Var.f42921r, null);
-                    w60Var.Z(true, false);
-                    return;
-                }
-                w60Var.F = inputFile9;
-                w60Var.G = inputFile10;
-                w60Var.H = videoSize4;
-                w60Var.I = this.e;
-                w60Var.J = this.f12196f;
-                if (w60Var.L) {
-                    w60Var.getMessagesController().createChat(w60Var.f42918c.getText().toString(), w60Var.K, null, w60Var.P, w60Var.S, w60Var.U, w60Var.T, w60Var.W, w60Var);
-                }
-                w60Var.Z(false, true);
-                w60Var.f42919f.setImageDrawable(null);
-                return;
-            case 5:
-                ProfileActivity.X((ProfileActivity) this.f12198r, this.f12194b, this.f12195c, this.d, this.f12196f, this.e, this.h, this.f12197n);
-                return;
-            default:
-                b81.e0((b81) this.f12198r, this.f12194b, this.f12195c, this.d, this.f12196f, this.e, this.h, this.f12197n);
-                return;
+    public static String F0(int i10) {
+        float f7 = i10 / 10.0f;
+        if (((int) f7) == f7) {
+            Locale locale = Locale.US;
+            return a1.g.m(i10 / 10, "%");
+        }
+        return String.format(Locale.US, "%.1f%%", Float.valueOf(f7));
+    }
+
+    public static void w0(k kVar, Context context) {
+        String formatPluralString;
+        int i10;
+        int i11;
+        if (!kVar.V.f10687c0) {
+            return;
+        }
+        FrameLayout frameLayout = new FrameLayout(context);
+        w01 w01Var = new w01(context, kVar.resourceProvider);
+        d dVar = new d(kVar, 1);
+        w01Var.c(LocaleController.getString(R.string.AffiliateProgramCommission), F0(kVar.f13053a0.commission_permille), null, null);
+        String string = LocaleController.getString(R.string.AffiliateProgramDuration);
+        int i12 = kVar.f13053a0.duration_months;
+        if (i12 <= 0) {
+            formatPluralString = LocaleController.getString(R.string.Infinity);
+        } else if (i12 >= 12 && i12 % 12 == 0) {
+            formatPluralString = LocaleController.formatPluralString("Years", i12 / 12, new Object[0]);
+        } else {
+            formatPluralString = LocaleController.formatPluralString("Months", i12, new Object[0]);
+        }
+        w01Var.c(string, formatPluralString, null, null);
+        frameLayout.addView(w01Var, gb1.h(-1, -2.0f, 119, 24.0f, 0.0f, 24.0f, 0.0f));
+        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(context, 0, kVar.resourceProvider);
+        alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AffiliateProgramAlert);
+        if (kVar.Y) {
+            i10 = R.string.AffiliateProgramStartAlertText;
+        } else {
+            i10 = R.string.AffiliateProgramUpdateAlertText;
+        }
+        alertDialog$Builder.f22366a.T = LocaleController.getString(i10);
+        alertDialog$Builder.o(frameLayout);
+        if (kVar.Y) {
+            i11 = R.string.AffiliateProgramStartAlertButton;
+        } else {
+            i11 = R.string.AffiliateProgramUpdateAlertButton;
+        }
+        alertDialog$Builder.k(LocaleController.getString(i11), new e1.c(dVar, 14));
+        ic.a.r(R.string.Cancel, alertDialog$Builder, null);
+    }
+
+    public static void x0(k kVar, org.telegram.ui.ActionBar.e2 e2Var, TLObject tLObject, TLRPC.TL_error tL_error) {
+        long j10 = kVar.R;
+        e2Var.dismiss();
+        if (tLObject instanceof TL_payments.starRefProgram) {
+            TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) tLObject;
+            TLRPC.UserFull userFull = kVar.getMessagesController().getUserFull(j10);
+            if (userFull != null) {
+                userFull.starref_program = starrefprogram;
+                kVar.getMessagesStorage().updateUserInfo(userFull, false);
+                NotificationCenter.getInstance(kVar.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j10), userFull);
+            }
+            kVar.C0(false);
+        } else if (tL_error != null) {
+            wc.e0(tL_error);
         }
     }
 
-    public k(o2 o2Var, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, String str, double d, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, int i10) {
-        this.f12193a = i10;
-        this.f12198r = (b50) o2Var;
-        this.f12194b = inputFile;
-        this.f12195c = inputFile2;
-        this.d = videoSize;
-        this.e = str;
-        this.f12196f = d;
-        this.h = photoSize;
-        this.f12197n = photoSize2;
+    public static void y0(k kVar, org.telegram.ui.ActionBar.e2 e2Var, TLObject tLObject, TLRPC.TL_error tL_error) {
+        int i10;
+        long j10 = kVar.R;
+        e2Var.dismiss();
+        if (tLObject instanceof TL_payments.starRefProgram) {
+            TL_payments.starRefProgram starrefprogram = (TL_payments.starRefProgram) tLObject;
+            TLRPC.UserFull userFull = kVar.getMessagesController().getUserFull(j10);
+            if (userFull != null) {
+                TL_payments.starRefProgram starrefprogram2 = kVar.f13053a0;
+                starrefprogram2.flags |= 2;
+                int currentTime = kVar.getConnectionsManager().getCurrentTime();
+                if (kVar.getConnectionsManager().isTestBackend()) {
+                    i10 = 300;
+                } else {
+                    i10 = 86400;
+                }
+                starrefprogram2.end_date = currentTime + i10;
+                userFull.starref_program = starrefprogram;
+                kVar.getMessagesStorage().updateUserInfo(userFull, false);
+                NotificationCenter.getInstance(kVar.currentAccount).lambda$postNotificationNameOnUIThread$1(NotificationCenter.userInfoDidLoad, Long.valueOf(j10), userFull);
+            }
+            kVar.C0(true);
+        } else if (tL_error != null) {
+            wc.e0(tL_error);
+        }
     }
 
-    public k(ko koVar, TLRPC.PhotoSize photoSize, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, TLRPC.PhotoSize photoSize2, double d, String str) {
-        this.f12193a = 2;
-        this.f12198r = koVar;
-        this.h = photoSize;
-        this.f12194b = inputFile;
-        this.f12195c = inputFile2;
-        this.d = videoSize;
-        this.f12197n = photoSize2;
-        this.f12196f = d;
-        this.e = str;
+    public static void z0(k kVar, int i10) {
+        f fVar = kVar.f13057e0;
+        if (fVar != null) {
+            int i11 = fVar.G(i10).d;
+            if (i11 == 4) {
+                LinearLayout linearLayout = new LinearLayout(kVar.getParentActivity());
+                linearLayout.setOrientation(1);
+                linearLayout.setPadding(AndroidUtilities.dp(24.0f), 0, AndroidUtilities.dp(24.0f), 0);
+                TextView textView = new TextView(kVar.getParentActivity());
+                textView.setTextSize(1, 16.0f);
+                int i12 = y6.G6;
+                f7.V(textView, i12, kVar.resourceProvider);
+                org.telegram.messenger.t.n(R.string.AffiliateProgramStopText, textView);
+                linearLayout.addView(textView, gb1.o(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                md mdVar = new md(kVar.getParentActivity(), 2);
+                mdVar.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
+                mdVar.setTextSize(1, 16.0f);
+                f7.V(mdVar, i12, kVar.resourceProvider);
+                mdVar.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText1)));
+                linearLayout.addView(mdVar, gb1.o(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                md mdVar2 = new md(kVar.getParentActivity(), 2);
+                mdVar2.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
+                mdVar2.setTextSize(1, 16.0f);
+                f7.V(mdVar2, i12, kVar.resourceProvider);
+                mdVar2.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText2)));
+                linearLayout.addView(mdVar2, gb1.o(0.0f, 0.0f, 0.0f, 17.0f, -1, -2));
+                md mdVar3 = new md(kVar.getParentActivity(), 2);
+                mdVar3.setPadding(AndroidUtilities.dp(15.0f), 0, 0, 0);
+                mdVar3.setTextSize(1, 16.0f);
+                f7.V(mdVar3, i12, kVar.resourceProvider);
+                mdVar3.setText(AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramStopText3)));
+                linearLayout.addView(mdVar3, gb1.o(0.0f, 0.0f, 0.0f, 10.0f, -1, -2));
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(kVar.getParentActivity(), 0, kVar.resourceProvider);
+                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AffiliateProgramAlert);
+                alertDialog$Builder.o(linearLayout);
+                alertDialog$Builder.k(LocaleController.getString(R.string.AffiliateProgramStopButton), new e1.c(kVar, 15));
+                alertDialog$Builder.h(LocaleController.getString(R.string.Cancel), null);
+                alertDialog$Builder.d(-1);
+                alertDialog$Builder.p();
+            } else if (i11 == 2) {
+                kVar.presentFragment(new b5(kVar.R));
+            }
+        }
     }
 
-    public k(b50 b50Var, TLRPC.InputFile inputFile, TLRPC.InputFile inputFile2, TLRPC.VideoSize videoSize, double d, String str, TLRPC.PhotoSize photoSize, TLRPC.PhotoSize photoSize2, int i10) {
-        this.f12193a = i10;
-        this.f12198r = b50Var;
-        this.f12194b = inputFile;
-        this.f12195c = inputFile2;
-        this.d = videoSize;
-        this.f12196f = d;
-        this.e = str;
-        this.h = photoSize;
-        this.f12197n = photoSize2;
+    public final void C0(boolean z10) {
+        org.telegram.ui.ActionBar.r2 r2Var = null;
+        if (getParentLayout() != null && getParentLayout().getFragmentStack() != null) {
+            j5 parentLayout = getParentLayout();
+            List fragmentStack = parentLayout.getFragmentStack();
+            int size = fragmentStack.size() - 1;
+            while (true) {
+                if (size > 0) {
+                    org.telegram.ui.ActionBar.r2 r2Var2 = (org.telegram.ui.ActionBar.r2) fragmentStack.get(size);
+                    if ((r2Var2 instanceof ProfileActivity) && ((ProfileActivity) r2Var2).a() == this.R) {
+                        r2Var = r2Var2;
+                        break;
+                    }
+                    size--;
+                } else {
+                    size = -1;
+                    break;
+                }
+            }
+            if (r2Var != null) {
+                for (int size2 = fragmentStack.size() - 1; size2 > size; size2--) {
+                    ((ActionBarLayout) parentLayout).c0((org.telegram.ui.ActionBar.r2) fragmentStack.get(size2), false);
+                }
+                finishFragment();
+            } else {
+                finishFragment();
+                r2Var = parentLayout.getBackgroundFragment();
+            }
+        } else {
+            finishFragment();
+        }
+        if (r2Var != null) {
+            if (z10) {
+                wc.b0(r2Var).M(LocaleController.getString(R.string.AffiliateProgramEndedTitle), AndroidUtilities.replaceTags(LocaleController.getString(R.string.AffiliateProgramEndedText)), R.raw.linkbroken).j();
+                return;
+            }
+            wc.b0(r2Var).M(LocaleController.getString(R.string.AffiliateProgramStartedTitle), LocaleController.getString(R.string.AffiliateProgramStartedText), R.raw.contact_check).j();
+        }
+    }
+
+    public final void D0(ArrayList arrayList, j71 j71Var) {
+        int i10;
+        if (getParentActivity() == null) {
+            return;
+        }
+        t61 t61Var = new t61(-2);
+        t61Var.f32866c = (z10) super.k0(getParentActivity());
+        arrayList.add(t61Var);
+        arrayList.add(i.a(R.drawable.menu_feature_premium, LocaleController.getString(R.string.BotAffiliateProgramFeature1Title), LocaleController.getString(R.string.BotAffiliateProgramFeature1)));
+        arrayList.add(i.a(R.drawable.msg_channel, LocaleController.getString(R.string.BotAffiliateProgramFeature2Title), LocaleController.getString(R.string.BotAffiliateProgramFeature2)));
+        arrayList.add(i.a(R.drawable.menu_feature_links2, LocaleController.getString(R.string.BotAffiliateProgramFeature3Title), LocaleController.getString(R.string.BotAffiliateProgramFeature3)));
+        arrayList.add(t61.B(1, null));
+        arrayList.add(t61.u(LocaleController.getString(R.string.AffiliateProgramCommission)));
+        int i11 = getMessagesController().starrefMinCommissionPermille;
+        int i12 = this.f13053a0.commission_permille;
+        int i13 = getMessagesController().starrefMaxCommissionPermille;
+        ai.d0 d0Var = new ai.d0(2);
+        a aVar = new a(this, 1);
+        t61 t61Var2 = new t61(15);
+        t61Var2.f32885z = i12;
+        t61Var2.C = aVar;
+        b8 b8Var = new b8();
+        b8Var.f23904a = i11;
+        b8Var.f23905b = i13;
+        b8Var.e = new na(d0Var, 7);
+        t61Var2.G = b8Var;
+        t61Var2.B = -1L;
+        TL_payments.starRefProgram starrefprogram = this.Z;
+        if (starrefprogram == null) {
+            i10 = -1;
+        } else {
+            i10 = starrefprogram.commission_permille;
+        }
+        t61Var2.B = i10;
+        arrayList.add(t61Var2);
+        ic.a.z(R.string.AffiliateProgramCommissionInfo, arrayList);
+        ic.a.p(R.string.AffiliateProgramDuration, arrayList);
+        String[] strArr = this.f13054b0;
+        List list = this.f13055c0;
+        if (strArr == null) {
+            this.f13054b0 = new String[list.size()];
+            for (int i14 = 0; i14 < list.size(); i14++) {
+                int intValue = ((Integer) list.get(i14)).intValue();
+                if (intValue == 0) {
+                    this.f13054b0[i14] = LocaleController.getString(R.string.Infinity);
+                } else if (intValue >= 12 && intValue % 12 == 0) {
+                    this.f13054b0[i14] = LocaleController.formatPluralString("YearsShort", intValue / 12, new Object[0]);
+                } else {
+                    this.f13054b0[i14] = LocaleController.formatPluralString("MonthsShort", intValue, new Object[0]);
+                }
+            }
+        }
+        String[] strArr2 = this.f13054b0;
+        int indexOf = list.indexOf(Integer.valueOf(this.f13053a0.duration_months));
+        a aVar2 = new a(this, 2);
+        t61 t61Var3 = new t61(14);
+        t61Var3.f32876p = strArr2;
+        t61Var3.f32885z = indexOf;
+        t61Var3.C = aVar2;
+        t61Var3.B = -1L;
+        TL_payments.starRefProgram starrefprogram2 = this.Z;
+        if (starrefprogram2 != null) {
+            if (starrefprogram2.duration_months <= 0) {
+                t61Var3.B = list.size() - 1;
+            } else {
+                int size = list.size() - 1;
+                while (true) {
+                    if (size < 0) {
+                        break;
+                    }
+                    if (((Integer) list.get(size)).intValue() > 0 && ((Integer) list.get(size)).intValue() <= this.Z.duration_months) {
+                        t61Var3.B = size;
+                        break;
+                    }
+                    size--;
+                }
+            }
+        }
+        arrayList.add(t61Var3);
+        ic.a.z(R.string.AffiliateProgramDurationInfo, arrayList);
+        arrayList.add(g.a(2, getThemedColor(y6.uj), R.drawable.filled_earn_stars, LocaleController.getString(R.string.AffiliateProgramExistingProgramsTitle), LocaleController.getString(R.string.AffiliateProgramExistingProgramsText)));
+        arrayList.add(t61.B(3, null));
+        if (!this.Y && this.f13053a0.end_date == 0) {
+            t61 e = t61.e(4, LocaleController.getString(R.string.AffiliateProgramStop));
+            e.f32878r = true;
+            arrayList.add(e);
+            arrayList.add(t61.B(5, null));
+        }
+        arrayList.add(t61.B(6, null));
+        arrayList.add(t61.B(7, null));
+    }
+
+    public final TL_payments.starRefProgram E0() {
+        TL_payments.starRefProgram starrefprogram = new TL_payments.starRefProgram();
+        starrefprogram.commission_permille = Utilities.clamp(50, getMessagesController().starrefMaxCommissionPermille, getMessagesController().starrefMinCommissionPermille);
+        starrefprogram.duration_months = 1;
+        return starrefprogram;
+    }
+
+    public final void G0(boolean z10) {
+        int i10;
+        int i11;
+        bi.v vVar = this.V;
+        if (!this.Y && this.f13053a0.end_date == 0) {
+            i10 = R.string.AffiliateProgramUpdate;
+        } else {
+            i10 = R.string.AffiliateProgramStart;
+        }
+        vVar.i(LocaleController.getString(i10), z10, true);
+        d dVar = this.X;
+        AndroidUtilities.cancelRunOnUIThread(dVar);
+        dVar.run();
+        z90 z90Var = this.W;
+        if (!this.Y && this.f13053a0.end_date == 0) {
+            i11 = R.string.AffiliateProgramUpdateInfo;
+        } else {
+            i11 = R.string.AffiliateProgramStartInfo;
+        }
+        z90Var.setText(AndroidUtilities.replaceSingleTag(LocaleController.getString(i11), new d(this, 2)));
+        H0();
+        f fVar = this.f13057e0;
+        if (fVar != null) {
+            fVar.O(z10);
+        }
+    }
+
+    public final void H0() {
+        boolean z10;
+        TL_payments.starRefProgram starrefprogram;
+        bi.v vVar = this.V;
+        TL_payments.starRefProgram starrefprogram2 = this.f13053a0;
+        if (starrefprogram2.end_date == 0 && ((starrefprogram = this.Z) == null || starrefprogram.commission_permille != starrefprogram2.commission_permille || starrefprogram.duration_months != starrefprogram2.duration_months)) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        vVar.setEnabled(z10);
+    }
+
+    @Override
+    public final View createView(Context context) {
+        this.G = false;
+        this.E = AndroidUtilities.dp(238.0f);
+        f7.i(y6.f23445i5, new cc(this, context, 3), null);
+        super.createView(context);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.S = frameLayout;
+        frameLayout.setClickable(true);
+        ug.n nVar = new ug.n(context, 1, 3);
+        this.T = nVar;
+        ug.g gVar = nVar.f49813b;
+        gVar.f49797z = y6.fk;
+        gVar.A = y6.gk;
+        gVar.b();
+        this.T.setStarParticlesView(this.e);
+        this.S.addView(this.T, gb1.h(190, 190.0f, 17, 0.0f, 32.0f, 0.0f, 24.0f));
+        f0(LocaleController.getString(R.string.BotAffiliateProgramTitle), LocaleController.getString(R.string.BotAffiliateProgramText), this.S, null);
+        LinearLayout linearLayout = new LinearLayout(context);
+        this.U = linearLayout;
+        linearLayout.setOrientation(1);
+        f7.i(y6.f23354d6, this.U, getResourceProvider());
+        View view = new View(context);
+        f7.i(y6.f23355d7, view, getResourceProvider());
+        this.U.addView(view, new LinearLayout.LayoutParams(gb1.I(-1.0f), gb1.I(1.0f / AndroidUtilities.density)));
+        bi.v vVar = new bi.v(2, context, this.resourceProvider, true);
+        vVar.setRoundRadius(24);
+        this.V = vVar;
+        vVar.i(LocaleController.getString(R.string.AffiliateProgramStart), false, true);
+        this.V.setOnClickListener(new bi.q(17, this, context));
+        this.U.addView(this.V, gb1.o(10.0f, 10.0f, 10.0f, 7.0f, -1, 48));
+        z90 z90Var = new z90(context, this.resourceProvider);
+        this.W = z90Var;
+        f7.V(z90Var, y6.f23765z6, getResourceProvider());
+        f7.H(this.W, y6.gc, getResourceProvider());
+        this.W.setTextSize(1, 12.0f);
+        this.W.setGravity(17);
+        this.U.addView(this.W, gb1.o(32.0f, 1.0f, 32.0f, 8.0f, -1, -2));
+        G0(false);
+        ((FrameLayout) this.fragmentView).addView(this.U, gb1.i(-1, -2, 87));
+        this.f38713c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f));
+        this.f38713c.setOnItemClickListener(new ai.k(this, 13));
+        s4.l lVar = new s4.l();
+        lVar.f47760m = false;
+        lVar.C = false;
+        lVar.o(ds.h);
+        lVar.n(350L);
+        this.f38713c.setItemAnimator(lVar);
+        return this.fragmentView;
+    }
+
+    @Override
+    public final s4.h0 g0() {
+        f fVar = new f(this, this.f38713c, getParentActivity(), this.currentAccount, this.classGuid, new ai.e(this, 26), getResourceProvider());
+        this.f13057e0 = fVar;
+        return fVar;
+    }
+
+    @Override
+    public final int getNavigationBarColor() {
+        return getThemedColor(y6.f23354d6);
+    }
+
+    @Override
+    public final tg.x1 i0() {
+        e eVar = new e(getParentActivity(), 0);
+        eVar.c();
+        return eVar;
+    }
+
+    @Override
+    public final View k0(Context context) {
+        throw null;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        this.f13056d0 = true;
+        this.Y = true;
+        this.f13053a0 = E0();
+        this.Z = null;
+        MessagesController messagesController = getMessagesController();
+        long j10 = this.R;
+        TLRPC.UserFull userFull = messagesController.getUserFull(j10);
+        if (userFull != null) {
+            this.Y = false;
+            TL_payments.starRefProgram starrefprogram = userFull.starref_program;
+            this.f13053a0 = starrefprogram;
+            if (starrefprogram == null) {
+                this.Y = true;
+                this.f13053a0 = E0();
+                this.Z = null;
+            } else {
+                TL_payments.starRefProgram starrefprogram2 = new TL_payments.starRefProgram();
+                this.Z = starrefprogram2;
+                TL_payments.starRefProgram starrefprogram3 = this.f13053a0;
+                starrefprogram2.commission_permille = starrefprogram3.commission_permille;
+                starrefprogram2.duration_months = starrefprogram3.duration_months;
+            }
+        } else {
+            TLRPC.User user = getMessagesController().getUser(Long.valueOf(j10));
+            if (user != null) {
+                getMessagesController().loadFullUser(user, getClassGuid(), true, new a(this, 0));
+            }
+        }
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final void onFragmentDestroy() {
+        this.f13056d0 = false;
+        AndroidUtilities.cancelRunOnUIThread(this.X);
+        super.onFragmentDestroy();
+    }
+
+    @Override
+    public final void onInsets(int i10, int i11, int i12, int i13) {
+        this.f38713c.setPadding(0, 0, 0, AndroidUtilities.dp(84.0f) + i13);
+        this.f38713c.setClipToPadding(false);
+        this.U.setPadding(0, 0, 0, i13);
+    }
+
+    @Override
+    public final void onPause() {
+        super.onPause();
+        ug.n nVar = this.T;
+        if (nVar != null) {
+            nVar.setPaused(true);
+            this.T.setDialogVisible(true);
+        }
+    }
+
+    @Override
+    public final void onResume() {
+        super.onResume();
+        ug.n nVar = this.T;
+        if (nVar != null) {
+            nVar.setPaused(false);
+            this.T.setDialogVisible(false);
+        }
+    }
+
+    @Override
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
     }
 }

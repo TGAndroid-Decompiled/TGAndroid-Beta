@@ -1,65 +1,59 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.widget.LinearLayout;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class cp0 extends LinearLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.Components.w90 f36382a;
-    public final org.telegram.ui.Components.w90 f36383b;
-    public final ep0 f36384c;
+import android.graphics.Canvas;
+public final class cp0 extends org.telegram.ui.Components.mm0 {
+    public final int f38506f3;
+    public final lp0 f38507g3;
 
-    public cp0(ep0 ep0Var, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.g6 g6Var;
-        int i10;
-        org.telegram.ui.ActionBar.g6 g6Var2;
-        this.f36384c = ep0Var;
-        setOrientation(1);
-        int i11 = org.telegram.ui.ActionBar.k6.f21184d6;
-        kp0 kp0Var = ep0Var.f36983p0;
-        org.telegram.ui.ActionBar.r6.i(i11, this, kp0Var.getResourceProvider());
-        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(getContext());
-        u9Var.setImageDrawable(new org.telegram.ui.Components.xj0(R.raw.utyan_draw, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
-        addView(u9Var, w7.z5.t(120, 120, 1, 0, 6, 0, 0));
-        Context context2 = getContext();
-        int i12 = org.telegram.ui.ActionBar.k6.f21572y6;
-        g6Var = ((org.telegram.ui.ActionBar.o2) kp0Var).resourceProvider;
-        org.telegram.ui.Components.w90 a2 = w7.d6.a(context2, 14.0f, i12, false, g6Var);
-        this.f36382a = a2;
-        a2.setGravity(17);
-        if (ep0Var.m0 == 0) {
-            i10 = R.string.Gift2PeerColorProfileEmptyTitle;
-        } else {
-            i10 = R.string.Gift2PeerColorReplyEmptyTitle;
+    public cp0(lp0 lp0Var, Context context, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
+        super(context, u6Var);
+        this.f38507g3 = lp0Var;
+        this.f38506f3 = i10;
+    }
+
+    @Override
+    public final Integer W0(int i10) {
+        lp0 lp0Var = this.f38507g3;
+        if ((i10 >= lp0Var.f41314b0 && i10 < lp0Var.f41316c0) || (i10 >= lp0Var.f41317d0 && i10 < lp0Var.f41318e0)) {
+            return 0;
         }
-        a2.setText(LocaleController.getString(i10));
-        addView(a2, w7.z5.t(-1, -2, 1, 64, 8, 64, 8));
-        Context context3 = getContext();
-        int i13 = org.telegram.ui.ActionBar.k6.f21243gc;
-        g6Var2 = ((org.telegram.ui.ActionBar.o2) kp0Var).resourceProvider;
-        org.telegram.ui.Components.w90 a10 = w7.d6.a(context3, 14.0f, i13, false, g6Var2);
-        this.f36383b = a10;
-        a10.setGravity(17);
-        a10.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2PeerColorEmptyButton), new nj0(this, 12)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.33f), 1.0f));
-        addView(a10, w7.z5.t(-1, -2, 1, 32, 4, 32, 24));
+        return super.W0(i10);
     }
 
     @Override
-    public final void updateColors() {
-        kp0 kp0Var = this.f36384c.f36983p0;
-        setBackgroundColor(kp0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21184d6));
-        this.f36382a.setTextColor(kp0Var.getThemedColor(org.telegram.ui.ActionBar.k6.f21572y6));
-        int i10 = org.telegram.ui.ActionBar.k6.f21243gc;
-        int themedColor = kp0Var.getThemedColor(i10);
-        org.telegram.ui.Components.w90 w90Var = this.f36383b;
-        w90Var.setTextColor(themedColor);
-        w90Var.setLinkTextColor(kp0Var.getThemedColor(i10));
+    public final void dispatchDraw(Canvas canvas) {
+        super.dispatchDraw(canvas);
+        lp0 lp0Var = this.f38507g3;
+        if (lp0Var.G && lp0Var.E != null && lp0Var.F != null) {
+            int save = canvas.save();
+            canvas.translate(lp0Var.E.getLeft() + lp0Var.F.getLeft(), lp0Var.F.getTop());
+            lp0Var.E.draw(canvas);
+            canvas.restoreToCount(save);
+        }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        bi.t9 t9Var;
+        super.onLayout(z10, i10, i11, i12, i13);
+        lp0 lp0Var = this.f38507g3;
+        rp0 rp0Var = lp0Var.f41330p0;
+        lp0Var.h();
+        if (lp0Var.K != null) {
+            if (lp0Var.J != null && lp0Var.c()) {
+                lp0Var.J.g(false);
+                return;
+            }
+            return;
+        }
+        if (this.f38506f3 == 1) {
+            t9Var = rp0Var.f43226c;
+        } else {
+            t9Var = rp0Var.f43224b;
+        }
+        if (t9Var != null && lp0Var.c()) {
+            t9Var.b();
+        }
     }
 }

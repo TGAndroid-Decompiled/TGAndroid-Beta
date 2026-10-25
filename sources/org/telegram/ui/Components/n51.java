@@ -1,43 +1,31 @@
 package org.telegram.ui.Components;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import android.widget.ScrollView;
-import org.telegram.messenger.R;
-public final class n51 extends ScrollView {
-    public Drawable f28791a;
-    public d6 f28792b;
-    public boolean f28793c;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+public final class n51 extends xh.n {
+    public final org.telegram.ui.w10 U;
+    public final q51 V;
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        super.dispatchDraw(canvas);
-        d6 d6Var = this.f28792b;
-        if (canScrollVertically(-1)) {
-            f7 = 1.0f;
-        } else {
-            f7 = 0.0f;
-        }
-        float d = d6Var.d(f7, false) * 0.5f;
-        if (d > 0.0f) {
-            if (this.f28791a == null) {
-                this.f28791a = getContext().getResources().getDrawable(R.drawable.header_shadow);
-            }
-            this.f28791a.setBounds(0, getScrollY(), getWidth(), this.f28791a.getIntrinsicHeight() + getScrollY());
-            this.f28791a.setAlpha((int) (d * 255.0f));
-            this.f28791a.draw(canvas);
-        }
+    public n51(q51 q51Var, Context context) {
+        super(context);
+        this.V = q51Var;
+        this.U = new org.telegram.ui.w10();
     }
 
     @Override
-    public final void onNestedScroll(View view, int i10, int i11, int i12, int i13) {
-        super.onNestedScroll(view, i10, i11, i12, i13);
-        boolean canScrollVertically = canScrollVertically(-1);
-        if (this.f28793c != canScrollVertically) {
-            invalidate();
-            this.f28793c = canScrollVertically;
-        }
+    public final void onDraw(Canvas canvas) {
+        int dp = AndroidUtilities.dp(8.0f) + this.V.d.getWidth();
+        canvas.saveLayerAlpha(getScrollX(), 0.0f, (getWidth() + getScrollX()) - dp, getHeight(), 255, 31);
+        super.onDraw(canvas);
+        canvas.save();
+        canvas.translate(getPaddingLeft(), getPaddingTop());
+        hx0.a(canvas, getLayout());
+        canvas.restore();
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set((getWidth() - dp) - AndroidUtilities.dp(24.0f), 0.0f, getWidth() - dp, getHeight());
+        this.U.b(canvas, rectF, 2, 1.0f);
+        canvas.restore();
     }
 }

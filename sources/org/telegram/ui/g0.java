@@ -8,41 +8,41 @@ import org.telegram.tgnet.RequestDelegate;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 public final class g0 implements RequestDelegate {
-    public final int f37410a = 0;
-    public final int f37411b;
-    public final boolean f37412c;
+    public final int f39505a = 0;
+    public final int f39506b;
+    public final boolean f39507c;
     public final Object d;
     public final Object e;
-    public final Object f37413f;
-    public final Object f37414g;
+    public final Object f39508f;
+    public final Object f39509g;
 
-    public g0(k4 k4Var, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
-        this.d = k4Var;
-        this.f37411b = i10;
+    public g0(j4 j4Var, int i10, TLRPC.WebPage webPage, MessageObject messageObject, boolean z10, String str) {
+        this.d = j4Var;
+        this.f39506b = i10;
         this.e = webPage;
-        this.f37413f = messageObject;
-        this.f37412c = z10;
-        this.f37414g = str;
+        this.f39508f = messageObject;
+        this.f39507c = z10;
+        this.f39509g = str;
     }
 
     @Override
     public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37410a) {
+        switch (this.f39505a) {
             case 0:
-                AndroidUtilities.runOnUIThread(new w((k4) this.d, tLObject, this.f37411b, (TLRPC.WebPage) this.e, (MessageObject) this.f37413f, this.f37412c, (String) this.f37414g));
+                AndroidUtilities.runOnUIThread(new w((j4) this.d, tLObject, this.f39506b, (TLRPC.WebPage) this.e, (MessageObject) this.f39508f, this.f39507c, (String) this.f39509g));
                 return;
             default:
-                AndroidUtilities.runOnUIThread(new w((pf.c) this.d, (org.telegram.ui.ActionBar.c2[]) this.e, tLObject, this.f37411b, (Uri) this.f37413f, (Context) this.f37414g, this.f37412c));
+                AndroidUtilities.runOnUIThread(new w((qf.c) this.d, (org.telegram.ui.ActionBar.e2[]) this.e, tLObject, this.f39506b, (Uri) this.f39508f, (Context) this.f39509g, this.f39507c));
                 return;
         }
     }
 
-    public g0(pf.c cVar, org.telegram.ui.ActionBar.c2[] c2VarArr, int i10, Uri uri, Context context, boolean z10) {
+    public g0(qf.c cVar, org.telegram.ui.ActionBar.e2[] e2VarArr, int i10, Uri uri, Context context, boolean z10) {
         this.d = cVar;
-        this.e = c2VarArr;
-        this.f37411b = i10;
-        this.f37413f = uri;
-        this.f37414g = context;
-        this.f37412c = z10;
+        this.e = e2VarArr;
+        this.f39506b = i10;
+        this.f39508f = uri;
+        this.f39509g = context;
+        this.f39507c = z10;
     }
 }

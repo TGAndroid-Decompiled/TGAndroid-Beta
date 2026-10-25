@@ -1,26 +1,24 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.tgnet.TLRPC;
-public final class n40 extends org.telegram.ui.Components.hr0 {
-    public final u50 f39720e1;
+import android.view.ViewGroup;
+import android.view.ViewTreeObserver;
+import org.telegram.messenger.AndroidUtilities;
+public final class n40 implements ViewTreeObserver.OnPreDrawListener {
+    public final v50 f41752a;
 
-    public n40(u50 u50Var, Context context, String str, String str2, String str3, String str4) {
-        super(context, null, str, str2, false, str3, str4, true);
-        this.f39720e1 = u50Var;
+    public n40(v50 v50Var) {
+        this.f41752a = v50Var;
     }
 
     @Override
-    public final void W0(a0.h hVar, int i10, TLRPC.TL_forumTopic tL_forumTopic, boolean z10) {
-        if (!z10) {
-            return;
-        }
-        int m10 = hVar.m();
-        u50 u50Var = this.f39720e1;
-        if (m10 == 1) {
-            u50Var.k1().m(((TLRPC.Dialog) hVar.n(0)).f20348id, Integer.valueOf(i10), 41);
-        } else {
-            u50Var.k1().k(0L, 41, Integer.valueOf(i10), Integer.valueOf(hVar.m()), null, null);
-        }
+    public final boolean onPreDraw() {
+        ViewGroup viewGroup;
+        v50 v50Var = this.f41752a;
+        v50Var.Q.getViewTreeObserver().removeOnPreDrawListener(this);
+        v50Var.a2.j(null);
+        AndroidUtilities.updateVisibleRows(v50Var.f44656m2);
+        viewGroup = ((org.telegram.ui.ActionBar.k3) v50Var).containerView;
+        viewGroup.requestLayout();
+        return false;
     }
 }

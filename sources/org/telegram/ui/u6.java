@@ -1,24 +1,42 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
 import android.view.View;
-import android.widget.FrameLayout;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class u6 extends FrameLayout {
-    public org.telegram.ui.Components.o6 f42328a;
-    public t6 f42329b;
+import org.telegram.messenger.FileLog;
+public final class u6 extends View implements org.telegram.ui.ActionBar.p6 {
+    public Paint f44023a;
+    public Paint f44024b;
+    public float f44025c;
+    public org.telegram.ui.Components.h6 d;
 
-    public final void a(float f7) {
-        org.telegram.ui.Components.o6 o6Var = this.f42328a;
-        o6Var.a();
-        o6Var.c(String.format("%d%%", Integer.valueOf((int) Math.ceil(w7.r.a(f7, 0.0f, 1.0f) * 100.0f))), !LocaleController.isRTL, true);
-        t6 t6Var = this.f42329b;
-        t6Var.f41889c = f7;
-        t6Var.invalidate();
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        RectF rectF = AndroidUtilities.rectTmp;
+        rectF.set(0.0f, 0.0f, getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f44024b);
+        rectF.set(0.0f, 0.0f, this.d.d(this.f44025c, false) * getMeasuredWidth(), getMeasuredHeight());
+        canvas.drawRoundRect(rectF, AndroidUtilities.dp(3.0f), AndroidUtilities.dp(3.0f), this.f44023a);
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(350.0f), 1073741824));
+    public final void updateColors() {
+        try {
+            Paint paint = this.f44023a;
+            int i10 = org.telegram.ui.ActionBar.y6.N6;
+            paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
+            this.f44024b.setColor(org.telegram.ui.ActionBar.y6.o1(0.2f, org.telegram.ui.ActionBar.y6.x0(null, i10, false)));
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
+    }
+
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

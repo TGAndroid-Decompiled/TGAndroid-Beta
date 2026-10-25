@@ -1,65 +1,96 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
+import android.content.Context;
+import android.view.MotionEvent;
 import android.view.View;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class hn extends TextView implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.Cells.y f37904a;
-    public int f37905b;
-    public boolean f37906c;
-    public final sn d;
+import java.util.ArrayList;
+import java.util.Collections;
+public final class hn extends View {
+    public final ArrayList f40036a;
+    public final ArrayList f40037b;
+    public final un f40038c;
 
-    public hn(sn snVar, Activity activity) {
-        super(activity);
-        this.d = snVar;
-        setSingleLine(true);
-        setLines(1);
-        setMaxLines(1);
-        setEllipsize(TextUtils.TruncateAt.END);
-        org.telegram.ui.ActionBar.r6.W(this, org.telegram.ui.ActionBar.k6.Sh, snVar.getResourceProvider());
-        int themedColor = snVar.getThemedColor(org.telegram.ui.ActionBar.k6.Oh);
-        this.f37905b = themedColor;
-        org.telegram.ui.Cells.y e = org.telegram.ui.ActionBar.a6.e(new float[]{16.0f}, themedColor);
-        this.f37904a = e;
-        setBackground(e);
-        setTextSize(1, 14.0f);
-        setTypeface(AndroidUtilities.bold());
-        setGravity(17);
-        setPadding(AndroidUtilities.dp(14.0f), 0, AndroidUtilities.dp(14.0f), 0);
+    public hn(un unVar, Context context) {
+        super(context);
+        this.f40038c = unVar;
+        this.f40036a = new ArrayList();
+        this.f40037b = new ArrayList();
+    }
+
+    public final void a() {
+        ArrayList arrayList = this.f40036a;
+        arrayList.clear();
+        un unVar = this.f40038c;
+        arrayList.add(unVar.W1);
+        arrayList.add(unVar.f44468x0);
+        arrayList.add(unVar.X);
+        arrayList.add(unVar.W3);
+        arrayList.add(unVar.U1);
+        arrayList.add(unVar.f44294j3);
+        arrayList.add(unVar.Y);
+        arrayList.add(unVar.f44442v1);
+        arrayList.add(unVar.S);
+        arrayList.add(unVar.f44219d2);
+        arrayList.removeAll(Collections.singleton(null));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(Math.min(View.MeasureSpec.getSize(i10), (int) (AndroidUtilities.displaySize.x * 0.45f)), Integer.MIN_VALUE), i11);
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        return false;
     }
 
     @Override
-    public final void updateColors() {
-        try {
-            int themedColor = this.d.getThemedColor(org.telegram.ui.ActionBar.k6.Oh);
-            if (themedColor == this.f37905b && this.f37906c == org.telegram.ui.ActionBar.k6.I.q()) {
-                return;
-            }
-            Drawable background = getBackground();
-            org.telegram.ui.Cells.y yVar = this.f37904a;
-            if (background == yVar) {
-                this.f37906c = org.telegram.ui.ActionBar.k6.I.q();
-                org.telegram.ui.ActionBar.k6.E1(yVar, themedColor, false);
-                org.telegram.ui.ActionBar.k6.E1(yVar, org.telegram.ui.ActionBar.a6.b(themedColor), true);
-                this.f37905b = themedColor;
-                invalidate();
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        un unVar = this.f40038c;
+        unVar.Oc = true;
+        ArrayList arrayList = this.f40037b;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            ((View) obj).setVisibility(0);
         }
+        arrayList.clear();
+        unVar.Oc = false;
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        a();
+        un unVar = this.f40038c;
+        unVar.Oc = true;
+        ArrayList arrayList = this.f40036a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view.getVisibility() == 0) {
+                view.setVisibility(8);
+                this.f40037b.add(view);
+            }
+        }
+        unVar.Oc = false;
+    }
+
+    @Override
+    public void setTranslationX(float f7) {
+        super.setTranslationX(f7);
+        a();
+        ArrayList arrayList = this.f40036a;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            View view = (View) obj;
+            if (view != null) {
+                view.setTranslationX(f7);
+            }
+        }
     }
 }

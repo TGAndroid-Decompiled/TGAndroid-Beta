@@ -1,21 +1,37 @@
 package org.telegram.ui.ActionBar;
 
 import android.content.Context;
-import android.view.MotionEvent;
-import android.widget.ImageButton;
-public final class u4 extends ImageButton {
-    public final y4 f21912a;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+public final class u4 extends ArrayAdapter {
+    public final a5 f23128a;
 
-    public u4(y4 y4Var, Context context) {
-        super(context);
-        this.f21912a = y4Var;
+    public u4(a5 a5Var, Context context) {
+        super(context, 0);
+        this.f23128a = a5Var;
     }
 
     @Override
-    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
-        if (this.f21912a.N) {
-            return false;
+    public final View getView(int i10, View view, ViewGroup viewGroup) {
+        a5 a5Var = this.f23128a;
+        com.google.firebase.messaging.m mVar = a5Var.f22408q;
+        MenuItem menuItem = (MenuItem) getItem(i10);
+        int width = a5Var.I.getWidth();
+        boolean z10 = false;
+        if (view != null) {
+            int i11 = mVar.f7751a;
+            if (((a5) mVar.e).Q.f22509j != null) {
+                z10 = true;
+            }
+            c5.e(view, menuItem, z10);
+        } else {
+            view = c5.b(((a5) mVar.e).Q, (Context) mVar.f7753c, menuItem, true, false, false);
+            int i12 = mVar.f7752b;
+            view.setPadding(i12, 0, i12, 0);
         }
-        return super.dispatchTouchEvent(motionEvent);
+        view.setMinimumWidth(width);
+        return view;
     }
 }

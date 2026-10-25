@@ -1,43 +1,34 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MrzRecognizer;
-public final class pj0 implements v9 {
-    public final qj0 f40583a;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class pj0 implements RequestDelegate {
+    public final int f42560a;
+    public final xj0 f42561b;
 
-    public pj0(qj0 qj0Var) {
-        this.f40583a = qj0Var;
+    public pj0(xj0 xj0Var, int i10) {
+        this.f42560a = i10;
+        this.f42561b = xj0Var;
     }
 
     @Override
-    public final void E(String str) {
-        int i10;
-        String b10 = pf.d.b(str);
-        if (!TextUtils.isEmpty(b10)) {
-            i10 = ((org.telegram.ui.ActionBar.h3) this.f40583a).currentAccount;
-            MessagesController.getInstance(i10).getUserNameResolver().resolve(b10, new ci.e(18));
-            return;
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f42560a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new wb0(22, this.f42561b, tLObject));
+                return;
+            default:
+                boolean z10 = tLObject instanceof TLRPC.Updates;
+                xj0 xj0Var = this.f42561b;
+                if (z10) {
+                    xj0Var.getMessagesController().lambda$processUpdates$379((TLRPC.Updates) tLObject, false);
+                    return;
+                } else {
+                    xj0Var.getClass();
+                    return;
+                }
         }
-        AndroidUtilities.runOnUIThread(new hf0(1));
-    }
-
-    @Override
-    public final boolean U0(String str, n9 n9Var) {
-        return false;
-    }
-
-    @Override
-    public final String p0() {
-        return null;
-    }
-
-    @Override
-    public final void F0(MrzRecognizer.Result result) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

@@ -1,48 +1,27 @@
 package x7;
 
 import java.util.Map;
-import java.util.Set;
-public abstract class e implements q {
-    public transient a f49801a;
-    public transient e9.e f49802b;
+public final class e implements ka.d {
+    public static final e f51436b = new e(0);
+    public static final e f51437c = new e(1);
+    public final int f51438a;
 
-    public final Map a() {
-        e9.e eVar = this.f49802b;
-        if (eVar == null) {
-            f fVar = (f) this;
-            e9.e eVar2 = new e9.e(fVar, fVar.f49815c, 1);
-            this.f49802b = eVar2;
-            return eVar2;
-        }
-        return eVar;
+    public e(int i10) {
+        this.f51438a = i10;
     }
 
-    public final Set b() {
-        a aVar = this.f49801a;
-        if (aVar == null) {
-            f fVar = (f) this;
-            a aVar2 = new a(fVar, fVar.f49815c);
-            this.f49801a = aVar2;
-            return aVar2;
+    @Override
+    public final void a(Object obj, Object obj2) {
+        switch (this.f51438a) {
+            case 0:
+                Map.Entry entry = (Map.Entry) obj;
+                ka.e eVar = (ka.e) obj2;
+                eVar.a(f.f51448g, entry.getKey());
+                eVar.a(f.h, entry.getValue());
+                return;
+            default:
+                ka.e eVar2 = (ka.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type ".concat(String.valueOf(obj.getClass().getCanonicalName())));
         }
-        return aVar;
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj == this) {
-            return true;
-        }
-        if (!(obj instanceof q)) {
-            return false;
-        }
-        return a().equals(((e) ((q) obj)).a());
-    }
-
-    public final int hashCode() {
-        return ((e9.e) a()).f8440b.hashCode();
-    }
-
-    public final String toString() {
-        return ((e9.e) a()).f8440b.toString();
     }
 }

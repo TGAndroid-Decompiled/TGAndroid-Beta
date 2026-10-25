@@ -1,24 +1,24 @@
 package z9;
-public final class k implements ja.d {
-    public static final k f51874a = new Object();
-    public static final ja.c f51875b = ja.c.c("execution");
-    public static final ja.c f51876c = ja.c.c("customAttributes");
-    public static final ja.c d = ja.c.c("internalKeys");
-    public static final ja.c e = ja.c.c("background");
-    public static final ja.c f51877f = ja.c.c("currentProcessDetails");
-    public static final ja.c f51878g = ja.c.c("appProcessDetails");
-    public static final ja.c h = ja.c.c("uiOrientation");
+
+import java.io.File;
+import java.nio.charset.Charset;
+public final class k implements c {
+    public static final Charset f52831c = Charset.forName("UTF-8");
+    public final File f52832a;
+    public j f52833b;
+
+    public k(File file) {
+        this.f52832a = file;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        m0 m0Var = (m0) ((u1) obj);
-        eVar.d(f51875b, m0Var.f51896a);
-        eVar.d(f51876c, m0Var.f51897b);
-        eVar.d(d, m0Var.f51898c);
-        eVar.d(e, m0Var.d);
-        eVar.d(f51877f, m0Var.e);
-        eVar.d(f51878g, m0Var.f51899f);
-        eVar.g(h, m0Var.f51900g);
+    public final void a() {
+        y9.h.c(this.f52833b, "There was a problem closing the Crashlytics log file.");
+        this.f52833b = null;
+    }
+
+    @Override
+    public final java.lang.String y() {
+        throw new UnsupportedOperationException("Method not decompiled: z9.k.y():java.lang.String");
     }
 }

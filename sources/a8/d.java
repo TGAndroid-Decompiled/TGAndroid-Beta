@@ -1,122 +1,187 @@
 package a8;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.os.Looper;
-import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import g6.v;
-import g6.w;
-import kotlin.jvm.internal.i;
-import m.s3;
-import n6.p;
-import v8.o;
-import x5.h;
-import y8.y0;
-public final class d {
-    public final int f312a;
+import java.util.AbstractMap;
+import java.util.ConcurrentModificationException;
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+public abstract class d implements Iterator {
+    public final int f395a = 0;
+    public int f396b;
+    public int f397c;
+    public int d;
+    public final AbstractMap e;
 
-    public d(int i10) {
-        this.f312a = i10;
+    public d(g gVar) {
+        this.e = gVar;
+        this.f396b = gVar.e;
+        this.f397c = gVar.isEmpty() ? -1 : 0;
+        this.d = -1;
     }
 
-    public com.google.android.gms.common.api.c a(Context context, Looper looper, s3 commonSettings, Object obj, k kVar, l lVar) {
-        switch (this.f312a) {
+    public abstract Object a(int i10);
+
+    public abstract Object b(int i10);
+
+    @Override
+    public final boolean hasNext() {
+        switch (this.f395a) {
+            case 0:
+                if (this.f397c >= 0) {
+                    return true;
+                }
+                return false;
             case 1:
-                c6.e eVar = (c6.e) obj;
-                n6.l.i(eVar, "Setting the API options is required.");
-                return new w(context, looper, commonSettings, eVar.f4838a, 0, eVar.f4840c, eVar.d, kVar, lVar);
-            case 2:
-                c6.e eVar2 = (c6.e) obj;
-                n6.l.i(eVar2, "Setting the API options is required.");
-                return new v(context, looper, commonSettings, eVar2.f4838a, 0, eVar2.f4839b, eVar2.f4840c, kVar, lVar);
-            case 3:
-                com.google.android.gms.common.api.a aVar = (com.google.android.gms.common.api.a) obj;
-                return new n6.g(context, looper, 161, commonSettings, kVar, lVar, 0);
-            case 4:
-            case 6:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
+                if (this.f397c >= 0) {
+                    return true;
+                }
+                return false;
             default:
-                switch (this.f312a) {
-                    case 0:
-                        com.google.android.gms.common.api.a apiOptions = (com.google.android.gms.common.api.a) obj;
-                        i.e(context, "context");
-                        i.e(looper, "looper");
-                        i.e(commonSettings, "commonSettings");
-                        i.e(apiOptions, "apiOptions");
-                        return new n6.g(context, looper, 380, commonSettings, kVar, lVar, 0);
-                    case 4:
-                        com.google.android.gms.common.api.a apiOptions2 = (com.google.android.gms.common.api.a) obj;
-                        i.e(context, "context");
-                        i.e(looper, "looper");
-                        i.e(commonSettings, "commonSettings");
-                        i.e(apiOptions2, "apiOptions");
-                        return new n6.g(context, looper, 352, commonSettings, kVar, lVar, 0);
-                    case 6:
-                        h hVar = (h) obj;
-                        return new i7.c(context, looper, kVar, lVar, commonSettings);
-                    case 11:
-                        return new p6.c(context, looper, commonSettings, (p) obj, kVar, lVar);
-                    case 12:
-                        com.google.android.gms.common.api.a aVar2 = (com.google.android.gms.common.api.a) obj;
-                        return new n6.g(context, looper, 19, commonSettings, kVar, lVar, 0);
-                    case 13:
-                        com.google.android.gms.common.api.a aVar3 = (com.google.android.gms.common.api.a) obj;
-                        return new r7.k(context, looper, kVar, lVar, commonSettings);
-                    case 14:
-                        com.google.android.gms.common.api.a aVar4 = (com.google.android.gms.common.api.a) obj;
-                        return new n6.g(context, looper, 308, commonSettings, kVar, lVar, 0);
-                    case 19:
-                        com.google.android.gms.common.api.a aVar5 = (com.google.android.gms.common.api.a) obj;
-                        return new n6.g(context, looper, 126, commonSettings, kVar, lVar, 0);
-                    default:
-                        throw new UnsupportedOperationException("buildClient must be implemented");
+                if (this.f397c >= 0) {
+                    return true;
                 }
-            case 5:
-                return new n6.g(context, looper, 40, commonSettings, kVar, lVar, 0);
-            case 7:
-                com.google.android.gms.common.api.a aVar6 = (com.google.android.gms.common.api.a) obj;
-                return new b8.a(context, looper, kVar, lVar, commonSettings);
-            case 8:
-                com.google.android.gms.common.api.a aVar7 = (com.google.android.gms.common.api.a) obj;
-                return new n6.g(context, looper, 148, commonSettings, kVar, lVar, 0);
-            case 9:
-                n8.a aVar8 = (n8.a) obj;
-                commonSettings.getClass();
-                Integer num = (Integer) commonSettings.h;
-                Bundle bundle = new Bundle();
-                bundle.putParcelable("com.google.android.gms.signin.internal.clientRequestedAccount", null);
-                if (num != null) {
-                    bundle.putInt("com.google.android.gms.common.internal.ClientSettings.sessionId", num.intValue());
-                }
-                bundle.putBoolean("com.google.android.gms.signin.internal.offlineAccessRequested", false);
-                bundle.putBoolean("com.google.android.gms.signin.internal.idTokenRequested", false);
-                bundle.putString("com.google.android.gms.signin.internal.serverClientId", null);
-                bundle.putBoolean("com.google.android.gms.signin.internal.usePromptModeForAuthCode", true);
-                bundle.putBoolean("com.google.android.gms.signin.internal.forceCodeForRefreshToken", false);
-                bundle.putString("com.google.android.gms.signin.internal.hostedDomain", null);
-                bundle.putString("com.google.android.gms.signin.internal.logSessionId", null);
-                bundle.putBoolean("com.google.android.gms.signin.internal.waitForAccessTokenRefresh", false);
-                return new o8.a(context, looper, commonSettings, bundle, kVar, lVar);
-            case 10:
-                throw a1.g.i(obj);
-            case 15:
-                o oVar = (o) obj;
-                if (oVar == null) {
-                    oVar = new o(new com.google.android.gms.internal.cast.a());
-                }
-                return new e8.b(context, looper, commonSettings, kVar, lVar, oVar.f48743a);
-            case 16:
-                return new i7.g(context, looper, commonSettings, (w5.b) obj, kVar, lVar);
-            case 17:
-                return new a6.e(context, looper, commonSettings, (GoogleSignInOptions) obj, kVar, lVar);
-            case 18:
-                x8.i iVar = (x8.i) obj;
-                return new y0(context, looper, kVar, lVar, commonSettings);
+                return false;
         }
+    }
+
+    @Override
+    public final Object next() {
+        switch (this.f395a) {
+            case 0:
+                g gVar = (g) this.e;
+                if (gVar.e == this.f396b) {
+                    if (hasNext()) {
+                        int i10 = this.f397c;
+                        this.d = i10;
+                        Object b10 = b(i10);
+                        int i11 = this.f397c + 1;
+                        if (i11 >= gVar.f472f) {
+                            i11 = -1;
+                        }
+                        this.f397c = i11;
+                        return b10;
+                    }
+                    throw new NoSuchElementException();
+                }
+                throw new ConcurrentModificationException();
+            case 1:
+                f9.s sVar = (f9.s) this.e;
+                if (sVar.e == this.f396b) {
+                    if (hasNext()) {
+                        int i12 = this.f397c;
+                        this.d = i12;
+                        Object a2 = a(i12);
+                        int i13 = this.f397c + 1;
+                        if (i13 >= sVar.f10339f) {
+                            i13 = -1;
+                        }
+                        this.f397c = i13;
+                        return a2;
+                    }
+                    throw new NoSuchElementException();
+                }
+                throw new ConcurrentModificationException();
+            default:
+                y7.i iVar = (y7.i) this.e;
+                if (iVar.e == this.f396b) {
+                    if (hasNext()) {
+                        int i14 = this.f397c;
+                        this.d = i14;
+                        Object b11 = b(i14);
+                        int i15 = this.f397c + 1;
+                        if (i15 >= iVar.f52172f) {
+                            i15 = -1;
+                        }
+                        this.f397c = i15;
+                        return b11;
+                    }
+                    throw new NoSuchElementException();
+                }
+                throw new ConcurrentModificationException();
+        }
+    }
+
+    @Override
+    public final void remove() {
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        switch (this.f395a) {
+            case 0:
+                g gVar = (g) this.e;
+                int i10 = gVar.e;
+                int i11 = this.f396b;
+                if (i10 == i11) {
+                    int i12 = this.d;
+                    if (i12 >= 0) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    if (z10) {
+                        this.f396b = i11 + 32;
+                        Object[] objArr = gVar.f471c;
+                        objArr.getClass();
+                        gVar.remove(objArr[i12]);
+                        this.f397c--;
+                        this.d = -1;
+                        return;
+                    }
+                    throw new IllegalStateException("no calls to next() since the last call to remove()");
+                }
+                throw new ConcurrentModificationException();
+            case 1:
+                f9.s sVar = (f9.s) this.e;
+                if (sVar.e == this.f396b) {
+                    if (this.d >= 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    yb.o("no calls to next() since the last call to remove()", z11);
+                    this.f396b += 32;
+                    sVar.remove(sVar.j()[this.d]);
+                    this.f397c--;
+                    this.d = -1;
+                    return;
+                }
+                throw new ConcurrentModificationException();
+            default:
+                y7.i iVar = (y7.i) this.e;
+                int i13 = iVar.e;
+                int i14 = this.f396b;
+                if (i13 == i14) {
+                    int i15 = this.d;
+                    if (i15 >= 0) {
+                        z12 = true;
+                    } else {
+                        z12 = false;
+                    }
+                    if (z12) {
+                        this.f396b = i14 + 32;
+                        Object[] objArr2 = iVar.f52171c;
+                        objArr2.getClass();
+                        iVar.remove(objArr2[i15]);
+                        this.f397c--;
+                        this.d = -1;
+                        return;
+                    }
+                    throw new IllegalStateException("no calls to next() since the last call to remove()");
+                }
+                throw new ConcurrentModificationException();
+        }
+    }
+
+    public d(y7.i iVar) {
+        this.e = iVar;
+        this.f396b = iVar.e;
+        this.f397c = iVar.isEmpty() ? -1 : 0;
+        this.d = -1;
+    }
+
+    public d(f9.s sVar) {
+        this.e = sVar;
+        this.f396b = sVar.e;
+        this.f397c = sVar.isEmpty() ? -1 : 0;
+        this.d = -1;
     }
 }

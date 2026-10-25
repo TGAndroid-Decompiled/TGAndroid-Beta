@@ -1,8 +1,8 @@
 package a4;
 
-import e2.m0;
+import a8.yb;
+import e2.n0;
 import e2.x;
-import v7.u6;
 public final class g {
     public final int f259a;
     public byte[] f260b;
@@ -12,7 +12,7 @@ public final class g {
 
     public g() {
         this.f259a = 2;
-        this.f260b = m0.f8260b;
+        this.f260b = n0.f9693b;
     }
 
     public void a() {
@@ -24,7 +24,7 @@ public final class g {
         } else {
             z10 = false;
         }
-        u6.p(z10);
+        yb.p(z10);
     }
 
     public int b() {
@@ -47,7 +47,7 @@ public final class g {
         } else {
             z10 = false;
         }
-        u6.p(z10);
+        yb.p(z10);
         return this.f261c;
     }
 
@@ -165,14 +165,14 @@ public final class g {
 
     public long i(int i10) {
         if (i10 <= 32) {
-            int g10 = g(i10);
-            String str = m0.f8259a;
-            return 4294967295L & g10;
+            int g7 = g(i10);
+            String str = n0.f9692a;
+            return 4294967295L & g7;
         }
-        int g11 = g(i10 - 32);
-        int g12 = g(32);
-        String str2 = m0.f8259a;
-        return (4294967295L & g12) | ((g11 & 4294967295L) << 32);
+        int g10 = g(i10 - 32);
+        int g11 = g(32);
+        String str2 = n0.f9692a;
+        return (4294967295L & g11) | ((g10 & 4294967295L) << 32);
     }
 
     public void j(int i10, byte[] bArr) {
@@ -182,7 +182,7 @@ public final class g {
         } else {
             z10 = false;
         }
-        u6.p(z10);
+        yb.p(z10);
         System.arraycopy(this.f260b, this.f261c, bArr, 0, i10);
         this.f261c += i10;
         a();
@@ -196,8 +196,8 @@ public final class g {
     }
 
     public void l(x xVar) {
-        k(xVar.f8300c, xVar.f8298a);
-        m(xVar.f8299b * 8);
+        k(xVar.f9734c, xVar.f9732a);
+        m(xVar.f9733b * 8);
     }
 
     public void m(int i10) {
@@ -235,7 +235,7 @@ public final class g {
                 if (i15 < 0 || (i15 >= (i11 = this.f261c) && (i15 != i11 || this.e != 0))) {
                     z10 = false;
                 }
-                u6.p(z10);
+                yb.p(z10);
                 return;
             default:
                 int i16 = i10 / 8;
@@ -259,7 +259,7 @@ public final class g {
         } else {
             z10 = false;
         }
-        u6.p(z10);
+        yb.p(z10);
         this.f261c += i10;
         a();
     }

@@ -1,68 +1,51 @@
 package rg;
 
-import org.telegram.ui.it0;
-import org.telegram.ui.sq0;
-public final class d0 implements qg.d1 {
-    public final sq0 f45737a;
-    public final it0 f45738b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class d0 extends AnimatorListenerAdapter {
+    public final u0 f47382a;
+    public final float f47383b;
+    public final m f47384c;
+    public final boolean d;
+    public final Runnable e;
+    public final e0 f47385f;
 
-    public d0(it0 it0Var, sq0 sq0Var) {
-        this.f45738b = it0Var;
-        this.f45737a = sq0Var;
+    public d0(e0 e0Var, u0 u0Var, float f7, m mVar, boolean z10, Runnable runnable) {
+        this.f47385f = e0Var;
+        this.f47382a = u0Var;
+        this.f47383b = f7;
+        this.f47384c = mVar;
+        this.d = z10;
+        this.e = runnable;
     }
 
     @Override
-    public final void a() {
-        this.f45737a.run();
-    }
-
-    @Override
-    public final void b() {
-        e0 e0Var = this.f45738b.X0;
-        if (e0Var != null) {
-            e0Var.invalidate();
-        }
-    }
-
-    @Override
-    public final void c() {
-        it0 it0Var = this.f45738b;
-        if (it0Var.f45901k1) {
-            it0Var.f45901k1 = false;
-            return;
-        }
-        it0Var.f45913t1.b(1);
-        it0Var.n((qg.m) qg.m.f44983a.get(0));
-    }
-
-    @Override
-    public final boolean d() {
-        boolean z10;
-        it0 it0Var = this.f45738b;
-        if (it0Var.S0 == null) {
-            z10 = true;
+    public final void onAnimationEnd(Animator animator) {
+        int currentColor;
+        b1 b1Var;
+        e0 e0Var = this.f47385f;
+        e0Var.f47407x = null;
+        r0 r0Var = new r0(new u0[]{this.f47382a});
+        c1 c1Var = e0Var.f47388a;
+        r0Var.f47528c = c1Var.getCurrentColor();
+        r0Var.d = this.f47383b * 1.0f;
+        m mVar = this.f47384c;
+        r0Var.e = mVar;
+        mVar.getClass();
+        if (mVar instanceof d) {
+            currentColor = -1;
         } else {
-            z10 = false;
+            currentColor = c1Var.getCurrentColor();
         }
-        if (!z10) {
-            it0Var.r0(null, true);
+        q0 painting = c1Var.getPainting();
+        boolean z10 = this.d;
+        painting.c(r0Var, currentColor, z10, null);
+        if (z10 && (b1Var = c1Var.f47372a) != null) {
+            b1Var.e();
         }
-        return z10;
-    }
-
-    @Override
-    public final void e() {
-        it0 it0Var = this.f45738b;
-        it0Var.F0.f45104a.e();
-        it0Var.l1.setViewHidden(false);
-    }
-
-    @Override
-    public final void f() {
-        it0 it0Var = this.f45738b;
-        if (it0Var.S0 != null) {
-            it0Var.r0(null, true);
+        Runnable runnable = this.e;
+        if (runnable != null) {
+            runnable.run();
         }
-        it0Var.l1.setViewHidden(true);
     }
 }

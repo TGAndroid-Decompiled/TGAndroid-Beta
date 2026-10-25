@@ -1,128 +1,336 @@
 package org.telegram.messenger;
 
-import java.util.ArrayList;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.messenger.TelegramMediaSession;
-import org.telegram.messenger.Utilities;
-import org.telegram.messenger.support.LongSparseIntArray;
-import org.telegram.tgnet.TLObject;
+import android.text.TextUtils;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
+import org.telegram.messenger.Timer;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
+import org.telegram.ui.ActionBar.ActionBarLayout;
+import org.telegram.ui.Components.zr0;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.cy;
+import org.telegram.ui.gq;
+import org.telegram.ui.ha0;
 public final class o8 implements Runnable {
-    public final int f19177a;
-    public final Object f19178b;
-    public final Object f19179c;
-    public final Object d;
+    public final int f20840a = 0;
+    public final boolean f20841b;
+    public final int f20842c;
+    public final long d;
+    public final Object e;
+    public final Object f20843f;
+    public final Object h;
+    public final Object f20844n;
+    public final Object f20845r;
+    public final Object f20846s;
+    public final Object v;
+    public final Object f20847w;
 
-    public o8(Object obj, Object obj2, Object obj3, int i10) {
-        this.f19177a = i10;
-        this.f19178b = obj;
-        this.d = obj2;
-        this.f19179c = obj3;
+    public o8(MediaDataController mediaDataController, Timer.Task task, a0.h hVar, AtomicInteger atomicInteger, Runnable runnable, int i10, Timer timer, a0.h hVar2, a0.h hVar3, boolean z10, long j10) {
+        this.e = mediaDataController;
+        this.f20843f = task;
+        this.h = hVar;
+        this.f20846s = atomicInteger;
+        this.v = runnable;
+        this.f20842c = i10;
+        this.f20847w = timer;
+        this.f20844n = hVar2;
+        this.f20845r = hVar3;
+        this.f20841b = z10;
+        this.d = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19177a) {
+        TLRPC.TL_chatAdminRights tL_chatAdminRights;
+        boolean z10;
+        boolean z11;
+        boolean z12;
+        boolean z13;
+        boolean z14;
+        boolean z15;
+        boolean z16;
+        boolean z17;
+        boolean z18;
+        boolean z19;
+        boolean z20;
+        int i10 = this.f20840a;
+        Object obj = this.f20847w;
+        Object obj2 = this.v;
+        Object obj3 = this.f20846s;
+        Object obj4 = this.f20845r;
+        Object obj5 = this.f20844n;
+        Object obj6 = this.h;
+        Object obj7 = this.f20843f;
+        Object obj8 = this.e;
+        switch (i10) {
             case 0:
-                ((MediaDataController) this.f19178b).lambda$putEmojiKeywords$216((TLRPC.TL_emojiKeywordsDifference) this.d, (String) this.f19179c);
-                return;
-            case 1:
-                ((MediaDataController) this.f19178b).lambda$verifyAnimatedStickerMessage$68((TLRPC.Message) this.d, (String) this.f19179c);
-                return;
-            case 2:
-                ((MediaDataController) this.f19178b).lambda$preloadPremiumPreviewStickers$206((TLRPC.TL_error) this.d, (TLObject) this.f19179c);
-                return;
-            case 3:
-                ((MediaDataController) this.f19178b).lambda$clearBotKeyboard$194((ArrayList) this.d, (MessagesStorage.TopicKey) this.f19179c);
-                return;
-            case 4:
-                ((MediaDataController) this.f19178b).lambda$findStickerSetByNameInCache$30((String) this.f19179c, (Utilities.Callback) this.d);
-                return;
-            case 5:
-                ((MediaDataController) this.f19178b).lambda$processLoadedMedia$135((ArrayList) this.d, (g9) this.f19179c);
-                return;
-            case 6:
-                ((MediaDataController) this.f19178b).lambda$findStickerSetByNameInCache$29((TLRPC.TL_messages_stickerSet) this.d, (Utilities.Callback) this.f19179c);
-                return;
-            case 7:
-                ((MessagesController) this.f19178b).lambda$addUsersToChat$295((TLRPC.Chat) this.d, (TLRPC.TL_messages_invitedUsers) this.f19179c);
-                return;
-            case 8:
-                ((MessagesController) this.f19178b).lambda$setUserAdminRole$103((TLRPC.TL_channels_editAdmin) this.d, (nb) this.f19179c);
-                return;
-            case 9:
-                ((MessagesController) this.f19178b).lambda$setUserAdminRole$108((TLRPC.TL_messages_editChatAdmin) this.d, (ob) this.f19179c);
-                return;
-            case 10:
-                MessagesController.lambda$openByUserName$461((org.telegram.ui.ActionBar.c2[]) this.f19178b, (boolean[]) this.d, (org.telegram.ui.ActionBar.o2) this.f19179c);
-                return;
-            case 11:
-                ((MessagesController) this.f19178b).lambda$updateChatAbout$288((TLRPC.ChatFull) this.d, (String) this.f19179c);
-                return;
-            case 12:
-                ((MessagesController) this.f19178b).lambda$processMessageIDUpdate$375((long[]) this.d, (TL_update.TL_updateMessageID) this.f19179c);
-                return;
-            case 13:
-                ((MessagesController) this.f19178b).lambda$processDialogsUpdateRead$222((LongSparseIntArray) this.d, (LongSparseIntArray) this.f19179c);
-                return;
-            case 14:
-                ((MessagesController) this.f19178b).lambda$getDifference$352((ArrayList) this.d, (TLRPC.updates_Difference) this.f19179c);
-                return;
-            case 15:
-                ((MessagesController) this.f19178b).lambda$didReceivedNotification$49((org.telegram.ui.ActionBar.j6) this.d, (org.telegram.ui.ActionBar.i6) this.f19179c);
-                return;
-            case 16:
-                ((MessagesController) this.f19178b).lambda$getChannelDifference$341((ArrayList) this.d, (TLRPC.updates_ChannelDifference) this.f19179c);
-                return;
-            case 17:
-                ((MessagesController) this.f19178b).lambda$requestIsUserContactBlocked$497((TLObject) this.d, (ArrayList) this.f19179c);
-                return;
-            case 18:
-                ((MessagesController.SavedMusicList) this.f19178b).lambda$load$0((TLObject) this.d, (ArrayList) this.f19179c);
-                return;
-            case 19:
-                ((MessagesStorage) this.f19178b).lambda$saveBotCache$126((TLObject) this.d, (String) this.f19179c);
-                return;
-            case 20:
-                ((MessagesStorage) this.f19178b).lambda$applyPhoneBookUpdates$148((String) this.f19179c, (String) this.d);
-                return;
-            case 21:
-                ((MessagesStorage) this.f19178b).lambda$replaceMessageIfExists$232((MessageObject) this.d, (ArrayList) this.f19179c);
-                return;
-            case 22:
-                ((MessagesStorage) this.f19178b).lambda$getNewTask$111((a0.h) this.d, (a0.h) this.f19179c);
-                return;
-            case 23:
-                ((SavedMessagesController) this.f19178b).lambda$saveCache$11((MessagesStorage) this.d, (ArrayList) this.f19179c);
-                return;
-            case 24:
-                ((SecretChatHelper) this.f19178b).lambda$processUpdateEncryption$2((TLRPC.EncryptedChat) this.d, (TLRPC.EncryptedChat) this.f19179c);
-                return;
-            case 25:
-                ((SendMessagesHelper) this.f19178b).lambda$sendVote$34((String) this.f19179c, (Runnable) this.d);
-                return;
-            case 26:
-                ((SendMessagesHelper) this.f19178b).lambda$performSendDelayedMessage$52((TLObject) this.d, (SendMessagesHelper.DelayedMessage) this.f19179c);
-                return;
-            case 27:
-                ((SendMessagesHelper) this.f19178b).lambda$sendMessage$17((TLRPC.TL_error) this.d, (TLRPC.TL_messages_forwardMessages) this.f19179c);
-                return;
-            case 28:
-                ((TelegramMediaSession) this.f19178b).lambda$loadBrowseChildren$3((TelegramMediaSession.BrowseChildrenCallback) this.d, (String) this.f19179c);
+                ((MediaDataController) obj8).lambda$loadReplyMessagesForMessages$177((Timer.Task) obj7, (a0.h) obj6, (AtomicInteger) obj3, (Runnable) obj2, this.f20842c, (Timer) obj, (a0.h) obj5, (a0.h) obj4, this.f20841b, this.d);
                 return;
             default:
-                ((TranslateController) this.f19178b).lambda$checkDialogMessageSure$10((ArrayList) this.d, (ArrayList) this.f19179c);
+                LaunchActivity launchActivity = (LaunchActivity) obj8;
+                String str = (String) obj7;
+                TLRPC.TL_chatAdminRights tL_chatAdminRights2 = (TLRPC.TL_chatAdminRights) obj6;
+                String str2 = (String) obj5;
+                TLRPC.Chat chat = (TLRPC.Chat) obj4;
+                cy cyVar = (cy) obj3;
+                TLRPC.User user = (TLRPC.User) obj2;
+                String str3 = (String) obj;
+                Pattern pattern = LaunchActivity.D1;
+                if (str != null) {
+                    String[] split = str.split("\\+| ");
+                    tL_chatAdminRights = new TLRPC.TL_chatAdminRights();
+                    for (String str4 : split) {
+                        str4.getClass();
+                        char c10 = 65535;
+                        switch (str4.hashCode()) {
+                            case -2110462504:
+                                if (str4.equals("ban_users")) {
+                                    c10 = 0;
+                                    break;
+                                }
+                                break;
+                            case -2095811475:
+                                if (str4.equals("anonymous")) {
+                                    c10 = 1;
+                                    break;
+                                }
+                                break;
+                            case -1654794275:
+                                if (str4.equals("change_info")) {
+                                    c10 = 2;
+                                    break;
+                                }
+                                break;
+                            case -1593320096:
+                                if (str4.equals("delete_messages")) {
+                                    c10 = 3;
+                                    break;
+                                }
+                                break;
+                            case -939200543:
+                                if (str4.equals("edit_messages")) {
+                                    c10 = 4;
+                                    break;
+                                }
+                                break;
+                            case 22162680:
+                                if (str4.equals("manage_call")) {
+                                    c10 = 5;
+                                    break;
+                                }
+                                break;
+                            case 22169074:
+                                if (str4.equals("manage_chat")) {
+                                    c10 = 6;
+                                    break;
+                                }
+                                break;
+                            case 106069776:
+                                if (str4.equals("other")) {
+                                    c10 = 7;
+                                    break;
+                                }
+                                break;
+                            case 323243326:
+                                if (str4.equals("manage_topics")) {
+                                    c10 = '\b';
+                                    break;
+                                }
+                                break;
+                            case 449085338:
+                                if (str4.equals("promote_members")) {
+                                    c10 = '\t';
+                                    break;
+                                }
+                                break;
+                            case 632157522:
+                                if (str4.equals("invite_users")) {
+                                    c10 = '\n';
+                                    break;
+                                }
+                                break;
+                            case 703163861:
+                                if (str4.equals("manage_topic")) {
+                                    c10 = 11;
+                                    break;
+                                }
+                                break;
+                            case 758599179:
+                                if (str4.equals("post_messages")) {
+                                    c10 = '\f';
+                                    break;
+                                }
+                                break;
+                            case 1357805750:
+                                if (str4.equals("pin_messages")) {
+                                    c10 = '\r';
+                                    break;
+                                }
+                                break;
+                            case 1529816162:
+                                if (str4.equals("add_admins")) {
+                                    c10 = 14;
+                                    break;
+                                }
+                                break;
+                            case 1542893206:
+                                if (str4.equals("restrict_members")) {
+                                    c10 = 15;
+                                    break;
+                                }
+                                break;
+                            case 1641337725:
+                                if (str4.equals("manage_video_chats")) {
+                                    c10 = 16;
+                                    break;
+                                }
+                                break;
+                        }
+                        switch (c10) {
+                            case 0:
+                            case 15:
+                                tL_chatAdminRights.ban_users = true;
+                                break;
+                            case 1:
+                                tL_chatAdminRights.anonymous = true;
+                                break;
+                            case 2:
+                                tL_chatAdminRights.change_info = true;
+                                break;
+                            case 3:
+                                tL_chatAdminRights.delete_messages = true;
+                                break;
+                            case 4:
+                                tL_chatAdminRights.edit_messages = true;
+                                break;
+                            case 5:
+                            case 16:
+                                tL_chatAdminRights.manage_call = true;
+                                break;
+                            case 6:
+                            case 7:
+                                tL_chatAdminRights.other = true;
+                                break;
+                            case '\b':
+                            case 11:
+                                tL_chatAdminRights.manage_topics = true;
+                                break;
+                            case '\t':
+                            case 14:
+                                tL_chatAdminRights.add_admins = true;
+                                break;
+                            case '\n':
+                                tL_chatAdminRights.invite_users = true;
+                                break;
+                            case '\f':
+                                tL_chatAdminRights.post_messages = true;
+                                break;
+                            case '\r':
+                                tL_chatAdminRights.pin_messages = true;
+                                break;
+                        }
+                    }
+                } else {
+                    tL_chatAdminRights = null;
+                }
+                if (tL_chatAdminRights == null && tL_chatAdminRights2 == null) {
+                    tL_chatAdminRights2 = null;
+                } else if (tL_chatAdminRights != null) {
+                    if (tL_chatAdminRights2 == null) {
+                        tL_chatAdminRights2 = tL_chatAdminRights;
+                    } else {
+                        if (!tL_chatAdminRights.change_info && !tL_chatAdminRights2.change_info) {
+                            z10 = false;
+                        } else {
+                            z10 = true;
+                        }
+                        tL_chatAdminRights2.change_info = z10;
+                        if (!tL_chatAdminRights.post_messages && !tL_chatAdminRights2.post_messages) {
+                            z11 = false;
+                        } else {
+                            z11 = true;
+                        }
+                        tL_chatAdminRights2.post_messages = z11;
+                        if (!tL_chatAdminRights.edit_messages && !tL_chatAdminRights2.edit_messages) {
+                            z12 = false;
+                        } else {
+                            z12 = true;
+                        }
+                        tL_chatAdminRights2.edit_messages = z12;
+                        if (!tL_chatAdminRights.add_admins && !tL_chatAdminRights2.add_admins) {
+                            z13 = false;
+                        } else {
+                            z13 = true;
+                        }
+                        tL_chatAdminRights2.add_admins = z13;
+                        if (!tL_chatAdminRights.delete_messages && !tL_chatAdminRights2.delete_messages) {
+                            z14 = false;
+                        } else {
+                            z14 = true;
+                        }
+                        tL_chatAdminRights2.delete_messages = z14;
+                        if (!tL_chatAdminRights.ban_users && !tL_chatAdminRights2.ban_users) {
+                            z15 = false;
+                        } else {
+                            z15 = true;
+                        }
+                        tL_chatAdminRights2.ban_users = z15;
+                        if (!tL_chatAdminRights.invite_users && !tL_chatAdminRights2.invite_users) {
+                            z16 = false;
+                        } else {
+                            z16 = true;
+                        }
+                        tL_chatAdminRights2.invite_users = z16;
+                        if (!tL_chatAdminRights.pin_messages && !tL_chatAdminRights2.pin_messages) {
+                            z17 = false;
+                        } else {
+                            z17 = true;
+                        }
+                        tL_chatAdminRights2.pin_messages = z17;
+                        if (!tL_chatAdminRights.manage_call && !tL_chatAdminRights2.manage_call) {
+                            z18 = false;
+                        } else {
+                            z18 = true;
+                        }
+                        tL_chatAdminRights2.manage_call = z18;
+                        if (!tL_chatAdminRights.anonymous && !tL_chatAdminRights2.anonymous) {
+                            z19 = false;
+                        } else {
+                            z19 = true;
+                        }
+                        tL_chatAdminRights2.anonymous = z19;
+                        if (!tL_chatAdminRights.other && !tL_chatAdminRights2.other) {
+                            z20 = false;
+                        } else {
+                            z20 = true;
+                        }
+                        tL_chatAdminRights2.other = z20;
+                    }
+                }
+                boolean z21 = this.f20841b;
+                int i11 = this.f20842c;
+                if (z21 && tL_chatAdminRights == null && !TextUtils.isEmpty(str2)) {
+                    MessagesController.getInstance(launchActivity.O).addUserToChat(chat.f22027id, user, 0, str2, cyVar, true, new zr0(launchActivity, i11, chat, cyVar, 8), null);
+                    return;
+                }
+                gq gqVar = new gq(user.f22174id, -this.d, tL_chatAdminRights2, null, null, str3, 2, true, !z21, str2);
+                gqVar.X0 = new ha0(cyVar, i11);
+                ((ActionBarLayout) launchActivity.O()).S(gqVar, false);
                 return;
         }
     }
 
-    public o8(BaseController baseController, String str, Object obj, int i10) {
-        this.f19177a = i10;
-        this.f19178b = baseController;
-        this.f19179c = str;
-        this.d = obj;
+    public o8(LaunchActivity launchActivity, String str, TLRPC.TL_chatAdminRights tL_chatAdminRights, boolean z10, String str2, int i10, TLRPC.Chat chat, cy cyVar, TLRPC.User user, long j10, String str3) {
+        this.e = launchActivity;
+        this.f20843f = str;
+        this.h = tL_chatAdminRights;
+        this.f20841b = z10;
+        this.f20844n = str2;
+        this.f20842c = i10;
+        this.f20845r = chat;
+        this.f20846s = cyVar;
+        this.v = user;
+        this.d = j10;
+        this.f20847w = str3;
     }
 }

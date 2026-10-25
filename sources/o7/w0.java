@@ -1,0 +1,129 @@
+package o7;
+
+import java.util.Arrays;
+public final class w0 extends c1 {
+    public final s0 f19264a;
+
+    public w0(s0 s0Var) {
+        this.f19264a = s0Var;
+    }
+
+    @Override
+    public final int compareTo(Object obj) {
+        c1 c1Var = (c1) obj;
+        int zza = c1Var.zza();
+        int c10 = c1.c((byte) 64);
+        if (c10 != zza) {
+            return c10 - c1Var.zza();
+        }
+        s0 s0Var = ((w0) c1Var).f19264a;
+        s0 s0Var2 = this.f19264a;
+        byte[] bArr = s0Var2.f19254b;
+        int length = bArr.length;
+        byte[] bArr2 = s0Var.f19254b;
+        if (length != bArr2.length) {
+            return bArr.length - bArr2.length;
+        }
+        return p0.f19248a.compare(s0Var2.t(), s0Var.t());
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null || w0.class != obj.getClass()) {
+            return false;
+        }
+        return this.f19264a.equals(((w0) obj).f19264a);
+    }
+
+    public final int hashCode() {
+        return Arrays.hashCode(new Object[]{Integer.valueOf(c1.c((byte) 64)), this.f19264a});
+    }
+
+    public final String toString() {
+        j0 j0Var;
+        int i10;
+        boolean z10;
+        k0 k0Var = m0.d;
+        m0 m0Var = k0Var.f19237c;
+        if (m0Var == null) {
+            j0 j0Var2 = k0Var.f19235a;
+            char[] cArr = j0Var2.f19227b;
+            int i11 = 0;
+            while (true) {
+                if (i11 < cArr.length) {
+                    char c10 = cArr[i11];
+                    if (c10 >= 'a' && c10 <= 'z') {
+                        int i12 = 0;
+                        while (true) {
+                            if (i12 < cArr.length) {
+                                char c11 = cArr[i12];
+                                if (c11 >= 'A' && c11 <= 'Z') {
+                                    z10 = true;
+                                    break;
+                                }
+                                i12++;
+                            } else {
+                                z10 = false;
+                                break;
+                            }
+                        }
+                        if (!z10) {
+                            char[] cArr2 = new char[cArr.length];
+                            for (int i13 = 0; i13 < cArr.length; i13++) {
+                                char c12 = cArr[i13];
+                                if (c12 >= 97 && c12 <= 122) {
+                                    c12 ^= 32;
+                                }
+                                cArr2[i13] = (char) c12;
+                            }
+                            j0Var = new j0(j0Var2.f19226a.concat(".upperCase()"), cArr2);
+                            byte[] bArr = j0Var.f19230g;
+                            if (j0Var2.h && !j0Var.h) {
+                                byte[] copyOf = Arrays.copyOf(bArr, bArr.length);
+                                for (i10 = 65; i10 <= 90; i10++) {
+                                    int i14 = i10 | 32;
+                                    byte b10 = bArr[i10];
+                                    byte b11 = bArr[i14];
+                                    if (b10 == -1) {
+                                        copyOf[i10] = b11;
+                                    } else {
+                                        char c13 = (char) i10;
+                                        char c14 = (char) i14;
+                                        if (b11 == -1) {
+                                            copyOf[i14] = b10;
+                                        } else {
+                                            throw new IllegalStateException(a.c("Can't ignoreCase() since '%s' and '%s' encode different values", Character.valueOf(c13), Character.valueOf(c14)));
+                                        }
+                                    }
+                                }
+                                j0Var = new j0(j0Var.f19226a.concat(".ignoreCase()"), j0Var.f19227b, copyOf, true);
+                            }
+                        } else {
+                            throw new IllegalStateException("Cannot call upperCase() on a mixed-case alphabet");
+                        }
+                    } else {
+                        i11++;
+                    }
+                } else {
+                    j0Var = j0Var2;
+                    break;
+                }
+            }
+            if (j0Var == j0Var2) {
+                m0Var = k0Var;
+            } else {
+                m0Var = new k0(j0Var);
+            }
+            k0Var.f19237c = m0Var;
+        }
+        byte[] t10 = this.f19264a.t();
+        return a1.g.p("h'", m0Var.c(t10.length, t10), "'");
+    }
+
+    @Override
+    public final int zza() {
+        return c1.c((byte) 64);
+    }
+}

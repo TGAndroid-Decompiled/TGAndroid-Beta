@@ -1,38 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import java.util.ArrayList;
-public abstract class d71 extends org.telegram.ui.ActionBar.o2 {
-    public c71 f25615a;
-    public int f25616b;
-    public int f25617c;
+import android.text.Selection;
+import android.text.Spannable;
+import android.text.method.LinkMovementMethod;
+import android.text.style.CharacterStyle;
+import android.view.MotionEvent;
+import android.widget.TextView;
+import org.telegram.messenger.FileLog;
+public final class d71 extends LinkMovementMethod {
+    public final UndoView f27418a;
 
-    public d71() {
-        super(null);
-        this.f25616b = -1;
+    public d71(UndoView undoView) {
+        this.f27418a = undoView;
     }
 
-    public abstract void U(ArrayList arrayList, a71 a71Var);
-
-    public abstract CharSequence V();
-
-    public abstract void W(l61 l61Var, View view);
-
-    public abstract boolean X(l61 l61Var, View view);
-
     @Override
-    public View createView(Context context) {
-        i2.o1.y(false, this.actionBar);
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setTitle(V());
-        this.actionBar.setActionBarMenuOnItemClick(new org.telegram.ui.ea(this, 16));
-        ig.o1 o1Var = new ig.o1(context, null, 1);
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21126a7, o1Var, null);
-        c71 c71Var = new c71(this, this, new d(this, 22), new b71(this), new b71(this));
-        this.f25615a = c71Var;
-        o1Var.addView(c71Var, w7.z5.c(-1.0f, -1));
-        this.fragmentView = o1Var;
-        return o1Var;
+    public final boolean onTouchEvent(TextView textView, Spannable spannable, MotionEvent motionEvent) {
+        CharacterStyle[] characterStyleArr;
+        try {
+            if (motionEvent.getAction() != 0 || ((characterStyleArr = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class)) != null && characterStyleArr.length != 0)) {
+                if (motionEvent.getAction() == 1) {
+                    CharacterStyle[] characterStyleArr2 = (CharacterStyle[]) spannable.getSpans(textView.getSelectionStart(), textView.getSelectionEnd(), CharacterStyle.class);
+                    if (characterStyleArr2 != null && characterStyleArr2.length > 0) {
+                        this.f27418a.b(characterStyleArr2[0]);
+                    }
+                    Selection.removeSelection(spannable);
+                    return true;
+                }
+                return super.onTouchEvent(textView, spannable, motionEvent);
+            }
+            return false;
+        } catch (Exception e) {
+            FileLog.e(e);
+            return false;
+        }
     }
 }

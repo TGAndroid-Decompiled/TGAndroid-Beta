@@ -99,7 +99,7 @@ public class ChannelBoostsController {
                     i12++;
                     TL_stories.TL_myBoost tL_myBoost5 = tL_myBoost4;
                     TLRPC.Peer peer = tL_myBoost5.peer;
-                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f20344id)) {
+                    if (peer != null && DialogObject.getPeerDialogId(peer) != (-this.currentChat.f22027id)) {
                         arrayList3.add(tL_myBoost5);
                     }
                 }
@@ -110,7 +110,7 @@ public class ChannelBoostsController {
                     this.canApply = true;
                 } else if (arrayList3.size() >= 1) {
                     this.needSelector = true;
-                    if (!ug.q.i()) {
+                    if (!vg.s.i()) {
                         TL_stories.TL_myBoost tL_myBoost7 = (TL_stories.TL_myBoost) arrayList3.get(0);
                         this.replaceDialogId = DialogObject.getPeerDialogId(tL_myBoost7.peer);
                         this.slot = tL_myBoost7.slot;
@@ -143,30 +143,30 @@ public class ChannelBoostsController {
             callback.run((TL_stories.TL_premium_boostsStatus) tLObject);
             return;
         }
-        org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
+        org.telegram.ui.ActionBar.r2 R = LaunchActivity.R();
         if (tL_error != null && R != null && "CHANNEL_PRIVATE".equals(tL_error.text)) {
             LaunchActivity launchActivity = LaunchActivity.I1;
             if (launchActivity == null || !launchActivity.isFinishing()) {
                 AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(R.getContext(), 0, R.getResourceProvider());
-                alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
                 HashMap hashMap = new HashMap();
-                int i10 = org.telegram.ui.ActionBar.k6.L5;
-                hashMap.put("info1", Integer.valueOf(org.telegram.ui.ActionBar.k6.x0(null, i10, false)));
-                hashMap.put("info2", Integer.valueOf(org.telegram.ui.ActionBar.k6.x0(null, i10, false)));
-                alertDialog$Builder.m(R.raw.not_available, 52, org.telegram.ui.ActionBar.k6.x0(null, i10, false), hashMap);
-                alertDialog$Builder.f20679a.W = true;
-                alertDialog$Builder.f20679a.R = LocaleController.getString(R.string.ChannelPrivate);
-                alertDialog$Builder.f20679a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
-                v0.o(R.string.Close, alertDialog$Builder, null);
+                int i10 = org.telegram.ui.ActionBar.y6.L5;
+                hashMap.put("info1", Integer.valueOf(org.telegram.ui.ActionBar.y6.x0(null, i10, false)));
+                hashMap.put("info2", Integer.valueOf(org.telegram.ui.ActionBar.y6.x0(null, i10, false)));
+                alertDialog$Builder.m(R.raw.not_available, 52, org.telegram.ui.ActionBar.y6.x0(null, i10, false), hashMap);
+                alertDialog$Builder.f22366a.W = true;
+                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.ChannelPrivate);
+                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.ChannelCantOpenPrivate2);
+                t.p(R.string.Close, alertDialog$Builder, null);
             }
         } else {
-            org.telegram.ui.Components.vc.X().f0(tL_error, false);
+            org.telegram.ui.Components.wc.Y().g0(tL_error, false);
         }
         callback.run(null);
     }
 
     public static void lambda$getBoostsStats$1(Utilities.Callback callback, TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new g0(tLObject, callback, tL_error, 12));
+        AndroidUtilities.runOnUIThread(new j0(tLObject, callback, tL_error, 12));
     }
 
     public static void lambda$userCanBoostChannel$2(CanApplyBoost canApplyBoost, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Utilities.Callback callback, TL_stories.TL_premium_myBoosts tL_premium_myBoosts) {
@@ -192,13 +192,13 @@ public class ChannelBoostsController {
     }
 
     public void applyBoost(long j10, int i10, Utilities.Callback<TL_stories.TL_premium_myBoosts> callback, Utilities.Callback<TLRPC.TL_error> callback2) {
-        ug.q.a(-j10, Arrays.asList(Integer.valueOf(i10)), callback, callback2);
+        vg.s.a(-j10, Arrays.asList(Integer.valueOf(i10)), callback, callback2);
     }
 
     public void getBoostsStats(long j10, Utilities.Callback<TL_stories.TL_premium_boostsStatus> callback) {
         TL_stories.TL_premium_getBoostsStatus tL_premium_getBoostsStatus = new TL_stories.TL_premium_getBoostsStatus();
         tL_premium_getBoostsStatus.peer = this.messagesController.getInputPeer(j10);
-        this.connectionsManager.sendRequest(tL_premium_getBoostsStatus, new u0(0, callback));
+        this.connectionsManager.sendRequest(tL_premium_getBoostsStatus, new x0(0, callback));
     }
 
     public void userCanBoostChannel(long j10, TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus, Utilities.Callback<CanApplyBoost> callback) {
@@ -206,8 +206,8 @@ public class ChannelBoostsController {
         canApplyBoost.currentPeer = this.messagesController.getPeer(j10);
         canApplyBoost.currentDialogId = j10;
         canApplyBoost.currentChat = this.messagesController.getChat(Long.valueOf(-j10));
-        k2 k2Var = new k2(canApplyBoost, tL_premium_boostsStatus, callback, 1);
-        w wVar = new w(1, canApplyBoost, callback);
-        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new ai.j2(wVar, MessagesController.getInstance(UserConfig.selectedAccount), k2Var, 22));
+        l2 l2Var = new l2(canApplyBoost, tL_premium_boostsStatus, callback, 1);
+        z zVar = new z(1, canApplyBoost, callback);
+        ConnectionsManager.getInstance(UserConfig.selectedAccount).sendRequest(new TL_stories.TL_premium_getMyBoosts(), new bi.h2(zVar, MessagesController.getInstance(UserConfig.selectedAccount), l2Var, 22));
     }
 }

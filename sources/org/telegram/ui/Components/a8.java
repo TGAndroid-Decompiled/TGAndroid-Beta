@@ -1,20 +1,71 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
+import android.graphics.RectF;
 import android.view.MotionEvent;
-public final class a8 extends gp0 {
-    public final i8 m0;
+import android.widget.FrameLayout;
+public final class a8 extends FrameLayout {
+    public final RectF f26428a;
+    public boolean f26429b;
+    public int f26430c;
+    public int d;
+    public final m8 e;
 
-    public a8(i8 i8Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var, false);
-        this.m0 = i8Var;
+    public a8(m8 m8Var, Context context) {
+        super(context);
+        this.e = m8Var;
+        this.f26428a = new RectF();
+        this.f26429b = false;
     }
 
     @Override
-    public final boolean d(MotionEvent motionEvent) {
-        if (this.m0.G0 != 0) {
-            return false;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        qc.a(this, new bh.c0(this, 5));
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        qc.h(this);
+    }
+
+    @Override
+    public final void onDraw(android.graphics.Canvas r21) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a8.onDraw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final boolean onInterceptTouchEvent(android.view.MotionEvent r5) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a8.onInterceptTouchEvent(android.view.MotionEvent):boolean");
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        m8 m8Var = this.e;
+        m8.P(m8Var);
+        m8Var.K0();
+    }
+
+    @Override
+    public final void onMeasure(int r10, int r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.a8.onMeasure(int, int):void");
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        if (!this.e.isDismissed() && super.onTouchEvent(motionEvent)) {
+            return true;
         }
-        return super.d(motionEvent);
+        return false;
+    }
+
+    @Override
+    public final void requestLayout() {
+        if (this.f26429b) {
+            return;
+        }
+        super.requestLayout();
     }
 }

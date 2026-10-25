@@ -1,33 +1,70 @@
 package org.telegram.ui;
 
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class hn0 implements RequestDelegate {
-    public final int f37907a;
-    public final ho0 f37908b;
+import org.telegram.messenger.LocaleController;
+public final class hn0 extends FrameLayout {
+    public TextView f40039a;
+    public TextView f40040b;
+    public ImageView f40041c;
+    public boolean d;
 
-    public hn0(ho0 ho0Var, int i10) {
-        this.f37907a = i10;
-        this.f37908b = ho0Var;
+    public final void a(String str, boolean z10) {
+        this.f40039a.setText(str);
+        this.f40040b.setText("");
+        this.d = z10;
+        setWillNotDraw(!z10);
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f37907a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new ah0(15, this.f37908b, tL_error));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new gn0(this.f37908b, tL_error, tLObject, 0));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new an0(this.f37908b, tLObject, 2));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new an0(this.f37908b, tLObject, 0));
-                return;
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        if (this.d) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(20.0f);
+            }
+            float f7 = dp;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(20.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.y6.f23476k0);
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(64.0f) + (this.d ? 1 : 0), 1073741824));
+    }
+
+    public void setChecked(boolean z10) {
+        int i10;
+        ImageView imageView = this.f40041c;
+        if (z10) {
+            i10 = 0;
+        } else {
+            i10 = 4;
+        }
+        imageView.setVisibility(i10);
+    }
+
+    public void setNeedDivider(boolean z10) {
+        this.d = z10;
+        setWillNotDraw(!z10);
+        invalidate();
+    }
+
+    public void setValue(CharSequence charSequence) {
+        this.f40040b.setText(charSequence);
     }
 }

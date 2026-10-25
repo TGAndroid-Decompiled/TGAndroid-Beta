@@ -1,46 +1,46 @@
 package i2;
-public final class j implements v0 {
-    public final t1 f12495a;
-    public final q0 f12496b;
-    public b f12497c;
-    public v0 d;
+public final class j implements x0 {
+    public final u1 f13579a;
+    public final s0 f13580b;
+    public b f13581c;
+    public x0 d;
     public boolean e = true;
-    public boolean f12498f;
+    public boolean f13582f;
 
-    public j(q0 q0Var, e2.g0 g0Var) {
-        this.f12496b = q0Var;
-        this.f12495a = new t1(g0Var);
+    public j(s0 s0Var, e2.g0 g0Var) {
+        this.f13580b = s0Var;
+        this.f13579a = new u1(g0Var);
     }
 
     @Override
     public final long a() {
         if (this.e) {
-            return this.f12495a.a();
+            return this.f13579a.a();
         }
-        v0 v0Var = this.d;
-        v0Var.getClass();
-        return v0Var.a();
+        x0 x0Var = this.d;
+        x0Var.getClass();
+        return x0Var.a();
     }
 
     @Override
     public final boolean b() {
         if (this.e) {
-            this.f12495a.getClass();
+            this.f13579a.getClass();
             return false;
         }
-        v0 v0Var = this.d;
-        v0Var.getClass();
-        return v0Var.b();
+        x0 x0Var = this.d;
+        x0Var.getClass();
+        return x0Var.b();
     }
 
     public final void c(b bVar) {
-        v0 v0Var;
-        v0 i10 = bVar.i();
-        if (i10 != null && i10 != (v0Var = this.d)) {
-            if (v0Var == null) {
+        x0 x0Var;
+        x0 i10 = bVar.i();
+        if (i10 != null && i10 != (x0Var = this.d)) {
+            if (x0Var == null) {
                 this.d = i10;
-                this.f12497c = bVar;
-                i10.f((b2.z0) this.f12495a.e);
+                this.f13581c = bVar;
+                i10.f((b2.a1) this.f13579a.e);
                 return;
             }
             throw new m(2, new IllegalStateException("Multiple renderer media clocks enabled."), 1000);
@@ -48,21 +48,21 @@ public final class j implements v0 {
     }
 
     @Override
-    public final void f(b2.z0 z0Var) {
-        v0 v0Var = this.d;
-        if (v0Var != null) {
-            v0Var.f(z0Var);
-            z0Var = this.d.h();
+    public final void f(b2.a1 a1Var) {
+        x0 x0Var = this.d;
+        if (x0Var != null) {
+            x0Var.f(a1Var);
+            a1Var = this.d.h();
         }
-        this.f12495a.f(z0Var);
+        this.f13579a.f(a1Var);
     }
 
     @Override
-    public final b2.z0 h() {
-        v0 v0Var = this.d;
-        if (v0Var != null) {
-            return v0Var.h();
+    public final b2.a1 h() {
+        x0 x0Var = this.d;
+        if (x0Var != null) {
+            return x0Var.h();
         }
-        return (b2.z0) this.f12495a.e;
+        return (b2.a1) this.f13579a.e;
     }
 }

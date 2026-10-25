@@ -1,16 +1,20 @@
 package gd;
+public final class e extends f2.f {
+    public final StringBuilder f12447c;
 
-import java.util.regex.Pattern;
-public final class e extends h {
-    public static final Pattern e = i.f11020n;
-
-    @Override
-    public final df.p b() {
-        throw new UnsupportedOperationException("Method not decompiled: gd.e.b():df.p");
+    public e() {
+        super(4, 1);
+        this.f12447c = new StringBuilder();
     }
 
     @Override
-    public final char d() {
-        return ']';
+    public final f2.f b() {
+        f2.f.c(this.f12447c);
+        return this;
+    }
+
+    @Override
+    public final String toString() {
+        return "<!--" + this.f12447c.toString() + "-->";
     }
 }

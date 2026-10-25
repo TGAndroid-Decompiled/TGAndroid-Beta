@@ -1,26 +1,66 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.TLRPC;
-public final class i5 extends d5 {
-    @Override
-    public final void a() {
-        MessagesController.getInstance(UserConfig.selectedAccount).loadUserInfo((TLRPC.User) this.f36469c, false, this.d);
+import android.view.View;
+public final class i5 implements View.OnAttachStateChangeListener {
+    public final int f40144a;
+    public final Object f40145b;
+
+    public i5(Object obj, int i10) {
+        this.f40144a = i10;
+        this.f40145b = obj;
     }
 
     @Override
-    public final void b(Object... objArr) {
-        if (((Long) objArr[0]).longValue() == ((TLRPC.User) this.f36469c).f20491id) {
-            TLRPC.UserFull userFull = (TLRPC.UserFull) objArr[1];
-            boolean z10 = this.f36471g;
-            if (z10) {
-                if (z10) {
-                    this.f36471g = false;
-                    this.f36468b.removeObserver(this.f36467a, this.e);
+    public final void onViewAttachedToWindow(View view) {
+        switch (this.f40144a) {
+            case 0:
+                ((j5) this.f40145b).f40457b.onAttachedToWindow();
+                return;
+            case 1:
+                ((org.telegram.ui.Components.r5) this.f40145b).a();
+                return;
+            case 2:
+                ((j70) this.f40145b).f40470b.onAttachedToWindow();
+                return;
+            case 3:
+                org.telegram.ui.Components.r5 r5Var = ((mp0) this.f40145b).f41638i;
+                if (r5Var != null) {
+                    r5Var.a();
+                    return;
                 }
-                this.f36470f.accept(userFull);
-            }
+                return;
+            default:
+                y71 y71Var = (y71) this.f40145b;
+                y71Var.h.a();
+                y71Var.f45981n.a();
+                return;
+        }
+    }
+
+    @Override
+    public final void onViewDetachedFromWindow(View view) {
+        switch (this.f40144a) {
+            case 0:
+                ((j5) this.f40145b).f40457b.onDetachedFromWindow();
+                return;
+            case 1:
+                ((org.telegram.ui.Components.r5) this.f40145b).b();
+                return;
+            case 2:
+                ((j70) this.f40145b).f40470b.onDetachedFromWindow();
+                return;
+            case 3:
+                org.telegram.ui.Components.r5 r5Var = ((mp0) this.f40145b).f41638i;
+                if (r5Var != null) {
+                    r5Var.b();
+                    return;
+                }
+                return;
+            default:
+                y71 y71Var = (y71) this.f40145b;
+                y71Var.h.b();
+                y71Var.f45981n.b();
+                return;
         }
     }
 }

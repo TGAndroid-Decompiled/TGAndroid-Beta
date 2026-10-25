@@ -1,13 +1,44 @@
 package j2;
 
+import android.graphics.Bitmap;
+import b2.p0;
 import e2.o;
-public final class d implements o {
-    public final int f13983a;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.b2;
+import org.telegram.ui.ActionBar.e2;
+public final class d implements o, b2, ih.b {
+    public final int f15196a;
+
+    public d(int i10) {
+        this.f15196a = i10;
+    }
+
+    @Override
+    public Object a(Bitmap bitmap) {
+        if (bitmap != null && !bitmap.isRecycled()) {
+            Bitmap stackBlurBitmapWithScaleFactor = Utilities.stackBlurBitmapWithScaleFactor(bitmap, Math.max(bitmap.getWidth() / 90.0f, bitmap.getHeight() / 120.0f));
+            stackBlurBitmapWithScaleFactor.setHasAlpha(false);
+            return stackBlurBitmapWithScaleFactor;
+        }
+        return null;
+    }
+
+    @Override
+    public void h(e2 e2Var, int i10) {
+        switch (this.f15196a) {
+            case 27:
+                e2Var.dismiss();
+                return;
+            default:
+                e2Var.dismiss();
+                return;
+        }
+    }
 
     @Override
     public void invoke(Object obj) {
         b bVar = (b) obj;
-        switch (this.f13983a) {
+        switch (this.f15196a) {
             case 0:
                 bVar.getClass();
                 return;
@@ -80,23 +111,41 @@ public final class d implements o {
             case 23:
                 bVar.getClass();
                 return;
-            case 24:
-                bVar.getClass();
-                return;
-            case 25:
-                bVar.getClass();
-                return;
             default:
                 bVar.getClass();
                 return;
         }
     }
 
+    public d(a aVar, float f7) {
+        this.f15196a = 24;
+    }
+
+    public d(a aVar, int i10) {
+        this.f15196a = i10;
+    }
+
+    public d(a aVar, int i10, int i11) {
+        this.f15196a = i11;
+    }
+
+    public d(a aVar, long j10) {
+        this.f15196a = 15;
+    }
+
+    public d(a aVar, p0 p0Var, int i10) {
+        this.f15196a = 23;
+    }
+
     public d(a aVar, Object obj, int i10) {
-        this.f13983a = i10;
+        this.f15196a = i10;
     }
 
     public d(a aVar, Object obj, Object obj2, int i10) {
-        this.f13983a = i10;
+        this.f15196a = i10;
+    }
+
+    public d(a aVar, boolean z10, int i10) {
+        this.f15196a = i10;
     }
 }

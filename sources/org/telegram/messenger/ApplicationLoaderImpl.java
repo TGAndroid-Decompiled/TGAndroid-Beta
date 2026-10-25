@@ -12,8 +12,8 @@ import androidx.core.content.FileProvider;
 import java.io.File;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.n71;
-import org.telegram.ui.Components.o71;
+import org.telegram.ui.Components.x71;
+import org.telegram.ui.Components.y71;
 import org.telegram.ui.IUpdateLayout;
 public class ApplicationLoaderImpl extends ApplicationLoader {
     private static long lastUpdateCheckTime;
@@ -43,7 +43,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public void appCenterLogInternal(Throwable th2) {
         try {
-            t9.c cVar = (t9.c) l9.h.c().b(t9.c.class);
+            u9.c cVar = (u9.c) m9.h.c().b(u9.c.class);
             if (cVar != null) {
                 cVar.a(th2);
                 return;
@@ -65,7 +65,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean checkApkInstallPermissions(Context context) {
         if (Build.VERSION.SDK_INT >= 26 && !ApplicationLoader.applicationContext.getPackageManager().canRequestPackageInstalls()) {
-            org.telegram.ui.Components.d5.j(context, null).show();
+            org.telegram.ui.Components.g5.j(context, null).show();
             return false;
         }
         return true;
@@ -166,8 +166,8 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                     FileLog.e(e);
                 }
             }
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
         return z10;
     }
@@ -175,7 +175,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
     @Override
     public boolean showCustomUpdateAppPopup(Context context, BetaUpdate betaUpdate, int i10) {
         try {
-            new n71(context, betaUpdate).show();
+            new x71(context, betaUpdate).show();
             return true;
         } catch (Exception e) {
             FileLog.e(e);
@@ -198,7 +198,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
                 if (ConnectionsManager.getInstance(UserConfig.selectedAccount).isTestBackend()) {
                     str2 = str2 + " [TEST SERVER]";
                 }
-                t9.c cVar = (t9.c) l9.h.c().b(t9.c.class);
+                u9.c cVar = (u9.c) m9.h.c().b(u9.c.class);
                 if (cVar != null) {
                     cVar.d(str2);
                     cVar.c("version", getVersionName(4));
@@ -228,7 +228,7 @@ public class ApplicationLoaderImpl extends ApplicationLoader {
         if (!isCustomUpdate()) {
             return null;
         }
-        return new o71(activity, viewGroup);
+        return new y71(activity, viewGroup);
     }
 
     @Override

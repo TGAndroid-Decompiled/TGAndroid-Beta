@@ -1,27 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-public final class s8 extends uq {
-    public final int f30463g0;
+import org.telegram.ui.PremiumPreviewFragment;
+public final class s8 implements Runnable {
+    public final int f32449a;
+    public final g9 f32450b;
 
-    public s8(Context context, boolean z10, tq tqVar, int i10) {
-        super(context, z10, tqVar);
-        this.f30463g0 = i10;
+    public s8(g9 g9Var, int i10) {
+        this.f32449a = i10;
+        this.f32450b = g9Var;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.f30463g0) {
+    public final void run() {
+        switch (this.f32449a) {
             case 0:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
-                return;
-            case 1:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                g9 g9Var = this.f32450b;
+                if (!g9Var.U) {
+                    if (g9Var.N > 0.0f) {
+                        if (g9Var.M != null) {
+                            g9Var.E = 1.0f;
+                            g9Var.F = true;
+                        }
+                        AndroidUtilities.hideKeyboard(g9Var.fragmentView);
+                        return;
+                    }
+                    g9Var.h0(!g9Var.f28487a.v, true, false);
+                    return;
+                }
                 return;
             default:
-                super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(300.0f), 1073741824));
+                g9 g9Var2 = this.f32450b;
+                g9Var2.getClass();
+                g9Var2.presentFragment(new PremiumPreviewFragment(0, "avatar"));
                 return;
         }
     }

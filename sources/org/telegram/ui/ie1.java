@@ -1,34 +1,24 @@
 package org.telegram.ui;
-public final class ie1 implements Runnable {
-    public final int f38276a;
-    public final je1 f38277b;
 
-    public ie1(je1 je1Var, int i10) {
-        this.f38276a = i10;
-        this.f38277b = je1Var;
+import android.content.Context;
+import org.telegram.messenger.ChatObject;
+import org.telegram.tgnet.TLRPC;
+public final class ie1 extends org.telegram.ui.Components.y70 {
+    public final long A0;
+    public final ke1 B0;
+
+    public ie1(ke1 ke1Var, Context context, int i10, a0.h hVar, long j10, org.telegram.ui.ActionBar.r2 r2Var, long j11) {
+        super(context, i10, hVar, j10, r2Var, null);
+        this.B0 = ke1Var;
+        this.A0 = j11;
     }
 
     @Override
-    public final void run() {
-        switch (this.f38276a) {
-            case 0:
-                je1 je1Var = this.f38277b;
-                je1Var.F = null;
-                if (je1Var.G != -1) {
-                    je1Var.H.getNotificationCenter().onAnimationFinish(je1Var.G);
-                    je1Var.G = -1;
-                    return;
-                }
-                return;
-            default:
-                je1 je1Var2 = this.f38277b;
-                je1Var2.F = null;
-                if (je1Var2.G != -1) {
-                    je1Var2.H.getNotificationCenter().onAnimationFinish(je1Var2.G);
-                    je1Var2.G = -1;
-                    return;
-                }
-                return;
+    public final boolean X() {
+        TLRPC.Chat chat = this.B0.f40924b.getMessagesController().getChat(Long.valueOf(this.A0));
+        if (chat != null && ChatObject.canUserDoAdminAction(chat, 3)) {
+            return true;
         }
+        return false;
     }
 }

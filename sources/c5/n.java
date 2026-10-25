@@ -1,16 +1,20 @@
 package c5;
 
-import android.os.Bundle;
-import java.util.ArrayList;
-public final class n {
-    public ArrayList f4775a;
+import a8.x9;
+import java.lang.reflect.InvocationTargetException;
+import org.chromium.support_lib_boundary.WebViewProviderFactoryBoundaryInterface;
+public abstract class n {
+    public static final p f6151a;
 
-    public p4.r a() {
-        if (this.f4775a == null) {
-            return p4.r.f44605c;
+    static {
+        a4.l lVar;
+        try {
+            lVar = new a4.l((WebViewProviderFactoryBoundaryInterface) ve.b.a(WebViewProviderFactoryBoundaryInterface.class, x9.a()), 8);
+        } catch (ClassNotFoundException unused) {
+            lVar = new Object();
+        } catch (IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
+            throw new RuntimeException(e);
         }
-        Bundle bundle = new Bundle();
-        bundle.putStringArrayList("controlCategories", this.f4775a);
-        return new p4.r(bundle, this.f4775a);
+        f6151a = lVar;
     }
 }

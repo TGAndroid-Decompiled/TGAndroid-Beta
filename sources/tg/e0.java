@@ -1,0 +1,25 @@
+package tg;
+public class e0 {
+    public final int f48846a;
+    public final int f48847b;
+    public final String f48848c;
+    public final String d;
+    public final int e;
+    public boolean f48849f;
+
+    public e0(int i10, int i11, int i12, String str, String str2) {
+        this.f48846a = i10;
+        this.f48847b = i11;
+        this.f48848c = str;
+        this.d = str2;
+        this.e = i12;
+    }
+
+    public static e0 a(int i10, int i11) {
+        return new e0(i10, i11, -1, null, null);
+    }
+
+    public static e0 b(int i10, int i11, String str) {
+        return new e0(i10, -1, i11, null, str);
+    }
+}

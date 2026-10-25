@@ -1,69 +1,19 @@
 package w6;
 
-import android.app.RemoteInput;
-import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.res.ColorStateList;
-import android.graphics.PorterDuff;
-import android.view.MenuItem;
-import android.webkit.WebView;
-public abstract class a {
-    public static Context f49032a;
-    public static Boolean f49033b;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.atomic.AtomicInteger;
+import m5.p;
+public final class a implements ThreadFactory {
+    public final AtomicInteger f50801b = new AtomicInteger();
+    public final ThreadFactory f50802c = Executors.defaultThreadFactory();
+    public final String f50800a = "GAC_Executor";
 
-    public static PackageInfo a() {
-        return WebView.getCurrentWebViewPackage();
-    }
-
-    public static synchronized boolean b(Context context) {
-        Boolean bool;
-        synchronized (a.class) {
-            Context applicationContext = context.getApplicationContext();
-            Context context2 = f49032a;
-            if (context2 != null && (bool = f49033b) != null && context2 == applicationContext) {
-                return bool.booleanValue();
-            }
-            f49033b = null;
-            if (u6.b.d()) {
-                f49033b = Boolean.valueOf(applicationContext.getPackageManager().isInstantApp());
-            } else {
-                try {
-                    context.getClassLoader().loadClass("com.google.android.instantapps.supervisor.InstantAppsRuntime");
-                    f49033b = Boolean.TRUE;
-                } catch (ClassNotFoundException unused) {
-                    f49033b = Boolean.FALSE;
-                }
-            }
-            f49032a = applicationContext;
-            return f49033b.booleanValue();
-        }
-    }
-
-    public static void c(RemoteInput.Builder builder, String str) {
-        builder.setAllowDataType(str, true);
-    }
-
-    public static void d(MenuItem menuItem, char c10, int i10) {
-        menuItem.setAlphabeticShortcut(c10, i10);
-    }
-
-    public static void e(MenuItem menuItem, CharSequence charSequence) {
-        menuItem.setContentDescription(charSequence);
-    }
-
-    public static void f(MenuItem menuItem, ColorStateList colorStateList) {
-        menuItem.setIconTintList(colorStateList);
-    }
-
-    public static void g(MenuItem menuItem, PorterDuff.Mode mode) {
-        menuItem.setIconTintMode(mode);
-    }
-
-    public static void h(MenuItem menuItem, char c10, int i10) {
-        menuItem.setNumericShortcut(c10, i10);
-    }
-
-    public static void i(MenuItem menuItem, CharSequence charSequence) {
-        menuItem.setTooltipText(charSequence);
+    @Override
+    public final Thread newThread(Runnable runnable) {
+        Thread newThread = this.f50802c.newThread(new p(2, runnable));
+        int andIncrement = this.f50801b.getAndIncrement();
+        newThread.setName(this.f50800a + "[" + andIncrement + "]");
+        return newThread;
     }
 }

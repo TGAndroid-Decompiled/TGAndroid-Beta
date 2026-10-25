@@ -1,32 +1,98 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class p7 extends pg.a {
-    public v6 f40380c;
-    public bi.b d;
+import android.view.View;
+import android.view.ViewGroup;
+import java.io.File;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.Utilities;
+public final class p7 extends k7 {
+    public final ArrayList f42377n;
+    public final x7 f42378r;
 
-    public final boolean equals(Object obj) {
-        bi.b bVar;
-        bi.b bVar2;
-        v6 v6Var;
-        v6 v6Var2;
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && p7.class == obj.getClass()) {
-            p7 p7Var = (p7) obj;
-            int i10 = this.f44712a;
-            if (i10 == p7Var.f44712a) {
-                if (i10 == 1 && (v6Var = this.f40380c) != null && (v6Var2 = p7Var.f40380c) != null) {
-                    if (v6Var.f42584a == v6Var2.f42584a) {
-                        return true;
-                    }
-                    return false;
-                } else if (i10 == 2 && (bVar = this.d) != null && (bVar2 = p7Var.d) != null) {
-                    return Objects.equals(bVar.f4428a, bVar2.f4428a);
+    public p7(x7 x7Var) {
+        super(x7Var, 2);
+        this.f42378r = x7Var;
+        this.f42377n = new ArrayList();
+    }
+
+    @Override
+    public final void F() {
+        boolean z10;
+        super.F();
+        ArrayList arrayList = this.f42377n;
+        arrayList.clear();
+        int i10 = 0;
+        while (true) {
+            ArrayList arrayList2 = this.e;
+            if (i10 < arrayList2.size()) {
+                String path = ((q7) arrayList2.get(i10)).d.f6364a.getPath();
+                if (((q7) arrayList2.get(i10)).d.d == 1) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
+                arrayList.add(new MediaController.PhotoEntry(0, 0, 0L, path, 0, z10, 0, 0, 0L));
+                i10++;
+            } else {
+                return;
             }
         }
-        return false;
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        boolean z10;
+        boolean z11;
+        String name;
+        float f7;
+        View view = e1Var.f47735a;
+        o7 o7Var = (o7) view;
+        org.telegram.ui.Cells.o7 o7Var2 = (org.telegram.ui.Cells.o7) o7Var.f42107b.getChildAt(0);
+        ArrayList arrayList = this.e;
+        ci.a aVar = ((q7) arrayList.get(i10)).d;
+        if (aVar == view.getTag()) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        if (i10 != arrayList.size() - 1) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        view.setTag(aVar);
+        File file = aVar.f6364a;
+        long lastModified = file.lastModified();
+        if (aVar.h == 5) {
+            name = LocaleController.getString(R.string.AttachRound);
+        } else {
+            name = file.getName();
+        }
+        o7Var2.d(name, LocaleController.formatDateAudio(lastModified / 1000, true), Utilities.getExtension(file.getName()), null, 0, z11);
+        if (!z10) {
+            o7Var2.setPhoto(file.getPath());
+        }
+        org.telegram.ui.Components.y9 imageView = o7Var2.getImageView();
+        if (aVar.h == 5) {
+            f7 = 20.0f;
+        } else {
+            f7 = 4.0f;
+        }
+        imageView.setRoundRadius(AndroidUtilities.dp(f7));
+        o7Var.d = z11;
+        o7Var.f42108c.setText(AndroidUtilities.formatFileSize(aVar.f6366c));
+        o7Var.f42106a.a(this.f42378r.h.f6375j.contains(aVar), z10);
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        o7 o7Var = new o7(this, viewGroup.getContext(), 0);
+        o7Var.e = 2;
+        o7Var.f42107b.addView(new org.telegram.ui.Cells.o7(viewGroup.getContext(), 3, null));
+        return new s4.e1(o7Var);
     }
 }

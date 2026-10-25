@@ -1,36 +1,35 @@
 package rg;
 
-import android.view.ViewGroup;
-import org.telegram.messenger.LocaleController;
-import org.telegram.ui.Components.km0;
-public final class t1 extends km0 {
-    @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.UUID;
+import org.telegram.messenger.AndroidUtilities;
+public final class t1 {
+    public s1 f47559a;
+    public final HashMap f47560b = new HashMap();
+    public final ArrayList f47561c = new ArrayList();
+
+    public final boolean a() {
+        return !this.f47561c.isEmpty();
     }
 
-    @Override
-    public final int h() {
-        return qg.l0.c().size();
+    public final void b(UUID uuid, Runnable runnable) {
+        this.f47560b.put(uuid, runnable);
+        this.f47561c.add(uuid);
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.web.h1(this, 12));
     }
 
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        o1 o1Var = (o1) b1Var.f46342a;
-        qg.l0 l0Var = (qg.l0) qg.l0.c().get(i10);
-        o1Var.getClass();
-        o1Var.setTypeface(l0Var.d());
-        String str = l0Var.f44979c;
-        if (str == null) {
-            str = LocaleController.getString(l0Var.f44978b);
+    public final void c() {
+        ArrayList arrayList = this.f47561c;
+        if (arrayList.size() == 0) {
+            return;
         }
-        o1Var.setText(str);
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        o1 o1Var = new o1(viewGroup.getContext());
-        o1Var.setLayoutParams(new s4.o0(-1, -2));
-        return new s4.b1(o1Var);
+        int size = arrayList.size() - 1;
+        UUID uuid = (UUID) arrayList.get(size);
+        HashMap hashMap = this.f47560b;
+        hashMap.remove(uuid);
+        arrayList.remove(size);
+        ((Runnable) hashMap.get(uuid)).run();
+        AndroidUtilities.runOnUIThread(new org.telegram.ui.web.h1(this, 12));
     }
 }

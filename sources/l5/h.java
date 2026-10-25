@@ -1,69 +1,75 @@
 package l5;
+public final class h extends a {
+    public final Integer f16890a;
+    public final String f16891b;
+    public final String f16892c;
+    public final String d;
+    public final String e;
+    public final String f16893f;
+    public final String f16894g;
+    public final String h;
+    public final String f16895i;
+    public final String f16896j;
+    public final String f16897k;
+    public final String f16898l;
 
-import java.util.HashMap;
-import java.util.Map;
-public final class h {
-    public final String f15979a;
-    public final Integer f15980b;
-    public final m f15981c;
-    public final long d;
-    public final long e;
-    public final Map f15982f;
-
-    public h(String str, Integer num, m mVar, long j10, long j11, HashMap hashMap) {
-        this.f15979a = str;
-        this.f15980b = num;
-        this.f15981c = mVar;
-        this.d = j10;
-        this.e = j11;
-        this.f15982f = hashMap;
-    }
-
-    public final String a(String str) {
-        String str2 = (String) this.f15982f.get(str);
-        if (str2 == null) {
-            return "";
-        }
-        return str2;
-    }
-
-    public final int b(String str) {
-        String str2 = (String) this.f15982f.get(str);
-        if (str2 == null) {
-            return 0;
-        }
-        return Integer.valueOf(str2).intValue();
-    }
-
-    public final com.google.firebase.messaging.l c() {
-        ?? obj = new Object();
-        String str = this.f15979a;
-        if (str != null) {
-            obj.f7657a = str;
-            obj.f7658b = this.f15980b;
-            m mVar = this.f15981c;
-            if (mVar != null) {
-                obj.f7659c = mVar;
-                obj.d = Long.valueOf(this.d);
-                obj.e = Long.valueOf(this.e);
-                obj.f7660f = new HashMap(this.f15982f);
-                return obj;
-            }
-            throw new NullPointerException("Null encodedPayload");
-        }
-        throw new NullPointerException("Null transportName");
+    public h(Integer num, String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11) {
+        this.f16890a = num;
+        this.f16891b = str;
+        this.f16892c = str2;
+        this.d = str3;
+        this.e = str4;
+        this.f16893f = str5;
+        this.f16894g = str6;
+        this.h = str7;
+        this.f16895i = str8;
+        this.f16896j = str9;
+        this.f16897k = str10;
+        this.f16898l = str11;
     }
 
     public final boolean equals(Object obj) {
-        Integer num;
         if (obj == this) {
             return true;
         }
-        if (obj instanceof h) {
-            h hVar = (h) obj;
-            Integer num2 = hVar.f15980b;
-            if (this.f15979a.equals(hVar.f15979a) && ((num = this.f15980b) != null ? num.equals(num2) : num2 == null) && this.f15981c.equals(hVar.f15981c) && this.d == hVar.d && this.e == hVar.e && this.f15982f.equals(hVar.f15982f)) {
-                return true;
+        if (obj instanceof a) {
+            a aVar = (a) obj;
+            Integer num = this.f16890a;
+            if (num != null ? num.equals(((h) aVar).f16890a) : ((h) aVar).f16890a == null) {
+                String str = this.f16891b;
+                if (str != null ? str.equals(((h) aVar).f16891b) : ((h) aVar).f16891b == null) {
+                    String str2 = this.f16892c;
+                    if (str2 != null ? str2.equals(((h) aVar).f16892c) : ((h) aVar).f16892c == null) {
+                        String str3 = this.d;
+                        if (str3 != null ? str3.equals(((h) aVar).d) : ((h) aVar).d == null) {
+                            String str4 = this.e;
+                            if (str4 != null ? str4.equals(((h) aVar).e) : ((h) aVar).e == null) {
+                                String str5 = this.f16893f;
+                                if (str5 != null ? str5.equals(((h) aVar).f16893f) : ((h) aVar).f16893f == null) {
+                                    String str6 = this.f16894g;
+                                    if (str6 != null ? str6.equals(((h) aVar).f16894g) : ((h) aVar).f16894g == null) {
+                                        String str7 = this.h;
+                                        if (str7 != null ? str7.equals(((h) aVar).h) : ((h) aVar).h == null) {
+                                            String str8 = this.f16895i;
+                                            if (str8 != null ? str8.equals(((h) aVar).f16895i) : ((h) aVar).f16895i == null) {
+                                                String str9 = this.f16896j;
+                                                if (str9 != null ? str9.equals(((h) aVar).f16896j) : ((h) aVar).f16896j == null) {
+                                                    String str10 = this.f16897k;
+                                                    if (str10 != null ? str10.equals(((h) aVar).f16897k) : ((h) aVar).f16897k == null) {
+                                                        String str11 = this.f16898l;
+                                                        if (str11 != null ? str11.equals(((h) aVar).f16898l) : ((h) aVar).f16898l == null) {
+                                                            return true;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
         return false;
@@ -71,19 +77,125 @@ public final class h {
 
     public final int hashCode() {
         int hashCode;
-        int hashCode2 = (this.f15979a.hashCode() ^ 1000003) * 1000003;
-        Integer num = this.f15980b;
+        int hashCode2;
+        int hashCode3;
+        int hashCode4;
+        int hashCode5;
+        int hashCode6;
+        int hashCode7;
+        int hashCode8;
+        int hashCode9;
+        int hashCode10;
+        int hashCode11;
+        int i10 = 0;
+        Integer num = this.f16890a;
         if (num == null) {
             hashCode = 0;
         } else {
             hashCode = num.hashCode();
         }
-        long j10 = this.d;
-        long j11 = this.e;
-        return ((((((((hashCode2 ^ hashCode) * 1000003) ^ this.f15981c.hashCode()) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)))) * 1000003) ^ ((int) (j11 ^ (j11 >>> 32)))) * 1000003) ^ this.f15982f.hashCode();
+        int i11 = (hashCode ^ 1000003) * 1000003;
+        String str = this.f16891b;
+        if (str == null) {
+            hashCode2 = 0;
+        } else {
+            hashCode2 = str.hashCode();
+        }
+        int i12 = (i11 ^ hashCode2) * 1000003;
+        String str2 = this.f16892c;
+        if (str2 == null) {
+            hashCode3 = 0;
+        } else {
+            hashCode3 = str2.hashCode();
+        }
+        int i13 = (i12 ^ hashCode3) * 1000003;
+        String str3 = this.d;
+        if (str3 == null) {
+            hashCode4 = 0;
+        } else {
+            hashCode4 = str3.hashCode();
+        }
+        int i14 = (i13 ^ hashCode4) * 1000003;
+        String str4 = this.e;
+        if (str4 == null) {
+            hashCode5 = 0;
+        } else {
+            hashCode5 = str4.hashCode();
+        }
+        int i15 = (i14 ^ hashCode5) * 1000003;
+        String str5 = this.f16893f;
+        if (str5 == null) {
+            hashCode6 = 0;
+        } else {
+            hashCode6 = str5.hashCode();
+        }
+        int i16 = (i15 ^ hashCode6) * 1000003;
+        String str6 = this.f16894g;
+        if (str6 == null) {
+            hashCode7 = 0;
+        } else {
+            hashCode7 = str6.hashCode();
+        }
+        int i17 = (i16 ^ hashCode7) * 1000003;
+        String str7 = this.h;
+        if (str7 == null) {
+            hashCode8 = 0;
+        } else {
+            hashCode8 = str7.hashCode();
+        }
+        int i18 = (i17 ^ hashCode8) * 1000003;
+        String str8 = this.f16895i;
+        if (str8 == null) {
+            hashCode9 = 0;
+        } else {
+            hashCode9 = str8.hashCode();
+        }
+        int i19 = (i18 ^ hashCode9) * 1000003;
+        String str9 = this.f16896j;
+        if (str9 == null) {
+            hashCode10 = 0;
+        } else {
+            hashCode10 = str9.hashCode();
+        }
+        int i20 = (i19 ^ hashCode10) * 1000003;
+        String str10 = this.f16897k;
+        if (str10 == null) {
+            hashCode11 = 0;
+        } else {
+            hashCode11 = str10.hashCode();
+        }
+        int i21 = (i20 ^ hashCode11) * 1000003;
+        String str11 = this.f16898l;
+        if (str11 != null) {
+            i10 = str11.hashCode();
+        }
+        return i10 ^ i21;
     }
 
     public final String toString() {
-        return "EventInternal{transportName=" + this.f15979a + ", code=" + this.f15980b + ", encodedPayload=" + this.f15981c + ", eventMillis=" + this.d + ", uptimeMillis=" + this.e + ", autoMetadata=" + this.f15982f + "}";
+        StringBuilder sb2 = new StringBuilder("AndroidClientInfo{sdkVersion=");
+        sb2.append(this.f16890a);
+        sb2.append(", model=");
+        sb2.append(this.f16891b);
+        sb2.append(", hardware=");
+        sb2.append(this.f16892c);
+        sb2.append(", device=");
+        sb2.append(this.d);
+        sb2.append(", product=");
+        sb2.append(this.e);
+        sb2.append(", osBuild=");
+        sb2.append(this.f16893f);
+        sb2.append(", manufacturer=");
+        sb2.append(this.f16894g);
+        sb2.append(", fingerprint=");
+        sb2.append(this.h);
+        sb2.append(", locale=");
+        sb2.append(this.f16895i);
+        sb2.append(", country=");
+        sb2.append(this.f16896j);
+        sb2.append(", mccMnc=");
+        sb2.append(this.f16897k);
+        sb2.append(", applicationBuild=");
+        return a1.g.s(sb2, this.f16898l, "}");
     }
 }

@@ -1,16 +1,17 @@
 package f2;
 
-import b2.q0;
-import b2.s0;
-public final class c implements s0 {
-    public final int f10300a;
+import b2.r0;
+import b2.t0;
+import b2.x;
+public final class c implements t0 {
+    public final int f10059a;
 
     public c(int i10) {
-        this.f10300a = i10;
+        this.f10059a = i10;
     }
 
     @Override
-    public final b2.w a() {
+    public final x a() {
         return null;
     }
 
@@ -23,21 +24,21 @@ public final class c implements s0 {
         if (this == obj) {
             return true;
         }
-        if ((obj instanceof c) && this.f10300a == ((c) obj).f10300a) {
+        if ((obj instanceof c) && this.f10059a == ((c) obj).f10059a) {
             return true;
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f10300a;
+        return this.f10059a;
     }
 
     public final String toString() {
-        return "Mp4AlternateGroup: " + this.f10300a;
+        return "Mp4AlternateGroup: " + this.f10059a;
     }
 
     @Override
-    public final void b(q0 q0Var) {
+    public final void b(r0 r0Var) {
     }
 }

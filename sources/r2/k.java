@@ -1,4 +1,6 @@
 package r2;
+
+import aa.m0;
 public interface k {
-    l J(com.google.firebase.messaging.l lVar);
+    l G(m0 m0Var);
 }

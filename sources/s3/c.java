@@ -1,24 +1,23 @@
 package s3;
 
 import a4.g;
-import b2.s0;
+import a8.wd;
 import b2.t0;
+import b2.u0;
 import e2.k0;
 import e2.x;
 import java.nio.ByteBuffer;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import ki.t1;
-import w7.m;
-public final class c extends m {
-    public final x f46307a = new x();
-    public final g f46308b = new g();
-    public k0 f46309c;
+import jg.s0;
+public final class c extends wd {
+    public final x f47658a = new x();
+    public final g f47659b = new g();
+    public k0 f47660c;
 
     @Override
-    public final t0 b(l3.a aVar, ByteBuffer byteBuffer) {
-        int i10;
+    public final u0 b(l3.a aVar, ByteBuffer byteBuffer) {
         Object obj;
         boolean z10;
         boolean z11;
@@ -29,39 +28,38 @@ public final class c extends m {
         boolean z15;
         boolean z16;
         long j11;
-        boolean z17;
         long j12;
-        k0 k0Var = this.f46309c;
-        if (k0Var == null || aVar.f15956r != k0Var.e()) {
+        k0 k0Var = this.f47660c;
+        if (k0Var == null || aVar.f16857r != k0Var.e()) {
             k0 k0Var2 = new k0(aVar.e);
-            this.f46309c = k0Var2;
-            k0Var2.a(aVar.e - aVar.f15956r);
+            this.f47660c = k0Var2;
+            k0Var2.a(aVar.e - aVar.f16857r);
         }
         byte[] array = byteBuffer.array();
         int limit = byteBuffer.limit();
-        x xVar = this.f46307a;
+        x xVar = this.f47658a;
         xVar.L(limit, array);
-        g gVar = this.f46308b;
+        g gVar = this.f47659b;
         gVar.k(limit, array);
         gVar.o(39);
-        long g10 = (gVar.g(1) << 32) | gVar.g(32);
+        long g7 = (gVar.g(1) << 32) | gVar.g(32);
         gVar.o(20);
-        int g11 = gVar.g(12);
-        int g12 = gVar.g(8);
+        int g10 = gVar.g(12);
+        int g11 = gVar.g(8);
         xVar.O(14);
-        if (g12 != 0) {
-            if (g12 != 255) {
-                if (g12 != 4) {
-                    if (g12 != 5) {
-                        if (g12 != 6) {
+        if (g11 != 0) {
+            if (g11 != 255) {
+                if (g11 != 4) {
+                    if (g11 != 5) {
+                        if (g11 != 6) {
                             obj = null;
                         } else {
-                            k0 k0Var3 = this.f46309c;
-                            long d = a.d(g10, xVar);
+                            k0 k0Var3 = this.f47660c;
+                            long d = a.d(g7, xVar);
                             obj = new a(d, k0Var3.b(d), 1);
                         }
                     } else {
-                        k0 k0Var4 = this.f46309c;
+                        k0 k0Var4 = this.f47660c;
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z13 = true;
@@ -87,27 +85,22 @@ public final class c extends m {
                                 z16 = false;
                             }
                             if (z14 && !z16) {
-                                j11 = a.d(g10, xVar);
+                                j11 = a.d(g7, xVar);
                             } else {
                                 j11 = -9223372036854775807L;
                             }
                             if (!z14) {
                                 int A2 = xVar.A();
                                 ArrayList arrayList = new ArrayList(A2);
-                                int i11 = 0;
-                                while (i11 < A2) {
+                                for (int i10 = 0; i10 < A2; i10++) {
                                     xVar.A();
                                     if (!z16) {
-                                        z17 = z16;
-                                        j12 = a.d(g10, xVar);
+                                        j12 = a.d(g7, xVar);
                                     } else {
-                                        z17 = z16;
                                         j12 = -9223372036854775807L;
                                     }
                                     k0Var4.b(j12);
-                                    arrayList.add(new rb.b(22));
-                                    i11++;
-                                    z16 = z17;
+                                    arrayList.add(new Object());
                                 }
                                 list = arrayList;
                             }
@@ -127,7 +120,7 @@ public final class c extends m {
                 } else {
                     int A3 = xVar.A();
                     ArrayList arrayList2 = new ArrayList(A3);
-                    for (int i12 = 0; i12 < A3; i12++) {
+                    for (int i11 = 0; i11 < A3; i11++) {
                         xVar.C();
                         if ((xVar.A() & 128) != 0) {
                             z10 = true;
@@ -153,10 +146,10 @@ public final class c extends m {
                             if (!z11) {
                                 int A5 = xVar.A();
                                 ArrayList arrayList4 = new ArrayList(A5);
-                                for (int i13 = 0; i13 < A5; i13++) {
+                                for (int i12 = 0; i12 < A5; i12++) {
                                     xVar.A();
                                     xVar.C();
-                                    arrayList4.add(new sb.a(22));
+                                    arrayList4.add(new qb.a(22));
                                 }
                                 arrayList3 = arrayList4;
                             }
@@ -168,27 +161,22 @@ public final class c extends m {
                             xVar.A();
                             xVar.A();
                         }
-                        arrayList2.add(new t1(arrayList3));
+                        arrayList2.add(new s0(arrayList3));
                     }
                     obj = new f(arrayList2);
                 }
-                i10 = 0;
             } else {
                 long C = xVar.C();
-                int i14 = g11 - 4;
-                i10 = 0;
-                xVar.k(0, i14, new byte[i14]);
-                obj = new a(C, g10, 0);
+                int i13 = g10 - 4;
+                xVar.k(0, i13, new byte[i13]);
+                obj = new a(C, g7, 0);
             }
         } else {
-            i10 = 0;
             obj = new Object();
         }
         if (obj == null) {
-            return new t0(new s0[i10]);
+            return new u0(new t0[0]);
         }
-        s0[] s0VarArr = new s0[1];
-        s0VarArr[i10] = obj;
-        return new t0(s0VarArr);
+        return new u0(obj);
     }
 }

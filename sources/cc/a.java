@@ -1,23 +1,18 @@
 package cc;
 
-import com.google.android.gms.internal.cast.z5;
-import rb.g;
-public final class a implements r9.d {
-    public static final a f5086b = new a(0);
-    public static final a f5087c = new a(1);
-    public final int f5088a;
+import android.graphics.Bitmap;
+public final class a {
+    public final Bitmap f6185a;
+    public final int f6186b;
+    public final int f6187c;
+    public final int d;
+    public final int e;
 
-    public a(int i10) {
-        this.f5088a = i10;
-    }
-
-    @Override
-    public final Object j2(z5 z5Var) {
-        switch (this.f5088a) {
-            case 0:
-                return new c((g) z5Var.a(g.class));
-            default:
-                return new b((c) z5Var.a(c.class), (rb.d) z5Var.a(rb.d.class));
-        }
+    public a(Bitmap bitmap, int i10, int i11, int i12, int i13) {
+        this.f6185a = bitmap;
+        this.f6186b = i10;
+        this.f6187c = i11;
+        this.d = i12;
+        this.e = i13;
     }
 }

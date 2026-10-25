@@ -1,12 +1,12 @@
 package org.telegram.ui.Cells;
-public interface w9 {
-    int getBottom();
 
-    int getTop();
+import android.graphics.Path;
+import org.telegram.ui.Components.fr;
+public final class w9 extends Path {
+    public fr f25670a;
 
-    float getX();
-
-    float getY();
-
-    void invalidate();
+    @Override
+    public final void addRect(float f7, float f10, float f11, float f12, Path.Direction direction) {
+        this.f25670a.addRect(f7, f10, f11, f12, direction);
+    }
 }

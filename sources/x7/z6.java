@@ -1,9 +1,24 @@
 package x7;
-public final class z6 {
-    public Long f50091a;
-    public Long f50092b;
-    public Long f50093c;
-    public Long d;
-    public Long e;
-    public Long f50094f;
+public enum z6 implements b {
+    UNKNOWN_FORMAT(0),
+    NV16(1),
+    NV21(2),
+    YV12(3),
+    YUV_420_888(7),
+    JPEG(8),
+    BITMAP(4),
+    CM_SAMPLE_BUFFER_REF(5),
+    UI_IMAGE(6),
+    CV_PIXEL_BUFFER_REF(9);
+    
+    public final int f51678a;
+
+    z6(int i10) {
+        this.f51678a = i10;
+    }
+
+    @Override
+    public final int zza() {
+        return this.f51678a;
+    }
 }

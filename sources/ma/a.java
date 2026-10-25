@@ -1,41 +1,24 @@
 package ma;
-public final class a implements e {
-    public final int f16874a;
 
-    public a(int i10) {
-        this.f16874a = i10;
-    }
+import java.util.Map;
+public final class a implements ka.d {
+    public final int f18395a;
 
     @Override
-    public final Class annotationType() {
-        return e.class;
-    }
-
-    @Override
-    public final boolean equals(Object obj) {
-        if (this != obj) {
-            if (obj instanceof e) {
-                if (this.f16874a == ((a) ((e) obj)).f16874a) {
-                    Object obj2 = d.f16877a;
-                    if (obj2.equals(obj2)) {
-                        return true;
-                    }
-                    return false;
-                }
-                return false;
-            }
-            return false;
+    public final void a(Object obj, Object obj2) {
+        switch (this.f18395a) {
+            case 0:
+                ka.e eVar = (ka.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
+            case 1:
+                Map.Entry entry = (Map.Entry) obj;
+                ka.e eVar2 = (ka.e) obj2;
+                eVar2.a(na.e.f18746g, entry.getKey());
+                eVar2.a(na.e.h, entry.getValue());
+                return;
+            default:
+                ka.e eVar3 = (ka.e) obj2;
+                throw new RuntimeException("Couldn't find encoder for type " + obj.getClass().getCanonicalName());
         }
-        return true;
-    }
-
-    @Override
-    public final int hashCode() {
-        return (14552422 ^ this.f16874a) + (d.f16877a.hashCode() ^ 2041407134);
-    }
-
-    @Override
-    public final String toString() {
-        return "@com.google.firebase.encoders.proto.Protobuf(tag=" + this.f16874a + "intEncoding=" + d.f16877a + ')';
     }
 }

@@ -1,20 +1,38 @@
 package y9;
-public final class g {
-    public static final g f50543c = new g(0, 0);
-    public final int f50544a;
-    public final int f50545b;
 
-    public g(int i10, int i11) {
-        this.f50544a = i10;
-        this.f50545b = i11;
+import java.util.HashMap;
+public final class g {
+    public static final g f52422a;
+    public static final HashMap f52423b;
+    public static final g[] f52424c;
+    g EF0;
+
+    static {
+        Enum r02 = new Enum("X86_32", 0);
+        Enum r12 = new Enum("X86_64", 1);
+        Enum r32 = new Enum("ARM_UNKNOWN", 2);
+        Enum r52 = new Enum("PPC", 3);
+        Enum r72 = new Enum("PPC64", 4);
+        Enum r92 = new Enum("ARMV6", 5);
+        Enum r11 = new Enum("ARMV7", 6);
+        ?? r13 = new Enum("UNKNOWN", 7);
+        f52422a = r13;
+        Enum r15 = new Enum("ARMV7S", 8);
+        Enum r22 = new Enum("ARM64", 9);
+        f52424c = new g[]{r02, r12, r32, r52, r72, r92, r11, r13, r15, r22};
+        HashMap hashMap = new HashMap(4);
+        f52423b = hashMap;
+        hashMap.put("armeabi-v7a", r11);
+        hashMap.put("armeabi", r92);
+        hashMap.put("arm64-v8a", r22);
+        hashMap.put("x86", r02);
     }
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder();
-        sb2.append(g.class.getSimpleName());
-        sb2.append("[position = ");
-        sb2.append(this.f50544a);
-        sb2.append(", length = ");
-        return a1.g.n(this.f50545b, "]", sb2);
+    public static g valueOf(String str) {
+        return (g) Enum.valueOf(g.class, str);
+    }
+
+    public static g[] values() {
+        return (g[]) f52424c.clone();
     }
 }

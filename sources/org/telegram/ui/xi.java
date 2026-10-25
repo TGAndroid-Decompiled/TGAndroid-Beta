@@ -1,20 +1,32 @@
 package org.telegram.ui;
 
 import android.app.Activity;
-import java.util.ArrayList;
-public final class xi extends org.telegram.ui.Components.yv {
-    public final sn W;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class xi extends FrameLayout {
+    public final un f45775a;
 
-    public xi(sn snVar, org.telegram.ui.ActionBar.o2 o2Var, Activity activity, org.telegram.ui.ActionBar.g6 g6Var, ArrayList arrayList) {
-        super(o2Var, activity, g6Var, arrayList);
-        this.W = snVar;
+    public xi(un unVar, Activity activity) {
+        super(activity);
+        this.f45775a = unVar;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        sn snVar = this.W;
-        snVar.getClass();
-        snVar.j8(false, true, 0.0f);
+    public final boolean dispatchKeyEvent(KeyEvent keyEvent) {
+        if (keyEvent.getKeyCode() == 4 && keyEvent.getRepeatCount() == 0) {
+            this.f45775a.H7(true);
+        }
+        return super.dispatchKeyEvent(keyEvent);
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        int min = Math.min(View.MeasureSpec.getSize(i11), AndroidUtilities.dp(300.0f));
+        if (min == 0) {
+            min = AndroidUtilities.dp(300.0f);
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(min, Integer.MIN_VALUE));
     }
 }

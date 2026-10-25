@@ -1,138 +1,112 @@
 package org.telegram.messenger;
 
-import android.content.SharedPreferences;
+import java.io.Serializable;
+import java.util.ArrayList;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.fl0;
-import org.telegram.ui.LaunchActivity;
-import org.telegram.ui.NotificationsSettingsActivity;
-import org.telegram.ui.sn;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
 public final class zi implements Runnable {
-    public final int f20322a = 0;
-    public final int f20323b;
-    public final int f20324c;
+    public final int f22005a = 0;
+    public final int f22006b;
+    public final boolean f22007c;
     public final boolean d;
     public final Object e;
-    public final Object f20325f;
+    public final Serializable f22008f;
+    public final Object h;
+    public final Object f22009n;
+    public final TLObject f22010r;
 
-    public zi(SendMessagesHelper sendMessagesHelper, TLRPC.Message message, int i10, int i11, boolean z10) {
+    public zi(SendMessagesHelper sendMessagesHelper, ArrayList arrayList, boolean z10, boolean z11, TLRPC.Message message, ArrayList arrayList2, ArrayList arrayList3, int i10) {
         this.e = sendMessagesHelper;
-        this.f20325f = message;
-        this.f20323b = i10;
-        this.f20324c = i11;
-        this.d = z10;
+        this.f22008f = arrayList;
+        this.f22007c = z10;
+        this.d = z11;
+        this.f22010r = message;
+        this.h = arrayList2;
+        this.f22009n = arrayList3;
+        this.f22006b = i10;
     }
 
     @Override
     public final void run() {
-        TLRPC.Document f7;
-        hg.n nVar;
         int i10;
-        switch (this.f20322a) {
+        TLRPC.TL_username tL_username;
+        switch (this.f22005a) {
             case 0:
-                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$101((TLRPC.Message) this.f20325f, this.f20323b, this.f20324c, this.d);
-                return;
-            case 1:
-                sn snVar = (sn) this.e;
-                fl0 fl0Var = (fl0) this.f20325f;
-                org.telegram.ui.ActionBar.m1 m1Var = snVar.f41481c9;
-                if (m1Var != null && snVar.fragmentView != null && !m1Var.isShowing() && AndroidUtilities.isActivityRunning(snVar.getParentActivity())) {
-                    snVar.f41481c9.showAtLocation(snVar.f41734x0, 51, this.f20323b, this.f20324c);
-                    if (this.d && fl0Var != null) {
-                        fl0Var.r(true);
-                    }
-                    AndroidUtilities.runOnUIThread(new org.telegram.ui.kf(snVar, 23), 420L);
-                    return;
-                }
-                return;
-            case 2:
-                org.telegram.ui.Components.yb ybVar = (org.telegram.ui.Components.yb) this.e;
-                ah.i1 i1Var = (ah.i1) this.f20325f;
-                org.telegram.ui.ActionBar.o2 R = LaunchActivity.R();
-                long j10 = i1Var.f785g;
-                if (j10 == 0) {
-                    TLRPC.TL_availableReaction tL_availableReaction = MediaDataController.getInstance(UserConfig.selectedAccount).getReactionsMap().get(i1Var.f784f);
-                    if (tL_availableReaction != null) {
-                        f7 = tL_availableReaction.activate_animation;
-                    } else {
-                        return;
-                    }
-                } else {
-                    f7 = org.telegram.ui.Components.p5.f(UserConfig.selectedAccount, j10);
-                }
-                if (f7 != null && R != null) {
-                    org.telegram.ui.Components.vc a02 = org.telegram.ui.Components.vc.a0(R);
-                    int i11 = ybVar.f32875a.h;
-                    if (this.d) {
-                        nVar = new hg.n(this.f20323b, this.f20324c, R, 7);
-                    } else {
-                        nVar = null;
-                    }
-                    a02.y(i11, f7, nVar).k(true);
-                    return;
-                }
+                ((SendMessagesHelper) this.e).lambda$performSendMessageRequest$99((ArrayList) this.f22008f, this.f22007c, this.d, (TLRPC.Message) this.f22010r, (ArrayList) this.h, (ArrayList) this.f22009n, this.f22006b);
                 return;
             default:
-                NotificationsSettingsActivity notificationsSettingsActivity = (NotificationsSettingsActivity) this.e;
-                org.telegram.ui.Cells.i5 i5Var = (org.telegram.ui.Cells.i5) this.f20325f;
-                int i12 = this.f20323b;
-                boolean z10 = this.d;
-                if (i12 == 3) {
-                    SharedPreferences.Editor edit = notificationsSettingsActivity.getNotificationsSettings().edit();
-                    if (z10) {
-                        edit.remove("EnableAllStories");
-                    } else {
-                        edit.putBoolean("EnableAllStories", true);
-                    }
-                    edit.apply();
-                    notificationsSettingsActivity.getNotificationsController().updateServerNotificationsSettings(i12);
-                } else if (i12 != 4 && i12 != 5) {
-                    NotificationsController notificationsController = notificationsSettingsActivity.getNotificationsController();
-                    if (!z10) {
-                        i10 = 0;
-                    } else {
-                        i10 = Integer.MAX_VALUE;
-                    }
-                    notificationsController.setGlobalNotificationsEnabled(i12, i10);
+                org.telegram.ui.ia iaVar = (org.telegram.ui.ia) this.e;
+                TLRPC.TL_error tL_error = (TLRPC.TL_error) this.f22009n;
+                TLRPC.TL_username tL_username2 = (TLRPC.TL_username) this.f22010r;
+                org.telegram.ui.ta taVar = iaVar.f40195a;
+                ArrayList arrayList = taVar.f43711w;
+                ArrayList arrayList2 = taVar.v;
+                arrayList.remove((String) this.f22008f);
+                boolean z10 = ((TLObject) this.h) instanceof TLRPC.TL_boolTrue;
+                int i11 = this.f22006b;
+                boolean z11 = this.f22007c;
+                if (z10) {
+                    taVar.j0(i11, z11, false);
                 } else {
-                    SharedPreferences.Editor edit2 = notificationsSettingsActivity.getNotificationsSettings().edit();
-                    if (z10) {
-                        edit2.putBoolean("EnableReactionsMessages", false);
-                        edit2.putBoolean("EnableReactionsStories", false);
+                    boolean z12 = this.d;
+                    if (tL_error != null && "USERNAMES_ACTIVE_TOO_MUCH".equals(tL_error.text)) {
+                        tL_username2.active = z11;
+                        taVar.j0(i11, z11, false);
+                        AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(taVar.getParentActivity(), 0, taVar.getResourceProvider());
+                        alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.UsernameActivateErrorTitle);
+                        alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.UsernameActivateErrorMessage);
+                        alertDialog$Builder.k(LocaleController.getString(R.string.OK), new bi.z3(iaVar, tL_username2, z12, 4));
+                        alertDialog$Builder.p();
                     } else {
-                        edit2.putBoolean("EnableReactionsMessages", true);
-                        edit2.putBoolean("EnableReactionsStories", true);
+                        taVar.k0(tL_username2, z12, true);
                     }
-                    edit2.apply();
-                    notificationsSettingsActivity.getNotificationsController().updateServerNotificationsSettings(i12);
-                    notificationsSettingsActivity.getNotificationsController().deleteNotificationChannelGlobal(i12);
                 }
-                i5Var.e.b(0, !z10, true);
-                notificationsSettingsActivity.f33521c.m(this.f20324c);
+                i10 = ((org.telegram.ui.ActionBar.r2) taVar).currentAccount;
+                TLRPC.User user = MessagesController.getInstance(i10).getUser(Long.valueOf(taVar.h0()));
+                taVar.getMessagesController().updateUsernameActiveness(user, tL_username2.username, tL_username2.active);
+                if (taVar.f43712x != 0 && arrayList2 != null) {
+                    int size = arrayList2.size();
+                    int i12 = 0;
+                    while (i12 < size) {
+                        Object obj = arrayList2.get(i12);
+                        i12++;
+                        if (((TLRPC.TL_username) obj).active) {
+                            return;
+                        }
+                    }
+                    int size2 = arrayList2.size();
+                    int i13 = 0;
+                    while (true) {
+                        if (i13 < size2) {
+                            Object obj2 = arrayList2.get(i13);
+                            i13++;
+                            tL_username = (TLRPC.TL_username) obj2;
+                            if (tL_username.editable) {
+                            }
+                        } else {
+                            tL_username = null;
+                        }
+                    }
+                    if (tL_username != null) {
+                        taVar.k0(tL_username, true, false);
+                        taVar.getMessagesController().updateUsernameActiveness(user, tL_username.username, tL_username.active);
+                        return;
+                    }
+                    return;
+                }
                 return;
         }
     }
 
-    public zi(sn snVar, int i10, int i11, boolean z10, fl0 fl0Var) {
-        this.e = snVar;
-        this.f20323b = i10;
-        this.f20324c = i11;
-        this.d = z10;
-        this.f20325f = fl0Var;
-    }
-
-    public zi(org.telegram.ui.Components.yb ybVar, ah.i1 i1Var, boolean z10, int i10, int i11) {
-        this.e = ybVar;
-        this.f20325f = i1Var;
-        this.d = z10;
-        this.f20323b = i10;
-        this.f20324c = i11;
-    }
-
-    public zi(NotificationsSettingsActivity notificationsSettingsActivity, int i10, boolean z10, org.telegram.ui.Cells.i5 i5Var, int i11) {
-        this.e = notificationsSettingsActivity;
-        this.f20323b = i10;
-        this.d = z10;
-        this.f20325f = i5Var;
-        this.f20324c = i11;
+    public zi(org.telegram.ui.ia iaVar, String str, TLObject tLObject, int i10, boolean z10, TLRPC.TL_error tL_error, TLRPC.TL_username tL_username, boolean z11) {
+        this.e = iaVar;
+        this.f22008f = str;
+        this.h = tLObject;
+        this.f22006b = i10;
+        this.f22007c = z10;
+        this.f22009n = tL_error;
+        this.f22010r = tL_username;
+        this.d = z11;
     }
 }

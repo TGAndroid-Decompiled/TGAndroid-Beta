@@ -1,116 +1,56 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import android.view.ViewGroup;
 import org.telegram.messenger.MessagesController;
-public final class qc extends View {
-    public final Paint f40767a;
-    public final Paint f40768b;
-    public final Paint f40769c;
-    public final Paint d;
-    public final Path e;
-    public final Path f40770f;
-    public boolean h;
-    public boolean f40771n;
-    public final org.telegram.ui.Components.wc f40772r;
-    public boolean f40773s;
-    public final org.telegram.ui.Components.d6 v;
-    public final rc f40774w;
+public final class qc extends org.telegram.ui.Components.lm0 {
+    public final Context f42803c;
+    public final org.telegram.ui.ActionBar.u6 d;
+    public final int e;
+    public final sc f42804f;
 
-    public qc(rc rcVar, Context context) {
-        super(context);
-        this.f40774w = rcVar;
-        Paint paint = new Paint(1);
-        this.f40767a = paint;
-        this.f40768b = new Paint(1);
-        this.f40769c = new Paint(1);
-        this.d = new Paint(1);
-        this.e = new Path();
-        this.f40770f = new Path();
-        this.f40772r = new org.telegram.ui.Components.wc(this);
-        this.v = new org.telegram.ui.Components.d6(this, 0L, 320L, org.telegram.ui.Components.zr.h);
-        paint.setStyle(Paint.Style.STROKE);
+    public qc(sc scVar, Context context, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
+        this.f42804f = scVar;
+        this.f42803c = context;
+        this.d = u6Var;
+        this.e = i10;
     }
 
-    public final void a(MessagesController.PeerColor peerColor) {
-        boolean q6;
-        org.telegram.ui.ActionBar.g6 g6Var = this.f40774w.f41089a;
-        if (g6Var != null) {
-            q6 = g6Var.a();
+    @Override
+    public final boolean D(s4.e1 e1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
+        if (peerColors == null) {
+            return 0;
+        }
+        return peerColors.colors.size();
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        boolean z10;
+        rc rcVar = (rc) e1Var.f47735a;
+        org.telegram.ui.ActionBar.f7.i(org.telegram.ui.ActionBar.y6.f23354d6, rcVar, this.d);
+        if (i10 == this.f42804f.e) {
+            z10 = true;
         } else {
-            q6 = org.telegram.ui.ActionBar.k6.I.q();
+            z10 = false;
         }
-        Paint paint = this.f40769c;
-        Paint paint2 = this.f40768b;
-        if (q6 && peerColor.hasColor2() && !peerColor.hasColor3()) {
-            paint2.setColor(peerColor.getColor(1, g6Var));
-            paint.setColor(peerColor.getColor(0, g6Var));
-        } else {
-            paint2.setColor(peerColor.getColor(0, g6Var));
-            paint.setColor(peerColor.getColor(1, g6Var));
+        rcVar.f43109s = z10;
+        rcVar.v.f(z10, true);
+        rcVar.invalidate();
+        MessagesController.PeerColors peerColors = MessagesController.getInstance(this.e).peerColors;
+        if (peerColors != null && i10 >= 0 && i10 < peerColors.colors.size()) {
+            rcVar.a(peerColors.colors.get(i10));
         }
-        this.d.setColor(peerColor.getColor(2, g6Var));
-        this.h = peerColor.hasColor2();
-        this.f40771n = peerColor.hasColor3();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.save();
-        float a2 = this.f40772r.a(0.05f);
-        canvas.scale(a2, a2, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-        canvas.save();
-        canvas.clipPath(this.e);
-        canvas.drawPaint(this.f40768b);
-        if (this.h) {
-            canvas.drawPath(this.f40770f, this.f40769c);
-        }
-        canvas.restore();
-        if (this.f40771n) {
-            canvas.save();
-            RectF rectF = AndroidUtilities.rectTmp;
-            rectF.set((getMeasuredWidth() - AndroidUtilities.dp(12.4f)) / 2.0f, (getMeasuredHeight() - AndroidUtilities.dp(12.4f)) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredWidth()) / 2.0f, (AndroidUtilities.dp(12.4f) + getMeasuredHeight()) / 2.0f);
-            canvas.rotate(45.0f, getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f);
-            canvas.drawRoundRect(rectF, AndroidUtilities.dp(2.33f), AndroidUtilities.dp(2.33f), this.d);
-            canvas.restore();
-        }
-        float e = this.v.e(this.f40773s);
-        if (e > 0.0f) {
-            float dpf2 = AndroidUtilities.dpf2(2.0f);
-            Paint paint = this.f40767a;
-            paint.setStrokeWidth(dpf2);
-            canvas.drawCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.lerp((paint.getStrokeWidth() * 0.5f) + AndroidUtilities.dp(20.0f), AndroidUtilities.dp(20.0f) - (paint.getStrokeWidth() * 2.0f), e), paint);
-        }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(AndroidUtilities.dp(56.0f), AndroidUtilities.dp(56.0f));
-        Path path = this.e;
-        path.rewind();
-        path.addCircle(getMeasuredWidth() / 2.0f, getMeasuredHeight() / 2.0f, AndroidUtilities.dp(20.0f), Path.Direction.CW);
-        Path path2 = this.f40770f;
-        path2.rewind();
-        path2.moveTo(getMeasuredWidth(), 0.0f);
-        path2.lineTo(getMeasuredWidth(), getMeasuredHeight());
-        path2.lineTo(0.0f, getMeasuredHeight());
-        path2.close();
-    }
-
-    @Override
-    public final void setBackgroundColor(int i10) {
-        this.f40767a.setColor(i10);
-    }
-
-    @Override
-    public final void setPressed(boolean z10) {
-        super.setPressed(z10);
-        this.f40772r.c(z10);
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        return new s4.e1(new rc(this.f42804f, this.f42803c));
     }
 }

@@ -1,68 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.content.DialogInterface;
-import org.telegram.tgnet.ConnectionsManager;
-public final class bs0 implements Runnable {
-    public final int f25084a;
-    public final org.telegram.ui.ActionBar.c2[] f25085b;
-    public final int f25086c;
-    public final int d;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.BirthdayController;
+public final class bs0 implements View.OnClickListener {
+    public final int f26954a;
+    public final boolean f26955b;
+    public final int f26956c;
+    public final FrameLayout d;
 
-    public bs0(org.telegram.ui.ActionBar.c2[] c2VarArr, int i10, int i11, int i12) {
-        this.f25084a = i12;
-        this.f25085b = c2VarArr;
-        this.f25086c = i10;
-        this.d = i11;
+    public bs0(FrameLayout frameLayout, boolean z10, int i10, int i11) {
+        this.f26954a = i11;
+        this.d = frameLayout;
+        this.f26955b = z10;
+        this.f26956c = i10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f25084a) {
+    public final void onClick(View view) {
+        switch (this.f26954a) {
             case 0:
-                org.telegram.ui.ActionBar.c2[] c2VarArr = this.f25085b;
-                org.telegram.ui.ActionBar.c2 c2Var = c2VarArr[0];
-                if (c2Var != null) {
-                    final int i10 = this.f25086c;
-                    final int i11 = this.d;
-                    c2Var.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i10).cancelRequest(i11, true);
-                                    return;
-                            }
-                        }
-                    });
-                    c2VarArr[0].show();
+                aw0 aw0Var = (aw0) this.d;
+                org.telegram.ui.ActionBar.r2 r2Var = aw0Var.f26702x1;
+                if (this.f26955b) {
+                    aw0Var.U0(r2Var, aw0Var.l1, this.f26956c);
                     return;
                 }
+                r2Var.getMessagesController().getMainSettings().edit().putBoolean("story_keep", true).apply();
+                fi.sb.D(r2Var.getParentActivity(), r2Var.getCurrentAccount()).Q(null);
                 return;
             default:
-                org.telegram.ui.ActionBar.c2[] c2VarArr2 = this.f25085b;
-                org.telegram.ui.ActionBar.c2 c2Var2 = c2VarArr2[0];
-                if (c2Var2 != null) {
-                    final int i12 = this.f25086c;
-                    final int i13 = this.d;
-                    c2Var2.setOnCancelListener(new DialogInterface.OnCancelListener() {
-                        @Override
-                        public final void onCancel(DialogInterface dialogInterface) {
-                            switch (r3) {
-                                case 0:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                                default:
-                                    ConnectionsManager.getInstance(i12).cancelRequest(i13, true);
-                                    return;
-                            }
-                        }
-                    });
-                    c2VarArr2[0].show();
+                vs0 vs0Var = (vs0) this.d;
+                if (vs0Var.e.h() && vs0Var.h.getCurrentPosition() != 0) {
+                    vs0Var.a();
                     return;
                 }
+                boolean z10 = this.f26955b;
+                int i10 = this.f26956c;
+                if (z10) {
+                    zh.p1 p1Var = new zh.p1(vs0Var.getContext(), i10, vs0Var.f53229c, null, null);
+                    p1Var.V(BirthdayController.getInstance(i10).isToday(vs0Var.f53229c));
+                    p1Var.show();
+                    return;
+                }
+                vg.n1.e0(2, BirthdayController.getInstance(i10).getState());
                 return;
         }
     }

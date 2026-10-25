@@ -1,7 +1,7 @@
 package t4;
 
 import androidx.lifecycle.t;
-import m.q;
+import m.p;
 public interface e extends t {
-    q g();
+    p g();
 }

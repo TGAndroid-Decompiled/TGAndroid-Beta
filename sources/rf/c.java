@@ -1,32 +1,52 @@
 package rf;
 
-import android.app.Activity;
-import android.view.View;
-import i2.h0;
-import org.telegram.ui.LaunchActivity;
-public final class c {
-    public final Activity f45676a;
-    public final tf.a f45677b;
-    public String f45678c;
-    public int d;
-    public int e = 0;
-    public boolean f45679f = false;
-    public h0 f45680g;
-    public int h;
-    public int f45681i;
-    public View f45682j;
-    public View f45683k;
+import g2.h;
+import g2.m;
+import java.io.IOException;
+import java.io.InputStream;
+public final class c extends InputStream {
+    public final h f47334a;
+    public final byte[] f47335b = new byte[1];
+    public long f47336c;
 
-    public c(Activity activity, tf.a aVar) {
-        this.f45676a = activity;
-        this.f45677b = aVar;
+    public c(h hVar, m mVar) {
+        this.f47334a = hVar;
+        try {
+            this.f47336c = hVar.open(mVar);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    public final d a() {
-        Activity activity = this.f45676a;
-        if (activity instanceof sf.a) {
-            return new d(((LaunchActivity) ((sf.a) activity)).m0, this);
+    @Override
+    public final int available() {
+        return (int) this.f47336c;
+    }
+
+    @Override
+    public final void close() {
+        this.f47334a.close();
+    }
+
+    @Override
+    public final int read() {
+        h hVar = this.f47334a;
+        byte[] bArr = this.f47335b;
+        int read = hVar.read(bArr, 0, 1);
+        this.f47336c--;
+        if (read == -1) {
+            return -1;
         }
-        return null;
+        return bArr[0] & 255;
+    }
+
+    @Override
+    public final int read(byte[] bArr, int i10, int i11) {
+        if (i11 == 0) {
+            return 0;
+        }
+        int read = this.f47334a.read(bArr, i10, i11);
+        this.f47336c -= read;
+        return read;
     }
 }

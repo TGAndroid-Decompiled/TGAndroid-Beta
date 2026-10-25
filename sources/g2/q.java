@@ -1,26 +1,26 @@
 package g2;
 
-import e9.h2;
+import f9.c2;
 import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-public final class q extends e9.s implements Map {
-    public final Map f10827b;
+public final class q extends f9.o implements Map {
+    public final Map f12275b;
 
     public q(Map map) {
-        this.f10827b = map;
+        this.f12275b = map;
     }
 
     @Override
     public final void clear() {
-        this.f10827b.clear();
+        this.f12275b.clear();
     }
 
     @Override
     public final boolean containsKey(Object obj) {
-        if (obj != null && this.f10827b.containsKey(obj)) {
+        if (obj != null && this.f12275b.containsKey(obj)) {
             return true;
         }
         return false;
@@ -28,7 +28,7 @@ public final class q extends e9.s implements Map {
 
     @Override
     public final boolean containsValue(Object obj) {
-        Iterator it = ((h2) entrySet()).iterator();
+        Iterator it = ((c2) entrySet()).iterator();
         it.getClass();
         if (obj == null) {
             while (it.hasNext()) {
@@ -48,12 +48,12 @@ public final class q extends e9.s implements Map {
 
     @Override
     public final Set entrySet() {
-        return e9.s.k(this.f10827b.entrySet(), new p(0));
+        return f9.o.k(this.f12275b.entrySet(), new p(0));
     }
 
     @Override
     public final boolean equals(Object obj) {
-        if (obj != null && e9.s.i(this, obj)) {
+        if (obj != null && f9.o.i(this, obj)) {
             return true;
         }
         return false;
@@ -64,22 +64,22 @@ public final class q extends e9.s implements Map {
         if (obj == null) {
             return null;
         }
-        return (List) this.f10827b.get(obj);
+        return (List) this.f12275b.get(obj);
     }
 
     @Override
     public final Object h() {
-        return this.f10827b;
+        return this.f12275b;
     }
 
     @Override
     public final int hashCode() {
-        return e9.s.n(entrySet());
+        return f9.o.n(entrySet());
     }
 
     @Override
     public final boolean isEmpty() {
-        Map map = this.f10827b;
+        Map map = this.f12275b;
         if (map.isEmpty() || (map.size() == 1 && map.containsKey(null))) {
             return true;
         }
@@ -88,32 +88,32 @@ public final class q extends e9.s implements Map {
 
     @Override
     public final Set keySet() {
-        return e9.s.k(this.f10827b.keySet(), new p(1));
+        return f9.o.k(this.f12275b.keySet(), new p(1));
     }
 
     @Override
     public final Object put(Object obj, Object obj2) {
-        return this.f10827b.put(obj, obj2);
+        return this.f12275b.put(obj, obj2);
     }
 
     @Override
     public final void putAll(Map map) {
-        this.f10827b.putAll(map);
+        this.f12275b.putAll(map);
     }
 
     @Override
     public final Object remove(Object obj) {
-        return this.f10827b.remove(obj);
+        return this.f12275b.remove(obj);
     }
 
     @Override
     public final int size() {
-        Map map = this.f10827b;
+        Map map = this.f12275b;
         return map.size() - (map.containsKey(null) ? 1 : 0);
     }
 
     @Override
     public final Collection values() {
-        return this.f10827b.values();
+        return this.f12275b.values();
     }
 }

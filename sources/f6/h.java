@@ -1,529 +1,361 @@
 package f6;
 
-import android.app.NotificationManager;
-import android.app.PendingIntent;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.media.MediaMetadata;
-import android.net.Uri;
-import android.os.Bundle;
+import a8.h0;
 import android.os.Looper;
-import android.os.Parcel;
-import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.PlaybackStateCompat;
-import android.support.v4.media.session.b0;
-import android.support.v4.media.session.e0;
-import android.support.v4.media.session.v;
 import android.text.TextUtils;
-import android.util.Log;
-import c6.q;
-import com.google.android.gms.cast.CastDevice;
 import com.google.android.gms.cast.MediaInfo;
-import com.google.android.gms.cast.framework.ReconnectionService;
-import com.google.android.gms.internal.cast.a0;
-import com.google.android.gms.internal.cast.r;
-import com.google.android.gms.internal.cast.z5;
-import d6.c0;
-import e6.p;
-import java.util.ArrayList;
-import java.util.List;
-import n6.l;
-public final class h {
-    public static final g6.b v = new g6.b("MediaSessionManager", null);
-    public final Context f10502a;
-    public final d6.b f10503b;
-    public final r f10504c;
-    public final d6.g d;
-    public final e6.f e;
-    public final ComponentName f10505f;
-    public final ComponentName f10506g;
-    public final z5 h;
-    public final z5 f10507i;
-    public final f f10508j;
-    public final a0 f10509k;
-    public final androidx.activity.i f10510l;
-    public final c0 f10511m;
-    public e6.h f10512n;
-    public CastDevice f10513o;
-    public b0 f10514p;
-    public boolean f10515q;
-    public PlaybackStateCompat.CustomAction f10516r;
-    public PlaybackStateCompat.CustomAction f10517s;
-    public PlaybackStateCompat.CustomAction f10518t;
-    public PlaybackStateCompat.CustomAction f10519u;
+import com.google.android.gms.common.api.Status;
+import com.google.android.gms.common.api.internal.BasePendingResult;
+import com.google.android.gms.common.api.internal.t;
+import com.google.android.gms.common.api.internal.u;
+import com.google.android.gms.common.api.internal.v;
+import com.google.android.gms.internal.cast.y;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import d6.a0;
+import d6.e0;
+import d6.f0;
+import j$.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+public final class h implements d6.f {
+    public static final h6.b f10213k = new h6.b("RemoteMediaClient", null);
+    public final Object f10214a;
+    public final y f10215b;
+    public final h6.m f10216c;
+    public final h0 d;
+    public final c e;
+    public f0 f10217f;
+    public TaskCompletionSource f10218g;
+    public final CopyOnWriteArrayList h = new CopyOnWriteArrayList();
+    public final CopyOnWriteArrayList f10219i = new CopyOnWriteArrayList();
+    public final ConcurrentHashMap f10220j;
 
-    public h(Context context, d6.b bVar, r rVar) {
-        d6.g gVar;
-        e6.f fVar;
-        String str;
-        ComponentName componentName;
-        String str2;
-        ComponentName componentName2;
-        e6.f fVar2;
-        int size;
-        this.f10502a = context;
-        this.f10503b = bVar;
-        this.f10504c = rVar;
-        g6.b bVar2 = d6.a.f7838l;
-        l.e("Must be called from the main thread.");
-        d6.a aVar = d6.a.f7840n;
-        f fVar3 = null;
-        if (aVar != null) {
-            gVar = aVar.b();
-        } else {
-            gVar = null;
+    static {
+        String str = h6.m.v;
+    }
+
+    public h(h6.m mVar) {
+        new ConcurrentHashMap();
+        this.f10220j = new ConcurrentHashMap();
+        this.f10214a = new Object();
+        this.f10215b = new y(Looper.getMainLooper(), 0);
+        h0 h0Var = new h0(this);
+        this.d = h0Var;
+        this.f10216c = mVar;
+        mVar.h = new rb.c(this, 19);
+        mVar.f12653c = h0Var;
+        this.e = new c(this);
+    }
+
+    public static t t() {
+        t tVar = new t(null, 1);
+        tVar.a(new n(new Status(17, null, null, null), 0));
+        return tVar;
+    }
+
+    public static final void x(o oVar) {
+        try {
+            oVar.p();
+        } catch (IllegalArgumentException e) {
+            throw e;
+        } catch (Throwable unused) {
+            oVar.a(new n(new Status(2100, null, null, null), 1));
         }
-        this.d = gVar;
-        e6.a aVar2 = bVar.f7853f;
-        if (aVar2 == null) {
-            fVar = null;
-        } else {
-            fVar = aVar2.d;
+    }
+
+    public final long a() {
+        long o10;
+        synchronized (this.f10214a) {
+            o6.l.e("Must be called from the main thread.");
+            o10 = this.f10216c.o();
         }
-        this.e = fVar;
-        this.f10511m = new c0(this, 2);
-        if (aVar2 == null) {
-            str = null;
-        } else {
-            str = aVar2.f8346b;
-        }
-        if (!TextUtils.isEmpty(str)) {
-            componentName = new ComponentName(context, str);
-        } else {
-            componentName = null;
-        }
-        this.f10505f = componentName;
-        if (aVar2 == null) {
-            str2 = null;
-        } else {
-            str2 = aVar2.f8345a;
-        }
-        if (!TextUtils.isEmpty(str2)) {
-            componentName2 = new ComponentName(context, str2);
-        } else {
-            componentName2 = null;
-        }
-        this.f10506g = componentName2;
-        z5 z5Var = new z5(context);
-        this.h = z5Var;
-        z5Var.e = new ya.c(this, 17);
-        z5 z5Var2 = new z5(context);
-        this.f10507i = z5Var2;
-        z5Var2.e = new a6.i(this, 20);
-        this.f10509k = new a0(Looper.getMainLooper(), 0);
-        g6.b bVar3 = f.f10483u;
-        e6.a aVar3 = bVar.f7853f;
-        if (aVar3 != null && (fVar2 = aVar3.d) != null) {
-            p pVar = fVar2.V;
-            if (pVar != null) {
-                ArrayList a2 = i.a(pVar);
-                int[] b10 = i.b(pVar);
-                if (a2 == null) {
-                    size = 0;
+        return o10;
+    }
+
+    public final int b() {
+        int i10;
+        synchronized (this.f10214a) {
+            try {
+                o6.l.e("Must be called from the main thread.");
+                d6.q e = e();
+                if (e != null) {
+                    i10 = e.f8121f;
                 } else {
-                    size = a2.size();
+                    i10 = 0;
                 }
-                if (a2 != null && !a2.isEmpty()) {
-                    if (a2.size() > 5) {
-                        Log.e(bVar3.f10861a, bVar3.d(e6.e.class.getSimpleName().concat(" provides more than 5 actions."), new Object[0]));
-                    } else if (b10 != null && (r1 = b10.length) != 0) {
-                        for (int i10 : b10) {
-                            if (i10 < 0 || i10 >= size) {
-                                Log.e(bVar3.f10861a, bVar3.d(e6.e.class.getSimpleName().concat("provides a compact view action whose index is out of bounds."), new Object[0]));
-                                break;
-                            }
-                        }
-                    } else {
-                        Log.e(bVar3.f10861a, bVar3.d(e6.e.class.getSimpleName().concat(" doesn't provide any actions for compact view."), new Object[0]));
-                    }
-                } else {
-                    Log.e(bVar3.f10861a, bVar3.d(e6.e.class.getSimpleName().concat(" doesn't provide any action."), new Object[0]));
-                }
+            } catch (Throwable th2) {
+                throw th2;
             }
-            fVar3 = new f(context);
         }
-        this.f10508j = fVar3;
-        this.f10510l = new androidx.activity.i(this, 19);
+        return i10;
     }
 
-    public final void a(e6.h hVar, CastDevice castDevice) {
-        e6.a aVar;
-        ComponentName componentName;
-        d6.b bVar = this.f10503b;
-        if (bVar == null) {
-            aVar = null;
-        } else {
-            aVar = bVar.f7853f;
-        }
-        if (!this.f10515q && bVar != null && aVar != null && this.e != null && hVar != null && castDevice != null && (componentName = this.f10506g) != null) {
-            this.f10512n = hVar;
-            hVar.p(this.f10511m);
-            this.f10513o = castDevice;
-            Intent intent = new Intent("android.intent.action.MEDIA_BUTTON");
-            intent.setComponent(componentName);
-            Context context = this.f10502a;
-            PendingIntent broadcast = PendingIntent.getBroadcast(context, 0, intent, 67108864);
-            if (aVar.f8348f) {
-                b0 b0Var = new b0(context, "CastMediaSession", componentName, broadcast);
-                this.f10514p = b0Var;
-                j(0, null);
-                CastDevice castDevice2 = this.f10513o;
-                if (castDevice2 != null && !TextUtils.isEmpty(castDevice2.d)) {
-                    Bundle bundle = new Bundle();
-                    String string = context.getResources().getString(2131689513, this.f10513o.d);
-                    a0.f fVar = MediaMetadataCompat.d;
-                    if (fVar.containsKey("android.media.metadata.ALBUM_ARTIST") && ((Integer) fVar.get("android.media.metadata.ALBUM_ARTIST")).intValue() != 1) {
-                        throw new IllegalArgumentException("The android.media.metadata.ALBUM_ARTIST key cannot be used to put a String");
-                    }
-                    bundle.putCharSequence("android.media.metadata.ALBUM_ARTIST", string);
-                    b0Var.e(new MediaMetadataCompat(bundle));
-                }
-                b0Var.d(new g(this), null);
-                b0Var.c(true);
-                this.f10504c.K0(b0Var);
-            }
-            this.f10515q = true;
-            b();
-            return;
-        }
-        v.b("skip attaching media session", new Object[0]);
-    }
-
-    public final void b() {
-        throw new UnsupportedOperationException("Method not decompiled: f6.h.b():void");
-    }
-
-    public final long c(String str, int i10, Bundle bundle) {
-        long j10;
-        int hashCode = str.hashCode();
-        if (hashCode != -945151566) {
-            if (hashCode != -945080078) {
-                if (hashCode == 235550565 && str.equals("com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK")) {
-                    if (i10 == 3) {
-                        j10 = 514;
-                        i10 = 3;
-                    } else {
-                        j10 = 512;
-                    }
-                    if (i10 != 2) {
-                        return j10;
-                    }
-                    return 516L;
-                }
-            } else if (str.equals("com.google.android.gms.cast.framework.action.SKIP_PREV")) {
-                e6.h hVar = this.f10512n;
-                if (hVar != null && hVar.h()) {
-                    q e = hVar.e();
-                    l.h(e);
-                    if ((128 & e.f4899n) == 0 && e.F == 0) {
-                        Integer num = (Integer) e.N.get(e.f4897c);
-                        if (num != null && num.intValue() > 0) {
-                            return 16L;
-                        }
-                    } else {
-                        return 16L;
-                    }
-                }
-                bundle.putBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", true);
-                return 0L;
-            }
-        } else if (str.equals("com.google.android.gms.cast.framework.action.SKIP_NEXT")) {
-            e6.h hVar2 = this.f10512n;
-            if (hVar2 != null && hVar2.h()) {
-                q e7 = hVar2.e();
-                l.h(e7);
-                if ((64 & e7.f4899n) == 0 && e7.F == 0) {
-                    Integer num2 = (Integer) e7.N.get(e7.f4897c);
-                    if (num2 != null && num2.intValue() < e7.G.size() - 1) {
-                        return 32L;
-                    }
-                } else {
-                    return 32L;
-                }
-            }
-            bundle.putBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", true);
-        }
-        return 0L;
-    }
-
-    public final Uri d(c6.l lVar) {
-        m6.a aVar;
-        e6.a aVar2 = this.f10503b.f7853f;
-        if (aVar2 != null) {
-            aVar2.b();
-        }
-        List list = lVar.f4875a;
-        if (list != null && !list.isEmpty()) {
-            aVar = (m6.a) lVar.f4875a.get(0);
-        } else {
-            aVar = null;
-        }
-        if (aVar == null) {
+    public final d6.o c() {
+        o6.l.e("Must be called from the main thread.");
+        d6.q e = e();
+        if (e == null) {
             return null;
         }
-        return aVar.f16857b;
+        Integer num = (Integer) e.N.get(e.f8125w);
+        if (num == null) {
+            return null;
+        }
+        return (d6.o) e.G.get(num.intValue());
     }
 
-    public final void e(Bitmap bitmap, int i10) {
-        a4.l lVar;
-        String str;
-        MediaMetadata metadata;
-        b0 b0Var = this.f10514p;
-        if (b0Var == null) {
-            return;
-        }
-        if (bitmap == null) {
-            bitmap = Bitmap.createBitmap(1, 1, Bitmap.Config.ARGB_8888);
-            bitmap.eraseColor(0);
-        }
-        b0 b0Var2 = this.f10514p;
-        MediaMetadataCompat mediaMetadataCompat = null;
-        if (b0Var2 != null && (metadata = ((android.support.v4.media.session.h) b0Var2.f2604b.f44863b).f2617a.getMetadata()) != null) {
-            a0.f fVar = MediaMetadataCompat.d;
-            Parcel obtain = Parcel.obtain();
-            metadata.writeToParcel(obtain, 0);
-            obtain.setDataPosition(0);
-            MediaMetadataCompat createFromParcel = MediaMetadataCompat.CREATOR.createFromParcel(obtain);
-            obtain.recycle();
-            createFromParcel.f2575b = metadata;
-            mediaMetadataCompat = createFromParcel;
-        }
-        if (mediaMetadataCompat == null) {
-            lVar = new a4.l(2);
-        } else {
-            lVar = new a4.l(mediaMetadataCompat);
-        }
-        if (i10 == 0) {
-            str = "android.media.metadata.DISPLAY_ICON";
-        } else {
-            str = "android.media.metadata.ALBUM_ART";
-        }
-        lVar.a0(str, bitmap);
-        b0Var.e(new MediaMetadataCompat((Bundle) lVar.f279b));
-    }
-
-    public final void f(android.support.v4.media.session.e0 r13, java.lang.String r14, e6.d r15) {
-        throw new UnsupportedOperationException("Method not decompiled: f6.h.f(android.support.v4.media.session.e0, java.lang.String, e6.d):void");
-    }
-
-    public final void g(boolean z10) {
-        if (this.f10503b.h) {
-            a0 a0Var = this.f10509k;
-            androidx.activity.i iVar = this.f10510l;
-            if (iVar != null) {
-                a0Var.removeCallbacks(iVar);
-            }
-            Context context = this.f10502a;
-            Intent intent = new Intent(context, ReconnectionService.class);
-            intent.setPackage(context.getPackageName());
-            try {
-                context.startService(intent);
-            } catch (IllegalStateException unused) {
-                if (z10) {
-                    a0Var.postDelayed(iVar, 1000L);
-                }
-            }
-        }
-    }
-
-    public final void h() {
-        f fVar = this.f10508j;
-        if (fVar != null) {
-            v.b("Stopping media notification.", new Object[0]);
-            z5 z5Var = fVar.f10489i;
-            z5Var.C();
-            z5Var.e = null;
-            NotificationManager notificationManager = fVar.f10485b;
-            if (notificationManager != null) {
-                notificationManager.cancel("castMediaNotification", 1);
-            }
-        }
-    }
-
-    public final void i() {
-        if (!this.f10503b.h) {
-            return;
-        }
-        this.f10509k.removeCallbacks(this.f10510l);
-        Context context = this.f10502a;
-        Intent intent = new Intent(context, ReconnectionService.class);
-        intent.setPackage(context.getPackageName());
-        context.stopService(intent);
-    }
-
-    public final void j(int i10, MediaInfo mediaInfo) {
-        PlaybackStateCompat b10;
-        b0 b0Var;
-        c6.l lVar;
-        long j10;
-        MediaMetadata metadata;
-        MediaMetadataCompat createFromParcel;
-        a4.l lVar2;
-        Bitmap bitmap;
-        PendingIntent activity;
-        long j11;
-        p pVar;
-        long j12;
-        int i11;
-        b0 b0Var2 = this.f10514p;
-        if (b0Var2 != null) {
-            v vVar = b0Var2.f2603a;
-            Bundle bundle = new Bundle();
-            e0 e0Var = new e0();
-            e6.h hVar = this.f10512n;
-            e6.f fVar = this.e;
-            if (hVar != null && this.f10508j != null) {
-                if (hVar.s() == 0 || hVar.j()) {
-                    j11 = 0;
-                } else {
-                    j11 = hVar.a();
-                }
-                e0Var.c(i10, j11, 1.0f);
-                if (i10 == 0) {
-                    b10 = e0Var.b();
-                } else {
-                    if (fVar != null) {
-                        pVar = fVar.V;
-                    } else {
-                        pVar = null;
-                    }
-                    e6.h hVar2 = this.f10512n;
-                    if (hVar2 == null || hVar2.j() || this.f10512n.n()) {
-                        j12 = 0;
-                    } else {
-                        j12 = 256;
-                    }
-                    if (pVar != null) {
-                        ArrayList a2 = i.a(pVar);
-                        if (a2 != null) {
-                            int size = a2.size();
-                            int i12 = 0;
-                            while (i12 < size) {
-                                Object obj = a2.get(i12);
-                                i12++;
-                                ArrayList arrayList = a2;
-                                e6.d dVar = (e6.d) obj;
-                                int i13 = size;
-                                String str = dVar.f8362a;
-                                if (!TextUtils.equals(str, "com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK") && !TextUtils.equals(str, "com.google.android.gms.cast.framework.action.SKIP_PREV") && !TextUtils.equals(str, "com.google.android.gms.cast.framework.action.SKIP_NEXT")) {
-                                    f(e0Var, str, dVar);
-                                } else {
-                                    j12 = c(str, i10, bundle) | j12;
-                                }
-                                size = i13;
-                                a2 = arrayList;
-                            }
-                        }
-                    } else if (fVar != null) {
-                        ArrayList arrayList2 = fVar.f8365a;
-                        int size2 = arrayList2.size();
-                        int i14 = 0;
-                        while (i14 < size2) {
-                            Object obj2 = arrayList2.get(i14);
-                            i14++;
-                            ArrayList arrayList3 = arrayList2;
-                            String str2 = (String) obj2;
-                            if (TextUtils.equals(str2, "com.google.android.gms.cast.framework.action.TOGGLE_PLAYBACK") || TextUtils.equals(str2, "com.google.android.gms.cast.framework.action.SKIP_PREV") || TextUtils.equals(str2, "com.google.android.gms.cast.framework.action.SKIP_NEXT")) {
-                                i11 = size2;
-                                j12 = c(str2, i10, bundle) | j12;
-                            } else {
-                                i11 = size2;
-                                f(e0Var, str2, null);
-                            }
-                            size2 = i11;
-                            arrayList2 = arrayList3;
-                        }
-                    }
-                    e0Var.e = j12;
-                    b10 = e0Var.b();
-                }
+    public final MediaInfo d() {
+        MediaInfo mediaInfo;
+        synchronized (this.f10214a) {
+            o6.l.e("Must be called from the main thread.");
+            d6.q qVar = this.f10216c.f12630f;
+            if (qVar == null) {
+                mediaInfo = null;
             } else {
-                b10 = e0Var.b();
+                mediaInfo = qVar.f8118a;
             }
-            b0Var2.f(b10);
-            if (fVar != null && fVar.W) {
-                bundle.putBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS", true);
-            }
-            if (fVar != null && fVar.X) {
-                bundle.putBoolean("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT", true);
-            }
-            if (bundle.containsKey("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_PREVIOUS") || bundle.containsKey("android.media.playback.ALWAYS_RESERVE_SPACE_FOR.ACTION_SKIP_TO_NEXT")) {
-                vVar.f2625a.setExtras(bundle);
-            }
-            if (i10 != 0) {
-                if (this.f10512n != null) {
-                    ComponentName componentName = this.f10505f;
-                    if (componentName == null) {
-                        activity = null;
-                    } else {
-                        Intent intent = new Intent();
-                        intent.setComponent(componentName);
-                        activity = PendingIntent.getActivity(this.f10502a, 0, intent, 201326592);
-                    }
-                    if (activity != null) {
-                        vVar.f2625a.setSessionActivity(activity);
-                    }
+        }
+        return mediaInfo;
+    }
+
+    public final d6.q e() {
+        d6.q qVar;
+        synchronized (this.f10214a) {
+            o6.l.e("Must be called from the main thread.");
+            qVar = this.f10216c.f12630f;
+        }
+        return qVar;
+    }
+
+    public final int f() {
+        int i10;
+        synchronized (this.f10214a) {
+            try {
+                o6.l.e("Must be called from the main thread.");
+                d6.q e = e();
+                if (e != null) {
+                    i10 = e.e;
+                } else {
+                    i10 = 1;
                 }
-                e6.h hVar3 = this.f10512n;
-                if (hVar3 != null && (b0Var = this.f10514p) != null && mediaInfo != null && (lVar = mediaInfo.d) != null) {
-                    Bundle bundle2 = lVar.f4876b;
-                    if (hVar3.j()) {
-                        j10 = 0;
-                    } else {
-                        j10 = mediaInfo.e;
-                    }
-                    c6.l.c(1, "com.google.android.gms.cast.metadata.TITLE");
-                    String string = bundle2.getString("com.google.android.gms.cast.metadata.TITLE");
-                    c6.l.c(1, "com.google.android.gms.cast.metadata.SUBTITLE");
-                    String string2 = bundle2.getString("com.google.android.gms.cast.metadata.SUBTITLE");
-                    b0 b0Var3 = this.f10514p;
-                    if (b0Var3 == null || (metadata = ((android.support.v4.media.session.h) b0Var3.f2604b.f44863b).f2617a.getMetadata()) == null) {
-                        createFromParcel = null;
-                    } else {
-                        a0.f fVar2 = MediaMetadataCompat.d;
-                        Parcel obtain = Parcel.obtain();
-                        metadata.writeToParcel(obtain, 0);
-                        obtain.setDataPosition(0);
-                        createFromParcel = MediaMetadataCompat.CREATOR.createFromParcel(obtain);
-                        obtain.recycle();
-                        createFromParcel.f2575b = metadata;
-                    }
-                    if (createFromParcel == null) {
-                        lVar2 = new a4.l(2);
-                    } else {
-                        lVar2 = new a4.l(createFromParcel);
-                    }
-                    lVar2.b0(j10);
-                    if (string != null) {
-                        lVar2.c0("android.media.metadata.TITLE", string);
-                        lVar2.c0("android.media.metadata.DISPLAY_TITLE", string);
-                    }
-                    if (string2 != null) {
-                        lVar2.c0("android.media.metadata.DISPLAY_SUBTITLE", string2);
-                    }
-                    b0Var.e(new MediaMetadataCompat((Bundle) lVar2.f279b));
-                    Uri d = d(lVar);
-                    if (d != null) {
-                        this.h.B(d);
-                        bitmap = null;
-                    } else {
-                        bitmap = null;
-                        e(null, 0);
-                    }
-                    Uri d10 = d(lVar);
-                    if (d10 != null) {
-                        this.f10507i.B(d10);
-                        return;
-                    } else {
-                        e(bitmap, 3);
-                        return;
-                    }
-                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
+        }
+        return i10;
+    }
+
+    public final long g() {
+        MediaInfo mediaInfo;
+        long j10;
+        synchronized (this.f10214a) {
+            o6.l.e("Must be called from the main thread.");
+            d6.q qVar = this.f10216c.f12630f;
+            if (qVar == null) {
+                mediaInfo = null;
+            } else {
+                mediaInfo = qVar.f8118a;
+            }
+            if (mediaInfo != null) {
+                j10 = mediaInfo.e;
+            } else {
+                j10 = 0;
+            }
+        }
+        return j10;
+    }
+
+    public final boolean h() {
+        o6.l.e("Must be called from the main thread.");
+        if (!i()) {
+            o6.l.e("Must be called from the main thread.");
+            d6.q e = e();
+            if ((e == null || e.e != 5) && !m() && !l() && !k()) {
+                return false;
+            }
+            return true;
+        }
+        return true;
+    }
+
+    public final boolean i() {
+        o6.l.e("Must be called from the main thread.");
+        d6.q e = e();
+        if (e != null && e.e == 4) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean j() {
+        o6.l.e("Must be called from the main thread.");
+        MediaInfo d = d();
+        if (d != null && d.f6435b == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean k() {
+        o6.l.e("Must be called from the main thread.");
+        d6.q e = e();
+        if (e != null && e.f8125w != 0) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean l() {
+        o6.l.e("Must be called from the main thread.");
+        d6.q e = e();
+        if (e == null) {
+            return false;
+        }
+        if (e.e == 3) {
+            return true;
+        }
+        if (!j() || b() != 2) {
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean m() {
+        o6.l.e("Must be called from the main thread.");
+        d6.q e = e();
+        if (e != null && e.e == 2) {
+            return true;
+        }
+        return false;
+    }
+
+    public final boolean n() {
+        o6.l.e("Must be called from the main thread.");
+        d6.q e = e();
+        if (e != null && e.H) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void o(java.lang.String r47) {
+        throw new UnsupportedOperationException("Method not decompiled: f6.h.o(java.lang.String):void");
+    }
+
+    public final void p(g gVar) {
+        o6.l.e("Must be called from the main thread.");
+        if (gVar != null) {
+            this.f10219i.add(gVar);
+        }
+    }
+
+    public final BasePendingResult q(d6.p pVar) {
+        o6.l.e("Must be called from the main thread.");
+        if (!w()) {
+            return t();
+        }
+        k kVar = new k(this, pVar, 2);
+        x(kVar);
+        return kVar;
+    }
+
+    public final void r() {
+        o6.l.e("Must be called from the main thread.");
+        int f7 = f();
+        if (f7 != 4 && f7 != 2) {
+            o6.l.e("Must be called from the main thread.");
+            if (!w()) {
+                t();
+                return;
+            } else {
+                x(new j(this, 6));
                 return;
             }
-            b0Var2.e(new MediaMetadataCompat(new Bundle()));
         }
+        o6.l.e("Must be called from the main thread.");
+        if (!w()) {
+            t();
+        } else {
+            x(new j(this, 5));
+        }
+    }
+
+    public final int s() {
+        d6.o c10;
+        if (d() != null && h()) {
+            if (i()) {
+                return 6;
+            }
+            if (m()) {
+                return 3;
+            }
+            if (l()) {
+                return 2;
+            }
+            if (k() && (c10 = c()) != null && c10.f8111a != null) {
+                return 6;
+            }
+        }
+        return 0;
+    }
+
+    public final void u() {
+        f0 f0Var = this.f10217f;
+        if (f0Var == null) {
+            return;
+        }
+        o6.l.e("Must be called from the main thread.");
+        String str = this.f10216c.f12652b;
+        e0 e0Var = (e0) f0Var;
+        h6.a.b(str);
+        synchronized (e0Var.C) {
+            e0Var.C.put(str, this);
+        }
+        u b10 = v.b();
+        b10.f6622c = new a0(e0Var, str, this);
+        b10.f6620a = 8413;
+        e0Var.e(1, b10.a());
+        o6.l.e("Must be called from the main thread.");
+        if (!w()) {
+            t();
+        } else {
+            x(new j(this, 0));
+        }
+    }
+
+    public final void v(e0 e0Var) {
+        d6.f fVar;
+        f0 f0Var = this.f10217f;
+        if (f0Var != e0Var) {
+            if (f0Var != null) {
+                this.f10216c.n();
+                this.e.c();
+                o6.l.e("Must be called from the main thread.");
+                String str = this.f10216c.f12652b;
+                e0 e0Var2 = (e0) f0Var;
+                if (!TextUtils.isEmpty(str)) {
+                    synchronized (e0Var2.C) {
+                        fVar = (d6.f) e0Var2.C.remove(str);
+                    }
+                    u b10 = v.b();
+                    b10.f6622c = new a0(e0Var2, fVar, str);
+                    b10.f6620a = 8414;
+                    e0Var2.e(1, b10.a());
+                    this.d.f511b = null;
+                    this.f10215b.removeCallbacksAndMessages(null);
+                } else {
+                    throw new IllegalArgumentException("Channel namespace cannot be null or empty");
+                }
+            }
+            this.f10217f = e0Var;
+            if (e0Var != null) {
+                this.d.f511b = e0Var;
+            }
+        }
+    }
+
+    public final boolean w() {
+        if (this.f10217f != null) {
+            return true;
+        }
+        return false;
     }
 }

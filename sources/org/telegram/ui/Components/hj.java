@@ -1,42 +1,52 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public final class hj implements bm0, mj {
-    public final vj f27040a;
+import android.content.Context;
+import org.telegram.ui.WallpapersListActivity;
+import org.telegram.ui.di1;
+import org.telegram.ui.ei1;
+import org.telegram.ui.tc1;
+public final class hj extends org.telegram.ui.Cells.fb {
+    public final int f28971w;
+    public final lm0 f28972x;
 
-    public hj(vj vjVar) {
-        this.f27040a = vjVar;
+    public hj(lm0 lm0Var, Context context, int i10) {
+        super(context, 5);
+        this.f28971w = i10;
+        this.f28972x = lm0Var;
     }
 
     @Override
-    public void a(TLRPC.User user, boolean z10, int i10, long j10) {
-        vj vjVar = this.f27040a;
-        vjVar.f27704b.dismiss(true);
-        vjVar.J.a(user, z10, i10, j10);
-    }
-
-    @Override
-    public boolean d(int i10, View view) {
-        Object O;
-        vj vjVar = this.f27040a;
-        s4.g0 adapter = vjVar.f31466s.getAdapter();
-        rj rjVar = vjVar.F;
-        if (adapter == rjVar) {
-            O = rjVar.E(i10);
-        } else {
-            pj pjVar = vjVar.E;
-            O = pjVar.O(pjVar.S(i10), pjVar.Q(i10));
+    public final void a(int i10, Object obj) {
+        switch (this.f28971w) {
+            case 0:
+                q0.a aVar = ((ij) ((za) this.f28972x).f35278f).f29299x;
+                if (aVar != null) {
+                    aVar.accept(obj);
+                    return;
+                }
+                return;
+            case 1:
+                WallpapersListActivity.s0(((di1) this.f28972x).d, this, obj, i10);
+                return;
+            default:
+                ((ei1) this.f28972x).E.presentFragment(new tc1(obj, null, true));
+                return;
         }
-        if (O != null) {
-            vjVar.O((uj) view, O);
-            return true;
-        }
-        return false;
     }
 
     @Override
-    public void b(ArrayList arrayList, String str, boolean z10, int i10, long j10, boolean z11) {
+    public boolean b(Object obj, int i10) {
+        switch (this.f28971w) {
+            case 1:
+                return WallpapersListActivity.t0(((di1) this.f28972x).d, this, obj, i10);
+            default:
+                return super.b(obj, i10);
+        }
+    }
+
+    public hj(za zaVar, Context context) {
+        super(context, 1);
+        this.f28971w = 0;
+        this.f28972x = zaVar;
     }
 }

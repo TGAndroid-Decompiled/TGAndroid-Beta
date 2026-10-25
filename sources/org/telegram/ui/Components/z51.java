@@ -1,30 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.util.SparseArray;
-import org.telegram.tgnet.TLRPC;
-public final class z51 extends g.o {
-    public final h61 f33159c;
+import org.telegram.messenger.AndroidUtilities;
+public final class z51 implements uw0 {
+    public int f35221a;
+    public boolean f35222b;
+    public final a61 f35223c;
 
-    public z51(h61 h61Var) {
-        this.f33159c = h61Var;
+    public z51(a61 a61Var) {
+        this.f35223c = a61Var;
     }
 
     @Override
-    public final int i(int i10) {
-        h61 h61Var = this.f33159c;
-        s4.g0 adapter = h61Var.f26882n.getAdapter();
-        g61 g61Var = h61Var.f26884s;
-        if (adapter == g61Var) {
-            if ((g61Var.d.get(i10) instanceof Integer) || i10 >= g61Var.f26576w) {
-                return g61Var.v;
+    public final void I(int i10, boolean z10) {
+        if (this.f35221a != i10 || this.f35222b != z10) {
+            this.f35221a = i10;
+            this.f35222b = z10;
+            if (i10 > AndroidUtilities.dp(20.0f)) {
+                a61 a61Var = this.f35223c;
+                if (!a61Var.m0) {
+                    a61Var.f26424t0.setAllowNestedScroll(false);
+                    a61Var.m0 = true;
+                }
             }
-            return 1;
         }
-        hg.e2 e2Var = h61Var.v;
-        SparseArray sparseArray = e2Var.f11880s;
-        if (i10 != e2Var.f11883y && (sparseArray.get(i10) == null || (sparseArray.get(i10) instanceof TLRPC.Document))) {
-            return 1;
-        }
-        return e2Var.e.a();
     }
 }

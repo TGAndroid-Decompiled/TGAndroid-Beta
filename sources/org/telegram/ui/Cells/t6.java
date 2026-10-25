@@ -1,252 +1,97 @@
 package org.telegram.ui.Cells;
 
+import android.content.Context;
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
+import android.text.TextUtils;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import android.widget.TextView;
 import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.LocationController;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-public final class t6 extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final org.telegram.ui.Components.d6 E;
-    public final org.telegram.ui.Components.d6 F;
-    public final org.telegram.ui.Components.d6 G;
-    public final org.telegram.ui.Components.n6 H;
-    public final y f23695a;
-    public final int f23696b;
-    public int f23697c;
-    public final int d;
-    public final org.telegram.ui.ActionBar.n5 e;
-    public final org.telegram.ui.ActionBar.n5 f23698f;
-    public final ImageView h;
-    public long f23699n;
-    public final RectF f23700r;
-    public final boolean f23701s;
-    public final boolean v;
-    public final org.telegram.ui.ActionBar.g6 f23702w;
-    public boolean f23703x;
-    public final u5 f23704y;
+import org.telegram.ui.Components.CheckBoxSquare;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.w90;
+import org.telegram.ui.Components.z90;
+public final class t6 extends FrameLayout {
+    public final w90 f25447a;
+    public final z90 f25448b;
+    public final CheckBoxSquare f25449c;
 
-    public t6(android.content.Context r22, org.telegram.ui.ActionBar.g6 r23, boolean r24, boolean r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Cells.t6.<init>(android.content.Context, org.telegram.ui.ActionBar.g6, boolean, boolean):void");
-    }
-
-    private ImageView getImageView() {
-        return this.h;
-    }
-
-    public final void a() {
-        long j10;
-        LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(this.d).getSharingLocationInfo(this.f23699n);
-        if (sharingLocationInfo != null) {
-            if (this.v) {
-                String string = LocaleController.getString(R.string.StopLiveLocation);
-                TLRPC.Message message = sharingLocationInfo.messageObject.messageOwner;
-                int i10 = message.edit_date;
-                if (i10 != 0) {
-                    j10 = i10;
-                } else {
-                    j10 = message.date;
-                }
-                b(string, LocaleController.formatLocationUpdateDate(j10));
-                return;
-            }
-            b(LocaleController.getString(R.string.SharingLiveLocation), LocaleController.getString(R.string.SharingLiveLocationAdd));
-            return;
+    public t6(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context);
+        int i10;
+        int i11;
+        float f7;
+        float f10;
+        CheckBoxSquare checkBoxSquare = new CheckBoxSquare(context, null, false);
+        this.f25449c = checkBoxSquare;
+        checkBoxSquare.setDuplicateParentStateEnabled(false);
+        checkBoxSquare.setFocusable(false);
+        checkBoxSquare.setFocusableInTouchMode(false);
+        checkBoxSquare.setClickable(false);
+        if (LocaleController.isRTL) {
+            i10 = 5;
+        } else {
+            i10 = 3;
         }
-        b(LocaleController.getString(R.string.SendLiveLocation), LocaleController.getString(R.string.SendLiveLocationInfo));
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
-        int i10 = this.f23696b;
-        if (i10 >= 0) {
-            hashSet.add(Integer.valueOf(i10));
+        addView(checkBoxSquare, gb1.h(18, 18.0f, i10 | 16, 21.0f, 0.0f, 21.0f, 0.0f));
+        w90 w90Var = new w90(this);
+        this.f25447a = w90Var;
+        z90 z90Var = new z90(context, w90Var, u6Var);
+        this.f25448b = z90Var;
+        org.telegram.ui.ActionBar.f7.V(z90Var, org.telegram.ui.ActionBar.y6.G6, u6Var);
+        org.telegram.ui.ActionBar.f7.H(z90Var, org.telegram.ui.ActionBar.y6.J6, u6Var);
+        z90Var.setTextSize(1, 15.0f);
+        z90Var.setMaxLines(2);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
         }
-    }
-
-    public final void b(String str, String str2) {
-        this.f23698f.l(str, false);
-        this.e.l(str2, false);
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        if (this.f23700r != null) {
-            u5 u5Var = this.f23704y;
-            AndroidUtilities.cancelRunOnUIThread(u5Var);
-            AndroidUtilities.runOnUIThread(u5Var, 1000L);
+        z90Var.setGravity(i11 | 16);
+        z90Var.setEllipsize(TextUtils.TruncateAt.END);
+        boolean z10 = LocaleController.isRTL;
+        int i12 = (z10 ? 5 : 3) | 48;
+        if (z10) {
+            f7 = 16.0f;
+        } else {
+            f7 = 58.0f;
         }
+        if (z10) {
+            f10 = 58.0f;
+        } else {
+            f10 = 16.0f;
+        }
+        addView(z90Var, gb1.h(-1, -1.0f, i12, f7, 21.0f, f10, 21.0f));
+        setWillNotDraw(false);
     }
 
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        AndroidUtilities.cancelRunOnUIThread(this.f23704y);
+    public CheckBoxSquare getCheckBox() {
+        return this.f25449c;
+    }
+
+    public TextView getTextView() {
+        return this.f25448b;
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Canvas canvas2;
-        float d;
-        float f7;
-        int i10;
-        Paint V0;
-        float dp;
-        int i11;
-        boolean z10 = this.f23703x;
-        org.telegram.ui.ActionBar.g6 g6Var = this.f23702w;
-        if (z10 && (V0 = org.telegram.ui.ActionBar.k6.V0("paintDivider", g6Var)) != null) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(73.0f);
+        super.onDraw(canvas);
+        w90 w90Var = this.f25447a;
+        if (w90Var != null) {
+            canvas.save();
+            z90 z90Var = this.f25448b;
+            canvas.translate(z90Var.getLeft(), z90Var.getTop());
+            if (w90Var.f(canvas)) {
+                invalidate();
             }
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i11 = AndroidUtilities.dp(73.0f);
-            } else {
-                i11 = 0;
-            }
-            float f10 = dp;
-            canvas2 = canvas;
-            canvas2.drawRect(f10, measuredHeight, measuredWidth - i11, getMeasuredHeight(), V0);
-        } else {
-            canvas2 = canvas;
-        }
-        if (!this.v) {
-            int i12 = this.d;
-            LocationController.SharingLocationInfo sharingLocationInfo = LocationController.getInstance(i12).getSharingLocationInfo(this.f23699n);
-            org.telegram.ui.Components.d6 d6Var = this.E;
-            float f11 = d6Var.f25568c;
-            int currentTime = ConnectionsManager.getInstance(i12).getCurrentTime();
-            org.telegram.ui.Components.d6 d6Var2 = this.F;
-            if (sharingLocationInfo != null && (i10 = sharingLocationInfo.stopTime) >= currentTime && sharingLocationInfo.period != Integer.MAX_VALUE) {
-                f11 = Math.abs(i10 - currentTime) / sharingLocationInfo.period;
-                d = d6Var2.e(true);
-            } else {
-                d6Var2.getClass();
-                d = d6Var2.d(0.0f, false);
-            }
-            float f12 = d;
-            float f13 = f11;
-            if (f12 <= 0.0f) {
-                return;
-            }
-            if (LocaleController.isRTL) {
-                this.f23700r.set(AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
-            } else {
-                this.f23700r.set(getMeasuredWidth() - AndroidUtilities.dp(43.0f), (getMeasuredHeight() / 2.0f) - AndroidUtilities.dp(15.0f), getMeasuredWidth() - AndroidUtilities.dp(13.0f), (getMeasuredHeight() / 2.0f) + AndroidUtilities.dp(15.0f));
-            }
-            canvas2.save();
-            float lerp = AndroidUtilities.lerp(0.6f, 1.0f, f12);
-            canvas2.scale(lerp, lerp, this.f23700r.centerX(), this.f23700r.centerY());
-            int w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21472si, g6Var);
-            org.telegram.ui.ActionBar.k6.f21325l2.setColor(w02);
-            int alpha = org.telegram.ui.ActionBar.k6.f21325l2.getAlpha();
-            float f14 = alpha;
-            org.telegram.ui.ActionBar.k6.f21325l2.setAlpha((int) (0.2f * f14 * f12));
-            canvas2.drawArc(this.f23700r, -90.0f, 360.0f, false, org.telegram.ui.ActionBar.k6.f21325l2);
-            org.telegram.ui.ActionBar.k6.f21325l2.setAlpha((int) (f14 * f12));
-            canvas.drawArc(this.f23700r, -90.0f, d6Var.d(f13, false) * (-360.0f), false, org.telegram.ui.ActionBar.k6.f21325l2);
-            org.telegram.ui.ActionBar.k6.f21325l2.setAlpha(alpha);
-            org.telegram.ui.Components.n6 n6Var = this.H;
-            if (sharingLocationInfo != null) {
-                n6Var.t(LocaleController.formatLocationLeftTime(Math.abs(sharingLocationInfo.stopTime - currentTime)), true, true);
-            }
-            int length = n6Var.f28802i.length();
-            if (length > 4) {
-                f7 = 0.75f;
-            } else if (length > 3) {
-                f7 = 0.85f;
-            } else {
-                f7 = 1.0f;
-            }
-            float d10 = this.G.d(f7, false);
-            canvas.scale(d10, d10, this.f23700r.centerX(), this.f23700r.centerY());
-            n6Var.u(w02);
-            n6Var.B = (int) (f12 * 255.0f);
-            RectF rectF = this.f23700r;
-            RectF rectF2 = this.f23700r;
-            n6Var.setBounds((int) rectF.left, (int) (rectF.centerY() - AndroidUtilities.dp(13.0f)), (int) rectF2.right, (int) (rectF2.centerY() + AndroidUtilities.dp(12.0f)));
-            n6Var.draw(canvas);
             canvas.restore();
         }
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f), 1073741824));
+    public void setChecked(boolean z10) {
+        this.f25449c.a(z10, true);
     }
 
-    public void setDialogId(long j10) {
-        this.f23699n = j10;
-        if (this.f23701s) {
-            a();
-        }
-    }
-
-    public void setHasLocation(boolean z10) {
-        float f7;
-        float f10;
-        if (LocationController.getInstance(this.d).getSharingLocationInfo(this.f23699n) == null) {
-            float f11 = 0.5f;
-            if (z10) {
-                f7 = 1.0f;
-            } else {
-                f7 = 0.5f;
-            }
-            this.f23698f.setAlpha(f7);
-            if (z10) {
-                f10 = 1.0f;
-            } else {
-                f10 = 0.5f;
-            }
-            this.e.setAlpha(f10);
-            if (z10) {
-                f11 = 1.0f;
-            }
-            this.h.setAlpha(f11);
-        }
-        if (this.f23701s) {
-            a();
-        }
-    }
-
-    @Override
-    public final void updateColors() {
-        int i10;
-        int w02;
-        try {
-            if (this.f23695a != null && (i10 = this.f23696b) >= 0 && (w02 = org.telegram.ui.ActionBar.k6.w0(i10, this.f23702w)) != this.f23697c) {
-                this.f23697c = w02;
-                org.telegram.ui.ActionBar.k6.E1(this.f23695a, w02, false);
-                org.telegram.ui.ActionBar.k6.E1(this.f23695a, w02, true);
-                ImageView imageView = this.h;
-                if (imageView != null) {
-                    imageView.invalidate();
-                }
-            }
-        } catch (Exception e) {
-            FileLog.e(e);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.H && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public void setText(CharSequence charSequence) {
+        this.f25448b.setText(charSequence);
     }
 }

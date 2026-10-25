@@ -3,7 +3,7 @@ package org.scilab.forge.jlatexmath;
 import a1.g;
 import java.util.HashMap;
 import java.util.Map;
-import org.telegram.ui.Cells.b1;
+import org.telegram.ui.Components.b10;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -45,7 +45,7 @@ public class TeXFormulaParser {
             if ("false".equals(str)) {
                 return Boolean.FALSE;
             }
-            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b1.l("has an invalid '", str2, "'-value : '", str, "'!"));
+            throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b10.k("has an invalid '", str2, "'-value : '", str, "'!"));
         }
     }
 
@@ -145,7 +145,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Float.parseFloat(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b1.l("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b10.k("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
@@ -160,7 +160,7 @@ public class TeXFormulaParser {
             try {
                 return new Float(Integer.parseInt(str));
             } catch (NumberFormatException e) {
-                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b1.l("has an invalid '", str2, "'-value : '", str, "'!"), e);
+                throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "value", b10.k("has an invalid '", str2, "'-value : '", str, "'!"), e);
             }
         }
     }
@@ -181,11 +181,11 @@ public class TeXFormulaParser {
                     TeXFormula.class.getMethod(attrValueAndCheckIfNotNull, argumentClasses).invoke((TeXFormula) obj, TeXFormulaParser.this.getArgumentValues(elementsByTagName));
                     return;
                 } catch (Exception e) {
-                    StringBuilder w9 = g.w("Error invoking the method '", attrValueAndCheckIfNotNull, "' on the temporary TeXFormula '", attrValueAndCheckIfNotNull2, "' while constructing the predefined TeXFormula '");
-                    w9.append(TeXFormulaParser.this.formulaName);
-                    w9.append("'!\n");
-                    w9.append(e.toString());
-                    throw new XMLResourceParseException(w9.toString());
+                    StringBuilder w10 = g.w("Error invoking the method '", attrValueAndCheckIfNotNull, "' on the temporary TeXFormula '", attrValueAndCheckIfNotNull2, "' while constructing the predefined TeXFormula '");
+                    w10.append(TeXFormulaParser.this.formulaName);
+                    w10.append("'!\n");
+                    w10.append(e.toString());
+                    throw new XMLResourceParseException(w10.toString());
                 }
             }
             throw new XMLResourceParseException("PredefinedTeXFormulas.xml", "Argument", "formula", g.p("has an unknown temporary TeXFormula name as value : '", attrValueAndCheckIfNotNull2, "'!"));

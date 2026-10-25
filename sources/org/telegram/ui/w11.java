@@ -1,81 +1,96 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-public final class w11 extends org.telegram.ui.Components.km0 {
-    public final Context f42877c;
-    public final x11 d;
+import android.content.SharedPreferences;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+public final class w11 extends org.telegram.ui.ActionBar.j {
+    public final b21 f44944a;
 
-    public w11(x11 x11Var, Context context) {
-        this.d = x11Var;
-        this.f42877c = context;
+    public w11(b21 b21Var) {
+        this.f44944a = b21Var;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        int b10 = b1Var.b();
-        if (b10 != 0) {
-            x11 x11Var = this.d;
-            if (b10 != x11Var.f43453c && b10 != x11Var.d && b10 != x11Var.e) {
-                return false;
+    public final void b(int i10) {
+        int intValue;
+        String str;
+        String str2;
+        String str3;
+        b21 b21Var = this.f44944a;
+        boolean z10 = b21Var.I;
+        SharedConfig.ProxyInfo proxyInfo = b21Var.J;
+        if (i10 == -1) {
+            b21Var.finishFragment();
+            return;
+        }
+        boolean z11 = true;
+        if (i10 == 1 && b21Var.getParentActivity() != null) {
+            k2.r0 a2 = ti.a.a();
+            int i11 = b21Var.v;
+            if (i11 == 0) {
+                i11 = 1;
             }
-            return true;
-        }
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        return this.d.h;
-    }
-
-    @Override
-    public final int j(int i10) {
-        x11 x11Var = this.d;
-        if (i10 == x11Var.f43454f) {
-            return 0;
-        }
-        if (i10 != 0 && i10 != x11Var.f43453c && i10 != x11Var.d && i10 != x11Var.e) {
-            return 1;
-        }
-        return i10 + 9;
-    }
-
-    @Override
-    public final void v(s4.b1 r9, int r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.w11.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View e9Var;
-        Context context = this.f42877c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                switch (i10) {
-                    case 9:
-                    case 10:
-                    case 11:
-                    case 12:
-                        org.telegram.ui.Cells.i3 i3Var = new org.telegram.ui.Cells.i3(context);
-                        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, i3Var, null);
-                        this.d.f43455n[i10 - 9] = i3Var;
-                        e9Var = i3Var;
-                        break;
-                    default:
-                        e9Var = new org.telegram.ui.Cells.w8(context);
-                        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, e9Var, null);
-                        break;
-                }
+            a2.f16263a = i11;
+            String obj = b21Var.f37952a[0].getText().toString();
+            String str4 = "";
+            if (obj == null) {
+                obj = "";
+            }
+            a2.f16265c = obj;
+            if (b21Var.v == 3) {
+                intValue = 0;
             } else {
-                e9Var = new org.telegram.ui.Cells.ca(context);
-                org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21184d6, e9Var, null);
+                intValue = Utilities.parseInt((CharSequence) b21Var.f37952a[1].getText().toString()).intValue();
             }
-        } else {
-            e9Var = new org.telegram.ui.Cells.e9(context);
+            a2.f16264b = intValue;
+            if (b21Var.v != 1) {
+                str = "";
+            } else {
+                str = b21Var.f37952a[2].getText().toString();
+            }
+            if (str == null) {
+                str = "";
+            }
+            a2.d = str;
+            if (b21Var.v != 1) {
+                str2 = "";
+            } else {
+                str2 = b21Var.f37952a[3].getText().toString();
+            }
+            if (str2 == null) {
+                str2 = "";
+            }
+            a2.e = str2;
+            if (b21Var.v == 1) {
+                str3 = "";
+            } else {
+                str3 = b21Var.f37952a[4].getText().toString();
+            }
+            if (str3 != null) {
+                str4 = str3;
+            }
+            a2.f16266f = str4;
+            proxyInfo.settings = a2.b();
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            SharedPreferences.Editor edit = globalMainSettings.edit();
+            if (z10) {
+                SharedConfig.addProxy(proxyInfo);
+                SharedConfig.currentProxy = proxyInfo;
+                edit.putBoolean("proxy_enabled", true);
+            } else {
+                z11 = globalMainSettings.getBoolean("proxy_enabled", false);
+                SharedConfig.saveProxyList();
+            }
+            if (z10 || SharedConfig.currentProxy == proxyInfo) {
+                proxyInfo.settings.h(edit);
+                ConnectionsManager.setProxySettings(z11, proxyInfo.settings);
+            }
+            edit.commit();
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.proxySettingsChanged, new Object[0]);
+            b21Var.finishFragment();
         }
-        e9Var.setLayoutParams(new s4.o0(-1, -2));
-        return new s4.b1(e9Var);
     }
 }

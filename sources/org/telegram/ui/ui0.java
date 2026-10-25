@@ -1,83 +1,56 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.tl.TL_stats;
-public final class ui0 extends d91 {
-    public final vi0 v;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class ui0 extends LinearLayout {
+    public static final int d = 0;
+    public final TextView[] f44145a;
+    public final TextView[] f44146b;
+    public final vi0 f44147c;
 
-    public ui0(vi0 vi0Var, Context context, int i10, jg.f fVar, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, i10, fVar, g6Var);
-        this.v = vi0Var;
-    }
-
-    @Override
-    public final void c() {
-        int i10;
-        int i11;
-        int i12;
-        xi0 xi0Var = this.v.d;
-        if (this.f36544r.f37245c <= 0) {
-            performClick();
-            jg.g gVar = this.f36540b;
-            if (gVar.f14525t0.G) {
-                long selectedDate = gVar.getSelectedDate();
-                if (this.f36545s == 4) {
-                    f91 f91Var = this.f36544r;
-                    f91Var.e = new kg.e(f91Var.d, selectedDate);
-                    g(false);
-                } else if (this.f36544r.f37247g == null) {
-                } else {
-                    f();
-                    String str = this.f36544r.f37247g + "_" + selectedDate;
-                    kg.b bVar = (kg.b) xi0Var.v.get(str);
-                    if (bVar != null) {
-                        this.f36544r.e = bVar;
-                        g(false);
-                        return;
-                    }
-                    TL_stats.TL_loadAsyncGraph tL_loadAsyncGraph = new TL_stats.TL_loadAsyncGraph();
-                    tL_loadAsyncGraph.token = this.f36544r.f37247g;
-                    if (selectedDate != 0) {
-                        tL_loadAsyncGraph.f20572x = selectedDate;
-                        tL_loadAsyncGraph.flags |= 1;
-                    }
-                    ?? obj = new Object();
-                    xi0Var.f43626w = obj;
-                    xi0Var.f43622f.getClass();
-                    obj.f41324a = RecyclerView.R(this);
-                    gVar.f14525t0.d(true, false);
-                    i10 = ((org.telegram.ui.ActionBar.o2) xi0Var).currentAccount;
-                    int sendRequest = ConnectionsManager.getInstance(i10).sendRequest(tL_loadAsyncGraph, new ca(this, str, (Object) obj, 25), null, null, 0, xi0Var.f43614a.stats_dc, 1, true);
-                    i11 = ((org.telegram.ui.ActionBar.o2) xi0Var).currentAccount;
-                    ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i11);
-                    i12 = ((org.telegram.ui.ActionBar.o2) xi0Var).classGuid;
-                    connectionsManager.bindRequestToGuid(sendRequest, i12);
-                }
+    public ui0(vi0 vi0Var, Context context) {
+        super(context);
+        float f7;
+        this.f44147c = vi0Var;
+        this.f44145a = new TextView[4];
+        this.f44146b = new TextView[4];
+        setOrientation(1);
+        setPadding(AndroidUtilities.dp(16.0f), 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        for (int i10 = 0; i10 < 2; i10++) {
+            LinearLayout d10 = org.telegram.messenger.vh.d(context, 0);
+            for (int i11 = 0; i11 < 2; i11++) {
+                LinearLayout d11 = org.telegram.messenger.vh.d(context, 1);
+                LinearLayout d12 = org.telegram.messenger.vh.d(context, 0);
+                int i12 = (i10 * 2) + i11;
+                this.f44145a[i12] = new TextView(context);
+                this.f44146b[i12] = new TextView(context);
+                this.f44145a[i12].setTypeface(AndroidUtilities.bold());
+                this.f44145a[i12].setTextSize(1, 17.0f);
+                this.f44146b[i12].setTextSize(1, 13.0f);
+                this.f44146b[i12].setGravity(3);
+                d12.addView(this.f44145a[i12]);
+                d11.addView(d12);
+                d11.addView(this.f44146b[i12]);
+                d10.addView(d11, org.telegram.ui.Components.gb1.p(1.0f, -1, -2));
             }
-        }
-    }
-
-    @Override
-    public final void f() {
-        vi0 vi0Var = this.v;
-        xi0 xi0Var = vi0Var.d;
-        s91 s91Var = xi0Var.f43626w;
-        if (s91Var != null) {
-            s91Var.f41325b = true;
-        }
-        int childCount = xi0Var.f43622f.getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = vi0Var.d.f43622f.getChildAt(i10);
-            if (childAt instanceof d91) {
-                ((d91) childAt).f36540b.f14525t0.d(false, true);
+            if (i10 == 0) {
+                f7 = 16.0f;
+            } else {
+                f7 = 0.0f;
             }
+            addView(d10, org.telegram.ui.Components.gb1.h(-1, -2.0f, 0, 0.0f, 0.0f, 0.0f, f7));
         }
     }
 
-    @Override
-    public final void b(f91 f91Var) {
+    public final void a() {
+        for (int i10 = 0; i10 < 4; i10++) {
+            TextView textView = this.f44145a[i10];
+            int i11 = org.telegram.ui.ActionBar.y6.G6;
+            vi0 vi0Var = this.f44147c;
+            textView.setTextColor(org.telegram.ui.ActionBar.y6.w0(i11, vi0Var.getResourceProvider()));
+            this.f44146b[i10].setTextColor(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23765z6, vi0Var.getResourceProvider()));
+        }
     }
 }

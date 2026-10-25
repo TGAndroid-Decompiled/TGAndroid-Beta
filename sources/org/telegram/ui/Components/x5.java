@@ -1,86 +1,38 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.widget.TextView;
-import org.telegram.messenger.LocaleController;
-public class x5 extends TextView {
-    public int f32521a;
-    public PorterDuffColorFilter f32522b;
-    public u5 f32523c;
+import android.graphics.Rect;
+import android.text.Layout;
+import android.view.View;
+import java.lang.ref.WeakReference;
+import org.telegram.messenger.Emoji;
+public final class x5 implements z5 {
+    public final WeakReference f34620a;
+    public final boolean f34621b;
+    public Layout f34622c;
+    public c6 d;
+    public Rect e;
+    public t5 f34623f;
+    public Emoji.EmojiDrawable h;
+    public boolean f34624n;
+    public float f34625r;
+    public float f34626s;
+    public boolean v;
 
-    public x5(Context context) {
-        super(context);
-        this.f32521a = 0;
+    public x5(View view, boolean z10) {
+        this.f34620a = new WeakReference(view);
+        this.f34621b = z10;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f32523c = y5.update(this.f32521a, this, this.f32523c, getLayout());
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        y5.release(this, this.f32523c);
-    }
-
-    @Override
-    public void onDraw(Canvas canvas) {
-        float f7;
-        int paddingLeft;
-        Canvas canvas2;
-        super.onDraw(canvas);
-        if ((getGravity() & 16) != 0 && getLayout() != null) {
-            f7 = ((((getHeight() - getPaddingTop()) - getPaddingBottom()) - getLayout().getHeight()) / 2.0f) + getPaddingTop();
-        } else {
-            f7 = 0.0f;
-        }
-        if (LocaleController.isRTL) {
-            paddingLeft = getPaddingRight();
-        } else {
-            paddingLeft = getPaddingLeft();
-        }
-        float f10 = paddingLeft;
-        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        if (i10 == 0 && f10 == 0.0f) {
-            canvas2 = canvas;
-        } else {
-            canvas.save();
-            canvas2 = canvas;
-            canvas2.translate(f10, f7);
-        }
-        y5.drawAnimatedEmojis(canvas2, getLayout(), this.f32523c, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, this.f32522b);
-        if (i10 == 0 && f10 == 0.0f) {
+    public final void invalidate() {
+        View view = (View) this.f34620a.get();
+        if (view == null) {
             return;
         }
-        canvas.restore();
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f32523c = y5.update(this.f32521a, this, this.f32523c, getLayout());
-    }
-
-    public void setCacheType(int i10) {
-        if (this.f32521a == i10) {
-            return;
+        if (this.f34621b && view.getParent() != null) {
+            ((View) view.getParent()).invalidate();
+        } else {
+            view.invalidate();
         }
-        this.f32521a = i10;
-        this.f32523c = y5.update(i10, this, this.f32523c, getLayout());
-    }
-
-    public void setEmojiColor(int i10) {
-        this.f32522b = new PorterDuffColorFilter(i10, PorterDuff.Mode.SRC_IN);
-    }
-
-    @Override
-    public final void setText(CharSequence charSequence, TextView.BufferType bufferType) {
-        super.setText(charSequence, bufferType);
-        this.f32523c = y5.update(this.f32521a, this, this.f32523c, getLayout());
     }
 }

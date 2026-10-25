@@ -1,89 +1,76 @@
 package a8;
 
-import android.os.BadParcelableException;
-import android.os.Binder;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Parcel;
-import com.google.android.gms.common.api.Status;
-import com.google.android.gms.tasks.TaskCompletionSource;
-import i2.o1;
-import kotlin.jvm.internal.i;
-import v7.h5;
-public final class e extends Binder implements b, IInterface {
-    public final int f313a;
-    public final TaskCompletionSource f314b;
+import java.util.Map;
+public final class e extends eh {
+    public final Object f414b;
+    public int f415c;
+    public final g d;
 
-    public e(int i10, TaskCompletionSource taskCompletionSource) {
-        this.f313a = i10;
-        this.f314b = taskCompletionSource;
-        attachInterface(this, "com.google.android.gms.recaptchabase.internal.IRecaptchaBaseCallbacks");
+    public e(g gVar, int i10) {
+        super(0, false);
+        this.d = gVar;
+        Object[] objArr = gVar.f471c;
+        objArr.getClass();
+        this.f414b = objArr[i10];
+        this.f415c = i10;
     }
 
-    @Override
-    public final void S(Status status, l8.b bVar) {
-        switch (this.f313a) {
-            case 0:
-                i.e(status, "status");
-                h5.a(status, bVar, this.f314b);
+    public final void a() {
+        int i10 = this.f415c;
+        Object obj = this.f414b;
+        g gVar = this.d;
+        if (i10 != -1 && i10 < gVar.size()) {
+            int i11 = this.f415c;
+            Object[] objArr = gVar.f471c;
+            objArr.getClass();
+            if (n0.a(obj, objArr[i11])) {
                 return;
-            default:
-                return;
-        }
-    }
-
-    @Override
-    public final boolean onTransact(int i10, Parcel parcel, Parcel parcel2, int i11) {
-        if (i10 > 16777215) {
-            if (super.onTransact(i10, parcel, parcel2, i11)) {
-                return true;
             }
-        } else {
-            parcel.enforceInterface(getInterfaceDescriptor());
         }
-        if (i10 != 1) {
-            if (i10 != 2) {
-                return false;
-            }
-            Status status = (Status) a.a(parcel, Status.CREATOR);
-            l8.b bVar = (l8.b) a.a(parcel, l8.b.CREATOR);
-            int dataAvail = parcel.dataAvail();
-            if (dataAvail <= 0) {
-                S(status, bVar);
-                return true;
-            }
-            throw new BadParcelableException(o1.k(dataAvail, "Parcel data not fully consumed, unread size: "));
-        }
-        Status status2 = (Status) a.a(parcel, Status.CREATOR);
-        l8.d dVar = (l8.d) a.a(parcel, l8.d.CREATOR);
-        int dataAvail2 = parcel.dataAvail();
-        if (dataAvail2 <= 0) {
-            s(status2, dVar);
-            return true;
-        }
-        throw new BadParcelableException(o1.k(dataAvail2, "Parcel data not fully consumed, unread size: "));
+        Object obj2 = g.f468s;
+        this.f415c = gVar.e(obj);
     }
 
     @Override
-    public final void s(Status status, l8.d dVar) {
-        switch (this.f313a) {
-            case 0:
-                return;
-            default:
-                i.e(status, "status");
-                h5.a(status, dVar, this.f314b);
-                return;
-        }
+    public final Object getKey() {
+        return this.f414b;
     }
 
     @Override
-    public final IBinder asBinder() {
-        return this;
+    public final Object getValue() {
+        g gVar = this.d;
+        Map a2 = gVar.a();
+        if (a2 != null) {
+            return a2.get(this.f414b);
+        }
+        a();
+        int i10 = this.f415c;
+        if (i10 == -1) {
+            return null;
+        }
+        Object[] objArr = gVar.d;
+        objArr.getClass();
+        return objArr[i10];
     }
 
-    private final void F0(Status status, l8.b bVar) {
-    }
-
-    private final void G0(Status status, l8.d dVar) {
+    @Override
+    public final Object setValue(Object obj) {
+        g gVar = this.d;
+        Map a2 = gVar.a();
+        Object obj2 = this.f414b;
+        if (a2 != null) {
+            return a2.put(obj2, obj);
+        }
+        a();
+        int i10 = this.f415c;
+        if (i10 == -1) {
+            gVar.put(obj2, obj);
+            return null;
+        }
+        Object[] objArr = gVar.d;
+        objArr.getClass();
+        Object obj3 = objArr[i10];
+        objArr[i10] = obj;
+        return obj3;
     }
 }

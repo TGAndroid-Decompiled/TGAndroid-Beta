@@ -1,176 +1,56 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import org.telegram.messenger.ChannelBoostsController;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
+import j$.util.Objects;
 import org.telegram.tgnet.tl.TL_stories;
-public final class w5 extends FrameLayout {
-    public final y5 f42901a;
+public final class w5 extends qg.a {
+    public final String f44976c;
+    public final TL_stories.Boost d;
+    public TL_stories.PrepaidGiveaway e;
+    public boolean f44977f;
+    public final int f44978g;
 
-    public w5(y5 y5Var, Activity activity) {
-        super(activity);
-        this.f42901a = y5Var;
-        setWillNotDraw(false);
-        ai.o5 o5Var = new ai.o5(y5Var, getContext());
-        ai.o5 o5Var2 = new ai.o5(y5Var, getContext());
-        ai.o5 o5Var3 = new ai.o5(y5Var, getContext());
-        o5Var.c(R.drawable.filled_boost_plus, LocaleController.getString(R.string.BoostBtn));
-        o5Var2.c(R.drawable.filled_gift_premium, LocaleController.getString(R.string.GiveawayBtn));
-        o5Var3.c(R.drawable.filled_info, LocaleController.getString(R.string.FeaturesBtn));
-        o5Var.setOnClickListener(new View.OnClickListener(this) {
-            public final w5 f42215b;
+    public w5(int i10, String str) {
+        super(i10, false);
+        this.f44976c = str;
+    }
 
-            {
-                this.f42215b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                org.telegram.ui.ActionBar.g6 g6Var;
-                int i10 = r2;
-                w5 w5Var = this.f42215b;
-                switch (i10) {
-                    case 0:
-                        y5 y5Var2 = w5Var.f42901a;
-                        long j10 = y5Var2.R;
-                        ChannelBoostsController.CanApplyBoost canApplyBoost = y5Var2.U;
-                        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = y5Var2.T;
-                        int i11 = sg.j0.W0;
-                        if (canApplyBoost != null && tL_premium_boostsStatus != null && y5Var2.getParentActivity() != null) {
-                            sg.j0 j0Var = new sg.j0(19, y5Var2.getCurrentAccount(), y5Var2.getParentActivity(), y5Var2, y5Var2.getResourceProvider());
-                            j0Var.K1(canApplyBoost);
-                            j0Var.J1(tL_premium_boostsStatus, true);
-                            j0Var.L1(j10);
-                            j0Var.f46711g0 = null;
-                            y5Var2.showDialog(j0Var);
-                            return;
-                        }
-                        return;
-                    case 1:
-                        y5 y5Var3 = w5Var.f42901a;
-                        y5Var3.x0(true);
-                        long j11 = y5Var3.R;
-                        g6Var = ((org.telegram.ui.ActionBar.o2) y5Var3).resourceProvider;
-                        ug.l.m(y5Var3, g6Var, j11, null);
-                        ug.l.e.setOnHideListener(new v5(w5Var, 0));
-                        return;
-                    default:
-                        y5 y5Var4 = w5Var.f42901a;
-                        sg.j0 j0Var2 = new sg.j0(31, y5Var4.S, w5Var.getContext(), y5Var4, y5Var4.getResourceProvider());
-                        j0Var2.J1(y5Var4.T, true);
-                        j0Var2.L1(y5Var4.R);
-                        y5Var4.showDialog(j0Var2);
-                        return;
-                }
-            }
-        });
-        o5Var2.setOnClickListener(new View.OnClickListener(this) {
-            public final w5 f42215b;
-
-            {
-                this.f42215b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                org.telegram.ui.ActionBar.g6 g6Var;
-                int i10 = r2;
-                w5 w5Var = this.f42215b;
-                switch (i10) {
-                    case 0:
-                        y5 y5Var2 = w5Var.f42901a;
-                        long j10 = y5Var2.R;
-                        ChannelBoostsController.CanApplyBoost canApplyBoost = y5Var2.U;
-                        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = y5Var2.T;
-                        int i11 = sg.j0.W0;
-                        if (canApplyBoost != null && tL_premium_boostsStatus != null && y5Var2.getParentActivity() != null) {
-                            sg.j0 j0Var = new sg.j0(19, y5Var2.getCurrentAccount(), y5Var2.getParentActivity(), y5Var2, y5Var2.getResourceProvider());
-                            j0Var.K1(canApplyBoost);
-                            j0Var.J1(tL_premium_boostsStatus, true);
-                            j0Var.L1(j10);
-                            j0Var.f46711g0 = null;
-                            y5Var2.showDialog(j0Var);
-                            return;
-                        }
-                        return;
-                    case 1:
-                        y5 y5Var3 = w5Var.f42901a;
-                        y5Var3.x0(true);
-                        long j11 = y5Var3.R;
-                        g6Var = ((org.telegram.ui.ActionBar.o2) y5Var3).resourceProvider;
-                        ug.l.m(y5Var3, g6Var, j11, null);
-                        ug.l.e.setOnHideListener(new v5(w5Var, 0));
-                        return;
-                    default:
-                        y5 y5Var4 = w5Var.f42901a;
-                        sg.j0 j0Var2 = new sg.j0(31, y5Var4.S, w5Var.getContext(), y5Var4, y5Var4.getResourceProvider());
-                        j0Var2.J1(y5Var4.T, true);
-                        j0Var2.L1(y5Var4.R);
-                        y5Var4.showDialog(j0Var2);
-                        return;
-                }
-            }
-        });
-        o5Var3.setOnClickListener(new View.OnClickListener(this) {
-            public final w5 f42215b;
-
-            {
-                this.f42215b = this;
-            }
-
-            @Override
-            public final void onClick(View view) {
-                org.telegram.ui.ActionBar.g6 g6Var;
-                int i10 = r2;
-                w5 w5Var = this.f42215b;
-                switch (i10) {
-                    case 0:
-                        y5 y5Var2 = w5Var.f42901a;
-                        long j10 = y5Var2.R;
-                        ChannelBoostsController.CanApplyBoost canApplyBoost = y5Var2.U;
-                        TL_stories.TL_premium_boostsStatus tL_premium_boostsStatus = y5Var2.T;
-                        int i11 = sg.j0.W0;
-                        if (canApplyBoost != null && tL_premium_boostsStatus != null && y5Var2.getParentActivity() != null) {
-                            sg.j0 j0Var = new sg.j0(19, y5Var2.getCurrentAccount(), y5Var2.getParentActivity(), y5Var2, y5Var2.getResourceProvider());
-                            j0Var.K1(canApplyBoost);
-                            j0Var.J1(tL_premium_boostsStatus, true);
-                            j0Var.L1(j10);
-                            j0Var.f46711g0 = null;
-                            y5Var2.showDialog(j0Var);
-                            return;
-                        }
-                        return;
-                    case 1:
-                        y5 y5Var3 = w5Var.f42901a;
-                        y5Var3.x0(true);
-                        long j11 = y5Var3.R;
-                        g6Var = ((org.telegram.ui.ActionBar.o2) y5Var3).resourceProvider;
-                        ug.l.m(y5Var3, g6Var, j11, null);
-                        ug.l.e.setOnHideListener(new v5(w5Var, 0));
-                        return;
-                    default:
-                        y5 y5Var4 = w5Var.f42901a;
-                        sg.j0 j0Var2 = new sg.j0(31, y5Var4.S, w5Var.getContext(), y5Var4, y5Var4.getResourceProvider());
-                        j0Var2.J1(y5Var4.T, true);
-                        j0Var2.L1(y5Var4.R);
-                        y5Var4.showDialog(j0Var2);
-                        return;
-                }
-            }
-        });
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(0);
-        linearLayout.addView(o5Var, w7.z5.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
-        if (MessagesController.getInstance(y5Var.S).giveawayGiftsPurchaseAvailable && ChatObject.hasAdminRights(y5Var.f43756i0)) {
-            linearLayout.addView(o5Var2, w7.z5.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
+    public final boolean equals(Object obj) {
+        TL_stories.PrepaidGiveaway prepaidGiveaway;
+        boolean z10 = this.f44977f;
+        if (this == obj) {
+            return true;
         }
-        linearLayout.addView(o5Var3, w7.z5.k(6.0f, 0.0f, 6.0f, 0.0f, -2, -2));
-        addView(linearLayout, w7.z5.d(-2, -2.0f, 1, 0.0f, 19.0f, 0.0f, 0.0f));
+        if (obj == null || w5.class != obj.getClass()) {
+            return false;
+        }
+        w5 w5Var = (w5) obj;
+        TL_stories.Boost boost = w5Var.d;
+        boolean z11 = w5Var.f44977f;
+        TL_stories.PrepaidGiveaway prepaidGiveaway2 = this.e;
+        if (prepaidGiveaway2 != null && (prepaidGiveaway = w5Var.e) != null) {
+            if (prepaidGiveaway2.f22263id == prepaidGiveaway.f22263id && z10 == z11) {
+                return true;
+            }
+            return false;
+        }
+        TL_stories.Boost boost2 = this.d;
+        if (boost2 == null || boost == null) {
+            return true;
+        }
+        if (boost2.f22259id.hashCode() == boost.f22259id.hashCode() && z10 == z11 && this.f44978g == w5Var.f44978g) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return Objects.hash(this.f44976c, this.d, this.e, Boolean.valueOf(this.f44977f), Integer.valueOf(this.f44978g));
+    }
+
+    public w5(TL_stories.Boost boost, boolean z10, int i10) {
+        super(5, true);
+        this.d = boost;
+        this.f44977f = z10;
+        this.f44978g = i10;
     }
 }

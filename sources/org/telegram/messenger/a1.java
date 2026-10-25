@@ -1,32 +1,26 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.ChatObject;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class a1 implements RequestDelegate {
-    public final int f17892a;
-    public final ChatObject.Call f17893b;
+public final class a1 implements Runnable {
+    public final int f19581a;
+    public final ChatObject.Call f19582b;
 
     public a1(ChatObject.Call call, int i10) {
-        this.f17892a = i10;
-        this.f17893b = call;
+        this.f19581a = i10;
+        this.f19582b = call;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f17892a) {
+    public final void run() {
+        switch (this.f19581a) {
             case 0:
-                this.f17893b.lambda$loadGroupCall$11(tLObject, tL_error);
+                ChatObject.Call.j(this.f19582b);
                 return;
             case 1:
-                this.f17893b.lambda$reloadGroupCall$9(tLObject, tL_error);
-                return;
-            case 2:
-                this.f17893b.lambda$setTitle$4(tLObject, tL_error);
+                ChatObject.Call.a(this.f19582b);
                 return;
             default:
-                this.f17893b.lambda$toggleRecord$13(tLObject, tL_error);
+                ChatObject.Call.c(this.f19582b);
                 return;
         }
     }

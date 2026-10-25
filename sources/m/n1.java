@@ -1,8 +1,31 @@
 package m;
 
 import android.view.View;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import java.lang.reflect.Method;
 public abstract class n1 {
-    public static void a(View view, float f7, float f10) {
-        view.drawableHotspotChanged(f7, f10);
+    public static final Method f17782a;
+    public static final Method f17783b;
+    public static final Method f17784c;
+    public static final boolean d;
+
+    static {
+        try {
+            Class cls = Integer.TYPE;
+            Class cls2 = Float.TYPE;
+            Method declaredMethod = AbsListView.class.getDeclaredMethod("positionSelector", cls, View.class, Boolean.TYPE, cls2, cls2);
+            f17782a = declaredMethod;
+            declaredMethod.setAccessible(true);
+            Method declaredMethod2 = AdapterView.class.getDeclaredMethod("setSelectedPositionInt", cls);
+            f17783b = declaredMethod2;
+            declaredMethod2.setAccessible(true);
+            Method declaredMethod3 = AdapterView.class.getDeclaredMethod("setNextSelectedPositionInt", cls);
+            f17784c = declaredMethod3;
+            declaredMethod3.setAccessible(true);
+            d = true;
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
     }
 }

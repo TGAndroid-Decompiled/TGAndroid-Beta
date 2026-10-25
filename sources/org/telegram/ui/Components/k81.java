@@ -1,6 +1,12 @@
 package org.telegram.ui.Components;
-public interface k81 {
-    void a(float f7);
 
-    void b(float f7);
+import java.util.concurrent.Executor;
+import org.telegram.messenger.DispatchQueue;
+public final class k81 implements Executor {
+    public final DispatchQueue f29873a;
+
+    @Override
+    public final void execute(Runnable runnable) {
+        this.f29873a.postRunnable(runnable);
+    }
 }

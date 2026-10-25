@@ -1,8 +1,263 @@
 package zh;
-public final class j0 {
-    public final n0 f52488a;
 
-    public j0(n0 n0Var) {
-        this.f52488a = n0Var;
+import a8.yc;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.LinearGradient;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.Shader;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.NinePatchDrawable;
+import android.text.Layout;
+import android.text.Spanned;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.text.TextUtils;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.c6;
+import org.telegram.ui.Components.ds;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.y5;
+public final class j0 extends Drawable {
+    public NinePatchDrawable f53049a;
+    public NinePatchDrawable f53050b;
+    public final TextPaint f53051c;
+    public final ImageReceiver d;
+    public final j9 e;
+    public final int f53052f;
+    public final int f53053g;
+    public final float h;
+    public final float f53054i;
+    public final int f53055j;
+    public final int f53056k;
+    public boolean f53057l;
+    public CharSequence f53058m;
+    public StaticLayout f53059n;
+    public float f53060o;
+    public float f53061p;
+    public y5 f53062q;
+    public View f53063r;
+    public int f53064s;
+    public int f53065t;
+    public int f53066u;
+
+    public j0() {
+        TextPaint textPaint = new TextPaint(1);
+        this.f53051c = textPaint;
+        ImageReceiver imageReceiver = new ImageReceiver();
+        this.d = imageReceiver;
+        this.e = new j9((u6) null);
+        int dp = AndroidUtilities.dp(10.66f);
+        this.f53052f = dp * 2;
+        this.f53053g = AndroidUtilities.dp(4.0f);
+        this.h = AndroidUtilities.dpf2(15.33f);
+        this.f53054i = AndroidUtilities.dpf2(7.33f);
+        this.f53055j = AndroidUtilities.dp(8.0f);
+        this.f53056k = (int) AndroidUtilities.dpf2(22.66f);
+        ds dsVar = ds.f27584f;
+        textPaint.setTextSize(AndroidUtilities.dp(12.0f));
+        textPaint.setColor(-1);
+        imageReceiver.setRoundRadius(dp);
+    }
+
+    public final void a() {
+        if (this.f53049a == null) {
+            Drawable drawable = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_24);
+            int intrinsicWidth = drawable.getIntrinsicWidth();
+            int intrinsicHeight = drawable.getIntrinsicHeight();
+            Bitmap createBitmap = Bitmap.createBitmap(intrinsicWidth, intrinsicHeight, Bitmap.Config.ARGB_8888);
+            Canvas canvas = new Canvas(createBitmap);
+            drawable.setBounds(0, 0, intrinsicWidth, intrinsicHeight);
+            drawable.draw(canvas);
+            int i10 = (intrinsicHeight * 4) / 144;
+            this.f53049a = yc.a(createBitmap, new Rect((intrinsicWidth * 27) / 168, i10, (intrinsicWidth * 5) / 168, i10), (intrinsicWidth * 94) / 168, (intrinsicHeight * 71) / 144);
+        }
+        if (this.f53050b == null) {
+            Drawable drawable2 = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.gift_message_bubble_border_24);
+            int intrinsicWidth2 = drawable2.getIntrinsicWidth();
+            int intrinsicHeight2 = drawable2.getIntrinsicHeight();
+            Bitmap createBitmap2 = Bitmap.createBitmap(intrinsicWidth2, intrinsicHeight2, Bitmap.Config.ARGB_8888);
+            Canvas canvas2 = new Canvas(createBitmap2);
+            drawable2.setBounds(0, 0, intrinsicWidth2, intrinsicHeight2);
+            drawable2.draw(canvas2);
+            Paint paint = new Paint(1);
+            float f7 = intrinsicWidth2;
+            float f10 = intrinsicHeight2;
+            paint.setShader(new LinearGradient(f7, 0.0f, 0.0f, f10, new int[]{1090519039, -805306369, 1090519039}, (float[]) null, Shader.TileMode.CLAMP));
+            paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.MULTIPLY));
+            canvas2.drawRect(0.0f, 0.0f, f7, f10, paint);
+            int i11 = (intrinsicHeight2 * 4) / 144;
+            this.f53050b = yc.a(createBitmap2, new Rect((intrinsicWidth2 * 27) / 168, i11, (intrinsicWidth2 * 5) / 168, i11), (intrinsicWidth2 * 94) / 168, (intrinsicHeight2 * 71) / 144);
+        }
+    }
+
+    public final void b(int i10) {
+        int i11;
+        int ceil;
+        a();
+        if (i10 == this.f53064s && this.f53059n != null) {
+            return;
+        }
+        this.f53064s = i10;
+        if (!this.f53057l) {
+            i11 = 0;
+        } else {
+            i11 = this.f53053g + this.f53052f;
+        }
+        int i12 = this.f53055j;
+        int i13 = i11 + i12;
+        int i14 = (i10 - i13) - i12;
+        int i15 = this.f53056k;
+        if (i14 > 0 && !TextUtils.isEmpty(this.f53058m)) {
+            CharSequence charSequence = this.f53058m;
+            Layout.Alignment alignment = Layout.Alignment.ALIGN_NORMAL;
+            TextPaint textPaint = this.f53051c;
+            StaticLayout staticLayout = new StaticLayout(charSequence, textPaint, i14, alignment, 1.0f, 0.0f, false);
+            int lineCount = staticLayout.getLineCount();
+            float f7 = 0.0f;
+            float f10 = 0.0f;
+            for (int i16 = 0; i16 < lineCount; i16++) {
+                f10 = Math.max(f10, staticLayout.getLineWidth(i16));
+            }
+            if (lineCount > 1 && (ceil = (int) Math.ceil(f10)) < i14) {
+                StaticLayout staticLayout2 = new StaticLayout(this.f53058m, textPaint, ceil, Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                if (staticLayout2.getLineCount() == lineCount) {
+                    for (int i17 = 0; i17 < staticLayout2.getLineCount(); i17++) {
+                        f7 = Math.max(f7, staticLayout2.getLineWidth(i17));
+                    }
+                    f10 = f7;
+                    staticLayout = staticLayout2;
+                }
+            }
+            this.f53059n = staticLayout;
+            this.f53060o = i13;
+            this.f53065t = ((int) Math.ceil(f10)) + i13 + i12;
+            float lineBaseline = this.f53059n.getLineBaseline(0);
+            StaticLayout staticLayout3 = this.f53059n;
+            float f11 = this.h;
+            this.f53066u = Math.max(i15, (int) Math.ceil((staticLayout3.getLineBaseline(this.f53059n.getLineCount() - 1) - lineBaseline) + f11 + this.f53054i));
+            this.f53061p = f11 - lineBaseline;
+            return;
+        }
+        this.f53059n = null;
+        this.f53065t = i15;
+        this.f53066u = i15;
+    }
+
+    public final void c(TLObject tLObject) {
+        boolean z10;
+        if (tLObject != null) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        this.f53057l = z10;
+        if (z10) {
+            j9 j9Var = this.e;
+            j9Var.p(tLObject);
+            boolean z11 = tLObject instanceof TLRPC.User;
+            ImageReceiver imageReceiver = this.d;
+            if (z11) {
+                imageReceiver.setImage(ImageLocation.getForUser((TLRPC.User) tLObject, 1), "48_48", j9Var, null, null, 0);
+            } else if (tLObject instanceof TLRPC.Chat) {
+                imageReceiver.setImage(ImageLocation.getForChat((TLRPC.Chat) tLObject, 1), "48_48", j9Var, null, null, 0);
+            } else {
+                imageReceiver.setImageBitmap(j9Var);
+            }
+        }
+        this.f53064s = -1;
+    }
+
+    @Override
+    public final void draw(Canvas canvas) {
+        float f7;
+        int i10;
+        int i11;
+        a();
+        Rect bounds = getBounds();
+        canvas.save();
+        boolean z10 = this.f53057l;
+        if (z10) {
+            f7 = 1.0f;
+        } else {
+            f7 = 0.0f;
+        }
+        NinePatchDrawable ninePatchDrawable = this.f53049a;
+        int i12 = bounds.left;
+        int i13 = this.f53053g;
+        int i14 = this.f53052f;
+        if (z10) {
+            i10 = i13 + i14;
+        } else {
+            i10 = 0;
+        }
+        ag.v.g(ninePatchDrawable, i12 + i10, bounds.top, bounds.right, bounds.bottom);
+        this.f53049a.draw(canvas);
+        NinePatchDrawable ninePatchDrawable2 = this.f53050b;
+        int i15 = bounds.left;
+        if (this.f53057l) {
+            i11 = i13 + i14;
+        } else {
+            i11 = 0;
+        }
+        ag.v.g(ninePatchDrawable2, i15 + i11, bounds.top, bounds.right, bounds.bottom);
+        this.f53050b.draw(canvas);
+        if (this.f53059n != null) {
+            canvas.save();
+            canvas.translate(bounds.left + this.f53060o, bounds.top + this.f53061p);
+            this.f53059n.draw(canvas);
+            View view = this.f53063r;
+            if (view != null && (this.f53058m instanceof Spanned)) {
+                y5 update = c6.update(0, view, false, this.f53062q, this.f53059n);
+                this.f53062q = update;
+                c6.drawAnimatedEmojis(canvas, this.f53059n, update, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, null);
+            }
+            canvas.restore();
+        }
+        if (f7 > 0.0f) {
+            int i16 = bounds.left;
+            ImageReceiver imageReceiver = this.d;
+            imageReceiver.setImageCoords(i16, bounds.bottom - i14, i14, i14);
+            canvas.save();
+            canvas.scale(f7, f7, imageReceiver.getCenterX(), imageReceiver.getCenterY());
+            imageReceiver.draw(canvas);
+            canvas.restore();
+        }
+        canvas.restore();
+    }
+
+    @Override
+    public final int getMinimumHeight() {
+        return this.f53066u;
+    }
+
+    @Override
+    public final int getMinimumWidth() {
+        return this.f53065t;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -3;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

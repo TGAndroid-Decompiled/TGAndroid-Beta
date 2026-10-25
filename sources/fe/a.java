@@ -1,18 +1,19 @@
 package fe;
+public final class a extends nd.c {
+    public ge.g f10436a;
+    public Object f10437b;
+    public final a4.l f10438c;
+    public int d;
 
-import ab.u;
-import java.util.concurrent.CancellationException;
-public final class a extends CancellationException {
-    public final transient u f10596a;
-
-    public a(u uVar) {
-        super("Flow was aborted, no more elements needed");
-        this.f10596a = uVar;
+    public a(a4.l lVar, nd.c cVar) {
+        super(cVar);
+        this.f10438c = lVar;
     }
 
     @Override
-    public final Throwable fillInStackTrace() {
-        setStackTrace(new StackTraceElement[0]);
-        return this;
+    public final Object invokeSuspend(Object obj) {
+        this.f10437b = obj;
+        this.d |= Integer.MIN_VALUE;
+        return this.f10438c.C(null, this);
     }
 }

@@ -1,69 +1,30 @@
 package org.telegram.ui;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.view.View;
-import android.view.ViewGroup;
-public final class ai1 extends org.telegram.ui.Components.km0 {
-    public final Context f35796c;
-    public final WallpapersListActivity d;
+import org.telegram.messenger.AndroidUtilities;
+public final class ai1 extends View {
+    public int f37811a;
+    public final WallpapersListActivity f37812b;
 
     public ai1(WallpapersListActivity wallpapersListActivity, Context context) {
-        this.d = wallpapersListActivity;
-        this.f35796c = context;
+        super(context);
+        this.f37812b = wallpapersListActivity;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        if (b1Var.f46345f == 0) {
-            return true;
+    public final void onDraw(Canvas canvas) {
+        WallpapersListActivity wallpapersListActivity = this.f37812b;
+        wallpapersListActivity.f37596s.setColor(this.f37811a);
+        canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.f37596s);
+        if (this.f37811a == org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false)) {
+            canvas.drawCircle(AndroidUtilities.dp(25.0f), AndroidUtilities.dp(31.0f), AndroidUtilities.dp(18.0f), wallpapersListActivity.v);
         }
-        return false;
     }
 
     @Override
-    public final int h() {
-        return this.d.f35521a;
-    }
-
-    @Override
-    public final int j(int i10) {
-        int i11;
-        WallpapersListActivity wallpapersListActivity = this.d;
-        i11 = wallpapersListActivity.uploadImageRow;
-        if (i10 != i11 && i10 != wallpapersListActivity.f35536r && i10 != wallpapersListActivity.f35523b && i10 != wallpapersListActivity.h) {
-            if (i10 != wallpapersListActivity.f35525c && i10 != wallpapersListActivity.f35529f) {
-                if (i10 != wallpapersListActivity.f35535n && i10 != wallpapersListActivity.f35537s) {
-                    return 2;
-                }
-                return 3;
-            }
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 r17, int r18) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ai1.v(s4.b1, int):void");
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        View r8Var;
-        Context context = this.f35796c;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 3) {
-                    r8Var = new org.telegram.ui.Components.fj(this, context, 1);
-                } else {
-                    r8Var = new org.telegram.ui.Cells.e9(context);
-                }
-            } else {
-                r8Var = new org.telegram.ui.Cells.b7(context, (org.telegram.ui.Cells.b1) null);
-            }
-        } else {
-            r8Var = new org.telegram.ui.Cells.r8(context);
-        }
-        return new s4.b1(r8Var);
+    public final void onMeasure(int i10, int i11) {
+        setMeasuredDimension(AndroidUtilities.dp(50.0f), AndroidUtilities.dp(62.0f));
     }
 }

@@ -1,0 +1,34 @@
+package tg;
+
+import android.view.ViewGroup;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.ui.ActionBar.k3;
+public final class r0 extends s4.u0 {
+    public final int f49018a;
+    public final y0 f49019b;
+
+    public r0(y0 y0Var, int i10) {
+        this.f49018a = i10;
+        this.f49019b = y0Var;
+    }
+
+    @Override
+    public final void b(RecyclerView recyclerView, int i10, int i11) {
+        ViewGroup viewGroup;
+        ViewGroup viewGroup2;
+        switch (this.f49018a) {
+            case 0:
+                y0 y0Var = this.f49019b;
+                viewGroup = ((k3) y0Var).containerView;
+                viewGroup.invalidate();
+                y0Var.B();
+                return;
+            default:
+                y0 y0Var2 = this.f49019b;
+                viewGroup2 = ((k3) y0Var2).containerView;
+                viewGroup2.invalidate();
+                y0Var2.B();
+                return;
+        }
+    }
+}

@@ -1,25 +1,72 @@
 package org.telegram.ui.Components;
 
-import android.text.TextWatcher;
-public final class i21 implements TextWatcher {
-    public final int f27263a;
-    public final j21 f27264b;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
+import java.io.File;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class i21 implements aa1 {
+    public final ThemeEditorView f29167a;
 
-    public i21(j21 j21Var, int i10) {
-        this.f27264b = j21Var;
-        this.f27263a = i10;
+    public i21(ThemeEditorView themeEditorView) {
+        this.f29167a = themeEditorView;
     }
 
     @Override
-    public final void afterTextChanged(android.text.Editable r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.i21.afterTextChanged(android.text.Editable):void");
+    public final void a() {
+        int i10 = 0;
+        while (true) {
+            ThemeEditorView themeEditorView = this.f29167a;
+            if (i10 < themeEditorView.e.size()) {
+                org.telegram.ui.ActionBar.h7 h7Var = (org.telegram.ui.ActionBar.h7) themeEditorView.e.get(i10);
+                int x02 = org.telegram.ui.ActionBar.y6.x0(h7Var.f22693i, h7Var.e, false);
+                h7Var.h = x02;
+                if (i10 == 0) {
+                    themeEditorView.f26334n.f26336b.c(x02);
+                }
+                i10++;
+            } else {
+                ThemeEditorView.EditorAlert editorAlert = themeEditorView.f26334n;
+                int i11 = ThemeEditorView.EditorAlert.M;
+                editorAlert.L(true);
+                return;
+            }
+        }
     }
 
     @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void b(File file, Bitmap bitmap, boolean z10) {
+        org.telegram.ui.ActionBar.x6 x6Var = this.f29167a.f26335o;
+        org.telegram.ui.ActionBar.y6.ul.delete(org.telegram.ui.ActionBar.y6.Nd);
+        org.telegram.ui.ActionBar.y6.ul.delete(org.telegram.ui.ActionBar.y6.Od);
+        org.telegram.ui.ActionBar.y6.ul.delete(org.telegram.ui.ActionBar.y6.Pd);
+        org.telegram.ui.ActionBar.y6.ul.delete(org.telegram.ui.ActionBar.y6.Qd);
+        org.telegram.ui.ActionBar.y6.ul.delete(org.telegram.ui.ActionBar.y6.Rd);
+        org.telegram.ui.ActionBar.y6.f23420h0 = null;
+        x6Var.v(null);
+        if (bitmap != null) {
+            org.telegram.ui.ActionBar.y6.f23385f0 = new BitmapDrawable(bitmap);
+            org.telegram.ui.ActionBar.y6.u1(x6Var, false, false, false);
+            int[] calcDrawableColor = AndroidUtilities.calcDrawableColor(org.telegram.ui.ActionBar.y6.f23385f0);
+            int i10 = calcDrawableColor[0];
+            org.telegram.ui.ActionBar.y6.f23329c0 = i10;
+            org.telegram.ui.ActionBar.y6.X = i10;
+            int i11 = calcDrawableColor[1];
+            org.telegram.ui.ActionBar.y6.f23348d0 = i11;
+            org.telegram.ui.ActionBar.y6.f23309b0 = i11;
+            Drawable drawable = org.telegram.ui.ActionBar.y6.f23367e0;
+            if (drawable != null) {
+                org.telegram.ui.ActionBar.y6.i(drawable);
+            }
+            org.telegram.ui.ActionBar.y6.h(org.telegram.ui.ActionBar.y6.f23367e0);
+            NotificationCenter.getGlobalInstance().lambda$postNotificationNameOnUIThread$1(NotificationCenter.didSetNewWallpapper, new Object[0]);
+            return;
+        }
+        org.telegram.ui.ActionBar.y6.f23385f0 = null;
+        org.telegram.ui.ActionBar.y6.f23367e0 = null;
+        org.telegram.ui.ActionBar.y6.u1(x6Var, false, false, false);
+        org.telegram.ui.ActionBar.y6.r1(true);
     }
 }

@@ -1,96 +1,65 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.Intro;
-public final class n2 implements z4.f {
-    public final int f39697a;
-    public final Object f39698b;
+import android.view.View;
+import org.telegram.tgnet.tl.TL_iv;
+public final class n2 extends a5.a {
+    public final p2 f41739c;
 
-    public n2(Object obj, int i10) {
-        this.f39697a = i10;
-        this.f39698b = obj;
+    public n2(p2 p2Var) {
+        this.f41739c = p2Var;
     }
 
     @Override
-    public final void a(int i10) {
-        switch (this.f39697a) {
-            case 0:
-                r2 r2Var = (r2) this.f39698b;
-                r2Var.f40987w = i10;
-                r2Var.d.invalidate();
-                return;
-            case 1:
-                ((n70) this.f39698b).H = i10;
-                return;
-            default:
-                ((pc1) this.f39698b).f40446b0.invalidate();
-                return;
-        }
+    public final void a(a5.m mVar, Object obj) {
+        mVar.removeView(((m2) obj).f41432b);
     }
 
     @Override
-    public final void b(float f7, int i10, int i11) {
-        switch (this.f39697a) {
-            case 0:
-                r2 r2Var = (r2) this.f39698b;
-                float measuredWidth = r2Var.f40981b.getMeasuredWidth();
-                if (measuredWidth != 0.0f) {
-                    r2Var.v = com.google.android.gms.internal.play_billing.k3.c(r2Var.f40987w, measuredWidth, (i10 * measuredWidth) + i11, measuredWidth);
-                    r2Var.d.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                n70 n70Var = (n70) this.f39698b;
-                org.telegram.ui.Components.qa qaVar = n70Var.e;
-                qaVar.f29867b = f7;
-                qaVar.f29868c = i10;
-                qaVar.invalidate();
-                float measuredWidth2 = n70Var.d.getMeasuredWidth();
-                if (measuredWidth2 != 0.0f) {
-                    Intro.setScrollOffset((((i10 * measuredWidth2) + i11) - (n70Var.H * measuredWidth2)) / measuredWidth2);
-                    return;
-                }
-                return;
-            default:
-                return;
+    public final int b() {
+        TL_iv.pageBlockSlideshow pageblockslideshow = this.f41739c.e;
+        if (pageblockslideshow == null) {
+            return 0;
         }
+        return pageblockslideshow.items.size();
     }
 
     @Override
-    public final void c(int i10) {
-        switch (this.f39697a) {
-            case 0:
-                return;
-            case 1:
-                n70 n70Var = (n70) this.f39698b;
-                if (i10 == 1) {
-                    n70Var.K = true;
-                    n70Var.d.getCurrentItem();
-                    n70Var.d.getMeasuredWidth();
-                    return;
-                } else if (i10 == 0 || i10 == 2) {
-                    if (n70Var.K) {
-                        n70Var.K = false;
-                    }
-                    if (n70Var.f39760w != n70Var.d.getCurrentItem()) {
-                        n70Var.f39760w = n70Var.d.getCurrentItem();
-                        return;
-                    }
-                    return;
-                } else {
-                    return;
-                }
-            default:
-                return;
+    public final int c(Object obj) {
+        if (this.f41739c.e.items.contains(((m2) obj).f41431a)) {
+            return -1;
         }
+        return -2;
     }
 
-    private final void d(int i10) {
+    @Override
+    public final Object e(a5.m mVar, int i10) {
+        w2 w2Var;
+        p2 p2Var = this.f41739c;
+        h4 h4Var = p2Var.f42331x;
+        j4 j4Var = p2Var.f42332y;
+        TL_iv.PageBlock pageBlock = p2Var.e.items.get(i10);
+        if (pageBlock instanceof TL_iv.pageBlockPhoto) {
+            c2 c2Var = new c2(p2Var.getContext(), j4Var, h4Var, 1);
+            c2Var.a((TL_iv.pageBlockPhoto) pageBlock, h4Var.E.cached_page, false, true);
+            w2Var = c2Var;
+        } else {
+            w2 w2Var2 = new w2(p2Var.getContext(), j4Var, h4Var, 1);
+            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
+            w2Var2.b(pageblockvideo, (x2) j4Var.f39925y.f(pageblockvideo.video_id), false, true);
+            w2Var = w2Var2;
+        }
+        mVar.addView(w2Var);
+        ?? obj = new Object();
+        obj.f41432b = w2Var;
+        obj.f41431a = pageBlock;
+        return obj;
     }
 
-    private final void e(int i10) {
-    }
-
-    private final void f(float f7, int i10, int i11) {
+    @Override
+    public final boolean f(View view, Object obj) {
+        if (((m2) obj).f41432b == view) {
+            return true;
+        }
+        return false;
     }
 }

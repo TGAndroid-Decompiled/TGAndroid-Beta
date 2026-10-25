@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.b10;
 public class NotificationsSettingsFacade {
     public static final String PROPERTY_CONTENT_PREVIEW = "content_preview_";
     public static final String PROPERTY_CUSTOM = "custom_";
@@ -34,17 +35,17 @@ public class NotificationsSettingsFacade {
         ConnectionsManager connectionsManager = ConnectionsManager.getInstance(this.currentAccount);
         MessagesStorage messagesStorage = MessagesStorage.getInstance(this.currentAccount);
         NotificationsController notificationsController = NotificationsController.getInstance(this.currentAccount);
-        int c10 = v0.c("notify2_", sharedPrefKey, getPreferences(), -1);
+        int d = t.d("notify2_", sharedPrefKey, getPreferences(), -1);
         boolean z11 = true;
-        int c11 = v0.c("notifyuntil_", sharedPrefKey, getPreferences(), 0);
+        int d10 = t.d("notifyuntil_", sharedPrefKey, getPreferences(), 0);
         SharedPreferences.Editor edit = getPreferences().edit();
         if ((peerNotifySettings.flags & 2) != 0) {
-            edit.putBoolean(si.o0.h("silent_", sharedPrefKey), peerNotifySettings.silent);
+            edit.putBoolean(b10.j("silent_", sharedPrefKey), peerNotifySettings.silent);
         } else {
             edit.remove("silent_" + sharedPrefKey);
         }
         if ((peerNotifySettings.flags & 64) != 0) {
-            edit.putBoolean(si.o0.h("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
+            edit.putBoolean(b10.j("stories_", sharedPrefKey), !peerNotifySettings.stories_muted);
         } else {
             edit.remove("stories_" + sharedPrefKey);
         }
@@ -60,7 +61,7 @@ public class NotificationsSettingsFacade {
         if ((peerNotifySettings.flags & 4) != 0) {
             if (peerNotifySettings.mute_until > connectionsManager.getCurrentTime()) {
                 if (peerNotifySettings.mute_until > connectionsManager.getCurrentTime() + 31536000) {
-                    if (c10 != 2) {
+                    if (d != 2) {
                         edit.putInt("notify2_" + sharedPrefKey, 2);
                         if (dialog != null) {
                             dialog.notify_settings.mute_until = Integer.MAX_VALUE;
@@ -71,7 +72,7 @@ public class NotificationsSettingsFacade {
                         z11 = false;
                     }
                 } else {
-                    if (c10 == 3 && c11 == peerNotifySettings.mute_until) {
+                    if (d == 3 && d10 == peerNotifySettings.mute_until) {
                         z11 = false;
                     } else {
                         edit.putInt("notify2_" + sharedPrefKey, 3);
@@ -87,7 +88,7 @@ public class NotificationsSettingsFacade {
                     notificationsController.removeNotificationsForDialog(j10);
                 }
             } else {
-                if (c10 != 0 && c10 != 1) {
+                if (d != 0 && d != 1) {
                     if (dialog != null) {
                         TLRPC.PeerNotifySettings peerNotifySettings2 = dialog.notify_settings;
                         i10 = 0;
@@ -107,7 +108,7 @@ public class NotificationsSettingsFacade {
             }
         } else {
             boolean z12 = true;
-            if (c10 != -1) {
+            if (d != -1) {
                 if (dialog != null) {
                     dialog.notify_settings.mute_until = 0;
                 }
@@ -123,7 +124,7 @@ public class NotificationsSettingsFacade {
         applySoundSettings(peerNotifySettings.android_sound, edit, j10, j11, 0, false);
         edit.apply();
         if (z11) {
-            AndroidUtilities.runOnUIThread(new gh(this, 0));
+            AndroidUtilities.runOnUIThread(new hh(this, 0));
         }
     }
 

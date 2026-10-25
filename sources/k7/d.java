@@ -1,16 +1,16 @@
 package k7;
 
-import android.os.Build;
-public abstract class d {
-    public static final int f15038a;
+import android.os.IBinder;
+import android.os.IInterface;
+public final class d implements IInterface {
+    public final IBinder f16430a;
 
-    static {
-        int i10;
-        if (Build.VERSION.SDK_INT >= 31) {
-            i10 = 33554432;
-        } else {
-            i10 = 0;
-        }
-        f15038a = i10;
+    public d(IBinder iBinder) {
+        this.f16430a = iBinder;
+    }
+
+    @Override
+    public final IBinder asBinder() {
+        return this.f16430a;
     }
 }

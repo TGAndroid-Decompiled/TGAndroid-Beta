@@ -1,85 +1,61 @@
 package org.telegram.ui;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLRPC;
-public final class em0 implements org.telegram.ui.Components.pi {
-    public final zm0 f36952a;
+import android.text.TextWatcher;
+import java.util.regex.Pattern;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class em0 implements TextWatcher {
+    public final int f39135a;
+    public final Object f39136b;
+    public String f39137c;
+    public final Object d;
 
-    public em0(zm0 zm0Var) {
-        this.f36952a = zm0Var;
+    public em0(in0 in0Var, EditTextBoldCursor editTextBoldCursor, String str, int i10) {
+        this.f39135a = i10;
+        this.d = in0Var;
+        this.f39136b = editTextBoldCursor;
+        this.f39137c = str;
     }
 
     @Override
-    public final void J() {
-        AndroidUtilities.hideKeyboard(this.f36952a.fragmentView.findFocus());
+    public final void afterTextChanged(android.text.Editable r7) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.em0.afterTextChanged(android.text.Editable):void");
     }
 
     @Override
-    public final void b0(int i10, boolean z10, boolean z11, int i11, int i12, long j10, boolean z12, boolean z13, long j11) {
-        org.telegram.ui.Components.ri riVar;
-        zm0 zm0Var = this.f36952a;
-        if (zm0Var.getParentActivity() != null && (riVar = zm0Var.R0) != null) {
-            if (i10 != 8 && i10 != 7) {
-                riVar.dismissWithButtonClick(i10);
-                zm0Var.E1(i10);
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        switch (this.f39135a) {
+            case 0:
+            case 1:
                 return;
-            }
-            if (i10 != 8) {
-                riVar.dismiss(true);
-            }
-            HashMap<Object, Object> selectedPhotos = zm0Var.R0.f30158j0.getSelectedPhotos();
-            ArrayList<Object> selectedPhotosOrder = zm0Var.R0.f30158j0.getSelectedPhotosOrder();
-            if (!selectedPhotos.isEmpty()) {
-                ArrayList arrayList = new ArrayList();
-                for (int i13 = 0; i13 < selectedPhotosOrder.size(); i13++) {
-                    MediaController.PhotoEntry photoEntry = (MediaController.PhotoEntry) selectedPhotos.get(selectedPhotosOrder.get(i13));
-                    SendMessagesHelper.SendingMediaInfo sendingMediaInfo = new SendMessagesHelper.SendingMediaInfo();
-                    String str = photoEntry.imagePath;
-                    if (str != null) {
-                        sendingMediaInfo.path = str;
-                    } else {
-                        sendingMediaInfo.path = photoEntry.path;
-                    }
-                    arrayList.add(sendingMediaInfo);
-                    photoEntry.reset();
-                }
-                zm0Var.F1(arrayList);
-            }
+            default:
+                this.f39137c = charSequence.toString();
+                return;
         }
     }
 
     @Override
-    public final boolean p0() {
-        return false;
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f39135a;
     }
 
-    @Override
-    public final void r(org.telegram.ui.Components.eh ehVar) {
-        ehVar.run();
+    public em0(rg.x xVar) {
+        this.f39135a = 2;
+        this.d = xVar;
+        this.f39136b = Pattern.compile("^[0-9a-fA-F]*$");
     }
 
-    @Override
-    public final boolean u() {
-        return false;
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
     }
 
-    @Override
-    public final void E() {
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
     }
 
-    @Override
-    public final void O(Object obj) {
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
     }
 
-    @Override
-    public final void X(TLRPC.User user) {
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
     }
 
-    @Override
-    public final void r0(ArrayList arrayList, CharSequence charSequence, boolean z10, int i10, int i11, long j10, boolean z11, long j11) {
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

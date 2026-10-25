@@ -1,5 +1,5 @@
 package org.telegram.ui;
-public final class l6 extends s4.k {
+public final class l6 extends s4.l {
     public final c7 F;
 
     public l6(c7 c7Var) {
@@ -7,7 +7,7 @@ public final class l6 extends s4.k {
     }
 
     @Override
-    public final void P(s4.b1 b1Var) {
-        this.F.f36235b.invalidate();
+    public final void P(s4.e1 e1Var) {
+        this.F.f38344b.invalidate();
     }
 }

@@ -1,114 +1,20 @@
 package sh;
 
 import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.zr;
-import zf.p;
-public final class e extends rh.e implements Drawable.Callback, ne.d {
-    public final String f46976b;
-    public final Drawable d;
-    public final cq f46978f;
-    public rh.d h;
-    public TLRPC.WebPage f46979n;
-    public final ne.b f46980r;
-    public final ne.b f46981s;
-    public final a5.a f46977c = new a5.a((char) 0, 15);
-    public final Paint e = new Paint(1);
+public abstract class e {
+    public final ImageReceiver f48628a = new ImageReceiver();
 
-    public e(String str) {
-        cq cqVar = new cq(-1);
-        this.f46978f = cqVar;
-        zr zrVar = zr.h;
-        this.f46980r = new ne.b(0, this, zrVar, 320L, false);
-        this.f46981s = new ne.b(0, this, zrVar, 320L, false);
-        this.f46976b = str;
-        this.f46179a.setRoundRadius(AndroidUtilities.dp(7.0f));
-        this.d = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.media_link_24).mutate();
-        cqVar.setCallback(this);
-        cqVar.b(k6.x0(null, k6.f21388o7, false));
-        cqVar.f25430a = AndroidUtilities.dp(15.0f);
+    public void a(View view) {
+        ImageReceiver imageReceiver = this.f48628a;
+        imageReceiver.setParentView(view);
+        imageReceiver.onAttachedToWindow();
     }
 
-    @Override
-    public final void a(View view) {
-        super.a(view);
-        this.h = (rh.d) view;
+    public void b() {
+        this.f48628a.onDetachedFromWindow();
     }
 
-    @Override
-    public final void b() {
-        super.b();
-        this.h = null;
-    }
-
-    @Override
-    public final void c(Canvas canvas, int i10, int i11) {
-        float f7 = i10;
-        float f10 = i11;
-        ImageReceiver imageReceiver = this.f46179a;
-        imageReceiver.setImageCoords(0.0f, 0.0f, f7, f10);
-        imageReceiver.draw(canvas);
-        cq cqVar = this.f46978f;
-        cqVar.setBounds(0, 0, i10, i11);
-        int x02 = k6.x0(null, k6.f21126a7, false);
-        ne.b bVar = this.f46981s;
-        int f11 = i0.a.f(bVar.e, x02, 1073741824);
-        Paint paint = this.e;
-        paint.setColor(f11);
-        canvas.drawRoundRect(0.0f, 0.0f, f7, f10, AndroidUtilities.dp(7.0f), AndroidUtilities.dp(7.0f), paint);
-        int f12 = i0.a.f(bVar.e, k6.x0(null, k6.f21388o7, false), -1);
-        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-        a5.a aVar = this.f46977c;
-        aVar.getClass();
-        if (((PorterDuffColorFilter) aVar.f282c) == null || aVar.f281b != f12 || ((PorterDuff.Mode) aVar.d) != mode) {
-            aVar.f282c = new PorterDuffColorFilter(f12, mode);
-            aVar.f281b = f12;
-            aVar.d = mode;
-        }
-        Drawable drawable = this.d;
-        drawable.setColorFilter((PorterDuffColorFilter) aVar.f282c);
-        p.e(this.d, f7 / 2.0f, f10 / 2.0f, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f), 17);
-        ne.b bVar2 = this.f46980r;
-        p.b(canvas, drawable, 1.0f - bVar2.e);
-        p.b(canvas, cqVar, bVar2.e);
-    }
-
-    @Override
-    public final void invalidateDrawable(Drawable drawable) {
-        rh.d dVar = this.h;
-        if (dVar != null) {
-            dVar.invalidate();
-        }
-    }
-
-    @Override
-    public final void o(int i10, float f7, float f10, ne.e eVar) {
-        rh.d dVar = this.h;
-        if (dVar != null) {
-            dVar.invalidate();
-        }
-    }
-
-    @Override
-    public final void H(float f7, int i10) {
-    }
-
-    @Override
-    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
-    }
-
-    @Override
-    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
-    }
+    public abstract void c(Canvas canvas, int i10, int i11);
 }

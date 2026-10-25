@@ -2,7 +2,7 @@ package g2;
 
 import android.net.Uri;
 import java.util.Map;
-public interface h extends b2.o {
+public interface h extends b2.p {
     void addTransferListener(c0 c0Var);
 
     void close();

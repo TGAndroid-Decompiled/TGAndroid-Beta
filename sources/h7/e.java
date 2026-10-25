@@ -1,47 +1,28 @@
 package h7;
 
-import android.os.IBinder;
-import android.os.IInterface;
-import kotlin.jvm.internal.i;
-public final class e extends n6.g {
-    @Override
-    public final boolean C() {
-        return true;
-    }
+import a8.df;
+import android.app.PendingIntent;
+import android.os.Parcel;
+import android.os.Parcelable;
+public final class e extends p6.a {
+    public static final Parcelable.Creator<e> CREATOR = new f6.i(16);
+    public final PendingIntent f12683a;
+    public final g f12684b;
 
-    @Override
-    public final int l() {
-        return 17895000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        i.e(iBinder, "iBinder");
-        int i10 = c.f11706b;
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.identitycredentials.internal.IIdentityCredentialService");
-        if (queryLocalInterface instanceof d) {
-            return (d) queryLocalInterface;
+    public e(PendingIntent pendingIntent, g gVar) {
+        this.f12683a = pendingIntent;
+        this.f12684b = gVar;
+        if (pendingIntent == null && gVar == null) {
+            throw new IllegalArgumentException("pendingIntent or createCredentialResponse must be specified.");
         }
-        return new b(iBinder);
     }
 
     @Override
-    public final k6.c[] r() {
-        return q7.b.f44835c;
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.identitycredentials.internal.IIdentityCredentialService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.identitycredentials.service.START";
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
+    public final void writeToParcel(Parcel dest, int i10) {
+        kotlin.jvm.internal.i.e(dest, "dest");
+        int q5 = df.q(dest, 20293);
+        df.k(dest, 1, this.f12683a, i10);
+        df.k(dest, 2, this.f12684b, i10);
+        df.r(dest, q5);
     }
 }

@@ -1,20 +1,36 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class p41 extends x41 {
-    public final Runnable Z;
+import android.graphics.Rect;
+import android.view.MotionEvent;
+import android.view.View;
+public final class p41 extends mm0 {
+    public final f51 f31443f3;
 
-    public p41(Context context, String str, String str2, CharSequence charSequence, Runnable runnable) {
-        super(context, str, str2, charSequence, null, 0, false, null);
-        this.Z = runnable;
+    public p41(f51 f51Var, Context context) {
+        super(context, null);
+        this.f31443f3 = f51Var;
     }
 
     @Override
-    public final void dismiss() {
-        super.dismiss();
-        Runnable runnable = this.Z;
-        if (runnable != null) {
-            runnable.run();
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (motionEvent.getAction() == 0) {
+            float y3 = motionEvent.getY();
+            f51 f51Var = this.f31443f3;
+            if (y3 < f51Var.K(true) - getTop()) {
+                f51Var.dismiss();
+                return true;
+            }
         }
+        return super.dispatchTouchEvent(motionEvent);
+    }
+
+    @Override
+    public final boolean onRequestFocusInDescendants(int i10, Rect rect) {
+        return true;
+    }
+
+    @Override
+    public final void requestChildFocus(View view, View view2) {
     }
 }

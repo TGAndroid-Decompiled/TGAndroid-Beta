@@ -1,11 +1,28 @@
 package org.telegram.messenger;
 
-import android.text.util.Linkify;
-public final class j implements Linkify.MatchFilter {
+import android.view.PixelCopy;
+import java.util.concurrent.CountDownLatch;
+public final class j implements PixelCopy.OnPixelCopyFinishedListener {
+    public final int f20378a;
+    public final Object f20379b;
+
+    public j(Object obj, int i10) {
+        this.f20378a = i10;
+        this.f20379b = obj;
+    }
+
     @Override
-    public final boolean acceptMatch(CharSequence charSequence, int i10, int i11) {
-        boolean lambda$static$7;
-        lambda$static$7 = AndroidUtilities.lambda$static$7(charSequence, i10, i11);
-        return lambda$static$7;
+    public final void onPixelCopyFinished(int i10) {
+        switch (this.f20378a) {
+            case 0:
+                ((CountDownLatch) this.f20379b).countDown();
+                return;
+            case 1:
+                ((CountDownLatch) this.f20379b).countDown();
+                return;
+            default:
+                ((Runnable) this.f20379b).run();
+                return;
+        }
     }
 }

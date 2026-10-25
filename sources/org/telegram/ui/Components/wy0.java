@@ -1,27 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-public final class wy0 implements TextWatcher {
-    public final NumberTextView f32441a;
-    public final vy0 f32442b;
+import android.graphics.drawable.ShapeDrawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.HashSet;
+import org.telegram.messenger.FileLog;
+public final class wy0 extends FrameLayout implements org.telegram.ui.ActionBar.p6 {
+    public org.telegram.ui.ActionBar.u6 f34553a;
+    public ShapeDrawable f34554b;
+    public View f34555c;
 
-    public wy0(NumberTextView numberTextView, vy0 vy0Var) {
-        this.f32441a = numberTextView;
-        this.f32442b = vy0Var;
+    @Override
+    public final void updateColors() {
+        try {
+            ShapeDrawable shapeDrawable = this.f34554b;
+            if (shapeDrawable != null) {
+                org.telegram.ui.ActionBar.y6.z1(org.telegram.ui.ActionBar.y6.o1(0.12f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.Me, this.f34553a)), shapeDrawable);
+                View view = this.f34555c;
+                if (view != null) {
+                    view.invalidate();
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
+        }
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        this.f32441a.a(50 - Character.codePointCount(editable, 0, editable.length()), true);
-        this.f32442b.setErrorText(null);
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

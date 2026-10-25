@@ -2,52 +2,143 @@ package org.telegram.ui.Components;
 
 import android.graphics.PointF;
 import java.nio.ByteBuffer;
-public interface f00 {
-    ByteBuffer a();
+import org.telegram.messenger.MediaController;
+public final class f00 implements h00 {
+    public final MediaController.SavedFilterState f28028a;
 
-    boolean b();
+    public f00(MediaController.SavedFilterState savedFilterState) {
+        this.f28028a = savedFilterState;
+    }
 
-    boolean c();
+    @Override
+    public final ByteBuffer a() {
+        MediaController.SavedFilterState savedFilterState = this.f28028a;
+        savedFilterState.curvesToolValue.a();
+        return savedFilterState.curvesToolValue.e;
+    }
 
-    float getBlurAngle();
+    @Override
+    public final boolean b() {
+        return false;
+    }
 
-    float getBlurExcludeBlurSize();
+    @Override
+    public final boolean c() {
+        return !this.f28028a.curvesToolValue.b();
+    }
 
-    PointF getBlurExcludePoint();
+    @Override
+    public final float getBlurAngle() {
+        return this.f28028a.blurAngle;
+    }
 
-    float getBlurExcludeSize();
+    @Override
+    public final float getBlurExcludeBlurSize() {
+        return this.f28028a.blurExcludeBlurSize;
+    }
 
-    int getBlurType();
+    @Override
+    public final PointF getBlurExcludePoint() {
+        return this.f28028a.blurExcludePoint;
+    }
 
-    float getContrastValue();
+    @Override
+    public final float getBlurExcludeSize() {
+        return this.f28028a.blurExcludeSize;
+    }
 
-    float getEnhanceValue();
+    @Override
+    public final int getBlurType() {
+        return this.f28028a.blurType;
+    }
 
-    float getExposureValue();
+    @Override
+    public final float getContrastValue() {
+        return a1.g.c(this.f28028a.contrastValue, 100.0f, 0.3f, 1.0f);
+    }
 
-    float getFadeValue();
+    @Override
+    public final float getEnhanceValue() {
+        return this.f28028a.enhanceValue / 100.0f;
+    }
 
-    float getGrainValue();
+    @Override
+    public final float getExposureValue() {
+        return this.f28028a.exposureValue / 100.0f;
+    }
 
-    float getHighlightsValue();
+    @Override
+    public final float getFadeValue() {
+        return this.f28028a.fadeValue / 100.0f;
+    }
 
-    float getSaturationValue();
+    @Override
+    public final float getGrainValue() {
+        return (this.f28028a.grainValue / 100.0f) * 0.04f;
+    }
 
-    float getShadowsValue();
+    @Override
+    public final float getHighlightsValue() {
+        return c3.h0.x(this.f28028a.highlightsValue, 0.75f, 100.0f, 100.0f);
+    }
 
-    float getSharpenValue();
+    @Override
+    public final float getSaturationValue() {
+        float f7 = this.f28028a.saturationValue / 100.0f;
+        if (f7 > 0.0f) {
+            f7 *= 1.05f;
+        }
+        return f7 + 1.0f;
+    }
 
-    float getSoftenSkinValue();
+    @Override
+    public final float getShadowsValue() {
+        return c3.h0.x(this.f28028a.shadowsValue, 0.55f, 100.0f, 100.0f);
+    }
 
-    int getTintHighlightsColor();
+    @Override
+    public final float getSharpenValue() {
+        return a1.g.c(this.f28028a.sharpenValue, 100.0f, 0.6f, 0.11f);
+    }
 
-    float getTintHighlightsIntensityValue();
+    @Override
+    public final float getSoftenSkinValue() {
+        return this.f28028a.softenSkinValue / 100.0f;
+    }
 
-    int getTintShadowsColor();
+    @Override
+    public final int getTintHighlightsColor() {
+        return this.f28028a.tintHighlightsColor;
+    }
 
-    float getTintShadowsIntensityValue();
+    @Override
+    public final float getTintHighlightsIntensityValue() {
+        if (this.f28028a.tintHighlightsColor == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
 
-    float getVignetteValue();
+    @Override
+    public final int getTintShadowsColor() {
+        return this.f28028a.tintShadowsColor;
+    }
 
-    float getWarmthValue();
+    @Override
+    public final float getTintShadowsIntensityValue() {
+        if (this.f28028a.tintShadowsColor == 0) {
+            return 0.0f;
+        }
+        return 0.5f;
+    }
+
+    @Override
+    public final float getVignetteValue() {
+        return this.f28028a.vignetteValue / 100.0f;
+    }
+
+    @Override
+    public final float getWarmthValue() {
+        return this.f28028a.warmthValue / 100.0f;
+    }
 }

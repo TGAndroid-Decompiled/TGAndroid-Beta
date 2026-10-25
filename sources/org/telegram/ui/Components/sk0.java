@@ -5,29 +5,28 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessagesController;
-public final class sk0 extends s4.m0 {
-    public final int f30537a;
-    public final fl0 f30538b;
+public final class sk0 extends s4.n0 {
+    public final int f32589a;
+    public final fl0 f32590b;
 
     public sk0(fl0 fl0Var, int i10) {
-        this.f30537a = i10;
-        this.f30538b = fl0Var;
+        this.f32589a = i10;
+        this.f32590b = fl0Var;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
-        switch (this.f30537a) {
+    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
+        switch (this.f32589a) {
             case 0:
-                super.a(rect, view, recyclerView, y0Var);
-                fl0 fl0Var = this.f30538b;
+                super.d(rect, view, recyclerView, b1Var);
+                fl0 fl0Var = this.f32590b;
                 if (!fl0Var.q()) {
-                    recyclerView.getClass();
                     int R = RecyclerView.R(view);
                     if (R == 0) {
                         rect.left = AndroidUtilities.dp(6.0f);
                     }
                     rect.right = AndroidUtilities.dp(4.0f);
-                    if (R == fl0Var.f26347a0.h() - 1) {
+                    if (R == fl0Var.f28227a0.h() - 1) {
                         if ((!fl0Var.U.isEmpty() && !MessagesController.getInstance(fl0Var.J).premiumFeaturesBlocked()) || fl0Var.q()) {
                             rect.right = AndroidUtilities.dp(2.0f);
                             return;
@@ -42,12 +41,11 @@ public final class sk0 extends s4.m0 {
                 rect.right = 0;
                 return;
             default:
-                recyclerView.getClass();
                 int R2 = RecyclerView.R(view);
                 if (R2 == 0) {
                     rect.left = AndroidUtilities.dp(8.0f);
                 }
-                if (R2 == this.f30538b.f26347a0.h() - 1) {
+                if (R2 == this.f32590b.f28227a0.h() - 1) {
                     rect.right = AndroidUtilities.dp(8.0f);
                     return;
                 }

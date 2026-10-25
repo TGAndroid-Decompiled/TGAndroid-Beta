@@ -1,8 +1,20 @@
 package m;
 
-import android.view.ViewTreeObserver;
+import android.view.View;
 public abstract class g0 {
-    public static void a(ViewTreeObserver viewTreeObserver, ViewTreeObserver.OnGlobalLayoutListener onGlobalLayoutListener) {
-        viewTreeObserver.removeOnGlobalLayoutListener(onGlobalLayoutListener);
+    public static int a(View view) {
+        return view.getTextAlignment();
+    }
+
+    public static int b(View view) {
+        return view.getTextDirection();
+    }
+
+    public static void c(View view, int i10) {
+        view.setTextAlignment(i10);
+    }
+
+    public static void d(View view, int i10) {
+        view.setTextDirection(i10);
     }
 }

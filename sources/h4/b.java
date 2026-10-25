@@ -1,45 +1,45 @@
 package h4;
 
-import e2.m0;
+import e2.n0;
 import e2.x;
-import e9.l0;
-import e9.n0;
-import e9.x1;
+import f9.g0;
+import f9.i0;
+import f9.s1;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 import java.util.zip.Inflater;
-import si.o0;
+import org.telegram.ui.Components.b10;
 import z3.d;
 import z3.m;
 public final class b implements m {
     public static final z3.a e;
-    public final x f11698a = new x();
-    public final x f11699b = new x();
-    public final a f11700c;
+    public final x f12607a = new x();
+    public final x f12608b = new x();
+    public final a f12609c;
     public Inflater d;
 
     static {
-        l0 l0Var = n0.f8481b;
-        e = new z3.a(-9223372036854775807L, -9223372036854775807L, x1.e);
+        g0 g0Var = i0.f10287b;
+        e = new z3.a(-9223372036854775807L, -9223372036854775807L, s1.e);
     }
 
     public b(List list) {
         String[] split;
         int i10;
         a aVar = new a();
-        this.f11700c = aVar;
+        this.f12609c = aVar;
         String trim = new String((byte[]) list.get(0), StandardCharsets.UTF_8).trim();
-        String str = m0.f8259a;
+        String str = n0.f9692a;
         for (String str2 : trim.split("\\r?\\n", -1)) {
             if (str2.startsWith("palette: ")) {
                 String[] split2 = str2.substring(9).split(",", -1);
-                aVar.f11693f = new int[split2.length];
+                aVar.f12602f = new int[split2.length];
                 for (int i11 = 0; i11 < split2.length; i11++) {
-                    int[] iArr = aVar.f11693f;
+                    int[] iArr = aVar.f12602f;
                     try {
                         i10 = Integer.parseInt(split2[i11].trim(), 16);
-                    } catch (RuntimeException e7) {
-                        e2.a.m("VobsubParser", "Parsing color failed", e7);
+                    } catch (RuntimeException e10) {
+                        e2.a.m("VobsubParser", "Parsing color failed", e10);
                         i10 = 0;
                     }
                     iArr[i11] = i10;
@@ -50,11 +50,11 @@ public final class b implements m {
                     e2.a.l("VobsubParser", "Ignoring malformed IDX size line: '" + str2 + "'");
                 } else {
                     try {
-                        aVar.f11694g = Integer.parseInt(split3[0]);
+                        aVar.f12603g = Integer.parseInt(split3[0]);
                         aVar.h = Integer.parseInt(split3[1]);
                         aVar.d = true;
-                    } catch (RuntimeException e10) {
-                        e2.a.m("VobsubParser", "Parsing IDX failed", e10);
+                    } catch (RuntimeException e11) {
+                        e2.a.m("VobsubParser", "Parsing IDX failed", e11);
                     }
                 }
             }
@@ -62,18 +62,18 @@ public final class b implements m {
     }
 
     @Override
-    public final d a(int i10, int i11, byte[] bArr) {
-        return o0.a(this, bArr, i11);
+    public final void G(byte[] r27, int r28, int r29, z3.l r30, e2.j r31) {
+        throw new UnsupportedOperationException("Method not decompiled: h4.b.G(byte[], int, int, z3.l, e2.j):void");
     }
 
     @Override
-    public final int c() {
+    public final d j(int i10, int i11, byte[] bArr) {
+        return b10.a(this, bArr, i11);
+    }
+
+    @Override
+    public final int y() {
         return 2;
-    }
-
-    @Override
-    public final void f(byte[] r27, int r28, int r29, z3.l r30, e2.j r31) {
-        throw new UnsupportedOperationException("Method not decompiled: h4.b.f(byte[], int, int, z3.l, e2.j):void");
     }
 
     @Override

@@ -1,18 +1,10 @@
 package c3;
-
-import java.util.List;
 public interface q {
-    boolean a(r rVar);
+    public static final pa.d f6091i = new Object();
 
-    q b();
+    void D1(b0 b0Var);
 
-    void c(s sVar);
+    j0 F1(int i10, int i11);
 
-    void d(long j10, long j11);
-
-    List e();
-
-    int f(r rVar, u uVar);
-
-    void release();
+    void Q0();
 }

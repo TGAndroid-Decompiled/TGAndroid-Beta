@@ -1,44 +1,44 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.AndroidUtilities;
 public final class ni implements Runnable {
-    public final boolean f39873a;
-    public final boolean f39874b;
-    public final int f39875c;
+    public final int f41896a;
+    public final oi f41897b;
+    public final int f41898c;
     public final boolean d;
     public final org.telegram.ui.Components.fl0 e;
-    public final float f39876f;
+    public final float f41899f;
     public final float h;
-    public final ah.i1 f39877n;
-    public final MessageObject f39878r;
-    public final sn f39879s;
+    public final bh.x0 f41900n;
 
-    public ni(sn snVar, boolean z10, boolean z11, int i10, boolean z12, org.telegram.ui.Components.fl0 fl0Var, float f7, float f10, ah.i1 i1Var, MessageObject messageObject) {
-        this.f39879s = snVar;
-        this.f39873a = z10;
-        this.f39874b = z11;
-        this.f39875c = i10;
-        this.d = z12;
+    public ni(oi oiVar, int i10, boolean z10, org.telegram.ui.Components.fl0 fl0Var, float f7, float f10, bh.x0 x0Var, int i11) {
+        this.f41896a = i11;
+        this.f41897b = oiVar;
+        this.f41898c = i10;
+        this.d = z10;
         this.e = fl0Var;
-        this.f39876f = f7;
+        this.f41899f = f7;
         this.h = f10;
-        this.f39877n = i1Var;
-        this.f39878r = messageObject;
+        this.f41900n = x0Var;
     }
 
     @Override
     public final void run() {
-        if (!this.f39873a) {
-            sn snVar = this.f39879s;
-            if (snVar.f41641pc != null) {
-                snVar.f41641pc = null;
-                if (this.f39874b) {
-                    snVar.k8(new mi(this, this.f39875c, this.d, this.e, this.f39876f, this.h, this.f39877n, 0));
-                } else {
-                    snVar.k8(new eh(7, this, this.f39878r));
+        int i10;
+        switch (this.f41896a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new ni(this.f41897b, this.f41898c, this.d, this.e, this.f41899f, this.h, this.f41900n, 1), 50L);
+                return;
+            default:
+                un unVar = this.f41897b.f42198s;
+                org.telegram.ui.Cells.z x82 = unVar.x8(this.f41898c, true);
+                if (this.d) {
+                    i10 = ((org.telegram.ui.ActionBar.r2) unVar).currentAccount;
+                    bh.s0.d(unVar, this.e, x82, null, this.f41899f, this.h, this.f41900n, i10, 1);
+                    bh.s0.f();
+                    return;
                 }
-                snVar.D7(true);
-            }
+                return;
         }
     }
 }

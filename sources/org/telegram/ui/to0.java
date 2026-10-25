@@ -1,70 +1,47 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class to0 extends Drawable {
-    public final org.telegram.ui.Components.h11 f42097a;
-    public final Drawable f42098b;
-    public final sg.a1 f42099c;
+public final class to0 implements r0.n, org.telegram.ui.ActionBar.b2 {
+    public final int f43874a;
+    public final rp0 f43875b;
 
-    public to0(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
-        String str;
-        if (z10) {
-            str = "BoostLevelPlus";
-        } else {
-            str = "BoostLevel";
+    public to0(rp0 rp0Var, int i10) {
+        this.f43874a = i10;
+        this.f43875b = rp0Var;
+    }
+
+    @Override
+    public r0.k1 P0(View view, r0.k1 k1Var) {
+        i0.b defaultWindowInsets = AndroidUtilities.getDefaultWindowInsets(k1Var, false);
+        rp0 rp0Var = this.f43875b;
+        rp0Var.f43225b0 = defaultWindowInsets;
+        cp0 cp0Var = rp0Var.h.f41313b;
+        int i10 = defaultWindowInsets.f13450a;
+        int paddingTop = cp0Var.getPaddingTop();
+        i0.b bVar = rp0Var.f43225b0;
+        cp0Var.setPadding(i10, paddingTop, bVar.f13452c, AndroidUtilities.dp(72.0f) + bVar.d);
+        cp0 cp0Var2 = rp0Var.f43230n.f41313b;
+        int i11 = rp0Var.f43225b0.f13450a;
+        int paddingTop2 = cp0Var2.getPaddingTop();
+        i0.b bVar2 = rp0Var.f43225b0;
+        cp0Var2.setPadding(i11, paddingTop2, bVar2.f13452c, AndroidUtilities.dp(72.0f) + bVar2.d);
+        FrameLayout frameLayout = rp0Var.P;
+        i0.b bVar3 = rp0Var.f43225b0;
+        frameLayout.setPadding(bVar3.f13450a, 0, bVar3.f13452c, bVar3.d);
+        return r0.k1.f47114b;
+    }
+
+    @Override
+    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f43874a) {
+            case 1:
+                this.f43875b.finishFragment();
+                return;
+            default:
+                this.f43875b.z0();
+                return;
         }
-        this.f42097a = new org.telegram.ui.Components.h11(LocaleController.formatPluralString(str, i10, new Object[0]), 12.0f, AndroidUtilities.bold());
-        Drawable mutate = context.getResources().getDrawable(R.drawable.mini_switch_lock).mutate();
-        this.f42098b = mutate;
-        mutate.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
-        this.f42099c = new sg.a1(org.telegram.ui.ActionBar.k6.Lj, org.telegram.ui.ActionBar.k6.Mj, -1, -1, g6Var);
-    }
-
-    @Override
-    public final void draw(Canvas canvas) {
-        int i10 = getBounds().left;
-        int centerY = getBounds().centerY();
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f7 = centerY;
-        rectF.set(i10, f7 - (AndroidUtilities.dp(18.33f) / 2.0f), getIntrinsicWidth() + i10, (AndroidUtilities.dp(18.33f) / 2.0f) + f7);
-        sg.a1 a1Var = this.f42099c;
-        a1Var.e(rectF);
-        canvas.drawRoundRect(rectF, AndroidUtilities.dp(10.0f), AndroidUtilities.dp(10.0f), a1Var.f46618f);
-        Drawable drawable = this.f42098b;
-        drawable.setBounds(AndroidUtilities.dp(3.33f) + i10, (int) (f7 - ((drawable.getIntrinsicHeight() * 0.875f) / 2.0f)), (int) ((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.33f) + i10), (int) a1.g.B(drawable.getIntrinsicHeight(), 0.875f, 2.0f, f7));
-        drawable.draw(canvas);
-        this.f42097a.c((drawable.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(3.66f) + i10, f7, 1.0f, -1, canvas);
-    }
-
-    @Override
-    public final int getIntrinsicHeight() {
-        return AndroidUtilities.dp(18.33f);
-    }
-
-    @Override
-    public final int getIntrinsicWidth() {
-        return (int) (this.f42097a.l() + (this.f42098b.getIntrinsicWidth() * 0.875f) + AndroidUtilities.dp(9.66f));
-    }
-
-    @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

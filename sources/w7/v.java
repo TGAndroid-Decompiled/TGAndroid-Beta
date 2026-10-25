@@ -1,40 +1,45 @@
 package w7;
-
-import android.util.SparseBooleanArray;
 public abstract class v {
-    public static b2.b1 a(b2.b1 b1Var, b2.b1 b1Var2) {
-        if (b1Var != null) {
-            b2.u uVar = b1Var.f3707a;
-            if (b1Var2 != null) {
-                SparseBooleanArray sparseBooleanArray = new SparseBooleanArray();
-                for (int i10 = 0; i10 < uVar.f4059a.size(); i10++) {
-                    if (b1Var2.a(uVar.a(i10))) {
-                        int a2 = uVar.a(i10);
-                        v7.u6.p(!false);
-                        sparseBooleanArray.append(a2, true);
-                    }
-                }
-                v7.u6.p(!false);
-                return new b2.b1(new b2.u(sparseBooleanArray));
-            }
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
         }
-        return b2.b1.f3705b;
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+            }
+            a2 = w.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = w.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
     }
 
-    public static void b(b2.f1 f1Var, m4.w wVar) {
-        int i10 = wVar.f16826b;
-        long j10 = wVar.f16827c;
-        e9.n0 n0Var = wVar.f16825a;
-        if (i10 == -1) {
-            if (f1Var.o0(20)) {
-                f1Var.L0(n0Var);
-            } else if (!n0Var.isEmpty()) {
-                f1Var.l0((b2.o0) n0Var.get(0));
-            }
-        } else if (f1Var.o0(20)) {
-            f1Var.S(j10, wVar.f16826b, n0Var);
-        } else if (!n0Var.isEmpty()) {
-            f1Var.k((b2.o0) n0Var.get(0), j10);
+    public static void b(int i10, int i11, int i12) {
+        String c10;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
         }
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                c10 = w.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                c10 = c(i11, i12, "end index");
+            }
+        } else {
+            c10 = c(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(c10);
+    }
+
+    public static String c(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return w.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return w.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
     }
 }

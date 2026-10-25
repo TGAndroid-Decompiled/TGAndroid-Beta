@@ -1,7 +1,7 @@
 package org.telegram.ui.Stories.recorder;
 
-import ah.o;
-import com.google.firebase.messaging.s;
+import ai.h0;
+import di.s8;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 public class FfmpegAudioWaveformLoader {
@@ -10,7 +10,7 @@ public class FfmpegAudioWaveformLoader {
 
     public FfmpegAudioWaveformLoader(String str, int i10, Utilities.Callback2<short[], Integer> callback2) {
         this.onChunkReceived = callback2;
-        Utilities.phoneBookQueue.postRunnable(new o(this, str, i10, 9));
+        Utilities.phoneBookQueue.postRunnable(new h0(this, str, i10, 10));
     }
 
     public static void b(FfmpegAudioWaveformLoader ffmpegAudioWaveformLoader) {
@@ -28,10 +28,10 @@ public class FfmpegAudioWaveformLoader {
     }
 
     private void receiveChunk(short[] sArr, int i10) {
-        AndroidUtilities.runOnUIThread(new o(this, sArr, i10, 10));
+        AndroidUtilities.runOnUIThread(new h0(this, sArr, i10, 11));
     }
 
     public void destroy() {
-        Utilities.phoneBookQueue.postRunnable(new s(this, 15));
+        Utilities.phoneBookQueue.postRunnable(new s8(this, 19));
     }
 }

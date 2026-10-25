@@ -1,35 +1,62 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
 import java.util.ArrayList;
-import org.telegram.messenger.SavedMessagesController;
-public final class fv0 extends org.telegram.ui.Cells.q2 {
-    public final gv0 f26442a5;
+import org.telegram.messenger.ImageReceiver;
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class fv0 extends org.telegram.ui.gu0 {
+    public final gv0 f28321a;
 
-    public fv0(gv0 gv0Var, Context context) {
-        super(context, true);
-        this.f26442a5 = gv0Var;
+    public fv0(gv0 gv0Var) {
+        this.f28321a = gv0Var;
     }
 
     @Override
-    public final boolean P() {
-        return false;
-    }
-
-    @Override
-    public final boolean getIsPinned() {
-        gv0 gv0Var = this.f26442a5;
-        ArrayList arrayList = gv0Var.f26795f;
-        ou0 ou0Var = gv0Var.f26798s;
-        if (ou0Var != null && ou0Var.getAdapter() == gv0Var) {
-            gv0Var.f26798s.getClass();
-            int R = RecyclerView.R(this);
-            if (R >= 0 && R < arrayList.size()) {
-                return ((SavedMessagesController.SavedDialog) arrayList.get(R)).pinned;
+    public final org.telegram.ui.qu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        ImageReceiver imageReceiver;
+        org.telegram.ui.Cells.s1 s1Var;
+        MessageObject messageObject2;
+        iv0 iv0Var = this.f28321a.f28720c;
+        su0 su0Var = iv0Var.f29384r;
+        if (su0Var != null) {
+            int childCount = su0Var.getChildCount();
+            for (int i11 = 0; i11 < childCount; i11++) {
+                View childAt = iv0Var.f29384r.getChildAt(i11);
+                if ((childAt instanceof org.telegram.ui.Cells.s1) && messageObject != null && (messageObject2 = (s1Var = (org.telegram.ui.Cells.s1) childAt).getMessageObject()) != null && messageObject2.getId() == messageObject.getId()) {
+                    ArrayList<Integer> arrayList = messageObject2.pollMediaMapping;
+                    if (arrayList != null && i10 >= 0 && i10 < arrayList.size()) {
+                        imageReceiver = s1Var.F2(messageObject2.pollMediaMapping.get(i10).intValue());
+                    } else {
+                        imageReceiver = s1Var.F2(i10);
+                    }
+                } else {
+                    imageReceiver = null;
+                }
+                if (imageReceiver != null) {
+                    int[] iArr = new int[2];
+                    childAt.getLocationInWindow(iArr);
+                    org.telegram.ui.qu0 qu0Var = new org.telegram.ui.qu0();
+                    qu0Var.f42917b = iArr[0];
+                    qu0Var.f42918c = childAt.getPaddingTop() + iArr[1];
+                    qu0Var.d = iv0Var.f29384r;
+                    qu0Var.f42925m = null;
+                    qu0Var.f42916a = imageReceiver;
+                    if (z10) {
+                        qu0Var.e = imageReceiver.getBitmapSafe();
+                    }
+                    qu0Var.h = imageReceiver.getRoundRadius(true);
+                    qu0Var.f42922j = 0;
+                    qu0Var.f42921i = 0;
+                    return qu0Var;
+                }
             }
-            return false;
         }
-        return false;
+        return null;
+    }
+
+    @Override
+    public final boolean L() {
+        return true;
     }
 }

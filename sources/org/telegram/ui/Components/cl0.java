@@ -5,7 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.ImageReceiver;
-public final class cl0 extends u9 {
+public final class cl0 extends y9 {
     public final int G;
     public final dl0 H;
 
@@ -32,20 +32,20 @@ public final class cl0 extends u9 {
         switch (this.G) {
             case 0:
                 dl0 dl0Var = this.H;
-                cl0 cl0Var = dl0Var.f25780b;
+                cl0 cl0Var = dl0Var.f27549b;
                 super.dispatchDraw(canvas);
-                if (this.f31064a.getLottieAnimation() != null && !dl0Var.E) {
-                    this.f31064a.getLottieAnimation().start();
+                if (this.f34981a.getLottieAnimation() != null && !dl0Var.E) {
+                    this.f34981a.getLottieAnimation().start();
                 }
-                if (dl0Var.f25785s && !dl0Var.v && this.f31064a.getLottieAnimation() != null && this.f31064a.getLottieAnimation().A() && cl0Var.f31064a.getLottieAnimation() != null && cl0Var.f31064a.getLottieAnimation().u()) {
+                if (dl0Var.f27554s && !dl0Var.v && this.f34981a.getLottieAnimation() != null && this.f34981a.getLottieAnimation().A() && cl0Var.f34981a.getLottieAnimation() != null && cl0Var.f34981a.getLottieAnimation().u()) {
                     dl0Var.v = true;
-                    cl0Var.f31064a.getLottieAnimation().N(0, false, true);
+                    cl0Var.f34981a.getLottieAnimation().N(0, false, true);
                     cl0Var.setVisibility(0);
                     Runnable runnable = dl0Var.P.P0;
                     if (runnable != null) {
                         runnable.run();
                     }
-                    AndroidUtilities.runOnUIThread(new wb0(this, 18));
+                    AndroidUtilities.runOnUIThread(new wa0(this, 19));
                 }
                 invalidate();
                 return;
@@ -60,7 +60,7 @@ public final class cl0 extends u9 {
         switch (this.G) {
             case 0:
                 dl0 dl0Var = this.H;
-                if (ah.x0.c(this, dl0Var.P)) {
+                if (bh.m0.c(this, dl0Var.P)) {
                     return;
                 }
                 super.invalidate(rect);
@@ -81,11 +81,11 @@ public final class cl0 extends u9 {
                 super.onDraw(canvas);
                 return;
             case 2:
-                p5 p5Var = this.e;
-                if (p5Var != null) {
-                    imageReceiver = p5Var.f29484k;
+                t5 t5Var = this.e;
+                if (t5Var != null) {
+                    imageReceiver = t5Var.f32849k;
                 } else {
-                    imageReceiver = this.f31064a;
+                    imageReceiver = this.f34981a;
                 }
                 if (imageReceiver != null && imageReceiver.getLottieAnimation() != null) {
                     imageReceiver.getLottieAnimation().start();
@@ -102,13 +102,13 @@ public final class cl0 extends u9 {
     public void invalidate(int i10, int i11, int i12, int i13) {
         switch (this.G) {
             case 0:
-                if (ah.x0.c(this)) {
+                if (bh.m0.c(this)) {
                     return;
                 }
                 super.invalidate(i10, i11, i12, i13);
                 return;
             case 1:
-                if (ah.x0.c(this)) {
+                if (bh.m0.c(this)) {
                     return;
                 }
                 super.invalidate(i10, i11, i12, i13);
@@ -125,14 +125,14 @@ public final class cl0 extends u9 {
         dl0 dl0Var = this.H;
         switch (i10) {
             case 0:
-                if (ah.x0.c(this, dl0Var.P)) {
+                if (bh.m0.c(this, dl0Var.P)) {
                     return;
                 }
                 super.invalidate();
                 dl0Var.P.invalidate();
                 return;
             case 1:
-                if (ah.x0.c(this)) {
+                if (bh.m0.c(this)) {
                     return;
                 }
                 super.invalidate();

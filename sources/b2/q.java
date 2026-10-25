@@ -1,31 +1,37 @@
 package b2;
+public final class q {
+    public static final q f3351c = new q(new Object());
+    public static final String d;
+    public static final String e;
+    public final int f3352a = 0;
+    public final int f3353b = 0;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class q implements Parcelable.Creator {
-    public final int f3910a;
-
-    @Override
-    public final Object createFromParcel(Parcel parcel) {
-        switch (this.f3910a) {
-            case 0:
-                return new s(parcel);
-            case 1:
-                return new r(parcel);
-            default:
-                return new i1(parcel);
-        }
+    static {
+        String str = e2.n0.f9692a;
+        Integer.toString(0, 36);
+        d = Integer.toString(1, 36);
+        e = Integer.toString(2, 36);
+        Integer.toString(3, 36);
     }
 
-    @Override
-    public final Object[] newArray(int i10) {
-        switch (this.f3910a) {
-            case 0:
-                return new s[i10];
-            case 1:
-                return new r[i10];
-            default:
-                return new i1[i10];
+    public q(x1 x1Var) {
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof q) {
+                q qVar = (q) obj;
+                if (this.f3352a == qVar.f3352a && this.f3353b == qVar.f3353b) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return true;
+    }
+
+    public final int hashCode() {
+        return (((16337 + this.f3352a) * 31) + this.f3353b) * 31;
     }
 }

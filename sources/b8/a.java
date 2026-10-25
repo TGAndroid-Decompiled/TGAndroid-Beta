@@ -1,49 +1,18 @@
 package b8;
 
-import android.content.Context;
-import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Looper;
-import com.google.android.gms.common.api.k;
-import com.google.android.gms.common.api.l;
-import m.s3;
-public final class a extends n6.g {
-    public final Context U;
+import android.os.Parcel;
+import android.os.Parcelable;
+public abstract class a {
+    public static final int f3673a = 0;
 
-    public a(Context context, Looper looper, k kVar, l lVar, s3 s3Var) {
-        super(context, looper, 45, s3Var, kVar, lVar, 0);
-        this.U = context;
+    static {
+        a.class.getClassLoader();
     }
 
-    @Override
-    public final boolean C() {
-        return true;
-    }
-
-    @Override
-    public final int l() {
-        return 12200000;
-    }
-
-    @Override
-    public final IInterface q(IBinder iBinder) {
-        if (iBinder == null) {
+    public static Parcelable a(Parcel parcel, Parcelable.Creator creator) {
+        if (parcel.readInt() == 0) {
             return null;
         }
-        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.safetynet.internal.ISafetyNetService");
-        if (queryLocalInterface instanceof d) {
-            return (d) queryLocalInterface;
-        }
-        return new d(iBinder);
-    }
-
-    @Override
-    public final String v() {
-        return "com.google.android.gms.safetynet.internal.ISafetyNetService";
-    }
-
-    @Override
-    public final String w() {
-        return "com.google.android.gms.safetynet.service.START";
+        return (Parcelable) creator.createFromParcel(parcel);
     }
 }

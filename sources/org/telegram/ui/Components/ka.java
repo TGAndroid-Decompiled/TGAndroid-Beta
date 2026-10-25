@@ -1,163 +1,86 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
 import android.graphics.RectF;
-import android.graphics.Shader;
-import android.graphics.drawable.Drawable;
 import android.view.View;
+import android.view.ViewGroup;
 import org.telegram.messenger.AndroidUtilities;
-public final class ka extends Drawable {
-    public float f27990a = 1.0f;
-    public final Paint f27991b = new Paint(1);
-    public final Rect f27992c = new Rect();
-    public final Path d = new Path();
-    public final float e;
-    public final float f27993f;
-    public final Drawable f27994g;
-    public final float h;
-    public final la f27995i;
+import org.telegram.messenger.SharedConfig;
+public abstract class ka extends mm0 {
+    public int f29884f3;
+    public int f29885g3;
+    public boolean f29886h3;
+    public int f29887i3;
+    public boolean f29888j3;
 
-    public ka(la laVar, float f7, float f10, Drawable drawable, float f11) {
-        this.f27995i = laVar;
-        this.e = f7;
-        this.f27993f = f10;
-        this.f27994g = drawable;
-        this.h = f11;
+    public int C1() {
+        return AndroidUtilities.dp(203.0f);
     }
 
-    @Override
-    public final void draw(Canvas canvas) {
-        Bitmap b10;
-        la laVar = this.f27995i;
-        ha haVar = laVar.f28290a;
-        Matrix matrix = laVar.f28302p;
-        Paint paint = null;
-        if (haVar != null && (b10 = haVar.b()) != null) {
-            if (laVar.f28301o == null || laVar.f28300n != b10) {
-                laVar.f28300n = b10;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                laVar.f28301o = bitmapShader;
-                laVar.h.setShader(bitmapShader);
-            }
-            matrix.reset();
-            matrix.postTranslate((-0.0f) - this.e, (-0.0f) - this.f27993f);
-            View view = haVar.f26975b;
-            if (view != null) {
-                matrix.preScale(view.getWidth() / b10.getWidth(), haVar.f26975b.getHeight() / b10.getHeight());
-            }
-            laVar.f28301o.setLocalMatrix(matrix);
-            laVar.h.setAlpha((int) (this.f27990a * 255.0f));
-            paint = laVar.h;
-        }
-        Paint paint2 = paint;
-        Rect bounds = getBounds();
-        Drawable drawable = this.f27994g;
-        Paint paint3 = this.f27991b;
-        float f7 = this.h;
-        if (paint2 == null && (haVar == null || !haVar.c())) {
-            if (drawable != null) {
-                drawable.setBounds(bounds);
-                drawable.draw(canvas);
-                return;
-            }
-            paint3.setColor(-14145495);
-            if (f7 > 0.0f) {
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(bounds);
-                canvas.drawRoundRect(rectF, f7, f7, paint3);
-                return;
-            }
-            canvas.drawRect(bounds, paint3);
+    public final void D1() {
+        if (getLayoutParams() == null) {
             return;
         }
-        Path path = this.d;
-        if (drawable != null) {
-            canvas.saveLayerAlpha(bounds.left, bounds.top, bounds.right, bounds.bottom, 255, 31);
-            drawable.setBounds(bounds);
-            drawable.draw(canvas);
-            Rect rect = this.f27992c;
-            if (haVar != null && haVar.c()) {
-                canvas.save();
-                getPadding(rect);
-                RectF rectF2 = AndroidUtilities.rectTmp;
-                rectF2.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-                path.rewind();
-                path.addRoundRect(rectF2, f7, f7, Path.Direction.CW);
-                canvas.clipPath(path);
-                laVar.b(canvas, false);
-                canvas.restore();
-            } else {
-                canvas.drawRect(bounds, paint2);
-            }
-            canvas.restore();
-            getPadding(rect);
-            RectF rectF3 = AndroidUtilities.rectTmp;
-            rectF3.set(bounds.left + rect.left, bounds.top + rect.top, bounds.right - rect.right, bounds.bottom - rect.bottom);
-            paint3.setColor(1711276032);
-            canvas.drawRoundRect(rectF3, f7, f7, paint3);
+        if (SharedConfig.chatBlurEnabled()) {
+            this.f29884f3 = C1();
+            ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = -this.f29884f3;
             return;
         }
-        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
-        if (i10 > 0) {
-            RectF rectF4 = AndroidUtilities.rectTmp;
-            rectF4.set(bounds);
-            if (haVar != null && haVar.c()) {
-                canvas.save();
-                path.rewind();
-                path.addRoundRect(rectF4, f7, f7, Path.Direction.CW);
-                canvas.clipPath(path);
-                laVar.b(canvas, false);
-                canvas.restore();
-            } else {
-                canvas.drawRoundRect(rectF4, f7, f7, paint2);
-            }
-        } else if (haVar != null && haVar.c()) {
-            canvas.save();
-            canvas.clipRect(bounds);
-            laVar.b(canvas, false);
-            canvas.restore();
-        } else {
-            canvas.drawRect(bounds, paint2);
-        }
-        paint3.setColor(1711276032);
-        if (i10 > 0) {
-            RectF rectF5 = AndroidUtilities.rectTmp;
-            rectF5.set(bounds);
-            canvas.drawRoundRect(rectF5, f7, f7, paint3);
+        this.f29884f3 = 0;
+        ((ViewGroup.MarginLayoutParams) getLayoutParams()).topMargin = 0;
+    }
+
+    @Override
+    public void dispatchDraw(Canvas canvas) {
+        if (this.f29884f3 != 0 && !Z0()) {
+            canvas.clipRect(0, this.f29884f3, getMeasuredWidth(), getMeasuredHeight() + this.f29887i3);
+            super.dispatchDraw(canvas);
             return;
         }
-        canvas.drawRect(bounds, paint3);
+        super.dispatchDraw(canvas);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final boolean getPadding(Rect rect) {
-        Drawable drawable = this.f27994g;
-        if (drawable != null) {
-            return drawable.getPadding(rect);
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        if (view.getY() + view.getMeasuredHeight() < this.f29884f3 && !this.f29888j3 && !Z0()) {
+            return true;
         }
-        rect.set(0, 0, 0, 0);
-        return true;
+        return super.drawChild(canvas, view, j10);
     }
 
     @Override
-    public final void setAlpha(int i10) {
-        this.f27990a = i10 / 255.0f;
+    public final void f(Canvas canvas, RectF rectF) {
+        this.f29888j3 = true;
+        super.f(canvas, rectF);
+        this.f29888j3 = false;
     }
 
     @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        D1();
+    }
+
+    @Override
+    public void onMeasure(int i10, int i11) {
+        this.f29886h3 = true;
+        D1();
+        super.setPadding(getPaddingLeft(), this.f29885g3 + this.f29884f3, getPaddingRight(), getPaddingBottom());
+        this.f29886h3 = false;
+        super.onMeasure(i10, i11);
+    }
+
+    @Override
+    public void requestLayout() {
+        if (this.f29886h3) {
+            return;
+        }
+        super.requestLayout();
+    }
+
+    @Override
+    public final void setPadding(int i10, int i11, int i12, int i13) {
+        this.f29885g3 = i11;
+        super.setPadding(i10, i11 + this.f29884f3, i12, i13);
     }
 }

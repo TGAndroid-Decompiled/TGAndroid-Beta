@@ -1,35 +1,59 @@
 package f9;
 
-import v7.u6;
-public final class b extends d {
-    public final char[] e;
+import j$.util.Objects;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Map;
+public final class b implements Iterator {
+    public final Iterator f10254a;
+    public Object f10255b = null;
+    public Collection f10256c = null;
+    public Iterator d = y0.f10360a;
+    public final k1 e;
+    public final int f10257f;
 
-    public b(a aVar) {
-        super(aVar, (Character) null);
-        boolean z10;
-        this.e = new char[512];
-        char[] cArr = aVar.f10524b;
-        if (cArr.length == 16) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public b(k1 k1Var, int i10) {
+        this.f10257f = i10;
+        this.e = k1Var;
+        this.f10254a = k1Var.e.entrySet().iterator();
+    }
+
+    @Override
+    public final boolean hasNext() {
+        if (!this.f10254a.hasNext() && !this.d.hasNext()) {
+            return false;
         }
-        u6.g(z10);
-        for (int i10 = 0; i10 < 256; i10++) {
-            char[] cArr2 = this.e;
-            cArr2[i10] = cArr[i10 >>> 4];
-            cArr2[i10 | 256] = cArr[i10 & 15];
+        return true;
+    }
+
+    @Override
+    public final Object next() {
+        if (!this.d.hasNext()) {
+            Map.Entry entry = (Map.Entry) this.f10254a.next();
+            this.f10255b = entry.getKey();
+            Collection collection = (Collection) entry.getValue();
+            this.f10256c = collection;
+            this.d = collection.iterator();
+        }
+        Object obj = this.f10255b;
+        Object next = this.d.next();
+        switch (this.f10257f) {
+            case 0:
+                return next;
+            default:
+                return new e0(obj, next);
         }
     }
 
     @Override
-    public final void b(StringBuilder sb2, byte[] bArr, int i10) {
-        u6.n(0, i10, bArr.length);
-        for (int i11 = 0; i11 < i10; i11++) {
-            int i12 = bArr[i11] & 255;
-            char[] cArr = this.e;
-            sb2.append(cArr[i12]);
-            sb2.append(cArr[i12 | 256]);
+    public final void remove() {
+        this.d.remove();
+        Collection collection = this.f10256c;
+        Objects.requireNonNull(collection);
+        if (collection.isEmpty()) {
+            this.f10254a.remove();
         }
+        k1 k1Var = this.e;
+        k1Var.f10293f--;
     }
 }

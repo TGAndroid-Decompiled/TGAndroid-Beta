@@ -1,109 +1,39 @@
 package org.telegram.ui.ActionBar;
 
-import android.view.View;
+import android.view.KeyEvent;
+import android.widget.FrameLayout;
 import android.widget.TextView;
-import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class a0 implements View.OnClickListener {
-    public final int f20683a;
-    public final u0 f20684b;
+public final class a0 implements TextView.OnEditorActionListener {
+    public final int f22370a;
+    public final FrameLayout f22371b;
 
-    public a0(u0 u0Var, int i10) {
-        this.f20683a = i10;
-        this.f20684b = u0Var;
+    public a0(int i10, FrameLayout frameLayout) {
+        this.f22370a = i10;
+        this.f22371b = frameLayout;
     }
 
     @Override
-    public final void onClick(View view) {
-        k5 k5Var;
-        switch (this.f20683a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f22370a) {
             case 0:
-                u0 u0Var = this.f20684b;
-                ArrayList arrayList = u0Var.f21883g0;
-                if (u0Var.e.length() != 0) {
-                    u0Var.e.setText("");
-                } else if (u0Var.p()) {
-                    u0Var.e.hideActionMode();
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (u0Var.H != null && ((hg.o0) arrayList.get(i10)).h) {
-                            u0Var.H.o((hg.o0) arrayList.get(i10));
+                w0 w0Var = (w0) this.f22371b;
+                if (keyEvent != null) {
+                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
+                        AndroidUtilities.hideKeyboard(w0Var.e);
+                        s0 s0Var = w0Var.H;
+                        if (s0Var != null) {
+                            s0Var.k(w0Var.e);
+                            return false;
                         }
+                        return false;
                     }
-                    u0Var.m();
-                } else {
-                    TextView textView = u0Var.h;
-                    if (textView != null && textView.getVisibility() == 0 && ((k5Var = u0Var.H) == null || k5Var.a())) {
-                        u0Var.h.setVisibility(8);
-                        k5 k5Var2 = u0Var.H;
-                        if (k5Var2 != null) {
-                            k5Var2.k();
-                        }
-                    }
+                    return false;
                 }
-                u0Var.e.requestFocus();
-                AndroidUtilities.showKeyboard(u0Var.e);
-                return;
-            case 1:
-                u0 u0Var2 = this.f20684b;
-                m1 m1Var = u0Var2.d;
-                if (m1Var != null && m1Var.isShowing()) {
-                    if (!u0Var2.T) {
-                        u0Var2.T = true;
-                        u0Var2.d.d(u0Var2.R);
-                    } else {
-                        return;
-                    }
-                }
-                y yVar = u0Var2.f21877c;
-                if (yVar != null) {
-                    yVar.o(((Integer) view.getTag()).intValue());
-                    return;
-                }
-                q0 q0Var = u0Var2.P;
-                if (q0Var != null) {
-                    q0Var.h(((Integer) view.getTag()).intValue());
-                    return;
-                }
-                return;
-            case 2:
-                u0 u0Var3 = this.f20684b;
-                y yVar2 = u0Var3.f21877c;
-                if (yVar2 != null) {
-                    yVar2.o(((Integer) view.getTag()).intValue());
-                    return;
-                }
-                q0 q0Var2 = u0Var3.P;
-                if (q0Var2 != null) {
-                    q0Var2.h(((Integer) view.getTag()).intValue());
-                    return;
-                }
-                return;
+                return false;
             default:
-                u0 u0Var4 = this.f20684b;
-                m1 m1Var2 = u0Var4.d;
-                if (m1Var2 != null && m1Var2.isShowing()) {
-                    if (!u0Var4.T) {
-                        u0Var4.T = true;
-                        if (!u0Var4.R) {
-                            u0Var4.d.setAnimationStyle(R.style.PopupAnimation);
-                        }
-                        u0Var4.d.d(u0Var4.R);
-                    } else {
-                        return;
-                    }
-                }
-                y yVar3 = u0Var4.f21877c;
-                if (yVar3 != null) {
-                    yVar3.o(((Integer) view.getTag()).intValue());
-                    return;
-                }
-                q0 q0Var3 = u0Var4.P;
-                if (q0Var3 != null) {
-                    q0Var3.h(((Integer) view.getTag()).intValue());
-                    return;
-                }
-                return;
+                r5.a((r5) this.f22371b, i10, keyEvent);
+                return false;
         }
     }
 }

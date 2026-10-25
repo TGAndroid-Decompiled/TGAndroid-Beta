@@ -1,89 +1,313 @@
 package kg;
 
-import java.lang.reflect.Array;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import androidx.appcompat.widget.ActionBarOverlayLayout;
+import bi.ce;
 import java.util.ArrayList;
-import java.util.Arrays;
-public final class e extends b {
-    public long[] f15109l;
-    public long[][] f15110m;
-    public int f15111n;
+import m.g3;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Cells.d0;
+import org.telegram.ui.Cells.ha;
+import org.telegram.ui.Cells.ia;
+import org.telegram.ui.Cells.k4;
+import org.telegram.ui.Cells.s1;
+import org.telegram.ui.Cells.t7;
+import org.telegram.ui.Cells.v;
+import org.telegram.ui.Cells.w7;
+import org.telegram.ui.Cells.z5;
+import org.telegram.ui.Components.Crop.CropAreaView;
+import org.telegram.ui.Components.t40;
+import org.telegram.ui.Components.t60;
+import org.telegram.ui.Components.wi0;
+import org.telegram.ui.bd;
+import org.telegram.ui.dc;
+import org.telegram.ui.e01;
+import org.telegram.ui.em;
+import org.telegram.ui.fm;
+import org.telegram.ui.hk;
+import org.telegram.ui.i3;
+import org.telegram.ui.j4;
+import org.telegram.ui.k8;
+import org.telegram.ui.mc;
+import org.telegram.ui.n8;
+import org.telegram.ui.pi;
+import org.telegram.ui.u4;
+import org.telegram.ui.v3;
+import org.telegram.ui.vh;
+import org.telegram.ui.wb;
+import org.telegram.ui.x4;
+import org.telegram.ui.x5;
+import org.telegram.ui.y9;
+import org.telegram.ui.zl;
+public final class e extends AnimatorListenerAdapter {
+    public final int f16561a;
+    public final Object f16562b;
 
-    public e(b bVar, long j10) {
-        this.d = new ArrayList();
-        this.e = 0L;
-        this.f15101f = Long.MAX_VALUE;
-        this.f15102g = 0.0f;
-        this.h = 0.0f;
-        this.f15103i = 0;
-        this.f15104j = 0;
-        int binarySearch = Arrays.binarySearch(bVar.f15098a, j10);
-        int i10 = binarySearch - 4;
-        int i11 = binarySearch + 4;
-        if (i10 < 0) {
-            i11 += -i10;
-            i10 = 0;
-        }
-        long[] jArr = bVar.f15098a;
-        if (i11 > jArr.length - 1) {
-            i10 -= i11 - jArr.length;
-            i11 = jArr.length - 1;
-        }
-        i10 = i10 < 0 ? 0 : i10;
-        int i12 = (i11 - i10) + 1;
-        this.f15098a = new long[i12];
-        this.f15099b = new float[i12];
-        this.d = new ArrayList();
-        for (int i13 = 0; i13 < bVar.d.size(); i13++) {
-            a aVar = new a();
-            aVar.f15092a = new long[i12];
-            aVar.f15094c = ((a) bVar.d.get(i13)).f15094c;
-            aVar.d = ((a) bVar.d.get(i13)).d;
-            aVar.f15096g = ((a) bVar.d.get(i13)).f15096g;
-            aVar.h = ((a) bVar.d.get(i13)).h;
-            aVar.f15097i = ((a) bVar.d.get(i13)).f15097i;
-            this.d.add(aVar);
-        }
-        int i14 = 0;
-        while (i10 <= i11) {
-            this.f15098a[i14] = bVar.f15098a[i10];
-            for (int i15 = 0; i15 < this.d.size(); i15++) {
-                ((a) this.d.get(i15)).f15092a[i14] = ((a) bVar.d.get(i15)).f15092a[i10];
-            }
-            i14++;
-            i10++;
-        }
-        this.f15105k = 86400000L;
-        e();
+    public e(Object obj, int i10) {
+        this.f16561a = i10;
+        this.f16562b = obj;
     }
 
     @Override
-    public final void e() {
-        super.e();
-        this.f15111n = 0;
-        int length = this.f15099b.length;
-        int size = this.d.size();
-        int max = Math.max(1, Math.round(length / 140.0f));
-        int i10 = length / max;
-        this.f15110m = (long[][]) Array.newInstance(Long.TYPE, size, i10);
-        long[] jArr = new long[size];
-        for (int i11 = 0; i11 < length; i11++) {
-            for (int i12 = 0; i12 < size; i12++) {
-                long j10 = ((a) this.d.get(i12)).f15092a[i11];
-                if (j10 > jArr[i12]) {
-                    jArr[i12] = j10;
-                }
-            }
-            if (i11 % max == 0) {
-                for (int i13 = 0; i13 < size; i13++) {
-                    this.f15110m[i13][this.f15111n] = jArr[i13];
-                    jArr[i13] = 0;
-                }
-                int i14 = this.f15111n + 1;
-                this.f15111n = i14;
-                if (i14 >= i10) {
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f16561a) {
+            case 1:
+                ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f16562b;
+                actionBarOverlayLayout.M = null;
+                actionBarOverlayLayout.v = false;
+                return;
+            case 18:
+                t7 t7Var = (t7) this.f16562b;
+                AnimatorSet animatorSet = t7Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    t7Var.h = null;
                     return;
                 }
-            }
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationEnd(Animator animator) {
+        switch (this.f16561a) {
+            case 0:
+                super.onAnimationEnd(animator);
+                h hVar = (h) this.f16562b;
+                if (!hVar.f16604i1) {
+                    hVar.f16619u0 = false;
+                    hVar.f16618t0.setVisibility(8);
+                    hVar.invalidate();
+                }
+                hVar.f16597f0 = false;
+                return;
+            case 1:
+                ActionBarOverlayLayout actionBarOverlayLayout = (ActionBarOverlayLayout) this.f16562b;
+                actionBarOverlayLayout.M = null;
+                actionBarOverlayLayout.v = false;
+                return;
+            case 2:
+                ((mg.e) this.f16562b).h.setVisibility(8);
+                return;
+            case 3:
+                ((CropAreaView) this.f16562b).f26123c0 = null;
+                return;
+            case 4:
+                j4 j4Var = (j4) this.f16562b;
+                Runnable runnable = j4Var.f40425a0;
+                if (runnable != null) {
+                    runnable.run();
+                    j4Var.f40425a0 = null;
+                    return;
+                }
+                return;
+            case 5:
+                v3 v3Var = (v3) this.f16562b;
+                v3Var.f44588w = 1.0f;
+                v3Var.n();
+                v3Var.i();
+                v3Var.h();
+                v3Var.f44581a.unlock();
+                return;
+            case 6:
+                u4 u4Var = (u4) this.f16562b;
+                u4Var.getClass();
+                u4Var.setVisibility(8);
+                return;
+            case 7:
+                x4 x4Var = (x4) this.f16562b;
+                x4Var.f45632c = false;
+                x4Var.invalidate();
+                return;
+            case 8:
+                ((x5) this.f16562b).f45647h0.setVisibility(8);
+                return;
+            case 9:
+            default:
+                super.onAnimationEnd(animator);
+                return;
+            case 10:
+                ((y9) this.f16562b).v = null;
+                return;
+            case 11:
+                org.telegram.ui.Cells.j jVar = (org.telegram.ui.Cells.j) this.f16562b;
+                ((e01) jVar).f38960e0.e.f35960c.f47708r = false;
+                FrameLayout frameLayout = jVar.J;
+                if (frameLayout.getBackground() == null) {
+                    frameLayout.setBackground(jVar.K);
+                    return;
+                }
+                return;
+            case 12:
+                v vVar = (v) this.f16562b;
+                Button button = vVar.f25493n;
+                wi0 wi0Var = vVar.f25492f;
+                if (button == wi0Var) {
+                    vVar.e.setVisibility(4);
+                    return;
+                } else {
+                    wi0Var.setVisibility(4);
+                    return;
+                }
+            case 13:
+                super.onAnimationEnd(animator);
+                ((d0) this.f16562b).f23979x = null;
+                return;
+            case 14:
+                ((k4) this.f16562b).G = null;
+                return;
+            case 15:
+                org.telegram.ui.Cells.x5 x5Var = (org.telegram.ui.Cells.x5) this.f16562b;
+                if (animator.equals(x5Var.f25701n)) {
+                    x5Var.f25701n = null;
+                    return;
+                }
+                return;
+            case 16:
+                g3 g3Var = (g3) this.f16562b;
+                if (animator.equals(((z5) g3Var.f17725b).d)) {
+                    ((z5) g3Var.f17725b).d = null;
+                    return;
+                }
+                return;
+            case 17:
+                AndroidUtilities.runOnUIThread(((z5) this.f16562b).e, 1000L);
+                return;
+            case 18:
+                t7 t7Var = (t7) this.f16562b;
+                AnimatorSet animatorSet = t7Var.h;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    t7Var.h = null;
+                    return;
+                }
+                return;
+            case 19:
+                w7 w7Var = (w7) this.f16562b;
+                w7Var.f25648n.isMediaSpoilersRevealedInSharedMedia = true;
+                w7Var.invalidate();
+                return;
+            case 20:
+                super.onAnimationEnd(animator);
+                ha haVar = (ha) this.f16562b;
+                ((ia) haVar.f24212b).f24258a.getTransitionParams().j();
+                ((ia) haVar.f24212b).f24258a.getTransitionParams().f24870g = false;
+                ((ia) haVar.f24212b).f24258a.getTransitionParams().K1 = 1.0f;
+                return;
+            case 21:
+                i3 i3Var = (i3) this.f16562b;
+                if (animator.equals(((wb) i3Var.f40127b).R)) {
+                    ((wb) i3Var.f40127b).R = null;
+                    return;
+                }
+                return;
+            case 22:
+                wb wbVar = (wb) this.f16562b;
+                if (animator.equals(wbVar.R)) {
+                    wbVar.R = null;
+                    return;
+                }
+                return;
+            case 23:
+                ((dc) this.f16562b).H.setVisibility(8);
+                return;
+            case 24:
+                bd bdVar = (bd) this.f16562b;
+                mc mcVar = bdVar.m0;
+                if (mcVar != null) {
+                    if (mcVar.getParent() != null) {
+                        ((ViewGroup) bdVar.m0.getParent()).removeView(bdVar.m0);
+                    }
+                    bdVar.m0 = null;
+                }
+                bdVar.f38050o0 = null;
+                super.onAnimationEnd(animator);
+                return;
+            case 25:
+                vh vhVar = (vh) this.f16562b;
+                if (vhVar.f44806a) {
+                    vhVar.d.setTranslationY(0.0f);
+                }
+                if (vhVar.f44807b) {
+                    vhVar.e.setTranslationY(0.0f);
+                }
+                if (vhVar.f44809f) {
+                    vhVar.h.setTranslationY(0.0f);
+                }
+                org.telegram.ui.Components.y9 y9Var = vhVar.f44808c;
+                if (y9Var != null) {
+                    y9Var.setTranslationY(0.0f);
+                }
+                vhVar.f44810n.T2[1] = null;
+                return;
+            case 26:
+                hk hkVar = (hk) this.f16562b;
+                hkVar.setAnimatedTop(0);
+                View view = hkVar.G1;
+                if (view != null && view.getVisibility() == 0) {
+                    hkVar.G1.setTranslationY(((1.0f - hkVar.getTopViewEnterProgress()) * hkVar.G1.getLayoutParams().height) + hkVar.T1);
+                }
+                hkVar.f40028v5.B9 = null;
+                return;
+            case 27:
+                t40 t40Var = ((pi) this.f16562b).f42555b.f44379q2;
+                if (t40Var != null) {
+                    t40Var.setVisibility(8);
+                    return;
+                }
+                return;
+            case 28:
+                ce ceVar = (ce) this.f16562b;
+                t60 t60Var = ((fm) ((zl) ceVar.f4473c).f46319c).Q.f44343n3;
+                if (t60Var != null) {
+                    t60Var.setIsMessageTransition(false);
+                    ((fm) ((zl) ceVar.f4473c).f46319c).Q.f44343n3.c(true);
+                    ((fm) ((zl) ceVar.f4473c).f46319c).Q.f44343n3.setVisibility(4);
+                    return;
+                }
+                return;
+            case 29:
+                em emVar = (em) this.f16562b;
+                fm fmVar = emVar.f39134b;
+                ArrayList arrayList = fmVar.Q.f44499z6;
+                s1 s1Var = emVar.f39133a;
+                arrayList.remove(s1Var);
+                View view2 = fmVar.Q.fragmentView;
+                if (view2 != null) {
+                    view2.invalidate();
+                    fmVar.Q.f44468x0.invalidate();
+                }
+                s1Var.setAlpha(1.0f);
+                s1Var.getTransitionParams().f24943x0 = false;
+                return;
+        }
+    }
+
+    @Override
+    public void onAnimationStart(Animator animator) {
+        switch (this.f16561a) {
+            case 6:
+                ((u4) this.f16562b).setVisibility(0);
+                return;
+            case 9:
+                n8 n8Var = (n8) this.f16562b;
+                for (int i10 = 0; i10 < n8Var.f41776b.getChildCount(); i10++) {
+                    k8.a((k8) n8Var.f41776b.getChildAt(i10), n8Var.P, n8Var.Q);
+                }
+                return;
+            case 11:
+                ((e01) ((org.telegram.ui.Cells.j) this.f16562b)).f38960e0.e.f35960c.f47708r = true;
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
     }
 }

@@ -1,46 +1,64 @@
 package org.telegram.ui;
 
 import android.view.View;
+import android.view.ViewGroup;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.tl.TL_iv;
-public final class g1 extends s4.t {
-    public final l1 S;
+public final class g1 extends s4.h0 {
+    public final j1 f39515c;
 
-    public g1(l1 l1Var) {
-        super(true);
-        this.S = l1Var;
+    public g1(j1 j1Var) {
+        this.f39515c = j1Var;
     }
 
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        l1 l1Var = this.S;
-        ArrayList<TL_iv.PageBlock> arrayList = l1Var.f39089s.items;
-        MessageObject.GroupedMessagePosition groupedMessagePosition = (MessageObject.GroupedMessagePosition) l1Var.v.f38715b.get(arrayList.get((arrayList.size() - i10) - 1));
-        if (groupedMessagePosition.minX != groupedMessagePosition.maxX && (b10 = groupedMessagePosition.minY) == groupedMessagePosition.maxY && b10 != 0) {
-            int size = l1Var.v.f38714a.size();
-            for (int i11 = 0; i11 < size; i11++) {
-                MessageObject.GroupedMessagePosition groupedMessagePosition2 = (MessageObject.GroupedMessagePosition) l1Var.v.f38714a.get(i11);
-                if (groupedMessagePosition2 != groupedMessagePosition) {
-                    byte b11 = groupedMessagePosition2.minY;
-                    byte b12 = groupedMessagePosition.minY;
-                    if (b11 <= b12 && groupedMessagePosition2.maxY >= b12) {
-                        return true;
-                    }
-                }
-            }
+    public final int h() {
+        TL_iv.pageBlockCollage pageblockcollage = this.f39515c.f40383s;
+        if (pageblockcollage == null) {
+            return 0;
         }
-        return false;
+        return pageblockcollage.items.size();
     }
 
     @Override
-    public final boolean C1(View view) {
-        return false;
+    public final int j(int i10) {
+        ArrayList<TL_iv.PageBlock> arrayList = this.f39515c.f40383s.items;
+        if (!(arrayList.get((arrayList.size() - i10) - 1) instanceof TL_iv.pageBlockPhoto)) {
+            return 1;
+        }
+        return 0;
     }
 
     @Override
-    public final boolean y0() {
-        return false;
+    public final void v(s4.e1 e1Var, int i10) {
+        j1 j1Var = this.f39515c;
+        i1 i1Var = j1Var.v;
+        ArrayList<TL_iv.PageBlock> arrayList = j1Var.f40383s.items;
+        TL_iv.PageBlock pageBlock = arrayList.get((arrayList.size() - i10) - 1);
+        int i11 = e1Var.f47738f;
+        View view = e1Var.f47735a;
+        if (i11 != 0) {
+            w2 w2Var = (w2) view;
+            w2Var.T = (MessageObject.GroupedMessagePosition) i1Var.f40111b.get(pageBlock);
+            TL_iv.pageBlockVideo pageblockvideo = (TL_iv.pageBlockVideo) pageBlock;
+            w2Var.b(pageblockvideo, (x2) j1Var.f40385x.f39925y.f(pageblockvideo.video_id), false, true);
+            return;
+        }
+        c2 c2Var = (c2) view;
+        c2Var.R = (MessageObject.GroupedMessagePosition) i1Var.f40111b.get(pageBlock);
+        c2Var.a((TL_iv.pageBlockPhoto) pageBlock, j1Var.f40384w.E.cached_page, false, true);
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        View c2Var;
+        j1 j1Var = this.f39515c;
+        if (i10 != 0) {
+            c2Var = new w2(j1Var.getContext(), j1Var.f40385x, j1Var.f40384w, 2);
+        } else {
+            c2Var = new c2(j1Var.getContext(), j1Var.f40385x, j1Var.f40384w, 2);
+        }
+        return new s4.e1(c2Var);
     }
 }

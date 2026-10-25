@@ -1,50 +1,15 @@
 package org.telegram.ui.Wallet;
 
-import java.util.ArrayList;
-import org.telegram.messenger.NotificationCenter;
+import org.telegram.tgnet.tl.TL_stars;
 import org.telegram.tgnet.tl.TL_wallet;
-public final class s4 implements NotificationCenter.NotificationCenterDelegate {
-    public final int f35127a;
-    public final TL_wallet.walletTransaction[] f35128b;
-    public final ci.s f35129c;
+public final class s4 implements bi.g7 {
+    public final TL_stars.TL_starGiftUnique f37214a;
+    public final TL_wallet.nftItem f37215b;
+    public final m5 f37216c;
 
-    public s4(int i10, TL_wallet.walletTransaction[] wallettransactionArr, ci.s sVar) {
-        this.f35127a = i10;
-        this.f35128b = wallettransactionArr;
-        this.f35129c = sVar;
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        TL_wallet.walletTransaction[] wallettransactionArr;
-        TL_wallet.walletTransaction wallettransaction;
-        if (i10 == NotificationCenter.walletUpdate || i10 == NotificationCenter.walletTransactionsUpdate) {
-            ArrayList arrayList = l0.w(this.f35127a).A().f34691c;
-            int size = arrayList.size();
-            int i12 = 0;
-            while (true) {
-                wallettransactionArr = this.f35128b;
-                if (i12 < size) {
-                    Object obj = arrayList.get(i12);
-                    i12++;
-                    wallettransaction = (TL_wallet.walletTransaction) obj;
-                    TL_wallet.walletTransaction wallettransaction2 = wallettransactionArr[0];
-                    if (wallettransaction != wallettransaction2) {
-                        if (l0.f0(wallettransaction2, wallettransaction)) {
-                            break;
-                        }
-                    } else {
-                        break;
-                    }
-                } else {
-                    wallettransaction = null;
-                    break;
-                }
-            }
-            if (wallettransaction != null) {
-                wallettransactionArr[0] = wallettransaction;
-                this.f35129c.run(wallettransaction);
-            }
-        }
+    public s4(m5 m5Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TL_wallet.nftItem nftitem) {
+        this.f37216c = m5Var;
+        this.f37214a = tL_starGiftUnique;
+        this.f37215b = nftitem;
     }
 }

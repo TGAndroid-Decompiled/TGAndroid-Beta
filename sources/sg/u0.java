@@ -1,23 +1,194 @@
 package sg;
 
 import android.content.Context;
-import android.widget.Scroller;
-public final class u0 extends Scroller {
-    public final v0 f46874a;
+import android.graphics.PointF;
+import android.view.ViewGroup;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.vh;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stories;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.hl0;
+public final class u0 extends j {
+    public final t0 f48523q0;
+    public boolean f48524r0;
+    public int f48525s0;
+    public int f48526t0;
+    public TLRPC.MessageMedia f48527u0;
+    public TL_stories.MediaArea f48528v0;
 
-    public u0(v0 v0Var, Context context) {
-        super(context);
-        this.f46874a = v0Var;
+    public u0(Context context, PointF pointF, int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea, float f7, int i11) {
+        super(context, pointF);
+        t0 t0Var = new t0(context, f7);
+        this.f48523q0 = t0Var;
+        t0Var.setMaxWidth(i11);
+        r(i10, messageMedia, mediaArea);
+        t0Var.e(0, this.f48525s0);
+        addView(t0Var, gb1.i(-2, -2, 51));
+        setClipChildren(false);
+        setClipToPadding(false);
+        k();
+    }
+
+    public static String q(double d) {
+        String str;
+        String str2;
+        String str3;
+        double abs = Math.abs(d);
+        double floor = Math.floor(abs);
+        String str4 = "";
+        String n10 = a1.g.n((int) floor, "°", new StringBuilder(""));
+        double floor2 = Math.floor((abs - floor) * 60.0d);
+        StringBuilder u10 = a1.g.u(n10);
+        if (floor2 > 0.0d) {
+            str = "";
+        } else {
+            str = "0";
+        }
+        u10.append(str);
+        if (floor2 >= 10.0d) {
+            str2 = "";
+        } else {
+            str2 = "0";
+        }
+        u10.append(str2);
+        String n11 = a1.g.n((int) floor2, "'", u10);
+        double floor3 = Math.floor(Math.floor(floor2) * 60.0d);
+        StringBuilder u11 = a1.g.u(n11);
+        if (floor3 > 0.0d) {
+            str3 = "";
+        } else {
+            str3 = "0";
+        }
+        u11.append(str3);
+        if (floor3 < 10.0d) {
+            str4 = "0";
+        }
+        u11.append(str4);
+        return a1.g.n((int) floor3, "\"", u11);
     }
 
     @Override
-    public final void startScroll(int i10, int i11, int i12, int i13, int i14) {
-        int i15;
-        if (this.f46874a.f46885x0) {
-            i15 = 3;
-        } else {
-            i15 = 1;
+    public final i a() {
+        return new q0(this, getContext());
+    }
+
+    public int getColor() {
+        return this.f48525s0;
+    }
+
+    @Override
+    public float getMaxScale() {
+        return 1.5f;
+    }
+
+    @Override
+    public hl0 getSelectionBounds() {
+        ViewGroup viewGroup = (ViewGroup) getParent();
+        if (viewGroup == null) {
+            return new Object();
         }
-        super.startScroll(i10, i11, i12, i13, i15 * i14);
+        float scaleX = viewGroup.getScaleX();
+        float scale = getScale();
+        float dp = (AndroidUtilities.dp(64.0f) / scaleX) + (scale * getMeasuredWidth());
+        float scale2 = getScale();
+        float dp2 = (AndroidUtilities.dp(64.0f) / scaleX) + (scale2 * getMeasuredHeight());
+        float y3 = vh.y(dp, 2.0f, getPositionX(), scaleX);
+        return new hl0(y3, vh.y(dp2, 2.0f, getPositionY(), scaleX), ((dp * scaleX) + y3) - y3, dp2 * scaleX);
+    }
+
+    @Override
+    public float getStickyPaddingBottom() {
+        return this.f48523q0.J;
+    }
+
+    @Override
+    public float getStickyPaddingLeft() {
+        return this.f48523q0.I;
+    }
+
+    @Override
+    public float getStickyPaddingRight() {
+        return this.f48523q0.I;
+    }
+
+    @Override
+    public float getStickyPaddingTop() {
+        return this.f48523q0.J;
+    }
+
+    public int getType() {
+        return this.f48526t0;
+    }
+
+    public int getTypesCount() {
+        return this.f48523q0.getTypesCount() - (!this.f48524r0 ? 1 : 0);
+    }
+
+    @Override
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        k();
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        k();
+    }
+
+    public final void r(int i10, TLRPC.MessageMedia messageMedia, TL_stories.MediaArea mediaArea) {
+        String str;
+        String str2;
+        String str3;
+        this.f48527u0 = messageMedia;
+        this.f48528v0 = mediaArea;
+        String str4 = null;
+        if (messageMedia instanceof TLRPC.TL_messageMediaGeo) {
+            TLRPC.GeoPoint geoPoint = messageMedia.geo;
+            double d = geoPoint.lat;
+            double d10 = geoPoint._long;
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append(q(d));
+            if (d > 0.0d) {
+                str2 = "N";
+            } else {
+                str2 = "S";
+            }
+            sb2.append(str2);
+            sb2.append(" ");
+            sb2.append(q(d10));
+            if (d10 > 0.0d) {
+                str3 = "E";
+            } else {
+                str3 = "W";
+            }
+            sb2.append(str3);
+            str = sb2.toString();
+        } else if (messageMedia instanceof TLRPC.TL_messageMediaVenue) {
+            String upperCase = messageMedia.title.toUpperCase();
+            str4 = ((TLRPC.TL_messageMediaVenue) messageMedia).emoji;
+            str = upperCase;
+        } else {
+            str = "";
+        }
+        t0 t0Var = this.f48523q0;
+        t0Var.d(i10, str4);
+        t0Var.setText(str);
+        m();
+    }
+
+    public void setColor(int i10) {
+        this.f48524r0 = true;
+        this.f48525s0 = i10;
+    }
+
+    public void setMaxWidth(int i10) {
+        this.f48523q0.setMaxWidth(i10);
+    }
+
+    public void setType(int i10) {
+        this.f48526t0 = i10;
+        this.f48523q0.e(i10, this.f48525s0);
     }
 }

@@ -1,57 +1,27 @@
 package wb;
 
-import android.graphics.Bitmap;
-import android.os.SystemClock;
-import c5.w;
-import com.google.android.gms.tasks.Task;
-import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
-import n2.e;
-import n6.i;
-import n6.l;
-import rb.m;
-import u2.c;
-import w7.d7;
-import w7.e7;
-import w7.j7;
-import w7.la;
-import w7.na;
-import w7.y6;
+import w7.a9;
+import w7.d9;
+import w7.f9;
 public final class a {
-    public volatile Bitmap f49344a;
-    public final int f49345b;
-    public final int f49346c;
-    public final int d;
-    public final int e;
+    public final d9 f51143a;
+    public final e f51144b;
+    public final sb.d f51145c;
 
-    public a(Bitmap bitmap, int i10) {
-        l.h(bitmap);
-        this.f49344a = bitmap;
-        this.f49345b = bitmap.getWidth();
-        this.f49346c = bitmap.getHeight();
-        boolean z10 = true;
-        if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
-            z10 = false;
+    public a(e eVar, sb.d dVar) {
+        String str;
+        d9 a2;
+        this.f51144b = eVar;
+        this.f51145c = dVar;
+        if (true != eVar.f51154g) {
+            str = "play-services-mlkit-language-id";
+        } else {
+            str = "language-id";
         }
-        l.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z10);
-        this.d = i10;
-        this.e = -1;
-    }
-
-    public static a a(Bitmap bitmap, int i10) {
-        la a2;
-        Task task;
-        a aVar;
-        String a10;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        a aVar2 = new a(bitmap, i10);
-        int height = bitmap.getHeight();
-        int width = bitmap.getWidth();
-        int allocationByteCount = bitmap.getAllocationByteCount();
-        synchronized (na.class) {
+        synchronized (f9.class) {
             byte b10 = (byte) (((byte) 1) | 2);
             if (b10 == 3) {
-                a2 = na.a(new Object());
+                a2 = f9.a(new a9(str));
             } else {
                 StringBuilder sb2 = new StringBuilder();
                 if ((b10 & 1) == 0) {
@@ -63,40 +33,6 @@ public final class a {
                 throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
             }
         }
-        long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
-        j7 j7Var = j7.INPUT_IMAGE_CONSTRUCTION;
-        Task task2 = a2.e;
-        long elapsedRealtime3 = SystemClock.elapsedRealtime();
-        HashMap hashMap = a2.f49201i;
-        if (hashMap.get(j7Var) == null) {
-            task = task2;
-            aVar = aVar2;
-        } else {
-            task = task2;
-            aVar = aVar2;
-            if (elapsedRealtime3 - ((Long) hashMap.get(j7Var)).longValue() <= TimeUnit.SECONDS.toMillis(30L)) {
-                return aVar;
-            }
-        }
-        hashMap.put(j7Var, Long.valueOf(elapsedRealtime3));
-        ?? obj = new Object();
-        obj.f16399c = y6.BITMAP;
-        obj.f16398b = d7.BITMAP;
-        obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
-        obj.f16400f = Integer.valueOf(height & Integer.MAX_VALUE);
-        obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
-        obj.f16397a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
-        obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
-        e7 e7Var = new e7(obj);
-        c cVar = new c(7, false);
-        cVar.d = e7Var;
-        e eVar = new e(cVar);
-        if (task.isSuccessful()) {
-            a10 = (String) task.getResult();
-        } else {
-            a10 = i.f17261c.a(a2.f49200g);
-        }
-        m.f45622a.execute(new w(a2, eVar, a10));
-        return aVar;
+        this.f51143a = a2;
     }
 }

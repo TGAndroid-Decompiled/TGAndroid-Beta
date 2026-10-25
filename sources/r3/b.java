@@ -1,36 +1,36 @@
 package r3;
 
-import b2.q0;
-import b2.s0;
-import b2.w;
+import a8.yb;
+import b2.r0;
+import b2.t0;
+import b2.x;
 import java.util.ArrayList;
-import v7.u6;
-public final class b implements s0 {
-    public final ArrayList f45407a;
+public final class b implements t0 {
+    public final ArrayList f47272a;
 
     public b(ArrayList arrayList) {
-        this.f45407a = arrayList;
+        this.f47272a = arrayList;
         boolean z10 = false;
         if (!arrayList.isEmpty()) {
-            long j10 = ((a) arrayList.get(0)).f45405b;
+            long j10 = ((a) arrayList.get(0)).f47270b;
             int i10 = 1;
             while (true) {
                 if (i10 >= arrayList.size()) {
                     break;
-                } else if (((a) arrayList.get(i10)).f45404a < j10) {
+                } else if (((a) arrayList.get(i10)).f47269a < j10) {
                     z10 = true;
                     break;
                 } else {
-                    j10 = ((a) arrayList.get(i10)).f45405b;
+                    j10 = ((a) arrayList.get(i10)).f47270b;
                     i10++;
                 }
             }
         }
-        u6.g(!z10);
+        yb.g(!z10);
     }
 
     @Override
-    public final w a() {
+    public final x a() {
         return null;
     }
 
@@ -44,20 +44,20 @@ public final class b implements s0 {
             return true;
         }
         if (obj != null && b.class == obj.getClass()) {
-            return this.f45407a.equals(((b) obj).f45407a);
+            return this.f47272a.equals(((b) obj).f47272a);
         }
         return false;
     }
 
     public final int hashCode() {
-        return this.f45407a.hashCode();
+        return this.f47272a.hashCode();
     }
 
     public final String toString() {
-        return "SlowMotion: segments=" + this.f45407a;
+        return "SlowMotion: segments=" + this.f47272a;
     }
 
     @Override
-    public final void b(q0 q0Var) {
+    public final void b(r0 r0Var) {
     }
 }

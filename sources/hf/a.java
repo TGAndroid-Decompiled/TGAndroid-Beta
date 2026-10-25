@@ -1,30 +1,15 @@
 package hf;
 
-import com.google.android.gms.internal.cast.i4;
-import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.ThreadPoolExecutor;
-import org.telegram.messenger.FileLog;
-public final class a extends ThreadPoolExecutor implements AutoCloseable {
-    public final c f11808a;
+import bf.e;
+import ef.s;
+public interface a {
+    int a(e eVar, e eVar2);
 
-    public a(hf.c r8, java.util.concurrent.PriorityBlockingQueue r9) {
-        throw new UnsupportedOperationException("Method not decompiled: hf.a.<init>(hf.c, java.util.concurrent.PriorityBlockingQueue):void");
-    }
+    char b();
 
-    @Override
-    public final void beforeExecute(Thread thread, Runnable runnable) {
-        CountDownLatch countDownLatch = this.f11808a.f11812b;
-        if (countDownLatch != null) {
-            try {
-                countDownLatch.await();
-            } catch (InterruptedException e) {
-                FileLog.e(e);
-            }
-        }
-    }
+    int c();
 
-    @Override
-    public final void close() {
-        i4.e(this);
-    }
+    void d(s sVar, s sVar2, int i10);
+
+    char e();
 }

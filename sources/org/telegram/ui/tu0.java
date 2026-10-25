@@ -1,11 +1,16 @@
 package org.telegram.ui;
 
-import android.view.TextureView;
-import org.telegram.messenger.MessageObject;
-public interface tu0 {
-    TextureView U();
+import java.util.ArrayList;
+public final class tu0 {
+    public final int f43912a;
+    public final ArrayList f43913b;
+    public final ou0 f43914c;
+    public final PhotoViewer d;
 
-    void m0(MessageObject messageObject);
-
-    void z(MessageObject messageObject);
+    public tu0(PhotoViewer photoViewer, int i10, ArrayList arrayList, ou0 ou0Var) {
+        this.d = photoViewer;
+        this.f43913b = arrayList;
+        this.f43912a = i10;
+        this.f43914c = ou0Var;
+    }
 }

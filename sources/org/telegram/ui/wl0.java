@@ -1,79 +1,33 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.util.Locale;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MrzRecognizer;
-import org.telegram.messenger.R;
-public final class wl0 implements v9 {
-    public final zm0 f43371a;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class wl0 implements RequestDelegate {
+    public final int f45516a;
+    public final in0 f45517b;
 
-    public wl0(zm0 zm0Var) {
-        this.f43371a = zm0Var;
+    public wl0(in0 in0Var, int i10) {
+        this.f45516a = i10;
+        this.f45517b = in0Var;
     }
 
     @Override
-    public final void F0(MrzRecognizer.Result result) {
-        boolean isEmpty = TextUtils.isEmpty(result.firstName);
-        zm0 zm0Var = this.f43371a;
-        if (!isEmpty) {
-            zm0Var.Y[0].setText(result.firstName);
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f45516a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new oe0(this.f45517b, tL_error, tLObject, 13));
+                return;
+            case 1:
+                AndroidUtilities.runOnUIThread(new yl0(1, this.f45517b, tL_error));
+                return;
+            case 2:
+                AndroidUtilities.runOnUIThread(new sl0(this.f45517b, 5));
+                return;
+            default:
+                AndroidUtilities.runOnUIThread(new yl0(0, this.f45517b, tLObject));
+                return;
         }
-        if (!TextUtils.isEmpty(result.middleName)) {
-            zm0Var.Y[1].setText(result.middleName);
-        }
-        if (!TextUtils.isEmpty(result.lastName)) {
-            zm0Var.Y[2].setText(result.lastName);
-        }
-        int i10 = result.gender;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 == 2) {
-                    zm0Var.f44173w = "female";
-                    zm0Var.Y[4].setText(LocaleController.getString(R.string.PassportFemale));
-                }
-            } else {
-                zm0Var.f44173w = "male";
-                zm0Var.Y[4].setText(LocaleController.getString(R.string.PassportMale));
-            }
-        }
-        if (!TextUtils.isEmpty(result.nationality)) {
-            String str = result.nationality;
-            zm0Var.f44164s = str;
-            String str2 = (String) zm0Var.Y0.get(str);
-            if (str2 != null) {
-                zm0Var.Y[5].setText(str2);
-            }
-        }
-        if (!TextUtils.isEmpty(result.issuingCountry)) {
-            String str3 = result.issuingCountry;
-            zm0Var.v = str3;
-            String str4 = (String) zm0Var.Y0.get(str3);
-            if (str4 != null) {
-                zm0Var.Y[6].setText(str4);
-            }
-        }
-        int i11 = result.birthDay;
-        if (i11 > 0 && result.birthMonth > 0 && result.birthYear > 0) {
-            zm0Var.Y[3].setText(String.format(Locale.US, "%02d.%02d.%d", Integer.valueOf(i11), Integer.valueOf(result.birthMonth), Integer.valueOf(result.birthYear)));
-        }
-    }
-
-    @Override
-    public final boolean U0(String str, n9 n9Var) {
-        return false;
-    }
-
-    @Override
-    public final String p0() {
-        return null;
-    }
-
-    @Override
-    public final void E(String str) {
-    }
-
-    @Override
-    public final void onDismiss() {
     }
 }

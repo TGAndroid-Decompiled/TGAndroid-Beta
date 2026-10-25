@@ -1,92 +1,66 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class ke0 extends FrameLayout {
-    public final ImageView f28008a;
-    public final TextView f28009b;
-    public final TextView f28010c;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+public final class ke0 extends Drawable implements Drawable.Callback {
+    public final eh.d f29905a;
+    public final RectF f29906b = new RectF();
+    public int f29907c = 255;
 
-    public ke0(Context context) {
-        super(context);
-        ImageView imageView = new ImageView(context);
-        this.f28008a = imageView;
-        imageView.setScaleType(ImageView.ScaleType.CENTER);
-        imageView.setImageResource(R.drawable.fingerprint);
-        addView(imageView, w7.z5.e(-1, -1, 119));
-        TextView textView = new TextView(context);
-        this.f28009b = textView;
-        textView.setTypeface(AndroidUtilities.bold());
-        textView.setTextColor(-1);
-        textView.setTextSize(1, 26.0f);
-        textView.setGravity(17);
-        addView(textView, w7.z5.d(-1, -2.0f, 17, 0.0f, -5.33f, 0.0f, 0.0f));
-        TextView textView2 = new TextView(context);
-        this.f28010c = textView2;
-        textView2.setTypeface(AndroidUtilities.bold());
-        textView2.setTextSize(1, 10.0f);
-        textView2.setTextColor(Integer.MAX_VALUE);
-        textView2.setGravity(17);
-        addView(textView2, w7.z5.d(-1, -2.0f, 17, 0.0f, 14.0f, 0.0f, 0.0f));
+    public ke0(eh.d dVar) {
+        this.f29905a = dVar;
+        dVar.setCallback(this);
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.Button");
+    public final void draw(Canvas canvas) {
+        this.f29905a.draw(canvas);
+        Rect bounds = getBounds();
+        RectF rectF = this.f29906b;
+        rectF.set(bounds);
+        float min = Math.min(rectF.width(), rectF.height()) / 2.0f;
+        float f7 = this.f29907c / 255.0f;
+        ai.a0.c(canvas, rectF, min, f7);
+        ai.a0.a(canvas, rectF, min, 0, f7);
     }
 
-    public void setImage(int i10) {
-        ImageView imageView = this.f28008a;
-        imageView.setVisibility(0);
-        this.f28009b.setVisibility(8);
-        this.f28010c.setVisibility(8);
-        imageView.setImageResource(i10);
+    @Override
+    public final int getOpacity() {
+        return -3;
     }
 
-    public void setNum(int i10) {
-        this.f28008a.setVisibility(8);
-        TextView textView = this.f28009b;
-        textView.setVisibility(0);
-        TextView textView2 = this.f28010c;
-        textView2.setVisibility(0);
-        String str = "";
-        textView.setText("" + i10);
-        if (i10 != 0) {
-            switch (i10) {
-                case 2:
-                    str = "ABC";
-                    break;
-                case 3:
-                    str = "DEF";
-                    break;
-                case 4:
-                    str = "GHI";
-                    break;
-                case 5:
-                    str = "JKL";
-                    break;
-                case 6:
-                    str = "MNO";
-                    break;
-                case 7:
-                    str = "PQRS";
-                    break;
-                case 8:
-                    str = "TUV";
-                    break;
-                case 9:
-                    str = "WXYZ";
-                    break;
-            }
-        } else {
-            str = "+";
-        }
-        textView2.setText(str);
+    @Override
+    public final void invalidateDrawable(Drawable drawable) {
+        invalidateSelf();
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        this.f29905a.setBounds(rect);
+    }
+
+    @Override
+    public final void scheduleDrawable(Drawable drawable, Runnable runnable, long j10) {
+        scheduleSelf(runnable, j10);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f29907c = i10;
+        this.f29905a.setAlpha(i10);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29905a.getClass();
+    }
+
+    @Override
+    public final void unscheduleDrawable(Drawable drawable, Runnable runnable) {
+        unscheduleSelf(runnable);
     }
 }

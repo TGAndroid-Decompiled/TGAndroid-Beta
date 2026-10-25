@@ -1,28 +1,19 @@
 package org.telegram.ui.Components;
 
-import org.telegram.tgnet.TLRPC;
-public final class u80 implements Runnable {
-    public final int f31045a;
-    public final z80 f31046b;
-    public final TLRPC.TL_chatInviteJoinResultWebView f31047c;
-    public final long d;
-
-    public u80(z80 z80Var, TLRPC.TL_chatInviteJoinResultWebView tL_chatInviteJoinResultWebView, long j10, int i10) {
-        this.f31045a = i10;
-        this.f31046b = z80Var;
-        this.f31047c = tL_chatInviteJoinResultWebView;
-        this.d = j10;
-    }
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+public final class u80 extends FrameLayout {
+    public View f33288a;
+    public TextView f33289b;
 
     @Override
-    public final void run() {
-        switch (this.f31045a) {
-            case 0:
-                z80.q(this.f31046b, this.f31047c, this.d);
-                return;
-            default:
-                z80.p(this.f31046b, this.f31047c, this.d);
-                return;
-        }
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
+    }
+
+    public void setText(CharSequence charSequence) {
+        this.f33289b.setText(charSequence);
     }
 }

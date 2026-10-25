@@ -1,10 +1,10 @@
 package d8;
 
-import android.os.Handler;
-import android.os.Looper;
-public final class a extends Handler {
-    public a(Looper looper) {
-        super(looper);
-        Looper.getMainLooper();
+import java.io.Closeable;
+public final class a implements Closeable {
+    public static final a f8263a = new Object();
+
+    @Override
+    public final void close() {
     }
 }

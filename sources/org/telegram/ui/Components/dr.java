@@ -1,51 +1,52 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.view.View;
-public final class dr extends View {
-    public final cr f25811a;
+import android.text.SpannableStringBuilder;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class dr extends LinearLayout {
+    public final y9 f27583a;
 
-    public dr(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+    public dr(Context context) {
         super(context);
-        setVisibility(8);
-        cr crVar = new cr(this, true, g6Var);
-        this.f25811a = crVar;
-        crVar.G = true;
-    }
-
-    public float getEnterProgress() {
-        int i10;
-        cr crVar = this.f25811a;
-        float f7 = crVar.f25445l;
-        if (f7 != 1.0f && ((i10 = crVar.f25439c) == 0 || i10 == 1)) {
-            if (i10 == 0) {
-                return f7;
-            }
-            return 1.0f - f7;
-        } else if (crVar.h != 0) {
-            return 1.0f;
-        } else {
-            return 0.0f;
+        setOrientation(1);
+        y9 y9Var = new y9(context);
+        this.f27583a = y9Var;
+        y9Var.setImageDrawable(new fa0(y9Var, "m418 282.6c13.4-21.1 20.2-44.9 20.2-70.8 0-88.3-79.8-175.3-178.9-175.3-100.1 0-178.9 88-178.9 175.3 0 46.6 16.9 73.1 29.1 86.1-19.3 23.4-30.9 52.3-34.6 86.1-2.5 22.7 3.2 41.4 17.4 57.3 14.3 16 51.7 35 148.1 35 41.2 0 119.9-5.3 156.7-18.3 49.5-17.4 59.2-41.1 59.2-76.2 0-41.5-12.9-74.8-38.3-99.2z", AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
+        if (!AndroidUtilities.isTablet()) {
+            addView(y9Var, gb1.u(110, 110, 49));
         }
+        TextView g7 = org.telegram.messenger.t.g(context, 1, 20.0f);
+        org.telegram.ui.ActionBar.f7.V(g7, org.telegram.ui.ActionBar.y6.G6, null);
+        g7.setGravity(1);
+        g7.setText(LocaleController.getString(R.string.NoContactsYet3));
+        g7.setTypeface(AndroidUtilities.bold());
+        addView(g7, gb1.x(-2, -2, 49, 0, 15, 0, 7));
+        TextView textView = new TextView(context);
+        textView.setTextSize(1, 14.0f);
+        org.telegram.ui.ActionBar.f7.V(textView, org.telegram.ui.ActionBar.y6.f23336c7, null);
+        textView.setGravity(1);
+        textView.setText(LocaleController.getString(R.string.NoContactsYet3Sub));
+        textView.setMaxWidth(AndroidUtilities.dp(260.0f));
+        textView.setLineSpacing(AndroidUtilities.dp(2.0f), 1.0f);
+        addView(textView, gb1.x(-2, -2, 49, 0, 0, 0, 19));
+        fi.d dVar = new fi.d(context, null, true);
+        dVar.setUseWrapContent(true);
+        dVar.f();
+        dVar.setPadding(AndroidUtilities.dp(28.0f), 0, AndroidUtilities.dp(28.0f), 0);
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("c");
+        spannableStringBuilder.setSpan(new zq(R.drawable.filled_new_contact_24, 0), 0, 1, 33);
+        spannableStringBuilder.append((CharSequence) "  ").append((CharSequence) LocaleController.getString(R.string.NewContact));
+        dVar.i(spannableStringBuilder, false, true);
+        addView(dVar, gb1.u(-2, 44, 49));
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        this.f25811a.a(canvas);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        this.f25811a.d(getMeasuredHeight(), getMeasuredWidth());
-    }
-
-    public void setGravity(int i10) {
-        this.f25811a.f25458z = i10;
-    }
-
-    public void setReverse(boolean z10) {
-        this.f25811a.D = z10;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f27583a.setImageDrawable(new xj0(R.raw.utyan_empty, AndroidUtilities.dp(110.0f), AndroidUtilities.dp(110.0f)));
     }
 }

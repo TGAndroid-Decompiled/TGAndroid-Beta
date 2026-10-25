@@ -1,120 +1,65 @@
 package org.telegram.ui.ActionBar;
 
-import android.graphics.drawable.Drawable;
-import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.xe;
-public final class x {
-    public y f21941a;
-    public int f21942b;
-    public int f21943c;
-    public CharSequence d;
-    public int e;
-    public Drawable f21944f;
-    public int f21945g;
-    public g6 h;
-    public float f21946i;
-    public Boolean f21947j;
-    public Boolean f21948k;
-    public int f21949l;
-    public u0 f21950m;
-    public ArrayList f21951n;
-    public Integer f21952o;
+import android.view.KeyEvent;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class x implements View.OnClickListener {
+    public final int f23235a;
+    public final KeyEvent.Callback f23236b;
 
-    public final void a() {
-        y yVar = this.f21941a;
-        if (this.f21950m == null) {
-            int childCount = yVar.getChildCount();
-            ArrayList arrayList = yVar.e;
-            int i10 = 0;
-            if (arrayList != null) {
-                int indexOf = arrayList.indexOf(Integer.valueOf(this.f21942b));
-                int i11 = 0;
-                while (true) {
-                    if (i11 >= yVar.getChildCount()) {
-                        break;
+    public x(KeyEvent.Callback callback, int i10) {
+        this.f23235a = i10;
+        this.f23236b = callback;
+    }
+
+    @Override
+    public final void onClick(View view) {
+        switch (this.f23235a) {
+            case 0:
+                z zVar = (z) this.f23236b;
+                k kVar = zVar.f23776b;
+                w0 w0Var = (w0) view;
+                if (w0Var.s()) {
+                    if (kVar.f22788u0.a()) {
+                        w0Var.U(null, null);
+                        return;
                     }
-                    Object tag = yVar.getChildAt(i11).getTag();
-                    if (tag instanceof Integer) {
-                        if (yVar.e.indexOf((Integer) tag) > indexOf) {
-                            childCount = i11;
-                            break;
+                    return;
+                } else if (w0Var.u()) {
+                    kVar.t(w0Var.T(true));
+                    return;
+                } else {
+                    zVar.n(((Integer) view.getTag()).intValue());
+                    return;
+                }
+            case 1:
+                ((i2) this.f23236b).dismiss();
+                return;
+            case 2:
+                k3 k3Var = (k3) this.f23236b;
+                k3Var.getClass();
+                k3Var.dismissWithButtonClick(((Integer) view.getTag()).intValue());
+                return;
+            default:
+                u5 u5Var = (u5) this.f23236b;
+                if (!u5Var.f23137x.f19327f) {
+                    if (u5Var.f23136w.f19327f) {
+                        r5 r5Var = u5Var.f23129a;
+                        int i10 = u5Var.f23130b;
+                        j jVar = r5Var.T;
+                        if (jVar != null) {
+                            jVar.b(i10);
+                            return;
                         }
+                        return;
+                    } else if (u5Var.f23131c == t5.f23101b) {
+                        AndroidUtilities.shakeViewSpring(u5Var, 4.0f);
+                        return;
+                    } else {
+                        return;
                     }
-                    i11++;
                 }
-            }
-            u0 f7 = yVar.f(childCount, this.f21942b, this.f21943c, null, this.e, this.f21944f, this.f21945g, null, this.h);
-            this.f21950m = f7;
-            f7.setVisibility(this.f21949l);
-            CharSequence charSequence = this.d;
-            if (charSequence != null) {
-                this.f21950m.setContentDescription(charSequence);
-            }
-            Boolean bool = this.f21948k;
-            if (bool != null) {
-                this.f21950m.R = bool.booleanValue();
-            }
-            Boolean bool2 = this.f21947j;
-            if (bool2 != null) {
-                this.f21950m.S = bool2.booleanValue();
-            }
-            this.f21950m.setAlpha(this.f21946i);
-            ArrayList arrayList2 = this.f21951n;
-            if (arrayList2 != null) {
-                int size = arrayList2.size();
-                while (i10 < size) {
-                    Object obj = arrayList2.get(i10);
-                    i10++;
-                    ((Utilities.Callback) obj).run(this.f21950m);
-                }
-                this.f21951n = null;
-            }
-        }
-    }
-
-    public final void b(xe xeVar) {
-        u0 u0Var = this.f21950m;
-        if (u0Var != null) {
-            xeVar.run(u0Var);
-            return;
-        }
-        if (this.f21951n == null) {
-            this.f21951n = new ArrayList();
-        }
-        this.f21951n.add(xeVar);
-    }
-
-    public final void c() {
-        this.f21948k = Boolean.FALSE;
-        u0 u0Var = this.f21950m;
-        if (u0Var != null) {
-            u0Var.R = false;
-        }
-    }
-
-    public final void d() {
-        this.f21947j = Boolean.TRUE;
-        u0 u0Var = this.f21950m;
-        if (u0Var != null) {
-            u0Var.S = true;
-        }
-    }
-
-    public final void e() {
-        this.f21952o = null;
-    }
-
-    public final void f(int i10) {
-        if (this.f21949l != i10) {
-            this.f21949l = i10;
-            if (i10 == 0) {
-                a();
-            }
-            u0 u0Var = this.f21950m;
-            if (u0Var != null) {
-                u0Var.setVisibility(i10);
-            }
+                return;
         }
     }
 }

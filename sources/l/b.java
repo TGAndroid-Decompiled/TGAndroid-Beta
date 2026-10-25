@@ -2,9 +2,9 @@ package l;
 
 import android.view.View;
 import androidx.appcompat.view.menu.ActionMenuItemView;
-import m.v1;
-public final class b extends v1 {
-    public final int f15782s = 0;
+import m.u1;
+public final class b extends u1 {
+    public final int f16685s = 0;
     public final View v;
 
     public b(ActionMenuItemView actionMenuItemView) {
@@ -14,57 +14,57 @@ public final class b extends v1 {
 
     @Override
     public final b0 b() {
-        m.e eVar;
-        switch (this.f15782s) {
+        m.d dVar;
+        switch (this.f16685s) {
             case 0:
-                c cVar = ((ActionMenuItemView) this.v).f2722x;
-                if (cVar != null && (eVar = ((m.f) cVar).f16260a.J) != null) {
-                    return eVar.a();
+                c cVar = ((ActionMenuItemView) this.v).f2168x;
+                if (cVar != null && (dVar = ((m.e) cVar).f17708a.J) != null) {
+                    return dVar.a();
                 }
                 return null;
             default:
-                m.e eVar2 = ((m.h) this.v).d.I;
-                if (eVar2 == null) {
+                m.d dVar2 = ((m.g) this.v).d.I;
+                if (dVar2 == null) {
                     return null;
                 }
-                return eVar2.a();
+                return dVar2.a();
         }
     }
 
     @Override
     public final boolean c() {
         b0 b10;
-        switch (this.f15782s) {
+        switch (this.f16685s) {
             case 0:
                 ActionMenuItemView actionMenuItemView = (ActionMenuItemView) this.v;
                 j jVar = actionMenuItemView.v;
-                if (jVar != null && jVar.a(actionMenuItemView.f2718n) && (b10 = b()) != null && b10.a()) {
+                if (jVar != null && jVar.a(actionMenuItemView.f2164n) && (b10 = b()) != null && b10.a()) {
                     return true;
                 }
                 return false;
             default:
-                ((m.h) this.v).d.l();
+                ((m.g) this.v).d.l();
                 return true;
         }
     }
 
     @Override
     public boolean d() {
-        switch (this.f15782s) {
+        switch (this.f16685s) {
             case 1:
-                m.i iVar = ((m.h) this.v).d;
-                if (iVar.K != null) {
+                m.h hVar = ((m.g) this.v).d;
+                if (hVar.K != null) {
                     return false;
                 }
-                iVar.f();
+                hVar.f();
                 return true;
             default:
                 return super.d();
         }
     }
 
-    public b(m.h hVar, m.h hVar2) {
-        super(hVar2);
-        this.v = hVar;
+    public b(m.g gVar, m.g gVar2) {
+        super(gVar2);
+        this.v = gVar;
     }
 }

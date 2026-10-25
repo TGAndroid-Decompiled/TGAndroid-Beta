@@ -1,31 +1,31 @@
 package j4;
 
-import b2.v0;
-import c3.l0;
-import v7.u6;
+import a8.yb;
+import b2.w0;
+import c3.j0;
 public final class u implements i {
-    public final e2.x f14238a;
-    public final c3.c0 f14239b;
-    public final String f14240c;
+    public final e2.x f15451a;
+    public final c3.z f15452b;
+    public final String f15453c;
     public final int d;
     public final String e;
-    public l0 f14241f;
-    public String f14242g;
+    public j0 f15454f;
+    public String f15455g;
     public int h = 0;
-    public int f14243i;
-    public boolean f14244j;
-    public boolean f14245k;
-    public long f14246l;
-    public int f14247m;
-    public long f14248n;
+    public int f15456i;
+    public boolean f15457j;
+    public boolean f15458k;
+    public long f15459l;
+    public int f15460m;
+    public long f15461n;
 
     public u(String str, int i10, String str2) {
         e2.x xVar = new e2.x(4);
-        this.f14238a = xVar;
-        xVar.f8298a[0] = -1;
-        this.f14239b = new Object();
-        this.f14248n = -9223372036854775807L;
-        this.f14240c = str;
+        this.f15451a = xVar;
+        xVar.f9732a[0] = -1;
+        this.f15452b = new Object();
+        this.f15461n = -9223372036854775807L;
+        this.f15453c = str;
         this.d = i10;
         this.e = str2;
     }
@@ -34,69 +34,69 @@ public final class u implements i {
     public final void a(e2.x xVar) {
         boolean z10;
         boolean z11;
-        this.f14241f.getClass();
+        this.f15454f.getClass();
         while (xVar.a() > 0) {
             int i10 = this.h;
-            e2.x xVar2 = this.f14238a;
+            e2.x xVar2 = this.f15451a;
             boolean z12 = true;
             if (i10 != 0) {
                 if (i10 != 1) {
                     if (i10 == 2) {
-                        int min = Math.min(xVar.a(), this.f14247m - this.f14243i);
-                        this.f14241f.d(min, xVar);
-                        int i11 = this.f14243i + min;
-                        this.f14243i = i11;
-                        if (i11 >= this.f14247m) {
-                            if (this.f14248n == -9223372036854775807L) {
+                        int min = Math.min(xVar.a(), this.f15460m - this.f15456i);
+                        this.f15454f.d(min, xVar);
+                        int i11 = this.f15456i + min;
+                        this.f15456i = i11;
+                        if (i11 >= this.f15460m) {
+                            if (this.f15461n == -9223372036854775807L) {
                                 z12 = false;
                             }
-                            u6.p(z12);
-                            this.f14241f.c(this.f14248n, 1, this.f14247m, 0, null);
-                            this.f14248n += this.f14246l;
-                            this.f14243i = 0;
+                            yb.p(z12);
+                            this.f15454f.c(this.f15461n, 1, this.f15460m, 0, null);
+                            this.f15461n += this.f15459l;
+                            this.f15456i = 0;
                             this.h = 0;
                         }
                     } else {
                         throw new IllegalStateException();
                     }
                 } else {
-                    int min2 = Math.min(xVar.a(), 4 - this.f14243i);
-                    xVar.k(this.f14243i, min2, xVar2.f8298a);
-                    int i12 = this.f14243i + min2;
-                    this.f14243i = i12;
+                    int min2 = Math.min(xVar.a(), 4 - this.f15456i);
+                    xVar.k(this.f15456i, min2, xVar2.f9732a);
+                    int i12 = this.f15456i + min2;
+                    this.f15456i = i12;
                     if (i12 >= 4) {
                         xVar2.N(0);
                         int m10 = xVar2.m();
-                        c3.c0 c0Var = this.f14239b;
-                        if (!c0Var.a(m10)) {
-                            this.f14243i = 0;
+                        c3.z zVar = this.f15452b;
+                        if (!zVar.a(m10)) {
+                            this.f15456i = 0;
                             this.h = 1;
                         } else {
-                            this.f14247m = c0Var.f4596b;
-                            if (!this.f14244j) {
-                                this.f14246l = (c0Var.f4598f * 1000000) / c0Var.f4597c;
-                                b2.v vVar = new b2.v();
-                                vVar.f4068a = this.f14242g;
-                                vVar.f4081q = v0.n(this.e);
-                                vVar.f4082r = v0.n((String) c0Var.f4599g);
-                                vVar.f4083s = 4096;
-                                vVar.J = c0Var.d;
-                                vVar.K = c0Var.f4597c;
-                                vVar.d = this.f14240c;
-                                vVar.f4071f = this.d;
-                                this.f14241f.b(new b2.w(vVar));
-                                this.f14244j = true;
+                            this.f15460m = zVar.f6125b;
+                            if (!this.f15457j) {
+                                this.f15459l = (zVar.f6127f * 1000000) / zVar.f6126c;
+                                b2.w wVar = new b2.w();
+                                wVar.f3519a = this.f15455g;
+                                wVar.f3532q = w0.n(this.e);
+                                wVar.f3533r = w0.n((String) zVar.f6128g);
+                                wVar.f3534s = 4096;
+                                wVar.J = zVar.d;
+                                wVar.K = zVar.f6126c;
+                                wVar.d = this.f15453c;
+                                wVar.f3522f = this.d;
+                                this.f15454f.b(new b2.x(wVar));
+                                this.f15457j = true;
                             }
                             xVar2.N(0);
-                            this.f14241f.d(4, xVar2);
+                            this.f15454f.d(4, xVar2);
                             this.h = 2;
                         }
                     }
                 }
             } else {
-                byte[] bArr = xVar.f8298a;
-                int i13 = xVar.f8299b;
-                int i14 = xVar.f8300c;
+                byte[] bArr = xVar.f9732a;
+                int i13 = xVar.f9733b;
+                int i14 = xVar.f9734c;
                 while (true) {
                     if (i13 < i14) {
                         byte b10 = bArr[i13];
@@ -105,17 +105,17 @@ public final class u implements i {
                         } else {
                             z10 = false;
                         }
-                        if (this.f14245k && (b10 & 224) == 224) {
+                        if (this.f15458k && (b10 & 224) == 224) {
                             z11 = true;
                         } else {
                             z11 = false;
                         }
-                        this.f14245k = z10;
+                        this.f15458k = z10;
                         if (z11) {
                             xVar.N(i13 + 1);
-                            this.f14245k = false;
-                            xVar2.f8298a[1] = bArr[i13];
-                            this.f14243i = 2;
+                            this.f15458k = false;
+                            xVar2.f9732a[1] = bArr[i13];
+                            this.f15456i = 2;
                             this.h = 1;
                             break;
                         }
@@ -132,23 +132,23 @@ public final class u implements i {
     @Override
     public final void c() {
         this.h = 0;
-        this.f14243i = 0;
-        this.f14245k = false;
-        this.f14248n = -9223372036854775807L;
+        this.f15456i = 0;
+        this.f15458k = false;
+        this.f15461n = -9223372036854775807L;
     }
 
     @Override
-    public final void d(c3.s sVar, f0 f0Var) {
+    public final void d(c3.q qVar, f0 f0Var) {
         f0Var.b();
         f0Var.c();
-        this.f14242g = (String) f0Var.e;
+        this.f15455g = (String) f0Var.e;
         f0Var.c();
-        this.f14241f = sVar.j0(f0Var.f14102c, 1);
+        this.f15454f = qVar.F1(f0Var.f15315c, 1);
     }
 
     @Override
     public final void f(int i10, long j10) {
-        this.f14248n = j10;
+        this.f15461n = j10;
     }
 
     @Override

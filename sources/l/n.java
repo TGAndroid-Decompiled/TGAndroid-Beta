@@ -2,23 +2,24 @@ package l;
 
 import android.view.ActionProvider;
 import android.view.View;
+import jg.s0;
 public final class n implements ActionProvider.VisibilityListener {
-    public final ActionProvider f15861a;
-    public a4.l f15862b;
+    public final ActionProvider f16764a;
+    public s0 f16765b;
 
     public n(r rVar, ActionProvider actionProvider) {
-        this.f15861a = actionProvider;
+        this.f16764a = actionProvider;
     }
 
     public final View a(m mVar) {
-        return this.f15861a.onCreateActionView(mVar);
+        return this.f16764a.onCreateActionView(mVar);
     }
 
     @Override
     public final void onActionProviderVisibilityChanged(boolean z10) {
-        a4.l lVar = this.f15862b;
-        if (lVar != null) {
-            k kVar = ((m) lVar.f279b).f15849n;
+        s0 s0Var = this.f16765b;
+        if (s0Var != null) {
+            k kVar = ((m) s0Var.f15828b).f16752n;
             kVar.h = true;
             kVar.p(true);
         }

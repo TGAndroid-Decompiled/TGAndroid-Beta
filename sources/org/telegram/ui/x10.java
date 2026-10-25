@@ -7,40 +7,43 @@ import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 public final class x10 implements Utilities.CallbackReturn {
-    public final int f43449a;
-    public final Object f43450b;
+    public final int f45623a;
+    public final Object f45624b;
 
     public x10(Object obj, int i10) {
-        this.f43449a = i10;
-        this.f43450b = obj;
+        this.f45623a = i10;
+        this.f45624b = obj;
     }
 
     @Override
     public final Object run(Object obj) {
-        switch (this.f43449a) {
+        int i10 = this.f45623a;
+        Object obj2 = this.f45624b;
+        switch (i10) {
             case 0:
-                b20 b20Var = (b20) this.f43450b;
+                d20 d20Var = (d20) obj2;
                 View view = (View) obj;
-                b20Var.getClass();
+                d20Var.getClass();
                 ViewParent parent = view.getParent();
-                org.telegram.ui.Components.lm0 lm0Var = b20Var.f35894c;
-                if (parent != lm0Var) {
+                org.telegram.ui.Components.mm0 mm0Var = d20Var.f38713c;
+                if (parent != mm0Var) {
                     return Boolean.FALSE;
                 }
-                return Boolean.valueOf(!org.telegram.ui.Components.a71.K(lm0Var.T(view).f46345f));
+                return Boolean.valueOf(!org.telegram.ui.Components.j71.K(mm0Var.T(view).f47738f));
             case 1:
-                qf0 qf0Var = (qf0) this.f43450b;
+                of0 of0Var = (of0) obj2;
                 TLRPC.TL_error tL_error = (TLRPC.TL_error) obj;
                 if (tL_error != null && "PHONE_CODE_EXPIRED".equalsIgnoreCase(tL_error.text)) {
-                    AndroidUtilities.runOnUIThread(new nf0(qf0Var, 1));
+                    AndroidUtilities.runOnUIThread(new lf0(of0Var, 1));
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;
             default:
-                ProfileActivity profileActivity = (ProfileActivity) this.f43450b;
+                ProfileActivity profileActivity = (ProfileActivity) obj2;
                 URLSpan uRLSpan = (URLSpan) obj;
+                int i11 = ProfileActivity.R6;
                 if (uRLSpan != null) {
-                    profileActivity.D4(uRLSpan.getURL(), null);
+                    profileActivity.J4(uRLSpan.getURL(), null);
                     return Boolean.TRUE;
                 }
                 return Boolean.FALSE;

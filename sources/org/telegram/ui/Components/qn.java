@@ -1,40 +1,138 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
 import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class qn extends s4.c0 {
-    public final ig.d0 f29964r;
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class qn implements ty {
+    public final Utilities.Callback f31967a;
+    public final nn f31968b;
 
-    public qn(ig.d0 d0Var, Context context) {
-        super(context);
-        this.f29964r = d0Var;
+    public qn(Utilities.Callback callback, nn nnVar) {
+        this.f31967a = callback;
+        this.f31968b = nnVar;
     }
 
     @Override
-    public final int k(int i10, View view) {
-        int i11;
-        co coVar = (co) this.f29964r.V;
-        if (coVar.V0) {
-            i10 = -1;
-        }
-        int k10 = super.k(i10, view);
-        if (coVar.V0) {
-            k10 += AndroidUtilities.dp(160.0f);
-        }
-        if (!coVar.V0) {
-            k10 = org.telegram.messenger.v0.z(7.0f, coVar.R0 - AndroidUtilities.statusBarHeight, k10);
-        }
-        if (coVar.V0 && k10 == 0 && (i11 = coVar.W0) >= 0) {
-            co.N(coVar, i11);
-            coVar.W0 = -1;
-        }
-        coVar.V0 = false;
-        return k10;
+    public final boolean A() {
+        return false;
     }
 
     @Override
-    public final int m(int i10) {
-        return super.m(i10) * 2;
+    public final long a() {
+        return 0L;
+    }
+
+    @Override
+    public final boolean b() {
+        return false;
+    }
+
+    @Override
+    public final boolean c() {
+        return false;
+    }
+
+    @Override
+    public final int f() {
+        return 0;
+    }
+
+    @Override
+    public final boolean g() {
+        return false;
+    }
+
+    @Override
+    public final boolean j() {
+        return false;
+    }
+
+    @Override
+    public final boolean k() {
+        return false;
+    }
+
+    @Override
+    public final void m(View view, TLRPC.Document document, String str, Object obj, MessageObject.SendAnimationData sendAnimationData, boolean z10, int i10) {
+        this.f31967a.run(new th.h(document, obj));
+        this.f31968b.dismiss(true);
+    }
+
+    @Override
+    public final float p() {
+        return 0.0f;
+    }
+
+    @Override
+    public final void x(long j10, TLRPC.Document document, String str, boolean z10) {
+        this.f31967a.run(new th.h(document, null));
+        this.f31968b.dismiss(true);
+    }
+
+    @Override
+    public final boolean z() {
+        return false;
+    }
+
+    @Override
+    public final void n() {
+    }
+
+    @Override
+    public final void q() {
+    }
+
+    @Override
+    public final void u() {
+    }
+
+    @Override
+    public final void w() {
+    }
+
+    @Override
+    public final void h(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void i(int i10) {
+    }
+
+    @Override
+    public final void l(String str) {
+    }
+
+    @Override
+    public final void o(p61 p61Var) {
+    }
+
+    @Override
+    public final void r(TLRPC.StickerSetCovered stickerSetCovered) {
+    }
+
+    @Override
+    public final void s(int i10) {
+    }
+
+    @Override
+    public final void t(ArrayList arrayList) {
+    }
+
+    @Override
+    public final void y(long j10) {
+    }
+
+    @Override
+    public final void e(Object obj, Object obj2) {
+    }
+
+    @Override
+    public final void d(TLRPC.StickerSet stickerSet, TLRPC.InputStickerSet inputStickerSet, boolean z10) {
+    }
+
+    @Override
+    public final void v(View view, Object obj, String str, Object obj2, boolean z10, int i10, int i11) {
     }
 }

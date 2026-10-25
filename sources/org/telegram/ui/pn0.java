@@ -1,31 +1,63 @@
 package org.telegram.ui;
 
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_account;
-public final class pn0 implements fo0 {
-    public final ho0 f40601a;
+public final class pn0 implements Runnable {
+    public final int f42576a;
+    public final po0 f42577b;
+    public final TLRPC.TL_error f42578c;
+    public final TLObject d;
 
-    public pn0(ho0 ho0Var) {
-        this.f40601a = ho0Var;
+    public pn0(po0 po0Var, TLRPC.TL_error tL_error, TLObject tLObject, int i10) {
+        this.f42576a = i10;
+        this.f42577b = po0Var;
+        this.f42578c = tL_error;
+        this.d = tLObject;
     }
 
     @Override
-    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
-        return false;
-    }
-
-    @Override
-    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
-        ho0 ho0Var = this.f40601a;
-        ho0Var.I0 = tL_payments_validateRequestedInfo;
-        ho0Var.B0(tL_payments_validateRequestedInfo.info);
-    }
-
-    @Override
-    public final void a(TL_account.Password password) {
-    }
-
-    @Override
-    public final void b() {
+    public final void run() {
+        switch (this.f42576a) {
+            case 0:
+                po0 po0Var = this.f42577b;
+                po0Var.f42594e0 = false;
+                if (this.f42578c == null) {
+                    TL_account.Password password = (TL_account.Password) this.d;
+                    po0Var.f42584a0 = password;
+                    if (!TwoStepVerificationActivity.j0(password, false)) {
+                        org.telegram.ui.Components.g5.w0(po0Var.getParentActivity(), LocaleController.getString(R.string.UpdateAppAlert), true);
+                        return;
+                    }
+                    TLRPC.PaymentForm paymentForm = po0Var.C0;
+                    if (paymentForm != null && po0Var.f42584a0.has_password) {
+                        paymentForm.password_missing = false;
+                        paymentForm.can_save_credentials = true;
+                        po0Var.L0();
+                    }
+                    TwoStepVerificationActivity.n0(po0Var.f42584a0);
+                    po0 po0Var2 = po0Var.f42597f0;
+                    if (po0Var2 != null) {
+                        po0Var2.D0(po0Var.f42584a0);
+                    }
+                    if (!po0Var.f42584a0.has_password && po0Var.f42592d0 == null) {
+                        nn0 nn0Var = new nn0(po0Var, 3);
+                        po0Var.f42592d0 = nn0Var;
+                        AndroidUtilities.runOnUIThread(nn0Var, 5000L);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 1:
+                po0.W(this.f42577b, this.f42578c, this.d);
+                return;
+            default:
+                po0.Y(this.f42577b, this.f42578c, this.d);
+                return;
+        }
     }
 }

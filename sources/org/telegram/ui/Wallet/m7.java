@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.view.View;
 public final class m7 extends View {
-    public final t7 f34881a;
+    public final t7 f36968a;
 
     public m7(t7 t7Var, Context context) {
         super(context);
-        this.f34881a = t7Var;
+        this.f36968a = t7Var;
     }
 
     @Override
@@ -18,11 +18,11 @@ public final class m7 extends View {
         Canvas canvas2;
         float f10;
         float f11;
-        t7 t7Var = this.f34881a;
+        t7 t7Var = this.f36968a;
         if (t7Var.Y0 > 0.0f) {
             if (t7Var.X0) {
                 float f12 = t7Var.U0;
-                pow = com.google.android.gms.internal.play_billing.k3.B(f12, 2.0f, 3.0f, f12 * f12);
+                pow = c3.h0.D(f12, 2.0f, 3.0f, f12 * f12);
             } else {
                 pow = 1.0f - ((float) Math.pow(1.0f - t7Var.U0, 4.0d));
             }

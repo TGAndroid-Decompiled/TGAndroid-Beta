@@ -1,23 +1,23 @@
 package org.telegram.messenger;
 public final class mf implements Runnable {
-    public final int f19035a;
-    public final MessagesStorage f19036b;
-    public final boolean f19037c;
+    public final int f20694a;
+    public final MessagesStorage f20695b;
+    public final boolean f20696c;
 
     public mf(MessagesStorage messagesStorage, boolean z10, int i10) {
-        this.f19035a = i10;
-        this.f19036b = messagesStorage;
-        this.f19037c = z10;
+        this.f20694a = i10;
+        this.f20695b = messagesStorage;
+        this.f20696c = z10;
     }
 
     @Override
     public final void run() {
-        switch (this.f19035a) {
+        switch (this.f20694a) {
             case 0:
-                this.f19036b.lambda$getCachedPhoneBook$150(this.f19037c);
+                this.f20695b.lambda$getCachedPhoneBook$153(this.f20696c);
                 return;
             default:
-                this.f19036b.lambda$cleanup$6(this.f19037c);
+                this.f20695b.lambda$cleanup$6(this.f20696c);
                 return;
         }
     }

@@ -1,27 +1,27 @@
 package r2;
 
+import a8.yb;
 import java.nio.ByteBuffer;
-import v7.u6;
 public final class g extends h2.h {
-    public long f45347r;
-    public int f45348s;
+    public long f47212r;
+    public int f47213s;
     public int v;
 
     @Override
     public final void clear() {
         super.clear();
-        this.f45348s = 0;
+        this.f47213s = 0;
     }
 
-    public final boolean e(h2.h hVar) {
+    public final boolean f(h2.h hVar) {
         ByteBuffer byteBuffer;
-        u6.g(!hVar.getFlag(1073741824));
-        u6.g(!hVar.hasSupplementalData());
-        u6.g(!hVar.isEndOfStream());
-        if (f()) {
-            if (this.f45348s < this.v) {
-                ByteBuffer byteBuffer2 = hVar.f11661c;
-                if (byteBuffer2 != null && (byteBuffer = this.f11661c) != null) {
+        yb.g(!hVar.getFlag(1073741824));
+        yb.g(!hVar.hasSupplementalData());
+        yb.g(!hVar.isEndOfStream());
+        if (h()) {
+            if (this.f47213s < this.v) {
+                ByteBuffer byteBuffer2 = hVar.f12570c;
+                if (byteBuffer2 != null && (byteBuffer = this.f12570c) != null) {
                     if (byteBuffer2.remaining() + byteBuffer.position() > 3072000) {
                         return false;
                     }
@@ -30,25 +30,25 @@ public final class g extends h2.h {
                 return false;
             }
         }
-        int i10 = this.f45348s;
-        this.f45348s = i10 + 1;
+        int i10 = this.f47213s;
+        this.f47213s = i10 + 1;
         if (i10 == 0) {
             this.e = hVar.e;
             if (hVar.isKeyFrame()) {
                 setFlags(1);
             }
         }
-        ByteBuffer byteBuffer3 = hVar.f11661c;
+        ByteBuffer byteBuffer3 = hVar.f12570c;
         if (byteBuffer3 != null) {
             b(byteBuffer3.remaining());
-            this.f11661c.put(byteBuffer3);
+            this.f12570c.put(byteBuffer3);
         }
-        this.f45347r = hVar.e;
+        this.f47212r = hVar.e;
         return true;
     }
 
-    public final boolean f() {
-        if (this.f45348s > 0) {
+    public final boolean h() {
+        if (this.f47213s > 0) {
             return true;
         }
         return false;

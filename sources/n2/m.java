@@ -1,8 +1,18 @@
 package n2;
 
-import m4.v0;
+import android.os.Looper;
 public interface m {
-    public static final v0 f17123u = new v0(17);
+    public static final tb.a f18629z = new tb.a(13);
+
+    void a();
+
+    void f(Looper looper, j2.j jVar);
+
+    l g(j jVar, b2.x xVar);
 
     void release();
+
+    int w(b2.x xVar);
+
+    g z(j jVar, b2.x xVar);
 }

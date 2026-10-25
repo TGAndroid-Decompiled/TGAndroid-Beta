@@ -1,95 +1,80 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.HashSet;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
+import android.text.Editable;
+import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class ma extends FrameLayout implements org.telegram.ui.ActionBar.b6 {
-    public final EditTextBoldCursor f39521a;
-    public final TextView f39522b;
-    public final sa f39523c;
+public final class ma implements TextWatcher {
+    public final na f41510a;
 
-    public ma(sa saVar, Activity activity) {
-        super(activity);
+    public ma(na naVar) {
+        this.f41510a = naVar;
+    }
+
+    @Override
+    public final void afterTextChanged(Editable editable) {
         int i10;
-        this.f39523c = saVar;
-        LinearLayout linearLayout = new LinearLayout(getContext());
-        linearLayout.setOrientation(0);
-        EditTextBoldCursor editTextBoldCursor = new EditTextBoldCursor(getContext());
-        this.f39521a = editTextBoldCursor;
-        editTextBoldCursor.setTextSize(1, 17.0f);
-        org.telegram.ui.ActionBar.r6.F(editTextBoldCursor, org.telegram.ui.ActionBar.k6.H6, null);
-        int i11 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.r6.W(editTextBoldCursor, i11, null);
-        editTextBoldCursor.setBackgroundDrawable(null);
-        editTextBoldCursor.setMaxLines(1);
-        editTextBoldCursor.setLines(1);
-        editTextBoldCursor.setPadding(0, 0, 0, 0);
-        editTextBoldCursor.setSingleLine(true);
-        if (LocaleController.isRTL) {
-            i10 = 5;
+        ta taVar = this.f41510a.f41823c;
+        if (taVar.f43709r.startsWith("@")) {
+            taVar.f43709r = taVar.f43709r.substring(1);
+        }
+        if (taVar.f43709r.length() > 0) {
+            StringBuilder sb2 = new StringBuilder("https://");
+            i10 = ((org.telegram.ui.ActionBar.r2) taVar).currentAccount;
+            sb2.append(MessagesController.getInstance(i10).linkPrefix);
+            sb2.append("/");
+            sb2.append(taVar.f43709r);
+            String sb3 = sb2.toString();
+            String formatString = LocaleController.formatString("UsernameHelpLink", R.string.UsernameHelpLink, sb3);
+            int indexOf = formatString.indexOf(sb3);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(formatString);
+            if (indexOf >= 0) {
+                spannableStringBuilder.setSpan(new org.telegram.ui.Cells.i(sb3, taVar, 3), indexOf, sb3.length() + indexOf, 33);
+            }
+        }
+    }
+
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        String charSequence2;
+        na naVar = this.f41510a;
+        ta taVar = naVar.f41823c;
+        String str = taVar.f43709r;
+        if (charSequence == null) {
+            charSequence2 = "";
         } else {
-            i10 = 3;
+            charSequence2 = charSequence.toString();
         }
-        editTextBoldCursor.setGravity(i10 | 48);
-        editTextBoldCursor.setInputType(180224);
-        editTextBoldCursor.setImeOptions(6);
-        editTextBoldCursor.setHint(LocaleController.getString(R.string.UsernameLinkPlaceholder));
-        org.telegram.ui.ActionBar.r6.m(editTextBoldCursor, 30, i11, null);
-        editTextBoldCursor.setCursorSize(AndroidUtilities.dp(19.0f));
-        editTextBoldCursor.setCursorWidth(1.5f);
-        editTextBoldCursor.setOnEditorActionListener(new ka(this, 0));
-        String str = saVar.f41331r;
-        long j10 = saVar.f41334x;
-        editTextBoldCursor.setText(str);
-        editTextBoldCursor.addTextChangedListener(new la(this));
-        int i12 = (j10 > 0L ? 1 : (j10 == 0L ? 0 : -1));
-        if (i12 != 0) {
-            editTextBoldCursor.setEnabled(false);
-        }
-        TextView textView = new TextView(getContext());
-        this.f39522b = textView;
-        textView.setMaxLines(1);
-        textView.setLines(1);
-        textView.setPadding(0, 0, 0, 0);
-        textView.setSingleLine(true);
-        textView.setText(saVar.getMessagesController().linkPrefix + "/");
-        textView.setTextSize(1, 17.0f);
-        org.telegram.ui.ActionBar.r6.W(textView, i11, null);
-        textView.setGravity((LocaleController.isRTL ? 5 : 3) | 48);
-        textView.setTranslationY(-AndroidUtilities.dp(3.0f));
-        linearLayout.addView(textView, w7.z5.p(-2, -2, 0.0f, 16, 21, 15, 0, 15));
-        linearLayout.addView(editTextBoldCursor, w7.z5.p(-2, -2, 1.0f, 16, 0, 15, 21, 15));
-        addView(linearLayout, w7.z5.e(-1, -1, 48));
-        if (i12 != 0) {
-            editTextBoldCursor.setAlpha(0.6f);
-            textView.setAlpha(0.6f);
+        taVar.f43709r = charSequence2;
+        ta taVar2 = naVar.f41823c;
+        qa qaVar = taVar2.E;
+        if (qaVar != null && str != null) {
+            qaVar.b(taVar2.f43709r);
         }
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f), 1073741824));
-    }
-
-    @Override
-    public final void updateColors() {
-        try {
-            this.f39521a.setCursorColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
-            invalidate();
-        } catch (Exception e) {
-            FileLog.e(e);
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        String charSequence2;
+        na naVar = this.f41510a;
+        ta taVar = naVar.f41823c;
+        String str = taVar.f43709r;
+        if (charSequence == null) {
+            charSequence2 = "";
+        } else {
+            charSequence2 = charSequence.toString();
         }
-    }
-
-    @Override
-    public final void addColorKeys(HashSet hashSet) {
+        taVar.f43709r = charSequence2;
+        ta taVar2 = naVar.f41823c;
+        qa qaVar = taVar2.E;
+        if (qaVar != null && str != null) {
+            qaVar.b(taVar2.f43709r);
+        }
+        if (taVar.f43708n) {
+            return;
+        }
+        taVar.e0(taVar.f43709r);
     }
 }

@@ -13,7 +13,6 @@ import java.util.Iterator;
 import org.telegram.messenger.SvgHelper;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import w7.r;
 public class LiteMode {
     private static int BATTERY_HIGH = 10;
     private static final long BATTERY_LEVEL_QUERY_INTERVAL = 60000;
@@ -79,7 +78,7 @@ public class LiteMode {
         if (!batteryLevelQueryRunning && (lastBatteryLevelChecked == 0 || elapsedRealtime - lastBatteryLevelChecked > 60000)) {
             batteryLevelQueryRunning = true;
             lastBatteryLevelChecked = elapsedRealtime;
-            Utilities.globalQueue.postRunnable(new z1(13));
+            Utilities.globalQueue.postRunnable(new a2(13));
         }
         return lastBatteryLevel;
     }
@@ -226,7 +225,7 @@ public class LiteMode {
             int intExtra = intent.getIntExtra("level", -1);
             int intExtra2 = intent.getIntExtra("scale", -1);
             if (intExtra >= 0 && intExtra2 > 0) {
-                setBatteryLevel(r.b(Math.round((intExtra * 100.0f) / intExtra2), 0, 100));
+                setBatteryLevel(a8.ee.b(Math.round((intExtra * 100.0f) / intExtra2), 0, 100));
             }
         }
     }
@@ -234,15 +233,19 @@ public class LiteMode {
     private static void onFlagsUpdate(int i10, int i11) {
         int i12 = (~i10) & i11;
         if ((i12 & 28700) > 0) {
-            org.telegram.ui.Components.p5.u();
+            org.telegram.ui.Components.t5.u();
         }
         int i13 = i12 & 32;
         if (i13 > 0) {
             SvgHelper.SvgDrawable.updateLiteValues();
         }
         if (i13 > 0) {
-            org.telegram.ui.ActionBar.k6.r1(true);
+            org.telegram.ui.ActionBar.y6.r1(true);
         }
+        if (!a8.pf.a(i12, 256) && !a8.pf.a(i12, 262144)) {
+            return;
+        }
+        oi.q.f();
     }
 
     private static void onPowerSaverApplied(boolean z10) {
@@ -252,7 +255,7 @@ public class LiteMode {
             onFlagsUpdate(PRESET_POWER_SAVER, getValue(true));
         }
         if (onPowerSaverAppliedListeners != null) {
-            AndroidUtilities.runOnUIThread(new d4(2, z10));
+            AndroidUtilities.runOnUIThread(new e4(2, z10));
         }
     }
 
@@ -337,11 +340,11 @@ public class LiteMode {
             return;
         }
         lastBatteryLevel = i10;
-        AndroidUtilities.runOnUIThread(new z1(12));
+        AndroidUtilities.runOnUIThread(new a2(12));
     }
 
     public static void setPowerSaverLevel(int i10) {
-        powerSaverLevel = r.b(i10, 0, 100);
+        powerSaverLevel = a8.ee.b(i10, 0, 100);
         savePreference();
         getValue(false);
     }
@@ -374,8 +377,8 @@ public class LiteMode {
                         BATTERY_LOW = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(0)).value;
                         BATTERY_MEDIUM = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(1)).value;
                         BATTERY_HIGH = (int) ((TLRPC.TL_jsonNumber) arrayList2.get(2)).value;
-                    } catch (Exception e7) {
-                        FileLog.e(e7);
+                    } catch (Exception e10) {
+                        FileLog.e(e10);
                     }
                 }
             }

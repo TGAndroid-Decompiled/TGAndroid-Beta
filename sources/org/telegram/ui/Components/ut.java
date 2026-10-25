@@ -1,25 +1,8 @@
 package org.telegram.ui.Components;
-
-import android.os.Build;
-import android.widget.EdgeEffect;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-public final class ut extends s4.k0 {
-    public final tt[] f31220a = new tt[4];
-    public final ArrayList f31221b = new ArrayList();
-
-    @Override
-    public final EdgeEffect a(RecyclerView recyclerView, int i10) {
-        tt ttVar = new tt(recyclerView, i10, new rt(this, 0));
-        this.f31220a[i10] = ttVar;
-        return ttVar;
-    }
-
-    public final float b(int i10) {
-        tt ttVar = this.f31220a[i10];
-        if (Build.VERSION.SDK_INT >= 31 && ttVar != null && !ttVar.isFinished()) {
-            return ttVar.getDistance();
-        }
-        return 0.0f;
-    }
+public abstract class ut {
+    public static final ds f33488a = new ds(0.39d, 0.575d, 0.565d, 1.0d);
+    public static final ds f33489b = new ds(0.445d, 0.05d, 0.55d, 0.95d);
+    public static final ds f33490c = new ds(0.55d, 0.085d, 0.68d, 0.53d);
+    public static final ds d = new ds(0.25d, 0.46d, 0.45d, 0.94d);
+    public static final ds e = new ds(0.455d, 0.03d, 0.515d, 0.955d);
 }

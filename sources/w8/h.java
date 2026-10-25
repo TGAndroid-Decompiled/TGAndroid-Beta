@@ -1,25 +1,17 @@
 package w8;
 
+import a8.df;
+import android.app.PendingIntent;
 import android.os.Parcel;
 import android.os.Parcelable;
-import v8.s;
-import w7.f0;
-public final class h extends o6.a {
-    public static final Parcelable.Creator<h> CREATOR = new s(22);
-    public String f49338a;
-    public String f49339b;
-    public f f49340c;
-    public g d;
-    public g e;
+public final class h extends p6.a {
+    public static final Parcelable.Creator<h> CREATOR = new s(13);
+    public PendingIntent f51097a;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 2, this.f49338a);
-        f0.l(parcel, 3, this.f49339b);
-        f0.k(parcel, 4, this.f49340c, i10);
-        f0.k(parcel, 5, this.d, i10);
-        f0.k(parcel, 6, this.e, i10);
-        f0.r(parcel, q6);
+        int q5 = df.q(parcel, 20293);
+        df.k(parcel, 1, this.f51097a, i10);
+        df.r(parcel, q5);
     }
 }

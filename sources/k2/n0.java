@@ -1,157 +1,144 @@
 package k2;
 
-import android.app.PictureInPictureParams;
-import android.content.Context;
-import android.graphics.Point;
-import android.graphics.Rect;
-import android.media.AudioFormat;
-import android.media.AudioManager;
-import android.os.Build;
-import android.util.Rational;
-public final class n0 {
-    public final Object f14802a;
-    public Object f14803b;
+import a8.yb;
+import java.nio.ByteBuffer;
+import java.nio.ByteOrder;
+import java.util.Arrays;
+public final class n0 extends c2.p {
+    public int[] f16237i;
+    public int[] f16238j;
 
-    public n0() {
-        this.f14802a = new Rect();
-        this.f14803b = new Point();
-    }
-
-    public PictureInPictureParams.Builder a() {
+    @Override
+    public final void b(ByteBuffer byteBuffer) {
         int i10;
-        Rational rational;
-        Rect rect = (Rect) this.f14802a;
-        PictureInPictureParams.Builder builder = new PictureInPictureParams.Builder();
-        Point point = (Point) this.f14803b;
-        int i11 = point.x;
-        if (i11 > 0 && (i10 = point.y) > 0) {
-            double d = i11 / i10;
-            if (d < 0.45d) {
-                rational = new Rational(45, 100);
-            } else if (d > 2.35d) {
-                rational = new Rational(235, 100);
-            } else {
-                rational = new Rational(point.x, point.y);
-            }
-            builder.setAspectRatio(rational);
-            if (Build.VERSION.SDK_INT >= 33) {
-                builder.setExpandedAspectRatio(rational);
-            }
-        } else {
-            builder.setAspectRatio(null);
-            if (Build.VERSION.SDK_INT >= 33) {
-                builder.setExpandedAspectRatio(null);
-            }
-        }
-        if (!rect.isEmpty()) {
-            builder.setSourceRectHint(rect);
-            return builder;
-        }
-        builder.setSourceRectHint(null);
-        return builder;
-    }
-
-    public h b(b2.f fVar, b2.w wVar) {
-        boolean booleanValue;
         boolean z10;
-        wVar.getClass();
-        int i10 = wVar.L;
-        fVar.getClass();
-        int i11 = Build.VERSION.SDK_INT;
-        if (i11 >= 29 && i10 != -1) {
-            Context context = (Context) this.f14802a;
-            Boolean bool = (Boolean) this.f14803b;
-            boolean z11 = false;
-            if (bool != null) {
-                booleanValue = bool.booleanValue();
+        int i11;
+        int i12;
+        int[] iArr = this.f16238j;
+        iArr.getClass();
+        int position = byteBuffer.position();
+        int limit = byteBuffer.limit();
+        ByteBuffer l4 = l(((limit - position) / this.f5960b.d) * this.f5961c.d);
+        while (position < limit) {
+            for (int i13 : iArr) {
+                int u10 = (e2.n0.u(this.f5960b.f5956c) * i13) + position;
+                int i14 = this.f5960b.f5956c;
+                if (i14 != 2) {
+                    if (i14 != 3) {
+                        if (i14 != 4) {
+                            if (i14 != 21) {
+                                if (i14 != 22) {
+                                    if (i14 != 268435456) {
+                                        if (i14 != 1342177280) {
+                                            if (i14 != 1610612736) {
+                                                if (i14 == 1879048192) {
+                                                    l4.putDouble(byteBuffer.getDouble(u10));
+                                                } else {
+                                                    throw new IllegalStateException("Unexpected encoding: " + this.f5960b.f5956c);
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                l4.putInt(byteBuffer.getInt(u10));
+                            }
+                            ByteOrder order = byteBuffer.order();
+                            ByteOrder byteOrder = ByteOrder.BIG_ENDIAN;
+                            if (order == byteOrder) {
+                                i10 = u10;
+                            } else {
+                                i10 = u10 + 2;
+                            }
+                            byte b10 = byteBuffer.get(i10);
+                            byte b11 = byteBuffer.get(u10 + 1);
+                            if (byteBuffer.order() == byteOrder) {
+                                u10 += 2;
+                            }
+                            int i15 = ((((b10 << 24) & (-16777216)) | ((b11 << 16) & 16711680)) | ((byteBuffer.get(u10) << 8) & 65280)) >> 8;
+                            boolean z11 = true;
+                            if ((i15 & (-16777216)) != 0 && (i15 & (-8388608)) != -8388608) {
+                                z10 = false;
+                            } else {
+                                z10 = true;
+                            }
+                            yb.h(z10, "Value out of range of 24-bit integer: %s", Integer.toHexString(i15));
+                            if (l4.remaining() < 3) {
+                                z11 = false;
+                            }
+                            yb.g(z11);
+                            if (l4.order() == byteOrder) {
+                                i11 = (i15 & 16711680) >> 16;
+                            } else {
+                                i11 = i15 & 255;
+                            }
+                            byte b12 = (byte) i11;
+                            byte b13 = (byte) ((i15 & 65280) >> 8);
+                            if (l4.order() == byteOrder) {
+                                i12 = i15 & 255;
+                            } else {
+                                i12 = (i15 & 16711680) >> 16;
+                            }
+                            l4.put(b12).put(b13).put((byte) i12);
+                        } else {
+                            l4.putFloat(byteBuffer.getFloat(u10));
+                        }
+                    } else {
+                        l4.put(byteBuffer.get(u10));
+                    }
+                }
+                l4.putShort(byteBuffer.getShort(u10));
+            }
+            position += this.f5960b.d;
+        }
+        byteBuffer.position(limit);
+        l4.flip();
+    }
+
+    @Override
+    public final c2.l h(c2.l lVar) {
+        boolean z10;
+        boolean z11;
+        int i10 = lVar.f5956c;
+        int[] iArr = this.f16237i;
+        if (iArr == null) {
+            return c2.l.e;
+        }
+        int i11 = lVar.f5955b;
+        if (e2.n0.M(i10)) {
+            if (i11 != iArr.length) {
+                z10 = true;
             } else {
-                if (context != null) {
-                    String parameters = c2.i.e(context).getParameters("offloadVariableRateSupported");
-                    if (parameters != null && parameters.equals("offloadVariableRateSupported=1")) {
-                        z10 = true;
+                z10 = false;
+            }
+            for (int i12 = 0; i12 < iArr.length; i12++) {
+                int i13 = iArr[i12];
+                if (i13 < i11) {
+                    if (i13 != i12) {
+                        z11 = true;
                     } else {
-                        z10 = false;
+                        z11 = false;
                     }
-                    this.f14803b = Boolean.valueOf(z10);
+                    z10 |= z11;
                 } else {
-                    this.f14803b = Boolean.FALSE;
-                }
-                booleanValue = ((Boolean) this.f14803b).booleanValue();
-            }
-            String str = wVar.f4135s;
-            str.getClass();
-            int c10 = b2.v0.c(str, wVar.f4127k);
-            if (c10 != 0 && i11 >= e2.m0.s(c10)) {
-                int t10 = e2.m0.t(wVar.K);
-                if (t10 == 0) {
-                    return h.d;
-                }
-                try {
-                    AudioFormat build = new AudioFormat.Builder().setSampleRate(i10).setChannelMask(t10).setEncoding(c10).build();
-                    if (i11 >= 33) {
-                        int directPlaybackSupport = AudioManager.getDirectPlaybackSupport(build, fVar.b());
-                        if ((directPlaybackSupport & 1) == 0) {
-                            return h.d;
-                        }
-                        if ((directPlaybackSupport & 3) == 3) {
-                            z11 = true;
-                        }
-                        ?? obj = new Object();
-                        obj.f4253a = true;
-                        obj.f4254b = z11;
-                        obj.f4255c = booleanValue;
-                        return obj.a();
-                    } else if (i11 >= 31) {
-                        int playbackOffloadSupport = AudioManager.getPlaybackOffloadSupport(build, fVar.b());
-                        if (playbackOffloadSupport == 0) {
-                            return h.d;
-                        }
-                        ?? obj2 = new Object();
-                        if (i11 > 32 && playbackOffloadSupport == 2) {
-                            z11 = true;
-                        }
-                        obj2.f4253a = true;
-                        obj2.f4254b = z11;
-                        obj2.f4255c = booleanValue;
-                        return obj2.a();
-                    } else if (!AudioManager.isOffloadedPlaybackSupported(build, fVar.b())) {
-                        return h.d;
-                    } else {
-                        ?? obj3 = new Object();
-                        obj3.f4253a = true;
-                        obj3.f4255c = booleanValue;
-                        return obj3.a();
-                    }
-                } catch (IllegalArgumentException unused) {
-                    return h.d;
+                    throw new c2.n("Channel map (" + Arrays.toString(iArr) + ") trying to access non-existent input channel.", lVar);
                 }
             }
-            return h.d;
-        }
-        return h.d;
-    }
-
-    public boolean c() {
-        if (!((Rect) this.f14802a).isEmpty()) {
-            Point point = (Point) this.f14803b;
-            if (point.x > 0 && point.y > 0) {
-                return true;
+            if (z10) {
+                return new c2.l(lVar.f5954a, iArr.length, i10);
             }
-            return false;
+            return c2.l.e;
         }
-        return false;
+        throw new c2.n(lVar);
     }
 
-    public boolean d(int i10, int i11) {
-        Point point = (Point) this.f14803b;
-        if (point.x == i10 && point.y == i11) {
-            return false;
-        }
-        point.set(i10, i11);
-        return true;
+    @Override
+    public final void i() {
+        this.f16238j = this.f16237i;
     }
 
-    public n0(Context context) {
-        this.f14802a = context == null ? null : context.getApplicationContext();
+    @Override
+    public final void k() {
+        this.f16238j = null;
+        this.f16237i = null;
     }
 }

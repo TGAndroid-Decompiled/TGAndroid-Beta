@@ -1,54 +1,93 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.view.View;
-import android.widget.EditText;
-public final class as implements Runnable {
-    public final int f24793a;
-    public final ds f24794b;
+import android.content.Context;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import org.telegram.messenger.AndroidUtilities;
+public final class as extends Drawable {
+    public final Drawable f26602a;
+    public final RectF f26603b = new RectF();
+    public final Paint f26604c;
+    public final Paint d;
+    public int e;
+    public final int f26605f;
+    public float f26606g;
+    public boolean h;
+    public float f26607i;
+    public float f26608j;
+    public float f26609k;
 
-    public as(ds dsVar, int i10) {
-        this.f24793a = i10;
-        this.f24794b = dsVar;
+    public as(Context context, int i10, int i11) {
+        Paint paint = new Paint(1);
+        this.f26604c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        this.f26602a = context.getDrawable(i10);
+        this.f26605f = i11;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dpf2(1.7f));
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint2.setColor(-16777216);
+        paint2.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.CLEAR));
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dpf2(2.5f));
+    }
+
+    public final void a(boolean z10, boolean z11) {
+        if (this.h != z10) {
+            this.h = z10;
+            float f7 = 0.0f;
+            if (!z11) {
+                if (z10) {
+                    f7 = 1.0f;
+                }
+                this.f26606g = f7;
+            } else {
+                if (!z10) {
+                    f7 = 1.0f;
+                }
+                this.f26606g = f7;
+            }
+            invalidateSelf();
+        }
     }
 
     @Override
-    public final void run() {
-        View view;
-        switch (this.f24793a) {
-            case 0:
-                ds dsVar = this.f24794b;
-                if (dsVar.f25822b == null && (view = dsVar.d) != null) {
-                    View findFocus = view.findFocus();
-                    if (findFocus instanceof EditText) {
-                        dsVar.f25822b = (EditText) findFocus;
-                    }
-                }
-                EditText editText = dsVar.f25822b;
-                if (editText != null) {
-                    if (editText.length() != 0 || dsVar.e) {
-                        try {
-                            dsVar.performHapticFeedback(3, 2);
-                            dsVar.playSoundEffect(0);
-                        } catch (Exception unused) {
-                        }
-                        dsVar.f25822b.dispatchKeyEvent(new KeyEvent(0, 67));
-                        dsVar.f25822b.dispatchKeyEvent(new KeyEvent(1, 67));
-                        if (dsVar.f25824f) {
-                            dsVar.postDelayed(dsVar.h, 50L);
-                            return;
-                        }
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                ds dsVar2 = this.f24794b;
-                dsVar2.f25825n = false;
-                dsVar2.f25824f = true;
-                dsVar2.h.run();
-                return;
-        }
+    public final void draw(android.graphics.Canvas r11) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.as.draw(android.graphics.Canvas):void");
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f26602a.getIntrinsicHeight();
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f26602a.getIntrinsicWidth();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    @Override
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        this.f26602a.setBounds(i10, i11, i12, i13);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

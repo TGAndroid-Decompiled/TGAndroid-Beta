@@ -1,35 +1,46 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
+import org.telegram.messenger.support.LongSparseIntArray;
 public final class q8 implements Runnable {
-    public final int f19340a;
-    public final MediaDataController f19341b;
-    public final TLRPC.TL_messages_stickerSet f19342c;
-    public final String d;
-    public final Utilities.Callback e;
-    public final boolean f19343f;
-    public final TLRPC.InputStickerSet h;
+    public final int f21012a = 0;
+    public final ArrayList f21013b;
+    public final long f21014c;
+    public final int d;
+    public final int e;
+    public final boolean f21015f;
+    public final BaseController h;
+    public final Object f21016n;
 
-    public q8(MediaDataController mediaDataController, TLRPC.TL_messages_stickerSet tL_messages_stickerSet, String str, Utilities.Callback callback, boolean z10, TLRPC.InputStickerSet inputStickerSet, int i10) {
-        this.f19340a = i10;
-        this.f19341b = mediaDataController;
-        this.f19342c = tL_messages_stickerSet;
-        this.d = str;
-        this.e = callback;
-        this.f19343f = z10;
-        this.h = inputStickerSet;
+    public q8(MediaDataController mediaDataController, boolean z10, ArrayList arrayList, int i10, long j10, int i11, Runnable runnable) {
+        this.h = mediaDataController;
+        this.f21015f = z10;
+        this.f21013b = arrayList;
+        this.d = i10;
+        this.f21014c = j10;
+        this.e = i11;
+        this.f21016n = runnable;
     }
 
     @Override
     public final void run() {
-        switch (this.f19340a) {
+        switch (this.f21012a) {
             case 0:
-                this.f19341b.lambda$getStickerSet$33(this.f19342c, this.d, this.e, this.f19343f, this.h);
+                ((MediaDataController) this.h).lambda$processLoadedStickers$107(this.f21015f, this.f21013b, this.d, this.f21014c, this.e, (Runnable) this.f21016n);
                 return;
             default:
-                this.f19341b.lambda$getStickerSet$36(this.f19342c, this.d, this.e, this.f19343f, this.h);
+                ((NotificationsController) this.h).lambda$processReadMessages$22((LongSparseIntArray) this.f21016n, this.f21013b, this.f21014c, this.d, this.e, this.f21015f);
                 return;
         }
+    }
+
+    public q8(NotificationsController notificationsController, LongSparseIntArray longSparseIntArray, ArrayList arrayList, long j10, int i10, int i11, boolean z10) {
+        this.h = notificationsController;
+        this.f21016n = longSparseIntArray;
+        this.f21013b = arrayList;
+        this.f21014c = j10;
+        this.d = i10;
+        this.e = i11;
+        this.f21015f = z10;
     }
 }

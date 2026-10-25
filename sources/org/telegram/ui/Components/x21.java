@@ -1,123 +1,101 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.os.SystemClock;
-import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.ViewPropertyAnimator;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
 import org.telegram.messenger.Utilities;
-public final class x21 {
-    public long f32494a;
-    public boolean f32495b;
-    public final ArrayList f32496c;
-    public final ArrayList d;
-    public final int e;
-    public boolean f32497f;
-    public float f32498g;
-    public float h;
+import org.telegram.ui.Components.ThemeEditorView;
+public final class x21 implements TextWatcher {
+    public final y21 f34596a;
 
-    public x21() {
-        this(40);
+    public x21(y21 y21Var) {
+        this.f34596a = y21Var;
     }
 
-    public final void a(float f7, float f10, Canvas canvas, Paint paint, RectF rectF) {
-        w21 w21Var;
-        ArrayList arrayList = this.f32496c;
-        int size = arrayList.size();
-        int i10 = 0;
-        for (int i11 = 0; i11 < size; i11++) {
-            w21 w21Var2 = (w21) arrayList.get(i11);
-            paint.setAlpha((int) (w21Var2.f32121f * 255.0f * f10));
-            canvas.drawPoint(w21Var2.f32118a, w21Var2.f32119b, paint);
-        }
-        double d = (f7 - 90.0f) * 0.017453292519943295d;
-        double sin = Math.sin(d);
-        double d10 = -Math.cos(d);
-        double width = rectF.width() / 2.0f;
-        float centerX = (float) (((-d10) * width) + rectF.centerX());
-        float centerY = (float) ((width * sin) + rectF.centerY());
-        ArrayList arrayList2 = this.d;
-        boolean z10 = true;
-        int clamp = Utilities.clamp(arrayList2.size() / 12, 3, 1);
-        int i12 = 0;
-        while (i12 < clamp) {
-            if (!arrayList2.isEmpty()) {
-                arrayList2.remove(i10);
-                w21Var = (w21) arrayList2.get(i10);
-            } else {
-                w21Var = new Object();
-            }
-            if (this.f32495b && this.f32497f) {
-                float f11 = (i12 + 1) / clamp;
-                w21Var.f32118a = AndroidUtilities.lerp(this.f32498g, centerX, f11);
-                w21Var.f32119b = AndroidUtilities.lerp(this.h, centerY, f11);
-            } else {
-                w21Var.f32118a = centerX;
-                w21Var.f32119b = centerY;
-            }
-            double d11 = sin;
-            double nextInt = (Utilities.random.nextInt(140) - 70) * 0.017453292519943295d;
-            if (nextInt < 0.0d) {
-                nextInt += 6.283185307179586d;
-            }
-            w21Var.f32120c = (float) ((Math.cos(nextInt) * d11) - (Math.sin(nextInt) * d10));
-            w21 w21Var3 = w21Var;
-            w21Var3.d = (float) i2.o1.f(nextInt, d10, Math.sin(nextInt) * d11);
-            w21Var3.f32121f = 1.0f;
-            w21Var3.h = 0.0f;
-            if (this.f32495b) {
-                w21Var3.f32122g = Utilities.random.nextInt(200) + 600;
-                w21Var3.e = (Utilities.random.nextFloat() * 20.0f) + 30.0f;
-            } else {
-                w21Var3.f32122g = Utilities.random.nextInt(100) + 400;
-                w21Var3.e = (Utilities.random.nextFloat() * 4.0f) + 20.0f;
-            }
-            arrayList.add(w21Var3);
-            i12++;
-            sin = d11;
-            i10 = 0;
+    @Override
+    public final void afterTextChanged(Editable editable) {
+        boolean z10;
+        boolean z11;
+        float f7;
+        if (this.f34596a.f34912b.length() > 0) {
             z10 = true;
+        } else {
+            z10 = false;
         }
-        this.f32497f = z10;
-        this.f32498g = centerX;
-        this.h = centerY;
-        long elapsedRealtime = SystemClock.elapsedRealtime();
-        long min = Math.min(20L, elapsedRealtime - this.f32494a);
-        int size2 = arrayList.size();
-        int i13 = 0;
-        while (i13 < size2) {
-            w21 w21Var4 = (w21) arrayList.get(i13);
-            float f12 = w21Var4.h;
-            float f13 = w21Var4.f32122g;
-            if (f12 >= f13) {
-                if (arrayList2.size() < this.e) {
-                    arrayList2.add(w21Var4);
-                }
-                arrayList.remove(i13);
-                i13--;
-                size2--;
-            } else {
-                w21Var4.f32121f = 1.0f - AndroidUtilities.decelerateInterpolator.getInterpolation(f12 / f13);
-                float f14 = w21Var4.f32118a;
-                float f15 = w21Var4.f32120c;
-                float f16 = w21Var4.e;
-                float f17 = (float) min;
-                w21Var4.f32118a = a1.g.B(f15 * f16, f17, 200.0f, f14);
-                w21Var4.f32119b = (((w21Var4.d * f16) * f17) / 200.0f) + w21Var4.f32119b;
-                w21Var4.h += f17;
+        float f10 = 0.0f;
+        if (this.f34596a.f34911a.getAlpha() != 0.0f) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        if (z10 != z11) {
+            ViewPropertyAnimator animate = this.f34596a.f34911a.animate();
+            float f11 = 1.0f;
+            if (z10) {
+                f10 = 1.0f;
             }
-            i13++;
+            ViewPropertyAnimator duration = animate.alpha(f10).setDuration(150L);
+            if (z10) {
+                f7 = 1.0f;
+            } else {
+                f7 = 0.1f;
+            }
+            ViewPropertyAnimator scaleX = duration.scaleX(f7);
+            if (!z10) {
+                f11 = 0.1f;
+            }
+            scaleX.scaleY(f11).start();
         }
-        this.f32494a = elapsedRealtime;
+        String obj = this.f34596a.f34912b.getText().toString();
+        if (obj.length() != 0) {
+            uz uzVar = this.f34596a.f34913c.e;
+            if (uzVar != null) {
+                uzVar.setText(LocaleController.getString(R.string.NoResult));
+            }
+        } else {
+            s4.h0 adapter = this.f34596a.f34913c.f26337c.getAdapter();
+            ThemeEditorView.EditorAlert editorAlert = this.f34596a.f34913c;
+            if (adapter != editorAlert.f26339n) {
+                int J = ThemeEditorView.EditorAlert.J(editorAlert);
+                this.f34596a.f34913c.e.setText(LocaleController.getString(R.string.NoChats));
+                this.f34596a.f34913c.e.c();
+                ThemeEditorView.EditorAlert editorAlert2 = this.f34596a.f34913c;
+                editorAlert2.f26337c.setAdapter(editorAlert2.f26339n);
+                this.f34596a.f34913c.f26339n.l();
+                if (J > 0) {
+                    this.f34596a.f34913c.h.h1(0, -J);
+                }
+            }
+        }
+        u21 u21Var = this.f34596a.f34913c.f26340r;
+        if (u21Var != null && !obj.equals(u21Var.f33229n)) {
+            u21Var.f33229n = obj;
+            if (u21Var.h != null) {
+                Utilities.searchQueue.cancelRunnable(u21Var.h);
+                u21Var.h = null;
+            }
+            if (obj.length() == 0) {
+                u21Var.e.clear();
+                ThemeEditorView.EditorAlert editorAlert3 = u21Var.f33230r;
+                editorAlert3.F = ThemeEditorView.EditorAlert.J(editorAlert3);
+                u21Var.d = -1;
+                u21Var.l();
+                return;
+            }
+            int i10 = u21Var.d + 1;
+            u21Var.d = i10;
+            u21Var.h = new org.telegram.ui.g4(u21Var, obj, i10, 26);
+            Utilities.searchQueue.postRunnable(u21Var.h, 300L);
+        }
     }
 
-    public x21(int i10) {
-        this.f32496c = new ArrayList();
-        this.d = new ArrayList();
-        this.e = i10;
-        for (int i11 = 0; i11 < i10; i11++) {
-            this.d.add(new Object());
-        }
+    @Override
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

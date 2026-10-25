@@ -1,68 +1,61 @@
 package org.telegram.ui;
 
-import android.view.View;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.ChatAttachAlertPhotoLayout;
-public final class zq implements q0.a {
-    public final int f44193a;
+public final class zq implements dr {
+    public final kr f46345a;
 
-    public zq(int i10) {
-        this.f44193a = i10;
+    public zq(kr krVar) {
+        this.f46345a = krVar;
     }
 
     @Override
-    public final void accept(Object obj) {
-        boolean z10;
-        boolean z11;
-        long j10;
-        boolean z12 = true;
-        switch (this.f44193a) {
-            case 0:
-                TLRPC.User user = (TLRPC.User) obj;
-                return;
-            case 1:
-                View view = (View) obj;
-                boolean z13 = ChatAttachAlertPhotoLayout.f24223q1;
-                if (view instanceof org.telegram.ui.Cells.s5) {
-                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().hasSpoiler) {
-                        z10 = true;
-                    } else {
-                        z10 = false;
-                    }
-                    s5Var.c(z10, Float.valueOf(250.0f));
-                    if (s5Var.getPhotoEntry() != null && s5Var.getPhotoEntry().isHighQuality()) {
-                        z11 = true;
-                    } else {
-                        z11 = false;
-                    }
-                    s5Var.setHighQuality(z11);
-                    if (s5Var.getPhotoEntry() != null) {
-                        j10 = s5Var.getPhotoEntry().starsAmount;
-                    } else {
-                        j10 = 0;
-                    }
-                    if (ChatAttachAlertPhotoLayout.f24225s1.size() <= 1) {
-                        z12 = false;
-                    }
-                    s5Var.f(j10, z12);
-                    return;
-                }
-                return;
-            case 2:
-                View view2 = (View) obj;
-                if (view2 instanceof org.telegram.ui.Components.ho0) {
-                    ((org.telegram.ui.Components.ho0) view2).a(false, true);
-                    return;
-                }
-                return;
-            default:
-                View view3 = (View) obj;
-                if (view3 instanceof org.telegram.ui.Components.ho0) {
-                    ((org.telegram.ui.Components.ho0) view3).a(false, true);
-                    return;
-                }
-                return;
+    public final void a(TLRPC.User user) {
+        kr.d0(this.f46345a, user);
+    }
+
+    @Override
+    public final void b(long j10) {
+        kr krVar = this.f46345a;
+        ArrayList arrayList = krVar.E;
+        a0.h hVar = krVar.J;
+        TLRPC.User user = krVar.getMessagesController().getUser(Long.valueOf(j10));
+        if (user != null) {
+            AndroidUtilities.runOnUIThread(new ip(2, this, user), 200L);
         }
+        if (hVar.f(j10) == null) {
+            er x02 = krVar.x0();
+            TLRPC.TL_channelParticipantAdmin tL_channelParticipantAdmin = new TLRPC.TL_channelParticipantAdmin();
+            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+            tL_channelParticipantAdmin.peer = tL_peerUser;
+            tL_peerUser.user_id = user.f22174id;
+            tL_channelParticipantAdmin.date = krVar.getConnectionsManager().getCurrentTime();
+            tL_channelParticipantAdmin.promoted_by = krVar.getAccountInstance().getUserConfig().clientUserId;
+            arrayList.add(tL_channelParticipantAdmin);
+            hVar.k(tL_channelParticipantAdmin, user.f22174id);
+            Collections.sort(arrayList, new org.telegram.ui.ActionBar.n4(11));
+            krVar.B0(x02);
+        }
+    }
+
+    @Override
+    public final void c(long j10, TLObject tLObject) {
+        kr krVar = this.f46345a;
+        ArrayList arrayList = krVar.E;
+        a0.h hVar = krVar.J;
+        if (tLObject != null && hVar.f(j10) == null) {
+            er x02 = krVar.x0();
+            arrayList.add(tLObject);
+            hVar.k(tLObject, j10);
+            Collections.sort(arrayList, new org.telegram.ui.ActionBar.n4(11));
+            krVar.B0(x02);
+        }
+    }
+
+    @Override
+    public final void d(long j10) {
     }
 }

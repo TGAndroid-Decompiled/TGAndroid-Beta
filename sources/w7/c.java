@@ -1,15 +1,24 @@
 package w7;
-public final class c {
-    public static final c f49051a;
-    public static final c[] f49052b;
+public final class c extends k9 {
+    public final transient Object[] f50819c;
+    public final transient int d;
+    public final transient int e = 1;
 
-    static {
-        ?? r02 = new Enum("DEFAULT", 0);
-        f49051a = r02;
-        f49052b = new c[]{r02, new Enum("SIGNED", 1), new Enum("FIXED", 2)};
+    public c(int i10, Object[] objArr) {
+        this.f50819c = objArr;
+        this.d = i10;
     }
 
-    public static c[] values() {
-        return (c[]) f49052b.clone();
+    @Override
+    public final Object get(int i10) {
+        y.a(i10, this.e);
+        Object obj = this.f50819c[i10 + i10 + this.d];
+        obj.getClass();
+        return obj;
+    }
+
+    @Override
+    public final int size() {
+        return this.e;
     }
 }

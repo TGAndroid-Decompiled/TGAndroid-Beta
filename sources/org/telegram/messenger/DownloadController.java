@@ -198,7 +198,7 @@ public class DownloadController extends BaseController implements NotificationCe
                 mainSettings.edit().putBoolean("newConfig", true).commit();
             }
         }
-        AndroidUtilities.runOnUIThread(new c2(this, 1));
+        AndroidUtilities.runOnUIThread(new d2(this, 1));
         BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
             {
                 DownloadController.this = this;
@@ -228,9 +228,9 @@ public class DownloadController extends BaseController implements NotificationCe
         DownloadObject downloadObject = this.downloadQueueKeys.get(str);
         if (downloadObject != null) {
             this.downloadQueueKeys.remove(str);
-            this.downloadQueuePairs.remove(new Pair(Long.valueOf(downloadObject.f17851id), Integer.valueOf(downloadObject.type)));
+            this.downloadQueuePairs.remove(new Pair(Long.valueOf(downloadObject.f19538id), Integer.valueOf(downloadObject.type)));
             if (i10 == 0 || i10 == 2) {
-                getMessagesStorage().removeFromDownloadQueue(downloadObject.f17851id, downloadObject.type, false);
+                getMessagesStorage().removeFromDownloadQueue(downloadObject.f19538id, downloadObject.type, false);
             }
             int i11 = downloadObject.type;
             if (i11 == 1) {
@@ -304,7 +304,7 @@ public class DownloadController extends BaseController implements NotificationCe
             for (int i10 = 0; i10 < arrayList.size(); i10++) {
                 executeFast.requery();
                 executeFast.bindInteger(1, ((MessageObject) arrayList.get(i10)).getDocument().dc_id);
-                executeFast.bindLong(2, ((MessageObject) arrayList.get(i10)).getDocument().f20350id);
+                executeFast.bindLong(2, ((MessageObject) arrayList.get(i10)).getDocument().f22033id);
                 executeFast.step();
                 try {
                     FileLoader.getInstance(this.currentAccount).getPathToMessage(((MessageObject) arrayList.get(i10)).messageOwner).delete();
@@ -313,8 +313,8 @@ public class DownloadController extends BaseController implements NotificationCe
                 }
             }
             executeFast.dispose();
-        } catch (Exception e7) {
-            FileLog.e(e7);
+        } catch (Exception e10) {
+            FileLog.e(e10);
         }
     }
 
@@ -362,7 +362,7 @@ public class DownloadController extends BaseController implements NotificationCe
     }
 
     public void lambda$loadAutoDownloadConfig$2(TLObject tLObject, TLRPC.TL_error tL_error) {
-        AndroidUtilities.runOnUIThread(new i3(29, this, tLObject));
+        AndroidUtilities.runOnUIThread(new j3(29, this, tLObject));
     }
 
     public void lambda$loadDownloadingFiles$10(ArrayList arrayList, ArrayList arrayList2) {
@@ -403,7 +403,7 @@ public class DownloadController extends BaseController implements NotificationCe
         }
         getFileLoader().checkMediaExistance(arrayList);
         getFileLoader().checkMediaExistance(arrayList2);
-        AndroidUtilities.runOnUIThread(new g0((BaseController) this, (ArrayList) arrayList, (Object) arrayList2, 18));
+        AndroidUtilities.runOnUIThread(new j0((BaseController) this, (ArrayList) arrayList, (Object) arrayList2, 18));
     }
 
     public void lambda$new$0() {
@@ -421,7 +421,7 @@ public class DownloadController extends BaseController implements NotificationCe
             Locale locale = Locale.ENGLISH;
             long currentTimeMillis = System.currentTimeMillis();
             int i10 = messageObject.getDocument().dc_id;
-            long j10 = messageObject.getDocument().f20350id;
+            long j10 = messageObject.getDocument().f22033id;
             getMessagesStorage().getDatabase().executeFast("UPDATE downloading_documents SET state = 1, date = " + currentTimeMillis + " WHERE hash = " + i10 + " AND id = " + j10).stepThis().dispose();
             getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE state = 1 AND rowid NOT IN (SELECT rowid FROM downloading_documents WHERE state = 1 ORDER BY date DESC LIMIT 100)").stepThis().dispose();
         } catch (Exception e) {
@@ -431,12 +431,12 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public void lambda$onDownloadComplete$7(TLRPC.Document document, MessageObject messageObject) {
         for (int i10 = 0; i10 < this.downloadingFiles.size(); i10++) {
-            if (this.downloadingFiles.get(i10).getDocument() != null && this.downloadingFiles.get(i10).getDocument().f20350id == document.f20350id) {
+            if (this.downloadingFiles.get(i10).getDocument() != null && this.downloadingFiles.get(i10).getDocument().f22033id == document.f22033id) {
                 this.downloadingFiles.remove(i10);
                 int i11 = 0;
                 while (true) {
                     if (i11 < this.recentDownloadingFiles.size()) {
-                        if (this.recentDownloadingFiles.get(i11).getDocument() != null && this.recentDownloadingFiles.get(i11).getDocument().f20350id == document.f20350id) {
+                        if (this.recentDownloadingFiles.get(i11).getDocument() != null && this.recentDownloadingFiles.get(i11).getDocument().f22033id == document.f22033id) {
                             break;
                         }
                         i11++;
@@ -447,7 +447,7 @@ public class DownloadController extends BaseController implements NotificationCe
                     }
                 }
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-                getMessagesStorage().getStorageQueue().postRunnable(new d2(this, messageObject, 2));
+                getMessagesStorage().getStorageQueue().postRunnable(new e2(this, messageObject, 2));
                 return;
             }
         }
@@ -457,7 +457,7 @@ public class DownloadController extends BaseController implements NotificationCe
         TLRPC.Document document = messageObject.getDocument();
         for (int i11 = 0; i11 < this.downloadingFiles.size(); i11++) {
             TLRPC.Document document2 = this.downloadingFiles.get(i11).getDocument();
-            if (document2 == null || (document != null && document2.f20350id == document.f20350id)) {
+            if (document2 == null || (document != null && document2.f22033id == document.f22033id)) {
                 this.downloadingFiles.remove(i11);
                 getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
                 if (i10 == 0) {
@@ -477,7 +477,7 @@ public class DownloadController extends BaseController implements NotificationCe
         try {
             SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("DELETE FROM downloading_documents WHERE hash = ? AND id = ?");
             executeFast.bindInteger(1, messageObject.getDocument().dc_id);
-            executeFast.bindLong(2, messageObject.getDocument().f20350id);
+            executeFast.bindLong(2, messageObject.getDocument().f22033id);
             executeFast.step();
             executeFast.dispose();
         } catch (Exception e) {
@@ -492,7 +492,7 @@ public class DownloadController extends BaseController implements NotificationCe
             SQLitePreparedStatement executeFast = getMessagesStorage().getDatabase().executeFast("REPLACE INTO downloading_documents VALUES(?, ?, ?, ?, ?)");
             executeFast.bindByteBuffer(1, nativeByteBuffer);
             executeFast.bindInteger(2, messageObject.getDocument().dc_id);
-            executeFast.bindLong(3, messageObject.getDocument().f20350id);
+            executeFast.bindLong(3, messageObject.getDocument().f22033id);
             executeFast.bindInteger(4, 0);
             executeFast.bindLong(5, System.currentTimeMillis());
             executeFast.step();
@@ -516,7 +516,7 @@ public class DownloadController extends BaseController implements NotificationCe
             z10 = true;
             if (i10 < this.recentDownloadingFiles.size()) {
                 MessageObject messageObject2 = this.recentDownloadingFiles.get(i10);
-                if (messageObject2 != null && (document3 = messageObject2.getDocument()) != null && document3.f20350id == document.f20350id) {
+                if (messageObject2 != null && (document3 = messageObject2.getDocument()) != null && document3.f22033id == document.f22033id) {
                     z11 = true;
                     break;
                 }
@@ -529,7 +529,7 @@ public class DownloadController extends BaseController implements NotificationCe
         if (!z11) {
             for (int i11 = 0; i11 < this.downloadingFiles.size(); i11++) {
                 MessageObject messageObject3 = this.downloadingFiles.get(i11);
-                if (messageObject3 != null && (document2 = messageObject3.getDocument()) != null && document2.f20350id == document.f20350id) {
+                if (messageObject3 != null && (document2 = messageObject3.getDocument()) != null && document2.f22033id == document.f22033id) {
                     break;
                 }
             }
@@ -537,7 +537,7 @@ public class DownloadController extends BaseController implements NotificationCe
         z10 = z11;
         if (!z10) {
             this.downloadingFiles.add(0, messageObject);
-            getMessagesStorage().getStorageQueue().postRunnable(new d2(this, messageObject, 0));
+            getMessagesStorage().getStorageQueue().postRunnable(new e2(this, messageObject, 0));
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
     }
@@ -760,7 +760,7 @@ public class DownloadController extends BaseController implements NotificationCe
     public void clearRecentDownloadedFiles() {
         this.recentDownloadingFiles.clear();
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-        getMessagesStorage().getStorageQueue().postRunnable(new c2(this, 0));
+        getMessagesStorage().getStorageQueue().postRunnable(new d2(this, 0));
     }
 
     public void clearUnviewedDownloads() {
@@ -796,7 +796,7 @@ public class DownloadController extends BaseController implements NotificationCe
             FileLoader.getInstance(this.currentAccount).cancelLoadFile(arrayList.get(i10).getDocument(), true);
         }
         getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.onDownloadingFilesChanged, new Object[0]);
-        getMessagesStorage().getStorageQueue().postRunnable(new i3(28, this, arrayList));
+        getMessagesStorage().getStorageQueue().postRunnable(new j3(28, this, arrayList));
     }
 
     @Override
@@ -1114,7 +1114,7 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public boolean isDownloading(int i10) {
         for (int i11 = 0; i11 < this.downloadingFiles.size(); i11++) {
-            if (this.downloadingFiles.get(i11).messageOwner.f20365id == i10) {
+            if (this.downloadingFiles.get(i11).messageOwner.f22048id == i10) {
                 return true;
             }
         }
@@ -1125,13 +1125,13 @@ public class DownloadController extends BaseController implements NotificationCe
         if (!this.loadingAutoDownloadConfig) {
             if (z10 || Math.abs(System.currentTimeMillis() - getUserConfig().autoDownloadConfigLoadTime) >= 86400000) {
                 this.loadingAutoDownloadConfig = true;
-                getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new h0(this, 1));
+                getConnectionsManager().sendRequest(new TL_account.getAutoDownloadSettings(), new k0(this, 1));
             }
         }
     }
 
     public void loadDownloadingFiles() {
-        getMessagesStorage().getStorageQueue().postRunnable(new c2(this, 2));
+        getMessagesStorage().getStorageQueue().postRunnable(new d2(this, 2));
     }
 
     public void newDownloadObjectsAvailable(int i10) {
@@ -1152,7 +1152,7 @@ public class DownloadController extends BaseController implements NotificationCe
 
     public void onDownloadComplete(MessageObject messageObject) {
         if (messageObject != null && messageObject.getDocument() != null) {
-            AndroidUtilities.runOnUIThread(new e2(this, messageObject.getDocument(), messageObject, 0));
+            AndroidUtilities.runOnUIThread(new f2(this, messageObject.getDocument(), messageObject, 0));
         }
     }
 
@@ -1160,8 +1160,8 @@ public class DownloadController extends BaseController implements NotificationCe
         if (messageObject == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new w4(this, messageObject, i10, 2));
-        getMessagesStorage().getStorageQueue().postRunnable(new d2(this, messageObject, 1));
+        AndroidUtilities.runOnUIThread(new x4(this, messageObject, i10, 2));
+        getMessagesStorage().getStorageQueue().postRunnable(new e2(this, messageObject, 1));
     }
 
     public void processDownloadObjects(int r20, java.util.ArrayList<org.telegram.messenger.DownloadObject> r21) {
@@ -1257,7 +1257,7 @@ public class DownloadController extends BaseController implements NotificationCe
             j11 = currentRoamingPreset.sizes[2];
         }
         tL_autoDownloadSettings2.file_size_max = j11;
-        getConnectionsManager().sendRequest(saveautodownloadsettings, new j5(3));
+        getConnectionsManager().sendRequest(saveautodownloadsettings, new k5(3));
     }
 
     public void startDownloadFile(TLRPC.Document document, MessageObject messageObject) {
@@ -1265,7 +1265,7 @@ public class DownloadController extends BaseController implements NotificationCe
         if (messageObject == null || (document2 = messageObject.getDocument()) == null) {
             return;
         }
-        AndroidUtilities.runOnUIThread(new e2(this, document2, messageObject, 1));
+        AndroidUtilities.runOnUIThread(new f2(this, document2, messageObject, 1));
     }
 
     public void swapLoadingPriority(MessageObject messageObject, MessageObject messageObject2) {

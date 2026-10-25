@@ -5,79 +5,79 @@ import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.i71;
-import org.telegram.ui.ua1;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.xa1;
 public final class v3 implements Utilities.Callback {
-    public final int f35321a;
-    public final o5 f35322b;
+    public final int f37372a;
+    public final m5 f37373b;
 
-    public v3(o5 o5Var, int i10) {
-        this.f35321a = i10;
-        this.f35322b = o5Var;
+    public v3(m5 m5Var, int i10) {
+        this.f37372a = i10;
+        this.f37373b = m5Var;
     }
 
     @Override
     public final void run(Object obj) {
-        switch (this.f35321a) {
+        switch (this.f37372a) {
             case 0:
                 Boolean bool = (Boolean) obj;
-                o5 o5Var = this.f35322b;
-                o5Var.A0.setClickable(!bool.booleanValue());
-                o5Var.B0.setClickable(!bool.booleanValue());
+                m5 m5Var = this.f37373b;
+                m5Var.B0.setClickable(!bool.booleanValue());
+                m5Var.C0.setClickable(!bool.booleanValue());
                 if (bool.booleanValue()) {
-                    o5Var.f34938d0 = 1;
-                    o5Var.f34950o0.setPosition(1);
-                    o5Var.f34950o0.post(new o3(o5Var, 6));
+                    m5Var.f36937e0 = 1;
+                    m5Var.f36949p0.setPosition(1);
+                    m5Var.f36949p0.post(new o3(m5Var, 6));
                     return;
                 }
                 return;
             case 1:
                 String lowerCase = ((String) obj).trim().toLowerCase(Locale.ROOT);
-                o5 o5Var2 = this.f35322b;
-                o5Var2.f34945j0 = lowerCase;
-                i71[] i71VarArr = o5Var2.f34952q0;
-                i71 i71Var = i71VarArr[1];
-                if (i71Var != null) {
-                    o5.T0(i71Var, true);
-                    i71VarArr[1].u0(0);
-                    i71VarArr[1].post(new o3(o5Var2, 6));
+                m5 m5Var2 = this.f37373b;
+                m5Var2.f36944k0 = lowerCase;
+                r71[] r71VarArr = m5Var2.f36952r0;
+                r71 r71Var = r71VarArr[1];
+                if (r71Var != null) {
+                    m5.U0(r71Var, true);
+                    r71VarArr[1].v0(0);
+                    r71VarArr[1].post(new o3(m5Var2, 6));
                     return;
                 }
                 return;
             case 2:
                 float floatValue = ((Float) obj).floatValue();
-                o5 o5Var3 = this.f35322b;
-                if (o5Var3.f34966z0 != floatValue) {
-                    o5Var3.f34966z0 = floatValue;
-                    float t10 = org.telegram.ui.Cells.b1.t(floatValue, 0.6f, 1.0f, 0.0f);
+                m5 m5Var3 = this.f37373b;
+                if (m5Var3.A0 != floatValue) {
+                    m5Var3.A0 = floatValue;
+                    float v = org.telegram.ui.d3.v(floatValue, 0.6f, 1.0f, 0.0f);
                     int i10 = 0;
-                    for (int i11 = 0; i11 < o5Var3.f34965y0.getChildCount(); i11++) {
-                        View childAt = o5Var3.f34965y0.getChildAt(i11);
-                        childAt.setAlpha(t10);
+                    for (int i11 = 0; i11 < m5Var3.f36964z0.getChildCount(); i11++) {
+                        View childAt = m5Var3.f36964z0.getChildAt(i11);
+                        childAt.setAlpha(v);
                         childAt.setPivotY(0.0f);
                         childAt.setScaleY(1.0f - floatValue);
                     }
-                    ua1 ua1Var = o5Var3.f34965y0;
+                    xa1 xa1Var = m5Var3.f36964z0;
                     if (floatValue != 0.0f) {
                         i10 = 4;
                     }
-                    ua1Var.setImportantForAccessibility(i10);
-                    o5Var3.f34965y0.requestLayout();
+                    xa1Var.setImportantForAccessibility(i10);
+                    m5Var3.f36964z0.requestLayout();
                     return;
                 }
                 return;
             case 3:
-                o5.e0(this.f35322b, (String) obj);
+                m5.f0(this.f37373b, (String) obj);
                 return;
             default:
                 TLRPC.User user = (TLRPC.User) obj;
-                o5 o5Var4 = this.f35322b;
-                if (!o5Var4.isFinished) {
+                m5 m5Var4 = this.f37373b;
+                if (!m5Var4.isFinished) {
                     if (user == null) {
-                        AndroidUtilities.runOnUIThread(new o3(o5Var4, 11));
+                        AndroidUtilities.runOnUIThread(new o3(m5Var4, 11));
                         return;
                     } else {
-                        o5Var4.presentFragment(new j9(user));
+                        m5Var4.presentFragment(new i9(user));
                         return;
                     }
                 }

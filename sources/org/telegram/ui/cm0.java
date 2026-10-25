@@ -1,155 +1,175 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import java.io.File;
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.text.StaticLayout;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.ImageLoader;
-import org.telegram.messenger.SecureDocument;
-import org.telegram.messenger.UserConfig;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class cm0 implements pm0 {
-    public final TLRPC.SecureValueType f36371a;
-    public final boolean f36372b;
-    public final int f36373c;
-    public final zm0 d;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class cm0 extends FrameLayout {
+    public final int f38496a;
+    public Object f38497b;
+    public float f38498c;
+    public final KeyEvent.Callback d;
 
-    public cm0(zm0 zm0Var, TLRPC.SecureValueType secureValueType, boolean z10, int i10) {
-        this.d = zm0Var;
-        this.f36371a = secureValueType;
-        this.f36372b = z10;
-        this.f36373c = i10;
+    public cm0(Context context, EditTextBoldCursor editTextBoldCursor, int i10) {
+        super(context);
+        this.f38496a = i10;
+        this.d = editTextBoldCursor;
     }
 
-    public static void a(cm0 cm0Var, SecureDocument secureDocument, TLRPC.TL_secureFile tL_secureFile) {
-        cm0Var.getClass();
-        File pathToAttach = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(secureDocument);
-        File pathToAttach2 = FileLoader.getInstance(UserConfig.selectedAccount).getPathToAttach(tL_secureFile);
-        pathToAttach.renameTo(pathToAttach2);
-        ImageLoader.getInstance().replaceImageInCache(secureDocument.secureFile.dc_id + "_" + secureDocument.secureFile.f20479id, tL_secureFile.dc_id + "_" + tL_secureFile.f20479id, null, false);
-    }
-
-    public static TLRPC.InputSecureFile b(SecureDocument secureDocument) {
-        if (secureDocument.inputFile != null) {
-            TLRPC.TL_inputSecureFileUploaded tL_inputSecureFileUploaded = new TLRPC.TL_inputSecureFileUploaded();
-            TLRPC.TL_inputFile tL_inputFile = secureDocument.inputFile;
-            tL_inputSecureFileUploaded.f20412id = tL_inputFile.f20358id;
-            tL_inputSecureFileUploaded.parts = tL_inputFile.parts;
-            tL_inputSecureFileUploaded.md5_checksum = tL_inputFile.md5_checksum;
-            tL_inputSecureFileUploaded.file_hash = secureDocument.fileHash;
-            tL_inputSecureFileUploaded.secret = secureDocument.fileSecret;
-            return tL_inputSecureFileUploaded;
-        }
-        TLRPC.TL_inputSecureFile tL_inputSecureFile = new TLRPC.TL_inputSecureFile();
-        TLRPC.TL_secureFile tL_secureFile = secureDocument.secureFile;
-        tL_inputSecureFile.f20411id = tL_secureFile.f20479id;
-        tL_inputSecureFile.access_hash = tL_secureFile.access_hash;
-        return tL_inputSecureFile;
-    }
-
-    public final void c(TLRPC.TL_secureRequiredType tL_secureRequiredType, String str, String str2, TLRPC.TL_secureRequiredType tL_secureRequiredType2, String str3, ArrayList arrayList, SecureDocument secureDocument, ArrayList arrayList2, SecureDocument secureDocument2, SecureDocument secureDocument3, Runnable runnable, n2.e eVar) {
-        TLRPC.TL_inputSecureValue tL_inputSecureValue;
-        TLRPC.TL_securePlainPhone tL_securePlainPhone;
-        TLRPC.TL_inputSecureValue tL_inputSecureValue2;
-        int i10;
-        boolean isEmpty = TextUtils.isEmpty(str2);
-        zm0 zm0Var = this.d;
-        if (!isEmpty) {
-            tL_inputSecureValue = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue.type = tL_secureRequiredType.type;
-            tL_inputSecureValue.flags |= 1;
-            com.google.android.gms.internal.cast.z5 j12 = zm0Var.j1(AndroidUtilities.getStringBytes(str2));
-            TLRPC.TL_secureData tL_secureData = new TLRPC.TL_secureData();
-            tL_inputSecureValue.data = tL_secureData;
-            tL_secureData.data = (byte[]) j12.f6892a;
-            tL_secureData.data_hash = (byte[]) j12.d;
-            tL_secureData.secret = (byte[]) j12.f6893b;
-        } else if (!TextUtils.isEmpty(str)) {
-            TLRPC.SecureValueType secureValueType = this.f36371a;
-            if (secureValueType instanceof TLRPC.TL_secureValueTypeEmail) {
-                TLRPC.TL_securePlainEmail tL_securePlainEmail = new TLRPC.TL_securePlainEmail();
-                tL_securePlainEmail.email = str;
-                tL_securePlainPhone = tL_securePlainEmail;
-            } else if (secureValueType instanceof TLRPC.TL_secureValueTypePhone) {
-                TLRPC.TL_securePlainPhone tL_securePlainPhone2 = new TLRPC.TL_securePlainPhone();
-                tL_securePlainPhone2.phone = str;
-                tL_securePlainPhone = tL_securePlainPhone2;
-            } else {
-                return;
-            }
-            TLRPC.TL_inputSecureValue tL_inputSecureValue3 = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue3.type = tL_secureRequiredType.type;
-            tL_inputSecureValue3.flags |= 32;
-            tL_inputSecureValue3.plain_data = tL_securePlainPhone;
-            tL_inputSecureValue = tL_inputSecureValue3;
-        } else {
-            tL_inputSecureValue = null;
-        }
-        boolean z10 = this.f36372b;
-        if (!z10 && tL_inputSecureValue == null) {
-            if (eVar != null) {
-                eVar.a(null, null);
-                return;
-            }
-            return;
-        }
-        if (tL_secureRequiredType2 != null) {
-            TLRPC.TL_inputSecureValue tL_inputSecureValue4 = new TLRPC.TL_inputSecureValue();
-            tL_inputSecureValue4.type = tL_secureRequiredType2.type;
-            if (!TextUtils.isEmpty(str3)) {
-                tL_inputSecureValue4.flags |= 1;
-                com.google.android.gms.internal.cast.z5 j13 = zm0Var.j1(AndroidUtilities.getStringBytes(str3));
-                TLRPC.TL_secureData tL_secureData2 = new TLRPC.TL_secureData();
-                tL_inputSecureValue4.data = tL_secureData2;
-                tL_secureData2.data = (byte[]) j13.f6892a;
-                tL_secureData2.data_hash = (byte[]) j13.d;
-                tL_secureData2.secret = (byte[]) j13.f6893b;
-            }
-            if (secureDocument2 != null) {
-                tL_inputSecureValue4.front_side = b(secureDocument2);
-                tL_inputSecureValue4.flags |= 2;
-            }
-            if (secureDocument3 != null) {
-                tL_inputSecureValue4.reverse_side = b(secureDocument3);
-                tL_inputSecureValue4.flags |= 4;
-            }
-            if (secureDocument != null) {
-                tL_inputSecureValue4.selfie = b(secureDocument);
-                tL_inputSecureValue4.flags |= 8;
-            }
-            if (arrayList2 != null && !arrayList2.isEmpty()) {
-                tL_inputSecureValue4.flags |= 64;
-                int size = arrayList2.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    tL_inputSecureValue4.translation.add(b((SecureDocument) arrayList2.get(i11)));
+    @Override
+    public void onDraw(Canvas canvas) {
+        switch (this.f38496a) {
+            case 0:
+                if (((StaticLayout) this.f38497b) != null) {
+                    canvas.save();
+                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f38498c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
+                    ((StaticLayout) this.f38497b).draw(canvas);
+                    canvas.restore();
+                    return;
                 }
-            }
-            if (arrayList != null && !arrayList.isEmpty()) {
-                tL_inputSecureValue4.flags |= 16;
-                int size2 = arrayList.size();
-                for (int i12 = 0; i12 < size2; i12++) {
-                    tL_inputSecureValue4.files.add(b((SecureDocument) arrayList.get(i12)));
+                return;
+            case 1:
+                if (((StaticLayout) this.f38497b) != null) {
+                    canvas.save();
+                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f38498c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
+                    ((StaticLayout) this.f38497b).draw(canvas);
+                    canvas.restore();
+                    return;
                 }
-            }
-            if (z10) {
-                tL_inputSecureValue = tL_inputSecureValue4;
-            } else {
-                tL_inputSecureValue2 = tL_inputSecureValue4;
-                TL_account.saveSecureValue savesecurevalue = new TL_account.saveSecureValue();
-                savesecurevalue.value = tL_inputSecureValue;
-                savesecurevalue.secure_secret_id = zm0Var.f44129b1;
-                i10 = ((org.telegram.ui.ActionBar.o2) zm0Var).currentAccount;
-                ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue, new bm0(this, eVar, str, savesecurevalue, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
-            }
+                return;
+            case 2:
+                if (((StaticLayout) this.f38497b) != null) {
+                    canvas.save();
+                    canvas.translate(AndroidUtilities.dp(21.0f) + this.f38498c, ((EditTextBoldCursor) this.d).getLineY() + AndroidUtilities.dp(3.0f));
+                    ((StaticLayout) this.f38497b).draw(canvas);
+                    canvas.restore();
+                    return;
+                }
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
         }
-        tL_inputSecureValue2 = null;
-        TL_account.saveSecureValue savesecurevalue2 = new TL_account.saveSecureValue();
-        savesecurevalue2.value = tL_inputSecureValue;
-        savesecurevalue2.secure_secret_id = zm0Var.f44129b1;
-        i10 = ((org.telegram.ui.ActionBar.o2) zm0Var).currentAccount;
-        ConnectionsManager.getInstance(i10).sendRequest(savesecurevalue2, new bm0(this, eVar, str, savesecurevalue2, tL_secureRequiredType2, tL_secureRequiredType, arrayList, secureDocument, secureDocument2, secureDocument3, arrayList2, str2, str3, runnable, this, tL_inputSecureValue2));
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        org.telegram.ui.Components.ij0 ij0Var;
+        switch (this.f38496a) {
+            case 0:
+                int size = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
+                StaticLayout errorLayout = ((EditTextBoldCursor) this.d).getErrorLayout(size);
+                this.f38497b = errorLayout;
+                if (errorLayout != null) {
+                    int lineCount = errorLayout.getLineCount();
+                    int i12 = 0;
+                    if (lineCount > 1) {
+                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f38497b).getLineBottom(lineCount - 1) - ((StaticLayout) this.f38497b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
+                    }
+                    if (LocaleController.isRTL) {
+                        float f7 = 0.0f;
+                        while (true) {
+                            if (i12 < lineCount) {
+                                if (((StaticLayout) this.f38497b).getLineLeft(i12) != 0.0f) {
+                                    this.f38498c = 0.0f;
+                                } else {
+                                    f7 = Math.max(f7, ((StaticLayout) this.f38497b).getLineWidth(i12));
+                                    if (i12 == lineCount - 1) {
+                                        this.f38498c = size - f7;
+                                    }
+                                    i12++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i10, i11);
+                return;
+            case 1:
+                int size2 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
+                StaticLayout errorLayout2 = ((EditTextBoldCursor) this.d).getErrorLayout(size2);
+                this.f38497b = errorLayout2;
+                if (errorLayout2 != null) {
+                    int lineCount2 = errorLayout2.getLineCount();
+                    int i13 = 0;
+                    if (lineCount2 > 1) {
+                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f38497b).getLineBottom(lineCount2 - 1) - ((StaticLayout) this.f38497b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
+                    }
+                    if (LocaleController.isRTL) {
+                        float f10 = 0.0f;
+                        while (true) {
+                            if (i13 < lineCount2) {
+                                if (((StaticLayout) this.f38497b).getLineLeft(i13) != 0.0f) {
+                                    this.f38498c = 0.0f;
+                                } else {
+                                    f10 = Math.max(f10, ((StaticLayout) this.f38497b).getLineWidth(i13));
+                                    if (i13 == lineCount2 - 1) {
+                                        this.f38498c = size2 - f10;
+                                    }
+                                    i13++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i10, i11);
+                return;
+            case 2:
+                int size3 = View.MeasureSpec.getSize(i10) - AndroidUtilities.dp(34.0f);
+                StaticLayout errorLayout3 = ((EditTextBoldCursor) this.d).getErrorLayout(size3);
+                this.f38497b = errorLayout3;
+                if (errorLayout3 != null) {
+                    int lineCount3 = errorLayout3.getLineCount();
+                    int i14 = 0;
+                    if (lineCount3 > 1) {
+                        i11 = View.MeasureSpec.makeMeasureSpec((((StaticLayout) this.f38497b).getLineBottom(lineCount3 - 1) - ((StaticLayout) this.f38497b).getLineBottom(0)) + AndroidUtilities.dp(64.0f), 1073741824);
+                    }
+                    if (LocaleController.isRTL) {
+                        float f11 = 0.0f;
+                        while (true) {
+                            if (i14 < lineCount3) {
+                                if (((StaticLayout) this.f38497b).getLineLeft(i14) != 0.0f) {
+                                    this.f38498c = 0.0f;
+                                } else {
+                                    f11 = Math.max(f11, ((StaticLayout) this.f38497b).getLineWidth(i14));
+                                    if (i14 == lineCount3 - 1) {
+                                        this.f38498c = size3 - f11;
+                                    }
+                                    i14++;
+                                }
+                            }
+                        }
+                    }
+                }
+                super.onMeasure(i10, i11);
+                return;
+            default:
+                super.onMeasure(i10, i11);
+                org.telegram.ui.Components.ak0 ak0Var = ((org.telegram.ui.Components.ij0) this.d).h;
+                float measuredHeight = (ij0Var.f29302f / 768.0f) * ((jg.l) this.f38497b).getMeasuredHeight();
+                if (this.f38498c != measuredHeight) {
+                    this.f38498c = measuredHeight;
+                    ViewGroup.LayoutParams layoutParams = ak0Var.getLayoutParams();
+                    int i15 = (int) measuredHeight;
+                    ak0Var.getLayoutParams().width = i15;
+                    layoutParams.height = i15;
+                    super.onMeasure(i10, i11);
+                    return;
+                }
+                return;
+        }
+    }
+
+    public cm0(org.telegram.ui.Components.ij0 ij0Var, Context context, jg.l lVar) {
+        super(context);
+        this.f38496a = 3;
+        this.d = ij0Var;
+        this.f38497b = lVar;
     }
 }

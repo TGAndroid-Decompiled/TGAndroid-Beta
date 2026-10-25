@@ -1,6 +1,4 @@
 package org.webrtc;
-
-import i2.o1;
 public class MediaStreamTrack {
     public static final String AUDIO_TRACK_KIND = "audio";
     public static final String VIDEO_TRACK_KIND = "video";
@@ -23,7 +21,7 @@ public class MediaStreamTrack {
                     return mediaType;
                 }
             }
-            throw new IllegalArgumentException(o1.k(i10, "Unknown native media type: "));
+            throw new IllegalArgumentException(ic.a.i(i10, "Unknown native media type: "));
         }
 
         public int getNative() {

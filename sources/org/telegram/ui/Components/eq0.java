@@ -2,22 +2,33 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.view.View;
-public final class eq0 implements bh.k {
-    public final int f26092a;
-    public final lm0 f26093b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+public final class eq0 {
+    public final vu f27961a;
+    public final long f27962b;
+    public final float f27963c;
+    public final float d;
+    public final float e;
 
-    public eq0(lm0 lm0Var, int i10) {
-        this.f26092a = i10;
-        this.f26093b = lm0Var;
+    public eq0(View view) {
+        vu vuVar = new vu(1, view);
+        this.f27962b = System.currentTimeMillis();
+        this.f27961a = vuVar;
+        this.f27963c = AndroidUtilities.lerp(5.0f, 9.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.d = AndroidUtilities.lerp(2.5f, 5.0f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
+        this.e = AndroidUtilities.lerp(2.5f, 5.2f, Utilities.clamp01(Utilities.fastRandom.nextFloat()));
     }
 
-    @Override
-    public final boolean a(Canvas canvas, View view, long j10) {
-        switch (this.f26092a) {
-            case 0:
-                return ((kq0) this.f26093b).drawChild(canvas, view, j10);
-            default:
-                return ((ou0) this.f26093b).drawChild(canvas, view, j10);
+    public final void a(Canvas canvas, float f7) {
+        vu vuVar;
+        float currentTimeMillis = ((float) (System.currentTimeMillis() - this.f27962b)) / 1000.0f;
+        canvas.translate(0.0f, 0.0f);
+        canvas.rotate(((float) Math.sin(this.f27963c * currentTimeMillis * 3.141592653589793d)) * 1.0f * f7);
+        canvas.translate(((float) Math.cos(this.d * currentTimeMillis * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7, ((float) Math.sin(currentTimeMillis * this.e * 3.141592653589793d)) * AndroidUtilities.dp(0.5f) * f7);
+        canvas.translate(-0.0f, -0.0f);
+        if (f7 > 0.0f && (vuVar = this.f27961a) != null) {
+            vuVar.run();
         }
     }
 }

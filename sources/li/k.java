@@ -1,9 +1,0 @@
-package li;
-
-import b2.u0;
-public final class k extends u0 {
-    public float f16182c;
-    public float d;
-    public float e;
-    public float f16183f;
-}

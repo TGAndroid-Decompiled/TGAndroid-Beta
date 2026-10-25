@@ -1,72 +1,64 @@
 package ig;
 
-import android.text.TextUtils;
-import org.telegram.tgnet.tl.TL_account;
-public final class m0 implements Runnable {
-    public final int f12998a;
-    public final s0 f12999b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class m0 extends s4.p {
+    public final r0 f14162b;
 
-    public m0(s0 s0Var, int i10) {
-        this.f12998a = i10;
-        this.f12999b = s0Var;
+    public m0(r0 r0Var) {
+        this.f14162b = r0Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f12998a) {
-            case 0:
-                s0 s0Var = this.f12999b;
-                TL_account.TL_businessBotRights tL_businessBotRights = s0Var.L;
-                tL_businessBotRights.manage_stories = !tL_businessBotRights.manage_stories;
-                s0Var.e.Z2.N(true);
-                s0Var.Y(true);
-                return;
-            case 1:
-                s0 s0Var2 = this.f12999b;
-                TL_account.TL_businessBotRights tL_businessBotRights2 = s0Var2.L;
-                tL_businessBotRights2.transfer_stars = true;
-                tL_businessBotRights2.transfer_and_upgrade_gifts = true;
-                tL_businessBotRights2.change_gift_settings = true;
-                tL_businessBotRights2.sell_gifts = true;
-                tL_businessBotRights2.view_gifts = true;
-                s0Var2.e.Z2.N(true);
-                s0Var2.Y(true);
-                return;
-            case 2:
-                s0 s0Var3 = this.f12999b;
-                TL_account.TL_businessBotRights tL_businessBotRights3 = s0Var3.L;
-                tL_businessBotRights3.edit_username = true;
-                tL_businessBotRights3.edit_profile_photo = true;
-                tL_businessBotRights3.edit_bio = true;
-                tL_businessBotRights3.edit_name = true;
-                s0Var3.e.Z2.N(true);
-                s0Var3.Y(true);
-                return;
-            case 3:
-                s0 s0Var4 = this.f12999b;
-                s0Var4.e.Z2.N(true);
-                s0Var4.Y(true);
-                return;
-            default:
-                s0 s0Var5 = this.f12999b;
-                String obj = s0Var5.f13060n.getText().toString();
-                String str = s0Var5.F;
-                if (str == null || !TextUtils.equals(str, obj)) {
-                    s0Var5.E = false;
-                    if (TextUtils.isEmpty(obj)) {
-                        s0Var5.F = null;
-                        s0Var5.f13059f.b();
-                        s0Var5.e.Z2.N(true);
-                        return;
+    public final boolean a(int i10, int i11) {
+        return true;
+    }
+
+    @Override
+    public final boolean b(int i10, int i11) {
+        r0 r0Var = this.f14162b;
+        p0 p0Var = (p0) r0Var.f14221g3.get(i10);
+        p0 p0Var2 = (p0) r0Var.f14220f3.get(i11);
+        if (p0Var.b(p0Var2)) {
+            int i12 = p0Var.d;
+            if (i12 == 4) {
+                TLObject tLObject = p0Var.f14201f;
+                if (tLObject instanceof TLRPC.User) {
+                    TLObject tLObject2 = p0Var2.f14201f;
+                    if (tLObject2 instanceof TLRPC.User) {
+                        if (((TLRPC.User) tLObject).f22174id == ((TLRPC.User) tLObject2).f22174id) {
+                            return true;
+                        }
+                        return false;
                     }
-                    hg.a2 a2Var = s0Var5.f13059f;
-                    s0Var5.F = obj;
-                    int i10 = s0Var5.G;
-                    s0Var5.G = i10 + 1;
-                    a2Var.h(obj, true, false, true, false, false, 0L, false, 0, i10, 0L, null);
-                    return;
                 }
-                return;
+                if (tLObject instanceof TLRPC.Chat) {
+                    TLObject tLObject3 = p0Var2.f14201f;
+                    if ((tLObject3 instanceof TLRPC.Chat) && ((TLRPC.Chat) tLObject).f22027id == ((TLRPC.Chat) tLObject3).f22027id) {
+                        return true;
+                    }
+                    return false;
+                }
+                return false;
+            } else if (i12 == 6) {
+                return p0Var.f14200c.equals(p0Var2.f14200c);
+            } else {
+                if (i12 == 7) {
+                    return true;
+                }
+                return false;
+            }
         }
+        return false;
+    }
+
+    @Override
+    public final int d() {
+        return this.f14162b.f14220f3.size();
+    }
+
+    @Override
+    public final int e() {
+        return this.f14162b.f14221g3.size();
     }
 }

@@ -1,25 +1,25 @@
 package q2;
 
+import a8.yb;
+import ag.t0;
 import android.content.Context;
 import android.graphics.Point;
-import b2.w;
-import b2.w0;
-import e0.e0;
-import e2.m0;
+import b2.x;
+import b2.x0;
+import e2.n0;
 import h2.h;
 import h2.j;
 import h2.l;
 import java.io.IOException;
 import java.nio.ByteBuffer;
-import v7.u6;
 public final class b extends l {
-    public final Context f44766o;
-    public final int f44767p;
+    public final Context f46915o;
+    public final int f46916p;
 
     public b(Context context) {
         super(new h[1], new a[1]);
-        this.f44766o = context;
-        this.f44767p = -1;
+        this.f46915o = context;
+        this.f46916p = -1;
     }
 
     @Override
@@ -46,30 +46,30 @@ public final class b extends l {
     public final h2.f i(h hVar, j jVar, boolean z10) {
         boolean z11;
         a aVar = (a) jVar;
-        ByteBuffer byteBuffer = hVar.f11661c;
+        ByteBuffer byteBuffer = hVar.f12570c;
         byteBuffer.getClass();
-        u6.p(byteBuffer.hasArray());
+        yb.p(byteBuffer.hasArray());
         if (byteBuffer.arrayOffset() == 0) {
             z11 = true;
         } else {
             z11 = false;
         }
-        u6.g(z11);
+        yb.g(z11);
         try {
-            int i10 = this.f44767p;
+            int i10 = this.f46916p;
             if (i10 == -1) {
-                Context context = this.f44766o;
+                Context context = this.f46915o;
                 if (context != null) {
-                    Point y3 = m0.y(context);
+                    Point y3 = n0.y(context);
                     int i11 = y3.x;
                     int i12 = y3.y;
-                    w wVar = hVar.f11659a;
-                    if (wVar != null) {
-                        int i13 = wVar.R;
+                    x xVar = hVar.f12568a;
+                    if (xVar != null) {
+                        int i13 = xVar.R;
                         if (i13 != -1) {
                             i11 *= i13;
                         }
-                        int i14 = wVar.S;
+                        int i14 = xVar.S;
                         if (i14 != -1) {
                             i12 *= i14;
                         }
@@ -79,13 +79,13 @@ public final class b extends l {
                     i10 = 4096;
                 }
             }
-            aVar.f44764a = e0.a(byteBuffer.remaining(), i10, byteBuffer.array());
+            aVar.f46913a = t0.b(byteBuffer.remaining(), i10, byteBuffer.array());
             aVar.timeUs = hVar.e;
             return null;
-        } catch (w0 e) {
+        } catch (x0 e) {
             return new Exception("Could not decode image data with BitmapFactory.", e);
-        } catch (IOException e7) {
-            return new Exception(e7);
+        } catch (IOException e10) {
+            return new Exception(e10);
         }
     }
 }

@@ -3,56 +3,37 @@ package org.telegram.ui.Components;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import java.util.ArrayList;
-import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.ui.Components.ChatActivityEnterView;
 public final class rg extends j1.b {
-    public final int[] f30122o;
-    public final ChatActivityEnterView.RecordCircle f30123p;
+    public final sg f32244o;
 
-    public rg(ChatActivityEnterView.RecordCircle recordCircle, ChatActivityEnterView.RecordCircle recordCircle2) {
-        super(recordCircle2);
-        this.f30123p = recordCircle;
-        this.f30122o = new int[2];
+    public rg(sg sgVar, sg sgVar2) {
+        super(sgVar2);
+        this.f32244o = sgVar;
     }
 
     @Override
     public final int g(float f7, float f10) {
-        Rect rect;
-        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-        if (chatActivityEnterView.f24165s4 && chatActivityEnterView.N1 != null) {
-            if (chatActivityEnterView.T3.contains((int) f7, (int) f10)) {
-                return 1;
-            }
-            if (chatActivityEnterView.S3.contains(f7, f10)) {
-                return 2;
-            }
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f24116k1;
-            if (slideTextView != null && (rect = slideTextView.K) != null) {
-                RectF rectF = AndroidUtilities.rectTmp;
-                rectF.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f24116k1;
-                int[] iArr = this.f30122o;
-                slideTextView2.getLocationOnScreen(iArr);
-                rectF.offset(iArr[0], iArr[1]);
-                chatActivityEnterView.N1.getLocationOnScreen(iArr);
-                rectF.offset(-iArr[0], -iArr[1]);
-                if (rectF.contains(f7, f10)) {
-                    return 3;
-                }
-                return -1;
-            }
-            return -1;
+        sg sgVar = this.f32244o;
+        ChatActivityEnterView chatActivityEnterView = sgVar.f32542b0;
+        if (chatActivityEnterView.f25955s4 && chatActivityEnterView.N1 != null && chatActivityEnterView.S3.contains(f7, f10)) {
+            return 2;
+        }
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f25925n4 > 0.1f && sgVar.J.contains(f7, f10)) {
+            return 4;
         }
         return -1;
     }
 
     @Override
     public final void h(ArrayList arrayList) {
-        if (ChatActivityEnterView.this.f24165s4) {
-            arrayList.add(1);
-            arrayList.add(3);
+        ChatActivityEnterView chatActivityEnterView = this.f32244o.f32542b0;
+        if (chatActivityEnterView.f25955s4) {
+            arrayList.add(2);
+        }
+        if (chatActivityEnterView.P && chatActivityEnterView.N1 != null && chatActivityEnterView.f25925n4 > 0.1f) {
+            arrayList.add(4);
         }
     }
 
@@ -63,31 +44,32 @@ public final class rg extends j1.b {
 
     @Override
     public final void l(int i10, s0.d dVar) {
-        Rect rect;
-        ChatActivityEnterView chatActivityEnterView = ChatActivityEnterView.this;
-        if (i10 == 1) {
-            dVar.h(chatActivityEnterView.T3);
-            dVar.o(LocaleController.getString("Send", R.string.Send));
-        } else if (i10 == 2) {
-            Rect rect2 = chatActivityEnterView.U3;
+        int i11;
+        int i12;
+        sg sgVar = this.f32244o;
+        ChatActivityEnterView chatActivityEnterView = sgVar.f32542b0;
+        if (i10 == 2) {
+            Rect rect = chatActivityEnterView.U3;
             RectF rectF = chatActivityEnterView.S3;
-            rect2.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
+            rect.set((int) rectF.left, (int) rectF.top, (int) rectF.right, (int) rectF.bottom);
             dVar.h(chatActivityEnterView.U3);
-            dVar.o(LocaleController.getString(R.string.Stop));
-        } else if (i10 == 3 && chatActivityEnterView.N1 != null) {
-            ChatActivityEnterView.SlideTextView slideTextView = chatActivityEnterView.f24116k1;
-            if (slideTextView != null && (rect = slideTextView.K) != null) {
-                Rect rect3 = AndroidUtilities.rectTmp2;
-                rect3.set(rect);
-                ChatActivityEnterView.SlideTextView slideTextView2 = chatActivityEnterView.f24116k1;
-                int[] iArr = this.f30122o;
-                slideTextView2.getLocationOnScreen(iArr);
-                rect3.offset(iArr[0], iArr[1]);
-                chatActivityEnterView.N1.getLocationOnScreen(iArr);
-                rect3.offset(-iArr[0], -iArr[1]);
-                dVar.h(rect3);
+            if (chatActivityEnterView.f25937p4 > 0.5f) {
+                i12 = R.string.AccActionResume;
+            } else {
+                i12 = R.string.AccActionPause;
             }
-            dVar.o(LocaleController.getString("Cancel", R.string.Cancel));
+            dVar.o(LocaleController.getString(i12));
+        } else if (i10 == 4) {
+            Rect rect2 = chatActivityEnterView.U3;
+            RectF rectF2 = sgVar.J;
+            rect2.set((int) rectF2.left, (int) rectF2.top, (int) rectF2.right, (int) rectF2.bottom);
+            dVar.h(chatActivityEnterView.U3);
+            if (chatActivityEnterView.O) {
+                i11 = R.string.AccActionOnceDeactivate;
+            } else {
+                i11 = R.string.AccActionOnceActivate;
+            }
+            dVar.o(LocaleController.getString(i11));
         }
     }
 }

@@ -1,51 +1,89 @@
 package mi;
 
-import android.text.SpannableStringBuilder;
-public final class f extends e {
-    public SpannableStringBuilder f17013b;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import java.util.ArrayList;
+import s4.e1;
+public final class f extends AnimatorListenerAdapter {
+    public final int f18518a = 1;
+    public final View f18519b;
+    public final e1 f18520c;
+    public final m d;
 
-    @Override
-    public final int getSpanEnd(Object obj) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f17012a && (spannableStringBuilder = this.f17013b) != null) {
-            return spannableStringBuilder.getSpanEnd(obj);
-        }
-        return super.getSpanEnd(obj);
+    public f(m mVar, e1 e1Var, View view) {
+        this.d = mVar;
+        this.f18520c = e1Var;
+        this.f18519b = view;
     }
 
     @Override
-    public final int getSpanFlags(Object obj) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f17012a && (spannableStringBuilder = this.f17013b) != null) {
-            return spannableStringBuilder.getSpanFlags(obj);
+    public void onAnimationCancel(Animator animator) {
+        switch (this.f18518a) {
+            case 0:
+                this.f18519b.setAlpha(1.0f);
+                return;
+            default:
+                super.onAnimationCancel(animator);
+                return;
         }
-        return super.getSpanFlags(obj);
     }
 
     @Override
-    public final int getSpanStart(Object obj) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f17012a && (spannableStringBuilder = this.f17013b) != null) {
-            return spannableStringBuilder.getSpanStart(obj);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f18518a) {
+            case 0:
+                animator.removeAllListeners();
+                View view = this.f18519b;
+                view.setAlpha(1.0f);
+                view.setScaleX(1.0f);
+                view.setScaleY(1.0f);
+                view.setTranslationY(0.0f);
+                view.setTranslationY(0.0f);
+                m mVar = this.d;
+                ArrayList arrayList = mVar.f47793y;
+                e1 e1Var = this.f18520c;
+                if (arrayList.remove(e1Var)) {
+                    mVar.u(e1Var);
+                    mVar.G();
+                    return;
+                }
+                return;
+            default:
+                animator.removeAllListeners();
+                View view2 = this.f18519b;
+                view2.setAlpha(1.0f);
+                view2.setScaleX(1.0f);
+                view2.setScaleY(1.0f);
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                m mVar2 = this.d;
+                ArrayList arrayList2 = mVar2.A;
+                e1 e1Var2 = this.f18520c;
+                if (arrayList2.remove(e1Var2)) {
+                    mVar2.d(e1Var2);
+                    mVar2.G();
+                    return;
+                }
+                return;
         }
-        return super.getSpanStart(obj);
     }
 
     @Override
-    public final Object[] getSpans(int i10, int i11, Class cls) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f17012a && (spannableStringBuilder = this.f17013b) != null) {
-            return spannableStringBuilder.getSpans(i10, i11, cls);
+    public void onAnimationStart(Animator animator) {
+        switch (this.f18518a) {
+            case 0:
+                this.d.getClass();
+                return;
+            default:
+                super.onAnimationStart(animator);
+                return;
         }
-        return super.getSpans(i10, i11, cls);
     }
 
-    @Override
-    public final int nextSpanTransition(int i10, int i11, Class cls) {
-        SpannableStringBuilder spannableStringBuilder;
-        if (!this.f17012a && (spannableStringBuilder = this.f17013b) != null) {
-            return spannableStringBuilder.nextSpanTransition(i10, i11, cls);
-        }
-        return super.nextSpanTransition(i10, i11, cls);
+    public f(m mVar, View view, e1 e1Var) {
+        this.d = mVar;
+        this.f18519b = view;
+        this.f18520c = e1Var;
     }
 }

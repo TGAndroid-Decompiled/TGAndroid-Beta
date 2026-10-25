@@ -1,12 +1,26 @@
 package org.telegram.ui.Components;
-public final class nx extends org.telegram.ui.sn {
+
+import android.content.Context;
+public final class nx extends s4.d0 {
+    public final int f31087r;
+
+    public nx(Context context, int i10) {
+        super(context);
+        this.f31087r = i10;
+    }
+
     @Override
-    public final void onTransitionAnimationEnd(boolean z10, boolean z11) {
-        org.telegram.ui.gk gkVar;
-        super.onTransitionAnimationEnd(z10, z11);
-        if (z10 && (gkVar = this.Y) != null) {
-            gkVar.p1();
-            this.Y.postDelayed(new xp(this, 14), 100L);
-        }
+    public final int i(int i10, int i11, int i12, int i13, int i14) {
+        return super.i(i10, i11, i12, i13, i14) + this.f31087r;
+    }
+
+    @Override
+    public final int m(int i10) {
+        return super.m(i10) * 16;
+    }
+
+    @Override
+    public final int p() {
+        return -1;
     }
 }

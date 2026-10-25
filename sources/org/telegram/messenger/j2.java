@@ -1,118 +1,44 @@
 package org.telegram.messenger;
 
-import android.util.SparseArray;
-import java.io.File;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import org.telegram.messenger.NotificationCenter;
+import java.util.HashMap;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_update;
-public final class j2 implements Runnable {
-    public final int f18712a;
-    public final Object f18713b;
-    public final Object f18714c;
+public final class j2 implements Utilities.Callback {
+    public final int f20385a;
+    public final long f20386b;
+    public final Object f20387c;
+    public final Object d;
+    public final Object e;
 
-    public j2(int i10, Object obj, Object obj2) {
-        this.f18712a = i10;
-        this.f18713b = obj;
-        this.f18714c = obj2;
+    public j2(Object obj, long j10, Object obj2, Object obj3, int i10) {
+        this.f20385a = i10;
+        this.f20387c = obj;
+        this.f20386b = j10;
+        this.d = obj2;
+        this.e = obj3;
     }
 
     @Override
-    public final void run() {
-        switch (this.f18712a) {
+    public final void run(Object obj) {
+        switch (this.f20385a) {
             case 0:
-                ((FactCheckController) this.f18713b).lambda$applyFactCheck$14((TLRPC.Updates) this.f18714c);
+                ((FactCheckController) this.f20387c).lambda$loadMissing$3(this.f20386b, (ArrayList) this.d, (HashMap) this.e, (ArrayList) obj);
                 return;
             case 1:
-                FactCheckController.lambda$saveToDatabase$6((MessagesStorage) this.f18713b, (TLRPC.TL_factCheck) this.f18714c);
-                return;
-            case 2:
-                ((FileLoadOperation) this.f18713b).lambda$start$12((boolean[]) this.f18714c);
-                return;
-            case 3:
-                ((FileLoadOperation) this.f18713b).lambda$addPart$3((ArrayList) this.f18714c);
-                return;
-            case 4:
-                ((FileLoader) this.f18713b).lambda$uploadFile$21((NotificationCenter.NotificationCenterDelegate[]) this.f18714c);
-                return;
-            case 5:
-                ((FileLoader) this.f18713b).lambda$checkCurrentDownloadsFiles$19((ArrayList) this.f18714c);
-                return;
-            case 6:
-                FileLog.lambda$e$3((String) this.f18713b, (Throwable) this.f18714c);
-                return;
-            case 7:
-                ((FilePathDatabase) this.f18713b).lambda$removeFiles$6((List) this.f18714c);
-                return;
-            case 8:
-                ((FileRefController) this.f18713b).lambda$onRequestComplete$47((TLRPC.User) this.f18714c);
-                return;
-            case 9:
-                ((FileRefController) this.f18713b).lambda$onRequestComplete$50((TLRPC.TL_messages_stickerSet) this.f18714c);
-                return;
-            case 10:
-                ((GiftAuctionController) this.f18713b).lambda$sendBid$7((TLRPC.TL_payments_paymentResult) this.f18714c);
-                return;
-            case 11:
-                ((ImageLoader) this.f18713b).lambda$checkMediaPaths$1((Runnable) this.f18714c);
-                return;
-            case 12:
-                ImageLoader.lambda$checkMediaPaths$0((SparseArray) this.f18713b, (Runnable) this.f18714c);
-                return;
-            case 13:
-                ((MediaController) this.f18713b).lambda$playEmojiSound$17((File) this.f18714c);
-                return;
-            case 14:
-                MediaController.lambda$playEmojiSound$18((AccountInstance) this.f18713b, (TLRPC.TL_document) this.f18714c);
-                return;
-            case 15:
-                ((MediaController) this.f18713b).lambda$processMediaObserver$6((ArrayList) this.f18714c);
-                return;
-            case 16:
-                ((MediaController) this.f18713b).lambda$startAudioAgain$7((MessageObject) this.f18714c);
-                return;
-            case 17:
-                MediaDataController.lambda$loadReplyMessagesForMessages$172((AtomicInteger) this.f18713b, (Runnable) this.f18714c);
-                return;
-            case 18:
-                MediaDataController.lambda$fillWithAnimatedEmoji$229((boolean[]) this.f18713b, (b7) this.f18714c);
-                return;
-            case 19:
-                ((MediaDataController) this.f18713b).lambda$loadGroupStickerSet$44((TLRPC.StickerSet) this.f18714c);
-                return;
-            case 20:
-                ((MediaDataController) this.f18713b).lambda$loadHints$147((TLRPC.TL_contacts_topPeers) this.f18714c);
-                return;
-            case 21:
-                ((MessageObject) this.f18713b).lambda$loadAnimatedEmojiDocument$0((TLRPC.Document) this.f18714c);
-                return;
-            case 22:
-                ((MessagesController) this.f18713b).lambda$processUpdateArray$415((TL_update.TL_updateChannel) this.f18714c);
-                return;
-            case 23:
-                ((MessagesController) this.f18713b).lambda$createChat$256((TLRPC.TL_messages_invitedUsers) this.f18714c);
-                return;
-            case 24:
-                ((MessagesController) this.f18713b).lambda$processMessageIDUpdate$376((TL_update.TL_updateMessageID) this.f18714c);
-                return;
-            case 25:
-                ((MessagesController) this.f18713b).lambda$createChat$259((TLRPC.Updates) this.f18714c);
-                return;
-            case 26:
-                MessagesController.lambda$addUserToChat$298((Utilities.Callback) this.f18713b, (Runnable) this.f18714c);
-                return;
-            case 27:
-                ((MessagesController) this.f18713b).lambda$checkChatInviter$370((TLRPC.TL_channels_channelParticipant) this.f18714c);
-                return;
-            case 28:
-                ((MessagesController) this.f18713b).lambda$checkTosUpdate$161((TLRPC.TL_help_termsOfServiceUpdate) this.f18714c);
+                ((MessagesController) this.f20387c).lambda$checkSensitive$453(this.f20386b, (boolean[]) this.d, (Runnable) this.e, (Boolean) obj);
                 return;
             default:
-                ((MessagesController) this.f18713b).lambda$processUpdateArray$395((TL_update.TL_updateServiceNotification) this.f18714c);
+                ((TranslateController) this.f20387c).lambda$checkTranslation$6((MessageObject) this.d, (String) this.e, this.f20386b, (TLRPC.TL_textWithEntities) obj);
                 return;
         }
+    }
+
+    public j2(TranslateController translateController, MessageObject messageObject, String str, long j10) {
+        this.f20385a = 2;
+        this.f20387c = translateController;
+        this.d = messageObject;
+        this.e = str;
+        this.f20386b = j10;
     }
 }

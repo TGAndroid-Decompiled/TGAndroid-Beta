@@ -8,12 +8,12 @@ import android.os.Build;
 import android.os.Handler;
 import android.os.Process;
 import android.text.TextUtils;
-import androidx.biometric.o;
-import e0.k0;
+import androidx.biometric.n;
+import e0.j0;
 import j$.util.Objects;
 import java.util.concurrent.Executor;
 public abstract class c {
-    public static final Object f10288a = null;
+    public static final Object f10047a = null;
 
     public static int a(Context context, String str, int i10, int i11, String str2) {
         int noteProxyOpNoThrow;
@@ -39,9 +39,9 @@ public abstract class c {
                             noteProxyOpNoThrow = appOpsManager.checkOpNoThrow(permissionToOp, callingUid, str2);
                         }
                         if (noteProxyOpNoThrow == 0) {
-                            String g10 = b2.d.g(context);
+                            String g7 = b2.d.g(context);
                             if (appOpsManager != null) {
-                                i12 = appOpsManager.checkOpNoThrow(permissionToOp, i11, g10);
+                                i12 = appOpsManager.checkOpNoThrow(permissionToOp, i11, g7);
                             }
                             noteProxyOpNoThrow = i12;
                         }
@@ -63,7 +63,7 @@ public abstract class c {
     public static int b(Context context, String str) {
         if (str != null) {
             if (Build.VERSION.SDK_INT < 33 && TextUtils.equals("android.permission.POST_NOTIFICATIONS", str)) {
-                if (new k0(context).a()) {
+                if (new j0(context).a()) {
                     return 0;
                 }
                 return -1;
@@ -81,6 +81,6 @@ public abstract class c {
         if (Build.VERSION.SDK_INT >= 28) {
             return b.a(context);
         }
-        return new o(new Handler(context.getMainLooper()), 3);
+        return new n(new Handler(context.getMainLooper()), 3);
     }
 }

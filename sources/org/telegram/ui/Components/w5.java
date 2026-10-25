@@ -1,17 +1,35 @@
 package org.telegram.ui.Components;
 
-import android.text.Layout;
-import java.lang.ref.WeakReference;
-import java.util.ArrayList;
-public final class w5 {
-    public Layout f32129a;
-    public final ArrayList f32130b = new ArrayList();
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class w5 extends AnimatorListenerAdapter {
+    public final int f34362a;
+    public final c6 f34363b;
 
-    public w5(WeakReference weakReference, Layout layout) {
-        this.f32129a = layout;
+    public w5(c6 c6Var, int i10) {
+        this.f34362a = i10;
+        this.f34363b = c6Var;
     }
 
-    public final void a() {
-        this.f32130b.size();
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f34362a) {
+            case 0:
+                c6.access$002(this.f34363b, null);
+                c6.access$102(false);
+                return;
+            case 1:
+                c6 c6Var = this.f34363b;
+                c6.access$002(c6Var, null);
+                if (c6.access$200(c6Var) != null) {
+                    c6.access$200(c6Var).run();
+                    c6.access$202(c6Var, null);
+                    return;
+                }
+                return;
+            default:
+                c6.access$302(this.f34363b, null);
+                return;
+        }
     }
 }

@@ -1,29 +1,58 @@
 package w7;
-public abstract class n {
-    public static kd.c a(kd.c cVar, kd.c cVar2, td.p pVar) {
-        kotlin.jvm.internal.i.e(pVar, "<this>");
-        if (pVar instanceof md.a) {
-            return ((md.a) pVar).create(cVar, cVar2);
-        }
-        kd.h context = cVar2.getContext();
-        if (context == kd.i.f15075a) {
-            return new ld.b(cVar2, cVar, pVar);
-        }
-        return new ld.c(cVar2, context, pVar, cVar);
-    }
 
-    public static kd.c b(kd.c cVar) {
-        md.c cVar2;
-        kd.c intercepted;
-        kotlin.jvm.internal.i.e(cVar, "<this>");
-        if (cVar instanceof md.c) {
-            cVar2 = (md.c) cVar;
-        } else {
-            cVar2 = null;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.telegram.ui.Components.b10;
+public abstract class n {
+    public static String a(String str, Object... objArr) {
+        int length;
+        int length2;
+        int indexOf;
+        String k10;
+        int i10 = 0;
+        int i11 = 0;
+        while (true) {
+            length = objArr.length;
+            if (i11 >= length) {
+                break;
+            }
+            Object obj = objArr[i11];
+            if (obj == null) {
+                k10 = "null";
+            } else {
+                try {
+                    k10 = obj.toString();
+                } catch (Exception e) {
+                    String D = a1.g.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
+                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
+                    k10 = b10.k("<", D, " threw ", e.getClass().getName(), ">");
+                }
+            }
+            objArr[i11] = k10;
+            i11++;
         }
-        if (cVar2 != null && (intercepted = cVar2.intercepted()) != null) {
-            return intercepted;
+        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
+        int i12 = 0;
+        while (true) {
+            length2 = objArr.length;
+            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
+                break;
+            }
+            sb2.append((CharSequence) str, i12, indexOf);
+            sb2.append(objArr[i10]);
+            i10++;
+            i12 = indexOf + 2;
         }
-        return cVar;
+        sb2.append((CharSequence) str, i12, str.length());
+        if (i10 < length2) {
+            sb2.append(" [");
+            sb2.append(objArr[i10]);
+            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
+                sb2.append(", ");
+                sb2.append(objArr[i13]);
+            }
+            sb2.append(']');
+        }
+        return sb2.toString();
     }
 }

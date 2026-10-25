@@ -1,17 +1,28 @@
 package w7;
-public final class f5 implements ja.d {
-    public static final f5 f49092a = new Object();
 
-    static {
-        si.o0.s(si.o0.l(d.class, si.o0.p(3, si.o0.l(d.class, si.o0.p(2, si.o0.l(d.class, new a(1)))))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Set;
+public abstract class f5 {
+    public static boolean a(a8.x xVar, Collection collection) {
+        collection.getClass();
+        if (collection instanceof y7.q) {
+            collection = ((y7.q) collection).zza();
         }
-        throw new ClassCastException();
+        boolean z10 = false;
+        if ((collection instanceof Set) && collection.size() > xVar.size()) {
+            Iterator<E> it = xVar.iterator();
+            while (it.hasNext()) {
+                if (collection.contains(it.next())) {
+                    it.remove();
+                    z10 = true;
+                }
+            }
+            return z10;
+        }
+        for (Object obj : collection) {
+            z10 |= xVar.remove(obj);
+        }
+        return z10;
     }
 }

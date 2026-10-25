@@ -1,16 +1,16 @@
 package org.telegram.ui.ActionBar;
-public interface d5 {
-    void a(float f7);
 
-    void b(ActionBarLayout actionBarLayout, boolean z10);
+import android.app.Activity;
+public final class d5 extends ActionBarLayout {
+    public final p f22543y1;
 
-    void e(int[] iArr);
+    public d5(Activity activity, p pVar) {
+        super(activity, false);
+        this.f22543y1 = pVar;
+    }
 
-    boolean h(o2 o2Var, ActionBarLayout actionBarLayout);
-
-    boolean j();
-
-    boolean k(ActionBarLayout actionBarLayout);
-
-    boolean l(ActionBarLayout actionBarLayout, e5 e5Var);
+    @Override
+    public final k3 getBottomSheet() {
+        return ((k3[]) this.f22543y1.f22922b)[0];
+    }
 }

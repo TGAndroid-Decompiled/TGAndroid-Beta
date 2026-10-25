@@ -1,15 +1,30 @@
 package org.telegram.ui.Wallet;
 
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.tgnet.tl.TL_wallet;
-public final class u4 implements ai.k7 {
-    public final TL_stars.TL_starGiftUnique f35294a;
-    public final TL_wallet.nftItem f35295b;
-    public final o5 f35296c;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.drawable.ShapeDrawable;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.ws;
+public final class u4 extends ws {
+    public final ShapeDrawable G;
+    public final m5 H;
 
-    public u4(o5 o5Var, TL_stars.TL_starGiftUnique tL_starGiftUnique, TL_wallet.nftItem nftitem) {
-        this.f35296c = o5Var;
-        this.f35294a = tL_starGiftUnique;
-        this.f35295b = nftitem;
+    public u4(m5 m5Var, Context context) {
+        super(context);
+        this.H = m5Var;
+        this.G = org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(22.0f), m5Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+    }
+
+    @Override
+    public final void dispatchDraw(Canvas canvas) {
+        int ceil = (int) Math.ceil(getMetadata().f19345g.f19351a);
+        if (ceil > 0) {
+            ShapeDrawable shapeDrawable = this.G;
+            shapeDrawable.getPaint().setColor(this.H.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+            shapeDrawable.setBounds(0, 0, getWidth(), ceil);
+            shapeDrawable.setAlpha((int) (getMetadata().f19343c.f19351a * 255.0f));
+            shapeDrawable.draw(canvas);
+        }
+        super.dispatchDraw(canvas);
     }
 }

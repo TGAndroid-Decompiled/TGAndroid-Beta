@@ -1,17 +1,17 @@
 package v0;
 
 import android.os.CancellationSignal;
-public final class g implements td.l {
-    public final CancellationSignal f48300a;
+public final class g implements ud.l {
+    public final CancellationSignal f49972a;
 
     public g(CancellationSignal cancellationSignal) {
-        this.f48300a = cancellationSignal;
+        this.f49972a = cancellationSignal;
     }
 
     @Override
     public final Object invoke(Object obj) {
         Throwable th2 = (Throwable) obj;
-        this.f48300a.cancel();
-        return id.i.f12807a;
+        this.f49972a.cancel();
+        return jd.i.f15580a;
     }
 }

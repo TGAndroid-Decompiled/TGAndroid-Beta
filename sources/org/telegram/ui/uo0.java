@@ -1,35 +1,40 @@
 package org.telegram.ui;
-public final class uo0 implements Runnable {
-    public final int f42459a;
-    public final ep0 f42460b;
 
-    public uo0(ep0 ep0Var, int i10) {
-        this.f42459a = i10;
-        this.f42460b = ep0Var;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.widget.ImageView;
+import org.telegram.messenger.AndroidUtilities;
+public final class uo0 extends xo0 {
+    public int G;
+    public final rp0 H;
+
+    public uo0(rp0 rp0Var, Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, u6Var);
+        this.H = rp0Var;
+        this.G = 0;
     }
 
     @Override
-    public final void run() {
-        int i10 = this.f42459a;
-        ep0 ep0Var = this.f42460b;
-        switch (i10) {
-            case 0:
-                if (ep0Var.G) {
-                    ep0Var.f36966b.invalidate();
-                    return;
-                }
-                return;
-            case 1:
-                ep0Var.h();
-                return;
-            case 2:
-                int i11 = ep0.f36963q0;
-                ep0Var.h();
-                return;
-            default:
-                int i12 = ep0.f36963q0;
-                ep0Var.h();
-                return;
+    public final void a() {
+        rp0 rp0Var = this.H;
+        if (rp0Var.getParentActivity() != null) {
+            AndroidUtilities.setLightStatusBar(rp0Var.getParentActivity(), rp0Var.isLightStatusBar());
         }
+        int actionBarButtonColor = getActionBarButtonColor();
+        if (this.G != actionBarButtonColor) {
+            ImageView imageView = rp0Var.J;
+            if (imageView != null) {
+                this.G = actionBarButtonColor;
+                imageView.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
+            }
+            ImageView imageView2 = rp0Var.K;
+            if (imageView2 != null) {
+                this.G = actionBarButtonColor;
+                imageView2.setColorFilter(new PorterDuffColorFilter(actionBarButtonColor, PorterDuff.Mode.SRC_IN));
+            }
+        }
+        rp0Var.G0();
+        rp0Var.B0();
     }
 }

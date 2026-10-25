@@ -1,38 +1,93 @@
 package org.telegram.ui.Components;
 
-import java.util.ArrayList;
-import org.telegram.tgnet.TLRPC;
-public abstract class m9 {
-    public static void a(org.telegram.ui.sn snVar, int i10, TLRPC.Chat chat, TLRPC.User user, TLRPC.TL_forumTopic tL_forumTopic, long j10, int i11, int i12) {
-        org.telegram.ui.ActionBar.h5 parentLayout;
-        TLRPC.TL_forumTopic tL_forumTopic2;
-        if ((chat != null || user != null) && (parentLayout = snVar.getParentLayout()) != null) {
-            if (parentLayout.getPulledDialogs() == null) {
-                parentLayout.setPulledDialogs(new ArrayList());
-            }
-            for (l9 l9Var : parentLayout.getPulledDialogs()) {
-                if (tL_forumTopic != null || l9Var.f28275f != j10) {
-                    if (tL_forumTopic != null && (tL_forumTopic2 = l9Var.e) != null && tL_forumTopic2.f20396id == tL_forumTopic.f20396id) {
-                        return;
-                    }
-                } else {
-                    return;
-                }
-            }
-            ?? obj = new Object();
-            obj.f28272a = org.telegram.ui.sn.class;
-            obj.f28273b = i10;
-            obj.f28275f = j10;
-            obj.h = i12;
-            obj.f28276g = i11;
-            obj.f28274c = chat;
-            obj.d = user;
-            obj.e = tL_forumTopic;
-            parentLayout.getPulledDialogs().add(obj);
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLObject;
+public class m9 extends View {
+    public final l9 f30457a;
+    public tg.a1 f30458b;
+    public q11 f30459c;
+    public Paint d;
+
+    public m9(Context context, boolean z10) {
+        super(context);
+        this.f30457a = new l9(this, z10);
+    }
+
+    public final void a(boolean z10) {
+        this.f30457a.b(z10, true);
+    }
+
+    public final void b(int i10, TLObject tLObject, int i11) {
+        this.f30457a.l(i10, tLObject, i11);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f30457a.g();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.f30457a.h();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        this.f30457a.i(canvas);
+        if (this.f30459c != null) {
+            RectF rectF = AndroidUtilities.rectTmp;
+            rectF.set(getWidth() - AndroidUtilities.dp(22.0f), getHeight() - AndroidUtilities.dp(22.0f), getWidth() - AndroidUtilities.dp(0.0f), getHeight() - AndroidUtilities.dp(0.0f));
+            this.f30458b.e(rectF);
+            canvas.drawCircle(rectF.centerX(), rectF.centerY(), (rectF.width() / 2.0f) + AndroidUtilities.dp(1.33f), this.d);
+            canvas.drawCircle(rectF.centerX(), rectF.centerY(), rectF.width() / 2.0f, this.f30458b.f48794f);
+            this.f30459c.c(rectF.centerX() - (this.f30459c.f31788c / 2.0f), rectF.centerY(), 1.0f, -1, canvas);
         }
     }
 
-    public static org.telegram.ui.ActionBar.m1 b(org.telegram.ui.ActionBar.o2 r37, android.view.View r38, long r39, long r41, org.telegram.ui.ActionBar.g6 r43) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.m9.b(org.telegram.ui.ActionBar.o2, android.view.View, long, long, org.telegram.ui.ActionBar.g6):org.telegram.ui.ActionBar.m1");
+    @Override
+    public void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        int measuredWidth = getMeasuredWidth();
+        l9 l9Var = this.f30457a;
+        l9Var.f30119p = measuredWidth;
+        l9Var.f30118o = getMeasuredHeight();
+    }
+
+    public void setAvatarsTextSize(int i10) {
+        this.f30457a.j(i10);
+    }
+
+    public void setCentered(boolean z10) {
+        this.f30457a.f30115l = z10;
+    }
+
+    public void setCount(int i10) {
+        this.f30457a.k(i10);
+    }
+
+    public void setDelegate(Runnable runnable) {
+        this.f30457a.f30113j = runnable;
+    }
+
+    public void setSize(int i10) {
+        this.f30457a.f30122s = i10;
+    }
+
+    public void setStepFactor(float f7) {
+        this.f30457a.f30123t = f7;
+    }
+
+    public void setStyle(int i10) {
+        l9 l9Var = this.f30457a;
+        l9Var.f30114k = i10;
+        l9Var.f();
     }
 }

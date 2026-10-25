@@ -14,18 +14,18 @@ import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.tl.TL_wallet;
 public final class f {
-    public final int f34472a;
-    public final l0 f34473b;
-    public boolean f34474c;
+    public final int f36537a;
+    public final l0 f36538b;
+    public boolean f36539c;
     public TL_wallet.currencyRates d;
     public String e = "en";
-    public String f34475f;
+    public String f36540f;
 
     public f(l0 l0Var) {
-        this.f34473b = l0Var;
-        this.f34472a = l0Var.f34743a;
+        this.f36538b = l0Var;
+        this.f36537a = l0Var.f36804a;
         try {
-            this.f34475f = ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).getString("currency", g());
+            this.f36540f = ApplicationLoader.applicationContext.getSharedPreferences("gram_wallet", 0).getString("currency", g());
         } catch (Exception e) {
             FileLog.e("[gram-wallet] failed to load currency prefs", e);
         }
@@ -108,11 +108,11 @@ public final class f {
     public final TL_wallet.currencyRates f() {
         String str;
         if (this.d == null) {
-            if (this.f34474c) {
+            if (this.f36539c) {
                 return null;
             }
-            this.f34474c = true;
-            ConnectionsManager.getInstance(this.f34472a).sendRequestTyped(new TL_wallet.getCurrencyRates(), new Object(), new d(this, 0));
+            this.f36539c = true;
+            ConnectionsManager.getInstance(this.f36537a).sendRequestTyped(new TL_wallet.getCurrencyRates(), new Object(), new d(this, 0));
         } else {
             Locale currentLocale = LocaleController.getInstance().getCurrentLocale();
             if (currentLocale == null || TextUtils.isEmpty(currentLocale.getLanguage())) {
@@ -141,7 +141,7 @@ public final class f {
     }
 
     public final String g() {
-        String str = this.f34475f;
+        String str = this.f36540f;
         if (str == null) {
             return "USD";
         }
@@ -149,14 +149,14 @@ public final class f {
     }
 
     public final double h() {
-        String g10 = g();
-        if (TextUtils.equals(g10, "USD")) {
+        String g7 = g();
+        if (TextUtils.equals(g7, "USD")) {
             return 1.0d;
         }
         if (this.d != null) {
             for (int i10 = 0; i10 < this.d.rates.size(); i10++) {
                 TL_wallet.currencyRate currencyrate = this.d.rates.get(i10);
-                if (TextUtils.equals(currencyrate.currency, g10)) {
+                if (TextUtils.equals(currencyrate.currency, g7)) {
                     return currencyrate.rate;
                 }
             }
@@ -166,12 +166,12 @@ public final class f {
     }
 
     public final String i() {
-        String g10 = g();
+        String g7 = g();
         TL_wallet.currencyRates f7 = f();
         if (f7 != null) {
             for (int i10 = 0; i10 < f7.rates.size(); i10++) {
                 TL_wallet.currencyRate currencyrate = f7.rates.get(i10);
-                if (TextUtils.equals(currencyrate.currency, g10)) {
+                if (TextUtils.equals(currencyrate.currency, g7)) {
                     if (TextUtils.isEmpty(currencyrate.translatedTitle)) {
                         return currencyrate.title;
                     }
@@ -184,16 +184,16 @@ public final class f {
     }
 
     public final TL_wallet.currencyRate j() {
-        String g10 = g();
+        String g7 = g();
         if (this.d == null) {
-            if (TextUtils.equals(g10, "USD")) {
+            if (TextUtils.equals(g7, "USD")) {
                 return e();
             }
             return null;
         }
         for (int i10 = 0; i10 < this.d.rates.size(); i10++) {
             TL_wallet.currencyRate currencyrate = this.d.rates.get(i10);
-            if (TextUtils.equals(currencyrate.currency, g10)) {
+            if (TextUtils.equals(currencyrate.currency, g7)) {
                 return currencyrate;
             }
         }

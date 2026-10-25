@@ -149,7 +149,7 @@ public class TL_communities {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
             this.total_count = inputSerializedData.readInt32(z10);
-            this.requests = Vector.deserialize(inputSerializedData, new c(21), z10);
+            this.requests = Vector.deserialize(inputSerializedData, new c(23), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }

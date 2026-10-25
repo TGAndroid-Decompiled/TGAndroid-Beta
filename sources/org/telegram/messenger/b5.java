@@ -1,42 +1,60 @@
 package org.telegram.messenger;
 
 import org.telegram.messenger.ImageLoader;
+import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.Vector;
 public final class b5 implements Runnable {
-    public final int f17973a = 0;
-    public final boolean f17974b;
-    public final long f17975c;
-    public final long d;
-    public final int e;
-    public final Object f17976f;
+    public final int f19681a;
+    public final boolean f19682b;
+    public final int f19683c;
+    public final Object d;
+    public final Object e;
 
-    public b5(int i10, String str, long j10, long j11, boolean z10) {
-        this.e = i10;
-        this.f17976f = str;
-        this.f17975c = j10;
-        this.d = j11;
-        this.f17974b = z10;
+    public b5(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+        this.f19681a = i11;
+        this.d = obj;
+        this.e = tLObject;
+        this.f19682b = z10;
+        this.f19683c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f17973a) {
+        switch (this.f19681a) {
             case 0:
-                long j10 = this.d;
-                boolean z10 = this.f17974b;
-                ImageLoader.AnonymousClass5.lambda$fileUploadProgressChanged$0(this.e, (String) this.f17976f, this.f17975c, j10, z10);
+                boolean z10 = this.f19682b;
+                ((ImageLoader.AnonymousClass5) this.d).lambda$fileDidFailedUpload$4(this.f19683c, (String) this.e, z10);
+                return;
+            case 1:
+                ((LocaleController) this.d).lambda$loadRemoteLanguages$11((Vector) this.e, this.f19682b, this.f19683c);
+                return;
+            case 2:
+                ((MediaDataController) this.d).lambda$loadStickers$91(this.f19683c, this.f19682b, (Utilities.Callback) this.e);
+                return;
+            case 3:
+                ((MessagesStorage) this.d).lambda$loadUserInfo$132((TLRPC.User) this.e, this.f19682b, this.f19683c);
                 return;
             default:
-                FileLog.lambda$dumpUnparsedMessage$2((TLObject) this.f17976f, this.f17974b, this.f17975c, this.d, this.e);
+                ((SendMessagesHelper) this.d).lambda$toggleTodo$36(this.f19683c, this.f19682b, (Runnable) this.e);
                 return;
         }
     }
 
-    public b5(TLObject tLObject, boolean z10, long j10, long j11, int i10) {
-        this.f17976f = tLObject;
-        this.f17974b = z10;
-        this.f17975c = j10;
-        this.d = j11;
-        this.e = i10;
+    public b5(BaseController baseController, int i10, boolean z10, Object obj, int i11) {
+        this.f19681a = i11;
+        this.d = baseController;
+        this.f19683c = i10;
+        this.f19682b = z10;
+        this.e = obj;
+    }
+
+    public b5(ImageLoader.AnonymousClass5 anonymousClass5, int i10, String str, boolean z10) {
+        this.f19681a = 0;
+        this.d = anonymousClass5;
+        this.f19683c = i10;
+        this.e = str;
+        this.f19682b = z10;
     }
 }

@@ -1,63 +1,73 @@
 package org.telegram.ui.Components;
 
-import android.animation.AnimatorSet;
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Point;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ApplicationLoader;
-public final class d30 extends FrameLayout {
-    public float f25533a;
-    public float f25534b;
-    public boolean f25535c;
-    public AnimatorSet d;
-    public final c30 e;
-    public final pc f25536f;
-    public final float h;
-    public final g30 f25537n;
+import java.util.ArrayList;
+public final class d30 extends AnimatorListenerAdapter {
+    public final int f27365a = 0;
+    public final View f27366b;
+    public final View f27367c;
+    public final View d;
+    public final Object e;
+    public final Object f27368f;
 
-    public d30(g30 g30Var, Context context, float f7) {
-        super(context);
-        this.f25537n = g30Var;
-        this.h = f7;
-        this.e = new c30(this);
-        this.f25536f = new pc(11);
+    public d30(org.telegram.ui.ga1 ga1Var, si siVar, org.telegram.ui.Cells.s1 s1Var, org.telegram.ui.hk hkVar, org.telegram.ui.un unVar) {
+        this.f27368f = ga1Var;
+        this.f27366b = siVar;
+        this.f27367c = s1Var;
+        this.d = hkVar;
+        this.e = unVar;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        Point point = AndroidUtilities.displaySize;
-        int i12 = point.x;
-        g30 g30Var = this.f25537n;
-        if (i12 != g30Var.I || g30Var.J != point.y) {
-            g30Var.I = i12;
-            g30Var.J = point.y;
-            if (g30Var.K < 0.0f) {
-                SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("groupcallpipconfig", 0);
-                this.f25537n.K = sharedPreferences.getFloat("relativeX", 1.0f);
-                this.f25537n.L = sharedPreferences.getFloat("relativeY", 0.4f);
-            }
-            g30 g30Var2 = g30.f26535d0;
-            if (g30Var2 != null) {
-                g30 g30Var3 = this.f25537n;
-                float f7 = g30Var3.K;
-                float f10 = g30Var3.L;
-                float f11 = -AndroidUtilities.dp(36.0f);
-                g30Var2.f26545r.x = (int) com.google.android.gms.internal.play_billing.k3.y(AndroidUtilities.displaySize.x - (2.0f * f11), AndroidUtilities.dp(105.0f), f7, f11);
-                g30Var2.f26545r.y = (int) ((AndroidUtilities.displaySize.y - AndroidUtilities.dp(105.0f)) * f10);
-                g30Var2.h();
-                d30 d30Var = g30Var2.f26537a;
-                if (d30Var.getParent() != null) {
-                    g30Var2.f26544n.updateViewLayout(d30Var, g30Var2.f26545r);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f27365a) {
+            case 0:
+                WindowManager windowManager = (WindowManager) this.f27368f;
+                View view = this.f27366b;
+                if (view.getParent() != null) {
+                    view.setVisibility(8);
+                    View view2 = this.f27367c;
+                    view2.setVisibility(8);
+                    View view3 = this.d;
+                    view3.setVisibility(8);
+                    windowManager.removeView(view);
+                    windowManager.removeView(view2);
+                    windowManager.removeView(view3);
+                    windowManager.removeView((View) this.e);
+                    return;
                 }
-            }
+                return;
+            default:
+                org.telegram.ui.ga1 ga1Var = (org.telegram.ui.ga1) this.f27368f;
+                ga1Var.D.unlock();
+                si siVar = (si) this.f27366b;
+                ((ArrayList) siVar.f32568c).remove(ga1Var);
+                siVar.a();
+                ((ViewGroup) siVar.d).invalidate();
+                org.telegram.ui.Cells.s1 s1Var = (org.telegram.ui.Cells.s1) this.f27367c;
+                s1Var.setEnterTransitionInProgress(false);
+                s1Var.getTransitionParams().D0.set(s1Var.getBackgroundDrawableLeft(), s1Var.getBackgroundDrawableTop(), s1Var.getBackgroundDrawableRight(), s1Var.getBackgroundDrawableBottom());
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.d;
+                chatActivityEnterView.setTextTransitionIsRunning(false);
+                chatActivityEnterView.getEditField().setAlpha(1.0f);
+                org.telegram.ui.un unVar = (org.telegram.ui.un) this.e;
+                ((cp[]) unVar.f44177a0.f4113b)[0].f27227c.setAlpha(1.0f);
+                ((cp[]) unVar.f44177a0.f4113b)[0].d.setAlpha(1.0f);
+                c6.release((View) null, ga1Var.H);
+                return;
         }
     }
 
-    @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r28) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.d30.onTouchEvent(android.view.MotionEvent):boolean");
+    public d30(h30 h30Var, bh.r rVar, FrameLayout frameLayout, WindowManager windowManager, org.telegram.ui.a8 a8Var) {
+        this.f27366b = h30Var;
+        this.f27367c = rVar;
+        this.d = frameLayout;
+        this.f27368f = windowManager;
+        this.e = a8Var;
     }
 }

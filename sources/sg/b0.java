@@ -1,20 +1,28 @@
 package sg;
 
-import android.view.View;
-import java.util.ArrayList;
-public final class b0 implements View.OnClickListener {
-    public final c0 f46642a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+public final class b0 extends AnimatorListenerAdapter {
+    public final int f48155a;
+    public final n0 f48156b;
 
-    public b0(c0 c0Var) {
-        this.f46642a = c0Var;
+    public b0(n0 n0Var, int i10) {
+        this.f48155a = i10;
+        this.f48156b = n0Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        ArrayList arrayList = new ArrayList();
-        arrayList.add(((org.telegram.ui.Cells.n) view.getParent()).getCurrentChannel());
-        j0 j0Var = this.f46642a.f46650c;
-        int i10 = j0.W0;
-        j0Var.H1(arrayList);
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f48155a) {
+            case 0:
+                this.f48156b.U1.setTranslationY(0.0f);
+                return;
+            default:
+                n0 n0Var = this.f48156b;
+                n0Var.X1 = false;
+                n0Var.U1.setTranslationY(0.0f);
+                n0Var.l0();
+                return;
+        }
     }
 }

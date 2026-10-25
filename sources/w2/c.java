@@ -1,29 +1,28 @@
 package w2;
 
-import e9.c0;
-import e9.k0;
-import e9.l0;
-import e9.n0;
-import e9.r;
-import e9.s1;
-import e9.x1;
+import a8.yb;
+import f9.f0;
+import f9.g0;
+import f9.i0;
+import f9.n;
+import f9.n1;
+import f9.s1;
+import f9.x;
 import java.util.ArrayList;
-import v0.k;
-import v7.u6;
 public final class c implements a {
-    public static final c0 f48907b = new c0(new r(new k(5), s1.f8504b), new r(new k(6), s1.f8505c));
-    public final ArrayList f48908a = new ArrayList();
+    public static final x f50651b = new x(new n(new vg.d(7), n1.f10307b), new n(new vg.d(8), n1.f10308c));
+    public final ArrayList f50652a = new ArrayList();
 
     @Override
     public final long a(long j10) {
         int i10 = 0;
         long j11 = -9223372036854775807L;
         while (true) {
-            ArrayList arrayList = this.f48908a;
+            ArrayList arrayList = this.f50652a;
             if (i10 >= arrayList.size()) {
                 break;
             }
-            long j12 = ((z3.a) arrayList.get(i10)).f51104b;
+            long j12 = ((z3.a) arrayList.get(i10)).f52640b;
             long j13 = ((z3.a) arrayList.get(i10)).d;
             if (j10 < j12) {
                 if (j11 == -9223372036854775807L) {
@@ -49,30 +48,30 @@ public final class c implements a {
     }
 
     @Override
-    public final n0 b(long j10) {
-        ArrayList arrayList = this.f48908a;
+    public final i0 b(long j10) {
+        ArrayList arrayList = this.f50652a;
         if (!arrayList.isEmpty()) {
-            if (j10 >= ((z3.a) arrayList.get(0)).f51104b) {
+            if (j10 >= ((z3.a) arrayList.get(0)).f52640b) {
                 ArrayList arrayList2 = new ArrayList();
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
                     z3.a aVar = (z3.a) arrayList.get(i10);
-                    if (j10 >= aVar.f51104b && j10 < aVar.d) {
+                    if (j10 >= aVar.f52640b && j10 < aVar.d) {
                         arrayList2.add(aVar);
                     }
-                    if (j10 < aVar.f51104b) {
+                    if (j10 < aVar.f52640b) {
                         break;
                     }
                 }
-                x1 A = n0.A(f48907b, arrayList2);
-                k0 t10 = n0.t();
+                s1 A = i0.A(f50651b, arrayList2);
+                f0 t10 = i0.t();
                 for (int i11 = 0; i11 < A.d; i11++) {
-                    t10.d(((z3.a) A.get(i11)).f51103a);
+                    t10.d(((z3.a) A.get(i11)).f52639a);
                 }
                 return t10.f();
             }
         }
-        l0 l0Var = n0.f8481b;
-        return x1.e;
+        g0 g0Var = i0.f10287b;
+        return s1.e;
     }
 
     @Override
@@ -80,27 +79,27 @@ public final class c implements a {
         boolean z10;
         boolean z11;
         boolean z12;
-        long j11 = aVar.f51104b;
+        long j11 = aVar.f52640b;
         if (j11 != -9223372036854775807L) {
             z10 = true;
         } else {
             z10 = false;
         }
-        u6.g(z10);
-        if (aVar.f51105c != -9223372036854775807L) {
+        yb.g(z10);
+        if (aVar.f52641c != -9223372036854775807L) {
             z11 = true;
         } else {
             z11 = false;
         }
-        u6.g(z11);
+        yb.g(z11);
         if (j11 <= j10 && j10 < aVar.d) {
             z12 = true;
         } else {
             z12 = false;
         }
-        ArrayList arrayList = this.f48908a;
+        ArrayList arrayList = this.f50652a;
         for (int size = arrayList.size() - 1; size >= 0; size--) {
-            if (j11 >= ((z3.a) arrayList.get(size)).f51104b) {
+            if (j11 >= ((z3.a) arrayList.get(size)).f52640b) {
                 arrayList.add(size + 1, aVar);
                 return z12;
             }
@@ -111,17 +110,17 @@ public final class c implements a {
 
     @Override
     public final void clear() {
-        this.f48908a.clear();
+        this.f50652a.clear();
     }
 
     @Override
     public final long d(long j10) {
-        ArrayList arrayList = this.f48908a;
+        ArrayList arrayList = this.f50652a;
         if (!arrayList.isEmpty()) {
-            if (j10 >= ((z3.a) arrayList.get(0)).f51104b) {
-                long j11 = ((z3.a) arrayList.get(0)).f51104b;
+            if (j10 >= ((z3.a) arrayList.get(0)).f52640b) {
+                long j11 = ((z3.a) arrayList.get(0)).f52640b;
                 for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                    long j12 = ((z3.a) arrayList.get(i10)).f51104b;
+                    long j12 = ((z3.a) arrayList.get(i10)).f52640b;
                     long j13 = ((z3.a) arrayList.get(i10)).d;
                     if (j13 <= j10) {
                         j11 = Math.max(j11, j13);
@@ -142,9 +141,9 @@ public final class c implements a {
     public final void e(long j10) {
         int i10 = 0;
         while (true) {
-            ArrayList arrayList = this.f48908a;
+            ArrayList arrayList = this.f50652a;
             if (i10 < arrayList.size()) {
-                int i11 = (j10 > ((z3.a) arrayList.get(i10)).f51104b ? 1 : (j10 == ((z3.a) arrayList.get(i10)).f51104b ? 0 : -1));
+                int i11 = (j10 > ((z3.a) arrayList.get(i10)).f52640b ? 1 : (j10 == ((z3.a) arrayList.get(i10)).f52640b ? 0 : -1));
                 if (i11 > 0 && j10 > ((z3.a) arrayList.get(i10)).d) {
                     arrayList.remove(i10);
                     i10--;

@@ -1,35 +1,28 @@
 package org.telegram.messenger;
 
-import org.telegram.ui.sn;
-import org.webrtc.TextureViewRenderer;
+import org.telegram.messenger.MessagesStorage;
 public final class hf implements Runnable {
-    public final int f18596a;
-    public final int f18597b;
-    public final int f18598c;
-    public final int d;
-    public final int e;
-    public final Object f18599f;
+    public final int f20259a;
+    public final MessagesStorage.IntCallback f20260b;
+    public final int f20261c;
 
-    public hf(Object obj, int i10, int i11, int i12, int i13, int i14) {
-        this.f18596a = i14;
-        this.f18599f = obj;
-        this.f18597b = i10;
-        this.f18598c = i11;
-        this.d = i12;
-        this.e = i13;
+    public hf(MessagesStorage.IntCallback intCallback, int i10, int i11) {
+        this.f20259a = i11;
+        this.f20260b = intCallback;
+        this.f20261c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18596a) {
+        switch (this.f20259a) {
             case 0:
-                ((MessagesStorage) this.f18599f).lambda$saveDiffParams$35(this.f18597b, this.f18598c, this.d, this.e);
+                this.f20260b.run(this.f20261c);
                 return;
             case 1:
-                sn.w1((sn) this.f18599f, this.f18597b, this.f18598c, this.d, this.e);
+                this.f20260b.run(this.f20261c);
                 return;
             default:
-                TextureViewRenderer.a((TextureViewRenderer) this.f18599f, this.f18597b, this.f18598c, this.d, this.e);
+                this.f20260b.run(this.f20261c);
                 return;
         }
     }

@@ -1,36 +1,57 @@
 package s4;
 
-import android.content.Context;
-import android.util.DisplayMetrics;
 import android.view.View;
+import android.view.accessibility.AccessibilityEvent;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Wallet.k5;
-public final class f1 extends c0 {
-    public final k5 f46383r;
+public final class f1 extends r0.b {
+    public final RecyclerView d;
+    public final a5.h e = new a5.h(this);
 
-    public f1(k5 k5Var, Context context) {
-        super(context);
-        this.f46383r = k5Var;
+    public f1(RecyclerView recyclerView) {
+        this.d = recyclerView;
     }
 
     @Override
-    public final void g(View view, w0 w0Var) {
-        RecyclerView recyclerView = this.f46383r.f34710a;
-        if (recyclerView != null) {
-            n0 layoutManager = recyclerView.getLayoutManager();
-            layoutManager.getClass();
-            int[] iArr = {0, n0.z(view) - layoutManager.F()};
-            int i10 = iArr[0];
-            int i11 = iArr[1];
-            int m10 = m(Math.max(Math.abs(i10), Math.abs(i11)));
-            if (m10 > 0) {
-                w0Var.b(i10, i11, m10, this.f46364j);
+    public final void b(View view, AccessibilityEvent accessibilityEvent) {
+        super.b(view, accessibilityEvent);
+        if ((view instanceof RecyclerView) && !this.d.Z()) {
+            RecyclerView recyclerView = (RecyclerView) view;
+            if (recyclerView.getLayoutManager() != null) {
+                c0 c0Var = (c0) recyclerView.getLayoutManager();
+                RecyclerView recyclerView2 = c0Var.f47816b;
+                rf.e eVar = recyclerView2.f3056b;
+                if (accessibilityEvent != null) {
+                    boolean z10 = true;
+                    if (!recyclerView2.canScrollVertically(1) && !c0Var.f47816b.canScrollVertically(-1) && !c0Var.f47816b.canScrollHorizontally(-1) && !c0Var.f47816b.canScrollHorizontally(1)) {
+                        z10 = false;
+                    }
+                    accessibilityEvent.setScrollable(z10);
+                    h0 h0Var = c0Var.f47816b.f3082w;
+                    if (h0Var != null) {
+                        accessibilityEvent.setItemCount(h0Var.h());
+                    }
+                }
+                if (c0Var.r() > 0) {
+                    accessibilityEvent.setFromIndex(c0Var.L0());
+                    accessibilityEvent.setToIndex(c0Var.N0());
+                }
             }
         }
     }
 
     @Override
-    public final float l(DisplayMetrics displayMetrics) {
-        return 100.0f / displayMetrics.densityDpi;
+    public final void c(View view, s0.d dVar) {
+        this.f47073a.onInitializeAccessibilityNodeInfo(view, dVar.f47650a);
+        RecyclerView recyclerView = this.d;
+        if (!recyclerView.Z() && recyclerView.getLayoutManager() != null) {
+            p0 layoutManager = recyclerView.getLayoutManager();
+            RecyclerView recyclerView2 = layoutManager.f47816b;
+            layoutManager.S(recyclerView2.f3056b, recyclerView2.f3080u0, dVar);
+        }
+    }
+
+    @Override
+    public final boolean d(android.view.View r4, int r5, android.os.Bundle r6) {
+        throw new UnsupportedOperationException("Method not decompiled: s4.f1.d(android.view.View, int, android.os.Bundle):boolean");
     }
 }

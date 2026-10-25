@@ -1,27 +1,48 @@
 package org.telegram.ui;
-public final class qe implements Runnable {
-    public final int f40796a;
-    public final org.telegram.ui.Components.bn0 f40797b;
 
-    public qe(org.telegram.ui.Components.bn0 bn0Var, int i10) {
-        this.f40796a = i10;
-        this.f40797b = bn0Var;
+import android.content.DialogInterface;
+public final class qe implements DialogInterface.OnDismissListener {
+    public final int f42815a;
+    public final un f42816b;
+
+    public qe(un unVar, int i10) {
+        this.f42815a = i10;
+        this.f42816b = unVar;
     }
 
     @Override
-    public final void run() {
-        switch (this.f40796a) {
+    public final void onDismiss(DialogInterface dialogInterface) {
+        switch (this.f42815a) {
             case 0:
-                org.telegram.ui.Components.bn0 bn0Var = this.f40797b;
-                if (!bn0Var.M) {
-                    bn0Var.M = true;
-                    bn0Var.c(new org.telegram.ui.Components.zm0(bn0Var, 0), false);
-                    bn0Var.f25059s.invalidate();
+                bk bkVar = this.f42816b.f44293j2;
+                if (bkVar != null) {
+                    bkVar.c(false);
                     return;
                 }
                 return;
+            case 1:
+                un.j1(this.f42816b);
+                return;
+            case 2:
+                this.f42816b.n8(false, true, 0.0f);
+                return;
+            case 3:
+                this.f42816b.n8(false, true, 0.0f);
+                return;
+            case 4:
+                this.f42816b.n8(false, true, 0.0f);
+                return;
+            case 5:
+                this.f42816b.n8(false, true, 0.0f);
+                return;
+            case 6:
+                this.f42816b.n8(false, true, 0.0f);
+                return;
+            case 7:
+                this.f42816b.n8(false, true, 0.0f);
+                return;
             default:
-                this.f40797b.dismiss();
+                this.f42816b.f44216cc = null;
                 return;
         }
     }

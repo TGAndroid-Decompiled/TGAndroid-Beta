@@ -1,39 +1,49 @@
 package cc;
 
-import android.os.SystemClock;
-import m.s3;
-import ri.i;
-import ri.o;
-import z7.fb;
-import z7.fe;
-import z7.gb;
-import z7.vf;
-public final class e implements vf {
-    public final long f5096a;
-    public final Object f5097b;
-    public final Object f5098c;
+import a8.ef;
+import java.util.Arrays;
+import o6.l;
+public final class e {
+    public final boolean f6192a;
+    public final boolean f6193b;
+    public final boolean f6194c;
 
-    public e(f fVar, gb gbVar, long j10) {
-        this.f5097b = fVar;
-        this.f5098c = gbVar;
-        this.f5096a = j10;
+    public e(d dVar) {
+        this.f6192a = dVar.f6189a;
+        this.f6193b = dVar.f6190b;
+        this.f6194c = dVar.f6191c;
     }
 
-    @Override
-    public a5.a zza() {
+    public final ef a() {
         ?? obj = new Object();
-        obj.f16399c = fb.TYPE_THIN;
-        u2.c cVar = new u2.c(19, false);
-        cVar.d = ((f) this.f5097b).e.a();
-        cVar.f47711b = (gb) this.f5098c;
-        cVar.f47712c = Long.valueOf((SystemClock.elapsedRealtime() - this.f5096a) & Long.MAX_VALUE);
-        obj.e = new fe(cVar);
-        return new a5.a((s3) obj, 0);
+        Boolean bool = Boolean.FALSE;
+        obj.f614a = bool;
+        obj.f615b = Boolean.valueOf(this.f6192a);
+        obj.f616c = Boolean.valueOf(this.f6193b);
+        obj.d = bool;
+        obj.e = Boolean.valueOf(this.f6194c);
+        return new ef(obj);
     }
 
-    public e(long j10, i iVar, o oVar) {
-        this.f5098c = oVar;
-        this.f5096a = j10;
-        this.f5097b = iVar;
+    public final boolean equals(Object obj) {
+        if (obj != this) {
+            if (obj instanceof e) {
+                e eVar = (e) obj;
+                if (this.f6192a == eVar.f6192a && this.f6193b == eVar.f6193b && this.f6194c == eVar.f6194c && l.l(null, null)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        Boolean valueOf = Boolean.valueOf(this.f6192a);
+        Boolean valueOf2 = Boolean.valueOf(this.f6193b);
+        Boolean valueOf3 = Boolean.valueOf(this.f6194c);
+        Boolean bool = Boolean.FALSE;
+        return Arrays.hashCode(new Object[]{bool, valueOf, valueOf2, bool, valueOf3, null});
     }
 }

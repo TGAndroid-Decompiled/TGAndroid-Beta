@@ -1,28 +1,82 @@
 package i2;
-public final class w implements e2.p, e2.o {
-    public final int f12630a;
-    public final h0 f12631b;
 
-    public w(h0 h0Var, int i10) {
-        this.f12630a = i10;
-        this.f12631b = h0Var;
+import j$.time.LocalDate;
+import j$.time.ZoneOffset;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.id0;
+import org.telegram.ui.Components.wl0;
+public final class w implements e2.o, e9.k, e2.j, wl0, id0 {
+    public final int f13781a;
+    public final int f13782b;
+
+    public w(int i10, int i11) {
+        this.f13781a = i11;
+        this.f13782b = i10;
     }
 
     @Override
-    public void a(Object obj, b2.u uVar) {
-        ((b2.d1) obj).onEvents(this.f12631b.f12418f, new b2.c1(uVar));
+    public void accept(Object obj) {
+        switch (this.f13781a) {
+            case 3:
+                ((m4.n1) obj).g0(this.f13782b);
+                return;
+            case 4:
+                ((m4.n1) obj).M(this.f13782b);
+                return;
+            case 5:
+                ((m4.n1) obj).j(this.f13782b);
+                return;
+            default:
+                ((m4.n1) obj).G0(this.f13782b);
+                return;
+        }
+    }
+
+    @Override
+    public Object apply(Object obj) {
+        Integer num = (Integer) obj;
+        return Integer.valueOf(this.f13782b);
+    }
+
+    @Override
+    public String f(int i10) {
+        int i11 = this.f13781a;
+        int i12 = this.f13782b;
+        switch (i11) {
+            case 8:
+                if (i10 == 0) {
+                    return LocaleController.getString(R.string.MessageScheduleToday);
+                }
+                LocalDate plusDays = LocalDate.now().plusDays(i10);
+                int year = plusDays.getYear();
+                long epochMilli = plusDays.atStartOfDay().toInstant(ZoneOffset.UTC).toEpochMilli();
+                if (year == i12) {
+                    return LocaleController.getInstance().getFormatterWeek().format(epochMilli) + ", " + LocaleController.getInstance().getFormatterScheduleDay().format(epochMilli);
+                }
+                return LocaleController.getInstance().getFormatterScheduleYear().format(epochMilli);
+            default:
+                if (i10 == i12) {
+                    return "—";
+                }
+                return String.format("%02d", Integer.valueOf(i10));
+        }
     }
 
     @Override
     public void invoke(Object obj) {
-        b2.d1 d1Var = (b2.d1) obj;
-        switch (this.f12630a) {
-            case 3:
-                d1Var.onAvailableCommandsChanged(this.f12631b.P);
+        switch (this.f13781a) {
+            case 0:
+                ((b2.e1) obj).onRepeatModeChanged(this.f13782b);
                 return;
             default:
-                d1Var.onPlaylistMetadataChanged(this.f12631b.R);
+                ((b2.e1) obj).onAudioSessionIdChanged(this.f13782b);
                 return;
         }
+    }
+
+    @Override
+    public int run() {
+        return this.f13782b;
     }
 }

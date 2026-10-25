@@ -1,73 +1,22 @@
 package org.telegram.ui.ActionBar;
+public final class s5 {
+    public static final s5 f23083a;
+    public static final s5 f23084b;
+    public static final s5[] f23085c;
 
-import android.util.SparseIntArray;
-import org.telegram.ui.pc1;
-public final class s5 extends j5 {
-    public final int T = 1;
-    public final Object U;
-
-    public s5(pc1 pc1Var, int i10, boolean z10) {
-        super(i10, true, z10, null);
-        this.U = pc1Var;
+    static {
+        ?? r02 = new Enum("ICON", 0);
+        f23083a = r02;
+        ?? r12 = new Enum("TEXT", 1);
+        f23084b = r12;
+        f23085c = new s5[]{r02, r12};
     }
 
-    @Override
-    public int g(int i10) {
-        switch (this.T) {
-            case 0:
-                SparseIntArray sparseIntArray = (SparseIntArray) this.U;
-                int indexOfKey = sparseIntArray.indexOfKey(i10);
-                if (indexOfKey > 0) {
-                    return sparseIntArray.valueAt(indexOfKey);
-                }
-                return k6.ql[i10];
-            default:
-                return super.g(i10);
-        }
+    public static s5 valueOf(String str) {
+        return (s5) Enum.valueOf(s5.class, str);
     }
 
-    @Override
-    public int h(int i10) {
-        switch (this.T) {
-            case 0:
-                return ((SparseIntArray) this.U).get(i10);
-            default:
-                return super.h(i10);
-        }
-    }
-
-    @Override
-    public void m(int i10, int i11, int i12) {
-        switch (this.T) {
-            case 1:
-                if (!((pc1) this.U).f40458e2) {
-                    super.m(i10, i11, i12);
-                    return;
-                }
-                return;
-            default:
-                super.m(i10, i11, i12);
-                return;
-        }
-    }
-
-    @Override
-    public void n(int i10, int i11, int i12, int i13, int i14, int i15, boolean z10, boolean z11) {
-        switch (this.T) {
-            case 1:
-                if (!((pc1) this.U).f40458e2) {
-                    super.n(i10, i11, i12, i13, i14, i15, z10, z11);
-                    return;
-                }
-                return;
-            default:
-                super.n(i10, i11, i12, i13, i14, i15, z10, z11);
-                return;
-        }
-    }
-
-    public s5(boolean z10, SparseIntArray sparseIntArray) {
-        super(2, z10, false, null);
-        this.U = sparseIntArray;
+    public static s5[] values() {
+        return (s5[]) f23085c.clone();
     }
 }

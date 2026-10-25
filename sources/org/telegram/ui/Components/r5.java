@@ -1,54 +1,488 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.view.animation.OvershootInterpolator;
 import org.telegram.messenger.AndroidUtilities;
-public final class r5 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f30064a;
-    public final float f30065b;
-    public final float f30066c;
-    public final float d;
-    public final float e;
-    public final Object f30067f;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public class r5 extends Drawable implements z5 {
+    public bi.td E;
+    public Integer F;
+    public int G;
+    public PorterDuffColorFilter H;
+    public int I;
+    public int J;
+    public final Rect K;
+    public final pg L;
+    public boolean f32091a;
+    public final int f32092b;
+    public final OvershootInterpolator f32093c;
+    public final h6 d;
+    public final h6 e;
+    public final Drawable[] f32094f;
+    public View h;
+    public org.telegram.ui.c61 f32095n;
+    public final boolean f32096r;
+    public final int f32097s;
+    public int v;
+    public boolean f32098w;
+    public Integer f32099x;
+    public boolean f32100y;
 
-    public r5(Object obj, float f7, float f10, float f11, float f12, int i10) {
-        this.f30064a = i10;
-        this.f30067f = obj;
-        this.f30065b = f7;
-        this.f30066c = f10;
-        this.d = f11;
-        this.e = f12;
+    public r5(int i10, View view) {
+        this(i10, 7, view, false);
+    }
+
+    public final void a() {
+        if (!this.f32098w) {
+            this.f32098w = true;
+            Drawable[] drawableArr = this.f32094f;
+            Drawable drawable = drawableArr[0];
+            if (drawable instanceof t5) {
+                ((t5) drawable).b(this);
+            }
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 instanceof t5) {
+                ((t5) drawable2).b(this);
+            }
+        }
+    }
+
+    public final void b() {
+        if (this.f32098w) {
+            this.f32098w = false;
+            Drawable[] drawableArr = this.f32094f;
+            Drawable drawable = drawableArr[0];
+            if (drawable instanceof t5) {
+                ((t5) drawable).p(this);
+            }
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 instanceof t5) {
+                ((t5) drawable2).p(this);
+            }
+        }
+    }
+
+    public final Drawable c() {
+        return this.f32094f[0];
+    }
+
+    public final boolean d() {
+        if (this.f32094f[0] != null) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        int i10 = this.f30064a;
-        float f7 = this.e;
-        float f10 = this.d;
-        float f11 = this.f30066c;
-        float f12 = this.f30065b;
-        Object obj = this.f30067f;
-        switch (i10) {
-            case 0:
-                y5 y5Var = (y5) obj;
-                y5Var.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                y5Var.lastDrawnCy = AndroidUtilities.lerp(f12, f11, floatValue);
-                y5Var.lastDrawnCx = AndroidUtilities.lerp(f10, f7, floatValue);
-                return;
-            default:
-                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) obj;
-                int i11 = ChatActivityEnterView.f24051r5;
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                float y3 = com.google.android.gms.internal.play_billing.k3.y(f11, f12, floatValue2, f12);
-                wp0 wp0Var = chatActivityEnterView.f24143p0;
-                if (wp0Var != null) {
-                    wp0Var.setAlpha(((f7 - f10) * floatValue2) + f10);
-                    chatActivityEnterView.f24143p0.setTranslationX(y3);
-                }
-                chatActivityEnterView.Q0.setTranslationX(y3);
-                chatActivityEnterView.G = y3;
-                chatActivityEnterView.G1();
-                return;
+    public final void draw(Canvas canvas) {
+        int intrinsicWidth;
+        int intrinsicWidth2;
+        int intrinsicHeight;
+        int intValue;
+        float d = this.d.d(1.0f, false);
+        Rect bounds = getBounds();
+        Rect rect = this.K;
+        rect.set(bounds);
+        rect.offset(this.I, this.J);
+        float e = this.e.e(this.f32100y);
+        int i10 = (e > 0.0f ? 1 : (e == 0.0f ? 0 : -1));
+        pg pgVar = this.L;
+        if (i10 > 0) {
+            bi.td tdVar = this.E;
+            tdVar.f5491c.set(rect);
+            tdVar.e();
+            this.E.d();
+            bi.td tdVar2 = this.E;
+            Integer num = this.F;
+            if (num == null) {
+                intValue = -1;
+            } else {
+                intValue = num.intValue();
+            }
+            tdVar2.a(canvas, org.telegram.ui.ActionBar.y6.o1(e, intValue));
+            ag.n.d().a(15, pgVar);
+        } else {
+            ag.n.d().g(pgVar);
         }
+        Drawable[] drawableArr = this.f32094f;
+        Drawable drawable = drawableArr[1];
+        int i11 = this.f32097s;
+        if (drawable != null && d < 1.0f) {
+            drawable.setAlpha((int) ((1.0f - d) * this.v));
+            if (drawableArr[1].getIntrinsicWidth() < 0) {
+                intrinsicWidth2 = i11;
+            } else {
+                intrinsicWidth2 = drawableArr[1].getIntrinsicWidth();
+            }
+            if (drawableArr[1].getIntrinsicHeight() < 0) {
+                intrinsicHeight = i11;
+            } else {
+                intrinsicHeight = drawableArr[1].getIntrinsicHeight();
+            }
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 instanceof t5) {
+                drawable2.setBounds(rect);
+            } else if (this.f32091a) {
+                int i12 = intrinsicWidth2 / 2;
+                int i13 = intrinsicHeight / 2;
+                drawable2.setBounds(rect.centerX() - i12, rect.centerY() - i13, rect.centerX() + i12, rect.centerY() + i13);
+            } else {
+                int i14 = intrinsicHeight / 2;
+                drawable2.setBounds(rect.left, rect.centerY() - i14, rect.left + intrinsicWidth2, rect.centerY() + i14);
+            }
+            drawableArr[1].setColorFilter(this.H);
+            drawableArr[1].draw(canvas);
+            drawableArr[1].setColorFilter(null);
+        }
+        if (drawableArr[0] != null) {
+            canvas.save();
+            if (drawableArr[0].getIntrinsicWidth() < 0) {
+                intrinsicWidth = i11;
+            } else {
+                intrinsicWidth = drawableArr[0].getIntrinsicWidth();
+            }
+            if (drawableArr[0].getIntrinsicHeight() >= 0) {
+                i11 = drawableArr[0].getIntrinsicHeight();
+            }
+            Drawable drawable3 = drawableArr[0];
+            boolean z10 = drawable3 instanceof t5;
+            OvershootInterpolator overshootInterpolator = this.f32093c;
+            if (z10) {
+                di.f3 f3Var = ((t5) drawable3).f32849k;
+                if (f3Var != null) {
+                    f3Var.setRoundRadius(AndroidUtilities.dp(4.0f));
+                }
+                if (d < 1.0f) {
+                    float interpolation = overshootInterpolator.getInterpolation(d);
+                    canvas.scale(interpolation, interpolation, rect.centerX(), rect.centerY());
+                }
+                drawableArr[0].setBounds(rect);
+            } else if (this.f32091a) {
+                if (d < 1.0f) {
+                    float interpolation2 = overshootInterpolator.getInterpolation(d);
+                    canvas.scale(interpolation2, interpolation2, rect.centerX(), rect.centerY());
+                }
+                int i15 = intrinsicWidth / 2;
+                int i16 = i11 / 2;
+                drawableArr[0].setBounds(rect.centerX() - i15, rect.centerY() - i16, rect.centerX() + i15, rect.centerY() + i16);
+            } else {
+                if (d < 1.0f) {
+                    float interpolation3 = overshootInterpolator.getInterpolation(d);
+                    canvas.scale(interpolation3, interpolation3, (intrinsicWidth / 2.0f) + rect.left, rect.centerY());
+                }
+                int i17 = i11 / 2;
+                drawableArr[0].setBounds(rect.left, rect.centerY() - i17, rect.left + intrinsicWidth, rect.centerY() + i17);
+            }
+            drawableArr[0].setAlpha(this.v);
+            drawableArr[0].setColorFilter(this.H);
+            drawableArr[0].draw(canvas);
+            drawableArr[0].setColorFilter(null);
+            canvas.restore();
+        }
+    }
+
+    public final float e() {
+        float f7;
+        Drawable[] drawableArr = this.f32094f;
+        Drawable drawable = drawableArr[1];
+        float f10 = 0.0f;
+        h6 h6Var = this.d;
+        if (drawable != null) {
+            f7 = 1.0f - h6Var.f28809c;
+        } else {
+            f7 = 0.0f;
+        }
+        if (drawableArr[0] != null) {
+            f10 = h6Var.f28809c;
+        }
+        return f7 + f10;
+    }
+
+    public final void f() {
+        t5 t5Var;
+        di.f3 f3Var;
+        Drawable drawable = this.f32094f[0];
+        if ((drawable instanceof t5) && (f3Var = (t5Var = (t5) drawable).f32849k) != null) {
+            t5Var.w(f3Var);
+            f3Var.startAnimation();
+        }
+    }
+
+    public final void g(Drawable drawable, boolean z10) {
+        Drawable[] drawableArr = this.f32094f;
+        if (drawableArr[0] == drawable) {
+            return;
+        }
+        h6 h6Var = this.d;
+        if (z10) {
+            h6Var.d(0.0f, true);
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 != null) {
+                if (this.f32098w && (drawable2 instanceof t5)) {
+                    ((t5) drawable2).p(this);
+                }
+                drawableArr[1] = null;
+            }
+            drawableArr[1] = drawableArr[0];
+            drawableArr[0] = drawable;
+        } else {
+            h6Var.d(1.0f, true);
+            boolean z11 = this.f32098w;
+            if (z11) {
+                b();
+            }
+            drawableArr[0] = drawable;
+            if (z11) {
+                a();
+            }
+        }
+        this.F = null;
+        this.H = null;
+        this.G = 0;
+        f();
+        invalidate();
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f32097s;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f32097s;
+    }
+
+    @Override
+    public final int getOpacity() {
+        return -2;
+    }
+
+    public final void h(TLRPC.Document document, int i10, boolean z10) {
+        int i11;
+        int i12;
+        Drawable[] drawableArr = this.f32094f;
+        Drawable drawable = drawableArr[0];
+        if ((drawable instanceof t5) && document != null && ((t5) drawable).i() == document.f22033id) {
+            return;
+        }
+        h6 h6Var = this.d;
+        if (z10) {
+            h6Var.d(0.0f, true);
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 != null) {
+                if (drawable2 instanceof t5) {
+                    ((t5) drawable2).p(this);
+                }
+                drawableArr[1] = null;
+            }
+            drawableArr[1] = drawableArr[0];
+            if (document != null) {
+                Integer num = this.f32099x;
+                if (num != null) {
+                    i12 = num.intValue();
+                } else {
+                    i12 = UserConfig.selectedAccount;
+                }
+                t5 m10 = t5.m(i12, i10, document);
+                drawableArr[0] = m10;
+                if (this.f32098w) {
+                    m10.b(this);
+                }
+            } else {
+                drawableArr[0] = null;
+            }
+        } else {
+            h6Var.d(1.0f, true);
+            boolean z11 = this.f32098w;
+            if (z11) {
+                b();
+            }
+            if (document != null) {
+                Integer num2 = this.f32099x;
+                if (num2 != null) {
+                    i11 = num2.intValue();
+                } else {
+                    i11 = UserConfig.selectedAccount;
+                }
+                drawableArr[0] = t5.m(i11, i10, document);
+            } else {
+                drawableArr[0] = null;
+            }
+            if (z11) {
+                a();
+            }
+        }
+        this.F = null;
+        this.H = null;
+        this.G = 0;
+        f();
+        invalidate();
+    }
+
+    public final void i(TLRPC.Document document, boolean z10) {
+        h(document, this.f32092b, z10);
+    }
+
+    @Override
+    public void invalidate() {
+        View view = this.h;
+        if (view != null) {
+            if (this.f32096r && (view.getParent() instanceof View)) {
+                ((View) this.h.getParent()).invalidate();
+            } else {
+                this.h.invalidate();
+            }
+        }
+        org.telegram.ui.c61 c61Var = this.f32095n;
+        if (c61Var != null) {
+            c61Var.invalidate();
+        }
+        invalidateSelf();
+    }
+
+    public final boolean j(long j10, boolean z10) {
+        int i10;
+        int i11;
+        Drawable[] drawableArr = this.f32094f;
+        Drawable drawable = drawableArr[0];
+        if ((drawable instanceof t5) && ((t5) drawable).i() == j10) {
+            return false;
+        }
+        int i12 = this.f32092b;
+        h6 h6Var = this.d;
+        if (z10) {
+            h6Var.d(0.0f, true);
+            Drawable drawable2 = drawableArr[1];
+            if (drawable2 != null) {
+                if (this.f32098w && (drawable2 instanceof t5)) {
+                    ((t5) drawable2).p(this);
+                }
+                drawableArr[1] = null;
+            }
+            drawableArr[1] = drawableArr[0];
+            Integer num = this.f32099x;
+            if (num != null) {
+                i11 = num.intValue();
+            } else {
+                i11 = UserConfig.selectedAccount;
+            }
+            t5 n10 = t5.n(i11, j10, null, i12);
+            drawableArr[0] = n10;
+            if (this.f32098w) {
+                n10.b(this);
+            }
+        } else {
+            h6Var.d(1.0f, true);
+            boolean z11 = this.f32098w;
+            if (z11) {
+                b();
+            }
+            Integer num2 = this.f32099x;
+            if (num2 != null) {
+                i10 = num2.intValue();
+            } else {
+                i10 = UserConfig.selectedAccount;
+            }
+            drawableArr[0] = t5.n(i10, j10, null, i12);
+            if (z11) {
+                a();
+            }
+        }
+        this.F = null;
+        this.H = null;
+        this.G = 0;
+        f();
+        invalidate();
+        return true;
+    }
+
+    public final void k(Integer num) {
+        PorterDuffColorFilter porterDuffColorFilter;
+        Integer num2 = this.F;
+        if (num2 != null || num != null) {
+            if (num2 == null || !num2.equals(num)) {
+                this.F = num;
+                if (num != null && this.G == num.intValue()) {
+                    return;
+                }
+                if (num != null) {
+                    int intValue = num.intValue();
+                    this.G = intValue;
+                    porterDuffColorFilter = new PorterDuffColorFilter(intValue, PorterDuff.Mode.SRC_IN);
+                } else {
+                    porterDuffColorFilter = null;
+                }
+                this.H = porterDuffColorFilter;
+            }
+        }
+    }
+
+    public final void l(View view) {
+        this.d.f28807a = view;
+        this.e.f28807a = view;
+        this.h = view;
+    }
+
+    public final void m(boolean z10, boolean z11) {
+        if (this.f32100y == z10) {
+            return;
+        }
+        if (z11) {
+            if (this.E == null) {
+                this.E = new bi.td(1, 8);
+            }
+            this.f32100y = z10;
+            invalidate();
+            return;
+        }
+        this.f32100y = z10;
+        if (z10 && this.E == null) {
+            this.E = new bi.td(1, 8);
+        } else if (!z10 && this.E != null) {
+            this.E = null;
+        }
+        this.e.f(z10, true);
+        invalidate();
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.v = i10;
+    }
+
+    public r5(View view, int i10, boolean z10) {
+        this(i10, 7, view, z10);
+    }
+
+    public r5(int i10, int i11, View view, boolean z10) {
+        this.f32091a = false;
+        this.f32093c = new OvershootInterpolator(2.0f);
+        ds dsVar = ds.f27585g;
+        h6 h6Var = new h6((View) null, 300L, dsVar);
+        this.d = h6Var;
+        h6 h6Var2 = new h6((View) null, 300L, dsVar);
+        this.e = h6Var2;
+        this.f32094f = new Drawable[2];
+        this.v = 255;
+        this.K = new Rect();
+        this.L = new pg(this, 7);
+        h6Var.f28807a = view;
+        this.h = view;
+        h6Var2.f28807a = view;
+        this.f32097s = i10;
+        this.f32092b = i11;
+        this.f32096r = z10;
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
     }
 }

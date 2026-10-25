@@ -3,77 +3,77 @@ package org.telegram.ui.Cells;
 import java.util.ArrayList;
 import org.telegram.messenger.MessageObject;
 public final class a1 implements Runnable {
-    public final int f22075a;
-    public final t1 f22076b;
+    public final int f23838a;
+    public final s1 f23839b;
 
-    public a1(int i10, t1 t1Var) {
-        this.f22075a = i10;
-        this.f22076b = t1Var;
+    public a1(int i10, s1 s1Var) {
+        this.f23838a = i10;
+        this.f23839b = s1Var;
     }
 
     @Override
     public final void run() {
-        switch (this.f22075a) {
+        switch (this.f23838a) {
             case 0:
-                this.f22076b.a3();
+                this.f23839b.b3();
                 return;
             case 1:
-                t1 t1Var = this.f22076b;
-                k1 k1Var = t1Var.Jc;
-                if (k1Var != null) {
-                    k1Var.p(t1Var);
+                s1 s1Var = this.f23839b;
+                j1 j1Var = s1Var.Jc;
+                if (j1Var != null) {
+                    j1Var.p(s1Var);
                     return;
                 }
                 return;
             case 2:
-                this.f22076b.G3();
+                this.f23839b.J3();
                 return;
             case 3:
-                t1 t1Var2 = this.f22076b;
-                l2.f fVar = t1Var2.f23622w;
-                fVar.q(t1Var2.Qd);
-                fVar.q(t1Var2.Rd);
-                t1Var2.G3();
-                MessageObject messageObject = t1Var2.f23660y7;
+                s1 s1Var2 = this.f23839b;
+                i2.c cVar = s1Var2.f25325w;
+                cVar.a(s1Var2.Qd);
+                cVar.a(s1Var2.Rd);
+                s1Var2.J3();
+                MessageObject messageObject = s1Var2.f25363y7;
                 if (messageObject != null) {
                     messageObject.generateLayout(null);
-                    MessageObject messageObject2 = t1Var2.f23660y7;
+                    MessageObject messageObject2 = s1Var2.f25363y7;
                     if (messageObject2.caption != null) {
                         messageObject2.caption = null;
                         messageObject2.generateCaption();
                     }
-                    k1 k1Var2 = t1Var2.Jc;
-                    if (k1Var2 != null) {
-                        k1Var2.T(t1Var2);
+                    j1 j1Var2 = s1Var2.Jc;
+                    if (j1Var2 != null) {
+                        j1Var2.Q(s1Var2);
                         return;
                     }
                     return;
                 }
                 return;
             case 4:
-                t1 t1Var3 = this.f22076b;
-                if (t1Var3.Q9 && !t1Var3.R9 && t1Var3.S9) {
-                    t1Var3.R9 = true;
-                    t1Var3.zc.setState(new int[]{16842919, 16842910});
+                s1 s1Var3 = this.f23839b;
+                if (s1Var3.Q9 && !s1Var3.R9 && s1Var3.S9) {
+                    s1Var3.R9 = true;
+                    s1Var3.zc.setState(new int[]{16842919, 16842910});
                     return;
                 }
                 return;
             case 5:
-                t1 t1Var4 = this.f22076b;
-                t1Var4.zc.setState(new int[0]);
-                t1Var4.invalidate();
+                s1 s1Var4 = this.f23839b;
+                s1Var4.zc.setState(new int[0]);
+                s1Var4.invalidate();
                 return;
             case 6:
-                t1 t1Var5 = this.f22076b;
-                t1Var5.zc.setState(new int[0]);
-                t1Var5.invalidate();
+                s1 s1Var5 = this.f23839b;
+                s1Var5.zc.setState(new int[0]);
+                s1Var5.invalidate();
                 return;
             case 7:
-                t1 t1Var6 = this.f22076b;
+                s1 s1Var6 = this.f23839b;
                 int i10 = 0;
-                t1Var6.f23645x7 = false;
-                t1Var6.getMessageObject().isSpoilersRevealed = true;
-                MessageObject.TextLayoutBlocks textLayoutBlocks = t1Var6.f23413h4;
+                s1Var6.f25349x7 = false;
+                s1Var6.getMessageObject().isSpoilersRevealed = true;
+                MessageObject.TextLayoutBlocks textLayoutBlocks = s1Var6.f25115h4;
                 if (textLayoutBlocks != null) {
                     ArrayList<MessageObject.TextLayoutBlock> arrayList = textLayoutBlocks.textLayoutBlocks;
                     int size = arrayList.size();
@@ -84,7 +84,7 @@ public final class a1 implements Runnable {
                         textLayoutBlock.spoilers.clear();
                     }
                 }
-                MessageObject.TextLayoutBlocks textLayoutBlocks2 = t1Var6.f23342c4;
+                MessageObject.TextLayoutBlocks textLayoutBlocks2 = s1Var6.f25044c4;
                 if (textLayoutBlocks2 != null) {
                     ArrayList<MessageObject.TextLayoutBlock> arrayList2 = textLayoutBlocks2.textLayoutBlocks;
                     int size2 = arrayList2.size();
@@ -94,7 +94,7 @@ public final class a1 implements Runnable {
                         textLayoutBlock2.spoilers.clear();
                     }
                 } else {
-                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = t1Var6.f23660y7.textLayoutBlocks;
+                    ArrayList<MessageObject.TextLayoutBlock> arrayList3 = s1Var6.f25363y7.textLayoutBlocks;
                     if (arrayList3 != null) {
                         int size3 = arrayList3.size();
                         while (i10 < size3) {
@@ -104,20 +104,20 @@ public final class a1 implements Runnable {
                         }
                     }
                 }
-                t1Var6.invalidate();
+                s1Var6.invalidate();
                 return;
             case 8:
-                t1 t1Var7 = this.f22076b;
-                t1Var7.getMessageObject().replyMessageObject.isSpoilersRevealed = true;
-                t1Var7.Ld.clear();
-                t1Var7.invalidate();
+                s1 s1Var7 = this.f23839b;
+                s1Var7.getMessageObject().replyMessageObject.isSpoilersRevealed = true;
+                s1Var7.Ld.clear();
+                s1Var7.invalidate();
                 return;
             case 9:
-                t1 t1Var8 = this.f22076b;
-                t1Var8.post(new a1(7, t1Var8));
+                s1 s1Var8 = this.f23839b;
+                s1Var8.post(new a1(7, s1Var8));
                 return;
             default:
-                this.f22076b.Z2();
+                this.f23839b.a3();
                 return;
         }
     }

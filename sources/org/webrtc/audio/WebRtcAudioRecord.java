@@ -10,7 +10,6 @@ import android.media.AudioTimestamp;
 import android.os.Build;
 import android.os.Process;
 import com.google.firebase.messaging.h;
-import i2.o1;
 import java.nio.ByteBuffer;
 import java.util.Arrays;
 import java.util.List;
@@ -21,7 +20,7 @@ import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.atomic.AtomicReference;
-import org.telegram.ui.web.d0;
+import org.telegram.ui.ji1;
 import org.webrtc.Logging;
 import org.webrtc.ThreadUtils;
 import org.webrtc.audio.JavaAudioDeviceModule;
@@ -207,7 +206,7 @@ public class WebRtcAudioRecord {
                 i11 = 4;
                 if (i10 != 4) {
                     if (i10 != 13) {
-                        throw new IllegalArgumentException(o1.k(i10, "Bad audio format "));
+                        throw new IllegalArgumentException(ic.a.i(i10, "Bad audio format "));
                     }
                 }
             }
@@ -265,7 +264,7 @@ public class WebRtcAudioRecord {
                 return -1;
             }
         }
-        reportWebRtcAudioRecordInitError(o1.k(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
+        reportWebRtcAudioRecordInitError(ic.a.i(minBufferSize, "AudioRecord.getMinBufferSize failed: "));
         return -1;
     }
 
@@ -282,15 +281,15 @@ public class WebRtcAudioRecord {
         assertTrue(!list.isEmpty());
         Logging.d("WebRtcAudioRecordExternal", "AudioRecordingConfigurations: ");
         for (AudioRecordingConfiguration audioRecordingConfiguration : list) {
-            AudioRecordingConfiguration c10 = d0.c(audioRecordingConfiguration);
+            AudioRecordingConfiguration a2 = ji1.a(audioRecordingConfiguration);
             StringBuilder sb2 = new StringBuilder("  client audio source=");
-            sb2.append(WebRtcAudioUtils.audioSourceToString(c10.getClientAudioSource()));
+            sb2.append(WebRtcAudioUtils.audioSourceToString(a2.getClientAudioSource()));
             sb2.append(", client session id=");
-            sb2.append(c10.getClientAudioSessionId());
+            sb2.append(a2.getClientAudioSessionId());
             sb2.append(" (");
             sb2.append(i10);
             sb2.append(")\n  Device AudioFormat: channel count=");
-            AudioFormat format = c10.getFormat();
+            AudioFormat format = a2.getFormat();
             sb2.append(format.getChannelCount());
             sb2.append(", channel index mask=");
             sb2.append(format.getChannelIndexMask());
@@ -301,7 +300,7 @@ public class WebRtcAudioRecord {
             sb2.append(", sample rate=");
             sb2.append(format.getSampleRate());
             sb2.append("\n  Client AudioFormat: channel count=");
-            AudioFormat clientFormat = c10.getClientFormat();
+            AudioFormat clientFormat = a2.getClientFormat();
             sb2.append(clientFormat.getChannelCount());
             sb2.append(", channel index mask=");
             sb2.append(clientFormat.getChannelIndexMask());
@@ -312,7 +311,7 @@ public class WebRtcAudioRecord {
             sb2.append(", sample rate=");
             sb2.append(clientFormat.getSampleRate());
             sb2.append("\n");
-            AudioDeviceInfo audioDevice = c10.getAudioDevice();
+            AudioDeviceInfo audioDevice = a2.getAudioDevice();
             if (audioDevice != null) {
                 assertTrue(audioDevice.isSource());
                 sb2.append("  AudioDevice: type=");
@@ -486,9 +485,9 @@ public class WebRtcAudioRecord {
     private static boolean verifyAudioConfig(int i10, int i11, AudioFormat audioFormat, AudioDeviceInfo audioDeviceInfo, List<AudioRecordingConfiguration> list) {
         assertTrue(!list.isEmpty());
         for (AudioRecordingConfiguration audioRecordingConfiguration : list) {
-            AudioRecordingConfiguration c10 = d0.c(audioRecordingConfiguration);
-            AudioDeviceInfo audioDevice = c10.getAudioDevice();
-            if (audioDevice != null && c10.getClientAudioSource() == i10 && c10.getClientAudioSessionId() == i11 && c10.getClientFormat().getEncoding() == audioFormat.getEncoding() && c10.getClientFormat().getSampleRate() == audioFormat.getSampleRate() && c10.getClientFormat().getChannelMask() == audioFormat.getChannelMask() && c10.getClientFormat().getChannelIndexMask() == audioFormat.getChannelIndexMask() && c10.getFormat().getEncoding() != 0 && c10.getFormat().getSampleRate() > 0 && (c10.getFormat().getChannelMask() != 0 || c10.getFormat().getChannelIndexMask() != 0)) {
+            AudioRecordingConfiguration a2 = ji1.a(audioRecordingConfiguration);
+            AudioDeviceInfo audioDevice = a2.getAudioDevice();
+            if (audioDevice != null && a2.getClientAudioSource() == i10 && a2.getClientAudioSessionId() == i11 && a2.getClientFormat().getEncoding() == audioFormat.getEncoding() && a2.getClientFormat().getSampleRate() == audioFormat.getSampleRate() && a2.getClientFormat().getChannelMask() == audioFormat.getChannelMask() && a2.getClientFormat().getChannelIndexMask() == audioFormat.getChannelIndexMask() && a2.getFormat().getEncoding() != 0 && a2.getFormat().getSampleRate() > 0 && (a2.getFormat().getChannelMask() != 0 || a2.getFormat().getChannelIndexMask() != 0)) {
                 if (checkDeviceMatch(audioDevice, audioDeviceInfo)) {
                     Logging.d("WebRtcAudioRecordExternal", "verifyAudioConfig: PASS");
                     return true;

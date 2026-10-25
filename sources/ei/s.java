@@ -1,20 +1,36 @@
 package ei;
-public final class s {
-    public final t f9773a;
-    public final int f9774b;
-    public final int f9775c;
 
-    public s(t tVar, int i10, int i11) {
-        this.f9773a = tVar;
-        this.f9774b = i10;
-        this.f9775c = i11;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.TranslateController;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
+public final class s extends s61 {
+    public static final int f10011a = 0;
+
+    static {
+        s61.setup(new s61());
     }
 
-    public final float a(float f7) {
-        return (f7 / this.f9773a.d[this.f9775c]) * this.f9774b;
+    @Override
+    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+        t tVar = (t) view;
+        TranslateController.Language language = (TranslateController.Language) t61Var.G;
+        tVar.f10012a.setText(language.displayName);
+        tVar.f10013b.setText(language.ownDisplayName);
+        if (tVar.f10014c != z10) {
+            tVar.invalidate();
+        }
+        tVar.f10014c = z10;
+        tVar.setWillNotDraw(!z10);
     }
 
-    public final float b(float f7) {
-        return (f7 / this.f9773a.d[this.f9775c]) * (this.f9774b + 1);
+    @Override
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
+        return new t(context);
     }
 }

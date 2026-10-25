@@ -1,39 +1,41 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
-public final class ro0 extends org.telegram.ui.Components.k61 {
-    public static final int f41194a = 0;
+public final class ro0 implements Utilities.Callback {
+    public final int f43195a = 0;
+    public final bg.b f43196b;
+    public final TL_stars.TL_starGiftUnique f43197c;
+    public final long d;
+    public final Object e;
+    public final Object f43198f;
 
-    static {
-        org.telegram.ui.Components.k61.setup(new org.telegram.ui.Components.k61());
+    public ro0(rp0 rp0Var, bg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10, qo0 qo0Var) {
+        this.e = rp0Var;
+        this.f43196b = bVar;
+        this.f43197c = tL_starGiftUnique;
+        this.d = j10;
+        this.f43198f = qo0Var;
     }
 
     @Override
-    public final void bindView(View view, org.telegram.ui.Components.l61 l61Var, boolean z10, org.telegram.ui.Components.a71 a71Var, org.telegram.ui.Components.i71 i71Var) {
-        so0 so0Var = (so0) view;
-        TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) l61Var.G;
-        yh.h1 h1Var = so0Var.h;
-        yh.d1 d1Var = so0Var.e;
-        so0Var.f41775a = savedStarGift.gift.f20568id;
-        so0Var.setPadding(0, 0, 0, 0);
-        so0Var.c(savedStarGift.gift.getDocument(), savedStarGift.gift);
-        so0Var.f41776b = (TL_stars.starGiftAttributeBackdrop) ai.ha.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributeBackdrop.class);
-        so0Var.f41777c = (TL_stars.starGiftAttributePattern) ai.ha.l(savedStarGift.gift.attributes, TL_stars.starGiftAttributePattern.class);
-        d1Var.d(so0Var.f41776b);
-        d1Var.e(so0Var.f41777c);
-        if (h1Var != null) {
-            h1Var.setBackdrop(so0Var.f41776b);
-            String m10 = i2.o1.m(savedStarGift.gift.num, ',', new StringBuilder("#"));
-            h1Var.f50744b = m10;
-            h1Var.f50743a.f(9, m10, false);
+    public final void run(Object obj) {
+        switch (this.f43195a) {
+            case 0:
+                rp0.W((rp0) this.e, this.f43196b, this.f43197c, this.d, (qo0) this.f43198f, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                return;
+            default:
+                zh.g4.U((zh.g4) this.e, (org.telegram.ui.ActionBar.e2) this.f43198f, this.f43196b, this.f43197c, this.d, (TLRPC.TL_payments_paymentFormStarGift) obj);
+                return;
         }
-        so0Var.b(l61Var.e, false);
     }
 
-    @Override
-    public final View createView(Context context, org.telegram.ui.Components.lm0 lm0Var, int i10, int i11, org.telegram.ui.ActionBar.g6 g6Var) {
-        return new so0(context, g6Var, true);
+    public ro0(zh.g4 g4Var, org.telegram.ui.ActionBar.e2 e2Var, bg.b bVar, TL_stars.TL_starGiftUnique tL_starGiftUnique, long j10) {
+        this.e = g4Var;
+        this.f43198f = e2Var;
+        this.f43196b = bVar;
+        this.f43197c = tL_starGiftUnique;
+        this.d = j10;
     }
 }

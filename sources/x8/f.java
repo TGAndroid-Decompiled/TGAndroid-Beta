@@ -1,6 +1,23 @@
 package x8;
-public interface f {
-    String a();
 
-    String getId();
+import a8.df;
+import android.os.Parcel;
+import android.os.Parcelable;
+import w8.s;
+public final class f extends p6.a {
+    public static final Parcelable.Creator<f> CREATOR = new s(20);
+    public long f51694a;
+    public long f51695b;
+
+    @Override
+    public final void writeToParcel(Parcel parcel, int i10) {
+        int q5 = df.q(parcel, 20293);
+        long j10 = this.f51694a;
+        df.s(parcel, 2, 8);
+        parcel.writeLong(j10);
+        long j11 = this.f51695b;
+        df.s(parcel, 3, 8);
+        parcel.writeLong(j11);
+        df.r(parcel, q5);
+    }
 }

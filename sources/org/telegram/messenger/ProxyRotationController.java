@@ -13,7 +13,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     public static final int DEFAULT_TIMEOUT_INDEX = 1;
     private static final ProxyRotationController INSTANCE = new ProxyRotationController();
     public static final List<Integer> ROTATION_TIMEOUTS = Arrays.asList(5, 10, 15, 30, 60);
-    private Runnable checkProxyAndSwitchRunnable = new gh(this, 2);
+    private Runnable checkProxyAndSwitchRunnable = new hh(this, 2);
     private boolean isCurrentlyChecking;
 
     public static void init() {
@@ -42,7 +42,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
     }
 
     public static void lambda$new$1(SharedConfig.ProxyInfo proxyInfo, long j10) {
-        AndroidUtilities.runOnUIThread(new ph(proxyInfo, j10, 0));
+        AndroidUtilities.runOnUIThread(new qh(proxyInfo, j10, 0));
     }
 
     public void lambda$new$2() {
@@ -53,7 +53,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
             SharedConfig.ProxyInfo proxyInfo = SharedConfig.proxyList.get(i11);
             if (!proxyInfo.checking && SystemClock.elapsedRealtime() - proxyInfo.availableCheckTime >= 120000) {
                 proxyInfo.checking = true;
-                ConnectionsManager.getInstance(i10).checkProxy(proxyInfo.settings, new d0(proxyInfo, 10));
+                ConnectionsManager.getInstance(i10).checkProxy(proxyInfo.settings, new g0(proxyInfo, 10));
                 z10 = true;
             }
         }
@@ -71,7 +71,7 @@ public class ProxyRotationController implements NotificationCenter.NotificationC
         this.isCurrentlyChecking = false;
         if (SharedConfig.proxyRotationEnabled) {
             ArrayList arrayList = new ArrayList(SharedConfig.proxyList);
-            Collections.sort(arrayList, new p(27));
+            Collections.sort(arrayList, new s(27));
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {

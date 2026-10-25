@@ -1,43 +1,22 @@
 package org.telegram.ui;
 
-import android.widget.EditText;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-public final class wh1 extends org.telegram.ui.ActionBar.k5 {
-    public final WallpapersListActivity f43356r;
+import android.graphics.Bitmap;
+import java.io.File;
+public final class wh1 implements org.telegram.ui.Components.aa1 {
+    public final WallpapersListActivity f45494a;
 
     public wh1(WallpapersListActivity wallpapersListActivity) {
-        this.f43356r = wallpapersListActivity;
+        this.f45494a = wallpapersListActivity;
     }
 
     @Override
-    public final void k() {
-        WallpapersListActivity wallpapersListActivity = this.f43356r;
-        bi1 bi1Var = wallpapersListActivity.J;
-        bi1Var.f36081n = null;
-        bi1Var.E(null, true);
-        wallpapersListActivity.L.setSearchFieldHint(LocaleController.getString(R.string.SearchBackgrounds));
+    public final void b(File file, Bitmap bitmap, boolean z10) {
+        tc1 tc1Var = new tc1(new ci1(file, file, ""), bitmap, false);
+        tc1Var.d1(0L);
+        this.f45494a.presentFragment(tc1Var, z10);
     }
 
     @Override
-    public final void m() {
-        WallpapersListActivity wallpapersListActivity = this.f43356r;
-        wallpapersListActivity.H.setAdapter(wallpapersListActivity.I);
-        wallpapersListActivity.H.invalidate();
-        wallpapersListActivity.J.E(null, true);
-        wallpapersListActivity.L.setSearchFieldCaption(null);
-        k();
-    }
-
-    @Override
-    public final void n() {
-        WallpapersListActivity wallpapersListActivity = this.f43356r;
-        wallpapersListActivity.H.setAdapter(wallpapersListActivity.J);
-        wallpapersListActivity.H.invalidate();
-    }
-
-    @Override
-    public final void q(EditText editText) {
-        this.f43356r.J.E(editText.getText().toString(), false);
+    public final void a() {
     }
 }

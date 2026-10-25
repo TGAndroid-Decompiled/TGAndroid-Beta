@@ -1,7 +1,12 @@
 package zh;
-public final class i extends s4.c0 {
+
+import android.view.MotionEvent;
+public final class i extends fi.d {
     @Override
-    public final int p() {
-        return -1;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (!this.f10687c0) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 }

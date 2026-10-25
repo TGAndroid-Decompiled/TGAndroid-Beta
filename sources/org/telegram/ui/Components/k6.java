@@ -1,73 +1,110 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
+import android.animation.ObjectAnimator;
+import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
-import android.view.View;
+import java.util.ArrayList;
+import java.util.Locale;
 public final class k6 {
-    public final u5 f27869a;
-    public final StaticLayout f27870b;
-    public final float f27871c;
-    public final int d;
-    public final float e;
-    public final float f27872f;
-    public final float f27873g;
-    public final float h;
-    public final n6 f27874i;
+    public static final org.telegram.ui.Cells.x8 h = new org.telegram.ui.Cells.x8("progress", 3);
+    public final TextPaint f29815c;
+    public ObjectAnimator d;
+    public final org.telegram.ui.Cells.s1 f29817g;
+    public final ArrayList f29813a = new ArrayList();
+    public final ArrayList f29814b = new ArrayList();
+    public float e = 0.0f;
+    public int f29816f = 1;
 
-    public k6(n6 n6Var, StaticLayout staticLayout, float f7, int i10) {
-        float f10;
-        float f11;
-        float f12;
-        this.f27874i = n6Var;
-        this.f27870b = staticLayout;
-        this.d = i10;
-        this.f27871c = f7;
-        if (staticLayout != null && staticLayout.getLineCount() > 0) {
-            f10 = staticLayout.getLineLeft(0);
-        } else {
-            f10 = 0.0f;
-        }
-        this.e = f10;
-        if (staticLayout != null && staticLayout.getLineCount() > 0) {
-            f11 = staticLayout.getLineWidth(0);
-        } else {
-            f11 = 0.0f;
-        }
-        this.f27872f = f11;
-        if (staticLayout != null && staticLayout.getLineCount() > 0) {
-            f12 = staticLayout.getLineBaseline(0);
-        } else {
-            f12 = 0.0f;
-        }
-        this.f27873g = f12;
-        this.h = staticLayout != null ? staticLayout.getHeight() - this.f27873g : 0.0f;
-        if (n6Var.getCallback() instanceof View) {
-            this.f27869a = y5.update(n6Var.f28809p, (View) n6Var.getCallback(), this.f27869a, staticLayout);
-        }
+    public k6(org.telegram.ui.Cells.s1 s1Var, TextPaint textPaint) {
+        this.f29815c = textPaint;
+        this.f29817g = s1Var;
     }
 
-    public final void a(Canvas canvas, float f7) {
-        int i10;
-        n6 n6Var = this.f27874i;
-        int i11 = n6Var.B;
-        TextPaint textPaint = n6Var.f28795a;
-        int max = Math.max(0, Math.min(255, (int) (i11 * f7)));
-        if (max != 0) {
-            textPaint.setAlpha(255);
-            if (n6Var.U) {
-                textPaint.setShadowLayer(n6Var.V, 0.0f, n6Var.W, n6Var.X);
-            }
-            if (max < 255) {
-                i10 = canvas.saveLayerAlpha(null, max, 31);
-            } else {
-                i10 = -1;
-            }
-            this.f27870b.draw(canvas);
-            y5.drawAnimatedEmojis(canvas, this.f27870b, this.f27869a, 0.0f, null, 0.0f, 0.0f, 0.0f, 1.0f, n6Var.f28796a0);
-            if (i10 != -1) {
-                canvas.restoreToCount(i10);
-            }
+    public final int a() {
+        ArrayList arrayList = this.f29813a;
+        int size = arrayList.size();
+        float f7 = 0.0f;
+        for (int i10 = 0; i10 < size; i10++) {
+            f7 += ((StaticLayout) arrayList.get(i10)).getLineWidth(0);
         }
+        return (int) Math.ceil(f7);
+    }
+
+    public final void b(int i10, boolean z10) {
+        boolean z11;
+        float f7;
+        String str;
+        TextPaint textPaint;
+        float f10;
+        ArrayList arrayList;
+        int i11 = this.f29816f;
+        ArrayList arrayList2 = this.f29813a;
+        if (i11 == i10 && !arrayList2.isEmpty()) {
+            return;
+        }
+        ObjectAnimator objectAnimator = this.d;
+        if (objectAnimator != null) {
+            objectAnimator.cancel();
+            this.d = null;
+        }
+        ArrayList arrayList3 = this.f29814b;
+        arrayList3.clear();
+        arrayList3.addAll(arrayList2);
+        arrayList2.clear();
+        Locale locale = Locale.US;
+        int i12 = this.f29816f;
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(i12);
+        String sb3 = sb2.toString();
+        StringBuilder sb4 = new StringBuilder();
+        sb4.append(i10);
+        String sb5 = sb4.toString();
+        if (i10 > this.f29816f) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f29816f = i10;
+        float f11 = 0.0f;
+        this.e = 0.0f;
+        int i13 = 0;
+        while (i13 < sb5.length()) {
+            int i14 = i13 + 1;
+            String substring = sb5.substring(i13, i14);
+            if (!arrayList3.isEmpty() && i13 < sb3.length()) {
+                str = sb3.substring(i13, i14);
+            } else {
+                str = null;
+            }
+            if (str != null && str.equals(substring)) {
+                arrayList2.add((StaticLayout) arrayList3.get(i13));
+                arrayList3.set(i13, null);
+                f10 = f11;
+                arrayList = arrayList3;
+            } else {
+                f10 = f11;
+                arrayList = arrayList3;
+                arrayList2.add(new StaticLayout(substring, this.f29815c, (int) Math.ceil(textPaint.measureText(substring)), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false));
+            }
+            f11 = f10;
+            i13 = i14;
+            arrayList3 = arrayList;
+        }
+        float f12 = f11;
+        ArrayList arrayList4 = arrayList3;
+        if (z10 && !arrayList4.isEmpty()) {
+            if (z11) {
+                f7 = -1.0f;
+            } else {
+                f7 = 1.0f;
+            }
+            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(this, h, f7, f12);
+            this.d = ofFloat;
+            ofFloat.setDuration(150L);
+            this.d.addListener(new org.telegram.ui.qp(this, 2));
+            this.d.start();
+        }
+        this.f29817g.invalidate();
     }
 }

@@ -1,26 +1,36 @@
 package org.telegram.ui;
-public final class yc0 implements org.telegram.ui.ActionBar.z1 {
-    public final int f43822a;
-    public final hg0 f43823b;
 
-    public yc0(hg0 hg0Var, int i10) {
-        this.f43822a = i10;
-        this.f43823b = hg0Var;
+import org.telegram.messenger.AndroidUtilities;
+public final class yc0 implements org.telegram.ui.Components.uw0 {
+    public final int f46025a;
+    public final org.telegram.ui.ActionBar.r2 f46026b;
+
+    public yc0(int i10, org.telegram.ui.ActionBar.r2 r2Var) {
+        this.f46025a = i10;
+        this.f46026b = r2Var;
     }
 
     @Override
-    public final void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f43822a) {
+    public final void I(int i10, boolean z10) {
+        uf0 uf0Var;
+        gl0 gl0Var;
+        switch (this.f46025a) {
             case 0:
-                hg0 hg0Var = this.f43823b;
-                hg0Var.f37835b[hg0Var.f37833a].d();
-                hg0Var.o1(true, true);
+                gg0 gg0Var = (gg0) this.f46026b;
+                if (i10 > AndroidUtilities.dp(20.0f) && gg0Var.m1()) {
+                    AndroidUtilities.hideKeyboard(gg0Var.fragmentView);
+                }
+                if (i10 <= AndroidUtilities.dp(20.0f) && (uf0Var = gg0Var.T) != null) {
+                    uf0Var.run();
+                    gg0Var.T = null;
+                    return;
+                }
                 return;
             default:
-                hg0 hg0Var2 = this.f43823b;
-                hg0Var2.f37848l0 = true;
-                if (hg0Var2.f37833a != 0) {
-                    hg0Var2.y1(0, true, null, true);
+                PasscodeActivity passcodeActivity = (PasscodeActivity) this.f46026b;
+                if (i10 >= AndroidUtilities.dp(20.0f) && (gl0Var = passcodeActivity.T) != null) {
+                    gl0Var.run();
+                    passcodeActivity.T = null;
                     return;
                 }
                 return;

@@ -1,147 +1,220 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.text.SpannableStringBuilder;
-import android.util.StateSet;
-import android.view.MotionEvent;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
+import java.util.Iterator;
 import org.telegram.messenger.AndroidUtilities;
-public final class fc1 extends View {
-    public org.telegram.ui.Components.h11 f37297a;
-    public org.telegram.ui.Components.h11 f37298b;
-    public boolean f37299c;
-    public final org.telegram.ui.Components.d6 d;
-    public final org.telegram.ui.Cells.y e;
-    public final ColorMatrixColorFilter f37300f;
-    public final Paint h;
-    public final Paint f37301n;
-    public final pc1 f37302r;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class fc1 extends AnimatorListenerAdapter {
+    public final int f39336a;
+    public final Object f39337b;
 
-    public fc1(Context context, pc1 pc1Var) {
-        super(context);
-        this.f37302r = pc1Var;
-        this.d = new org.telegram.ui.Components.d6(this, 0L, 350L, org.telegram.ui.Components.zr.h);
-        org.telegram.ui.Cells.y Z = org.telegram.ui.ActionBar.k6.Z(285212671, 8, 8);
-        this.e = Z;
-        this.h = new Paint(1);
-        this.f37301n = new Paint(1);
-        Z.setCallback(this);
-        ColorMatrix colorMatrix = new ColorMatrix();
-        AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.35f);
-        AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.9f);
-        this.f37300f = new ColorMatrixColorFilter(colorMatrix);
-    }
-
-    public final CharSequence b() {
-        org.telegram.ui.Components.h11 h11Var = this.f37297a;
-        if (h11Var != null) {
-            return h11Var.k();
-        }
-        return null;
-    }
-
-    public final void c(SpannableStringBuilder spannableStringBuilder, boolean z10) {
-        boolean z11;
-        if (spannableStringBuilder != null) {
-            this.f37298b = new org.telegram.ui.Components.h11(spannableStringBuilder, 12.0f, null);
-        }
-        if (spannableStringBuilder != null) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f37299c = z11;
-        if (!z10) {
-            this.d.f(z11, true);
-        }
-        invalidate();
-    }
-
-    public final void d(CharSequence charSequence) {
-        this.f37297a = new org.telegram.ui.Components.h11(charSequence, 14.0f, AndroidUtilities.bold());
+    public fc1(Object obj, int i10) {
+        this.f39336a = i10;
+        this.f39337b = obj;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float height = getHeight() / 2.0f;
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(0.0f, 0.0f, getWidth(), getHeight());
-        pc1 pc1Var = this.f37302r;
-        ec1 ec1Var = pc1Var.f40508y0;
-        pb1 pb1Var = pc1Var.f40442a;
-        org.telegram.ui.ActionBar.k6.s(this, ec1Var, pb1Var);
-        Paint d = pb1Var.d("paintChatActionBackground");
-        ColorFilter colorFilter = d.getColorFilter();
-        d.setColorFilter(this.f37300f);
-        canvas.drawRoundRect(rectF, height, height, d);
-        d.setColorFilter(colorFilter);
-        if (pc1Var.N1) {
-            float f7 = pc1Var.f40484o1;
-            if (f7 > 0.0f) {
-                int o10 = i0.a.o(-16777216, (int) (f7 * 255.0f * pc1Var.f40486p1));
-                Paint paint = this.f37301n;
-                paint.setColor(o10);
-                canvas.drawRoundRect(rectF, height, height, paint);
-            }
+    public final void onAnimationEnd(Animator animator) {
+        int i10;
+        int i11;
+        int i12 = this.f39336a;
+        int i13 = 4;
+        float f7 = 1.0f;
+        Object obj = this.f39337b;
+        switch (i12) {
+            case 0:
+                tc1 tc1Var = ((hc1) obj).f39979a;
+                if (!tc1Var.f43779q1.a()) {
+                    tc1Var.S1.setVisibility(8);
+                    return;
+                }
+                return;
+            case 1:
+                super.onAnimationEnd(animator);
+                ((ud1) obj).f44109a = null;
+                return;
+            case 2:
+                super.onAnimationEnd(animator);
+                ((ye1) obj).setScrollEnabled(true);
+                return;
+            case 3:
+                cg1 cg1Var = (cg1) obj;
+                if (animator.equals(cg1Var.d.K)) {
+                    cg1Var.d.K = null;
+                    return;
+                }
+                return;
+            case 4:
+                rg1 rg1Var = (rg1) obj;
+                rg1Var.d = null;
+                rg1Var.f43151a = null;
+                rg1Var.f43152b = false;
+                rg1Var.f43154f.f36321c.setAllowDrawCursor(true);
+                return;
+            case 5:
+                ((org.telegram.ui.Wallet.f3) obj).K = null;
+                return;
+            case 6:
+                ((org.telegram.ui.Wallet.m3) obj).f();
+                return;
+            case 7:
+                org.telegram.ui.Wallet.m5 m5Var = (org.telegram.ui.Wallet.m5) obj;
+                if (m5Var.J0 == animator) {
+                    m5Var.J0 = null;
+                    return;
+                }
+                return;
+            case 8:
+                org.telegram.ui.Wallet.k5 k5Var = (org.telegram.ui.Wallet.k5) obj;
+                k5Var.h = false;
+                k5Var.f36786n = null;
+                k5Var.f36783b.setLayerType(0, null);
+                return;
+            case 9:
+                org.telegram.ui.Wallet.r5 r5Var = (org.telegram.ui.Wallet.r5) obj;
+                r5Var.N = 0.0f;
+                r5Var.O = 0.0f;
+                r5Var.f37166b0 = null;
+                return;
+            case 10:
+                org.telegram.ui.Wallet.l6 l6Var = (org.telegram.ui.Wallet.l6) obj;
+                l6Var.I = null;
+                l6Var.f36855i0 = 1.0f;
+                l6Var.f36854h0 = 0.0f;
+                l6Var.f36853g0 = 0.0f;
+                l6Var.e();
+                return;
+            case 11:
+                org.telegram.ui.Wallet.n8 n8Var = (org.telegram.ui.Wallet.n8) obj;
+                EditTextBoldCursor editTextBoldCursor = n8Var.f37029b;
+                if (n8Var.f37034s == animator) {
+                    n8Var.f37034s = null;
+                    View view = n8Var.f37028a;
+                    if (n8Var.f37036x) {
+                        i10 = 4;
+                    } else {
+                        i10 = 0;
+                    }
+                    view.setVisibility(i10);
+                    if (n8Var.f37036x) {
+                        i13 = 0;
+                    }
+                    editTextBoldCursor.setVisibility(i13);
+                    if (n8Var.f37036x && !n8Var.f37037y) {
+                        editTextBoldCursor.requestFocus();
+                        AndroidUtilities.showKeyboard(editTextBoldCursor);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            case 12:
+                org.telegram.ui.Wallet.h9 h9Var = (org.telegram.ui.Wallet.h9) obj;
+                h9Var.f36642n = null;
+                org.telegram.ui.Wallet.l6 l6Var2 = h9Var.d;
+                if (h9Var.f36645w) {
+                    i11 = 4;
+                } else {
+                    i11 = 0;
+                }
+                l6Var2.setVisibility(i11);
+                TextView textView = h9Var.f36641f;
+                if (h9Var.f36646x) {
+                    i13 = 0;
+                }
+                textView.setVisibility(i13);
+                return;
+            case 13:
+                org.telegram.ui.Components.ig0 ig0Var = (org.telegram.ui.Components.ig0) obj;
+                ((ni1) ig0Var.f29288b).getClass();
+                ((ni1) ig0Var.f29288b).f41937c.setVisibility(4);
+                return;
+            case 14:
+                ((org.telegram.ui.web.a1) obj).f45174s.setVisibility(8);
+                return;
+            case 15:
+                rg.e0 e0Var = (rg.e0) obj;
+                e0Var.f47388a.getPainting().c(null, e0Var.f47388a.getCurrentColor(), true, null);
+                e0Var.f47402r = null;
+                return;
+            case 16:
+                super.onAnimationEnd(animator);
+                sg.m0 m0Var = (sg.m0) obj;
+                ImageView imageView = m0Var.f48304c;
+                m0Var.f48304c = m0Var.d;
+                m0Var.d = imageView;
+                imageView.bringToFront();
+                m0Var.d.setVisibility(8);
+                m0Var.h = null;
+                return;
+            case 17:
+                sg.t1 t1Var = (sg.t1) obj;
+                if (animator == t1Var.f48518r) {
+                    t1Var.f48516f = t1Var.h;
+                    t1Var.h = -1;
+                    t1Var.f48518r = null;
+                    return;
+                }
+                return;
+            case 18:
+                tg.p0 p0Var = (tg.p0) obj;
+                if (!p0Var.f48980r) {
+                    f7 = 0.0f;
+                }
+                p0Var.f48981s = f7;
+                p0Var.e();
+                return;
+            case 19:
+                tg.a2 a2Var = (tg.a2) ((fi.c0) obj).f10592b;
+                a2Var.F = true;
+                a2Var.invalidate();
+                return;
+            case 20:
+                int i14 = ug.f.K;
+                ((ug.f) ((ug.e) obj).f49765b).d();
+                return;
+            case 21:
+                ug.f fVar = (ug.f) obj;
+                fVar.d = null;
+                fVar.e();
+                return;
+            case 22:
+                super.onAnimationEnd(animator);
+                ug.n nVar = ((ug.i) obj).f49801b;
+                nVar.f49813b.d = 0.0f;
+                nVar.f49817d0 = null;
+                nVar.j(nVar.L);
+                return;
+            case 23:
+                vg.b bVar = (vg.b) obj;
+                bVar.f50142b = 1.0f;
+                bVar.invalidate();
+                return;
+            case 24:
+                xh.g gVar = (xh.g) obj;
+                Iterator it = gVar.h.iterator();
+                while (it.hasNext()) {
+                    xh.c cVar = (xh.c) it.next();
+                    if (gVar.f51859c.size() < gVar.d) {
+                        gVar.f51859c.push(cVar);
+                    }
+                    it.remove();
+                }
+                Runnable runnable = gVar.f51870q;
+                if (runnable != null) {
+                    runnable.run();
+                    gVar.f51870q = null;
+                }
+                gVar.f51871r = null;
+                gVar.invalidateSelf();
+                return;
+            default:
+                ((zh.g0) obj).f52976b.f53040w.setVisibility(8);
+                return;
         }
-        Paint paint2 = this.h;
-        paint2.setColor(520093695);
-        canvas.drawRoundRect(rectF, height, height, paint2);
-        float e = this.d.e(this.f37299c);
-        org.telegram.ui.Components.h11 h11Var = this.f37297a;
-        if (h11Var != null) {
-            h11Var.f26853p = getWidth() - AndroidUtilities.dp(14.0f);
-            h11Var.c((getWidth() - this.f37297a.l()) / 2.0f, ((AndroidUtilities.dp(24.0f) * 0.0f) + (getHeight() / 2.0f)) - (AndroidUtilities.dp(7.0f) * e), 1.0f, -1, canvas);
-        }
-        if (this.f37298b != null) {
-            canvas.save();
-            canvas.scale(e, e, getWidth() / 2.0f, (getHeight() / 2.0f) + AndroidUtilities.dp(11.0f));
-            org.telegram.ui.Components.h11 h11Var2 = this.f37298b;
-            h11Var2.f26853p = getWidth() - AndroidUtilities.dp(14.0f);
-            float dp = 0.0f * AndroidUtilities.dp(24.0f);
-            h11Var2.c((getWidth() - this.f37298b.l()) / 2.0f, AndroidUtilities.dp(11.0f) + dp + (getHeight() / 2.0f), 1.0f, org.telegram.ui.ActionBar.k6.o1(0.75f, -1), canvas);
-            canvas.restore();
-        }
-        int width = getWidth();
-        int height2 = getHeight();
-        org.telegram.ui.Cells.y yVar = this.e;
-        yVar.setBounds(0, 0, width, height2);
-        yVar.draw(canvas);
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        boolean z10;
-        int action = motionEvent.getAction();
-        org.telegram.ui.Cells.y yVar = this.e;
-        if (action == 0) {
-            yVar.setHotspot(motionEvent.getX(), motionEvent.getY());
-            yVar.setState(new int[]{16842910, 16842919});
-            z10 = true;
-        } else {
-            if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                yVar.setState(StateSet.NOTHING);
-            }
-            z10 = false;
-        }
-        if (super.onTouchEvent(motionEvent) || z10) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.e && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
     }
 }

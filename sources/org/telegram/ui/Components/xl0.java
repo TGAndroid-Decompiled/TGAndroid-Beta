@@ -7,30 +7,35 @@ import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class xl0 extends s4.m0 implements ch.a {
-    public final Utilities.CallbackReturn f32634a;
-    public final lm0 f32635b;
-    public final int f32636c;
+public final class xl0 extends s4.n0 implements dh.a {
+    public final Utilities.CallbackReturn f34771a;
+    public final mm0 f34772b;
+    public final int f34773c;
     public final boolean d;
 
-    public xl0(lm0 lm0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
-        this.f32635b = lm0Var;
-        this.f32634a = callbackReturn;
-        this.f32636c = i10;
+    public xl0(mm0 mm0Var, Utilities.CallbackReturn callbackReturn, int i10, boolean z10) {
+        this.f34772b = mm0Var;
+        this.f34771a = callbackReturn;
+        this.f34773c = i10;
         this.d = z10;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, s4.y0 y0Var) {
+    public final void b(ch.a aVar, RectF rectF) {
+        aVar.f6296a = true;
+    }
+
+    @Override
+    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
         int b10;
         boolean z10;
         int dp;
-        if (((Boolean) this.f32634a.run(view)).booleanValue()) {
-            int i10 = this.f32636c;
+        if (((Boolean) this.f34771a.run(view)).booleanValue()) {
+            int i10 = this.f34773c;
             rect.right = i10;
             rect.left = i10;
-            s4.b1 T = recyclerView.T(view);
-            s4.g0 adapter = recyclerView.getAdapter();
+            s4.e1 T = recyclerView.T(view);
+            s4.h0 adapter = recyclerView.getAdapter();
             if (T != null && adapter != null && (b10 = T.b()) != -1) {
                 boolean z11 = false;
                 if (b10 == 0) {
@@ -57,22 +62,17 @@ public final class xl0 extends s4.m0 implements ch.a {
     }
 
     @Override
-    public final void b(Canvas canvas, RecyclerView recyclerView) {
-        if (recyclerView instanceof lm0) {
-            ((lm0) recyclerView).R0(canvas);
+    public final void e(Canvas canvas, RecyclerView recyclerView) {
+        if (recyclerView instanceof mm0) {
+            ((mm0) recyclerView).Q0(canvas);
         }
-    }
-
-    @Override
-    public final void e(bh.a aVar, RectF rectF) {
-        aVar.f4360a = true;
     }
 
     @Override
     public final void f(Canvas canvas, RectF rectF) {
         canvas.save();
         canvas.clipRect(rectF);
-        this.f32635b.R0(canvas);
+        this.f34772b.Q0(canvas);
         canvas.restore();
     }
 }

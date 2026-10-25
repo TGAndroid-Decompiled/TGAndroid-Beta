@@ -1,80 +1,22 @@
 package bf;
+public final class a {
+    public final int f3900a;
+    public final boolean f3901b;
+    public final int f3902c;
 
-import af.f;
-import df.g;
-import df.p;
-import df.s;
-public final class a implements gf.a {
-    public final char f4350a;
-
-    public a(int i10) {
-        this('*');
-        switch (i10) {
-            case 1:
-                this('_');
-                return;
-            default:
-                return;
-        }
+    public a(int i10, int i11, boolean z10) {
+        this.f3900a = i10;
+        this.f3902c = i11;
+        this.f3901b = z10;
     }
 
-    @Override
-    public final char a() {
-        return this.f4350a;
+    public static a a(int i10) {
+        return new a(i10, -1, false);
     }
 
-    @Override
-    public final void b(s sVar, s sVar2, int i10) {
-        g gVar;
-        String.valueOf(this.f4350a);
-        if (i10 == 1) {
-            gVar = new g(0);
-        } else {
-            gVar = new g(3);
-        }
-        for (p pVar = (p) sVar.f7998f; pVar != null && pVar != sVar2; pVar = (p) pVar.f7998f) {
-            gVar.b(pVar);
-        }
-        gVar.g();
-        p pVar2 = (p) sVar.f7998f;
-        gVar.f7998f = pVar2;
-        if (pVar2 != null) {
-            pVar2.e = gVar;
-        }
-        gVar.e = sVar;
-        sVar.f7998f = gVar;
-        p pVar3 = (p) sVar.f7996b;
-        gVar.f7996b = pVar3;
-        if (((p) gVar.f7998f) == null) {
-            pVar3.d = gVar;
-        }
-    }
-
-    @Override
-    public final int c() {
-        return 1;
-    }
-
-    @Override
-    public final int d(f fVar, f fVar2) {
-        if (fVar.d || fVar2.f564c) {
-            int i10 = fVar2.h;
-            if (i10 % 3 != 0 && (fVar.h + i10) % 3 == 0) {
-                return 0;
-            }
-        }
-        if (fVar.f566g >= 2 && fVar2.f566g >= 2) {
-            return 2;
-        }
-        return 1;
-    }
-
-    @Override
-    public final char e() {
-        return this.f4350a;
-    }
-
-    public a(char c10) {
-        this.f4350a = c10;
+    public a(int i10, boolean z10, int i11) {
+        this.f3900a = i10;
+        this.f3901b = z10;
+        this.f3902c = i11;
     }
 }

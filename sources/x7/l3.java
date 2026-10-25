@@ -1,5 +1,19 @@
 package x7;
 
-import android.os.IInterface;
-public interface l3 extends IInterface {
+import org.telegram.ui.Components.b10;
+public final class l3 implements ka.d {
+    public static final l3 f51545a = new Object();
+
+    static {
+        b10.s(b10.n(d.class, b10.q(2, b10.n(d.class, new a(1)))));
+    }
+
+    @Override
+    public final void a(Object obj, Object obj2) {
+        if (obj == null) {
+            ka.e eVar = (ka.e) obj2;
+            throw null;
+        }
+        throw new ClassCastException();
+    }
 }

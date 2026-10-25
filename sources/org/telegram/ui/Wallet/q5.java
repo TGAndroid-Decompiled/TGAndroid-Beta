@@ -1,25 +1,18 @@
 package org.telegram.ui.Wallet;
-public final class q5 implements Runnable {
-    public final int f35072a;
-    public final s5 f35073b;
 
-    public q5(s5 s5Var, int i10) {
-        this.f35072a = i10;
-        this.f35073b = s5Var;
+import android.content.Context;
+import android.view.View;
+public final class q5 extends View {
+    public boolean f37129a;
+    public final r5 f37130b;
+
+    public q5(r5 r5Var, Context context) {
+        super(context);
+        this.f37130b = r5Var;
     }
 
     @Override
-    public final void run() {
-        switch (this.f35072a) {
-            case 0:
-                this.f35073b.performClick();
-                return;
-            default:
-                s5 s5Var = this.f35073b;
-                s5Var.h.invalidate();
-                s5Var.f35147n.invalidate();
-                s5Var.e.invalidate();
-                return;
-        }
+    public final void onDraw(android.graphics.Canvas r40) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.q5.onDraw(android.graphics.Canvas):void");
     }
 }

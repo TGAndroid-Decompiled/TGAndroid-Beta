@@ -1,13 +1,46 @@
 package c5;
 
-import android.app.Activity;
-import org.telegram.messenger.BillingController;
-public abstract class b {
-    public abstract void a(j jVar, k kVar);
+import android.os.Build;
+public class b extends c {
+    public final int d;
 
-    public abstract i b(Activity activity, h hVar);
+    public b(int i10, String str, String str2) {
+        super(str, str2);
+        this.d = i10;
+    }
 
-    public abstract void c(a6.i iVar, org.telegram.messenger.d0 d0Var);
-
-    public abstract void d(BillingController billingController);
+    @Override
+    public final boolean a() {
+        switch (this.d) {
+            case 0:
+                return true;
+            case 1:
+                if (Build.VERSION.SDK_INT >= 24) {
+                    return true;
+                }
+                return false;
+            case 2:
+                return false;
+            case 3:
+                if (Build.VERSION.SDK_INT >= 26) {
+                    return true;
+                }
+                return false;
+            case 4:
+                if (Build.VERSION.SDK_INT >= 27) {
+                    return true;
+                }
+                return false;
+            case 5:
+                if (Build.VERSION.SDK_INT >= 28) {
+                    return true;
+                }
+                return false;
+            default:
+                if (Build.VERSION.SDK_INT >= 29) {
+                    return true;
+                }
+                return false;
+        }
+    }
 }

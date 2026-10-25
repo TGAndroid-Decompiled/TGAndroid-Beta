@@ -1,20 +1,35 @@
 package org.telegram.ui;
-public final class r9 extends w9 {
-    public final s9 f41059g0;
+public final class r9 implements o1.f {
+    public final int f43054a;
+    public final Object f43055b;
 
-    public r9(s9 s9Var, int i10) {
-        super(i10);
-        this.f41059g0 = s9Var;
+    public r9(Object obj, int i10) {
+        this.f43054a = i10;
+        this.f43055b = obj;
     }
 
     @Override
-    public final void finishFragment() {
-        setFinishing(true);
-        this.f41059g0.dismiss();
-    }
-
-    @Override
-    public final void removeSelfFromStack() {
-        this.f41059g0.dismiss();
+    public final void a(o1.h hVar, boolean z10, float f7, float f10) {
+        switch (this.f43054a) {
+            case 0:
+                y9 y9Var = (y9) this.f43055b;
+                o1.j jVar = y9Var.f46005y;
+                if (jVar != null) {
+                    jVar.c();
+                    y9Var.f46005y = null;
+                    return;
+                }
+                return;
+            case 1:
+                lo0 lo0Var = (lo0) this.f43055b;
+                if (hVar == lo0Var.f41306c) {
+                    lo0Var.f41306c = null;
+                    return;
+                }
+                return;
+            default:
+                ((bu0) this.f43055b).E();
+                return;
+        }
     }
 }

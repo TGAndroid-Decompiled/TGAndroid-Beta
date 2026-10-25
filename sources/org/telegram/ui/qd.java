@@ -1,61 +1,91 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.text.SpannableStringBuilder;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.Utilities;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_phone;
-public final class qd implements View.OnClickListener {
-    public final int f40780a = 1;
-    public final int f40781b;
-    public final long f40782c;
-    public final FrameLayout d;
-    public final Object e;
+public final class qd implements Runnable {
+    public final int f42808a;
+    public final ke f42809b;
+    public final int f42810c;
 
-    public qd(int i10, ei.d dVar, org.telegram.ui.ActionBar.h3 h3Var, long j10) {
-        this.f40781b = i10;
-        this.d = dVar;
-        this.e = h3Var;
-        this.f40782c = j10;
+    public qd(ke keVar, int i10, int i11) {
+        this.f42808a = i11;
+        this.f42809b = keVar;
+        this.f42810c = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f40780a) {
+    public final void run() {
+        boolean z10;
+        String formatPluralStringSpaced;
+        int i10 = this.f42808a;
+        int i11 = this.f42810c;
+        ke keVar = this.f42809b;
+        switch (i10) {
             case 0:
-                ie ieVar = (ie) this.d;
-                Context context = (Context) this.e;
-                if (view.isEnabled()) {
-                    ei.d dVar = ieVar.T0;
-                    if (!dVar.Q) {
-                        dVar.setLoading(true);
-                        TLRPC.TL_payments_getStarsRevenueAdsAccountUrl tL_payments_getStarsRevenueAdsAccountUrl = new TLRPC.TL_payments_getStarsRevenueAdsAccountUrl();
-                        int i10 = this.f40781b;
-                        tL_payments_getStarsRevenueAdsAccountUrl.peer = MessagesController.getInstance(i10).getInputPeer(this.f40782c);
-                        ConnectionsManager.getInstance(i10).sendRequest(tL_payments_getStarsRevenueAdsAccountUrl, new vc(1, ieVar, context));
-                        return;
-                    }
-                    return;
+                qf.d.r(keVar.getContext(), LocaleController.getString(i11));
+                return;
+            case 1:
+                qd qdVar = keVar.f40895f1;
+                bi.t tVar = keVar.O0;
+                org.telegram.ui.Components.qc.e();
+                if (keVar.D0.amount < MessagesController.getInstance(i11).starsRevenueWithdrawalMin) {
+                    keVar.M0 = true;
+                    keVar.N0 = keVar.D0.amount;
+                } else {
+                    keVar.M0 = false;
+                    keVar.N0 = MessagesController.getInstance(i11).starsRevenueWithdrawalMin;
                 }
+                keVar.L0 = true;
+                tVar.setText(Long.toString(keVar.N0));
+                tVar.setSelection(tVar.getText().length());
+                keVar.L0 = false;
+                AndroidUtilities.cancelRunOnUIThread(qdVar);
+                qdVar.run();
                 return;
             default:
-                ei.d dVar2 = (ei.d) this.d;
-                org.telegram.ui.ActionBar.h3 h3Var = (org.telegram.ui.ActionBar.h3) this.e;
-                TL_phone.createConferenceCall createconferencecall = new TL_phone.createConferenceCall();
-                createconferencecall.random_id = Utilities.random.nextInt();
-                int i11 = this.f40781b;
-                ConnectionsManager.getInstance(i11).sendRequest(createconferencecall, new ai.c0(i11, dVar2, h3Var, this.f40782c));
+                qd qdVar2 = keVar.f40895f1;
+                int currentTime = ConnectionsManager.getInstance(i11).getCurrentTime();
+                ae aeVar = keVar.G0;
+                if (keVar.N0 <= 0 && keVar.B0 <= currentTime) {
+                    z10 = false;
+                } else {
+                    z10 = true;
+                }
+                aeVar.setEnabled(z10);
+                if (currentTime < keVar.B0) {
+                    aeVar.i(LocaleController.getString(R.string.MonetizationStarsWithdrawUntil), true, true);
+                    if (keVar.f40894e1 == null) {
+                        keVar.f40894e1 = new SpannableStringBuilder("l");
+                        org.telegram.ui.Components.zq zqVar = new org.telegram.ui.Components.zq(R.drawable.mini_switch_lock, 0);
+                        zqVar.setTopOffset(1);
+                        keVar.f40894e1.setSpan(zqVar, 0, 1, 33);
+                    }
+                    SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+                    spannableStringBuilder.append((CharSequence) keVar.f40894e1).append((CharSequence) bi.y.s0(keVar.B0 - currentTime));
+                    aeVar.g(spannableStringBuilder, true);
+                    org.telegram.ui.Components.qc qcVar = keVar.P0;
+                    if (qcVar != null) {
+                        org.telegram.ui.Components.ub ubVar = qcVar.e;
+                        if ((ubVar instanceof org.telegram.ui.Components.yb) && ubVar.isAttachedToWindow()) {
+                            org.telegram.messenger.vh.o(R.string.BotStarsWithdrawalToast, new Object[]{bi.y.s0(keVar.B0 - currentTime)}, ((org.telegram.ui.Components.yb) keVar.P0.e).f34998b);
+                        }
+                    }
+                    AndroidUtilities.cancelRunOnUIThread(qdVar2);
+                    AndroidUtilities.runOnUIThread(qdVar2, 1000L);
+                    return;
+                }
+                aeVar.g(null, true);
+                if (keVar.M0) {
+                    formatPluralStringSpaced = LocaleController.getString(R.string.MonetizationStarsWithdrawAll);
+                } else {
+                    formatPluralStringSpaced = LocaleController.formatPluralStringSpaced("MonetizationStarsWithdraw", (int) keVar.N0);
+                }
+                aeVar.i(bi.dd.U0(false, formatPluralStringSpaced, keVar.H0), true, true);
                 return;
         }
-    }
-
-    public qd(ie ieVar, int i10, long j10, Context context) {
-        this.d = ieVar;
-        this.f40781b = i10;
-        this.f40782c = j10;
-        this.e = context;
     }
 }

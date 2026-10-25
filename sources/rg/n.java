@@ -1,76 +1,39 @@
 package rg;
 
-import ei.c5;
-import java.util.List;
-import org.telegram.ui.Components.b41;
-import org.telegram.ui.Components.x11;
-import w7.z5;
-public final class n implements Runnable {
-    public final int f45941a;
-    public final m0 f45942b;
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.Paint;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import sg.a2;
+public final class n extends a2 {
+    public final y f47468y;
 
-    public n(m0 m0Var, int i10) {
-        this.f45941a = i10;
-        this.f45942b = m0Var;
-    }
-
-    @Override
-    public final void run() {
-        int e;
-        switch (this.f45941a) {
-            case 0:
-                m0 m0Var = this.f45942b;
-                x11 x11Var = m0Var.f45882a1;
-                if (x11Var != null) {
-                    m0Var.f45882a1 = null;
-                    m0Var.removeView(x11Var);
-                    return;
-                }
-                return;
-            case 1:
-                m0 m0Var2 = this.f45942b;
-                if (m0Var2.E0 != null) {
-                    m0Var2.G0.postRunnable(new n(m0Var2, 3), 200L);
-                    return;
-                }
-                return;
-            case 2:
-                x1 x1Var = this.f45942b.l1;
-                if (x1Var != null) {
-                    x1Var.invalidate();
-                    return;
-                }
-                return;
-            case 3:
-                m0.Z(this.f45942b);
-                return;
-            default:
-                m0 m0Var3 = this.f45942b;
-                boolean z10 = qg.u0.e(m0Var3.P1).f45097k;
-                int i10 = 0;
-                while (true) {
-                    List list = qg.l.f44973b;
-                    if (i10 < list.size()) {
-                        qg.l lVar = (qg.l) list.get(i10);
-                        if (z10) {
-                            e = lVar.m();
-                        } else {
-                            e = lVar.e();
-                        }
-                        String n10 = lVar.n();
-                        b41 b41Var = new b41(m0Var3, lVar, e, 25);
-                        l0 l0Var = new l0(m0Var3, m0Var3.getContext());
-                        l0Var.setIcon(e);
-                        l0Var.setText(n10);
-                        l0Var.setSelected(false);
-                        l0Var.setOnClickListener(new hg.r0(b41Var, 17));
-                        l0Var.setOnLongClickListener(new c5(m0Var3, 6));
-                        m0Var3.S1.a(l0Var, z5.n(-1, 48));
-                        i10++;
-                    } else {
-                        return;
-                    }
-                }
-        }
+    public n(y yVar, Context context, Bitmap bitmap) {
+        super(context);
+        this.f47468y = yVar;
+        Paint paint = new Paint(1);
+        this.f48138b = paint;
+        Paint paint2 = new Paint(1);
+        this.f48139c = paint2;
+        Paint paint3 = new Paint(1);
+        this.d = paint3;
+        this.e = 0.5f;
+        this.f48140f = 0.5f;
+        this.h = new Path();
+        this.f48141n = new Rect();
+        this.f48142r = new RectF();
+        this.f48137a = bitmap;
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        paint.setStrokeWidth(AndroidUtilities.dp(4.0f));
+        paint.setColor(-1);
+        paint2.setStyle(style);
+        paint2.setStrokeWidth(AndroidUtilities.dp(1.0f));
+        paint2.setColor(-1711276033);
+        paint3.setStyle(style);
+        paint3.setStrokeWidth(AndroidUtilities.dp(12.0f));
     }
 }

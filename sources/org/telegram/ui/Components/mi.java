@@ -1,6 +1,67 @@
 package org.telegram.ui.Components;
 
-import android.widget.FrameLayout;
-public abstract class mi extends FrameLayout {
-    public ph.b f28603a;
+import android.content.Context;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.tgnet.TLRPC;
+public final class mi extends oi {
+    public TLRPC.User f30588b;
+    public TLRPC.TL_attachMenuBot f30589c;
+    public final ti d;
+
+    public mi(ti tiVar, Context context) {
+        super(context);
+        org.telegram.ui.ActionBar.u6 u6Var;
+        this.d = tiVar;
+        setWillNotDraw(false);
+        setFocusable(true);
+        setFocusableInTouchMode(true);
+        u6Var = ((org.telegram.ui.ActionBar.k3) tiVar).resourcesProvider;
+        qh.b bVar = new qh.b(context);
+        bVar.d = u6Var;
+        bVar.Q = true;
+        TextView textView = bVar.f47051a;
+        textView.setTextSize(1, 11.0f);
+        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
+        bVar.f47052b.setVisibility(8);
+        bVar.b(false);
+        y9 y9Var = new y9(context);
+        bVar.f47053c = y9Var;
+        bVar.addView(y9Var, gb1.h(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
+        bVar.f47058w = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.cl, u6Var);
+        bVar.f47057s = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.al, u6Var);
+        bVar.v = org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.bl, u6Var);
+        bVar.a();
+        this.f31305a = bVar;
+        bVar.getBackupImageView().f34981a.setDelegate(new f2(22));
+        addView(this.f31305a, gb1.g(-1.0f, -1));
+    }
+
+    public final void a(boolean z10) {
+        boolean z11;
+        if (this.f30589c != null && (-this.f30588b.f22174id) == this.d.Z0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.f31305a.f(z11, z10);
+        xj0 lottieAnimation = this.f31305a.getBackupImageView().getImageReceiver().getLottieAnimation();
+        if (z10) {
+            if (z11 && lottieAnimation != null) {
+                lottieAnimation.K(0);
+                lottieAnimation.P(-1);
+                lottieAnimation.T(0.0f, false);
+                lottieAnimation.start();
+            }
+        } else if (lottieAnimation != null) {
+            lottieAnimation.stop();
+            lottieAnimation.T(0.0f, false);
+        }
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        a(false);
+    }
 }

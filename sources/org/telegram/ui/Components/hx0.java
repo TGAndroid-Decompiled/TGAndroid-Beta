@@ -1,82 +1,103 @@
 package org.telegram.ui.Components;
 
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Path;
 import android.text.Layout;
-import android.text.SpannableStringBuilder;
-import android.text.StaticLayout;
+import android.text.Spanned;
 import android.text.TextPaint;
-import android.text.TextUtils;
+import android.text.style.CharacterStyle;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public abstract class hx0 {
-    public static final Layout.Alignment[] f27193a = Layout.Alignment.values();
+public final class hx0 extends CharacterStyle {
+    public final Paint f29063a;
+    public final Path f29064b;
 
-    public static Layout.Alignment a() {
-        Layout.Alignment[] alignmentArr = f27193a;
-        if (alignmentArr.length >= 5) {
-            return alignmentArr[4];
-        }
-        return Layout.Alignment.ALIGN_OPPOSITE;
+    public hx0() {
+        Paint paint = new Paint(1);
+        this.f29063a = paint;
+        this.f29064b = new Path();
+        paint.setStyle(Paint.Style.STROKE);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        paint.setStrokeJoin(Paint.Join.ROUND);
     }
 
-    public static StaticLayout b(CharSequence charSequence, TextPaint textPaint, int i10, float f7, int i11, int i12) {
-        return c(charSequence, textPaint, i10, Layout.Alignment.ALIGN_NORMAL, f7, TextUtils.TruncateAt.END, i11, i12, true);
-    }
-
-    public static StaticLayout c(CharSequence charSequence, TextPaint textPaint, int i10, Layout.Alignment alignment, float f7, TextUtils.TruncateAt truncateAt, int i11, int i12, boolean z10) {
-        int offsetForHorizontal;
-        TextUtils.TruncateAt truncateAt2;
-        SpannableStringBuilder spannableStringBuilder = charSequence;
-        try {
-            if (i12 == 1) {
-                int indexOf = TextUtils.indexOf(spannableStringBuilder, "\n") - 1;
-                if (indexOf > 0) {
-                    spannableStringBuilder = SpannableStringBuilder.valueOf(spannableStringBuilder.subSequence(0, indexOf)).append((CharSequence) "…");
+    public static void a(Canvas canvas, Layout layout) {
+        CharSequence text;
+        int lineStart;
+        int lineEnd;
+        Layout layout2 = layout;
+        if (layout2 != null && (text = layout2.getText()) != null && (text instanceof Spanned)) {
+            Spanned spanned = (Spanned) text;
+            hx0[] hx0VarArr = (hx0[]) spanned.getSpans(0, spanned.length(), hx0.class);
+            if (hx0VarArr != null && hx0VarArr.length != 0) {
+                int i10 = 0;
+                while (i10 < hx0VarArr.length) {
+                    hx0 hx0Var = hx0VarArr[i10];
+                    int spanStart = spanned.getSpanStart(hx0Var);
+                    int spanEnd = spanned.getSpanEnd(hx0Var);
+                    int lineForOffset = layout2.getLineForOffset(spanStart);
+                    int lineForOffset2 = layout2.getLineForOffset(spanEnd);
+                    int i11 = lineForOffset;
+                    while (i11 <= lineForOffset2) {
+                        float lineBottom = layout2.getLineBottom(i11) - AndroidUtilities.dp(1.0f);
+                        if (i11 == lineForOffset) {
+                            lineStart = spanStart;
+                        } else {
+                            lineStart = layout2.getLineStart(i11);
+                        }
+                        float primaryHorizontal = layout2.getPrimaryHorizontal(lineStart);
+                        if (i11 == lineForOffset2) {
+                            lineEnd = spanEnd;
+                        } else {
+                            lineEnd = layout2.getLineEnd(i11) - 1;
+                        }
+                        float primaryHorizontal2 = layout2.getPrimaryHorizontal(lineEnd);
+                        hx0Var.getClass();
+                        float dp = AndroidUtilities.dp(1.33f);
+                        float dp2 = AndroidUtilities.dp(10.0f);
+                        float dp3 = AndroidUtilities.dp(2.0f);
+                        Paint paint = hx0Var.f29063a;
+                        Spanned spanned2 = spanned;
+                        hx0[] hx0VarArr2 = hx0VarArr;
+                        int i12 = i10;
+                        paint.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false));
+                        paint.setStrokeWidth(dp);
+                        Path path = hx0Var.f29064b;
+                        path.rewind();
+                        path.moveTo(primaryHorizontal, lineBottom);
+                        float f7 = primaryHorizontal;
+                        while (f7 < primaryHorizontal2) {
+                            float f10 = f7;
+                            float f11 = dp2;
+                            path.quadTo((dp2 / 4.0f) + f7, lineBottom - dp3, (dp2 / 2.0f) + f10, lineBottom);
+                            float f12 = f10 + f11;
+                            path.quadTo(((f11 * 3.0f) / 4.0f) + f10, lineBottom + dp3, f12, lineBottom);
+                            f7 = f12;
+                            dp2 = f11;
+                        }
+                        if (f7 > primaryHorizontal2) {
+                            canvas.save();
+                            float f13 = dp / 2.0f;
+                            canvas.clipRect(primaryHorizontal - f13, (lineBottom - dp3) - f13, primaryHorizontal2 + f13, lineBottom + dp3 + f13);
+                            canvas.drawPath(path, paint);
+                            canvas.restore();
+                        } else {
+                            canvas.drawPath(path, paint);
+                        }
+                        i11++;
+                        layout2 = layout;
+                        spanned = spanned2;
+                        hx0VarArr = hx0VarArr2;
+                        i10 = i12;
+                    }
+                    i10++;
+                    layout2 = layout;
                 }
-                CharSequence ellipsize = TextUtils.ellipsize(spannableStringBuilder, textPaint, i11, TextUtils.TruncateAt.END);
-                return new StaticLayout(ellipsize, 0, ellipsize.length(), textPaint, i10, alignment, 1.0f, f7, false);
             }
-            StaticLayout build = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i10).setAlignment(alignment).setLineSpacing(f7, 1.0f).setIncludePad(false).setEllipsize(null).setEllipsizedWidth(i11).setMaxLines(i12).setBreakStrategy(1).setHyphenationFrequency(0).build();
-            int i13 = 0;
-            while (true) {
-                if (i13 >= build.getLineCount()) {
-                    break;
-                } else if (build.getLineRight(i13) > i10) {
-                    build = StaticLayout.Builder.obtain(spannableStringBuilder, 0, spannableStringBuilder.length(), textPaint, i10).setAlignment(alignment).setLineSpacing(f7, 1.0f).setIncludePad(false).setEllipsize(null).setEllipsizedWidth(i11).setMaxLines(i12).setBreakStrategy(0).setHyphenationFrequency(0).build();
-                    break;
-                } else {
-                    i13++;
-                }
-            }
-            if (build.getLineCount() <= i12) {
-                return build;
-            }
-            int i14 = i12 - 1;
-            float lineLeft = build.getLineLeft(i14);
-            float lineWidth = build.getLineWidth(i14);
-            if (lineLeft != 0.0f) {
-                offsetForHorizontal = build.getOffsetForHorizontal(i14, lineLeft);
-            } else {
-                offsetForHorizontal = build.getOffsetForHorizontal(i14, lineWidth);
-            }
-            if (lineWidth < i11 - AndroidUtilities.dp(10.0f)) {
-                offsetForHorizontal += 3;
-            }
-            SpannableStringBuilder spannableStringBuilder2 = new SpannableStringBuilder(spannableStringBuilder.subSequence(0, Math.max(0, offsetForHorizontal - 3)));
-            spannableStringBuilder2.append((CharSequence) "…");
-            StaticLayout.Builder includePad = StaticLayout.Builder.obtain(spannableStringBuilder2, 0, spannableStringBuilder2.length(), textPaint, i10).setAlignment(alignment).setLineSpacing(f7, 1.0f).setIncludePad(false);
-            if (((y5[]) spannableStringBuilder2.getSpans(0, spannableStringBuilder2.length(), y5.class)).length > 0) {
-                truncateAt2 = null;
-            } else {
-                truncateAt2 = truncateAt;
-            }
-            return includePad.setEllipsize(truncateAt2).setEllipsizedWidth(i11).setMaxLines(i12).setBreakStrategy(z10 ? 1 : 0).setHyphenationFrequency(0).build();
-        } catch (Exception e) {
-            FileLog.e(e);
-            return null;
         }
     }
 
-    public static StaticLayout d(CharSequence charSequence, TextPaint textPaint, boolean z10, int i10, int i11) {
-        return StaticLayout.Builder.obtain(charSequence, 0, charSequence.length(), textPaint, i10).setAlignment(Layout.Alignment.ALIGN_CENTER).setLineSpacing(0.0f, 1.0f).setIncludePad(z10).setEllipsize(TextUtils.TruncateAt.END).setEllipsizedWidth(i10).setMaxLines(i11).setBreakStrategy(1).setHyphenationFrequency(0).build();
+    @Override
+    public final void updateDrawState(TextPaint textPaint) {
     }
 }

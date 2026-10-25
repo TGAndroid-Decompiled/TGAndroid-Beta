@@ -1,16 +1,80 @@
 package f8;
 
-import android.os.Build;
-public abstract class b {
-    public static final int f10522a;
+import android.accounts.Account;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Looper;
+import android.text.TextUtils;
+import com.google.android.gms.common.api.k;
+import com.google.android.gms.common.api.l;
+import m.r3;
+import w8.p;
+public final class b extends o6.g {
+    public final Context U;
+    public final int V;
+    public final String W;
+    public final int X;
+    public final boolean Y;
 
-    static {
-        int i10;
-        if (Build.VERSION.SDK_INT >= 31) {
-            i10 = 33554432;
-        } else {
-            i10 = 0;
+    public b(Context context, Looper looper, r3 r3Var, k kVar, l lVar, int i10) {
+        super(context, looper, 4, r3Var, kVar, lVar, 0);
+        this.U = context;
+        this.V = i10;
+        this.W = null;
+        this.X = 1;
+        this.Y = true;
+    }
+
+    @Override
+    public final boolean C() {
+        return true;
+    }
+
+    public final Bundle G() {
+        String packageName = this.U.getPackageName();
+        Bundle bundle = new Bundle();
+        bundle.putInt("com.google.android.gms.wallet.EXTRA_ENVIRONMENT", this.V);
+        bundle.putBoolean("com.google.android.gms.wallet.EXTRA_USING_ANDROID_PAY_BRAND", this.Y);
+        bundle.putString("androidPackageName", packageName);
+        String str = this.W;
+        if (!TextUtils.isEmpty(str)) {
+            bundle.putParcelable("com.google.android.gms.wallet.EXTRA_BUYER_ACCOUNT", new Account(str, "com.google"));
         }
-        f10522a = i10;
+        bundle.putInt("com.google.android.gms.wallet.EXTRA_THEME", this.X);
+        return bundle;
+    }
+
+    @Override
+    public final int l() {
+        return 12600000;
+    }
+
+    @Override
+    public final IInterface q(IBinder iBinder) {
+        if (iBinder == null) {
+            return null;
+        }
+        IInterface queryLocalInterface = iBinder.queryLocalInterface("com.google.android.gms.wallet.internal.IOwService");
+        if (queryLocalInterface instanceof i) {
+            return (i) queryLocalInterface;
+        }
+        return new i(iBinder);
+    }
+
+    @Override
+    public final l6.c[] r() {
+        return p.f51121c;
+    }
+
+    @Override
+    public final String v() {
+        return "com.google.android.gms.wallet.internal.IOwService";
+    }
+
+    @Override
+    public final String w() {
+        return "com.google.android.gms.wallet.service.BIND";
     }
 }

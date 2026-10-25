@@ -1,81 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
+import android.content.Context;
+import android.graphics.Path;
 import android.graphics.RectF;
+import android.text.Layout;
 import android.text.SpannableString;
-import android.text.style.ReplacementSpan;
+import android.text.SpannableStringBuilder;
+import android.text.Spanned;
+import android.text.TextUtils;
+import android.view.MotionEvent;
 import org.telegram.messenger.AndroidUtilities;
-public final class yc extends ReplacementSpan {
-    public final org.telegram.ui.ActionBar.g6 f32877a;
-    public final Paint f32878b = new Paint(1);
-    public final h11 f32879c;
-    public final Runnable d;
-    public wc e;
-    public Integer f32880f;
+public class yc extends z90 {
+    public final Path L;
+    public final RectF M;
+    public zc N;
+    public zc O;
 
-    public yc(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.g6 g6Var) {
-        this.f32877a = g6Var;
-        this.d = runnable;
-        this.f32879c = new h11(charSequence, 12.0f, null);
-    }
-
-    public static SpannableString b(CharSequence charSequence, Runnable runnable, org.telegram.ui.ActionBar.g6 g6Var, Integer num) {
-        SpannableString spannableString = new SpannableString("btn");
-        yc ycVar = new yc(charSequence, runnable, g6Var);
-        spannableString.setSpan(ycVar, 0, spannableString.length(), 33);
-        ycVar.f32880f = num;
-        return spannableString;
-    }
-
-    public final int a() {
-        return (int) (this.f32879c.f26843c + AndroidUtilities.dp(14.0f));
-    }
-
-    public final void c(xc xcVar, boolean z10) {
-        if (this.e == null) {
-            this.e = new wc(xcVar);
-        }
-        this.e.c(z10);
+    public yc(Context context, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, u6Var);
+        this.L = new Path();
+        this.M = new RectF();
     }
 
     @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        float a2;
-        int w02;
-        float dpf2 = AndroidUtilities.dpf2(17.0f);
-        float f10 = (i12 + i14) / 2.0f;
-        RectF rectF = AndroidUtilities.rectTmp;
-        float f11 = dpf2 / 2.0f;
-        rectF.set(f7, f10 - f11, a() + f7, f10 + f11);
-        wc wcVar = this.e;
-        if (wcVar == null) {
-            a2 = 1.0f;
-        } else {
-            a2 = wcVar.a(0.025f);
+    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        super.onLayout(z10, i10, i11, i12, i13);
+        if (this.O != null && getMeasuredWidth() > 0) {
+            SpannableString spannableString = new SpannableString(" btn");
+            spannableString.setSpan(this.O, 1, spannableString.length(), 33);
+            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(TextUtils.ellipsize(getText(), getPaint(), (((getMeasuredWidth() - getPaddingLeft()) - getPaddingRight()) - this.O.a()) - AndroidUtilities.dp(4.0f), TextUtils.TruncateAt.END));
+            spannableStringBuilder.append((CharSequence) spannableString);
+            setText(spannableStringBuilder);
+            this.O = null;
         }
-        canvas.save();
-        canvas.scale(a2, a2, rectF.centerX(), rectF.centerY());
-        Integer num = this.f32880f;
-        if (num != null) {
-            w02 = num.intValue();
-        } else {
-            w02 = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.Oh, this.f32877a);
-        }
-        int i15 = w02;
-        int o12 = org.telegram.ui.ActionBar.k6.o1(0.15f, i15);
-        Paint paint2 = this.f32878b;
-        paint2.setColor(o12);
-        canvas.drawRoundRect(rectF, f11, f11, paint2);
-        this.f32879c.c(f7 + AndroidUtilities.dp(7.0f), f10, 1.0f, i15, canvas);
-        canvas.restore();
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        if (fontMetricsInt != null) {
-            paint.getFontMetricsInt(fontMetricsInt);
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        Layout layout;
+        zc zcVar;
+        Runnable runnable;
+        zc zcVar2;
+        int action = motionEvent.getAction();
+        float x9 = motionEvent.getX() - getPaddingLeft();
+        int y3 = ((int) motionEvent.getY()) - getPaddingTop();
+        if ((getText() instanceof Spanned) && (layout = getLayout()) != null && y3 >= 0 && y3 < layout.getHeight()) {
+            int lineForVertical = layout.getLineForVertical(y3);
+            Spanned spanned = (Spanned) getText();
+            zc[] zcVarArr = (zc[]) spanned.getSpans(layout.getLineStart(lineForVertical), layout.getLineEnd(lineForVertical), zc.class);
+            for (int i10 = 0; i10 < zcVarArr.length; i10++) {
+                zcVar = zcVarArr[i10];
+                int spanStart = spanned.getSpanStart(zcVar);
+                int spanEnd = spanned.getSpanEnd(zcVar);
+                Path path = this.L;
+                layout.getSelectionPath(spanStart, spanEnd, path);
+                RectF rectF = this.M;
+                path.computeBounds(rectF, true);
+                if (rectF.contains(x9, y3)) {
+                    break;
+                }
+            }
         }
-        return a();
+        zcVar = null;
+        if (action == 0) {
+            this.N = zcVar;
+            if (zcVar != null) {
+                zcVar.c(this, true);
+                return true;
+            }
+        } else if (action != 1 && action != 3) {
+            if (action == 2 && (zcVar2 = this.N) != null && zcVar2 != zcVar) {
+                zcVar2.c(this, false);
+                this.N = null;
+            }
+        } else {
+            zc zcVar3 = this.N;
+            if (zcVar3 != null) {
+                zcVar3.c(this, false);
+                if (action == 1 && (runnable = this.N.d) != null) {
+                    runnable.run();
+                }
+            }
+            this.N = null;
+        }
+        if (this.N == null && !super.onTouchEvent(motionEvent)) {
+            return false;
+        }
+        return true;
+    }
+
+    public yc(Context context) {
+        super(context, null);
+        this.L = new Path();
+        this.M = new RectF();
     }
 }

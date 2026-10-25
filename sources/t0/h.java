@@ -3,15 +3,15 @@ package t0;
 import android.content.ClipDescription;
 import android.net.Uri;
 public interface h {
+    Uri a();
+
+    void b();
+
     Uri c();
 
-    void d();
+    Object e();
 
-    Uri f();
+    void f();
 
     ClipDescription getDescription();
-
-    Object j();
-
-    void k();
 }

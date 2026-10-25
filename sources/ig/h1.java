@@ -1,293 +1,128 @@
 package ig;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.view.Gravity;
-import android.view.MotionEvent;
+import android.graphics.drawable.ShapeDrawable;
+import android.text.SpannableStringBuilder;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import ci.h4;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ChatObject;
+import org.telegram.messenger.FileLog;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.tl;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Components.lq;
-import w7.z5;
-public abstract class h1 extends LinearLayout {
-    public boolean E;
-    public boolean F;
-    public final g6 f12947a;
-    public final TextView f12948b;
-    public final TextView[] f12949c;
-    public final ImageView d;
-    public final FrameLayout e;
-    public final ViewGroup[] f12950f;
-    public final TextView[] h;
-    public final TextView[][] f12951n;
-    public final lq f12952r;
-    public final FrameLayout f12953s;
-    public final LinearLayout v;
-    public int f12954w;
-    public int f12955x;
-    public boolean f12956y;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.ActionBar.b7;
+import org.telegram.ui.ActionBar.f7;
+import org.telegram.ui.ActionBar.p6;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Components.ar;
+import org.telegram.ui.Components.b10;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.y9;
+import org.telegram.ui.m00;
+public final class h1 extends LinearLayout implements p6 {
+    public ShapeDrawable f14067a;
+    public final u6 f14068b;
+    public final y9 f14069c;
+    public final j9 d;
+    public final TextView e;
+    public final TextView f14070f;
 
-    public h1(Context context, g6 g6Var) {
+    public h1(Context context, u6 u6Var, boolean z10) {
         super(context);
-        int i10;
-        float f7;
-        float f10;
-        int i11;
-        int i12;
-        int i13;
-        int i14;
-        int i15;
-        int i16;
-        this.f12949c = new TextView[2];
-        this.f12950f = new ViewGroup[7];
-        this.h = new TextView[7];
-        this.f12951n = new TextView[7];
-        this.f12954w = 1;
-        this.f12955x = 0;
-        this.f12956y = true;
-        this.f12947a = g6Var;
-        setOrientation(1);
-        setClipChildren(false);
-        int i17 = 0;
-        for (int i18 = 7; i17 < i18; i18 = 7) {
-            if (i17 == 0) {
-                ViewGroup h4Var = new h4(context, 4);
-                h4Var.setMinimumHeight(AndroidUtilities.dp(60.0f));
-                TextView textView = new TextView(context);
-                this.f12948b = textView;
-                if (LocaleController.isRTL) {
-                    i12 = 5;
-                } else {
-                    i12 = 3;
-                }
-                textView.setGravity(i12);
-                textView.setTextSize(1, 16.0f);
-                h4Var.addView(textView, z5.i(-1.0f, -2.0f, 8388659, 0.0f, 9.33f, 0.0f, 0.0f));
-                this.h[i17] = new TextView(context);
-                TextView textView2 = this.h[i17];
-                if (LocaleController.isRTL) {
-                    i13 = 5;
-                } else {
-                    i13 = 3;
-                }
-                textView2.setGravity(i13);
-                this.h[i17].setTextSize(1, 13.0f);
-                r6.W(this.h[i17], k6.f21589z6, g6Var);
-                h4Var.addView(this.h[i17], z5.i(-2.0f, -2.0f, 8388659, 0.0f, 33.0f, 0.0f, 10.0f));
-                LinearLayout linearLayout = new LinearLayout(context);
-                this.v = linearLayout;
-                linearLayout.setOrientation(1);
-                this.f12953s = new FrameLayout(context);
-                this.f12951n[i17] = new TextView[2];
-                for (int i19 = 0; i19 < 2; i19++) {
-                    this.f12951n[i17][i19] = new TextView(context);
-                    this.f12951n[i17][i19].setTextSize(1, 14.0f);
-                    r6.W(this.f12951n[i17][i19], k6.f21589z6, g6Var);
-                    TextView textView3 = this.f12951n[i17][i19];
-                    if (LocaleController.isRTL) {
-                        i16 = 3;
-                    } else {
-                        i16 = 5;
-                    }
-                    textView3.setGravity(i16);
-                    this.f12953s.addView(this.f12951n[i17][i19], z5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
-                }
-                for (int i20 = 0; i20 < 2; i20++) {
-                    this.f12949c[i20] = new TextView(context);
-                    this.f12949c[i20].setTextSize(1, 14.0f);
-                    r6.W(this.f12949c[i20], k6.f21589z6, g6Var);
-                    TextView textView4 = this.f12949c[i20];
-                    if (LocaleController.isRTL) {
-                        i15 = 3;
-                    } else {
-                        i15 = 5;
-                    }
-                    textView4.setGravity(i15);
-                    this.f12953s.addView(this.f12949c[i20], z5.i(-1.0f, -1.0f, 119, 0.0f, 0.0f, 20.0f, 0.0f));
-                }
-                ImageView imageView = new ImageView(context);
-                this.d = imageView;
-                imageView.setScaleType(ImageView.ScaleType.CENTER);
-                imageView.setScaleX(0.6f);
-                imageView.setScaleY(0.6f);
-                imageView.setImageResource(R.drawable.arrow_more);
-                r6.t(imageView, k6.f21589z6, g6Var, PorterDuff.Mode.SRC_IN);
-                this.f12953s.addView(imageView, z5.h(20.0f, 20.0f, 8388629));
-                this.v.addView(this.f12953s, new LinearLayout.LayoutParams(z5.z(-1.0f), z5.z(-1.0f), Gravity.getAbsoluteGravity(119, LocaleController.isRTL ? 1 : 0)));
-                lq lqVar = new lq(context);
-                this.f12952r = lqVar;
-                lqVar.getDrawable().L = true;
-                lqVar.setTextSize(AndroidUtilities.dp(13.0f));
-                lqVar.setPadding(AndroidUtilities.dp(6.0f), 0, AndroidUtilities.dp(6.0f), 0);
-                if (LocaleController.isRTL) {
-                    i14 = 3;
-                } else {
-                    i14 = 5;
-                }
-                lqVar.setGravity(i14);
-                int dp = AndroidUtilities.dp(8.0f);
-                int i21 = k6.f21387o6;
-                int w02 = k6.w0(i21, g6Var);
-                a(w02);
-                int o12 = k6.o1(0.1f, w02);
-                int w03 = k6.w0(i21, g6Var);
-                a(w03);
-                int o13 = k6.o1(0.22f, w03);
-                lqVar.setBackground(k6.j0(dp, dp, dp, dp, o12, o13, o13));
-                int w04 = k6.w0(i21, g6Var);
-                a(w04);
-                lqVar.setTextColor(w04);
-                lqVar.getDrawable().A = 0.6f;
-                lqVar.setVisibility(8);
-                this.v.addView(lqVar, z5.u(-1.0f, 17.0f, 8388613, 0.0f, 4.0f, 18.0f, 0.0f));
-                FrameLayout frameLayout = new FrameLayout(context);
-                this.e = frameLayout;
-                frameLayout.addView(this.v, z5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 0.0f));
-                h4Var.addView(frameLayout, z5.i(-1.0f, -2.0f, 8388693, 0.0f, 0.0f, 0.0f, 12.0f));
-                this.f12950f[i17] = h4Var;
-                addView(h4Var, z5.i(-1.0f, -2.0f, 51, 18.0f, 0.0f, 8.0f, 0.0f));
-            } else {
-                ViewGroup e = tl.e(context, 0);
-                this.h[i17] = new TextView(context);
-                this.h[i17].setTextSize(1, 14.0f);
-                r6.W(this.h[i17], k6.G6, g6Var);
-                TextView textView5 = this.h[i17];
-                if (LocaleController.isRTL) {
-                    i10 = 5;
-                } else {
-                    i10 = 3;
-                }
-                textView5.setGravity(i10);
-                FrameLayout frameLayout2 = new FrameLayout(context);
-                this.f12951n[i17] = new TextView[2];
-                for (int i22 = 0; i22 < 2; i22++) {
-                    this.f12951n[i17][i22] = new TextView(context);
-                    this.f12951n[i17][i22].setTextSize(1, 14.0f);
-                    r6.W(this.f12951n[i17][i22], k6.f21589z6, g6Var);
-                    TextView textView6 = this.f12951n[i17][i22];
-                    if (LocaleController.isRTL) {
-                        i11 = 3;
-                    } else {
-                        i11 = 5;
-                    }
-                    textView6.setGravity(i11);
-                    frameLayout2.addView(this.f12951n[i17][i22], z5.e(-1, -1, 119));
-                }
-                if (LocaleController.isRTL) {
-                    e.addView(frameLayout2, z5.q(-2, -1, 51));
-                    e.addView(this.h[i17], z5.q(-1, -1, 53));
-                } else {
-                    e.addView(this.h[i17], z5.q(-2, -1, 51));
-                    e.addView(frameLayout2, z5.q(-1, -1, 53));
-                }
-                this.f12950f[i17] = e;
-                if (i17 == 1) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 11.66f;
-                }
-                float f11 = f7;
-                if (i17 == 6) {
-                    f10 = 16.66f;
-                } else {
-                    f10 = 0.0f;
-                }
-                addView(e, z5.u(-1.0f, -2.0f, 51, 18.0f, f11, 28.0f, f10));
-            }
-            i17++;
+        b7 N;
+        this.d = new j9((u6) null);
+        this.f14068b = u6Var;
+        setOrientation(0);
+        y9 y9Var = new y9(context);
+        this.f14069c = y9Var;
+        y9Var.setRoundRadius(AndroidUtilities.dp(28.0f));
+        addView(y9Var, gb1.x(28, 28, 19, 12, 0, 12, 0));
+        LinearLayout linearLayout = new LinearLayout(context);
+        linearLayout.setOrientation(1);
+        addView(linearLayout, gb1.x(-1, -2, 55, 0, 4, 12, 4));
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 15.0f);
+        int i10 = y6.G6;
+        f7.V(textView, i10, u6Var);
+        linearLayout.addView(textView, gb1.r(-1, -2));
+        TextView textView2 = new TextView(context);
+        this.f14070f = textView2;
+        textView2.setTextSize(1, 13.0f);
+        if (z10) {
+            N = f7.L(0.5f, i10);
+        } else {
+            N = f7.N(y6.f23765z6);
         }
-        setWillNotDraw(false);
+        f7.W(textView2, N, u6Var);
+        linearLayout.addView(textView2, gb1.r(-1, -2));
     }
 
-    public abstract int a(int i10);
-
-    public final void b(org.telegram.tgnet.tl.TL_account.TL_businessWorkHours r29, boolean r30, boolean r31, boolean r32) {
-        throw new UnsupportedOperationException("Method not decompiled: ig.h1.b(org.telegram.tgnet.tl.TL_account$TL_businessWorkHours, boolean, boolean, boolean):void");
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        float f7;
-        super.onDraw(canvas);
-        if (this.E) {
-            Paint V0 = k6.V0("paintDivider", this.f12947a);
-            if (V0 == null) {
-                V0 = k6.f21305k0;
-            }
-            Paint paint = V0;
-            float f10 = 21.33f;
-            if (LocaleController.isRTL) {
-                f7 = 0.0f;
-            } else {
-                f7 = 21.33f;
-            }
-            float dp = AndroidUtilities.dp(f7);
-            float measuredHeight = getMeasuredHeight() - 1;
-            int width = getWidth();
-            if (!LocaleController.isRTL) {
-                f10 = 0.0f;
-            }
-            canvas.drawRect(dp, measuredHeight, width - AndroidUtilities.dp(f10), getMeasuredHeight(), paint);
+    public final void a(int i10, String str, TLRPC.Chat chat) {
+        if (str == null) {
+            return;
         }
+        TextView textView = this.f14070f;
+        TextView textView2 = this.e;
+        y9 y9Var = this.f14069c;
+        if (i10 == 0) {
+            ShapeDrawable c02 = y6.c0(AndroidUtilities.dp(28.0f), y6.w0(y6.Oh, this.f14068b));
+            this.f14067a = c02;
+            ar arVar = new ar(c02, getContext().getResources().getDrawable(R.drawable.menu_hashtag).mutate());
+            arVar.f26596s = AndroidUtilities.dp(-0.66f);
+            arVar.v = 0;
+            int dp = AndroidUtilities.dp(20.0f);
+            int dp2 = AndroidUtilities.dp(20.0f);
+            arVar.e = dp;
+            arVar.f26593f = dp2;
+            y9Var.setImageDrawable(arVar);
+            textView2.setText(LocaleController.formatString(R.string.HashtagSuggestion1Title, str));
+            textView.setText(LocaleController.getString(R.string.HashtagSuggestion1Text));
+            return;
+        }
+        j9 j9Var = this.d;
+        j9Var.q(chat);
+        y9Var.f(chat, j9Var);
+        int i11 = R.string.HashtagSuggestion2Title;
+        StringBuilder l4 = b10.l(str, "@");
+        l4.append(ChatObject.getPublicUsername(chat));
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(LocaleController.formatString(i11, l4.toString()));
+        spannableStringBuilder.append((CharSequence) "  d");
+        m00 m00Var = new m00(8);
+        m00Var.f41418f = y6.x0(null, y6.Lj, false);
+        m00Var.f41419n = false;
+        spannableStringBuilder.setSpan(m00Var, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 0);
+        textView2.setText(spannableStringBuilder);
+        textView.setText(LocaleController.getString(R.string.HashtagSuggestion2Text));
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        float f7;
-        int dp;
-        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824);
-        if (!this.F) {
-            int dp2 = AndroidUtilities.dp(60.0f);
-            int i12 = this.f12954w;
-            lq lqVar = this.f12952r;
-            if (i12 <= 2 && lqVar.getVisibility() != 0) {
-                dp = 0;
-            } else {
-                int dp3 = AndroidUtilities.dp(15.0f) + this.f12955x;
-                if (lqVar.getVisibility() == 0) {
-                    f7 = 21.0f;
-                } else {
-                    f7 = 0.0f;
-                }
-                dp = AndroidUtilities.dp(f7) + dp3;
-            }
-            i11 = View.MeasureSpec.makeMeasureSpec(Math.max(dp2, dp) + (this.E ? 1 : 0), 1073741824);
-        }
-        super.onMeasure(makeMeasureSpec, i11);
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        lq lqVar = this.f12952r;
-        if (lqVar != null && lqVar.getVisibility() == 0) {
-            float x10 = motionEvent.getX();
-            ViewGroup[] viewGroupArr = this.f12950f;
-            float x11 = x10 - viewGroupArr[0].getX();
-            FrameLayout frameLayout = this.e;
-            float x12 = x11 - frameLayout.getX();
-            FrameLayout frameLayout2 = this.f12953s;
-            return lqVar.getClickBounds().contains((int) ((x12 - frameLayout2.getX()) - lqVar.getX()), (int) ((((motionEvent.getY() - viewGroupArr[0].getY()) - frameLayout.getY()) - frameLayout2.getY()) - lqVar.getY()));
+    public final void updateColors() {
+        try {
+            ShapeDrawable shapeDrawable = this.f14067a;
+            if (shapeDrawable != null) {
+                y6.z1(y6.w0(y6.Oh, this.f14068b), shapeDrawable);
+                y9 y9Var = this.f14069c;
+                if (y9Var != null) {
+                    y9Var.invalidate();
+                }
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
-        return super.onTouchEvent(motionEvent);
     }
 
-    public void setOnTimezoneSwitchClick(View.OnClickListener onClickListener) {
-        lq lqVar = this.f12952r;
-        if (lqVar != null) {
-            lqVar.setOnClickListener(onClickListener);
-        }
+    @Override
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

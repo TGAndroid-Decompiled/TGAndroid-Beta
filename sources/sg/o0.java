@@ -1,75 +1,89 @@
 package sg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.cq;
-import org.telegram.ui.Components.o6;
-public final class o0 extends o6 {
-    public final int f46794s;
-    public final p0 v;
+import android.text.TextUtils;
+import org.telegram.tgnet.InputSerializedData;
+import org.telegram.tgnet.OutputSerializedData;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class o0 extends TLObject {
+    public static final int f48390j = 0;
+    public int f48391a;
+    public String f48392b;
+    public String f48393c;
+    public TLRPC.WebPage d;
+    public boolean e;
+    public boolean f48394f = true;
+    public int f48395i;
 
-    public o0(p0 p0Var, Context context, int i10) {
-        super(context, true, true, true);
-        this.f46794s = i10;
-        this.v = p0Var;
+    @Override
+    public final void readParams(InputSerializedData inputSerializedData, boolean z10) {
+        boolean z11;
+        int readInt32 = inputSerializedData.readInt32(z10);
+        this.f48391a = readInt32;
+        boolean z12 = false;
+        if ((readInt32 & 8) != 0) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        this.e = z11;
+        if ((readInt32 & 16) != 0) {
+            z12 = true;
+        }
+        this.f48394f = z12;
+        this.f48393c = inputSerializedData.readString(z10);
+        if ((this.f48391a & 1) != 0) {
+            this.d = TLRPC.WebPage.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
+        }
+        if ((this.f48391a & 2) != 0) {
+            this.f48392b = inputSerializedData.readString(z10);
+        }
+        if ((this.f48391a & 4) != 0) {
+            this.f48395i = inputSerializedData.readInt32(z10);
+        }
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        switch (this.f46794s) {
-            case 0:
-                p0 p0Var = this.v;
-                if (p0Var.O > 0.0f) {
-                    if (p0Var.N == null) {
-                        p0Var.N = new cq(p0Var.f46802f.getTextColor());
-                    }
-                    int dp = (int) ((1.0f - p0Var.O) * AndroidUtilities.dp(24.0f));
-                    p0Var.N.setBounds(0, dp, getWidth(), getHeight() + dp);
-                    p0Var.N.setAlpha((int) (p0Var.O * 255.0f));
-                    p0Var.N.draw(canvas);
-                    invalidate();
-                }
-                float f7 = p0Var.O;
-                if (f7 < 1.0f) {
-                    if (f7 != 0.0f) {
-                        canvas.save();
-                        canvas.translate(0.0f, (int) (p0Var.O * AndroidUtilities.dp(-24.0f)));
-                        canvas.scale(1.0f, 1.0f - (p0Var.O * 0.4f));
-                        super.onDraw(canvas);
-                        canvas.restore();
-                        return;
-                    }
-                    super.onDraw(canvas);
-                    return;
-                }
-                return;
-            default:
-                p0 p0Var2 = this.v;
-                if (p0Var2.O > 0.0f) {
-                    if (p0Var2.N == null) {
-                        p0Var2.N = new cq(p0Var2.f46802f.getTextColor());
-                    }
-                    int dp2 = (int) ((1.0f - p0Var2.O) * AndroidUtilities.dp(24.0f));
-                    p0Var2.N.setBounds(0, dp2, getWidth(), getHeight() + dp2);
-                    p0Var2.N.setAlpha((int) (p0Var2.O * 255.0f));
-                    p0Var2.N.draw(canvas);
-                    invalidate();
-                }
-                float f10 = p0Var2.O;
-                if (f10 < 1.0f) {
-                    if (f10 != 0.0f) {
-                        canvas.save();
-                        canvas.translate(0.0f, (int) (p0Var2.O * AndroidUtilities.dp(-24.0f)));
-                        canvas.scale(1.0f, 1.0f - (p0Var2.O * 0.4f));
-                        super.onDraw(canvas);
-                        canvas.restore();
-                        return;
-                    }
-                    super.onDraw(canvas);
-                    return;
-                }
-                return;
+    public final void serializeToStream(OutputSerializedData outputSerializedData) {
+        int i10;
+        int i11;
+        int i12;
+        int i13;
+        outputSerializedData.writeInt32(-625858389);
+        if (this.d != null) {
+            i10 = this.f48391a | 1;
+        } else {
+            i10 = this.f48391a & (-2);
+        }
+        this.f48391a = i10;
+        if (!TextUtils.isEmpty(this.f48392b)) {
+            i11 = this.f48391a | 2;
+        } else {
+            i11 = this.f48391a & (-3);
+        }
+        this.f48391a = i11;
+        if (this.e) {
+            i12 = i11 | 8;
+        } else {
+            i12 = i11 & (-9);
+        }
+        this.f48391a = i12;
+        if (this.f48394f) {
+            i13 = i12 | 16;
+        } else {
+            i13 = i12 & (-17);
+        }
+        this.f48391a = i13;
+        outputSerializedData.writeInt32(i13);
+        outputSerializedData.writeString(this.f48393c);
+        if ((this.f48391a & 1) != 0) {
+            this.d.serializeToStream(outputSerializedData);
+        }
+        if ((this.f48391a & 2) != 0) {
+            outputSerializedData.writeString(this.f48392b);
+        }
+        if ((this.f48391a & 4) != 0) {
+            outputSerializedData.writeInt32(this.f48395i);
         }
     }
 }

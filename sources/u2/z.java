@@ -1,160 +1,50 @@
 package u2;
-public final class z implements f0, e0 {
-    public final h0 f47943a;
-    public final long f47944b;
-    public final androidx.biometric.e f47945c;
-    public a d;
-    public f0 e;
-    public e0 f47946f;
-    public long h = -9223372036854775807L;
 
-    public z(h0 h0Var, androidx.biometric.e eVar, long j10) {
-        this.f47943a = h0Var;
-        this.f47945c = eVar;
-        this.f47944b = j10;
+import j$.util.Objects;
+public final class z extends s {
+    public static final Object h = new Object();
+    public final Object f49487f;
+    public final Object f49488g;
+
+    public z(b2.p1 p1Var, Object obj, Object obj2) {
+        super(p1Var);
+        this.f49487f = obj;
+        this.f49488g = obj2;
     }
 
     @Override
-    public final void a(f0 f0Var) {
-        e0 e0Var = this.f47946f;
-        String str = e2.m0.f8259a;
-        e0Var.a(this);
-    }
-
-    @Override
-    public final void b(h1 h1Var) {
-        f0 f0Var = (f0) h1Var;
-        e0 e0Var = this.f47946f;
-        String str = e2.m0.f8259a;
-        e0Var.b(this);
-    }
-
-    @Override
-    public final boolean c() {
-        f0 f0Var = this.e;
-        if (f0Var != null && f0Var.c()) {
-            return true;
+    public final int b(Object obj) {
+        Object obj2;
+        if (h.equals(obj) && (obj2 = this.f49488g) != null) {
+            obj = obj2;
         }
-        return false;
+        return this.e.b(obj);
     }
 
     @Override
-    public final long d() {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        return f0Var.d();
-    }
-
-    public final void e(h0 h0Var) {
-        long j10 = this.h;
-        if (j10 == -9223372036854775807L) {
-            j10 = this.f47944b;
+    public final b2.m1 f(int i10, b2.m1 m1Var, boolean z10) {
+        this.e.f(i10, m1Var, z10);
+        if (Objects.equals(m1Var.f3279b, this.f49488g) && z10) {
+            m1Var.f3279b = h;
         }
-        a aVar = this.d;
-        aVar.getClass();
-        f0 c10 = aVar.c(h0Var, this.f47945c, j10);
-        this.e = c10;
-        if (this.f47946f != null) {
-            c10.n(this, j10);
+        return m1Var;
+    }
+
+    @Override
+    public final Object l(int i10) {
+        Object l4 = this.e.l(i10);
+        if (Objects.equals(l4, this.f49488g)) {
+            return h;
         }
+        return l4;
     }
 
     @Override
-    public final void h() {
-        f0 f0Var = this.e;
-        if (f0Var != null) {
-            f0Var.h();
-            return;
+    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
+        this.e.m(i10, o1Var, j10);
+        if (Objects.equals(o1Var.f3325a, this.f49487f)) {
+            o1Var.f3325a = b2.o1.f3316q;
         }
-        a aVar = this.d;
-        if (aVar != null) {
-            aVar.k();
-        }
-    }
-
-    @Override
-    public final long i(long j10) {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        return f0Var.i(j10);
-    }
-
-    @Override
-    public final void l(long j10) {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        f0Var.l(j10);
-    }
-
-    @Override
-    public final void n(e0 e0Var, long j10) {
-        this.f47946f = e0Var;
-        f0 f0Var = this.e;
-        if (f0Var != null) {
-            long j11 = this.h;
-            if (j11 == -9223372036854775807L) {
-                j11 = this.f47944b;
-            }
-            f0Var.n(this, j11);
-        }
-    }
-
-    @Override
-    public final long o() {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        return f0Var.o();
-    }
-
-    @Override
-    public final boolean p(i2.u0 u0Var) {
-        f0 f0Var = this.e;
-        if (f0Var != null && f0Var.p(u0Var)) {
-            return true;
-        }
-        return false;
-    }
-
-    @Override
-    public final long q(x2.p[] pVarArr, boolean[] zArr, f1[] f1VarArr, boolean[] zArr2, long j10) {
-        long j11;
-        long j12 = this.h;
-        if (j12 != -9223372036854775807L && j10 == this.f47944b) {
-            j11 = j12;
-        } else {
-            j11 = j10;
-        }
-        this.h = -9223372036854775807L;
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        return f0Var.q(pVarArr, zArr, f1VarArr, zArr2, j11);
-    }
-
-    @Override
-    public final t1 r() {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        return f0Var.r();
-    }
-
-    @Override
-    public final long s() {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        return f0Var.s();
-    }
-
-    @Override
-    public final long t(long j10, i2.s1 s1Var) {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        return f0Var.t(j10, s1Var);
-    }
-
-    @Override
-    public final void u(long j10) {
-        f0 f0Var = this.e;
-        String str = e2.m0.f8259a;
-        f0Var.u(j10);
+        return o1Var;
     }
 }

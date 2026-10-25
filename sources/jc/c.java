@@ -1,13 +1,20 @@
 package jc;
+public enum c {
+    L(1),
+    M(0),
+    Q(3),
+    H(2);
+    
+    public static final c[] e;
+    public final int f15553a;
 
-import dc.j;
-public final class c extends j {
-    public final float f14422c;
-    public final int d;
+    static {
+        c cVar;
+        c cVar2 = L;
+        e = new c[]{M, cVar2, H, cVar};
+    }
 
-    public c(float f7, float f10, float f11, int i10) {
-        super(f7, f10);
-        this.f14422c = f11;
-        this.d = i10;
+    c(int i10) {
+        this.f15553a = i10;
     }
 }

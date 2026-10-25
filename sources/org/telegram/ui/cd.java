@@ -1,45 +1,45 @@
 package org.telegram.ui;
 public final class cd implements Runnable {
-    public final int f36307a;
-    public final md f36308b;
+    public final int f38426a;
+    public final nd f38427b;
 
-    public cd(md mdVar, int i10) {
-        this.f36307a = i10;
-        this.f36308b = mdVar;
+    public cd(nd ndVar, int i10) {
+        this.f38426a = i10;
+        this.f38427b = ndVar;
     }
 
     @Override
     public final void run() {
-        switch (this.f36307a) {
+        switch (this.f38426a) {
             case 0:
-                this.f36308b.h0(true);
+                this.f38427b.i0(true);
                 return;
             case 1:
-                md mdVar = this.f36308b;
-                mdVar.f39548k0 = true;
-                mdVar.i0();
+                nd ndVar = this.f38427b;
+                ndVar.f41853k0 = true;
+                ndVar.j0();
                 return;
             case 2:
-                md mdVar2 = this.f36308b;
-                mdVar2.f39566y = null;
-                mdVar2.E = null;
-                mdVar2.m0 = null;
-                mdVar2.f39551n0 = null;
-                mdVar2.f39553p0 = null;
-                mdVar2.f39552o0 = null;
-                mdVar2.f39554q0 = 0.0d;
-                mdVar2.f0(false, true);
-                mdVar2.f39542f.h(null, null, mdVar2.v, null);
-                mdVar2.f39550n.setAnimation(mdVar2.K);
-                mdVar2.K.M(0);
+                nd ndVar2 = this.f38427b;
+                ndVar2.f41871y = null;
+                ndVar2.E = null;
+                ndVar2.m0 = null;
+                ndVar2.f41856n0 = null;
+                ndVar2.f41858p0 = null;
+                ndVar2.f41857o0 = null;
+                ndVar2.f41859q0 = 0.0d;
+                ndVar2.g0(false, true);
+                ndVar2.f41847f.h(null, null, ndVar2.v, null);
+                ndVar2.f41855n.setAnimation(ndVar2.K);
+                ndVar2.K.M(0);
                 return;
             default:
-                md mdVar3 = this.f36308b;
-                mdVar3.f39548k0 = true;
-                if (mdVar3.f39564x.length() > 0) {
-                    mdVar3.e0(mdVar3.f39564x.getText().toString());
+                nd ndVar3 = this.f38427b;
+                ndVar3.f41853k0 = true;
+                if (ndVar3.f41869x.length() > 0) {
+                    ndVar3.f0(ndVar3.f41869x.getText().toString());
                 }
-                mdVar3.i0();
+                ndVar3.j0();
                 return;
         }
     }

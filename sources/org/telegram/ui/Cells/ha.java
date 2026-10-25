@@ -1,65 +1,105 @@
 package org.telegram.ui.Cells;
 
-import android.graphics.Canvas;
-import android.view.View;
-import android.widget.FrameLayout;
+import android.animation.ValueAnimator;
+import android.graphics.Bitmap;
+import android.view.ViewTreeObserver;
 import android.widget.ImageView;
-import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class ha extends FrameLayout {
-    public TextView f22481a;
-    public ImageView f22482b;
-    public boolean f22483c;
+import org.telegram.ui.Components.k30;
+import org.telegram.ui.Components.ma1;
+import org.telegram.ui.Components.o30;
+import org.telegram.ui.Components.q30;
+import org.telegram.ui.Components.s51;
+import org.telegram.ui.Components.v50;
+import org.telegram.ui.Components.wu;
+public final class ha implements ViewTreeObserver.OnPreDrawListener {
+    public final int f24211a;
+    public final Object f24212b;
 
-    public final void a(String str, boolean z10, boolean z11) {
-        int i10;
-        this.f22481a.setText(str);
-        ImageView imageView = this.f22482b;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
-        this.f22483c = z11;
+    public ha(Object obj, int i10) {
+        this.f24211a = i10;
+        this.f24212b = obj;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        float dp;
-        int i10;
-        if (this.f22483c) {
-            if (LocaleController.isRTL) {
-                dp = 0.0f;
-            } else {
-                dp = AndroidUtilities.dp(20.0f);
-            }
-            float f7 = dp;
-            float measuredHeight = getMeasuredHeight() - 1;
-            int measuredWidth = getMeasuredWidth();
-            if (LocaleController.isRTL) {
-                i10 = AndroidUtilities.dp(20.0f);
-            } else {
-                i10 = 0;
-            }
-            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, org.telegram.ui.ActionBar.k6.f21305k0);
+    public final boolean onPreDraw() {
+        int[] iArr;
+        boolean z10;
+        int i10 = this.f24211a;
+        Object obj = this.f24212b;
+        switch (i10) {
+            case 0:
+                ja jaVar = ((ia) obj).f24258a;
+                jaVar.getViewTreeObserver().removeOnPreDrawListener(this);
+                jaVar.getTransitionParams().j();
+                jaVar.getTransitionParams().f();
+                jaVar.getTransitionParams().f24870g = true;
+                jaVar.getTransitionParams().K1 = 0.0f;
+                ValueAnimator ofFloat = ValueAnimator.ofFloat(0.0f, 1.0f);
+                ofFloat.addUpdateListener(new r(this, 9));
+                ofFloat.addListener(new kg.e(this, 20));
+                ofFloat.start();
+                return false;
+            case 1:
+                ((wu) obj).f34532a.f27606c.getViewTreeObserver().removeOnPreDrawListener(this);
+                return true;
+            case 2:
+                k30 k30Var = (k30) obj;
+                o30 o30Var = k30Var.f29792f;
+                org.telegram.ui.a8 a8Var = k30Var.e;
+                a8Var.getViewTreeObserver().removeOnPreDrawListener(this);
+                a8Var.getLocationOnScreen(k30Var.G);
+                float f7 = k30Var.f29794r.x + k30Var.Q;
+                q30 q30Var = k30Var.U;
+                float measuredWidth = ((q30Var.getMeasuredWidth() / 2.0f) + f7) - iArr[0];
+                float measuredWidth2 = ((q30Var.getMeasuredWidth() / 2.0f) + (k30Var.f29794r.y + k30Var.R)) - iArr[1];
+                if (measuredWidth2 - AndroidUtilities.dp(61.0f) > 0.0f && AndroidUtilities.dp(61.0f) + measuredWidth2 < a8Var.getMeasuredHeight()) {
+                    z10 = true;
+                } else {
+                    z10 = false;
+                }
+                if (AndroidUtilities.dp(61.0f) + measuredWidth + o30Var.getMeasuredWidth() < a8Var.getMeasuredWidth() - AndroidUtilities.dp(16.0f) && z10) {
+                    o30Var.setTranslationX(AndroidUtilities.dp(61.0f) + measuredWidth);
+                    float dp = AndroidUtilities.dp(40.0f) / o30Var.getMeasuredHeight();
+                    o30Var.setTranslationY((int) (measuredWidth2 - (o30Var.getMeasuredHeight() * Math.max(dp, Math.min(measuredWidth2 / a8Var.getMeasuredHeight(), 1.0f - dp)))));
+                    o30Var.a(measuredWidth, measuredWidth2, 0);
+                } else if ((measuredWidth - AndroidUtilities.dp(61.0f)) - o30Var.getMeasuredWidth() > AndroidUtilities.dp(16.0f) && z10) {
+                    float dp2 = AndroidUtilities.dp(40.0f) / o30Var.getMeasuredHeight();
+                    float max = Math.max(dp2, Math.min(measuredWidth2 / a8Var.getMeasuredHeight(), 1.0f - dp2));
+                    o30Var.setTranslationX((int) ((measuredWidth - AndroidUtilities.dp(61.0f)) - o30Var.getMeasuredWidth()));
+                    o30Var.setTranslationY((int) (measuredWidth2 - (o30Var.getMeasuredHeight() * max)));
+                    o30Var.a(measuredWidth, measuredWidth2, 1);
+                } else if (measuredWidth2 > a8Var.getMeasuredHeight() * 0.3f) {
+                    float dp3 = AndroidUtilities.dp(40.0f) / o30Var.getMeasuredWidth();
+                    o30Var.setTranslationX((int) (measuredWidth - (o30Var.getMeasuredWidth() * Math.max(dp3, Math.min(measuredWidth / a8Var.getMeasuredWidth(), 1.0f - dp3)))));
+                    o30Var.setTranslationY((int) ((measuredWidth2 - o30Var.getMeasuredHeight()) - AndroidUtilities.dp(61.0f)));
+                    o30Var.a(measuredWidth, measuredWidth2, 3);
+                } else {
+                    float dp4 = AndroidUtilities.dp(40.0f) / o30Var.getMeasuredWidth();
+                    o30Var.setTranslationX((int) (measuredWidth - (o30Var.getMeasuredWidth() * Math.max(dp4, Math.min(measuredWidth / a8Var.getMeasuredWidth(), 1.0f - dp4)))));
+                    o30Var.setTranslationY((int) (AndroidUtilities.dp(61.0f) + measuredWidth2));
+                    o30Var.a(measuredWidth, measuredWidth2, 2);
+                }
+                return false;
+            case 3:
+                ((fi.f6) obj).invalidate();
+                return true;
+            default:
+                ma1 ma1Var = (ma1) ((v50) obj).f33568b;
+                ma1Var.f30501n.getViewTreeObserver().removeOnPreDrawListener(this);
+                ImageView imageView = ma1Var.e;
+                if (imageView != null) {
+                    imageView.setVisibility(4);
+                    ma1Var.e.setImageDrawable(null);
+                    Bitmap bitmap = ma1Var.h;
+                    if (bitmap != null) {
+                        bitmap.recycle();
+                        ma1Var.h = null;
+                    }
+                }
+                AndroidUtilities.runOnUIThread(new s51(this, 9));
+                ma1Var.f30502r = 0;
+                return true;
         }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(50.0f) + (this.f22483c ? 1 : 0), 1073741824));
-    }
-
-    public void setTypeChecked(boolean z10) {
-        int i10;
-        ImageView imageView = this.f22482b;
-        if (z10) {
-            i10 = 0;
-        } else {
-            i10 = 4;
-        }
-        imageView.setVisibility(i10);
     }
 }

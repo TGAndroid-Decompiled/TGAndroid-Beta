@@ -1,10 +1,21 @@
 package org.telegram.ui;
 
-import android.view.accessibility.AccessibilityNodeInfo;
-public final class tl extends org.telegram.ui.Cells.v0 {
+import org.telegram.messenger.MessageObject;
+import org.telegram.tgnet.TLRPC;
+public final class tl extends gu0 {
+    public final un f43863a;
+
+    public tl(un unVar) {
+        this.f43863a = unVar;
+    }
+
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setVisibleToUser(true);
+    public final qu0 E(MessageObject messageObject, TLRPC.FileLocation fileLocation, int i10, boolean z10, boolean z11) {
+        return un.G1(this.f43863a, messageObject, fileLocation, i10, z10, false);
+    }
+
+    @Override
+    public final boolean L() {
+        return true;
     }
 }

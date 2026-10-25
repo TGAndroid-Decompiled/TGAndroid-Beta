@@ -1,82 +1,159 @@
 package org.telegram.ui.Components;
 
-import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import java.util.HashMap;
-import java.util.WeakHashMap;
-public abstract class dp0 extends View.AccessibilityDelegate {
-    public static final String f25804c = "android.widget.SeekBar";
-    public final HashMap f25805a = new HashMap(4);
-    public final ai.n6 f25806b = new ai.n6(this, 10);
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class dp0 extends m91 {
+    public final ArrayList f27574a = new ArrayList();
+    public final org.telegram.ui.jx f27575b;
 
-    public abstract boolean a();
-
-    public abstract boolean b();
-
-    public abstract void c(boolean z10);
-
-    public CharSequence d() {
-        return null;
+    public dp0(org.telegram.ui.jx jxVar) {
+        this.f27575b = jxVar;
+        i();
     }
 
-    public void e(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        accessibilityNodeInfo.setClassName(f25804c);
-        CharSequence d = d();
-        if (!TextUtils.isEmpty(d)) {
-            accessibilityNodeInfo.setText(d);
+    @Override
+    public final void b(View view, int i10, int i11) {
+        org.telegram.ui.jx jxVar = this.f27575b;
+        jxVar.P(view, i10, jxVar.M0, true);
+    }
+
+    @Override
+    public final View d(int i10) {
+        org.telegram.ui.jx jxVar = this.f27575b;
+        org.telegram.ui.cy cyVar = jxVar.L0;
+        if (i10 == 1) {
+            return jxVar.W;
         }
-        if (a()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_BACKWARD);
+        if (i10 == 3) {
+            return jxVar.f27938h0;
         }
-        if (b()) {
-            accessibilityNodeInfo.addAction(AccessibilityNodeInfo.AccessibilityAction.ACTION_SCROLL_FORWARD);
+        if (i10 == 4) {
+            return jxVar.m0;
+        }
+        if (i10 == 5) {
+            return jxVar.f27949t0;
+        }
+        if (i10 == 2) {
+            co0 co0Var = new co0(jxVar.J0, cyVar);
+            jxVar.I0 = co0Var;
+            co0Var.b(jxVar.W0, jxVar.X0, false);
+            jxVar.I0.f27216b.setClipToPadding(false);
+            jxVar.I0.f27216b.j(new bp0(this, 0));
+            jxVar.I0.f27216b.D0(new wa0(jxVar, 26));
+            jxVar.I0.setUiCallback(jxVar);
+            return jxVar.I0;
+        } else if (i10 == 6) {
+            return jxVar.f27947r0;
+        } else {
+            org.telegram.ui.h10 h10Var = new org.telegram.ui.h10(cyVar);
+            h10Var.setChatPreviewDelegate(jxVar.R0);
+            h10Var.setUiCallback(jxVar);
+            h10Var.j(jxVar.W0, jxVar.X0, false);
+            ch.b bVar = jxVar.Z0;
+            if (bVar != null) {
+                h10Var.setBlurredBackgroundDrawableFactory(bVar);
+            }
+            bi.r1 r1Var = h10Var.f39825b;
+            r1Var.setClipToPadding(false);
+            r1Var.j(new bp0(this, 1));
+            r1Var.D0(new wa0(jxVar, 26));
+            return h10Var;
         }
     }
 
-    public final void f(AccessibilityNodeInfo accessibilityNodeInfo) {
-        e(null, accessibilityNodeInfo);
+    @Override
+    public final int e() {
+        return this.f27574a.size();
     }
 
-    public boolean g(View view, int i10, Bundle bundle) {
-        boolean z10 = false;
-        if (i10 != 4096 && i10 != 8192) {
-            return false;
+    @Override
+    public final CharSequence g(int i10) {
+        ArrayList arrayList = this.f27574a;
+        if (((cp0) arrayList.get(i10)).f27230a == 0) {
+            return LocaleController.getString(R.string.SearchAllChatsShort);
         }
-        if (i10 == 8192) {
-            z10 = true;
+        if (((cp0) arrayList.get(i10)).f27230a == 1) {
+            return LocaleController.getString(R.string.ChannelsTab);
         }
-        c(z10);
-        if (view != null) {
-            WeakHashMap weakHashMap = r0.i0.f45241a;
-            if (view.isAttachedToWindow()) {
-                HashMap hashMap = this.f25805a;
-                Runnable runnable = (Runnable) hashMap.get(view);
-                if (runnable == null) {
-                    runnable = new jo0(2, this, view);
-                    hashMap.put(view, runnable);
-                    view.addOnAttachStateChangeListener(this.f25806b);
-                } else {
-                    view.removeCallbacks(runnable);
+        if (((cp0) arrayList.get(i10)).f27230a == 4) {
+            return LocaleController.getString(R.string.AppsTab);
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 6) {
+            return LocaleController.getString(R.string.SearchPosts);
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 2) {
+            return LocaleController.getString(R.string.DownloadsTabs);
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 5) {
+            return LocaleController.getString(R.string.PublicPostsTabs);
+        }
+        ig.p0 p0Var = ig.r0.f14213k3[((cp0) arrayList.get(i10)).f27231b];
+        String str = p0Var.f14200c;
+        if (str != null) {
+            return str;
+        }
+        return LocaleController.getString(p0Var.f14199b);
+    }
+
+    @Override
+    public final int h(int i10) {
+        ArrayList arrayList = this.f27574a;
+        if (((cp0) arrayList.get(i10)).f27230a == 0) {
+            return 1;
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 1) {
+            return 3;
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 4) {
+            return 4;
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 2) {
+            return 2;
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 5) {
+            return 5;
+        }
+        if (((cp0) arrayList.get(i10)).f27230a == 6) {
+            return 6;
+        }
+        return ((cp0) arrayList.get(i10)).f27230a + i10;
+    }
+
+    public final void i() {
+        ArrayList arrayList = this.f27574a;
+        arrayList.clear();
+        arrayList.add(new cp0(0));
+        org.telegram.ui.jx jxVar = this.f27575b;
+        if (jxVar.V0 == 0) {
+            if (jxVar.f27948s0) {
+                arrayList.add(new cp0(5));
+            }
+            arrayList.add(new cp0(1));
+            arrayList.add(new cp0(4));
+            arrayList.add(new cp0(6));
+            if (!jxVar.Q0) {
+                cp0 cp0Var = new cp0(3);
+                cp0Var.f27231b = 0;
+                arrayList.add(cp0Var);
+                org.telegram.ui.tw twVar = jxVar.f40757d1.G3;
+                if (twVar == null || !twVar.c()) {
+                    arrayList.add(new cp0(2));
                 }
-                view.postDelayed(runnable, 400L);
+                cp0 cp0Var2 = new cp0(3);
+                cp0Var2.f27231b = 1;
+                arrayList.add(cp0Var2);
+                cp0 cp0Var3 = new cp0(3);
+                cp0Var3.f27231b = 2;
+                arrayList.add(cp0Var3);
+                cp0 cp0Var4 = new cp0(3);
+                cp0Var4.f27231b = 3;
+                arrayList.add(cp0Var4);
+                cp0 cp0Var5 = new cp0(3);
+                cp0Var5.f27231b = 4;
+                arrayList.add(cp0Var5);
             }
         }
-        return true;
-    }
-
-    @Override
-    public final void onInitializeAccessibilityNodeInfo(View view, AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(view, accessibilityNodeInfo);
-        e(view, accessibilityNodeInfo);
-    }
-
-    @Override
-    public final boolean performAccessibilityAction(View view, int i10, Bundle bundle) {
-        if (super.performAccessibilityAction(view, i10, bundle)) {
-            return true;
-        }
-        return g(view, i10, bundle);
     }
 }

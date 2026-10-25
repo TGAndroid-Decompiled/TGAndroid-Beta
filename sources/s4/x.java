@@ -1,19 +1,51 @@
 package s4;
 
+import android.view.GestureDetector;
+import android.view.MotionEvent;
+import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Components.ly0;
-public abstract class x extends v {
-    public int d;
+import java.util.WeakHashMap;
+public final class x extends GestureDetector.SimpleOnGestureListener {
+    public boolean f47855a = true;
+    public final z f47856b;
+
+    public x(z zVar) {
+        this.f47856b = zVar;
+    }
 
     @Override
-    public final int e(RecyclerView recyclerView, b1 b1Var) {
-        int i10;
-        ly0 ly0Var = (ly0) this;
-        if (b1Var.f46345f == 3) {
-            i10 = 0;
-        } else {
-            i10 = ly0Var.d;
+    public final boolean onDown(MotionEvent motionEvent) {
+        return true;
+    }
+
+    @Override
+    public final void onLongPress(MotionEvent motionEvent) {
+        e1 T;
+        if (this.f47855a) {
+            z zVar = this.f47856b;
+            View m10 = zVar.m(motionEvent);
+            w wVar = zVar.f47866x;
+            if (m10 != null && (T = zVar.H.T(m10)) != null) {
+                RecyclerView recyclerView = zVar.H;
+                int e = wVar.e(recyclerView, T);
+                WeakHashMap weakHashMap = r0.i0.f47105a;
+                if ((wVar.b(e, recyclerView.getLayoutDirection()) & 16711680) != 0) {
+                    int pointerId = motionEvent.getPointerId(0);
+                    int i10 = zVar.f47865w;
+                    if (pointerId == i10) {
+                        int findPointerIndex = motionEvent.findPointerIndex(i10);
+                        float x9 = motionEvent.getX(findPointerIndex);
+                        float y3 = motionEvent.getY(findPointerIndex);
+                        zVar.d = x9;
+                        zVar.e = y3;
+                        zVar.f47863r = 0.0f;
+                        zVar.f47862n = 0.0f;
+                        if (wVar.k()) {
+                            zVar.r(T, 2);
+                        }
+                    }
+                }
+            }
         }
-        return v.l(i10, 0);
     }
 }

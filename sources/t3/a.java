@@ -1,28 +1,28 @@
 package t3;
 
 import a1.g;
-import b2.q0;
-import b2.s0;
-import b2.w;
-import v7.b8;
-import v7.s6;
-public final class a implements s0 {
-    public final String f47312a;
-    public final String f47313b;
+import a8.ed;
+import a8.wb;
+import b2.r0;
+import b2.t0;
+import b2.x;
+public final class a implements t0 {
+    public final String f48690a;
+    public final String f48691b;
 
     public a(String str, String str2) {
-        this.f47312a = s6.d(str);
-        this.f47313b = str2;
+        this.f48690a = wb.d(str);
+        this.f48691b = str2;
     }
 
     @Override
-    public final w a() {
+    public final x a() {
         return null;
     }
 
     @Override
-    public final void b(q0 q0Var) {
-        String str = this.f47312a;
+    public final void b(r0 r0Var) {
+        String str = this.f48690a;
         str.getClass();
         char c10 = 65535;
         switch (str.hashCode()) {
@@ -87,53 +87,53 @@ public final class a implements s0 {
                 }
                 break;
         }
-        String str2 = this.f47313b;
+        String str2 = this.f48691b;
         switch (c10) {
             case 0:
-                Integer g10 = b8.g(str2);
-                if (g10 != null) {
-                    q0Var.f3923p = g10;
+                Integer g7 = ed.g(str2);
+                if (g7 != null) {
+                    r0Var.f3374p = g7;
                     return;
                 }
                 return;
             case 1:
-                Integer g11 = b8.g(str2);
-                if (g11 != null) {
-                    q0Var.D = g11;
+                Integer g10 = ed.g(str2);
+                if (g10 != null) {
+                    r0Var.D = g10;
                     return;
                 }
                 return;
             case 2:
-                Integer g12 = b8.g(str2);
-                if (g12 != null) {
-                    q0Var.f3922o = g12;
+                Integer g11 = ed.g(str2);
+                if (g11 != null) {
+                    r0Var.f3373o = g11;
                     return;
                 }
                 return;
             case 3:
-                q0Var.f3913c = str2;
+                r0Var.f3364c = str2;
                 return;
             case 4:
-                q0Var.E = str2;
+                r0Var.E = str2;
                 return;
             case 5:
-                q0Var.f3911a = str2;
+                r0Var.f3362a = str2;
                 return;
             case 6:
-                q0Var.f3915g = str2;
+                r0Var.f3366g = str2;
                 return;
             case 7:
-                Integer g13 = b8.g(str2);
-                if (g13 != null) {
-                    q0Var.C = g13;
+                Integer g12 = ed.g(str2);
+                if (g12 != null) {
+                    r0Var.C = g12;
                     return;
                 }
                 return;
             case '\b':
-                q0Var.d = str2;
+                r0Var.d = str2;
                 return;
             case '\t':
-                q0Var.f3912b = str2;
+                r0Var.f3363b = str2;
                 return;
             default:
                 return;
@@ -151,7 +151,7 @@ public final class a implements s0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f47312a.equals(aVar.f47312a) && this.f47313b.equals(aVar.f47313b)) {
+            if (this.f48690a.equals(aVar.f48690a) && this.f48691b.equals(aVar.f48691b)) {
                 return true;
             }
         }
@@ -159,10 +159,10 @@ public final class a implements s0 {
     }
 
     public final int hashCode() {
-        return this.f47313b.hashCode() + g.g(527, 31, this.f47312a);
+        return this.f48691b.hashCode() + g.f(527, 31, this.f48690a);
     }
 
     public final String toString() {
-        return "VC: " + this.f47312a + "=" + this.f47313b;
+        return "VC: " + this.f48690a + "=" + this.f48691b;
     }
 }

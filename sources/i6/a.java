@@ -1,47 +1,55 @@
 package i6;
 
-import a8.d;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.util.Log;
-import com.google.android.gms.common.api.e;
-import com.google.android.gms.common.api.internal.s;
-import com.google.android.gms.common.api.j;
-import com.google.android.gms.internal.clearcut.c2;
-import com.google.android.gms.internal.clearcut.q1;
-import com.google.android.gms.internal.clearcut.v0;
-public final class a {
-    public static final e f12743j = new e("ClearcutLogger.API", new d(5), new Object());
-    public final Context f12744a;
-    public final String f12745b;
-    public final int f12746c;
-    public final String d;
-    public final int e;
-    public final q1 f12747f;
-    public final v0 f12748g;
-    public final u6.a h;
-    public final c2 f12749i;
+import h6.b;
+import java.util.Iterator;
+import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+public abstract class a {
+    public static final b f13876a = new b("MetadataUtils", null);
+    public static final String[] f13877b;
+    public static final String f13878c;
 
-    public a(Context context) {
-        ?? jVar = new j(context, f12743j, (com.google.android.gms.common.api.a) null, (s) new Object());
-        c2 c2Var = new c2(context);
-        this.e = -1;
-        q1 q1Var = q1.DEFAULT;
-        this.f12747f = q1Var;
-        this.f12744a = context;
-        this.f12745b = context.getPackageName();
-        int i10 = 0;
-        try {
-            i10 = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            Log.wtf("ClearcutLogger", "This can't happen.", e);
+    static {
+        String[] strArr = {"Z", "+hh", "+hhmm", "+hh:mm"};
+        f13877b = strArr;
+        f13878c = "yyyyMMdd'T'HHmmss".concat(String.valueOf(strArr[0]));
+    }
+
+    public static java.util.Calendar a(java.lang.String r8) {
+        throw new UnsupportedOperationException("Method not decompiled: i6.a.a(java.lang.String):java.util.Calendar");
+    }
+
+    public static JSONArray b(List list) {
+        list.getClass();
+        JSONArray jSONArray = new JSONArray();
+        Iterator it = list.iterator();
+        while (it.hasNext()) {
+            n6.a aVar = (n6.a) it.next();
+            aVar.getClass();
+            JSONObject jSONObject = new JSONObject();
+            try {
+                jSONObject.put("url", aVar.f18726b.toString());
+                jSONObject.put("width", aVar.f18727c);
+                jSONObject.put("height", aVar.d);
+            } catch (JSONException unused) {
+            }
+            jSONArray.put(jSONObject);
         }
-        this.f12746c = i10;
-        this.e = -1;
-        this.d = "VISION";
-        this.f12748g = jVar;
-        this.h = u6.a.f48045a;
-        this.f12747f = q1Var;
-        this.f12749i = c2Var;
+        return jSONArray;
+    }
+
+    public static void c(List list, JSONArray jSONArray) {
+        try {
+            list.clear();
+            for (int i10 = 0; i10 < jSONArray.length(); i10++) {
+                try {
+                    list.add(new n6.a(jSONArray.getJSONObject(i10)));
+                } catch (IllegalArgumentException unused) {
+                }
+            }
+        } catch (JSONException unused2) {
+        }
     }
 }

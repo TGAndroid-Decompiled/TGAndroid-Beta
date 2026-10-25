@@ -12,39 +12,39 @@ import javax.crypto.NoSuchPaddingException;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 public final class a implements g2.h {
-    public final g2.h f17630a;
-    public final byte[] f17631b;
-    public final byte[] f17632c;
+    public final g2.h f18977a;
+    public final byte[] f18978b;
+    public final byte[] f18979c;
     public CipherInputStream d;
 
     public a(g2.h hVar, byte[] bArr, byte[] bArr2) {
-        this.f17630a = hVar;
-        this.f17631b = bArr;
-        this.f17632c = bArr2;
+        this.f18977a = hVar;
+        this.f18978b = bArr;
+        this.f18979c = bArr2;
     }
 
     @Override
     public final void addTransferListener(c0 c0Var) {
         c0Var.getClass();
-        this.f17630a.addTransferListener(c0Var);
+        this.f18977a.addTransferListener(c0Var);
     }
 
     @Override
     public final void close() {
         if (this.d != null) {
             this.d = null;
-            this.f17630a.close();
+            this.f18977a.close();
         }
     }
 
     @Override
     public final Map getResponseHeaders() {
-        return this.f17630a.getResponseHeaders();
+        return this.f18977a.getResponseHeaders();
     }
 
     @Override
     public final Uri getUri() {
-        return this.f17630a.getUri();
+        return this.f18977a.getUri();
     }
 
     @Override
@@ -52,16 +52,16 @@ public final class a implements g2.h {
         try {
             Cipher cipher = Cipher.getInstance("AES/CBC/PKCS7Padding");
             try {
-                cipher.init(2, new SecretKeySpec(this.f17631b, "AES"), new IvParameterSpec(this.f17632c));
-                g2.k kVar = new g2.k(this.f17630a, mVar);
+                cipher.init(2, new SecretKeySpec(this.f18978b, "AES"), new IvParameterSpec(this.f18979c));
+                g2.k kVar = new g2.k(this.f18977a, mVar);
                 this.d = new CipherInputStream(kVar, cipher);
                 kVar.a();
                 return -1L;
             } catch (InvalidAlgorithmParameterException | InvalidKeyException e) {
                 throw new RuntimeException(e);
             }
-        } catch (NoSuchAlgorithmException | NoSuchPaddingException e7) {
-            throw new RuntimeException(e7);
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException e10) {
+            throw new RuntimeException(e10);
         }
     }
 

@@ -1,37 +1,48 @@
 package ig;
 
-import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l61;
-public final class p0 implements org.telegram.ui.ActionBar.z1, Utilities.Callback5 {
-    public final int f13020a;
-    public final s0 f13021b;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class p0 {
+    public final int f14198a;
+    public final int f14199b;
+    public final String f14200c;
+    public final int d;
+    public final TLRPC.MessagesFilter e;
+    public TLObject f14201f;
+    public n0 f14202g;
+    public boolean h;
 
-    public p0(s0 s0Var, int i10) {
-        this.f13020a = i10;
-        this.f13021b = s0Var;
+    public p0(int i10, int i11, String str) {
+        this.h = true;
+        this.f14198a = i10;
+        this.f14200c = str;
+        this.e = null;
+        this.d = i11;
     }
 
-    @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f13020a) {
-            case 0:
-                this.f13021b.a0();
-                return;
-            case 1:
-                this.f13021b.finishFragment();
-                return;
-            default:
-                this.f13021b.a0();
-                return;
+    public final boolean a() {
+        int i10 = this.d;
+        if (i10 == 0 || i10 == 1 || i10 == 2 || i10 == 3 || i10 == 5) {
+            return true;
         }
+        return false;
     }
 
-    @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        s0.W(this.f13021b, (l61) obj, (View) obj2);
+    public final boolean b(p0 p0Var) {
+        if (this.d != p0Var.d) {
+            if (a() && p0Var.a()) {
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public p0(int i10, int i11, TLRPC.MessagesFilter messagesFilter, int i12) {
+        this.h = true;
+        this.f14198a = i10;
+        this.f14199b = i11;
+        this.e = messagesFilter;
+        this.d = i12;
     }
 }

@@ -3,33 +3,33 @@ package org.telegram.ui.Wallet;
 import android.view.View;
 import org.telegram.messenger.Utilities;
 public final class y7 implements View.OnClickListener {
-    public final int f35459a;
-    public final ei.d f35460b;
-    public final Utilities.Callback f35461c;
-    public final org.telegram.ui.ActionBar.h3 d;
-    public final org.telegram.ui.ActionBar.g6 e;
+    public final int f37521a;
+    public final fi.d f37522b;
+    public final Utilities.Callback f37523c;
+    public final org.telegram.ui.ActionBar.k3 d;
+    public final org.telegram.ui.ActionBar.u6 e;
 
-    public y7(ei.d dVar, Utilities.Callback callback, org.telegram.ui.ActionBar.h3 h3Var, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        this.f35459a = i10;
-        this.f35460b = dVar;
-        this.f35461c = callback;
-        this.d = h3Var;
-        this.e = g6Var;
+    public y7(fi.d dVar, Utilities.Callback callback, org.telegram.ui.ActionBar.k3 k3Var, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
+        this.f37521a = i10;
+        this.f37522b = dVar;
+        this.f37523c = callback;
+        this.d = k3Var;
+        this.e = u6Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f35459a) {
+        switch (this.f37521a) {
             case 0:
-                ei.d dVar = this.f35460b;
+                fi.d dVar = this.f37522b;
                 dVar.setLoading(true);
-                this.f35461c.run(new t3(dVar, this.d, this.e, 1));
+                this.f37523c.run(new t3(dVar, this.d, this.e, 1));
                 return;
             default:
-                ei.d dVar2 = this.f35460b;
+                fi.d dVar2 = this.f37522b;
                 if (!dVar2.Q) {
                     dVar2.setLoading(true);
-                    this.f35461c.run(new t3(this.d, this.e, dVar2));
+                    this.f37523c.run(new t3(this.d, this.e, dVar2));
                     return;
                 }
                 return;

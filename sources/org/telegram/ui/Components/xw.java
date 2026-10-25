@@ -1,20 +1,61 @@
 package org.telegram.ui.Components;
-public final class xw implements Runnable {
-    public final int f32708a;
-    public final fz f32709b;
 
-    public xw(fz fzVar, int i10) {
-        this.f32708a = i10;
-        this.f32709b = fzVar;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+public final class xw extends FrameLayout {
+    public final boolean f34834a;
+    public final sz f34835b;
+
+    public xw(sz szVar, Context context, boolean z10) {
+        super(context);
+        this.f34835b = szVar;
+        this.f34834a = z10;
     }
 
     @Override
-    public final void run() {
-        switch (this.f32708a) {
-            case 0:
-            default:
-                this.f32709b.e();
-                return;
+    public final boolean drawChild(Canvas canvas, View view, long j10) {
+        sz szVar = this.f34835b;
+        dx dxVar = szVar.B0;
+        zw zwVar = szVar.D0;
+        cx cxVar = szVar.G0;
+        if (!this.f34834a && (view == zwVar || view == cxVar)) {
+            canvas.save();
+            float y3 = dxVar.getY() + dxVar.getMeasuredHeight() + 1.0f;
+            if (view == zwVar) {
+                y3 = Math.max(y3, cxVar.getY() + cxVar.getMeasuredHeight() + 1.0f);
+            }
+            canvas.clipRect(0.0f, y3 - (AndroidUtilities.dp(16.0f) * szVar.f32707a.e), getMeasuredWidth(), getMeasuredHeight());
+            boolean drawChild = super.drawChild(canvas, view, j10);
+            canvas.restore();
+            return drawChild;
+        }
+        return super.drawChild(canvas, view, j10);
+    }
+
+    @Override
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        sz szVar = this.f34835b;
+        szVar.K0 = true;
+        szVar.Y();
+        ig.f1 f1Var = szVar.T0;
+        if (f1Var != null) {
+            f1Var.a();
+        }
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        sz szVar = this.f34835b;
+        szVar.K0 = false;
+        szVar.Y();
+        ig.f1 f1Var = szVar.T0;
+        if (f1Var != null) {
+            f1Var.a();
         }
     }
 }

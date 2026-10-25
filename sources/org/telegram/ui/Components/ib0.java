@@ -1,144 +1,64 @@
 package org.telegram.ui.Components;
 
-import android.content.ComponentName;
-import android.content.Intent;
-import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.SubMenu;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.UserConfig;
-public final class ib0 implements Menu {
-    public final h80 f27391a;
-    public final x2 f27392b;
-    public final Runnable f27393c;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
+public final class ib0 extends Drawable {
+    public Paint f29263a;
+    public Paint f29264b;
+    public long f29265c;
+    public float d;
+    public boolean e;
+    public boolean f29266f;
+    public float f29267g;
+    public float h;
+    public float f29268i;
+    public float f29269j;
+    public float f29270k;
+    public long f29271l;
+    public org.telegram.ui.Cells.s1 f29272m;
 
-    public ib0(h80 h80Var, x2 x2Var, Runnable runnable) {
-        this.f27391a = h80Var;
-        this.f27392b = x2Var;
-        this.f27393c = runnable;
+    public final void a() {
+        int i10;
+        int i11;
+        Rect bounds = getBounds();
+        float centerX = bounds.centerX();
+        float centerY = bounds.centerY();
+        float f7 = bounds.left - centerX;
+        float f10 = bounds.top - centerY;
+        this.f29267g = (float) Math.ceil(Math.sqrt(c3.h0.z(i11, centerY, f10, f7 * (i10 - centerX))));
     }
 
     @Override
-    public final MenuItem add(int i10) {
-        return null;
+    public final void draw(android.graphics.Canvas r10) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.ib0.draw(android.graphics.Canvas):void");
     }
 
     @Override
-    public final int addIntentOptions(int i10, int i11, int i12, ComponentName componentName, Intent[] intentArr, Intent intent, int i13, MenuItem[] menuItemArr) {
-        return 0;
+    public final int getOpacity() {
+        return -2;
     }
 
     @Override
-    public final SubMenu addSubMenu(int i10) {
-        return null;
+    public final void setAlpha(int i10) {
+        this.f29263a.setAlpha(i10);
     }
 
     @Override
-    public final MenuItem findItem(int i10) {
-        return null;
+    public final void setBounds(int i10, int i11, int i12, int i13) {
+        super.setBounds(i10, i11, i12, i13);
+        a();
     }
 
     @Override
-    public final MenuItem getItem(int i10) {
-        return null;
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f29263a.setColorFilter(colorFilter);
     }
 
     @Override
-    public final boolean hasVisibleItems() {
-        return false;
-    }
-
-    @Override
-    public final boolean isShortcutKey(int i10, KeyEvent keyEvent) {
-        return false;
-    }
-
-    @Override
-    public final boolean performIdentifierAction(int i10, int i11) {
-        return false;
-    }
-
-    @Override
-    public final boolean performShortcut(int i10, KeyEvent keyEvent, int i11) {
-        return false;
-    }
-
-    @Override
-    public final int size() {
-        return 0;
-    }
-
-    @Override
-    public final MenuItem add(CharSequence charSequence) {
-        return null;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(int i10, int i11, int i12, int i13) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem add(int i10, int i11, int i12, CharSequence charSequence) {
-        Runnable runnable = this.f27393c;
-        if (runnable == null || !org.telegram.ui.ActionBar.a5.f20691r.contains(Integer.valueOf(i11)) || !MessagesController.getInstance(UserConfig.selectedAccount).premiumFeaturesBlocked()) {
-            c2 c2Var = new c2(this, i11, 8);
-            h80 h80Var = this.f27391a;
-            h80Var.c(0, charSequence, c2Var, false);
-            if (runnable != null && org.telegram.ui.ActionBar.a5.f20691r.contains(Integer.valueOf(i11))) {
-                h80Var.M(runnable);
-            }
-        }
-        return null;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(int i10, int i11, int i12, CharSequence charSequence) {
-        return null;
-    }
-
-    @Override
-    public final SubMenu addSubMenu(CharSequence charSequence) {
-        return null;
-    }
-
-    @Override
-    public final MenuItem add(int i10, int i11, int i12, int i13) {
-        add(i10, i11, i12, LocaleController.getString(i13));
-        return null;
-    }
-
-    @Override
-    public final void clear() {
-    }
-
-    @Override
-    public final void close() {
-    }
-
-    @Override
-    public final void removeGroup(int i10) {
-    }
-
-    @Override
-    public final void removeItem(int i10) {
-    }
-
-    @Override
-    public final void setQwertyMode(boolean z10) {
-    }
-
-    @Override
-    public final void setGroupEnabled(int i10, boolean z10) {
-    }
-
-    @Override
-    public final void setGroupVisible(int i10, boolean z10) {
-    }
-
-    @Override
-    public final void setGroupCheckable(int i10, boolean z10, boolean z11) {
+    public final void setBounds(Rect rect) {
+        super.setBounds(rect);
+        a();
     }
 }

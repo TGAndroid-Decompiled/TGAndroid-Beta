@@ -1,40 +1,34 @@
 package org.telegram.ui;
+public final class me1 implements Runnable {
+    public final int f41541a;
+    public final ne1 f41542b;
 
-import android.graphics.Canvas;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class me1 extends FrameLayout {
-    public TextView f39576a;
-    public float f39577b;
-    public boolean f39578c;
+    public me1(ne1 ne1Var, int i10) {
+        this.f41541a = i10;
+        this.f41542b = ne1Var;
+    }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        int i10 = 1;
-        if (this.f39578c) {
-            float f7 = this.f39577b + 0.013333334f;
-            this.f39577b = f7;
-            if (f7 > 1.0f) {
-                this.f39578c = false;
-                this.f39577b = 1.0f;
-            }
-        } else {
-            float f10 = this.f39577b - 0.013333334f;
-            this.f39577b = f10;
-            if (f10 < 0.0f) {
-                this.f39578c = true;
-                this.f39577b = 0.0f;
-            }
+    public final void run() {
+        switch (this.f41541a) {
+            case 0:
+                ne1 ne1Var = this.f41542b;
+                ne1Var.F = null;
+                if (ne1Var.G != -1) {
+                    ne1Var.H.getNotificationCenter().onAnimationFinish(ne1Var.G);
+                    ne1Var.G = -1;
+                    return;
+                }
+                return;
+            default:
+                ne1 ne1Var2 = this.f41542b;
+                ne1Var2.F = null;
+                if (ne1Var2.G != -1) {
+                    ne1Var2.H.getNotificationCenter().onAnimationFinish(ne1Var2.G);
+                    ne1Var2.G = -1;
+                    return;
+                }
+                return;
         }
-        TextView textView = this.f39576a;
-        float interpolation = org.telegram.ui.Components.zr.f33337f.getInterpolation(this.f39577b) * AndroidUtilities.dp(8.0f);
-        if (LocaleController.isRTL) {
-            i10 = -1;
-        }
-        textView.setTranslationX(interpolation * i10);
-        invalidate();
     }
 }

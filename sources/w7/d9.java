@@ -1,12 +1,54 @@
 package w7;
-public abstract class d9 {
-    public static int a(Object obj) {
-        int hashCode;
-        if (obj == null) {
-            hashCode = 0;
+
+import a8.gg;
+import a8.hg;
+import android.content.Context;
+import com.google.android.gms.tasks.Task;
+import java.util.HashMap;
+public final class d9 {
+    public static m9 f50832j;
+    public static final d f50833k;
+    public final String f50834a;
+    public final String f50835b;
+    public final b9 f50836c;
+    public final sb.k d;
+    public final Task e;
+    public final Task f50837f;
+    public final String f50838g;
+    public final int h;
+    public final HashMap f50839i = new HashMap();
+
+    static {
+        Object[] objArr = {"optional-module-barcode", "com.google.android.gms.vision.barcode"};
+        objArr[0].getClass();
+        objArr[1].getClass();
+        f50833k = new d(objArr);
+    }
+
+    public d9(Context context, sb.k kVar, b9 b9Var, String str) {
+        int i10;
+        new HashMap();
+        this.f50834a = context.getPackageName();
+        this.f50835b = sb.c.a(context);
+        this.d = kVar;
+        this.f50836c = b9Var;
+        g9.b();
+        this.f50838g = str;
+        sb.f a2 = sb.f.a();
+        gg ggVar = new gg(this, 6);
+        a2.getClass();
+        this.e = sb.f.b(ggVar);
+        sb.f a10 = sb.f.a();
+        kVar.getClass();
+        hg hgVar = new hg(kVar, 2);
+        a10.getClass();
+        this.f50837f = sb.f.b(hgVar);
+        d dVar = f50833k;
+        if (dVar.containsKey(str)) {
+            i10 = z6.e.d(context, (String) dVar.get(str), false);
         } else {
-            hashCode = obj.hashCode();
+            i10 = -1;
         }
-        return (int) (Integer.rotateLeft((int) (hashCode * (-862048943)), 15) * 461845907);
+        this.h = i10;
     }
 }

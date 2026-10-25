@@ -1,33 +1,23 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class nl0 implements RequestDelegate {
-    public final int f39918a;
-    public final zm0 f39919b;
+public final class nl0 extends FrameLayout {
+    public final org.telegram.ui.Components.ak0 f41949a;
 
-    public nl0(zm0 zm0Var, int i10) {
-        this.f39918a = i10;
-        this.f39919b = zm0Var;
-    }
-
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f39918a) {
-            case 0:
-                AndroidUtilities.runOnUIThread(new qe0(this.f39919b, tL_error, tLObject, 12));
-                return;
-            case 1:
-                AndroidUtilities.runOnUIThread(new ah0(12, this.f39919b, tL_error));
-                return;
-            case 2:
-                AndroidUtilities.runOnUIThread(new jl0(this.f39919b, 5));
-                return;
-            default:
-                AndroidUtilities.runOnUIThread(new ah0(11, this.f39919b, tLObject));
-                return;
-        }
+    public nl0(Context context) {
+        super(context);
+        ?? imageView = new ImageView(context);
+        this.f41949a = imageView;
+        imageView.setOnClickListener(new x50(this, 16));
+        int dp = AndroidUtilities.dp(120.0f);
+        FrameLayout.LayoutParams layoutParams = new FrameLayout.LayoutParams(dp, dp);
+        layoutParams.gravity = 1;
+        addView((View) imageView, layoutParams);
+        setPadding(0, AndroidUtilities.dp(32.0f), 0, 0);
+        setLayoutParams(new s4.q0(-1, -2));
     }
 }

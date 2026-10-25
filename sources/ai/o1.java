@@ -1,33 +1,32 @@
 package ai;
 
-import java.util.function.ToDoubleFunction;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-import org.telegram.ui.Components.p81;
-public final class o1 implements ToDoubleFunction {
-    public final int f1926a;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+public final class o1 implements SensorEventListener {
+    public final t1 f1615a;
 
-    public o1(int i10) {
-        this.f1926a = i10;
+    public o1(t1 t1Var) {
+        this.f1615a = t1Var;
     }
 
     @Override
-    public final double applyAsDouble(Object obj) {
-        switch (this.f1926a) {
-            case 0:
-                return a2.Q((TL_stars.starGiftAttributeBackdrop) obj);
-            case 1:
-                return a2.Q((TL_stars.starGiftAttributePattern) obj);
-            case 2:
-                return a2.Q((TL_stars.starGiftAttributeModel) obj);
-            case 3:
-                return ((p81) obj).f29510a;
-            case 4:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            case 5:
-                return ((TLRPC.TL_topPeer) obj).rating;
-            default:
-                return ((TLRPC.TL_topPeer) obj).rating;
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        float[] fArr = sensorEvent.values;
+        float f7 = fArr[0];
+        t1 t1Var = this.f1615a;
+        t1Var.I6 = f7;
+        float f10 = fArr[1];
+        t1Var.J6 = f10;
+        float f11 = fArr[2];
+        if (!t1Var.M6) {
+            t1Var.K6 = f7;
+            t1Var.L6 = f10;
+            t1Var.M6 = true;
         }
+    }
+
+    @Override
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

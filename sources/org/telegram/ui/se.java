@@ -1,137 +1,92 @@
 package org.telegram.ui;
 
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.MediaController;
-import org.telegram.messenger.MessageObject;
+import android.app.Activity;
+import android.net.Uri;
+import android.text.TextUtils;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.R;
-import org.telegram.tgnet.TLRPC;
+import org.telegram.messenger.SendMessagesHelper;
 public final class se implements Runnable {
-    public final int f41360a;
-    public final sn f41361b;
-    public final MessageObject f41362c;
+    public final int f43475a;
+    public final un f43476b;
+    public final String f43477c;
 
-    public se(sn snVar, MessageObject messageObject, int i10) {
-        this.f41360a = i10;
-        this.f41361b = snVar;
-        this.f41362c = messageObject;
+    public se(un unVar, String str, int i10) {
+        this.f43475a = i10;
+        this.f43476b = unVar;
+        this.f43477c = str;
     }
 
     @Override
     public final void run() {
-        TLRPC.WebPage webPage;
-        boolean z10;
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        switch (this.f41360a) {
+        switch (this.f43475a) {
             case 0:
-                MessageObject messageObject = this.f41362c;
-                TLRPC.MessageMedia messageMedia = messageObject.messageOwner.media;
-                if (messageMedia != null && (webPage = messageMedia.webpage) != null && webPage.cached_page != null) {
-                    LaunchActivity launchActivity = LaunchActivity.I1;
-                    if (launchActivity == null || launchActivity.P() == null || LaunchActivity.I1.P().l(messageObject) == null) {
-                        this.f41361b.createArticleViewer(false).N(messageObject, null, null, null);
-                        return;
-                    }
-                    return;
-                }
+                un.o0(this.f43476b, this.f43477c);
                 return;
             case 1:
-                sn snVar = this.f41361b;
-                snVar.getClass();
-                MessageObject messageObject2 = this.f41362c;
-                TLRPC.Message message = messageObject2.messageOwner;
-                int i14 = message.ttl;
-                if (i14 != Integer.MAX_VALUE) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (i14 == Integer.MAX_VALUE) {
-                    i10 = 0;
-                } else {
-                    i10 = i14;
-                }
-                message.destroyTime = snVar.getConnectionsManager().getCurrentTime() + i10;
-                messageObject2.messageOwner.destroyTimeMillis = snVar.getConnectionsManager().getCurrentTimeMillis() + (i10 * 1000);
-                if (snVar.h != null) {
-                    snVar.getMessagesController().markMessageAsRead(snVar.f41516f6, messageObject2.messageOwner.random_id, i10);
-                    return;
-                } else {
-                    snVar.getMessagesController().markMessageAsRead2(snVar.f41516f6, messageObject2.getId(), null, i10, 0L, z10);
-                    return;
-                }
+                un.g0(this.f43476b, this.f43477c);
+                return;
             case 2:
-                sn snVar2 = this.f41361b;
-                snVar2.getClass();
-                MessageObject messageObject3 = this.f41362c;
-                int replyMsgId = messageObject3.getReplyMsgId();
-                int i15 = messageObject3.messageOwner.f20365id;
-                if (messageObject3.getDialogId() == snVar2.X6) {
-                    i11 = 1;
-                } else {
-                    i11 = 0;
-                }
-                snVar2.bb(replyMsgId, i15, true, i11, false, 0, null, ((TLRPC.TL_messageActionPollAppendAnswer) messageObject3.messageOwner.action).answer.option, null);
+                j4.f(this.f43477c, r1.currentAccount, r1.f44292j1, null, this.f43476b.f44385qa);
                 return;
             case 3:
-                sn snVar3 = this.f41361b;
-                snVar3.getClass();
-                MessageObject messageObject4 = this.f41362c;
-                int replyMsgId2 = messageObject4.getReplyMsgId();
-                int i16 = messageObject4.messageOwner.f20365id;
-                if (messageObject4.getDialogId() == snVar3.X6) {
-                    i12 = 1;
-                } else {
-                    i12 = 0;
+                un unVar = this.f43476b;
+                String str = this.f43477c;
+                if (str != null) {
+                    unVar.getClass();
+                    if (str.length() != 0) {
+                        unVar.getMessagesController().sendBotStart(unVar.f44242f, str);
+                        return;
+                    }
                 }
-                snVar3.bb(replyMsgId2, i16, true, i12, false, 0, null, null, null);
+                unVar.getSendMessagesHelper().sendMessage(SendMessagesHelper.SendMessageParams.of("/start", unVar.f44249f6, null, null, null, false, null, null, null, true, 0, 0, null, false));
                 return;
             case 4:
-                sn snVar4 = this.f41361b;
-                snVar4.getClass();
-                MessageObject messageObject5 = this.f41362c;
-                int replyMsgId3 = messageObject5.getReplyMsgId();
-                int i17 = messageObject5.messageOwner.f20365id;
-                if (messageObject5.getDialogId() == snVar4.X6) {
-                    i13 = 1;
-                } else {
-                    i13 = 0;
-                }
-                snVar4.j(replyMsgId3, i17, true, i13, false, 0);
+                this.f43476b.va(this.f43477c);
                 return;
             case 5:
-                int id2 = this.f41362c.getId();
-                sn snVar5 = this.f41361b;
-                snVar5.bb(id2, 0, true, 0, true, 0, null, null, new kf(snVar5, 24));
-                if (snVar5.f41688t6.isEmpty()) {
-                    snVar5.Rb(false);
-                    return;
-                }
+                this.f43476b.na(this.f43477c, false);
                 return;
             case 6:
-                sn snVar6 = this.f41361b;
-                snVar6.getClass();
-                MessageObject messageObject6 = this.f41362c;
-                if (messageObject6.isVideo()) {
-                    snVar6.ma(null, messageObject6);
-                    return;
-                } else {
-                    MediaController.getInstance().playMessage(messageObject6);
-                    return;
-                }
+                Activity parentActivity = this.f43476b.getParentActivity();
+                qf.d.r(parentActivity, "tel:" + this.f43477c);
+                return;
             case 7:
-                sn snVar7 = this.f41361b;
-                snVar7.getMessagesController().pinMessage(snVar7.e, snVar7.f41509f, this.f41362c.getId(), true, false, false);
-                snVar7.M3 = null;
+                AndroidUtilities.addToClipboard(this.f43477c);
+                org.telegram.messenger.vh.m(R.string.PhoneCopied, org.telegram.ui.Components.wc.b0(this.f43476b));
+                return;
+            case 8:
+                un.e0(this.f43476b, this.f43477c);
+                return;
+            case 9:
+                Activity parentActivity2 = this.f43476b.getParentActivity();
+                qf.d.r(parentActivity2, "tel:" + this.f43477c);
+                return;
+            case 10:
+                AndroidUtilities.addToClipboard(this.f43477c);
+                org.telegram.messenger.vh.m(R.string.PhoneCopied, org.telegram.ui.Components.wc.b0(this.f43476b));
+                return;
+            case 11:
+                un unVar2 = this.f43476b;
+                unVar2.getClass();
+                unVar2.presentFragment(new org.telegram.ui.Wallet.i9(this.f43477c));
+                return;
+            case 12:
+                un unVar3 = this.f43476b;
+                String str2 = unVar3.getMessagesController().tonBlockchainExplorerUrl;
+                if (TextUtils.isEmpty(str2)) {
+                    str2 = "https://tonviewer.com/";
+                } else if (!str2.endsWith("/")) {
+                    str2 = str2.concat("/");
+                }
+                Activity parentActivity3 = unVar3.getParentActivity();
+                StringBuilder u10 = a1.g.u(str2);
+                u10.append(Uri.encode(this.f43477c));
+                qf.d.t(parentActivity3, u10.toString());
                 return;
             default:
-                sn snVar8 = this.f41361b;
-                org.telegram.ui.Components.vc.a0(snVar8).c(LocaleController.getString(R.string.AdHidden)).j();
-                MessageObject messageObject7 = this.f41362c;
-                snVar8.Ja(messageObject7);
-                snVar8.La(messageObject7);
+                Activity parentActivity4 = this.f43476b.getParentActivity();
+                qf.d.r(parentActivity4, "https://fragment.com/username/" + this.f43477c);
                 return;
         }
     }

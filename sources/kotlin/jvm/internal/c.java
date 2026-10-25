@@ -1,4 +1,4 @@
 package kotlin.jvm.internal;
-public interface c extends xd.d {
+public interface c extends yd.d {
     Class a();
 }

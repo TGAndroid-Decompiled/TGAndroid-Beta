@@ -1,55 +1,46 @@
 package org.telegram.ui;
 
-import android.content.Context;
 import android.graphics.Canvas;
-public final class sv0 extends org.telegram.ui.Cells.t1 {
-    public final int Ge;
-    public final int He;
-    public final int Ie;
+import android.graphics.RectF;
+import org.telegram.messenger.MessageObject;
+public final class sv0 implements org.telegram.ui.Components.el0 {
+    public final un f43605a;
+    public final MessageObject f43606b;
+    public final org.telegram.ui.Components.fl0 f43607c;
+    public final xv0 d;
 
-    public sv0(Context context, int i10, org.telegram.ui.ActionBar.g6 g6Var, int i11, int i12, int i13) {
-        super(context, i10, false, null, g6Var);
-        this.Ge = i13;
-        this.He = i11;
-        this.Ie = i12;
+    public sv0(xv0 xv0Var, un unVar, MessageObject messageObject, org.telegram.ui.Components.fl0 fl0Var) {
+        this.d = xv0Var;
+        this.f43605a = unVar;
+        this.f43606b = messageObject;
+        this.f43607c = fl0Var;
     }
 
     @Override
-    public final void X1(Canvas canvas) {
-        switch (this.Ge) {
-            case 0:
-                this.f23427i6 = 0;
-                this.f23441j6 = this.Y5.size() - 1;
-                super.X1(canvas);
-                return;
-            default:
-                this.f23427i6 = 0;
-                this.f23441j6 = this.Y5.size() - 1;
-                super.X1(canvas);
-                return;
-        }
+    public final boolean f() {
+        return true;
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        switch (this.Ge) {
-            case 0:
-                setMeasuredDimension(this.He, this.Ie);
-                return;
-            default:
-                setMeasuredDimension(this.He, this.Ie);
-                return;
-        }
+    public final boolean i() {
+        return false;
     }
 
     @Override
-    public final void setPressed(boolean z10) {
-        int i10 = this.Ge;
+    public final boolean o() {
+        return false;
     }
 
-    private final void A4(boolean z10) {
+    @Override
+    public final void p(android.view.View r13, bh.x0 r14, boolean r15, boolean r16) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.sv0.p(android.view.View, bh.x0, boolean, boolean):void");
     }
 
-    private final void z4(boolean z10) {
+    @Override
+    public final void m() {
+    }
+
+    @Override
+    public final void l(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

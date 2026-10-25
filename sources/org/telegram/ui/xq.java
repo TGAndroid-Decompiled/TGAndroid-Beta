@@ -1,56 +1,38 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class xq implements cr {
-    public final jr f43659a;
+import org.telegram.messenger.AnimationNotificationsLocker;
+public final class xq extends s4.l {
+    public final AnimationNotificationsLocker F = new AnimationNotificationsLocker();
+    public final kr G;
 
-    public xq(jr jrVar) {
-        this.f43659a = jrVar;
+    public xq(kr krVar) {
+        this.G = krVar;
     }
 
     @Override
-    public final void c(long j10, TLObject tLObject) {
-        jr jrVar = this.f43659a;
-        if (jrVar.K.f(j10) == null) {
-            dr w02 = jrVar.w0();
-            jrVar.F.add(tLObject);
-            jrVar.K.k(tLObject, j10);
-            jrVar.z0(jrVar.F);
-            jrVar.A0(w02);
+    public final void N() {
+        this.F.unlock();
+    }
+
+    @Override
+    public final void O() {
+        this.G.f41007c.invalidate();
+    }
+
+    @Override
+    public final void P(s4.e1 e1Var) {
+        this.G.f41007c.invalidate();
+    }
+
+    @Override
+    public final void m() {
+        boolean isEmpty = this.f47785p.isEmpty();
+        boolean isEmpty2 = this.f47787r.isEmpty();
+        boolean isEmpty3 = this.f47788s.isEmpty();
+        boolean isEmpty4 = this.f47786q.isEmpty();
+        if (!isEmpty || !isEmpty2 || !isEmpty4 || !isEmpty3) {
+            this.F.lock();
         }
-    }
-
-    @Override
-    public final void d(long j10) {
-        jr jrVar = this.f43659a;
-        if (jrVar.K.f(j10) == null) {
-            dr w02 = jrVar.w0();
-            TLRPC.TL_channelParticipantBanned tL_channelParticipantBanned = new TLRPC.TL_channelParticipantBanned();
-            if (j10 > 0) {
-                TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
-                tL_channelParticipantBanned.peer = tL_peerUser;
-                tL_peerUser.user_id = j10;
-            } else {
-                TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
-                tL_channelParticipantBanned.peer = tL_peerChannel;
-                tL_peerChannel.channel_id = -j10;
-            }
-            tL_channelParticipantBanned.date = jrVar.getConnectionsManager().getCurrentTime();
-            tL_channelParticipantBanned.kicked_by = jrVar.getAccountInstance().getUserConfig().clientUserId;
-            jrVar.f38656s.kicked_count++;
-            jrVar.F.add(tL_channelParticipantBanned);
-            jrVar.K.k(tL_channelParticipantBanned, j10);
-            jrVar.z0(jrVar.F);
-            jrVar.A0(w02);
-        }
-    }
-
-    @Override
-    public final void a(TLRPC.User user) {
-    }
-
-    @Override
-    public final void b(long j10) {
+        super.m();
     }
 }

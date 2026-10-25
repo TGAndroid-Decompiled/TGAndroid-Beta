@@ -1,84 +1,120 @@
 package bi;
 
-import a4.g;
-import f2.s;
-import f2.t;
-import java.nio.ByteBuffer;
-import v7.u6;
+import android.os.SystemClock;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Random;
+import java.util.TimeZone;
 public final class a {
-    public boolean f4427a;
+    public boolean f4242a;
+    public int f4243b;
+    public Object f4244c;
+    public Object d;
+    public Object e;
+    public Object f4245f;
 
-    public a(t tVar, s sVar) {
-        boolean z10;
-        boolean z11;
-        int i10;
-        int i11 = sVar.f10355a;
-        ByteBuffer byteBuffer = sVar.f10356b;
-        if (i11 != 6 && i11 != 3) {
-            z10 = false;
-        } else {
-            z10 = true;
-        }
-        u6.g(z10);
-        int min = Math.min(4, byteBuffer.remaining());
-        byte[] bArr = new byte[min];
-        byteBuffer.asReadOnlyBuffer().get(bArr);
-        g gVar = new g(bArr, min);
-        if (!tVar.f10357a) {
-            if (gVar.f()) {
-                this.f4427a = false;
-                return;
-            }
-            int g10 = gVar.g(2);
-            boolean f7 = gVar.f();
-            if (!tVar.f10358b) {
-                if (!f7) {
-                    this.f4427a = true;
-                    return;
-                }
-                if (g10 != 3 && g10 != 0) {
-                    z11 = gVar.f();
-                } else {
-                    z11 = true;
-                }
-                gVar.n();
-                if (tVar.d) {
-                    if (gVar.f()) {
-                        if (tVar.e) {
-                            gVar.n();
-                        } else {
-                            throw new Exception();
-                        }
+    public a(j6.a aVar, byte[] bArr) {
+        this.f4245f = aVar;
+        this.f4243b = aVar.e;
+        this.f4244c = aVar.d;
+        this.d = aVar.f15520f;
+        ?? obj = new Object();
+        obj.f7134a = 0L;
+        obj.f7135b = 0L;
+        obj.f7136c = 0;
+        if (com.google.android.gms.internal.clearcut.w1.f7148a == null) {
+            synchronized (com.google.android.gms.internal.clearcut.n1.f7088a) {
+                try {
+                    if (com.google.android.gms.internal.clearcut.w1.f7148a == null) {
+                        com.google.android.gms.internal.clearcut.w1.f7148a = new com.google.android.gms.internal.clearcut.w1[0];
                     }
-                    if (!tVar.f10359c) {
-                        if (g10 != 3) {
-                            gVar.n();
-                        }
-                        gVar.o(tVar.f10360f);
-                        if (g10 != 2 && g10 != 0 && !z11) {
-                            gVar.o(3);
-                        }
-                        if (g10 != 3 && g10 != 0) {
-                            i10 = gVar.g(8);
-                        } else {
-                            i10 = 255;
-                        }
-                        this.f4427a = i10 != 0;
-                        return;
-                    }
-                    throw new Exception();
+                } finally {
                 }
-                throw new Exception();
             }
-            throw new Exception();
         }
-        throw new Exception();
+        obj.d = com.google.android.gms.internal.clearcut.w1.f7148a;
+        byte[] bArr2 = com.google.android.gms.internal.clearcut.l1.d;
+        obj.e = bArr2;
+        obj.f7137f = bArr2;
+        obj.h = "";
+        obj.f7138n = "";
+        obj.f7139r = "";
+        obj.f7140s = 180000L;
+        obj.v = bArr2;
+        obj.f7141w = "";
+        obj.f7142x = com.google.android.gms.internal.clearcut.l1.f7080c;
+        obj.f7143y = false;
+        this.e = obj;
+        this.f4242a = false;
+        obj.f7143y = com.google.android.gms.internal.clearcut.a.a(aVar.f15517a);
+        aVar.h.getClass();
+        obj.f7134a = System.currentTimeMillis();
+        aVar.h.getClass();
+        obj.f7135b = SystemClock.elapsedRealtime();
+        obj.f7140s = TimeZone.getDefault().getOffset(obj.f7134a) / 1000;
+        obj.f7137f = bArr;
     }
 
-    public void a(boolean z10) {
-        if (this.f4427a == z10) {
-            return;
+    public com.google.android.gms.common.api.internal.f1 a() {
+        boolean z10;
+        boolean z11;
+        boolean z12 = false;
+        if (((com.google.android.gms.common.api.internal.r) this.f4244c) != null) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        this.f4427a = z10;
+        o6.l.a("Must set register function", z10);
+        if (((com.google.android.gms.common.api.internal.r) this.d) != null) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        o6.l.a("Must set unregister function", z11);
+        if (((com.google.android.gms.common.api.internal.p) this.e) != null) {
+            z12 = true;
+        }
+        o6.l.a("Must set holder", z12);
+        com.google.android.gms.common.api.internal.n nVar = ((com.google.android.gms.common.api.internal.p) this.e).f6599c;
+        o6.l.i(nVar, "Key must not be null");
+        return new com.google.android.gms.common.api.internal.f1(new e2.w(this, (com.google.android.gms.common.api.internal.p) this.e, (l6.c[]) this.f4245f, this.f4242a, this.f4243b), new com.google.android.gms.common.api.internal.f1(this, nVar));
+    }
+
+    public void b() {
+        throw new UnsupportedOperationException("Method not decompiled: bi.a.b():void");
+    }
+
+    public Object c() {
+        ArrayList arrayList = (ArrayList) this.d;
+        if (((ArrayList) this.f4244c).isEmpty()) {
+            return null;
+        }
+        Object obj = this.f4245f;
+        if (this.f4243b >= arrayList.size()) {
+            if (this.f4242a) {
+                Collections.shuffle(arrayList, (Random) this.e);
+                this.f4243b = 0;
+            } else {
+                this.f4243b = 0;
+            }
+        }
+        int i10 = this.f4243b;
+        this.f4243b = i10 + 1;
+        this.f4245f = arrayList.get(i10);
+        return obj;
+    }
+
+    public a(ArrayList arrayList) {
+        this.f4242a = true;
+        ArrayList arrayList2 = new ArrayList(arrayList == null ? new ArrayList() : arrayList);
+        this.f4244c = arrayList2;
+        ArrayList arrayList3 = new ArrayList(arrayList2);
+        this.d = arrayList3;
+        this.f4243b = 0;
+        Random random = new Random();
+        this.e = random;
+        Collections.shuffle(arrayList3, random);
+        this.f4243b = 0;
+        c();
     }
 }

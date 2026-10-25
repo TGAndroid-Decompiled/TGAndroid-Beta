@@ -1,95 +1,110 @@
 package org.telegram.ui.Cells;
 
-import android.view.MotionEvent;
-import org.telegram.messenger.video.OldVideoPlayerRewinder;
-import org.telegram.ui.Components.a81;
-import org.telegram.ui.Components.bh0;
-import org.telegram.ui.Components.ch0;
-import org.telegram.ui.PhotoViewer;
-public final class g1 extends OldVideoPlayerRewinder {
-    public final int f22397a;
-    public final Object f22398b;
+import android.graphics.Path;
+import android.graphics.Rect;
+import android.graphics.RectF;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SharedConfig;
+public final class g1 extends m1 {
+    public final int e;
+    public final s1 f24140f;
 
-    public g1(Object obj, int i10) {
-        this.f22397a = i10;
-        this.f22398b = obj;
+    public g1(int i10, s1 s1Var) {
+        super(0);
+        this.f24140f = s1Var;
+        this.e = i10;
     }
 
     @Override
-    public final void onRewindCanceled() {
-        switch (this.f22397a) {
-            case 0:
-                t1 t1Var = (t1) this.f22398b;
-                t1Var.onTouchEvent(MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                t1Var.Gd.f(false);
-                return;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f22398b;
-                PhotoViewer.k(photoViewer, MotionEvent.obtain(0L, 0L, 3, 0.0f, 0.0f, 0));
-                photoViewer.f33771z1.f(false);
-                ch0.f25313p0.Q.f(false);
-                return;
-        }
-    }
-
-    @Override
-    public final void onRewindStart(boolean z10) {
-        switch (this.f22397a) {
-            case 0:
-                t1 t1Var = (t1) this.f22398b;
-                a81 a81Var = t1Var.Gd;
-                a81Var.f24665n = new ki.t1(this, 11);
-                a81Var.e(false);
-                t1Var.Gd.d(!z10);
-                t1Var.Gd.f(true);
-                t1Var.invalidate();
-                return;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f22398b;
-                photoViewer.f33771z1.e(false);
-                photoViewer.f33771z1.d(!z10);
-                photoViewer.f33771z1.f(true);
-                photoViewer.f33582e0.invalidate();
-                ch0.v(z10);
-                return;
-        }
-    }
-
-    @Override
-    public final void updateRewindProgressUi(long j10, float f7, boolean z10) {
-        switch (this.f22397a) {
-            case 0:
-                t1 t1Var = (t1) this.f22398b;
-                t1Var.Gd.g(Math.abs(j10));
-                if (z10) {
-                    t1Var.f23660y7.audioProgress = f7;
-                    t1Var.p4();
-                    return;
+    public final void e() {
+        float f7;
+        boolean z10;
+        MessageObject.GroupedMessagePosition groupedMessagePosition;
+        int i10;
+        int i11;
+        Rect bounds = getBounds();
+        RectF rectF = (RectF) this.d;
+        rectF.set(bounds.left, bounds.top, bounds.right, bounds.bottom);
+        Path path = this.f24417b;
+        path.rewind();
+        s1 s1Var = this.f24140f;
+        int[] iArr = s1Var.f25345x3;
+        int i12 = this.e;
+        int i13 = iArr[i12];
+        if (i13 != 3 && i13 != 4) {
+            float f10 = 0.0f;
+            if (i13 == 2) {
+                MessageObject messageObject = s1Var.f25363y7;
+                if (messageObject != null && messageObject.isOutOwner()) {
+                    z10 = true;
+                } else {
+                    z10 = false;
                 }
-                return;
-            default:
-                PhotoViewer photoViewer = (PhotoViewer) this.f22398b;
-                photoViewer.f33771z1.g(Math.abs(j10));
-                if (z10) {
-                    photoViewer.f33689q3.h(f7, false);
-                    photoViewer.f33698r3.invalidate();
-                }
-                ch0 ch0Var = ch0.f25313p0;
-                ch0Var.Q.g(0L);
-                if (z10) {
-                    ch0Var.Z = f7;
-                    ci.h3 h3Var = ch0Var.f25317b0;
-                    if (h3Var != null) {
-                        h3Var.invalidate();
+                for (int i14 = 0; i14 < 4; i14++) {
+                    if (!s1Var.f25242q3) {
+                        if (z10) {
+                            i10 = 3;
+                        } else {
+                            i10 = 2;
+                        }
+                        if (i14 == i10) {
+                            float[] fArr = s1.Ge;
+                            int i15 = i14 * 2;
+                            float dp = AndroidUtilities.dp(SharedConfig.bubbleRadius);
+                            fArr[i15 + 1] = dp;
+                            fArr[i15] = dp;
+                        } else if (((s1Var.f25161k8 && s1Var.L == null) || s1Var.F) && (i14 == 2 || i14 == 3)) {
+                            float[] fArr2 = s1.Ge;
+                            int i16 = i14 * 2;
+                            int i17 = i16 + 1;
+                            if (s1Var.F) {
+                                i11 = Math.min(5, SharedConfig.bubbleRadius);
+                            } else {
+                                i11 = SharedConfig.bubbleRadius;
+                            }
+                            float dp2 = AndroidUtilities.dp(i11);
+                            fArr2[i17] = dp2;
+                            fArr2[i16] = dp2;
+                        }
                     }
-                    bh0 bh0Var = ch0Var.h;
-                    if (bh0Var != null) {
-                        bh0Var.invalidate();
-                        return;
-                    }
-                    return;
+                    float[] fArr3 = s1.Ge;
+                    int i18 = i14 * 2;
+                    fArr3[i18 + 1] = 0.0f;
+                    fArr3[i18] = 0.0f;
                 }
+                if (!z10 && !s1Var.J && (groupedMessagePosition = s1Var.L) == null && (groupedMessagePosition == null || s1Var.f25014a3)) {
+                    path.moveTo(rectF.left + AndroidUtilities.dp(6.0f), rectF.top);
+                    path.lineTo(rectF.left + AndroidUtilities.dp(6.0f), (rectF.bottom - AndroidUtilities.dp(6.0f)) - AndroidUtilities.dp(5.0f));
+                    RectF rectF2 = AndroidUtilities.rectTmp;
+                    rectF2.set(rectF.left + AndroidUtilities.dp(-7.0f), rectF.bottom - AndroidUtilities.dp(23.0f), rectF.left + AndroidUtilities.dp(6.0f), rectF.bottom);
+                    path.arcTo(rectF2, 0.0f, 83.0f, false);
+                    float f11 = rectF.right;
+                    float[] fArr4 = s1.Ge;
+                    float f12 = rectF.bottom;
+                    rectF2.set(f11 - (fArr4[4] * 2.0f), f12 - (fArr4[5] * 2.0f), f11, f12);
+                    path.arcTo(rectF2, 90.0f, -90.0f, false);
+                    path.lineTo(rectF.right, rectF.top);
+                    path.close();
+                } else {
+                    path.addRoundRect(rectF, s1.Ge, Path.Direction.CW);
+                }
+                path.close();
                 return;
+            }
+            if (i13 == 0) {
+                f10 = AndroidUtilities.dp(6.0f);
+            }
+            path.addRoundRect(rectF, f10, f10, Path.Direction.CW);
+            return;
         }
+        float centerX = rectF.centerX();
+        float centerY = rectF.centerY();
+        if (iArr[i12] == 3) {
+            f7 = 16.0f;
+        } else {
+            f7 = 20.0f;
+        }
+        path.addCircle(centerX, centerY, AndroidUtilities.dp(f7), Path.Direction.CW);
     }
 }

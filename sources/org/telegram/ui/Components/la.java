@@ -1,346 +1,148 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Canvas;
-import android.graphics.ColorMatrix;
-import android.graphics.ColorMatrixColorFilter;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.RecordingCanvas;
-import android.graphics.RectF;
+import android.graphics.RenderEffect;
 import android.graphics.RenderNode;
 import android.graphics.Shader;
 import android.os.Build;
 import android.view.View;
 import java.util.ArrayList;
+import javax.microedition.khronos.egl.EGLContext;
 import org.telegram.messenger.AndroidUtilities;
 public final class la {
-    public final ha f28290a;
-    public final View f28291b;
-    public final ColorMatrix f28292c;
-    public final boolean d;
-    public boolean e;
-    public float f28293f;
-    public Paint f28294g;
-    public Paint h;
-    public final int f28295i;
-    public final Integer f28296j;
-    public final Path f28297k;
-    public int f28298l;
-    public int f28299m;
-    public Bitmap f28300n;
-    public BitmapShader f28301o;
-    public final Matrix f28302p;
-    public final RectF f28303q;
-    public boolean f28304r;
-    public Paint[] f28305s;
-    public ValueAnimator f28306t;
-    public final int[] f28307u;
-    public final int[] v;
+    public int f30135a;
+    public final View f30136b;
+    public final ArrayList f30137c;
+    public final ArrayList d;
+    public final ArrayList e;
+    public final Object f30138f;
+    public EGLContext f30139g;
+    public final Object h;
+    public int f30140i;
+    public fi.eb f30141j;
+    public Object f30142k;
+    public Object f30143l;
+    public ra f30144m;
+    public final qa f30145n;
+    public Bitmap f30146o;
+    public int f30147p;
 
-    public la(ha haVar, View view) {
-        this(haVar, view, 6, false);
-    }
-
-    public final void a(Canvas canvas) {
-        b(canvas, true);
-    }
-
-    public final void b(Canvas canvas, boolean z10) {
-        int i10;
-        int i11;
-        int i12;
-        int i13;
-        ha haVar = this.f28290a;
-        if (haVar.c() && Build.VERSION.SDK_INT >= 31) {
-            boolean isHardwareAccelerated = canvas.isHardwareAccelerated();
-            Integer num = this.f28296j;
-            if (!isHardwareAccelerated) {
-                if (num != null) {
-                    i13 = num.intValue();
-                } else {
-                    i13 = haVar.f26979i;
-                }
-                canvas.drawColor(i13);
-                return;
-            }
-            RenderNode renderNode = (RenderNode) haVar.f26982l;
-            if (!renderNode.hasDisplayList()) {
-                RenderNode renderNode2 = (RenderNode) haVar.f26981k;
-                renderNode.setPosition(0, 0, renderNode2.getWidth(), renderNode2.getHeight());
-                RecordingCanvas beginRecording = renderNode.beginRecording();
-                if (num != null) {
-                    i12 = num.intValue();
-                } else {
-                    i12 = haVar.f26979i;
-                }
-                beginRecording.drawColor(i12);
-                beginRecording.drawRenderNode(renderNode2);
-                renderNode.endRecording();
-            }
-            if (!renderNode.hasDisplayList()) {
-                if (num != null) {
-                    i11 = num.intValue();
-                } else {
-                    i11 = haVar.f26979i;
-                }
-                canvas.drawColor(i11);
-                return;
-            }
-            if (num != null) {
-                i10 = num.intValue();
-            } else {
-                i10 = haVar.f26979i;
-            }
-            canvas.drawColor(i10);
-            f(renderNode.getWidth(), renderNode.getHeight(), true);
-            if (renderNode.hasDisplayList()) {
-                Matrix matrix = this.f28302p;
-                matrix.postTranslate(-0.0f, -0.0f);
-                this.h.setAlpha((int) 255.0f);
-                canvas.saveLayer(null, this.h);
-                canvas.concat(matrix);
-                if (z10) {
-                    int i14 = this.f28298l;
-                    int width = renderNode.getWidth();
-                    Path path = this.f28297k;
-                    if (i14 != width || this.f28299m != renderNode.getHeight()) {
-                        path.rewind();
-                        RectF rectF = AndroidUtilities.rectTmp;
-                        int width2 = renderNode.getWidth();
-                        this.f28298l = width2;
-                        int height = renderNode.getHeight();
-                        this.f28299m = height;
-                        rectF.set(0.0f, 0.0f, width2, height);
-                        path.addRoundRect(rectF, AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), Path.Direction.CW);
-                    }
-                    canvas.clipPath(path);
-                }
-                canvas.drawRenderNode(renderNode);
-                canvas.restore();
-                return;
-            }
-            return;
-        }
-        Paint c10 = c(1.0f);
-        if (c10 != null) {
-            canvas.drawPaint(c10);
-        }
-    }
-
-    public final Paint c(float f7) {
-        Bitmap b10;
-        Bitmap bitmap;
-        ha haVar = this.f28290a;
-        if (haVar == null || (b10 = haVar.b()) == null) {
-            return null;
-        }
-        BitmapShader bitmapShader = this.f28301o;
-        if (bitmapShader == null || this.f28300n != b10) {
-            if (this.d && bitmapShader != null && (bitmap = this.f28300n) != null && !bitmap.isRecycled() && !b10.isRecycled()) {
-                Paint paint = this.h;
-                this.h = this.f28294g;
-                this.f28294g = paint;
-                this.e = true;
-                ValueAnimator valueAnimator = this.f28306t;
-                if (valueAnimator != null) {
-                    valueAnimator.cancel();
-                    this.f28306t = null;
-                }
-                this.f28293f = 1.0f;
-                ValueAnimator ofFloat = ValueAnimator.ofFloat(1.0f, 0.0f);
-                this.f28306t = ofFloat;
-                ofFloat.addUpdateListener(new j6(this, 6));
-                this.f28306t.start();
-            }
-            this.f28300n = b10;
-            Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-            BitmapShader bitmapShader2 = new BitmapShader(b10, tileMode, tileMode);
-            this.f28301o = bitmapShader2;
-            this.h.setShader(bitmapShader2);
-        }
-        f(b10.getWidth(), b10.getHeight(), false);
-        Matrix matrix = this.f28302p;
-        matrix.postTranslate(-0.0f, -0.0f);
-        this.f28301o.setLocalMatrix(matrix);
-        this.h.setAlpha((int) (f7 * 255.0f));
-        return this.h;
-    }
-
-    public final Paint[] d() {
-        Paint paint;
-        Paint c10 = c(1.0f);
-        boolean z10 = this.e;
-        if (z10) {
-            paint = this.f28294g;
-        } else {
-            paint = null;
-        }
-        if (c10 != null && z10) {
-            c10.setAlpha((int) org.telegram.messenger.v0.A(1.0f, this.f28293f, 255.0f, 1.0f));
-        }
-        if (paint != null) {
-            paint.setAlpha((int) 255.0f);
-        }
-        if (this.f28305s == null) {
-            this.f28305s = new Paint[2];
-        }
-        Paint[] paintArr = this.f28305s;
-        paintArr[0] = paint;
-        paintArr[1] = c10;
-        return paintArr;
-    }
-
-    public final void e(float f7, float f10, float f11, float f12) {
-        RectF rectF = AndroidUtilities.rectTmp;
-        rectF.set(f7, f10, f11, f12);
-        RectF rectF2 = this.f28303q;
-        if (rectF2.top != rectF.top || rectF2.bottom != rectF.bottom || rectF2.left != rectF.left || rectF2.right != rectF.right) {
-            rectF2.set(rectF);
-            Bitmap b10 = this.f28290a.b();
-            if (b10 == null) {
-                return;
-            }
-            if (this.f28301o == null || this.f28300n != b10) {
-                this.f28300n = b10;
-                Shader.TileMode tileMode = Shader.TileMode.CLAMP;
-                BitmapShader bitmapShader = new BitmapShader(b10, tileMode, tileMode);
-                this.f28301o = bitmapShader;
-                this.h.setShader(bitmapShader);
-            }
-            float width = rectF2.width() / this.f28300n.getWidth();
-            float height = rectF2.height() / this.f28300n.getHeight();
-            Matrix matrix = this.f28302p;
-            matrix.reset();
-            matrix.postTranslate(rectF2.left, rectF2.top);
-            matrix.preScale(width, height);
-            this.f28301o.setLocalMatrix(matrix);
-        }
-    }
-
-    public final void f(int i10, int i11, boolean z10) {
-        View view;
-        View view2;
-        Matrix matrix = this.f28302p;
-        matrix.reset();
-        ha haVar = this.f28290a;
-        if (haVar != null) {
-            if (z10) {
-                view = haVar.f26980j;
-            } else {
-                view = haVar.f26975b;
-            }
-        } else {
-            view = null;
-        }
-        if (haVar != null) {
-            ArrayList arrayList = haVar.f26976c;
-            View view3 = this.f28291b;
-            do {
-                matrix.preScale(1.0f / view3.getScaleX(), 1.0f / view3.getScaleY(), view3.getPivotX(), view3.getPivotY());
-                matrix.preRotate(-view3.getRotation(), view3.getPivotX(), view3.getPivotY());
-                matrix.preTranslate(-view3.getX(), -view3.getY());
-                if (!(view3.getParent() instanceof View) || (view3 = (View) view3.getParent()) == null) {
+    public la(View view) {
+        ArrayList arrayList = new ArrayList();
+        this.f30137c = arrayList;
+        this.d = new ArrayList();
+        this.e = new ArrayList();
+        this.f30138f = new Object();
+        this.h = new Object();
+        this.f30145n = new qa(0, new pg(this, 15));
+        this.f30147p = 0;
+        this.f30136b = view;
+        if (view.isAttachedToWindow()) {
+            arrayList.clear();
+            for (View view2 = view; view2 != null; view2 = (View) view2.getParent()) {
+                arrayList.add(0, view2);
+                if (!(view2.getParent() instanceof View)) {
                     break;
                 }
-            } while (!arrayList.contains(view3));
-            if (view != view3) {
-                int indexOf = arrayList.indexOf(view3) + 1;
-                if (indexOf == 0 && (view2 = (View) arrayList.get(indexOf)) != null) {
-                    int[] iArr = this.f28307u;
-                    view3.getLocationOnScreen(iArr);
-                    int[] iArr2 = this.v;
-                    view2.getLocationOnScreen(iArr2);
-                    matrix.preTranslate(iArr2[0] - iArr[0], iArr2[1] - iArr[1]);
-                }
-                while (indexOf >= 0 && indexOf < arrayList.size()) {
-                    View view4 = (View) arrayList.get(indexOf);
-                    if (view4 != null) {
-                        matrix.preScale(view4.getScaleX(), view4.getScaleY(), view4.getPivotX(), view4.getPivotY());
-                        matrix.preRotate(view4.getRotation(), view4.getPivotX(), view4.getPivotY());
-                        matrix.preTranslate(view4.getX(), view4.getY());
-                        indexOf++;
-                    }
-                }
             }
         }
-        if (view != null) {
-            matrix.preScale(view.getWidth() / i10, view.getHeight() / i11);
+        view.addOnAttachStateChangeListener(new bi.i6(this, 6));
+    }
+
+    public final void a(EGLContext eGLContext) {
+        synchronized (this.f30138f) {
+            try {
+                if (this.f30139g == null) {
+                    this.f30139g = eGLContext;
+                }
+            } catch (Throwable th2) {
+                throw th2;
+            }
         }
     }
 
-    public la(ha haVar, View view, int i10, boolean z10) {
-        this.f28294g = new Paint(3);
-        this.h = new Paint(3);
-        this.f28297k = new Path();
-        this.f28302p = new Matrix();
-        this.f28303q = new RectF();
-        this.f28304r = false;
-        this.f28307u = new int[2];
-        this.v = new int[2];
-        this.f28290a = haVar;
-        this.f28291b = view;
-        this.f28295i = i10;
-        this.d = z10;
-        ColorMatrix colorMatrix = new ColorMatrix();
-        this.f28292c = colorMatrix;
-        if (i10 == 0) {
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.45f);
-        } else if (i10 == 5) {
-            Paint paint = this.h;
-            PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
-            paint.setXfermode(new PorterDuffXfermode(mode));
-            this.f28294g.setXfermode(new PorterDuffXfermode(mode));
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.3f);
-        } else if (i10 == 2) {
-            Paint paint2 = this.h;
-            PorterDuff.Mode mode2 = PorterDuff.Mode.SRC_IN;
-            paint2.setXfermode(new PorterDuffXfermode(mode2));
-            this.f28294g.setXfermode(new PorterDuffXfermode(mode2));
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.4f);
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.3f);
-        } else if (i10 == 1) {
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.35f);
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.7f);
-            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 1.5f);
-        } else if (i10 == 3) {
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.5f);
-        } else if (i10 == 4) {
-            this.f28296j = -10329502;
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.6f);
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.3f);
-            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 1.2f);
-        } else if (i10 == 6) {
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.4f);
-            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.35f);
-        } else if (i10 == 7) {
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.5f);
-            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, 0.95f);
-        } else if (i10 == 8) {
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, -0.15f);
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.47f);
-        } else if (i10 == 9) {
-            Paint paint3 = this.h;
-            PorterDuff.Mode mode3 = PorterDuff.Mode.SRC_IN;
-            paint3.setXfermode(new PorterDuffXfermode(mode3));
-            this.f28294g.setXfermode(new PorterDuffXfermode(mode3));
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, 0.4f);
-            AndroidUtilities.adjustSaturationColorMatrix(colorMatrix, 0.45f);
-        } else if (i10 == 10) {
-            colorMatrix.setSaturation(1.6f);
-            AndroidUtilities.multiplyBrightnessColorMatrix(colorMatrix, this.f28304r ? 0.97f : 0.92f);
-            AndroidUtilities.adjustBrightnessColorMatrix(colorMatrix, this.f28304r ? 0.12f : -0.06f);
+    public final Bitmap b() {
+        Bitmap bitmap;
+        ra raVar = this.f30144m;
+        if (raVar == null) {
+            return this.f30146o;
         }
-        this.h.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        this.f28294g.setColorFilter(new ColorMatrixColorFilter(colorMatrix));
-        if (view.isAttachedToWindow() && haVar != null) {
-            haVar.d.add(this);
+        synchronized (raVar.f32194n) {
+            try {
+                if (!raVar.f32197q) {
+                    bitmap = null;
+                } else {
+                    bitmap = raVar.f32196p;
+                }
+            } finally {
+            }
         }
-        view.addOnAttachStateChangeListener(new ja(0, this, haVar));
+        if (bitmap == null) {
+            return this.f30146o;
+        }
+        return bitmap;
+    }
+
+    public final boolean c() {
+        if (this.f30143l != null) {
+            return true;
+        }
+        return false;
+    }
+
+    public final void d() {
+        ArrayList arrayList = this.d;
+        int size = arrayList.size();
+        int i10 = 0;
+        int i11 = 0;
+        while (i11 < size) {
+            Object obj = arrayList.get(i11);
+            i11++;
+            ((pa) obj).f31475b.invalidate();
+        }
+        ArrayList arrayList2 = this.e;
+        int size2 = arrayList2.size();
+        while (i10 < size2) {
+            Object obj2 = arrayList2.get(i10);
+            i10++;
+            ((Runnable) obj2).run();
+        }
+    }
+
+    public final void e() {
+        ra raVar = this.f30144m;
+        if (raVar != null) {
+            synchronized (raVar.f32194n) {
+                raVar.f32197q = false;
+            }
+        }
+    }
+
+    public final void f(Bitmap bitmap, boolean z10) {
+        StringBuilder sb2 = new StringBuilder("");
+        int i10 = this.f30147p;
+        this.f30147p = i10 + 1;
+        sb2.append(i10);
+        this.f30146o = this.f30145n.b(bitmap, sb2.toString(), 0, 0, z10);
+    }
+
+    public final void g(fi.eb ebVar, Object obj) {
+        this.f30141j = ebVar;
+        this.f30142k = obj;
+        this.f30140i = -14737633;
+        if (obj != null && Build.VERSION.SDK_INT >= 31) {
+            RenderNode renderNode = (RenderNode) obj;
+            RenderNode renderNode2 = new RenderNode("blurRenderNode");
+            renderNode2.setRenderEffect(RenderEffect.createBlurEffect(AndroidUtilities.dp(35.0f), AndroidUtilities.dp(35.0f), Shader.TileMode.CLAMP));
+            renderNode2.setPosition(0, 0, renderNode.getWidth(), renderNode.getHeight());
+            RecordingCanvas beginRecording = renderNode2.beginRecording();
+            beginRecording.drawColor(-14737633);
+            beginRecording.drawRenderNode(renderNode);
+            renderNode2.endRecording();
+            this.f30143l = renderNode2;
+            return;
+        }
+        this.f30143l = null;
     }
 }

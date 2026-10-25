@@ -3,18 +3,18 @@ package t4;
 import android.os.Bundle;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
-import m.q;
+import m.p;
 public final class a implements d {
-    public final LinkedHashSet f47314a = new LinkedHashSet();
+    public final LinkedHashSet f48692a = new LinkedHashSet();
 
-    public a(q qVar) {
-        qVar.f("androidx.savedstate.Restarter", this);
+    public a(p pVar) {
+        pVar.f("androidx.savedstate.Restarter", this);
     }
 
     @Override
     public final Bundle a() {
         Bundle bundle = new Bundle();
-        bundle.putStringArrayList("classes_to_restore", new ArrayList<>(this.f47314a));
+        bundle.putStringArrayList("classes_to_restore", new ArrayList<>(this.f48692a));
         return bundle;
     }
 }

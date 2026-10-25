@@ -1,65 +1,49 @@
 package org.telegram.ui;
 
+import android.graphics.Point;
+import android.graphics.Rect;
 import android.view.View;
+import androidx.recyclerview.widget.RecyclerView;
+import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.MessageObject;
-public final class li0 extends s4.t {
-    public final pi0 S;
-
-    public li0(pi0 pi0Var) {
-        super(true);
-        this.S = pi0Var;
-    }
-
+public final class li0 extends s4.n0 {
     @Override
-    public final boolean B1(int i10) {
-        byte b10;
-        pi0 pi0Var = this.S;
-        MessageObject messageObject = (MessageObject) pi0Var.M.get((B() - 1) - i10);
-        MessageObject.GroupedMessages k10 = pi0Var.k(messageObject);
-        if (k10 != null) {
-            MessageObject.GroupedMessagePosition position = k10.getPosition(messageObject);
-            if (position.minX != position.maxX && (b10 = position.minY) == position.maxY && b10 != 0) {
-                int size = k10.posArray.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    MessageObject.GroupedMessagePosition groupedMessagePosition = k10.posArray.get(i11);
-                    if (groupedMessagePosition != position) {
-                        byte b11 = groupedMessagePosition.minY;
-                        byte b12 = position.minY;
-                        if (b11 <= b12 && groupedMessagePosition.maxY >= b12) {
-                            return true;
-                        }
+    public final void d(Rect rect, View view, RecyclerView recyclerView, s4.b1 b1Var) {
+        org.telegram.ui.Cells.s1 s1Var;
+        MessageObject.GroupedMessages currentMessagesGroup;
+        MessageObject.GroupedMessagePosition currentPosition;
+        float[] fArr;
+        int i10 = 0;
+        rect.bottom = 0;
+        if ((view instanceof org.telegram.ui.Cells.s1) && (currentMessagesGroup = (s1Var = (org.telegram.ui.Cells.s1) view).getCurrentMessagesGroup()) != null && (currentPosition = s1Var.getCurrentPosition()) != null && currentPosition.siblingHeights != null) {
+            Point point = AndroidUtilities.displaySize;
+            float max = Math.max(point.x, point.y) * 0.5f;
+            int extraInsetHeight = s1Var.getExtraInsetHeight();
+            int i11 = 0;
+            while (true) {
+                if (i11 >= currentPosition.siblingHeights.length) {
+                    break;
+                }
+                extraInsetHeight += (int) Math.ceil(fArr[i11] * max);
+                i11++;
+            }
+            int round = (Math.round(AndroidUtilities.density * 7.0f) * (currentPosition.maxY - currentPosition.minY)) + extraInsetHeight;
+            int size = currentMessagesGroup.posArray.size();
+            while (true) {
+                if (i10 < size) {
+                    MessageObject.GroupedMessagePosition groupedMessagePosition = currentMessagesGroup.posArray.get(i10);
+                    byte b10 = groupedMessagePosition.minY;
+                    byte b11 = currentPosition.minY;
+                    if (b10 == b11 && ((groupedMessagePosition.minX != currentPosition.minX || groupedMessagePosition.maxX != currentPosition.maxX || b10 != b11 || groupedMessagePosition.maxY != currentPosition.maxY) && b10 == b11)) {
+                        round = org.telegram.messenger.t.B(4.0f, (int) Math.ceil(max * groupedMessagePosition.f19546ph), round);
+                        break;
                     }
+                    i10++;
+                } else {
+                    break;
                 }
             }
+            rect.bottom = -round;
         }
-        return false;
-    }
-
-    @Override
-    public final boolean C1(View view) {
-        if (view instanceof org.telegram.ui.Cells.t1) {
-            return !((org.telegram.ui.Cells.t1) view).getMessageObject().isOutOwner();
-        }
-        return false;
-    }
-
-    @Override
-    public final int j(s4.y0 y0Var) {
-        return B0(y0Var);
-    }
-
-    @Override
-    public final int k(s4.y0 y0Var) {
-        return C0(y0Var);
-    }
-
-    @Override
-    public final int l(s4.y0 y0Var) {
-        return D0(y0Var);
-    }
-
-    @Override
-    public final boolean y0() {
-        return true;
     }
 }

@@ -8,8 +8,8 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 public final class g implements Collection, Set {
-    public int[] f11a = b0.a.f3654a;
-    public Object[] f12b = b0.a.f3656c;
+    public int[] f11a = b0.a.f3100a;
+    public Object[] f12b = b0.a.f3102c;
     public int f13c;
 
     public g(int i10) {
@@ -49,8 +49,8 @@ public final class g implements Collection, Set {
             this.f12b = new Object[i13];
             if (i11 == this.f13c) {
                 if (iArr2.length != 0) {
-                    jd.f.b(0, 0, iArr.length, iArr, iArr2);
-                    jd.f.d(0, objArr.length, 6, objArr, this.f12b);
+                    kd.f.b(0, 0, iArr.length, iArr, iArr2);
+                    kd.f.d(0, objArr.length, 6, objArr, this.f12b);
                 }
             } else {
                 throw new ConcurrentModificationException();
@@ -59,9 +59,9 @@ public final class g implements Collection, Set {
         if (i12 < i11) {
             int[] iArr3 = this.f11a;
             int i14 = i12 + 1;
-            jd.f.b(i14, i12, i11, iArr3, iArr3);
+            kd.f.b(i14, i12, i11, iArr3, iArr3);
             Object[] objArr2 = this.f12b;
-            jd.f.c(i14, i12, i11, objArr2, objArr2);
+            kd.f.c(i14, i12, i11, objArr2, objArr2);
         }
         int i15 = this.f13c;
         if (i11 == i15) {
@@ -89,8 +89,8 @@ public final class g implements Collection, Set {
             this.f11a = iArr2;
             this.f12b = new Object[size];
             if (i10 > 0) {
-                jd.f.b(0, 0, i10, iArr, iArr2);
-                jd.f.d(0, this.f13c, 6, objArr, this.f12b);
+                kd.f.b(0, 0, i10, iArr, iArr2);
+                kd.f.d(0, this.f13c, 6, objArr, this.f12b);
             }
         }
         if (this.f13c == i10) {
@@ -105,8 +105,8 @@ public final class g implements Collection, Set {
     @Override
     public final void clear() {
         if (this.f13c != 0) {
-            this.f11a = b0.a.f3654a;
-            this.f12b = b0.a.f3656c;
+            this.f11a = b0.a.f3100a;
+            this.f12b = b0.a.f3102c;
             this.f13c = 0;
         }
         if (this.f13c == 0) {
@@ -180,20 +180,20 @@ public final class g implements Collection, Set {
             this.f11a = iArr2;
             this.f12b = new Object[i13];
             if (i10 > 0) {
-                jd.f.b(0, 0, i10, iArr, iArr2);
-                jd.f.d(0, i10, 6, objArr, this.f12b);
+                kd.f.b(0, 0, i10, iArr, iArr2);
+                kd.f.d(0, i10, 6, objArr, this.f12b);
             }
             if (i10 < i12) {
                 int i14 = i10 + 1;
-                jd.f.b(i10, i14, i11, iArr, this.f11a);
-                jd.f.c(i10, i14, i11, objArr, this.f12b);
+                kd.f.b(i10, i14, i11, iArr, this.f11a);
+                kd.f.c(i10, i14, i11, objArr, this.f12b);
             }
         } else {
             if (i10 < i12) {
                 int i15 = i10 + 1;
-                jd.f.b(i10, i15, i11, iArr, iArr);
+                kd.f.b(i10, i15, i11, iArr, iArr);
                 Object[] objArr2 = this.f12b;
-                jd.f.c(i10, i15, i11, objArr2, objArr2);
+                kd.f.c(i10, i15, i11, objArr2, objArr2);
             }
             this.f12b[i12] = null;
         }
@@ -357,7 +357,7 @@ public final class g implements Collection, Set {
         } else if (array.length > i10) {
             array[i10] = null;
         }
-        jd.f.c(0, 0, this.f13c, this.f12b, array);
+        kd.f.c(0, 0, this.f13c, this.f12b, array);
         return array;
     }
 }

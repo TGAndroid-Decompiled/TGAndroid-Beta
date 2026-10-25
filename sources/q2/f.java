@@ -1,17 +1,17 @@
 package q2;
 
+import a8.yb;
 import android.graphics.Bitmap;
 import android.os.Trace;
-import b2.w;
-import h2.h;
-import i2.j0;
-import i2.o1;
+import b2.x;
+import c3.h0;
+import i2.l0;
 import java.util.ArrayDeque;
-import l5.j;
-import v7.u6;
+import l6.h;
+import n4.s;
 public final class f extends i2.b {
-    public final j I;
-    public final h J;
+    public final h I;
+    public final h2.h J;
     public final ArrayDeque K;
     public boolean L;
     public boolean M;
@@ -20,24 +20,24 @@ public final class f extends i2.b {
     public long P;
     public int Q;
     public int R;
-    public w S;
+    public x S;
     public b T;
-    public h U;
+    public h2.h U;
     public d V;
-    public j0 W;
+    public l0 W;
     public Bitmap X;
     public boolean Y;
-    public j5.c Z;
-    public j5.c f44772a0;
-    public int f44773b0;
-    public boolean f44774c0;
+    public k5.b Z;
+    public k5.b f46921a0;
+    public int f46922b0;
+    public boolean f46923c0;
 
-    public f(j jVar) {
+    public f(h hVar) {
         super(4);
-        this.I = jVar;
-        this.V = d.f44768a;
-        this.J = new h(0, 0);
-        this.N = e.f44769c;
+        this.I = hVar;
+        this.V = d.f46917a;
+        this.J = new h2.h(0, 0);
+        this.N = e.f46918c;
         this.K = new ArrayDeque();
         this.P = -9223372036854775807L;
         this.O = -9223372036854775807L;
@@ -46,9 +46,9 @@ public final class f extends i2.b {
     }
 
     @Override
-    public final int C(w wVar) {
+    public final int C(x xVar) {
         this.I.getClass();
-        return j.d(wVar);
+        return h.e(xVar);
     }
 
     public final boolean F(long r13) {
@@ -60,23 +60,23 @@ public final class f extends i2.b {
     }
 
     public final void H() {
-        if (!this.f44774c0) {
+        if (!this.f46923c0) {
             return;
         }
-        w wVar = this.S;
-        wVar.getClass();
-        j jVar = this.I;
-        jVar.getClass();
-        int d = j.d(wVar);
-        if (d != o1.c(4, 0, 0, 0) && d != o1.c(3, 0, 0, 0)) {
-            throw c(new Exception("Provided decoder factory can't create decoder for format."), this.S, false, 4005);
+        x xVar = this.S;
+        xVar.getClass();
+        h hVar = this.I;
+        hVar.getClass();
+        int e = h.e(xVar);
+        if (e != h0.c(4, 0, 0, 0) && e != h0.c(3, 0, 0, 0)) {
+            throw d(new Exception("Provided decoder factory can't create decoder for format."), this.S, false, 4005);
         }
         b bVar = this.T;
         if (bVar != null) {
             bVar.release();
         }
-        this.T = new b(jVar.f15986a);
-        this.f44774c0 = false;
+        this.T = new b(hVar.f16938a);
+        this.f46923c0 = false;
     }
 
     public final void I() {
@@ -91,13 +91,13 @@ public final class f extends i2.b {
     }
 
     @Override
-    public final void d(int i10, Object obj) {
+    public final void c(int i10, Object obj) {
         d dVar;
         if (i10 != 15) {
             if (i10 != 23) {
                 return;
             }
-            this.W = (j0) obj;
+            this.W = (l0) obj;
             return;
         }
         if (obj instanceof d) {
@@ -106,7 +106,7 @@ public final class f extends i2.b {
             dVar = null;
         }
         if (dVar == null) {
-            dVar = d.f44768a;
+            dVar = d.f46917a;
         }
         this.V = dVar;
     }
@@ -136,7 +136,7 @@ public final class f extends i2.b {
     @Override
     public final void n() {
         this.S = null;
-        this.N = e.f44769c;
+        this.N = e.f46918c;
         this.K.clear();
         I();
         this.V.getClass();
@@ -154,7 +154,7 @@ public final class f extends i2.b {
         this.L = false;
         this.X = null;
         this.Z = null;
-        this.f44772a0 = null;
+        this.f46921a0 = null;
         this.Y = false;
         this.U = null;
         b bVar = this.T;
@@ -176,26 +176,26 @@ public final class f extends i2.b {
     }
 
     @Override
-    public final void u(b2.w[] r5, long r6, long r8, u2.h0 r10) {
-        throw new UnsupportedOperationException("Method not decompiled: q2.f.u(b2.w[], long, long, u2.h0):void");
+    public final void u(b2.x[] r5, long r6, long r8, u2.g0 r10) {
+        throw new UnsupportedOperationException("Method not decompiled: q2.f.u(b2.x[], long, long, u2.g0):void");
     }
 
     @Override
     public final void x(long j10, long j11) {
         if (!this.M) {
             if (this.S == null) {
-                qf.b bVar = this.f12345c;
-                bVar.A();
-                h hVar = this.J;
+                s sVar = this.f13492c;
+                sVar.d();
+                h2.h hVar = this.J;
                 hVar.clear();
-                int w9 = w(bVar, hVar, 2);
-                if (w9 == -5) {
-                    w wVar = (w) bVar.f44864c;
-                    wVar.getClass();
-                    this.S = wVar;
-                    this.f44774c0 = true;
-                } else if (w9 == -4) {
-                    u6.p(hVar.isEndOfStream());
+                int w10 = w(sVar, hVar, 2);
+                if (w10 == -5) {
+                    x xVar = (x) sVar.f18697c;
+                    xVar.getClass();
+                    this.S = xVar;
+                    this.f46923c0 = true;
+                } else if (w10 == -4) {
+                    yb.p(hVar.isEndOfStream());
                     this.L = true;
                     this.M = true;
                     return;
@@ -214,7 +214,7 @@ public final class f extends i2.b {
                 }
                 Trace.endSection();
             } catch (c e) {
-                throw c(e, null, false, 4003);
+                throw d(e, null, false, 4003);
             }
         }
     }

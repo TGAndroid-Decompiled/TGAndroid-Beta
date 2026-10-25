@@ -1,49 +1,37 @@
 package wf;
 
-import ai.h;
-import java.io.File;
-import org.telegram.messenger.FileLoader;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.tgnet.ConnectionsManager;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_account;
-public final class d implements NotificationCenter.NotificationCenterDelegate {
-    public final int f49385a;
-    public final String f49386b;
-    public boolean f49387c;
-
-    public d(String str, int i10) {
-        this.f49385a = i10;
-        this.f49386b = str;
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploaded);
-        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileUploadFailed);
-        FileLoader.getInstance(i10).uploadFile(str, false, true, 50331648);
-    }
-
-    public final void a() {
-        int i10 = this.f49385a;
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploaded);
-        NotificationCenter.getInstance(i10).removeObserver(this, NotificationCenter.fileUploadFailed);
-    }
-
-    @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.fileUploaded) {
-            String str = (String) objArr[0];
-            if (!this.f49387c && str.equals(this.f49386b)) {
-                TLRPC.InputFile inputFile = (TLRPC.InputFile) objArr[1];
-                TL_account.uploadRingtone uploadringtone = new TL_account.uploadRingtone();
-                uploadringtone.file = inputFile;
-                uploadringtone.file_name = inputFile.name;
-                String fileExtension = FileLoader.getFileExtension(new File(inputFile.name));
-                uploadringtone.mime_type = fileExtension;
-                if ("ogg".equals(fileExtension)) {
-                    uploadringtone.mime_type = "audio/ogg";
-                } else {
-                    uploadringtone.mime_type = "audio/mpeg";
-                }
-                ConnectionsManager.getInstance(this.f49385a).sendRequest(uploadringtone, new h(this, 29));
-            }
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import di.h3;
+import org.telegram.messenger.R;
+public abstract class d {
+    public static a a(View view, c cVar) {
+        a aVar = cVar.f51158b;
+        if (aVar != null) {
+            return aVar;
         }
+        View rootView = view.getRootView();
+        if (view != rootView) {
+            if (!(rootView instanceof ViewGroup)) {
+                return null;
+            }
+            ViewGroup viewGroup = (ViewGroup) rootView;
+            a aVar2 = (a) viewGroup.getTag(R.id.tag_view_on_post_draw_root_state);
+            if (aVar2 == null) {
+                h3 h3Var = new h3(viewGroup.getContext());
+                a aVar3 = new a(h3Var);
+                viewGroup.setTag(R.id.tag_view_on_post_draw_root_state, aVar3);
+                if (viewGroup instanceof FrameLayout) {
+                    viewGroup.addView(h3Var, new FrameLayout.LayoutParams(1, 1, 17));
+                } else {
+                    viewGroup.addView(h3Var, new ViewGroup.LayoutParams(1, 1));
+                }
+                aVar2 = aVar3;
+            }
+            cVar.f51158b = aVar2;
+            return aVar2;
+        }
+        throw new IllegalArgumentException("Cannot add OnPostDrawListener to root view");
     }
 }

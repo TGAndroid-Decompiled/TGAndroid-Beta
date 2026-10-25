@@ -1,101 +1,90 @@
 package d6;
 
+import a8.df;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.text.TextUtils;
-import c7.r0;
-import j$.util.DesugarCollections;
-import java.util.ArrayList;
-import java.util.List;
-import v7.z6;
-import w7.f0;
-public final class b extends o6.a {
-    public static final Parcelable.Creator<b> CREATOR;
-    public static final a0 G = new a0(false);
-    public static final b0 H = new b0(0);
-    public static final e6.a I;
-    public final a0 E;
-    public b0 F;
-    public final String f7850a;
-    public final ArrayList f7851b;
-    public final boolean f7852c;
-    public final c6.i d;
-    public final boolean e;
-    public final e6.a f7853f;
+import java.util.Arrays;
+import java.util.regex.Pattern;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+public final class b extends p6.a {
+    public static final Parcelable.Creator<b> CREATOR = new v(4);
+    public final long f8040a;
+    public final String f8041b;
+    public final long f8042c;
+    public final boolean d;
+    public final String[] e;
+    public final boolean f8043f;
     public final boolean h;
-    public final double f7854n;
-    public final boolean f7855r;
-    public final boolean f7856s;
-    public final boolean v;
-    public final List f7857w;
-    public final boolean f7858x;
-    public final boolean f7859y;
 
-    static {
-        new e6.f(e6.f.Y, e6.f.Z, 10000L, null, z6.a("smallIconDrawableResId"), z6.a("stopLiveStreamDrawableResId"), z6.a("pauseDrawableResId"), z6.a("playDrawableResId"), z6.a("skipNextDrawableResId"), z6.a("skipPrevDrawableResId"), z6.a("forwardDrawableResId"), z6.a("forward10DrawableResId"), z6.a("forward30DrawableResId"), z6.a("rewindDrawableResId"), z6.a("rewind10DrawableResId"), z6.a("rewind30DrawableResId"), z6.a("disconnectDrawableResId"), z6.a("notificationImageSizeDimenResId"), z6.a("castingToDeviceStringResId"), z6.a("stopLiveStreamStringResId"), z6.a("pauseStringResId"), z6.a("playStringResId"), z6.a("skipNextStringResId"), z6.a("skipPrevStringResId"), z6.a("forwardStringResId"), z6.a("forward10StringResId"), z6.a("forward30StringResId"), z6.a("rewindStringResId"), z6.a("rewind10StringResId"), z6.a("rewind30StringResId"), z6.a("disconnectStringResId"), null, false, false);
-        I = new e6.a("com.google.android.gms.cast.framework.media.MediaIntentReceiver", null, null, null, false, false);
-        CREATOR = new r0(28);
+    public b(long j10, String str, long j11, boolean z10, String[] strArr, boolean z11, boolean z12) {
+        this.f8040a = j10;
+        this.f8041b = str;
+        this.f8042c = j11;
+        this.d = z10;
+        this.e = strArr;
+        this.f8043f = z11;
+        this.h = z12;
     }
 
-    public b(String str, ArrayList arrayList, boolean z10, c6.i iVar, boolean z11, e6.a aVar, boolean z12, double d, boolean z13, boolean z14, boolean z15, ArrayList arrayList2, boolean z16, boolean z17, a0 a0Var, b0 b0Var) {
-        int size;
-        this.f7850a = true == TextUtils.isEmpty(str) ? "" : str;
-        if (arrayList == null) {
-            size = 0;
-        } else {
-            size = arrayList.size();
+    public final JSONObject b() {
+        JSONObject jSONObject = new JSONObject();
+        try {
+            jSONObject.put("id", this.f8041b);
+            long j10 = this.f8040a;
+            Pattern pattern = h6.a.f12619a;
+            jSONObject.put("position", j10 / 1000.0d);
+            jSONObject.put("isWatched", this.d);
+            jSONObject.put("isEmbedded", this.f8043f);
+            jSONObject.put("duration", this.f8042c / 1000.0d);
+            jSONObject.put("expanded", this.h);
+            String[] strArr = this.e;
+            if (strArr != null) {
+                JSONArray jSONArray = new JSONArray();
+                for (String str : strArr) {
+                    jSONArray.put(str);
+                }
+                jSONObject.put("breakClipIds", jSONArray);
+            }
+        } catch (JSONException unused) {
         }
-        ArrayList arrayList3 = new ArrayList(size);
-        this.f7851b = arrayList3;
-        if (size > 0) {
-            arrayList3.addAll(arrayList);
+        return jSONObject;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
         }
-        this.f7852c = z10;
-        this.d = iVar == null ? new c6.i() : iVar;
-        this.e = z11;
-        this.f7853f = aVar;
-        this.h = z12;
-        this.f7854n = d;
-        this.f7855r = z13;
-        this.f7856s = z14;
-        this.v = z15;
-        this.f7857w = arrayList2;
-        this.f7858x = z16;
-        this.f7859y = z17;
-        this.E = a0Var;
-        this.F = b0Var;
+        if (!(obj instanceof b)) {
+            return false;
+        }
+        b bVar = (b) obj;
+        if (h6.a.d(this.f8041b, bVar.f8041b) && this.f8040a == bVar.f8040a && this.f8042c == bVar.f8042c && this.d == bVar.d && Arrays.equals(this.e, bVar.e) && this.f8043f == bVar.f8043f && this.h == bVar.h) {
+            return true;
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        return this.f8041b.hashCode();
     }
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 2, this.f7850a);
-        f0.n(parcel, 3, DesugarCollections.unmodifiableList(this.f7851b));
-        f0.s(parcel, 4, 4);
-        parcel.writeInt(this.f7852c ? 1 : 0);
-        f0.k(parcel, 5, this.d, i10);
-        f0.s(parcel, 6, 4);
-        parcel.writeInt(this.e ? 1 : 0);
-        f0.k(parcel, 7, this.f7853f, i10);
-        f0.s(parcel, 8, 4);
+        int q5 = df.q(parcel, 20293);
+        df.s(parcel, 2, 8);
+        parcel.writeLong(this.f8040a);
+        df.l(parcel, 3, this.f8041b);
+        df.s(parcel, 4, 8);
+        parcel.writeLong(this.f8042c);
+        df.s(parcel, 5, 4);
+        parcel.writeInt(this.d ? 1 : 0);
+        df.m(parcel, 6, this.e);
+        df.s(parcel, 7, 4);
+        parcel.writeInt(this.f8043f ? 1 : 0);
+        df.s(parcel, 8, 4);
         parcel.writeInt(this.h ? 1 : 0);
-        f0.s(parcel, 9, 8);
-        parcel.writeDouble(this.f7854n);
-        f0.s(parcel, 10, 4);
-        parcel.writeInt(this.f7855r ? 1 : 0);
-        f0.s(parcel, 11, 4);
-        parcel.writeInt(this.f7856s ? 1 : 0);
-        f0.s(parcel, 12, 4);
-        parcel.writeInt(this.v ? 1 : 0);
-        f0.n(parcel, 13, DesugarCollections.unmodifiableList(this.f7857w));
-        f0.s(parcel, 14, 4);
-        parcel.writeInt(this.f7858x ? 1 : 0);
-        f0.s(parcel, 15, 4);
-        parcel.writeInt(0);
-        f0.s(parcel, 16, 4);
-        parcel.writeInt(this.f7859y ? 1 : 0);
-        f0.k(parcel, 17, this.E, i10);
-        f0.k(parcel, 18, this.F, i10);
-        f0.r(parcel, q6);
+        df.r(parcel, q5);
     }
 }

@@ -1,17 +1,45 @@
 package w7;
-public final class h5 implements ja.d {
-    public static final h5 f49148a = new Object();
-
-    static {
-        si.o0.s(si.o0.l(d.class, si.o0.p(12, si.o0.l(d.class, si.o0.p(11, si.o0.l(d.class, si.o0.p(10, si.o0.l(d.class, si.o0.p(9, si.o0.l(d.class, si.o0.p(8, si.o0.l(d.class, si.o0.p(7, si.o0.l(d.class, si.o0.p(6, si.o0.l(d.class, si.o0.p(5, si.o0.l(d.class, si.o0.p(4, si.o0.l(d.class, si.o0.p(3, si.o0.l(d.class, si.o0.p(2, si.o0.l(d.class, new a(1)))))))))))))))))))))))));
+public abstract class h5 {
+    public static void a(int i10, int i11) {
+        String a2;
+        if (i10 >= 0 && i10 < i11) {
+            return;
+        }
+        if (i10 >= 0) {
+            if (i11 < 0) {
+                throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
+            }
+            a2 = i5.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
+        } else {
+            a2 = i5.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
+        }
+        throw new IndexOutOfBoundsException(a2);
     }
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+    public static void b(int i10, int i11, int i12) {
+        String c10;
+        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
+            return;
         }
-        throw new ClassCastException();
+        if (i10 >= 0 && i10 <= i12) {
+            if (i11 >= 0 && i11 <= i12) {
+                c10 = i5.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+            } else {
+                c10 = c(i11, i12, "end index");
+            }
+        } else {
+            c10 = c(i10, i12, "start index");
+        }
+        throw new IndexOutOfBoundsException(c10);
+    }
+
+    public static String c(int i10, int i11, String str) {
+        if (i10 < 0) {
+            return i5.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
+        }
+        if (i11 >= 0) {
+            return i5.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
+        }
+        throw new IllegalArgumentException(ic.a.i(i11, "negative size: "));
     }
 }

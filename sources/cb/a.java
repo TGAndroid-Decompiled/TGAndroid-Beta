@@ -1,20 +1,42 @@
 package cb;
-public final class a extends md.c {
-    public Object f5054a;
-    public ke.a f5055b;
-    public Object f5056c;
-    public final d d;
-    public int e;
 
-    public a(d dVar, md.c cVar) {
-        super(cVar);
-        this.d = dVar;
+import kotlin.jvm.internal.i;
+import y9.j;
+public final class a {
+    public final le.d f6171a;
+    public j f6172b = null;
+
+    public a(le.d dVar) {
+        this.f6171a = dVar;
     }
 
-    @Override
-    public final Object invokeSuspend(Object obj) {
-        this.f5056c = obj;
-        this.e |= Integer.MIN_VALUE;
-        return this.d.c(this);
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj instanceof a) {
+                a aVar = (a) obj;
+                if (!this.f6171a.equals(aVar.f6171a) || !i.a(this.f6172b, aVar.f6172b)) {
+                    return false;
+                }
+                return true;
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        int hashCode2 = this.f6171a.hashCode() * 31;
+        j jVar = this.f6172b;
+        if (jVar == null) {
+            hashCode = 0;
+        } else {
+            hashCode = jVar.hashCode();
+        }
+        return hashCode2 + hashCode;
+    }
+
+    public final String toString() {
+        return "Dependency(mutex=" + this.f6171a + ", subscriber=" + this.f6172b + ')';
     }
 }

@@ -1,190 +1,219 @@
 package m;
 
-import android.content.res.TypedArray;
-import android.graphics.Bitmap;
-import android.graphics.BitmapShader;
-import android.graphics.Shader;
-import android.graphics.drawable.AnimationDrawable;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.ClipDrawable;
+import a8.kc;
+import a8.nf;
+import android.content.Context;
+import android.content.res.ColorStateList;
+import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
-import android.graphics.drawable.LayerDrawable;
-import android.graphics.drawable.ShapeDrawable;
-import android.graphics.drawable.shapes.RoundRectShape;
-import android.text.method.KeyListener;
-import android.text.method.NumberKeyListener;
+import android.text.InputFilter;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.inputmethod.EditorInfo;
-import android.view.inputmethod.InputConnection;
-import android.widget.AbsSeekBar;
-import android.widget.EditText;
-import java.util.concurrent.locks.ReentrantReadWriteLock;
-import w7.k6;
-public class z {
-    public static final int[] d = {16843067, 16843068};
-    public final int f16455a = 2;
-    public View f16456b;
-    public Object f16457c;
+import android.widget.RadioButton;
+public final class z extends RadioButton implements u0.k {
+    public final p f17910a;
+    public final e2.c f17911b;
+    public final w0 f17912c;
+    public t d;
 
-    public z() {
+    public z(Context context, AttributeSet attributeSet) {
+        super(context, attributeSet, 2130968907);
+        c3.a(context);
+        b3.a(this, getContext());
+        p pVar = new p(this);
+        this.f17910a = pVar;
+        pVar.e(attributeSet, 2130968907);
+        e2.c cVar = new e2.c(this);
+        this.f17911b = cVar;
+        cVar.f(attributeSet, 2130968907);
+        w0 w0Var = new w0(this);
+        this.f17912c = w0Var;
+        w0Var.f(attributeSet, 2130968907);
+        getEmojiTextViewHelper().a(attributeSet, 2130968907);
     }
 
-    public KeyListener a(KeyListener keyListener) {
-        if (!(keyListener instanceof NumberKeyListener)) {
-            ((mi.q) ((le.b) this.f16457c).f16072b).getClass();
-            if (keyListener instanceof q1.e) {
-                return keyListener;
-            }
-            if (keyListener == null) {
-                return null;
-            }
-            if (keyListener instanceof NumberKeyListener) {
-                return keyListener;
-            }
-            return new q1.e(keyListener);
+    private t getEmojiTextViewHelper() {
+        if (this.d == null) {
+            this.d = new t(this);
         }
-        return keyListener;
+        return this.d;
     }
 
-    public void b(AttributeSet attributeSet, int i10) {
-        boolean z10 = true;
-        switch (this.f16455a) {
-            case 0:
-                AbsSeekBar absSeekBar = (AbsSeekBar) this.f16456b;
-                g3 P = g3.P(absSeekBar.getContext(), attributeSet, d, i10);
-                Drawable G = P.G(0);
-                if (G != null) {
-                    if (G instanceof AnimationDrawable) {
-                        AnimationDrawable animationDrawable = (AnimationDrawable) G;
-                        int numberOfFrames = animationDrawable.getNumberOfFrames();
-                        AnimationDrawable animationDrawable2 = new AnimationDrawable();
-                        animationDrawable2.setOneShot(animationDrawable.isOneShot());
-                        for (int i11 = 0; i11 < numberOfFrames; i11++) {
-                            Drawable e = e(animationDrawable.getFrame(i11), true);
-                            e.setLevel(10000);
-                            animationDrawable2.addFrame(e, animationDrawable.getDuration(i11));
-                        }
-                        animationDrawable2.setLevel(10000);
-                        G = animationDrawable2;
-                    }
-                    absSeekBar.setIndeterminateDrawable(G);
-                }
-                Drawable G2 = P.G(1);
-                if (G2 != null) {
-                    absSeekBar.setProgressDrawable(e(G2, false));
-                }
-                P.Q();
+    @Override
+    public final void drawableStateChanged() {
+        super.drawableStateChanged();
+        e2.c cVar = this.f17911b;
+        if (cVar != null) {
+            cVar.b();
+        }
+        w0 w0Var = this.f17912c;
+        if (w0Var != null) {
+            w0Var.b();
+        }
+    }
+
+    @Override
+    public int getCompoundPaddingLeft() {
+        int compoundPaddingLeft = super.getCompoundPaddingLeft();
+        p pVar = this.f17910a;
+        if (pVar != null) {
+            pVar.getClass();
+        }
+        return compoundPaddingLeft;
+    }
+
+    public ColorStateList getSupportBackgroundTintList() {
+        e2.c cVar = this.f17911b;
+        if (cVar != null) {
+            return cVar.d();
+        }
+        return null;
+    }
+
+    public PorterDuff.Mode getSupportBackgroundTintMode() {
+        e2.c cVar = this.f17911b;
+        if (cVar != null) {
+            return cVar.e();
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportButtonTintList() {
+        p pVar = this.f17910a;
+        if (pVar != null) {
+            return (ColorStateList) pVar.f17805a;
+        }
+        return null;
+    }
+
+    public PorterDuff.Mode getSupportButtonTintMode() {
+        p pVar = this.f17910a;
+        if (pVar != null) {
+            return (PorterDuff.Mode) pVar.f17806b;
+        }
+        return null;
+    }
+
+    public ColorStateList getSupportCompoundDrawablesTintList() {
+        return this.f17912c.d();
+    }
+
+    public PorterDuff.Mode getSupportCompoundDrawablesTintMode() {
+        return this.f17912c.e();
+    }
+
+    @Override
+    public void setAllCaps(boolean z10) {
+        super.setAllCaps(z10);
+        getEmojiTextViewHelper().b(z10);
+    }
+
+    @Override
+    public void setBackgroundDrawable(Drawable drawable) {
+        super.setBackgroundDrawable(drawable);
+        e2.c cVar = this.f17911b;
+        if (cVar != null) {
+            cVar.g();
+        }
+    }
+
+    @Override
+    public void setBackgroundResource(int i10) {
+        super.setBackgroundResource(i10);
+        e2.c cVar = this.f17911b;
+        if (cVar != null) {
+            cVar.h(i10);
+        }
+    }
+
+    @Override
+    public void setButtonDrawable(Drawable drawable) {
+        super.setButtonDrawable(drawable);
+        p pVar = this.f17910a;
+        if (pVar != null) {
+            if (pVar.e) {
+                pVar.e = false;
                 return;
-            default:
-                TypedArray obtainStyledAttributes = ((EditText) this.f16456b).getContext().obtainStyledAttributes(attributeSet, f.a.f10271i, i10, 0);
-                try {
-                    if (obtainStyledAttributes.hasValue(14)) {
-                        z10 = obtainStyledAttributes.getBoolean(14, true);
-                    }
-                    obtainStyledAttributes.recycle();
-                    d(z10);
-                    return;
-                } catch (Throwable th2) {
-                    obtainStyledAttributes.recycle();
-                    throw th2;
-                }
+            }
+            pVar.e = true;
+            pVar.a();
         }
     }
 
-    public q1.b c(InputConnection inputConnection, EditorInfo editorInfo) {
-        le.b bVar = (le.b) this.f16457c;
-        if (inputConnection == null) {
-            bVar.getClass();
-            inputConnection = null;
-        } else {
-            mi.q qVar = (mi.q) bVar.f16072b;
-            qVar.getClass();
-            if (!(inputConnection instanceof q1.b)) {
-                inputConnection = new q1.b((EditText) qVar.f17036b, inputConnection, editorInfo);
-            }
-        }
-        return (q1.b) inputConnection;
-    }
-
-    public void d(boolean z10) {
-        q1.i iVar = (q1.i) ((mi.q) ((le.b) this.f16457c).f16072b).f17037c;
-        if (iVar.f44762c != z10) {
-            if (iVar.f44761b != null) {
-                androidx.emoji2.text.l a2 = androidx.emoji2.text.l.a();
-                q1.h hVar = iVar.f44761b;
-                a2.getClass();
-                k6.a(hVar, "initCallback cannot be null");
-                ReentrantReadWriteLock reentrantReadWriteLock = a2.f3110a;
-                reentrantReadWriteLock.writeLock().lock();
-                try {
-                    a2.f3111b.remove(hVar);
-                } finally {
-                    reentrantReadWriteLock.writeLock().unlock();
-                }
-            }
-            iVar.f44762c = z10;
-            if (z10) {
-                q1.i.a(iVar.f44760a, androidx.emoji2.text.l.a().b());
-            }
+    @Override
+    public final void setCompoundDrawables(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawables(drawable, drawable2, drawable3, drawable4);
+        w0 w0Var = this.f17912c;
+        if (w0Var != null) {
+            w0Var.b();
         }
     }
 
-    public Drawable e(Drawable drawable, boolean z10) {
-        boolean z11;
-        if (drawable instanceof j0.b) {
-            ((j0.c) ((j0.b) drawable)).getClass();
-        } else if (drawable instanceof LayerDrawable) {
-            LayerDrawable layerDrawable = (LayerDrawable) drawable;
-            int numberOfLayers = layerDrawable.getNumberOfLayers();
-            Drawable[] drawableArr = new Drawable[numberOfLayers];
-            for (int i10 = 0; i10 < numberOfLayers; i10++) {
-                int id2 = layerDrawable.getId(i10);
-                Drawable drawable2 = layerDrawable.getDrawable(i10);
-                if (id2 != 16908301 && id2 != 16908303) {
-                    z11 = false;
-                } else {
-                    z11 = true;
-                }
-                drawableArr[i10] = e(drawable2, z11);
-            }
-            LayerDrawable layerDrawable2 = new LayerDrawable(drawableArr);
-            for (int i11 = 0; i11 < numberOfLayers; i11++) {
-                layerDrawable2.setId(i11, layerDrawable.getId(i11));
-                layerDrawable2.setLayerGravity(i11, layerDrawable.getLayerGravity(i11));
-                layerDrawable2.setLayerWidth(i11, layerDrawable.getLayerWidth(i11));
-                layerDrawable2.setLayerHeight(i11, layerDrawable.getLayerHeight(i11));
-                layerDrawable2.setLayerInsetLeft(i11, layerDrawable.getLayerInsetLeft(i11));
-                layerDrawable2.setLayerInsetRight(i11, layerDrawable.getLayerInsetRight(i11));
-                layerDrawable2.setLayerInsetTop(i11, layerDrawable.getLayerInsetTop(i11));
-                layerDrawable2.setLayerInsetBottom(i11, layerDrawable.getLayerInsetBottom(i11));
-                layerDrawable2.setLayerInsetStart(i11, layerDrawable.getLayerInsetStart(i11));
-                layerDrawable2.setLayerInsetEnd(i11, layerDrawable.getLayerInsetEnd(i11));
-            }
-            return layerDrawable2;
-        } else if (drawable instanceof BitmapDrawable) {
-            BitmapDrawable bitmapDrawable = (BitmapDrawable) drawable;
-            Bitmap bitmap = bitmapDrawable.getBitmap();
-            if (((Bitmap) this.f16457c) == null) {
-                this.f16457c = bitmap;
-            }
-            ShapeDrawable shapeDrawable = new ShapeDrawable(new RoundRectShape(new float[]{5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f, 5.0f}, null, null));
-            shapeDrawable.getPaint().setShader(new BitmapShader(bitmap, Shader.TileMode.REPEAT, Shader.TileMode.CLAMP));
-            shapeDrawable.getPaint().setColorFilter(bitmapDrawable.getPaint().getColorFilter());
-            if (z10) {
-                return new ClipDrawable(shapeDrawable, 3, 1);
-            }
-            return shapeDrawable;
+    @Override
+    public final void setCompoundDrawablesRelative(Drawable drawable, Drawable drawable2, Drawable drawable3, Drawable drawable4) {
+        super.setCompoundDrawablesRelative(drawable, drawable2, drawable3, drawable4);
+        w0 w0Var = this.f17912c;
+        if (w0Var != null) {
+            w0Var.b();
         }
-        return drawable;
     }
 
-    public z(AbsSeekBar absSeekBar) {
-        this.f16456b = absSeekBar;
+    public void setEmojiCompatEnabled(boolean z10) {
+        getEmojiTextViewHelper().c(z10);
     }
 
-    public z(EditText editText) {
-        this.f16456b = editText;
-        this.f16457c = new le.b(editText);
+    @Override
+    public void setFilters(InputFilter[] inputFilterArr) {
+        super.setFilters(((nf) getEmojiTextViewHelper().f17856b.f17210b).a(inputFilterArr));
+    }
+
+    public void setSupportBackgroundTintList(ColorStateList colorStateList) {
+        e2.c cVar = this.f17911b;
+        if (cVar != null) {
+            cVar.l(colorStateList);
+        }
+    }
+
+    public void setSupportBackgroundTintMode(PorterDuff.Mode mode) {
+        e2.c cVar = this.f17911b;
+        if (cVar != null) {
+            cVar.m(mode);
+        }
+    }
+
+    public void setSupportButtonTintList(ColorStateList colorStateList) {
+        p pVar = this.f17910a;
+        if (pVar != null) {
+            pVar.f17805a = colorStateList;
+            pVar.f17807c = true;
+            pVar.a();
+        }
+    }
+
+    public void setSupportButtonTintMode(PorterDuff.Mode mode) {
+        p pVar = this.f17910a;
+        if (pVar != null) {
+            pVar.f17806b = mode;
+            pVar.d = true;
+            pVar.a();
+        }
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintList(ColorStateList colorStateList) {
+        w0 w0Var = this.f17912c;
+        w0Var.l(colorStateList);
+        w0Var.b();
+    }
+
+    @Override
+    public void setSupportCompoundDrawablesTintMode(PorterDuff.Mode mode) {
+        w0 w0Var = this.f17912c;
+        w0Var.m(mode);
+        w0Var.b();
+    }
+
+    @Override
+    public void setButtonDrawable(int i10) {
+        setButtonDrawable(kc.b(getContext(), i10));
     }
 }

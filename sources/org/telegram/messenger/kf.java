@@ -1,26 +1,41 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.TLRPC;
+import java.util.ArrayList;
 public final class kf implements Runnable {
-    public final int f18848a;
-    public final MessagesStorage f18849b;
-    public final TLRPC.TL_chatFull f18850c;
+    public final int f20522a;
+    public final MessagesStorage f20523b;
+    public final int f20524c;
+    public final ArrayList d;
 
-    public kf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
-        this.f18848a = i10;
-        this.f18849b = messagesStorage;
-        this.f18850c = tL_chatFull;
+    public kf(int i10, ArrayList arrayList, MessagesStorage messagesStorage) {
+        this.f20522a = 2;
+        this.f20523b = messagesStorage;
+        this.d = arrayList;
+        this.f20524c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18848a) {
+        switch (this.f20522a) {
             case 0:
-                this.f18849b.lambda$updateChatParticipants$121(this.f18850c);
+                this.f20523b.lambda$getDownloadQueue$188(this.f20524c, this.d);
+                return;
+            case 1:
+                this.f20523b.lambda$putWallpapers$81(this.f20524c, this.d);
+                return;
+            case 2:
+                this.f20523b.lambda$unpinAllDialogsExceptNew$250(this.d, this.f20524c);
                 return;
             default:
-                this.f18849b.lambda$updateChatInfo$139(this.f18850c);
+                this.f20523b.lambda$putWidgetDialogs$169(this.f20524c, this.d);
                 return;
         }
+    }
+
+    public kf(MessagesStorage messagesStorage, int i10, ArrayList arrayList, int i11) {
+        this.f20522a = i11;
+        this.f20523b = messagesStorage;
+        this.f20524c = i10;
+        this.d = arrayList;
     }
 }

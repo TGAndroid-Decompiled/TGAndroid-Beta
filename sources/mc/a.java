@@ -1,51 +1,65 @@
 package mc;
 
-import com.googlecode.mp4parser.c;
+import java.io.FilterInputStream;
 import java.io.IOException;
-import java.nio.ByteBuffer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import nc.k;
-public abstract class a extends c {
-    public static final Logger f16909f;
-    public static final te.b h;
-    public ByteBuffer e;
+import java.io.InputStream;
+public final class a extends FilterInputStream {
+    public int f18410a;
+    public int f18411b;
 
-    static {
-        te.a aVar = new te.a(a.class, "AbstractDescriptorBox.java");
-        aVar.e(aVar.d("getData", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "java.nio.ByteBuffer"));
-        aVar.e(aVar.d("getDescriptor", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.BaseDescriptor"));
-        aVar.e(aVar.d("getDescriptorAsString", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "", "", "java.lang.String"));
-        aVar.e(aVar.d("setDescriptor", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "com.googlecode.mp4parser.boxes.mp4.objectdescriptors.BaseDescriptor", "descriptor", "void"));
-        h = aVar.e(aVar.d("setData", "com.googlecode.mp4parser.boxes.mp4.AbstractDescriptorBox", "java.nio.ByteBuffer", "data", "void"));
-        f16909f = Logger.getLogger(a.class.getName());
+    public a(InputStream inputStream) {
+        super(inputStream);
+        this.f18410a = -1;
+        this.f18411b = -1;
     }
 
     @Override
-    public final void _parseDetails(ByteBuffer byteBuffer) {
-        Logger logger = f16909f;
-        f(byteBuffer);
-        this.e = byteBuffer.slice();
-        byteBuffer.position(byteBuffer.remaining() + byteBuffer.position());
-        try {
-            this.e.rewind();
-            k.a(-1, this.e);
-        } catch (IOException e) {
-            logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e);
-        } catch (IndexOutOfBoundsException e7) {
-            logger.log(Level.WARNING, "Error parsing ObjectDescriptor", (Throwable) e7);
+    public final boolean markSupported() {
+        return false;
+    }
+
+    @Override
+    public final int read() {
+        int read = super.read();
+        if (read == 3 && this.f18410a == 0 && this.f18411b == 0) {
+            this.f18410a = -1;
+            this.f18411b = -1;
+            read = super.read();
         }
+        this.f18410a = this.f18411b;
+        this.f18411b = read;
+        return read;
     }
 
     @Override
-    public final void getContent(ByteBuffer byteBuffer) {
-        i(byteBuffer);
-        this.e.rewind();
-        byteBuffer.put(this.e);
-    }
-
-    @Override
-    public final long getContentSize() {
-        return this.e.limit() + 4;
+    public final int read(byte[] bArr, int i10, int i11) {
+        bArr.getClass();
+        if (i10 < 0 || i11 < 0 || i11 > bArr.length - i10) {
+            throw new IndexOutOfBoundsException();
+        }
+        if (i11 == 0) {
+            return 0;
+        }
+        int read = read();
+        if (read == -1) {
+            return -1;
+        }
+        bArr[i10] = (byte) read;
+        int i12 = 1;
+        while (true) {
+            if (i12 < i11) {
+                try {
+                    int read2 = read();
+                    if (read2 == -1) {
+                        break;
+                    }
+                    bArr[i10 + i12] = (byte) read2;
+                    i12++;
+                } catch (IOException unused) {
+                }
+            }
+            return i12;
+        }
+        return i12;
     }
 }

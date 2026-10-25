@@ -1,30 +1,109 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.FrameLayout;
+import java.util.ArrayList;
 import org.telegram.messenger.CacheByChatsController;
-public final class c6 extends pg.a {
-    public final CacheByChatsController.KeepMediaException f36228c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public class c6 extends org.telegram.ui.ActionBar.r2 {
+    public a6 f38270a;
+    public org.telegram.ui.Components.mm0 f38271b;
+    public final ArrayList f38272c;
+    public ArrayList d;
+    public int e;
 
-    public c6(int i10, CacheByChatsController.KeepMediaException keepMediaException) {
-        super(i10, false);
-        this.f36228c = keepMediaException;
+    public c6(Bundle bundle) {
+        super(bundle);
+        this.f38272c = new ArrayList();
+        this.d = new ArrayList();
     }
 
-    public final boolean equals(Object obj) {
-        CacheByChatsController.KeepMediaException keepMediaException;
-        if (this == obj) {
-            return true;
+    public final void V() {
+        ArrayList arrayList;
+        boolean z10 = this.isPaused;
+        ArrayList arrayList2 = this.f38272c;
+        if (!z10 && this.f38270a != null) {
+            arrayList = new ArrayList();
+            arrayList.addAll(arrayList2);
+        } else {
+            arrayList = null;
         }
-        if (obj == null || c6.class != obj.getClass()) {
-            return false;
+        arrayList2.clear();
+        arrayList2.add(new b6(1, null));
+        ArrayList arrayList3 = this.d;
+        int size = arrayList3.size();
+        boolean z11 = false;
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList3.get(i10);
+            i10++;
+            arrayList2.add(new b6(2, (CacheByChatsController.KeepMediaException) obj));
+            z11 = true;
         }
-        c6 c6Var = (c6) obj;
-        if (this.f44712a != c6Var.f44712a) {
-            return false;
+        if (z11) {
+            arrayList2.add(new b6(3, null));
+            arrayList2.add(new b6(4, null));
         }
-        CacheByChatsController.KeepMediaException keepMediaException2 = this.f36228c;
-        if (keepMediaException2 == null || (keepMediaException = c6Var.f36228c) == null || keepMediaException2.dialogId == keepMediaException.dialogId) {
-            return true;
+        arrayList2.add(new b6(3, null));
+        a6 a6Var = this.f38270a;
+        if (a6Var != null) {
+            if (arrayList != null) {
+                a6Var.E(arrayList, arrayList2);
+            } else {
+                a6Var.l();
+            }
         }
-        return false;
+    }
+
+    @Override
+    public final View createView(Context context) {
+        setHasOwnBackground(true);
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.fragmentView = frameLayout;
+        this.simpleActionBar.setBackButtonDrawable(new org.telegram.ui.ActionBar.j2(false));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new bh.m(this, 24));
+        this.simpleActionBar.setTitle(LocaleController.getString(R.string.NotificationsExceptions));
+        org.telegram.ui.Components.mm0 mm0Var = new org.telegram.ui.Components.mm0(context, null);
+        this.f38271b = mm0Var;
+        mm0Var.u1();
+        this.f38271b.setSectionsDrawBackground(true);
+        s4.l lVar = new s4.l();
+        lVar.C = false;
+        lVar.f47760m = false;
+        this.f38271b.setItemAnimator(lVar);
+        this.f38271b.setLayoutManager(new s4.c0());
+        org.telegram.ui.Components.mm0 mm0Var2 = this.f38271b;
+        a6 a6Var = new a6(this);
+        this.f38270a = a6Var;
+        mm0Var2.setAdapter(a6Var);
+        this.f38271b.setOnItemClickListener(new y0(this, 7));
+        frameLayout.addView(this.f38271b);
+        V();
+        return this.fragmentView;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.mm0 getListViewForSimpleGlass() {
+        return this.f38271b;
+    }
+
+    @Override
+    public final boolean isSupportEdgeToEdge() {
+        return true;
+    }
+
+    @Override
+    public final boolean onFragmentCreate() {
+        this.e = getArguments().getInt("type");
+        V();
+        return super.onFragmentCreate();
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

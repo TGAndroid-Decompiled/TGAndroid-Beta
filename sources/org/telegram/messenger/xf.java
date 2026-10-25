@@ -1,32 +1,25 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.CountDownLatch;
+import org.telegram.tgnet.TLRPC;
 public final class xf implements Runnable {
-    public final int f20148a;
-    public final MessagesStorage f20149b;
-    public final long f20150c;
-    public final boolean[] d;
-    public final CountDownLatch e;
+    public final int f21843a;
+    public final MessagesStorage f21844b;
+    public final TLRPC.TL_chatFull f21845c;
 
-    public xf(int i10, long j10, CountDownLatch countDownLatch, MessagesStorage messagesStorage, boolean[] zArr) {
-        this.f20148a = i10;
-        this.f20149b = messagesStorage;
-        this.f20150c = j10;
-        this.d = zArr;
-        this.e = countDownLatch;
+    public xf(MessagesStorage messagesStorage, TLRPC.TL_chatFull tL_chatFull, int i10) {
+        this.f21843a = i10;
+        this.f21844b = messagesStorage;
+        this.f21845c = tL_chatFull;
     }
 
     @Override
     public final void run() {
-        switch (this.f20148a) {
+        switch (this.f21843a) {
             case 0:
-                this.f20149b.lambda$checkMessageByRandomId$153(this.f20150c, this.d, this.e);
-                return;
-            case 1:
-                this.f20149b.lambda$isMigratedChat$141(this.f20150c, this.d, this.e);
+                this.f21844b.lambda$updateChatInfo$142(this.f21845c);
                 return;
             default:
-                this.f20149b.lambda$hasInviteMeMessage$143(this.f20150c, this.d, this.e);
+                this.f21844b.lambda$updateChatParticipants$124(this.f21845c);
                 return;
         }
     }

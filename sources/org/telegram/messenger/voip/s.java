@@ -1,25 +1,50 @@
 package org.telegram.messenger.voip;
 
-import org.telegram.messenger.Utilities;
-public final class s implements Utilities.Callback2 {
-    public final int f19987a;
-    public final VoIPService f19988b;
+import android.content.SharedPreferences;
+import org.telegram.tgnet.RequestDelegate;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class s implements RequestDelegate {
+    public final int f21689a;
+    public final Object f21690b;
 
-    public s(VoIPService voIPService, int i10) {
-        this.f19987a = i10;
-        this.f19988b = voIPService;
+    public s(Object obj, int i10) {
+        this.f21689a = i10;
+        this.f21690b = obj;
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        Boolean bool = (Boolean) obj;
-        Boolean bool2 = (Boolean) obj2;
-        switch (this.f19987a) {
+    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
+        switch (this.f21689a) {
             case 0:
-                this.f19988b.lambda$switchToSpeaker$91(bool, bool2);
+                ((VoIPService) this.f21690b).lambda$hangUp$4(tLObject, tL_error);
+                return;
+            case 1:
+                ((VoIPService) this.f21690b).lambda$hangUp$5(tLObject, tL_error);
+                return;
+            case 2:
+                ((VoIPService) this.f21690b).lambda$startOutgoingCall$7(tLObject, tL_error);
+                return;
+            case 3:
+                ((VoIPService) this.f21690b).lambda$startGroupCheckShortpoll$62(tLObject, tL_error);
+                return;
+            case 4:
+                ((VoIPService) this.f21690b).lambda$declineIncomingCall$105(tLObject, tL_error);
+                return;
+            case 5:
+                ((VoIPService) this.f21690b).lambda$processAcceptedCall$20(tLObject, tL_error);
+                return;
+            case 6:
+                ((VoIPService) this.f21690b).lambda$startGroupCall$23(tLObject, tL_error);
+                return;
+            case 7:
+                ((VoIPService) this.f21690b).lambda$stopScreenCapture$15(tLObject, tL_error);
+                return;
+            case 8:
+                ((VoIPService) this.f21690b).lambda$acceptIncomingCall$102(tLObject, tL_error);
                 return;
             default:
-                this.f19988b.lambda$toggleSpeakerphoneOrShowRouteSheet$95(bool, bool2);
+                VoIPService.lambda$updateServerConfig$107((SharedPreferences) this.f21690b, tLObject, tL_error);
                 return;
         }
     }

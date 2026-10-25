@@ -1,13 +1,26 @@
 package org.telegram.ui;
+public final class g00 implements Runnable {
+    public final int f39510a;
+    public final h00 f39511b;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class g00 extends FrameLayout {
-    public org.telegram.ui.Components.ak0 f37415a;
+    public g00(h00 h00Var, int i10) {
+        this.f39510a = i10;
+        this.f39511b = h00Var;
+    }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(156.0f), 1073741824));
+    public final void run() {
+        switch (this.f39510a) {
+            case 0:
+                this.f39511b.d();
+                return;
+            case 1:
+                this.f39511b.a();
+                return;
+            default:
+                h00 h00Var = this.f39511b;
+                h00Var.b(h00Var.f39819y);
+                return;
+        }
     }
 }

@@ -1,91 +1,91 @@
 package m4;
 
+import a8.qd;
 import android.os.Bundle;
-import v7.q8;
 public final class i0 implements o0 {
-    public final int f16624a;
-    public final p0 f16625b;
+    public final int f18075a;
+    public final p0 f18076b;
 
     public i0(p0 p0Var, int i10) {
-        this.f16624a = i10;
-        this.f16625b = p0Var;
+        this.f18075a = i10;
+        this.f18076b = p0Var;
     }
 
     @Override
-    public final void f(v vVar) {
-        int i10 = this.f16624a;
-        p0 p0Var = this.f16625b;
+    public final void i(w wVar) {
+        int i10 = this.f18075a;
+        p0 p0Var = this.f18076b;
         switch (i10) {
             case 0:
-                p0Var.f16724g.n(vVar);
+                p0Var.f18181g.n(wVar);
                 return;
             case 1:
-                f0 f0Var = p0Var.f16724g;
-                if (f0Var.f16597t.S0() != null) {
-                    pb.a aVar = f0Var.e;
-                    f0Var.s(vVar);
+                f0 f0Var = p0Var.f18181g;
+                if (f0Var.f18057t.S0() != null) {
+                    qb.a aVar = f0Var.e;
+                    f0Var.s(wVar);
                     aVar.getClass();
-                    q8.b(new s1(-6));
+                    qd.b(new t1(-6));
                     return;
                 }
                 return;
             case 2:
-                p0Var.f16724g.f16597t.V();
+                p0Var.f18181g.f18057t.V();
                 return;
             case 3:
-                p0Var.f16724g.f16597t.E();
+                p0Var.f18181g.f18057t.E();
                 return;
             case 4:
-                p0Var.f16724g.f16597t.I0();
+                p0Var.f18181g.f18057t.I0();
                 return;
             case 5:
-                p0Var.f16724g.f16597t.J0();
+                p0Var.f18181g.f18057t.J0();
                 return;
             case 6:
-                p0Var.f16724g.g(vVar, true);
+                p0Var.f18181g.g(wVar, true);
                 return;
             case 7:
-                p0Var.f16724g.f16597t.b();
+                p0Var.f18181g.f18057t.a();
                 return;
             case 8:
-                p0Var.f16724g.f16597t.stop();
+                p0Var.f18181g.f18057t.stop();
                 return;
             case 9:
-                f0 f0Var2 = p0Var.f16724g;
-                m1 m1Var = f0Var2.f16597t;
-                if (e2.m0.c0(m1Var, f0Var2.f16593p)) {
-                    e2.m0.J(m1Var);
+                f0 f0Var2 = p0Var.f18181g;
+                n1 n1Var = f0Var2.f18057t;
+                if (e2.n0.c0(n1Var, f0Var2.f18053p)) {
+                    e2.n0.J(n1Var);
                     return;
-                } else if (m1Var != null && m1Var.o0(1)) {
-                    m1Var.e();
+                } else if (n1Var != null && n1Var.o0(1)) {
+                    n1Var.e();
                     return;
                 } else {
                     return;
                 }
             case 10:
-                p0Var.f16724g.f16597t.H0();
+                p0Var.f18181g.f18057t.H0();
                 return;
             case 11:
-                p0Var.f16724g.f16597t.f0();
+                p0Var.f18181g.f18057t.f0();
                 return;
             default:
-                m1 m1Var2 = p0Var.f16724g.f16597t;
-                String str = e2.m0.f8259a;
-                if (m1Var2 != null && m1Var2.o0(1)) {
-                    m1Var2.e();
+                n1 n1Var2 = p0Var.f18181g.f18057t;
+                String str = e2.n0.f9692a;
+                if (n1Var2 != null && n1Var2.o0(1)) {
+                    n1Var2.e();
                     return;
                 }
                 return;
         }
     }
 
-    public i0(p0 p0Var, b2.g1 g1Var) {
-        this.f16624a = 1;
-        this.f16625b = p0Var;
+    public i0(p0 p0Var, b2.h1 h1Var) {
+        this.f18075a = 1;
+        this.f18076b = p0Var;
     }
 
-    public i0(p0 p0Var, o1 o1Var, Bundle bundle) {
-        this.f16624a = 0;
-        this.f16625b = p0Var;
+    public i0(p0 p0Var, p1 p1Var, Bundle bundle) {
+        this.f18075a = 0;
+        this.f18076b = p0Var;
     }
 }

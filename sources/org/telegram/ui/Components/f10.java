@@ -1,84 +1,23 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.view.View;
-import android.view.accessibility.AccessibilityNodeInfo;
-import android.widget.FrameLayout;
-import java.util.WeakHashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.LocaleController;
-public final class f10 extends FrameLayout {
-    public final o6 f26164a;
-    public final o6 f26165b;
+import org.telegram.messenger.Utilities;
+public final class f10 implements Utilities.Callback {
+    public final int f28033a = 1;
+    public final org.telegram.ui.ActionBar.j5 f28034b;
+    public final oy f28035c;
 
-    public f10(Context context) {
-        super(context);
-        int i10;
-        int i11;
-        int i12;
-        o6 o6Var = new o6(context, true, true, false);
-        this.f26164a = o6Var;
-        o6Var.setTextSize(AndroidUtilities.dp(15.0f));
-        o6Var.setTypeface(AndroidUtilities.bold());
-        int i13 = org.telegram.ui.ActionBar.k6.L6;
-        org.telegram.ui.ActionBar.r6.a0(o6Var, i13, null);
-        if (LocaleController.isRTL) {
-            i10 = 5;
-        } else {
-            i10 = 3;
-        }
-        o6Var.setGravity(i10);
-        if (LocaleController.isRTL) {
-            i11 = 5;
-        } else {
-            i11 = 3;
-        }
-        addView(o6Var, w7.z5.d(-1, 20.0f, i11 | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        o6 o6Var2 = new o6(context, true, true, true);
-        this.f26165b = o6Var2;
-        o6Var2.b(0.45f, 250L, zr.h);
-        o6Var2.setTextSize(AndroidUtilities.dp(15.0f));
-        org.telegram.ui.ActionBar.r6.a0(o6Var2, i13, null);
-        if (LocaleController.isRTL) {
-            i12 = 3;
-        } else {
-            i12 = 5;
-        }
-        o6Var2.setGravity(i12);
-        addView(o6Var2, w7.z5.d(-2, 20.0f, (LocaleController.isRTL ? 3 : 5) | 80, 21.0f, 15.0f, 21.0f, 2.0f));
-        WeakHashMap weakHashMap = r0.i0.f45241a;
-        new r0.w(2131296684, Boolean.class, 0, 28, 2).d(this, Boolean.TRUE);
-    }
-
-    public final void a(String str, Runnable runnable) {
-        o6 o6Var = this.f26165b;
-        o6Var.c(str, !LocaleController.isRTL, true);
-        o6Var.setOnClickListener(new t6(1, runnable));
-    }
-
-    public final void b(String str, boolean z10) {
-        boolean z11;
-        o6 o6Var = this.f26164a;
-        if (z10) {
-            o6Var.a();
-        }
-        if (z10 && !LocaleController.isRTL) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        o6Var.c(str, z11, true);
+    public f10(org.telegram.ui.ActionBar.j5 j5Var, oy oyVar) {
+        this.f28034b = j5Var;
+        this.f28035c = oyVar;
     }
 
     @Override
-    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
-        super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
-        accessibilityNodeInfo.setClassName("android.widget.TextView");
-        accessibilityNodeInfo.setText(this.f26164a.getText());
+    public final void run(java.lang.Object r8) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.f10.run(java.lang.Object):void");
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public f10(oy oyVar, org.telegram.ui.ActionBar.j5 j5Var) {
+        this.f28035c = oyVar;
+        this.f28034b = j5Var;
     }
 }

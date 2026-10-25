@@ -1,25 +1,25 @@
 package org.telegram.messenger;
 
-import org.telegram.tgnet.tl.TL_account;
+import org.telegram.tgnet.tl.TL_update;
 public final class kb implements Runnable {
-    public final int f18832a;
-    public final MessagesController f18833b;
-    public final TL_account.TL_webBrowserSettings f18834c;
+    public final int f20511a;
+    public final MessagesController f20512b;
+    public final TL_update.TL_updatePeerBlocked f20513c;
 
-    public kb(MessagesController messagesController, TL_account.TL_webBrowserSettings tL_webBrowserSettings, int i10) {
-        this.f18832a = i10;
-        this.f18833b = messagesController;
-        this.f18834c = tL_webBrowserSettings;
+    public kb(MessagesController messagesController, TL_update.TL_updatePeerBlocked tL_updatePeerBlocked, int i10) {
+        this.f20511a = i10;
+        this.f20512b = messagesController;
+        this.f20513c = tL_updatePeerBlocked;
     }
 
     @Override
     public final void run() {
-        switch (this.f18832a) {
+        switch (this.f20511a) {
             case 0:
-                this.f18833b.lambda$loadWebBrowserConfig$513(this.f18834c);
+                this.f20512b.lambda$processUpdateArray$395(this.f20513c);
                 return;
             default:
-                this.f18833b.lambda$loadWebBrowserConfig$511(this.f18834c);
+                this.f20512b.lambda$processUpdateArray$396(this.f20513c);
                 return;
         }
     }

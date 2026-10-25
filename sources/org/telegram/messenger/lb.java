@@ -1,38 +1,36 @@
 package org.telegram.messenger;
 public final class lb implements Runnable {
-    public final int f18934a;
-    public final MessagesController f18935b;
-    public final long f18936c;
-    public final int d;
-    public final boolean e;
-    public final int f18937f;
-    public final int h;
+    public final int f20581a;
+    public final MessagesController f20582b;
+    public final long f20583c;
+    public final Runnable d;
 
-    public lb(MessagesController messagesController, long j10, int i10, boolean z10, int i11, int i12, int i13) {
-        this.f18934a = i13;
-        this.f18935b = messagesController;
-        this.f18936c = j10;
-        this.d = i10;
-        this.e = z10;
-        this.f18937f = i11;
-        this.h = i12;
+    public lb(long j10, Runnable runnable, MessagesController messagesController) {
+        this.f20581a = 0;
+        this.f20582b = messagesController;
+        this.d = runnable;
+        this.f20583c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18934a) {
+        switch (this.f20581a) {
             case 0:
-                int i10 = this.f18937f;
-                int i11 = this.h;
-                int i12 = this.d;
-                this.f18935b.lambda$markDialogAsRead$242(this.f18936c, i12, this.e, i10, i11);
+                this.f20582b.lambda$setCustomChatReactions$472(this.d, this.f20583c);
+                return;
+            case 1:
+                this.f20582b.lambda$setUserAdminRole$104(this.f20583c, this.d);
                 return;
             default:
-                int i13 = this.f18937f;
-                int i14 = this.h;
-                int i15 = this.d;
-                this.f18935b.lambda$markDialogAsRead$243(this.f18936c, i15, this.e, i13, i14);
+                this.f20582b.lambda$setUserAdminRole$98(this.f20583c, this.d);
                 return;
         }
+    }
+
+    public lb(MessagesController messagesController, long j10, Runnable runnable, int i10) {
+        this.f20581a = i10;
+        this.f20582b = messagesController;
+        this.f20583c = j10;
+        this.d = runnable;
     }
 }

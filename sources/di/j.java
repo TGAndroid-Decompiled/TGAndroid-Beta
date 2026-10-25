@@ -1,99 +1,155 @@
 package di;
 
-import android.graphics.Rect;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.MotionEvent;
 import android.view.View;
 import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.ui.Cells.s7;
-import s4.m0;
-import s4.y0;
-public final class j extends m0 {
-    public final int f8047a;
-    public final r f8048b;
+import java.util.ArrayList;
+import java.util.Collections;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.qw;
+public final class j extends mm0 {
+    public final int f8690f3;
+    public final qw f8691g3;
 
-    public j(r rVar, int i10) {
-        this.f8047a = i10;
-        this.f8048b = rVar;
+    public j(qw qwVar, Context context, int i10) {
+        super(context, null);
+        this.f8690f3 = i10;
+        this.f8691g3 = qwVar;
     }
 
     @Override
-    public final void a(Rect rect, View view, RecyclerView recyclerView, y0 y0Var) {
+    public void dispatchDraw(Canvas canvas) {
+        Canvas canvas2;
         boolean z10;
-        boolean z11;
-        boolean z12;
-        boolean z13;
-        switch (this.f8047a) {
-            case 0:
-                if (view instanceof s7) {
-                    s7 s7Var = (s7) view;
-                    r rVar = this.f8048b;
-                    rVar.f8064f.getClass();
-                    int R = RecyclerView.R(s7Var);
-                    int i10 = rVar.h.J;
-                    boolean z14 = true;
-                    if (R < i10) {
+        switch (this.f8690f3) {
+            case 1:
+                qw qwVar = this.f8691g3;
+                ArrayList arrayList = qwVar.P;
+                arrayList.clear();
+                int i10 = 0;
+                for (int i11 = 0; i11 < getChildCount(); i11++) {
+                    q qVar = (q) getChildAt(i11);
+                    int R = RecyclerView.R(qVar);
+                    qVar.f8937b = R;
+                    boolean z11 = true;
+                    qVar.f8935a = true;
+                    if (R == 0) {
                         z10 = true;
                     } else {
                         z10 = false;
                     }
-                    s7Var.f23261a0 = z10;
-                    int i11 = R % i10;
-                    if (i11 == 0) {
-                        z11 = true;
-                    } else {
+                    qVar.d = z10;
+                    if (R != qwVar.f9103y.size() - 1) {
                         z11 = false;
                     }
-                    s7Var.V = z11;
-                    if (i11 != i10 - 1) {
-                        z14 = false;
-                    }
-                    s7Var.W = z14;
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
-                    return;
+                    qVar.f8939c = z11;
+                    arrayList.add(qVar);
                 }
-                rect.left = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                rect.right = 0;
+                Collections.sort(arrayList, qwVar.f9100w0);
+                while (i10 < arrayList.size()) {
+                    q qVar2 = (q) arrayList.get(i10);
+                    int save = canvas.save();
+                    canvas.translate(qVar2.getX(), qVar2.getY());
+                    if (qVar2.getAlpha() != 1.0f) {
+                        canvas2 = canvas;
+                        canvas2.saveLayerAlpha(-AndroidUtilities.dp(4.0f), -AndroidUtilities.dp(4.0f), AndroidUtilities.dp(50.0f), AndroidUtilities.dp(50.0f), (int) (qVar2.getAlpha() * 255.0f), 31);
+                    } else {
+                        canvas2 = canvas;
+                    }
+                    canvas2.scale(qVar2.getScaleX(), qVar2.getScaleY(), AndroidUtilities.dp(14.0f), qVar2.getCy());
+                    qVar2.draw(canvas2);
+                    canvas2.restoreToCount(save);
+                    i10++;
+                    canvas = canvas2;
+                }
                 return;
             default:
-                if (view instanceof s7) {
-                    s7 s7Var2 = (s7) view;
-                    r rVar2 = this.f8048b;
-                    rVar2.f8066r.getClass();
-                    int R2 = RecyclerView.R(s7Var2);
-                    int i12 = rVar2.f8067s.J;
-                    boolean z15 = true;
-                    if (R2 < i12) {
-                        z12 = true;
-                    } else {
-                        z12 = false;
+                super.dispatchDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        switch (this.f8690f3) {
+            case 0:
+                if (motionEvent.getAction() == 0) {
+                    qw qwVar = this.f8691g3;
+                    if (qwVar.f9076c0 > 0.2f || qwVar.getAlpha() == 0.0f) {
+                        return false;
                     }
-                    s7Var2.f23261a0 = z12;
-                    int i13 = R2 % i12;
-                    if (i13 == 0) {
-                        z13 = true;
-                    } else {
-                        z13 = false;
-                    }
-                    s7Var2.V = z13;
-                    if (i13 != i12 - 1) {
-                        z15 = false;
-                    }
-                    s7Var2.W = z15;
-                    rect.left = 0;
-                    rect.top = 0;
-                    rect.bottom = 0;
-                    rect.right = 0;
+                }
+                return super.dispatchTouchEvent(motionEvent);
+            default:
+                return false;
+        }
+    }
+
+    @Override
+    public boolean drawChild(Canvas canvas, View view, long j10) {
+        switch (this.f8690f3) {
+            case 0:
+                if (this.f8691g3.P.contains(view)) {
+                    return true;
+                }
+                return super.drawChild(canvas, view, j10);
+            default:
+                return super.drawChild(canvas, view, j10);
+        }
+    }
+
+    @Override
+    public void l0(int i10) {
+        switch (this.f8690f3) {
+            case 1:
+                fi.v3 v3Var = this.f8691g3.J;
+                if (v3Var != null) {
+                    v3Var.e(true);
                     return;
                 }
-                rect.left = 0;
-                rect.top = 0;
-                rect.bottom = 0;
-                rect.right = 0;
                 return;
+            default:
+                return;
+        }
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent motionEvent) {
+        switch (this.f8690f3) {
+            case 1:
+                return false;
+            default:
+                return super.onInterceptTouchEvent(motionEvent);
+        }
+    }
+
+    @Override
+    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
+        switch (this.f8690f3) {
+            case 0:
+                ArrayList arrayList = this.f8691g3.f9074b0;
+                super.onLayout(z10, i10, i11, i12, i13);
+                for (int i14 = 0; i14 < arrayList.size(); i14++) {
+                    ((Runnable) arrayList.get(i14)).run();
+                }
+                arrayList.clear();
+                return;
+            default:
+                super.onLayout(z10, i10, i11, i12, i13);
+                return;
+        }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent motionEvent) {
+        switch (this.f8690f3) {
+            case 1:
+                return false;
+            default:
+                return super.onTouchEvent(motionEvent);
         }
     }
 }

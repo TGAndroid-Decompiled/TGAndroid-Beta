@@ -56,13 +56,13 @@ public class NotchInfoUtils {
             }
             boolean endsWith = trim.endsWith("@dp");
             if (endsWith) {
-                trim = com.google.android.gms.internal.play_billing.k3.i(3, 0, trim);
+                trim = c3.h0.l(3, 0, trim);
             }
             if (trim.contains("@bottom")) {
                 trim = trim.split("@bottom", 2)[0].trim();
             }
             try {
-                i0.d[] c10 = v7.x7.c(trim);
+                i0.d[] c10 = a8.rc.c(trim);
                 Path path = new Path();
                 i0.d.b(c10, path);
                 Matrix matrix = new Matrix();

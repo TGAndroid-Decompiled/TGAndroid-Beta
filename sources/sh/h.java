@@ -1,46 +1,111 @@
 package sh;
 
-import android.graphics.Canvas;
-import org.telegram.messenger.DocumentObject;
-import org.telegram.messenger.ImageLocation;
-import org.telegram.messenger.ImageReceiver;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SvgHelper;
+import android.text.TextUtils;
+import android.util.SparseArray;
+import java.util.ArrayList;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k6;
-public final class h extends rh.e {
-    public final TLRPC.Document f46985b;
-    public final Object f46986c;
+public final class h {
+    public final f f48647a;
+    public final TLRPC.TL_messageMediaPoll f48648b;
+    public final TLRPC.TL_inputMediaPoll f48649c;
+    public final long d;
+    public final String e;
+    public final ArrayList f48650f;
 
-    public h(TLRPC.Document document, Object obj) {
-        boolean z10;
-        String str;
-        this.f46985b = document;
-        this.f46986c = obj;
-        MessageObject.isAnimatedEmoji(document);
-        ImageReceiver imageReceiver = this.f46179a;
-        if (!MessageObject.isStickerDocument(document) && !MessageObject.isVideoSticker(document)) {
-            z10 = false;
-        } else {
-            z10 = true;
+    public h(f fVar, TLRPC.TL_messageMediaPoll tL_messageMediaPoll, long j10, String str, ArrayList arrayList, ArrayList arrayList2) {
+        this.f48647a = fVar;
+        this.d = j10;
+        this.e = str;
+        this.f48650f = arrayList;
+        TLRPC.TL_inputMediaPoll tL_inputMediaPoll = new TLRPC.TL_inputMediaPoll();
+        TLRPC.TL_poll tL_poll = new TLRPC.TL_poll();
+        tL_inputMediaPoll.poll = tL_poll;
+        TLRPC.Poll poll = tL_messageMediaPoll.poll;
+        tL_poll.f22053id = poll.f22053id;
+        tL_poll.flags = poll.flags;
+        tL_poll.closed = poll.closed;
+        tL_poll.public_voters = poll.public_voters;
+        tL_poll.multiple_choice = poll.multiple_choice;
+        tL_poll.open_answers = poll.open_answers;
+        tL_poll.revoting_disabled = poll.revoting_disabled;
+        tL_poll.shuffle_answers = poll.shuffle_answers;
+        tL_poll.subscribers_only = poll.subscribers_only;
+        tL_poll.countries_iso2 = poll.countries_iso2;
+        tL_poll.hide_results_until_close = poll.hide_results_until_close;
+        tL_poll.creator = poll.creator;
+        tL_poll.quiz = poll.quiz;
+        tL_poll.answers = new ArrayList<>(tL_messageMediaPoll.poll.answers);
+        ArrayList<TLRPC.PollAnswer> arrayList3 = tL_messageMediaPoll.poll.answers;
+        int size = arrayList3.size();
+        int i10 = 0;
+        while (i10 < size) {
+            TLRPC.PollAnswer pollAnswer = arrayList3.get(i10);
+            i10++;
+            new TLRPC.TL_inputPollAnswer().text = pollAnswer.text;
         }
-        MessageObject.isAnimatedStickerDocument(document, true);
-        SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(document, k6.f21334lc, 1.0f);
-        boolean z11 = z10;
-        ImageLocation forDocument = ImageLocation.getForDocument(document);
-        long j10 = document.size;
-        if (z11) {
-            str = "webp";
-        } else {
-            str = null;
+        TLRPC.Poll poll2 = tL_inputMediaPoll.poll;
+        TLRPC.Poll poll3 = tL_messageMediaPoll.poll;
+        poll2.question = poll3.question;
+        poll2.close_period = poll3.close_period;
+        poll2.close_date = poll3.close_date;
+        poll2.hash = poll3.hash;
+        TLRPC.PollResults pollResults = tL_messageMediaPoll.results;
+        if (pollResults != null && !TextUtils.isEmpty(pollResults.solution)) {
+            TLRPC.PollResults pollResults2 = tL_messageMediaPoll.results;
+            tL_inputMediaPoll.solution = pollResults2.solution;
+            tL_inputMediaPoll.solution_entities = pollResults2.solution_entities;
+            tL_inputMediaPoll.flags |= 2;
         }
-        imageReceiver.setImage(forDocument, "38_38", svgThumb, j10, str, obj, 0);
-    }
-
-    @Override
-    public final void c(Canvas canvas, int i10, int i11) {
-        ImageReceiver imageReceiver = this.f46179a;
-        imageReceiver.setImageCoords(0.0f, 0.0f, i10, i11);
-        imageReceiver.draw(canvas);
+        if (arrayList2 != null && !arrayList2.isEmpty()) {
+            tL_inputMediaPoll.correct_answers = new ArrayList<>(arrayList2);
+            tL_inputMediaPoll.flags |= 1;
+        }
+        if (fVar != null) {
+            SparseArray sparseArray = fVar.f48629a;
+            int size2 = sparseArray.size();
+            for (int i11 = 0; i11 < size2; i11++) {
+                int keyAt = sparseArray.keyAt(i11);
+                e eVar = (e) sparseArray.valueAt(i11);
+                if (eVar instanceof th.e) {
+                    TLRPC.TL_inputMediaWebPage tL_inputMediaWebPage = new TLRPC.TL_inputMediaWebPage();
+                    tL_inputMediaWebPage.url = ((th.e) eVar).f49154b;
+                    tL_inputMediaWebPage.optional = true;
+                    f.k(tL_inputMediaPoll, keyAt, tL_inputMediaWebPage);
+                } else if (eVar instanceof th.f) {
+                    f.k(tL_inputMediaPoll, keyAt, bg.d.h(((th.f) eVar).f49160b));
+                } else if (eVar instanceof th.h) {
+                    TLRPC.TL_inputMediaDocument tL_inputMediaDocument = new TLRPC.TL_inputMediaDocument();
+                    TLRPC.TL_inputDocument tL_inputDocument = new TLRPC.TL_inputDocument();
+                    TLRPC.Document document = ((th.h) eVar).f49163b;
+                    tL_inputDocument.f22039id = document.f22033id;
+                    tL_inputDocument.access_hash = document.access_hash;
+                    tL_inputDocument.file_reference = document.file_reference;
+                    tL_inputMediaDocument.f22088id = tL_inputDocument;
+                    f.k(tL_inputMediaPoll, keyAt, tL_inputMediaDocument);
+                }
+            }
+            int size3 = sparseArray.size();
+            for (int i12 = 0; i12 < size3; i12++) {
+                int keyAt2 = sparseArray.keyAt(i12);
+                e eVar2 = (e) sparseArray.valueAt(i12);
+                if (eVar2 instanceof th.e) {
+                    TLRPC.TL_messageMediaWebPage tL_messageMediaWebPage = new TLRPC.TL_messageMediaWebPage();
+                    TLRPC.TL_webPage tL_webPage = new TLRPC.TL_webPage();
+                    tL_messageMediaWebPage.webpage = tL_webPage;
+                    String str2 = ((th.e) eVar2).f49154b;
+                    tL_webPage.display_url = str2;
+                    tL_webPage.url = str2;
+                    f.l(tL_messageMediaPoll, keyAt2, tL_messageMediaWebPage);
+                } else if (eVar2 instanceof th.f) {
+                    f.l(tL_messageMediaPoll, keyAt2, ((th.f) eVar2).f49160b);
+                } else if (eVar2 instanceof th.h) {
+                    TLRPC.TL_messageMediaDocument tL_messageMediaDocument = new TLRPC.TL_messageMediaDocument();
+                    tL_messageMediaDocument.document = ((th.h) eVar2).f49163b;
+                    f.l(tL_messageMediaPoll, keyAt2, tL_messageMediaDocument);
+                }
+            }
+        }
+        this.f48648b = tL_messageMediaPoll;
+        this.f48649c = tL_inputMediaPoll;
     }
 }

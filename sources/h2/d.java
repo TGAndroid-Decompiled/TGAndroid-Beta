@@ -3,26 +3,26 @@ package h2;
 import android.media.MediaCodec;
 import android.os.Build;
 public final class d {
-    public byte[] f11652a;
-    public byte[] f11653b;
-    public int f11654c;
+    public byte[] f12561a;
+    public byte[] f12562b;
+    public int f12563c;
     public int[] d;
     public int[] e;
-    public int f11655f;
-    public int f11656g;
+    public int f12564f;
+    public int f12565g;
     public int h;
-    public final MediaCodec.CryptoInfo f11657i;
-    public final c f11658j;
+    public final MediaCodec.CryptoInfo f12566i;
+    public final c f12567j;
 
     public d() {
         c cVar;
         MediaCodec.CryptoInfo cryptoInfo = new MediaCodec.CryptoInfo();
-        this.f11657i = cryptoInfo;
+        this.f12566i = cryptoInfo;
         if (Build.VERSION.SDK_INT >= 24) {
             cVar = new c(cryptoInfo);
         } else {
             cVar = null;
         }
-        this.f11658j = cVar;
+        this.f12567j = cVar;
     }
 }

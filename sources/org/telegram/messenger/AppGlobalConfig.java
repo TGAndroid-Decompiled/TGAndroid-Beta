@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.concurrent.TimeUnit;
 import org.telegram.tgnet.TLRPC;
 public class AppGlobalConfig {
+    public final ConfigLongSet agentBotIds;
     public final ConfigInt aicomposeToneExamplesNum;
     public final ConfigInt aicomposeTonePromptLengthMax;
     public final ConfigInt aicomposeToneSavedLimitDefault;
@@ -256,6 +257,77 @@ public class AppGlobalConfig {
         }
     }
 
+    public static class ConfigLongSet {
+        private final Internal handler;
+
+        public static class Internal implements ConfigInternal {
+            private final String name;
+            private Set<Long> value;
+
+            @Override
+            public boolean apply(SharedPreferences.Editor editor, TLRPC.JSONValue jSONValue) {
+                if (jSONValue instanceof TLRPC.TL_jsonArray) {
+                    TLRPC.TL_jsonArray tL_jsonArray = (TLRPC.TL_jsonArray) jSONValue;
+                    HashSet hashSet = new HashSet();
+                    int size = tL_jsonArray.value.size();
+                    for (int i10 = 0; i10 < size; i10++) {
+                        TLRPC.JSONValue jSONValue2 = tL_jsonArray.value.get(i10);
+                        if (jSONValue2 instanceof TLRPC.TL_jsonNumber) {
+                            hashSet.add(Long.valueOf((long) ((TLRPC.TL_jsonNumber) jSONValue2).value));
+                        } else if (jSONValue2 instanceof TLRPC.TL_jsonString) {
+                            try {
+                                hashSet.add(Long.valueOf(Long.parseLong(((TLRPC.TL_jsonString) jSONValue2).value)));
+                            } catch (NumberFormatException unused) {
+                            }
+                        }
+                    }
+                    if (!hashSet.equals(this.value)) {
+                        this.value = hashSet;
+                        HashSet hashSet2 = new HashSet();
+                        for (Long l4 : this.value) {
+                            hashSet2.add(Long.toString(l4.longValue()));
+                        }
+                        editor.putStringSet(this.name, hashSet2);
+                        return true;
+                    }
+                }
+                return false;
+            }
+
+            @Override
+            public void load(SharedPreferences sharedPreferences) {
+                Set<String> stringSet = sharedPreferences.getStringSet(this.name, null);
+                HashSet hashSet = new HashSet();
+                if (stringSet != null) {
+                    for (String str : stringSet) {
+                        try {
+                            hashSet.add(Long.valueOf(Long.parseLong(str)));
+                        } catch (NumberFormatException unused) {
+                        }
+                    }
+                }
+                this.value = hashSet;
+            }
+
+            private Internal(String str) {
+                this.value = Collections.EMPTY_SET;
+                this.name = str;
+            }
+        }
+
+        public boolean contains(long j10) {
+            return this.handler.value.contains(Long.valueOf(j10));
+        }
+
+        public Set<Long> get() {
+            return this.handler.value;
+        }
+
+        private ConfigLongSet(String str) {
+            this.handler = new Internal(str);
+        }
+    }
+
     public static class ConfigString {
         private final Internal handler;
 
@@ -440,6 +512,7 @@ public class AppGlobalConfig {
         this.walletTransferMinNanos = ofLong("wallet_transfer_min_nanos", 100000000L);
         this.walletGaslessMinNanos = ofLong("wallet_gasless_min_nanos", 100000000L);
         this.walletCardBgGifts = ofStringSet("wallet_card_bg_gifts", Collections.EMPTY_SET);
+        this.agentBotIds = ofLongSet("agent_bot_ids");
     }
 
     public static AppGlobalConfig getInstance(int i10) {
@@ -468,6 +541,12 @@ public class AppGlobalConfig {
         ConfigLong configLong = new ConfigLong(str, j10);
         this.map.put(str, configLong.handler);
         return configLong;
+    }
+
+    private ConfigLongSet ofLongSet(String str) {
+        ConfigLongSet configLongSet = new ConfigLongSet(str);
+        this.map.put(str, configLongSet.handler);
+        return configLongSet;
     }
 
     private ConfigString ofString(String str, String str2) {

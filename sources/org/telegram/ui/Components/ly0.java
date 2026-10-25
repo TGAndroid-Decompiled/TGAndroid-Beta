@@ -1,55 +1,20 @@
 package org.telegram.ui.Components;
 
-import androidx.recyclerview.widget.RecyclerView;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-public final class ly0 extends s4.x {
-    public int e;
-    public final sy0 f28470f;
+import org.telegram.messenger.MessagesStorage;
+public final class ly0 implements org.telegram.ui.ActionBar.r0, MessagesStorage.StringCallback {
+    public final cz0 f30325a;
 
-    public ly0(sy0 sy0Var) {
-        this.f28470f = sy0Var;
-        this.d = 15;
-        this.e = -1;
+    public ly0(cz0 cz0Var) {
+        this.f30325a = cz0Var;
     }
 
     @Override
-    public final boolean n(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2) {
-        int i10 = b1Var.f46345f;
-        if (i10 != 3 && i10 == b1Var2.f46345f) {
-            sy0 sy0Var = this.f28470f;
-            if (sy0Var.S == null) {
-                return false;
-            }
-            int b10 = b1Var.b();
-            int b11 = b1Var2.b();
-            sy0Var.S.documents.add(b11, sy0Var.S.documents.remove(b10));
-            sy0Var.d.p(b10, b11);
-            this.e = b11;
-            return true;
-        }
-        return false;
+    public void g(int i10) {
+        cz0.F(this.f30325a, i10);
     }
 
     @Override
-    public final void p(s4.b1 b1Var, int i10) {
-        sy0 sy0Var = this.f28470f;
-        if (i10 == 0 && sy0Var.f30641f != null && this.e > 0) {
-            TLRPC.TL_stickers_changeStickerPosition tL_stickers_changeStickerPosition = new TLRPC.TL_stickers_changeStickerPosition();
-            tL_stickers_changeStickerPosition.position = this.e;
-            tL_stickers_changeStickerPosition.sticker = MediaDataController.getInputStickerSetItem(sy0Var.f30641f, "").document;
-            this.e = -1;
-            sy0Var.f30641f = null;
-        } else if (i10 == 2) {
-            sy0Var.f30641f = ((org.telegram.ui.Cells.e8) b1Var.f46342a).getSticker();
-        }
-    }
-
-    @Override
-    public final void q(s4.b1 b1Var) {
-    }
-
-    @Override
-    public final void o(RecyclerView recyclerView, s4.b1 b1Var, s4.b1 b1Var2, int i10, int i11, int i12) {
+    public void run(String str) {
+        new i50(r1.getContext(), r1.f27303o0, null, this.f30325a.resourcesProvider).show();
     }
 }

@@ -1,72 +1,52 @@
 package org.telegram.ui;
 
-import android.animation.ValueAnimator;
-import android.graphics.LinearGradient;
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.PointF;
-import android.graphics.RectF;
-import android.graphics.drawable.NinePatchDrawable;
-import android.text.StaticLayout;
-import org.telegram.messenger.AnimationNotificationsLocker;
+import android.content.Context;
+import android.view.View;
 import org.telegram.messenger.MessageObject;
-public final class da1 implements ph0 {
-    public final sn A;
-    public final LinearGradient B;
-    public final float C;
-    public final AnimationNotificationsLocker D;
-    public final MessageObject.TextLayoutBlock E;
-    public final NinePatchDrawable F;
-    public final gk G;
-    public final org.telegram.ui.Components.u5 H;
-    public float I;
-    public float J;
-    public final float K;
-    public final int L;
-    public final int M;
-    public final org.telegram.ui.ActionBar.g6 N;
-    public final PointF O;
-    public final RectF P;
-    public final RectF Q;
-    public float[] R;
-    public final float S;
-    public float f36552a;
-    public final Paint f36553b;
-    public final boolean f36554c;
-    public final ValueAnimator d;
-    public final float e;
-    public final float f36555f;
-    public final float f36556g;
-    public final int h;
-    public final int f36557i;
-    public final float f36558j;
-    public final MessageObject f36559k;
-    public final float f36560l;
-    public final float f36561m;
-    public final boolean f36562n;
-    public final boolean f36563o;
-    public final StaticLayout f36564p;
-    public final StaticLayout f36565q;
-    public final org.telegram.ui.Cells.t1 f36566r;
-    public final org.telegram.ui.Components.lm0 f36567s;
-    public final org.telegram.ui.Components.qi f36568t;
-    public final Matrix f36569u;
-    public final Paint v;
-    public final int f36570w;
-    public final float f36571x;
-    public final float f36572y;
-    public final float f36573z;
+public final class da1 extends org.telegram.ui.Components.s61 {
+    public static final int f38808b = 0;
+    public org.telegram.ui.Cells.v7 f38809a;
 
-    public da1(org.telegram.ui.Cells.t1 r35, org.telegram.ui.sn r36, org.telegram.ui.Components.lm0 r37, org.telegram.ui.Components.qi r38, org.telegram.ui.ActionBar.g6 r39) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.da1.<init>(org.telegram.ui.Cells.t1, org.telegram.ui.sn, org.telegram.ui.Components.lm0, org.telegram.ui.Components.qi, org.telegram.ui.ActionBar.g6):void");
+    static {
+        org.telegram.ui.Components.s61.setup(new org.telegram.ui.Components.s61());
     }
 
     @Override
-    public final void a(android.graphics.Canvas r57) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.da1.a(android.graphics.Canvas):void");
+    public final void attachedView(org.telegram.ui.Components.mm0 mm0Var, View view, org.telegram.ui.Components.t61 t61Var) {
+        boolean z10;
+        org.telegram.ui.Cells.w7 w7Var = (org.telegram.ui.Cells.w7) view;
+        if (t61Var != null && t61Var.h) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        w7Var.l(z10, false);
     }
 
-    public final int b(int i10) {
-        return org.telegram.ui.ActionBar.k6.w0(i10, this.N);
+    @Override
+    public final void bindView(View view, org.telegram.ui.Components.t61 t61Var, boolean z10, org.telegram.ui.Components.j71 j71Var, org.telegram.ui.Components.r71 r71Var) {
+        org.telegram.ui.Cells.w7 w7Var = (org.telegram.ui.Cells.w7) view;
+        w7Var.k((MessageObject) t61Var.G, t61Var.v, false);
+        w7Var.i(t61Var.e, false);
+        w7Var.l(t61Var.h, false);
+    }
+
+    @Override
+    public final View createView(Context context, org.telegram.ui.Components.mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+        if (this.f38809a == null) {
+            this.f38809a = new org.telegram.ui.Cells.v7(context, u6Var);
+        }
+        org.telegram.ui.Cells.w7 w7Var = new org.telegram.ui.Cells.w7(context, this.f38809a, i10);
+        w7Var.f25661w0 = true;
+        w7Var.f25638d0 = true;
+        return w7Var;
+    }
+
+    @Override
+    public final boolean equals(org.telegram.ui.Components.t61 t61Var, org.telegram.ui.Components.t61 t61Var2) {
+        if (t61Var.f32877q == t61Var2.f32877q && t61Var.e == t61Var2.e && t61Var.B == t61Var2.B) {
+            return true;
+        }
+        return false;
     }
 }

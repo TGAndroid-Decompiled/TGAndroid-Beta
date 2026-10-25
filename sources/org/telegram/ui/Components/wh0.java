@@ -17,10 +17,10 @@ import org.telegram.tgnet.ConnectionsManager;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.ui.PremiumPreviewFragment;
 public final class wh0 extends FrameLayout {
-    public final u9 E;
+    public final y9 E;
     public final TextView F;
     public final TextView G;
-    public final ei.d H;
+    public final fi.d H;
     public final TextView I;
     public boolean J;
     public int K;
@@ -30,52 +30,52 @@ public final class wh0 extends FrameLayout {
     public int O;
     public boolean P;
     public boolean Q;
-    public vq R;
-    public vq S;
-    public qu T;
-    public final vq[] U;
+    public zq R;
+    public zq S;
+    public tu T;
+    public final zq[] U;
     public final th0 V;
-    public final org.telegram.ui.ey f32238a;
-    public final int f32239b;
-    public final i71 f32240c;
+    public final org.telegram.ui.cy f34439a;
+    public final int f34440b;
+    public final r71 f34441c;
     public TLRPC.SearchPostsFlood d;
     public final ArrayList e;
-    public int f32241f;
+    public int f34442f;
     public boolean h;
-    public final ArrayList f32242n;
-    public int f32243r;
-    public boolean f32244s;
+    public final ArrayList f34443n;
+    public int f34444r;
+    public boolean f34445s;
     public boolean v;
-    public String f32245w;
-    public final FrameLayout f32246x;
-    public final ai.r f32247y;
+    public String f34446w;
+    public final FrameLayout f34447x;
+    public final bi.r f34448y;
 
-    public wh0(Context context, org.telegram.ui.ey eyVar) {
+    public wh0(Context context, org.telegram.ui.cy cyVar) {
         super(context);
         this.e = new ArrayList();
-        this.f32242n = new ArrayList();
+        this.f34443n = new ArrayList();
         this.K = -1;
         this.L = 0;
         this.O = -1;
-        this.U = new vq[1];
+        this.U = new zq[1];
         this.V = new th0(this, 1);
-        this.f32238a = eyVar;
-        int currentAccount = eyVar.getCurrentAccount();
-        this.f32239b = currentAccount;
-        i71 i71Var = new i71(context, currentAccount, 0, false, new d(this, 18), new rv(this, 12), null, null);
-        this.f32240c = i71Var;
-        i71Var.j(new ki.m3(3, this, eyVar));
-        addView(i71Var, w7.z5.e(-1, -1, 119));
+        this.f34439a = cyVar;
+        int currentAccount = cyVar.getCurrentAccount();
+        this.f34440b = currentAccount;
+        r71 r71Var = new r71(context, currentAccount, 0, false, new d(this, 18), new tv(this, 14), null, null);
+        this.f34441c = r71Var;
+        r71Var.j(new ai.u0(4, this, cyVar));
+        addView(r71Var, gb1.i(-1, -1, 119));
         FrameLayout frameLayout = new FrameLayout(context);
-        this.f32246x = frameLayout;
-        ai.r rVar = new ai.r(context, 5);
-        this.f32247y = rVar;
+        this.f34447x = frameLayout;
+        bi.r rVar = new bi.r(context, 5);
+        this.f34448y = rVar;
         rVar.setOrientation(1);
-        frameLayout.addView(rVar, w7.z5.d(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
-        u9 u9Var = new u9(context);
-        this.E = u9Var;
-        u9Var.setVisibility(8);
-        rVar.addView(u9Var, w7.z5.t(130, 130, 1, 0, 0, 0, 12));
+        frameLayout.addView(rVar, gb1.h(-2, -2.0f, 17, 32.0f, 0.0f, 32.0f, 0.0f));
+        y9 y9Var = new y9(context);
+        this.E = y9Var;
+        y9Var.setVisibility(8);
+        rVar.addView(y9Var, gb1.x(130, 130, 1, 0, 0, 0, 12));
         TextView textView = new TextView(context);
         this.F = textView;
         textView.setTextSize(1, 16.0f);
@@ -85,7 +85,7 @@ public final class wh0 extends FrameLayout {
         textView.setMaxLines(4);
         TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
         textView.setEllipsize(truncateAt);
-        rVar.addView(textView, w7.z5.q(-2, -2, 1));
+        rVar.addView(textView, gb1.u(-2, -2, 1));
         TextView textView2 = new TextView(context);
         this.G = textView2;
         textView2.setTextSize(1, 14.0f);
@@ -93,20 +93,20 @@ public final class wh0 extends FrameLayout {
         textView2.setSingleLine(false);
         textView2.setMaxLines(4);
         textView2.setEllipsize(truncateAt);
-        rVar.addView(textView2, w7.z5.t(-2, -2, 1, 0, 9, 0, 0));
-        ei.d g10 = org.telegram.messenger.tl.g(24, context, null, true);
-        this.H = g10;
-        rVar.addView(g10, w7.z5.t(-1, 44, 7, 0, 19, 0, 0));
+        rVar.addView(textView2, gb1.x(-2, -2, 1, 0, 9, 0, 0));
+        fi.d f7 = org.telegram.messenger.vh.f(24, context, null, true);
+        this.H = f7;
+        rVar.addView(f7, gb1.x(-1, 44, 7, 0, 19, 0, 0));
         TextView textView3 = new TextView(context);
         this.I = textView3;
         textView3.setTextSize(1, 12.0f);
         textView3.setGravity(17);
-        rVar.addView(textView3, w7.z5.k(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
-        addView(frameLayout, w7.z5.e(-1, -1, 119));
-        i71Var.setHideIfEmpty(false);
-        i71Var.setEmptyView(frameLayout);
-        i71Var.W1 = true;
-        i71Var.X1 = 0;
+        rVar.addView(textView3, gb1.o(0.0f, 11.0f, 0.0f, 0.0f, -1, -2));
+        addView(frameLayout, gb1.i(-1, -1, 119));
+        r71Var.setHideIfEmpty(false);
+        r71Var.setEmptyView(frameLayout);
+        r71Var.W1 = true;
+        r71Var.X1 = 0;
         c();
         d();
     }
@@ -115,35 +115,35 @@ public final class wh0 extends FrameLayout {
         long j10;
         TLRPC.SearchPostsFlood searchPostsFlood;
         if (!this.v) {
-            boolean isEmpty = TextUtils.isEmpty(this.f32245w);
+            boolean isEmpty = TextUtils.isEmpty(this.f34446w);
             if (!isEmpty || !this.h) {
-                if (isEmpty || !this.f32244s) {
+                if (isEmpty || !this.f34445s) {
                     if (!isEmpty && this.d == null) {
                         return;
                     }
                     this.v = true;
-                    int i10 = this.f32239b;
+                    int i10 = this.f34440b;
                     MessagesController messagesController = MessagesController.getInstance(i10);
                     ConnectionsManager connectionsManager = ConnectionsManager.getInstance(i10);
                     TLRPC.TL_channels_searchPosts tL_channels_searchPosts = new TLRPC.TL_channels_searchPosts();
                     tL_channels_searchPosts.flags |= 2;
-                    tL_channels_searchPosts.query = this.f32245w;
+                    tL_channels_searchPosts.query = this.f34446w;
                     tL_channels_searchPosts.limit = 30;
                     if (isEmpty) {
                         ArrayList arrayList = this.e;
                         if (!arrayList.isEmpty()) {
-                            MessageObject messageObject = (MessageObject) i2.o1.i(1, arrayList);
-                            tL_channels_searchPosts.offset_rate = this.f32241f;
+                            MessageObject messageObject = (MessageObject) ic.a.g(1, arrayList);
+                            tL_channels_searchPosts.offset_rate = this.f34442f;
                             tL_channels_searchPosts.offset_id = messageObject.getRealId();
                             tL_channels_searchPosts.offset_peer = messagesController.getInputPeer(messageObject.messageOwner.peer_id);
                         } else {
                             tL_channels_searchPosts.offset_peer = new TLRPC.TL_inputPeerEmpty();
                         }
                     } else {
-                        ArrayList arrayList2 = this.f32242n;
+                        ArrayList arrayList2 = this.f34443n;
                         if (!arrayList2.isEmpty()) {
-                            MessageObject messageObject2 = (MessageObject) i2.o1.i(1, arrayList2);
-                            tL_channels_searchPosts.offset_rate = this.f32243r;
+                            MessageObject messageObject2 = (MessageObject) ic.a.g(1, arrayList2);
+                            tL_channels_searchPosts.offset_rate = this.f34444r;
                             tL_channels_searchPosts.offset_id = messageObject2.getRealId();
                             tL_channels_searchPosts.offset_peer = messagesController.getInputPeer(messageObject2.messageOwner.peer_id);
                         } else {
@@ -157,9 +157,9 @@ public final class wh0 extends FrameLayout {
                     } else {
                         j10 = 0;
                     }
-                    this.K = connectionsManager.sendRequest(tL_channels_searchPosts, new g7(this, messagesController, isEmpty, tL_channels_searchPosts, z10, j10, connectionsManager), 1024);
+                    this.K = connectionsManager.sendRequest(tL_channels_searchPosts, new k7(this, messagesController, isEmpty, tL_channels_searchPosts, z10, j10, connectionsManager), 1024);
                     d();
-                    this.f32240c.Z2.N(true);
+                    this.f34441c.f32150g3.O(true);
                 }
             }
         }
@@ -168,13 +168,13 @@ public final class wh0 extends FrameLayout {
     public final void b(String str) {
         boolean z10;
         int i10 = this.O;
-        int i11 = this.f32239b;
+        int i11 = this.f34440b;
         if (i10 >= 0) {
             ConnectionsManager.getInstance(i11).cancelRequest(this.O, true);
             this.O = -1;
         }
         if (!this.M) {
-            if (this.Q && (!this.f32242n.isEmpty() || !this.f32244s)) {
+            if (this.Q && (!this.f34443n.isEmpty() || !this.f34445s)) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -187,18 +187,18 @@ public final class wh0 extends FrameLayout {
             tL_channels_checkSearchPostsFlood.flags = 1 | tL_channels_checkSearchPostsFlood.flags;
             tL_channels_checkSearchPostsFlood.query = str;
         }
-        this.O = ConnectionsManager.getInstance(i11).sendRequest(tL_channels_checkSearchPostsFlood, new x1(this, 9));
+        this.O = ConnectionsManager.getInstance(i11).sendRequest(tL_channels_checkSearchPostsFlood, new b2(this, 9));
     }
 
     public final void c() {
-        this.f32246x.setBackgroundColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.f21184d6, false));
-        this.F.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.G6, false));
-        int i10 = org.telegram.ui.ActionBar.k6.f21572y6;
-        this.I.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
-        this.G.setTextColor(org.telegram.ui.ActionBar.k6.x0(null, i10, false));
-        i71 i71Var = this.f32240c;
-        i71Var.setAdapter(null);
-        i71Var.setAdapter(i71Var.Z2);
+        this.f34447x.setBackgroundColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23354d6, false));
+        this.F.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.G6, false));
+        int i10 = org.telegram.ui.ActionBar.y6.f23746y6;
+        this.I.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
+        this.G.setTextColor(org.telegram.ui.ActionBar.y6.x0(null, i10, false));
+        r71 r71Var = this.f34441c;
+        r71Var.setAdapter(null);
+        r71Var.setAdapter(r71Var.f32150g3);
         if (this.T != null) {
             this.T = null;
             d();
@@ -213,41 +213,41 @@ public final class wh0 extends FrameLayout {
         Object valueOf2;
         th0 th0Var = this.V;
         AndroidUtilities.cancelRunOnUIThread(th0Var);
-        int i10 = this.f32239b;
+        int i10 = this.f34440b;
         int currentTime = ConnectionsManager.getInstance(i10).getCurrentTime();
         boolean isPremium = UserConfig.getInstance(i10).isPremium();
         TextView textView = this.G;
         TextView textView2 = this.F;
-        u9 u9Var = this.E;
+        y9 y9Var = this.E;
         TextView textView3 = this.I;
-        ei.d dVar = this.H;
+        fi.d dVar = this.H;
         if (!isPremium) {
-            u9Var.setVisibility(8);
+            y9Var.setVisibility(8);
             textView2.setText(LocaleController.getString(R.string.SearchPostsTitle));
             textView.setText(LocaleController.getString(R.string.SearchPostsText));
             dVar.setVisibility(0);
             dVar.i(LocaleController.getString(R.string.SearchPostsButtonPremium), true, true);
             dVar.g(null, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final wh0 f31126b;
+                public final wh0 f33411b;
 
                 {
-                    this.f31126b = this;
+                    this.f33411b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f31126b.f32238a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            this.f33411b.f34439a.presentFragment(new PremiumPreviewFragment(0, "search"));
                             return;
                         case 1:
-                            wh0 wh0Var = this.f31126b;
+                            wh0 wh0Var = this.f33411b;
                             wh0Var.H.setLoading(true);
                             wh0Var.a(true);
                             return;
                         default:
-                            wh0 wh0Var2 = this.f31126b;
+                            wh0 wh0Var2 = this.f33411b;
                             wh0Var2.H.setLoading(true);
                             wh0Var2.a(false);
                             return;
@@ -258,23 +258,23 @@ public final class wh0 extends FrameLayout {
             textView3.setText(LocaleController.getString(R.string.SearchPostsPremium));
             return;
         }
-        boolean isEmpty = TextUtils.isEmpty(this.f32245w);
-        ArrayList arrayList = this.f32242n;
-        if (!isEmpty && arrayList.isEmpty() && this.f32244s) {
-            if (u9Var.getImageReceiver().getImageDrawable() == null) {
-                u9Var.setImageDrawable(new xj0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
+        boolean isEmpty = TextUtils.isEmpty(this.f34446w);
+        ArrayList arrayList = this.f34443n;
+        if (!isEmpty && arrayList.isEmpty() && this.f34445s) {
+            if (y9Var.getImageReceiver().getImageDrawable() == null) {
+                y9Var.setImageDrawable(new xj0(R.raw.utyan_empty, AndroidUtilities.dp(130.0f), AndroidUtilities.dp(130.0f)));
             }
-            u9Var.setVisibility(0);
+            y9Var.setVisibility(0);
             textView2.setText(LocaleController.getString(R.string.SearchPostsNotFound));
-            textView.setText(LocaleController.formatString(R.string.SearchPostsNotFoundText, TextUtils.ellipsize(this.f32245w, textView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END)));
+            textView.setText(LocaleController.formatString(R.string.SearchPostsNotFoundText, TextUtils.ellipsize(this.f34446w, textView.getPaint(), AndroidUtilities.dp(100.0f), TextUtils.TruncateAt.END)));
             dVar.setVisibility(8);
             textView3.setVisibility(8);
             return;
         }
-        if (!TextUtils.isEmpty(this.f32245w) && (searchPostsFlood = this.d) != null) {
+        if (!TextUtils.isEmpty(this.f34446w) && (searchPostsFlood = this.d) != null) {
             f7 = 100.0f;
             if ((searchPostsFlood.flags & 2) != 0 && currentTime < searchPostsFlood.wait_till) {
-                u9Var.setVisibility(8);
+                y9Var.setVisibility(8);
                 textView2.setText(LocaleController.getString(R.string.SearchPostsLimitReached));
                 textView.setText(LocaleController.formatPluralStringComma("SearchPostsLimitReachedText", this.d.total_daily));
                 int i11 = this.d.wait_till - currentTime;
@@ -283,7 +283,7 @@ public final class wh0 extends FrameLayout {
                 int i14 = i13 / 60;
                 int i15 = i13 - (i14 * 60);
                 dVar.setVisibility(0);
-                dVar.i(ai.nd.S0(LocaleController.formatPluralStringComma("SearchPostsButtonPay", (int) this.d.stars_amount), 1.13f, this.U), true, true);
+                dVar.i(bi.dd.Q0(LocaleController.formatPluralStringComma("SearchPostsButtonPay", (int) this.d.stars_amount), 1.13f, this.U), true, true);
                 int i16 = R.string.SearchPostsFreeSearchUnlocksIn;
                 StringBuilder sb2 = new StringBuilder();
                 if (i12 > 0) {
@@ -293,14 +293,14 @@ public final class wh0 extends FrameLayout {
                 }
                 sb2.append(str);
                 if (i14 < 10) {
-                    valueOf = i2.o1.k(i14, "0");
+                    valueOf = ic.a.i(i14, "0");
                 } else {
                     valueOf = Integer.valueOf(i14);
                 }
                 sb2.append(valueOf);
                 sb2.append(":");
                 if (i15 < 10) {
-                    valueOf2 = i2.o1.k(i15, "0");
+                    valueOf2 = ic.a.i(i15, "0");
                 } else {
                     valueOf2 = Integer.valueOf(i15);
                 }
@@ -308,25 +308,25 @@ public final class wh0 extends FrameLayout {
                 dVar.g(LocaleController.formatString(i16, sb2.toString()), true);
                 dVar.e.r(false, true);
                 dVar.setOnClickListener(new View.OnClickListener(this) {
-                    public final wh0 f31126b;
+                    public final wh0 f33411b;
 
                     {
-                        this.f31126b = this;
+                        this.f33411b = this;
                     }
 
                     @Override
                     public final void onClick(View view) {
                         switch (r2) {
                             case 0:
-                                this.f31126b.f32238a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                                this.f33411b.f34439a.presentFragment(new PremiumPreviewFragment(0, "search"));
                                 return;
                             case 1:
-                                wh0 wh0Var = this.f31126b;
+                                wh0 wh0Var = this.f33411b;
                                 wh0Var.H.setLoading(true);
                                 wh0Var.a(true);
                                 return;
                             default:
-                                wh0 wh0Var2 = this.f31126b;
+                                wh0 wh0Var2 = this.f33411b;
                                 wh0Var2.H.setLoading(true);
                                 wh0Var2.a(false);
                                 return;
@@ -340,30 +340,30 @@ public final class wh0 extends FrameLayout {
         } else {
             f7 = 100.0f;
         }
-        if (arrayList.isEmpty() && !this.v && !TextUtils.isEmpty(this.f32245w)) {
-            u9Var.setVisibility(8);
+        if (arrayList.isEmpty() && !this.v && !TextUtils.isEmpty(this.f34446w)) {
+            y9Var.setVisibility(8);
             textView2.setText(LocaleController.getString(R.string.SearchPostsTitle));
             textView.setText(LocaleController.getString(R.string.SearchPostsText));
             SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder("s ");
             if (this.R == null) {
-                vq vqVar = new vq(R.drawable.smiles_tab_search, 0);
-                this.R = vqVar;
-                vqVar.setScale(0.79f, 0.79f);
+                zq zqVar = new zq(R.drawable.smiles_tab_search, 0);
+                this.R = zqVar;
+                zqVar.setScale(0.79f, 0.79f);
             }
             if (this.T == null) {
-                this.T = new qu(org.telegram.ui.ActionBar.k6.v(org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Oh, false), org.telegram.ui.ActionBar.k6.o1(0.75f, org.telegram.ui.ActionBar.k6.x0(null, org.telegram.ui.ActionBar.k6.Sh, false))), 1);
+                this.T = new tu(org.telegram.ui.ActionBar.y6.v(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Oh, false), org.telegram.ui.ActionBar.y6.o1(0.75f, org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.Sh, false))), 1);
             }
             spannableStringBuilder.setSpan(this.R, 0, 1, 0);
             spannableStringBuilder.append((CharSequence) LocaleController.getString(R.string.SearchPostsButton));
             spannableStringBuilder.append((CharSequence) " ");
             int length = spannableStringBuilder.length();
-            spannableStringBuilder.append(TextUtils.ellipsize(this.f32245w, dVar.getTextPaint(), AndroidUtilities.dp(f7), TextUtils.TruncateAt.END));
+            spannableStringBuilder.append(TextUtils.ellipsize(this.f34446w, dVar.getTextPaint(), AndroidUtilities.dp(f7), TextUtils.TruncateAt.END));
             spannableStringBuilder.setSpan(this.T, length, spannableStringBuilder.length(), 33);
             spannableStringBuilder.append((CharSequence) " >");
             if (this.S == null) {
-                vq vqVar2 = new vq(R.drawable.msg_mini_forumarrow, 0);
-                this.S = vqVar2;
-                vqVar2.setScale(1.05f, 1.05f);
+                zq zqVar2 = new zq(R.drawable.msg_mini_forumarrow, 0);
+                this.S = zqVar2;
+                zqVar2.setScale(1.05f, 1.05f);
             }
             spannableStringBuilder.setSpan(this.S, spannableStringBuilder.length() - 1, spannableStringBuilder.length(), 33);
             dVar.setVisibility(0);
@@ -371,25 +371,25 @@ public final class wh0 extends FrameLayout {
             dVar.d.r(false, false);
             dVar.g(null, true);
             dVar.setOnClickListener(new View.OnClickListener(this) {
-                public final wh0 f31126b;
+                public final wh0 f33411b;
 
                 {
-                    this.f31126b = this;
+                    this.f33411b = this;
                 }
 
                 @Override
                 public final void onClick(View view) {
                     switch (r2) {
                         case 0:
-                            this.f31126b.f32238a.presentFragment(new PremiumPreviewFragment(0, "search"));
+                            this.f33411b.f34439a.presentFragment(new PremiumPreviewFragment(0, "search"));
                             return;
                         case 1:
-                            wh0 wh0Var = this.f31126b;
+                            wh0 wh0Var = this.f33411b;
                             wh0Var.H.setLoading(true);
                             wh0Var.a(true);
                             return;
                         default:
-                            wh0 wh0Var2 = this.f31126b;
+                            wh0 wh0Var2 = this.f33411b;
                             wh0Var2.H.setLoading(true);
                             wh0Var2.a(false);
                             return;
@@ -409,7 +409,7 @@ public final class wh0 extends FrameLayout {
             textView3.setVisibility(8);
             return;
         }
-        u9Var.setVisibility(8);
+        y9Var.setVisibility(8);
         textView2.setText(LocaleController.getString(R.string.SearchPostsTitle));
         textView.setText(LocaleController.getString(R.string.SearchPostsText));
         dVar.setVisibility(8);
@@ -435,7 +435,7 @@ public final class wh0 extends FrameLayout {
         if (!this.P) {
             this.P = true;
             MessagesController.getGlobalMainSettings().edit().putInt("searchpostsnew", MessagesController.getGlobalMainSettings().getInt("searchpostsnew", 0) + 1).apply();
-            ai.ha.y(this.f32239b, false).p();
+            bi.ca.y(this.f34440b, false).p();
         }
     }
 
@@ -448,6 +448,6 @@ public final class wh0 extends FrameLayout {
     }
 
     public void setKeyboardHeight(int i10) {
-        this.f32247y.animate().translationY((-i10) / 2.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.o1.f21718w).start();
+        this.f34448y.animate().translationY((-i10) / 2.0f).setDuration(250L).setInterpolator(org.telegram.ui.ActionBar.q1.f22961w).start();
     }
 }

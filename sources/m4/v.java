@@ -1,47 +1,20 @@
 package m4;
+public interface v {
+    void a(int i10, p pVar);
 
-import android.os.Bundle;
-import j$.util.Objects;
-public final class v {
-    public final n4.t f16821a;
-    public final int f16822b;
-    public final int f16823c;
-    public final u d;
-    public final Bundle e;
+    void b(int i10);
 
-    public v(n4.t tVar, int i10, int i11, boolean z10, u uVar, Bundle bundle) {
-        this.f16821a = tVar;
-        this.f16822b = i10;
-        this.f16823c = i11;
-        this.d = uVar;
-        this.e = bundle;
-    }
+    void c(int i10, b2.c1 c1Var);
 
-    public final boolean equals(Object obj) {
-        if (!(obj instanceof v)) {
-            return false;
-        }
-        if (this == obj) {
-            return true;
-        }
-        v vVar = (v) obj;
-        u uVar = vVar.d;
-        u uVar2 = this.d;
-        if (uVar2 == null && uVar == null) {
-            return this.f16821a.equals(vVar.f16821a);
-        }
-        return Objects.equals(uVar2, uVar);
-    }
+    void d(int i10, int i11, int i12);
 
-    public final int hashCode() {
-        return Objects.hash(this.d, this.f16821a);
-    }
+    void e(int i10, p1 p1Var);
 
-    public final String toString() {
-        StringBuilder sb2 = new StringBuilder("ControllerInfo {pkg=");
-        n4.t tVar = this.f16821a;
-        sb2.append(tVar.f17190a.f17191a);
-        sb2.append(", uid=");
-        return a1.g.n(tVar.f17190a.f17193c, "}", sb2);
-    }
+    void f(int i10, s1 s1Var, boolean z10, boolean z11, int i11);
+
+    void g();
+
+    void h(int i10, l1 l1Var, b2.c1 c1Var, boolean z10, boolean z11);
+
+    void j(int i10, t1 t1Var);
 }

@@ -1,170 +1,171 @@
 package xh;
 
-import android.util.LongSparseArray;
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.Point;
 import android.view.View;
 import android.view.ViewGroup;
 import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.n5;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.ActionBar.r6;
-import org.telegram.ui.Cells.f5;
-import org.telegram.ui.Components.f9;
-import org.telegram.ui.Components.km0;
-import org.telegram.ui.hq0;
-import s4.b1;
-import sg.k1;
-public final class f extends km0 {
-    public final k f50290c;
+import java.util.HashMap;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.k60;
+import org.telegram.ui.Components.v50;
+import org.telegram.ui.o41;
+public final class f {
+    public static HashMap f51846n;
+    public final double f51847a;
+    public final double f51848b;
+    public final int f51849c;
+    public final o41 d;
+    public final k60 e;
+    public e f51850f;
+    public final int f51851g;
+    public final int h;
+    public boolean f51852i;
+    public final ArrayList f51853j = new ArrayList();
+    public final HashMap f51854k = new HashMap();
+    public int f51855l = 0;
+    public final d f51856m = new d(this, 0);
 
-    public f(k kVar) {
-        this.f50290c = kVar;
+    public f(int i10, o41 o41Var, int i11, int i12) {
+        double d = 1.0d / ((int) AndroidUtilities.screenRefreshRate);
+        this.f51847a = d;
+        this.f51848b = d * 4.0d;
+        this.f51849c = i10;
+        this.f51851g = i11;
+        this.h = i12;
+        this.d = o41Var;
+        k60 k60Var = new k60(this, o41Var.getContext(), 1);
+        this.e = k60Var;
+        k60Var.setSurfaceTextureListener(new v50(this, 5));
+        k60Var.setOpaque(false);
+        o41Var.addView(k60Var);
     }
 
-    @Override
-    public final boolean D(b1 b1Var) {
-        if (b1Var.f46345f == 0) {
-            return true;
-        }
-        return false;
-    }
-
-    public final void E(List list) {
-        k kVar = this.f50290c;
-        ArrayList arrayList = kVar.f50308c;
-        boolean isEmpty = arrayList.isEmpty();
-        int i10 = 0;
-        while (i10 < list.size()) {
-            long j10 = ((TLRPC.TL_chatInviteImporter) list.get(i10)).user_id;
-            int i11 = i10 + 1;
-            while (true) {
-                if (i11 >= list.size()) {
-                    break;
-                } else if (((TLRPC.TL_chatInviteImporter) list.get(i11)).user_id == j10) {
-                    list.remove(i10);
-                    i10--;
-                    break;
-                } else {
-                    i11++;
-                }
+    public static f d(int i10, View view, ViewGroup viewGroup) {
+        int min;
+        if (view != null) {
+            if (f51846n == null) {
+                f51846n = new HashMap();
             }
-            i10++;
-        }
-        arrayList.clear();
-        arrayList.addAll(list);
-        if (isEmpty) {
-            s(!kVar.B ? 1 : 0, arrayList.size());
-        } else {
-            l();
-        }
-    }
-
-    @Override
-    public final int h() {
-        k kVar = this.f50290c;
-        int i10 = 1;
-        return ((kVar.f50308c.isEmpty() || !kVar.f50325x) ? 0 : 0) + kVar.f50308c.size() + (!kVar.B ? 1 : 0);
-    }
-
-    @Override
-    public final int j(int i10) {
-        k kVar = this.f50290c;
-        if (i10 == 0 && !kVar.B) {
-            return 2;
-        }
-        if (i10 == h() - 1 && !kVar.f50308c.isEmpty() && kVar.f50325x) {
-            return 4;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(b1 b1Var, int i10) {
-        boolean z10;
-        k kVar = this.f50290c;
-        ArrayList arrayList = kVar.f50308c;
-        int i11 = b1Var.f46345f;
-        View view = b1Var.f46342a;
-        if (i11 == 0) {
-            f5 f5Var = (f5) view;
-            int i12 = i10 - (!kVar.B ? 1 : 0);
-            LongSparseArray longSparseArray = kVar.d;
-            TLRPC.TL_chatInviteImporter tL_chatInviteImporter = (TLRPC.TL_chatInviteImporter) arrayList.get(i12);
-            if (i12 == arrayList.size() - 1 && !kVar.f50325x) {
-                z10 = false;
-            } else {
-                z10 = true;
-            }
-            n5 n5Var = f5Var.d;
-            f5Var.e = tL_chatInviteImporter;
-            f5Var.f22371f = z10;
-            f5Var.setWillNotDraw(!z10);
-            TLRPC.User user = (TLRPC.User) longSparseArray.get(tL_chatInviteImporter.user_id);
-            f9 f9Var = f5Var.f22368a;
-            f9Var.r(user);
-            f5Var.f22369b.e(user, f9Var);
-            f5Var.f22370c.l(UserObject.getUserName(user), false);
-            String formatDateAudio = LocaleController.formatDateAudio(tL_chatInviteImporter.date, false);
-            if (tL_chatInviteImporter.via_chatlist) {
-                n5Var.l(LocaleController.getString(R.string.JoinedViaFolder), false);
-                return;
-            }
-            long j10 = tL_chatInviteImporter.approved_by;
-            if (j10 == 0) {
-                n5Var.l(LocaleController.formatString("RequestedToJoinAt", R.string.RequestedToJoinAt, formatDateAudio), false);
-                return;
-            }
-            TLRPC.User user2 = (TLRPC.User) longSparseArray.get(j10);
-            if (user2 != null) {
-                n5Var.l(LocaleController.formatString("AddedBy", R.string.AddedBy, UserObject.getFirstName(user2), formatDateAudio), false);
-            } else {
-                n5Var.l("", false);
-            }
-        } else if (i11 == 2) {
-            view.requestLayout();
-        }
-    }
-
-    @Override
-    public final b1 x(ViewGroup viewGroup, int i10) {
-        f5 f5Var;
-        k kVar = this.f50290c;
-        boolean z10 = kVar.f50306a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        f5Var = new f5(viewGroup.getContext(), kVar, z10);
+            f fVar = (f) f51846n.get(Integer.valueOf(i10));
+            if (fVar == null) {
+                int devicePerformanceClass = SharedConfig.getDevicePerformanceClass();
+                if (devicePerformanceClass != 1) {
+                    if (devicePerformanceClass != 2) {
+                        Point point = AndroidUtilities.displaySize;
+                        min = Math.min(720, (int) (((point.x + point.y) / 2.0f) * 0.7f));
                     } else {
-                        o2 o2Var = kVar.f50310g;
-                        hq0 hq0Var = new hq0(o2Var.getParentActivity(), 1, o2Var.getResourceProvider());
-                        if (kVar.B) {
-                            r6.i(k6.f21184d6, hq0Var, o2Var.getResourceProvider());
-                        }
-                        hq0Var.e(k6.f21184d6, k6.f21126a7, -1);
-                        hq0Var.setViewType(15);
-                        hq0Var.setMemberRequestButton(z10);
-                        hq0Var.setIsSingleCell(true);
-                        hq0Var.setItemsCount(1);
-                        hq0Var.setTag(-33024);
-                        f5Var = hq0Var;
+                        Point point2 = AndroidUtilities.displaySize;
+                        min = Math.min(1280, (int) (((point2.x + point2.y) / 2.0f) * 1.0f));
                     }
                 } else {
-                    f5Var = new View(viewGroup.getContext());
+                    Point point3 = AndroidUtilities.displaySize;
+                    min = Math.min(900, (int) (((point3.x + point3.y) / 2.0f) * 0.8f));
+                }
+                if (viewGroup != null) {
+                    HashMap hashMap = f51846n;
+                    Integer valueOf = Integer.valueOf(i10);
+                    o41 o41Var = new o41(viewGroup.getContext(), 11);
+                    viewGroup.addView(o41Var);
+                    f fVar2 = new f(i10, o41Var, min, min);
+                    hashMap.put(valueOf, fVar2);
+                    fVar = fVar2;
+                } else {
+                    return null;
+                }
+            }
+            fVar.a(view);
+            return fVar;
+        }
+        return null;
+    }
+
+    public static f e(View view) {
+        Activity findActivity = AndroidUtilities.findActivity(view.getContext());
+        ViewGroup viewGroup = null;
+        if (findActivity != null) {
+            View rootView = findActivity.findViewById(16908290).getRootView();
+            if (rootView instanceof ViewGroup) {
+                viewGroup = (ViewGroup) rootView;
+            }
+        }
+        return d(0, view, viewGroup);
+    }
+
+    public static void f(boolean z10) {
+        e eVar;
+        HashMap hashMap = f51846n;
+        if (hashMap != null) {
+            for (f fVar : hashMap.values()) {
+                if (fVar.f51849c == 0 && (eVar = fVar.f51850f) != null) {
+                    eVar.f51837b = z10;
+                }
+            }
+        }
+    }
+
+    public final void a(View view) {
+        if (!this.f51852i) {
+            ArrayList arrayList = this.f51853j;
+            if (!arrayList.contains(view)) {
+                arrayList.add(view);
+                int i10 = this.f51855l;
+                this.f51855l = i10 + 1;
+                this.f51854k.put(view, Integer.valueOf(i10));
+            }
+        }
+    }
+
+    public final void b(View view) {
+        this.f51853j.remove(view);
+        this.f51854k.remove(view);
+        if (!this.f51852i) {
+            d dVar = this.f51856m;
+            AndroidUtilities.cancelRunOnUIThread(dVar);
+            AndroidUtilities.runOnUIThread(dVar, 30L);
+        }
+    }
+
+    public final void c(Canvas canvas, View view, int i10, int i11, float f7, boolean z10) {
+        if (canvas != null && view != null) {
+            canvas.save();
+            Integer num = (Integer) this.f51854k.get(view);
+            if (num == null) {
+                num = 0;
+            }
+            int i12 = this.f51851g;
+            int i13 = this.h;
+            if (i10 > i12 || i11 > i13) {
+                float max = Math.max(i10 / i12, i11 / i13);
+                canvas.scale(max, max);
+            }
+            if (num.intValue() % 4 == 1) {
+                canvas.rotate(180.0f, i12 / 2.0f, i13 / 2.0f);
+            }
+            if (num.intValue() % 4 == 2) {
+                canvas.scale(-1.0f, 1.0f, i12 / 2.0f, i13 / 2.0f);
+            }
+            if (num.intValue() % 4 == 3) {
+                canvas.scale(1.0f, -1.0f, i12 / 2.0f, i13 / 2.0f);
+            }
+            k60 k60Var = this.e;
+            if (z10) {
+                Bitmap bitmap = k60Var.getBitmap();
+                if (bitmap != null) {
+                    Paint paint = new Paint(7);
+                    paint.setColor(-1);
+                    canvas.drawBitmap(bitmap, 0.0f, 0.0f, paint);
+                    bitmap.recycle();
                 }
             } else {
-                k1 k1Var = new k1(viewGroup.getContext(), 1);
-                k1Var.setTag(-33024);
-                f5Var = k1Var;
+                k60Var.setAlpha(f7);
+                k60Var.draw(canvas);
             }
-        } else {
-            f5Var = new View(viewGroup.getContext());
+            canvas.restore();
         }
-        return new b1(f5Var);
     }
 }

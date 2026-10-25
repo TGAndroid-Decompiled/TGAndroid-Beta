@@ -1,31 +1,32 @@
 package org.telegram.ui.Wallet;
 
+import a8.af;
 import org.telegram.messenger.AndroidUtilities;
 public final class q0 implements Runnable {
-    public final int f35063a;
-    public final String f35064b;
+    public final int f37119a;
+    public final String f37120b;
 
     public q0(String str, int i10) {
-        this.f35063a = i10;
-        this.f35064b = str;
+        this.f37119a = i10;
+        this.f37120b = str;
     }
 
     @Override
     public final void run() {
-        switch (this.f35063a) {
+        switch (this.f37119a) {
             case 0:
-                v0 v0Var = w7.h6.f49150b;
+                v0 v0Var = af.f360b;
                 if (v0Var != null) {
-                    if (this.f35064b.equals(v0Var.d)) {
-                        w7.h6.f49150b.c("STORAGE_CANCELED");
-                        w7.h6.f49150b.e();
+                    if (this.f37120b.equals(v0Var.d)) {
+                        af.f360b.c("STORAGE_CANCELED");
+                        af.f360b.e();
                         return;
                     }
                     return;
                 }
                 return;
             default:
-                AndroidUtilities.addToClipboard(this.f35064b);
+                AndroidUtilities.addToClipboard(this.f37120b);
                 return;
         }
     }

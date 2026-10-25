@@ -1,125 +1,109 @@
 package org.telegram.ui.Components;
 
-import android.view.KeyEvent;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.AlertDialog$Builder;
-public final class c1 implements TextView.OnEditorActionListener {
-    public final int f25150a;
-    public final Object f25151b;
+import java.util.List;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.messenger.BillingController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class c1 implements org.telegram.ui.ActionBar.b2, BillingController.ProductDetailsResponseListenerLegacy {
+    public final int f27018a;
+    public final Object f27019b;
+    public final Object f27020c;
+    public final Object d;
+    public final Object e;
+    public final Object f27021f;
+    public final Object h;
 
-    public c1(Object obj, int i10) {
-        this.f25150a = i10;
-        this.f25151b = obj;
+    public c1(Object obj, Object obj2, Object obj3, Object obj4, Object obj5, Object obj6, int i10) {
+        this.f27018a = i10;
+        this.f27019b = obj;
+        this.f27020c = obj2;
+        this.d = obj3;
+        this.e = obj4;
+        this.f27021f = obj5;
+        this.h = obj6;
     }
 
     @Override
-    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
-        switch (this.f25150a) {
+    public void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f27018a) {
             case 0:
-                org.telegram.messenger.camera.i iVar = (org.telegram.messenger.camera.i) this.f25151b;
-                if (i10 == 6) {
-                    iVar.run();
-                    return true;
-                }
-                return false;
-            case 1:
-                yk ykVar = (yk) this.f25151b;
-                if (i10 == 6) {
-                    ei.d dVar = ykVar.f32956o0;
-                    if (dVar.f8862c0) {
-                        dVar.performClick();
-                        return true;
-                    }
+                TLRPC.User user = (TLRPC.User) this.f27019b;
+                AccountInstance accountInstance = (AccountInstance) this.f27020c;
+                org.telegram.ui.un unVar = (org.telegram.ui.un) this.d;
+                TLRPC.Chat chat = (TLRPC.Chat) this.e;
+                MessageObject messageObject = (MessageObject) this.f27021f;
+                org.telegram.ui.Cells.y1[] y1VarArr = (org.telegram.ui.Cells.y1[]) this.h;
+                if (user != null) {
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(unVar.a(), user.f22174id);
                 } else {
-                    ykVar.getClass();
+                    accountInstance.getMessagesStorage().deleteUserChatHistory(unVar.a(), -chat.f22027id);
                 }
-                return false;
-            case 2:
-                org.telegram.ui.Cells.f3 f3Var = ((org.telegram.ui.Cells.h3) this.f25151b).d;
-                if (i10 == 5) {
-                    f3Var.requestFocus();
-                    f3Var.setSelection(f3Var.length());
-                    return true;
-                }
-                return false;
-            case 3:
-                ir irVar = (ir) this.f25151b;
-                if (i10 == 6) {
-                    irVar.run();
-                    return true;
-                }
-                return false;
-            case 4:
-                ne0 ne0Var = (ne0) this.f25151b;
-                if (i10 == 6) {
-                    ne0Var.n(false);
-                    return true;
-                }
-                ne0Var.getClass();
-                return false;
-            case 5:
-                p4 p4Var = (p4) this.f25151b;
-                if (i10 == 6) {
-                    p4Var.f31164b.f30862a.callOnClick();
-                    return true;
-                }
-                return false;
-            case 6:
-                ei.e2 e2Var = ((xn0) this.f25151b).d;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        e2Var.hideActionMode();
-                        AndroidUtilities.hideKeyboard(e2Var);
-                        return false;
+                TLRPC.TL_contacts_blockFromReplies tL_contacts_blockFromReplies = new TLRPC.TL_contacts_blockFromReplies();
+                tL_contacts_blockFromReplies.msg_id = messageObject.getId();
+                tL_contacts_blockFromReplies.delete_message = true;
+                tL_contacts_blockFromReplies.delete_history = true;
+                if (y1VarArr[0].b()) {
+                    tL_contacts_blockFromReplies.report_spam = true;
+                    if (unVar.getParentActivity() != null) {
+                        unVar.X7();
+                        UndoView undoView = unVar.K3;
+                        if (undoView != null) {
+                            undoView.j(74, 0L, null);
+                        }
                     }
-                    return false;
                 }
-                return false;
-            case 7:
-                hr0 hr0Var = (hr0) this.f25151b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(hr0Var.f27154z0.f27258r);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
-            case 8:
-                AlertDialog$Builder alertDialog$Builder = (AlertDialog$Builder) this.f25151b;
-                if (i10 == 5) {
-                    alertDialog$Builder.f20679a.d(-1).callOnClick();
-                    return true;
-                }
-                return false;
-            case 9:
-                org.telegram.ui.ActionBar.c2 c2Var = (org.telegram.ui.ActionBar.c2) this.f25151b;
-                if (i10 == 6) {
-                    c2Var.d(-1).callOnClick();
-                    return true;
-                }
-                return false;
-            case 10:
-                p21 p21Var = (p21) this.f25151b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(p21Var.f29456b);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                accountInstance.getConnectionsManager().sendRequest(tL_contacts_blockFromReplies, new b2(accountInstance, 0));
+                return;
             default:
-                q71 q71Var = (q71) this.f25151b;
-                if (keyEvent != null) {
-                    if ((keyEvent.getAction() == 1 && keyEvent.getKeyCode() == 84) || (keyEvent.getAction() == 0 && keyEvent.getKeyCode() == 66)) {
-                        AndroidUtilities.hideKeyboard(q71Var.J);
-                        return false;
-                    }
-                    return false;
-                }
-                return false;
+                org.telegram.ui.qm0 qm0Var = (org.telegram.ui.qm0) this.f27019b;
+                org.telegram.ui.in0 in0Var = qm0Var.f42872a;
+                in0Var.Y[0].setText((String) this.f27020c);
+                in0Var.Y[1].setText((String) this.d);
+                in0Var.Y[2].setText((String) this.e);
+                in0Var.N1(true, true);
+                qm0Var.c((org.telegram.ui.lj0) this.f27021f, (m4.w1) this.h);
+                return;
         }
+    }
+
+    @Override
+    public void onProductDetailsResponse(d5.i iVar, List list) {
+        switch (this.f27018a) {
+            case 2:
+                TLRPC.TL_inputStorePaymentPremiumGiftCode tL_inputStorePaymentPremiumGiftCode = (TLRPC.TL_inputStorePaymentPremiumGiftCode) this.f27019b;
+                Utilities.Callback callback = (Utilities.Callback) this.f27021f;
+                org.telegram.ui.ActionBar.r2 r2Var = (org.telegram.ui.ActionBar.r2) this.h;
+                d5.l a2 = ((d5.o) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiftCode.currency = a2.f7991c;
+                tL_inputStorePaymentPremiumGiftCode.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f27020c).currency)) * (a2.f7990b / Math.pow(10.0d, 6.0d)));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore.purpose = tL_inputStorePaymentPremiumGiftCode;
+                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore, new bi.b8((Utilities.Callback) this.e, list, iVar, callback, r2Var, tL_inputStorePaymentPremiumGiftCode, 4));
+                return;
+            default:
+                TLRPC.TL_inputStorePaymentPremiumGiveaway tL_inputStorePaymentPremiumGiveaway = (TLRPC.TL_inputStorePaymentPremiumGiveaway) this.f27019b;
+                vg.v vVar = (vg.v) this.f27021f;
+                org.telegram.ui.ActionBar.r2 r2Var2 = (org.telegram.ui.ActionBar.r2) this.h;
+                d5.l a10 = ((d5.o) list.get(0)).a();
+                tL_inputStorePaymentPremiumGiveaway.currency = a10.f7991c;
+                tL_inputStorePaymentPremiumGiveaway.amount = (long) (Math.pow(10.0d, BillingController.getInstance().getCurrencyExp(((TLRPC.TL_premiumGiftCodeOption) this.f27020c).currency)) * (a10.f7990b / Math.pow(10.0d, 6.0d)));
+                TLRPC.TL_payments_canPurchaseStore tL_payments_canPurchaseStore2 = new TLRPC.TL_payments_canPurchaseStore();
+                tL_payments_canPurchaseStore2.purpose = tL_inputStorePaymentPremiumGiveaway;
+                ((ConnectionsManager) this.d).sendRequest(tL_payments_canPurchaseStore2, new bi.b8((vg.v) this.e, list, iVar, vVar, r2Var2, tL_inputStorePaymentPremiumGiveaway, 3));
+                return;
+        }
+    }
+
+    public c1(TLRPC.User user, AccountInstance accountInstance, org.telegram.ui.un unVar, TLRPC.Chat chat, MessageObject messageObject, org.telegram.ui.Cells.y1[] y1VarArr, org.telegram.ui.ActionBar.u6 u6Var) {
+        this.f27018a = 0;
+        this.f27019b = user;
+        this.f27020c = accountInstance;
+        this.d = unVar;
+        this.e = chat;
+        this.f27021f = messageObject;
+        this.h = y1VarArr;
     }
 }

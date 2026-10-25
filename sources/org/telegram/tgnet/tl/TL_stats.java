@@ -235,7 +235,7 @@ public class TL_stats {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.count = inputSerializedData.readInt32(z10);
-            this.transactions = Vector.deserialize(inputSerializedData, new b(26), z10);
+            this.transactions = Vector.deserialize(inputSerializedData, new d(0), z10);
         }
 
         @Override
@@ -330,7 +330,7 @@ public class TL_stats {
             this.reactions_by_emotion_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.story_interactions_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.story_reactions_by_emotion_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-            this.recent_posts_interactions = Vector.deserialize(inputSerializedData, new b(27), z10);
+            this.recent_posts_interactions = Vector.deserialize(inputSerializedData, new d(1), z10);
         }
 
         @Override
@@ -465,7 +465,7 @@ public class TL_stats {
 
     public static class TL_getStoryPublicForwards extends TLObject {
         public static final int constructor = -1505526026;
-        public int f20571id;
+        public int f22257id;
         public int limit;
         public String offset;
         public TLRPC.InputPeer peer;
@@ -479,7 +479,7 @@ public class TL_stats {
         public void serializeToStream(OutputSerializedData outputSerializedData) {
             outputSerializedData.writeInt32(-1505526026);
             this.peer.serializeToStream(outputSerializedData);
-            outputSerializedData.writeInt32(this.f20571id);
+            outputSerializedData.writeInt32(this.f22257id);
             outputSerializedData.writeString(this.offset);
             outputSerializedData.writeInt32(this.limit);
         }
@@ -489,7 +489,7 @@ public class TL_stats {
         public static final int constructor = 1646092192;
         public int flags;
         public String token;
-        public long f20572x;
+        public long f22258x;
 
         @Override
         public TLObject deserializeResponse(InputSerializedData inputSerializedData, int i10, boolean z10) {
@@ -502,7 +502,7 @@ public class TL_stats {
             outputSerializedData.writeInt32(this.flags);
             outputSerializedData.writeString(this.token);
             if (TLObject.hasFlag(this.flags, 1)) {
-                outputSerializedData.writeInt64(this.f20572x);
+                outputSerializedData.writeInt64(this.f22258x);
             }
         }
     }
@@ -552,9 +552,9 @@ public class TL_stats {
             this.actions_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.top_hours_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
             this.weekdays_graph = StatsGraph.TLdeserialize(inputSerializedData, inputSerializedData.readInt32(z10), z10);
-            this.top_posters = Vector.deserialize(inputSerializedData, new b(28), z10);
-            this.top_admins = Vector.deserialize(inputSerializedData, new b(29), z10);
-            this.top_inviters = Vector.deserialize(inputSerializedData, new d(0), z10);
+            this.top_posters = Vector.deserialize(inputSerializedData, new d(2), z10);
+            this.top_admins = Vector.deserialize(inputSerializedData, new d(3), z10);
+            this.top_inviters = Vector.deserialize(inputSerializedData, new d(4), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
@@ -699,7 +699,7 @@ public class TL_stats {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
             this.count = inputSerializedData.readInt32(z10);
-            this.forwards = Vector.deserialize(inputSerializedData, new d(1), z10);
+            this.forwards = Vector.deserialize(inputSerializedData, new d(5), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);
             }

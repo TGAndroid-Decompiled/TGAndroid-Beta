@@ -2,14 +2,14 @@ package r0;
 
 import android.view.animation.Interpolator;
 public abstract class u0 {
-    public final int f45271a;
-    public float f45272b;
-    public final Interpolator f45273c;
+    public final int f47136a;
+    public float f47137b;
+    public final Interpolator f47138c;
     public final long d;
 
     public u0(int i10, long j10, Interpolator interpolator) {
-        this.f45271a = i10;
-        this.f45273c = interpolator;
+        this.f47136a = i10;
+        this.f47138c = interpolator;
         this.d = j10;
     }
 
@@ -18,18 +18,18 @@ public abstract class u0 {
     }
 
     public float b() {
-        Interpolator interpolator = this.f45273c;
+        Interpolator interpolator = this.f47138c;
         if (interpolator != null) {
-            return interpolator.getInterpolation(this.f45272b);
+            return interpolator.getInterpolation(this.f47137b);
         }
-        return this.f45272b;
+        return this.f47137b;
     }
 
     public int c() {
-        return this.f45271a;
+        return this.f47136a;
     }
 
     public void d(float f7) {
-        this.f45272b = f7;
+        this.f47137b = f7;
     }
 }

@@ -1,16 +1,14 @@
 package l5;
-
-import i2.o1;
-public final class g implements ja.d {
-    public static final g f15976a = new Object();
-    public static final ja.c f15977b = new ja.c("startMs", o1.p(o1.o(ma.e.class, new ma.a(1))));
-    public static final ja.c f15978c = new ja.c("endMs", o1.p(o1.o(ma.e.class, new ma.a(2))));
+public final class g implements ka.d {
+    public static final g f16887a = new Object();
+    public static final ka.c f16888b = ka.c.c("networkType");
+    public static final ka.c f16889c = ka.c.c("mobileSubtype");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        o5.g gVar = (o5.g) obj;
-        ja.e eVar = (ja.e) obj2;
-        eVar.f(f15977b, gVar.f17762a);
-        eVar.f(f15978c, gVar.f17763b);
+        ka.e eVar = (ka.e) obj2;
+        n nVar = (n) ((v) obj);
+        eVar.a(f16888b, nVar.f16911a);
+        eVar.a(f16889c, nVar.f16912b);
     }
 }

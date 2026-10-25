@@ -1,215 +1,89 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.PorterDuff;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.R;
-public final class ds extends ViewGroup {
-    public static final int f25820w = 0;
-    public final bs f25821a;
-    public EditText f25822b;
-    public final View[] f25823c;
-    public View d;
-    public boolean e;
-    public boolean f25824f;
-    public final as h;
-    public boolean f25825n;
-    public final as f25826r;
-    public int f25827s;
-    public int v;
+import android.graphics.PointF;
+import android.view.animation.Interpolator;
+import android.view.animation.PathInterpolator;
+public final class ds implements Interpolator {
+    public static final ds f27584f = new ds(0.25d, 0.1d, 0.25d, 1.0d);
+    public static final ds f27585g = new ds(0.0d, 0.0d, 0.58d, 1.0d);
+    public static final ds h = new ds(0.23d, 1.0d, 0.32d, 1.0d);
+    public static final ds f27586i = new ds(0.42d, 0.0d, 1.0d, 1.0d);
+    public static final ds f27587j = new ds(0.42d, 0.0d, 0.58d, 1.0d);
+    public static final ds f27588k = new ds(0.34d, 1.56d, 0.64d, 1.0d);
+    public static final PathInterpolator f27589l;
+    public final PointF f27590a;
+    public final PointF f27591b;
+    public final PointF f27592c;
+    public final PointF d;
+    public final PointF e;
 
-    public ds(Context context) {
-        super(context);
-        String str;
-        int i10;
-        this.f25823c = new View[12];
-        this.h = new as(this, 0);
-        this.f25826r = new as(this, 1);
-        int i11 = 0;
-        for (int i12 = 0; i12 < 11; i12++) {
-            if (i12 != 9) {
-                switch (i12) {
-                    case 1:
-                        str = "ABC";
-                        break;
-                    case 2:
-                        str = "DEF";
-                        break;
-                    case 3:
-                        str = "GHI";
-                        break;
-                    case 4:
-                        str = "JKL";
-                        break;
-                    case 5:
-                        str = "MNO";
-                        break;
-                    case 6:
-                        str = "PQRS";
-                        break;
-                    case 7:
-                        str = "TUV";
-                        break;
-                    case 8:
-                        str = "WXYZ";
-                        break;
-                    case 9:
-                    default:
-                        str = "";
-                        break;
-                    case 10:
-                        str = "+";
-                        break;
-                }
-                if (i12 != 10) {
-                    i10 = i12 + 1;
-                } else {
-                    i10 = 0;
-                }
-                String valueOf = String.valueOf(i10);
-                this.f25823c[i12] = new cs(context, valueOf, str);
-                this.f25823c[i12].setOnClickListener(new aa(8, this, valueOf));
-                addView(this.f25823c[i12]);
-            }
-        }
-        bs bsVar = new bs(this, context, new le.b(context, new gi.c4(this, ViewConfiguration.get(context).getScaledTouchSlop(), 1)));
-        this.f25821a = bsVar;
-        bsVar.setImageResource(R.drawable.msg_clear_input);
-        org.telegram.ui.ActionBar.r6.t(bsVar, org.telegram.ui.ActionBar.k6.G6, null, PorterDuff.Mode.SRC_ATOP);
-        int dp = AndroidUtilities.dp(11.0f);
-        bsVar.setPadding(dp, dp, dp, dp);
-        bsVar.setOnClickListener(new ah.f(12));
-        this.f25823c[11] = bsVar;
-        addView(bsVar);
-        while (true) {
-            View[] viewArr = this.f25823c;
-            if (i11 < viewArr.length) {
-                View view = viewArr[i11];
-                if (view != null) {
-                    w7.b6.b(view, 0.02f, 1.2f);
-                    a(i11, view);
-                }
-                i11++;
-            } else {
+    static {
+        new PathInterpolator(a8.rc.d("M 0,0 C 0.05, 0, 0.133333, 0.06, 0.166666, 0.4 C 0.208333, 0.82, 0.25, 1, 1, 1"));
+        new PathInterpolator(0.05f, 0.7f, 0.1f, 1.0f);
+        new PathInterpolator(0.3f, 0.0f, 0.8f, 0.15f);
+        f27589l = new PathInterpolator(0.0f, 0.0f, 0.0f, 1.0f);
+    }
+
+    public ds(float f7, float f10, float f11, float f12) {
+        PointF pointF = new PointF(f7, f10);
+        PointF pointF2 = new PointF(f11, f12);
+        this.f27592c = new PointF();
+        this.d = new PointF();
+        this.e = new PointF();
+        float f13 = pointF.x;
+        if (f13 >= 0.0f && f13 <= 1.0f) {
+            float f14 = pointF2.x;
+            if (f14 >= 0.0f && f14 <= 1.0f) {
+                this.f27590a = pointF;
+                this.f27591b = pointF2;
                 return;
             }
+            throw new IllegalArgumentException("endX value must be in the range [0, 1]");
         }
-    }
-
-    public static void a(int i10, View view) {
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        float f7;
-        float f10;
-        float f11;
-        boolean z13 = true;
-        if (i10 < 3) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        int i11 = i10 % 3;
-        if (i11 == 0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        if (i11 == 2) {
-            z12 = true;
-        } else {
-            z12 = false;
-        }
-        if (i10 <= 8) {
-            z13 = false;
-        }
-        int i12 = org.telegram.ui.ActionBar.k6.f21273i6;
-        int x02 = org.telegram.ui.ActionBar.k6.x0(null, i12, false);
-        int o10 = i0.a.o(org.telegram.ui.ActionBar.k6.x0(null, i12, false), 30);
-        float f12 = 12.0f;
-        if (z11 && z10) {
-            f7 = 24.0f;
-        } else {
-            f7 = 12.0f;
-        }
-        int dp = AndroidUtilities.dp(f7);
-        if (z12 && z10) {
-            f10 = 24.0f;
-        } else {
-            f10 = 12.0f;
-        }
-        int dp2 = AndroidUtilities.dp(f10);
-        if (z12 && z13) {
-            f11 = 24.0f;
-        } else {
-            f11 = 12.0f;
-        }
-        int dp3 = AndroidUtilities.dp(f11);
-        if (z11 && z13) {
-            f12 = 24.0f;
-        }
-        org.telegram.ui.Cells.y j02 = org.telegram.ui.ActionBar.k6.j0(dp, dp2, dp3, AndroidUtilities.dp(f12), x02, o10, o10);
-        org.telegram.ui.ActionBar.n6 O = org.telegram.ui.ActionBar.r6.O(i12);
-        org.telegram.ui.ActionBar.n6 h = org.telegram.ui.ActionBar.r6.h(i12, 30);
-        view.setBackground(j02);
-        org.telegram.ui.ActionBar.r6.k(view, j02, O, h, null);
+        throw new IllegalArgumentException("startX value must be in the range [0, 1]");
     }
 
     @Override
-    public final boolean canScrollHorizontally(int i10) {
-        return true;
-    }
-
-    @Override
-    public final void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        int A = org.telegram.messenger.tl.A(32.0f, getWidth(), 3);
-        int A2 = org.telegram.messenger.tl.A(42.0f, getHeight(), 4);
-        int i14 = 0;
+    public final float getInterpolation(float f7) {
+        PointF pointF;
+        PointF pointF2;
+        PointF pointF3;
+        PointF pointF4;
+        PointF pointF5;
+        int i10 = 1;
+        float f10 = f7;
         while (true) {
-            View[] viewArr = this.f25823c;
-            if (i14 < viewArr.length) {
-                int dp = AndroidUtilities.dp(6.0f) + A;
-                int dp2 = AndroidUtilities.dp(10.0f) + (dp * (i14 % 3));
-                int dp3 = AndroidUtilities.dp(6.0f) + A2;
-                int dp4 = AndroidUtilities.dp(10.0f) + (dp3 * (i14 / 3));
-                View view = viewArr[i14];
-                if (view != null) {
-                    view.layout(dp2, dp4, dp2 + A, dp4 + A2);
-                }
-                i14++;
-            } else {
-                return;
+            pointF = this.f27591b;
+            pointF2 = this.f27590a;
+            pointF3 = this.f27592c;
+            pointF4 = this.d;
+            pointF5 = this.e;
+            if (i10 >= 14) {
+                break;
             }
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        View[] viewArr;
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), View.MeasureSpec.getSize(i11));
-        int A = org.telegram.messenger.tl.A(32.0f, getWidth(), 3);
-        int A2 = org.telegram.messenger.tl.A(42.0f, getHeight(), 4);
-        for (View view : this.f25823c) {
-            if (view != null) {
-                view.measure(View.MeasureSpec.makeMeasureSpec(A, 1073741824), View.MeasureSpec.makeMeasureSpec(A2, 1073741824));
+            float f11 = pointF2.x * 3.0f;
+            pointF5.x = f11;
+            float f12 = ((pointF.x - pointF2.x) * 3.0f) - f11;
+            pointF4.x = f12;
+            float f13 = (1.0f - pointF5.x) - f12;
+            pointF3.x = f13;
+            float f14 = (((((f13 * f10) + pointF4.x) * f10) + pointF5.x) * f10) - f7;
+            if (Math.abs(f14) < 0.001d) {
+                break;
             }
+            f10 -= f14 / (((((pointF3.x * 3.0f) * f10) + (pointF4.x * 2.0f)) * f10) + pointF5.x);
+            i10++;
         }
+        float f15 = pointF2.y * 3.0f;
+        pointF5.y = f15;
+        float f16 = ((pointF.y - pointF2.y) * 3.0f) - f15;
+        pointF4.y = f16;
+        float f17 = (1.0f - pointF5.y) - f16;
+        pointF3.y = f17;
+        return ((((f17 * f10) + pointF4.y) * f10) + pointF5.y) * f10;
     }
 
-    public void setDispatchBackWhenEmpty(boolean z10) {
-        this.e = z10;
-    }
-
-    public void setEditText(EditText editText) {
-        this.f25822b = editText;
-        this.e = false;
-    }
-
-    public void setViewToFindFocus(View view) {
-        this.d = view;
+    public ds(double d, double d10, double d11, double d12) {
+        this((float) d, (float) d10, (float) d11, (float) d12);
     }
 }

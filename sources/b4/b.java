@@ -1,28 +1,28 @@
 package b4;
 
+import a8.wb;
+import a8.yb;
 import android.text.TextUtils;
-import v7.s6;
-import v7.u6;
 public final class b {
-    public final int f4165a;
-    public final int f4166b;
-    public final int f4167c;
+    public final int f3612a;
+    public final int f3613b;
+    public final int f3614c;
     public final int d;
     public final int e;
-    public final int f4168f;
+    public final int f3615f;
 
     public b(int i10, int i11, int i12, int i13, int i14, int i15) {
-        this.f4165a = i10;
-        this.f4166b = i11;
-        this.f4167c = i12;
+        this.f3612a = i10;
+        this.f3613b = i11;
+        this.f3614c = i12;
         this.d = i13;
         this.e = i14;
-        this.f4168f = i15;
+        this.f3615f = i15;
     }
 
     public static b a(String str) {
         char c10;
-        u6.g(str.startsWith("Format:"));
+        yb.g(str.startsWith("Format:"));
         String[] split = TextUtils.split(str.substring(7), ",");
         int i10 = -1;
         int i11 = -1;
@@ -30,7 +30,7 @@ public final class b {
         int i13 = -1;
         int i14 = -1;
         for (int i15 = 0; i15 < split.length; i15++) {
-            String c11 = s6.c(split[i15].trim());
+            String c11 = wb.c(split[i15].trim());
             c11.getClass();
             switch (c11.hashCode()) {
                 case 100571:

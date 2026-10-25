@@ -1,46 +1,47 @@
 package org.telegram.ui.Components;
 
-import android.net.Uri;
-import java.util.Map;
-import org.telegram.messenger.secretmedia.ExtendedDefaultDataSource;
-public final class e81 implements g2.h {
-    public final g2.h f25983a;
-    public final long f25984b;
+import android.graphics.Point;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+public final class e81 implements View.OnLayoutChangeListener {
+    public Boolean f27756a;
+    public boolean f27757b;
+    public final k6.c f27758c;
 
-    public e81(ExtendedDefaultDataSource extendedDefaultDataSource, long j10) {
-        this.f25983a = extendedDefaultDataSource;
-        this.f25984b = j10;
+    public e81(k6.c cVar, View view) {
+        this.f27758c = cVar;
+        o1.j jVar = new o1.j(view, o1.h.f18953n, 0.0f);
+        cVar.f16407c = jVar;
+        jVar.f18969u.a(1.0f);
+        ((o1.j) cVar.f16407c).f18969u.b(350.0f);
     }
 
     @Override
-    public final void addTransferListener(g2.c0 c0Var) {
-        this.f25983a.addTransferListener(c0Var);
-    }
-
-    @Override
-    public final void close() {
-        this.f25983a.close();
-    }
-
-    @Override
-    public final Map getResponseHeaders() {
-        return this.f25983a.getResponseHeaders();
-    }
-
-    @Override
-    public final Uri getUri() {
-        return this.f25983a.getUri();
-    }
-
-    @Override
-    public final long open(g2.m mVar) {
-        g2.l a2 = mVar.a();
-        a2.f10805b = mVar.e + this.f25984b;
-        return this.f25983a.open(a2.d());
-    }
-
-    @Override
-    public final int read(byte[] bArr, int i10, int i11) {
-        return this.f25983a.read(bArr, i10, i11);
+    public final void onLayoutChange(View view, int i10, int i11, int i12, int i13, int i14, int i15, int i16, int i17) {
+        boolean z10;
+        Point point = AndroidUtilities.displaySize;
+        if (point.x > point.y) {
+            z10 = true;
+        } else {
+            z10 = false;
+        }
+        Boolean bool = this.f27756a;
+        if (bool == null || bool.booleanValue() != z10) {
+            this.f27756a = Boolean.valueOf(z10);
+            this.f27757b = true;
+        }
+        if (i15 != 0 && i15 != i11 && !this.f27757b) {
+            k6.c cVar = this.f27758c;
+            ((o1.j) cVar.f16407c).c();
+            if (view.getVisibility() != 0) {
+                view.setTranslationY(0.0f);
+                return;
+            }
+            ((o1.j) cVar.f16407c).f18969u.f18975i = 0.0f;
+            view.setTranslationY((i15 - i11) + 0.0f);
+            ((o1.j) cVar.f16407c).h();
+            return;
+        }
+        this.f27757b = false;
     }
 }

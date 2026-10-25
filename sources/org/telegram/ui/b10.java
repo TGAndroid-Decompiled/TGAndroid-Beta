@@ -1,80 +1,46 @@
 package org.telegram.ui;
 
-import android.view.ViewGroup;
-import org.telegram.messenger.LocaleController;
+import android.content.Context;
+import java.util.ArrayList;
+import org.telegram.messenger.MediaController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.R;
-public final class b10 extends org.telegram.ui.Components.km0 {
-    public final i10 f35888c;
+public final class b10 extends org.telegram.ui.Cells.n7 {
+    public final c10 f37940l0;
 
-    public b10(i10 i10Var) {
-        this.f35888c = i10Var;
+    public b10(c10 c10Var, Context context) {
+        super(context, 1, null);
+        this.f37940l0 = c10Var;
     }
 
     @Override
-    public final boolean D(s4.b1 b1Var) {
-        return true;
-    }
-
-    @Override
-    public final int h() {
-        i10 i10Var = this.f35888c;
-        if (i10Var.f38101f.isEmpty()) {
-            return 0;
-        }
-        return i10Var.f38101f.size() + (!i10Var.N ? 1 : 0);
-    }
-
-    @Override
-    public final int j(int i10) {
-        if (i10 >= this.f35888c.f38101f.size()) {
-            return 3;
-        }
-        return 0;
-    }
-
-    @Override
-    public final void v(s4.b1 b1Var, int i10) {
-        boolean z10;
-        boolean z11;
-        if (b1Var.f46345f == 0) {
-            org.telegram.ui.Cells.q2 q2Var = (org.telegram.ui.Cells.q2) b1Var.f46342a;
-            i10 i10Var = this.f35888c;
-            MessageObject messageObject = (MessageObject) i10Var.f38101f.get(i10);
-            q2Var.O = i10Var.f38112p0;
-            q2Var.V(messageObject.getDialogId(), messageObject, messageObject.messageOwner.date, false, false);
-            if (i10 != h() - 1) {
-                z10 = true;
-            } else {
-                z10 = false;
+    public final boolean d(MessageObject messageObject) {
+        ArrayList<MessageObject> arrayList;
+        boolean isVoice = messageObject.isVoice();
+        c10 c10Var = this.f37940l0;
+        if (!isVoice && !messageObject.isRoundVideo()) {
+            if (!messageObject.isMusic()) {
+                return false;
             }
-            q2Var.f23011s2 = z10;
-            if (q2Var.getMessage() != null && q2Var.getMessage().getId() == messageObject.getId()) {
-                z11 = true;
-            } else {
-                z11 = false;
-            }
-            q2Var.getViewTreeObserver().addOnPreDrawListener(new org.telegram.ui.Components.jk(this, q2Var, messageObject, z11, 1));
+            h10 h10Var = c10Var.v;
+            String str = h10Var.Q;
+            long j10 = h10Var.E;
+            long j11 = h10Var.H;
+            MediaController.PlaylistGlobalSearchParams playlistGlobalSearchParams = new MediaController.PlaylistGlobalSearchParams(str, j10, j11, j11, h10Var.f39849y);
+            h10 h10Var2 = c10Var.v;
+            playlistGlobalSearchParams.endReached = h10Var2.N;
+            playlistGlobalSearchParams.nextSearchRate = h10Var2.v;
+            playlistGlobalSearchParams.totalCount = h10Var2.O;
+            playlistGlobalSearchParams.folderId = h10Var2.J ? 1 : 0;
+            return MediaController.getInstance().setPlaylist(c10Var.v.f39831f, messageObject, 0L, playlistGlobalSearchParams);
         }
-    }
-
-    @Override
-    public final s4.b1 x(ViewGroup viewGroup, int i10) {
-        hg.z zVar;
-        if (i10 != 0) {
-            if (i10 != 3) {
-                org.telegram.ui.Cells.u3 u3Var = new org.telegram.ui.Cells.u3(viewGroup.getContext(), null);
-                u3Var.setText(LocaleController.getString(R.string.SearchMessages));
-                zVar = u3Var;
-            } else {
-                org.telegram.ui.Components.z00 z00Var = new org.telegram.ui.Components.z00(viewGroup.getContext(), null);
-                z00Var.setIsSingleCell(true);
-                z00Var.setViewType(1);
-                zVar = z00Var;
-            }
+        boolean playMessage = MediaController.getInstance().playMessage(messageObject);
+        MediaController mediaController = MediaController.getInstance();
+        if (playMessage) {
+            arrayList = c10Var.v.f39831f;
         } else {
-            zVar = new hg.z(2, viewGroup.getContext(), true);
+            arrayList = null;
         }
-        return com.google.android.gms.internal.play_billing.k3.l(zVar, zVar, -1, -2);
+        mediaController.setVoiceMessagesPlaylist(arrayList, false);
+        return playMessage;
     }
 }

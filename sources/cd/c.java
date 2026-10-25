@@ -1,19 +1,25 @@
 package cd;
 
-import java.util.Map;
-public abstract class c {
-    public final String f5106a;
-    public final int f5107b;
-    public final Map f5108c;
-    public int d = -1;
+import c3.h0;
+import ef.p;
+import hd.h;
+import java.util.regex.Pattern;
+public final class c extends h {
+    public static final Pattern e = Pattern.compile("(\\${2})([\\s\\S]+?)\\1");
 
-    public c(int i10, String str, Map map) {
-        this.f5106a = str;
-        this.f5107b = i10;
-        this.f5108c = map;
+    @Override
+    public final p b() {
+        String a2 = a(e);
+        if (a2 == null) {
+            return null;
+        }
+        ?? pVar = new p();
+        pVar.f6199g = h0.l(2, 2, a2);
+        return pVar;
     }
 
-    public Map a() {
-        return this.f5108c;
+    @Override
+    public final char d() {
+        return '$';
     }
 }

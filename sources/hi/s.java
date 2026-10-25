@@ -1,63 +1,167 @@
 package hi;
 
-import java.util.ArrayList;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.text.TextUtils;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
 import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.l61;
-public final class s implements Utilities.Callback2 {
-    public final int f12248a;
-    public final k0 f12249b;
+import org.telegram.messenger.vh;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.ActionBar.y6;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.Components.j9;
+import org.telegram.ui.Components.r5;
+import org.telegram.ui.Components.y9;
+public final class s extends FrameLayout {
+    public final u6 f13250a;
+    public final y9 f13251b;
+    public final j9 f13252c;
+    public final r5 d;
+    public final TextView e;
+    public final TextView f13253f;
+    public final ImageView h;
+    public final ImageView f13254n;
+    public boolean f13255r;
 
-    public s(k0 k0Var, int i10) {
-        this.f12248a = i10;
-        this.f12249b = k0Var;
+    public s(Context context, int i10, u6 u6Var) {
+        super(context);
+        int i11;
+        int i12;
+        int i13;
+        float f7;
+        float f10;
+        int i14;
+        j9 j9Var = new j9((u6) null);
+        this.f13252c = j9Var;
+        this.f13250a = u6Var;
+        y9 y9Var = new y9(context);
+        this.f13251b = y9Var;
+        y9Var.setRoundRadius(AndroidUtilities.dp(8.0f));
+        j9Var.f29542r = AndroidUtilities.dp(8.0f);
+        if (LocaleController.isRTL) {
+            i11 = 5;
+        } else {
+            i11 = 3;
+        }
+        addView(y9Var, gb1.h(28, 28.0f, i11 | 16, 15.0f, 0.0f, 15.0f, 0.0f));
+        r5 r5Var = new r5(AndroidUtilities.dp(28.0f), 7, y9Var, false);
+        this.d = r5Var;
+        r5Var.f32099x = Integer.valueOf(i10);
+        LinearLayout d = vh.d(context, 1);
+        TextView textView = new TextView(context);
+        this.e = textView;
+        textView.setTextSize(1, 16.0f);
+        textView.setTextColor(y6.w0(y6.G6, u6Var));
+        textView.setSingleLine();
+        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
+        textView.setEllipsize(truncateAt);
+        if (LocaleController.isRTL) {
+            i12 = 5;
+        } else {
+            i12 = 3;
+        }
+        textView.setGravity(i12);
+        d.addView(textView, gb1.r(-1, -2));
+        TextView textView2 = new TextView(context);
+        this.f13253f = textView2;
+        textView2.setTextSize(1, 13.0f);
+        textView2.setTextColor(y6.w0(y6.f23746y6, u6Var));
+        textView2.setSingleLine();
+        textView2.setEllipsize(truncateAt);
+        if (LocaleController.isRTL) {
+            i13 = 5;
+        } else {
+            i13 = 3;
+        }
+        textView2.setGravity(i13);
+        d.addView(textView2, gb1.o(0.0f, 2.0f, 0.0f, 0.0f, -1, -2));
+        boolean z10 = LocaleController.isRTL;
+        if (z10) {
+            f7 = 56.0f;
+        } else {
+            f7 = 61.0f;
+        }
+        if (z10) {
+            f10 = 61.0f;
+        } else {
+            f10 = 56.0f;
+        }
+        addView(d, gb1.h(-1, -2.0f, 23, f7, 0.0f, f10, 0.0f));
+        ImageView imageView = new ImageView(context);
+        this.h = imageView;
+        ImageView.ScaleType scaleType = ImageView.ScaleType.CENTER;
+        imageView.setScaleType(scaleType);
+        imageView.setImageResource(R.drawable.checkbig);
+        int w02 = y6.w0(y6.Mh, u6Var);
+        PorterDuff.Mode mode = PorterDuff.Mode.SRC_IN;
+        imageView.setColorFilter(new PorterDuffColorFilter(w02, mode));
+        if (LocaleController.isRTL) {
+            i14 = 3;
+        } else {
+            i14 = 5;
+        }
+        addView(imageView, gb1.h(24, 24.0f, i14 | 16, 18.0f, 0.0f, 18.0f, 0.0f));
+        ImageView imageView2 = new ImageView(context);
+        this.f13254n = imageView2;
+        imageView2.setScaleType(scaleType);
+        imageView2.setImageResource(R.drawable.msg_arrowright);
+        imageView2.setColorFilter(new PorterDuffColorFilter(y6.w0(y6.f23518m6, u6Var), mode));
+        if (LocaleController.isRTL) {
+            imageView2.setScaleX(-1.0f);
+        }
+        addView(imageView2, gb1.h(24, 24.0f, (LocaleController.isRTL ? 3 : 5) | 16, 14.0f, 0.0f, 14.0f, 0.0f));
+        setWillNotDraw(false);
+    }
+
+    public final void a(org.telegram.tgnet.tl.TL_agent.agentProvider r7, java.lang.String r8, boolean r9, boolean r10, boolean r11, boolean r12) {
+        throw new UnsupportedOperationException("Method not decompiled: hi.s.a(org.telegram.tgnet.tl.TL_agent$agentProvider, java.lang.String, boolean, boolean, boolean, boolean):void");
     }
 
     @Override
-    public final void run(Object obj, Object obj2) {
-        int i10 = this.f12248a;
-        k0 k0Var = this.f12249b;
-        switch (i10) {
-            case 0:
-                a71 a71Var = (a71) obj2;
-                k0Var.e0((ArrayList) obj, true);
-                return;
-            case 1:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                k0.p(k0Var, (TLRPC.TL_error) obj2);
-                return;
-            case 2:
-                k0.n(k0Var, (ArrayList) obj, (TLRPC.TL_error) obj2);
-                return;
-            case 3:
-                a71 a71Var2 = (a71) obj2;
-                int i11 = k0.V;
-                k0Var.e0((ArrayList) obj, false);
-                return;
-            case 4:
-                a71 a71Var3 = (a71) obj2;
-                k0.D(k0Var, (ArrayList) obj);
-                return;
-            default:
-                ArrayList arrayList = (ArrayList) obj;
-                a71 a71Var4 = (a71) obj2;
-                s0 s0Var = k0Var.M;
-                arrayList.add(l61.D(99, (int) (AndroidUtilities.displaySize.y * 0.35f)));
-                arrayList.add(l61.D(0, AndroidUtilities.dp(48.0f)));
-                if (ChatObject.canBlockUsers(k0Var.f12201f)) {
-                    arrayList.add(l61.A(1, AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.CommunityPendingRequestsInfo), new v(k0Var, 2)), true)));
-                } else {
-                    arrayList.add(l61.A(1, LocaleController.getString(R.string.CommunityPendingRequestsInfoNoChange)));
-                }
-                arrayList.add(l61.j(2, k0Var.L));
-                arrayList.add(l61.s(3, LocaleController.formatPluralString("CommunityPendingRequestsSuggestedHeader", s0Var.f12258l, new Object[0])));
-                s0Var.c(arrayList);
-                return;
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.d.a();
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        this.d.b();
+    }
+
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float dp;
+        int i10;
+        super.onDraw(canvas);
+        if (this.f13255r) {
+            if (LocaleController.isRTL) {
+                dp = 0.0f;
+            } else {
+                dp = AndroidUtilities.dp(61.0f);
+            }
+            float f7 = dp;
+            float measuredHeight = getMeasuredHeight() - 1;
+            int measuredWidth = getMeasuredWidth();
+            if (LocaleController.isRTL) {
+                i10 = AndroidUtilities.dp(61.0f);
+            } else {
+                i10 = 0;
+            }
+            canvas.drawLine(f7, measuredHeight, measuredWidth - i10, getMeasuredHeight() - 1, y6.V0("paintDivider", this.f13250a));
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(60.0f) + (this.f13255r ? 1 : 0), 1073741824));
     }
 }

@@ -1,39 +1,131 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import org.telegram.messenger.Utilities;
-public final class sv implements Utilities.Callback {
-    public final int f41811a;
-    public final Activity f41812b;
+import android.content.SharedPreferences;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.NotificationCenter;
+import org.telegram.ui.Components.UndoView;
+public final class sv implements Runnable {
+    public final int f43603a;
+    public final cy f43604b;
 
-    public sv(Activity activity, int i10) {
-        this.f41811a = i10;
-        this.f41812b = activity;
+    public sv(cy cyVar, int i10) {
+        this.f43603a = i10;
+        this.f43604b = cyVar;
     }
 
     @Override
-    public final void run(Object obj) {
-        Boolean bool = (Boolean) obj;
-        switch (this.f41811a) {
+    public final void run() {
+        af1 af1Var;
+        switch (this.f43603a) {
             case 0:
-                if (bool.booleanValue()) {
-                    if (!org.telegram.ui.Components.ze0.a()) {
-                        org.telegram.ui.Components.ze0.f();
-                        return;
-                    }
-                    this.f41812b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
+                cy cyVar = this.f43604b;
+                jx jxVar = cyVar.C0;
+                if (jxVar != null && jxVar.A0) {
+                    jxVar.R(false);
+                    return;
+                }
+                cyVar.X.f30365r.getText().clear();
+                AndroidUtilities.hideKeyboard(cyVar.X.f30365r);
+                cyVar.X.f30365r.clearFocus();
+                cyVar.Y.b(false);
+                return;
+            case 1:
+                cy cyVar2 = this.f43604b;
+                if (cyVar2.R0 != 10) {
+                    cyVar2.k4(false);
+                }
+                if (cyVar2.L && cyVar2.f4().G()) {
+                    cyVar2.E0.h();
+                    return;
+                } else {
+                    cyVar2.F4(true, true);
+                    return;
+                }
+            case 2:
+                cy cyVar3 = this.f43604b;
+                jh.f fVar = cyVar3.f38688y1;
+                if (fVar != null) {
+                    fVar.d();
+                }
+                cyVar3.A3();
+                cyVar3.B3();
+                li.w1 w1Var = cyVar3.C1;
+                if (w1Var != null) {
+                    w1Var.setTranslationY(-cyVar3.v.d());
+                    return;
+                }
+                return;
+            case 3:
+                this.f43604b.getNotificationCenter().lambda$postNotificationNameOnUIThread$1(NotificationCenter.forceImportContactsStart, new Object[0]);
+                return;
+            case 4:
+                this.f43604b.U3();
+                return;
+            case 5:
+                this.f43604b.c5();
+                return;
+            case 6:
+                cy.E0(this.f43604b);
+                return;
+            case 7:
+                MessagesController.getInstance(this.f43604b.currentAccount).getMainSettings().edit().putBoolean("storyhint", false).commit();
+                return;
+            case 8:
+                this.f43604b.getMessagesController().removeSuggestion(0L, "SETUP_LOGIN_EMAIL");
+                return;
+            case 9:
+                cy cyVar4 = this.f43604b;
+                fi.v3 v3Var = cyVar4.f38642q0;
+                if (v3Var != null) {
+                    v3Var.e(true);
+                }
+                cyVar4.presentFragment(new PremiumPreviewFragment(0, "stories"));
+                return;
+            case 10:
+                this.f43604b.f38583e0[0].d.l();
+                return;
+            case 11:
+                cy cyVar5 = this.f43604b;
+                UndoView g42 = cyVar5.g4();
+                if (g42 != null) {
+                    g42.l(0L, 15, null, new cv(cyVar5, 26));
+                    return;
+                }
+                return;
+            case 12:
+                cy cyVar6 = this.f43604b;
+                cyVar6.getClass();
+                SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+                long j10 = globalMainSettings.getLong("cache_hint_period", 604800000L);
+                if (j10 <= 604800000) {
+                    j10 = 2592000000L;
+                }
+                globalMainSettings.edit().putLong("cache_hint_showafter", System.currentTimeMillis() + j10).putLong("cache_hint_period", j10).apply();
+                cyVar6.c5();
+                return;
+            case 13:
+                cy cyVar7 = this.f43604b;
+                cyVar7.f38583e0[0].f37910a.requestLayout();
+                tw twVar = cyVar7.G3;
+                if (twVar != null && (twVar.getFragment() instanceof af1)) {
+                    af1Var = (af1) cyVar7.G3.getFragment();
+                } else {
+                    af1Var = null;
+                }
+                if (af1Var != null) {
+                    af1Var.B0();
+                }
+                cyVar7.O3(false);
+                cyVar7.a5();
+                jx jxVar2 = cyVar7.C0;
+                if (jxVar2 != null) {
+                    jxVar2.invalidate();
                     return;
                 }
                 return;
             default:
-                if (bool.booleanValue()) {
-                    if (!org.telegram.ui.Components.ze0.a()) {
-                        org.telegram.ui.Components.ze0.f();
-                        return;
-                    }
-                    this.f41812b.requestPermissions(new String[]{"android.permission.POST_NOTIFICATIONS"}, 1);
-                    return;
-                }
+                this.f43604b.k5();
                 return;
         }
     }

@@ -1,161 +1,143 @@
 package org.telegram.ui.Components.voip;
 
 import android.app.Activity;
-import android.view.MotionEvent;
-import android.view.VelocityTracker;
-import android.view.WindowInsets;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
+import android.text.Layout;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.AnimationNotificationsLocker;
+import org.telegram.messenger.R;
 import org.telegram.messenger.voip.VoIPService;
-import org.telegram.ui.Components.o31;
-import org.telegram.ui.Components.zr;
-import org.telegram.ui.nh1;
-import org.webrtc.OrientationHelper;
-public abstract class u2 extends FrameLayout {
-    public Activity f31927a;
-    public boolean f31928b;
-    public AnimationNotificationsLocker f31929c;
-    public VelocityTracker d;
-    public boolean e;
-    public boolean f31930f;
-    public float h;
-    public float f31931n;
-    public boolean f31932r;
+public final class u2 extends View {
+    public StaticLayout f34128a;
+    public final RectF f34129b;
+    public final Paint f34130c;
+    public final Paint d;
+    public String e;
+    public final TextPaint f34131f;
+    public int h;
+    public boolean f34132n;
+    public final Drawable f34133r;
+    public final k2.c f34134s;
 
-    public static WindowManager.LayoutParams a() {
-        WindowManager.LayoutParams layoutParams = new WindowManager.LayoutParams();
-        layoutParams.height = -1;
-        layoutParams.format = -2;
-        layoutParams.width = -1;
-        layoutParams.gravity = 51;
-        layoutParams.type = 99;
-        layoutParams.screenOrientation = 1;
-        AndroidUtilities.applyEdgeToEdgeLayoutParams(layoutParams);
-        layoutParams.flags = -2144665216;
-        return layoutParams;
+    public u2(Activity activity) {
+        super(activity);
+        this.f34129b = new RectF();
+        Paint paint = new Paint(1);
+        this.f34130c = paint;
+        Paint paint2 = new Paint(1);
+        this.d = paint2;
+        TextPaint textPaint = new TextPaint(1);
+        this.f34131f = textPaint;
+        this.h = 4;
+        this.f34132n = false;
+        this.f34134s = new k2.c(this, 23);
+        textPaint.setTextSize(AndroidUtilities.dp(15.0f));
+        textPaint.setColor(-1);
+        paint.setColor(i0.a.o(-1, 229));
+        paint2.setColor(i0.a.o(-1, 102));
+        Drawable drawable = activity.getDrawable(R.drawable.calls_decline);
+        this.f34133r = drawable;
+        drawable.setBounds(0, 0, AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
     }
 
-    public final void b() {
-        c(330L);
-    }
-
-    public final void c(long j10) {
-        if (!this.f31930f) {
-            this.f31930f = true;
-            if (nh1.f39825n1 != null) {
-                if (VoIPService.getSharedInstance() != null) {
-                    int measuredHeight = nh1.f39825n1.f39864u0.getMeasuredHeight();
-                    if (nh1.f39825n1.D0 && !VoIPService.getSharedInstance().isConverting()) {
-                        nh1 nh1Var = nh1.f39825n1;
-                        k2.l(nh1Var.f39829b, nh1Var.f39826a, nh1Var.f39864u0.getMeasuredWidth(), measuredHeight, 0);
-                        WindowInsets windowInsets = nh1.f39825n1.f39860r0;
-                        if (windowInsets != null) {
-                            k2.X = windowInsets.getSystemWindowInsetTop();
-                            nh1.f39825n1.f39860r0.getSystemWindowInsetBottom();
-                        }
-                    }
-                }
-                nh1.f39825n1.f39833c0.d.release();
-                nh1.f39825n1.f39835d0.d.release();
-                nh1.f39825n1.f39830b0.release();
-                nh1.f39825n1.k();
-            }
-            nh1.f39825n1 = null;
-            if (this.f31928b) {
-                try {
-                    ((WindowManager) this.f31927a.getSystemService("window")).removeView(this);
-                    return;
-                } catch (Exception unused) {
-                    return;
-                }
-            }
-            this.f31929c.lock();
-            animate().translationY(getMeasuredHeight()).alpha(0.0f).setListener(new o31(this, 17)).setDuration(j10).setInterpolator(zr.f33337f).start();
+    public final void a() {
+        k2.c cVar = this.f34134s;
+        removeCallbacks(cVar);
+        VoIPService sharedInstance = VoIPService.getSharedInstance();
+        if (sharedInstance == null) {
+            return;
         }
-    }
-
-    public final void d() {
-        if (getParent() != null) {
-            AndroidUtilities.unlockOrientation(this.f31927a);
-            setVisibility(8);
-            ((WindowManager) this.f31927a.getSystemService("window")).removeView(this);
-            OrientationHelper.cameraRotationDisabled = false;
+        String formatLongDuration = AndroidUtilities.formatLongDuration((int) (sharedInstance.getCallDuration() / 1000));
+        String str = this.e;
+        if (str == null || !str.equals(formatLongDuration)) {
+            this.e = formatLongDuration;
+            if (this.f34128a == null) {
+                requestLayout();
+            }
+            String str2 = this.e;
+            TextPaint textPaint = this.f34131f;
+            this.f34128a = new StaticLayout(str2, textPaint, (int) textPaint.measureText(str2), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
         }
+        postDelayed(cVar, 300L);
+        invalidate();
     }
 
     @Override
-    public final boolean onInterceptTouchEvent(MotionEvent motionEvent) {
-        return onTouchEvent(motionEvent);
+    public final void onDraw(Canvas canvas) {
+        int dp;
+        Paint paint;
+        StaticLayout staticLayout = this.f34128a;
+        int i10 = 0;
+        if (staticLayout == null) {
+            dp = 0;
+        } else {
+            dp = AndroidUtilities.dp(21.0f) + staticLayout.getWidth();
+        }
+        canvas.save();
+        canvas.translate((getMeasuredWidth() - dp) / 2.0f, 0.0f);
+        canvas.save();
+        if (this.f34132n) {
+            canvas.translate(-AndroidUtilities.dp(7.0f), -AndroidUtilities.dp(3.0f));
+            this.f34133r.draw(canvas);
+        } else {
+            canvas.translate(0.0f, (getMeasuredHeight() - AndroidUtilities.dp(11.0f)) / 2.0f);
+            while (i10 < 4) {
+                int i11 = i10 + 1;
+                if (i11 > this.h) {
+                    paint = this.d;
+                } else {
+                    paint = this.f34130c;
+                }
+                float f7 = i10;
+                float dpf2 = AndroidUtilities.dpf2(2.75f);
+                RectF rectF = this.f34129b;
+                rectF.set(AndroidUtilities.dpf2(4.16f) * f7, AndroidUtilities.dpf2(2.75f) * (3 - i10), dpf2 + (AndroidUtilities.dpf2(4.16f) * f7), AndroidUtilities.dp(11.0f));
+                canvas.drawRoundRect(rectF, AndroidUtilities.dpf2(0.7f), AndroidUtilities.dpf2(0.7f), paint);
+                i10 = i11;
+            }
+        }
+        canvas.restore();
+        if (staticLayout != null) {
+            canvas.translate(AndroidUtilities.dp(21.0f), 0.0f);
+            staticLayout.draw(canvas);
+        }
+        canvas.restore();
     }
 
     @Override
     public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        if (!this.e) {
-            this.e = true;
-            if (!this.f31928b) {
-                setTranslationY(getMeasuredHeight());
-                setAlpha(0.0f);
-                animate().translationY(0.0f).alpha(1.0f).setDuration(330L).setInterpolator(zr.f33337f).start();
-            }
+        StaticLayout staticLayout = this.f34128a;
+        if (staticLayout != null) {
+            setMeasuredDimension(View.MeasureSpec.getSize(i10), staticLayout.getHeight());
+        } else {
+            setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.dp(15.0f));
         }
+    }
+
+    public void setSignalBarCount(int i10) {
+        this.h = i10;
+        invalidate();
     }
 
     @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        if (!this.f31928b) {
-            if (motionEvent.getAction() == 0) {
-                this.h = motionEvent.getX();
-                this.f31931n = motionEvent.getY();
-                if (this.d == null) {
-                    this.d = VelocityTracker.obtain();
-                }
-                this.d.clear();
-                return false;
-            }
-            float f7 = 0.0f;
-            if (motionEvent.getAction() == 2) {
-                float x10 = motionEvent.getX() - this.h;
-                float y3 = motionEvent.getY() - this.f31931n;
-                if (!this.f31932r && Math.abs(y3) > AndroidUtilities.getPixelsInCM(0.4f, true) && Math.abs(y3) / 3.0f > x10) {
-                    this.f31931n = motionEvent.getY();
-                    this.f31932r = true;
-                    y3 = 0.0f;
-                }
-                if (this.f31932r) {
-                    if (y3 >= 0.0f) {
-                        f7 = y3;
-                    }
-                    if (this.d == null) {
-                        this.d = VelocityTracker.obtain();
-                    }
-                    this.d.addMovement(motionEvent);
-                    setTranslationY(f7);
-                }
-                return this.f31932r;
-            } else if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                float translationY = getTranslationY();
-                if (this.d == null) {
-                    this.d = VelocityTracker.obtain();
-                }
-                this.d.computeCurrentVelocity(1000);
-                float xVelocity = this.d.getXVelocity();
-                float yVelocity = this.d.getYVelocity();
-                if (translationY < getMeasuredHeight() / 3.0f && (xVelocity < 3500.0f || xVelocity < yVelocity)) {
-                    animate().translationY(0.0f).start();
-                } else {
-                    c(Math.max((int) ((200.0f / getMeasuredHeight()) * (getMeasuredHeight() - getTranslationY())), 50));
-                }
-                this.f31932r = false;
-                return false;
+    public void setVisibility(int i10) {
+        if (getVisibility() != i10) {
+            if (i10 == 0) {
+                this.e = "00:00";
+                String str = this.e;
+                TextPaint textPaint = this.f34131f;
+                this.f34128a = new StaticLayout(str, textPaint, (int) textPaint.measureText(str), Layout.Alignment.ALIGN_NORMAL, 1.0f, 0.0f, false);
+                a();
+            } else {
+                this.e = null;
+                this.f34128a = null;
             }
         }
-        return false;
-    }
-
-    public void setLockOnScreen(boolean z10) {
-        this.f31928b = z10;
+        super.setVisibility(i10);
     }
 }

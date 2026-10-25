@@ -1,120 +1,134 @@
 package org.telegram.ui;
 
-import android.util.LongSparseArray;
-import android.view.View;
-import android.view.ViewPropertyAnimator;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SaveToGallerySettingsHelper;
-import org.telegram.tgnet.TLRPC;
-public final class f31 implements View.OnClickListener {
-    public final int f37180a;
-    public final Object f37181b;
+import android.content.Context;
+import android.view.ViewGroup;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class f31 extends org.telegram.ui.Components.lm0 {
+    public final Context f39247c;
 
-    public f31(Object obj, int i10) {
-        this.f37180a = i10;
-        this.f37181b = obj;
+    public f31(Context context) {
+        this.f39247c = context;
     }
 
     @Override
-    public final void onClick(View view) {
-        org.telegram.ui.Cells.z1 z1Var;
-        float f7;
-        switch (this.f37180a) {
-            case 0:
-                SaveToGallerySettingsActivity saveToGallerySettingsActivity = (SaveToGallerySettingsActivity) this.f37181b;
-                if (saveToGallerySettingsActivity.d) {
-                    LongSparseArray<SaveToGallerySettingsHelper.DialogException> saveGalleryExceptions = saveToGallerySettingsActivity.getUserConfig().getSaveGalleryExceptions(saveToGallerySettingsActivity.f34079a);
-                    SaveToGallerySettingsHelper.DialogException dialogException = saveToGallerySettingsActivity.f34081c;
-                    saveGalleryExceptions.put(dialogException.dialogId, dialogException);
-                    saveToGallerySettingsActivity.getUserConfig().updateSaveGalleryExceptions(saveToGallerySettingsActivity.f34079a, saveGalleryExceptions);
+    public final boolean D(s4.e1 e1Var) {
+        int b10 = e1Var.b();
+        if (b10 != 1) {
+            wi.a aVar = wi.e.d;
+            aVar.a();
+            if (aVar.d) {
+                if (b10 != 2 && b10 != 3 && b10 != 4 && b10 != 5 && b10 != 8) {
+                    return false;
                 }
-                saveToGallerySettingsActivity.finishFragment();
-                return;
-            case 1:
-                ((k31) this.f37181b).dismiss();
-                return;
-            case 2:
-                SecretMediaViewer secretMediaViewer = (SecretMediaViewer) this.f37181b;
-                MessageObject messageObject = secretMediaViewer.f34105h0;
-                if (messageObject != null) {
-                    TLRPC.Message message = messageObject.messageOwner;
-                    if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
-                        ei.x3 x3Var = secretMediaViewer.f34124r;
-                        if (x3Var.V) {
-                            x3Var.e(true);
-                            return;
-                        } else {
-                            secretMediaViewer.l();
-                            return;
-                        }
-                    }
-                    return;
-                }
-                return;
-            case 3:
-                k61 k61Var = (k61) this.f37181b;
-                if (k61Var.f38800a0 instanceof TLRPC.User) {
-                    ei.d dVar = k61Var.f38807h0;
-                    if (!dVar.Q) {
-                        dVar.setLoading(true);
-                        k61Var.T((TLRPC.User) k61Var.f38800a0, null, null);
-                        return;
-                    }
-                    return;
-                }
-                return;
-            case 4:
-                SessionsActivity sessionsActivity = ((l71) this.f37181b).f39133f;
-                if (sessionsActivity.getParentActivity() != null) {
-                    if (sessionsActivity.getParentActivity().checkSelfPermission("android.permission.CAMERA") != 0) {
-                        sessionsActivity.getParentActivity().requestPermissions(new String[]{"android.permission.CAMERA"}, 34);
-                        return;
-                    }
-                    w9.e0(sessionsActivity.getParentActivity(), 2, new j71(sessionsActivity));
-                    return;
-                }
-                return;
-            case 5:
-                ((dd1) this.f37181b).c(true);
-                return;
-            case 6:
-                ((dd1) ((ai.j5) this.f37181b).f1545c).c(true);
-                return;
-            case 7:
-                ld1 ld1Var = (ld1) this.f37181b;
-                ArrayList arrayList = ld1Var.f39205f;
-                HashSet hashSet = ld1Var.f39209w;
-                if (!hashSet.isEmpty()) {
-                    TLRPC.User user = ld1Var.getMessagesController().getUser(Long.valueOf(ld1Var.getUserConfig().getClientUserId()));
-                    ArrayList arrayList2 = new ArrayList();
-                    for (int i10 = 0; i10 < arrayList.size(); i10++) {
-                        if (hashSet.contains(Long.valueOf(((TLRPC.Chat) arrayList.get(i10)).f20344id))) {
-                            arrayList2.add((TLRPC.Chat) arrayList.get(i10));
-                        }
-                    }
-                    for (int i11 = 0; i11 < arrayList2.size(); i11++) {
-                        TLRPC.Chat chat = (TLRPC.Chat) arrayList2.get(i11);
-                        ld1Var.getMessagesController().putChat(chat, false);
-                        ld1Var.getMessagesController().deleteParticipantFromChat(chat.f20344id, user);
-                    }
-                    ld1Var.finishFragment();
-                    return;
-                }
-                return;
-            default:
-                gi1 gi1Var = (gi1) this.f37181b;
-                gi1Var.f37588a.c(!z1Var.b(), true);
-                gi1Var.f37590c.setEnabled(gi1Var.f37588a.b());
-                ViewPropertyAnimator animate = gi1Var.f37590c.animate();
-                if (gi1Var.f37588a.b()) {
-                    f7 = 1.0f;
-                } else {
-                    f7 = 0.5f;
-                }
-                animate.alpha(f7).start();
-                return;
+            } else {
+                return false;
+            }
         }
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        return 7;
+    }
+
+    @Override
+    public final int j(int i10) {
+        if (i10 != 0 && i10 != 7) {
+            if (i10 == 1 || i10 == 8) {
+                return 1;
+            }
+            if (i10 != 6 && i10 != 9) {
+                return 2;
+            }
+            return 3;
+        }
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        String string;
+        String string2;
+        boolean z10;
+        String string3;
+        wi.a aVar = wi.e.d;
+        aVar.a();
+        boolean z11 = aVar.d;
+        int i11 = e1Var.f47738f;
+        if (i11 == 0) {
+            org.telegram.ui.Cells.q4 q4Var = (org.telegram.ui.Cells.q4) e1Var.f47735a;
+            if (i10 == 0) {
+                string3 = LocaleController.getString(R.string.RoundVideoGeneral);
+            } else {
+                string3 = LocaleController.getString(R.string.RoundVideoComposition);
+            }
+            q4Var.setText(string3);
+        } else if (i11 == 1) {
+            org.telegram.ui.Cells.a9 a9Var = (org.telegram.ui.Cells.a9) e1Var.f47735a;
+            if (i10 != 1 && !z11) {
+                z10 = false;
+            } else {
+                z10 = true;
+            }
+            a9Var.setEnabled(z10);
+            if (i10 == 1) {
+                a9Var.f(LocaleController.getString(R.string.RoundVideoUseNewRecorder), z11, false);
+                return;
+            }
+            String string4 = LocaleController.getString(R.string.RoundVideoCompositionEnabled);
+            wi.a aVar2 = wi.e.f51278i;
+            aVar2.a();
+            a9Var.f(string4, aVar2.d, false);
+        } else if (i11 == 2) {
+            org.telegram.ui.Cells.ga gaVar = (org.telegram.ui.Cells.ga) e1Var.f47735a;
+            gaVar.setEnabled(z11);
+            if (i10 == 2) {
+                gaVar.c(LocaleController.getString(R.string.RoundVideoOutputResolution), a1.g.n(((vi.q0) wi.e.e.a()).f50530a, "p", new StringBuilder()), false, true);
+            } else if (i10 == 3) {
+                String string5 = LocaleController.getString(R.string.RoundVideoCameraResolution);
+                vi.m0 m0Var = (vi.m0) wi.e.f51276f.a();
+                if (m0Var == vi.m0.f50508a) {
+                    string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionHigh);
+                } else if (m0Var == vi.m0.f50509b) {
+                    string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionMedium);
+                } else {
+                    string2 = LocaleController.getString(R.string.RoundVideoCameraResolutionLow);
+                }
+                gaVar.c(string5, string2, false, true);
+            } else if (i10 == 4) {
+                gaVar.c(LocaleController.getString(R.string.RoundVideoFrameRate), a1.g.n(((vi.n0) wi.e.f51277g.a()).f50516a, " FPS", new StringBuilder()), false, true);
+            } else {
+                gaVar.c(LocaleController.getString(R.string.RoundVideoBitrate), g31.V(wi.e.h.a()), false, false);
+            }
+        } else {
+            org.telegram.ui.Cells.i9 i9Var = (org.telegram.ui.Cells.i9) e1Var.f47735a;
+            if (i10 == 6) {
+                string = LocaleController.getString(R.string.RoundVideoGeneralInfo);
+            } else {
+                string = LocaleController.getString(R.string.RoundVideoCompositionInfo);
+            }
+            i9Var.setText(string);
+        }
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        org.telegram.ui.Cells.ga gaVar;
+        Context context = this.f39247c;
+        if (i10 == 0) {
+            gaVar = new org.telegram.ui.Cells.q4(context);
+        } else if (i10 == 1) {
+            gaVar = new org.telegram.ui.Cells.a9(context);
+        } else if (i10 == 2) {
+            org.telegram.ui.Cells.ga gaVar2 = new org.telegram.ui.Cells.ga(context);
+            gaVar2.setCanDisable(true);
+            gaVar = gaVar2;
+        } else {
+            gaVar = new org.telegram.ui.Cells.i9(context);
+        }
+        gaVar.setLayoutParams(new s4.q0(-1, -2));
+        return new s4.e1(gaVar);
     }
 }

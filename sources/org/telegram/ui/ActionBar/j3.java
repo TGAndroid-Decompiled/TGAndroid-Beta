@@ -1,54 +1,79 @@
 package org.telegram.ui.ActionBar;
 
-import android.content.Context;
 import android.graphics.Canvas;
-import android.view.View;
-import java.util.HashSet;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffXfermode;
+import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-public final class j3 extends View implements b6 {
-    public final l3 f20992a;
+public final class j3 extends Drawable {
+    public final Paint f22738a;
+    public final Rect f22739b;
+    public final Rect f22740c;
 
-    public j3(l3 l3Var, Context context) {
-        super(context);
-        this.f20992a = l3Var;
+    public j3() {
+        Paint paint = new Paint(1);
+        this.f22738a = paint;
+        this.f22739b = new Rect();
+        this.f22740c = new Rect();
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC));
+        paint.setColor(-16777216);
+    }
+
+    public final void a(int i10) {
+        Rect rect = this.f22739b;
+        if (rect.left == 0 && rect.top == 0 && rect.right == 0 && rect.bottom == i10) {
+            return;
+        }
+        rect.set(0, 0, 0, i10);
+        onBoundsChange(getBounds());
+        invalidateSelf();
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        canvas.drawRect(0.0f, 0.0f, getWidth(), getHeight(), this.f20992a.d);
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        setMeasuredDimension(View.MeasureSpec.getSize(i10), AndroidUtilities.navigationBarHeight);
-        setTranslationY(AndroidUtilities.navigationBarHeight);
-    }
-
-    @Override
-    public final void updateColors() {
-        l3 l3Var = this.f20992a;
-        try {
-            w3 w3Var = l3Var.f21604a;
-            if (w3Var != null) {
-                boolean z10 = false;
-                int navigationBarColor = w3Var.getNavigationBarColor(k6.x0(null, k6.f21126a7, false));
-                if (l3Var.d.getColor() != navigationBarColor) {
-                    l3Var.d.setColor(navigationBarColor);
-                    invalidate();
-                    AndroidUtilities.setNavigationBarColor(l3Var, navigationBarColor);
-                    if (AndroidUtilities.computePerceivedBrightness(navigationBarColor) >= 0.721f) {
-                        z10 = true;
-                    }
-                    AndroidUtilities.setLightNavigationBar(l3Var, z10);
-                }
+    public final void draw(Canvas canvas) {
+        Rect rect = this.f22740c;
+        if (!rect.isEmpty()) {
+            Paint paint = this.f22738a;
+            if (paint.getAlpha() != 0 && !AndroidUtilities.makingGlobalBlurBitmap) {
+                canvas.drawRect(rect, paint);
             }
-        } catch (Exception e) {
-            FileLog.e(e);
         }
     }
 
     @Override
-    public final void addColorKeys(HashSet hashSet) {
+    public final int getAlpha() {
+        return this.f22738a.getAlpha();
+    }
+
+    @Override
+    public final int getOpacity() {
+        return 0;
+    }
+
+    @Override
+    public final void onBoundsChange(Rect rect) {
+        super.onBoundsChange(rect);
+        Rect rect2 = this.f22740c;
+        rect2.set(rect);
+        int i10 = rect2.left;
+        Rect rect3 = this.f22739b;
+        rect2.left = Math.max(0, rect3.left) + i10;
+        rect2.top = Math.max(0, rect3.top) + rect2.top;
+        rect2.right -= Math.max(0, rect3.right);
+        rect2.bottom -= Math.max(0, rect3.bottom);
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.f22738a.setAlpha(i10);
+        invalidateSelf();
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        this.f22738a.setColorFilter(colorFilter);
     }
 }

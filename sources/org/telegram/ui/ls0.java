@@ -1,74 +1,45 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.PointF;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-public final class ls0 extends s4.x0 {
-    public final float f39372k;
-    public final LinearInterpolator f39370i = new LinearInterpolator();
-    public final DecelerateInterpolator f39371j = new DecelerateInterpolator(1.5f);
-    public int f39373l = 0;
-    public int f39374m = 0;
+import android.graphics.Canvas;
+import android.graphics.Path;
+import android.graphics.RectF;
+import org.telegram.messenger.SharedConfig;
+public final class ls0 extends org.telegram.ui.Components.d91 {
+    public final org.telegram.ui.Components.pa f41352g0;
+    public final PhotoViewer f41353h0;
 
-    public ls0(Context context) {
-        this.f39372k = 25.0f / context.getResources().getDisplayMetrics().densityDpi;
+    public ls0(Context context, PhotoViewer photoViewer) {
+        super(context);
+        this.f41353h0 = photoViewer;
+        new Path();
+        this.f41352g0 = new org.telegram.ui.Components.pa(photoViewer.f35615b0, this, 0, false);
     }
 
     @Override
-    public final PointF a(int i10) {
-        s4.n0 n0Var = this.f46485c;
-        if (n0Var instanceof s4.b0) {
-            return ((s4.b0) n0Var).E0(i10);
-        }
-        return null;
+    public final void b(Canvas canvas, RectF rectF) {
+        canvas.save();
+        canvas.clipRect(rectF);
+        PhotoViewer photoViewer = this.f41353h0;
+        canvas.translate((-getX()) - photoViewer.R7.getX(), (-getY()) - photoViewer.R7.getY());
+        photoViewer.U0(canvas, this.f41352g0, -14803426, 855638016, false, true, false);
+        canvas.restore();
     }
 
     @Override
-    public final void d(int i10, int i11, s4.w0 w0Var) {
-        if (this.f46484b.f3638x.r() == 0) {
-            h();
+    public final void invalidate() {
+        int i10;
+        if (SharedConfig.photoViewerBlur && ((i10 = this.f41353h0.f35725n4) == 1 || i10 == 2 || i10 == 3)) {
             return;
         }
-        int i12 = this.f39373l;
-        int i13 = i12 - i10;
-        int i14 = 0;
-        if (i12 * i13 <= 0) {
-            i13 = 0;
-        }
-        this.f39373l = i13;
-        int i15 = this.f39374m;
-        int i16 = i15 - i11;
-        if (i15 * i16 > 0) {
-            i14 = i16;
-        }
-        this.f39374m = i14;
-        if (i13 == 0 && i14 == 0) {
-            PointF a2 = a(this.f46483a);
-            if (a2 != null && (a2.x != 0.0f || a2.y != 0.0f)) {
-                s4.x0.b(a2);
-                this.f39373l = (int) (a2.x * 10000.0f);
-                this.f39374m = (int) (a2.y * 10000.0f);
-                w0Var.b((int) (this.f39373l * 1.2f), (int) (this.f39374m * 1.2f), (int) (((int) Math.ceil(Math.abs(10000) * this.f39372k)) * 1.2f), this.f39370i);
-                return;
-            }
-            w0Var.d = this.f46483a;
-            h();
-        }
+        super.invalidate();
     }
 
     @Override
-    public final void f() {
-        this.f39374m = 0;
-        this.f39373l = 0;
-    }
-
-    @Override
-    public final void g(android.view.View r8, s4.w0 r9) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.ls0.g(android.view.View, s4.w0):void");
-    }
-
-    @Override
-    public final void e() {
+    public final void setTranslationY(float f7) {
+        if (getTranslationY() != f7) {
+            super.setTranslationY(f7);
+            this.f41353h0.f35643e0.invalidate();
+        }
     }
 }

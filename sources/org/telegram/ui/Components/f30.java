@@ -1,30 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.FrameLayout;
-import org.telegram.messenger.NotificationCenter;
-public final class f30 extends AnimatorListenerAdapter {
-    public final View f26185a;
-    public final View f26186b;
-    public final WindowManager f26187c;
-    public final View d;
-    public final View e;
-    public final g30 f26188f;
+import android.animation.ValueAnimator;
+public final class f30 implements ValueAnimator.AnimatorUpdateListener {
+    public final int f28049a;
+    public final k30 f28050b;
 
-    public f30(g30 g30Var, d30 d30Var, ah.x xVar, WindowManager windowManager, FrameLayout frameLayout, org.telegram.ui.x7 x7Var) {
-        this.f26188f = g30Var;
-        this.f26185a = d30Var;
-        this.f26186b = xVar;
-        this.f26187c = windowManager;
-        this.d = frameLayout;
-        this.e = x7Var;
+    public f30(k30 k30Var, int i10) {
+        this.f28049a = i10;
+        this.f28050b = k30Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        NotificationCenter.getInstance(this.f26188f.h).doOnIdle(new e30(this.f26185a, this.f26186b, this.f26187c, this.d, this.e));
+    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
+        switch (this.f28049a) {
+            case 0:
+                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k30 k30Var = this.f28050b;
+                k30Var.f29794r.x = (int) floatValue;
+                k30Var.h();
+                h30 h30Var = k30Var.f29786a;
+                if (h30Var.getParent() != null) {
+                    k30Var.f29793n.updateViewLayout(h30Var, k30Var.f29794r);
+                    return;
+                }
+                return;
+            default:
+                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                k30 k30Var2 = this.f28050b;
+                k30Var2.f29794r.y = (int) floatValue2;
+                h30 h30Var2 = k30Var2.f29786a;
+                if (h30Var2.getParent() != null) {
+                    k30Var2.f29793n.updateViewLayout(h30Var2, k30Var2.f29794r);
+                    return;
+                }
+                return;
+        }
     }
 }

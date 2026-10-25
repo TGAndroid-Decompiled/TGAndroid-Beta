@@ -1,68 +1,34 @@
 package org.telegram.ui.Cells;
 
-import android.text.SpannableStringBuilder;
+import android.content.Context;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.R;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.tl;
-import org.telegram.ui.Components.p11;
-import org.telegram.ui.Components.p61;
-import org.telegram.ui.Components.w90;
-public abstract class a7 extends LinearLayout {
-    public TextView f22097a;
-    public w90 f22098b;
-    public TextView f22099c;
-    public TextView d;
-    public int e;
-    public int f22100f;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
+import org.telegram.ui.t01;
+public final class a7 extends s61 {
+    public static final int f23858a = 0;
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    static {
+        s61.setup(new s61());
     }
 
-    public void setType(int i10) {
-        int i11 = this.f22100f;
-        TextView textView = this.f22099c;
-        w90 w90Var = this.f22098b;
-        TextView textView2 = this.f22097a;
-        TextView textView3 = this.d;
-        this.e = i10;
-        if (i10 == 0) {
-            textView2.setText(LocaleController.formatString(R.string.CheckPhoneNumber, tl.h(new StringBuilder("+"), MessagesController.getInstance(i11).getUser(Long.valueOf(UserConfig.getInstance(i11).clientUserId)).phone, jf.b.c())));
-            String string = LocaleController.getString(R.string.CheckPhoneNumberInfo);
-            SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder(string);
-            int indexOf = string.indexOf("**");
-            int lastIndexOf = string.lastIndexOf("**");
-            if (indexOf >= 0 && lastIndexOf >= 0 && indexOf != lastIndexOf) {
-                spannableStringBuilder.replace(lastIndexOf, lastIndexOf + 2, (CharSequence) "");
-                spannableStringBuilder.replace(indexOf, indexOf + 2, (CharSequence) "");
-                try {
-                    spannableStringBuilder.setSpan(new p61(LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl), (p11) null), indexOf, lastIndexOf - 2, 33);
-                } catch (Exception e) {
-                    FileLog.e(e);
-                }
-            }
-            w90Var.setText(spannableStringBuilder);
-            textView.setText(LocaleController.getString(R.string.CheckPhoneNumberYes));
-            textView3.setVisibility(0);
-            textView3.setText(LocaleController.getString(R.string.CheckPhoneNumberNo));
-        } else if (i10 == 1) {
-            textView2.setText(LocaleController.getString(R.string.YourPasswordHeader));
-            w90Var.setText(LocaleController.getString(R.string.YourPasswordRemember));
-            textView.setText(LocaleController.getString(R.string.YourPasswordRememberYes));
-            textView3.setVisibility(0);
-            textView3.setText(LocaleController.getString(R.string.YourPasswordRememberNo));
-        } else if (i10 == 2) {
-            textView2.setText(LocaleController.getString(R.string.GraceSuggestionTitle));
-            w90Var.setText(LocaleController.getString(R.string.GraceSuggestionMessage));
-            textView.setText(LocaleController.getString(R.string.GraceSuggestionButton));
-            textView3.setVisibility(8);
+    @Override
+    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+        Object obj = t61Var.G;
+        if (obj instanceof t01) {
+            t01 t01Var = (t01) obj;
+            ((c7) view).b(t61Var.f32872l, t01Var.d, t01Var.e, z10);
+        } else if (obj instanceof MessagesController.FaqSearchResult) {
+            ((c7) view).a(t61Var.f32872l, ((MessagesController.FaqSearchResult) obj).path, true, z10);
         }
+    }
+
+    @Override
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+        return new c7(context);
     }
 }

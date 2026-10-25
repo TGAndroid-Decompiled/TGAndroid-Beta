@@ -1,15 +1,11 @@
 package eg;
 
-import android.graphics.Bitmap;
-import java.util.List;
-public final class a {
-    public final int f8651a;
-    public final Bitmap f8652b;
-    public final List f8653c;
+import java.nio.ShortBuffer;
+import sb.b;
+import u7.s;
+public interface a {
+    public static final b f9942q = new b(7);
+    public static final s f9943t = new s(7);
 
-    public a(Bitmap bitmap, int i10, List list) {
-        this.f8653c = list;
-        this.f8652b = bitmap;
-        this.f8651a = i10;
-    }
+    void k0(ShortBuffer shortBuffer, int i10, ShortBuffer shortBuffer2, int i11, int i12);
 }

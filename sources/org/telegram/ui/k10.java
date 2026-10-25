@@ -9,29 +9,29 @@ import android.view.View;
 import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
 import org.telegram.messenger.Utilities;
-public final class k10 extends org.telegram.ui.Components.lm0 {
-    public final int Y2;
-    public final Object Z2;
+public final class k10 extends org.telegram.ui.Components.mm0 {
+    public final int f40780f3;
+    public final Object f40781g3;
 
-    public k10(int i10, Context context, org.telegram.ui.ActionBar.o2 o2Var) {
+    public k10(int i10, Context context, org.telegram.ui.ActionBar.r2 r2Var) {
         super(context, null);
-        this.Y2 = i10;
-        this.Z2 = o2Var;
+        this.f40780f3 = i10;
+        this.f40781g3 = r2Var;
     }
 
     @Override
-    public Integer X0(int i10) {
+    public Integer W0(int i10) {
         int i11;
-        switch (this.Y2) {
+        switch (this.f40780f3) {
             case 3:
-                i11 = ((SessionsActivity) this.Z2).terminateAllSessionsRow;
-                org.telegram.ui.ActionBar.g6 g6Var = this.f28396n2;
+                i11 = ((SessionsActivity) this.f40781g3).terminateAllSessionsRow;
+                org.telegram.ui.ActionBar.u6 u6Var = this.f30644n2;
                 if (i10 == i11) {
-                    return Integer.valueOf(org.telegram.ui.ActionBar.k6.o1(0.1f, org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21405p7, g6Var)));
+                    return Integer.valueOf(org.telegram.ui.ActionBar.y6.o1(0.1f, org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23579p7, u6Var)));
                 }
-                return Integer.valueOf(org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.f21273i6, g6Var));
+                return Integer.valueOf(org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23446i6, u6Var));
             default:
-                return super.X0(i10);
+                return super.W0(i10);
         }
     }
 
@@ -40,34 +40,34 @@ public final class k10 extends org.telegram.ui.Components.lm0 {
         org.telegram.ui.ActionBar.k kVar;
         ArrayList arrayList;
         View view;
-        switch (this.Y2) {
+        switch (this.f40780f3) {
             case 1:
                 super.dispatchDraw(canvas);
-                d60 d60Var = (d60) this.Z2;
-                if (d60Var.f36486z0 != null && d60Var.A0 >= 1.0f) {
+                e60 e60Var = (e60) this.f40781g3;
+                if (e60Var.f39005z0 != null && e60Var.A0 >= 1.0f) {
                     canvas.save();
-                    int measuredHeight = d60Var.f36486z0.getMeasuredHeight();
-                    kVar = ((org.telegram.ui.ActionBar.o2) d60Var).actionBar;
+                    int measuredHeight = e60Var.f39005z0.getMeasuredHeight();
+                    kVar = ((org.telegram.ui.ActionBar.r2) e60Var).actionBar;
                     canvas.translate(0.0f, -(measuredHeight - kVar.getMeasuredHeight()));
-                    d60Var.f36486z0.draw(canvas);
+                    e60Var.f39005z0.draw(canvas);
                     canvas.restore();
                     return;
                 }
                 return;
             case 2:
-                jp0 jp0Var = (jp0) this.Z2;
-                Paint paint = jp0Var.f38608w;
-                RectF rectF = jp0Var.f38607s;
-                RectF rectF2 = jp0Var.f38606r;
-                RectF rectF3 = jp0Var.f38605n;
-                s4.b0 b0Var = jp0Var.f38602b;
-                if (!jp0Var.f38604f.isEmpty()) {
-                    float d = jp0Var.e.d(jp0Var.d, false);
+                qp0 qp0Var = (qp0) this.f40781g3;
+                Paint paint = qp0Var.f42890w;
+                RectF rectF = qp0Var.f42889s;
+                RectF rectF2 = qp0Var.f42888r;
+                RectF rectF3 = qp0Var.f42887n;
+                s4.c0 c0Var = qp0Var.f42884b;
+                if (!qp0Var.f42886f.isEmpty()) {
+                    float d = qp0Var.e.d(qp0Var.d, false);
                     double d10 = d;
                     int clamp = Utilities.clamp((int) Math.floor(d10), arrayList.size() - 1, 0);
                     int clamp2 = Utilities.clamp((int) Math.ceil(d10), arrayList.size() - 1, 0);
-                    View m10 = b0Var.m(clamp);
-                    View m11 = b0Var.m(clamp2);
+                    View m10 = c0Var.m(clamp);
+                    View m11 = c0Var.m(clamp2);
                     if (m10 != null || m11 != null) {
                         if (m10 != null) {
                             view = m10;
@@ -80,7 +80,7 @@ public final class k10 extends org.telegram.ui.Components.lm0 {
                         }
                         rectF2.set(m10.getLeft(), m10.getTop(), m10.getRight(), m10.getBottom());
                         AndroidUtilities.lerp(rectF3, rectF2, d - clamp, rectF);
-                        paint.setColor(jp0Var.f38609x);
+                        paint.setColor(qp0Var.f42891x);
                         float height = rectF.height() / 2.0f;
                         canvas.drawRoundRect(rectF, height, height, paint);
                         super.dispatchDraw(canvas);
@@ -97,12 +97,12 @@ public final class k10 extends org.telegram.ui.Components.lm0 {
 
     @Override
     public void invalidate() {
-        switch (this.Y2) {
+        switch (this.f40780f3) {
             case 2:
                 super.invalidate();
-                uo0 uo0Var = ((jp0) this.Z2).F;
-                if (uo0Var != null) {
-                    uo0Var.run();
+                bp0 bp0Var = ((qp0) this.f40781g3).F;
+                if (bp0Var != null) {
+                    bp0Var.run();
                     return;
                 }
                 return;
@@ -114,10 +114,10 @@ public final class k10 extends org.telegram.ui.Components.lm0 {
 
     @Override
     public boolean onTouchEvent(MotionEvent motionEvent) {
-        switch (this.Y2) {
+        switch (this.f40780f3) {
             case 0:
                 if (motionEvent.getAction() == 1 || motionEvent.getAction() == 3) {
-                    AndroidUtilities.runOnUIThread(new fz(this, 3), 250L);
+                    AndroidUtilities.runOnUIThread(new p00(this, 2), 250L);
                 }
                 return super.onTouchEvent(motionEvent);
             default:
@@ -127,7 +127,7 @@ public final class k10 extends org.telegram.ui.Components.lm0 {
 
     @Override
     public boolean x1(View view) {
-        switch (this.Y2) {
+        switch (this.f40780f3) {
             case 0:
                 if ((view instanceof l10) && ((l10) view).getDraggingProgress() > 0.0f) {
                     return false;
@@ -138,9 +138,9 @@ public final class k10 extends org.telegram.ui.Components.lm0 {
         }
     }
 
-    public k10(Object obj, Context context, org.telegram.ui.ActionBar.g6 g6Var, int i10) {
-        super(context, g6Var);
-        this.Y2 = i10;
-        this.Z2 = obj;
+    public k10(Object obj, Context context, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
+        super(context, u6Var);
+        this.f40780f3 = i10;
+        this.f40781g3 = obj;
     }
 }

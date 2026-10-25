@@ -1,141 +1,65 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
+import android.widget.LinearLayout;
+import java.util.HashSet;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.Utilities;
-public final class jp0 extends FrameLayout {
-    public int E;
-    public uo0 F;
-    public dh.d G;
-    public dh.d H;
-    public boolean I;
-    public final Path J;
-    public int K;
-    public final kp0 L;
-    public final k10 f38601a;
-    public final s4.b0 f38602b;
-    public final z7 f38603c;
-    public int d;
-    public final org.telegram.ui.Components.d6 e;
-    public final ArrayList f38604f;
-    public wo0 h;
-    public final RectF f38605n;
-    public final RectF f38606r;
-    public final RectF f38607s;
-    public final Paint v;
-    public final Paint f38608w;
-    public int f38609x;
-    public int f38610y;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class jp0 extends LinearLayout implements org.telegram.ui.ActionBar.p6 {
+    public final org.telegram.ui.Components.z90 f40711a;
+    public final org.telegram.ui.Components.z90 f40712b;
+    public final lp0 f40713c;
 
-    public jp0(kp0 kp0Var, Context context, org.telegram.ui.ActionBar.g6 g6Var) {
+    public jp0(lp0 lp0Var, Context context) {
         super(context);
-        this.L = kp0Var;
-        this.f38604f = new ArrayList();
-        this.f38605n = new RectF();
-        this.f38606r = new RectF();
-        this.f38607s = new RectF();
-        this.v = new Paint(1);
-        this.f38608w = new Paint(1);
-        this.J = new Path();
-        this.K = Integer.MIN_VALUE;
-        k10 k10Var = new k10(this, context, g6Var, 2);
-        this.f38601a = k10Var;
-        k10Var.setClipToPadding(false);
-        k10Var.setClipChildren(false);
-        k10Var.setPadding(AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f), AndroidUtilities.dp(4.0f));
-        k10Var.setOverScrollMode(2);
-        k10Var.setHorizontalScrollBarEnabled(false);
-        k10Var.setItemAnimator(null);
-        s4.b0 b0Var = new s4.b0(0, false);
-        this.f38602b = b0Var;
-        k10Var.setLayoutManager(b0Var);
-        z7 z7Var = new z7(this, 5);
-        this.f38603c = z7Var;
-        k10Var.setAdapter(z7Var);
-        k10Var.setOnItemClickListener(new h(this, 21));
-        addView(k10Var, w7.z5.e(-1, -1, 119));
-        setHorizontalScrollBarEnabled(false);
-        setClipToPadding(false);
-        setClipChildren(false);
-        this.e = new org.telegram.ui.Components.d6(k10Var, 0L, 320L, org.telegram.ui.Components.zr.h);
-    }
-
-    public final void a(int i10, boolean z10) {
-        int i11 = this.d;
-        this.d = i10;
-        if (!z10) {
-            this.e.d(i10, true);
-        }
-        b(i11);
-        if (i10 != i11) {
-            b(i10);
-        }
-        ArrayList arrayList = this.f38604f;
-        boolean isEmpty = arrayList.isEmpty();
-        k10 k10Var = this.f38601a;
-        if (!isEmpty) {
-            int clamp = Utilities.clamp(i10, arrayList.size() - 1, 0);
-            if (z10) {
-                k10Var.x0(clamp);
-            } else {
-                k10Var.u0(clamp);
-            }
-        }
-        k10Var.invalidate();
-    }
-
-    public final void b(int i10) {
-        int i11;
-        View m10 = this.f38602b.m(i10);
-        if (m10 instanceof TextView) {
-            TextView textView = (TextView) m10;
-            if (i10 == this.d) {
-                i11 = this.E;
-            } else {
-                i11 = this.f38610y;
-            }
-            textView.setTextColor(i11);
-            m10.invalidate();
-        }
-    }
-
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        dh.d dVar;
-        zf.p.g(this.G, 0, 0, getWidth(), getHeight());
-        zf.p.g(this.H, 0, 0, getWidth(), getHeight());
-        if (this.I) {
-            dVar = this.H;
+        org.telegram.ui.ActionBar.u6 u6Var;
+        int i10;
+        org.telegram.ui.ActionBar.u6 u6Var2;
+        this.f40713c = lp0Var;
+        setOrientation(1);
+        int i11 = org.telegram.ui.ActionBar.y6.f23354d6;
+        rp0 rp0Var = lp0Var.f41330p0;
+        org.telegram.ui.ActionBar.f7.i(i11, this, rp0Var.getResourceProvider());
+        org.telegram.ui.Components.y9 y9Var = new org.telegram.ui.Components.y9(getContext());
+        y9Var.setImageDrawable(new org.telegram.ui.Components.xj0(R.raw.utyan_draw, AndroidUtilities.dp(120.0f), AndroidUtilities.dp(120.0f)));
+        addView(y9Var, org.telegram.ui.Components.gb1.x(120, 120, 1, 0, 6, 0, 0));
+        Context context2 = getContext();
+        int i12 = org.telegram.ui.ActionBar.y6.f23746y6;
+        u6Var = ((org.telegram.ui.ActionBar.r2) rp0Var).resourceProvider;
+        org.telegram.ui.Components.z90 K = org.telegram.ui.Components.gb1.K(context2, 14.0f, i12, false, u6Var);
+        this.f40711a = K;
+        K.setGravity(17);
+        if (lp0Var.m0 == 0) {
+            i10 = R.string.Gift2PeerColorProfileEmptyTitle;
         } else {
-            dVar = this.G;
+            i10 = R.string.Gift2PeerColorReplyEmptyTitle;
         }
-        dVar.draw(canvas);
-        canvas.save();
-        canvas.clipPath(this.J);
-        super.dispatchDraw(canvas);
-        canvas.restore();
+        K.setText(LocaleController.getString(i10));
+        addView(K, org.telegram.ui.Components.gb1.x(-1, -2, 1, 64, 8, 64, 8));
+        Context context3 = getContext();
+        int i13 = org.telegram.ui.ActionBar.y6.gc;
+        u6Var2 = ((org.telegram.ui.ActionBar.r2) rp0Var).resourceProvider;
+        org.telegram.ui.Components.z90 K2 = org.telegram.ui.Components.gb1.K(context3, 14.0f, i13, false, u6Var2);
+        this.f40712b = K2;
+        K2.setGravity(17);
+        K2.setText(AndroidUtilities.replaceArrows(AndroidUtilities.replaceSingleTag(LocaleController.getString(R.string.Gift2PeerColorEmptyButton), new lj0(this, 13)), true, AndroidUtilities.dp(2.6666667f), AndroidUtilities.dp(1.33f), 1.0f));
+        addView(K2, org.telegram.ui.Components.gb1.x(-1, -2, 1, 32, 4, 32, 24));
     }
 
     @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), i11);
+    public final void updateColors() {
+        rp0 rp0Var = this.f40713c.f41330p0;
+        setBackgroundColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23354d6));
+        this.f40711a.setTextColor(rp0Var.getThemedColor(org.telegram.ui.ActionBar.y6.f23746y6));
+        int i10 = org.telegram.ui.ActionBar.y6.gc;
+        int themedColor = rp0Var.getThemedColor(i10);
+        org.telegram.ui.Components.z90 z90Var = this.f40712b;
+        z90Var.setTextColor(themedColor);
+        z90Var.setLinkTextColor(rp0Var.getThemedColor(i10));
     }
 
     @Override
-    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
-        super.onSizeChanged(i10, i11, i12, i13);
-        int dp = AndroidUtilities.dp(3.0f);
-        Path path = this.J;
-        path.rewind();
-        float f7 = dp;
-        path.addRoundRect(f7, f7, i10 - dp, i11 - dp, AndroidUtilities.dp(18.0f) - dp, AndroidUtilities.dp(18.0f) - dp, Path.Direction.CW);
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

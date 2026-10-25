@@ -1,35 +1,63 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class s5 extends AnimatorListenerAdapter {
-    public final int f30444a;
-    public final y5 f30445b;
+import android.graphics.Canvas;
+import android.graphics.ColorFilter;
+import android.graphics.drawable.Drawable;
+public class s5 extends Drawable {
+    public final Drawable f32433a;
+    public final int f32434b;
+    public final int f32435c;
+    public int d = 255;
 
-    public s5(y5 y5Var, int i10) {
-        this.f30444a = i10;
-        this.f30445b = y5Var;
+    public s5(int i10, int i11, Drawable drawable) {
+        this.f32433a = drawable;
+        this.f32434b = i10;
+        this.f32435c = i11;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f30444a) {
-            case 0:
-                y5.access$002(this.f30445b, null);
-                y5.access$102(false);
-                return;
-            case 1:
-                y5 y5Var = this.f30445b;
-                y5.access$002(y5Var, null);
-                if (y5.access$200(y5Var) != null) {
-                    y5.access$200(y5Var).run();
-                    y5.access$202(y5Var, null);
-                    return;
-                }
-                return;
-            default:
-                y5.access$302(this.f30445b, null);
-                return;
+    public void draw(Canvas canvas) {
+        Drawable drawable = this.f32433a;
+        if (drawable != null) {
+            drawable.setBounds(getBounds());
+            drawable.setAlpha(this.d);
+            drawable.draw(canvas);
+        }
+    }
+
+    @Override
+    public final int getIntrinsicHeight() {
+        return this.f32435c;
+    }
+
+    @Override
+    public final int getIntrinsicWidth() {
+        return this.f32434b;
+    }
+
+    @Override
+    public final int getOpacity() {
+        Drawable drawable = this.f32433a;
+        if (drawable != null) {
+            return drawable.getOpacity();
+        }
+        return -2;
+    }
+
+    @Override
+    public final void setAlpha(int i10) {
+        this.d = i10;
+        Drawable drawable = this.f32433a;
+        if (drawable != null) {
+            drawable.setAlpha(i10);
+        }
+    }
+
+    @Override
+    public final void setColorFilter(ColorFilter colorFilter) {
+        Drawable drawable = this.f32433a;
+        if (drawable != null) {
+            drawable.setColorFilter(colorFilter);
         }
     }
 }

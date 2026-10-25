@@ -1,14 +1,27 @@
 package z9;
-public final class e implements ja.d {
-    public static final e f51817a = new Object();
-    public static final ja.c f51818b = ja.c.c("files");
-    public static final ja.c f51819c = ja.c.c("orgId");
+public final class e implements i {
+    public static final qb.a f52816c = new qb.a(29);
+    public final Object f52817a;
+    public Object f52818b;
+
+    public e(da.c cVar) {
+        this.f52817a = cVar;
+        this.f52818b = f52816c;
+    }
 
     @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        e0 e0Var = (e0) ((j1) obj);
-        eVar.d(f51818b, e0Var.f51820a);
-        eVar.d(f51819c, e0Var.f51821b);
+    public void a(h hVar, int i10) {
+        int[] iArr = (int[]) this.f52818b;
+        try {
+            hVar.read((byte[]) this.f52817a, iArr[0], i10);
+            iArr[0] = iArr[0] + i10;
+        } finally {
+            hVar.close();
+        }
+    }
+
+    public e(byte[] bArr, int[] iArr) {
+        this.f52817a = bArr;
+        this.f52818b = iArr;
     }
 }

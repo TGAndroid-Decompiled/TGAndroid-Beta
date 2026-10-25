@@ -1,96 +1,37 @@
 package hb;
+public abstract class h {
+    public static final int f12739a;
 
-import j$.util.Objects;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.ParsePosition;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
-public final class h extends eb.u {
-    public static final e f11746c = new e();
-    public final g f11747a;
-    public final ArrayList f11748b;
-
-    public h(g gVar) {
-        ArrayList arrayList = new ArrayList();
-        this.f11748b = arrayList;
-        Objects.requireNonNull(gVar);
-        this.f11747a = gVar;
-        Locale locale = Locale.US;
-        arrayList.add(DateFormat.getDateTimeInstance(2, 2, locale));
-        if (!Locale.getDefault().equals(locale)) {
-            arrayList.add(DateFormat.getDateTimeInstance(2, 2));
+    static {
+        int i10;
+        String property = System.getProperty("java.version");
+        try {
+            String[] split = property.split("[._]", 3);
+            i10 = Integer.parseInt(split[0]);
+            if (i10 == 1 && split.length > 1) {
+                i10 = Integer.parseInt(split[1]);
+            }
+        } catch (NumberFormatException unused) {
+            i10 = -1;
         }
-        if (gb.g.f10978a >= 9) {
-            arrayList.add(new SimpleDateFormat(a1.g.D("MMM d, yyyy", " ", "h:mm:ss a"), locale));
-        }
-    }
-
-    @Override
-    public final Object read(mb.a aVar) {
-        Date b10;
-        DateFormat dateFormat;
-        TimeZone timeZone;
-        if (aVar.x() == 9) {
-            aVar.t();
-            return null;
-        }
-        String v = aVar.v();
-        synchronized (this.f11748b) {
+        if (i10 == -1) {
             try {
-                ArrayList arrayList = this.f11748b;
-                int size = arrayList.size();
-                int i10 = 0;
-                while (true) {
-                    if (i10 < size) {
-                        Object obj = arrayList.get(i10);
-                        i10++;
-                        dateFormat = (DateFormat) obj;
-                        timeZone = dateFormat.getTimeZone();
-                        b10 = dateFormat.parse(v);
-                        dateFormat.setTimeZone(timeZone);
-                    } else {
-                        try {
-                            b10 = ib.a.b(v, new ParsePosition(0));
-                            break;
-                        } catch (ParseException e) {
-                            StringBuilder v10 = a1.g.v("Failed parsing '", v, "' as Date; at path ");
-                            v10.append(aVar.j());
-                            throw new RuntimeException(v10.toString(), e);
-                        }
+                StringBuilder sb2 = new StringBuilder();
+                for (int i11 = 0; i11 < property.length(); i11++) {
+                    char charAt = property.charAt(i11);
+                    if (!Character.isDigit(charAt)) {
+                        break;
                     }
+                    sb2.append(charAt);
                 }
-            } catch (ParseException unused) {
-                dateFormat.setTimeZone(timeZone);
-            } finally {
+                i10 = Integer.parseInt(sb2.toString());
+            } catch (NumberFormatException unused2) {
+                i10 = -1;
             }
         }
-        return this.f11747a.a(b10);
-    }
-
-    public final String toString() {
-        DateFormat dateFormat = (DateFormat) this.f11748b.get(0);
-        if (dateFormat instanceof SimpleDateFormat) {
-            return "DefaultDateTypeAdapter(" + ((SimpleDateFormat) dateFormat).toPattern() + ')';
+        if (i10 == -1) {
+            i10 = 6;
         }
-        return "DefaultDateTypeAdapter(" + dateFormat.getClass().getSimpleName() + ')';
-    }
-
-    @Override
-    public final void write(mb.b bVar, Object obj) {
-        String format;
-        Date date = (Date) obj;
-        if (date == null) {
-            bVar.i();
-            return;
-        }
-        DateFormat dateFormat = (DateFormat) this.f11748b.get(0);
-        synchronized (this.f11748b) {
-            format = dateFormat.format(date);
-        }
-        bVar.r(format);
+        f12739a = i10;
     }
 }

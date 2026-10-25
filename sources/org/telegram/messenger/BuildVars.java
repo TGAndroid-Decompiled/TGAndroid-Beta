@@ -20,6 +20,7 @@ public class BuildVars {
     public static boolean NO_SCOPED_STORAGE = false;
     public static String PLAYSTORE_APP_URL = null;
     public static String SAFETYNET_KEY = null;
+    public static boolean SHOW_NEWS_TAB = false;
     public static boolean SUPPORTS_PASSKEYS = false;
     public static boolean USE_CLOUD_STRINGS = true;
     private static Boolean betaApp;
@@ -33,7 +34,7 @@ public class BuildVars {
             z10 = false;
         }
         NO_SCOPED_STORAGE = z10;
-        BUILD_VERSION_STRING = "13.1.2";
+        BUILD_VERSION_STRING = "13.2.0";
         APP_ID = 4;
         APP_HASH = "014b35b6184100b085b0d0572f9b5103";
         SAFETYNET_KEY = "AIzaSyDqt8P-7F7CPCseMkOiVRgb1LY8RN1bvH8";
@@ -43,6 +44,7 @@ public class BuildVars {
         HUAWEI_APP_ID = "101184875";
         IS_BILLING_UNAVAILABLE = false;
         SUPPORTS_PASSKEYS = true;
+        SHOW_NEWS_TAB = false;
         if (ApplicationLoader.applicationContext != null) {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", 0);
             boolean z12 = DEBUG_VERSION;
@@ -73,23 +75,23 @@ public class BuildVars {
     }
 
     private static boolean hasDirectCurrency() {
-        c5.p pVar;
-        if (BillingController.getInstance().isReady() && (pVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
-            ArrayList arrayList = pVar.h;
+        d5.o oVar;
+        if (BillingController.getInstance().isReady() && (oVar = BillingController.PREMIUM_PRODUCT_DETAILS) != null) {
+            ArrayList arrayList = oVar.h;
             int size = arrayList.size();
             int i10 = 0;
             while (i10 < size) {
                 Object obj = arrayList.get(i10);
                 i10++;
-                ArrayList arrayList2 = ((c5.o) obj).f4777b.f4775a;
+                ArrayList arrayList2 = (ArrayList) ((d5.n) obj).f7998b.f52841b;
                 int size2 = arrayList2.size();
                 int i11 = 0;
                 while (i11 < size2) {
                     Object obj2 = arrayList2.get(i11);
                     i11++;
-                    c5.m mVar = (c5.m) obj2;
+                    d5.m mVar = (d5.m) obj2;
                     for (String str : MessagesController.getInstance(UserConfig.selectedAccount).directPaymentsCurrency) {
-                        if (Objects.equals(mVar.f4774c, str)) {
+                        if (Objects.equals(mVar.f7996c, str)) {
                             return true;
                         }
                     }

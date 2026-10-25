@@ -1,32 +1,28 @@
 package w7;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-public abstract class n9 {
-    public static HashMap a(wc.a aVar) {
-        HashMap hashMap = new HashMap();
-        HashMap hashMap2 = new HashMap();
-        hashMap2.put("number", o9.e(aVar.f49353a));
-        hashMap2.put("cvc", o9.e(aVar.f49354b));
-        hashMap2.put("exp_month", aVar.f49355c);
-        hashMap2.put("exp_year", aVar.d);
-        hashMap2.put("name", o9.e(aVar.e));
-        hashMap2.put("currency", o9.e(aVar.f49363n));
-        hashMap2.put("address_line1", o9.e(aVar.f49356f));
-        hashMap2.put("address_line2", o9.e(aVar.f49357g));
-        hashMap2.put("address_city", o9.e(aVar.h));
-        hashMap2.put("address_zip", o9.e(aVar.f49359j));
-        hashMap2.put("address_state", o9.e(aVar.f49358i));
-        hashMap2.put("address_country", o9.e(aVar.f49360k));
-        Iterator it = new HashSet(hashMap2.keySet()).iterator();
-        while (it.hasNext()) {
-            String str = (String) it.next();
-            if (hashMap2.get(str) == null) {
-                hashMap2.remove(str);
-            }
-        }
-        hashMap.put("card", hashMap2);
-        return hashMap;
+import java.util.AbstractMap;
+public final class n9 extends k9 {
+    public final a f50937c;
+
+    public n9(a aVar) {
+        this.f50937c = aVar;
+    }
+
+    @Override
+    public final Object get(int i10) {
+        a aVar = this.f50937c;
+        y.a(i10, aVar.e);
+        int i11 = i10 + i10;
+        Object[] objArr = aVar.d;
+        Object obj = objArr[i11];
+        obj.getClass();
+        Object obj2 = objArr[i11 + 1];
+        obj2.getClass();
+        return new AbstractMap.SimpleImmutableEntry(obj, obj2);
+    }
+
+    @Override
+    public final int size() {
+        return this.f50937c.e;
     }
 }

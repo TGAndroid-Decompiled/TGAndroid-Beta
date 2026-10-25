@@ -1,57 +1,62 @@
 package org.telegram.ui;
 
-import android.animation.AnimatorSet;
+import android.animation.Animator;
 import android.animation.ObjectAnimator;
-import android.util.Property;
+import android.transition.Fade;
+import android.transition.TransitionValues;
 import android.view.View;
-import android.view.ViewPropertyAnimator;
-import android.view.ViewTreeObserver;
-import org.telegram.messenger.AndroidUtilities;
-public final class pt0 implements ViewTreeObserver.OnPreDrawListener {
-    public final ju0 f40632a;
-    public final Integer f40633b;
-    public final PhotoViewer f40634c;
+import android.view.ViewGroup;
+public final class pt0 extends Fade {
+    public final int f42653a;
+    public final boolean f42654b;
+    public final boolean f42655c;
+    public final PhotoViewer d;
 
-    public pt0(PhotoViewer photoViewer, ju0 ju0Var, Integer num) {
-        this.f40634c = photoViewer;
-        this.f40632a = ju0Var;
-        this.f40633b = num;
+    public pt0(PhotoViewer photoViewer, boolean z10, boolean z11, int i10) {
+        super(1);
+        this.f42653a = i10;
+        switch (i10) {
+            case 1:
+                this.d = photoViewer;
+                this.f42654b = z10;
+                this.f42655c = z11;
+                super(2);
+                return;
+            default:
+                this.d = photoViewer;
+                this.f42654b = z10;
+                this.f42655c = z11;
+                return;
+        }
     }
 
     @Override
-    public final boolean onPreDraw() {
-        PhotoViewer photoViewer = this.f40634c;
-        photoViewer.f33599g0.getViewTreeObserver().removeOnPreDrawListener(this);
-        photoViewer.F.setTranslationY(-AndroidUtilities.dp(32.0f));
-        ViewPropertyAnimator duration = photoViewer.F.animate().alpha(1.0f).translationY(0.0f).setDuration(150L);
-        org.telegram.ui.Components.zr zrVar = org.telegram.ui.Components.zr.f33337f;
-        duration.setInterpolator(zrVar).start();
-        photoViewer.N0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.N0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(zrVar).start();
-        photoViewer.O0.setTranslationY(-AndroidUtilities.dp(32.0f));
-        photoViewer.O0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(zrVar).start();
-        photoViewer.P0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.P0.animate().alpha(1.0f).setDuration(150L).setInterpolator(zrVar).start();
-        photoViewer.S0.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.S0.setAlpha(0.0f);
-        photoViewer.S0.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(zrVar).start();
-        photoViewer.f33708s3.setTranslationY(AndroidUtilities.dp(32.0f));
-        photoViewer.f33708s3.animate().alpha(1.0f).translationY(0.0f).setDuration(150L).setInterpolator(zrVar).start();
-        photoViewer.f33582e0.setAlpha(0.0f);
-        photoViewer.L0.setAlpha(0);
-        photoViewer.f33664n4 = 4;
-        photoViewer.f33582e0.invalidate();
-        AnimatorSet animatorSet = new AnimatorSet();
-        ai.o5 o5Var = photoViewer.P0;
-        ObjectAnimator duration2 = ObjectAnimator.ofFloat(o5Var, View.TRANSLATION_Y, o5Var.getTranslationY(), 0.0f).setDuration(220L);
-        duration2.setInterpolator(zrVar);
-        ai.o5 o5Var2 = photoViewer.P0;
-        Property property = View.ALPHA;
-        ObjectAnimator duration3 = ObjectAnimator.ofFloat(o5Var2, property, 1.0f).setDuration(220L);
-        duration3.setInterpolator(zrVar);
-        animatorSet.playTogether(ObjectAnimator.ofFloat(photoViewer.f33582e0, property, 0.0f, 1.0f).setDuration(220L), ObjectAnimator.ofFloat(photoViewer.f33626j0, property, 0.0f, 1.0f).setDuration(220L), duration2, duration3);
-        animatorSet.addListener(new ot0(this));
-        animatorSet.start();
-        return true;
+    public Animator onAppear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f42653a) {
+            case 0:
+                Animator onAppear = super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+                if (this.f42654b && !this.f42655c && view == this.d.Q1) {
+                    onAppear.addListener(new i50(this, 14));
+                    ((ObjectAnimator) onAppear).addUpdateListener(new b3(this, 19));
+                }
+                return onAppear;
+            default:
+                return super.onAppear(viewGroup, view, transitionValues, transitionValues2);
+        }
+    }
+
+    @Override
+    public Animator onDisappear(ViewGroup viewGroup, View view, TransitionValues transitionValues, TransitionValues transitionValues2) {
+        switch (this.f42653a) {
+            case 1:
+                Animator onDisappear = super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+                if (!this.f42654b && this.f42655c && view == this.d.Q1) {
+                    onDisappear.addListener(new i50(this, 15));
+                    ((ObjectAnimator) onDisappear).addUpdateListener(new b3(this, 20));
+                }
+                return onDisappear;
+            default:
+                return super.onDisappear(viewGroup, view, transitionValues, transitionValues2);
+        }
     }
 }

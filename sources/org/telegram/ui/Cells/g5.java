@@ -1,269 +1,88 @@
 package org.telegram.ui.Cells;
 
-import ai.wd;
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.animation.AnimatorSet;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.Emoji;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.UserObject;
-import org.telegram.tgnet.TLRPC;
-public final class g5 extends LinearLayout {
-    public final org.telegram.ui.Components.u9 f22406a;
-    public final wd f22407b;
-    public final TextView f22408c;
-    public final org.telegram.ui.Components.f9 d;
-    public final org.telegram.ui.ActionBar.g6 e;
-    public Drawable f22409f;
-    public boolean h;
-    public boolean f22410n;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.ui.Components.h31;
+import org.telegram.ui.Components.kp0;
+import org.telegram.ui.ut;
+public final class g5 implements kp0 {
+    public final ut f24160a;
 
-    public g5(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context);
-        this.h = false;
-        this.e = g6Var;
-        setOrientation(0);
-        org.telegram.ui.Components.f9 f9Var = new org.telegram.ui.Components.f9((org.telegram.ui.ActionBar.g6) null);
-        this.d = f9Var;
-        f9Var.u(AndroidUtilities.dp(18.0f));
-        org.telegram.ui.Components.u9 u9Var = new org.telegram.ui.Components.u9(context);
-        this.f22406a = u9Var;
-        u9Var.setRoundRadius(AndroidUtilities.dp(14.0f));
-        addView(u9Var, w7.z5.k(8.0f, 4.0f, 0.0f, 0.0f, 28, 28));
-        wd wdVar = new wd(context, 7);
-        this.f22407b = wdVar;
-        org.telegram.ui.ActionBar.r6.W(wdVar, org.telegram.ui.ActionBar.k6.G6, g6Var);
-        wdVar.setTextSize(1, 15.0f);
-        wdVar.setSingleLine(true);
-        wdVar.setGravity(3);
-        TextUtils.TruncateAt truncateAt = TextUtils.TruncateAt.END;
-        wdVar.setEllipsize(truncateAt);
-        addView(wdVar, w7.z5.t(-2, -2, 16, 12, 0, 0, 0));
-        TextView textView = new TextView(context);
-        this.f22408c = textView;
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.A6, g6Var);
-        textView.setTextSize(1, 15.0f);
-        textView.setSingleLine(true);
-        textView.setGravity(3);
-        textView.setEllipsize(truncateAt);
-        addView(textView, w7.z5.t(-2, -2, 16, 12, 0, 8, 0));
-    }
-
-    public final void a() {
-        this.f22407b.setPadding(0, 0, 0, 0);
-        Drawable drawable = this.f22409f;
-        if (drawable != null) {
-            if (drawable instanceof org.telegram.ui.Components.p5) {
-                ((org.telegram.ui.Components.p5) drawable).o(this);
-            }
-            this.f22409f = null;
-            invalidate();
-        }
+    public g5(ut utVar) {
+        this.f24160a = utVar;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        float f7;
-        float f10;
-        super.dispatchDraw(canvas);
-        Drawable drawable = this.f22409f;
-        if (drawable != null) {
-            if (drawable instanceof org.telegram.ui.Components.p5) {
-                f7 = 24.0f;
+    public final void U(float f7, boolean z10) {
+        float c10;
+        int i10;
+        if (f7 <= 0.25f) {
+            c10 = a1.g.c(f7, 0.25f, 536576.0f, 512000);
+        } else {
+            float f10 = f7 - 0.25f;
+            if (f10 < 0.25f) {
+                c10 = a1.g.c(f10, 0.25f, 9437184.0f, 1048576);
             } else {
-                f7 = 20.0f;
-            }
-            int dp = AndroidUtilities.dp(f7);
-            if (this.f22409f instanceof org.telegram.ui.Components.p5) {
-                f10 = -2.0f;
-            } else {
-                f10 = 0.0f;
-            }
-            int dp2 = AndroidUtilities.dp(f10);
-            Drawable drawable2 = this.f22409f;
-            wd wdVar = this.f22407b;
-            drawable2.setBounds(wdVar.getLeft() + dp2, ((wdVar.getBottom() + wdVar.getTop()) - dp) / 2, wdVar.getLeft() + dp2 + dp, ((wdVar.getBottom() + wdVar.getTop()) + dp) / 2);
-            Drawable drawable3 = this.f22409f;
-            if (drawable3 instanceof org.telegram.ui.Components.p5) {
-                ((org.telegram.ui.Components.p5) drawable3).q(System.currentTimeMillis());
-            }
-            this.f22409f.draw(canvas);
-        }
-    }
-
-    @Override
-    public final void invalidate() {
-        super.invalidate();
-        this.f22407b.invalidate();
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        this.f22410n = true;
-        Drawable drawable = this.f22409f;
-        if (drawable instanceof org.telegram.ui.Components.p5) {
-            ((org.telegram.ui.Components.p5) drawable).a(this);
-        }
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        this.f22410n = false;
-        Drawable drawable = this.f22409f;
-        if (drawable instanceof org.telegram.ui.Components.p5) {
-            ((org.telegram.ui.Components.p5) drawable).o(this);
-        }
-    }
-
-    @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        if (this.h) {
-            canvas.drawLine(AndroidUtilities.dp(52.0f), getHeight() - 1, getWidth() - AndroidUtilities.dp(8.0f), getHeight() - 1, org.telegram.ui.ActionBar.k6.f21305k0);
-        }
-    }
-
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(View.MeasureSpec.makeMeasureSpec(View.MeasureSpec.getSize(i10), 1073741824), View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    public void setChat(TLRPC.Chat chat) {
-        a();
-        wd wdVar = this.f22407b;
-        org.telegram.ui.Components.u9 u9Var = this.f22406a;
-        TextView textView = this.f22408c;
-        if (chat == null) {
-            wdVar.setText("");
-            textView.setText("");
-            u9Var.setImageDrawable(null);
-            return;
-        }
-        org.telegram.ui.Components.f9 f9Var = this.d;
-        f9Var.q(chat);
-        TLRPC.ChatPhoto chatPhoto = chat.photo;
-        if (chatPhoto != null && chatPhoto.photo_small != null) {
-            u9Var.e(chat, f9Var);
-        } else {
-            u9Var.setImageDrawable(f9Var);
-        }
-        wdVar.setText(chat.title);
-        String publicUsername = ChatObject.getPublicUsername(chat);
-        if (publicUsername != null) {
-            textView.setText("@".concat(publicUsername));
-        } else {
-            textView.setText("");
-        }
-        u9Var.setVisibility(0);
-        textView.setVisibility(0);
-    }
-
-    public void setDivider(boolean z10) {
-        if (z10 != this.h) {
-            this.h = z10;
-            setWillNotDraw(!z10);
-            invalidate();
-        }
-    }
-
-    public void setEmojiSuggestion(MediaDataController.KeywordResult keywordResult) {
-        this.f22406a.setVisibility(4);
-        this.f22408c.setVisibility(4);
-        String str = keywordResult.emoji;
-        if (str != null && str.startsWith("animated_")) {
-            try {
-                Drawable drawable = this.f22409f;
-                if (drawable instanceof org.telegram.ui.Components.p5) {
-                    ((org.telegram.ui.Components.p5) drawable).o(this);
-                    this.f22409f = null;
+                float f11 = f10 - 0.25f;
+                if (f11 <= 0.25f) {
+                    c10 = a1.g.c(f11, 0.25f, 9.437184E7f, 10485760);
+                } else {
+                    c10 = a1.g.c(f11 - 0.25f, 0.25f, (float) (2097152000 - 104857600), 104857600);
                 }
-                org.telegram.ui.Components.p5 n10 = org.telegram.ui.Components.p5.n(UserConfig.selectedAccount, Long.parseLong(keywordResult.emoji.substring(9)), null, 0);
-                this.f22409f = n10;
-                if (this.f22410n) {
-                    n10.a(this);
-                }
-            } catch (Exception unused) {
-                this.f22409f = Emoji.getEmojiDrawable(keywordResult.emoji);
             }
-        } else {
-            this.f22409f = Emoji.getEmojiDrawable(keywordResult.emoji);
         }
-        Drawable drawable2 = this.f22409f;
-        wd wdVar = this.f22407b;
-        if (drawable2 == null) {
-            wdVar.setPadding(0, 0, 0, 0);
-            StringBuilder sb2 = new StringBuilder();
-            sb2.append(keywordResult.emoji);
-            sb2.append(":  ");
-            sb2.append(keywordResult.keyword);
-            wdVar.setText(sb2);
-            return;
+        int i11 = (int) c10;
+        ut utVar = this.f24160a;
+        long j10 = i11;
+        boolean z11 = true;
+        utVar.f24193b.setText(LocaleController.formatString("AutodownloadSizeLimitUpTo", R.string.AutodownloadSizeLimitUpTo, AndroidUtilities.formatFileSize(j10)));
+        utVar.d = j10;
+        a9[] a9VarArr = utVar.h;
+        AnimatorSet[] animatorSetArr = utVar.f44528n;
+        int i12 = utVar.e;
+        i10 = utVar.f44529r.videosRow;
+        if (i12 == i10) {
+            utVar.f44527f.setText(LocaleController.formatString("AutoDownloadPreloadVideoInfo", R.string.AutoDownloadPreloadVideoInfo, AndroidUtilities.formatFileSize(j10)));
+            if (i11 <= 2097152) {
+                z11 = false;
+            }
+            if (z11 != a9VarArr[0].isEnabled()) {
+                ArrayList arrayList = new ArrayList();
+                a9VarArr[0].e(arrayList, z11);
+                AnimatorSet animatorSet = animatorSetArr[0];
+                if (animatorSet != null) {
+                    animatorSet.cancel();
+                    animatorSetArr[0] = null;
+                }
+                AnimatorSet animatorSet2 = new AnimatorSet();
+                animatorSetArr[0] = animatorSet2;
+                animatorSet2.playTogether(arrayList);
+                animatorSetArr[0].addListener(new h31(utVar, 22));
+                animatorSetArr[0].setDuration(150L);
+                animatorSetArr[0].start();
+            }
         }
-        wdVar.setPadding(AndroidUtilities.dp(22.0f), 0, 0, 0);
-        StringBuilder sb3 = new StringBuilder();
-        sb3.append(":  ");
-        sb3.append(keywordResult.keyword);
-        wdVar.setText(sb3);
     }
 
-    public void setIsDarkTheme(boolean z10) {
-        TextView textView = this.f22408c;
-        wd wdVar = this.f22407b;
-        if (z10) {
-            org.telegram.ui.ActionBar.r6.r(wdVar);
-            org.telegram.ui.ActionBar.r6.r(textView);
-            wdVar.setTextColor(-1);
-            textView.setTextColor(-4473925);
-            return;
-        }
-        int i10 = org.telegram.ui.ActionBar.k6.G6;
-        org.telegram.ui.ActionBar.g6 g6Var = this.e;
-        org.telegram.ui.ActionBar.r6.W(wdVar, i10, g6Var);
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.A6, g6Var);
+    @Override
+    public final CharSequence getContentDescription() {
+        StringBuilder sb2 = new StringBuilder();
+        ut utVar = this.f24160a;
+        sb2.append((Object) utVar.f24192a.getText());
+        sb2.append(" ");
+        sb2.append((Object) utVar.f24193b.getText());
+        return sb2.toString();
     }
 
-    public void setText(String str) {
-        a();
-        this.f22406a.setVisibility(4);
-        this.f22408c.setVisibility(4);
-        this.f22407b.setText(str);
+    @Override
+    public final int k0() {
+        return 0;
     }
 
-    public void setUser(TLRPC.User user) {
-        a();
-        wd wdVar = this.f22407b;
-        org.telegram.ui.Components.u9 u9Var = this.f22406a;
-        TextView textView = this.f22408c;
-        if (user == null) {
-            wdVar.setText("");
-            textView.setText("");
-            u9Var.setImageDrawable(null);
-            return;
-        }
-        org.telegram.ui.Components.f9 f9Var = this.d;
-        f9Var.r(user);
-        TLRPC.UserProfilePhoto userProfilePhoto = user.photo;
-        if (userProfilePhoto != null && userProfilePhoto.photo_small != null) {
-            u9Var.e(user, f9Var);
-        } else {
-            u9Var.setImageDrawable(f9Var);
-        }
-        wdVar.setText(UserObject.getUserName(user));
-        if (UserObject.getPublicUsername(user) != null) {
-            textView.setText("@" + UserObject.getPublicUsername(user));
-        } else {
-            textView.setText("");
-        }
-        u9Var.setVisibility(0);
-        textView.setVisibility(0);
+    @Override
+    public final void y() {
     }
 }

@@ -1,63 +1,47 @@
 package org.telegram.ui;
 
-import j$.util.Objects;
-public final class bk0 extends pg.a {
-    public int f36090c;
-    public int d;
-    public CharSequence e;
-    public CharSequence f36091f;
-    public hk0 f36092g;
-    public int h;
-    public boolean f36093i;
+import android.view.View;
+public final class bk0 implements Runnable {
+    public final int f38110a;
+    public final NotificationsCustomSettingsActivity f38111b;
+    public final ok0 f38112c;
+    public final View d;
 
-    public static bk0 b(int i10, String str, boolean z10) {
-        ?? aVar = new pg.a(1, true);
-        aVar.f36090c = i10;
-        aVar.e = str;
-        aVar.f36093i = z10;
-        return aVar;
-    }
-
-    public static bk0 c(int i10, String str, String str2) {
-        ?? aVar = new pg.a(5, true);
-        aVar.f36090c = i10;
-        aVar.e = str;
-        aVar.f36091f = str2;
-        return aVar;
-    }
-
-    public static bk0 d(int i10, String str) {
-        ?? aVar = new pg.a(4, true);
-        aVar.f36090c = i10;
-        aVar.e = str;
-        return aVar;
+    public bk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ok0 ok0Var, View view, int i10, int i11) {
+        this.f38110a = i11;
+        this.f38111b = notificationsCustomSettingsActivity;
+        this.f38112c = ok0Var;
+        this.d = view;
     }
 
     @Override
-    public final boolean a(pg.a aVar) {
-        if (this != aVar) {
-            if (bk0.class == aVar.getClass()) {
-                bk0 bk0Var = (bk0) aVar;
-                if (this.f36090c == bk0Var.f36090c && this.d == bk0Var.d && this.h == bk0Var.h && this.f36093i == bk0Var.f36093i && Objects.equals(this.e, bk0Var.e) && Objects.equals(this.f36091f, bk0Var.f36091f) && this.f36092g == bk0Var.f36092g) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
+    public final void run() {
+        switch (this.f38110a) {
+            case 0:
+                this.f38111b.l0(this.f38112c, this.d, false);
+                return;
+            case 1:
+                this.f38111b.f0(this.f38112c, this.d);
+                return;
+            case 2:
+                NotificationsCustomSettingsActivity.Y(this.f38111b, this.f38112c, this.d);
+                return;
+            case 3:
+                NotificationsCustomSettingsActivity.W(this.f38111b, this.f38112c, this.d);
+                return;
+            case 4:
+                this.f38111b.f0(this.f38112c, this.d);
+                return;
+            default:
+                this.f38111b.l0(this.f38112c, this.d, true);
+                return;
         }
-        return true;
     }
 
-    public final boolean equals(Object obj) {
-        if (this == obj) {
-            return true;
-        }
-        if (obj != null && bk0.class == obj.getClass()) {
-            bk0 bk0Var = (bk0) obj;
-            if (this.f36090c == bk0Var.f36090c && this.h == bk0Var.h && ((this.f44712a == 8 || (this.d == bk0Var.d && Objects.equals(this.e, bk0Var.e) && (this.f44712a == 6 || Objects.equals(this.f36091f, bk0Var.f36091f)))) && this.f36092g == bk0Var.f36092g)) {
-                return true;
-            }
-        }
-        return false;
+    public bk0(NotificationsCustomSettingsActivity notificationsCustomSettingsActivity, ok0 ok0Var, View view, boolean z10, int i10) {
+        this.f38110a = i10;
+        this.f38111b = notificationsCustomSettingsActivity;
+        this.f38112c = ok0Var;
+        this.d = view;
     }
 }

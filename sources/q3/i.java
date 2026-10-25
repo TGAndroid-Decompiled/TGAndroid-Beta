@@ -1,17 +1,17 @@
 package q3;
 
-import b2.q0;
-import b2.s0;
-import b2.w;
-public abstract class i implements s0 {
-    public final String f44791a;
+import b2.r0;
+import b2.t0;
+import b2.x;
+public abstract class i implements t0 {
+    public final String f46940a;
 
     public i(String str) {
-        this.f44791a = str;
+        this.f46940a = str;
     }
 
     @Override
-    public final w a() {
+    public final x a() {
         return null;
     }
 
@@ -21,10 +21,10 @@ public abstract class i implements s0 {
     }
 
     public String toString() {
-        return this.f44791a;
+        return this.f46940a;
     }
 
     @Override
-    public void b(q0 q0Var) {
+    public void b(r0 r0Var) {
     }
 }

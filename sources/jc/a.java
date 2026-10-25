@@ -1,11 +1,15 @@
 package jc;
+public final class a {
+    public final byte[] f15547a;
+    public final int f15548b;
 
-import dc.j;
-public final class a extends j {
-    public final float f14416c;
+    public a(int i10, byte[] bArr) {
+        this.f15548b = i10;
+        this.f15547a = bArr;
+    }
 
-    public a(float f7, float f10, float f11) {
-        super(f7, f10);
-        this.f14416c = f11;
+    public a(byte[] bArr, int i10) {
+        this.f15547a = bArr;
+        this.f15548b = i10;
     }
 }

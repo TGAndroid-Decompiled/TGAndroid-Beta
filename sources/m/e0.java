@@ -1,115 +1,26 @@
 package m;
+public final class e0 extends u1 {
+    public final m0 f17709s;
+    public final p0 v;
 
-import android.content.Context;
-import android.content.res.ColorStateList;
-import android.content.res.TypedArray;
-import android.graphics.Canvas;
-import android.graphics.PorterDuff;
-import android.graphics.drawable.Drawable;
-import android.util.AttributeSet;
-public final class e0 extends z {
-    public final d0 e;
-    public Drawable f16243f;
-    public ColorStateList f16244g;
-    public PorterDuff.Mode h;
-    public boolean f16245i;
-    public boolean f16246j;
-
-    public e0(d0 d0Var) {
-        super(d0Var);
-        this.f16244g = null;
-        this.h = null;
-        this.f16245i = false;
-        this.f16246j = false;
-        this.e = d0Var;
+    public e0(p0 p0Var, p0 p0Var2, m0 m0Var) {
+        super(p0Var2);
+        this.v = p0Var;
+        this.f17709s = m0Var;
     }
 
     @Override
-    public final void b(AttributeSet attributeSet, int i10) {
-        super.b(attributeSet, i10);
-        d0 d0Var = this.e;
-        Context context = d0Var.getContext();
-        int[] iArr = f.a.f10270g;
-        g3 P = g3.P(context, attributeSet, iArr, i10);
-        TypedArray typedArray = (TypedArray) P.f16266c;
-        r0.i0.i(d0Var, d0Var.getContext(), iArr, attributeSet, (TypedArray) P.f16266c, i10);
-        Drawable G = P.G(0);
-        if (G != null) {
-            d0Var.setThumb(G);
-        }
-        Drawable F = P.F(1);
-        Drawable drawable = this.f16243f;
-        if (drawable != null) {
-            drawable.setCallback(null);
-        }
-        this.f16243f = F;
-        if (F != null) {
-            F.setCallback(d0Var);
-            F.setLayoutDirection(d0Var.getLayoutDirection());
-            if (F.isStateful()) {
-                F.setState(d0Var.getDrawableState());
-            }
-            f();
-        }
-        d0Var.invalidate();
-        if (typedArray.hasValue(3)) {
-            this.h = m1.b(typedArray.getInt(3, -1), this.h);
-            this.f16246j = true;
-        }
-        if (typedArray.hasValue(2)) {
-            this.f16244g = P.E(2);
-            this.f16245i = true;
-        }
-        P.Q();
-        f();
+    public final l.b0 b() {
+        return this.f17709s;
     }
 
-    public final void f() {
-        Drawable drawable = this.f16243f;
-        if (drawable != null) {
-            if (this.f16245i || this.f16246j) {
-                Drawable mutate = drawable.mutate();
-                this.f16243f = mutate;
-                if (this.f16245i) {
-                    mutate.setTintList(this.f16244g);
-                }
-                if (this.f16246j) {
-                    this.f16243f.setTintMode(this.h);
-                }
-                if (this.f16243f.isStateful()) {
-                    this.f16243f.setState(this.e.getDrawableState());
-                }
-            }
+    @Override
+    public final boolean c() {
+        p0 p0Var = this.v;
+        if (!p0Var.getInternalPopup().a()) {
+            p0Var.f17813f.l(g0.b(p0Var), g0.a(p0Var));
+            return true;
         }
-    }
-
-    public final void g(Canvas canvas) {
-        d0 d0Var;
-        int i10;
-        if (this.f16243f != null) {
-            int max = this.e.getMax();
-            int i11 = 1;
-            if (max > 1) {
-                int intrinsicWidth = this.f16243f.getIntrinsicWidth();
-                int intrinsicHeight = this.f16243f.getIntrinsicHeight();
-                if (intrinsicWidth >= 0) {
-                    i10 = intrinsicWidth / 2;
-                } else {
-                    i10 = 1;
-                }
-                if (intrinsicHeight >= 0) {
-                    i11 = intrinsicHeight / 2;
-                }
-                this.f16243f.setBounds(-i10, -i11, i10, i11);
-                float width = ((d0Var.getWidth() - d0Var.getPaddingLeft()) - d0Var.getPaddingRight()) / max;
-                int save = canvas.save();
-                canvas.translate(d0Var.getPaddingLeft(), d0Var.getHeight() / 2);
-                for (int i12 = 0; i12 <= max; i12++) {
-                    this.f16243f.draw(canvas);
-                    canvas.translate(width, 0.0f);
-                }
-                canvas.restoreToCount(save);
-            }
-        }
+        return true;
     }
 }

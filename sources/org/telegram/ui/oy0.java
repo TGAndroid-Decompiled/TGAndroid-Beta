@@ -1,30 +1,80 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
+import android.view.TextureView;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLRPC;
-public final class oy0 implements RequestDelegate {
-    public final int f40278a;
-    public final ry0 f40279b;
+import org.telegram.ui.Components.UndoView;
+public final class oy0 implements org.telegram.ui.ActionBar.t0, yu0, org.telegram.ui.Components.q8 {
+    public final ProfileActivity f42311a;
 
-    public oy0(ry0 ry0Var, int i10) {
-        this.f40278a = i10;
-        this.f40279b = ry0Var;
+    public oy0(ProfileActivity profileActivity) {
+        this.f42311a = profileActivity;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f40278a) {
-            case 0:
-                TLRPC.TL_help_dismissSuggestion tL_help_dismissSuggestion = new TLRPC.TL_help_dismissSuggestion();
-                tL_help_dismissSuggestion.suggestion = "VALIDATE_PASSWORD";
-                tL_help_dismissSuggestion.peer = new TLRPC.TL_inputPeerEmpty();
-                ry0 ry0Var = this.f40279b;
-                ry0Var.f41253c.getConnectionsManager().sendRequest(tL_help_dismissSuggestion, new oy0(ry0Var, 1));
-                return;
-            default:
-                this.f40279b.f41253c.getMessagesController().loadAppConfig();
-                return;
+    public void B0(MessageObject messageObject) {
+        ProfileActivity profileActivity = this.f42311a;
+        profileActivity.f35945a.I0(true);
+        vz0 vz0Var = profileActivity.N;
+        if (vz0Var != null && vz0Var.getCurrentListView() != null) {
+            profileActivity.N.getCurrentListView().I0(true);
         }
+        profileActivity.f35969d1.setBackgroundColor(i0.a.f(0.1f, profileActivity.Y3(profileActivity.f35958b5.f38534f), org.telegram.ui.ActionBar.y6.w0(org.telegram.ui.ActionBar.y6.f23297a7, profileActivity.f36123z0)));
+    }
+
+    @Override
+    public void E(MessageObject messageObject) {
+        org.telegram.ui.Components.ei0 ei0Var = this.f42311a.m0;
+        if (ei0Var != null && ei0Var.f27871a) {
+            ei0Var.O.d(0.0f, true);
+            ei0Var.invalidate();
+        }
+    }
+
+    @Override
+    public void T0(int i10, int i11) {
+        int i12;
+        int i13 = ProfileActivity.R6;
+        ProfileActivity profileActivity = this.f42311a;
+        long a2 = profileActivity.a();
+        profileActivity.getMessagesController().setDialogHistoryTTL(a2, i10);
+        if (profileActivity.f36095v2 == null && profileActivity.f36088u2 == null) {
+            return;
+        }
+        UndoView undoView = profileActivity.L;
+        TLRPC.User user = profileActivity.getMessagesController().getUser(Long.valueOf(a2));
+        TLRPC.UserFull userFull = profileActivity.f36095v2;
+        if (userFull != null) {
+            i12 = userFull.ttl_period;
+        } else {
+            i12 = profileActivity.f36088u2.ttl_period;
+        }
+        undoView.k(a2, i11, user, Integer.valueOf(i12), null, null);
+    }
+
+    @Override
+    public void b() {
+        int i10 = ProfileActivity.R6;
+        org.telegram.ui.Components.hn0.d(new e5(this.f42311a, 18));
+    }
+
+    @Override
+    public void dismiss() {
+        this.f42311a.T0.U(null, null);
+    }
+
+    @Override
+    public void e1() {
+        this.f42311a.presentFragment(new t4());
+        dismiss();
+    }
+
+    @Override
+    public TextureView f0() {
+        return null;
+    }
+
+    @Override
+    public void a() {
     }
 }

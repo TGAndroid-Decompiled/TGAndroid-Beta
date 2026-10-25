@@ -1,42 +1,13 @@
 package x2;
 
-import b2.v1;
-import i2.p1;
-import j$.util.Objects;
-import v7.u6;
-public final class t {
-    public final int f49629a;
-    public final p1[] f49630b;
-    public final p[] f49631c;
-    public final v1 d;
-    public final Object e;
+import b2.u1;
+import i2.s0;
+public abstract class t {
+    public s0 f51355a;
+    public y2.c f51356b;
+    public s f51357c;
 
-    public t(p1[] p1VarArr, p[] pVarArr, v1 v1Var, Object obj) {
-        boolean z10;
-        if (p1VarArr.length == pVarArr.length) {
-            z10 = true;
-        } else {
-            z10 = false;
-        }
-        u6.g(z10);
-        this.f49630b = p1VarArr;
-        this.f49631c = (p[]) pVarArr.clone();
-        this.d = v1Var;
-        this.e = obj;
-        this.f49629a = p1VarArr.length;
-    }
+    public abstract void a();
 
-    public final boolean a(t tVar, int i10) {
-        if (tVar == null || !Objects.equals(this.f49630b[i10], tVar.f49630b[i10]) || !Objects.equals(this.f49631c[i10], tVar.f49631c[i10])) {
-            return false;
-        }
-        return true;
-    }
-
-    public final boolean b(int i10) {
-        if (this.f49630b[i10] != null) {
-            return true;
-        }
-        return false;
-    }
+    public abstract void b(u1 u1Var);
 }

@@ -1,29 +1,31 @@
 package org.telegram.ui;
 
-import org.json.JSONObject;
-public final class un0 extends JSONObject {
-    public un0(ho0 ho0Var, int i10) {
-        switch (i10) {
-            case 3:
-                put("type", "PAYMENT_GATEWAY");
-                Object obj = ho0Var.M0;
-                if (obj != null) {
-                    put("parameters", obj);
-                    return;
-                }
-                JSONObject jSONObject = new JSONObject();
-                jSONObject.put("gateway", "stripe");
-                jSONObject.put("stripe:publishableKey", ho0Var.f37933j0);
-                jSONObject.put("stripe:version", "3.5.0");
-                put("parameters", jSONObject);
-                return;
-            default:
-                put("type", "DIRECT");
-                JSONObject jSONObject2 = new JSONObject();
-                jSONObject2.put("protocolVersion", "ECv2");
-                jSONObject2.put("publicKey", ho0Var.K0);
-                put("parameters", jSONObject2);
-                return;
-        }
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_account;
+public final class un0 implements no0 {
+    public final po0 f44505a;
+
+    public un0(po0 po0Var) {
+        this.f44505a = po0Var;
+    }
+
+    @Override
+    public final boolean c(String str, String str2, boolean z10, TLRPC.TL_inputPaymentCredentialsGooglePay tL_inputPaymentCredentialsGooglePay, TLRPC.TL_paymentSavedCredentialsCard tL_paymentSavedCredentialsCard) {
+        return false;
+    }
+
+    @Override
+    public final void d(TLRPC.TL_payments_validateRequestedInfo tL_payments_validateRequestedInfo) {
+        po0 po0Var = this.f44505a;
+        po0Var.I0 = tL_payments_validateRequestedInfo;
+        po0Var.C0(tL_payments_validateRequestedInfo.info);
+    }
+
+    @Override
+    public final void b() {
+    }
+
+    @Override
+    public final void a(TL_account.Password password) {
     }
 }

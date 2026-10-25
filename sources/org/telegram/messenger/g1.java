@@ -1,15 +1,32 @@
 package org.telegram.messenger;
 
-import java.util.concurrent.Executor;
-public final class g1 implements Executor {
-    public final DispatchQueue2 f18462a;
+import android.view.View;
+import java.util.List;
+import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.TLRPC;
+public final class g1 implements Utilities.Callback {
+    public final int f20131a;
+    public final Object f20132b;
 
-    public g1(DispatchQueue2 dispatchQueue2) {
-        this.f18462a = dispatchQueue2;
+    public g1(Object obj, int i10) {
+        this.f20131a = i10;
+        this.f20132b = obj;
     }
 
     @Override
-    public final void execute(Runnable runnable) {
-        this.f18462a.postRunnable(runnable);
+    public final void run(Object obj) {
+        switch (this.f20131a) {
+            case 0:
+                ChatThemeController.q((ChatThemeController) this.f20132b, (List) obj);
+                return;
+            case 1:
+                TLRPC.TL_messages_stickerSet tL_messages_stickerSet = (TLRPC.TL_messages_stickerSet) obj;
+                ((Runnable) this.f20132b).run();
+                return;
+            default:
+                Object[] objArr = (Object[]) obj;
+                ((View) this.f20132b).invalidate();
+                return;
+        }
     }
 }

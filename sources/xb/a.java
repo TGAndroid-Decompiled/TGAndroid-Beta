@@ -1,30 +1,102 @@
 package xb;
 
-import android.util.Log;
-import com.google.android.gms.internal.cast.z5;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.mlkit.vision.common.internal.MobileVisionBase;
-import m2.t;
-public final class a implements OnFailureListener, r9.d {
-    public static final a f50209a = new Object();
-    public static final a f50210b = new Object();
-    public static final a f50211c = new Object();
+import android.graphics.Bitmap;
+import android.os.SystemClock;
+import com.google.android.gms.common.api.internal.q1;
+import com.google.android.gms.tasks.Task;
+import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
+import m4.c;
+import o6.i;
+import o6.l;
+import s4.d;
+import sb.m;
+import x7.e7;
+import x7.f7;
+import x7.k7;
+import x7.ma;
+import x7.oa;
+import x7.z6;
+public final class a {
+    public volatile Bitmap f51704a;
+    public final int f51705b;
+    public final int f51706c;
+    public final int d;
+    public final int e;
 
-    @Override
-    public Object j2(z5 z5Var) {
-        return new c(z5Var.y(b.class));
+    public a(Bitmap bitmap, int i10) {
+        l.h(bitmap);
+        this.f51704a = bitmap;
+        this.f51705b = bitmap.getWidth();
+        this.f51706c = bitmap.getHeight();
+        boolean z10 = true;
+        if (i10 != 0 && i10 != 90 && i10 != 180 && i10 != 270) {
+            z10 = false;
+        }
+        l.a("Invalid rotation. Only 0, 90, 180, 270 are supported currently.", z10);
+        this.d = i10;
+        this.e = -1;
     }
 
-    @Override
-    public void onFailure(Exception exc) {
-        t tVar = MobileVisionBase.e;
-        if (Log.isLoggable(tVar.f16532b, 6)) {
-            String str = tVar.f16533c;
-            String str2 = "Error preloading model resource";
-            if (str != null) {
-                str2 = str.concat("Error preloading model resource");
+    public static a a(Bitmap bitmap, int i10) {
+        ma a2;
+        Task task;
+        a aVar;
+        String a10;
+        long elapsedRealtime = SystemClock.elapsedRealtime();
+        a aVar2 = new a(bitmap, i10);
+        int height = bitmap.getHeight();
+        int width = bitmap.getWidth();
+        int allocationByteCount = bitmap.getAllocationByteCount();
+        synchronized (oa.class) {
+            byte b10 = (byte) (((byte) 1) | 2);
+            if (b10 == 3) {
+                a2 = oa.a(new Object());
+            } else {
+                StringBuilder sb2 = new StringBuilder();
+                if ((b10 & 1) == 0) {
+                    sb2.append(" enableFirelog");
+                }
+                if ((b10 & 2) == 0) {
+                    sb2.append(" firelogEventType");
+                }
+                throw new IllegalStateException("Missing required properties:".concat(sb2.toString()));
             }
-            Log.e("MobileVisionBase", str2, exc);
         }
+        long elapsedRealtime2 = SystemClock.elapsedRealtime() - elapsedRealtime;
+        k7 k7Var = k7.INPUT_IMAGE_CONSTRUCTION;
+        Task task2 = a2.e;
+        long elapsedRealtime3 = SystemClock.elapsedRealtime();
+        HashMap hashMap = a2.f51585i;
+        if (hashMap.get(k7Var) == null) {
+            task = task2;
+            aVar = aVar2;
+        } else {
+            task = task2;
+            aVar = aVar2;
+            if (elapsedRealtime3 - ((Long) hashMap.get(k7Var)).longValue() <= TimeUnit.SECONDS.toMillis(30L)) {
+                return aVar;
+            }
+        }
+        hashMap.put(k7Var, Long.valueOf(elapsedRealtime3));
+        ?? obj = new Object();
+        obj.f17846c = z6.BITMAP;
+        obj.f17845b = e7.BITMAP;
+        obj.d = Integer.valueOf(allocationByteCount & Integer.MAX_VALUE);
+        obj.f17847f = Integer.valueOf(height & Integer.MAX_VALUE);
+        obj.e = Integer.valueOf(width & Integer.MAX_VALUE);
+        obj.f17844a = Long.valueOf(Long.MAX_VALUE & elapsedRealtime2);
+        obj.h = Integer.valueOf(i10 & Integer.MAX_VALUE);
+        f7 f7Var = new f7(obj);
+        d dVar = new d(12, false);
+        dVar.d = f7Var;
+        c cVar = new c(dVar);
+        if (task.isSuccessful()) {
+            a10 = (String) task.getResult();
+        } else {
+            a10 = i.f19141c.a(a2.f51584g);
+        }
+        m.f48061a.execute(new q1(a2, cVar, a10));
+        return aVar;
     }
 }

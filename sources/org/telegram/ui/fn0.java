@@ -1,66 +1,34 @@
 package org.telegram.ui;
 
-import android.widget.FrameLayout;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.view.View;
+import java.util.HashSet;
 import org.telegram.messenger.FileLog;
-public final class fn0 implements OnCompleteListener, org.telegram.ui.ActionBar.z1, qt {
-    public final int f37357a;
-    public final ho0 f37358b;
+public final class fn0 extends View implements org.telegram.ui.ActionBar.p6 {
+    public Paint f39421a;
+    public Paint f39422b;
+    public float f39423c;
 
-    public fn0(ho0 ho0Var, int i10) {
-        this.f37357a = i10;
-        this.f37358b = ho0Var;
+    @Override
+    public final void onDraw(Canvas canvas) {
+        float measuredWidth = (int) (getMeasuredWidth() * this.f39423c);
+        canvas.drawRect(0.0f, 0.0f, measuredWidth, getMeasuredHeight(), this.f39422b);
+        canvas.drawRect(measuredWidth, 0.0f, getMeasuredWidth(), getMeasuredHeight(), this.f39421a);
     }
 
     @Override
-    public void L0(lt ltVar) {
-        switch (this.f37357a) {
-            case 2:
-                ho0 ho0Var = this.f37358b;
-                ho0Var.A0 = ltVar;
-                ho0Var.f37927f[4].setText(ltVar.f39375a);
-                return;
-            default:
-                ho0 ho0Var2 = this.f37358b;
-                ho0Var2.A0 = ltVar;
-                ho0Var2.f37927f[4].setText(ltVar.f39375a);
-                ho0Var2.B0 = ltVar.d;
-                return;
+    public final void updateColors() {
+        try {
+            this.f39421a.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23419gi, false));
+            this.f39422b.setColor(org.telegram.ui.ActionBar.y6.x0(null, org.telegram.ui.ActionBar.y6.f23438hi, false));
+            invalidate();
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     @Override
-    public void g(org.telegram.ui.ActionBar.c2 c2Var, int i10) {
-        switch (this.f37357a) {
-            case 1:
-                ho0 ho0Var = this.f37358b;
-                ho0Var.I0(ho0Var.R0[0]);
-                return;
-            case 2:
-            default:
-                ho0 ho0Var2 = this.f37358b;
-                ho0Var2.D0(true);
-                ho0Var2.z0();
-                return;
-            case 3:
-                this.f37358b.A0(true);
-                return;
-        }
-    }
-
-    @Override
-    public void onComplete(Task task) {
-        ho0 ho0Var = this.f37358b;
-        ho0Var.getClass();
-        if (task.isSuccessful()) {
-            FrameLayout frameLayout = ho0Var.O;
-            if (frameLayout != null) {
-                frameLayout.setVisibility(0);
-                return;
-            }
-            return;
-        }
-        FileLog.e("isReadyToPay failed", task.getException());
+    public final void addColorKeys(HashSet hashSet) {
     }
 }

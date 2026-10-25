@@ -137,12 +137,12 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return a.a(this);
+            return b.a(this);
         }
 
         @Override
         public final String getUrl() {
-            return a.b(this);
+            return b.b(this);
         }
     }
 
@@ -174,7 +174,7 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.buttons = Vector.deserialize(inputSerializedData, new b(0), z10);
+            this.buttons = Vector.deserialize(inputSerializedData, new a(4), z10);
         }
 
         @Override
@@ -314,12 +314,12 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return a.a(this);
+            return b.a(this);
         }
 
         @Override
         public final String getUrl() {
-            return a.b(this);
+            return b.b(this);
         }
     }
 
@@ -360,7 +360,7 @@ public class TL_keyboard {
 
         @Override
         public final byte[] getData() {
-            return a.a(this);
+            return b.a(this);
         }
 
         @Override
@@ -374,7 +374,7 @@ public class TL_keyboard {
 
         @Override
         public final String getUrl() {
-            return a.b(this);
+            return b.b(this);
         }
 
         @Override
@@ -2250,7 +2250,7 @@ public class TL_keyboard {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.buttons = Vector.deserialize(inputSerializedData, new b(1), z10);
+            this.buttons = Vector.deserialize(inputSerializedData, new a(5), z10);
         }
 
         @Override

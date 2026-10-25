@@ -1,48 +1,21 @@
 package org.telegram.messenger;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.tgnet.RequestDelegate;
-import org.telegram.tgnet.TLObject;
-import org.telegram.tgnet.TLRPC;
-public final class h0 implements RequestDelegate {
-    public final int f18541a;
-    public final Object f18542b;
+import java.util.List;
+import org.telegram.messenger.BillingController;
+public final class h0 implements BillingController.ProductDetailsResponseListenerLegacy, d5.p {
+    public final BillingController f20214a;
 
-    public h0(Object obj, int i10) {
-        this.f18541a = i10;
-        this.f18542b = obj;
+    public h0(BillingController billingController) {
+        this.f20214a = billingController;
     }
 
     @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f18541a) {
-            case 0:
-                BirthdayController.d((BirthdayController) this.f18542b, tLObject, tL_error);
-                return;
-            case 1:
-                ((DownloadController) this.f18542b).lambda$loadAutoDownloadConfig$2(tLObject, tL_error);
-                return;
-            case 2:
-                ((FileLoadOperation) this.f18542b).lambda$requestFileOffsets$22(tLObject, tL_error);
-                return;
-            case 3:
-                MessagesController.lambda$unblockPeer$110((Runnable) this.f18542b, tLObject, tL_error);
-                return;
-            case 4:
-                MessagesController.lambda$checkIsInChat$476((MessagesController.IsInChatCheckedCallback) this.f18542b, tLObject, tL_error);
-                return;
-            case 5:
-                ((MessagesController.SavedMusicIds) this.f18542b).lambda$load$1(tLObject, tL_error);
-                return;
-            case 6:
-                ((MessagesController.SavedMusicList) this.f18542b).lambda$load$1(tLObject, tL_error);
-                return;
-            case 7:
-                ((TopicsController) this.f18542b).lambda$toggleViewForumAsMessages$18(tLObject, tL_error);
-                return;
-            default:
-                ((UserConfig) this.f18542b).lambda$loadGlobalTTl$4(tLObject, tL_error);
-                return;
-        }
+    public void a(d5.i iVar, List list) {
+        this.f20214a.onPurchasesUpdated(iVar, list);
+    }
+
+    @Override
+    public void onProductDetailsResponse(d5.i iVar, List list) {
+        this.f20214a.onQueriedPremiumProductDetails(iVar, list);
     }
 }

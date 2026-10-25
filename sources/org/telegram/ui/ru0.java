@@ -1,55 +1,54 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.R;
-public final class ru0 extends org.telegram.ui.Components.lm0 {
-    public final Drawable Y2;
-    public final Paint Z2;
-    public final RectF f41236a3;
+public final class ru0 extends org.telegram.ui.Components.u60 {
+    public final su0 d;
 
-    public ru0(Context context) {
-        super(context, null);
-        Paint paint = new Paint(1);
-        this.Z2 = paint;
-        this.f41236a3 = new RectF();
-        setWillNotDraw(false);
-        setClipToPadding(false);
-        setTranslationY(-AndroidUtilities.dp(10.0f));
-        qu0 qu0Var = new qu0(this);
-        setItemAnimator(qu0Var);
-        qu0Var.C = false;
-        qu0Var.f46376m = false;
-        setPadding(AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(12.0f), AndroidUtilities.dp(6.0f));
-        paint.setColor(2130706432);
-        this.Y2 = context.getResources().getDrawable(R.drawable.photo_tooltip2).mutate();
+    public ru0(su0 su0Var) {
+        this.d = su0Var;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
-        int childCount = getChildCount();
-        if (childCount > 0) {
-            int measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(87.0f);
-            Drawable drawable = this.Y2;
-            drawable.setBounds(measuredWidth, 0, drawable.getIntrinsicWidth() + measuredWidth, AndroidUtilities.dp(6.0f));
-            drawable.draw(canvas);
-            int i10 = Integer.MIN_VALUE;
-            int i11 = Integer.MAX_VALUE;
-            for (int i12 = 0; i12 < childCount; i12++) {
-                View childAt = getChildAt(i12);
-                i11 = (int) Math.min(i11, Math.floor(childAt.getX()));
-                i10 = (int) Math.max(i10, Math.ceil(childAt.getX() + childAt.getMeasuredWidth()));
-            }
-            if (i11 != Integer.MAX_VALUE && i10 != Integer.MIN_VALUE) {
-                RectF rectF = this.f41236a3;
-                rectF.set(i11 - AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f), AndroidUtilities.dp(6.0f) + i10, AndroidUtilities.dp(103.0f));
-                canvas.drawRoundRect(rectF, AndroidUtilities.dp(8.0f), AndroidUtilities.dp(8.0f), this.Z2);
+    public final CharSequence d() {
+        StringBuilder sb2 = new StringBuilder();
+        sb2.append(LocaleController.getString("AccDescrVideoQuality", R.string.AccDescrVideoQuality));
+        if (this.d.f43602s.Z7 > 0) {
+            sb2.append(", ");
+            sb2.append(this.d.f43602s.Y7 + 1);
+            sb2.append(" / ");
+            sb2.append(this.d.f43602s.Z7);
+        }
+        sb2.append(", ");
+        sb2.append(this.d.h);
+        sb2.append(" – ");
+        sb2.append(this.d.f43600n);
+        return sb2.toString();
+    }
+
+    @Override
+    public final int i() {
+        return Math.max(0, this.d.f43602s.Z7 - 1);
+    }
+
+    @Override
+    public final int j() {
+        return this.d.f43602s.Y7;
+    }
+
+    @Override
+    public final void k(int i10) {
+        int max;
+        if (this.d.f43602s.Z7 > 0 && (max = Math.max(0, Math.min(this.d.f43602s.Z7 - 1, i10))) != this.d.f43602s.Y7) {
+            su0 su0Var = this.d;
+            su0Var.f43601r = su0Var.f43602s.Y7;
+            this.d.f43602s.Y7 = max;
+            this.d.f43602s.S0();
+            this.d.invalidate();
+            int i11 = this.d.f43602s.Y7;
+            su0 su0Var2 = this.d;
+            if (i11 != su0Var2.f43601r) {
+                su0Var2.f43602s.r2(1);
             }
         }
     }

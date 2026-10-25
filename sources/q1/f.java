@@ -1,24 +1,24 @@
 package q1;
 
+import a8.nf;
 import android.text.InputFilter;
 import android.text.method.PasswordTransformationMethod;
 import android.text.method.TransformationMethod;
 import android.util.SparseArray;
 import android.widget.TextView;
-import w7.l6;
-public final class f extends l6 {
-    public final TextView f44755a;
-    public final d f44756b;
-    public boolean f44757c = true;
+public final class f extends nf {
+    public final TextView f46904a;
+    public final d f46905b;
+    public boolean f46906c = true;
 
     public f(TextView textView) {
-        this.f44755a = textView;
-        this.f44756b = new d(textView);
+        this.f46904a = textView;
+        this.f46905b = new d(textView);
     }
 
     @Override
     public final InputFilter[] a(InputFilter[] inputFilterArr) {
-        if (!this.f44757c) {
+        if (!this.f46906c) {
             SparseArray sparseArray = new SparseArray(1);
             for (int i10 = 0; i10 < inputFilterArr.length; i10++) {
                 InputFilter inputFilter = inputFilterArr[i10];
@@ -43,7 +43,7 @@ public final class f extends l6 {
         int length2 = inputFilterArr.length;
         int i13 = 0;
         while (true) {
-            d dVar = this.f44756b;
+            d dVar = this.f46905b;
             if (i13 < length2) {
                 if (inputFilterArr[i13] == dVar) {
                     return inputFilterArr;
@@ -67,21 +67,21 @@ public final class f extends l6 {
 
     @Override
     public final void c(boolean z10) {
-        this.f44757c = z10;
+        this.f46906c = z10;
         d();
-        TextView textView = this.f44755a;
+        TextView textView = this.f46904a;
         textView.setFilters(a(textView.getFilters()));
     }
 
     public final void d() {
-        TextView textView = this.f44755a;
+        TextView textView = this.f46904a;
         TransformationMethod transformationMethod = textView.getTransformationMethod();
-        if (this.f44757c) {
+        if (this.f46906c) {
             if (!(transformationMethod instanceof j) && !(transformationMethod instanceof PasswordTransformationMethod)) {
                 transformationMethod = new j(transformationMethod);
             }
         } else if (transformationMethod instanceof j) {
-            transformationMethod = ((j) transformationMethod).f44763a;
+            transformationMethod = ((j) transformationMethod).f46912a;
         }
         textView.setTransformationMethod(transformationMethod);
     }

@@ -1,23 +1,36 @@
 package ld;
 
-import w7.c0;
-public final class a {
-    public static final a f16062a;
-    public static final a[] f16063b;
+import a8.yd;
+import ud.p;
+public abstract class a implements f {
+    public final g f16984a;
 
-    static {
-        ?? r02 = new Enum("COROUTINE_SUSPENDED", 0);
-        f16062a = r02;
-        a[] aVarArr = {r02, new Enum("UNDECIDED", 1), new Enum("RESUMED", 2)};
-        f16063b = aVarArr;
-        c0.a(aVarArr);
+    public a(g gVar) {
+        this.f16984a = gVar;
     }
 
-    public static a valueOf(String str) {
-        return (a) Enum.valueOf(a.class, str);
+    @Override
+    public final Object fold(Object obj, p pVar) {
+        return pVar.invoke(obj, this);
     }
 
-    public static a[] values() {
-        return (a[]) f16063b.clone();
+    @Override
+    public f get(g gVar) {
+        return yd.a(this, gVar);
+    }
+
+    @Override
+    public final g getKey() {
+        return this.f16984a;
+    }
+
+    @Override
+    public h minusKey(g gVar) {
+        return yd.b(this, gVar);
+    }
+
+    @Override
+    public final h plus(h hVar) {
+        return yd.c(this, hVar);
     }
 }

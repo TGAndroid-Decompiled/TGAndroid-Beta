@@ -1,31 +1,36 @@
 package u9;
 
-import android.util.Log;
-public final class b {
-    public static final b f48072a = new Object();
+import aa.b0;
+import com.google.android.gms.tasks.TaskCompletionSource;
+import java.util.concurrent.Callable;
+import java.util.concurrent.ExecutorService;
+import org.telegram.ui.Components.ny0;
+import u4.f;
+import y9.p;
+import y9.x;
+public final class b implements Callable {
+    public final boolean f49622a;
+    public final p f49623b;
+    public final b0 f49624c;
 
-    public boolean a(int i10) {
-        if (4 > i10 && !Log.isLoggable("FirebaseCrashlytics", i10)) {
-            return false;
-        }
-        return true;
+    public b(boolean z10, p pVar, b0 b0Var) {
+        this.f49622a = z10;
+        this.f49623b = pVar;
+        this.f49624c = b0Var;
     }
 
-    public void b(String str) {
-        if (a(3)) {
-            Log.d("FirebaseCrashlytics", str, null);
+    @Override
+    public final Object call() {
+        if (this.f49622a) {
+            p pVar = this.f49623b;
+            ExecutorService executorService = pVar.f52462k;
+            f fVar = new f(3, pVar, this.f49624c);
+            ExecutorService executorService2 = x.f52490a;
+            TaskCompletionSource taskCompletionSource = new TaskCompletionSource();
+            executorService.execute(new ny0(fVar, executorService, taskCompletionSource, 29));
+            taskCompletionSource.getTask();
+            return null;
         }
-    }
-
-    public void c(String str) {
-        if (a(2)) {
-            Log.v("FirebaseCrashlytics", str, null);
-        }
-    }
-
-    public void d(String str, Exception exc) {
-        if (a(5)) {
-            Log.w("FirebaseCrashlytics", str, exc);
-        }
+        return null;
     }
 }

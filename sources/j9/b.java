@@ -1,10 +1,155 @@
 package j9;
-public final class b {
-    public static final b f14370b = new b(new c0.b("Failure occurred while trying to finish a future.", 5));
-    public final Throwable f14371a;
 
-    public b(Throwable th2) {
-        th2.getClass();
-        this.f14371a = th2;
+import a8.ed;
+import a8.yb;
+import java.io.Serializable;
+import java.util.AbstractList;
+import java.util.Collections;
+import java.util.List;
+import java.util.RandomAccess;
+public final class b extends AbstractList implements RandomAccess, Serializable {
+    public final int[] f15542a;
+    public final int f15543b;
+    public final int f15544c;
+
+    public b(int i10, int i11, int[] iArr) {
+        this.f15542a = iArr;
+        this.f15543b = i10;
+        this.f15544c = i11;
+    }
+
+    @Override
+    public final boolean contains(Object obj) {
+        if ((obj instanceof Integer) && ed.d(((Integer) obj).intValue(), this.f15543b, this.f15544c, this.f15542a) != -1) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public final boolean equals(Object obj) {
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof b) {
+            b bVar = (b) obj;
+            int size = size();
+            if (bVar.size() != size) {
+                return false;
+            }
+            for (int i10 = 0; i10 < size; i10++) {
+                if (this.f15542a[this.f15543b + i10] != bVar.f15542a[bVar.f15543b + i10]) {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return super.equals(obj);
+    }
+
+    @Override
+    public final Object get(int i10) {
+        yb.j(i10, size());
+        return Integer.valueOf(this.f15542a[this.f15543b + i10]);
+    }
+
+    @Override
+    public final int hashCode() {
+        int i10 = 1;
+        for (int i11 = this.f15543b; i11 < this.f15544c; i11++) {
+            i10 = (i10 * 31) + this.f15542a[i11];
+        }
+        return i10;
+    }
+
+    @Override
+    public final int indexOf(Object obj) {
+        if (obj instanceof Integer) {
+            int intValue = ((Integer) obj).intValue();
+            int i10 = this.f15544c;
+            int i11 = this.f15543b;
+            int d = ed.d(intValue, i11, i10, this.f15542a);
+            if (d >= 0) {
+                return d - i11;
+            }
+            return -1;
+        }
+        return -1;
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return false;
+    }
+
+    @Override
+    public final int lastIndexOf(Object obj) {
+        int i10;
+        if (obj instanceof Integer) {
+            int intValue = ((Integer) obj).intValue();
+            int i11 = this.f15544c;
+            while (true) {
+                i11--;
+                i10 = this.f15543b;
+                if (i11 >= i10) {
+                    if (this.f15542a[i11] == intValue) {
+                        break;
+                    }
+                } else {
+                    i11 = -1;
+                    break;
+                }
+            }
+            if (i11 >= 0) {
+                return i11 - i10;
+            }
+        }
+        return -1;
+    }
+
+    @Override
+    public final Object set(int i10, Object obj) {
+        Integer num = (Integer) obj;
+        yb.j(i10, size());
+        int i11 = this.f15543b + i10;
+        int[] iArr = this.f15542a;
+        int i12 = iArr[i11];
+        num.getClass();
+        iArr[i11] = num.intValue();
+        return Integer.valueOf(i12);
+    }
+
+    @Override
+    public final int size() {
+        return this.f15544c - this.f15543b;
+    }
+
+    @Override
+    public final List subList(int i10, int i11) {
+        yb.n(i10, i11, size());
+        if (i10 == i11) {
+            return Collections.EMPTY_LIST;
+        }
+        int i12 = this.f15543b;
+        return new b(i10 + i12, i12 + i11, this.f15542a);
+    }
+
+    @Override
+    public final String toString() {
+        StringBuilder sb2 = new StringBuilder(size() * 5);
+        sb2.append('[');
+        int[] iArr = this.f15542a;
+        int i10 = this.f15543b;
+        sb2.append(iArr[i10]);
+        while (true) {
+            i10++;
+            if (i10 < this.f15544c) {
+                sb2.append(", ");
+                sb2.append(iArr[i10]);
+            } else {
+                sb2.append(']');
+                return sb2.toString();
+            }
+        }
     }
 }

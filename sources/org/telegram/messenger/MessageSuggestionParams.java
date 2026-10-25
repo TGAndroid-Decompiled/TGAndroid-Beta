@@ -2,27 +2,27 @@ package org.telegram.messenger;
 
 import org.telegram.tgnet.TLRPC;
 public class MessageSuggestionParams {
-    public final ag.a amount;
+    public final bg.a amount;
     public final long time;
 
-    private MessageSuggestionParams(ag.a aVar, long j10) {
+    private MessageSuggestionParams(bg.a aVar, long j10) {
         this.amount = aVar;
         this.time = j10;
     }
 
     public static MessageSuggestionParams empty() {
-        return new MessageSuggestionParams(ag.a.g(0L, ag.b.f633a), 0L);
+        return new MessageSuggestionParams(bg.a.g(0L, bg.b.f3980a), 0L);
     }
 
     public static MessageSuggestionParams of(TLRPC.SuggestedPost suggestedPost) {
         if (suggestedPost == null) {
             return empty();
         }
-        return new MessageSuggestionParams(ag.a.l(suggestedPost.price), suggestedPost.schedule_date);
+        return new MessageSuggestionParams(bg.a.l(suggestedPost.price), suggestedPost.schedule_date);
     }
 
     public boolean isEmpty() {
-        ag.a aVar = this.amount;
+        bg.a aVar = this.amount;
         if ((aVar == null || aVar.k()) && this.time <= 0) {
             return true;
         }
@@ -31,7 +31,7 @@ public class MessageSuggestionParams {
 
     public TLRPC.SuggestedPost toTl() {
         TLRPC.SuggestedPost suggestedPost = new TLRPC.SuggestedPost();
-        ag.a aVar = this.amount;
+        bg.a aVar = this.amount;
         if (aVar != null && !aVar.k()) {
             suggestedPost.price = this.amount.o();
         }
@@ -44,10 +44,10 @@ public class MessageSuggestionParams {
     }
 
     public static MessageSuggestionParams of(TLRPC.TL_messageActionSuggestedPostApproval tL_messageActionSuggestedPostApproval) {
-        return of(ag.a.l(tL_messageActionSuggestedPostApproval.price), tL_messageActionSuggestedPostApproval.schedule_date);
+        return of(bg.a.l(tL_messageActionSuggestedPostApproval.price), tL_messageActionSuggestedPostApproval.schedule_date);
     }
 
-    public static MessageSuggestionParams of(ag.a aVar, long j10) {
+    public static MessageSuggestionParams of(bg.a aVar, long j10) {
         return new MessageSuggestionParams(aVar, j10);
     }
 }

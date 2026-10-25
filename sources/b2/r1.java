@@ -1,24 +1,21 @@
 package b2;
+
+import java.util.Collections;
+import java.util.List;
 public final class r1 {
-    public static final r1 d = new r1(new af.l(1));
-    public static final String e;
-    public static final String f3981f;
-    public static final String f3982g;
-    public final int f3983a;
-    public final boolean f3984b;
-    public final boolean f3985c;
+    public static final String f3384c;
+    public static final String d;
+    public final q1 f3385a;
+    public final f9.i0 f3386b;
 
     static {
-        String str = e2.m0.f8259a;
-        e = Integer.toString(1, 36);
-        f3981f = Integer.toString(2, 36);
-        f3982g = Integer.toString(3, 36);
+        String str = e2.n0.f9692a;
+        f3384c = Integer.toString(0, 36);
+        d = Integer.toString(1, 36);
     }
 
-    public r1(af.l lVar) {
-        this.f3983a = lVar.f592a;
-        this.f3984b = lVar.f593b;
-        this.f3985c = lVar.f594c;
+    public r1(q1 q1Var, int i10) {
+        this(q1Var, f9.i0.y(Integer.valueOf(i10)));
     }
 
     public final boolean equals(Object obj) {
@@ -27,7 +24,7 @@ public final class r1 {
         }
         if (obj != null && r1.class == obj.getClass()) {
             r1 r1Var = (r1) obj;
-            if (this.f3983a == r1Var.f3983a && this.f3984b == r1Var.f3984b && this.f3985c == r1Var.f3985c) {
+            if (this.f3385a.equals(r1Var.f3385a) && this.f3386b.equals(r1Var.f3386b)) {
                 return true;
             }
         }
@@ -35,6 +32,14 @@ public final class r1 {
     }
 
     public final int hashCode() {
-        return ((((this.f3983a + 31) * 31) + (this.f3984b ? 1 : 0)) * 31) + (this.f3985c ? 1 : 0);
+        return (this.f3386b.hashCode() * 31) + this.f3385a.hashCode();
+    }
+
+    public r1(q1 q1Var, List list) {
+        if (!list.isEmpty() && (((Integer) Collections.min(list)).intValue() < 0 || ((Integer) Collections.max(list)).intValue() >= q1Var.f3358a)) {
+            throw new IndexOutOfBoundsException();
+        }
+        this.f3385a = q1Var;
+        this.f3386b = f9.i0.u(list);
     }
 }

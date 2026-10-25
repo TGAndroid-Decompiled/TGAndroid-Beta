@@ -1,52 +1,41 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class n11 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28760a;
-    public final o11 f28761b;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.tl.TL_account;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class n11 implements org.telegram.ui.ActionBar.b2 {
+    public final int f30823a;
+    public final p11 f30824b;
 
-    public n11(o11 o11Var, int i10) {
-        this.f28760a = i10;
-        this.f28761b = o11Var;
+    public n11(p11 p11Var, int i10) {
+        this.f30823a = i10;
+        this.f30824b = p11Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28760a) {
+    public final void h(org.telegram.ui.ActionBar.e2 e2Var, int i10) {
+        switch (this.f30823a) {
             case 0:
-                o11 o11Var = this.f28761b;
-                o11Var.getClass();
-                o11Var.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o11Var.invalidate();
+                this.f30824b.a();
                 return;
             case 1:
-                o11 o11Var2 = this.f28761b;
-                o11Var2.getClass();
-                o11Var2.F = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o11Var2.invalidate();
-                return;
-            case 2:
-                o11 o11Var3 = this.f28761b;
-                o11Var3.getClass();
-                o11Var3.f29127f = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o11Var3.invalidate();
-                return;
-            case 3:
-                o11 o11Var4 = this.f28761b;
-                o11Var4.getClass();
-                float floatValue = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o11Var4.f29130s = floatValue;
-                o11Var4.f29131w = (int) ((o11Var4.h * floatValue) + 0);
-                o11Var4.invalidate();
+                p11 p11Var = this.f30824b;
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(p11Var.getContext());
+                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.TosDeclineDeleteAccount);
+                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.k(LocaleController.getString(R.string.Deactivate), new n11(p11Var, 2));
+                ic.a.r(R.string.Cancel, alertDialog$Builder, null);
                 return;
             default:
-                o11 o11Var5 = this.f28761b;
-                o11Var5.getClass();
-                float floatValue2 = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                o11Var5.v = floatValue2;
-                int i10 = o11Var5.f29129r;
-                o11Var5.f29132x = i10 + ((int) Math.ceil((o11Var5.f29128n - i10) * floatValue2));
-                o11Var5.invalidate();
+                p11 p11Var2 = this.f30824b;
+                org.telegram.ui.ActionBar.e2 e2Var2 = new org.telegram.ui.ActionBar.e2(p11Var2.getContext(), 3, null);
+                e2Var2.f22573i0 = false;
+                TL_account.deleteAccount deleteaccount = new TL_account.deleteAccount();
+                deleteaccount.reason = "Decline ToS update";
+                ConnectionsManager.getInstance(p11Var2.d).sendRequest(deleteaccount, new org.telegram.ui.z7(24, p11Var2, e2Var2));
+                e2Var2.show();
                 return;
         }
     }

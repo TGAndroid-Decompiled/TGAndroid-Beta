@@ -2,8 +2,8 @@ package k;
 
 import android.view.View;
 public abstract class a {
-    public Object f14566a;
-    public boolean f14567b;
+    public Object f16000a;
+    public boolean f16001b;
 
     public abstract void a();
 
@@ -21,15 +21,15 @@ public abstract class a {
 
     public abstract boolean h();
 
-    public abstract void j(View view);
+    public abstract void i(View view);
 
-    public abstract void k(int i10);
+    public abstract void j(int i10);
 
-    public abstract void l(CharSequence charSequence);
+    public abstract void k(CharSequence charSequence);
 
-    public abstract void m(int i10);
+    public abstract void l(int i10);
 
-    public abstract void n(CharSequence charSequence);
+    public abstract void m(CharSequence charSequence);
 
-    public abstract void o(boolean z10);
+    public abstract void n(boolean z10);
 }

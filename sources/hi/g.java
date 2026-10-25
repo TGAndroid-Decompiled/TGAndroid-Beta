@@ -1,29 +1,35 @@
 package hi;
 
-import org.telegram.messenger.MessagesController;
-import org.telegram.ui.sn;
-public final class g implements Runnable {
-    public final int f12179a;
-    public final o f12180b;
-    public final long f12181c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.j71;
+import org.telegram.ui.Components.mm0;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.Components.s61;
+import org.telegram.ui.Components.t61;
+public final class g extends s61 {
+    static {
+        s61.setup(new s61());
+    }
 
-    public g(o oVar, long j10, int i10) {
-        this.f12179a = i10;
-        this.f12180b = oVar;
-        this.f12181c = j10;
+    public static t61 a(int i10, int i11, int i12, CharSequence charSequence, String str) {
+        t61 K = t61.K(g.class);
+        K.d = i10;
+        K.f32885z = i11;
+        K.f32871k = i12;
+        K.f32872l = charSequence;
+        K.f32873m = str;
+        return K;
     }
 
     @Override
-    public final void run() {
-        switch (this.f12179a) {
-            case 0:
-                MessagesController.getInstance(r0.currentAccount).unlinkCommunity(this.f12181c, r0.f12224c, new i(this.f12180b, 0));
-                return;
-            default:
-                o oVar = this.f12180b;
-                oVar.getClass();
-                oVar.presentFragment(sn.W9(this.f12181c));
-                return;
-        }
+    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+        ((h) view).a(t61Var.f32885z, t61Var.f32871k, t61Var.f32872l, t61Var.f32873m);
+    }
+
+    @Override
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, u6 u6Var) {
+        return new h(context, u6Var);
     }
 }

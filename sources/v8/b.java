@@ -1,27 +1,39 @@
 package v8;
 
+import a8.df;
 import android.os.Parcel;
 import android.os.Parcelable;
-import com.google.android.gms.identity.intents.model.UserAddress;
-import w7.f0;
-public final class b extends o6.a {
-    public static final Parcelable.Creator<b> CREATOR = new s(5);
-    public String f48696a;
-    public String f48697b;
-    public String f48698c;
-    public int d;
-    public UserAddress e;
+import q7.m;
+public final class b extends p6.a {
+    public static final Parcelable.Creator<b> CREATOR = new m(24);
+    public int f50089a;
+    public int f50090b;
+    public int f50091c;
+    public boolean d;
+    public boolean e;
+    public float f50092f;
 
     @Override
     public final void writeToParcel(Parcel parcel, int i10) {
-        int q6 = f0.q(parcel, 20293);
-        f0.l(parcel, 1, this.f48696a);
-        f0.l(parcel, 2, this.f48697b);
-        f0.l(parcel, 3, this.f48698c);
-        int i11 = this.d;
-        f0.s(parcel, 4, 4);
+        int q5 = df.q(parcel, 20293);
+        int i11 = this.f50089a;
+        df.s(parcel, 2, 4);
         parcel.writeInt(i11);
-        f0.k(parcel, 5, this.e, i10);
-        f0.r(parcel, q6);
+        int i12 = this.f50090b;
+        df.s(parcel, 3, 4);
+        parcel.writeInt(i12);
+        int i13 = this.f50091c;
+        df.s(parcel, 4, 4);
+        parcel.writeInt(i13);
+        boolean z10 = this.d;
+        df.s(parcel, 5, 4);
+        parcel.writeInt(z10 ? 1 : 0);
+        boolean z11 = this.e;
+        df.s(parcel, 6, 4);
+        parcel.writeInt(z11 ? 1 : 0);
+        float f7 = this.f50092f;
+        df.s(parcel, 7, 4);
+        parcel.writeFloat(f7);
+        df.r(parcel, q5);
     }
 }

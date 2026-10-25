@@ -1,41 +1,32 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class l7 implements zl0 {
-    public final int f28241a;
+import org.telegram.tgnet.TLRPC;
+public final class l7 implements Runnable {
+    public final int f30092a;
+    public final m8 f30093b;
+    public final TLRPC.TL_error f30094c;
 
-    public l7(int i10) {
-        this.f28241a = i10;
+    public l7(m8 m8Var, TLRPC.TL_error tL_error, int i10) {
+        this.f30092a = i10;
+        this.f30093b = m8Var;
+        this.f30094c = tL_error;
     }
 
     @Override
-    public final void d(int i10, View view) {
-        switch (this.f28241a) {
+    public final void run() {
+        switch (this.f30092a) {
             case 0:
-                if (view instanceof org.telegram.ui.Cells.w) {
-                    ((org.telegram.ui.Cells.w) view).a();
-                    return;
-                }
+                m8.t(this.f30093b, this.f30094c);
                 return;
             case 1:
-                boolean z10 = ChatAttachAlertPhotoLayout.f24223q1;
-                if (view instanceof org.telegram.ui.Cells.s5) {
-                    org.telegram.ui.Cells.s5 s5Var = (org.telegram.ui.Cells.s5) view;
-                    s5Var.f23255w.b(s5Var);
-                    return;
-                }
+                m8.w(this.f30093b, this.f30094c);
                 return;
             case 2:
-                return;
-            case 3:
-                int i11 = yh.c.f50626a0;
+                m8.C(this.f30093b, this.f30094c);
                 return;
             default:
-                int i12 = yh.m.A0;
+                m8.y(this.f30093b, this.f30094c);
                 return;
         }
-    }
-
-    private final void a(int i10, View view) {
     }
 }

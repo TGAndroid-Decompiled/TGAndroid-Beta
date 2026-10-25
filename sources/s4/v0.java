@@ -1,19 +1,9 @@
 package s4;
 
-import android.os.Parcel;
-import android.os.Parcelable;
-public final class v0 extends i1.c {
-    public static final Parcelable.Creator<v0> CREATOR = new i1.b(3);
-    public Parcelable f46475c;
-
-    public v0(Parcel parcel, ClassLoader classLoader) {
-        super(parcel, classLoader);
-        this.f46475c = parcel.readParcelable(classLoader == null ? n0.class.getClassLoader() : classLoader);
-    }
-
-    @Override
-    public final void writeToParcel(Parcel parcel, int i10) {
-        super.writeToParcel(parcel, i10);
-        parcel.writeParcelable(this.f46475c, 0);
-    }
+import java.util.ArrayList;
+public final class v0 {
+    public final ArrayList f47847a = new ArrayList();
+    public final int f47848b = 20;
+    public long f47849c = 0;
+    public long d = 0;
 }

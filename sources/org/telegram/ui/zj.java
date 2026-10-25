@@ -1,224 +1,129 @@
 package org.telegram.ui;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.view.MotionEvent;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.SendMessagesHelper;
-import org.telegram.tgnet.TLObject;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
 import org.telegram.tgnet.TLRPC;
-public final class zj implements ft {
-    public final sn f44116a;
+import org.telegram.ui.ActionBar.AlertDialog$Builder;
+public final class zj extends org.telegram.ui.Components.gb0 {
+    public boolean V;
+    public final un W;
 
-    public zj(sn snVar) {
-        this.f44116a = snVar;
+    public zj(un unVar, Context context, long j10, long j11, un unVar2, org.telegram.ui.ActionBar.u6 u6Var) {
+        super(context, j10, j11, unVar2, u6Var);
+        this.W = unVar;
+        this.V = true;
     }
 
     @Override
-    public final MessageObject A() {
-        return null;
+    public final boolean a() {
+        un unVar = this.W;
+        if (unVar.R.getVisibility() == 0 && !unVar.f44496z3) {
+            return false;
+        }
+        return true;
     }
 
     @Override
-    public final boolean B() {
-        return false;
+    public final boolean dispatchTouchEvent(MotionEvent motionEvent) {
+        if (getAlpha() <= 0.0f) {
+            return false;
+        }
+        return super.dispatchTouchEvent(motionEvent);
     }
 
     @Override
-    public final boolean D() {
-        return false;
+    public final void j() {
+        this.W.Fc();
     }
 
     @Override
-    public final boolean E(TLRPC.Document document) {
-        return false;
+    public final void k(TLRPC.BotInlineResult botInlineResult) {
+        un unVar = this.W;
+        if (unVar.getParentActivity() != null && botInlineResult.content != null) {
+            if (!botInlineResult.type.equals("video") && !botInlineResult.type.equals("web_player_video")) {
+                unVar.Ga(0, botInlineResult.content.url, null, null, false);
+                return;
+            }
+            int[] inlineResultWidthAndHeight = MessageObject.getInlineResultWidthAndHeight(botInlineResult);
+            ci ciVar = unVar.Va;
+            String str = botInlineResult.title;
+            if (str == null) {
+                str = "";
+            }
+            String str2 = botInlineResult.description;
+            String str3 = botInlineResult.content.url;
+            org.telegram.ui.Components.dv.I(unVar, null, ciVar, str, str2, str3, str3, inlineResultWidthAndHeight[0], inlineResultWidthAndHeight[1], -1, unVar.F9());
+        }
     }
 
     @Override
-    public final String G(boolean z10) {
-        return null;
-    }
-
-    @Override
-    public final boolean I() {
-        return false;
-    }
-
-    @Override
-    public final boolean J() {
-        return false;
-    }
-
-    @Override
-    public final void M(TLRPC.InputStickerSet inputStickerSet, boolean z10) {
-        if (inputStickerSet != null) {
-            sn snVar = this.f44116a;
-            if (snVar.getParentActivity() != null) {
-                TLRPC.TL_inputStickerSetID tL_inputStickerSetID = new TLRPC.TL_inputStickerSetID();
-                tL_inputStickerSetID.access_hash = inputStickerSet.access_hash;
-                tL_inputStickerSetID.f20364id = inputStickerSet.f20364id;
-                org.telegram.ui.Components.sy0 sy0Var = new org.telegram.ui.Components.sy0(snVar.getParentActivity(), snVar, tL_inputStickerSetID, null, snVar.Y, snVar.f41651qa);
-                sy0Var.setCalcMandatoryInsets(snVar.C9());
-                sy0Var.f30645i0 = z10;
-                snVar.showDialog(sy0Var);
+    public final void l(boolean z10) {
+        String str;
+        un unVar = this.W;
+        hk hkVar = unVar.Y;
+        if (hkVar != null) {
+            ig.j1 adapter = getAdapter();
+            TLRPC.User user = adapter.f14137w0;
+            if (user != null) {
+                str = user.bot_inline_placeholder;
+            } else {
+                String str2 = adapter.f14128q0;
+                if (str2 != null && str2.equals("gif")) {
+                    str = LocaleController.getString(R.string.SearchGifsTitle);
+                } else {
+                    str = null;
+                }
+            }
+            hkVar.setCaption(str);
+            org.telegram.ui.Components.we weVar = unVar.Y.P1;
+            if (weVar != null) {
+                if (z10) {
+                    weVar.e = true;
+                    weVar.f32281b = System.currentTimeMillis();
+                    weVar.invalidateSelf();
+                    return;
+                }
+                weVar.e = false;
             }
         }
     }
 
     @Override
-    public final boolean N(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final Boolean P(TLRPC.Document document) {
-        return null;
-    }
-
-    @Override
-    public final boolean Q() {
-        return true;
-    }
-
-    @Override
-    public final long a() {
-        return this.f44116a.f41516f6;
-    }
-
-    @Override
-    public final boolean b() {
-        return this.f44116a.G6();
-    }
-
-    @Override
-    public final boolean c() {
-        if (this.f44116a.f41489d4 == 1) {
-            return true;
+    public final void m() {
+        un unVar = this.W;
+        if (unVar.f44319l5 && ((getAdapter().R == null || unVar.f44331m5 || unVar.f44345n5) && unVar.h != null && getAdapter().R != null)) {
+            SharedPreferences globalMainSettings = MessagesController.getGlobalMainSettings();
+            if (!globalMainSettings.getBoolean("secretbot", false)) {
+                AlertDialog$Builder alertDialog$Builder = new AlertDialog$Builder(unVar.getParentActivity(), 0, unVar.f44385qa);
+                alertDialog$Builder.f22366a.R = LocaleController.getString(R.string.AppName);
+                alertDialog$Builder.f22366a.T = LocaleController.getString(R.string.SecretChatContextBotAlert);
+                alertDialog$Builder.k(LocaleController.getString(R.string.OK), null);
+                unVar.showDialog(alertDialog$Builder.f22366a);
+                globalMainSettings.edit().putBoolean("secretbot", true).commit();
+            }
         }
-        return false;
+        unVar.Fc();
     }
 
     @Override
-    public final TLRPC.TL_messageMediaPoll d() {
-        return null;
-    }
-
-    @Override
-    public final boolean e(TLRPC.Document document) {
-        return false;
-    }
-
-    @Override
-    public final boolean f() {
-        return false;
-    }
-
-    @Override
-    public final TLRPC.PollAnswer g() {
-        return null;
-    }
-
-    @Override
-    public final boolean h() {
-        return true;
-    }
-
-    @Override
-    public final boolean j() {
-        return false;
-    }
-
-    @Override
-    public final boolean k(int i10) {
-        return true;
-    }
-
-    @Override
-    public final void l(TLRPC.Document document, String str, Object obj, boolean z10, int i10, int i11) {
-        this.f44116a.Y.a(document, str, obj, null, true, z10, i10, i11);
-    }
-
-    @Override
-    public final boolean o() {
-        return false;
-    }
-
-    @Override
-    public final org.telegram.ui.Components.h80 u(ah.v vVar) {
-        return null;
-    }
-
-    @Override
-    public final boolean y() {
-        return true;
-    }
-
-    @Override
-    public final void C(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void F(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void H(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void K() {
-    }
-
-    @Override
-    public final void L() {
-    }
-
-    @Override
-    public final void O(String str) {
-    }
-
-    @Override
-    public final void i(SendMessagesHelper.ImportingSticker importingSticker) {
-    }
-
-    @Override
-    public final void m(String str) {
-    }
-
-    @Override
-    public final void n(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void p(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void q() {
-    }
-
-    @Override
-    public final void s() {
-    }
-
-    @Override
-    public final void v(TLRPC.Document document) {
-    }
-
-    @Override
-    public final void z(String str) {
-    }
-
-    @Override
-    public final void w(TLRPC.StickerSet stickerSet, String str) {
-    }
-
-    @Override
-    public final void x(TLObject tLObject, Object obj) {
-    }
-
-    @Override
-    public final void t(CharSequence charSequence, String str, org.telegram.ui.Components.oy oyVar) {
-    }
-
-    @Override
-    public final void r(int i10, int i11, Object obj, TLObject tLObject, boolean z10) {
+    public final void n(boolean z10) {
+        boolean z11;
+        if (this.V != z10) {
+            un unVar = this.W;
+            org.telegram.ui.Components.tz0 tz0Var = unVar.f44367p1;
+            if (!unVar.isInPreviewMode() && z10) {
+                z11 = true;
+            } else {
+                z11 = false;
+            }
+            AndroidUtilities.updateViewShow(tz0Var, z11, false, true);
+            this.V = z10;
+        }
     }
 }

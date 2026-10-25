@@ -1,61 +1,178 @@
 package org.telegram.ui.ActionBar;
 
-import android.app.Activity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.widget.FrameLayout;
-import java.util.List;
-public interface h5 {
-    o2 getBackgroundFragment();
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.util.SparseIntArray;
+public class h5 implements u6 {
+    public final int f22685a;
+    public SparseIntArray f22686b;
+    public Object f22687c;
 
-    h3 getBottomSheet();
+    public h5() {
+        this.f22685a = 0;
+    }
 
-    List getFragmentStack();
+    @Override
+    public final boolean a() {
+        switch (this.f22685a) {
+            case 0:
+            default:
+                return y6.I.q();
+        }
+    }
 
-    o2 getLastFragment();
+    @Override
+    public final void b(float f7, float f10, int i10, int i11) {
+        switch (this.f22685a) {
+            case 0:
+                y6.q(f7, f10, i10, i11);
+                return;
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    y6.q(f7, f10, i10, i11);
+                    return;
+                } else {
+                    u6Var.b(f7, f10, i10, i11);
+                    return;
+                }
+        }
+    }
 
-    j5 getMessageDrawableOutMediaStart();
+    @Override
+    public final ColorFilter c() {
+        switch (this.f22685a) {
+            case 0:
+                return y6.f23687v3;
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    return y6.f23687v3;
+                }
+                return u6Var.c();
+        }
+    }
 
-    j5 getMessageDrawableOutStart();
+    @Override
+    public final Paint d(String str) {
+        switch (this.f22685a) {
+            case 0:
+                return y6.U0(str);
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    return y6.U0(str);
+                }
+                return u6Var.d(str);
+        }
+    }
 
-    FrameLayout getOverlayContainerView();
+    @Override
+    public final int e(int i10) {
+        switch (this.f22685a) {
+            case 0:
+                return g(i10);
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    return y6.x0(null, i10, false);
+                }
+                return u6Var.e(i10);
+        }
+    }
 
-    Activity getParentActivity();
+    @Override
+    public final boolean f() {
+        switch (this.f22685a) {
+            case 0:
+                return false;
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    return y6.c1();
+                }
+                return u6Var.f();
+        }
+    }
 
-    List getPulledDialogs();
+    @Override
+    public final int g(int i10) {
+        switch (this.f22685a) {
+            case 0:
+                SparseIntArray sparseIntArray = this.f22686b;
+                int indexOfKey = sparseIntArray.indexOfKey(i10);
+                if (indexOfKey >= 0) {
+                    return sparseIntArray.valueAt(indexOfKey);
+                }
+                return y6.x0(null, i10, false);
+            default:
+                SparseIntArray sparseIntArray2 = this.f22686b;
+                int indexOfKey2 = sparseIntArray2.indexOfKey(i10);
+                if (indexOfKey2 >= 0) {
+                    return sparseIntArray2.valueAt(indexOfKey2);
+                }
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    return y6.x0(null, i10, false);
+                }
+                return u6Var.g(i10);
+        }
+    }
 
-    o2 getSafeLastFragment();
+    @Override
+    public final Drawable getDrawable(String str) {
+        switch (this.f22685a) {
+            case 0:
+                return null;
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    return y6.Q0(str);
+                }
+                return u6Var.getDrawable(str);
+        }
+    }
 
-    float getThemeAnimationValue();
+    @Override
+    public final void h(int i10, int i11) {
+        switch (this.f22685a) {
+            case 0:
+                return;
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var != null) {
+                    u6Var.h(i10, i11);
+                    return;
+                }
+                return;
+        }
+    }
 
-    ViewGroup getView();
+    @Override
+    public final int i(int i10) {
+        switch (this.f22685a) {
+            case 0:
+                return this.f22686b.get(i10);
+            default:
+                u6 u6Var = (u6) this.f22687c;
+                if (u6Var == null) {
+                    return y6.x0(null, i10, false);
+                }
+                return u6Var.i(i10);
+        }
+    }
 
-    Window getWindow();
+    public h5(u6 u6Var) {
+        this.f22685a = 1;
+        this.f22686b = new SparseIntArray();
+        this.f22687c = u6Var;
+        j();
+    }
 
-    void setBackgroundView(View view);
+    public void j() {
+    }
 
-    void setDelegate(d5 d5Var);
-
-    void setDrawerLayoutContainer(b4 b4Var);
-
-    void setFragmentPanTranslationOffset(int i10);
-
-    void setFragmentStack(List list);
-
-    void setHighlightActionButtons(boolean z10);
-
-    void setInBubbleMode(boolean z10);
-
-    void setIsSheet(boolean z10);
-
-    void setNavigationBarColor(int i10);
-
-    void setPulledDialogs(List list);
-
-    void setRemoveActionBarExtraHeight(boolean z10);
-
-    void setUseAlphaAnimations(boolean z10);
-
-    void setWindow(Window window);
+    private final void k(int i10, int i11) {
+    }
 }

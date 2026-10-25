@@ -1,3 +1,4 @@
 package e6;
-public final class p extends a9.a {
+public abstract class p extends c8.b implements q {
+    public static final int f9825b = 0;
 }

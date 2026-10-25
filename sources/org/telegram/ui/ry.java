@@ -1,12 +1,11 @@
 package org.telegram.ui;
-
-import android.content.Context;
-import android.view.View;
-public abstract class ry extends org.telegram.ui.ActionBar.o2 {
+public final class ry extends org.telegram.ui.Components.r71 {
     @Override
-    public final View createView(Context context) {
-        org.telegram.ui.Components.nw0 nw0Var = new org.telegram.ui.Components.nw0(context, null);
-        this.fragmentView = nw0Var;
-        return nw0Var;
+    public final Integer W0(int i10) {
+        org.telegram.ui.Components.t61 G = this.f32150g3.G(i10);
+        if (G != null && G.d == 2) {
+            return 0;
+        }
+        return super.W0(i10);
     }
 }

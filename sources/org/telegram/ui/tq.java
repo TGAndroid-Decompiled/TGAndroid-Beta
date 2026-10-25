@@ -1,44 +1,93 @@
 package org.telegram.ui;
 
+import java.util.ArrayList;
+import org.telegram.messenger.MessageObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class tq implements aq {
-    public final TLObject f42103a;
-    public final long f42104b;
-    public final boolean f42105c;
-    public final jr d;
+public final class tq implements dq {
+    public final int f43881a;
+    public final long f43882b;
+    public final int f43883c;
+    public final boolean d;
+    public final boolean[] e;
+    public final kr f43884f;
 
-    public tq(jr jrVar, TLObject tLObject, long j10, boolean z10) {
-        this.d = jrVar;
-        this.f42103a = tLObject;
-        this.f42104b = j10;
-        this.f42105c = z10;
+    public tq(kr krVar, int i10, long j10, int i11, boolean z10, boolean[] zArr) {
+        this.f43884f = krVar;
+        this.f43881a = i10;
+        this.f43882b = j10;
+        this.f43883c = i11;
+        this.d = z10;
+        this.e = zArr;
     }
 
     @Override
     public final void a(TLRPC.User user) {
-        jr.c0(this.d, user);
+        kr.d0(this.f43884f, user);
     }
 
     @Override
     public final void b(int i10, TLRPC.TL_chatAdminRights tL_chatAdminRights, TLRPC.TL_chatBannedRights tL_chatBannedRights, String str) {
-        TLObject tLObject = this.f42103a;
-        if (tLObject instanceof TLRPC.ChannelParticipant) {
-            TLRPC.ChannelParticipant channelParticipant = (TLRPC.ChannelParticipant) tLObject;
-            channelParticipant.admin_rights = tL_chatAdminRights;
-            channelParticipant.banned_rights = tL_chatBannedRights;
-            channelParticipant.rank = str;
-        }
-        jr jrVar = this.d;
-        cr crVar = jrVar.f38643m1;
-        long j10 = this.f42104b;
-        if (crVar != null && i10 == 1) {
-            crVar.b(j10);
-        } else if (crVar != null) {
-            crVar.c(j10, tLObject);
-        }
-        if (this.f42105c) {
-            jrVar.removeSelfFromStack();
+        TLRPC.ChatParticipant tL_chatParticipant;
+        TLRPC.ChannelParticipant tL_channelParticipant;
+        kr krVar = this.f43884f;
+        ArrayList arrayList = krVar.E;
+        long j10 = this.f43882b;
+        int i11 = this.f43881a;
+        if (i11 == 0) {
+            int i12 = 0;
+            while (true) {
+                if (i12 >= arrayList.size()) {
+                    break;
+                }
+                TLObject tLObject = (TLObject) arrayList.get(i12);
+                if (tLObject instanceof TLRPC.ChannelParticipant) {
+                    if (MessageObject.getPeerId(((TLRPC.ChannelParticipant) tLObject).peer) == j10) {
+                        if (i10 == 1) {
+                            tL_channelParticipant = new TLRPC.TL_channelParticipantAdmin();
+                        } else {
+                            tL_channelParticipant = new TLRPC.TL_channelParticipant();
+                        }
+                        tL_channelParticipant.admin_rights = tL_chatAdminRights;
+                        tL_channelParticipant.banned_rights = tL_chatBannedRights;
+                        tL_channelParticipant.inviter_id = krVar.getUserConfig().getClientUserId();
+                        if (j10 > 0) {
+                            TLRPC.TL_peerUser tL_peerUser = new TLRPC.TL_peerUser();
+                            tL_channelParticipant.peer = tL_peerUser;
+                            tL_peerUser.user_id = j10;
+                        } else {
+                            TLRPC.TL_peerChannel tL_peerChannel = new TLRPC.TL_peerChannel();
+                            tL_channelParticipant.peer = tL_peerChannel;
+                            tL_peerChannel.channel_id = -j10;
+                        }
+                        tL_channelParticipant.date = this.f43883c;
+                        tL_channelParticipant.flags |= 4;
+                        tL_channelParticipant.rank = str;
+                        arrayList.set(i12, tL_channelParticipant);
+                    }
+                } else if (tLObject instanceof TLRPC.ChatParticipant) {
+                    TLRPC.ChatParticipant chatParticipant = (TLRPC.ChatParticipant) tLObject;
+                    if (i10 == 1) {
+                        tL_chatParticipant = new TLRPC.TL_chatParticipantAdmin();
+                    } else {
+                        tL_chatParticipant = new TLRPC.TL_chatParticipant();
+                    }
+                    tL_chatParticipant.user_id = chatParticipant.user_id;
+                    tL_chatParticipant.date = chatParticipant.date;
+                    tL_chatParticipant.inviter_id = chatParticipant.inviter_id;
+                    int indexOf = krVar.f41038r.participants.participants.indexOf(chatParticipant);
+                    if (indexOf >= 0) {
+                        krVar.f41038r.participants.participants.set(indexOf, tL_chatParticipant);
+                    }
+                    krVar.s0();
+                }
+                i12++;
+            }
+            if (i10 == 1 && !this.d) {
+                this.e[0] = true;
+            }
+        } else if (i11 == 1 && i10 == 0) {
+            krVar.w0(j10);
         }
     }
 }

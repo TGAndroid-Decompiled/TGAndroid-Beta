@@ -1,22 +1,24 @@
 package bb;
-public final class d {
-    public static final d f4245a;
-    public static final d f4246b;
-    public static final d[] f4247c;
 
-    static {
-        ?? r02 = new Enum("CRASHLYTICS", 0);
-        f4245a = r02;
-        ?? r12 = new Enum("PERFORMANCE", 1);
-        f4246b = r12;
-        f4247c = new d[]{r02, r12, new Enum("MATT_SAYS_HI", 2)};
-    }
+import android.os.Build;
+public final class d implements ka.d {
+    public static final d f3739a = new Object();
+    public static final ka.c f3740b = ka.c.c("appId");
+    public static final ka.c f3741c = ka.c.c("deviceModel");
+    public static final ka.c d = ka.c.c("sessionSdkVersion");
+    public static final ka.c e = ka.c.c("osVersion");
+    public static final ka.c f3742f = ka.c.c("logEnvironment");
+    public static final ka.c f3743g = ka.c.c("androidAppInfo");
 
-    public static d valueOf(String str) {
-        return (d) Enum.valueOf(d.class, str);
-    }
-
-    public static d[] values() {
-        return (d[]) f4247c.clone();
+    @Override
+    public final void a(Object obj, Object obj2) {
+        b bVar = (b) obj;
+        ka.e eVar = (ka.e) obj2;
+        eVar.a(f3740b, bVar.f3725a);
+        eVar.a(f3741c, Build.MODEL);
+        eVar.a(d, "1.2.0");
+        eVar.a(e, Build.VERSION.RELEASE);
+        eVar.a(f3742f, p.LOG_ENVIRONMENT_PROD);
+        eVar.a(f3743g, bVar.f3726b);
     }
 }

@@ -1,26 +1,55 @@
 package org.telegram.ui;
 
-import android.text.TextPaint;
-import android.text.style.ClickableSpan;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class om0 extends ClickableSpan {
-    public final zm0 f40219a;
+import java.util.Comparator;
+import org.telegram.tgnet.TLRPC;
+public final class om0 implements Comparator {
+    public final in0 f42247a;
 
-    public om0(zm0 zm0Var) {
-        this.f40219a = zm0Var;
+    public om0(in0 in0Var) {
+        this.f42247a = in0Var;
+    }
+
+    public final int a(TLRPC.SecureValueError secureValueError) {
+        if (secureValueError instanceof TLRPC.TL_secureValueError) {
+            return 0;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFrontSide) {
+            return 1;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorReverseSide) {
+            return 2;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorSelfie) {
+            return 3;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFile) {
+            return 4;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorTranslationFiles) {
+            return 5;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFile) {
+            return 6;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorFiles) {
+            return 7;
+        }
+        if (secureValueError instanceof TLRPC.TL_secureValueErrorData) {
+            return in0.C0(this.f42247a, ((TLRPC.TL_secureValueErrorData) secureValueError).field);
+        }
+        return 100;
     }
 
     @Override
-    public final void onClick(View view) {
-        zm0 zm0Var = this.f40219a;
-        pf.d.r(zm0Var.getParentActivity(), zm0Var.f44179y.privacy_policy_url);
-    }
-
-    @Override
-    public final void updateDrawState(TextPaint textPaint) {
-        super.updateDrawState(textPaint);
-        textPaint.setUnderlineText(true);
-        textPaint.setTypeface(AndroidUtilities.bold());
+    public final int compare(Object obj, Object obj2) {
+        int a2 = a((TLRPC.SecureValueError) obj);
+        int a10 = a((TLRPC.SecureValueError) obj2);
+        if (a2 < a10) {
+            return -1;
+        }
+        if (a2 > a10) {
+            return 1;
+        }
+        return 0;
     }
 }

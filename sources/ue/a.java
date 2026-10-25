@@ -1,25 +1,104 @@
 package ue;
 
-import java.lang.reflect.InvocationHandler;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import org.chromium.support_lib_boundary.FeatureFlagHolderBoundaryInterface;
-public final class a implements InvocationHandler {
-    public final FeatureFlagHolderBoundaryInterface f48081a;
+import java.util.Hashtable;
+import java.util.StringTokenizer;
+import li.e3;
+import ti.e;
+public final class a {
+    public static final Hashtable f49707b;
+    public static final Object[] f49708c;
+    public static Class d;
+    public final ClassLoader f49709a;
 
-    public a(FeatureFlagHolderBoundaryInterface featureFlagHolderBoundaryInterface) {
-        this.f48081a = featureFlagHolderBoundaryInterface;
+    static {
+        Hashtable hashtable = new Hashtable();
+        f49707b = hashtable;
+        hashtable.put("void", Void.TYPE);
+        hashtable.put("boolean", Boolean.TYPE);
+        hashtable.put("byte", Byte.TYPE);
+        hashtable.put("char", Character.TYPE);
+        hashtable.put("short", Short.TYPE);
+        hashtable.put("int", Integer.TYPE);
+        hashtable.put("long", Long.TYPE);
+        hashtable.put("float", Float.TYPE);
+        hashtable.put("double", Double.TYPE);
+        f49708c = new Object[0];
     }
 
-    @Override
-    public final Object invoke(Object obj, Method method, Object[] objArr) {
-        FeatureFlagHolderBoundaryInterface featureFlagHolderBoundaryInterface = this.f48081a;
-        try {
-            return Class.forName(method.getDeclaringClass().getName(), true, featureFlagHolderBoundaryInterface.getClass().getClassLoader()).getDeclaredMethod(method.getName(), method.getParameterTypes()).invoke(featureFlagHolderBoundaryInterface, objArr);
-        } catch (InvocationTargetException e) {
-            throw e.getTargetException();
-        } catch (ReflectiveOperationException e7) {
-            throw new RuntimeException("Reflection failed for method " + method, e7);
+    public a(Class cls, String str) {
+        this.f49709a = cls.getClassLoader();
+    }
+
+    public static Class a(ClassLoader classLoader, String str) {
+        if (str.equals("*")) {
+            return null;
         }
+        Class cls = (Class) f49707b.get(str);
+        if (cls != null) {
+            return cls;
+        }
+        try {
+            if (classLoader == null) {
+                return Class.forName(str);
+            }
+            return Class.forName(str, false, classLoader);
+        } catch (ClassNotFoundException unused) {
+            Class<?> cls2 = d;
+            if (cls2 == null) {
+                try {
+                    cls2 = Class.forName("java.lang.ClassNotFoundException");
+                    d = cls2;
+                } catch (ClassNotFoundException e) {
+                    throw new NoClassDefFoundError(e.getMessage());
+                }
+            }
+            return cls2;
+        }
+    }
+
+    public static e b(e3 e3Var, Object obj, Object obj2) {
+        return new e(e3Var, obj, obj2, f49708c);
+    }
+
+    public static e c(e3 e3Var, Object obj, Object obj2, Object obj3) {
+        return new e(e3Var, obj, obj2, new Object[]{obj3});
+    }
+
+    public final s4.b d(String str, String str2, String str3, String str4, String str5) {
+        int parseInt = Integer.parseInt("1", 16);
+        ClassLoader classLoader = this.f49709a;
+        Class a2 = a(classLoader, str2);
+        StringTokenizer stringTokenizer = new StringTokenizer(str3, ":");
+        int countTokens = stringTokenizer.countTokens();
+        Class[] clsArr = new Class[countTokens];
+        for (int i10 = 0; i10 < countTokens; i10++) {
+            clsArr[i10] = a(classLoader, stringTokenizer.nextToken());
+        }
+        StringTokenizer stringTokenizer2 = new StringTokenizer(str4, ":");
+        int countTokens2 = stringTokenizer2.countTokens();
+        String[] strArr = new String[countTokens2];
+        for (int i11 = 0; i11 < countTokens2; i11++) {
+            strArr[i11] = stringTokenizer2.nextToken();
+        }
+        StringTokenizer stringTokenizer3 = new StringTokenizer("", ":");
+        int countTokens3 = stringTokenizer3.countTokens();
+        Class[] clsArr2 = new Class[countTokens3];
+        for (int i12 = 0; i12 < countTokens3; i12++) {
+            clsArr2[i12] = a(classLoader, stringTokenizer3.nextToken());
+        }
+        Class a10 = a(classLoader, str5);
+        s4.b bVar = new s4.b(3);
+        bVar.f47684b = parseInt;
+        bVar.f47685c = str;
+        bVar.e = a2;
+        bVar.f47687g = clsArr;
+        bVar.h = a10;
+        return bVar;
+    }
+
+    public final e3 e(s4.b bVar) {
+        e3 e3Var = new e3(21);
+        e3Var.f17210b = bVar;
+        return e3Var;
     }
 }

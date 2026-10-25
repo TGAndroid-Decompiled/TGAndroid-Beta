@@ -1,17 +1,12 @@
 package w7;
-public final class n5 implements ja.d {
-    public static final n5 f49226a = new Object();
-
-    static {
-        si.o0.s(si.o0.l(d.class, si.o0.p(2, si.o0.l(d.class, new a(1)))));
-    }
-
-    @Override
-    public final void a(Object obj, Object obj2) {
-        if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
-            throw null;
+public abstract class n5 {
+    public static boolean a(Object obj, Object obj2) {
+        if (obj == obj2) {
+            return true;
         }
-        throw new ClassCastException();
+        if (obj != null && obj.equals(obj2)) {
+            return true;
+        }
+        return false;
     }
 }

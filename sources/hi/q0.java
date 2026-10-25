@@ -1,78 +1,142 @@
 package hi;
 
+import android.app.DownloadManager;
+import android.content.Context;
+import android.content.SharedPreferences;
+import android.text.TextUtils;
+import android.util.Pair;
+import java.io.File;
 import java.util.ArrayList;
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_communities;
-public final class q0 implements Utilities.Callback2 {
-    public final int f12238a;
-    public final s0 f12239b;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Set;
+import org.json.JSONObject;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.NotificationCenter;
+public final class q0 {
+    public static final HashMap f13224g = new HashMap();
+    public static final HashMap h = new HashMap();
+    public final Context f13225a;
+    public final int f13226b;
+    public final long f13227c;
+    public final DownloadManager d;
+    public final ArrayList e = new ArrayList();
+    public p0 f13228f;
 
-    public q0(s0 s0Var, int i10) {
-        this.f12238a = i10;
-        this.f12239b = s0Var;
+    public q0(Context context, int i10, long j10) {
+        this.f13225a = context;
+        this.f13226b = i10;
+        this.f13227c = j10;
+        this.d = (DownloadManager) context.getSystemService("download");
+        SharedPreferences sharedPreferences = context.getSharedPreferences("botdownloads_" + i10, 0);
+        Set<String> stringSet = sharedPreferences.getStringSet("" + j10, null);
+        if (stringSet != null) {
+            for (String str : stringSet) {
+                try {
+                    p0 p0Var = new p0(this, new JSONObject(str));
+                    File file = p0Var.d;
+                    if (file != null && file.exists()) {
+                        this.e.add(p0Var);
+                    }
+                } catch (Exception e) {
+                    FileLog.e(e);
+                }
+            }
+        }
     }
 
-    @Override
-    public final void run(Object obj, Object obj2) {
-        switch (this.f12238a) {
-            case 0:
-                TLRPC.Bool bool = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error = (TLRPC.TL_error) obj2;
-                s0 s0Var = this.f12239b;
-                s0Var.f12263q.dismiss();
-                s0Var.f12263q = null;
-                s0Var.f12264r = 0;
-                if (tL_error != null) {
-                    s0Var.f12252c.f0(tL_error, false);
-                    return;
-                }
-                r0 r0Var = s0Var.h;
-                if (r0Var != null) {
-                    r0Var.close();
-                    return;
-                }
-                return;
-            case 1:
-                TL_communities.PeerLinkRequests peerLinkRequests = (TL_communities.PeerLinkRequests) obj;
-                TLRPC.TL_error tL_error2 = (TLRPC.TL_error) obj2;
-                s0 s0Var2 = this.f12239b;
-                boolean z10 = false;
-                s0Var2.f12259m = false;
-                if (peerLinkRequests != null) {
-                    ArrayList arrayList = s0Var2.f12256j;
-                    if (arrayList == null) {
-                        s0Var2.f12256j = new ArrayList(peerLinkRequests.requests);
-                    } else {
-                        arrayList.addAll(peerLinkRequests.requests);
-                    }
-                    String str = peerLinkRequests.next_offset;
-                    s0Var2.f12257k = str;
-                    s0Var2.f12258l = peerLinkRequests.total_count;
-                    if (str == null) {
-                        z10 = true;
-                    }
-                    s0Var2.f12260n = z10;
-                    s0Var2.a();
-                    r0 r0Var2 = s0Var2.h;
-                    if (r0Var2 != null) {
-                        r0Var2.q();
-                        return;
-                    }
-                    return;
-                }
-                return;
-            default:
-                TLRPC.Bool bool2 = (TLRPC.Bool) obj;
-                TLRPC.TL_error tL_error3 = (TLRPC.TL_error) obj2;
-                s0 s0Var3 = this.f12239b;
-                if (tL_error3 != null) {
-                    s0Var3.f12252c.f0(tL_error3, false);
-                    return;
-                } else {
-                    s0Var3.getClass();
-                    return;
-                }
+    public static void a() {
+        Context context = ApplicationLoader.applicationContext;
+        if (context == null) {
+            return;
         }
+        for (int i10 = 0; i10 < 4; i10++) {
+            context.getSharedPreferences("botdownloads_" + i10, 0).edit().clear().apply();
+        }
+        f13224g.clear();
+    }
+
+    public static q0 c(Context context, int i10, long j10) {
+        Pair pair = new Pair(Integer.valueOf(i10), Long.valueOf(j10));
+        HashMap hashMap = f13224g;
+        q0 q0Var = (q0) hashMap.get(pair);
+        if (q0Var == null) {
+            q0 q0Var2 = new q0(context, i10, j10);
+            hashMap.put(pair, q0Var2);
+            return q0Var2;
+        }
+        return q0Var;
+    }
+
+    public final void b(String str, String str2) {
+        p0 d = d(str);
+        if (d != null) {
+            this.f13228f = d;
+            d.f13196k = true;
+            e();
+            return;
+        }
+        p0 p0Var = new p0(this, str, str2);
+        this.f13228f = p0Var;
+        p0Var.f13197l = false;
+        this.e.add(p0Var);
+        f();
+        e();
+    }
+
+    public final p0 d(String str) {
+        ArrayList arrayList = this.e;
+        int size = arrayList.size();
+        int i10 = 0;
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            p0 p0Var = (p0) obj;
+            if (TextUtils.equals(p0Var.f13190b, str) && p0Var.h) {
+                return p0Var;
+            }
+        }
+        return null;
+    }
+
+    public final void e() {
+        NotificationCenter.getInstance(this.f13226b).lambda$postNotificationNameOnUIThread$1(NotificationCenter.botDownloadsUpdate, new Object[0]);
+    }
+
+    public final void f() {
+        String absolutePath;
+        int i10 = 0;
+        SharedPreferences.Editor edit = this.f13225a.getSharedPreferences("botdownloads_" + this.f13226b, 0).edit();
+        edit.clear();
+        HashSet hashSet = new HashSet();
+        ArrayList arrayList = this.e;
+        int size = arrayList.size();
+        while (i10 < size) {
+            Object obj = arrayList.get(i10);
+            i10++;
+            p0 p0Var = (p0) obj;
+            p0Var.getClass();
+            JSONObject jSONObject = new JSONObject();
+            try {
+                jSONObject.put("url", p0Var.f13190b);
+                jSONObject.put("file_name", p0Var.f13191c);
+                jSONObject.put("size", p0Var.f13193g);
+                File file = p0Var.d;
+                if (file == null) {
+                    absolutePath = null;
+                } else {
+                    absolutePath = file.getAbsolutePath();
+                }
+                jSONObject.put("path", absolutePath);
+                jSONObject.put("done", p0Var.h);
+                jSONObject.put("mime", p0Var.e);
+            } catch (Exception e) {
+                FileLog.e(e);
+            }
+            hashSet.add(jSONObject.toString());
+        }
+        edit.putStringSet("" + this.f13227c, hashSet);
+        edit.apply();
     }
 }

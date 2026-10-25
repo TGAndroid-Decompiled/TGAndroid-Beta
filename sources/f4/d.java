@@ -1,11 +1,12 @@
 package f4;
 
 import a1.g;
-import ai.h6;
-import b2.u0;
-import com.google.android.gms.internal.cast.z5;
+import a8.me;
+import a8.yb;
+import b2.v0;
+import bi.c6;
 import e2.j;
-import e2.m0;
+import e2.n0;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.ArrayDeque;
@@ -16,51 +17,50 @@ import java.util.regex.Pattern;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
-import v7.u6;
-import w7.a9;
+import w7.m5;
 import z3.l;
 import z3.m;
 public final class d implements m {
-    public static final Pattern f10392b = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
-    public static final Pattern f10393c = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
+    public static final Pattern f10151b = Pattern.compile("^([0-9][0-9]+):([0-9][0-9]):([0-9][0-9])(?:(\\.[0-9]+)|:([0-9][0-9])(?:\\.([0-9]+))?)?$");
+    public static final Pattern f10152c = Pattern.compile("^([0-9]+(?:\\.[0-9]+)?)(h|m|s|ms|f|t)$");
     public static final Pattern d = Pattern.compile("^(([0-9]*.)?[0-9]+)(px|em|%)$");
     public static final Pattern e = Pattern.compile("^([-+]?\\d+\\.?\\d*?)%$");
-    public static final Pattern f10394f = Pattern.compile("^([-+]?\\d+\\.?\\d*?)% ([-+]?\\d+\\.?\\d*?)%$");
+    public static final Pattern f10153f = Pattern.compile("^([-+]?\\d+\\.?\\d*?)% ([-+]?\\d+\\.?\\d*?)%$");
     public static final Pattern h = Pattern.compile("^([-+]?\\d+\\.?\\d*?)px ([-+]?\\d+\\.?\\d*?)px$");
-    public static final Pattern f10395n = Pattern.compile("^(\\d+) (\\d+)$");
-    public static final h6 f10396r = new h6(30.0f, 1, 1);
-    public final XmlPullParserFactory f10397a;
+    public static final Pattern f10154n = Pattern.compile("^(\\d+) (\\d+)$");
+    public static final c6 f10155r = new c6(30.0f, 1, 1);
+    public final XmlPullParserFactory f10156a;
 
     public d() {
         try {
             XmlPullParserFactory newInstance = XmlPullParserFactory.newInstance();
-            this.f10397a = newInstance;
+            this.f10156a = newInstance;
             newInstance.setNamespaceAware(true);
-        } catch (XmlPullParserException e7) {
-            throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e7);
+        } catch (XmlPullParserException e10) {
+            throw new RuntimeException("Couldn't create XmlPullParserFactory instance", e10);
         }
     }
 
-    public static f b(f fVar) {
+    public static f a(f fVar) {
         if (fVar == null) {
             return new f();
         }
         return fVar;
     }
 
-    public static boolean d(String str) {
+    public static boolean b(String str) {
         if (!str.equals("tt") && !str.equals("head") && !str.equals("body") && !str.equals("div") && !str.equals("p") && !str.equals("span") && !str.equals("br") && !str.equals("style") && !str.equals("styling") && !str.equals("layout") && !str.equals("region") && !str.equals("metadata") && !str.equals("image") && !str.equals("data") && !str.equals("information")) {
             return false;
         }
         return true;
     }
 
-    public static int e(XmlPullParser xmlPullParser) {
+    public static int c(XmlPullParser xmlPullParser) {
         String attributeValue = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "cellResolution");
         if (attributeValue == null) {
             return 15;
         }
-        Matcher matcher = f10395n.matcher(attributeValue);
+        Matcher matcher = f10154n.matcher(attributeValue);
         if (!matcher.matches()) {
             e2.a.l("TtmlParser", "Ignoring malformed cell resolution: ".concat(attributeValue));
             return 15;
@@ -76,7 +76,7 @@ public final class d implements m {
             if (parseInt == 0 || parseInt2 == 0) {
                 z10 = false;
             }
-            u6.d("Invalid cell resolution %s %s", parseInt, parseInt2, z10);
+            yb.d("Invalid cell resolution %s %s", parseInt, parseInt2, z10);
             return parseInt2;
         } catch (NumberFormatException unused) {
             e2.a.l("TtmlParser", "Ignoring malformed cell resolution: ".concat(attributeValue));
@@ -84,9 +84,9 @@ public final class d implements m {
         }
     }
 
-    public static void g(String str, f fVar) {
+    public static void d(String str, f fVar) {
         Matcher matcher;
-        String str2 = m0.f8259a;
+        String str2 = n0.f9692a;
         char c10 = 65535;
         String[] split = str.split("\\s+", -1);
         int length = split.length;
@@ -124,26 +124,26 @@ public final class d implements m {
             }
             switch (c10) {
                 case 0:
-                    fVar.f10411j = 3;
+                    fVar.f10170j = 3;
                     break;
                 case 1:
-                    fVar.f10411j = 2;
+                    fVar.f10170j = 2;
                     break;
                 case 2:
-                    fVar.f10411j = 1;
+                    fVar.f10170j = 1;
                     break;
                 default:
                     throw new Exception(g.p("Invalid unit for fontSize: '", group, "'."));
             }
             String group2 = matcher.group(1);
             group2.getClass();
-            fVar.f10412k = Float.parseFloat(group2);
+            fVar.f10171k = Float.parseFloat(group2);
             return;
         }
         throw new Exception(g.p("Invalid expression for fontSize: '", str, "'."));
     }
 
-    public static h6 h(XmlPullParser xmlPullParser) {
+    public static c6 e(XmlPullParser xmlPullParser) {
         int i10;
         float f7;
         String[] split;
@@ -156,42 +156,42 @@ public final class d implements m {
         }
         String attributeValue2 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "frameRateMultiplier");
         if (attributeValue2 != null) {
-            String str = m0.f8259a;
+            String str = n0.f9692a;
             if (attributeValue2.split(" ", -1).length == 2) {
                 z10 = true;
             } else {
                 z10 = false;
             }
-            u6.f("frameRateMultiplier doesn't have 2 parts", z10);
+            yb.f("frameRateMultiplier doesn't have 2 parts", z10);
             f7 = Integer.parseInt(split[0]) / Integer.parseInt(split[1]);
         } else {
             f7 = 1.0f;
         }
-        h6 h6Var = f10396r;
-        int i11 = h6Var.f1404b;
+        c6 c6Var = f10155r;
+        int i11 = c6Var.f4431b;
         String attributeValue3 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "subFrameRate");
         if (attributeValue3 != null) {
             i11 = Integer.parseInt(attributeValue3);
         }
-        int i12 = h6Var.f1405c;
+        int i12 = c6Var.f4432c;
         String attributeValue4 = xmlPullParser.getAttributeValue("http://www.w3.org/ns/ttml#parameter", "tickRate");
         if (attributeValue4 != null) {
             i12 = Integer.parseInt(attributeValue4);
         }
-        return new h6(i10 * f7, i11, i12);
+        return new c6(i10 * f7, i11, i12);
     }
 
-    public static void i(org.xmlpull.v1.XmlPullParser r20, java.util.HashMap r21, int r22, b2.u0 r23, java.util.HashMap r24, java.util.HashMap r25) {
-        throw new UnsupportedOperationException("Method not decompiled: f4.d.i(org.xmlpull.v1.XmlPullParser, java.util.HashMap, int, b2.u0, java.util.HashMap, java.util.HashMap):void");
+    public static void f(org.xmlpull.v1.XmlPullParser r20, java.util.HashMap r21, int r22, b2.v0 r23, java.util.HashMap r24, java.util.HashMap r25) {
+        throw new UnsupportedOperationException("Method not decompiled: f4.d.f(org.xmlpull.v1.XmlPullParser, java.util.HashMap, int, b2.v0, java.util.HashMap, java.util.HashMap):void");
     }
 
-    public static c j(XmlPullParser xmlPullParser, c cVar, HashMap hashMap, h6 h6Var) {
+    public static c g(XmlPullParser xmlPullParser, c cVar, HashMap hashMap, c6 c6Var) {
         long j10;
         char c10;
         String[] split;
         int attributeCount = xmlPullParser.getAttributeCount();
         String[] strArr = null;
-        f k10 = k(xmlPullParser, null);
+        f h10 = h(xmlPullParser, null);
         String str = null;
         String str2 = "";
         long j11 = -9223372036854775807L;
@@ -255,20 +255,20 @@ public final class d implements m {
                         continue;
                     }
                 case 1:
-                    j13 = l(attributeValue, h6Var);
+                    j13 = i(attributeValue, c6Var);
                     break;
                 case 2:
-                    j12 = l(attributeValue, h6Var);
+                    j12 = i(attributeValue, c6Var);
                     break;
                 case 3:
-                    j11 = l(attributeValue, h6Var);
+                    j11 = i(attributeValue, c6Var);
                     break;
                 case 4:
                     String trim = attributeValue.trim();
                     if (trim.isEmpty()) {
                         split = new String[0];
                     } else {
-                        String str3 = m0.f8259a;
+                        String str3 = n0.f9692a;
                         split = trim.split("\\s+", -1);
                     }
                     if (split.length > 0) {
@@ -302,23 +302,23 @@ public final class d implements m {
                 long j15 = cVar.e;
                 if (j15 != -9223372036854775807L) {
                     j10 = j15;
-                    return new c(xmlPullParser.getName(), null, j11, j10, k10, strArr, str2, str, cVar);
+                    return new c(xmlPullParser.getName(), null, j11, j10, h10, strArr, str2, str, cVar);
                 }
             }
         }
         j10 = j12;
-        return new c(xmlPullParser.getName(), null, j11, j10, k10, strArr, str2, str, cVar);
+        return new c(xmlPullParser.getName(), null, j11, j10, h10, strArr, str2, str, cVar);
     }
 
-    public static f4.f k(org.xmlpull.v1.XmlPullParser r18, f4.f r19) {
-        throw new UnsupportedOperationException("Method not decompiled: f4.d.k(org.xmlpull.v1.XmlPullParser, f4.f):f4.f");
+    public static f4.f h(org.xmlpull.v1.XmlPullParser r18, f4.f r19) {
+        throw new UnsupportedOperationException("Method not decompiled: f4.d.h(org.xmlpull.v1.XmlPullParser, f4.f):f4.f");
     }
 
-    public static long l(java.lang.String r13, ai.h6 r14) {
-        throw new UnsupportedOperationException("Method not decompiled: f4.d.l(java.lang.String, ai.h6):long");
+    public static long i(java.lang.String r13, bi.c6 r14) {
+        throw new UnsupportedOperationException("Method not decompiled: f4.d.i(java.lang.String, bi.c6):long");
     }
 
-    public static u0 m(XmlPullParser xmlPullParser) {
+    public static v0 k(XmlPullParser xmlPullParser) {
         String f7 = e2.a.f(xmlPullParser, "extent");
         if (f7 == null) {
             return null;
@@ -334,7 +334,7 @@ public final class d implements m {
             int parseInt = Integer.parseInt(group);
             String group2 = matcher.group(2);
             group2.getClass();
-            return new u0(parseInt, Integer.parseInt(group2));
+            return new v0(parseInt, Integer.parseInt(group2));
         } catch (NumberFormatException unused) {
             e2.a.l("TtmlParser", "Ignoring malformed tts extent: ".concat(f7));
             return null;
@@ -342,72 +342,77 @@ public final class d implements m {
     }
 
     @Override
-    public final z3.d a(int i10, int i11, byte[] bArr) {
+    public final void G(byte[] bArr, int i10, int i11, l lVar, j jVar) {
+        m5.b(j(i10, i11, bArr), lVar, jVar);
+    }
+
+    @Override
+    public final z3.d j(int i10, int i11, byte[] bArr) {
         try {
-            XmlPullParser newPullParser = this.f10397a.newPullParser();
+            XmlPullParser newPullParser = this.f10156a.newPullParser();
             HashMap hashMap = new HashMap();
             HashMap hashMap2 = new HashMap();
             HashMap hashMap3 = new HashMap();
             hashMap2.put("", new e("", -3.4028235E38f, -3.4028235E38f, Integer.MIN_VALUE, Integer.MIN_VALUE, -3.4028235E38f, -3.4028235E38f, Integer.MIN_VALUE, -3.4028235E38f, Integer.MIN_VALUE));
-            u0 u0Var = null;
+            v0 v0Var = null;
             newPullParser.setInput(new ByteArrayInputStream(bArr, i10, i11), null);
             ArrayDeque arrayDeque = new ArrayDeque();
-            h6 h6Var = f10396r;
+            c6 c6Var = f10155r;
             int i12 = 0;
             int i13 = 15;
-            z5 z5Var = null;
+            me meVar = null;
             for (int eventType = newPullParser.getEventType(); eventType != 1; eventType = newPullParser.getEventType()) {
                 c cVar = (c) arrayDeque.peek();
                 if (i12 == 0) {
                     String name = newPullParser.getName();
                     if (eventType == 2) {
                         if ("tt".equals(name)) {
-                            h6Var = h(newPullParser);
-                            i13 = e(newPullParser);
-                            u0Var = m(newPullParser);
+                            c6Var = e(newPullParser);
+                            i13 = c(newPullParser);
+                            v0Var = k(newPullParser);
                         }
-                        h6 h6Var2 = h6Var;
-                        u0 u0Var2 = u0Var;
+                        c6 c6Var2 = c6Var;
+                        v0 v0Var2 = v0Var;
                         int i14 = i13;
-                        if (!d(name)) {
+                        if (!b(name)) {
                             e2.a.g("TtmlParser", "Ignoring unsupported tag: " + newPullParser.getName());
                         } else {
                             if ("head".equals(name)) {
-                                i(newPullParser, hashMap, i14, u0Var2, hashMap2, hashMap3);
+                                f(newPullParser, hashMap, i14, v0Var2, hashMap2, hashMap3);
                             } else {
                                 try {
-                                    c j10 = j(newPullParser, cVar, hashMap2, h6Var2);
-                                    arrayDeque.push(j10);
+                                    c g7 = g(newPullParser, cVar, hashMap2, c6Var2);
+                                    arrayDeque.push(g7);
                                     if (cVar != null) {
-                                        if (cVar.f10391m == null) {
-                                            cVar.f10391m = new ArrayList();
+                                        if (cVar.f10150m == null) {
+                                            cVar.f10150m = new ArrayList();
                                         }
-                                        cVar.f10391m.add(j10);
+                                        cVar.f10150m.add(g7);
                                     }
-                                } catch (z3.f e7) {
-                                    e2.a.m("TtmlParser", "Suppressing parser error", e7);
+                                } catch (z3.f e10) {
+                                    e2.a.m("TtmlParser", "Suppressing parser error", e10);
                                 }
                             }
                             i13 = i14;
-                            u0Var = u0Var2;
-                            h6Var = h6Var2;
+                            v0Var = v0Var2;
+                            c6Var = c6Var2;
                         }
                         i12++;
                         i13 = i14;
-                        u0Var = u0Var2;
-                        h6Var = h6Var2;
+                        v0Var = v0Var2;
+                        c6Var = c6Var2;
                     } else if (eventType == 4) {
                         cVar.getClass();
                         c a2 = c.a(newPullParser.getText());
-                        if (cVar.f10391m == null) {
-                            cVar.f10391m = new ArrayList();
+                        if (cVar.f10150m == null) {
+                            cVar.f10150m = new ArrayList();
                         }
-                        cVar.f10391m.add(a2);
+                        cVar.f10150m.add(a2);
                     } else if (eventType == 3) {
                         if (newPullParser.getName().equals("tt")) {
                             c cVar2 = (c) arrayDeque.peek();
                             cVar2.getClass();
-                            z5Var = new z5(cVar2, hashMap, hashMap2, hashMap3);
+                            meVar = new me(cVar2, hashMap, hashMap2, hashMap3);
                         }
                         arrayDeque.pop();
                     }
@@ -418,23 +423,18 @@ public final class d implements m {
                 }
                 newPullParser.next();
             }
-            z5Var.getClass();
-            return z5Var;
-        } catch (IOException e10) {
-            throw new IllegalStateException("Unexpected error when reading input.", e10);
-        } catch (XmlPullParserException e11) {
-            throw new IllegalStateException("Unable to decode source", e11);
+            meVar.getClass();
+            return meVar;
+        } catch (IOException e11) {
+            throw new IllegalStateException("Unexpected error when reading input.", e11);
+        } catch (XmlPullParserException e12) {
+            throw new IllegalStateException("Unable to decode source", e12);
         }
     }
 
     @Override
-    public final int c() {
+    public final int y() {
         return 1;
-    }
-
-    @Override
-    public final void f(byte[] bArr, int i10, int i11, l lVar, j jVar) {
-        a9.b(a(i10, i11, bArr), lVar, jVar);
     }
 
     @Override

@@ -1,21 +1,24 @@
 package org.telegram.ui;
-public final class gi implements org.telegram.ui.Components.cm0 {
-    public final sn f37584a;
+public final class gi implements org.telegram.ui.Components.rh0 {
+    public boolean f39696a = true;
+    public final org.telegram.ui.Components.fl0 f39697b;
 
-    public gi(sn snVar) {
-        this.f37584a = snVar;
+    public gi(org.telegram.ui.Components.fl0 fl0Var) {
+        this.f39697b = fl0Var;
     }
 
     @Override
-    public final boolean mo17c(float r11, float r12, int r13, android.view.View r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.gi.mo17c(float, float, int, android.view.View):boolean");
-    }
-
-    @Override
-    public final void h() {
-    }
-
-    @Override
-    public final void o(float f7) {
+    public final void a(float f7, float f10) {
+        int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+        org.telegram.ui.Components.fl0 fl0Var = this.f39697b;
+        if (i10 == 0 && !this.f39696a) {
+            fl0Var.r(false);
+            this.f39696a = true;
+        } else if (f7 == 1.0f && this.f39696a) {
+            fl0Var.setAlpha(1.0f - f10);
+            if (f10 == 1.0f) {
+                this.f39696a = false;
+            }
+        }
     }
 }

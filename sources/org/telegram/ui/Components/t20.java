@@ -1,19 +1,16 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class t20 extends FrameLayout {
-    public View f30696a;
-    public TextView f30697b;
+import android.view.MotionEvent;
+public interface t20 {
+    void a1();
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(80.0f), 1073741824));
-    }
+    boolean onDown(MotionEvent motionEvent);
 
-    public void setText(CharSequence charSequence) {
-        this.f30697b.setText(charSequence);
-    }
+    boolean onFling(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10);
+
+    void onLongPress(MotionEvent motionEvent);
+
+    boolean onScroll(MotionEvent motionEvent, MotionEvent motionEvent2, float f7, float f10);
+
+    boolean onSingleTapUp(MotionEvent motionEvent);
 }

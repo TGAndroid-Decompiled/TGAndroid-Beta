@@ -1,16 +1,25 @@
 package org.telegram.messenger;
 
-import java.util.List;
-import org.telegram.messenger.TelegramMediaSession;
-public final class n4 implements TelegramMediaSession.BrowseChildrenCallback {
-    public final Runnable f19079a;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+public final class n4 implements OnCompleteListener {
+    public final int f20738a;
+    public final q0.a f20739b;
 
-    public n4(Runnable runnable) {
-        this.f19079a = runnable;
+    public n4(q0.a aVar, int i10) {
+        this.f20738a = i10;
+        this.f20739b = aVar;
     }
 
     @Override
-    public void onResult(List list) {
-        TelegramMediaSession.d(this.f19079a, list);
+    public void onComplete(Task task) {
+        switch (this.f20738a) {
+            case 0:
+                GoogleLocationProvider.b(this.f20739b, task);
+                return;
+            default:
+                GoogleLocationProvider.c(this.f20739b, task);
+                return;
+        }
     }
 }

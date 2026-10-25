@@ -1,35 +1,110 @@
 package hi;
 
+import android.animation.ValueAnimator;
 import android.view.View;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.l61;
-import r0.k1;
-public final class p implements Utilities.Callback5, Utilities.Callback5Return, r0.n {
-    public final r f12235a;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+import org.telegram.ui.Components.ds;
+public final class p extends FrameLayout {
+    public View[] f13186a;
+    public int f13187b;
+    public float f13188c;
+    public ValueAnimator d;
 
-    @Override
-    public k1 B0(View view, k1 k1Var) {
-        this.f12235a.V(k1Var.f45250a.f(519).d);
-        return k1.f45249b;
+    public final void a() {
+        int i10;
+        float f7;
+        int i11;
+        View[] viewArr = this.f13186a;
+        if (getMeasuredWidth() > 0) {
+            i10 = getMeasuredWidth();
+        } else {
+            i10 = AndroidUtilities.displaySize.x;
+        }
+        float f10 = i10;
+        if (LocaleController.isRTL) {
+            f7 = -1.0f;
+        } else {
+            f7 = 1.0f;
+        }
+        int i12 = 0;
+        View view = viewArr[0];
+        if (view != null) {
+            view.setTranslationX((-this.f13188c) * f10 * f7);
+            View view2 = viewArr[0];
+            if (this.f13188c < 1.0f) {
+                i11 = 0;
+            } else {
+                i11 = 8;
+            }
+            view2.setVisibility(i11);
+        }
+        View view3 = viewArr[1];
+        if (view3 != null) {
+            view3.setTranslationX((1.0f - this.f13188c) * f10 * f7);
+            View view4 = viewArr[1];
+            if (this.f13188c <= 0.0f) {
+                i12 = 8;
+            }
+            view4.setVisibility(i12);
+        }
+    }
+
+    public final void b(int i10, boolean z10) {
+        this.f13187b = i10;
+        ValueAnimator valueAnimator = this.d;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+            this.d = null;
+        }
+        if (!z10) {
+            this.f13188c = i10;
+            a();
+            requestLayout();
+            return;
+        }
+        ValueAnimator ofFloat = ValueAnimator.ofFloat(this.f13188c, i10);
+        this.d = ofFloat;
+        ofFloat.addUpdateListener(new fi.e4(this, 7));
+        this.d.addListener(new bh.b(this, 26));
+        this.d.setDuration(320L);
+        this.d.setInterpolator(ds.h);
+        this.d.start();
     }
 
     @Override
-    public Object run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        l61 l61Var = (l61) obj;
-        View view = (View) obj2;
-        ((Integer) obj3).intValue();
-        ((Float) obj4).floatValue();
-        ((Float) obj5).floatValue();
-        this.f12235a.getClass();
-        return Boolean.FALSE;
+    public final void onMeasure(int i10, int i11) {
+        int i12;
+        int i13 = 0;
+        int makeMeasureSpec = View.MeasureSpec.makeMeasureSpec(0, 0);
+        View[] viewArr = this.f13186a;
+        View view = viewArr[0];
+        if (view != null && view.getVisibility() == 0) {
+            viewArr[0].measure(i10, makeMeasureSpec);
+            i12 = viewArr[0].getMeasuredHeight();
+        } else {
+            i12 = 0;
+        }
+        View view2 = viewArr[1];
+        if (view2 != null && view2.getVisibility() == 0) {
+            viewArr[1].measure(i10, makeMeasureSpec);
+            i13 = viewArr[1].getMeasuredHeight();
+        }
+        float f7 = this.f13188c;
+        if (f7 > 0.0f) {
+            if (f7 >= 1.0f) {
+                i12 = i13;
+            } else {
+                i12 = AndroidUtilities.lerp(i12, i13, f7);
+            }
+        }
+        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(i12, 1073741824));
     }
 
     @Override
-    public void mo0run(Object obj, Object obj2, Object obj3, Object obj4, Object obj5) {
-        View view = (View) obj2;
-        ((Integer) obj3).getClass();
-        ((Float) obj4).getClass();
-        ((Float) obj5).getClass();
-        r.U(this.f12235a, (l61) obj);
+    public final void onSizeChanged(int i10, int i11, int i12, int i13) {
+        super.onSizeChanged(i10, i11, i12, i13);
+        a();
     }
 }

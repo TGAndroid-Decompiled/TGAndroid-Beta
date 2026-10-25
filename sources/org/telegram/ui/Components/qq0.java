@@ -1,73 +1,112 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import android.animation.AnimatorSet;
+import android.animation.ValueAnimator;
+import android.content.Context;
+import android.graphics.Canvas;
+import android.view.accessibility.AccessibilityNodeInfo;
+import android.widget.Button;
 import android.widget.FrameLayout;
-public final class qq0 extends AnimatorListenerAdapter {
-    public final int f29976a;
-    public final boolean f29977b;
-    public final hr0 f29978c;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LocaleController;
+public final class qq0 extends FrameLayout {
+    public final int f31999a;
+    public final mr0 f32000b;
 
-    public qq0(hr0 hr0Var, boolean z10, int i10) {
-        this.f29976a = i10;
-        this.f29978c = hr0Var;
-        this.f29977b = z10;
+    public qq0(mr0 mr0Var, Context context, int i10) {
+        super(context);
+        this.f31999a = i10;
+        this.f32000b = mr0Var;
     }
 
     @Override
-    public final void onAnimationCancel(Animator animator) {
-        switch (this.f29976a) {
+    public void dispatchDraw(Canvas canvas) {
+        switch (this.f31999a) {
             case 0:
-                AnimatorSet[] animatorSetArr = this.f29978c.U;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    animatorSetArr[0] = null;
-                    return;
-                }
+                mr0 mr0Var = this.f32000b;
+                mr0Var.X0.setBounds(0, (int) mr0Var.f30723v0, getMeasuredWidth(), getMeasuredHeight());
+                mr0Var.X0.draw(canvas);
+                canvas.save();
+                canvas.clipRect(0.0f, mr0Var.f30723v0, getMeasuredWidth(), getMeasuredHeight());
+                super.dispatchDraw(canvas);
+                canvas.restore();
                 return;
             default:
-                hr0 hr0Var = this.f29978c;
-                if (animator.equals(hr0Var.E)) {
-                    hr0Var.E = null;
-                    return;
-                }
+                super.dispatchDraw(canvas);
                 return;
         }
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f29976a) {
+    public void onDraw(Canvas canvas) {
+        switch (this.f31999a) {
             case 0:
-                hr0 hr0Var = this.f29978c;
-                AnimatorSet[] animatorSetArr = hr0Var.U;
-                AnimatorSet animatorSet = animatorSetArr[0];
-                if (animatorSet != null && animatorSet.equals(animator)) {
-                    if (!this.f29977b) {
-                        hr0Var.T[0].setVisibility(4);
+                mr0 mr0Var = this.f32000b;
+                qq0 qq0Var = mr0Var.f30700c;
+                float f7 = mr0Var.f30725w0;
+                if (f7 != 0.0f && f7 != qq0Var.getTop() + mr0Var.f30725w0) {
+                    ValueAnimator valueAnimator = mr0Var.f30727x0;
+                    if (valueAnimator != null) {
+                        valueAnimator.cancel();
                     }
-                    animatorSetArr[0] = null;
+                    float top = mr0Var.f30725w0 - (qq0Var.getTop() + mr0Var.f30723v0);
+                    mr0Var.f30723v0 = top;
+                    ValueAnimator ofFloat = ValueAnimator.ofFloat(top, 0.0f);
+                    mr0Var.f30727x0 = ofFloat;
+                    ofFloat.addUpdateListener(new e80(this, 18));
+                    mr0Var.f30727x0.setInterpolator(ds.f27584f);
+                    mr0Var.f30727x0.setDuration(200L);
+                    mr0Var.f30727x0.start();
+                    mr0Var.f30725w0 = 0.0f;
+                }
+                mr0Var.T[1].setTranslationY((-(qq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))) + mr0Var.f30723v0 + mr0Var.f30722u0 + ((1.0f - getAlpha()) * (qq0Var.getMeasuredHeight() - AndroidUtilities.dp(48.0f))));
+                return;
+            default:
+                super.onDraw(canvas);
+                return;
+        }
+    }
+
+    @Override
+    public void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f31999a) {
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(LocaleController.formatPluralString("AccDescrShareInChats", this.f32000b.V.m(), new Object[0]));
+                accessibilityNodeInfo.setClassName(Button.class.getName());
+                accessibilityNodeInfo.setLongClickable(true);
+                accessibilityNodeInfo.setClickable(true);
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                return;
+        }
+    }
+
+    @Override
+    public void setAlpha(float f7) {
+        switch (this.f31999a) {
+            case 0:
+                super.setAlpha(f7);
+                invalidate();
+                return;
+            default:
+                super.setAlpha(f7);
+                return;
+        }
+    }
+
+    @Override
+    public void setVisibility(int i10) {
+        switch (this.f31999a) {
+            case 0:
+                super.setVisibility(i10);
+                if (i10 != 0) {
+                    this.f32000b.T[1].setTranslationY(0.0f);
                     return;
                 }
                 return;
             default:
-                hr0 hr0Var2 = this.f29978c;
-                FrameLayout frameLayout = hr0Var2.h;
-                if (animator.equals(hr0Var2.E)) {
-                    if (!this.f29977b) {
-                        hr0Var2.f27123c.setVisibility(4);
-                        FrameLayout frameLayout2 = hr0Var2.f27126d0;
-                        if (frameLayout2 != null && frameLayout == null) {
-                            frameLayout2.setVisibility(4);
-                        }
-                        hr0Var2.f27128f.setVisibility(4);
-                    } else if (frameLayout != null) {
-                        frameLayout.setVisibility(4);
-                    }
-                    hr0Var2.E = null;
-                    return;
-                }
+                super.setVisibility(i10);
                 return;
         }
     }

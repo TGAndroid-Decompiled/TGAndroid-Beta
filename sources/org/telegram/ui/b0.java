@@ -3,55 +3,69 @@ package org.telegram.ui;
 import org.telegram.messenger.ApplicationLoader;
 import org.telegram.ui.web.HttpGetFileTask;
 public final class b0 implements Runnable {
-    public final int f35872a;
-    public final float f35873b;
-    public final Object f35874c;
+    public final int f37925a;
+    public final float f37926b;
+    public final Object f37927c;
 
     public b0(Object obj, float f7, int i10) {
-        this.f35872a = i10;
-        this.f35874c = obj;
-        this.f35873b = f7;
+        this.f37925a = i10;
+        this.f37927c = obj;
+        this.f37926b = f7;
     }
 
     @Override
     public final void run() {
-        switch (this.f35872a) {
+        switch (this.f37925a) {
             case 0:
-                ((k4) this.f35874c).f38762h0.M.c(this.f35873b, true);
+                ((j4) this.f37927c).f40434h0.M.c(this.f37926b, true);
                 return;
             case 1:
-                org.telegram.ui.Components.gb gbVar = (org.telegram.ui.Components.gb) this.f35874c;
-                if (gbVar.f26605a.getTranslationX() == this.f35873b) {
-                    gbVar.f26614y.b();
+                org.telegram.ui.Components.ib ibVar = (org.telegram.ui.Components.ib) this.f37927c;
+                if (ibVar.f29253a.getTranslationX() == this.f37926b) {
+                    ibVar.f29262y.b();
                     return;
                 }
                 return;
             case 2:
-                org.telegram.ui.Components.voip.y0 y0Var = (org.telegram.ui.Components.voip.y0) this.f35874c;
-                float f7 = this.f35873b;
-                gh1 gh1Var = y0Var.f31990c;
-                if (f7 > 0.0f) {
-                    int i10 = gh1Var.f31509w;
-                    if (i10 < 2) {
-                        gh1Var.c(i10 + 1, true);
-                    }
-                } else {
-                    int i11 = gh1Var.f31509w;
-                    if (i11 > 0) {
-                        gh1Var.c(i11 - 1, true);
+                org.telegram.ui.Components.yb1 yb1Var = (org.telegram.ui.Components.yb1) this.f37927c;
+                float f7 = this.f37926b;
+                if (!yb1Var.f35015s) {
+                    yb1Var.f35000a.removeCallbacks(yb1Var.O);
+                    int i10 = (f7 > 0.0f ? 1 : (f7 == 0.0f ? 0 : -1));
+                    if (i10 > 0) {
+                        yb1Var.f35000a.postDelayed(yb1Var.O, (long) Math.ceil(f7));
+                        return;
+                    } else if (i10 == 0) {
+                        yb1Var.c();
+                        return;
+                    } else {
+                        return;
                     }
                 }
-                y0Var.f31989b = false;
                 return;
             case 3:
-                ((u70) this.f35874c).f42341f.e.smoothScrollTo(0, (int) this.f35873b);
+                org.telegram.ui.Components.voip.y0 y0Var = (org.telegram.ui.Components.voip.y0) this.f37927c;
+                float f10 = this.f37926b;
+                ih1 ih1Var = y0Var.f34212c;
+                if (f10 > 0.0f) {
+                    int i11 = ih1Var.f33738w;
+                    if (i11 < 2) {
+                        ih1Var.c(i11 + 1, true);
+                    }
+                } else {
+                    int i12 = ih1Var.f33738w;
+                    if (i12 > 0) {
+                        ih1Var.c(i12 - 1, true);
+                    }
+                }
+                y0Var.f34211b = false;
                 return;
             case 4:
-                float f10 = this.f35873b;
-                ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat((String) this.f35874c, f10).commit();
+                float f11 = this.f37926b;
+                ApplicationLoader.applicationContext.getSharedPreferences("media_saved_pos", 0).edit().putFloat((String) this.f37927c, f11).commit();
                 return;
             default:
-                HttpGetFileTask.b((HttpGetFileTask) this.f35874c, this.f35873b);
+                HttpGetFileTask.b((HttpGetFileTask) this.f37927c, this.f37926b);
                 return;
         }
     }

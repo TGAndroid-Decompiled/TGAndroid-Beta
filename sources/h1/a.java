@@ -1,80 +1,135 @@
 package h1;
 
-import android.database.DataSetObserver;
-import m.b3;
-import m.e2;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ProfileActivity;
-import org.telegram.ui.h01;
-import org.telegram.ui.ly0;
-import z4.h;
-public final class a extends DataSetObserver {
-    public final int f11643a;
-    public final Object f11644b;
+import a5.j;
+import android.database.Cursor;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageView;
+import com.google.android.gms.internal.clearcut.c;
+import m.a3;
+import m.z2;
+public abstract class a extends BaseAdapter implements Filterable {
+    public boolean f12554a;
+    public boolean f12555b;
+    public Cursor f12556c;
+    public int d;
+    public c e;
+    public j f12557f;
+    public b h;
 
-    public a(Object obj, int i10) {
-        this.f11643a = i10;
-        this.f11644b = obj;
-    }
+    public abstract void a(View view, Cursor cursor);
 
-    @Override
-    public final void onChanged() {
-        switch (this.f11643a) {
-            case 0:
-                b3 b3Var = (b3) this.f11644b;
-                b3Var.f11645a = true;
-                b3Var.notifyDataSetChanged();
-                return;
-            case 1:
-                e2 e2Var = (e2) this.f11644b;
-                if (e2Var.O.isShowing()) {
-                    e2Var.g();
-                    return;
+    public void b(Cursor cursor) {
+        Cursor cursor2 = this.f12556c;
+        if (cursor == cursor2) {
+            cursor2 = null;
+        } else {
+            if (cursor2 != null) {
+                c cVar = this.e;
+                if (cVar != null) {
+                    cursor2.unregisterContentObserver(cVar);
                 }
-                return;
-            case 2:
-                h01 h01Var = (h01) this.f11644b;
-                ProfileActivity profileActivity = h01Var.f37712n;
-                int realCount = profileActivity.f33983o0.getRealCount();
-                if (profileActivity.B0 == 0 && realCount > 1 && realCount <= 20 && profileActivity.N.E) {
-                    profileActivity.B0 = 1;
+                j jVar = this.f12557f;
+                if (jVar != null) {
+                    cursor2.unregisterDataSetObserver(jVar);
                 }
-                h01Var.a(false);
-                h01Var.b(1.0f);
-                if (profileActivity.f34003r0 != null) {
-                    if (profileActivity.U0.t()) {
-                        AndroidUtilities.runOnUIThread(new ly0(h01Var, 4), 500L);
-                        return;
-                    } else {
-                        h01Var.c();
-                        return;
-                    }
+            }
+            this.f12556c = cursor;
+            if (cursor != null) {
+                c cVar2 = this.e;
+                if (cVar2 != null) {
+                    cursor.registerContentObserver(cVar2);
                 }
-                return;
-            default:
-                ((h) this.f11644b).f();
-                return;
+                j jVar2 = this.f12557f;
+                if (jVar2 != null) {
+                    cursor.registerDataSetObserver(jVar2);
+                }
+                this.d = cursor.getColumnIndexOrThrow("_id");
+                this.f12554a = true;
+                notifyDataSetChanged();
+            } else {
+                this.d = -1;
+                this.f12554a = false;
+                notifyDataSetInvalidated();
+            }
+        }
+        if (cursor2 != null) {
+            cursor2.close();
         }
     }
 
+    public abstract String c(Cursor cursor);
+
     @Override
-    public void onInvalidated() {
-        switch (this.f11643a) {
-            case 0:
-                b3 b3Var = (b3) this.f11644b;
-                b3Var.f11645a = false;
-                b3Var.notifyDataSetInvalidated();
-                return;
-            case 1:
-                ((e2) this.f11644b).dismiss();
-                return;
-            case 2:
-            default:
-                super.onInvalidated();
-                return;
-            case 3:
-                ((h) this.f11644b).f();
-                return;
+    public final int getCount() {
+        Cursor cursor;
+        if (this.f12554a && (cursor = this.f12556c) != null) {
+            return cursor.getCount();
         }
+        return 0;
+    }
+
+    @Override
+    public View getDropDownView(int i10, View view, ViewGroup viewGroup) {
+        if (this.f12554a) {
+            this.f12556c.moveToPosition(i10);
+            if (view == null) {
+                a3 a3Var = (a3) this;
+                view = a3Var.f17675s.inflate(a3Var.f17674r, viewGroup, false);
+            }
+            a(view, this.f12556c);
+            return view;
+        }
+        return null;
+    }
+
+    @Override
+    public final Filter getFilter() {
+        if (this.h == null) {
+            ?? filter = new Filter();
+            filter.f12558a = this;
+            this.h = filter;
+        }
+        return this.h;
+    }
+
+    @Override
+    public final Object getItem(int i10) {
+        Cursor cursor;
+        if (this.f12554a && (cursor = this.f12556c) != null) {
+            cursor.moveToPosition(i10);
+            return this.f12556c;
+        }
+        return null;
+    }
+
+    @Override
+    public final long getItemId(int i10) {
+        Cursor cursor;
+        if (!this.f12554a || (cursor = this.f12556c) == null || !cursor.moveToPosition(i10)) {
+            return 0L;
+        }
+        return this.f12556c.getLong(this.d);
+    }
+
+    @Override
+    public View getView(int i10, View view, ViewGroup viewGroup) {
+        if (this.f12554a) {
+            if (this.f12556c.moveToPosition(i10)) {
+                if (view == null) {
+                    a3 a3Var = (a3) this;
+                    view = a3Var.f17675s.inflate(a3Var.f17673n, viewGroup, false);
+                    view.setTag(new z2(view));
+                    ((ImageView) view.findViewById(2131296420)).setImageResource(a3Var.E);
+                }
+                a(view, this.f12556c);
+                return view;
+            }
+            throw new IllegalStateException(ic.a.i(i10, "couldn't move cursor to position "));
+        }
+        throw new IllegalStateException("this should only be called when the cursor is valid");
     }
 }

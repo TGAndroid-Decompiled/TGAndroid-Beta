@@ -1,91 +1,40 @@
 package org.telegram.ui.Components.voip;
 
-import android.text.Layout;
-import android.text.StaticLayout;
-import android.text.TextPaint;
-import android.text.TextUtils;
-import android.transition.TransitionSet;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.Components.hx0;
-import w7.z5;
-public final class f2 extends LinearLayout {
-    public HashMap f31564a;
-    public ArrayList f31565b;
-    public ArrayList f31566c;
-    public TransitionSet d;
-    public boolean e;
-    public boolean f31567f;
-    public Runnable h;
-    public o1 f31568n;
-    public TextPaint f31569r;
+import android.app.Activity;
+import android.content.Context;
+import org.telegram.messenger.AccountInstance;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.ui.Components.v80;
+public final class f2 extends v80 {
+    public final TLRPC.User f33793c;
+    public final TLRPC.Chat d;
+    public final String e;
+    public final TLRPC.InputPeer f33794f;
+    public final boolean h;
+    public final boolean f33795n;
+    public final boolean f33796r;
+    public final Activity f33797s;
+    public final org.telegram.ui.ActionBar.r2 v;
+    public final AccountInstance f33798w;
+    public final boolean f33799x;
 
-    public final void a(int i10, String str, String str2) {
-        HashMap hashMap = this.f31564a;
-        if (hashMap.get(str2) != null) {
-            return;
-        }
-        e2 e2Var = new e2(getContext(), this.f31568n, i10);
-        e2Var.f31552a = str2;
-        int dp = AndroidUtilities.displaySize.x - AndroidUtilities.dp(120.0f);
-        TextView textView = e2Var.f31554c;
-        StaticLayout c10 = hx0.c(str, textView.getPaint(), dp, Layout.Alignment.ALIGN_NORMAL, 0.0f, TextUtils.TruncateAt.END, dp, 10, true);
-        if (c10 != null) {
-            dp = 0;
-            for (int i11 = 0; i11 < c10.getLineCount(); i11++) {
-                dp = (int) Math.max(dp, Math.ceil(c10.getLineWidth(i11)));
-            }
-        }
-        textView.setMaxWidth(dp);
-        textView.setText(str);
-        e2Var.f31553b.setImageResource(i10);
-        hashMap.put(str2, e2Var);
-        if (this.e) {
-            this.f31565b.add(e2Var);
-            return;
-        }
-        this.f31567f = true;
-        addView(e2Var, z5.t(-2, -2, 1, 4, 0, 0, 4));
+    public f2(Context context, TLRPC.Chat chat, TLRPC.User user, TLRPC.Chat chat2, String str, TLRPC.InputPeer inputPeer, boolean z10, boolean z11, boolean z12, Activity activity, org.telegram.ui.ActionBar.r2 r2Var, AccountInstance accountInstance, boolean z13) {
+        super(context, chat);
+        this.f33793c = user;
+        this.d = chat2;
+        this.e = str;
+        this.f33794f = inputPeer;
+        this.h = z10;
+        this.f33795n = z11;
+        this.f33796r = z12;
+        this.f33797s = activity;
+        this.v = r2Var;
+        this.f33798w = accountInstance;
+        this.f33799x = z13;
     }
 
-    public final CharSequence b(String str) {
-        if (str == null) {
-            return "";
-        }
-        return TextUtils.ellipsize(str, this.f31569r, AndroidUtilities.dp(300.0f), TextUtils.TruncateAt.END);
-    }
-
-    public final void c(String str) {
-        e2 e2Var = (e2) this.f31564a.remove(str);
-        this.f31568n.f31775m.remove(e2Var);
-        if (e2Var != null) {
-            if (this.e) {
-                if (!this.f31565b.remove(e2Var)) {
-                    this.f31566c.add(e2Var);
-                    return;
-                }
-                return;
-            }
-            this.f31567f = true;
-            removeView(e2Var);
-        }
-    }
-
-    public int getChildsHight() {
-        int i10;
-        int childCount = getChildCount();
-        if (childCount > 0) {
-            i10 = AndroidUtilities.dp(16.0f);
-        } else {
-            i10 = 0;
-        }
-        return org.telegram.messenger.v0.D(32.0f, childCount, i10);
-    }
-
-    public void setOnViewsUpdated(Runnable runnable) {
-        this.h = runnable;
+    @Override
+    public final void m() {
+        g2.b(this.f33793c, this.d, this.e, this.f33794f, false, this.h, this.f33795n, this.f33796r, this.f33797s, this.v, this.f33798w, false, true, this.f33799x);
     }
 }

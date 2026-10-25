@@ -3,11 +3,11 @@ package org.telegram.ui.web;
 import java.io.BufferedInputStream;
 import java.io.FilterInputStream;
 public final class m1 extends FilterInputStream {
-    public final int f43184a;
+    public final int f45321a;
 
     public m1(BufferedInputStream bufferedInputStream, int i10) {
         super(bufferedInputStream);
-        this.f43184a = i10;
+        this.f45321a = i10;
     }
 
     public static int a(int i10) {
@@ -30,18 +30,18 @@ public final class m1 extends FilterInputStream {
             if (read > 0) {
                 i11 += read;
             } else {
-                throw new tc.j(i11);
+                throw new uc.j(i11);
             }
         }
     }
 
-    public tc.x c() {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.m1.c():tc.x");
+    public uc.x c() {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.web.m1.c():uc.x");
     }
 
     @Override
     public int read() {
-        switch (this.f43184a) {
+        switch (this.f45321a) {
             case 0:
                 int read = ((FilterInputStream) this).in.read();
                 if (read == 61) {
@@ -63,7 +63,7 @@ public final class m1 extends FilterInputStream {
 
     @Override
     public int read(byte[] bArr, int i10, int i11) {
-        switch (this.f43184a) {
+        switch (this.f45321a) {
             case 0:
                 int i12 = 0;
                 for (int i13 = 0; i13 < i11; i13++) {

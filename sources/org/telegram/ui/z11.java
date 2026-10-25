@@ -1,56 +1,89 @@
 package org.telegram.ui;
 
-import android.app.Activity;
-import android.view.View;
-import org.telegram.messenger.MediaDataController;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class z11 extends a61 {
-    public final b21 f44001e2;
-    public final r51[] f44002f2;
-    public final c21 f44003g2;
+import android.text.Editable;
+import android.text.TextWatcher;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.EditTextBoldCursor;
+public final class z11 implements TextWatcher {
+    public final int f46153a;
+    public final b21 f46154b;
 
-    public z11(c21 c21Var, c21 c21Var2, Activity activity, Integer num, b21 b21Var, r51[] r51VarArr) {
-        super(c21Var2, activity, false, num, 2, null);
-        this.f44003g2 = c21Var;
-        this.f44001e2 = b21Var;
-        this.f44002f2 = r51VarArr;
+    public z11(b21 b21Var, int i10) {
+        this.f46153a = i10;
+        this.f46154b = b21Var;
     }
 
     @Override
-    public final void p(View view, Long l4, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, Integer num) {
-        int i10;
-        if (l4 != null) {
-            c21 c21Var = this.f44003g2;
-            i10 = ((org.telegram.ui.ActionBar.o2) c21Var).currentAccount;
-            MediaDataController mediaDataController = MediaDataController.getInstance(i10);
-            mediaDataController.setDoubleTapReaction("animated_" + l4);
-            b21 b21Var = this.f44001e2;
-            if (b21Var != null) {
-                b21Var.a(true);
-            }
-            r51 r51Var = this.f44002f2[0];
-            if (r51Var != null) {
-                c21Var.f36201n = null;
-                r51Var.dismiss();
-            }
+    public final void afterTextChanged(Editable editable) {
+        switch (this.f46153a) {
+            case 0:
+                this.f46154b.V(true);
+                return;
+            case 1:
+                b21 b21Var = this.f46154b;
+                if (!b21Var.K) {
+                    EditTextBoldCursor editTextBoldCursor = b21Var.f37952a[1];
+                    int selectionStart = editTextBoldCursor.getSelectionStart();
+                    String obj = editTextBoldCursor.getText().toString();
+                    StringBuilder sb2 = new StringBuilder(obj.length());
+                    int i10 = 0;
+                    while (i10 < obj.length()) {
+                        int i11 = i10 + 1;
+                        String substring = obj.substring(i10, i11);
+                        if ("0123456789".contains(substring)) {
+                            sb2.append(substring);
+                        }
+                        i10 = i11;
+                    }
+                    b21Var.K = true;
+                    int intValue = Utilities.parseInt((CharSequence) sb2.toString()).intValue();
+                    if (intValue >= 0 && intValue <= 65535 && obj.equals(sb2.toString())) {
+                        if (selectionStart >= 0) {
+                            editTextBoldCursor.setSelection(Math.min(selectionStart, editTextBoldCursor.length()));
+                        }
+                    } else if (intValue < 0) {
+                        editTextBoldCursor.setText("0");
+                    } else if (intValue > 65535) {
+                        editTextBoldCursor.setText("65535");
+                    } else {
+                        editTextBoldCursor.setText(sb2.toString());
+                    }
+                    b21Var.K = false;
+                    b21Var.V(true);
+                    return;
+                }
+                return;
+            default:
+                this.f46154b.V(true);
+                return;
         }
     }
 
     @Override
-    public final void r(j51 j51Var, ah.i1 i1Var) {
-        int i10;
-        c21 c21Var = this.f44003g2;
-        i10 = ((org.telegram.ui.ActionBar.o2) c21Var).currentAccount;
-        MediaDataController.getInstance(i10).setDoubleTapReaction(i1Var.f784f);
-        b21 b21Var = this.f44001e2;
-        if (b21Var != null) {
-            b21Var.a(true);
-        }
-        r51 r51Var = this.f44002f2[0];
-        if (r51Var != null) {
-            c21Var.f36201n = null;
-            r51Var.dismiss();
-        }
+    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f46153a;
+    }
+
+    @Override
+    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
+        int i13 = this.f46153a;
+    }
+
+    private final void a(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void b(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void c(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void d(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void e(int i10, int i11, int i12, CharSequence charSequence) {
+    }
+
+    private final void f(int i10, int i11, int i12, CharSequence charSequence) {
     }
 }

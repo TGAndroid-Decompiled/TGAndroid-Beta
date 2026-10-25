@@ -2,398 +2,196 @@ package org.telegram.ui.Components;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.PointF;
-import android.graphics.RectF;
+import android.graphics.Path;
+import android.text.TextPaint;
 import android.view.MotionEvent;
-import android.widget.FrameLayout;
+import android.view.View;
+import java.util.Locale;
 import org.telegram.messenger.AndroidUtilities;
-public final class uf0 extends FrameLayout {
-    public static final float N = AndroidUtilities.dp(20.0f);
-    public static final float O = AndroidUtilities.dp(30.0f);
-    public static final float P = AndroidUtilities.dp(30.0f);
-    public boolean E;
-    public boolean F;
-    public boolean G;
-    public int H;
-    public Paint I;
-    public Paint J;
-    public boolean K;
-    public tf0 L;
-    public int M;
-    public PointF f31107a;
-    public float f31108b;
-    public float f31109c;
-    public hw0 d;
-    public PointF e;
-    public float f31110f;
-    public float h;
-    public float f31111n;
-    public RectF f31112r;
-    public float f31113s;
-    public float v;
-    public float f31114w;
-    public float f31115x;
-    public boolean f31116y;
+public final class uf0 extends View {
+    public int f33385a;
+    public boolean f33386b;
+    public boolean f33387c;
+    public float d;
+    public hl0 e;
+    public Paint f33388f;
+    public Paint h;
+    public Paint f33389n;
+    public TextPaint f33390r;
+    public Path f33391s;
+    public tf0 v;
+    public ag0 f33392w;
 
-    public static float a(float f7) {
-        return (f7 * 3.1415927f) / 180.0f;
-    }
-
-    public static float b(MotionEvent motionEvent) {
-        if (motionEvent.getPointerCount() != 2) {
-            return 0.0f;
-        }
-        float x10 = motionEvent.getX(0);
-        float y3 = motionEvent.getY(0);
-        float x11 = x10 - motionEvent.getX(1);
-        float y10 = y3 - motionEvent.getY(1);
-        return (float) Math.sqrt((y10 * y10) + (x11 * x11));
-    }
-
-    private PointF getActualCenterPoint() {
-        int i10;
-        hw0 hw0Var = this.d;
-        float f7 = hw0Var.f27188a;
-        float width = (this.e.x * f7) + ((getWidth() - f7) / 2.0f);
-        if (!this.K) {
-            i10 = AndroidUtilities.statusBarHeight;
-        } else {
-            i10 = 0;
-        }
-        float height = getHeight();
-        float f10 = hw0Var.f27189b;
-        float z10 = com.google.android.gms.internal.play_billing.k3.z(height, f10, 2.0f, i10);
-        float f11 = hw0Var.f27188a;
-        return new PointF(width, (this.e.y * f11) + org.telegram.messenger.v0.y(f11, f10, 2.0f, z10));
-    }
-
-    private float getActualInnerRadius() {
-        hw0 hw0Var = this.d;
-        return Math.min(hw0Var.f27188a, hw0Var.f27189b) * this.f31110f;
-    }
-
-    private float getActualOuterRadius() {
-        hw0 hw0Var = this.d;
-        return Math.min(hw0Var.f27188a, hw0Var.f27189b) * this.h;
-    }
-
-    public final void c(int i10, MotionEvent motionEvent) {
-        float f7;
-        int i11;
-        int i12;
-        boolean z10;
-        boolean z11;
-        boolean z12;
-        int i13;
-        boolean z13 = this.K;
-        float x10 = motionEvent.getX();
+    public final void a(int i10, MotionEvent motionEvent) {
+        bg0 bg0Var;
+        float x9 = motionEvent.getX();
         float y3 = motionEvent.getY();
-        PointF actualCenterPoint = getActualCenterPoint();
-        float f10 = x10 - actualCenterPoint.x;
-        float f11 = y3 - actualCenterPoint.y;
-        float sqrt = (float) Math.sqrt((f11 * f11) + (f10 * f10));
-        hw0 hw0Var = this.d;
-        float min = Math.min(hw0Var.f27188a, hw0Var.f27189b);
-        float f12 = this.f31110f * min;
-        float f13 = this.h * min;
-        float abs = (float) Math.abs((Math.sin(a(this.f31111n) + 1.5707963267948966d) * f11) + (Math.cos(a(this.f31111n) + 1.5707963267948966d) * f10));
-        float f14 = 0.0f;
         if (i10 != 1) {
             if (i10 != 2) {
-                if (i10 == 3 || i10 == 4 || i10 == 5) {
-                    this.M = 1;
+                if ((i10 == 3 || i10 == 4 || i10 == 5) && this.f33385a != 0) {
+                    this.f33385a = 0;
                     return;
                 }
                 return;
             }
-            int i14 = this.H;
-            if (i14 == 0) {
-                int c10 = m1.j.c(this.M);
-                if (c10 != 1) {
-                    if (c10 != 2) {
-                        if (c10 != 3) {
-                            if (c10 == 5) {
-                                float f15 = x10 - this.f31113s;
-                                float f16 = y3 - this.v;
-                                if (x10 > actualCenterPoint.x) {
-                                    z10 = true;
-                                } else {
-                                    z10 = false;
-                                }
-                                if (y3 > actualCenterPoint.y) {
-                                    z11 = true;
-                                } else {
-                                    z11 = false;
-                                }
-                                if (Math.abs(f16) > Math.abs(f15)) {
-                                    z12 = true;
-                                } else {
-                                    z12 = false;
-                                }
-                                if (z10 || z11 ? !(!z10 || z11 ? !z10 || !z11 ? !z12 ? f15 >= 0.0f : f16 >= 0.0f : !z12 ? f15 >= 0.0f : f16 <= 0.0f : !z12 ? f15 <= 0.0f : f16 <= 0.0f) : !(!z12 ? f15 <= 0.0f : f16 >= 0.0f)) {
-                                    i13 = 1;
-                                } else {
-                                    i13 = 0;
-                                }
-                                this.f31111n = (((((float) Math.sqrt((f16 * f16) + (f15 * f15))) * ((i13 * 2) - 1)) / 3.1415927f) / 1.15f) + this.f31111n;
-                                this.f31113s = x10;
-                                this.v = y3;
+            float min = Math.min(2.0f, (this.d - y3) / 8.0f);
+            ag0 ag0Var = this.f33392w;
+            int i11 = ag0Var.f26500f;
+            if (i11 != 0) {
+                if (i11 != 1) {
+                    if (i11 != 2) {
+                        if (i11 != 3) {
+                            bg0Var = null;
+                        } else {
+                            bg0Var = ag0Var.d;
+                        }
+                    } else {
+                        bg0Var = ag0Var.f26499c;
+                    }
+                } else {
+                    bg0Var = ag0Var.f26498b;
+                }
+            } else {
+                bg0Var = ag0Var.f26497a;
+            }
+            int i12 = this.f33385a;
+            if (i12 != 1) {
+                if (i12 != 2) {
+                    if (i12 != 3) {
+                        if (i12 != 4) {
+                            if (i12 == 5) {
+                                bg0Var.e = org.telegram.messenger.vh.A(bg0Var.e, min, 100.0f, 0.0f);
                             }
                         } else {
-                            this.h = Math.max(this.f31110f + 0.02f, (this.f31109c + (abs - this.f31108b)) / min);
+                            bg0Var.d = org.telegram.messenger.vh.A(bg0Var.d, min, 100.0f, 0.0f);
                         }
                     } else {
-                        this.f31110f = Math.min(Math.max(0.1f, (this.f31109c + (abs - this.f31108b)) / min), this.h - 0.02f);
+                        bg0Var.f26850c = org.telegram.messenger.vh.A(bg0Var.f26850c, min, 100.0f, 0.0f);
                     }
                 } else {
-                    float f17 = x10 - this.f31113s;
-                    float f18 = y3 - this.v;
-                    float width = (getWidth() - hw0Var.f27188a) / 2.0f;
-                    if (!z13) {
-                        i12 = AndroidUtilities.statusBarHeight;
-                    } else {
-                        i12 = 0;
-                    }
-                    float height = getHeight();
-                    float f19 = hw0Var.f27189b;
-                    float z14 = com.google.android.gms.internal.play_billing.k3.z(height, f19, 2.0f, i12);
-                    PointF pointF = new PointF(Math.max(width, Math.min(hw0Var.f27188a + width, this.f31107a.x + f17)), Math.max(z14, Math.min(f19 + z14, this.f31107a.y + f18)));
-                    float f20 = pointF.x - width;
-                    float f21 = hw0Var.f27188a;
-                    this.e = new PointF(f20 / f21, (((f21 - hw0Var.f27189b) / 2.0f) + (pointF.y - z14)) / f21);
+                    bg0Var.f26849b = org.telegram.messenger.vh.A(bg0Var.f26849b, min, 100.0f, 0.0f);
                 }
-            } else if (i14 == 1) {
-                int c11 = m1.j.c(this.M);
-                if (c11 != 1) {
-                    if (c11 != 2) {
-                        if (c11 == 3) {
-                            this.h = Math.max(this.f31110f + 0.02f, (this.f31109c + (sqrt - this.f31108b)) / min);
-                        }
-                    } else {
-                        this.f31110f = Math.min(Math.max(0.1f, (this.f31109c + (sqrt - this.f31108b)) / min), this.h - 0.02f);
-                    }
-                } else {
-                    float f22 = x10 - this.f31113s;
-                    float f23 = y3 - this.v;
-                    float width2 = (getWidth() - hw0Var.f27188a) / 2.0f;
-                    if (!z13) {
-                        i11 = AndroidUtilities.statusBarHeight;
-                    } else {
-                        i11 = 0;
-                    }
-                    float height2 = getHeight();
-                    float f24 = hw0Var.f27189b;
-                    float z15 = com.google.android.gms.internal.play_billing.k3.z(height2, f24, 2.0f, i11);
-                    PointF pointF2 = new PointF(Math.max(width2, Math.min(hw0Var.f27188a + width2, this.f31107a.x + f22)), Math.max(z15, Math.min(f24 + z15, this.f31107a.y + f23)));
-                    float f25 = pointF2.x - width2;
-                    float f26 = hw0Var.f27188a;
-                    this.e = new PointF(f25 / f26, (((f26 - hw0Var.f27189b) / 2.0f) + (pointF2.y - z15)) / f26);
-                }
+            } else {
+                bg0Var.f26848a = org.telegram.messenger.vh.A(bg0Var.f26848a, min, 100.0f, 0.0f);
             }
             invalidate();
-            tf0 tf0Var = this.L;
+            tf0 tf0Var = this.v;
             if (tf0Var != null) {
-                PointF pointF3 = this.e;
-                float f27 = this.f31110f;
-                float f28 = this.h;
-                gg0 gg0Var = ((xf0) tf0Var).f32573a;
-                gg0Var.f26656a0 = f28;
-                gg0Var.f26658b0 = pointF3;
-                gg0Var.f26660c0 = f27;
-                gg0Var.f26661d0 = a(this.f31111n) + 1.5707964f;
-                c00 c00Var = gg0Var.f26670l0;
-                if (c00Var != null) {
-                    c00Var.d(false, false, false);
-                    return;
+                eg0 eg0Var = ((vf0) tf0Var).f33642a;
+                eg0Var.g();
+                e00 e00Var = eg0Var.f27841l0;
+                if (e00Var != null) {
+                    e00Var.d(false, false, false);
                 }
-                return;
             }
-            return;
-        }
-        boolean z16 = false;
-        this.f31113s = motionEvent.getX();
-        this.v = motionEvent.getY();
-        if (Math.abs(f13 - f12) < N) {
-            z16 = true;
-        }
-        float f29 = P;
-        if (z16) {
-            f7 = 0.0f;
+            this.d = y3;
+        } else if (this.f33385a != 0) {
         } else {
-            f7 = f29;
-        }
-        if (!z16) {
-            f14 = f29;
-        }
-        int i15 = this.H;
-        float f30 = O;
-        if (i15 == 0) {
-            if (sqrt < f30) {
-                this.M = 2;
-                this.f31107a = actualCenterPoint;
-                return;
-            }
-            float f31 = f12 - f29;
-            if (abs > f31 && abs < f7 + f12) {
-                this.M = 3;
-                this.f31108b = abs;
-                this.f31109c = f12;
-            } else if (abs > f13 - f14 && abs < f13 + f29) {
-                this.M = 4;
-                this.f31108b = abs;
-                this.f31109c = f13;
-            } else if (abs <= f31 || abs >= f13 + f29) {
-                this.M = 6;
-            }
-        } else if (i15 == 1) {
-            if (sqrt < f30) {
-                this.M = 2;
-                this.f31107a = actualCenterPoint;
-            } else if (sqrt > f12 - f29 && sqrt < f7 + f12) {
-                this.M = 3;
-                this.f31108b = sqrt;
-                this.f31109c = f12;
-            } else if (sqrt > f13 - f14 && sqrt < f29 + f13) {
-                this.M = 4;
-                this.f31108b = sqrt;
-                this.f31109c = f13;
-            }
-        }
-    }
-
-    public final void d(int i10, MotionEvent motionEvent) {
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 == 3 || i10 == 4 || i10 == 5) {
-                    this.M = 1;
-                    return;
-                }
-                return;
-            }
-        } else {
-            this.f31114w = b(motionEvent);
-            this.f31115x = 1.0f;
-            this.M = 5;
-        }
-        float b10 = b(motionEvent);
-        float d = a1.g.d(b10 - this.f31114w, AndroidUtilities.density, 0.01f, this.f31115x);
-        this.f31115x = d;
-        float max = Math.max(0.1f, this.f31110f * d);
-        this.f31110f = max;
-        this.h = Math.max(max + 0.02f, this.h * this.f31115x);
-        this.f31115x = 1.0f;
-        this.f31114w = b10;
-        invalidate();
-        tf0 tf0Var = this.L;
-        if (tf0Var != null) {
-            PointF pointF = this.e;
-            float f7 = this.f31110f;
-            float f10 = this.h;
-            gg0 gg0Var = ((xf0) tf0Var).f32573a;
-            gg0Var.f26656a0 = f10;
-            gg0Var.f26658b0 = pointF;
-            gg0Var.f26660c0 = f7;
-            gg0Var.f26661d0 = a(this.f31111n) + 1.5707964f;
-            c00 c00Var = gg0Var.f26670l0;
-            if (c00Var != null) {
-                c00Var.d(false, false, false);
-            }
+            hl0 hl0Var = this.e;
+            this.f33385a = (int) Math.floor(c3.h0.B(x9, hl0Var.f29007a, hl0Var.f29009c / 5.0f, 1.0f));
         }
     }
 
     @Override
     public final void onDraw(Canvas canvas) {
-        Paint paint;
-        Canvas canvas2 = canvas;
-        Paint paint2 = this.J;
-        RectF rectF = this.f31112r;
-        Paint paint3 = paint2;
-        Paint paint4 = this.I;
-        super.onDraw(canvas);
-        PointF actualCenterPoint = getActualCenterPoint();
-        float actualInnerRadius = getActualInnerRadius();
-        float actualOuterRadius = getActualOuterRadius();
-        canvas2.translate(actualCenterPoint.x, actualCenterPoint.y);
-        int i10 = this.H;
-        int i11 = 0;
-        if (i10 == 0) {
-            canvas2.rotate(this.f31111n);
-            float dp = AndroidUtilities.dp(6.0f);
-            float dp2 = AndroidUtilities.dp(12.0f);
-            float dp3 = AndroidUtilities.dp(1.5f);
-            int i12 = 0;
-            while (i12 < 30) {
-                float f7 = dp2 + dp;
-                float f10 = i12 * f7;
-                float f11 = -actualInnerRadius;
-                float f12 = f10 + dp2;
-                float f13 = dp3 - actualInnerRadius;
-                canvas2.drawRect(f10, f11, f12, f13, paint4);
-                float f14 = ((-i12) * f7) - dp;
-                float f15 = f14 - dp2;
-                canvas.drawRect(f15, f11, f14, f13, paint4);
-                float f16 = dp3 + actualInnerRadius;
-                float f17 = actualInnerRadius;
-                canvas.drawRect(f10, f17, f12, f16, paint4);
-                canvas.drawRect(f15, f17, f14, f16, paint4);
-                i12++;
-                actualInnerRadius = f17;
-                canvas2 = canvas;
+        bg0 bg0Var;
+        int i10;
+        String format;
+        TextPaint textPaint = this.f33390r;
+        Path path = this.f33391s;
+        Paint paint = this.f33389n;
+        ag0 ag0Var = this.f33392w;
+        hl0 hl0Var = this.e;
+        float f7 = hl0Var.f29009c / 5.0f;
+        for (int i11 = 0; i11 < 4; i11++) {
+            float f10 = hl0Var.f29007a;
+            float f11 = i11 * f7;
+            float f12 = f10 + f7 + f11;
+            float f13 = hl0Var.f29008b;
+            canvas.drawLine(f12, f13, f11 + f10 + f7, f13 + hl0Var.d, this.f33388f);
+        }
+        float f14 = hl0Var.f29007a;
+        float f15 = hl0Var.f29008b;
+        canvas.drawLine(f14, f15 + hl0Var.d, f14 + hl0Var.f29009c, f15, this.h);
+        int i12 = ag0Var.f26500f;
+        int i13 = 3;
+        int i14 = 2;
+        if (i12 != 0) {
+            if (i12 != 1) {
+                if (i12 != 2) {
+                    if (i12 != 3) {
+                        bg0Var = null;
+                    } else {
+                        paint.setColor(-13404165);
+                        bg0Var = ag0Var.d;
+                    }
+                } else {
+                    paint.setColor(-15667555);
+                    bg0Var = ag0Var.f26499c;
+                }
+            } else {
+                paint.setColor(-1229492);
+                bg0Var = ag0Var.f26498b;
             }
-            float dp4 = AndroidUtilities.dp(6.0f);
-            while (i11 < 64) {
-                float f18 = dp4 + dp;
-                float f19 = i11 * f18;
-                float f20 = -actualOuterRadius;
-                float f21 = dp4 + f19;
-                float f22 = dp3 - actualOuterRadius;
-                canvas.drawRect(f19, f20, f21, f22, paint4);
-                float f23 = ((-i11) * f18) - dp;
-                float f24 = f23 - dp4;
-                canvas.drawRect(f24, f20, f23, f22, paint4);
-                float f25 = dp3 + actualOuterRadius;
-                float f26 = actualOuterRadius;
-                canvas.drawRect(f19, f26, f21, f25, paint4);
-                canvas.drawRect(f24, f26, f23, f25, paint4);
-                i11++;
-                actualOuterRadius = f26;
-            }
-            paint = paint4;
         } else {
-            paint = paint4;
-            if (i10 == 1) {
-                float f27 = -actualInnerRadius;
-                rectF.set(f27, f27, actualInnerRadius, actualInnerRadius);
-                int i13 = 0;
-                while (i13 < 22) {
-                    Paint paint5 = paint3;
-                    canvas.drawArc(rectF, i13 * 16.35f, 10.2f, false, paint5);
-                    i13++;
-                    paint3 = paint5;
+            paint.setColor(-1);
+            bg0Var = ag0Var.f26497a;
+        }
+        int i15 = 0;
+        while (i15 < 5) {
+            if (i15 != 0) {
+                if (i15 != 1) {
+                    if (i15 != i14) {
+                        if (i15 != i13) {
+                            if (i15 != 4) {
+                                format = "";
+                                i10 = i14;
+                            } else {
+                                i10 = i14;
+                                format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.e / 100.0f));
+                            }
+                        } else {
+                            i10 = i14;
+                            format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.d / 100.0f));
+                        }
+                    } else {
+                        i10 = i14;
+                        format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26850c / 100.0f));
+                    }
+                } else {
+                    i10 = i14;
+                    format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26849b / 100.0f));
                 }
-                Paint paint6 = paint3;
-                float f28 = -actualOuterRadius;
-                rectF.set(f28, f28, actualOuterRadius, actualOuterRadius);
-                while (i11 < 64) {
-                    canvas.drawArc(rectF, 5.62f * i11, 3.6f, false, paint6);
-                    i11++;
-                }
+            } else {
+                i10 = i14;
+                format = String.format(Locale.US, "%.2f", Float.valueOf(bg0Var.f26848a / 100.0f));
+            }
+            canvas.drawText(format, (i15 * f7) + c3.h0.B(f7, textPaint.measureText(format), 2.0f, hl0Var.f29007a), (hl0Var.f29008b + hl0Var.d) - AndroidUtilities.dp(4.0f), textPaint);
+            i15++;
+            i14 = i10;
+            i13 = 3;
+        }
+        float[] a2 = bg0Var.a();
+        invalidate();
+        path.reset();
+        for (int i16 = 0; i16 < a2.length / 2; i16++) {
+            if (i16 == 0) {
+                int i17 = i16 * 2;
+                path.moveTo((a2[i17] * hl0Var.f29009c) + hl0Var.f29007a, ((1.0f - a2[i17 + 1]) * hl0Var.d) + hl0Var.f29008b);
+            } else {
+                int i18 = i16 * 2;
+                path.lineTo((a2[i18] * hl0Var.f29009c) + hl0Var.f29007a, ((1.0f - a2[i18 + 1]) * hl0Var.d) + hl0Var.f29008b);
             }
         }
-        canvas.drawCircle(0.0f, 0.0f, AndroidUtilities.dp(8.0f), paint);
+        canvas.drawPath(path, paint);
     }
 
     @Override
-    public final boolean onTouchEvent(android.view.MotionEvent r21) {
+    public final boolean onTouchEvent(android.view.MotionEvent r8) {
         throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.uf0.onTouchEvent(android.view.MotionEvent):boolean");
     }
 
     public void setDelegate(tf0 tf0Var) {
-        this.L = tf0Var;
-    }
-
-    public void setType(int i10) {
-        this.H = i10;
-        invalidate();
+        this.v = tf0Var;
     }
 }

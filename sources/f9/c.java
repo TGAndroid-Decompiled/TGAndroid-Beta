@@ -1,30 +1,167 @@
 package f9;
 
-import v7.u6;
-public final class c extends d {
-    public c(java.lang.String r2, java.lang.String r3) {
-        throw new UnsupportedOperationException("Method not decompiled: f9.c.<init>(java.lang.String, java.lang.String):void");
+import a8.pb;
+import a8.ta;
+import a8.xb;
+import j$.util.Objects;
+import java.util.AbstractMap;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Map;
+import java.util.Set;
+public final class c extends a8.x {
+    public final int f10265b;
+    public final AbstractMap f10266c;
+
+    public c(AbstractMap abstractMap, int i10) {
+        super(1);
+        this.f10265b = i10;
+        this.f10266c = abstractMap;
     }
 
     @Override
-    public final void b(StringBuilder sb2, byte[] bArr, int i10) {
-        int i11 = 0;
-        u6.n(0, i10, bArr.length);
-        for (int i12 = i10; i12 >= 3; i12 -= 3) {
-            int i13 = i11 + 2;
-            int i14 = (bArr[i11 + 1] & 255) << 8;
-            i11 += 3;
-            int i15 = i14 | ((bArr[i11] & 255) << 16) | (bArr[i13] & 255);
-            a aVar = this.f10528a;
-            char[] cArr = aVar.f10524b;
-            char[] cArr2 = aVar.f10524b;
-            sb2.append(cArr[i15 >>> 18]);
-            sb2.append(cArr2[(i15 >>> 12) & 63]);
-            sb2.append(cArr2[(i15 >>> 6) & 63]);
-            sb2.append(cArr2[i15 & 63]);
+    public final void clear() {
+        m().clear();
+    }
+
+    @Override
+    public boolean contains(Object obj) {
+        switch (this.f10265b) {
+            case 0:
+                Set entrySet = ((pb) this.f10266c).f739b.entrySet();
+                entrySet.getClass();
+                try {
+                    return entrySet.contains(obj);
+                } catch (ClassCastException | NullPointerException unused) {
+                    return false;
+                }
+            default:
+                return h(obj);
         }
-        if (i11 < i10) {
-            a(sb2, bArr, i11, i10 - i11);
+    }
+
+    public final boolean h(Object obj) {
+        Object obj2;
+        if (obj instanceof Map.Entry) {
+            Map.Entry entry = (Map.Entry) obj;
+            Object key = entry.getKey();
+            Map m10 = m();
+            m10.getClass();
+            try {
+                obj2 = m10.get(key);
+            } catch (ClassCastException | NullPointerException unused) {
+                obj2 = null;
+            }
+            if (xb.a(obj2, entry.getValue())) {
+                if (obj2 != null || m().containsKey(key)) {
+                    return true;
+                }
+                return false;
+            }
+            return false;
         }
+        return false;
+    }
+
+    @Override
+    public final boolean isEmpty() {
+        return m().isEmpty();
+    }
+
+    @Override
+    public final Iterator iterator() {
+        switch (this.f10265b) {
+            case 0:
+                return new ta((pb) this.f10266c, (byte) 0);
+            default:
+                h1 h1Var = (h1) this.f10266c;
+                Iterator it = h1Var.f10285a.entrySet().iterator();
+                g1 g1Var = h1Var.f10286b;
+                g1Var.getClass();
+                return new w0(it, new za.c(g1Var, 19));
+        }
+    }
+
+    public final Map m() {
+        switch (this.f10265b) {
+            case 0:
+                return (pb) this.f10266c;
+            default:
+                return (h1) this.f10266c;
+        }
+    }
+
+    public final boolean n(Object obj) {
+        if (contains(obj) && (obj instanceof Map.Entry)) {
+            return m().keySet().remove(((Map.Entry) obj).getKey());
+        }
+        return false;
+    }
+
+    @Override
+    public boolean remove(Object obj) {
+        Object obj2;
+        switch (this.f10265b) {
+            case 0:
+                if (!contains(obj)) {
+                    return false;
+                }
+                Map.Entry entry = (Map.Entry) obj;
+                Objects.requireNonNull(entry);
+                k1 k1Var = (k1) ((pb) this.f10266c).e;
+                Object key = entry.getKey();
+                Map map = k1Var.e;
+                map.getClass();
+                try {
+                    obj2 = map.remove(key);
+                } catch (ClassCastException | NullPointerException unused) {
+                    obj2 = null;
+                }
+                Collection collection = (Collection) obj2;
+                if (collection != null) {
+                    int size = collection.size();
+                    collection.clear();
+                    k1Var.f10293f -= size;
+                }
+                return true;
+            default:
+                return n(obj);
+        }
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        try {
+            collection.getClass();
+            return super.removeAll(collection);
+        } catch (UnsupportedOperationException unused) {
+            boolean z10 = false;
+            for (Object obj : collection) {
+                z10 |= remove(obj);
+            }
+            return z10;
+        }
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        try {
+            collection.getClass();
+            return super.retainAll(collection);
+        } catch (UnsupportedOperationException unused) {
+            HashSet hashSet = new HashSet(o.c(collection.size()));
+            for (Object obj : collection) {
+                if (contains(obj) && (obj instanceof Map.Entry)) {
+                    hashSet.add(((Map.Entry) obj).getKey());
+                }
+            }
+            return m().keySet().retainAll(hashSet);
+        }
+    }
+
+    @Override
+    public final int size() {
+        return m().size();
     }
 }

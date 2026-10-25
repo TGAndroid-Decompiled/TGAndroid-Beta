@@ -1,116 +1,43 @@
 package ai;
 
-import android.content.Context;
-import org.telegram.messenger.AccountInstance;
-import org.telegram.messenger.MessageObject;
-import org.telegram.messenger.MessagesController;
-import org.telegram.messenger.MessagesStorage;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.NotificationCenter;
 import org.telegram.messenger.Utilities;
-import org.telegram.messenger.voip.ConferenceCall;
-import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-import org.telegram.ui.jr;
-import org.telegram.ui.sn;
-public final class z implements Runnable {
-    public final int f2524a;
-    public final Object f2525b;
-    public final long f2526c;
-    public final Object d;
-    public final Object e;
-    public final Object f2527f;
+import org.telegram.tgnet.tl.TL_stars;
+public final class z implements NotificationCenter.NotificationCenterDelegate {
+    public final int f1982a;
+    public final TLRPC.Document f1983b;
+    public final int f1984c;
+    public final n1 d;
+    public boolean e;
+    public boolean f1985f;
+    public boolean h;
 
-    public z(long j10, Runnable runnable, ConferenceCall conferenceCall, TLObject tLObject, TLRPC.TL_error tL_error) {
-        this.f2524a = 8;
-        this.d = conferenceCall;
-        this.f2526c = j10;
-        this.f2525b = tLObject;
-        this.e = tL_error;
-        this.f2527f = runnable;
+    public z(int i10, TLRPC.Document document, TL_stars.TL_starGiftUnique tL_starGiftUnique, int i11, n1 n1Var) {
+        this.f1982a = i10;
+        this.f1983b = document;
+        this.f1984c = i11;
+        this.d = n1Var;
+        NotificationCenter.getInstance(i10).addObserver(this, NotificationCenter.fileLoaded);
+        if (!FileLoader.getInstance(i10).getPathToAttach(document, true).exists()) {
+            FileLoader.getInstance(i10).loadFile(document, tL_starGiftUnique, 3, 1);
+        }
+        a();
+    }
+
+    public final void a() {
+        if (!this.e && !this.f1985f && FileLoader.getInstance(this.f1982a).getPathToAttach(this.f1983b, true).exists()) {
+            this.f1985f = true;
+            NotificationCenter.getInstance(this.f1982a).removeObserver(this, NotificationCenter.fileLoaded);
+            Utilities.globalQueue.postRunnable(new a1.f(8, this, FileLoader.getInstance(this.f1982a).getPathToAttach(this.f1983b, true)));
+        }
     }
 
     @Override
-    public final void run() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.z.run():void");
-    }
-
-    public z(fa faVar, TLObject tLObject, MessagesController messagesController, TLRPC.TL_error tL_error, long j10) {
-        this.f2524a = 6;
-        this.d = faVar;
-        this.f2525b = tLObject;
-        this.e = messagesController;
-        this.f2527f = tL_error;
-        this.f2526c = j10;
-    }
-
-    public z(ha haVar, TLObject tLObject, MessageObject messageObject, long j10, Runnable runnable) {
-        this.f2524a = 2;
-        this.d = haVar;
-        this.f2525b = tLObject;
-        this.e = messageObject;
-        this.f2526c = j10;
-        this.f2527f = runnable;
-    }
-
-    public z(me meVar, long j10, ha haVar, MessageObject messageObject, sn snVar) {
-        this.f2524a = 7;
-        this.d = meVar;
-        this.f2526c = j10;
-        this.e = haVar;
-        this.f2525b = messageObject;
-        this.f2527f = snVar;
-    }
-
-    public z(Object obj, Object obj2, long j10, Object obj3, Object obj4, int i10) {
-        this.f2524a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f2526c = j10;
-        this.f2525b = obj3;
-        this.f2527f = obj4;
-    }
-
-    public z(Object obj, Object obj2, Object obj3, long j10, Object obj4, int i10) {
-        this.f2524a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f2525b = obj3;
-        this.f2526c = j10;
-        this.f2527f = obj4;
-    }
-
-    public z(Object obj, Object obj2, Object obj3, Object obj4, long j10, int i10) {
-        this.f2524a = i10;
-        this.d = obj;
-        this.e = obj2;
-        this.f2525b = obj3;
-        this.f2527f = obj4;
-        this.f2526c = j10;
-    }
-
-    public z(org.telegram.ui.ActionBar.c2 c2Var, TLObject tLObject, long j10, AccountInstance accountInstance, MessagesStorage.BooleanCallback booleanCallback) {
-        this.f2524a = 13;
-        this.e = c2Var;
-        this.f2525b = tLObject;
-        this.f2526c = j10;
-        this.d = accountInstance;
-        this.f2527f = booleanCallback;
-    }
-
-    public z(jr jrVar, long j10, TLObject tLObject, String str, TLObject tLObject2, int i10) {
-        this.f2524a = i10;
-        this.d = jrVar;
-        this.f2526c = j10;
-        this.e = tLObject;
-        this.f2527f = str;
-        this.f2525b = tLObject2;
-    }
-
-    public z(yh.o1 o1Var, y9 y9Var, long j10, Utilities.Callback callback, Context context) {
-        this.f2524a = 16;
-        this.d = o1Var;
-        this.e = y9Var;
-        this.f2526c = j10;
-        this.f2527f = callback;
-        this.f2525b = context;
+    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
+        if (i10 == NotificationCenter.fileLoaded) {
+            a();
+        }
     }
 }

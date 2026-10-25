@@ -1,47 +1,54 @@
 package di;
 
-import ai.r0;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import ci.x4;
-import org.telegram.ui.ActionBar.o2;
-import org.telegram.ui.Components.a71;
-import org.telegram.ui.Components.km0;
-import org.telegram.ui.Components.lm0;
-import org.telegram.ui.Components.za;
-public final class u extends za {
-    public final int X;
-    public final CharSequence Y;
-    public a71 Z;
-
-    public u(o2 o2Var, String str, r0 r0Var) {
-        super(o2Var, true, false, o2Var.getResourceProvider());
-        new FrameLayout(getContext());
-        new ImageView(getContext());
-        this.X = o2Var.getCurrentAccount();
-        this.Y = str;
-        N();
-        this.v = 0.6f;
-        this.f33217y = true;
-        this.E = true;
-        fixNavigationBar();
-        K();
-        lm0 lm0Var = this.d;
-        int i10 = this.backgroundPaddingLeft;
-        lm0Var.setPadding(i10, 0, i10, 0);
-        this.d.setOnItemClickListener(new x4(1, this, r0Var));
+import j$.util.DesugarArrays;
+import j$.util.stream.Collectors;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.fe;
+public abstract class u {
+    public static int[] a() {
+        return new int[]{10000, 3600, 400, 20, -10787210, -8681059, -14341066, 2000, 1800, 280, 10, -2013375, -1482439, -7666429, 500, 900, 200, 7, -1214690, -1214690, -6606592, 250, 600, 150, 4, -1926647, -1926647, -6668800, 100, 300, 110, 3, -12539616, -12539616, -15244800, 50, 120, 80, 2, -12147733, -12147733, -16756594, 10, 60, 60, 1, -6988581, -6988581, -11991141, 0, 30, 30, 0, -6988581, -6988581, -11991141};
     }
 
-    @Override
-    public final km0 w(lm0 lm0Var) {
-        a71 a71Var = new a71(lm0Var, getContext(), this.X, 0, false, new ai.q(this, 11), this.resourcesProvider);
-        this.Z = a71Var;
-        a71Var.f24646r = false;
-        return a71Var;
+    public static int b(int i10, int i11, int i12) {
+        int[] iArr = MessagesController.getInstance(i10).starsGroupcallMessageLimits;
+        for (int i13 = 0; i13 < iArr.length / 7; i13++) {
+            int i14 = i13 * 7;
+            if (i11 >= iArr[i14]) {
+                return iArr[i14 + 1 + i12];
+            }
+        }
+        return 0;
     }
 
-    @Override
-    public final CharSequence z() {
-        return this.Y;
+    public static int[] c(org.telegram.tgnet.TLRPC.TL_jsonArray r13) {
+        throw new UnsupportedOperationException("Method not decompiled: di.u.c(org.telegram.tgnet.TLRPC$TL_jsonArray):int[]");
+    }
+
+    public static int[] d(String str) {
+        if (str != null && str.length() != 0) {
+            try {
+                return DesugarArrays.stream(str.split(",")).mapToInt(new org.telegram.messenger.j4(1)).toArray();
+            } catch (Exception e) {
+                FileLog.e(e);
+                return a();
+            }
+        }
+        return a();
+    }
+
+    public static boolean e(int[] iArr, int[] iArr2) {
+        if (iArr2 != null && iArr.length == iArr2.length) {
+            for (int i10 = 0; i10 < iArr.length; i10++) {
+                if (iArr[i10] == iArr2[i10]) {
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    public static String f(int[] iArr) {
+        return (String) DesugarArrays.stream(iArr).mapToObj(new fe(0)).collect(Collectors.joining(","));
     }
 }

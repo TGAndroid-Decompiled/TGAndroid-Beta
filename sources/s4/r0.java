@@ -1,10 +1,8 @@
 package s4;
 
-import androidx.recyclerview.widget.RecyclerView;
-public abstract class r0 {
-    public void a(RecyclerView recyclerView, int i10) {
-    }
+import android.view.View;
+public interface r0 {
+    void a(View view);
 
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-    }
+    void c();
 }

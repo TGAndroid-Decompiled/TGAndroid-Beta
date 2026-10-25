@@ -1,21 +1,97 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-import org.telegram.ui.Components.ThemeEditorView;
-public final class g21 extends AnimatorListenerAdapter {
-    public final ThemeEditorView.EditorAlert f26534a;
+import android.content.Context;
+import android.os.Handler;
+import android.os.Looper;
+import android.view.TextureView;
+import android.view.View;
+import java.util.ArrayList;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.MessagesController;
+public final class g21 extends TextureView {
+    public static Boolean f28390f;
+    public e21 f28391a;
+    public final o1.a f28392b;
+    public final ArrayList f28393c;
+    public Runnable d;
+    public boolean e;
 
-    public g21(ThemeEditorView.EditorAlert editorAlert) {
-        this.f26534a = editorAlert;
+    public g21(Context context, Runnable runnable) {
+        super(context);
+        this.f28392b = new o1.a(this, 1);
+        this.f28393c = new ArrayList();
+        this.d = runnable;
+        setOpaque(false);
+        setSurfaceTextureListener(new v50(this, 2));
     }
 
-    @Override
-    public final void onAnimationEnd(Animator animator) {
-        ThemeEditorView.EditorAlert editorAlert = this.f26534a;
-        editorAlert.f24547c.setVisibility(4);
-        editorAlert.f24548f.setVisibility(4);
-        editorAlert.f24551s.setVisibility(4);
-        editorAlert.H = false;
+    public static void b(Runnable runnable) {
+        if (runnable == null) {
+            return;
+        }
+        if (Thread.currentThread() != Looper.getMainLooper().getThread()) {
+            AndroidUtilities.runOnUIThread(runnable);
+        } else {
+            runnable.run();
+        }
+    }
+
+    public static boolean c() {
+        if (f28390f == null) {
+            f28390f = Boolean.valueOf(MessagesController.getGlobalMainSettings().getBoolean("nothanos", false));
+        }
+        Boolean bool = f28390f;
+        if (bool != null && bool.booleanValue()) {
+            return false;
+        }
+        return true;
+    }
+
+    public final void a(View view) {
+        int i10 = 0;
+        int i11 = 0;
+        boolean z10 = false;
+        while (true) {
+            ArrayList arrayList = this.f28393c;
+            if (i11 >= arrayList.size()) {
+                break;
+            }
+            f21 f21Var = (f21) arrayList.get(i11);
+            if (f21Var.f28041a == view) {
+                Runnable runnable = f21Var.d;
+                if (runnable != null) {
+                    b(runnable);
+                    f21Var.d = null;
+                }
+                arrayList.remove(i11);
+                i11--;
+                z10 = true;
+            }
+            i11++;
+        }
+        if (!z10) {
+            e21 e21Var = this.f28391a;
+            ArrayList arrayList2 = e21Var.W;
+            if (e21Var.f27690b.get()) {
+                Handler handler = e21Var.getHandler();
+                if (handler == null) {
+                    while (i10 < arrayList2.size()) {
+                        d21 d21Var = (d21) arrayList2.get(i10);
+                        if (d21Var.f27340a.contains(view)) {
+                            Runnable runnable2 = d21Var.f27343f;
+                            if (runnable2 != null) {
+                                b(runnable2);
+                                d21Var.f27343f = null;
+                            }
+                            arrayList2.remove(i10);
+                            i10--;
+                        }
+                        i10++;
+                    }
+                    return;
+                }
+                handler.sendMessage(handler.obtainMessage(5, view));
+            }
+        }
     }
 }

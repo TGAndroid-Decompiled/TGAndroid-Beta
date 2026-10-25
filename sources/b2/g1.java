@@ -1,71 +1,198 @@
 package b2;
 
-import android.os.Bundle;
-import v7.u6;
-public abstract class g1 {
-    public static final String f3775a;
+import android.os.Looper;
+import android.view.SurfaceHolder;
+import java.util.List;
+public interface g1 {
+    int A();
 
-    static {
-        String str = e2.m0.f8259a;
-        f3775a = Integer.toString(0, 36);
-    }
+    Looper A0();
 
-    public static g1 a(Bundle bundle) {
-        String str = f3775a;
-        int i10 = bundle.getInt(str, -1);
-        boolean z10 = false;
-        boolean z11 = true;
-        if (i10 != 0) {
-            if (i10 != 1) {
-                if (i10 != 2) {
-                    if (i10 == 3) {
-                        String str2 = j1.d;
-                        if (bundle.getInt(str, -1) != 3) {
-                            z11 = false;
-                        }
-                        u6.g(z11);
-                        if (bundle.getBoolean(j1.d, false)) {
-                            return new j1(bundle.getBoolean(j1.e, false));
-                        }
-                        return new j1();
-                    }
-                    throw new IllegalArgumentException(i2.o1.k(i10, "Unknown RatingType: "));
-                }
-                String str3 = h1.d;
-                if (bundle.getInt(str, -1) == 2) {
-                    z10 = true;
-                }
-                u6.g(z10);
-                int i11 = bundle.getInt(h1.d, 5);
-                float f7 = bundle.getFloat(h1.e, -1.0f);
-                if (f7 == -1.0f) {
-                    return new h1(i11);
-                }
-                return new h1(i11, f7);
-            }
-            String str4 = x0.f4147c;
-            if (bundle.getInt(str, -1) == 1) {
-                z10 = true;
-            }
-            u6.g(z10);
-            float f10 = bundle.getFloat(x0.f4147c, -1.0f);
-            if (f10 == -1.0f) {
-                return new x0();
-            }
-            return new x0(f10);
-        }
-        String str5 = y.d;
-        if (bundle.getInt(str, -1) != 0) {
-            z11 = false;
-        }
-        u6.g(z11);
-        if (bundle.getBoolean(y.d, false)) {
-            return new y(bundle.getBoolean(y.e, false));
-        }
-        return new y();
-    }
+    void B(s0 s0Var);
 
-    public abstract boolean b();
+    void B0();
 
-    public abstract Bundle c();
+    void C(e1 e1Var);
+
+    void C0();
+
+    b2 D();
+
+    boolean D0();
+
+    void E();
+
+    u1 E0();
+
+    float F();
+
+    long F0();
+
+    void G();
+
+    void G0(int i10);
+
+    f H();
+
+    void H0();
+
+    void I(int i10, boolean z10);
+
+    void I0();
+
+    q J();
+
+    void J0();
+
+    void K();
+
+    s0 K0();
+
+    void L(int i10, int i11);
+
+    void L0(List list);
+
+    void M(int i10);
+
+    long M0();
+
+    int N();
+
+    void N0(f fVar, boolean z10);
+
+    void O(int i10, int i11, List list);
+
+    long O0();
+
+    boolean P();
+
+    boolean P0();
+
+    void Q(int i10);
+
+    void R(int i10, int i11);
+
+    void S(long j10, int i10, List list);
+
+    void T(SurfaceHolder surfaceHolder);
+
+    void U(float f7);
+
+    void V();
+
+    z0 W();
+
+    void X(boolean z10);
+
+    void Y(int i10);
+
+    long Z();
+
+    void a();
+
+    long a0();
+
+    void b(float f7);
+
+    void b0(int i10, List list);
+
+    boolean c();
+
+    void c0();
+
+    int d();
+
+    long d0();
+
+    void e();
+
+    boolean e0();
+
+    void f(a1 a1Var);
+
+    void f0();
+
+    void g(long j10);
+
+    void g0(int i10);
+
+    long getDuration();
+
+    a1 h();
+
+    w1 h0();
+
+    void i();
+
+    s0 i0();
+
+    void j(int i10);
+
+    boolean j0();
+
+    void k(p0 p0Var, long j10);
+
+    d2.c k0();
+
+    int l();
+
+    void l0(p0 p0Var);
+
+    int m();
+
+    int m0();
+
+    boolean n();
+
+    int n0();
+
+    long o();
+
+    boolean o0(int i10);
+
+    void p(u1 u1Var);
+
+    void p0(e1 e1Var);
+
+    long q();
+
+    void q0(boolean z10);
+
+    void r(int i10, long j10);
+
+    void r0(p0 p0Var);
+
+    c1 s();
+
+    void s0(int i10, int i11);
+
+    void stop();
+
+    boolean t();
+
+    void t0(int i10, int i11, int i12);
+
+    void u();
+
+    void u0(p0 p0Var, int i10);
+
+    p0 v();
+
+    boolean v0();
+
+    void w(boolean z10);
+
+    int w0();
+
+    int x();
+
+    void x0(List list);
+
+    long y();
+
+    p1 y0();
+
+    long z();
+
+    boolean z0();
 }

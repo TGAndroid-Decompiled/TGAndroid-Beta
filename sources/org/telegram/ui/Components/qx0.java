@@ -1,51 +1,70 @@
 package org.telegram.ui.Components;
 
-import org.telegram.messenger.Utilities;
-import org.telegram.tgnet.RequestDelegate;
+import android.graphics.drawable.Drawable;
+import android.view.View;
+import android.widget.FrameLayout;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.DialogObject;
 import org.telegram.tgnet.TLObject;
 import org.telegram.tgnet.TLRPC;
-public final class qx0 implements RequestDelegate {
-    public final int f30007a;
-    public final Utilities.Callback4 f30008b;
+public final class qx0 {
+    public final r5 f32055a;
+    public Drawable f32056b;
 
-    public qx0(Utilities.Callback4 callback4, int i10) {
-        this.f30007a = i10;
-        this.f30008b = callback4;
+    public qx0(FrameLayout frameLayout) {
+        this(18, frameLayout);
     }
 
-    @Override
-    public final void run(TLObject tLObject, TLRPC.TL_error tL_error) {
-        switch (this.f30007a) {
-            case 0:
-                boolean z10 = tLObject instanceof TLRPC.TL_messages_emojiGroupsNotModified;
-                Utilities.Callback4 callback4 = this.f30008b;
-                if (z10) {
-                    Boolean bool = Boolean.TRUE;
-                    callback4.run(bool, null, 0L, bool);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_messages_emojiGroups) {
-                    TLRPC.TL_messages_emojiGroups tL_messages_emojiGroups = (TLRPC.TL_messages_emojiGroups) tLObject;
-                    callback4.run(Boolean.FALSE, tL_messages_emojiGroups, Long.valueOf(tL_messages_emojiGroups.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback4.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
-            default:
-                boolean z11 = tLObject instanceof TLRPC.TL_emojiListNotModified;
-                Utilities.Callback4 callback42 = this.f30008b;
-                if (z11) {
-                    Boolean bool2 = Boolean.TRUE;
-                    callback42.run(bool2, null, 0L, bool2);
-                    return;
-                } else if (tLObject instanceof TLRPC.TL_emojiList) {
-                    TLRPC.TL_emojiList tL_emojiList = (TLRPC.TL_emojiList) tLObject;
-                    callback42.run(Boolean.FALSE, tL_emojiList, Long.valueOf(tL_emojiList.hash), Boolean.TRUE);
-                    return;
-                } else {
-                    callback42.run(Boolean.FALSE, null, 0L, Boolean.TRUE);
-                    return;
-                }
+    public final r5 a(TLObject tLObject, boolean z10, int i10) {
+        if (tLObject instanceof TLRPC.User) {
+            return b((TLRPC.User) tLObject, null, i10, z10);
         }
+        if (tLObject instanceof TLRPC.Chat) {
+            return b(null, (TLRPC.Chat) tLObject, i10, z10);
+        }
+        return b(null, null, i10, z10);
+    }
+
+    public final r5 b(TLRPC.User user, TLRPC.Chat chat, int i10, boolean z10) {
+        r5 r5Var = this.f32055a;
+        if (chat != null && chat.verified) {
+            Drawable drawable = this.f32056b;
+            if (drawable == null) {
+                drawable = new ar(org.telegram.ui.ActionBar.y6.f23386f1, org.telegram.ui.ActionBar.y6.f23441i1);
+            }
+            this.f32056b = drawable;
+            r5Var.g(drawable, z10);
+            r5Var.k(null);
+            return r5Var;
+        } else if (chat != null && DialogObject.getEmojiStatusDocumentId(chat.emoji_status) != 0) {
+            r5Var.j(DialogObject.getEmojiStatusDocumentId(chat.emoji_status), z10);
+            r5Var.k(Integer.valueOf(i10));
+            return r5Var;
+        } else if (user != null && user.verified) {
+            Drawable drawable2 = this.f32056b;
+            if (drawable2 == null) {
+                drawable2 = new ar(org.telegram.ui.ActionBar.y6.f23386f1, org.telegram.ui.ActionBar.y6.f23441i1);
+            }
+            this.f32056b = drawable2;
+            r5Var.g(drawable2, z10);
+            r5Var.k(null);
+            return r5Var;
+        } else if (user != null && DialogObject.getEmojiStatusDocumentId(user.emoji_status) != 0) {
+            r5Var.j(DialogObject.getEmojiStatusDocumentId(user.emoji_status), z10);
+            r5Var.k(Integer.valueOf(i10));
+            return r5Var;
+        } else if (user != null && user.premium) {
+            r5Var.g(tg.b1.d().e, z10);
+            r5Var.k(Integer.valueOf(i10));
+            return r5Var;
+        } else {
+            r5Var.g(null, z10);
+            r5Var.k(null);
+            return r5Var;
+        }
+    }
+
+    public qx0(int i10, View view) {
+        this.f32055a = new r5(AndroidUtilities.dp(i10), view);
     }
 }

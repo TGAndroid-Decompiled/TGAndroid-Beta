@@ -1,53 +1,58 @@
 package j5;
+public final class a {
+    public final Integer f15508a;
+    public final Object f15509b;
+    public final d f15510c;
+    public final b d;
 
-import j$.util.DesugarCollections;
-import java.nio.charset.Charset;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.regex.Pattern;
-import l5.l;
-import v7.n8;
-public final class a implements l {
-    public static final String f14295c;
-    public static final Set d;
-    public static final a e;
-    public static final a f14296f;
-    public final String f14297a;
-    public final String f14298b;
-
-    static {
-        String a2 = n8.a("hts/frbslgiggolai.o/0clgbthfra=snpoo", "tp:/ieaeogn.ogepscmvc/o/ac?omtjo_rt3");
-        f14295c = a2;
-        String a10 = n8.a("hts/frbslgigp.ogepscmv/ieo/eaybtho", "tp:/ieaeogn-agolai.o/1frlglgc/aclg");
-        String a11 = n8.a("AzSCki82AwsLzKd5O8zo", "IayckHiZRO1EFl1aGoK");
-        d = DesugarCollections.unmodifiableSet(new HashSet(Arrays.asList(new i5.c("proto"), new i5.c("json"))));
-        e = new a(a2, null);
-        f14296f = new a(a10, a11);
-    }
-
-    public a(String str, String str2) {
-        this.f14297a = str;
-        this.f14298b = str2;
-    }
-
-    public static a a(byte[] bArr) {
-        String str = new String(bArr, Charset.forName("UTF-8"));
-        if (str.startsWith("1$")) {
-            String[] split = str.substring(2).split(Pattern.quote("\\"), 2);
-            if (split.length == 2) {
-                String str2 = split[0];
-                if (!str2.isEmpty()) {
-                    String str3 = split[1];
-                    if (str3.isEmpty()) {
-                        str3 = null;
-                    }
-                    return new a(str2, str3);
-                }
-                throw new IllegalArgumentException("Missing endpoint in CCTDestination extras");
-            }
-            throw new IllegalArgumentException("Extra is not a valid encoded LegacyFlgDestination");
+    public a(Integer num, Object obj, d dVar, b bVar) {
+        this.f15508a = num;
+        if (obj != null) {
+            this.f15509b = obj;
+            this.f15510c = dVar;
+            this.d = bVar;
+            return;
         }
-        throw new IllegalArgumentException("Version marker missing from extras");
+        throw new NullPointerException("Null payload");
+    }
+
+    public final boolean equals(Object obj) {
+        b bVar;
+        if (obj == this) {
+            return true;
+        }
+        if (obj instanceof a) {
+            a aVar = (a) obj;
+            b bVar2 = aVar.d;
+            Integer num = aVar.f15508a;
+            Integer num2 = this.f15508a;
+            if (num2 != null ? num2.equals(num) : num == null) {
+                if (this.f15509b.equals(aVar.f15509b) && this.f15510c.equals(aVar.f15510c) && ((bVar = this.d) != null ? bVar.equals(bVar2) : bVar2 == null)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public final int hashCode() {
+        int hashCode;
+        int i10 = 0;
+        Integer num = this.f15508a;
+        if (num == null) {
+            hashCode = 0;
+        } else {
+            hashCode = num.hashCode();
+        }
+        int hashCode2 = (((((hashCode ^ 1000003) * 1000003) ^ this.f15509b.hashCode()) * 1000003) ^ this.f15510c.hashCode()) * 1000003;
+        b bVar = this.d;
+        if (bVar != null) {
+            i10 = bVar.hashCode();
+        }
+        return i10 ^ hashCode2;
+    }
+
+    public final String toString() {
+        return "Event{code=" + this.f15508a + ", payload=" + this.f15509b + ", priority=" + this.f15510c + ", productData=" + this.d + "}";
     }
 }

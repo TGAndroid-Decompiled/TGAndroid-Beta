@@ -162,7 +162,7 @@ public class DispatchQueue2 extends Thread {
     public void run() {
         boolean z10;
         Looper.prepare();
-        Handler handler = new Handler(Looper.myLooper(), new b2(this, 1));
+        Handler handler = new Handler(Looper.myLooper(), new c2(this, 1));
         synchronized (this.lock) {
             for (int i10 = 0; i10 < this.pending.size(); i10++) {
                 try {

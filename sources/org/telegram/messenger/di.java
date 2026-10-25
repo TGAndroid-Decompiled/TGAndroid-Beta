@@ -1,28 +1,29 @@
 package org.telegram.messenger;
-
-import org.telegram.tgnet.TLRPC;
 public final class di implements Runnable {
-    public final int f18257a;
-    public final SecretChatHelper f18258b;
-    public final TLRPC.EncryptedChat f18259c;
+    public final int f19922a;
+    public final SecretChatHelper f19923b;
+    public final long f19924c;
 
-    public di(SecretChatHelper secretChatHelper, TLRPC.EncryptedChat encryptedChat, int i10) {
-        this.f18257a = i10;
-        this.f18258b = secretChatHelper;
-        this.f18259c = encryptedChat;
+    public di(SecretChatHelper secretChatHelper, long j10, int i10) {
+        this.f19922a = i10;
+        this.f19923b = secretChatHelper;
+        this.f19924c = j10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18257a) {
+        switch (this.f19922a) {
             case 0:
-                this.f18258b.lambda$processAcceptedSecretChat$18(this.f18259c);
+                SecretChatHelper.y(this.f19923b, this.f19924c);
                 return;
             case 1:
-                this.f18258b.lambda$acceptSecretChat$21(this.f18259c);
+                SecretChatHelper.u(this.f19923b, this.f19924c);
+                return;
+            case 2:
+                SecretChatHelper.j(this.f19923b, this.f19924c);
                 return;
             default:
-                this.f18258b.lambda$applyPeerLayer$9(this.f18259c);
+                SecretChatHelper.x(this.f19923b, this.f19924c);
                 return;
         }
     }

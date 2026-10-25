@@ -1,6 +1,8 @@
 package org.telegram.ui.ActionBar;
-public interface s6 {
-    void a(float f7);
 
-    void b();
+import java.util.ArrayList;
+import org.telegram.tgnet.TLRPC;
+public final class s6 {
+    public TLRPC.TL_wallPaper f23086a;
+    public ArrayList f23087b;
 }

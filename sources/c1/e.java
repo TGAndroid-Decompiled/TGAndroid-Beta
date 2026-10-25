@@ -1,8 +1,8 @@
 package c1;
 
 import a1.h;
-import a4.l;
-import ah.h0;
+import a8.ib;
+import ai.f0;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.CancellationSignal;
@@ -17,29 +17,28 @@ import java.util.concurrent.Executor;
 import org.json.JSONException;
 import org.json.JSONObject;
 import v0.i;
-import v0.o;
-import v0.q;
-import v7.p6;
-import w7.h8;
+import v0.n;
+import v0.p;
+import w7.i0;
 public final class e extends b1.d {
     public final Context e;
-    public i f4487f;
-    public Executor f4488g;
+    public i f5923f;
+    public Executor f5924g;
     public CancellationSignal h;
-    public final d f4489i;
+    public final d f5925i;
 
     public e(Context context) {
         kotlin.jvm.internal.i.e(context, "context");
         this.e = context;
-        this.f4489i = new d(this, new Handler(Looper.getMainLooper()), 0);
+        this.f5925i = new d(this, new Handler(Looper.getMainLooper()), 0);
     }
 
-    public final v0.p d(x5.g r14) {
-        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(x5.g):v0.p");
+    public final v0.o d(y5.g r14) {
+        throw new UnsupportedOperationException("Method not decompiled: c1.e.d(y5.g):v0.o");
     }
 
     public final i e() {
-        i iVar = this.f4487f;
+        i iVar = this.f5923f;
         if (iVar != null) {
             return iVar;
         }
@@ -48,7 +47,7 @@ public final class e extends b1.d {
     }
 
     public final Executor f() {
-        Executor executor = this.f4488g;
+        Executor executor = this.f5924g;
         if (executor != null) {
             return executor;
         }
@@ -56,41 +55,41 @@ public final class e extends b1.d {
         throw null;
     }
 
-    public final void g(o request, CancellationSignal cancellationSignal, Executor executor, i callback) {
+    public final void g(n request, CancellationSignal cancellationSignal, Executor executor, i callback) {
         boolean z10;
         kotlin.jvm.internal.i.e(request, "request");
         kotlin.jvm.internal.i.e(callback, "callback");
         kotlin.jvm.internal.i.e(executor, "executor");
         this.h = cancellationSignal;
-        this.f4487f = callback;
-        this.f4488g = executor;
+        this.f5923f = callback;
+        this.f5924g = executor;
         CredentialProviderPlayServicesImpl.Companion.getClass();
         if (h.a(cancellationSignal)) {
             return;
         }
         Context context = this.e;
         kotlin.jvm.internal.i.e(context, "context");
-        x5.d dVar = new x5.d(false);
-        x5.a aVar = new x5.a(false, null, null, true, null, null, false);
-        x5.c cVar = new x5.c(false, null, null);
-        x5.b bVar = new x5.b(null, false);
+        y5.d dVar = new y5.d(false);
+        y5.a aVar = new y5.a(false, null, null, true, null, null, false);
+        y5.c cVar = new y5.c(false, null, null);
+        y5.b bVar = new y5.b(null, false);
         PackageManager packageManager = context.getPackageManager();
         kotlin.jvm.internal.i.d(packageManager, "getPackageManager(...)");
         long j10 = packageManager.getPackageInfo("com.google.android.gms", 0).versionCode;
-        x5.b bVar2 = bVar;
+        y5.b bVar2 = bVar;
         boolean z11 = false;
-        for (q qVar : request.f48305a) {
-            if ((qVar instanceof q) && !z11) {
+        for (p pVar : request.f49976a) {
+            if ((pVar instanceof p) && !z11) {
                 if (j10 >= 231815000) {
-                    LinkedHashMap linkedHashMap = f.f7743a;
-                    bVar2 = new x5.b(qVar.d, true);
+                    LinkedHashMap linkedHashMap = f.f7835a;
+                    bVar2 = new y5.b(pVar.d, true);
                 } else {
-                    LinkedHashMap linkedHashMap2 = f.f7743a;
-                    JSONObject jSONObject = new JSONObject(qVar.d);
+                    LinkedHashMap linkedHashMap2 = f.f7835a;
+                    JSONObject jSONObject = new JSONObject(pVar.d);
                     String optString = jSONObject.optString("rpId", "");
                     kotlin.jvm.internal.i.b(optString);
                     if (optString.length() != 0) {
-                        cVar = new x5.c(true, p6.a(jSONObject), optString);
+                        cVar = new y5.c(true, ib.a(jSONObject), optString);
                     } else {
                         throw new JSONException("GetPublicKeyCredentialOption - rpId not specified in the request or is unexpectedly empty");
                     }
@@ -99,18 +98,18 @@ public final class e extends b1.d {
             }
         }
         if (j10 > 241217000) {
-            z10 = request.f48306b;
+            z10 = request.f49977b;
         } else {
             z10 = false;
         }
-        i7.b a2 = h8.a(context);
-        new x5.a(false, null, null, true, null, null, false);
-        x5.e eVar = new x5.e(dVar, aVar, a2.f12761k, false, 0, cVar, bVar2, z10);
+        j7.b a2 = i0.a(context);
+        new y5.a(false, null, null, true, null, null, false);
+        y5.e eVar = new y5.e(dVar, aVar, a2.f15534k, false, 0, cVar, bVar2, z10);
         u b10 = v.b();
-        b10.d = new k6.c[]{new k6.c("auth_api_credentials_begin_sign_in", 8L)};
-        b10.f6509c = new l(a2, eVar, 23);
-        b10.f6508b = false;
-        b10.f6507a = 1553;
-        a2.e(0, b10.a()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 12)).addOnFailureListener(new h0(4, this, cancellationSignal));
+        b10.d = new l6.c[]{new l6.c("auth_api_credentials_begin_sign_in", 8L)};
+        b10.f6622c = new b6.i(a2, eVar);
+        b10.f6621b = false;
+        b10.f6620a = 1553;
+        a2.e(0, b10.a()).addOnSuccessListener(new a1.c(new b1.f(1, cancellationSignal, this), 14)).addOnFailureListener(new f0(5, this, cancellationSignal));
     }
 }

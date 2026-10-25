@@ -1,66 +1,36 @@
 package ph;
 
-import org.telegram.messenger.R;
-public enum a {
-    CONTACTS(R.raw.tab_contacts),
-    CALLS(R.raw.tab_calls),
-    CHATS(R.raw.tab_chats),
-    SETTINGS(R.raw.tab_settings),
-    f44718s("CHECKLIST", R.raw.tab_checklist_reverse),
-    v("COLORS", R.raw.tab_colors_reverse),
-    f44719w("FILES", R.raw.tab_files_reverse),
-    f44720x("GALLERY", R.raw.tab_gallery_reverse),
-    EF7("GIFT", R.raw.tab_gift_reverse),
-    f44721y("LOCATION", R.raw.tab_location_reverse),
-    E("STICKER", R.raw.tab_sticker_reverse),
-    F("EMOJI", R.raw.tab_emoji_reverse),
-    G("MODELS", R.raw.tab_models_reverse),
-    H("MUSIC", R.raw.tab_music_reverse),
-    I("POLL", R.raw.tab_poll_reverse),
-    J("SYMBOLS", R.raw.tab_symbols_reverse),
-    K("REPLIES", R.raw.tab_reply_reverse),
-    EF0("WALLET", R.raw.tab_wallet_reverse),
-    L,
-    M("ARTICLE", R.raw.tab_article_reverse),
-    N("GRAM", R.raw.gram_reverse),
-    BOOSTS(R.raw.boosts, 25, 49),
-    MONETIZATION(R.raw.monetize, 19, 45);
-    
-    public final int f44722a;
-    public final int f44723b;
-    public final int f44724c;
-    public final int d;
-    public final int e;
-
-    a(int i10, int i11, int i12) {
-        this.f44722a = i10;
-        this.f44723b = i10;
-        this.d = i11;
-        this.e = i12;
-        this.f44724c = -1;
+import android.content.Context;
+import android.view.View;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.ActionBar.u6;
+import org.telegram.ui.Components.r71;
+import org.telegram.ui.yx;
+public abstract class a extends r71 {
+    public a(Context context, int i10, Utilities.Callback2 callback2, Utilities.Callback5 callback5, u6 u6Var) {
+        super(context, i10, -1, false, callback2, callback5, null, u6Var, -1, 0);
+        this.f30666y2 = true;
+        setOverScrollMode(2);
     }
 
-    a(int i10) {
-        this.f44724c = i10;
-        this.f44722a = -1;
-        this.f44723b = -1;
-        this.d = -1;
-        this.e = -1;
-    }
-
-    a(int i10) {
-        this.f44722a = i10;
-        this.f44723b = i10;
-        this.d = -1;
-        this.e = -1;
-        this.f44724c = -1;
-    }
-
-    a(String str, int i10) {
-        this.f44722a = r2;
-        this.f44723b = i10;
-        this.d = -1;
-        this.e = -1;
-        this.f44724c = -1;
+    public final void O1(View view) {
+        int i10;
+        if (view != null) {
+            float dp = AndroidUtilities.dp(92.0f);
+            float width = getWidth() - dp;
+            float x9 = view.getX();
+            float width2 = view.getWidth() + x9;
+            if (x9 < dp) {
+                i10 = (int) (x9 - dp);
+            } else if (width2 > width) {
+                i10 = (int) (width2 - width);
+            } else {
+                i10 = 0;
+            }
+            if (i10 != 0) {
+                AndroidUtilities.doOnLayout(this, new yx(this, view, i10, 21));
+            }
+        }
     }
 }

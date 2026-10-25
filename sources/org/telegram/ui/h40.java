@@ -1,24 +1,24 @@
 package org.telegram.ui;
 
-import android.graphics.Paint;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.view.ViewGroup;
-public final class h40 extends Paint {
-    public final u50 f37738a;
+public final class h40 extends AnimatorListenerAdapter {
+    public final org.telegram.ui.Components.voip.t f39887a;
+    public final v50 f39888b;
 
-    public h40(u50 u50Var) {
-        this.f37738a = u50Var;
+    public h40(v50 v50Var, org.telegram.ui.Components.voip.t tVar) {
+        this.f39888b = v50Var;
+        this.f39887a = tVar;
     }
 
     @Override
-    public final void setAlpha(int i10) {
+    public final void onAnimationEnd(Animator animator) {
         ViewGroup viewGroup;
-        ViewGroup viewGroup2;
-        super.setAlpha(i10);
-        u50 u50Var = this.f37738a;
-        viewGroup = ((org.telegram.ui.ActionBar.h3) u50Var).containerView;
-        if (viewGroup != null) {
-            viewGroup2 = ((org.telegram.ui.ActionBar.h3) u50Var).containerView;
-            viewGroup2.invalidate();
+        org.telegram.ui.Components.voip.t tVar = this.f39887a;
+        if (tVar.getParent() != null) {
+            viewGroup = ((org.telegram.ui.ActionBar.k3) this.f39888b).containerView;
+            viewGroup.removeView(tVar);
         }
     }
 }

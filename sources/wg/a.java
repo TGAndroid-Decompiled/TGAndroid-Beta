@@ -1,87 +1,147 @@
 package wg;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.view.View;
-import android.widget.FrameLayout;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.ActionBar.r6;
-import w7.z5;
-public final class a extends FrameLayout {
-    public final ei.d f49388a;
-    public final View f49389b;
-    public final g6 f49390c;
-    public final Paint d;
-    public boolean e;
+import android.text.TextUtils;
+import java.util.ArrayList;
+import java.util.List;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+import org.telegram.tgnet.tl.TL_stars;
+public final class a extends qg.a {
+    public CharSequence f51160c;
+    public TLRPC.InputPeer d;
+    public TLRPC.Chat e;
+    public Object f51161f;
+    public boolean f51162g;
+    public long h;
+    public int f51163i;
+    public int f51164j;
+    public List f51165k;
+    public int f51166l;
+    public TLObject f51167m;
 
-    public a(Context context, g6 g6Var) {
-        super(context);
-        this.d = new Paint(1);
-        this.f49390c = g6Var;
-        View view = new View(context);
-        this.f49389b = view;
-        addView(view, z5.n(-1, -1));
-        ei.d dVar = new ei.d(context, g6Var, true);
-        this.f49388a = dVar;
-        addView(dVar, z5.d(-1, 48.0f, 17, 14.0f, 0.0f, 14.0f, 0.0f));
+    public static a b(TLRPC.Chat chat, int i10, boolean z10) {
+        ?? aVar = new qg.a(9, false);
+        aVar.e = chat;
+        aVar.d = null;
+        aVar.f51162g = z10;
+        aVar.f51163i = i10;
+        return aVar;
     }
 
-    public final void a(int i10, boolean z10) {
-        this.e = true;
-        ei.d dVar = this.f49388a;
-        dVar.k();
-        dVar.setShowZero(true);
-        dVar.setEnabled(true);
-        dVar.b(i10, z10);
-        dVar.i(LocaleController.getString(R.string.BoostingStartGiveaway), z10, true);
-        r6.i(k6.f21255h5, this.f49389b, this.f49390c);
+    public static a c(CharSequence charSequence, boolean z10) {
+        ?? aVar = new qg.a(7, false);
+        aVar.f51160c = charSequence;
+        aVar.f51162g = z10;
+        return aVar;
     }
 
-    public final void b(boolean z10) {
-        this.f49388a.setLoading(z10);
+    public static a d(TL_stars.TL_starsGiveawayOption tL_starsGiveawayOption, int i10, long j10, boolean z10, boolean z11) {
+        ?? aVar = new qg.a(17, z10);
+        aVar.f51163i = i10;
+        aVar.h = j10;
+        aVar.f51167m = tL_starsGiveawayOption;
+        aVar.f51162g = z11;
+        return aVar;
     }
 
-    @Override
-    public final void dispatchDraw(Canvas canvas) {
-        super.dispatchDraw(canvas);
-        if (this.e) {
-            int w02 = k6.w0(k6.f21126a7, this.f49390c);
-            Paint paint = this.d;
-            paint.setColor(w02);
-            paint.setAlpha(255);
-            canvas.drawRect(0.0f, 0.0f, getWidth(), 1.0f, paint);
-        }
-    }
-
-    public void setCloseStyle(boolean z10) {
-        this.e = false;
-        ei.d dVar = this.f49388a;
-        dVar.setShowZero(false);
-        dVar.setEnabled(true);
-        dVar.i(LocaleController.formatString("Close", R.string.Close, new Object[0]), false, true);
-        this.e = z10;
-    }
-
-    public void setOkStyle(boolean z10) {
-        String formatString;
-        this.e = false;
-        ei.d dVar = this.f49388a;
-        dVar.setShowZero(false);
-        dVar.setEnabled(true);
-        if (z10) {
-            formatString = LocaleController.formatString("BoostingUseLink", R.string.BoostingUseLink, new Object[0]);
+    public static a e(int i10, int i11, boolean z10, ArrayList arrayList) {
+        boolean z11;
+        if (i11 == i10) {
+            z11 = true;
         } else {
-            formatString = LocaleController.formatString("OK", R.string.OK, new Object[0]);
+            z11 = false;
         }
-        dVar.i(formatString, false, true);
+        ?? aVar = new qg.a(11, z11);
+        aVar.f51166l = i10;
+        aVar.f51162g = z10;
+        aVar.f51161f = arrayList;
+        return aVar;
+    }
+
+    public static a f(String str) {
+        ?? aVar = new qg.a(6, false);
+        aVar.f51160c = str;
+        return aVar;
+    }
+
+    public static boolean g(List list, List list2) {
+        if (list == null && list2 == null) {
+            return true;
+        }
+        if (list == null || list2 == null || list.size() != list2.size()) {
+            return false;
+        }
+        for (int i10 = 0; i10 < list.size(); i10++) {
+            if (((Integer) list.get(i10)).intValue() != ((Integer) list2.get(i10)).intValue()) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @Override
-    public void setOnClickListener(View.OnClickListener onClickListener) {
-        this.f49388a.setOnClickListener(onClickListener);
+    public final boolean a(qg.a aVar) {
+        a aVar2;
+        int i10;
+        int i11;
+        if (this != aVar) {
+            if (a.class == aVar.getClass() && (i10 = (aVar2 = (a) aVar).f47037a) == (i11 = this.f47037a)) {
+                if (i11 == 0) {
+                    if (this.f51162g == aVar2.f51162g) {
+                        return true;
+                    }
+                    return false;
+                } else if (i10 == 17) {
+                    if (this.f51163i == aVar2.f51163i && this.h == aVar2.h && this.f51167m == aVar2.f51167m && this.f51162g == aVar2.f51162g && this.f47038b == aVar2.f47038b) {
+                        return true;
+                    }
+                    return false;
+                } else if (i11 == 5) {
+                    if (this.f51163i == aVar2.f51163i && g(this.f51165k, aVar2.f51165k)) {
+                        return true;
+                    }
+                    return false;
+                } else if (i11 == 13 && this.f51163i == aVar2.f51163i && TextUtils.equals(this.f51160c, aVar2.f51160c)) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            return false;
+        }
+        return true;
+    }
+
+    public final boolean equals(Object obj) {
+        if (this != obj) {
+            if (obj != null && a.class == obj.getClass()) {
+                a aVar = (a) obj;
+                int i10 = this.f47037a;
+                if (i10 == aVar.f47037a) {
+                    if (i10 != 0) {
+                        if (i10 == 17) {
+                            if (this.f51163i == aVar.f51163i && this.f51167m == aVar.f51167m) {
+                                return true;
+                            }
+                            return false;
+                        } else if (i10 == 5) {
+                            return g(this.f51165k, aVar.f51165k);
+                        } else {
+                            if (i10 == 13) {
+                                return TextUtils.equals(this.f51160c, aVar.f51160c);
+                            }
+                            if (this.e == aVar.e && this.f51161f == aVar.f51161f && this.d == aVar.d && this.f51167m == aVar.f51167m && this.f51162g == aVar.f51162g && this.f51163i == aVar.f51163i && this.f51164j == aVar.f51164j && this.h == aVar.h && this.f51166l == aVar.f51166l && TextUtils.equals(this.f51160c, aVar.f51160c)) {
+                                return true;
+                            }
+                            return false;
+                        }
+                    }
+                    return true;
+                }
+                return false;
+            }
+            return false;
+        }
+        return true;
     }
 }

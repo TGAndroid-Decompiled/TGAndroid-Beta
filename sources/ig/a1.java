@@ -1,17 +1,48 @@
 package ig;
 
-import android.text.InputFilter;
-import android.text.Spanned;
-public final class a1 implements InputFilter {
+import bi.i2;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.MessagesStorage;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class a1 implements Runnable {
+    public final String f13985a;
+    public final String f13986b;
+    public final MessagesController f13987c;
+    public final MessagesStorage d;
+    public final j1 e;
+
+    public a1(j1 j1Var, String str, String str2, MessagesController messagesController, MessagesStorage messagesStorage) {
+        this.e = j1Var;
+        this.f13985a = str;
+        this.f13986b = str2;
+        this.f13987c = messagesController;
+        this.d = messagesStorage;
+    }
+
     @Override
-    public final CharSequence filter(CharSequence charSequence, int i10, int i11, Spanned spanned, int i12, int i13) {
-        if (charSequence != null) {
-            String charSequence2 = charSequence.toString();
-            if (charSequence2.contains("\n")) {
-                return charSequence2.replaceAll("\n", "");
+    public final void run() {
+        j1 j1Var = this.e;
+        if (j1Var.f14141y0 == this) {
+            j1Var.f14141y0 = null;
+            TLRPC.User user = j1Var.f14137w0;
+            if (user == null && !j1Var.f14135v0) {
+                String str = this.f13986b;
+                j1Var.f14128q0 = str;
+                MessagesController messagesController = this.f13987c;
+                TLObject userOrChat = messagesController.getUserOrChat(str);
+                if (userOrChat instanceof TLRPC.User) {
+                    j1Var.R((TLRPC.User) userOrChat);
+                    return;
+                }
+                TLRPC.TL_contacts_resolveUsername tL_contacts_resolveUsername = new TLRPC.TL_contacts_resolveUsername();
+                tL_contacts_resolveUsername.username = j1Var.f14128q0;
+                j1Var.f14133t0 = ConnectionsManager.getInstance(j1Var.f14116f).sendRequest(tL_contacts_resolveUsername, new i2(this, str, messagesController, this.d, 7));
+            } else if (j1Var.f14135v0) {
+            } else {
+                j1Var.T(true, user, this.f13985a, "");
             }
-            return null;
         }
-        return null;
     }
 }

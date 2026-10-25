@@ -1,45 +1,78 @@
 package w7;
-public abstract class h9 {
-    public static void a(int i10, int i11) {
-        String a2;
-        if (i10 >= 0 && i10 < i11) {
-            return;
-        }
-        if (i10 >= 0) {
-            if (i11 < 0) {
-                throw new IllegalArgumentException(i2.o1.k(i11, "negative size: "));
-            }
-            a2 = i9.a("%s (%s) must be less than size (%s)", "index", Integer.valueOf(i10), Integer.valueOf(i11));
-        } else {
-            a2 = i9.a("%s (%s) must not be negative", "index", Integer.valueOf(i10));
-        }
-        throw new IndexOutOfBoundsException(a2);
+
+import java.io.Serializable;
+import java.lang.reflect.Array;
+import java.util.AbstractCollection;
+import java.util.Arrays;
+import java.util.Collection;
+public abstract class h9 extends AbstractCollection implements Serializable {
+    public static final Object[] f50876a = new Object[0];
+
+    @Override
+    public final boolean add(Object obj) {
+        throw new UnsupportedOperationException();
     }
 
-    public static void b(int i10, int i11, int i12) {
-        String c10;
-        if (i10 >= 0 && i11 >= i10 && i11 <= i12) {
-            return;
-        }
-        if (i10 >= 0 && i10 <= i12) {
-            if (i11 >= 0 && i11 <= i12) {
-                c10 = i9.a("end index (%s) must not be less than start index (%s)", Integer.valueOf(i11), Integer.valueOf(i10));
+    @Override
+    public final boolean addAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final void clear() {
+        throw new UnsupportedOperationException();
+    }
+
+    public abstract int h(Object[] objArr);
+
+    public int m() {
+        throw new UnsupportedOperationException();
+    }
+
+    public int n() {
+        throw new UnsupportedOperationException();
+    }
+
+    public Object[] o() {
+        return null;
+    }
+
+    @Override
+    public final boolean remove(Object obj) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean removeAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final boolean retainAll(Collection collection) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public final Object[] toArray() {
+        return toArray(f50876a);
+    }
+
+    @Override
+    public final Object[] toArray(Object[] objArr) {
+        objArr.getClass();
+        int size = size();
+        int length = objArr.length;
+        if (length < size) {
+            Object[] o10 = o();
+            if (o10 == null) {
+                objArr = (Object[]) Array.newInstance(objArr.getClass().getComponentType(), size);
             } else {
-                c10 = c(i11, i12, "end index");
+                return Arrays.copyOfRange(o10, n(), m(), objArr.getClass());
             }
-        } else {
-            c10 = c(i10, i12, "start index");
+        } else if (length > size) {
+            objArr[size] = null;
         }
-        throw new IndexOutOfBoundsException(c10);
-    }
-
-    public static String c(int i10, int i11, String str) {
-        if (i10 < 0) {
-            return i9.a("%s (%s) must not be negative", str, Integer.valueOf(i10));
-        }
-        if (i11 >= 0) {
-            return i9.a("%s (%s) must not be greater than size (%s)", str, Integer.valueOf(i10), Integer.valueOf(i11));
-        }
-        throw new IllegalArgumentException(i2.o1.k(i11, "negative size: "));
+        h(objArr);
+        return objArr;
     }
 }

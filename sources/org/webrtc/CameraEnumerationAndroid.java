@@ -1,7 +1,7 @@
 package org.webrtc;
 
 import android.graphics.ImageFormat;
-import com.google.android.gms.internal.play_billing.k3;
+import c3.h0;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -118,7 +118,7 @@ public class CameraEnumerationAndroid {
                 if (i11 < i12) {
                     return i11 * i13;
                 }
-                return k3.v(i11, i12, i14, i13 * i12);
+                return h0.w(i11, i12, i14, i13 * i12);
             }
 
             @Override

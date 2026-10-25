@@ -1,20 +1,16 @@
 package org.telegram.ui;
-public final class nk extends org.telegram.ui.Components.ol0 {
-    public final sn f39907l;
 
-    public nk(sn snVar, nj njVar, qj qjVar) {
-        super(njVar, qjVar);
-        this.f39907l = snVar;
+import android.content.Context;
+public final class nk extends org.telegram.ui.Components.t71 {
+    public final un N;
+
+    public nk(un unVar, Context context) {
+        super(context);
+        this.N = unVar;
     }
 
-    public final void e(int i10) {
-        if (this.f39907l.f41483cb) {
-            if (i10 == 0) {
-                i10 = 1;
-            } else if (i10 == 1) {
-                i10 = 0;
-            }
-        }
-        this.f29317b = i10;
+    @Override
+    public final org.telegram.ui.ActionBar.u6 getResourceProvider() {
+        return this.N.f44385qa;
     }
 }

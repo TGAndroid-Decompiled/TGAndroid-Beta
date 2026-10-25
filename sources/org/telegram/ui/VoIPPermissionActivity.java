@@ -79,7 +79,7 @@ public class VoIPPermissionActivity extends Activity {
             } else {
                 VoIPPreNotificationService.decline(this, 1);
             }
-            org.telegram.ui.Components.voip.d2.h(this, new ly0(this, 27), i10);
+            org.telegram.ui.Components.voip.g2.h(this, new my0(this, 29), i10);
         } else {
             finish();
         }

@@ -1,15 +1,22 @@
 package zh;
+public final class o implements Runnable {
+    public final int f53163a;
+    public final v f53164b;
 
-import java.util.ArrayList;
-public final class o {
-    public final int f52529a;
-    public final String f52530b;
-    public final ArrayList f52531c;
-    public int d;
+    public o(v vVar, int i10) {
+        this.f53163a = i10;
+        this.f53164b = vVar;
+    }
 
-    public o(int i10, String str, ArrayList arrayList) {
-        this.f52529a = i10;
-        this.f52530b = str;
-        this.f52531c = arrayList;
+    @Override
+    public final void run() {
+        switch (this.f53163a) {
+            case 0:
+                this.f53164b.onBackPressed();
+                return;
+            default:
+                this.f53164b.T();
+                return;
+        }
     }
 }

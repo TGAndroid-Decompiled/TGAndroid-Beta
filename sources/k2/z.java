@@ -1,15 +1,13 @@
 package k2;
-
-import i2.o1;
 public final class z extends Exception {
-    public final int f14895a;
-    public final boolean f14896b;
-    public final b2.w f14897c;
+    public final int f16330a;
+    public final boolean f16331b;
+    public final b2.x f16332c;
 
-    public z(int i10, b2.w wVar, boolean z10) {
-        super(o1.k(i10, "AudioTrack write failed: "));
-        this.f14896b = z10;
-        this.f14895a = i10;
-        this.f14897c = wVar;
+    public z(int i10, b2.x xVar, boolean z10) {
+        super(ic.a.i(i10, "AudioTrack write failed: "));
+        this.f16331b = z10;
+        this.f16330a = i10;
+        this.f16332c = xVar;
     }
 }

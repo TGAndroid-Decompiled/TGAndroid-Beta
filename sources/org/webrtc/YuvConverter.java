@@ -100,19 +100,19 @@ public class YuvConverter {
                         e = e;
                         i12 = i14;
                     }
-                } catch (Exception e7) {
-                    e = e7;
+                } catch (Exception e10) {
+                    e = e10;
                     i12 = i14;
                 }
-            } catch (Exception e10) {
-                e = e10;
+            } catch (Exception e11) {
+                e = e11;
                 i10 = i13;
                 i12 = i14;
                 byteBuffer = nativeAllocateByteBuffer;
                 i11 = 0;
             }
-        } catch (Exception e11) {
-            e = e11;
+        } catch (Exception e12) {
+            e = e12;
             i10 = i13;
             byteBuffer = nativeAllocateByteBuffer;
             i11 = 0;
@@ -120,8 +120,8 @@ public class YuvConverter {
         }
         try {
             byteBuffer = nativeAllocateByteBuffer;
-        } catch (Exception e12) {
-            e = e12;
+        } catch (Exception e13) {
+            e = e13;
             byteBuffer = nativeAllocateByteBuffer;
             FileLog.e(e);
             int i17 = i10 * height;
@@ -144,8 +144,8 @@ public class YuvConverter {
             GLES20.glReadPixels(0, 0, this.i420TextureFrameBuffer.getWidth(), this.i420TextureFrameBuffer.getHeight(), 6408, 5121, byteBuffer);
             GlUtil.checkNoGLES2Error("YuvConverter.convert");
             GLES20.glBindFramebuffer(36160, 0);
-        } catch (Exception e13) {
-            e = e13;
+        } catch (Exception e14) {
+            e = e14;
             FileLog.e(e);
             int i172 = i10 * height;
             int i182 = i10 / 2;

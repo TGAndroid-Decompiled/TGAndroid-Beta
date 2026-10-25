@@ -1,45 +1,29 @@
 package org.telegram.ui;
 
-import android.text.TextUtils;
-import android.text.TextWatcher;
-public final class co0 implements TextWatcher {
-    public int f36378a = -1;
-    public boolean f36379b;
-    public int f36380c;
-    public final ho0 d;
-
-    public co0(ho0 ho0Var) {
-        this.d = ho0Var;
-    }
-
-    @Override
-    public final void afterTextChanged(android.text.Editable r14) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.co0.afterTextChanged(android.text.Editable):void");
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        boolean z10 = false;
-        if (i11 == 0 && i12 == 1) {
-            if (TextUtils.indexOf((CharSequence) this.d.f37927f[1].getText(), '/') != -1) {
-                z10 = true;
-            }
-            this.f36379b = z10;
-            this.f36378a = 1;
-        } else if (i11 == 1 && i12 == 0) {
-            if (charSequence.charAt(i10) == '/' && i10 > 0) {
-                this.f36379b = false;
-                this.f36378a = 3;
-                this.f36380c = i10 - 1;
+import org.json.JSONObject;
+public final class co0 extends JSONObject {
+    public co0(po0 po0Var, int i10) {
+        switch (i10) {
+            case 3:
+                put("type", "PAYMENT_GATEWAY");
+                Object obj = po0Var.M0;
+                if (obj != null) {
+                    put("parameters", obj);
+                    return;
+                }
+                JSONObject jSONObject = new JSONObject();
+                jSONObject.put("gateway", "stripe");
+                jSONObject.put("stripe:publishableKey", po0Var.f42602j0);
+                jSONObject.put("stripe:version", "3.5.0");
+                put("parameters", jSONObject);
                 return;
-            }
-            this.f36378a = 2;
-        } else {
-            this.f36378a = -1;
+            default:
+                put("type", "DIRECT");
+                JSONObject jSONObject2 = new JSONObject();
+                jSONObject2.put("protocolVersion", "ECv2");
+                jSONObject2.put("publicKey", po0Var.K0);
+                put("parameters", jSONObject2);
+                return;
         }
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

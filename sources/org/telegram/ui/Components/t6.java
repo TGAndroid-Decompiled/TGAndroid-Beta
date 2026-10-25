@@ -1,31 +1,45 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class t6 implements View.OnClickListener {
-    public final int f30735a;
-    public final Runnable f30736b;
+import android.graphics.Paint;
+import android.graphics.drawable.Drawable;
+import android.graphics.drawable.ShapeDrawable;
+public final class t6 extends u6 {
+    public final int f32862b;
 
-    public t6(int i10, Runnable runnable) {
-        this.f30735a = i10;
-        this.f30736b = runnable;
+    public t6(String str, int i10) {
+        super(str, 1);
+        this.f32862b = i10;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f30735a) {
+    public final void b(int i10, Object obj) {
+        switch (this.f32862b) {
             case 0:
-                this.f30736b.run();
+                ((Paint) obj).setAlpha(i10);
                 return;
             case 1:
-                Runnable runnable = this.f30736b;
-                if (runnable != null) {
-                    runnable.run();
-                    return;
-                }
+                ((Paint) obj).setColor(i10);
+                return;
+            case 2:
+                ((Drawable) obj).setAlpha(i10);
                 return;
             default:
-                this.f30736b.run();
+                ((ShapeDrawable) obj).getPaint().setAlpha(i10);
                 return;
+        }
+    }
+
+    @Override
+    public final Object get(Object obj) {
+        switch (this.f32862b) {
+            case 0:
+                return Integer.valueOf(((Paint) obj).getAlpha());
+            case 1:
+                return Integer.valueOf(((Paint) obj).getColor());
+            case 2:
+                return Integer.valueOf(((Drawable) obj).getAlpha());
+            default:
+                return Integer.valueOf(((ShapeDrawable) obj).getPaint().getAlpha());
         }
     }
 }

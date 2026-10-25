@@ -3,42 +3,42 @@ package org.telegram.ui;
 import android.view.View;
 import org.telegram.messenger.AndroidUtilities;
 public final class g60 implements View.OnClickListener {
-    public final int f37463a;
-    public final p60 f37464b;
+    public final int f39554a;
+    public final r60 f39555b;
 
-    public g60(p60 p60Var, int i10) {
-        this.f37463a = i10;
-        this.f37464b = p60Var;
+    public g60(r60 r60Var, int i10) {
+        this.f39554a = i10;
+        this.f39555b = r60Var;
     }
 
     @Override
     public final void onClick(View view) {
-        switch (this.f37463a) {
+        switch (this.f39554a) {
             case 0:
-                p60 p60Var = this.f37464b;
-                p60Var.f40356f.f27258r.clearFocus();
-                p60Var.f40356f.f27258r.requestFocus();
-                AndroidUtilities.showKeyboard(p60Var.f40356f.f27258r);
+                r60 r60Var = this.f39555b;
+                r60Var.X = null;
+                r60Var.Z.b();
+                r60Var.h.b();
+                r60Var.l0();
+                r60Var.s0();
+                r60Var.t0();
                 return;
             case 1:
-                this.f37464b.o0();
+                r60 r60Var2 = this.f39555b;
+                r60Var2.f43017f.f30365r.clearFocus();
+                r60Var2.f43017f.f30365r.requestFocus();
+                AndroidUtilities.showKeyboard(r60Var2.f43017f.f30365r);
                 return;
             case 2:
-                p60 p60Var2 = this.f37464b;
-                p60Var2.n0(p60Var2.l0());
+                this.f39555b.p0();
                 return;
             case 3:
-                p60 p60Var3 = this.f37464b;
-                p60Var3.n0(p60Var3.l0());
+                r60 r60Var3 = this.f39555b;
+                r60Var3.o0(r60Var3.m0());
                 return;
             default:
-                p60 p60Var4 = this.f37464b;
-                p60Var4.X = null;
-                p60Var4.Z.b();
-                p60Var4.h.b();
-                p60Var4.k0();
-                p60Var4.r0();
-                p60Var4.s0();
+                r60 r60Var4 = this.f39555b;
+                r60Var4.o0(r60Var4.m0());
                 return;
         }
     }

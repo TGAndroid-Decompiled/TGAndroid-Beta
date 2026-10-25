@@ -1,160 +1,78 @@
 package u2;
+public final class c implements d1 {
+    public final d1 f49251a;
+    public boolean f49252b;
+    public final d f49253c;
 
-import java.util.Arrays;
-import java.util.HashMap;
-public class c implements ka.a {
-    public final int f47710a;
-    public Object f47711b;
-    public Object f47712c;
-    public Object d;
-
-    public c(int i10, boolean z10) {
-        this.f47710a = i10;
+    public c(d dVar, d1 d1Var) {
+        this.f49253c = dVar;
+        this.f49251a = d1Var;
     }
 
     @Override
-    public ka.a a(Class cls, ja.d dVar) {
-        switch (this.f47710a) {
-            case 1:
-                ((HashMap) this.f47711b).put(cls, dVar);
-                ((HashMap) this.f47712c).remove(cls);
-                return this;
-            case 6:
-                ((HashMap) this.f47711b).put(cls, dVar);
-                ((HashMap) this.f47712c).remove(cls);
-                return this;
-            case 9:
-                ((HashMap) this.f47711b).put(cls, dVar);
-                ((HashMap) this.f47712c).remove(cls);
-                return this;
-            default:
-                ((HashMap) this.f47711b).put(cls, dVar);
-                ((HashMap) this.f47712c).remove(cls);
-                return this;
+    public final void d() {
+        this.f49251a.d();
+    }
+
+    @Override
+    public final boolean e() {
+        if (!this.f49253c.a() && this.f49251a.e()) {
+            return true;
         }
+        return false;
     }
 
-    public long b() {
-        c3.l lVar = (c3.l) this.d;
-        if (lVar != null) {
-            return lVar.d;
+    @Override
+    public final int f(n4.s sVar, h2.h hVar, int i10) {
+        d dVar = this.f49253c;
+        if (dVar.a()) {
+            return -3;
         }
-        return -1L;
-    }
-
-    public void c(g2.h r8, android.net.Uri r9, java.util.Map r10, long r11, long r13, u2.y0 r15) {
-        throw new UnsupportedOperationException("Method not decompiled: u2.c.c(g2.h, android.net.Uri, java.util.Map, long, long, u2.y0):void");
-    }
-
-    public String toString() {
-        String str = "";
-        switch (this.f47710a) {
-            case 3:
-                StringBuilder sb2 = new StringBuilder(32);
-                sb2.append((String) this.f47711b);
-                sb2.append('{');
-                c cVar = (c) ((c) this.f47712c).d;
-                while (cVar != null) {
-                    Object obj = cVar.f47712c;
-                    sb2.append(str);
-                    String str2 = (String) cVar.f47711b;
-                    if (str2 != null) {
-                        sb2.append(str2);
-                        sb2.append('=');
-                    }
-                    if (obj != null && obj.getClass().isArray()) {
-                        String deepToString = Arrays.deepToString(new Object[]{obj});
-                        sb2.append((CharSequence) deepToString, 1, deepToString.length() - 1);
-                    } else {
-                        sb2.append(obj);
-                    }
-                    cVar = (c) cVar.d;
-                    str = ", ";
+        if (this.f49252b) {
+            hVar.setFlags(4);
+            return -4;
+        }
+        long q5 = dVar.q();
+        int f7 = this.f49251a.f(sVar, hVar, i10);
+        if (dVar.e != -9223372036854775807L && f7 != -3) {
+            dVar.e = -9223372036854775807L;
+        }
+        if (f7 == -5) {
+            long j10 = dVar.f49284f;
+            long j11 = dVar.h;
+            b2.x xVar = (b2.x) sVar.f18697c;
+            xVar.getClass();
+            int i11 = xVar.O;
+            int i12 = xVar.N;
+            if (i12 != 0 || i11 != 0) {
+                if (j10 != 0) {
+                    i12 = 0;
                 }
-                sb2.append('}');
-                return sb2.toString();
-            case 14:
-                StringBuilder sb3 = new StringBuilder(32);
-                sb3.append((String) this.f47711b);
-                sb3.append('{');
-                c cVar2 = (c) ((c) this.f47712c).d;
-                while (cVar2 != null) {
-                    Object obj2 = cVar2.f47712c;
-                    sb3.append(str);
-                    String str3 = (String) cVar2.f47711b;
-                    if (str3 != null) {
-                        sb3.append(str3);
-                        sb3.append('=');
-                    }
-                    if (obj2 != null && obj2.getClass().isArray()) {
-                        String deepToString2 = Arrays.deepToString(new Object[]{obj2});
-                        sb3.append((CharSequence) deepToString2, 1, deepToString2.length() - 1);
-                    } else {
-                        sb3.append(obj2);
-                    }
-                    cVar2 = (c) cVar2.d;
-                    str = ", ";
+                if (j11 != Long.MIN_VALUE) {
+                    i11 = 0;
                 }
-                sb3.append('}');
-                return sb3.toString();
-            default:
-                return super.toString();
+                b2.w a2 = xVar.a();
+                a2.M = i12;
+                a2.N = i11;
+                sVar.f18697c = new b2.x(a2);
+            }
+            return -5;
         }
-    }
-
-    public c(int i10) {
-        this.f47710a = i10;
-        switch (i10) {
-            case 6:
-                this.f47711b = new HashMap();
-                this.f47712c = new HashMap();
-                this.d = w7.e.f49070c;
-                return;
-            case 9:
-                this.f47711b = new HashMap();
-                this.f47712c = new HashMap();
-                this.d = x7.d0.f49787c;
-                return;
-            case 15:
-                this.f47711b = new HashMap();
-                this.f47712c = new HashMap();
-                this.d = z7.x.f51709c;
-                return;
-            default:
-                this.f47711b = new HashMap();
-                this.f47712c = new HashMap();
-                this.d = v7.i.f48491c;
-                return;
+        long j12 = dVar.h;
+        if (j12 != Long.MIN_VALUE && ((f7 == -4 && hVar.e >= j12) || (f7 == -3 && q5 == Long.MIN_VALUE && !hVar.d))) {
+            hVar.clear();
+            hVar.setFlags(4);
+            this.f49252b = true;
+            return -4;
         }
+        return f7;
     }
 
-    public c(String str, int i10) {
-        this.f47710a = i10;
-        switch (i10) {
-            case 14:
-                c cVar = new c(13, false);
-                this.f47712c = cVar;
-                this.d = cVar;
-                this.f47711b = str;
-                return;
-            default:
-                c cVar2 = new c(2, false);
-                this.f47712c = cVar2;
-                this.d = cVar2;
-                this.f47711b = str;
-                return;
+    @Override
+    public final int j(long j10) {
+        if (this.f49253c.a()) {
+            return -3;
         }
-    }
-
-    public c(String str, Boolean bool, wc.a aVar, String str2) {
-        this.f47710a = 8;
-        this.f47711b = str;
-        this.f47712c = str2;
-        this.d = aVar;
-    }
-
-    public c(c3.t tVar) {
-        this.f47710a = 0;
-        this.f47711b = tVar;
+        return this.f49251a.j(j10);
     }
 }

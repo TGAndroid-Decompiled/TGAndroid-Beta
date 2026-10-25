@@ -1,27 +1,106 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.text.style.ReplacementSpan;
-import org.telegram.messenger.AndroidUtilities;
-public final class jt extends ReplacementSpan {
-    public int f27796b;
-    public final Paint f27795a = new Paint(1);
-    public float f27797c = 3.0f;
-    public float d = 3.0f;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.view.View;
+import android.view.ViewPropertyAnimator;
+public final class jt extends AnimatorListenerAdapter {
+    public final int f29714a;
+    public final s4.e1 f29715b;
+    public final int f29716c;
+    public final View d;
+    public final int e;
+    public final ViewPropertyAnimator f29717f;
+    public final s4.g1 h;
 
-    @Override
-    public final void draw(Canvas canvas, CharSequence charSequence, int i10, int i11, float f7, int i12, int i13, int i14, Paint paint) {
-        int color = paint.getColor();
-        Paint paint2 = this.f27795a;
-        if (color != 0) {
-            paint2.setColor(paint.getColor());
-        }
-        canvas.drawCircle(f7 + (AndroidUtilities.dpf2(this.f27797c) / 2.0f), ((i14 - i12) / 2) + this.f27796b, AndroidUtilities.dpf2(this.d) / 2.0f, paint2);
+    public jt(s4.g1 g1Var, s4.e1 e1Var, int i10, View view, int i11, ViewPropertyAnimator viewPropertyAnimator, int i12) {
+        this.f29714a = i12;
+        this.h = g1Var;
+        this.f29715b = e1Var;
+        this.f29716c = i10;
+        this.d = view;
+        this.e = i11;
+        this.f29717f = viewPropertyAnimator;
     }
 
     @Override
-    public final int getSize(Paint paint, CharSequence charSequence, int i10, int i11, Paint.FontMetricsInt fontMetricsInt) {
-        return AndroidUtilities.dp(this.f27797c);
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f29714a) {
+            case 0:
+                int i10 = this.f29716c;
+                View view = this.d;
+                if (i10 != 0) {
+                    view.setTranslationX(0.0f);
+                }
+                if (this.e != 0) {
+                    view.setTranslationY(0.0f);
+                }
+                View view2 = this.f29715b.f47735a;
+                if (view2 instanceof org.telegram.ui.Cells.p2) {
+                    ((org.telegram.ui.Cells.p2) view2).setMoving(false);
+                    return;
+                } else if (view2 instanceof ig.m) {
+                    ((ig.m) view2).f14160a = false;
+                    return;
+                } else {
+                    return;
+                }
+            default:
+                int i11 = this.f29716c;
+                View view3 = this.d;
+                if (i11 != 0) {
+                    view3.setTranslationX(0.0f);
+                }
+                if (this.e != 0) {
+                    view3.setTranslationY(0.0f);
+                    return;
+                }
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f29714a) {
+            case 0:
+                this.f29717f.setListener(null);
+                mt mtVar = (mt) this.h;
+                s4.e1 e1Var = this.f29715b;
+                mtVar.v(e1Var);
+                mtVar.f30746w.remove(e1Var);
+                mtVar.A();
+                View view = e1Var.f47735a;
+                if (view instanceof org.telegram.ui.Cells.p2) {
+                    ((org.telegram.ui.Cells.p2) view).setMoving(false);
+                } else if (view instanceof ig.m) {
+                    ((ig.m) view).f14160a = false;
+                }
+                View view2 = this.d;
+                view2.setTranslationX(0.0f);
+                view2.setTranslationY(0.0f);
+                return;
+            default:
+                this.f29717f.setListener(null);
+                s4.l lVar = (s4.l) this.h;
+                s4.e1 e1Var2 = this.f29715b;
+                lVar.P(e1Var2);
+                lVar.v(e1Var2);
+                lVar.f47794z.remove(e1Var2);
+                lVar.G();
+                lVar.z(e1Var2);
+                return;
+        }
+    }
+
+    @Override
+    public final void onAnimationStart(Animator animator) {
+        switch (this.f29714a) {
+            case 0:
+                ((mt) this.h).getClass();
+                return;
+            default:
+                ((s4.l) this.h).getClass();
+                return;
+        }
     }
 }

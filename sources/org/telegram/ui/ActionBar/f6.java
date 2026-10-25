@@ -1,189 +1,61 @@
 package org.telegram.ui.ActionBar;
 
-import ai.y7;
-import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.Point;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.ColorDrawable;
-import android.graphics.drawable.Drawable;
-import android.text.TextUtils;
-import android.util.SparseIntArray;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.HashMap;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.os.SystemClock;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.FileLog;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.messenger.SvgHelper;
-import org.telegram.messenger.UserConfig;
-import org.telegram.messenger.Utilities;
-import org.telegram.ui.Components.t9;
-import org.telegram.ui.Components.wc0;
-public final class f6 implements NotificationCenter.NotificationCenterDelegate {
-    public static f6 f20893c;
-    public int f20894a;
-    public HashMap f20895b;
-
-    public static void a(boolean z10) {
-        String str;
-        ArrayList arrayList;
-        if (f20893c != null && !z10) {
-            return;
+import org.telegram.messenger.ApplicationLoader;
+import org.telegram.messenger.MediaController;
+public final class f6 implements SensorEventListener {
+    @Override
+    public final void onSensorChanged(SensorEvent sensorEvent) {
+        float f7 = sensorEvent.values[0];
+        if (f7 <= 0.0f) {
+            f7 = 0.1f;
         }
-        ArrayList arrayList2 = null;
-        for (int i10 = 0; i10 < 5; i10++) {
-            if (i10 != 0) {
-                if (i10 != 1) {
-                    if (i10 != 2) {
-                        if (i10 != 3) {
-                            str = "Night";
-                        } else {
-                            str = "Day";
-                        }
-                    } else {
-                        str = "Arctic Blue";
+        if (!ApplicationLoader.mainInterfacePaused && ApplicationLoader.isScreenOn) {
+            if (f7 > 500.0f) {
+                y6.h = 1.0f;
+            } else {
+                y6.h = ((float) Math.ceil((Math.log(f7) * 9.932299613952637d) + 27.05900001525879d)) / 100.0f;
+            }
+            long j10 = 1800;
+            if (y6.h <= y6.f23589q) {
+                if (!MediaController.getInstance().isRecordingOrListeningByProximity()) {
+                    if (y6.f23456j) {
+                        y6.f23456j = false;
+                        AndroidUtilities.cancelRunOnUIThread(y6.f23495l);
                     }
-                } else {
-                    str = "Dark Blue";
-                }
-            } else {
-                str = "Blue";
-            }
-            j6 j6Var = (j6) k6.H.get(str);
-            if (j6Var != null && (arrayList = j6Var.f21023b0) != null && !arrayList.isEmpty()) {
-                int size = j6Var.f21023b0.size();
-                for (int i11 = 0; i11 < size; i11++) {
-                    i6 i6Var = (i6) j6Var.f21023b0.get(i11);
-                    if (i6Var.f20965a != k6.f21360n && !TextUtils.isEmpty(i6Var.f20976o)) {
-                        if (arrayList2 == null) {
-                            arrayList2 = new ArrayList();
+                    if (!y6.f23475k) {
+                        y6.f23475k = true;
+                        androidx.emoji2.text.n nVar = y6.f23512m;
+                        if (Math.abs(y6.f23439i - SystemClock.elapsedRealtime()) < 12000) {
+                            j10 = 12000;
                         }
-                        arrayList2.add(i6Var);
+                        AndroidUtilities.runOnUIThread(nVar, j10);
+                        return;
                     }
+                    return;
                 }
+                return;
             }
-        }
-        ?? obj = new Object();
-        obj.f20894a = UserConfig.selectedAccount;
-        if (arrayList2 != null) {
-            Utilities.globalQueue.postRunnable(new m4.z(26, obj, arrayList2));
-        }
-        f20893c = obj;
-    }
-
-    public static Bitmap b(Bitmap bitmap, boolean z10, File file, i6 i6Var) {
-        Bitmap bitmap2;
-        int patternColor;
-        Bitmap l1;
-        int i10;
-        int i11;
-        int i12;
-        try {
-            File d = i6Var.d();
-            Drawable drawable = null;
-            if (d == null) {
-                return null;
+            if (y6.f23475k) {
+                y6.f23475k = false;
+                AndroidUtilities.cancelRunOnUIThread(y6.f23512m);
             }
-            j6 j6Var = i6Var.f20966b;
-            SparseIntArray S0 = k6.S0(null, j6Var.d, null);
-            k6.G(S0, j6Var);
-            int i13 = i6Var.f20967c;
-            int i14 = (int) i6Var.f20971j;
-            long j10 = i6Var.f20972k;
-            int i15 = (int) j10;
-            if (i15 == 0 && j10 == 0) {
-                if (i14 != 0) {
-                    i13 = i14;
+            if (!y6.f23456j) {
+                y6.f23456j = true;
+                androidx.emoji2.text.n nVar2 = y6.f23495l;
+                if (Math.abs(y6.f23439i - SystemClock.elapsedRealtime()) < 12000) {
+                    j10 = 12000;
                 }
-                int i16 = S0.get(k6.Od);
-                if (i16 != 0) {
-                    i15 = k6.B(j6Var, i13, i16);
-                }
-            } else {
-                i13 = 0;
+                AndroidUtilities.runOnUIThread(nVar2, j10);
             }
-            long j11 = i6Var.f20973l;
-            int i17 = (int) j11;
-            if (i17 == 0 && j11 == 0 && (i12 = S0.get(k6.Pd)) != 0) {
-                i17 = k6.B(j6Var, i13, i12);
-            }
-            long j12 = i6Var.f20974m;
-            int i18 = (int) j12;
-            if (i18 == 0 && j12 == 0 && (i11 = S0.get(k6.Qd)) != 0) {
-                i18 = k6.B(j6Var, i13, i11);
-            }
-            if (i14 == 0 && (i10 = S0.get(k6.Nd)) != 0) {
-                i14 = k6.B(j6Var, i13, i10);
-            }
-            if (i17 != 0) {
-                patternColor = wc0.g(i14, i15, i17, i18);
-            } else if (i15 != 0) {
-                Drawable t9Var = new t9(t9.d(i6Var.f20975n), new int[]{i14, i15});
-                patternColor = AndroidUtilities.getPatternColor(AndroidUtilities.getAverageColor(i14, i15));
-                drawable = t9Var;
-            } else {
-                drawable = new ColorDrawable(i14);
-                patternColor = AndroidUtilities.getPatternColor(i14);
-            }
-            if (bitmap == null) {
-                Point point = AndroidUtilities.displaySize;
-                int min = Math.min(point.x, point.y);
-                Point point2 = AndroidUtilities.displaySize;
-                int max = Math.max(point2.x, point2.y);
-                if (z10) {
-                    l1 = SvgHelper.getBitmap(file, min, max, false, SvgHelper.ScaleMode.ByWidth);
-                } else {
-                    l1 = k6.l1(new FileInputStream(file), 0);
-                }
-                bitmap2 = l1;
-            } else {
-                bitmap2 = bitmap;
-            }
-            try {
-                if (drawable != null) {
-                    Bitmap createBitmap = Bitmap.createBitmap(bitmap2.getWidth(), bitmap2.getHeight(), Bitmap.Config.ARGB_8888);
-                    Canvas canvas = new Canvas(createBitmap);
-                    drawable.setBounds(0, 0, bitmap2.getWidth(), bitmap2.getHeight());
-                    drawable.draw(canvas);
-                    Paint paint = new Paint(2);
-                    paint.setColorFilter(new PorterDuffColorFilter(patternColor, PorterDuff.Mode.SRC_IN));
-                    paint.setAlpha((int) (Math.abs(i6Var.f20977p) * 255.0f));
-                    canvas.drawBitmap(bitmap2, 0.0f, 0.0f, paint);
-                    createBitmap.compress(Bitmap.CompressFormat.JPEG, 87, new FileOutputStream(d));
-                    return bitmap2;
-                }
-                FileOutputStream fileOutputStream = new FileOutputStream(d);
-                bitmap2.compress(Bitmap.CompressFormat.PNG, 87, fileOutputStream);
-                fileOutputStream.close();
-                return bitmap2;
-            } catch (Throwable th2) {
-                th = th2;
-                FileLog.e(th);
-                return bitmap2;
-            }
-        } catch (Throwable th3) {
-            th = th3;
-            bitmap2 = bitmap;
         }
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        HashMap hashMap = this.f20895b;
-        if (hashMap != null) {
-            if (i10 == NotificationCenter.fileLoaded) {
-                e6 e6Var = (e6) hashMap.remove((String) objArr[0]);
-                if (e6Var != null) {
-                    Utilities.globalQueue.postRunnable(new m4.z(27, this, e6Var));
-                }
-            } else if (i10 == NotificationCenter.fileLoadFailed && hashMap.remove((String) objArr[0]) != null) {
-                AndroidUtilities.runOnUIThread(new y7((Object) this, (Object) null, false, 13));
-            }
-        }
+    public final void onAccuracyChanged(Sensor sensor, int i10) {
     }
 }

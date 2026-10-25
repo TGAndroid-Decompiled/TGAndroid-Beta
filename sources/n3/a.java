@@ -1,42 +1,42 @@
 package n3;
 
-import b2.q0;
-import b2.s0;
-import b2.v;
-import b2.v0;
+import b2.r0;
+import b2.t0;
 import b2.w;
+import b2.w0;
+import b2.x;
 import j$.util.Objects;
 import java.util.Arrays;
-public final class a implements s0 {
-    public static final w f17143g;
-    public static final w h;
-    public final String f17144a;
-    public final String f17145b;
-    public final long f17146c;
+public final class a implements t0 {
+    public static final x f18648g;
+    public static final x h;
+    public final String f18649a;
+    public final String f18650b;
+    public final long f18651c;
     public final long d;
     public final byte[] e;
-    public int f17147f;
+    public int f18652f;
 
     static {
-        v vVar = new v();
-        vVar.f4082r = v0.n("application/id3");
-        f17143g = new w(vVar);
-        v vVar2 = new v();
-        vVar2.f4082r = v0.n("application/x-scte35");
-        h = new w(vVar2);
+        w wVar = new w();
+        wVar.f3533r = w0.n("application/id3");
+        f18648g = new x(wVar);
+        w wVar2 = new w();
+        wVar2.f3533r = w0.n("application/x-scte35");
+        h = new x(wVar2);
     }
 
     public a(String str, String str2, long j10, long j11, byte[] bArr) {
-        this.f17144a = str;
-        this.f17145b = str2;
-        this.f17146c = j10;
+        this.f18649a = str;
+        this.f18650b = str2;
+        this.f18651c = j10;
         this.d = j11;
         this.e = bArr;
     }
 
     @Override
-    public final w a() {
-        String str = this.f17144a;
+    public final x a() {
+        String str = this.f18649a;
         str.getClass();
         char c10 = 65535;
         switch (str.hashCode()) {
@@ -64,7 +64,7 @@ public final class a implements s0 {
                 return h;
             case 1:
             case 2:
-                return f17143g;
+                return f18648g;
             default:
                 return null;
         }
@@ -84,7 +84,7 @@ public final class a implements s0 {
         }
         if (obj != null && a.class == obj.getClass()) {
             a aVar = (a) obj;
-            if (this.f17146c == aVar.f17146c && this.d == aVar.d && Objects.equals(this.f17144a, aVar.f17144a) && Objects.equals(this.f17145b, aVar.f17145b) && Arrays.equals(this.e, aVar.e)) {
+            if (this.f18651c == aVar.f18651c && this.d == aVar.d && Objects.equals(this.f18649a, aVar.f18649a) && Objects.equals(this.f18650b, aVar.f18650b) && Arrays.equals(this.e, aVar.e)) {
                 return true;
             }
         }
@@ -93,31 +93,31 @@ public final class a implements s0 {
 
     public final int hashCode() {
         int i10;
-        if (this.f17147f == 0) {
+        if (this.f18652f == 0) {
             int i11 = 0;
-            String str = this.f17144a;
+            String str = this.f18649a;
             if (str != null) {
                 i10 = str.hashCode();
             } else {
                 i10 = 0;
             }
             int i12 = (527 + i10) * 31;
-            String str2 = this.f17145b;
+            String str2 = this.f18650b;
             if (str2 != null) {
                 i11 = str2.hashCode();
             }
-            long j10 = this.f17146c;
+            long j10 = this.f18651c;
             long j11 = this.d;
-            this.f17147f = Arrays.hashCode(this.e) + ((((((i12 + i11) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31);
+            this.f18652f = Arrays.hashCode(this.e) + ((((((i12 + i11) * 31) + ((int) (j10 ^ (j10 >>> 32)))) * 31) + ((int) (j11 ^ (j11 >>> 32)))) * 31);
         }
-        return this.f17147f;
+        return this.f18652f;
     }
 
     public final String toString() {
-        return "EMSG: scheme=" + this.f17144a + ", id=" + this.d + ", durationMs=" + this.f17146c + ", value=" + this.f17145b;
+        return "EMSG: scheme=" + this.f18649a + ", id=" + this.d + ", durationMs=" + this.f18651c + ", value=" + this.f18650b;
     }
 
     @Override
-    public final void b(q0 q0Var) {
+    public final void b(r0 r0Var) {
     }
 }

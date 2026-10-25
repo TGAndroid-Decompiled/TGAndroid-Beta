@@ -1,244 +1,186 @@
 package bh;
 
-import android.graphics.Canvas;
-import android.graphics.RecordingCanvas;
-import android.graphics.Rect;
-import android.graphics.RectF;
-import android.graphics.RenderNode;
-import android.support.v4.media.session.x;
+import android.content.ActivityNotFoundException;
+import android.content.Intent;
+import android.net.Uri;
+import android.view.View;
+import bi.x1;
+import di.o1;
+import fi.a4;
 import java.util.ArrayList;
-import java.util.List;
-import org.telegram.messenger.LiteMode;
-import org.telegram.messenger.MediaDataController;
-public final class f {
-    public final boolean f4388a;
-    public final boolean f4389b;
-    public final boolean f4390c;
-    public final int d;
-    public final RenderNode[] e;
-    public long f4391f;
-    public final RectF f4392g = new RectF();
-    public final a h = new Object();
-    public final ArrayList f4393i = new ArrayList();
-    public int f4394j;
-    public int f4395k;
-    public Rect f4396l;
+import java.util.regex.Pattern;
+import org.telegram.messenger.FileLog;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.voip.VoIPService;
+import org.telegram.ui.ActionBar.r2;
+import org.telegram.ui.Cells.y1;
+import org.telegram.ui.Components.FragmentContextView;
+import org.telegram.ui.Components.ch0;
+import org.telegram.ui.Components.dv;
+import org.telegram.ui.Components.hs;
+import org.telegram.ui.Components.voip.i1;
+import org.telegram.ui.Components.voip.n2;
+import org.telegram.ui.Components.yc;
+import org.telegram.ui.Components.yq;
+import org.telegram.ui.ExternalActionActivity;
+import org.telegram.ui.LaunchActivity;
+import org.telegram.ui.PhotoViewer;
+import org.telegram.ui.PremiumPreviewFragment;
+import org.telegram.ui.ProfileActivity;
+import org.telegram.ui.Wallet.y2;
+import vg.n1;
+public final class f implements View.OnClickListener {
+    public final int f4026a;
 
-    public f(boolean z10) {
-        int i10;
-        boolean isEnabled = LiteMode.isEnabled(262144);
-        this.f4388a = isEnabled;
-        this.f4390c = true;
-        if (!isEnabled && !z10) {
-            i10 = 8;
-        } else {
-            i10 = 1;
-        }
-        this.d = i10;
-        this.f4389b = z10;
-        this.e = new RenderNode[isEnabled ? 2 : 1];
-        int i11 = 0;
-        while (true) {
-            RenderNode[] renderNodeArr = this.e;
-            if (i11 < renderNodeArr.length) {
-                renderNodeArr[i11] = x.c();
-                i11++;
-            } else {
-                return;
-            }
-        }
+    public f(int i10) {
+        this.f4026a = i10;
     }
 
-    public static float a(float f7, float f10) {
-        float f11;
-        float f12 = 0.0f;
-        if (f7 > 0.0f) {
-            f11 = (f7 * 0.57735f) + 0.5f;
-        } else {
-            f11 = 0.0f;
-        }
-        float f13 = f11 / f10;
-        if (f13 > 0.5f) {
-            f12 = (f13 - 0.5f) / 0.57735f;
-        }
-        return Math.max(1.0f, f12);
-    }
-
-    public final void b(Canvas canvas, int i10) {
-        if (canvas.isHardwareAccelerated()) {
-            boolean z10 = this.f4388a;
-            if (!z10 && this.f4390c) {
-                canvas.drawRenderNode(this.e[0]);
+    @Override
+    public final void onClick(View view) {
+        switch (this.f4026a) {
+            case 0:
+                int i10 = h.e;
                 return;
-            } else if (i10 == -2) {
-                canvas.drawRenderNode(this.e[!z10 ? 1 : 0]);
+            case 1:
+                int i11 = x1.A0;
                 return;
-            } else if (i10 == -4) {
-                canvas.drawRenderNode(this.e[0]);
+            case 2:
+                o1.j();
                 return;
-            } else if (i10 == -3) {
-                canvas.drawRenderNode(this.e[1]);
+            case 3:
+                int i12 = a4.d;
                 return;
-            } else {
+            case 4:
+                PhotoViewer.u1().k0(1.0f, 0.0f, 0.0f, false);
                 return;
-            }
-        }
-        throw new IllegalStateException();
-    }
-
-    public final void c(android.graphics.Canvas r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: bh.f.c(android.graphics.Canvas, int):void");
-    }
-
-    public final RenderNode d(int i10, int i11) {
-        d dVar;
-        e eVar = (e) this.f4393i.get(i11);
-        if (this.f4388a && (dVar = eVar.f4387c) != null) {
-            if (i10 == 0) {
-                return dVar.f4380c[0];
-            }
-            return eVar.f4386b.f4380c[0];
-        }
-        RenderNode[] renderNodeArr = eVar.f4386b.f4380c;
-        return renderNodeArr[Math.min(i10, renderNodeArr.length - 1)];
-    }
-
-    public final boolean e(ch.a aVar, int i10, int i11) {
-        long j10;
-        int i12 = 0;
-        int i13 = 0;
-        while (true) {
-            int i14 = this.f4394j;
-            ArrayList arrayList = this.f4393i;
-            if (i12 < i14) {
-                e eVar = (e) arrayList.get(i12);
-                Rect rect = eVar.d;
-                RectF rectF = this.f4392g;
-                rectF.set(rect);
-                a aVar2 = this.h;
-                aVar2.f4361b = 0L;
-                aVar2.f4360a = false;
-                aVar.e(aVar2, rectF);
-                boolean z10 = aVar2.f4360a;
-                if (z10) {
-                    j10 = -1;
-                } else {
-                    j10 = aVar2.f4361b;
+            case 5:
+                int i13 = hi.u.f13297n;
+                return;
+            case 6:
+                int i14 = lh.c.e;
+                return;
+            case 7:
+                return;
+            case 8:
+                int i15 = org.telegram.ui.Cells.w.L;
+                return;
+            case 9:
+                r2 R = LaunchActivity.R();
+                if (R != null) {
+                    R.presentFragment(new PremiumPreviewFragment(0, "contact"));
+                    return;
                 }
-                if (z10 || eVar.e != j10 || !eVar.f4385a.hasDisplayList()) {
-                    eVar.e = j10;
-                    if (this.f4396l == null) {
-                        e eVar2 = (e) arrayList.get(i12);
-                        Rect rect2 = eVar2.d;
-                        this.f4396l = rect2;
-                        this.f4395k = i12;
-                        int width = rect2.width();
-                        int i15 = this.d;
-                        int i16 = width / i15;
-                        int height = rect2.height() / i15;
-                        eVar2.f4385a.setPosition(0, 0, i16, height);
-                        RecordingCanvas beginRecording = eVar2.f4385a.beginRecording(i16, height);
-                        float f7 = 1.0f / i15;
-                        beginRecording.scale(f7, f7);
-                        beginRecording.save();
-                        beginRecording.translate(-rect.left, -rect.top);
-                        aVar.f(beginRecording, rectF);
-                        beginRecording.restore();
-                        if (this.f4396l != null) {
-                            e eVar3 = (e) arrayList.get(this.f4395k);
-                            eVar3.f4385a.endRecording();
-                            d dVar = eVar3.f4386b;
-                            d dVar2 = eVar3.f4387c;
-                            if (dVar2 != null) {
-                                dVar2.a(eVar3.f4385a);
-                                dVar.a(dVar2.f4380c[0]);
-                            } else {
-                                dVar.a(eVar3.f4385a);
-                            }
-                            this.f4396l = null;
-                            i13++;
-                        } else {
-                            throw new IllegalStateException();
-                        }
+                return;
+            case 10:
+                if (!MediaController.getInstance().isDownloadingCurrentMessage()) {
+                    if (MediaController.getInstance().isMessagePaused()) {
+                        MediaController.getInstance().playMessage(MediaController.getInstance().getPlayingMessageObject());
+                        return;
                     } else {
-                        throw new IllegalStateException();
+                        MediaController.getInstance().lambda$startAudioAgain$7(MediaController.getInstance().getPlayingMessageObject());
+                        return;
                     }
                 }
-                i12++;
-            } else {
-                if (i13 > 0) {
-                    long calcHash = MediaDataController.calcHash(MediaDataController.calcHash(0L, i10), i11);
-                    int i17 = 0;
-                    boolean z11 = false;
-                    while (true) {
-                        RenderNode[] renderNodeArr = this.e;
-                        if (i17 >= renderNodeArr.length) {
-                            break;
-                        }
-                        RenderNode renderNode = renderNodeArr[i17];
-                        calcHash = MediaDataController.calcHash(calcHash, renderNode.getUniqueId());
-                        for (int i18 = 0; i18 < this.f4394j; i18++) {
-                            RenderNode d = d(i17, i18);
-                            Rect rect3 = ((e) arrayList.get(i18)).d;
-                            calcHash = MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(MediaDataController.calcHash(calcHash, rect3.left), rect3.top), rect3.right), rect3.bottom), d.getUniqueId());
-                        }
-                        if (!renderNode.hasDisplayList()) {
-                            z11 = true;
-                        }
-                        i17++;
-                    }
-                    if (calcHash != this.f4391f || z11) {
-                        this.f4391f = calcHash;
-                        int i19 = 0;
-                        while (true) {
-                            RenderNode[] renderNodeArr2 = this.e;
-                            if (i19 >= renderNodeArr2.length) {
-                                return true;
-                            }
-                            RenderNode renderNode2 = renderNodeArr2[i19];
-                            renderNode2.setPosition(0, 0, i10, i11);
-                            RecordingCanvas beginRecording2 = renderNode2.beginRecording(i10, i11);
-                            for (int i20 = 0; i20 < this.f4394j; i20++) {
-                                beginRecording2.save();
-                                Rect rect4 = ((e) arrayList.get(i20)).d;
-                                beginRecording2.translate(rect4.left, rect4.top);
-                                beginRecording2.drawRenderNode(d(i19, i20));
-                                beginRecording2.restore();
-                            }
-                            renderNode2.endRecording();
-                            i19++;
-                        }
+                return;
+            case 11:
+                int i16 = yq.f35110f0;
+                return;
+            case 12:
+                int i17 = hs.f29040w;
+                return;
+            case 13:
+                float[] fArr = FragmentContextView.W0;
+                MediaController.getInstance().updateSilent(false);
+                return;
+            case 14:
+                ch0 ch0Var = ch0.f27157p0;
+                dv dvVar = ch0Var.U;
+                if (dvVar != null) {
+                    dvVar.G();
+                } else {
+                    PhotoViewer photoViewer = ch0Var.V;
+                    if (photoViewer != null) {
+                        photoViewer.Q0();
+                        MediaController.getInstance().tryResumePausedAudio();
                     }
                 }
-                return false;
-            }
+                ch0.j(false);
+                return;
+            case 15:
+                i1.j();
+                return;
+            case 16:
+                y1 y1Var = (y1) view;
+                y1Var.c(!y1Var.b(), true);
+                return;
+            case 17:
+                VoIPService sharedInstance = VoIPService.getSharedInstance();
+                if (sharedInstance != null) {
+                    sharedInstance.hangUp();
+                    return;
+                } else {
+                    n2.i();
+                    return;
+                }
+            case 18:
+                n1.e0(0, null);
+                return;
+            case 19:
+                ArrayList arrayList = ExternalActionActivity.f35495x;
+                return;
+            case 20:
+                return;
+            case 21:
+                Pattern pattern = LaunchActivity.D1;
+                return;
+            case 22:
+                return;
+            case 23:
+                int i18 = ProfileActivity.R6;
+                try {
+                    view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://fragment.com")));
+                    return;
+                } catch (ActivityNotFoundException e) {
+                    FileLog.e(e);
+                    return;
+                }
+            case 24:
+                int i19 = y2.W;
+                return;
+            case 25:
+                PhotoViewer.u1().k0(1.0f, 0.0f, 0.0f, false);
+                return;
+            case 26:
+                try {
+                    view.getContext().startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id=org.telegram.messenger")));
+                    return;
+                } catch (ActivityNotFoundException e10) {
+                    FileLog.e(e10);
+                    return;
+                }
+            case 27:
+                int i20 = zh.m.A0;
+                return;
+            case 28:
+                yc[] ycVarArr = zh.v.f53280p0;
+                return;
+            default:
+                int i21 = zh.c0.f52910g0;
+                return;
         }
     }
 
-    public final void f(float f7, float f10) {
-        for (int i10 = 0; i10 < this.f4394j; i10++) {
-            e eVar = (e) this.f4393i.get(i10);
-            eVar.f4386b.b(f7, f10);
-            d dVar = eVar.f4387c;
-            if (dVar != null) {
-                dVar.b(f7, f10);
-            }
-        }
+    public f(Object obj, int i10) {
+        this.f4026a = i10;
     }
 
-    public final void g(int i10, List list) {
-        ArrayList arrayList;
-        this.f4394j = i10;
-        while (true) {
-            int i11 = this.f4394j;
-            arrayList = this.f4393i;
-            if (i11 <= arrayList.size()) {
-                break;
-            }
-            arrayList.add(new e(this));
-        }
-        for (int i12 = 0; i12 < this.f4394j; i12++) {
-            e.a((e) arrayList.get(i12), (RectF) list.get(i12));
-        }
+    private final void a(View view) {
+    }
+
+    private final void b(View view) {
+    }
+
+    private final void c(View view) {
     }
 }

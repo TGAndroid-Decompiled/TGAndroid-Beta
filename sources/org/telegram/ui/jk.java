@@ -1,82 +1,78 @@
 package org.telegram.ui;
 
 import android.content.Context;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.Drawable;
+import android.widget.TextView;
 import org.telegram.messenger.AndroidUtilities;
-public final class jk extends FrameLayout {
-    public final int f38582a;
-    public final sn f38583b;
+import org.telegram.messenger.FileLog;
+public final class jk extends org.telegram.ui.Components.od {
+    public org.telegram.ui.Cells.y e;
+    public int f40678f;
+    public final boolean h;
+    public final un f40679n;
 
-    public jk(sn snVar, Context context, int i10) {
+    public jk(un unVar, Context context, boolean z10) {
         super(context);
-        this.f38582a = i10;
-        this.f38583b = snVar;
+        this.f40679n = unVar;
+        this.h = z10;
     }
 
     @Override
-    public void measureChildWithMargins(View view, int i10, int i11, int i12, int i13) {
-        int i14;
-        switch (this.f38582a) {
-            case 1:
-                sn snVar = this.f38583b;
-                if (view == snVar.f41524g3) {
-                    ImageView imageView = snVar.f41500e3;
-                    if (imageView != null && imageView.getVisibility() != 8) {
-                        i14 = 66;
-                    } else {
-                        i14 = 18;
+    public final void d() {
+        int i10;
+        try {
+            int themedColor = this.f40679n.getThemedColor(org.telegram.ui.ActionBar.y6.f23697ve);
+            if (this.e != null) {
+                Drawable background = getBackground();
+                Drawable drawable = this.e;
+                if (background == drawable) {
+                    if (themedColor != this.f40678f) {
+                        org.telegram.ui.ActionBar.y6.E1(drawable, themedColor & 436207615, true);
                     }
-                    ImageView imageView2 = snVar.f41513f3;
-                    if (imageView2 != null && imageView2.getVisibility() != 8) {
-                        i14 += 48;
+                    if (getImageView() != null && (themedColor != this.f40678f || getImageView().getColorFilter() == null)) {
+                        getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
                     }
-                    ((ViewGroup.MarginLayoutParams) view.getLayoutParams()).leftMargin = AndroidUtilities.dp(i14);
+                    this.f40678f = themedColor;
+                    if (getTextView() == null && getTextView().getCurrentTextColor() != themedColor) {
+                        getTextView().setTextColor(themedColor);
+                        return;
+                    }
                 }
-                super.measureChildWithMargins(view, i10, i11, i12, i13);
-                return;
-            default:
-                super.measureChildWithMargins(view, i10, i11, i12, i13);
-                return;
+            }
+            if (this.h) {
+                i10 = AndroidUtilities.dp(4.0f);
+            } else {
+                i10 = 0;
+            }
+            int i11 = i10;
+            org.telegram.ui.Cells.y X = org.telegram.ui.ActionBar.y6.X(AndroidUtilities.dp(19.0f), themedColor & 436207615, i11, AndroidUtilities.dp(3.0f), 0, AndroidUtilities.dp(3.0f));
+            this.e = X;
+            setBackground(X);
+            if (getImageView() != null) {
+                getImageView().setColorFilter(new PorterDuffColorFilter(themedColor, PorterDuff.Mode.MULTIPLY));
+            }
+            this.f40678f = themedColor;
+            if (getTextView() == null) {
+            }
+        } catch (Exception e) {
+            FileLog.e(e);
         }
     }
 
     @Override
-    public void setTranslationY(float f7) {
-        switch (this.f38582a) {
-            case 2:
-                super.setTranslationY(f7);
-                this.f38583b.f41558j1.invalidate();
-                return;
-            default:
-                super.setTranslationY(f7);
-                return;
-        }
-    }
-
-    @Override
-    public void setVisibility(int i10) {
-        boolean z10;
-        switch (this.f38582a) {
-            case 0:
-                super.setVisibility(i10);
-                j6.l lVar = this.f38583b.Pc;
-                boolean z11 = false;
-                if (i10 == 0) {
-                    z10 = true;
-                } else {
-                    z10 = false;
-                }
-                if (getMeasuredWidth() > 0) {
-                    z11 = true;
-                }
-                lVar.h(2, z10, z11);
-                return;
-            default:
-                super.setVisibility(i10);
-                return;
+    public final void setEditButton(boolean z10) {
+        int i10;
+        super.setEditButton(z10);
+        if (this.h) {
+            TextView textView = getTextView();
+            if (z10) {
+                i10 = AndroidUtilities.dp(116.0f);
+            } else {
+                i10 = Integer.MAX_VALUE;
+            }
+            textView.setMaxWidth(i10);
         }
     }
 }

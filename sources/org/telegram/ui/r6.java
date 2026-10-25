@@ -1,47 +1,40 @@
 package org.telegram.ui;
 
-import android.content.Context;
-import org.telegram.messenger.FileLog;
-public final class r6 extends org.telegram.ui.ActionBar.h3 {
-    public final int f41041b = 1;
+import org.telegram.messenger.AndroidUtilities;
+public final class r6 implements Runnable {
+    public final int f43006a;
+    public final boolean[] f43007b;
+    public final v6 f43008c;
+    public final long[] d;
+    public final s6 e;
 
-    public r6(int i10, Context context, org.telegram.ui.ActionBar.g6 g6Var, boolean z10) {
-        super(i10, context, g6Var, z10);
+    public r6(boolean[] zArr, v6 v6Var, long[] jArr, s6 s6Var, int i10) {
+        this.f43006a = i10;
+        this.f43007b = zArr;
+        this.f43008c = v6Var;
+        this.d = jArr;
+        this.e = s6Var;
     }
 
     @Override
-    public boolean canDismissWithTouchOutside() {
-        switch (this.f41041b) {
+    public final void run() {
+        switch (this.f43006a) {
             case 0:
-                return false;
+                AndroidUtilities.runOnUIThread(new r6(this.f43007b, this.f43008c, this.d, this.e, 1));
+                return;
             default:
-                return super.canDismissWithTouchOutside();
-        }
-    }
-
-    @Override
-    public void onThemeColorsChanged() {
-        switch (this.f41041b) {
-            case 1:
-                super.onThemeColorsChanged();
-                try {
-                    int themedColor = getThemedColor(org.telegram.ui.ActionBar.k6.f21255h5);
-                    if (this.navBarColor != themedColor) {
-                        fixNavigationBar(themedColor);
-                        return;
-                    }
+                this.f43007b[0] = true;
+                this.f43008c.a(1.0f);
+                long[] jArr = this.d;
+                int i10 = (jArr[0] > 0L ? 1 : (jArr[0] == 0L ? 0 : -1));
+                s6 s6Var = this.e;
+                if (i10 > 0) {
+                    AndroidUtilities.runOnUIThread(new zt0(s6Var, 16), Math.max(0L, 1000 - (System.currentTimeMillis() - jArr[0])));
                     return;
-                } catch (Exception e) {
-                    FileLog.e(e);
+                } else {
+                    s6Var.dismiss();
                     return;
                 }
-            default:
-                super.onThemeColorsChanged();
-                return;
         }
-    }
-
-    public r6(Context context, boolean z10) {
-        super(context, z10);
     }
 }

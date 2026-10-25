@@ -8,11 +8,11 @@ import android.text.TextUtils;
 import android.view.inputmethod.InputConnection;
 import android.view.inputmethod.InputConnectionWrapper;
 public final class d extends InputConnectionWrapper {
-    public final e f47306a;
+    public final e f48684a;
 
     public d(InputConnection inputConnection, e eVar) {
         super(inputConnection, false);
-        this.f47306a = eVar;
+        this.f48684a = eVar;
     }
 
     @Override
@@ -25,7 +25,7 @@ public final class d extends InputConnectionWrapper {
         String str5;
         String str6;
         String str7;
-        e eVar = this.f47306a;
+        e eVar = this.f48684a;
         boolean z10 = false;
         z10 = false;
         z10 = false;
@@ -75,7 +75,7 @@ public final class d extends InputConnectionWrapper {
                     }
                     Bundle bundle2 = (Bundle) bundle.getParcelable(str7);
                     if (uri != null && clipDescription != null) {
-                        z10 = eVar.f(new i(uri, clipDescription, uri2), i10, bundle2);
+                        z10 = eVar.d(new i(uri, clipDescription, uri2), i10, bundle2);
                     }
                     if (resultReceiver != null) {
                         resultReceiver.send(z10 ? 1 : 0, null);

@@ -1,6 +1,5 @@
 package n4;
 
-import ab.o0;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
@@ -11,21 +10,21 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import java.lang.ref.WeakReference;
 public abstract class l {
-    public boolean f17168c;
-    public o0 e;
-    public final Object f17166a = new Object();
-    public final k f17167b = new k(this);
+    public boolean f18676c;
+    public androidx.mediarouter.app.c e;
+    public final Object f18674a = new Object();
+    public final k f18675b = new k(this);
     public WeakReference d = new WeakReference(null);
 
     public final void C(n nVar, Handler handler) {
-        synchronized (this.f17166a) {
+        synchronized (this.f18674a) {
             try {
                 this.d = new WeakReference(nVar);
-                o0 o0Var = this.e;
-                if (o0Var != null) {
-                    o0Var.removeCallbacksAndMessages(null);
+                androidx.mediarouter.app.c cVar = this.e;
+                if (cVar != null) {
+                    cVar.removeCallbacksAndMessages(null);
                 }
-                this.e = new o0(this, handler.getLooper(), 7);
+                this.e = new androidx.mediarouter.app.c(this, handler.getLooper(), 7);
             } catch (Throwable th2) {
                 throw th2;
             }
@@ -36,17 +35,17 @@ public abstract class l {
         long j10;
         boolean z10;
         boolean z11;
-        if (this.f17168c) {
+        if (this.f18676c) {
             boolean z12 = false;
-            this.f17168c = false;
+            this.f18676c = false;
             handler.removeMessages(1);
-            y yVar = nVar.f17175g;
-            if (yVar == null) {
+            z zVar = nVar.f18683g;
+            if (zVar == null) {
                 j10 = 0;
             } else {
-                j10 = yVar.e;
+                j10 = zVar.e;
             }
-            if (yVar != null && yVar.f17200a == 3) {
+            if (zVar != null && zVar.f18709a == 3) {
                 z10 = true;
             } else {
                 z10 = false;
@@ -69,40 +68,40 @@ public abstract class l {
 
     public boolean g(Intent intent) {
         n nVar;
-        o0 o0Var;
+        androidx.mediarouter.app.c cVar;
         KeyEvent keyEvent;
         long j10;
         if (Build.VERSION.SDK_INT < 27) {
-            synchronized (this.f17166a) {
+            synchronized (this.f18674a) {
                 nVar = (n) this.d.get();
-                o0Var = this.e;
+                cVar = this.e;
             }
-            if (nVar != null && o0Var != null && (keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT")) != null && keyEvent.getAction() == 0) {
+            if (nVar != null && cVar != null && (keyEvent = (KeyEvent) intent.getParcelableExtra("android.intent.extra.KEY_EVENT")) != null && keyEvent.getAction() == 0) {
                 t c10 = nVar.c();
                 int keyCode = keyEvent.getKeyCode();
                 if (keyCode != 79 && keyCode != 85) {
-                    a(nVar, o0Var);
+                    a(nVar, cVar);
                     return false;
                 } else if (keyEvent.getRepeatCount() == 0) {
-                    if (this.f17168c) {
-                        o0Var.removeMessages(1);
-                        this.f17168c = false;
-                        y yVar = nVar.f17175g;
-                        if (yVar == null) {
+                    if (this.f18676c) {
+                        cVar.removeMessages(1);
+                        this.f18676c = false;
+                        z zVar = nVar.f18683g;
+                        if (zVar == null) {
                             j10 = 0;
                         } else {
-                            j10 = yVar.e;
+                            j10 = zVar.e;
                         }
                         if ((j10 & 32) != 0) {
                             y();
                         }
                         return true;
                     }
-                    this.f17168c = true;
-                    o0Var.sendMessageDelayed(o0Var.obtainMessage(1, c10), ViewConfiguration.getDoubleTapTimeout());
+                    this.f18676c = true;
+                    cVar.sendMessageDelayed(cVar.obtainMessage(1, c10), ViewConfiguration.getDoubleTapTimeout());
                     return true;
                 } else {
-                    a(nVar, o0Var);
+                    a(nVar, cVar);
                     return true;
                 }
             }
@@ -149,10 +148,10 @@ public abstract class l {
     public void t(float f7) {
     }
 
-    public void u(z zVar) {
+    public void u(a0 a0Var) {
     }
 
-    public void v(z zVar) {
+    public void v(a0 a0Var) {
     }
 
     public void w(int i10) {

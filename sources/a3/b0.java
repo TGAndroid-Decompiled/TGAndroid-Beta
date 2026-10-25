@@ -1,7 +1,7 @@
 package a3;
 
+import a8.yb;
 import android.util.Range;
-import v7.u6;
 public final class b0 {
     public long f69a;
     public long f70b;
@@ -26,11 +26,11 @@ public final class b0 {
         } else {
             z10 = false;
         }
-        u6.g(z10);
+        yb.g(z10);
         if (j11 != -9223372036854775807L) {
             z11 = true;
         }
-        u6.g(z11);
+        yb.g(z11);
         long j13 = this.f69a;
         if (j13 != -9223372036854775807L) {
             if (this.f70b != -9223372036854775807L && j10 != j13) {
@@ -59,7 +59,7 @@ public final class b0 {
         } else {
             z10 = false;
         }
-        u6.g(z10);
+        yb.g(z10);
         this.d = new Range(Double.valueOf(0.0d), Double.valueOf(1.0d / f7));
         b();
     }

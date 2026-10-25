@@ -1,176 +1,32 @@
 package ai;
 
-import android.content.Context;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.animation.DecelerateInterpolator;
-import android.view.animation.LinearInterpolator;
-import java.util.ArrayList;
-import java.util.HashSet;
-import org.telegram.messenger.NotificationCenter;
-import org.telegram.ui.Components.zr;
-public final class j1 extends View implements NotificationCenter.NotificationCenterDelegate {
-    public float E;
-    public y9 F;
-    public final ArrayList G;
-    public final ArrayList H;
-    public final HashSet I;
-    public int J;
-    public final DecelerateInterpolator K;
-    public final LinearInterpolator L;
-    public i1 M;
-    public final int f1524a;
-    public final long f1525b;
-    public final View f1526c;
-    public boolean d;
-    public float e;
-    public float f1527f;
-    public boolean h;
-    public float f1528n;
-    public float f1529r;
-    public float f1530s;
-    public float v;
-    public float f1531w;
-    public float f1532x;
-    public final org.telegram.ui.Components.d6 f1533y;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.Utilities;
+import org.telegram.ui.Components.b3;
+public final class j1 implements Runnable {
+    public final int f1556a = 0;
+    public final Utilities.Callback f1557b;
+    public final String f1558c;
 
-    public j1(Context context, int i10, long j10, org.telegram.ui.l0 l0Var) {
-        super(context);
-        this.d = true;
-        this.f1533y = new org.telegram.ui.Components.d6(this, 0L, 350L, zr.h);
-        this.E = 1.0f;
-        this.G = new ArrayList();
-        this.H = new ArrayList();
-        this.I = new HashSet();
-        this.K = new DecelerateInterpolator();
-        this.L = new LinearInterpolator();
-        this.f1524a = i10;
-        this.f1525b = j10;
-        this.f1526c = l0Var;
-    }
-
-    public final void a() {
-        throw new UnsupportedOperationException("Method not decompiled: ai.j1.a():void");
+    public j1(String str, Utilities.Callback callback) {
+        this.f1558c = str;
+        this.f1557b = callback;
     }
 
     @Override
-    public final void didReceivedNotification(int i10, int i11, Object... objArr) {
-        if (i10 == NotificationCenter.starUserGiftsLoaded && ((Long) objArr[0]).longValue() == this.f1525b) {
-            a();
+    public final void run() {
+        switch (this.f1556a) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new a1.f(17, this.f1557b, h.c(this.f1558c, AndroidUtilities.dp(240.0f), jc.c.M, 0.75f, null)));
+                return;
+            default:
+                this.f1557b.run(this.f1558c);
+                return;
         }
     }
 
-    @Override
-    public final void dispatchDraw(android.graphics.Canvas r32) {
-        throw new UnsupportedOperationException("Method not decompiled: ai.j1.dispatchDraw(android.graphics.Canvas):void");
-    }
-
-    @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        NotificationCenter.getInstance(this.f1524a).addObserver(this, NotificationCenter.starUserGiftsLoaded);
-        ArrayList arrayList = this.H;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((i1) obj).f1462j.a(this);
-        }
-        a();
-    }
-
-    @Override
-    public final void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        NotificationCenter.getInstance(this.f1524a).removeObserver(this, NotificationCenter.starUserGiftsLoaded);
-        ArrayList arrayList = this.H;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ((i1) obj).f1462j.o(this);
-        }
-    }
-
-    @Override
-    public final boolean onTouchEvent(MotionEvent motionEvent) {
-        i1 i1Var;
-        i1 i1Var2;
-        i1 i1Var3;
-        if (!this.d) {
-            return false;
-        }
-        float x10 = motionEvent.getX();
-        float y3 = motionEvent.getY();
-        int i10 = 0;
-        while (true) {
-            ArrayList arrayList = this.H;
-            if (i10 < arrayList.size()) {
-                if (((i1) arrayList.get(i10)).f1464l.contains(x10, y3)) {
-                    i1Var = (i1) arrayList.get(i10);
-                    break;
-                }
-                i10++;
-            } else {
-                i1Var = null;
-                break;
-            }
-        }
-        if (motionEvent.getAction() == 0) {
-            this.M = i1Var;
-            if (i1Var != null) {
-                i1Var.f1465m.c(true);
-            }
-        } else if (motionEvent.getAction() == 2) {
-            i1 i1Var4 = this.M;
-            if (i1Var4 != i1Var && i1Var4 != null) {
-                i1Var4.f1465m.c(false);
-                this.M = null;
-            }
-        } else if (motionEvent.getAction() == 1) {
-            if (this.M != null) {
-                pf.d.r(getContext(), "https://t.me/nft/" + i1Var3.e);
-                this.M.f1465m.c(false);
-                this.M = null;
-            }
-        } else if (motionEvent.getAction() == 3 && (i1Var2 = this.M) != null) {
-            i1Var2.f1465m.c(false);
-            this.M = null;
-        }
-        if (this.M == null) {
-            return false;
-        }
-        return true;
-    }
-
-    public void setActionBarActionMode(float f7) {
-        this.f1528n = f7;
-        invalidate();
-    }
-
-    public void setActive(boolean z10) {
-        this.d = z10;
-    }
-
-    public void setExpandCoords(float f7) {
-        this.f1531w = f7;
-        invalidate();
-    }
-
-    public void setExpandProgress(float f7) {
-        if (this.e != f7) {
-            this.e = f7;
-            invalidate();
-        }
-    }
-
-    public void setProgressToStoriesInsets(float f7) {
-        if (this.E == f7) {
-            return;
-        }
-        this.E = f7;
-        invalidate();
+    public j1(b3 b3Var, String str) {
+        this.f1557b = b3Var;
+        this.f1558c = str;
     }
 }

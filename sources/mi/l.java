@@ -1,26 +1,21 @@
 package mi;
-public final class l implements Runnable {
-    public final int f17027a;
-    public final r f17028b;
-
-    public l(r rVar, int i10) {
-        this.f17027a = i10;
-        this.f17028b = rVar;
-    }
-
-    @Override
-    public final void run() {
-        switch (this.f17027a) {
-            case 0:
-                b bVar = this.f17028b.v;
-                if (bVar != null) {
-                    bVar.close();
-                    return;
-                }
-                return;
-            default:
-                this.f17028b.a();
-                return;
-        }
-    }
+public final class l extends s4.k {
+    public int f18533f;
+    public int f18534g;
+    public int h;
+    public int f18535i;
+    public boolean f18536j;
+    public boolean f18537k;
+    public boolean f18538l;
+    public boolean f18539m;
+    public boolean f18540n;
+    public float f18541o;
+    public float f18542p;
+    public float f18543q;
+    public float f18544r;
+    public int f18545s;
+    public int f18546t;
+    public int f18547u;
+    public int v;
+    public boolean f18548w;
 }

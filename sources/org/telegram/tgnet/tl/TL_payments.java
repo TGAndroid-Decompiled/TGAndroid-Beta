@@ -45,7 +45,7 @@ public class TL_payments {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.gifts = Vector.deserialize(inputSerializedData, new b(2), z10);
+            this.gifts = Vector.deserialize(inputSerializedData, new a(6), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
         }
@@ -206,7 +206,7 @@ public class TL_payments {
 
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
-            this.auctions = Vector.deserialize(inputSerializedData, new b(3), z10);
+            this.auctions = Vector.deserialize(inputSerializedData, new a(7), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
             this.chats = Vector.deserialize(inputSerializedData, new m(10), z10);
         }
@@ -313,7 +313,7 @@ public class TL_payments {
         @Override
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.count = inputSerializedData.readInt32(z10);
-            this.connected_bots = Vector.deserialize(inputSerializedData, new b(4), z10);
+            this.connected_bots = Vector.deserialize(inputSerializedData, new a(8), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
         }
 
@@ -496,7 +496,7 @@ public class TL_payments {
         public void readParams(InputSerializedData inputSerializedData, boolean z10) {
             this.flags = inputSerializedData.readInt32(z10);
             this.count = inputSerializedData.readInt32(z10);
-            this.suggested_bots = Vector.deserialize(inputSerializedData, new b(5), z10);
+            this.suggested_bots = Vector.deserialize(inputSerializedData, new a(9), z10);
             this.users = Vector.deserialize(inputSerializedData, new m(4), z10);
             if (TLObject.hasFlag(this.flags, 1)) {
                 this.next_offset = inputSerializedData.readString(z10);

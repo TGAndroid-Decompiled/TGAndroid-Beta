@@ -1,67 +1,39 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-public final class ki extends mi {
-    public TLRPC.User f28020b;
-    public TLRPC.TL_attachMenuBot f28021c;
-    public final ri d;
+import java.util.ArrayList;
+import java.util.HashMap;
+import org.telegram.messenger.MediaController;
+import org.telegram.messenger.Utilities;
+import org.telegram.messenger.VideoEditedInfo;
+public final class ki extends org.telegram.ui.gu0 {
+    public final MediaController.PhotoEntry f29922a;
+    public final ti f29923b;
 
-    public ki(ri riVar, Context context) {
-        super(context);
-        org.telegram.ui.ActionBar.g6 g6Var;
-        this.d = riVar;
-        setWillNotDraw(false);
-        setFocusable(true);
-        setFocusableInTouchMode(true);
-        g6Var = ((org.telegram.ui.ActionBar.h3) riVar).resourcesProvider;
-        ph.b bVar = new ph.b(context);
-        bVar.d = g6Var;
-        bVar.Q = true;
-        TextView textView = bVar.f44725a;
-        textView.setTextSize(1, 11.0f);
-        textView.setPadding(AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f), 0);
-        bVar.f44726b.setVisibility(8);
-        bVar.b(false);
-        u9 u9Var = new u9(context);
-        bVar.f44727c = u9Var;
-        bVar.addView(u9Var, w7.z5.d(24, 24.0f, 49, 0.0f, 4.0f, 0.0f, 0.0f));
-        bVar.f44732w = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.cl, g6Var);
-        bVar.f44731s = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.al, g6Var);
-        bVar.v = org.telegram.ui.ActionBar.k6.w0(org.telegram.ui.ActionBar.k6.bl, g6Var);
-        bVar.a();
-        this.f28603a = bVar;
-        bVar.getBackupImageView().f31064a.setDelegate(new d2(18));
-        addView(this.f28603a, w7.z5.c(-1.0f, -1));
-    }
-
-    public final void a(boolean z10) {
-        boolean z11;
-        if (this.f28021c != null && (-this.f28020b.f20491id) == this.d.Z0) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        this.f28603a.f(z11, z10);
-        xj0 lottieAnimation = this.f28603a.getBackupImageView().getImageReceiver().getLottieAnimation();
-        if (z10) {
-            if (z11 && lottieAnimation != null) {
-                lottieAnimation.K(0);
-                lottieAnimation.P(-1);
-                lottieAnimation.T(0.0f, false);
-                lottieAnimation.start();
-            }
-        } else if (lottieAnimation != null) {
-            lottieAnimation.stop();
-            lottieAnimation.T(0.0f, false);
-        }
+    public ki(ti tiVar, MediaController.PhotoEntry photoEntry) {
+        this.f29923b = tiVar;
+        this.f29922a = photoEntry;
     }
 
     @Override
-    public final void onAttachedToWindow() {
-        super.onAttachedToWindow();
-        a(false);
+    public final void o(int i10, VideoEditedInfo videoEditedInfo, final boolean z10, final int i11, int i12, final boolean z11) {
+        ti tiVar = this.f29923b;
+        tiVar.f33081y2 = true;
+        if (tiVar.f33010c2 == null) {
+            return;
+        }
+        final MediaController.PhotoEntry photoEntry = this.f29922a;
+        photoEntry.editedInfo = videoEditedInfo;
+        g5.Z(tiVar.M1, tiVar.o1() + 1, 0L, new Utilities.Callback() {
+            @Override
+            public final void run(Object obj) {
+                ArrayList arrayList = ChatAttachAlertPhotoLayout.f26016t1;
+                arrayList.clear();
+                HashMap hashMap = ChatAttachAlertPhotoLayout.f26015s1;
+                hashMap.clear();
+                arrayList.add(0);
+                hashMap.put(0, photoEntry);
+                ki.this.f29923b.f33010c2.p0(7, true, z10, i11, 0, 0L, false, z11, ((Long) obj).longValue());
+            }
+        });
     }
 }

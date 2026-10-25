@@ -1,31 +1,30 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-public final class ro0 extends hg.h0 {
-    public final org.telegram.ui.ey I0;
-    public final Context J0;
-    public final org.telegram.ui.nx K0;
+import java.util.ArrayList;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+public final class ro0 extends ct {
+    public final org.telegram.ui.jx f32277k0;
 
-    public ro0(org.telegram.ui.nx nxVar, Context context, org.telegram.ui.ey eyVar, int i10, int i11, s4.k kVar, boolean z10, org.telegram.ui.ey eyVar2, Context context2) {
-        super(context, eyVar, i10, i11, kVar, z10);
-        this.K0 = nxVar;
-        this.I0 = eyVar2;
-        this.J0 = context2;
+    public ro0(org.telegram.ui.jx jxVar, mm0 mm0Var, Context context, int i10, int i11) {
+        super(mm0Var, context, i10, i11, false, null);
+        this.f32277k0 = jxVar;
     }
 
     @Override
-    public final void l() {
-        ai.u1 u1Var;
-        int i10 = this.B0;
-        super.l();
-        org.telegram.ui.nx nxVar = this.K0;
-        if (!nxVar.I0 && (u1Var = nxVar.V) != null) {
-            u1Var.u0(0);
-            nxVar.I0 = true;
+    public final void O(boolean z10) {
+        boolean z11;
+        ArrayList arrayList;
+        super.O(z10);
+        qo0 qo0Var = this.f32277k0.f27943n0;
+        if (!this.f27253b0 && !this.f27254c0 && (arrayList = this.V) != null && arrayList.isEmpty()) {
+            z11 = false;
+        } else {
+            z11 = true;
         }
-        if (h() != 0 || i10 == 0 || this.D0 > 0) {
-            return;
-        }
-        nxVar.W.e(false, false);
+        qo0Var.e(z11, z10);
+        qo0Var.d.setText(LocaleController.getString(R.string.NoResult));
+        qo0Var.e.setVisibility(8);
     }
 }

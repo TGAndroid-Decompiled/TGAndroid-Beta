@@ -2,29 +2,25 @@ package org.telegram.messenger;
 
 import org.telegram.messenger.LanguageDetector;
 import org.telegram.messenger.TranslateController;
-import org.telegram.messenger.Utilities;
+import org.telegram.tgnet.tl.TL_stories;
 public final class ml implements LanguageDetector.StringCallback, LanguageDetector.ExceptionCallback {
-    public final TranslateController f19062a;
-    public final MessageObject f19063b;
-    public final TranslateController.MessageKey f19064c;
-    public final Utilities.Callback d;
+    public final TranslateController f20718a;
+    public final TL_stories.StoryItem f20719b;
+    public final TranslateController.StoryKey f20720c;
 
-    public ml(TranslateController translateController, MessageObject messageObject, TranslateController.MessageKey messageKey, Utilities.Callback callback) {
-        this.f19062a = translateController;
-        this.f19063b = messageObject;
-        this.f19064c = messageKey;
-        this.d = callback;
+    public ml(TranslateController translateController, TL_stories.StoryItem storyItem, TranslateController.StoryKey storyKey) {
+        this.f20718a = translateController;
+        this.f20719b = storyItem;
+        this.f20720c = storyKey;
     }
 
     @Override
     public void run(Exception exc) {
-        this.f19062a.lambda$detectPhotoLanguage$42(this.f19063b, this.f19064c, this.d, exc);
+        this.f20718a.lambda$detectStoryLanguage$34(this.f20719b, this.f20720c, exc);
     }
 
     @Override
     public void run(String str) {
-        TranslateController.MessageKey messageKey = this.f19064c;
-        Utilities.Callback callback = this.d;
-        this.f19062a.lambda$detectPhotoLanguage$40(this.f19063b, messageKey, callback, str);
+        this.f20718a.lambda$detectStoryLanguage$32(this.f20719b, this.f20720c, str);
     }
 }

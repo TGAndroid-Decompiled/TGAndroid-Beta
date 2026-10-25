@@ -1,39 +1,45 @@
 package org.telegram.ui.ActionBar;
+public final class v5 implements oe.f, r0 {
+    public final x5 f23158a;
 
-import android.graphics.Point;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-public final class v5 extends w7.w5 {
-    public final boolean f21930a;
-    public final View f21931b;
-
-    public v5(View view, boolean z10) {
-        this.f21930a = z10;
-        this.f21931b = view;
+    public v5(x5 x5Var) {
+        this.f23158a = x5Var;
     }
 
     @Override
-    public final void b(int i10, int i11) {
-        boolean z10;
-        boolean z11 = this.f21930a;
-        View view = this.f21931b;
-        if (!z11) {
-            Point point = AndroidUtilities.displaySize;
-            boolean z12 = false;
-            if (point.x <= point.y) {
-                z10 = true;
-            } else {
-                z10 = false;
-            }
-            if (i10 <= i11) {
-                z12 = true;
-            }
-            if (z10 == z12) {
-                view.invalidate();
-                return;
-            }
-            return;
+    public void P() {
+        x5 x5Var = this.f23158a;
+        x5Var.d();
+        x5Var.f23245a.invalidate();
+    }
+
+    @Override
+    public void g(int i10) {
+        j jVar = this.f23158a.f23245a.T;
+        if (jVar != null) {
+            jVar.b(i10);
         }
-        view.invalidate();
+    }
+
+    @Override
+    public boolean j() {
+        return false;
+    }
+
+    @Override
+    public boolean k(float f7) {
+        return false;
+    }
+
+    @Override
+    public void a() {
+    }
+
+    @Override
+    public void l() {
+    }
+
+    @Override
+    public void i(boolean z10) {
     }
 }

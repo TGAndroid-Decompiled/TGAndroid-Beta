@@ -1,14 +1,14 @@
 package a3;
 
-import b2.a2;
+import b2.b2;
 public interface n0 {
-    public static final oa.d f172g = new oa.d(1);
+    public static final pa.d f172g = new Object();
 
-    void U();
-
-    void Y();
+    void A();
 
     void onFirstFrameRendered();
 
-    void onVideoSizeChanged(a2 a2Var);
+    void onVideoSizeChanged(b2 b2Var);
+
+    void z();
 }

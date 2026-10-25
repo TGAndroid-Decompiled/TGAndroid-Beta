@@ -1,58 +1,9 @@
 package e6;
 
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import org.telegram.ui.Cells.b1;
-public abstract class e {
-    public static String a(String str, Object... objArr) {
-        int length;
-        int length2;
-        int indexOf;
-        String l4;
-        int i10 = 0;
-        int i11 = 0;
-        while (true) {
-            length = objArr.length;
-            if (i11 >= length) {
-                break;
-            }
-            Object obj = objArr[i11];
-            if (obj == null) {
-                l4 = "null";
-            } else {
-                try {
-                    l4 = obj.toString();
-                } catch (Exception e) {
-                    String D = a1.g.D(obj.getClass().getName(), "@", Integer.toHexString(System.identityHashCode(obj)));
-                    Logger.getLogger("com.google.common.base.Strings").logp(Level.WARNING, "com.google.common.base.Strings", "lenientToString", "Exception during lenientFormat for ".concat(D), (Throwable) e);
-                    l4 = b1.l("<", D, " threw ", e.getClass().getName(), ">");
-                }
-            }
-            objArr[i11] = l4;
-            i11++;
-        }
-        StringBuilder sb2 = new StringBuilder(str.length() + (length * 16));
-        int i12 = 0;
-        while (true) {
-            length2 = objArr.length;
-            if (i10 >= length2 || (indexOf = str.indexOf("%s", i12)) == -1) {
-                break;
-            }
-            sb2.append((CharSequence) str, i12, indexOf);
-            sb2.append(objArr[i10]);
-            i10++;
-            i12 = indexOf + 2;
-        }
-        sb2.append((CharSequence) str, i12, str.length());
-        if (i10 < length2) {
-            sb2.append(" [");
-            sb2.append(objArr[i10]);
-            for (int i13 = i10 + 1; i13 < objArr.length; i13++) {
-                sb2.append(", ");
-                sb2.append(objArr[i13]);
-            }
-            sb2.append(']');
-        }
-        return sb2.toString();
-    }
+import android.content.Context;
+import java.util.List;
+public interface e {
+    List getAdditionalSessionProviders(Context context);
+
+    b getCastOptions(Context context);
 }

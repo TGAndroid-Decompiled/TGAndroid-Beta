@@ -3,7 +3,7 @@ package a3;
 import android.content.Context;
 import android.util.Pair;
 import android.util.SparseArray;
-import e9.x1;
+import f9.s1;
 import java.util.concurrent.CopyOnWriteArraySet;
 public final class w {
     public static final b f192q = new b(0);
@@ -31,11 +31,11 @@ public final class w {
         uVar.getClass();
         this.f194b = uVar;
         this.f195c = new SparseArray();
-        e9.l0 l0Var = e9.n0.f8481b;
-        x1 x1Var = x1.e;
+        f9.g0 g0Var = f9.i0.f10287b;
+        s1 s1Var = s1.e;
         this.d = qVar.d;
-        e2.g0 g0Var = qVar.e;
-        this.f196f = g0Var;
+        e2.g0 g0Var2 = qVar.e;
+        this.f196f = g0Var2;
         long j11 = qVar.f184g;
         if (j11 != -9223372036854775807L) {
             j10 = -j11;
@@ -45,9 +45,9 @@ public final class w {
         this.h = j10;
         b0 b0Var = qVar.h;
         this.f198i = b0Var;
-        this.e = new f(qVar.f181b, b0Var, g0Var);
+        this.e = new f(qVar.f181b, b0Var, g0Var2);
         this.f197g = new CopyOnWriteArraySet();
-        new b2.v().a();
+        new b2.w().a();
         this.f204o = -9223372036854775807L;
         this.f205p = -1;
         this.f203n = 0;

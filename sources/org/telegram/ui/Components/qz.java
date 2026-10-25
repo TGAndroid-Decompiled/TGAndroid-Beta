@@ -1,174 +1,157 @@
 package org.telegram.ui.Components;
 
-import android.animation.ObjectAnimator;
-import android.os.SystemClock;
-import android.view.View;
-import android.view.ViewConfiguration;
-import android.widget.FrameLayout;
-import android.widget.HorizontalScrollView;
-import androidx.recyclerview.widget.RecyclerView;
+import android.graphics.ColorFilter;
+import android.view.ViewGroup;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public class qz extends s4.r0 {
-    public final int f30010a;
-    public boolean f30011b;
-    public final rz f30012c;
+import org.telegram.messenger.DocumentObject;
+import org.telegram.messenger.FileLoader;
+import org.telegram.messenger.ImageLocation;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.MediaDataController;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.SvgHelper;
+import org.telegram.tgnet.TLObject;
+import org.telegram.tgnet.TLRPC;
+public final class qz extends lm0 {
+    public final boolean f32063c;
+    public final sz d;
 
-    public qz(rz rzVar, int i10) {
-        this.f30012c = rzVar;
-        this.f30010a = i10;
+    public qz(sz szVar, boolean z10) {
+        this.d = szVar;
+        this.f32063c = z10;
     }
 
     @Override
-    public void a(RecyclerView recyclerView, int i10) {
-        ObjectAnimator objectAnimator;
-        ez ezVar;
-        float f7;
+    public final boolean D(s4.e1 e1Var) {
+        return true;
+    }
+
+    @Override
+    public final int h() {
+        ArrayList arrayList;
+        boolean z10 = this.f32063c;
+        sz szVar = this.d;
+        if (z10) {
+            arrayList = szVar.f32749n1;
+        } else {
+            arrayList = szVar.f32745m1;
+        }
+        return arrayList.size();
+    }
+
+    @Override
+    public final int j(int i10) {
+        return 0;
+    }
+
+    @Override
+    public final void v(s4.e1 e1Var, int i10) {
+        ArrayList arrayList;
+        ArrayList<TLRPC.Document> arrayList2;
+        ImageLocation forSticker;
         int i11;
-        rz rzVar = this.f30012c;
-        ObjectAnimator[] objectAnimatorArr = rzVar.R0;
-        s4.x0 x0Var = recyclerView.getLayoutManager().e;
-        boolean z10 = true;
-        if (x0Var != null && x0Var.e) {
-            this.f30011b = true;
-            return;
+        String str;
+        y9 y9Var = (y9) e1Var.f47735a;
+        sz szVar = this.d;
+        boolean z10 = this.f32063c;
+        if (z10) {
+            arrayList = szVar.f32749n1;
+        } else {
+            arrayList = szVar.f32745m1;
         }
-        int i12 = this.f30010a;
-        if (i10 == 0) {
-            if (!this.f30011b) {
-                int[] iArr = rzVar.Q0;
-                sy syVar = rzVar.f30363t1;
-                if ((syVar == null || !syVar.z()) && i12 != 0) {
-                    float f10 = 48.0f;
-                    if (i12 == 1) {
-                        f7 = 36.0f;
-                    } else {
-                        f7 = 48.0f;
-                    }
-                    float dpf2 = AndroidUtilities.dpf2(f7);
-                    float f11 = iArr[i12] / (-dpf2);
-                    if (f11 > 0.0f && f11 < 1.0f) {
-                        HorizontalScrollView z11 = rzVar.z(i12);
-                        int i13 = (f11 > 0.5f ? 1 : (f11 == 0.5f ? 0 : -1));
-                        if (i13 > 0) {
-                            i11 = (int) (-Math.ceil(dpf2));
-                        } else {
-                            i11 = 0;
-                        }
-                        if (i13 > 0) {
-                            rzVar.i(i12, i11, false);
-                        }
-                        if (i12 == 1) {
-                            rzVar.m(i11);
-                        }
-                        ObjectAnimator objectAnimator2 = objectAnimatorArr[i12];
-                        if (objectAnimator2 == null) {
-                            ObjectAnimator ofFloat = ObjectAnimator.ofFloat(z11, View.TRANSLATION_Y, z11.getTranslationY(), i11);
-                            objectAnimatorArr[i12] = ofFloat;
-                            ofFloat.addUpdateListener(new org.telegram.ui.ActionBar.r2(rzVar, i12, 3));
-                            objectAnimatorArr[i12].setDuration(200L);
-                        } else {
-                            objectAnimator2.setFloatValues(z11.getTranslationY(), i11);
-                        }
-                        objectAnimatorArr[i12].start();
-                    } else {
-                        lm0 y3 = rzVar.y(i12);
-                        if (i12 == 1) {
-                            f10 = 38.0f;
-                        }
-                        int dp = AndroidUtilities.dp(f10);
-                        s4.b1 K = y3.K(0);
-                        if (K != null) {
-                            int bottom = K.f46342a.getBottom();
-                            int i14 = iArr[i12];
-                            float f12 = (bottom - (dp + i14)) / rzVar.f30306b1;
-                            if (f12 > 0.0f || f12 < 1.0f) {
-                                if (f12 <= 0.5f) {
-                                    z10 = false;
-                                }
-                                rzVar.i(i12, i14, z10);
-                            }
-                        }
-                    }
-                }
-            }
-            if (rzVar.J0) {
-                rzVar.J0 = false;
-            }
-            this.f30011b = false;
-            return;
-        }
-        if (i10 == 1) {
-            if (rzVar.J0) {
-                rzVar.J0 = false;
-            }
-            if (i12 != 0) {
-                if (i12 != 1) {
-                    if (i12 == 2) {
-                        ezVar = rzVar.f30345o0;
-                    } else {
-                        throw new IllegalArgumentException(i2.o1.k(i12, "Unexpected argument: "));
-                    }
-                } else {
-                    ezVar = rzVar.V;
-                }
+        TLRPC.StickerSetCovered stickerSetCovered = (TLRPC.StickerSetCovered) arrayList.get(i10);
+        y9Var.setTag(stickerSetCovered);
+        ColorFilter colorFilter = null;
+        if (stickerSetCovered instanceof TLRPC.TL_stickerSetFullCovered) {
+            arrayList2 = ((TLRPC.TL_stickerSetFullCovered) stickerSetCovered).documents;
+        } else if (stickerSetCovered instanceof TLRPC.TL_stickerSetNoCovered) {
+            TLRPC.TL_messages_stickerSet stickerSet = MediaDataController.getInstance(szVar.f32716c1).getStickerSet(MediaDataController.getInputStickerSet(stickerSetCovered.set), false);
+            if (stickerSet == null) {
+                arrayList2 = null;
             } else {
-                ezVar = rzVar.G0;
-            }
-            if (ezVar != null) {
-                ezVar.b();
-            }
-            this.f30011b = false;
-        }
-        if (!this.f30011b && (objectAnimator = objectAnimatorArr[i12]) != null && objectAnimator.isRunning()) {
-            objectAnimatorArr[i12].cancel();
-        }
-        if (i12 == 0) {
-            if (rzVar.T0 == null) {
-                hg.f1 f1Var = new hg.f1(rzVar, rzVar.f30310c1, rzVar.f30363t1.a(), rzVar.f30363t1.f(), 1);
-                rzVar.T0 = f1Var;
-                f1Var.a();
-            }
-            rzVar.T0.b();
-        }
-    }
-
-    @Override
-    public void b(RecyclerView recyclerView, int i10, int i11) {
-        int dp;
-        rz rzVar = this.f30012c;
-        int i12 = this.f30010a;
-        rzVar.q(i12);
-        rz.e(rzVar, i12, i11);
-        if (i12 != 0) {
-            if (i12 != 1) {
-                if (i12 == 2) {
-                    rz.f(rzVar, false);
-                }
-            } else {
-                rzVar.l(false);
+                arrayList2 = stickerSet.documents;
             }
         } else {
-            rzVar.r(false);
+            arrayList2 = stickerSetCovered.covers;
         }
-        if (!this.f30011b) {
-            float f7 = i11;
-            FrameLayout frameLayout = rzVar.f30341n;
-            if (SystemClock.elapsedRealtime() - rzVar.F2 >= ViewConfiguration.getTapTimeout()) {
-                rzVar.H += f7;
-                if (rzVar.h.getCurrentItem() == 0) {
-                    dp = AndroidUtilities.dp(38.0f);
-                } else {
-                    dp = AndroidUtilities.dp(48.0f);
+        TLRPC.Document document = stickerSetCovered.cover;
+        if (document == null) {
+            if (arrayList2 != null && !arrayList2.isEmpty()) {
+                if (stickerSetCovered.set != null) {
+                    for (int i12 = 0; i12 < arrayList2.size(); i12++) {
+                        if (arrayList2.get(i12).f22033id == stickerSetCovered.set.thumb_document_id) {
+                            document = arrayList2.get(i12);
+                            break;
+                        }
+                    }
                 }
-                float f10 = rzVar.H;
-                if (f10 >= dp) {
-                    rzVar.M(false);
-                } else if (f10 <= (-dp)) {
-                    rzVar.M(true);
-                } else if ((frameLayout.getTag() == null && rzVar.H < 0.0f) || (frameLayout.getTag() != null && rzVar.H > 0.0f)) {
-                    rzVar.H = 0.0f;
+                document = null;
+                if (document == null) {
+                    document = arrayList2.get(0);
+                }
+            } else {
+                document = null;
+            }
+        }
+        if (document != null) {
+            if (z10) {
+                if (MessageObject.isTextColorEmoji(document)) {
+                    colorFilter = org.telegram.ui.ActionBar.y6.o0(szVar.Z1);
+                }
+                y9Var.setColorFilter(colorFilter);
+            }
+            TLObject closestPhotoSizeWithSize = FileLoader.getClosestPhotoSizeWithSize(stickerSetCovered.set.thumbs, 90);
+            SvgHelper.SvgDrawable svgThumb = DocumentObject.getSvgThumb(stickerSetCovered.set.thumbs, org.telegram.ui.ActionBar.y6.f23336c7, 0.2f);
+            if (svgThumb != null) {
+                svgThumb.overrideWidthAndHeight(512, 512);
+            }
+            if (closestPhotoSizeWithSize == null || MessageObject.isVideoSticker(document)) {
+                closestPhotoSizeWithSize = document;
+            }
+            boolean z11 = closestPhotoSizeWithSize instanceof TLRPC.Document;
+            if (z11) {
+                forSticker = ImageLocation.getForDocument(FileLoader.getClosestPhotoSizeWithSize(document.thumbs, 90), document);
+            } else if (closestPhotoSizeWithSize instanceof TLRPC.PhotoSize) {
+                forSticker = ImageLocation.getForSticker((TLRPC.PhotoSize) closestPhotoSizeWithSize, document, stickerSetCovered.set.thumb_version);
+            } else {
+                return;
+            }
+            if (forSticker != null) {
+                if (z10) {
+                    i11 = 16388;
+                } else {
+                    i11 = 1;
+                }
+                if (!LiteMode.isEnabled(i11)) {
+                    str = "30_30_firstframe";
+                } else {
+                    str = "30_30";
+                }
+                if (!z11 || (!MessageObject.isAnimatedStickerDocument(document, true) && !MessageObject.isVideoSticker(document))) {
+                    String str2 = str;
+                    ImageLocation imageLocation = forSticker;
+                    if (imageLocation.imageType == 1) {
+                        y9Var.i(imageLocation, str2, "tgs", svgThumb, stickerSetCovered);
+                    } else {
+                        y9Var.i(imageLocation, null, "webp", svgThumb, stickerSetCovered);
+                    }
+                } else if (svgThumb != null) {
+                    y9Var.n(ImageLocation.getForDocument(document), str, svgThumb, stickerSetCovered);
+                } else {
+                    y9Var.j(ImageLocation.getForDocument(document), str, forSticker, null, 0, stickerSetCovered);
                 }
             }
         }
+    }
+
+    @Override
+    public final s4.e1 x(ViewGroup viewGroup, int i10) {
+        pz pzVar = new pz(this, this.d.getContext());
+        pzVar.s(AndroidUtilities.dp(24.0f), AndroidUtilities.dp(24.0f));
+        pzVar.setLayerNum(1);
+        pzVar.setAspectFit(true);
+        pzVar.setLayoutParams(new s4.q0(AndroidUtilities.dp(34.0f), AndroidUtilities.dp(34.0f)));
+        return new s4.e1(pzVar);
     }
 }

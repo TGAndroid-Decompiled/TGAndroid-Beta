@@ -4,8 +4,7 @@ import android.content.Context;
 import android.hardware.Camera;
 import android.os.Handler;
 import android.os.SystemClock;
-import ci.h1;
-import i2.o1;
+import di.h1;
 import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.util.List;
@@ -129,19 +128,19 @@ public class Camera1Session implements CameraSession {
                             open.release();
                             createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e.getMessage());
                         }
-                    } catch (RuntimeException e7) {
+                    } catch (RuntimeException e10) {
                         open.release();
-                        createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e7.getMessage());
+                        createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e10.getMessage());
                     }
-                } catch (IOException | RuntimeException e10) {
+                } catch (IOException | RuntimeException e11) {
                     open.release();
-                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e10.getMessage());
+                    createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e11.getMessage());
                 }
-            } catch (RuntimeException e11) {
-                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e11.getMessage());
+            } catch (RuntimeException e12) {
+                createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e12.getMessage());
             }
-        } catch (IllegalArgumentException e12) {
-            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e12.getMessage());
+        } catch (IllegalArgumentException e13) {
+            createSessionCallback.onFailure(CameraSession.FailureType.ERROR, e13.getMessage());
         }
     }
 
@@ -212,18 +211,18 @@ public class Camera1Session implements CameraSession {
 
             @Override
             public void onError(int i10, Camera camera) {
-                String k10;
+                String i11;
                 if (i10 == 100) {
-                    k10 = "Camera server died!";
+                    i11 = "Camera server died!";
                 } else {
-                    k10 = o1.k(i10, "Camera error: ");
+                    i11 = ic.a.i(i10, "Camera error: ");
                 }
-                Logging.e("Camera1Session", k10);
+                Logging.e("Camera1Session", i11);
                 Camera1Session.this.stopInternal();
                 if (i10 == 2) {
                     Camera1Session.this.events.onCameraDisconnected(Camera1Session.this);
                 } else {
-                    Camera1Session.this.events.onCameraError(Camera1Session.this, k10);
+                    Camera1Session.this.events.onCameraError(Camera1Session.this, i11);
                 }
             }
         });

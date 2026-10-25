@@ -1,62 +1,18 @@
 package m5;
+public final class a implements ka.d {
+    public static final a f18311a = new Object();
+    public static final ka.c f18312b = new ka.c("window", ic.a.m(ic.a.l(na.d.class, new na.a(1))));
+    public static final ka.c f18313c = new ka.c("logSourceMetrics", ic.a.m(ic.a.l(na.d.class, new na.a(2))));
+    public static final ka.c d = new ka.c("globalMetrics", ic.a.m(ic.a.l(na.d.class, new na.a(3))));
+    public static final ka.c e = new ka.c("appNamespace", ic.a.m(ic.a.l(na.d.class, new na.a(4))));
 
-import a1.g;
-import m1.j;
-public final class a {
-    public final int f16848a;
-    public final long f16849b;
-
-    public a(int i10, long j10) {
-        if (i10 != 0) {
-            this.f16848a = i10;
-            this.f16849b = j10;
-            return;
-        }
-        throw new NullPointerException("Null status");
-    }
-
-    public final boolean equals(Object obj) {
-        if (obj != this) {
-            if (obj instanceof a) {
-                a aVar = (a) obj;
-                if (j.b(this.f16848a, aVar.f16848a) && this.f16849b == aVar.f16849b) {
-                    return true;
-                }
-                return false;
-            }
-            return false;
-        }
-        return true;
-    }
-
-    public final int hashCode() {
-        long j10 = this.f16849b;
-        return ((j.c(this.f16848a) ^ 1000003) * 1000003) ^ ((int) (j10 ^ (j10 >>> 32)));
-    }
-
-    public final String toString() {
-        String str;
-        StringBuilder sb2 = new StringBuilder("BackendResponse{status=");
-        int i10 = this.f16848a;
-        if (i10 != 1) {
-            if (i10 != 2) {
-                if (i10 != 3) {
-                    if (i10 != 4) {
-                        str = "null";
-                    } else {
-                        str = "INVALID_PAYLOAD";
-                    }
-                } else {
-                    str = "FATAL_ERROR";
-                }
-            } else {
-                str = "TRANSIENT_ERROR";
-            }
-        } else {
-            str = "OK";
-        }
-        sb2.append(str);
-        sb2.append(", nextRequestWaitMillis=");
-        return g.r(sb2, this.f16849b, "}");
+    @Override
+    public final void a(Object obj, Object obj2) {
+        p5.a aVar = (p5.a) obj;
+        ka.e eVar = (ka.e) obj2;
+        eVar.a(f18312b, aVar.f46794a);
+        eVar.a(f18313c, aVar.f46795b);
+        eVar.a(d, aVar.f46796c);
+        eVar.a(e, aVar.d);
     }
 }

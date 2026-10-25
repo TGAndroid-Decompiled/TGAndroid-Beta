@@ -1,16 +1,24 @@
 package l5;
-
-import i2.o1;
-public final class f implements ja.d {
-    public static final f f15973a = new Object();
-    public static final ja.c f15974b = new ja.c("currentCacheSizeBytes", o1.p(o1.o(ma.e.class, new ma.a(1))));
-    public static final ja.c f15975c = new ja.c("maxCacheSizeBytes", o1.p(o1.o(ma.e.class, new ma.a(2))));
+public final class f implements ka.d {
+    public static final f f16882a = new Object();
+    public static final ka.c f16883b = ka.c.c("requestTimeMs");
+    public static final ka.c f16884c = ka.c.c("requestUptimeMs");
+    public static final ka.c d = ka.c.c("clientInfo");
+    public static final ka.c e = ka.c.c("logSource");
+    public static final ka.c f16885f = ka.c.c("logSourceName");
+    public static final ka.c f16886g = ka.c.c("logEvent");
+    public static final ka.c h = ka.c.c("qosTier");
 
     @Override
     public final void a(Object obj, Object obj2) {
-        o5.f fVar = (o5.f) obj;
-        ja.e eVar = (ja.e) obj2;
-        eVar.f(f15974b, fVar.f17760a);
-        eVar.f(f15975c, fVar.f17761b);
+        ka.e eVar = (ka.e) obj2;
+        l lVar = (l) ((s) obj);
+        eVar.f(f16883b, lVar.f16906a);
+        eVar.f(f16884c, lVar.f16907b);
+        eVar.a(d, lVar.f16908c);
+        eVar.a(e, lVar.d);
+        eVar.a(f16885f, lVar.e);
+        eVar.a(f16886g, lVar.f16909f);
+        eVar.a(h, w.f16919a);
     }
 }

@@ -3,6 +3,7 @@ package org.telegram.messenger;
 import android.content.SharedPreferences;
 import android.util.LongSparseArray;
 import org.telegram.messenger.FilePathDatabase;
+import org.telegram.ui.Components.b10;
 public class SaveToGallerySettingsHelper {
     public static String CHANNELS_PREF_NAME = "channels_save_gallery_exceptions";
     public static final long DEFAULT_VIDEO_LIMIT = 104857600;
@@ -113,7 +114,7 @@ public class SaveToGallerySettingsHelper {
         }
 
         public void save(String str, SharedPreferences sharedPreferences) {
-            sharedPreferences.edit().putBoolean(si.o0.u(str, "_save_gallery_photo"), this.savePhoto).putBoolean(si.o0.u(str, "_save_gallery_video"), this.saveVideo).putLong(si.o0.u(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
+            sharedPreferences.edit().putBoolean(b10.u(str, "_save_gallery_photo"), this.savePhoto).putBoolean(b10.u(str, "_save_gallery_video"), this.saveVideo).putLong(b10.u(str, "_save_gallery_limitVideo"), this.limitVideo).apply();
         }
 
         @Override

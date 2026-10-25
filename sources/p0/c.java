@@ -7,18 +7,18 @@ import android.text.TextPaint;
 import android.text.TextUtils;
 import j$.util.Objects;
 public final class c {
-    public final TextPaint f44330a;
-    public final TextDirectionHeuristic f44331b;
-    public final int f44332c;
+    public final TextPaint f46473a;
+    public final TextDirectionHeuristic f46474b;
+    public final int f46475c;
     public final int d;
 
     public c(TextPaint textPaint, TextDirectionHeuristic textDirectionHeuristic, int i10, int i11) {
         if (Build.VERSION.SDK_INT >= 29) {
             new PrecomputedText.Params.Builder(textPaint).setBreakStrategy(i10).setHyphenationFrequency(i11).setTextDirection(textDirectionHeuristic).build();
         }
-        this.f44330a = textPaint;
-        this.f44331b = textDirectionHeuristic;
-        this.f44332c = i10;
+        this.f46473a = textPaint;
+        this.f46474b = textDirectionHeuristic;
+        this.f46475c = i10;
         this.d = i11;
     }
 
@@ -27,10 +27,10 @@ public final class c {
             if (obj instanceof c) {
                 c cVar = (c) obj;
                 int i10 = Build.VERSION.SDK_INT;
-                if (this.f44332c == cVar.f44332c && this.d == cVar.d) {
-                    TextPaint textPaint = this.f44330a;
+                if (this.f46475c == cVar.f46475c && this.d == cVar.d) {
+                    TextPaint textPaint = this.f46473a;
                     float textSize = textPaint.getTextSize();
-                    TextPaint textPaint2 = cVar.f44330a;
+                    TextPaint textPaint2 = cVar.f46473a;
                     if (textSize == textPaint2.getTextSize() && textPaint.getTextScaleX() == textPaint2.getTextScaleX() && textPaint.getTextSkewX() == textPaint2.getTextSkewX() && textPaint.getLetterSpacing() == textPaint2.getLetterSpacing() && TextUtils.equals(textPaint.getFontFeatureSettings(), textPaint2.getFontFeatureSettings()) && textPaint.getFlags() == textPaint2.getFlags()) {
                         if (i10 >= 24) {
                             if (!textPaint.getTextLocales().equals(textPaint2.getTextLocales())) {
@@ -46,7 +46,7 @@ public final class c {
                         } else if (!textPaint.getTypeface().equals(textPaint2.getTypeface())) {
                             return false;
                         }
-                        if (this.f44331b == cVar.f44331b) {
+                        if (this.f46474b == cVar.f46474b) {
                             return true;
                         }
                         return false;
@@ -62,10 +62,10 @@ public final class c {
 
     public final int hashCode() {
         int i10 = Build.VERSION.SDK_INT;
-        TextDirectionHeuristic textDirectionHeuristic = this.f44331b;
+        TextDirectionHeuristic textDirectionHeuristic = this.f46474b;
         int i11 = this.d;
-        int i12 = this.f44332c;
-        TextPaint textPaint = this.f44330a;
+        int i12 = this.f46475c;
+        TextPaint textPaint = this.f46473a;
         if (i10 >= 24) {
             return Objects.hash(Float.valueOf(textPaint.getTextSize()), Float.valueOf(textPaint.getTextScaleX()), Float.valueOf(textPaint.getTextSkewX()), Float.valueOf(textPaint.getLetterSpacing()), Integer.valueOf(textPaint.getFlags()), textPaint.getTextLocales(), textPaint.getTypeface(), Boolean.valueOf(textPaint.isElegantTextHeight()), textDirectionHeuristic, Integer.valueOf(i12), Integer.valueOf(i11));
         }
@@ -75,7 +75,7 @@ public final class c {
     public final String toString() {
         StringBuilder sb2 = new StringBuilder("{");
         StringBuilder sb3 = new StringBuilder("textSize=");
-        TextPaint textPaint = this.f44330a;
+        TextPaint textPaint = this.f46473a;
         sb3.append(textPaint.getTextSize());
         sb2.append(sb3.toString());
         sb2.append(", textScaleX=" + textPaint.getTextScaleX());
@@ -92,17 +92,17 @@ public final class c {
         if (i10 >= 26) {
             sb2.append(", variationSettings=" + textPaint.getFontVariationSettings());
         }
-        sb2.append(", textDir=" + this.f44331b);
-        sb2.append(", breakStrategy=" + this.f44332c);
+        sb2.append(", textDir=" + this.f46474b);
+        sb2.append(", breakStrategy=" + this.f46475c);
         sb2.append(", hyphenationFrequency=" + this.d);
         sb2.append("}");
         return sb2.toString();
     }
 
     public c(PrecomputedText.Params params) {
-        this.f44330a = params.getTextPaint();
-        this.f44331b = params.getTextDirection();
-        this.f44332c = params.getBreakStrategy();
+        this.f46473a = params.getTextPaint();
+        this.f46474b = params.getTextDirection();
+        this.f46475c = params.getBreakStrategy();
         this.d = params.getHyphenationFrequency();
     }
 }

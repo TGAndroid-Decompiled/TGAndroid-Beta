@@ -28,35 +28,35 @@ public final class sj0 implements LeadingMarginSpan {
     public int I;
     public jj0 J;
     public SpannableString K;
-    public final boolean f30525a;
-    public boolean f30526b = true;
-    public int f30527c;
+    public final boolean f32576a;
+    public boolean f32577b = true;
+    public int f32578c;
     public int d;
     public boolean e;
-    public boolean f30528f;
+    public boolean f32579f;
     public boolean h;
-    public boolean f30529n;
-    public boolean f30530r;
-    public final rj0 f30531s;
-    public ki.y5 v;
-    public final Drawable f30532w;
-    public final Paint f30533x;
-    public final float[] f30534y;
+    public boolean f32580n;
+    public boolean f32581r;
+    public final rj0 f32582s;
+    public li.z5 v;
+    public final Drawable f32583w;
+    public final Paint f32584x;
+    public final float[] f32585y;
 
     public sj0(boolean z10, boolean z11, rj0 rj0Var) {
         Paint paint = new Paint(1);
-        this.f30533x = paint;
-        this.f30534y = new float[8];
+        this.f32584x = paint;
+        this.f32585y = new float[8];
         this.E = new Path();
         Paint paint2 = new Paint(1);
         this.F = paint2;
         this.G = new float[8];
         this.H = new Path();
         this.I = -1;
-        this.f30525a = z10;
-        this.f30531s = rj0Var;
+        this.f32576a = z10;
+        this.f32582s = rj0Var;
         this.e = z11;
-        this.f30532w = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.mini_quote).mutate();
+        this.f32583w = ApplicationLoader.applicationContext.getResources().getDrawable(R.drawable.mini_quote).mutate();
         paint2.setColor(this.I);
         paint.setColor(i0.a.o(this.I, 30));
     }
@@ -84,7 +84,7 @@ public final class sj0 implements LeadingMarginSpan {
             } else {
                 i11 = 0;
             }
-            if (rj0Var.f30221a.e) {
+            if (rj0Var.f32257a.e) {
                 i14 = 16;
             }
             hashMap.put(valueOf, Integer.valueOf(i14 | i11));
@@ -97,7 +97,7 @@ public final class sj0 implements LeadingMarginSpan {
             }
             hashMap.put(valueOf2, Integer.valueOf(i12 | 2));
             spannableStringBuilder.removeSpan(rj0Var);
-            spannableStringBuilder.removeSpan(rj0Var.f30221a);
+            spannableStringBuilder.removeSpan(rj0Var.f32257a);
             i13++;
         }
         Iterator it = treeSet.iterator();
@@ -149,8 +149,8 @@ public final class sj0 implements LeadingMarginSpan {
         int clamp2 = Utilities.clamp(i11, spannable.length(), 0);
         ?? metricAffectingSpan = new MetricAffectingSpan();
         sj0 sj0Var = new sj0(false, z10, metricAffectingSpan);
-        metricAffectingSpan.f30221a = sj0Var;
-        sj0Var.f30527c = clamp;
+        metricAffectingSpan.f32257a = sj0Var;
+        sj0Var.f32578c = clamp;
         sj0Var.d = clamp2;
         spannable.setSpan(metricAffectingSpan, clamp, clamp2, 33);
         spannable.setSpan(sj0Var, clamp, clamp2, 33);
@@ -173,8 +173,8 @@ public final class sj0 implements LeadingMarginSpan {
         }
         ?? metricAffectingSpan = new MetricAffectingSpan();
         sj0 sj0Var = new sj0(true, z10, metricAffectingSpan);
-        metricAffectingSpan.f30221a = sj0Var;
-        sj0Var.f30527c = clamp;
+        metricAffectingSpan.f32257a = sj0Var;
+        sj0Var.f32578c = clamp;
         sj0Var.d = clamp2;
         editable.setSpan(sj0Var, Utilities.clamp(clamp, editable.length(), 0), Utilities.clamp(clamp2, editable.length(), 0), 33);
         editable.setSpan(metricAffectingSpan, Utilities.clamp(clamp, editable.length(), 0), Utilities.clamp(clamp2, editable.length(), 0), 33);
@@ -183,8 +183,8 @@ public final class sj0 implements LeadingMarginSpan {
         return i12;
     }
 
-    public static java.util.ArrayList d(org.telegram.ui.Components.iu r19, android.text.Layout r20, java.util.ArrayList r21, boolean[] r22) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sj0.d(org.telegram.ui.Components.iu, android.text.Layout, java.util.ArrayList, boolean[]):java.util.ArrayList");
+    public static java.util.ArrayList d(org.telegram.ui.Components.lu r19, android.text.Layout r20, java.util.ArrayList r21, boolean[] r22) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Components.sj0.d(org.telegram.ui.Components.lu, android.text.Layout, java.util.ArrayList, boolean[]):java.util.ArrayList");
     }
 
     public static ArrayList e(Layout layout, ArrayList arrayList) {
@@ -202,7 +202,7 @@ public final class sj0 implements LeadingMarginSpan {
                     arrayList.clear();
                 }
                 for (sj0 sj0Var : (sj0[]) spanned.getSpans(0, spanned.length(), sj0.class)) {
-                    boolean z10 = sj0Var.f30529n;
+                    boolean z10 = sj0Var.f32580n;
                     oj0 oj0Var = new oj0(null, layout, spanned, sj0Var);
                     if (arrayList == null) {
                         arrayList = new ArrayList();
@@ -220,7 +220,7 @@ public final class sj0 implements LeadingMarginSpan {
     @Override
     public final int getLeadingMargin(boolean z10) {
         float f7;
-        if (this.f30526b) {
+        if (this.f32577b) {
             f7 = 8.0f;
         } else {
             f7 = 10.0f;

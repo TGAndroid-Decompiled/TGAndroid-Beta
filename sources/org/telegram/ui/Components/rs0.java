@@ -1,47 +1,29 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Rect;
 import org.telegram.messenger.AndroidUtilities;
-public final class rs0 extends org.telegram.ui.h11 {
-    public final wv0 H;
+import org.telegram.messenger.Utilities;
+public final class rs0 implements Utilities.Callback {
+    public final int f32319a;
+    public final aw0 f32320b;
 
-    public rs0(wv0 wv0Var, Context context, nw0 nw0Var, ci.v6 v6Var, qs0 qs0Var) {
-        super(context, nw0Var, v6Var, qs0Var);
-        this.H = wv0Var;
+    public rs0(aw0 aw0Var, int i10) {
+        this.f32319a = i10;
+        this.f32320b = aw0Var;
     }
 
     @Override
-    public final void b() {
-        vs0 vs0Var;
-        Rect rect = this.F;
-        rect.set(0, 0, getMeasuredWidth(), (int) getVisualHeight());
-        setClipBounds(rect);
-        invalidate();
-        wv0 wv0Var = this.H;
-        pu0[] pu0VarArr = wv0Var.f32386k0;
-        if (pu0VarArr != null) {
-            for (pu0 pu0Var : pu0VarArr) {
-                if (pu0Var != null && (vs0Var = pu0Var.h) != null) {
-                    int paddingTop = vs0Var.getPaddingTop();
-                    vs0 vs0Var2 = pu0Var.h;
-                    int paddingLeft = vs0Var2.getPaddingLeft();
-                    int a02 = wv0Var.a0(pu0Var.F);
-                    int paddingRight = pu0Var.h.getPaddingRight();
-                    vs0 vs0Var3 = pu0Var.h;
-                    int Z = wv0Var.Z(wv0Var.y0());
-                    vs0Var3.f29392f3 = Z;
-                    vs0Var2.setPadding(paddingLeft, a02, paddingRight, Z);
-                    int paddingTop2 = paddingTop - pu0Var.h.getPaddingTop();
-                    if (paddingTop2 != 0) {
-                        AndroidUtilities.doOnLayout(pu0Var.h, new yr0(pu0Var, paddingTop2, 1));
-                    }
-                }
-                if (pu0Var != null && pu0Var.v != null) {
-                    wv0Var.v1(pu0Var);
-                }
-            }
+    public final void run(Object obj) {
+        int i10 = this.f32319a;
+        aw0 aw0Var = this.f32320b;
+        di.a7 a7Var = (di.a7) obj;
+        switch (i10) {
+            case 0:
+                AndroidUtilities.runOnUIThread(new t90(18, aw0Var, a7Var), 100L);
+                return;
+            default:
+                int[] iArr = aw0.f26632p2;
+                AndroidUtilities.runOnUIThread(new t90(18, aw0Var, a7Var), 100L);
+                return;
         }
-        wv0Var.L();
     }
 }

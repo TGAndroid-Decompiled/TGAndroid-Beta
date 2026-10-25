@@ -1,43 +1,39 @@
 package org.telegram.ui.Components;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.widget.TextView;
-import org.telegram.messenger.AndroidUtilities;
-public final class km extends TextView {
-    public float f28035a;
-    public boolean f28036b;
-    public final Paint f28037c;
+import android.view.accessibility.AccessibilityNodeInfo;
+import org.telegram.ui.tc1;
+public final class km extends org.telegram.ui.ActionBar.w0 {
+    public final int f29938x0;
+    public final Object f29939y0;
 
-    public km(Context context, Paint paint) {
-        super(context);
-        this.f28037c = paint;
-        this.f28035a = 0.0f;
+    public km(li liVar, Context context, org.telegram.ui.ActionBar.z zVar, org.telegram.ui.ActionBar.u6 u6Var, int i10) {
+        super(context, zVar, 0, 0, false, u6Var);
+        this.f29938x0 = i10;
+        this.f29939y0 = liVar;
     }
 
     @Override
-    public final void onDraw(Canvas canvas) {
-        int i10 = (int) ((this.f28035a * 130.0f) + 125.0f);
-        Paint paint = this.f28037c;
-        paint.setAlpha(i10);
-        if (!this.f28036b) {
-            float f7 = this.f28035a - 0.026666667f;
-            this.f28035a = f7;
-            if (f7 <= 0.0f) {
-                this.f28035a = 0.0f;
-                this.f28036b = true;
-            }
-        } else {
-            float f10 = this.f28035a + 0.026666667f;
-            this.f28035a = f10;
-            if (f10 >= 1.0f) {
-                this.f28035a = 1.0f;
-                this.f28036b = false;
-            }
+    public final void onInitializeAccessibilityNodeInfo(AccessibilityNodeInfo accessibilityNodeInfo) {
+        switch (this.f29938x0) {
+            case 0:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((ChatAttachAlertPhotoLayout) this.f29939y0).f26059x.getText());
+                return;
+            case 1:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((cn) this.f29939y0).f27202x.getText());
+                return;
+            default:
+                super.onInitializeAccessibilityNodeInfo(accessibilityNodeInfo);
+                accessibilityNodeInfo.setText(((tc1) this.f29939y0).h.getText());
+                return;
         }
-        super.onDraw(canvas);
-        canvas.drawCircle(AndroidUtilities.dp(14.0f), getMeasuredHeight() / 2, AndroidUtilities.dp(4.0f), paint);
-        invalidate();
+    }
+
+    public km(tc1 tc1Var, Context context, org.telegram.ui.ActionBar.z zVar) {
+        super(context, zVar, 0);
+        this.f29938x0 = 2;
+        this.f29939y0 = tc1Var;
     }
 }

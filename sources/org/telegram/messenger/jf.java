@@ -1,33 +1,41 @@
 package org.telegram.messenger;
-
-import org.telegram.messenger.MessagesStorage;
 public final class jf implements Runnable {
-    public final int f18770a;
-    public final MessagesStorage f18771b;
-    public final long f18772c;
-    public final MessagesStorage.IntCallback d;
+    public final int f20436a;
+    public final MessagesStorage f20437b;
+    public final int f20438c;
 
-    public jf(MessagesStorage messagesStorage, long j10, MessagesStorage.IntCallback intCallback, int i10) {
-        this.f18770a = i10;
-        this.f18771b = messagesStorage;
-        this.f18772c = j10;
-        this.d = intCallback;
+    public jf(MessagesStorage messagesStorage, int i10, int i11) {
+        this.f20436a = i11;
+        this.f20437b = messagesStorage;
+        this.f20438c = i10;
     }
 
     @Override
     public final void run() {
-        switch (this.f18770a) {
+        switch (this.f20436a) {
             case 0:
-                this.f18771b.lambda$getDialogMaxMessageId$255(this.f18772c, this.d);
+                this.f20437b.lambda$readAllDialogs$68(this.f20438c);
                 return;
             case 1:
-                this.f18771b.lambda$getDialogFolderId$243(this.f18772c, this.d);
+                this.f20437b.lambda$checkIfFolderEmptyInternal$248(this.f20438c);
                 return;
             case 2:
-                this.f18771b.lambda$getMessagesCount$158(this.f18772c, this.d);
+                this.f20437b.lambda$clearDownloadQueue$187(this.f20438c);
+                return;
+            case 3:
+                this.f20437b.lambda$putMessagesInternal$199(this.f20438c);
+                return;
+            case 4:
+                this.f20437b.lambda$getDownloadQueue$189(this.f20438c);
+                return;
+            case 5:
+                this.f20437b.lambda$getUnsentMessages$155(this.f20438c);
+                return;
+            case 6:
+                this.f20437b.lambda$checkIfFolderEmpty$249(this.f20438c);
                 return;
             default:
-                this.f18771b.lambda$getSavedDialogMaxMessageId$53(this.f18772c, this.d);
+                this.f20437b.lambda$clearWidgetDialogs$170(this.f20438c);
                 return;
         }
     }

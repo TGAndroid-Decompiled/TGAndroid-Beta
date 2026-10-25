@@ -47,7 +47,7 @@ public class VoipAudioManager {
     }
 
     public void lambda$isBluetoothAndSpeakerOnAsync$4(Utilities.Callback2 callback2) {
-        AndroidUtilities.runOnUIThread(new e2.n0(callback2, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
+        AndroidUtilities.runOnUIThread(new e2.o0(callback2, isBluetoothOn(), getAudioManager().isSpeakerphoneOn(), 3));
     }
 
     public static void lambda$stopBluetooth$2(AudioManager audioManager) {
@@ -69,7 +69,7 @@ public class VoipAudioManager {
     }
 
     public void isBluetoothAndSpeakerOnAsync(Utilities.Callback2<Boolean, Boolean> callback2) {
-        Utilities.globalQueue.postRunnable(new m4.z(21, this, callback2));
+        Utilities.globalQueue.postRunnable(new m0(2, this, callback2));
     }
 
     public boolean isBluetoothOn() {
@@ -103,7 +103,7 @@ public class VoipAudioManager {
 
     public void setSpeakerphoneOn(boolean z10) {
         this.isSpeakerphoneOn = Boolean.valueOf(z10);
-        Utilities.globalQueue.postRunnable(new ah.t(21, getAudioManager(), z10));
+        Utilities.globalQueue.postRunnable(new bh.n(21, getAudioManager(), z10));
     }
 
     public void startBluetooth() {
@@ -114,7 +114,7 @@ public class VoipAudioManager {
                 return;
             }
             this.isSpeakerphoneOn = Boolean.FALSE;
-            Utilities.globalQueue.postRunnable(new m4.z(20, audioManager, findBluetoothDevice));
+            Utilities.globalQueue.postRunnable(new m0(1, audioManager, findBluetoothDevice));
             return;
         }
         audioManager.startBluetoothSco();

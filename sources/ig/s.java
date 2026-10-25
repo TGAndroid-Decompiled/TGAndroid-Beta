@@ -1,75 +1,29 @@
 package ig;
+public final class s implements Runnable {
+    public final int f14228a;
+    public final i0 f14229b;
+    public final String f14230c;
+    public final int d;
+    public final String e;
 
-import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
-import android.view.View;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.ui.ActionBar.g6;
-import org.telegram.ui.ActionBar.k6;
-import org.telegram.ui.Components.EditTextBoldCursor;
-import org.telegram.ui.Components.g5;
-import org.telegram.ui.Components.n6;
-import org.telegram.ui.Components.zr;
-public final class s extends EditTextBoldCursor {
-    public final g5 f13038b;
-    public int f13039c;
-    public final n6 d;
-    public final g6 e;
-
-    public s(Context context, g6 g6Var) {
-        super(context);
-        this.e = g6Var;
-        this.f13038b = new g5(this);
-        n6 n6Var = new n6(false, true, true);
-        this.d = n6Var;
-        n6Var.n(0.2f, 160L, zr.h);
-        n6Var.w(AndroidUtilities.dp(15.33f));
-        n6Var.setCallback(this);
-        n6Var.f28797b = 5;
+    public s(i0 i0Var, int i10, String str, String str2) {
+        this.f14228a = 0;
+        this.f14229b = i0Var;
+        this.d = i10;
+        this.f14230c = str;
+        this.e = str2;
     }
 
     @Override
-    public final void dispatchDraw(Canvas canvas) {
-        int i10;
-        super.dispatchDraw(canvas);
-        if (this.f13039c < 0) {
-            i10 = k6.f21405p7;
-        } else {
-            i10 = k6.P5;
-        }
-        int a2 = this.f13038b.a(k6.w0(i10, this.e), false);
-        n6 n6Var = this.d;
-        n6Var.u(a2);
-        n6Var.setBounds(getScrollX(), 0, getWidth() + getScrollX(), getHeight());
-        n6Var.draw(canvas);
+    public final void run() {
+        throw new UnsupportedOperationException("Method not decompiled: ig.s.run():void");
     }
 
-    @Override
-    public final void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, View.MeasureSpec.makeMeasureSpec(AndroidUtilities.dp(36.0f), 1073741824));
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-        super.onTextChanged(charSequence, i10, i11, i12);
-        n6 n6Var = this.d;
-        if (n6Var != null) {
-            this.f13039c = 32 - charSequence.length();
-            n6Var.a();
-            String str = "";
-            if (this.f13039c <= 4) {
-                str = "" + this.f13039c;
-            }
-            n6Var.t(str, true, true);
-        }
-    }
-
-    @Override
-    public final boolean verifyDrawable(Drawable drawable) {
-        if (drawable != this.d && !super.verifyDrawable(drawable)) {
-            return false;
-        }
-        return true;
+    public s(i0 i0Var, String str, int i10, String str2, int i11) {
+        this.f14228a = i11;
+        this.f14229b = i0Var;
+        this.f14230c = str;
+        this.d = i10;
+        this.e = str2;
     }
 }

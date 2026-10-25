@@ -1,75 +1,54 @@
 package i2;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.SystemClock;
-import org.telegram.ui.web.a2;
-public final class t1 implements v0 {
-    public long f12620a;
-    public long f12621b;
-    public boolean f12622c;
-    public final Object d;
-    public Object e;
+import a8.yb;
+public final class t1 {
+    public static final t1 f13766c;
+    public static final t1 d;
+    public static final t1 e;
+    public static final t1 f13767f;
+    public final long f13768a;
+    public final long f13769b;
 
-    public t1(a2 a2Var) {
-        this.d = new Handler(Looper.getMainLooper());
-        this.e = a2Var;
+    static {
+        t1 t1Var = new t1(0L, 0L);
+        f13766c = t1Var;
+        d = new t1(Long.MAX_VALUE, Long.MAX_VALUE);
+        e = new t1(Long.MAX_VALUE, 0L);
+        new t1(0L, Long.MAX_VALUE);
+        f13767f = t1Var;
     }
 
-    @Override
-    public long a() {
-        long j10;
-        long j11 = this.f12620a;
-        if (this.f12622c) {
-            ((e2.g0) this.d).getClass();
-            long elapsedRealtime = SystemClock.elapsedRealtime() - this.f12621b;
-            b2.z0 z0Var = (b2.z0) this.e;
-            if (z0Var.f4159a == 1.0f) {
-                j10 = e2.m0.S(elapsedRealtime);
-            } else {
-                j10 = elapsedRealtime * z0Var.f4161c;
-            }
-            return j10 + j11;
+    public t1(long j10, long j11) {
+        boolean z10;
+        if (j10 >= 0) {
+            z10 = true;
+        } else {
+            z10 = false;
         }
-        return j11;
+        yb.g(z10);
+        yb.g(j11 >= 0);
+        this.f13768a = j10;
+        this.f13769b = j11;
     }
 
-    @Override
-    public boolean b() {
+    public final long a(long r17, long r19, long r21) {
+        throw new UnsupportedOperationException("Method not decompiled: i2.t1.a(long, long, long):long");
+    }
+
+    public final boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj != null && t1.class == obj.getClass()) {
+            t1 t1Var = (t1) obj;
+            if (this.f13768a == t1Var.f13768a && this.f13769b == t1Var.f13769b) {
+                return true;
+            }
+        }
         return false;
     }
 
-    public void c(long j10) {
-        this.f12620a = j10;
-        if (this.f12622c) {
-            ((e2.g0) this.d).getClass();
-            this.f12621b = SystemClock.elapsedRealtime();
-        }
-    }
-
-    public void d() {
-        if (!this.f12622c) {
-            ((e2.g0) this.d).getClass();
-            this.f12621b = SystemClock.elapsedRealtime();
-            this.f12622c = true;
-        }
-    }
-
-    @Override
-    public void f(b2.z0 z0Var) {
-        if (this.f12622c) {
-            c(a());
-        }
-        this.e = z0Var;
-    }
-
-    @Override
-    public b2.z0 h() {
-        return (b2.z0) this.e;
-    }
-
-    public t1(e2.g0 g0Var) {
-        this.d = g0Var;
-        this.e = b2.z0.d;
+    public final int hashCode() {
+        return (((int) this.f13768a) * 31) + ((int) this.f13769b);
     }
 }

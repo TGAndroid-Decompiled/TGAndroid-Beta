@@ -1,15 +1,17 @@
 package x7;
-public final class n2 implements ja.d {
-    public static final n2 f49916a = new Object();
+
+import org.telegram.ui.Components.b10;
+public final class n2 implements ka.d {
+    public static final n2 f51588a = new Object();
 
     static {
-        si.o0.s(si.o0.m(c0.class, si.o0.q(3, si.o0.m(c0.class, si.o0.q(2, si.o0.m(c0.class, new z(1)))))));
+        b10.s(b10.n(d.class, new a(1)));
     }
 
     @Override
     public final void a(Object obj, Object obj2) {
         if (obj == null) {
-            ja.e eVar = (ja.e) obj2;
+            ka.e eVar = (ka.e) obj2;
             throw null;
         }
         throw new ClassCastException();

@@ -1,139 +1,224 @@
 package org.telegram.ui.Wallet;
 
-import android.view.MotionEvent;
+import android.animation.ValueAnimator;
+import android.app.ActivityManager;
+import android.content.Context;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
-import android.view.ViewConfiguration;
-import android.view.animation.DecelerateInterpolator;
-import android.widget.Scroller;
-import androidx.recyclerview.widget.RecyclerView;
-import java.util.ArrayList;
-import org.telegram.ui.Components.c71;
-import org.telegram.ui.Components.i71;
-public final class k5 extends s4.p0 {
-    public RecyclerView f34710a;
-    public c71 f34712c;
-    public boolean d;
-    public boolean e;
-    public boolean f34713f;
-    public float f34714g;
-    public float h;
-    public final o5 f34716j;
-    public final ei.e9 f34711b = new ei.e9(this);
-    public final m f34715i = new m(this, 8);
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.TextView;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.LiteMode;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.R;
+import org.telegram.messenger.SharedConfig;
+import org.telegram.ui.Components.ds;
+import org.telegram.ui.Components.gb1;
+import org.telegram.ui.fc1;
+public final class k5 extends FrameLayout {
+    public final TextView f36782a;
+    public final FrameLayout f36783b;
+    public final FrameLayout f36784c;
+    public final FrameLayout d;
+    public q0 e;
+    public boolean f36785f;
+    public boolean h;
+    public ValueAnimator f36786n;
 
-    public k5(o5 o5Var) {
-        this.f34716j = o5Var;
-    }
-
-    @Override
-    public final boolean a(int r7, int r8) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.Wallet.k5.a(int, int):boolean");
-    }
-
-    public final void b(c71 c71Var) {
-        c71 c71Var2 = this.f34712c;
-        if (c71Var2 != null) {
-            c71Var2.removeCallbacks(this.f34715i);
+    public k5(Context context, String str) {
+        super(context);
+        float f7;
+        char c10;
+        ActivityManager activityManager;
+        addView(new a5(context, str), gb1.i(-1, -1, 17));
+        FrameLayout frameLayout = new FrameLayout(context);
+        this.f36783b = frameLayout;
+        frameLayout.setBackground(org.telegram.ui.ActionBar.y6.c0(AndroidUtilities.dp(20.0f), -1));
+        frameLayout.setCameraDistance(AndroidUtilities.dp(8000.0f));
+        addView(frameLayout, gb1.h(212, 244.0f, 49, 0.0f, 22.0f, 0.0f, 0.0f));
+        FrameLayout frameLayout2 = new FrameLayout(context);
+        this.f36784c = frameLayout2;
+        frameLayout.addView(frameLayout2, gb1.g(-1.0f, -1));
+        FrameLayout frameLayout3 = new FrameLayout(context);
+        frameLayout2.addView(frameLayout3, gb1.h(164, 164.0f, 49, 0.0f, 24.0f, 0.0f, 0.0f));
+        ai.g c11 = ai.h.c("ton://transfer/".concat(str), 768, jc.c.H, 1.0f, new ColorDrawable(0));
+        frameLayout3.addView(new di.h3(context, c11), gb1.g(-1.0f, -1));
+        if (c11 == null) {
+            f7 = 0.0f;
+        } else {
+            f7 = c11.f1505l / c11.f1498b;
         }
-        this.f34712c = c71Var;
-        RecyclerView recyclerView = this.f34710a;
-        if (recyclerView != c71Var) {
-            ei.e9 e9Var = this.f34711b;
-            if (recyclerView != null) {
-                ArrayList arrayList = recyclerView.f3637w0;
-                if (arrayList != null) {
-                    arrayList.remove(e9Var);
-                }
-                this.f34710a.setOnFlingListener(null);
-            }
-            this.f34710a = c71Var;
-            if (c71Var != null) {
-                if (c71Var.getOnFlingListener() == null) {
-                    this.f34710a.j(e9Var);
-                    this.f34710a.setOnFlingListener(this);
-                    new Scroller(this.f34710a.getContext(), new DecelerateInterpolator());
-                    f();
-                    return;
-                }
-                throw new IllegalStateException("An instance of OnFlingListener already set.");
-            }
-        }
-    }
-
-    public final void c() {
-        this.e = false;
-        this.f34713f = false;
-        this.d = false;
-        c71 c71Var = this.f34712c;
-        if (c71Var != null) {
-            c71Var.removeCallbacks(this.f34715i);
-        }
-    }
-
-    public final View d(s4.n0 n0Var) {
-        c71 c71Var;
-        if (!this.e && (c71Var = this.f34712c) != null && c71Var.getScrollState() == 0) {
-            o5 o5Var = this.f34716j;
-            i71 t02 = o5Var.t0();
-            if ((t02 == null || t02.getScrollState() == 0) && this.d) {
-                this.d = false;
-                if (o5Var.u0()) {
-                    View m10 = n0Var.m(0);
-                    View m11 = n0Var.m(n0Var.B() - 1);
-                    if (m10 == null) {
-                        return m11;
-                    }
-                    if (m11 == null || Math.abs(new int[]{0, s4.n0.z(m10) - n0Var.F()}[1]) < Math.abs(new int[]{0, s4.n0.z(m11) - n0Var.F()}[1])) {
-                        return m10;
-                    }
-                    return m11;
-                }
-                return null;
-            }
-            return null;
-        }
-        return null;
-    }
-
-    public final void e(MotionEvent motionEvent) {
-        boolean z10;
-        int actionMasked = motionEvent.getActionMasked();
-        if (actionMasked == 0) {
-            c();
-            this.e = true;
-            this.f34714g = motionEvent.getX();
-            this.h = motionEvent.getY();
-        } else if (actionMasked == 3) {
-            c();
-        } else if (actionMasked == 2 || actionMasked == 1) {
-            float abs = Math.abs(motionEvent.getX() - this.f34714g);
-            float abs2 = Math.abs(motionEvent.getY() - this.h);
-            if (abs2 > ViewConfiguration.get(this.f34712c.getContext()).getScaledTouchSlop() && abs2 > abs * 1.5f) {
-                z10 = true;
+        if (f7 > 0.0f) {
+            if (SharedConfig.getDevicePerformanceClass() != 0 && !LiteMode.isPowerSaverApplied() && (activityManager = (ActivityManager) context.getSystemService("activity")) != null && activityManager.getDeviceConfigurationInfo().reqGlEsVersion >= 196608) {
+                int round = Math.round(f7 * 164.0f * 1.35f);
+                frameLayout3.addView(new i8(context), gb1.i(round, round, 17));
             } else {
-                z10 = false;
-            }
-            this.f34713f = z10;
-            if (!z10) {
-                this.d = false;
-            }
-            if (actionMasked == 1) {
-                this.e = false;
+                ImageView imageView = new ImageView(context);
+                imageView.setScaleType(ImageView.ScaleType.FIT_XY);
+                imageView.setImageResource(R.drawable.mini_gram_72);
+                int round2 = Math.round(f7 * 164.0f);
+                frameLayout3.addView(imageView, gb1.i(round2, round2, 17));
             }
         }
+        TextView textView = new TextView(context);
+        this.f36782a = textView;
+        textView.setText(LocaleController.getString(R.string.WalletCopyAddress));
+        textView.setTextColor(-15556886);
+        textView.setTextSize(1, 14.0f);
+        textView.setGravity(17);
+        textView.setCompoundDrawablePadding(AndroidUtilities.dp(4.0f));
+        textView.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        textView.setPadding(AndroidUtilities.dp(10.0f), 0, AndroidUtilities.dp(12.0f), 0);
+        int dp = AndroidUtilities.dp(18.0f);
+        textView.setBackground(org.telegram.ui.ActionBar.y6.j0(dp, dp, dp, dp, -984578, -1903620, -1903620));
+        Drawable mutate = context.getResources().getDrawable(R.drawable.wallet_copy).mutate();
+        mutate.setColorFilter(new PorterDuffColorFilter(-15556886, PorterDuff.Mode.SRC_IN));
+        mutate.setBounds(0, 0, AndroidUtilities.dp(14.0f), AndroidUtilities.dp(14.0f));
+        textView.setCompoundDrawables(mutate, null, null, null);
+        gb1.b(textView);
+        frameLayout2.addView(textView, gb1.h(-2, 28.0f, 49, 0.0f, 202.0f, 0.0f, 0.0f));
+        FrameLayout frameLayout4 = new FrameLayout(context);
+        this.d = frameLayout4;
+        frameLayout4.setVisibility(4);
+        frameLayout4.setRotationY(180.0f);
+        frameLayout.addView(frameLayout4, gb1.g(-1.0f, -1));
+        TextView textView2 = new TextView(context);
+        String replace = str.replace(" ", "");
+        SpannableStringBuilder spannableStringBuilder = new SpannableStringBuilder();
+        int i10 = 0;
+        int i11 = 0;
+        while (i10 < replace.length()) {
+            if (i11 > 0) {
+                if (i11 % 3 == 0) {
+                    c10 = '\n';
+                } else {
+                    c10 = ' ';
+                }
+                spannableStringBuilder.append(c10);
+            }
+            int length = spannableStringBuilder.length();
+            int i12 = i10 + 4;
+            spannableStringBuilder.append((CharSequence) replace, i10, Math.min(i12, replace.length()));
+            if ((i11 & 1) != 0) {
+                spannableStringBuilder.setSpan(new ForegroundColorSpan(-7434605), length, spannableStringBuilder.length(), 33);
+            }
+            i11++;
+            i10 = i12;
+        }
+        textView2.setText(spannableStringBuilder);
+        textView2.setTextColor(-16777216);
+        textView2.setTextSize(1, 18.0f);
+        textView2.setTypeface(m5.n0(context));
+        textView2.setGravity(17);
+        textView2.setIncludeFontPadding(false);
+        textView2.setMaxLines(4);
+        textView2.setLineSpacing(0.0f, 1.0f);
+        TextView k10 = org.telegram.ui.d3.k(this.d, textView2, gb1.h(-1, 112.0f, 55, 8.0f, 32.0f, 8.0f, 0.0f), context);
+        k10.setText(LocaleController.getString(R.string.WalletAddressCopiedShort));
+        k10.setTextColor(-15556886);
+        k10.setTextSize(1, 14.0f);
+        k10.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        k10.setGravity(17);
+        k10.setCompoundDrawablePadding(AndroidUtilities.dp(3.0f));
+        Drawable mutate2 = context.getResources().getDrawable(R.drawable.msg_text_check).mutate();
+        mutate2.setColorFilter(new PorterDuffColorFilter(-15556886, PorterDuff.Mode.SRC_IN));
+        mutate2.setBounds(0, 0, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        k10.setCompoundDrawables(mutate2, null, null, null);
+        TextView k11 = org.telegram.ui.d3.k(this.d, k10, gb1.h(-2, 28.0f, 49, 0.0f, 149.0f, 0.0f, 0.0f), context);
+        k11.setText(LocaleController.getString(R.string.WalletShowMyQR));
+        k11.setTextColor(-15556886);
+        k11.setTextSize(1, 14.0f);
+        k11.setTypeface(AndroidUtilities.getTypeface("fonts/rmedium.ttf"));
+        k11.setGravity(17);
+        k11.setPadding(AndroidUtilities.dp(12.0f), 0, AndroidUtilities.dp(12.0f), 0);
+        int dp2 = AndroidUtilities.dp(18.0f);
+        k11.setBackground(org.telegram.ui.ActionBar.y6.j0(dp2, dp2, dp2, dp2, -984578, -1903620, -1903620));
+        gb1.b(k11);
+        this.d.addView(k11, gb1.h(-2, 28.0f, 49, 0.0f, 202.0f, 0.0f, 0.0f));
+        View.OnClickListener onClickListener = new View.OnClickListener(this) {
+            public final k5 f36733b;
+
+            {
+                this.f36733b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        k5 k5Var = this.f36733b;
+                        if (!k5Var.f36785f && !k5Var.h) {
+                            q0 q0Var = k5Var.e;
+                            if (q0Var != null) {
+                                q0Var.run();
+                            }
+                            k5Var.a(true);
+                            return;
+                        }
+                        return;
+                    default:
+                        this.f36733b.a(false);
+                        return;
+                }
+            }
+        };
+        frameLayout3.setOnClickListener(onClickListener);
+        this.f36782a.setOnClickListener(onClickListener);
+        k11.setOnClickListener(new View.OnClickListener(this) {
+            public final k5 f36733b;
+
+            {
+                this.f36733b = this;
+            }
+
+            @Override
+            public final void onClick(View view) {
+                switch (r2) {
+                    case 0:
+                        k5 k5Var = this.f36733b;
+                        if (!k5Var.f36785f && !k5Var.h) {
+                            q0 q0Var = k5Var.e;
+                            if (q0Var != null) {
+                                q0Var.run();
+                            }
+                            k5Var.a(true);
+                            return;
+                        }
+                        return;
+                    default:
+                        this.f36733b.a(false);
+                        return;
+                }
+            }
+        });
     }
 
-    public final void f() {
-        s4.n0 layoutManager;
-        View d;
-        RecyclerView recyclerView = this.f34710a;
-        if (recyclerView != null && (layoutManager = recyclerView.getLayoutManager()) != null && (d = d(layoutManager)) != null) {
-            int[] iArr = {0, s4.n0.z(d) - layoutManager.F()};
-            int i10 = iArr[0];
-            if (i10 == 0 && iArr[1] == 0) {
-                return;
+    public final void a(boolean z10) {
+        float f7;
+        if (this.f36785f != z10 && !this.h) {
+            this.h = true;
+            this.f36785f = z10;
+            FrameLayout frameLayout = this.f36783b;
+            frameLayout.setLayerType(2, null);
+            float rotationY = frameLayout.getRotationY();
+            if (z10) {
+                f7 = 180.0f;
+            } else {
+                f7 = 0.0f;
             }
-            this.f34710a.v0(i10, iArr[1], null);
+            ValueAnimator ofFloat = ValueAnimator.ofFloat(rotationY, f7);
+            this.f36786n = ofFloat;
+            ofFloat.setDuration(420L);
+            this.f36786n.setInterpolator(ds.h);
+            this.f36786n.addUpdateListener(new a3(this, 2));
+            this.f36786n.addListener(new fc1(this, 8));
+            this.f36786n.start();
         }
     }
 }

@@ -1,29 +1,25 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-import android.view.ViewTreeObserver;
-public final class yt implements ViewTreeObserver.OnPreDrawListener {
-    public final int f33042a;
-    public final View f33043b;
-
-    public yt(int i10, View view) {
-        this.f33042a = i10;
-        this.f33043b = view;
-    }
+import android.os.Build;
+import android.widget.EdgeEffect;
+import androidx.recyclerview.widget.RecyclerView;
+import java.util.ArrayList;
+public final class yt extends s4.l0 {
+    public final xt[] f35135a = new xt[4];
+    public final ArrayList f35136b = new ArrayList();
 
     @Override
-    public final boolean onPreDraw() {
-        switch (this.f33042a) {
-            case 0:
-                org.telegram.ui.ActionBar.k4 k4Var = ((EditTextBoldCursor) this.f33043b).floatingActionMode;
-                if (k4Var != null) {
-                    k4Var.c();
-                    return true;
-                }
-                return true;
-            default:
-                ((f80) this.f33043b).invalidate();
-                return true;
+    public final EdgeEffect a(RecyclerView recyclerView, int i10) {
+        xt xtVar = new xt(recyclerView, i10, new vt(this, 0));
+        this.f35135a[i10] = xtVar;
+        return xtVar;
+    }
+
+    public final float b(int i10) {
+        xt xtVar = this.f35135a[i10];
+        if (Build.VERSION.SDK_INT >= 31 && xtVar != null && !xtVar.isFinished()) {
+            return xtVar.getDistance();
         }
+        return 0.0f;
     }
 }

@@ -1,25 +1,27 @@
 package org.telegram.ui.Components;
 
-import android.view.View;
-public final class h1 implements View.OnClickListener {
-    public final int f26835a;
-    public final org.telegram.ui.Cells.z1 f26836b;
+import org.telegram.messenger.AndroidUtilities;
+public final class h1 implements Runnable {
+    public final int f28757a;
+    public final f5 f28758b;
+    public final org.telegram.ui.ActionBar.e2 f28759c;
+    public final org.telegram.ui.ActionBar.r2 d;
 
-    public h1(org.telegram.ui.Cells.z1 z1Var, int i10) {
-        this.f26835a = i10;
-        this.f26836b = z1Var;
+    public h1(f5 f5Var, org.telegram.ui.ActionBar.e2 e2Var, org.telegram.ui.ActionBar.r2 r2Var, int i10) {
+        this.f28757a = i10;
+        this.f28758b = f5Var;
+        this.f28759c = e2Var;
+        this.d = r2Var;
     }
 
     @Override
-    public final void onClick(View view) {
-        switch (this.f26835a) {
+    public final void run() {
+        switch (this.f28757a) {
             case 0:
-                org.telegram.ui.Cells.z1 z1Var = this.f26836b;
-                z1Var.c(!z1Var.b(), true);
+                AndroidUtilities.runOnUIThread(new h1(this.f28758b, this.f28759c, this.d, 1));
                 return;
             default:
-                org.telegram.ui.Cells.z1 z1Var2 = this.f26836b;
-                z1Var2.c(!z1Var2.b(), true);
+                g5.d0(this.f28758b, this.f28759c, this.d);
                 return;
         }
     }

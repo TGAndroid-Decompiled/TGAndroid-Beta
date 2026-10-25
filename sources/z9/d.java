@@ -1,32 +1,89 @@
 package z9;
-public final class d implements ja.d {
-    public static final d f51802a = new Object();
-    public static final ja.c f51803b = ja.c.c("sdkVersion");
-    public static final ja.c f51804c = ja.c.c("gmpAppId");
-    public static final ja.c d = ja.c.c("platform");
-    public static final ja.c e = ja.c.c("installationUuid");
-    public static final ja.c f51805f = ja.c.c("firebaseInstallationId");
-    public static final ja.c f51806g = ja.c.c("appQualitySessionId");
-    public static final ja.c h = ja.c.c("buildVersion");
-    public static final ja.c f51807i = ja.c.c("displayVersion");
-    public static final ja.c f51808j = ja.c.c("session");
-    public static final ja.c f51809k = ja.c.c("ndkPayload");
-    public static final ja.c f51810l = ja.c.c("appExitInfo");
 
-    @Override
-    public final void a(Object obj, Object obj2) {
-        ja.e eVar = (ja.e) obj2;
-        a0 a0Var = (a0) ((e2) obj);
-        eVar.d(f51803b, a0Var.f51767b);
-        eVar.d(f51804c, a0Var.f51768c);
-        eVar.g(d, a0Var.d);
-        eVar.d(e, a0Var.e);
-        eVar.d(f51805f, a0Var.f51769f);
-        eVar.d(f51806g, a0Var.f51770g);
-        eVar.d(h, a0Var.h);
-        eVar.d(f51807i, a0Var.f51771i);
-        eVar.d(f51808j, a0Var.f51772j);
-        eVar.d(f51809k, a0Var.f51773k);
-        eVar.d(f51810l, a0Var.f51774l);
+import android.util.Log;
+import j$.util.DesugarCollections;
+import java.util.HashMap;
+import java.util.Map;
+public final class d {
+    public final HashMap f52813a = new HashMap();
+    public final int f52814b = 64;
+    public final int f52815c;
+
+    public d(int i10) {
+        this.f52815c = i10;
+    }
+
+    public static String b(int i10, String str) {
+        if (str != null) {
+            str = str.trim();
+            if (str.length() > i10) {
+                return str.substring(0, i10);
+            }
+        }
+        return str;
+    }
+
+    public final synchronized Map a() {
+        return DesugarCollections.unmodifiableMap(new HashMap(this.f52813a));
+    }
+
+    public final synchronized boolean c(String str, String str2) {
+        boolean equals;
+        String b10 = b(this.f52815c, str);
+        if (this.f52813a.size() >= this.f52814b && !this.f52813a.containsKey(b10)) {
+            Log.w("FirebaseCrashlytics", "Ignored entry \"" + str + "\" when adding custom keys. Maximum allowable: " + this.f52814b, null);
+            return false;
+        }
+        String b11 = b(this.f52815c, str2);
+        String str3 = (String) this.f52813a.get(b10);
+        if (str3 == null) {
+            if (b11 == null) {
+                equals = true;
+            } else {
+                equals = false;
+            }
+        } else {
+            equals = str3.equals(b11);
+        }
+        if (equals) {
+            return false;
+        }
+        HashMap hashMap = this.f52813a;
+        if (str2 == null) {
+            b11 = "";
+        }
+        hashMap.put(b10, b11);
+        return true;
+    }
+
+    public final synchronized void d(Map map) {
+        String b10;
+        try {
+            int i10 = 0;
+            for (Map.Entry entry : map.entrySet()) {
+                String str = (String) entry.getKey();
+                if (str != null) {
+                    String b11 = b(this.f52815c, str);
+                    if (this.f52813a.size() >= this.f52814b && !this.f52813a.containsKey(b11)) {
+                        i10++;
+                    }
+                    String str2 = (String) entry.getValue();
+                    HashMap hashMap = this.f52813a;
+                    if (str2 == null) {
+                        b10 = "";
+                    } else {
+                        b10 = b(this.f52815c, str2);
+                    }
+                    hashMap.put(b11, b10);
+                } else {
+                    throw new IllegalArgumentException("Custom attribute key must not be null.");
+                }
+            }
+            if (i10 > 0) {
+                Log.w("FirebaseCrashlytics", "Ignored " + i10 + " entries when adding custom keys. Maximum allowable: " + this.f52814b, null);
+            }
+        } catch (Throwable th2) {
+            throw th2;
+        }
     }
 }

@@ -1,6 +1,15 @@
 package org.telegram.ui.Components;
-public interface c81 {
-    boolean needUpdate();
 
-    void onVisualizerUpdate(boolean z10, boolean z11, float[] fArr);
+import org.telegram.messenger.ImageReceiver;
+public final class c81 extends ImageReceiver {
+    public final d81 f27090a;
+
+    public c81(d81 d81Var) {
+        this.f27090a = d81Var;
+    }
+
+    @Override
+    public final void invalidate() {
+        this.f27090a.invalidate();
+    }
 }

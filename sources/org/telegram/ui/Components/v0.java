@@ -3,19 +3,19 @@ package org.telegram.ui.Components;
 import java.util.function.ToLongFunction;
 import org.telegram.messenger.MessageObject;
 public final class v0 implements ToLongFunction {
-    public final int f31245a;
+    public final int f33515a;
 
     public v0(int i10) {
-        this.f31245a = i10;
+        this.f33515a = i10;
     }
 
     @Override
     public final long applyAsLong(Object obj) {
-        switch (this.f31245a) {
+        switch (this.f33515a) {
             case 0:
                 return ((MessageObject) obj).getFromChatId();
             case 1:
-                MessageObject messageObject = ((org.telegram.ui.q91) obj).f40751b;
+                MessageObject messageObject = ((org.telegram.ui.t91) obj).f43703b;
                 if (messageObject == null) {
                     return 0L;
                 }

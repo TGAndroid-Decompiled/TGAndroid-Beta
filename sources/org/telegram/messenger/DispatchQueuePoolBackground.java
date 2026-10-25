@@ -83,12 +83,12 @@ public class DispatchQueuePoolBackground {
                 this.totalTasksCount++;
                 this.busyQueues.add(remove);
                 this.busyQueuesMap.put(remove.index, this.busyQueuesMap.get(remove.index, 0) + 1);
-                if (ah.x0.f902b) {
+                if (bh.m0.f4082b) {
                     remove.setPriority(1);
                 } else if (remove.getPriority() != 10) {
                     remove.setPriority(10);
                 }
-                remove.postRunnable(new g0(this, runnable, remove, 17));
+                remove.postRunnable(new j0(this, runnable, remove, 17));
             }
         }
     }
@@ -101,7 +101,7 @@ public class DispatchQueuePoolBackground {
             if (backgroundQueue == null) {
                 backgroundQueue = new DispatchQueuePoolBackground(Math.max(1, Runtime.getRuntime().availableProcessors()));
             }
-            Utilities.globalQueue.postRunnable(new g(arrayList2, 2));
+            Utilities.globalQueue.postRunnable(new i(arrayList2, 2));
             return;
         }
         updateTaskCollection = null;
@@ -121,7 +121,7 @@ public class DispatchQueuePoolBackground {
 
     public void lambda$execute$1(Runnable runnable, DispatchQueue dispatchQueue) {
         runnable.run();
-        Utilities.globalQueue.postRunnable(new i3(27, this, dispatchQueue));
+        Utilities.globalQueue.postRunnable(new j3(27, this, dispatchQueue));
     }
 
     public static void lambda$finishCollectUpdateRunnables$2(ArrayList arrayList) {
@@ -131,7 +131,7 @@ public class DispatchQueuePoolBackground {
     public static void lambda$finishCollectUpdateRunnables$3(ArrayList arrayList) {
         backgroundQueue.execute(arrayList);
         arrayList.clear();
-        AndroidUtilities.runOnUIThread(new g(arrayList, 3));
+        AndroidUtilities.runOnUIThread(new i(arrayList, 3));
     }
 
     public static void execute(Runnable runnable) {
@@ -149,7 +149,7 @@ public class DispatchQueuePoolBackground {
         if (updateTaskCollection == null) {
             ArrayList<ArrayList<Runnable>> arrayList = freeCollections;
             if (!arrayList.isEmpty()) {
-                updateTaskCollection = (ArrayList) i2.o1.A(1, arrayList);
+                updateTaskCollection = (ArrayList) ic.a.y(1, arrayList);
             } else {
                 updateTaskCollection = new ArrayList<>(100);
             }

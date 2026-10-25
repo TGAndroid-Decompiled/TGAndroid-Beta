@@ -1,30 +1,71 @@
 package org.telegram.ui.Components;
 
-import android.content.Context;
-import android.graphics.Typeface;
-import android.widget.TextView;
+import android.graphics.Canvas;
+import android.graphics.RectF;
+import android.view.View;
+import java.util.ArrayList;
 import org.telegram.messenger.AndroidUtilities;
-public class ac extends lb {
-    public final u9 f24708a;
-    public final TextView f24709b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.UserConfig;
+import org.telegram.tgnet.TLRPC;
+public final class ac implements el0 {
+    public final bc f26461a;
 
-    public ac(Context context, org.telegram.ui.ActionBar.g6 g6Var) {
-        super(context, g6Var);
-        u9 u9Var = new u9(getContext());
-        this.f24708a = u9Var;
-        TextView textView = new TextView(getContext());
-        this.f24709b = textView;
-        addView(u9Var, w7.z5.i(30.0f, 30.0f, 8388627, 12.0f, 8.0f, 12.0f, 8.0f));
-        textView.setGravity(8388611);
-        textView.setPadding(0, AndroidUtilities.dp(8.0f), 0, AndroidUtilities.dp(8.0f));
-        org.telegram.ui.ActionBar.r6.W(textView, org.telegram.ui.ActionBar.k6.Hi, g6Var);
-        textView.setTextSize(1, 15.0f);
-        textView.setTypeface(Typeface.SANS_SERIF);
-        addView(textView, w7.z5.i(-1.0f, -2.0f, 8388627, 56.0f, 0.0f, 16.0f, 0.0f));
+    public ac(bc bcVar) {
+        this.f26461a = bcVar;
     }
 
     @Override
-    public CharSequence getAccessibilityText() {
-        return this.f24709b.getText();
+    public final boolean f() {
+        return true;
+    }
+
+    @Override
+    public final boolean i() {
+        return false;
+    }
+
+    @Override
+    public final boolean o() {
+        return false;
+    }
+
+    @Override
+    public final void p(View view, bh.x0 x0Var, boolean z10, boolean z11) {
+        boolean z12;
+        bc bcVar = this.f26461a;
+        org.telegram.ui.ActionBar.r2 r2Var = bcVar.f26818f;
+        if (bcVar.e == null) {
+            return;
+        }
+        long clientUserId = UserConfig.getInstance(r2Var.getCurrentAccount()).getClientUserId();
+        if ((r2Var instanceof org.telegram.ui.un) && ((org.telegram.ui.un) r2Var).a() == clientUserId) {
+            z12 = true;
+        } else {
+            z12 = false;
+        }
+        int i10 = 0;
+        for (int i11 = 0; i11 < bcVar.e.size(); i11++) {
+            int keyAt = bcVar.e.keyAt(i11);
+            TLRPC.Message message = new TLRPC.Message();
+            message.dialog_id = r2Var.getUserConfig().getClientUserId();
+            message.f22048id = keyAt;
+            MessageObject messageObject = new MessageObject(r2Var.getCurrentAccount(), message, false, false);
+            ArrayList<bh.x0> arrayList = new ArrayList<>();
+            arrayList.add(x0Var);
+            r2Var.getSendMessagesHelper().sendReaction(messageObject, arrayList, x0Var, false, false, bcVar.f26818f, null);
+            i10 = message.f22048id;
+        }
+        bcVar.f();
+        qc.e();
+        AndroidUtilities.runOnUIThread(new org.telegram.messenger.bj(this, x0Var, !z12, r2Var.getCurrentAccount(), i10), 300L);
+    }
+
+    @Override
+    public final void m() {
+    }
+
+    @Override
+    public final void l(Canvas canvas, RectF rectF, float f7, float f10, float f11, int i10, boolean z10) {
     }
 }

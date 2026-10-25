@@ -1,4 +1,9 @@
 package ef;
-public interface b {
-    a E(qf.b bVar);
+
+import a8.bc;
+public final class b extends a {
+    @Override
+    public final void a(bc bcVar) {
+        bcVar.a(this);
+    }
 }

@@ -1,34 +1,34 @@
 package org.telegram.ui.Components;
 
-import android.animation.ValueAnimator;
-public final class lx0 implements ValueAnimator.AnimatorUpdateListener {
-    public final int f28465a;
-    public final ox0 f28466b;
+import org.telegram.messenger.AndroidUtilities;
+import org.telegram.ui.ProfileActivity;
+public final class lx0 implements Runnable {
+    public final int f30323a;
+    public final ox0 f30324b;
 
     public lx0(ox0 ox0Var, int i10) {
-        this.f28465a = i10;
-        this.f28466b = ox0Var;
+        this.f30323a = i10;
+        this.f30324b = ox0Var;
     }
 
     @Override
-    public final void onAnimationUpdate(ValueAnimator valueAnimator) {
-        switch (this.f28465a) {
+    public final void run() {
+        switch (this.f30323a) {
             case 0:
-                ox0 ox0Var = this.f28466b;
-                ox0Var.getClass();
-                ox0Var.E = ((Float) valueAnimator.getAnimatedValue()).floatValue();
+                ox0 ox0Var = this.f30324b;
                 ox0Var.invalidate();
-                return;
-            case 1:
-                ox0 ox0Var2 = this.f28466b;
-                ox0Var2.getClass();
-                ox0Var2.m(((Float) valueAnimator.getAnimatedValue()).floatValue());
+                AndroidUtilities.runOnUIThread(new lx0(ox0Var, 1));
                 return;
             default:
-                ox0 ox0Var3 = this.f28466b;
-                ox0Var3.getClass();
-                ox0Var3.f29426y = ((Float) valueAnimator.getAnimatedValue()).floatValue();
-                ox0Var3.invalidate();
+                ox0 ox0Var2 = this.f30324b;
+                nx0 nx0Var = ox0Var2.e;
+                if (nx0Var != null) {
+                    ox0Var2.getVisibilityFactor();
+                    ProfileActivity profileActivity = ((org.telegram.ui.wx0) nx0Var).f45582b;
+                    profileActivity.f36064r.setTranslationX(profileActivity.e4(profileActivity.f36029l6, profileActivity.f36043n6));
+                    profileActivity.f36064r.setTranslationY(profileActivity.f4(profileActivity.f36050o6));
+                    return;
+                }
                 return;
         }
     }

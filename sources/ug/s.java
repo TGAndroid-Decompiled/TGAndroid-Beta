@@ -1,97 +1,152 @@
 package ug;
 
+import android.content.Context;
+import android.graphics.Rect;
+import android.graphics.SurfaceTexture;
+import android.view.Choreographer;
+import android.view.MotionEvent;
+import android.view.Surface;
+import android.view.TextureView;
 import android.view.View;
-import org.telegram.messenger.ChatObject;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.b5;
-import org.telegram.ui.Components.o6;
-import org.telegram.ui.Components.qw0;
-public final class s implements b5, qw0, wg.f, wg.k {
-    public final y f48199a;
+import sg.u;
+public abstract class s extends TextureView implements TextureView.SurfaceTextureListener, Choreographer.FrameCallback {
+    public static final p[] f49886x = new p[3];
+    public final p f49887a;
+    public final Rect f49888b;
+    public final Runnable f49889c;
+    public final int d;
+    public r e;
+    public boolean f49890f;
+    public boolean h;
+    public boolean f49891n;
+    public float f49892r;
+    public float f49893s;
+    public boolean v;
+    public boolean f49894w;
 
-    public s(y yVar) {
-        this.f48199a = yVar;
+    public s(Context context, Runnable runnable, int i10) {
+        super(context);
+        this.f49888b = new Rect();
+        this.h = true;
+        this.f49889c = runnable;
+        p[] pVarArr = f49886x;
+        if (pVarArr[i10] == null) {
+            pVarArr[i10] = new p(context.getApplicationContext(), i10);
+        }
+        p pVar = pVarArr[i10];
+        this.f49887a = pVar;
+        this.d = pVar.d;
+        setOpaque(false);
+        setSurfaceTextureListener(this);
     }
 
-    @Override
-    public void C(int i10, int i11, boolean z10) {
-        y yVar = this.f48199a;
-        yVar.m0 = i10 * 1000;
-        yVar.a0(false, true);
-    }
+    public abstract void a();
 
     @Override
-    public void i(int i10) {
-        String str;
-        int i11;
-        String string;
-        String str2;
-        String formatPluralString;
-        y yVar = this.f48199a;
-        int i12 = yVar.f48246h0;
-        int i13 = wg.d.v;
-        if (i12 == 2) {
-            yVar.f48251n0 = i10;
-        } else {
-            yVar.f48252o0 = i10;
-        }
-        yVar.f48254q0.f49388a.b(yVar.V(), true);
-        if (yVar.f48246h0 == 3) {
-            yVar.a0(true, true);
-        } else {
-            yVar.a0(false, false);
-        }
-        vg.b bVar = yVar.f48245g0;
-        int V = yVar.V();
-        for (int i14 = 0; i14 < bVar.f48795f.getChildCount(); i14++) {
-            View childAt = bVar.f48795f.getChildAt(i14);
-            if (childAt instanceof wg.x) {
-                o6 o6Var = ((wg.x) childAt).f49459r;
-                if (V <= 0) {
-                    formatPluralString = "";
+    public final void doFrame(long j10) {
+        boolean z10;
+        q qVar;
+        if (this.f49890f && !this.h) {
+            this.f49889c.run();
+            if (this.e != null) {
+                if (isShown() && getWindowVisibility() == 0 && getGlobalVisibleRect(this.f49888b)) {
+                    z10 = true;
                 } else {
-                    formatPluralString = LocaleController.formatPluralString("BoostingBoostsCountTitle", V, Integer.valueOf(V));
+                    z10 = false;
                 }
-                o6Var.a();
-                o6Var.c(formatPluralString, true, true);
-            }
-            if (childAt instanceof wg.g) {
-                wg.g gVar = (wg.g) childAt;
-                int F = bVar.F(gVar.getChat());
-                boolean isChannelAndNotMegaGroup = ChatObject.isChannelAndNotMegaGroup(gVar.f49419w);
-                if (gVar.f49420x) {
-                    if (F >= 1) {
-                        if (isChannelAndNotMegaGroup) {
-                            str2 = "Subscribers";
-                        } else {
-                            str2 = "Members";
-                        }
-                        string = LocaleController.formatPluralString(str2, F, new Object[0]);
-                    } else {
-                        if (isChannelAndNotMegaGroup) {
-                            i11 = R.string.DiscussChannel;
-                        } else {
-                            i11 = R.string.AccDescrGroup;
-                        }
-                        string = LocaleController.getString(i11);
-                    }
-                    gVar.setSubtitle(string);
+                r rVar = this.e;
+                if (z10) {
+                    qVar = new q(this.f49892r, this.f49893s, this.v, this.f49894w);
                 } else {
-                    if (isChannelAndNotMegaGroup) {
-                        str = "BoostingChannelWillReceiveBoost";
-                    } else {
-                        str = "BoostingGroupWillReceiveBoost";
-                    }
-                    gVar.setSubtitle(LocaleController.formatPluralString(str, V, new Object[0]));
+                    qVar = null;
                 }
+                rVar.e = qVar;
+                this.f49887a.c();
             }
+            Choreographer.getInstance().postFrameCallback(this);
         }
-        bVar.m(8);
-        bVar.q(bVar.e.size() - 12, 12);
     }
 
     @Override
-    public void m() {
+    public final void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        this.f49890f = true;
+        setPaused(this.h);
+    }
+
+    @Override
+    public final void onDetachedFromWindow() {
+        this.f49891n = false;
+        this.f49890f = false;
+        Choreographer.getInstance().removeFrameCallback(this);
+        super.onDetachedFromWindow();
+    }
+
+    @Override
+    public final void onSurfaceTextureAvailable(SurfaceTexture surfaceTexture, int i10, int i11) {
+        this.f49891n = false;
+        int i12 = this.d;
+        surfaceTexture.setDefaultBufferSize(i12, i12);
+        r rVar = new r(this, new Surface(surfaceTexture), this.d);
+        this.e = rVar;
+        p pVar = this.f49887a;
+        pVar.f49861f.add(rVar);
+        pVar.f49862g = (r[]) pVar.f49861f.toArray(new r[0]);
+        pVar.c();
+        setPaused(this.h);
+    }
+
+    @Override
+    public final boolean onSurfaceTextureDestroyed(SurfaceTexture surfaceTexture) {
+        this.f49891n = false;
+        r rVar = this.e;
+        this.e = null;
+        if (rVar != null) {
+            p pVar = this.f49887a;
+            pVar.getClass();
+            rVar.f49879c = false;
+            pVar.f49861f.remove(rVar);
+            pVar.f49862g = (r[]) pVar.f49861f.toArray(new r[0]);
+            pVar.f49859b.post(new u(15, pVar, rVar));
+            return true;
+        }
+        return true;
+    }
+
+    @Override
+    public final void onSurfaceTextureSizeChanged(SurfaceTexture surfaceTexture, int i10, int i11) {
+        int i12 = this.d;
+        surfaceTexture.setDefaultBufferSize(i12, i12);
+    }
+
+    public void onSurfaceTextureUpdated(SurfaceTexture surfaceTexture) {
+        r rVar;
+        int i10 = this.d;
+        surfaceTexture.setDefaultBufferSize(i10, i10);
+        if (!this.f49891n && (rVar = this.e) != null && rVar.d) {
+            this.f49891n = true;
+            if (getParent() instanceof View) {
+                ((View) getParent()).invalidate();
+            }
+        }
+    }
+
+    @Override
+    public final boolean onTouchEvent(MotionEvent motionEvent) {
+        return false;
+    }
+
+    public void setPaused(boolean z10) {
+        this.h = z10;
+        Choreographer.getInstance().removeFrameCallback(this);
+        if (this.f49890f && !z10) {
+            Choreographer.getInstance().postFrameCallback(this);
+            return;
+        }
+        r rVar = this.e;
+        if (rVar != null) {
+            rVar.e = null;
+            this.f49887a.c();
+        }
     }
 }

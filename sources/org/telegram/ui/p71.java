@@ -1,19 +1,29 @@
 package org.telegram.ui;
 
-import org.telegram.tgnet.RequestDelegate;
-public final class p71 implements RequestDelegate {
-    public final int f40383a;
-    public final Object f40384b;
-    public final Object f40385c;
+import org.telegram.messenger.LocaleController;
+import org.telegram.messenger.MessagesController;
+import org.telegram.messenger.R;
+public final class p71 implements Runnable {
+    public final int f42389a;
+    public final d81 f42390b;
 
-    public p71(int i10, Object obj, Object obj2) {
-        this.f40383a = i10;
-        this.f40384b = obj;
-        this.f40385c = obj2;
+    public p71(d81 d81Var, int i10) {
+        this.f42389a = i10;
+        this.f42390b = d81Var;
     }
 
     @Override
-    public final void run(org.telegram.tgnet.TLObject r9, org.telegram.tgnet.TLRPC.TL_error r10) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.p71.run(org.telegram.tgnet.TLObject, org.telegram.tgnet.TLRPC$TL_error):void");
+    public final void run() {
+        switch (this.f42389a) {
+            case 0:
+                MessagesController.getInstance(this.f42390b.currentAccount).deleteUserPhoto(null);
+                return;
+            case 1:
+                qf.d.r(this.f42390b.getParentActivity(), LocaleController.getString(R.string.CheckPhoneNumberLearnMoreUrl));
+                return;
+            default:
+                this.f42390b.f38759c.f32150g3.O(true);
+                return;
+        }
     }
 }

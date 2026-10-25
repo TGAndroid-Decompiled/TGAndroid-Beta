@@ -18,7 +18,7 @@ import org.telegram.messenger.LocaleController;
 import org.telegram.messenger.MessagesController;
 import org.telegram.messenger.R;
 import org.telegram.ui.ActionBar.ActionBarLayout;
-public class DataSettingsActivity extends org.telegram.ui.ActionBar.o2 {
+public class DataSettingsActivity extends org.telegram.ui.ActionBar.r2 {
     public int E;
     public int F;
     public int G;
@@ -28,39 +28,38 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.o2 {
     public final int K;
     public final int L;
     public int M;
-    public final int N;
+    public int N;
     public int O;
     public int P;
     public int Q;
     public int R;
     public int S;
     public int T;
-    public int U;
+    public boolean U;
     public boolean V;
     public boolean W;
-    public boolean X;
-    public long Y;
-    public cu f33424a;
-    public ai.u1 f33425b;
-    public ArrayList f33426c;
+    public long X;
+    public zt f35485a;
+    public bi.r1 f35486b;
+    public ArrayList f35487c;
     private int clearDraftsRow;
     public int d;
     public int e;
-    public int f33427f;
+    public int f35488f;
     public int h;
-    public int f33428n;
+    public int f35489n;
     private int proxyRow;
-    public int f33429r;
+    public int f35490r;
     private int resetDownloadRow;
-    public int f33430s;
+    public int f35491s;
     private int saveToGalleryChannelsRow;
     private int saveToGalleryGroupsRow;
     private int saveToGalleryPeerRow;
     private int useLessDataForCallsRow;
     public int v;
-    public int f33431w;
-    public int f33432x;
-    public int f33433y;
+    public int f35492w;
+    public int f35493x;
+    public int f35494y;
 
     public DataSettingsActivity() {
         super(null);
@@ -69,14 +68,13 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.o2 {
         this.J = -1;
         this.K = -1;
         this.L = -1;
-        this.N = -1;
     }
 
-    public static void U(org.telegram.ui.DataSettingsActivity r21, android.content.Context r22, android.view.View r23, int r24, float r25) {
-        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.U(org.telegram.ui.DataSettingsActivity, android.content.Context, android.view.View, int, float):void");
+    public static void V(org.telegram.ui.DataSettingsActivity r20, android.content.Context r21, android.view.View r22, int r23, float r24) {
+        throw new UnsupportedOperationException("Method not decompiled: org.telegram.ui.DataSettingsActivity.V(org.telegram.ui.DataSettingsActivity, android.content.Context, android.view.View, int, float):void");
     }
 
-    public static void V(DataSettingsActivity dataSettingsActivity) {
+    public static void W(DataSettingsActivity dataSettingsActivity) {
         DownloadController.Preset preset;
         DownloadController.Preset preset2;
         String str;
@@ -110,68 +108,72 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.o2 {
         for (int i11 = 0; i11 < 3; i11++) {
             DownloadController.getInstance(dataSettingsActivity.currentAccount).savePresetToServer(i11);
         }
-        dataSettingsActivity.f33424a.q(dataSettingsActivity.e, 4);
-        dataSettingsActivity.o0(false);
+        dataSettingsActivity.f35485a.q(dataSettingsActivity.e, 4);
+        dataSettingsActivity.p0(false);
     }
 
     @Override
     public final void addThemeColorKeys(HashSet hashSet) {
         super.addThemeColorKeys(hashSet);
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.B6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21589z6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.G6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.L6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.I6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21185d7));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21273i6));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21482t8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.A8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21519v8));
-        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.k6.f21463s8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.B6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23765z6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.G6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.L6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.I6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23355d7));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23446i6));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23654t8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.A8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23692v8));
+        hashSet.add(Integer.valueOf(org.telegram.ui.ActionBar.y6.f23634s8));
     }
 
     @Override
     public final View createView(Context context) {
-        this.actionBar.setBackButtonImage(R.drawable.ic_ab_back);
-        this.actionBar.setTitle(LocaleController.getString(R.string.DataSettings));
-        this.actionBar.setAllowOverlayTitle(true);
-        this.actionBar.setActionBarMenuOnItemClick(new ea(this, 21));
-        org.telegram.ui.ActionBar.h5 h5Var = this.parentLayout;
-        if (h5Var != null && ((ActionBarLayout) h5Var).T0) {
-            this.actionBar.setBackButtonImage(R.drawable.ic_ab_close);
+        setHasOwnBackground(true);
+        this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_back);
+        this.simpleActionBar.setTitle(LocaleController.getString(R.string.DataSettings));
+        this.simpleActionBar.setActionBarMenuOnItemClick(new ga(this, 23));
+        org.telegram.ui.ActionBar.j5 j5Var = this.parentLayout;
+        if (j5Var != null && ((ActionBarLayout) j5Var).T0) {
+            this.simpleActionBar.setBackButtonImage(R.drawable.ic_ab_close);
         }
-        this.f33424a = new cu(this, context);
+        this.f35485a = new zt(this, context);
         FrameLayout frameLayout = new FrameLayout(context);
         this.fragmentView = frameLayout;
-        org.telegram.ui.ActionBar.r6.i(org.telegram.ui.ActionBar.k6.f21126a7, frameLayout, null);
-        ai.u1 u1Var = new ai.u1(this, context, 27);
-        this.f33425b = u1Var;
-        u1Var.t1();
-        this.actionBar.setAdaptiveBackground(this.f33425b);
-        this.f33425b.setVerticalScrollBarEnabled(false);
-        this.f33425b.setLayoutManager(new s4.b0(1, false));
-        ((FrameLayout) this.fragmentView).addView(this.f33425b, w7.z5.e(-1, -1, 51));
-        this.f33425b.setAdapter(this.f33424a);
-        this.f33425b.setOnItemClickListener(new ks(1, this, context));
-        s4.k kVar = new s4.k();
-        kVar.n(350L);
-        kVar.o(org.telegram.ui.Components.zr.h);
-        kVar.C = false;
-        kVar.f46376m = false;
-        this.f33425b.setItemAnimator(kVar);
+        bi.r1 r1Var = new bi.r1(this, context, 27);
+        this.f35486b = r1Var;
+        r1Var.u1();
+        this.f35486b.setVerticalScrollBarEnabled(false);
+        this.f35486b.setLayoutManager(new s4.c0(1, false));
+        frameLayout.addView(this.f35486b, org.telegram.ui.Components.gb1.i(-1, -1, 51));
+        this.f35486b.setAdapter(this.f35485a);
+        this.f35486b.setSectionsDrawBackground(true);
+        this.f35486b.setOnItemClickListener(new org.telegram.ui.Components.voip.k1(5, this, context));
+        s4.l lVar = new s4.l();
+        lVar.n(350L);
+        lVar.o(org.telegram.ui.Components.ds.h);
+        lVar.C = false;
+        lVar.f47760m = false;
+        this.f35486b.setItemAnimator(lVar);
         return this.fragmentView;
+    }
+
+    @Override
+    public final org.telegram.ui.Components.mm0 getListViewForSimpleGlass() {
+        return this.f35486b;
     }
 
     @Override
     public final ArrayList getThemeDescriptions() {
         ArrayList arrayList = new ArrayList();
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f33425b, 16, new Class[]{org.telegram.ui.Cells.ca.class, org.telegram.ui.Cells.w8.class, org.telegram.ui.Cells.l4.class, org.telegram.ui.Cells.i5.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, org.telegram.ui.ActionBar.k6.f21184d6));
-        int i10 = org.telegram.ui.ActionBar.k6.M6;
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f33425b, 0, new Class[]{org.telegram.ui.Cells.i5.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i10));
-        int i11 = org.telegram.ui.ActionBar.k6.N6;
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f33425b, 0, new Class[]{org.telegram.ui.Cells.i5.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i11));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f33425b, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i10));
-        arrayList.add(new org.telegram.ui.ActionBar.t6(this.f33425b, 0, new Class[]{org.telegram.ui.Cells.w8.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.s6) null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f35486b, 16, new Class[]{org.telegram.ui.Cells.ga.class, org.telegram.ui.Cells.a9.class, org.telegram.ui.Cells.q4.class, org.telegram.ui.Cells.n5.class}, (Paint) null, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, org.telegram.ui.ActionBar.y6.f23354d6));
+        int i10 = org.telegram.ui.ActionBar.y6.M6;
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f35486b, 0, new Class[]{org.telegram.ui.Cells.n5.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, i10));
+        int i11 = org.telegram.ui.ActionBar.y6.N6;
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f35486b, 0, new Class[]{org.telegram.ui.Cells.n5.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, i11));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f35486b, 0, new Class[]{org.telegram.ui.Cells.a9.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, i10));
+        arrayList.add(new org.telegram.ui.ActionBar.h7(this.f35486b, 0, new Class[]{org.telegram.ui.Cells.a9.class}, new String[]{"checkBox"}, (Drawable[]) null, (org.telegram.ui.ActionBar.g7) null, i11));
         return arrayList;
     }
 
@@ -180,99 +182,15 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.o2 {
         return true;
     }
 
-    public final void n0(int i10) {
-        if (this.f33425b != null && this.f33424a != null) {
-            for (int i11 = 0; i11 < this.f33425b.getChildCount(); i11++) {
-                s4.b1 T = this.f33425b.T(this.f33425b.getChildAt(i11));
+    public final void o0(int i10) {
+        if (this.f35486b != null && this.f35485a != null) {
+            for (int i11 = 0; i11 < this.f35486b.getChildCount(); i11++) {
+                s4.e1 T = this.f35486b.T(this.f35486b.getChildAt(i11));
                 if (T != null && T.b() == i10) {
-                    this.f33424a.v(T, i10);
+                    this.f35485a.v(T, i10);
                     return;
                 }
             }
-        }
-    }
-
-    public final void o0(boolean z10) {
-        boolean z11;
-        int i10;
-        this.f33430s = 1;
-        this.U = 3;
-        this.v = 2;
-        this.f33428n = -1;
-        ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
-        this.f33426c = rootDirs;
-        if (rootDirs.size() > 1) {
-            int i11 = this.U;
-            this.U = i11 + 1;
-            this.f33428n = i11;
-        }
-        int i12 = this.U;
-        this.f33431w = i12;
-        this.d = i12 + 1;
-        this.e = i12 + 2;
-        this.h = i12 + 3;
-        this.U = i12 + 5;
-        this.f33427f = i12 + 4;
-        DownloadController downloadController = getDownloadController();
-        if (downloadController.lowPreset.equals(downloadController.getCurrentRoamingPreset()) && downloadController.lowPreset.isEnabled() == downloadController.roamingPreset.enabled && downloadController.mediumPreset.equals(downloadController.getCurrentMobilePreset()) && downloadController.mediumPreset.isEnabled() == downloadController.mobilePreset.enabled && downloadController.highPreset.equals(downloadController.getCurrentWiFiPreset()) && downloadController.highPreset.isEnabled() == downloadController.wifiPreset.enabled) {
-            z11 = true;
-        } else {
-            z11 = false;
-        }
-        int i13 = this.resetDownloadRow;
-        if (z11) {
-            i10 = -1;
-        } else {
-            i10 = this.U;
-            this.U = i10 + 1;
-        }
-        this.resetDownloadRow = i10;
-        cu cuVar = this.f33424a;
-        if (cuVar != null && !z10) {
-            if (i13 < 0 && i10 >= 0) {
-                cuVar.m(this.f33427f);
-                this.f33424a.o(this.resetDownloadRow);
-            } else if (i13 >= 0 && i10 < 0) {
-                cuVar.m(this.f33427f);
-                this.f33424a.u(i13);
-            } else {
-                z10 = true;
-            }
-        }
-        int i14 = this.U;
-        this.f33429r = i14;
-        this.S = i14 + 1;
-        this.saveToGalleryPeerRow = i14 + 2;
-        this.saveToGalleryGroupsRow = i14 + 3;
-        this.saveToGalleryChannelsRow = i14 + 4;
-        this.T = i14 + 5;
-        this.f33432x = i14 + 6;
-        int i15 = i14 + 8;
-        this.U = i15;
-        this.f33433y = i14 + 7;
-        if (BuildVars.DEBUG_VERSION) {
-            this.G = i15;
-            this.U = i14 + 10;
-            this.F = i14 + 9;
-        } else {
-            this.F = -1;
-            this.G = -1;
-        }
-        int i16 = this.U;
-        this.H = i16;
-        this.E = -1;
-        this.M = i16 + 1;
-        this.useLessDataForCallsRow = i16 + 2;
-        this.O = i16 + 3;
-        this.P = i16 + 4;
-        this.proxyRow = i16 + 5;
-        this.Q = i16 + 6;
-        this.clearDraftsRow = i16 + 7;
-        this.U = i16 + 9;
-        this.R = i16 + 8;
-        cu cuVar2 = this.f33424a;
-        if (cuVar2 != null && z10) {
-            cuVar2.l();
         }
     }
 
@@ -285,39 +203,122 @@ public class DataSettingsActivity extends org.telegram.ui.ActionBar.o2 {
     public final boolean onFragmentCreate() {
         super.onFragmentCreate();
         DownloadController.getInstance(this.currentAccount).loadAutoDownloadConfig(true);
-        o0(true);
+        p0(true);
         return true;
     }
 
     @Override
     public final void onFragmentDestroy() {
         super.onFragmentDestroy();
-        c7.f36229k0 = true;
-    }
-
-    @Override
-    public final void onInsets(int i10, int i11, int i12, int i13) {
-        this.f33425b.setPadding(0, 0, 0, i13);
-        this.f33425b.setClipToPadding(false);
+        c7.f38338i0 = true;
     }
 
     @Override
     public final void onResume() {
         super.onResume();
-        zt ztVar = new zt(this, 1);
-        AndroidUtilities.runOnUIThread(ztVar, 100L);
-        c7.k0(new ai.f2(this, ztVar, System.currentTimeMillis(), 1));
-        if (this.f33425b != null && this.f33424a != null) {
-            for (int i10 = 0; i10 < this.f33425b.getChildCount(); i10++) {
-                View childAt = this.f33425b.getChildAt(i10);
-                s4.b1 T = this.f33425b.T(childAt);
+        wt wtVar = new wt(this, 1);
+        AndroidUtilities.runOnUIThread(wtVar, 100L);
+        c7.i0(new bi.c2(this, wtVar, System.currentTimeMillis(), 1));
+        if (this.f35486b != null && this.f35485a != null) {
+            for (int i10 = 0; i10 < this.f35486b.getChildCount(); i10++) {
+                View childAt = this.f35486b.getChildAt(i10);
+                s4.e1 T = this.f35486b.T(childAt);
                 if (T != null) {
-                    cu cuVar = this.f33424a;
-                    this.f33425b.getClass();
-                    cuVar.v(T, RecyclerView.R(childAt));
+                    zt ztVar = this.f35485a;
+                    this.f35486b.getClass();
+                    ztVar.v(T, RecyclerView.R(childAt));
                 }
             }
         }
-        o0(false);
+        p0(false);
+    }
+
+    public final void p0(boolean z10) {
+        boolean z11;
+        int i10;
+        this.f35491s = 1;
+        this.T = 3;
+        this.v = 2;
+        this.f35489n = -1;
+        ArrayList<File> rootDirs = AndroidUtilities.getRootDirs();
+        this.f35487c = rootDirs;
+        if (rootDirs.size() > 1) {
+            int i11 = this.T;
+            this.T = i11 + 1;
+            this.f35489n = i11;
+        }
+        int i12 = this.T;
+        this.f35492w = i12;
+        this.d = i12 + 1;
+        this.e = i12 + 2;
+        this.h = i12 + 3;
+        this.T = i12 + 5;
+        this.f35488f = i12 + 4;
+        DownloadController downloadController = getDownloadController();
+        if (downloadController.lowPreset.equals(downloadController.getCurrentRoamingPreset()) && downloadController.lowPreset.isEnabled() == downloadController.roamingPreset.enabled && downloadController.mediumPreset.equals(downloadController.getCurrentMobilePreset()) && downloadController.mediumPreset.isEnabled() == downloadController.mobilePreset.enabled && downloadController.highPreset.equals(downloadController.getCurrentWiFiPreset()) && downloadController.highPreset.isEnabled() == downloadController.wifiPreset.enabled) {
+            z11 = true;
+        } else {
+            z11 = false;
+        }
+        int i13 = this.resetDownloadRow;
+        if (z11) {
+            i10 = -1;
+        } else {
+            i10 = this.T;
+            this.T = i10 + 1;
+        }
+        this.resetDownloadRow = i10;
+        zt ztVar = this.f35485a;
+        if (ztVar != null && !z10) {
+            if (i13 < 0 && i10 >= 0) {
+                ztVar.m(this.f35488f);
+                this.f35485a.o(this.resetDownloadRow);
+            } else if (i13 >= 0 && i10 < 0) {
+                ztVar.m(this.f35488f);
+                this.f35485a.u(i13);
+            } else {
+                z10 = true;
+            }
+        }
+        int i14 = this.T;
+        this.f35490r = i14;
+        this.R = i14 + 1;
+        this.saveToGalleryPeerRow = i14 + 2;
+        this.saveToGalleryGroupsRow = i14 + 3;
+        this.saveToGalleryChannelsRow = i14 + 4;
+        this.S = i14 + 5;
+        this.f35493x = i14 + 6;
+        int i15 = i14 + 8;
+        this.T = i15;
+        this.f35494y = i14 + 7;
+        if (BuildVars.DEBUG_VERSION) {
+            this.G = i15;
+            this.T = i14 + 10;
+            this.F = i14 + 9;
+        } else {
+            this.F = -1;
+            this.G = -1;
+        }
+        int i16 = this.T;
+        this.H = i16;
+        this.E = -1;
+        this.M = i16 + 1;
+        this.useLessDataForCallsRow = i16 + 2;
+        this.N = i16 + 3;
+        this.O = i16 + 4;
+        this.proxyRow = i16 + 5;
+        this.P = i16 + 6;
+        this.clearDraftsRow = i16 + 7;
+        this.T = i16 + 9;
+        this.Q = i16 + 8;
+        zt ztVar2 = this.f35485a;
+        if (ztVar2 != null && z10) {
+            ztVar2.l();
+        }
+    }
+
+    @Override
+    public final boolean useSimpleActionBar() {
+        return true;
     }
 }

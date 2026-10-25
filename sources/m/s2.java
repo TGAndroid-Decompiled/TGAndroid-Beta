@@ -1,44 +1,47 @@
 package m;
 
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.KeyEvent;
+import android.widget.TextView;
 import androidx.appcompat.widget.SearchView;
-public final class s2 implements View.OnFocusChangeListener {
-    public final int f16395a;
-    public final ViewGroup f16396b;
+import org.telegram.ui.Components.ChatActivityEnterView;
+public final class s2 implements TextView.OnEditorActionListener {
+    public final int f17852a;
+    public final Object f17853b;
 
-    public s2(ViewGroup viewGroup, int i10) {
-        this.f16395a = i10;
-        this.f16396b = viewGroup;
+    public s2(Object obj, int i10) {
+        this.f17852a = i10;
+        this.f17853b = obj;
     }
 
     @Override
-    public final void onFocusChange(View view, boolean z10) {
-        switch (this.f16395a) {
+    public final boolean onEditorAction(TextView textView, int i10, KeyEvent keyEvent) {
+        switch (this.f17852a) {
             case 0:
-                SearchView searchView = (SearchView) this.f16396b;
-                View.OnFocusChangeListener onFocusChangeListener = searchView.f2774d0;
-                if (onFocusChangeListener != null) {
-                    onFocusChangeListener.onFocusChange(searchView, z10);
-                    return;
-                }
-                return;
+                ((SearchView) this.f17853b).p();
+                return true;
             case 1:
-                org.telegram.ui.Cells.e3 e3Var = (org.telegram.ui.Cells.e3) this.f16396b;
-                e3Var.f22319n = z10;
-                if (e3Var.h) {
-                    e3Var.c();
-                    return;
+                if (i10 == 6) {
+                    ((org.telegram.ui.Cells.g) this.f17853b).run();
+                    return true;
                 }
-                return;
+                return false;
+            case 2:
+                if (i10 == 6) {
+                    ((Runnable) this.f17853b).run();
+                    return true;
+                }
+                return false;
             default:
-                org.telegram.ui.Cells.h3 h3Var = (org.telegram.ui.Cells.h3) this.f16396b;
-                h3Var.f22457s = z10;
-                if (h3Var.f22455n) {
-                    h3Var.c();
+                ChatActivityEnterView chatActivityEnterView = (ChatActivityEnterView) this.f17853b;
+                if (i10 == 4) {
+                    chatActivityEnterView.Q0();
+                    return true;
+                } else if (keyEvent != null && i10 == 0 && !keyEvent.isShiftPressed() && (!chatActivityEnterView.B2 ? keyEvent.isCtrlPressed() : !keyEvent.isCtrlPressed()) && keyEvent.getAction() == 0 && chatActivityEnterView.Z1 == null) {
+                    chatActivityEnterView.Q0();
+                    return true;
+                } else {
+                    return false;
                 }
-                h3Var.a(z10);
-                return;
         }
     }
 }

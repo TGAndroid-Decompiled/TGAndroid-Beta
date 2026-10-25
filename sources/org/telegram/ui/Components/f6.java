@@ -1,196 +1,37 @@
 package org.telegram.ui.Components;
+public final class f6 implements ag.m {
+    public final int f28067a;
+    public final Object f28068b;
 
-import android.content.Context;
-import android.graphics.RectF;
-import android.view.View;
-import android.widget.LinearLayout;
-import j$.util.Comparator$CC;
-import j$.util.Comparator$EL;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.HashMap;
-import org.telegram.messenger.AndroidUtilities;
-public abstract class f6 extends LinearLayout {
-    public static final Comparator f26204r = Comparator$EL.thenComparingInt(Comparator$CC.comparingInt(new ai.v8(14)), new ai.v8(15));
-    public final HashMap f26205a;
-    public final ArrayList f26206b;
-    public final ne.j f26207c;
-    public boolean d;
-    public int e;
-    public int f26208f;
-    public Runnable h;
-    public float f26209n;
-
-    public f6(Context context) {
-        super(context);
-        this.f26205a = new HashMap();
-        this.f26206b = new ArrayList();
-        this.f26207c = new ne.j(new s(this, 11), zr.h, 420L);
-    }
-
-    public final void a() {
-        this.f26208f = 0;
-        this.e = 0;
-        int childCount = getChildCount();
-        for (int i10 = 0; i10 < childCount; i10++) {
-            View childAt = getChildAt(i10);
-            e6 e6Var = (e6) this.f26205a.get(childAt);
-            if (childAt.getVisibility() == 0 && e6Var != null && e6Var.f25972b) {
-                this.e = childAt.getMeasuredWidth() + this.e;
-                this.f26208f = childAt.getMeasuredHeight() + this.f26208f;
-            }
-        }
-    }
-
-    public final void b() {
-        ArrayList arrayList = this.f26207c.f17466b;
-        int size = arrayList.size();
-        int i10 = 0;
-        while (i10 < size) {
-            Object obj = arrayList.get(i10);
-            i10++;
-            ne.g gVar = (ne.g) obj;
-            View view = ((e6) gVar.f17456a).f25971a;
-            RectF b10 = gVar.b();
-            if (getOrientation() == 1) {
-                view.setTranslationY((getPaddingTop() + b10.top) - view.getTop());
-            } else {
-                view.setTranslationX((getPaddingLeft() + b10.left) - view.getLeft());
-            }
-            f(view, gVar.c());
-        }
-        float f7 = getMetadata().f17464g.f17470a;
-        if (this.f26209n != f7) {
-            this.f26209n = f7;
-            Runnable runnable = this.h;
-            if (runnable != null) {
-                runnable.run();
-            }
-        }
-    }
-
-    public final float c(float f7) {
-        return (f7 * getMetadata().f17462c.f17470a) + getMetadata().f17464g.f17470a;
-    }
-
-    public final boolean d(View view) {
-        e6 e6Var = (e6) this.f26205a.get(view);
-        if (e6Var != null && e6Var.f25972b) {
-            return true;
-        }
-        return false;
-    }
-
-    public abstract void e();
-
-    public void f(View view, float f7) {
-        float lerp = AndroidUtilities.lerp(0.95f, 1.0f, f7);
-        view.setAlpha(f7);
-        view.setScaleX(lerp);
-        view.setScaleY(lerp);
-    }
-
-    public final void g(View view) {
-        e6 e6Var = (e6) this.f26205a.get(view);
-    }
-
-    public float getAnimatedHeightWithPadding() {
-        return c(getPaddingBottom() + getPaddingTop());
-    }
-
-    public int getEntriesCount() {
-        return this.f26207c.f17466b.size();
-    }
-
-    public ne.i getMetadata() {
-        return this.f26207c.d;
-    }
-
-    public int getSumHeightOfAllVisibleChild() {
-        return this.f26208f;
-    }
-
-    public int getSumWidthOfAllVisibleChild() {
-        return this.e;
-    }
-
-    public final void h(int i10, View view) {
-        e6 e6Var = (e6) this.f26205a.get(view);
-        if (e6Var != null) {
-            e6Var.d = i10;
-        }
-    }
-
-    public final void i(View view, boolean z10, boolean z11) {
-        e6 e6Var;
-        if (view != null && (e6Var = (e6) this.f26205a.get(view)) != null) {
-            View view2 = e6Var.f25971a;
-            if (e6Var.f25972b != z10) {
-                e6Var.f25972b = z10;
-                if (z10) {
-                    view2.setVisibility(0);
-                }
-                if (!z10 && !e6Var.f25973c) {
-                    view2.setVisibility(8);
-                }
-                if (!z11) {
-                    this.d = true;
-                }
-                requestLayout();
-            }
-        }
+    public f6(Object obj, int i10) {
+        this.f28067a = i10;
+        this.f28068b = obj;
     }
 
     @Override
-    public void onLayout(boolean z10, int i10, int i11, int i12, int i13) {
-        super.onLayout(z10, i10, i11, i12, i13);
-        ArrayList arrayList = this.f26206b;
-        arrayList.clear();
-        int childCount = getChildCount();
-        for (int i14 = 0; i14 < childCount; i14++) {
-            View childAt = getChildAt(i14);
-            e6 e6Var = (e6) this.f26205a.get(childAt);
-            if (e6Var != null) {
-                e6Var.e = i14;
-                if (childAt.getVisibility() == 0 && e6Var.f25972b) {
-                    arrayList.add(e6Var);
+    public final void doFrame(long j10) {
+        switch (this.f28067a) {
+            case 0:
+                g6 g6Var = (g6) this.f28068b;
+                int i10 = g6Var.Q0 + 1;
+                g6Var.Q0 = i10;
+                if (i10 > 10) {
+                    g6Var.R0 = true;
                 }
-            }
+                g6Var.i();
+                if (g6Var.U0) {
+                    g6Var.T0 = true;
+                    g6Var.t();
+                    return;
+                }
+                return;
+            case 1:
+                int i11 = EditTextBoldCursor.f26147a;
+                ((EditTextBoldCursor) this.f28068b).invalidate();
+                return;
+            default:
+                xj0.g((xj0) this.f28068b);
+                return;
         }
-        Collections.sort(arrayList, f26204r);
-        this.f26207c.q(arrayList, !this.d);
-        int size = arrayList.size();
-        int i15 = 0;
-        while (i15 < size) {
-            Object obj = arrayList.get(i15);
-            i15++;
-            ((e6) obj).f25973c = true;
-        }
-        this.d = false;
-        b();
-    }
-
-    @Override
-    public void onMeasure(int i10, int i11) {
-        super.onMeasure(i10, i11);
-        a();
-    }
-
-    @Override
-    public final void onViewAdded(View view) {
-        super.onViewAdded(view);
-        view.setVisibility(8);
-        this.f26205a.put(view, new e6(view));
-    }
-
-    @Override
-    public final void onViewRemoved(View view) {
-        super.onViewRemoved(view);
-        this.f26205a.remove(view);
-    }
-
-    public void setOnAnimatedHeightChangedListener(Runnable runnable) {
-        this.h = runnable;
     }
 }

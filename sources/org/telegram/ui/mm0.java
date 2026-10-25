@@ -1,99 +1,70 @@
 package org.telegram.ui;
 
-import android.text.Editable;
-import android.text.TextWatcher;
-import java.util.ArrayList;
-import java.util.HashMap;
-import org.telegram.messenger.LocaleController;
-import org.telegram.messenger.R;
-import org.telegram.ui.Components.EditTextBoldCursor;
-public final class mm0 implements TextWatcher {
-    public final zm0 f39624a;
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
+import android.animation.AnimatorSet;
+public final class mm0 extends AnimatorListenerAdapter {
+    public final int f41587a;
+    public final boolean f41588b;
+    public final in0 f41589c;
 
-    public mm0(zm0 zm0Var) {
-        this.f39624a = zm0Var;
+    public mm0(in0 in0Var, boolean z10, int i10) {
+        this.f41587a = i10;
+        this.f41589c = in0Var;
+        this.f41588b = z10;
     }
 
     @Override
-    public final void afterTextChanged(Editable editable) {
-        boolean z10;
-        String str;
-        int indexOf;
-        zm0 zm0Var = this.f39624a;
-        ArrayList arrayList = zm0Var.U0;
-        HashMap hashMap = zm0Var.W0;
-        if (zm0Var.Z0) {
-            return;
+    public final void onAnimationCancel(Animator animator) {
+        switch (this.f41587a) {
+            case 0:
+                in0 in0Var = this.f41589c;
+                AnimatorSet animatorSet = in0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    in0Var.M = null;
+                    return;
+                }
+                return;
+            default:
+                in0 in0Var2 = this.f41589c;
+                AnimatorSet animatorSet2 = in0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    in0Var2.M = null;
+                    return;
+                }
+                return;
         }
-        zm0Var.Z0 = true;
-        String d = jf.b.d(zm0Var.Y[1].getText().toString(), false);
-        zm0Var.Y[1].setText(d);
-        org.telegram.ui.Components.m40 m40Var = (org.telegram.ui.Components.m40) zm0Var.Y[2];
-        if (d.length() == 0) {
-            m40Var.setHintText((String) null);
-            m40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-            zm0Var.Y[0].setText(LocaleController.getString(R.string.ChooseCountry));
-        } else {
-            int i10 = 4;
-            if (d.length() > 4) {
-                while (true) {
-                    if (i10 >= 1) {
-                        String substring = d.substring(0, i10);
-                        if (((String) hashMap.get(substring)) != null) {
-                            zm0Var.Y[1].setText(substring);
-                            str = d.substring(i10) + zm0Var.Y[2].getText().toString();
-                            d = substring;
-                            z10 = true;
-                            break;
-                        }
-                        i10--;
+    }
+
+    @Override
+    public final void onAnimationEnd(Animator animator) {
+        switch (this.f41587a) {
+            case 0:
+                in0 in0Var = this.f41589c;
+                AnimatorSet animatorSet = in0Var.M;
+                if (animatorSet != null && animatorSet.equals(animator)) {
+                    if (!this.f41588b) {
+                        in0Var.N.setVisibility(4);
+                        return;
                     } else {
-                        z10 = false;
-                        str = null;
-                        break;
+                        in0Var.L.getContentView().setVisibility(4);
+                        return;
                     }
                 }
-                if (!z10) {
-                    str = d.substring(1) + zm0Var.Y[2].getText().toString();
-                    EditTextBoldCursor editTextBoldCursor = zm0Var.Y[1];
-                    d = d.substring(0, 1);
-                    editTextBoldCursor.setText(d);
+                return;
+            default:
+                in0 in0Var2 = this.f41589c;
+                AnimatorSet animatorSet2 = in0Var2.M;
+                if (animatorSet2 != null && animatorSet2.equals(animator)) {
+                    if (!this.f41588b) {
+                        in0Var2.P.setVisibility(4);
+                        return;
+                    } else {
+                        in0Var2.O.setVisibility(4);
+                        return;
+                    }
                 }
-            } else {
-                z10 = false;
-                str = null;
-            }
-            String str2 = (String) hashMap.get(d);
-            if (str2 != null && (indexOf = arrayList.indexOf(str2)) != -1) {
-                zm0Var.Y[0].setText((CharSequence) arrayList.get(indexOf));
-                String str3 = (String) zm0Var.X0.get(d);
-                if (str3 != null) {
-                    m40Var.setHintText(str3.replace('X', (char) 8211));
-                    m40Var.setHint((CharSequence) null);
-                }
-            } else {
-                m40Var.setHintText((String) null);
-                m40Var.setHint(LocaleController.getString(R.string.PaymentShippingPhoneNumber));
-                zm0Var.Y[0].setText(LocaleController.getString(R.string.WrongCountry));
-            }
-            if (!z10) {
-                EditTextBoldCursor editTextBoldCursor2 = zm0Var.Y[1];
-                editTextBoldCursor2.setSelection(editTextBoldCursor2.getText().length());
-            }
-            if (str != null) {
-                m40Var.requestFocus();
-                m40Var.setText(str);
-                m40Var.setSelection(m40Var.length());
-            }
+                return;
         }
-        zm0Var.Z0 = false;
-    }
-
-    @Override
-    public final void beforeTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
-    }
-
-    @Override
-    public final void onTextChanged(CharSequence charSequence, int i10, int i11, int i12) {
     }
 }

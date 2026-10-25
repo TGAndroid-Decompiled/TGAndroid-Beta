@@ -1,36 +1,33 @@
 package org.telegram.ui;
+public final class h60 implements Runnable {
+    public final int f39910a;
+    public final r60 f39911b;
 
-import android.content.Context;
-public final class h60 extends org.telegram.ui.Components.m20 {
-    public final p60 f37764r;
-
-    public h60(p60 p60Var, Context context, int i10) {
-        super(context, i10);
-        this.f37764r = p60Var;
+    public h60(r60 r60Var, int i10) {
+        this.f39910a = i10;
+        this.f39911b = r60Var;
     }
 
     @Override
-    public final void a(org.telegram.ui.Components.t30 t30Var) {
-        super.a(t30Var);
-        p60.Z(this.f37764r);
-    }
-
-    @Override
-    public final void b() {
-        super.b();
-        p60.Z(this.f37764r);
-    }
-
-    @Override
-    public final void c(org.telegram.ui.Components.t30 t30Var) {
-        p60 p60Var = this.f37764r;
-        if (t30Var == p60Var.X) {
-            p60Var.X = null;
+    public final void run() {
+        switch (this.f39910a) {
+            case 0:
+                this.f39911b.finishFragment();
+                return;
+            case 1:
+                r60 r60Var = this.f39911b;
+                r60Var.j0();
+                r60Var.f0();
+                return;
+            case 2:
+                r60 r60Var2 = this.f39911b;
+                r60Var2.getClass();
+                r60Var2.presentFragment(new PremiumPreviewFragment(0, "noncontacts"));
+                return;
+            default:
+                r60 r60Var3 = this.f39911b;
+                r60Var3.f43025n.postOnAnimation(new h60(r60Var3, 1));
+                return;
         }
-        if (t30Var == p60Var.Y) {
-            p60Var.Y = null;
-        }
-        super.c(t30Var);
-        p60.Z(p60Var);
     }
 }

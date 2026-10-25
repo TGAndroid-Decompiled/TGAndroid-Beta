@@ -1,47 +1,60 @@
 package ai;
 
-import android.graphics.Matrix;
-import android.graphics.Paint;
-import android.graphics.RadialGradient;
-import android.graphics.RectF;
-import org.telegram.messenger.AndroidUtilities;
-import org.telegram.tgnet.TLRPC;
-import org.telegram.tgnet.tl.TL_stars;
-public final class i1 {
-    public final long f1456a;
-    public final TLRPC.Document f1457b;
-    public final long f1458c;
-    public final int d;
-    public final String e;
-    public ee f1459f;
-    public int f1460g = -1;
-    public RadialGradient h;
-    public Paint f1461i;
-    public org.telegram.ui.Components.p5 f1462j;
-    public org.telegram.ui.Components.d6 f1463k;
-    public final RectF f1464l;
-    public final org.telegram.ui.Components.wc f1465m;
+import android.text.TextUtils;
+import org.telegram.messenger.Utilities;
+public final class i1 implements Utilities.Callback {
+    public final int f1549a;
+    public final t1 f1550b;
+    public final String f1551c;
 
-    public i1(j1 j1Var, TL_stars.TL_starGiftUnique tL_starGiftUnique) {
-        long j10;
-        new Matrix();
-        this.f1464l = new RectF();
-        this.f1465m = new org.telegram.ui.Components.wc(j1Var);
-        this.f1456a = tL_starGiftUnique.f20568id;
-        TLRPC.Document document = tL_starGiftUnique.getDocument();
-        this.f1457b = document;
-        if (document == null) {
-            j10 = 0;
-        } else {
-            j10 = document.f20350id;
+    public i1(t1 t1Var, String str, int i10) {
+        this.f1549a = i10;
+        this.f1550b = t1Var;
+        this.f1551c = str;
+    }
+
+    @Override
+    public final void run(Object obj) {
+        boolean z10;
+        g gVar = (g) obj;
+        switch (this.f1549a) {
+            case 0:
+                t1 t1Var = this.f1550b;
+                if (TextUtils.equals(t1Var.d, this.f1551c)) {
+                    if (t1Var.f1868t0 == null) {
+                        z10 = true;
+                    } else {
+                        z10 = false;
+                    }
+                    t1Var.f1868t0 = gVar;
+                    if (!t1Var.f1888v0) {
+                        if (z10) {
+                            t1Var.f1858s0.a(gVar);
+                            t1Var.invalidate();
+                            return;
+                        }
+                        t1Var.j1(gVar);
+                        return;
+                    }
+                    return;
+                }
+                return;
+            default:
+                t1 t1Var2 = this.f1550b;
+                if (TextUtils.equals(t1Var2.e, this.f1551c)) {
+                    t1Var2.f1878u0 = gVar;
+                    if (t1Var2.f1888v0 && t1Var2.f1899w0 && t1Var2.A0) {
+                        t1Var2.A0 = false;
+                        t1Var2.f1929z0 = System.currentTimeMillis() + 60000;
+                        t1Var2.A2 = -1;
+                    }
+                    if (t1Var2.f1888v0) {
+                        t1Var2.j1(gVar);
+                        return;
+                    }
+                    return;
+                }
+                return;
         }
-        this.f1458c = j10;
-        this.d = ((TL_stars.starGiftAttributeBackdrop) ha.l(tL_starGiftUnique.attributes, TL_stars.starGiftAttributeBackdrop.class)).center_color | (-16777216);
-        this.e = tL_starGiftUnique.slug;
-        this.f1459f = new ee(1, 6);
-        float dp = AndroidUtilities.dp(36.0f);
-        float f7 = (-dp) / 2.0f;
-        float f10 = dp / 2.0f;
-        this.f1459f.f1235c.set(f7, f7, f10, f10);
     }
 }

@@ -1,55 +1,51 @@
 package org.telegram.ui.Components;
 
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
-import android.os.SystemClock;
-import android.text.TextPaint;
-import org.telegram.messenger.R;
-public final class c41 extends Drawable {
-    public final xj0 f25180a;
-    public int f25181b;
-    public final TextPaint f25182c;
+import android.content.Context;
+import android.view.View;
+import org.telegram.tgnet.TLRPC;
+public final class c41 extends s61 {
+    public static final int f27072a = 0;
 
-    public c41(TextPaint textPaint) {
-        ah.f1 f1Var = new ah.f1(this, 7);
-        this.f25182c = textPaint;
-        float textSize = textPaint.getTextSize() * 0.89f;
-        xj0 xj0Var = new xj0(R.raw.dots_loading, (int) textSize, (int) (textSize * 1.25f));
-        this.f25180a = xj0Var;
-        xj0Var.setCallback(f1Var);
-        xj0Var.K(1);
-        xj0Var.M((int) ((((float) SystemClock.elapsedRealtime()) / 16.0f) % 60.0f));
-        xj0Var.J(true);
-        xj0Var.start();
+    static {
+        s61.setup(new s61());
     }
 
     @Override
-    public final void draw(Canvas canvas) {
-        int color = this.f25182c.getColor();
-        int i10 = this.f25181b;
-        xj0 xj0Var = this.f25180a;
-        if (color != i10) {
-            xj0Var.Z = true;
-            xj0Var.Q(color, "Comp 1");
-            xj0Var.o();
-            xj0Var.J(true);
-            xj0Var.V(0L);
-            this.f25181b = color;
+    public final void bindView(View view, t61 t61Var, boolean z10, j71 j71Var, r71 r71Var) {
+        boolean z11;
+        d41 d41Var = (d41) view;
+        boolean z12 = false;
+        if (t61Var.f32878r) {
+            d41Var.e();
+        } else {
+            Object obj = t61Var.G;
+            if (obj == null) {
+                if (t61Var.B == -2) {
+                    d41Var.b(t61Var.f32877q, t61Var.e);
+                } else {
+                    if ((t61Var.f32884y & 1) != 0) {
+                        z11 = true;
+                    } else {
+                        z11 = false;
+                    }
+                    d41Var.c(z11, t61Var.f32877q, t61Var.e);
+                }
+            } else if (obj instanceof TLRPC.TL_forumTopic) {
+                if (!t61Var.I) {
+                    d41Var.f((TLRPC.TL_forumTopic) obj, t61Var.e);
+                } else {
+                    d41Var.a(t61Var.f32883x, (TLRPC.TL_forumTopic) obj, t61Var.e);
+                }
+            }
         }
-        xj0Var.draw(canvas);
+        if (r71Var != null && r71Var.f32154k3 && d41Var.E) {
+            z12 = true;
+        }
+        d41Var.setReorder(z12);
     }
 
     @Override
-    public final int getOpacity() {
-        return -2;
-    }
-
-    @Override
-    public final void setAlpha(int i10) {
-    }
-
-    @Override
-    public final void setColorFilter(ColorFilter colorFilter) {
+    public final View createView(Context context, mm0 mm0Var, int i10, int i11, org.telegram.ui.ActionBar.u6 u6Var) {
+        return new d41(context, i10, u6Var);
     }
 }

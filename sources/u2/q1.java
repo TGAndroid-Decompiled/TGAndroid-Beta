@@ -1,34 +1,19 @@
 package u2;
-public final class q1 implements f1 {
-    public final f1 f47869a;
-    public final long f47870b;
+public final class q1 extends s {
+    public final b2.p0 f49408f;
 
-    public q1(f1 f1Var, long j10) {
-        this.f47869a = f1Var;
-        this.f47870b = j10;
+    public q1(b2.p1 p1Var, b2.p0 p0Var) {
+        super(p1Var);
+        this.f49408f = p0Var;
     }
 
     @Override
-    public final void a() {
-        this.f47869a.a();
-    }
-
-    @Override
-    public final boolean f() {
-        return this.f47869a.f();
-    }
-
-    @Override
-    public final int g(qf.b bVar, h2.h hVar, int i10) {
-        int g10 = this.f47869a.g(bVar, hVar, i10);
-        if (g10 == -4) {
-            hVar.e += this.f47870b;
-        }
-        return g10;
-    }
-
-    @Override
-    public final int m(long j10) {
-        return this.f47869a.m(j10 - this.f47870b);
+    public final b2.o1 m(int i10, b2.o1 o1Var, long j10) {
+        super.m(i10, o1Var, j10);
+        b2.p0 p0Var = this.f49408f;
+        o1Var.f3327c = p0Var;
+        b2.k0 k0Var = p0Var.f3345b;
+        o1Var.f3326b = null;
+        return o1Var;
     }
 }

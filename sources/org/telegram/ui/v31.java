@@ -1,66 +1,116 @@
 package org.telegram.ui;
 
+import android.app.Activity;
+import android.graphics.Canvas;
+import android.graphics.Paint;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.RectF;
+import android.text.StaticLayout;
+import android.text.TextPaint;
+import android.widget.FrameLayout;
 import org.telegram.messenger.AndroidUtilities;
-import org.telegram.messenger.MediaController;
-public final class v31 implements Runnable {
-    public final int f42559a;
-    public final a41 f42560b;
+import org.telegram.messenger.MessageObject;
+import org.telegram.messenger.R;
+import org.telegram.tgnet.ConnectionsManager;
+import org.telegram.tgnet.TLRPC;
+public final class v31 extends FrameLayout {
+    public final Paint f44592a;
+    public final Paint f44593b;
+    public final RectF f44594c;
+    public final org.telegram.ui.Components.g31 d;
+    public boolean e;
+    public long f44595f;
+    public long h;
+    public final org.telegram.ui.Components.xj0 f44596n;
+    public final TextPaint f44597r;
+    public StaticLayout f44598s;
+    public float v;
+    public float f44599w;
+    public final SecretMediaViewer f44600x;
 
-    public v31(a41 a41Var, int i10) {
-        this.f42559a = i10;
-        this.f42560b = a41Var;
+    public v31(SecretMediaViewer secretMediaViewer, Activity activity) {
+        super(activity);
+        this.f44600x = secretMediaViewer;
+        this.f44594c = new RectF();
+        this.d = new org.telegram.ui.Components.g31();
+        this.f44597r = new TextPaint(1);
+        setWillNotDraw(false);
+        Paint paint = new Paint(1);
+        this.f44593b = paint;
+        paint.setStrokeWidth(AndroidUtilities.dp(1.5f));
+        paint.setColor(-1644826);
+        Paint.Cap cap = Paint.Cap.ROUND;
+        paint.setStrokeCap(cap);
+        Paint.Style style = Paint.Style.STROKE;
+        paint.setStyle(style);
+        Paint paint2 = new Paint(1);
+        this.f44592a = paint2;
+        paint2.setStyle(style);
+        paint2.setStrokeCap(cap);
+        paint2.setColor(-1644826);
+        paint2.setStrokeWidth(AndroidUtilities.dp(2.0f));
+        new Paint(1).setColor(2130706432);
+        org.telegram.ui.Components.xj0 xj0Var = new org.telegram.ui.Components.xj0(R.raw.fire_on, AndroidUtilities.dp(16.0f), AndroidUtilities.dp(16.0f));
+        this.f44596n = xj0Var;
+        xj0Var.setColorFilter(new PorterDuffColorFilter(-1, PorterDuff.Mode.SRC_IN));
+        xj0Var.R(this);
+        xj0Var.start();
     }
 
     @Override
-    public final void run() {
-        switch (this.f42559a) {
-            case 0:
-                a41 a41Var = this.f42560b;
-                v31 v31Var = a41Var.Z;
-                org.telegram.ui.Components.j81 j81Var = a41Var.f35588w;
-                if (j81Var != null) {
-                    a41Var.f35577a0 = ((float) j81Var.n()) / ((float) a41Var.f35588w.p());
-                    y31 y31Var = a41Var.N;
-                    if (y31Var != null) {
-                        y31Var.Xd = (a41Var.f35588w.p() - a41Var.f35588w.n()) / 1000;
-                        a41Var.N.p4();
-                        org.telegram.ui.Components.jp0 seekBarWaveform = a41Var.N.getSeekBarWaveform();
-                        if (seekBarWaveform != null) {
-                            float f7 = a41Var.f35577a0;
-                            seekBarWaveform.J = true;
-                            seekBarWaveform.K = f7;
-                            org.telegram.ui.Cells.t1 t1Var = seekBarWaveform.f27773n;
-                            if (t1Var != null) {
-                                t1Var.invalidate();
-                            }
-                        }
-                    }
-                    if (a41Var.f35588w.y()) {
-                        AndroidUtilities.cancelRunOnUIThread(v31Var);
-                        AndroidUtilities.runOnUIThread(v31Var, 16L);
-                        return;
-                    }
-                    return;
+    public final void onDraw(Canvas canvas) {
+        SecretMediaViewer secretMediaViewer;
+        float max;
+        MessageObject messageObject = this.f44600x.f36166h0;
+        if (messageObject != null) {
+            TLRPC.Message message = messageObject.messageOwner;
+            if (message.destroyTime != 0 || message.ttl == Integer.MAX_VALUE) {
+                if (this.f44595f == 0) {
+                    max = 1.0f;
+                } else {
+                    max = ((float) Math.max(0L, this.f44595f - (System.currentTimeMillis() + (ConnectionsManager.getInstance(secretMediaViewer.f36148a).getTimeDifference() * 1000)))) / (((float) this.h) * 1000.0f);
                 }
-                return;
-            case 1:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            case 2:
-                super/*android.app.Dialog*/.dismiss();
-                return;
-            default:
-                a41 a41Var2 = this.f42560b;
-                if (a41Var2.d == null) {
-                    AndroidUtilities.runOnUIThread(new v31(a41Var2, 2));
-                    org.telegram.ui.Cells.t1 t1Var2 = a41Var2.O;
-                    if (t1Var2 != null) {
-                        t1Var2.setVisibility(0);
-                        a41Var2.O.invalidate();
+                boolean z10 = this.e;
+                Paint paint = this.f44593b;
+                Paint paint2 = this.f44592a;
+                RectF rectF = this.f44594c;
+                if (z10) {
+                    canvas.save();
+                    canvas.translate(rectF.centerX() - (this.v / 2.0f), rectF.centerY() - (this.f44599w / 2.0f));
+                    this.f44598s.draw(canvas);
+                    canvas.restore();
+                    canvas.drawArc(rectF, 90.0f, 180.0f, false, paint2);
+                    float f7 = 19.285715f;
+                    for (int i10 = 0; i10 < 5; i10++) {
+                        canvas.drawArc(rectF, f7 + 270.0f, 12.857143f, false, paint2);
+                        f7 += 32.14286f;
                     }
+                    this.d.a(0.0f, 1.0f, canvas, paint, rectF);
+                } else {
+                    float centerX = rectF.centerX();
+                    float centerY = rectF.centerY() - AndroidUtilities.dp(1.0f);
+                    float dp = AndroidUtilities.dp(8.0f);
+                    org.telegram.ui.Components.xj0 xj0Var = this.f44596n;
+                    xj0Var.setBounds((int) (centerX - dp), (int) (centerY - dp), (int) (centerX + dp), (int) (centerY + dp));
+                    xj0Var.draw(canvas);
+                    float f10 = max * (-360.0f);
+                    canvas.drawArc(rectF, -90.0f, f10, false, paint2);
+                    this.d.a(f10, 1.0f, canvas, paint, rectF);
                 }
-                MediaController.getInstance().tryResumePausedAudio();
-                return;
+                invalidate();
+            }
         }
+    }
+
+    @Override
+    public final void onMeasure(int i10, int i11) {
+        super.onMeasure(i10, i11);
+        float measuredWidth = getMeasuredWidth() - AndroidUtilities.dp(35.0f);
+        float measuredHeight = getMeasuredHeight() / 2.0f;
+        float dpf2 = AndroidUtilities.dpf2(10.5f);
+        this.f44594c.set(measuredWidth - dpf2, measuredHeight - dpf2, measuredWidth + dpf2, dpf2 + measuredHeight);
+        setPivotX(measuredWidth);
+        setPivotY(measuredHeight);
     }
 }

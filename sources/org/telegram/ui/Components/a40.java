@@ -1,50 +1,49 @@
 package org.telegram.ui.Components;
 
-import android.animation.Animator;
-import android.animation.AnimatorListenerAdapter;
-public final class a40 extends AnimatorListenerAdapter {
-    public final int f24619a;
-    public final c40 f24620b;
+import java.util.ArrayList;
+public final class a40 implements ig.z1 {
+    public final b40 f26405a;
 
-    public a40(c40 c40Var, int i10) {
-        this.f24619a = i10;
-        this.f24620b = c40Var;
+    public a40(b40 b40Var) {
+        this.f26405a = b40Var;
     }
 
     @Override
-    public final void onAnimationEnd(Animator animator) {
-        switch (this.f24619a) {
-            case 0:
-                c40 c40Var = this.f24620b;
-                if (c40Var.f25170b0 == animator) {
-                    c40Var.f25170b0 = null;
-                    c40Var.b();
-                    return;
-                }
-                return;
-            default:
-                c40 c40Var2 = this.f24620b;
-                if (c40Var2.f25168a0 == animator) {
-                    c40Var2.f25168a0 = null;
-                    return;
-                }
-                return;
+    public final a0.h U() {
+        return null;
+    }
+
+    @Override
+    public final void f(int i10) {
+        b40 b40Var = this.f26405a;
+        c40 c40Var = b40Var.f26751w;
+        if (i10 >= 0 && i10 == b40Var.f26748n && !b40Var.h) {
+            boolean z10 = true;
+            int i11 = b40Var.f26747f - 1;
+            if (c40Var.f26781s.getVisibility() != 0) {
+                z10 = false;
+            }
+            b40Var.l();
+            if (b40Var.f26747f > i11) {
+                c40Var.J(i11);
+            }
+            if (!b40Var.d.e() && c40Var.d.S0()) {
+                c40Var.f26781s.e(false, z10);
+            }
         }
     }
 
     @Override
-    public void onAnimationStart(Animator animator) {
-        switch (this.f24619a) {
-            case 1:
-                b40 b40Var = this.f24620b.W;
-                if (b40Var != null) {
-                    ((org.telegram.ui.ds0) b40Var).f36720a.f33582e0.requestLayout();
-                    return;
-                }
-                return;
-            default:
-                super.onAnimationStart(animator);
-                return;
-        }
+    public final boolean k0(int i10) {
+        return true;
+    }
+
+    @Override
+    public final a0.h y() {
+        return this.f26405a.f26751w.f27059e0;
+    }
+
+    @Override
+    public final void p0(ArrayList arrayList) {
     }
 }

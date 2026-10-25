@@ -1,66 +1,9 @@
 package org.telegram.ui.Components;
-
-import android.app.Activity;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.widget.FrameLayout;
-import org.telegram.messenger.AndroidUtilities;
-public final class ec extends FrameLayout {
-    public final d6 f26015a;
-    public final d6 f26016b;
-    public final Paint f26017c;
-    public final RectF d;
-    public final long e;
-    public final fc f26018f;
-
-    public ec(fc fcVar, Activity activity) {
-        super(activity);
-        this.f26018f = fcVar;
-        zr zrVar = zr.h;
-        this.f26015a = new d6(this, 320L, zrVar);
-        this.f26016b = new d6(this, 320L, zrVar);
-        Paint paint = new Paint(1);
-        this.f26017c = paint;
-        paint.setStyle(Paint.Style.STROKE);
-        paint.setColor(268435455);
-        paint.setStrokeWidth(AndroidUtilities.dp(1.66f));
-        paint.setStrokeCap(Paint.Cap.ROUND);
-        paint.setStrokeJoin(Paint.Join.ROUND);
-        this.d = new RectF();
-        this.e = System.currentTimeMillis();
-    }
-
+public final class ec implements o1.g {
     @Override
-    public final void onDraw(Canvas canvas) {
-        boolean z10;
-        int i10;
-        fc fcVar = this.f26018f;
-        float d = this.f26015a.d(fcVar.f26284a, false);
-        if (fcVar.f26284a >= 1.0f) {
-            z10 = true;
-        } else {
-            z10 = false;
+    public final void a(o1.h hVar, float f7, float f10) {
+        if (f7 <= 0.0f) {
+            hVar.c();
         }
-        float e = this.f26016b.e(z10);
-        float width = getWidth() / 2.0f;
-        float height = getHeight() / 2.0f;
-        RectF rectF = this.d;
-        rectF.set(width - AndroidUtilities.dpf2(13.0f), height - AndroidUtilities.dpf2(13.0f), AndroidUtilities.dpf2(13.0f) + width, AndroidUtilities.dpf2(13.0f) + height);
-        float currentTimeMillis = (((float) (System.currentTimeMillis() - this.e)) * 0.45f) % 5400.0f;
-        float max = Math.max(0.0f, ((1520.0f * currentTimeMillis) / 5400.0f) - 20.0f);
-        for (int i11 = 0; i11 < 4; i11++) {
-            u1.a aVar = cq.h;
-            aVar.getInterpolation((currentTimeMillis - (i11 * 1350)) / 667.0f);
-            max += aVar.getInterpolation((currentTimeMillis - (i10 + 667)) / 667.0f) * 250.0f;
-        }
-        int o12 = org.telegram.ui.ActionBar.k6.o1((1.0f - e) * 1.0f, -1);
-        Paint paint = this.f26017c;
-        paint.setColor(o12);
-        canvas.drawArc(rectF, (-90.0f) - max, Math.max(0.02f, d) * (-360.0f), false, paint);
-        if (d < 1.0f && e < 1.0f) {
-            invalidate();
-        }
-        super.onDraw(canvas);
     }
 }
