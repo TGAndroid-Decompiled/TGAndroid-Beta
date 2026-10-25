@@ -12,10 +12,10 @@ public final class h implements Runnable {
     public final void run() {
         switch (this.f21644a) {
             case 0:
-                this.f21645b.lambda$onDestroy$8();
+                VideoCapturerDevice.f(this.f21645b);
                 return;
             default:
-                this.f21645b.lambda$onDestroy$9();
+                VideoCapturerDevice.i(this.f21645b);
                 return;
         }
     }

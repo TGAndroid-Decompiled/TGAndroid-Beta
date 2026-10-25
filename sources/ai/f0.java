@@ -538,7 +538,7 @@ public final class f0 implements CameraView.CameraViewDelegate, c51, qf1, b2, On
                 j1Var.Q();
                 return;
             default:
-                jg.w.a0((jg.w) this.f1485b, (TL_account.TL_businessChatLink) this.f1486c);
+                jg.z.d(r4.currentAccount).a((jg.w) this.f1485b, ((TL_account.TL_businessChatLink) this.f1486c).link);
                 return;
         }
     }

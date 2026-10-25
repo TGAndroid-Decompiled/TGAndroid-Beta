@@ -118,10 +118,6 @@ public class l2 extends org.telegram.ui.ActionBar.k3 implements NotificationCent
         return l2Var.currentAccount;
     }
 
-    public static int Z(l2 l2Var) {
-        return l2Var.currentAccount;
-    }
-
     public static ViewGroup d0(l2 l2Var) {
         return l2Var.containerView;
     }

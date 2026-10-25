@@ -88,6 +88,11 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
         }
     }
 
+    public static boolean access$102(ub ubVar, boolean z10) {
+        ubVar.pillStyle = z10;
+        return z10;
+    }
+
     public static boolean access$1600(ub ubVar, boolean z10) {
         ubVar.getClass();
         if (a() && ubVar.wideScreenWidth != -1) {
@@ -104,6 +109,10 @@ public abstract class ub extends FrameLayout implements org.telegram.ui.ActionBa
             return true;
         }
         return false;
+    }
+
+    public static void access$200(ub ubVar) {
+        ubVar.b();
     }
 
     public void setInOutOffset(float f7) {

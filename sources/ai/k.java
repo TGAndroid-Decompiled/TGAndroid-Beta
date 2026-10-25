@@ -30,6 +30,7 @@ import org.telegram.messenger.UserConfig;
 import org.telegram.messenger.Utilities;
 import org.telegram.tgnet.TLRPC;
 import org.telegram.tgnet.tl.TL_stars;
+import org.telegram.ui.ActionBar.k3;
 import org.telegram.ui.ActionBar.r2;
 import org.telegram.ui.Cells.r4;
 import org.telegram.ui.Cells.w7;
@@ -69,6 +70,7 @@ public final class k implements zl0 {
         TLRPC.BotInlineResult botInlineResult;
         TLRPC.Document document3;
         long longValue;
+        int i12;
         t5 t5Var;
         org.telegram.ui.ActionBar.k kVar;
         Object O;
@@ -89,11 +91,11 @@ public final class k implements zl0 {
                                 return;
                             }
                             t1 t1Var2 = z0Var.d;
-                            int i12 = t1Var2.f1690b;
+                            int i13 = t1Var2.f1690b;
                             String o10 = a1.g.o(j10, "c:");
                             HashMap hashMap = t1Var2.J;
                             if (!hashMap.containsKey(o10)) {
-                                t5 m10 = t5.m(i12, 2, document);
+                                t5 m10 = t5.m(i13, 2, document);
                                 m10.a(t1Var2);
                                 hashMap.put(o10, m10);
                             }
@@ -121,11 +123,11 @@ public final class k implements zl0 {
                                     a1.g.A(1, a2);
                                 }
                                 StringBuilder sb2 = new StringBuilder();
-                                for (int i13 = 0; i13 < a2.size(); i13++) {
-                                    if (i13 > 0) {
+                                for (int i14 = 0; i14 < a2.size(); i14++) {
+                                    if (i14 > 0) {
                                         sb2.append(',');
                                     }
-                                    sb2.append(a2.get(i13));
+                                    sb2.append(a2.get(i14));
                                 }
                                 MessagesController.getMainSettings(x0Var2.f1970a).edit().putString("qrAppliedEmoji", sb2.toString()).apply();
                                 x0Var2.J = true;
@@ -240,7 +242,8 @@ public final class k implements zl0 {
                             document3 = t5Var.e;
                         }
                         if (document3 == null && longValue != 0) {
-                            document3 = t5.f(l2.Z(l2Var2), longValue);
+                            i12 = ((k3) l2Var2).currentAccount;
+                            document3 = t5.f(i12, longValue);
                         }
                         if (document3 != null) {
                             Utilities.Callback3Return callback3Return2 = l2Var2.E;
@@ -321,14 +324,14 @@ public final class k implements zl0 {
                     }
                     cyVar.R3();
                     if (AndroidUtilities.isTablet() && cyVar.f38583e0 != null) {
-                        int i14 = 0;
+                        int i15 = 0;
                         while (true) {
                             ay[] ayVarArr = cyVar.f38583e0;
-                            if (i14 < ayVarArr.length) {
-                                gw gwVar = ayVarArr[i14].d;
+                            if (i15 < ayVarArr.length) {
+                                gw gwVar = ayVarArr[i15].d;
                                 cyVar.f38639p2.dialogId = longValue2;
                                 gwVar.f14174s = longValue2;
-                                i14++;
+                                i15++;
                             } else {
                                 cyVar.q5(MessagesController.UPDATE_MASK_SELECT_DIALOG, true);
                             }
@@ -357,9 +360,9 @@ public final class k implements zl0 {
                 jg.g0 g0Var = i0Var2.f15732y;
                 if (adapter == g0Var) {
                     ArrayList arrayList4 = g0Var.d;
-                    int i15 = i10 - 1;
-                    if (i15 >= 0 && i15 < arrayList4.size()) {
-                        O = arrayList4.get(i15);
+                    int i16 = i10 - 1;
+                    if (i16 >= 0 && i16 < arrayList4.size()) {
+                        O = arrayList4.get(i16);
                     } else {
                         O = null;
                     }
@@ -391,17 +394,17 @@ public final class k implements zl0 {
                 if (G2 != null) {
                     jg.b0 b0Var = k0Var.Z;
                     if (!b0Var.h(G2)) {
-                        int i16 = G2.d;
-                        int i17 = jg.k0.f15748k0;
-                        if (i16 == -1) {
+                        int i17 = G2.d;
+                        int i18 = jg.k0.f15748k0;
+                        if (i17 == -1) {
                             k0Var.f15755f0 = true;
                             b0Var.h = true;
                             k0Var.f15754e0.O(true);
                             k0Var.T(true);
                             return;
                         }
-                        int i18 = jg.k0.f15749l0;
-                        if (i16 == -2) {
+                        int i19 = jg.k0.f15749l0;
+                        if (i17 == -2) {
                             k0Var.f15755f0 = false;
                             b0Var.h = false;
                             k0Var.f15754e0.O(true);
@@ -415,11 +418,11 @@ public final class k implements zl0 {
                 return;
             case 17:
                 ki.a aVar = (ki.a) this.f1560b;
-                int i19 = aVar.X.G(i10 - 1).d;
-                if (i19 == 151) {
+                int i20 = aVar.X.G(i10 - 1).d;
+                if (i20 == 151) {
                     aVar.Q(false);
                     return;
-                } else if (i19 == 150) {
+                } else if (i20 == 150) {
                     aVar.Q(true);
                     return;
                 } else {
@@ -482,8 +485,8 @@ public final class k implements zl0 {
                     Object obj = G.G;
                     if (obj instanceof TL_stars.SavedStarGift) {
                         TL_stars.SavedStarGift savedStarGift = (TL_stars.SavedStarGift) obj;
-                        int i20 = savedStarGift.msg_id;
-                        long j11 = i20 == 0 ? savedStarGift.saved_id : i20;
+                        int i21 = savedStarGift.msg_id;
+                        long j11 = i21 == 0 ? savedStarGift.saved_id : i21;
                         boolean z10 = false;
                         if (hashSet.contains(Long.valueOf(j11))) {
                             hashSet.remove(Long.valueOf(j11));
